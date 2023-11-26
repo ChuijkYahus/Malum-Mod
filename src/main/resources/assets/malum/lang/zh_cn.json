@@ -925,7 +925,7 @@
 
   "malum.gui.book.entry.sacred_rite": "神圣仪式",
   "malum.gui.book.entry.sacred_rite.description": "振奋灵魂",
-  "malum.gui.book.entry.page.text.sacred_rite": "简单灵气仪式，周围的友好生物 会被缓慢治疗。",
+  "malum.gui.book.entry.page.text.sacred_rite": "简单灵气仪式，周围实体会被缓 慢治疗。\n不会对敌对生物生效。",
   "malum.gui.book.entry.page.text.sacred_rite.hover": "每秒恢复两点生命值。",
   "malum.gui.book.entry.page.text.greater_sacred_rite": "通过扭转活力的能量，就能催熟 图腾前方土壤上种植的农作物。",
   "malum.gui.book.entry.page.text.greater_sacred_rite.hover": "周期性催熟周围农作物。范围与水流范围一致。",
