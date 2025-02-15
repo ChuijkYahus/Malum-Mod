@@ -6,8 +6,10 @@ import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.helpers.*;
@@ -97,7 +99,11 @@ public class ScarfRenderHandler {
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
-            points.setOrigin(getScarfStart(entity, partialTicks));
+            final Vec3 scarfStart = getScarfStart(entity, 0);
+            if (entity instanceof Player player) {
+                player.displayClientMessage(Component.literal("" + scarfStart), true);
+            }
+            points.setOrigin(scarfStart);
             poseStack.pushPose();
             float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
