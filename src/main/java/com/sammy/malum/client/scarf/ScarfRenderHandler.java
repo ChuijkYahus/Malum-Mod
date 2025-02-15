@@ -154,7 +154,13 @@ public class ScarfRenderHandler {
             float yRot = ((float) (Mth.atan2(lookDirection.x, lookDirection.z) * (double) (180F / (float) Math.PI)));
             float yaw = (float) Math.toRadians(yRot);
             var left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
-            return eyePosition.subtract(lookDirection.scale(0.2f).add(left.scale(-0.2f)));
+            final Vec3 offsetPosition = eyePosition.subtract(lookDirection.scale(0.2f).add(left.scale(-0.2f)));
+            float angle = ((entity.level().getGameTime()+partialTicks) * 0.05f) % 6.28f;
+            float offsetStrength = 0.01f;
+            float xOffset = Mth.sin(angle * 4) * offsetStrength;
+            float yOffset = Mth.sin(angle * 4) * offsetStrength;
+            float zOffset = Mth.cos(angle * 4) * offsetStrength;
+            return offsetPosition.add(xOffset, yOffset, zOffset);
         }
     }
 }
