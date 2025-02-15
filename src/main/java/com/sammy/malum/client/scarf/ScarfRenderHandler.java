@@ -43,9 +43,10 @@ public class ScarfRenderHandler {
         for (Map.Entry<LivingEntity, ScarfRenderData> entry : SCARF_DATA.entrySet()) {
             final ScarfRenderData data = entry.getValue();
             final LivingEntity entity = entry.getKey();
-            var position = entity.getPosition(event.getPartialTick().getRealtimeDeltaTicks());
+            final float partialTicks = event.getPartialTick().getRealtimeDeltaTicks();
+            var position = entity.getPosition(partialTicks);
             poseStack.translate(position.x, position.y, position.z);
-            data.render(entity, poseStack, 1f);
+            data.render(entity, poseStack, partialTicks);
             poseStack.translate(-position.x, -position.y, -position.z);
         }
     }
@@ -100,47 +101,30 @@ public class ScarfRenderHandler {
             var renderType = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
             final Vec3 scarfStart = getScarfStart(entity, 0);
-            if (entity instanceof Player player) {
-                player.displayClientMessage(Component.literal("" + scarfStart), true);
-            }
             points.setOrigin(scarfStart);
             poseStack.pushPose();
             float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
-
-            points.run(t -> {
-                final Vec3 position = t.getPosition();
-                poseStack.pushPose();
-                poseStack.translate(position.x, position.y, position.z);
-                poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
-                builder.renderQuad(poseStack, 0.05f);
-                poseStack.popPose();
-            });
-            if (false) {
-                builder.usePartialTicks(partialTicks).renderTrail(poseStack, points,
-                        f -> scale * (2.5f - f * 1.75f),
-                        f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
-                );
-            }
+            builder.usePartialTicks(partialTicks).renderTrail(poseStack, points,
+                    f -> scale * (2.5f - f * 1.75f),
+                    f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
+            );
             poseStack.translate(trailOffsetX, trailOffsetY, trailOffsetZ);
-
             poseStack.popPose();
         }
 
         public void tick(LivingEntity entity) {
             var movement = getScarfPointMovement(entity);
-            if (entity.level().getGameTime() % 2L == 0) {
-                points.addTrailPoint(new TrailPoint(getScarfStart(entity, 0)));
-            }
+            points.addTrailPoint(new TrailPoint(getScarfStart(entity, 0)));
             points.run(t -> t.move(movement));
             final List<TrailPoint> list = points.getTrailPoints();
             if (list.size() > 2) {
                 float age = points.trailLength.get();
                 for (int i = 0; i < list.size() - 1; i++) {
                     var currentPoint = list.get(i);
-                    var nextPoint = list.get(i+1);
+                    var nextPoint = list.get(i + 1);
                     float delta = Mth.clamp(currentPoint.getAge() / age * 4, 0, 1);
                     float lerpX = (float) Mth.lerp(delta, currentPoint.getPosition().x, nextPoint.getPosition().x);
                     float lerpY = (float) Mth.lerp(delta, currentPoint.getPosition().y, nextPoint.getPosition().y);
