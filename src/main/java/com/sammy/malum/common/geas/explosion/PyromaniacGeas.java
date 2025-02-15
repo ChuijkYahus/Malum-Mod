@@ -22,7 +22,7 @@ import java.util.function.*;
 
 public class PyromaniacGeas extends GeasEffect {
 
-    protected static final int STREAK_FALLOFF_TIMER = 2400;
+    protected static final int STREAK_FALLOFF_TIMER = 300;
     protected static final int STREAK_LIMIT = 10;
     protected int streak;
     protected int cooldown;
@@ -39,15 +39,17 @@ public class PyromaniacGeas extends GeasEffect {
                     var geas = GeasEffectHandler.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
                     if (geas != null) {
                         var pyromaniacGeas = (PyromaniacGeas) geas.getValue();
+                        int pointsAdded = 2;
+                        if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
+                            event.getAffectedBlocks().clear();
+                            pointsAdded = 4;
+                        }
                         if (pyromaniacGeas.streak < STREAK_LIMIT) {
-                            pyromaniacGeas.streak++;
+                            pyromaniacGeas.streak = Math.min(pyromaniacGeas.streak+pointsAdded, STREAK_LIMIT);
                             if (pyromaniacGeas.streak >= 5) {
                                 livingEntity.igniteForSeconds(5);
                             }
                             pyromaniacGeas.markDirty();
-                        }
-                        if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
-                            event.getAffectedBlocks().clear();
                         }
                         livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.MINERS_RAGE, 600, 2));
                         return;
@@ -86,6 +88,7 @@ public class PyromaniacGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_protection"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);

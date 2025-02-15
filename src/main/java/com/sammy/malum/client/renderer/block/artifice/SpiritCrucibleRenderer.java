@@ -66,7 +66,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
         if (!stack.isEmpty()) {
             poseStack.pushPose();
             Vec3 offset = SpiritCrucibleCoreBlockEntity.CRUCIBLE_ITEM_OFFSET;
-            poseStack.translate(offset.x, offset.y, offset.z);
+            poseStack.translate(offset.x + 0.5f, offset.y + 0.5f, offset.z + 0.5f);
             poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
             poseStack.scale(0.45f, 0.45f, 0.45f);
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
@@ -76,7 +76,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
         if (!stack.isEmpty()) {
             poseStack.pushPose();
             Vec3 offset = SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET;
-            poseStack.translate(offset.x, offset.y, offset.z);
+            poseStack.translate(offset.x + 0.5f, offset.y + 0.5f, offset.z + 0.5f);
             poseStack.mulPose(Axis.YP.rotationDegrees(((-level.getGameTime() % 360) - partialTicks) * 3));
             poseStack.scale(0.45f, 0.45f, 0.45f);
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

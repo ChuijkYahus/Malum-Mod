@@ -17,11 +17,11 @@ import net.neoforged.neoforge.event.tick.*;
 
 import java.util.function.*;
 
-public class ShatteringAddict extends GeasEffect {
+public class ShatteringAddictGeas extends GeasEffect {
 
     private long mostRecentShatter;
 
-    public ShatteringAddict() {
+    public ShatteringAddictGeas() {
         super(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get());
     }
 
@@ -65,7 +65,7 @@ public class ShatteringAddict extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         addAttributeModifier(modifiers, AttributeRegistry.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
-        addAttributeModifier(modifiers, AttributeRegistry.ARCANE_RESONANCE, 0.5f, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(modifiers, AttributeRegistry.ARCANE_RESONANCE, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         return modifiers;
     }
 }

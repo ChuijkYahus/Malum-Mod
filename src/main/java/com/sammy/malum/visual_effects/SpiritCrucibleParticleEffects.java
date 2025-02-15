@@ -11,6 +11,8 @@ import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.networked.data.*;
+import net.minecraft.client.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -33,6 +35,46 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class SpiritCrucibleParticleEffects {
 
+    public static void suspiciousDevicePrimer(PositionEffectData positionData, ColorEffectData colorData) {
+        ClientLevel level = Minecraft.getInstance().level;
+        var random = level.random;
+
+        for (int i = 0; i < 4; i++) {
+            final GenericParticleData scaleData = GenericParticleData.create(RandomHelper.randomBetween(random, 1.2f, 0.8f), 0f)
+                    .setEasing(Easing.BOUNCE_IN_OUT)
+                    .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
+            final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
+            WorldParticleBuilder.create(ParticleRegistry.CIRCLE.get())
+                    .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.4f, 0.8f)).build())
+                    .setColorData(colorData.getColor())
+                    .setScaleData(scaleData)
+                    .addTickActor(behavior)
+                    .setRandomOffset(0.25f)
+                    .setLifetime(20)
+                    .setLifeDelay(i)
+                    .enableNoClip()
+                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+        }
+        for (int i = 0; i < 4; i++) {
+            final GenericParticleData scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(random, 0.8f, 0.4f), 0f)
+                    .setEasing(Easing.BOUNCE_IN_OUT)
+                    .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
+            final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
+            WorldParticleBuilder.create(ParticleRegistry.SHINE.get())
+                    .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.3f)).build())
+                    .setColorData(colorData.getColor())
+                    .setScaleData(scaleData)
+                    .addTickActor(behavior)
+                    .setRandomOffset(0.25f)
+                    .setLifetime(10)
+                    .setLifeDelay(10+i)
+                    .enableNoClip()
+                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+        }
+    }
+
     public static void passiveCrucibleParticles(SpiritCrucibleCoreBlockEntity crucible) {
         var activeSpiritType = crucible.getActiveSpiritType();
         var level = crucible.getLevel();
@@ -46,7 +88,7 @@ public class SpiritCrucibleParticleEffects {
                             Mth.nextFloat(random, -0.1f, 0.1f),
                             Mth.nextFloat(random, -0.1f, 0.1f),
                             Mth.nextFloat(random, -0.1f, 0.1f));
-                    var particlePosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
+                    var particlePosition = blockPos.getCenter().add(offset);
                     var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, particlePosition, augmentSpiritType);
                     lightSpecs.getBuilder().multiplyLifetime(2.5f).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.3f));
                     lightSpecs.getBloomBuilder().multiplyLifetime(1.5f);
@@ -140,6 +182,7 @@ public class SpiritCrucibleParticleEffects {
             }
         }
     }
+
     public static void craftItemParticles(SpiritCrucibleCoreBlockEntity crucible, ColorEffectData colorData) {
         MalumSpiritType activeSpiritType = crucible.getActiveSpiritType();
         if (activeSpiritType == null) {
@@ -148,7 +191,7 @@ public class SpiritCrucibleParticleEffects {
         Level level = crucible.getLevel();
         var random = level.random;
         var cruciblePos = crucible.getBlockPos();
-        Vec3 crucibleItemPos = SpiritCrucibleCoreBlockEntity.CRUCIBLE_ITEM_OFFSET.add(cruciblePos.getX(), cruciblePos.getY(), cruciblePos.getZ());
+        Vec3 crucibleItemPos = cruciblePos.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_ITEM_OFFSET);
 
         for (int i = 0; i < 2; i++) {
             SpiritLightSpecs.coolLookingShinyThing(level, crucibleItemPos, activeSpiritType);
@@ -298,7 +341,7 @@ public class SpiritCrucibleParticleEffects {
             ItemStack item = catalyzer.augmentInventory.getStackInSlot(0);
             if (item.getItem() instanceof AugmentItem augmentItem) {
                 BlockPos blockPos = catalyzer.getBlockPos();
-                for (var augmentSpiritType : augmentItem.spiritTypes ) {
+                for (var augmentSpiritType : augmentItem.spiritTypes) {
                     Vec3 offset = SpiritCatalyzerCoreBlockEntity.CATALYZER_AUGMENT_OFFSET.add(
                             Mth.nextFloat(random, -0.1f, 0.1f),
                             Mth.nextFloat(random, -0.1f, 0.1f),

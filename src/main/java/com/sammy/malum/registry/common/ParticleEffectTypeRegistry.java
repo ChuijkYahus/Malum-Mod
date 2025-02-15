@@ -34,6 +34,7 @@ public class ParticleEffectTypeRegistry {
 
     //Crucible
     public static final ParticleEffectType SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");
+    public static final ParticleEffectType SUSPICIOUS_DEVICE_PRIMER = new SuspiciousDevicePrimerParticleEffect("suspicious_device_primer");
 
     //Repair Pylon
     public static final ParticleEffectType REPAIR_PYLON_PREPARES = new PylonPrepareRepairParticleEffect("repair_pylon_prepare");

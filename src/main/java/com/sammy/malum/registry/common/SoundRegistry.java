@@ -52,11 +52,15 @@ public class SoundRegistry {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CONCENTRATED_GLUTTONY_DRINK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("concentrated_gluttony_drink")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_MOTE_CREATED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_mote_created")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> TUNING_FORK_TINKER = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("tuning_fork_tinkers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CRUCIBLE_AUGMENT_APPLY = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("crucible_augment_applied")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CRUCIBLE_AUGMENT_REMOVE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("crucible_augment_removed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WARPING_ENGINE_REVERBERATES = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("warping_engine_reverberates")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SHIELDING_APPARATUS_SHIELDS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("shielding_apparatus_shields")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUSPICIOUS_DEVICE_DETONATES = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("suspicious_device_detonates")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUSPICIOUS_DEVICE_DETONATES_AGAIN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("suspicious_device_detonates_again")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEGALIZE_NUCLEAR_BOMBS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("legalize_nuclear_bombs")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_WHISPERS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_whispers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_PICKUP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_picked_up")));

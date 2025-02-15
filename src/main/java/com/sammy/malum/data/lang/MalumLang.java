@@ -272,12 +272,13 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
         add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
-        add("malum.effect.geas.fall_damage_auto_attack", "Outgoing Fall Damage Strikes Targets With Your Weapon Regardless Of Distance");
+        add("malum.effect.geas.fall_damage_auto_attack", "Outgoing Fall Damage Strikes Targets With Your Held Weapon Regardless Of Distance");
         add("malum.effect.geas.more_knockback", "Doubles Incoming Knockback");
         add("malum.effect.geas.rocket_jumping", "Wind Charges Provide Greater Propulsion");
         add("malum.effect.geas.wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         add("malum.effect.geas.weak_legs", "Fall Damage Is Made Deadlier");
-        add("malum.effect.geas.explosion_lover", "Absorbed Explosions Generate Fervor");
+        add("malum.effect.geas.explosion_lover", "Absorbed Explosions Generate Haste");
+        add("malum.effect.geas.explosion_protection", "Absorption of Hostile Explosions Spares Terrain");
         add("malum.effect.geas.explosion_fire", "Overexertion Ignites You");
         add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
         add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
@@ -291,7 +292,8 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
         add("malum.effect.geas.gleeful_target", "Aliments, Blessings, Curses are Paused When Wounded");
         add("malum.effect.geas.gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
-        add("malum.effect.geas.last_stand", "Expiration, Demise, Passing, Is Made Lenient");
+        add("malum.effect.geas.last_stand", "Expiration, Demise, Entropy Is Made Lenient");
+        add("malum.effect.geas.last_stand_arcane_resonance", "Arcane Resonance Aids Leniency");
         add("malum.effect.geas.last_stand_patient_death", "Death Comes For Us All... Unless");
 
         add("malum.effect.soul_based_damage", "Deals Soul-Rending Damage");

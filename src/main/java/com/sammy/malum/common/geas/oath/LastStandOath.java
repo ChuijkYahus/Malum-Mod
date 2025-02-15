@@ -23,7 +23,7 @@ import java.util.function.*;
 
 public class LastStandOath extends GeasEffect {
 
-    public static final int DEATH_DELAY = 1200;
+    public static final int DEATH_DELAY = 400;
 
     public int deaths;
     public long scheduledDeath;
@@ -35,6 +35,7 @@ public class LastStandOath extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("last_stand"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("last_stand_arcane_resonance"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("last_stand_patient_death"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
@@ -78,20 +79,21 @@ public class LastStandOath extends GeasEffect {
         event.setCanceled(true);
         target.setHealth(1);
         var effect = target.getEffect(MobEffectRegistry.SILENCED);
+        final int duration = (int) (DEATH_DELAY * target.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE));
         if (effect == null) {
-            target.addEffect(new MobEffectInstance(MobEffectRegistry.SILENCED, DEATH_DELAY, 4, true, true, true));
+            target.addEffect(new MobEffectInstance(MobEffectRegistry.SILENCED, duration, 4, true, true, true));
         } else {
             EntityHelper.amplifyEffect(effect, target, 5, 19);
-            EntityHelper.extendEffect(effect, target, DEATH_DELAY);
+            EntityHelper.extendEffect(effect, target, duration);
         }
-        target.addEffect(new MobEffectInstance(MobEffects.DARKNESS, DEATH_DELAY, 4, true, true, true));
+        target.addEffect(new MobEffectInstance(MobEffects.DARKNESS, duration, 4, true, true, true));
         deaths++;
         if (deaths == getLuckyNumber(target)) {
             deaths = 0;
             scheduledDeath = 0;
             return;
         }
-        long newDeathTime = target.level().getGameTime() + DEATH_DELAY;
+        long newDeathTime = target.level().getGameTime() + duration;
         if (scheduledDeath != 0) {
             scheduledDeath = (long) Mth.lerp(0.3f, scheduledDeath, newDeathTime);
             return;

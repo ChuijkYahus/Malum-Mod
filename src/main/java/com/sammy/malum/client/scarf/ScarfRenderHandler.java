@@ -43,7 +43,8 @@ public class ScarfRenderHandler {
             final LivingEntity entity = entry.getKey();
             var position = entity.getPosition(event.getPartialTick().getRealtimeDeltaTicks());
             poseStack.translate(position.x, position.y, position.z);
-            data.render(entity, poseStack, event.getPartialTick().getGameTimeDeltaTicks());
+            data.render(entity, poseStack, 1f);
+            poseStack.translate(-position.x, -position.y, -position.z);
         }
     }
 
@@ -102,10 +103,21 @@ public class ScarfRenderHandler {
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
-            builder.usePartialTicks(partialTicks).renderTrail(poseStack, points,
-                    f -> scale * (2.5f - f * 1.75f),
-                    f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
-            );
+
+            points.run(t -> {
+                final Vec3 position = t.getPosition();
+                poseStack.pushPose();
+                poseStack.translate(position.x, position.y, position.z);
+                poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
+                builder.renderQuad(poseStack, 0.05f);
+                poseStack.popPose();
+            });
+            if (false) {
+                builder.usePartialTicks(partialTicks).renderTrail(poseStack, points,
+                        f -> scale * (2.5f - f * 1.75f),
+                        f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
+                );
+            }
             poseStack.translate(trailOffsetX, trailOffsetY, trailOffsetZ);
 
             poseStack.popPose();
@@ -152,12 +164,7 @@ public class ScarfRenderHandler {
             float yRot = ((float) (Mth.atan2(lookDirection.x, lookDirection.z) * (double) (180F / (float) Math.PI)));
             float yaw = (float) Math.toRadians(yRot);
             var left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
-            final Vec3 offsetPosition = eyePosition.subtract(lookDirection.scale(0.2f).add(left.scale(-0.2f)));
-            float randomSize = 0.03f;
-            float xOffset = RandomHelper.randomBetween(entity.getRandom(), -randomSize, randomSize);
-            float yOffset = RandomHelper.randomBetween(entity.getRandom(), -randomSize, randomSize);
-            float zOffset = RandomHelper.randomBetween(entity.getRandom(), -randomSize, randomSize);
-            return offsetPosition.add(xOffset, yOffset, zOffset);
+            return eyePosition.subtract(lookDirection.scale(0.2f).add(left.scale(-0.2f)));
         }
     }
 }

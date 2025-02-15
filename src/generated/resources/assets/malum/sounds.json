@@ -766,6 +766,12 @@
     ],
     "subtitle": "malum.subtitle.impetus_takes_damage"
   },
+  "legalize_nuclear_bombs": {
+    "sounds": [
+      "malum:curiosities/augments/legalize_nuclear_bombs"
+    ],
+    "subtitle": "malum.subtitle.legalize_nuclear_bombs"
+  },
   "malignant_metal_motif": {
     "sounds": [
       "malum:curiosities/motifs/malignant_crit1",
@@ -1755,6 +1761,22 @@
       "malum:curiosities/weapons/sundering_anchor/extra_swing6"
     ],
     "subtitle": "malum.subtitle.sundering_anchor_twists_gracefully"
+  },
+  "suspicious_device_detonates": {
+    "sounds": [
+      "malum:curiosities/augments/device_detonate1",
+      "malum:curiosities/augments/device_detonate2",
+      "malum:curiosities/augments/device_detonate3"
+    ],
+    "subtitle": "malum.subtitle.suspicious_device_detonates"
+  },
+  "suspicious_device_detonates_again": {
+    "sounds": [
+      "malum:curiosities/augments/device_secondary_detonate1",
+      "malum:curiosities/augments/device_secondary_detonate2",
+      "malum:curiosities/augments/device_secondary_detonate3"
+    ],
+    "subtitle": "malum.subtitle.suspicious_device_detonates_again"
   },
   "the_deep_beckons": {
     "sounds": [

@@ -5,6 +5,7 @@ import com.sammy.malum.common.data.ImpetusData;
 import com.sammy.malum.common.item.augment.MendingDiffuserItem;
 import com.sammy.malum.common.item.augment.ShieldingApparatusItem;
 import com.sammy.malum.common.item.augment.WarpingEngineItem;
+import com.sammy.malum.common.item.augment.core.*;
 import com.sammy.malum.core.systems.artifice.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
@@ -44,8 +45,8 @@ import java.util.function.*;
 
 public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeAcceptor, IMalumSpecialItemAccessPoint, IItemHandlerSupplier {
 
-    public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0.5f, 1.6f, 0.5f);
-    public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0.5f, 3f, 0.5f);
+    public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
+    public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0f, 2.5f, 0f);
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
 
     public LodestoneBlockEntityInventory inventory;
@@ -260,6 +261,9 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             }
         }
         progress = WarpingEngineItem.skipForward(level, worldPosition, attributes) ? recipe.time - 10 * speed : 0;
+        if (coreAugmentInventory.getStackInSlot(0).getItem() instanceof SuspiciousDeviceItem) {
+            SuspiciousDeviceItem.blowUp(level, getBlockPos());
+        }
         ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createPositionedEffect(level, new PositionEffectData(worldPosition), ColorEffectData.fromSpiritIngredients(recipe.spirits));
         level.playSound(null, worldPosition, SoundRegistry.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
@@ -321,9 +325,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     @Override
     public Vec3 getItemPos(float partialTicks) {
-        final BlockPos blockPos = getBlockPos();
-        final Vec3 offset = CRUCIBLE_ITEM_OFFSET;
-        return new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
+        return getBlockPos().getCenter().add(CRUCIBLE_ITEM_OFFSET);
     }
 
     @Override

@@ -60,6 +60,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.CRUCIBLE_AUGMENT_REMOVE, s -> definition(s).with(sounds("curiosities/augments/augment_remove", 3)));
         this.add(SoundRegistry.WARPING_ENGINE_REVERBERATES, s -> definition(s).with(sounds("curiosities/augments/warping_engine_reverberates", 4)));
         this.add(SoundRegistry.SHIELDING_APPARATUS_SHIELDS, s -> definition(s).with(sounds("curiosities/augments/shielding_apparatus_shields", 2)));
+        this.add(SoundRegistry.SUSPICIOUS_DEVICE_DETONATES, s -> definition(s).with(sounds("curiosities/augments/device_detonate", 3)));
+        this.add(SoundRegistry.SUSPICIOUS_DEVICE_DETONATES_AGAIN, s -> definition(s).with(sounds("curiosities/augments/device_secondary_detonate", 3)));
+        this.add(SoundRegistry.LEGALIZE_NUCLEAR_BOMBS, s -> definition(s).with(sound("curiosities/augments/legalize_nuclear_bombs")));
 
         this.add(SoundRegistry.ARCANE_WHISPERS, s -> definition(s).with(sounds("curiosities/spirit/spirit_idle", 4)));
         this.add(SoundRegistry.SPIRIT_PICKUP, s -> definition(s).with(sounds("curiosities/spirit/spirit_pickup", 4)));

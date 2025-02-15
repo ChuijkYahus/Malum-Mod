@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.aura.*;
 import com.sammy.malum.common.entity.nitrate.*;
+import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.geas.explosion.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
@@ -155,6 +156,11 @@ public class RuntimeEvents {
     }
 
     @SubscribeEvent
+    public static void onKnockback(LivingKnockBackEvent event) {
+        SkyBreakerGeas.scaleKnockback(event);
+    }
+
+    @SubscribeEvent
     public static void onHeal(LivingHealEvent event) {
         MalumAttributeEventHandler.heal(event);
     }
@@ -180,6 +186,7 @@ public class RuntimeEvents {
         NitrateExplosion.processExplosion(event);
         PyromaniacGeas.processExplosion(event);
     }
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
         CloudHopperGeas.onExplosionKnockback(event);
