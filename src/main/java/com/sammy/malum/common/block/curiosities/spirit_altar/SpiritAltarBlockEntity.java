@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.spirit_altar;
 import com.sammy.malum.common.block.MalumBlockEntityInventory;
 import com.sammy.malum.common.block.MalumSpiritBlockEntityInventory;
 import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
-import com.sammy.malum.common.recipe.spirit.infusion.SpiritInfusionRecipe;
+import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;

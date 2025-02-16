@@ -107,7 +107,7 @@ public class CloudHopperGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         if (streak >= STAMINA_FALLOFF_START) {
-            float modifier = 0.04f * (streak - STAMINA_FALLOFF_START);
+            float modifier = 0.06f * (streak - STAMINA_FALLOFF_START);
             addAttributeModifier(modifiers, Attributes.GRAVITY, modifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;

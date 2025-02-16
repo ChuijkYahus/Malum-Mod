@@ -1,4 +1,4 @@
-package com.sammy.malum.common.recipe.vanilla;
+package com.sammy.malum.common.recipe.node_cooking;
 
 import com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry;
 import net.minecraft.core.*;

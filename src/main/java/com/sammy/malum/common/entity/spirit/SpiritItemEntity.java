@@ -52,6 +52,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
         if (random.nextFloat() < 0.6f) {
             SoundHelper.playSound(this, SoundRegistry.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.1f, 2f));
         }
+        SoundHelper.playSound(this, SoundEvents.ITEM_PICKUP, 0.3f, Mth.nextFloat(random, 1.1f, 2f));
     }
 
     @Override

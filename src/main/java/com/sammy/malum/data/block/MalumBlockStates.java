@@ -230,7 +230,7 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
 
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
-                SPIRIT_ALTAR, SPIRIT_JAR, RITUAL_PLINTH);
+                SPIRIT_ALTAR, SPIRIT_JAR, SOUL_BRAZIER, RITUAL_PLINTH);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::predefinedModel,
                 WEAVERS_WORKBENCH, RUNIC_WORKBENCH);

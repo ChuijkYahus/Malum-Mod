@@ -1,11 +1,9 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
-import com.sammy.malum.common.recipe.spirit.infusion.SpiritInfusionRecipe;
-import com.sammy.malum.core.systems.recipe.*;
+import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
-import java.util.*;
 import java.util.function.Predicate;
 
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;

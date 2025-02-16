@@ -48,8 +48,12 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get()).define('X', Tags.Items.RODS_WOODEN).define('Y', ItemTagRegistry.RUNEWOOD_PLANKS).pattern("  Y").pattern(" X ").pattern("X  ").unlockedBy("has_runewood", has(ItemRegistry.RUNEWOOD_PLANKS.get())).save(output);
 
         //CRAFTING COMPONENTS
-        shaped(RecipeCategory.MISC, ItemRegistry.SPECTRAL_LENS.get()).define('X', ItemRegistry.HEX_ASH.get()).define('Y', Tags.Items.GLASS_PANES).pattern(" X ").pattern("XYX").pattern(" X ").unlockedBy("has_hex_ash", has(ItemRegistry.HEX_ASH.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get(), 2).define('#', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).define('Y', ItemRegistry.SPECTRAL_LENS.get()).pattern(" X ").pattern("#Y#").pattern(" X ").unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
+        shapeless(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get())
+                .requires(ItemRegistry.HALLOWED_GOLD_NUGGET.get())
+                .requires(Items.GLASS)
+                .requires(ItemRegistry.WARP_FLUX.get())
+                .requires(ItemRegistry.RUNEWOOD_PLANKS.get())
+                .unlockedBy("has_warp_flux", has(ItemRegistry.WARP_FLUX.get())).save(output);
 
         //ETHER
         etherTorch(output, ItemRegistry.ETHER_TORCH.get(), ItemRegistry.ETHER.get());

@@ -22,6 +22,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.common.util.*;
+import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
@@ -184,12 +186,19 @@ public class SoulHarvestHandler {
         ItemEntity entity = new ItemEntity(collector.level(), collector.getX(), collector.getY() + 0.5, collector.getZ(), stack);
         entity.setPickUpDelay(0);
         if (collector instanceof Player player) {
-            entity.playerTouch(player);
-            if (entity.getItem().isEmpty()) {
+            var result = EventHooks.fireItemPickupPre(entity, player).canPickup();
+            if (result.isFalse()) {
                 return;
             }
+            player.addItem(stack);
+            player.onItemPickup(entity);
+            if (!stack.isEmpty()) {
+                ItemHelper.spawnItemOnEntity(collector, stack);
+            }
         }
-        ItemHelper.giveItemToEntity(collector, stack);
+        else {
+            collector.level().addFreshEntity(entity);
+        }
     }
 
     public static void triggerSpiritCollection(LivingEntity collector) {

@@ -2,7 +2,7 @@ package com.sammy.malum.data.recipe.builder;
 
 import com.google.common.collect.Lists;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.recipe.spirit.infusion.SpiritInfusionRecipe;
+import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import net.minecraft.data.recipes.RecipeOutput;

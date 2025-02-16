@@ -1,4 +1,4 @@
-package com.sammy.malum.common.recipe.vanilla;
+package com.sammy.malum.common.recipe.node_cooking;
 
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
