@@ -17,15 +17,11 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
 public class PyromaniacGeas extends GeasEffect {
-
-    protected static final int STREAK_FALLOFF_TIMER = 300;
-    protected static final int STREAK_LIMIT = 10;
-    protected int streak;
-    protected int cooldown;
 
     public PyromaniacGeas() {
         super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
@@ -38,38 +34,25 @@ public class PyromaniacGeas extends GeasEffect {
                 if (explosion.damageCalculator.shouldDamageEntity(explosion, livingEntity)) {
                     var geas = GeasEffectHandler.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
                     if (geas != null) {
-                        var pyromaniacGeas = (PyromaniacGeas) geas.getValue();
-                        int pointsAdded = 2;
+                        int pyromaniacStacks = 2;
                         if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
                             event.getAffectedBlocks().clear();
-                            pointsAdded = 4;
+                            pyromaniacStacks = 4;
                         }
-                        if (pyromaniacGeas.streak < STREAK_LIMIT) {
-                            pyromaniacGeas.streak = Math.min(pyromaniacGeas.streak+pointsAdded, STREAK_LIMIT);
-                            if (pyromaniacGeas.streak >= 5) {
+                        final MobEffectInstance instance = livingEntity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);
+                        if (instance != null) {
+                            if (instance.getAmplifier() >= 5) {
                                 livingEntity.igniteForSeconds(5);
                             }
-                            pyromaniacGeas.markDirty();
+                            EntityHelper.extendEffect(instance, livingEntity, 600, 600);
+                            EntityHelper.amplifyEffect(instance, livingEntity, pyromaniacStacks, 9);
                         }
-                        livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.MINERS_RAGE, 600, 2));
+                        else {
+                            livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.PYROMANIACS_FERVOR, 600, pyromaniacStacks-1));
+                        }
                         return;
                     }
                 }
-            }
-        }
-    }
-
-    @Override
-    public void update(EntityTickEvent.Pre event, LivingEntity entity) {
-        if (streak == 0) {
-            return;
-        }
-        if (cooldown < STREAK_FALLOFF_TIMER) {
-            cooldown++;
-            if (cooldown == STREAK_FALLOFF_TIMER) {
-                streak--;
-                cooldown = 0;
-                markDirty();
             }
         }
     }
@@ -88,21 +71,9 @@ public class PyromaniacGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_protection"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_protection"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-    }
-
-    @Override
-    public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        if (streak > 0) {
-            float multiplier = 0.05f * streak;
-            if (streak >= 5) {
-                multiplier *= 2;
-            }
-            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, multiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        }
-        return modifiers;
     }
 }

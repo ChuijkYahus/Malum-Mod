@@ -475,8 +475,9 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> SPIRIT_ALTAR = register("spirit_altar", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SPIRIT_ALTAR.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD_OBELISK = register("runewood_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.RUNEWOOD_OBELISK.get(), p, RunewoodObeliskBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> BRILLIANT_OBELISK = register("brilliant_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.BRILLIANT_OBELISK.get(), p, BrilliantObeliskBlockEntity.STRUCTURE));
-    public static final DeferredHolder<Item, Item> RUNIC_WORKBENCH = register("runic_workbench", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNIC_WORKBENCH.get(), p));
     public static final DeferredHolder<Item, Item> SPIRIT_JAR = register("spirit_jar", DEFAULT_PROPERTIES(), (p) -> new SpiritJarItem(BlockRegistry.SPIRIT_JAR.get(), p));
+    public static final DeferredHolder<Item, Item> RUNIC_WORKBENCH = register("runic_workbench", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNIC_WORKBENCH.get(), p));
+    public static final DeferredHolder<Item, Item> SOUL_BRAZIER = register("soulbinding_brazier", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOUL_BRAZIER.get(), p));
     public static final DeferredHolder<Item, Item> SPIRIT_CRUCIBLE = register("spirit_crucible", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.SPIRIT_CRUCIBLE.get(), p, SpiritCrucibleCoreBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> SPIRIT_CATALYZER = register("spirit_catalyzer", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.SPIRIT_CATALYZER.get(), p, SpiritCatalyzerCoreBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> REPAIR_PYLON = register("repair_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.REPAIR_PYLON.get(), p, RepairPylonCoreBlockEntity.STRUCTURE));
@@ -525,7 +526,6 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> MALIGNANT_LEAD = register("malignant_lead", DEFAULT_PROPERTIES().rarity(RARE), Item::new);
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", DEFAULT_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> SPECTRAL_LENS = register("spectral_lens", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> SPECTRAL_OPTIC = register("spectral_optic", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> POPPET = register("poppet", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> ANOMALOUS_DESIGN = register("anomalous_design", DEFAULT_PROPERTIES(), Item::new);
@@ -711,7 +711,6 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> NECKLACE_OF_THE_HIDDEN_BLADE = register("necklace_of_the_hidden_blade", GEAR_PROPERTIES(), CurioHiddenBladeNecklace::new);
     public static final DeferredHolder<Item, Item> NECKLACE_OF_THE_WATCHER = register("necklace_of_the_watcher", GEAR_PROPERTIES(), CurioWatcherNecklace::new);
     public static final DeferredHolder<Item, Item> BELT_OF_THE_LIMITLESS = register("belt_of_the_limitless", GEAR_PROPERTIES(), CurioLimitlessBelt::new);
-
 
     public static final DeferredHolder<Item, Item> RUNE_OF_IDLE_RESTORATION = register("rune_of_idle_restoration", GEAR_PROPERTIES(), RuneIdleRestorationItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_CULLING = register("rune_of_culling", GEAR_PROPERTIES(), RuneCullingItem::new);

@@ -1,6 +1,6 @@
 package com.sammy.malum.data.recipe.builder.vanilla;
 
-import com.sammy.malum.common.recipe.vanilla.*;
+import com.sammy.malum.common.recipe.node_cooking.*;
 import net.minecraft.advancements.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;

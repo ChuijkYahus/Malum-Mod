@@ -2,7 +2,7 @@ package com.sammy.malum.compability.jei.categories;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
-import com.sammy.malum.common.recipe.spirit.focusing.SpiritFocusingRecipe;
+import com.sammy.malum.common.recipe.SpiritFocusingRecipe;
 import com.sammy.malum.compability.jei.JEIHandler;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;

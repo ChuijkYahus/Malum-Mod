@@ -60,7 +60,7 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> SHIELDING_APPARATUS_SHIELDS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("shielding_apparatus_shields")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SUSPICIOUS_DEVICE_DETONATES = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("suspicious_device_detonates")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SUSPICIOUS_DEVICE_DETONATES_AGAIN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("suspicious_device_detonates_again")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEGALIZE_NUCLEAR_BOMBS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("legalize_nuclear_bombs")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SWAG_MESSIAH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("legalize_nuclear_bombs")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_WHISPERS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_whispers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_PICKUP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_picked_up")));

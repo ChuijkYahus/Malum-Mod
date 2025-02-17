@@ -35,7 +35,7 @@ public class GeasParticleEffects {
         final Color smokeColor = new Color(45, 15, 15);
 
         for (int i = 0; i < 12; i++) {
-            Color primaryColor = colorData.getSpirit().getPrimaryColor();
+            Color primaryColor = colorData.getColor().getStartingColor();
             int lifetime = RandomHelper.randomBetween(random, 20, 40);
             final boolean isAdditive = i % 2 == 0;
             final float scale = (2f + i * 0.5f) * (isAdditive ? 1 : 2);

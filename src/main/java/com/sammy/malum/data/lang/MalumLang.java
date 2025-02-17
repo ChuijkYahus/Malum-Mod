@@ -136,36 +136,36 @@ public class MalumLang extends LanguageProvider {
         add("malum.gui.rite.medium.runewood", "Runewood");
         add("malum.gui.rite.medium.soulwood", "Soulwood");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD.get(), "Find home in the shadows");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED.get(), "Seek the cleansing light of day");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Wield the scythe, and do not stray");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDHOPPER.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDHOPPER.get(), "Dance along the edge of danger");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
+        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "The most satisfied existence in the world");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_LAST_STAND.get(), "");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
@@ -283,6 +283,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
         add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
+        add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
         add("malum.effect.geas.malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         add("malum.effect.geas.malignant_crit_healing_overexertion", "Repeated Activations Nullify All Healing");
         add("malum.effect.geas.malignant_crit_reinforcement", "Malignant Deliverance Improves Conversion");

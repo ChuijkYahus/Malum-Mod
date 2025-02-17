@@ -1,4 +1,4 @@
-package com.sammy.malum.common.recipe.vanilla;
+package com.sammy.malum.common.recipe.node_cooking;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
