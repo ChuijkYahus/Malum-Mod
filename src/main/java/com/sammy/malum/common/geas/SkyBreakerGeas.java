@@ -29,7 +29,7 @@ public class SkyBreakerGeas extends GeasEffect {
 
     public static void scaleKnockback(LivingKnockBackEvent event) {
         final LivingEntity entity = event.getEntity();
-        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get());
+        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER);
         if (geas != null) {
             event.setStrength(event.getStrength() * 2);
         }

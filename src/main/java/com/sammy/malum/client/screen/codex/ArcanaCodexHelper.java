@@ -535,12 +535,24 @@ public class ArcanaCodexHelper {
     private static void renderRawText(GuiGraphics guiGraphics, String text, int x, int y, float glowMultiplier) {
         var minecraft = Minecraft.getInstance();
         var font = minecraft.font;
-        double mouseX = minecraft.mouseHandler.xpos() / minecraft.getWindow().getScreenWidth();
-        double mouseY = minecraft.mouseHandler.ypos() / minecraft.getWindow().getScreenHeight();
+        float guiScale = (float) minecraft.getWindow().getGuiScale();
+        float inverseScale = (4 - guiScale) * 4;
+
+        int screenWidth = minecraft.getWindow().getScreenWidth();
+        int screenHeight = minecraft.getWindow().getScreenHeight();
+        float mouseX = (float) (minecraft.mouseHandler.xpos() / screenWidth);
+        float mouseY = (float) (minecraft.mouseHandler.ypos() / screenHeight);
         float width = font.width(text)/2f;
-        double horizontalDelta = Math.clamp(1 - Mth.abs((float) (mouseX - (x+width) / 500f)) * 4f, 0, 1);
-        double verticalDelta = 1 - ((float) (mouseY - (y+font.lineHeight) / 260f));
-        double delta = Easing.QUINTIC_OUT.ease(horizontalDelta, 0, 1) * (Mth.clamp(verticalDelta * (1 - Math.max(verticalDelta-1, 0) * 2f), 0, 1));
+        float textX = ((x + width) * guiScale) / screenWidth;
+        float textY = ((y + font.lineHeight) * guiScale) / screenHeight;
+        float differenceX = (textX-mouseX);
+        float differenceY = (textY-mouseY);
+        double horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
+        double verticalDelta = Math.clamp(1 - Mth.abs(differenceY) * inverseScale, 0, 1);
+        if (differenceY > 0) {
+            verticalDelta = Math.pow(verticalDelta * (1 - differenceY), 3);
+        }
+        double delta = Easing.QUINTIC_OUT.ease(horizontalDelta, 0, 1) * Easing.QUINTIC_OUT.ease(verticalDelta, 0, 1);
         if (EntryScreen.textJump > 0) {
             double jumpDelta = delta * Easing.SINE_IN_OUT.ease(EntryScreen.textJump, 0, 1);
             glowMultiplier*= (float) (1+jumpDelta);

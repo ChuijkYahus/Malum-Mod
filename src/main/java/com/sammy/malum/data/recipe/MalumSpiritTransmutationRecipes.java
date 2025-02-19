@@ -1,6 +1,7 @@
 package com.sammy.malum.data.recipe;
 
 import com.mojang.datafixers.util.*;
+import com.sammy.malum.*;
 import com.sammy.malum.data.recipe.builder.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.level.block.*;
@@ -62,75 +63,78 @@ public class MalumSpiritTransmutationRecipes {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
         for (var transmutation : SOULWOOD_TRANSMUTATIONS) {
-            new SpiritTransmutationRecipeBuilder(transmutation.getFirst().get(), transmutation.getSecond().get())
+            var input = transmutation.getFirst();
+            var output = transmutation.getSecond();
+            var id = output.getId().withPath(s -> "soulwood/" + s).withSuffix("_soulwood_transmutation");
+            new SpiritTransmutationRecipeBuilder(input.get(), output.get())
                     .group("soulwood")
-                    .save(recipeOutput, "soulwood/" + transmutation.getSecond().getId().getPath().replace("soulwood_", "").replace("_soulwood", ""));
+                    .save(recipeOutput, id);
         }
 
         new SpiritTransmutationRecipeBuilder(Blocks.STONE, Blocks.COBBLESTONE)
-                .save(recipeOutput, "stone_to_cobblestone");
+                .save(recipeOutput, MalumMod.malumPath("stone_to_cobblestone"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.COBBLESTONE, Blocks.GRAVEL)
-                .save(recipeOutput, "cobblestone_to_gravel");
+                .save(recipeOutput, MalumMod.malumPath("cobblestone_to_gravel"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.GRAVEL, Blocks.SAND)
-                .save(recipeOutput, "gravel_to_sand");
+                .save(recipeOutput, MalumMod.malumPath("gravel_to_sand"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.SAND, BLIGHTED_SOIL.get())
-                .save(recipeOutput, "sand_to_blighted_soil");
+                .save(recipeOutput, MalumMod.malumPath("sand_to_blighted_soil"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.ANDESITE, Blocks.TUFF)
-                .save(recipeOutput, "andesite_to_tuff");
+                .save(recipeOutput, MalumMod.malumPath("andesite_to_tuff"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.TUFF, Blocks.STONE)
-                .save(recipeOutput, "tuff_block_to_stone");
+                .save(recipeOutput, MalumMod.malumPath("tuff_block_to_stone"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.GRANITE, Blocks.DRIPSTONE_BLOCK)
-                .save(recipeOutput, "granite_to_dripstone_block");
+                .save(recipeOutput, MalumMod.malumPath("granite_to_dripstone_block"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.DRIPSTONE_BLOCK, Blocks.STONE)
-                .save(recipeOutput, "dripstone_block_to_stone");
+                .save(recipeOutput, MalumMod.malumPath("dripstone_block_to_stone"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.DIORITE, Blocks.CALCITE)
-                .save(recipeOutput, "diorite_to_calcite");
+                .save(recipeOutput, MalumMod.malumPath("diorite_to_calcite"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.CALCITE, Blocks.STONE)
-                .save(recipeOutput, "calcite_to_stone");
+                .save(recipeOutput, MalumMod.malumPath("calcite_to_stone"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE)
-                .save(recipeOutput, "deepslate_to_cobbled_deepslate");
+                .save(recipeOutput, MalumMod.malumPath("deepslate_to_cobbled_deepslate"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.COBBLED_DEEPSLATE, Blocks.BASALT)
-                .save(recipeOutput, "cobbled_deepslate_to_basalt");
+                .save(recipeOutput, MalumMod.malumPath("cobbled_deepslate_to_basalt"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.BASALT, Blocks.NETHERRACK)
-                .save(recipeOutput, "basalt_to_netherrack");
+                .save(recipeOutput, MalumMod.malumPath("basalt_to_netherrack"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.NETHERRACK, Blocks.SOUL_SAND)
-                .save(recipeOutput, "netherrack_to_soul_sand");
+                .save(recipeOutput, MalumMod.malumPath("netherrack_to_soul_sand"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.SOUL_SAND, Blocks.RED_SAND)
-                .save(recipeOutput, "soul_sand_to_red_sand");
+                .save(recipeOutput, MalumMod.malumPath("soul_sand_to_red_sand"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.RED_SAND, BLIGHTED_SOIL.get())
-                .save(recipeOutput, "red_sand_to_blighted_soil");
+                .save(recipeOutput, MalumMod.malumPath("red_sand_to_blighted_soil"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.SMOOTH_BASALT, Blocks.CLAY)
-                .save(recipeOutput, "smooth_basalt_to_clay");
+                .save(recipeOutput, MalumMod.malumPath("smooth_basalt_to_clay"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.CLAY, Blocks.PRISMARINE)
-                .save(recipeOutput, "clay_to_prismarine");
+                .save(recipeOutput, MalumMod.malumPath("clay_to_prismarine"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.PRISMARINE, Blocks.SEA_LANTERN)
-                .save(recipeOutput, "prismarine_to_sea_lantern");
+                .save(recipeOutput, MalumMod.malumPath("prismarine_to_sea_lantern"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.SEA_LANTERN, Blocks.SNOW_BLOCK)
-                .save(recipeOutput, "sea_lantern_to_snow_block");
+                .save(recipeOutput, MalumMod.malumPath("sea_lantern_to_snow_block"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.SNOW_BLOCK, Blocks.ICE)
-                .save(recipeOutput, "snow_block_to_ice");
+                .save(recipeOutput, MalumMod.malumPath("snow_block_to_ice"));
 
         new SpiritTransmutationRecipeBuilder(Blocks.ICE, BLIGHTED_SOIL.get())
-                .save(recipeOutput, "ice_to_blighted_soil");
+                .save(recipeOutput, MalumMod.malumPath("ice_to_blighted_soil"));
     }
 }

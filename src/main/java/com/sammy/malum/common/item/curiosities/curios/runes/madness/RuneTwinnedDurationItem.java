@@ -24,7 +24,7 @@ public class RuneTwinnedDurationItem extends AbstractRuneCurioItem {
         consumer.accept(ComponentHelper.positiveCurioEffect("extend_positive_effect"));
     }
 
-    public static void onPotionApplied(MobEffectEvent.Added event) {
+    public static void scaleDuration(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
         if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, ItemRegistry.RUNE_OF_TWINNED_DURATION.get())) {
             MobEffectInstance effect = event.getEffectInstance();

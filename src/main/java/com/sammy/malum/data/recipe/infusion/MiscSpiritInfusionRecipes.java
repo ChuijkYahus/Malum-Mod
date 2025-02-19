@@ -1,5 +1,7 @@
 package com.sammy.malum.data.recipe.infusion;
 
+import com.sammy.malum.*;
+import com.sammy.malum.data.lang.*;
 import com.sammy.malum.data.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
@@ -53,7 +55,7 @@ public class MiscSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(ItemRegistry.CONCENTRATED_GLUTTONY.get(), 1, ItemRegistry.SPLASH_OF_GLUTTONY.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 1))
                 .addSpirit(AQUEOUS_SPIRIT, 1)
-                .save(consumer, "splash_of_gluttony_from_concentrated_gluttony");
+                .save(consumer, MalumMod.malumPath("splash_of_gluttony_from_concentrated_gluttony"));
 
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 2, ItemRegistry.LAMPLIGHTERS_TONGS.get(), 1)
                 .addSpirit(ARCANE_SPIRIT, 8)

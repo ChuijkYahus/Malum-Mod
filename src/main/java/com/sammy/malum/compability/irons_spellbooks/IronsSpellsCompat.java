@@ -9,6 +9,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import io.redspace.ironsspellbooks.api.events.*;
 import io.redspace.ironsspellbooks.api.magic.*;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -74,6 +75,12 @@ public class IronsSpellsCompat {
         }
     }
 
+    public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
+        if (LOADED) {
+            LoadedOnly.addTrialOfFaithSpellPower(effect);
+        }
+    }
+
     public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {
         if (LOADED) {
             LoadedOnly.addSilencedNegativeAttributeModifiers(effect);
@@ -132,7 +139,12 @@ public class IronsSpellsCompat {
         }
 
         public static void addGluttonySpellPower(GluttonyEffect effect) {
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.03f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        }
+
+        public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
+            effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {

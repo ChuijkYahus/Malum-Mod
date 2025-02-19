@@ -27,6 +27,7 @@ public class MalumDamageTypeDatagen {
         register(context, DamageTypeRegistry.NITRATE_PLAYERLESS);
 
         register(context, DamageTypeRegistry.VOID);
+        register(context, DamageTypeRegistry.KARMIC);
 
         register(context, DamageTypeRegistry.SCYTHE_MELEE);
         register(context, DamageTypeRegistry.SCYTHE_SWEEP);

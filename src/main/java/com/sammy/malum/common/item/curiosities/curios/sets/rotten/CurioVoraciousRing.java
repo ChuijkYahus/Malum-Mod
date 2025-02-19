@@ -15,6 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
+import static com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioStarvedBelt.getGluttonyEffectType;
 import static com.sammy.malum.registry.common.item.ItemTagRegistry.*;
 
 public class CurioVoraciousRing extends MalumCurioItem {
@@ -30,8 +31,8 @@ public class CurioVoraciousRing extends MalumCurioItem {
     }
 
     public static void accelerateEating(LivingEntityUseItemEvent.Start event) {
-        if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-            if (event.getItem().is(GROSS_FOODS)) {
+        if (event.getItem().is(GROSS_FOODS)) {
+            if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
                 event.setDuration((int) (event.getDuration() * 0.5f));
             }
         }
@@ -40,13 +41,10 @@ public class CurioVoraciousRing extends MalumCurioItem {
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-                var gluttony = livingEntity.getEffect(MobEffectRegistry.GLUTTONY);
-                var hunger = livingEntity.getEffect(MobEffects.HUNGER);
-                if (gluttony != null) {
-                    EntityHelper.extendEffect(gluttony, livingEntity, 300, 3000);
-                }
-                if (hunger != null) {
-                    EntityHelper.shortenEffect(hunger, livingEntity, 150);
+                var gluttony = getGluttonyEffectType(livingEntity);
+                var effect = livingEntity.getEffect(gluttony);
+                if (effect != null) {
+                    EntityHelper.extendEffect(effect, livingEntity, 300, 3000);
                 }
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);

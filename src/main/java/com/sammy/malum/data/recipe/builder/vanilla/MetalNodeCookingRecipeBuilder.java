@@ -58,12 +58,7 @@ public class MetalNodeCookingRecipeBuilder<T extends AbstractCookingRecipe> impl
     }
 
     @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation resourceLocation) {
-        defaultSaveFunc(recipeOutput, resourceLocation);
-    }
-
-    @Override
-    public T build(ResourceLocation id) {
+    public T buildRecipe(ResourceLocation id) {
         return factory.create(group == null ? "" : group, ingredient, result, outputCount, experience, cookingTime);
     }
 }

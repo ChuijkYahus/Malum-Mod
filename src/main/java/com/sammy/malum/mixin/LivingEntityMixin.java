@@ -1,5 +1,6 @@
 package com.sammy.malum.mixin;
 
+import com.sammy.malum.common.geas.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioVoraciousRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.CurioGruesomeConcentrationRing;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +21,7 @@ public class LivingEntityMixin {
         if (food.getFoodProperties(livingEntity) != null) {
             CurioVoraciousRing.onEat(level, livingEntity, food);
             CurioGruesomeConcentrationRing.onEat(level, livingEntity, food);
+            ProfaneAsceticGeas.onEat(level, livingEntity, food);
         }
     }
 }

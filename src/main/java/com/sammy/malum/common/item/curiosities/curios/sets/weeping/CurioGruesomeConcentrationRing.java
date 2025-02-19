@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,6 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
+import static com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioStarvedBelt.getGluttonyEffectType;
 import static com.sammy.malum.registry.common.item.ItemTagRegistry.*;
 
 public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IVoidItem {
@@ -29,7 +31,7 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
-                var gluttony = MobEffectRegistry.GLUTTONY;
+                var gluttony = getGluttonyEffectType(livingEntity);
                 var effect = livingEntity.getEffect(gluttony);
 
                 if (effect != null) {

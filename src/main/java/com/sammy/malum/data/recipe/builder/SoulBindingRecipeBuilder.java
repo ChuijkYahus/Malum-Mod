@@ -18,7 +18,7 @@ import team.lodestar.lodestone.recipe.builder.*;
 
 import java.util.*;
 
-public class SoulBindingRecipeBuilder implements AutonamedRecipeBuilder<SoulBindingRecipe> {
+public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBindingRecipe> {
     private final SizedIngredient input;
     private final Holder<GeasEffectType> geas;
 
@@ -63,19 +63,13 @@ public class SoulBindingRecipeBuilder implements AutonamedRecipeBuilder<SoulBind
         return this;
     }
 
-    @Override
-    public Item getResult() {
-        return geas.value().createDefaultStack().getItem();
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, geas.value().getId());
     }
 
     @Override
-    public SoulBindingRecipe build(ResourceLocation resourceLocation) {
+    public SoulBindingRecipe buildRecipe(ResourceLocation id) {
         return new SoulBindingRecipe(input, geas.value(), extraIngredients, spirits, false);
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        defaultSaveFunc(recipeOutput, MalumMod.malumPath(id.getPath()));
     }
 
     @Override

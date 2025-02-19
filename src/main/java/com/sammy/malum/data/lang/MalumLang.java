@@ -147,13 +147,13 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Wield the scythe, and do not stray");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDHOPPER.get(), "Dance along the edge of danger");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness the infernal and blasphemous power");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
@@ -281,6 +281,11 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.explosion_protection", "Absorption of Hostile Explosions Spares Terrain");
         add("malum.effect.geas.explosion_fire", "Overexertion Ignites You");
         add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
+        add("malum.effect.geas.trial_of_faith", "Gluttony Becomes Trial of Faith");
+        add("malum.effect.geas.trial_of_faith_healing", "Trial of Faith Increases Healing Received");
+        add("malum.effect.geas.rotten_healing", "Eating Rotten Foods Heals You");
+        add("malum.effect.geas.no_passive_healing", "Saturation And Hunger No Longer Restores Health");
+        add("malum.effect.geas.no_normal_foods", "You Must Only Eat Rot");
         add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
         add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
@@ -352,6 +357,7 @@ public class MalumLang extends LanguageProvider {
         addPlayerlessDeathMessage(DamageTypeRegistry.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");
 
         addPlayerlessDeathMessage(DamageTypeRegistry.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
+        addPlayerlessDeathMessage(DamageTypeRegistry.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
 
         addDeathMessage(DamageTypeRegistry.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");

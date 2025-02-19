@@ -56,9 +56,10 @@ public class SpiritRepairPage extends BookPage {
     }
     public static SpiritRepairPage fromId(ResourceLocation recipeId) {
         var level = Minecraft.getInstance().level;
+        final ResourceLocation other = recipeId.withPrefix("spirit_repair/");
         var recipe = LodestoneRecipeType.getRecipeHolders(level, RecipeTypeRegistry.SPIRIT_REPAIR.get())
                 .stream()
-                .filter(r -> r.id().equals(recipeId.withPrefix("spirit_crucible/repair/")))
+                .filter(r -> r.id().equals(other))
                 .findFirst()
                 .map(RecipeHolder::value)
                 .orElse(null);

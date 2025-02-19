@@ -12,11 +12,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import team.lodestar.lodestone.recipe.builder.AutonamedRecipeBuilder;
+import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import java.util.List;
 
-public class SpiritFocusingRecipeBuilder implements AutonamedRecipeBuilder<SpiritFocusingRecipe> {
+public class SpiritFocusingRecipeBuilder implements LodestoneRecipeBuilder<SpiritFocusingRecipe> {
     private final int time;
     private final int durabilityCost;
     private final Ingredient input;
@@ -43,20 +43,15 @@ public class SpiritFocusingRecipeBuilder implements AutonamedRecipeBuilder<Spiri
         return this;
     }
 
-    @Override
-    public Item getResult() {
-        return this.output.getItem();
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, output.getItem());
     }
 
     @Override
-    public SpiritFocusingRecipe build(ResourceLocation resourceLocation) {
+    public SpiritFocusingRecipe buildRecipe(ResourceLocation resourceLocation) {
         return new SpiritFocusingRecipe(time, durabilityCost, input, output, spirits);
     }
 
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        defaultSaveFunc(recipeOutput, MalumMod.malumPath(id.getPath()));
-    }
 
     @Override
     public String getRecipeSubfolder() {

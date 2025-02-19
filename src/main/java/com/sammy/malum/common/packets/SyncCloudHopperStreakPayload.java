@@ -1,7 +1,6 @@
 package com.sammy.malum.common.packets;
 
 import com.sammy.malum.common.geas.explosion.*;
-import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.*;
 import net.minecraft.world.entity.*;
@@ -25,13 +24,13 @@ public class SyncCloudHopperStreakPayload extends OneSidedPayloadData {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
             var data = livingEntity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO);
-            var cloudHopper = MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDHOPPER.get();
-            if (!data.hasGeasEffect(livingEntity, cloudHopper)) {
-                data.addGeasEffect(cloudHopper.createDefaultStack());
+            var cloudskipper = MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER;
+            if (!data.hasGeasEffect(livingEntity, cloudskipper)) {
+                data.addGeasEffect(cloudskipper.get().createDefaultStack());
             }
-            var geas = data.getGeasEffect(livingEntity, cloudHopper).getValue();
-            if (geas instanceof CloudHopperGeas cloudHopperGeas) {
-                cloudHopperGeas.streak = streak;
+            var geas = data.getGeasEffect(livingEntity, cloudskipper).getValue();
+            if (geas instanceof CloudSkipperGeas cloudSkipperGeas) {
+                cloudSkipperGeas.streak = streak;
             }
             livingEntity.setData(AttachmentTypeRegistry.LIVING_SOUL_INFO, data);
         }

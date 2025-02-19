@@ -5,6 +5,7 @@ import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.tick.*;
@@ -36,14 +37,14 @@ public class GeasEffectHandler {
         return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasItems();
     }
 
-    public static boolean hasGeasEffect(LivingEntity entity, GeasEffectType type) {
+    public static boolean hasGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
         return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).hasGeasEffect(entity, type);
     }
 
     public static Map<ItemStack, GeasEffect> getGeasEffects(LivingEntity entity) {
         return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasEffects(entity);
     }
-    public static Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, GeasEffectType type) {
+    public static Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
         return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasEffect(entity, type);
     }
 

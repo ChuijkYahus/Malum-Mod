@@ -1,8 +1,10 @@
 package com.sammy.malum.common.effect;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.compability.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.registry.common.MobEffectRegistry;
+import net.minecraft.core.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -26,8 +28,26 @@ public class GluttonyEffect extends MobEffect {
     public static void canApplyPotion(MobEffectEvent.Applicable event) {
         MobEffectInstance potionEffect = event.getEffectInstance();
         LivingEntity entityLiving = event.getEntity();
-        if (potionEffect.getEffect().equals(MobEffects.HUNGER) && entityLiving.hasEffect(MobEffectRegistry.GLUTTONY)) {
-            event.setResult(DO_NOT_APPLY);
+        if (potionEffect.getEffect().equals(MobEffects.HUNGER)) {
+            final Holder<MobEffect> gluttony = CurioStarvedBelt.getGluttonyEffectType(event.getEntity());
+            if (entityLiving.hasEffect(gluttony)) {
+                event.setResult(DO_NOT_APPLY);
+            }
+        }
+    }
+
+    public static void removeExistingHunger(MobEffectEvent.Added event) {
+        MobEffectInstance potionEffect = event.getEffectInstance();
+        if (potionEffect == null) {
+            return;
+        }
+
+        final LivingEntity entity = event.getEntity();
+        final Holder<MobEffect> gluttony = CurioStarvedBelt.getGluttonyEffectType(entity);
+        if (potionEffect.getEffect().equals(gluttony)) {
+            if (entity.hasEffect(MobEffects.HUNGER)) {
+                entity.removeEffect(MobEffects.HUNGER);
+            }
         }
     }
 

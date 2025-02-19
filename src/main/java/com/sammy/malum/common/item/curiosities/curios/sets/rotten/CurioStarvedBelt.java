@@ -12,7 +12,8 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.*;
+import net.neoforged.neoforge.common.*;
+import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
@@ -30,19 +31,27 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
 
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
-        Holder<MobEffect> gluttony = MobEffectRegistry.GLUTTONY;
-        MobEffectInstance effect = collector.getEffect(gluttony);
+        var gluttony = getGluttonyEffectType(collector);
+        var effect = collector.getEffect(gluttony);
         if (effect == null) {
             collector.addEffect(new MobEffectInstance(gluttony, 600 + (int) (arcaneResonance * 600), 0, true, true, true));
         } else {
-            final int limit = (int) ((arcaneResonance) * 5 - 1);
+            int limit = (int) ((arcaneResonance) * 5 - 1);
             EntityHelper.amplifyEffect(effect, collector, 1, limit);
         }
-        Level level = collector.level();
-        SoundHelper.playSound(collector, SoundRegistry.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(level.random, 1.5f, 2f));
-        SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
-        if (level instanceof ServerLevel serverLevel) {
+        if (collector.level() instanceof ServerLevel serverLevel) {
+            var random = serverLevel.random;
+            SoundHelper.playSound(collector, SoundRegistry.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
+            SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
             ConcentratedGluttonyItem.createGluttonyVFX(serverLevel, collector, 0.5f);
         }
+    }
+
+    public static Holder<MobEffect> getGluttonyEffectType(LivingEntity collector) {
+        var event = new ModifyGluttonyPropertiesEvent(collector);
+        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+                (eventResponderItem, stack) -> eventResponderItem.modifyGluttonyPropertiesEvent(event, collector)));
+        NeoForge.EVENT_BUS.post(event);
+        return event.effect;
     }
 }
