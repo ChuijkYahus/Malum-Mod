@@ -94,10 +94,9 @@ public class MalignantConversionHandler {
                     }
                 }
                 handler.cachedAttributeValues.put(sourceAttribute, sourceInstance.getValue());
-                if (cachedValue > 0 && sourceInstance.getValue() != 0 && hasMalignantConversion) {
-                    double multiplyRatio = cachedValue * malignantConversion / sourceInstance.getValue();
+                if (hasMalignantConversion) {
                     var modifier = new AttributeModifier(NEGATIVE_MODIFIER_UUID, "Malignant Conversion: " + Component.translatable(sourceAttribute.getDescriptionId()),
-                            -multiplyRatio * consumptionRatio, AttributeModifier.Operation.MULTIPLY_TOTAL);
+                            -malignantConversion * consumptionRatio, AttributeModifier.Operation.MULTIPLY_TOTAL);
                     sourceInstance.addTransientModifier(modifier);
                 }
             }

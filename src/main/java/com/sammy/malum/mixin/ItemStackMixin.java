@@ -16,39 +16,35 @@ import static net.minecraft.world.item.Item.*;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
-
-    @Shadow
-    public abstract Item getItem();
-
-    @ModifyVariable(method = "getTooltipLines", at = @At("STORE"))
-    private Multimap<Attribute, AttributeModifier> malum$getTooltip(Multimap<Attribute, AttributeModifier> map, @Nullable Player player, TooltipFlag flag) {
-        if (player != null && getItem() instanceof MalumScytheItem) {
-            Multimap<Attribute, AttributeModifier> copied = LinkedHashMultimap.create();
-            for (Map.Entry<Attribute, AttributeModifier> entry : map.entries()) {
-                Attribute key = entry.getKey();
-                AttributeModifier modifier = entry.getValue();
-                double amount = modifier.getAmount();
-
-                if (modifier.getId() != null) {
-                    if (modifier.getId().equals(BASE_ATTACK_DAMAGE_UUID)) {
-                        AttributeInstance instance = player.getAttribute(AttributeRegistry.SCYTHE_PROFICIENCY.get());
-                        if (instance != null && instance.getValue() > 0) {
-                            amount += instance.getValue() * 0.5f;
-                        }
-
-                        copied.put(key, new AttributeModifier(
-                                modifier.getId(), modifier.getName(), amount, modifier.getOperation()
-                        ));
-                    } else {
-                        copied.put(key, modifier);
-                    }
-                }
-
-
-            }
-
-            return copied;
-        }
-        return map;
-    }
+//
+//    @Shadow
+//    public abstract Item getItem();
+//
+//    @ModifyVariable(method = "getTooltipLines", at = @At("STORE"))
+//    private Multimap<Attribute, AttributeModifier> malum$getTooltip(Multimap<Attribute, AttributeModifier> map, @Nullable Player player, TooltipFlag flag) {
+//        if (player != null && getItem() instanceof MalumScytheItem) {
+//            Multimap<Attribute, AttributeModifier> copied = LinkedHashMultimap.create();
+//            for (Map.Entry<Attribute, AttributeModifier> entry : map.entries()) {
+//                Attribute key = entry.getKey();
+//                AttributeModifier modifier = entry.getValue();
+//                double amount = modifier.getAmount();
+//
+//                if (modifier.getId().equals(BASE_ATTACK_DAMAGE_UUID)) {
+//                    AttributeInstance instance = player.getAttribute(AttributeRegistry.SCYTHE_PROFICIENCY.get());
+//                    if (instance != null) {
+//                        amount *= instance.getValue();
+//                    }
+//
+//                    copied.put(key, new AttributeModifier(
+//                            modifier.getId(), modifier.getName(), amount, modifier.getOperation()
+//                    ));
+//                } else {
+//                    copied.put(key, modifier);
+//                }
+//            }
+//
+//            return copied;
+//        }
+//        return map;
+//    }
 }

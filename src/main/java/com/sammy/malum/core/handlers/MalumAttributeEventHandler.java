@@ -28,7 +28,8 @@ public class MalumAttributeEventHandler {
             if (event.getSource().is(DamageTypeTagRegistry.IS_SCYTHE)) {
                 var scytheProficiency = attacker.getAttribute(AttributeRegistry.SCYTHE_PROFICIENCY.get());
                 if (scytheProficiency != null) {
-                    final float amount1 = (float) (amount * scytheProficiency.getValue());
+                    final double value = scytheProficiency.getValue();
+                    final float amount1 = (float) (amount * value);
                     event.setAmount(amount1);
                 }
             }
