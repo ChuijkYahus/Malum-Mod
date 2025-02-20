@@ -97,7 +97,7 @@ public class MalignantConversionHandler {
                 if (cachedValue > 0 && sourceInstance.getValue() != 0 && hasMalignantConversion) {
                     double multiplyRatio = cachedValue * malignantConversion / sourceInstance.getValue();
                     var modifier = new AttributeModifier(NEGATIVE_MODIFIER_UUID, "Malignant Conversion: " + Component.translatable(sourceAttribute.getDescriptionId()),
-                            -multiplyRatio, AttributeModifier.Operation.MULTIPLY_TOTAL);
+                            -multiplyRatio * consumptionRatio, AttributeModifier.Operation.MULTIPLY_TOTAL);
                     sourceInstance.addTransientModifier(modifier);
                 }
             }
