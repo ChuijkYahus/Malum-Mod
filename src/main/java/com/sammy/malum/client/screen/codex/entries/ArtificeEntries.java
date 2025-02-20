@@ -80,19 +80,19 @@ public class ArtificeEntries {
                 .addPage(new TextPage("soulwoven_silk.soulwoven_banner.1"))
                 .addPage(new CraftingPage(new ItemStack(SOULWOVEN_BANNER.get(), 2), EMPTY, RUNEWOOD_PLANKS.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get()))
                 .addPage(new CyclingPage(
-                        CraftingPage.bannerPage(ROTTING_ESSENCE.get(), SoulwovenBannerPatternData.HUNGER),
-                        CraftingPage.bannerPage(GRIM_TALC.get(), SoulwovenBannerPatternData.HORNS),
-                        CraftingPage.bannerPage(ASTRAL_WEAVE.get(), SoulwovenBannerPatternData.HEFT),
-                        CraftingPage.bannerPage(WARP_FLUX.get(), SoulwovenBannerPatternData.HALLUCINATION)
+                        CraftingPage.bannerPage(ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER),
+                        CraftingPage.bannerPage(GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS),
+                        CraftingPage.bannerPage(ASTRAL_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT),
+                        CraftingPage.bannerPage(WARP_FLUX.get(), SoulwovenBannerPatternDataComponent.HALLUCINATION)
                 ))
                 .addPage(new CyclingPage(
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.SACRED.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.SACRED.getRecipeId()),
 //                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.WICKED.getRecipeId()),
-//                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.ARCANE.getRecipeId()),
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.ELDRITCH.getRecipeId()),
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.AERIAL.getRecipeId()),
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.AQUEOUS.getRecipeId()),
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.EARTHEN.getRecipeId())//,
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.ARCANE.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.ELDRITCH.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.AERIAL.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.AQUEOUS.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.EARTHEN.getRecipeId())//,
 //                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.INFERNAL.getRecipeId())
                 ))
         );
@@ -176,6 +176,15 @@ public class ArtificeEntries {
                 .addPage(SpiritFocusingPage.fromOutput(PRISMARINE))
         );
 
+        screen.addEntry("focus_elemental", 14, 5, b -> b
+                .configureWidget(w -> w.setIcon(ZEPHYR_IMPETUS))
+                .addPage(new HeadlineTextPage("focus_elemental.zephyr_impetus", "focus_elemental.zephyr_impetus.1"))
+                .addPage(SpiritInfusionPage.fromOutput(ZEPHYR_IMPETUS.get()))
+                .addPage(SpiritFocusingPage.fromOutput(WIND_CHARGE))
+                .addPage(SpiritFocusingPage.fromOutput(WIND_NUCLEUS.get()))
+                .addPage(new TextPage("focus_elemental.zephyr_impetus.2"))
+        );
+
         screen.addEntry("crucible_acceleration", 10, 5, b -> b
                 .configureWidget(w -> w.setIcon(SPIRIT_CATALYZER))
                 .addPage(new HeadlineTextPage("crucible_acceleration", "crucible_acceleration.1"))
@@ -206,18 +215,18 @@ public class ArtificeEntries {
                 ))
                 .addReference(new EntryReference(IRON_PICKAXE, BookEntry.build("arcane_restoration.tool_repair")
                         .addPage(new HeadlineTextPage("arcane_restoration.tool_repair", "arcane_restoration.tool_repair.1"))
-                        .addPage(SpiritRepairPage.fromId("wooden"))
-                        .addPage(SpiritRepairPage.fromId("stone"))
-                        .addPage(SpiritRepairPage.fromId("iron"))
-                        .addPage(SpiritRepairPage.fromId("gold"))
-                        .addPage(SpiritRepairPage.fromId("diamond"))
-                        .addPage(SpiritRepairPage.fromId("netherite"))
-                        .addPage(SpiritRepairPage.fromId("trident"))
-                        .addPage(SpiritRepairPage.fromId("mace"))
+                        .addPage(SpiritRepairPage.fromId("wooden_restoration"))
+                        .addPage(SpiritRepairPage.fromId("stone_restoration"))
+                        .addPage(SpiritRepairPage.fromId("iron_restoration"))
+                        .addPage(SpiritRepairPage.fromId("gold_restoration"))
+                        .addPage(SpiritRepairPage.fromId("diamond_restoration"))
+                        .addPage(SpiritRepairPage.fromId("netherite_restoration"))
+                        .addPage(SpiritRepairPage.fromId("trident_restoration"))
+                        .addPage(SpiritRepairPage.fromId("mace_restoration"))
                         .addPage(new TextPage("arcane_restoration.tool_repair.2"))
-                        .addPage(SpiritRepairPage.fromId("special_soul_stained_steel"))
-                        .addPage(SpiritRepairPage.fromId("soul_stained_steel"))
-                        .addPage(SpiritRepairPage.fromId("soul_hunter_armor"))
+                        .addPage(SpiritRepairPage.fromId("special_soul_stained_steel_restoration"))
+                        .addPage(SpiritRepairPage.fromId("soul_stained_steel_restoration"))
+                        .addPage(SpiritRepairPage.fromId("soul_hunter_armor_restoration"))
                 ))
         );
     }

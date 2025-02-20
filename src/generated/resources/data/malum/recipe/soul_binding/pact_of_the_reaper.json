@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 16,
+      "tag": "c:gems/quartz"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "geas": "malum:pact_of_the_reaper",
+  "ingredient": {
+    "count": 1,
+    "item": "minecraft:iron_block"
+  },
+  "spirits": [
+    {
+      "type": "wicked",
+      "count": 32
+    },
+    {
+      "type": "eldritch",
+      "count": 8
+    }
+  ]
+}

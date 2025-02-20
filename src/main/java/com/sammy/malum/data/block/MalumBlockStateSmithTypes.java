@@ -2,6 +2,7 @@ package com.sammy.malum.data.block;
 
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
+import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.PrimordialSoupBlock;
@@ -23,7 +24,7 @@ import static com.sammy.malum.MalumMod.malumPath;
 
 public class MalumBlockStateSmithTypes {
 
-    public static BlockStateSmith<TotemPoleBlock> TOTEM_POLE = new BlockStateSmith<>(TotemPoleBlock.class, ItemModelSmithTypes.NO_MODEL, (block, provider) -> {
+    public static BlockStateSmith<TotemPoleBlock> TOTEM_POLE = new BlockStateSmith<>(TotemPoleBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         String name = provider.getBlockName(block);
         String woodName = name.substring(0, 8);
         ResourceLocation parent = malumPath("block/templates/template_totem_pole");
@@ -53,20 +54,36 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_MODEL, (block, provider) -> {
+    public static BlockStateSmith<SpiritDiodeBlock> SPIRIT_DIODE = new BlockStateSmith<>(SpiritDiodeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ResourceLocation top = provider.getBlockTexture("runewood_frame_top");
+        ResourceLocation opened = provider.getBlockTexture("runewood_frame_top_open");
+        ResourceLocation bottom = provider.getBlockTexture("runewood_frame_bottom");
+        ResourceLocation locked = provider.getBlockTexture("runewood_frame_locked");
+        ResourceLocation input = provider.getBlockTexture("runewood_frame_input");
+        ResourceLocation output = provider.getBlockTexture(name + "_output");
+        BlockModelBuilder model = provider.models().cube(name, bottom, top, output, input, locked, locked).texture("particle", output);
+        BlockModelBuilder openModel = provider.models().cube(name + "_open", bottom, opened, output, input, locked, locked).texture("particle", output);
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            var direction = s.getValue(SpiritDiodeBlock.FACING);
+            return ConfiguredModel.builder().modelFile(s.getValue(SpiritDiodeBlock.OPEN) ? openModel : model).rotationY(((int) direction.toYRot()) % 360).build();
+        });
+    });
+
+    public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         ModelFile model = provider.models().getExistingFile(malumPath("block/repair_pylon_component_middle"));
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/repair_pylon_component_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(RepairPylonComponentBlock.TOP) ? topModel : model).build());
     });
 
-    public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.AFFIXED_BLOCK_MODEL.apply("_top"), (block, provider) -> {
+    public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addTextureNameAffix("_top"), (block, provider) -> {
         String name = provider.getBlockName(block);
         ModelFile model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/weeping_well/" + name));
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(PrimordialSoupBlock.TOP) ? topModel : model).build());
     });
 
-    public static BlockStateSmith<Block> HANGING_LEAVES = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.AFFIXED_BLOCK_TEXTURE_MODEL.apply("_0"), (block, provider) -> {
+    public static BlockStateSmith<Block> HANGING_LEAVES = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM.addTextureNameAffix("_0"), (block, provider) -> {
         String name = provider.getBlockName(block);
         Function<Integer, ModelFile> modelProvider = (i) ->
                 provider.models().withExistingParent(name+"_"+i, malumPath("block/templates/template_hanging_leaves")).texture("hanging_leaves", provider.getBlockTexture(name + "_" + i)).texture("particle", provider.getBlockTexture(name + "_" + i));
@@ -130,7 +147,7 @@ public class MalumBlockStateSmithTypes {
                 .addModel();
     });
 
-    public static BlockStateSmith<Block> BLIGHTED_GROWTH = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_MODEL, (block, provider) -> {
+    public static BlockStateSmith<Block> BLIGHTED_GROWTH = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         String name = provider.getBlockName(block);
         Function<Integer, ModelFile> tumorFunction = (i) -> provider.models().withExistingParent(name + "_" + i, ResourceLocation.withDefaultNamespace("block/cross")).texture("cross", malumPath("block/" + name + "_" + i));
 
@@ -153,7 +170,7 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<Block> TALL_CALCIFIED_BLIGHT = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_MODEL, (block, provider) -> {
+    public static BlockStateSmith<Block> TALL_CALCIFIED_BLIGHT = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         String name = provider.getBlockName(block);
         Function<String, ModelFile> modelFunction = (s) -> provider.models().withExistingParent(name + "_" + s, ResourceLocation.withDefaultNamespace("block/cross")).texture("cross", malumPath("block/" + name + "_" + s));
         provider.getVariantBuilder(block).forAllStates(s -> {

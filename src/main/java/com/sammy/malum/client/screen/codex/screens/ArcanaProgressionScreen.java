@@ -89,9 +89,9 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 //        RitualEntries.setupEntries(ENTRIES);
 
         addEntry("mirror_magic", 8, 13, b -> b
-            .configureWidget(w -> w.setIcon(SPECTRAL_LENS).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+            .configureWidget(w -> w.setIcon(SPECTRAL_OPTIC).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
             .addPage(new HeadlineTextPage("mirror_magic", "mirror_magic.1"))
-            .addPage(SpiritInfusionPage.fromOutput(SPECTRAL_LENS.get()))
+            .addPage(SpiritInfusionPage.fromOutput(SPECTRAL_OPTIC.get()))
         );
 
         addEntry("voodoo_magic", -8, 13, b -> b

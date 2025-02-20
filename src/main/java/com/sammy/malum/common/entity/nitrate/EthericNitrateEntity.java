@@ -21,12 +21,14 @@ import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
 
 import java.awt.*;
+import java.util.List;
 import java.util.function.*;
 
 public class EthericNitrateEntity extends AbstractNitrateEntity {
 
     public static final Color AURIC_YELLOW = new Color(239, 215, 75);
     public static final Color AURIC_PURPLE = new Color(236, 54, 163);
+    public static final Color AURIC_RED = new Color(170, 31, 73);
     public static final ColorParticleData AURIC_COLOR_DATA = ColorParticleData.create(AURIC_YELLOW, AURIC_PURPLE).setEasing(Easing.SINE_IN_OUT).setCoefficient(0.9f).build();
 
     public EthericNitrateEntity(Level level) {
@@ -54,7 +56,7 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
 
     @Override
     public ColorEffectData getImpactParticleEffectColor() {
-        return new ColorEffectData(AURIC_YELLOW, AURIC_PURPLE);
+        return new ColorEffectData(AURIC_COLOR_DATA);
     }
 
     @OnlyIn(Dist.CLIENT)

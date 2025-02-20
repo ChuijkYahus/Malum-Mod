@@ -3,11 +3,8 @@ package com.sammy.malum.compability.jei;
 import com.google.common.collect.Maps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.recipe.*;
-import com.sammy.malum.common.recipe.spirit.focusing.*;
-import com.sammy.malum.common.recipe.spirit.infusion.*;
-import com.sammy.malum.common.recipe.spirit.transmutation.*;
 import com.sammy.malum.common.recipe.void_favor.*;
-import com.sammy.malum.common.spiritrite.TotemicRiteType;
+import com.sammy.malum.core.systems.rite.TotemicRiteType;
 import com.sammy.malum.compability.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compability.jei.categories.*;
 import com.sammy.malum.compability.jei.recipes.SpiritTransmutationWrapper;
@@ -62,47 +59,50 @@ public class JEIHandler implements IModPlugin {
     public JEIHandler() {
     }
 
-    public static void addItemsToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean vertical, List<? extends Ingredient> components) {
+    public static void addItemsToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean isVertical, List<? extends Ingredient> components) {
         int slots = components.size();
-        if (vertical) {
-            top -= 10 * (slots - 1);
+        int startingOffset = 9 * (slots - 1);
+        if (isVertical) {
+            top -= startingOffset;
         } else {
-            left -= 10 * (slots - 1);
+            left -= startingOffset;
         }
         for (int i = 0; i < slots; i++) {
-            int offset = i * 20;
-            int oLeft = left + 1 + (vertical ? 0 : offset);
-            int oTop = top + 1 + (vertical ? offset : 0);
+            int offset = i * 18;
+            int oLeft = left + (isVertical ? 0 : offset);
+            int oTop = top + (isVertical ? offset : 0);
             iRecipeLayout.addSlot(role, oLeft, oTop).addItemStacks(List.of(components.get(i).getItems()));
         }
     }
 
-    public static void addCustomIngredientToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean vertical, List<? extends ICustomIngredient> components) {
+    public static void addCustomIngredientToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean isVertical, List<? extends ICustomIngredient> components) {
         int slots = components.size();
-        if (vertical) {
-            top -= 10 * (slots - 1);
+        int startingOffset = 9 * (slots - 1);
+        if (isVertical) {
+            top -= startingOffset;
         } else {
-            left -= 10 * (slots - 1);
+            left -= startingOffset;
         }
         for (int i = 0; i < slots; i++) {
-            int offset = i * 20;
-            int oLeft = left + 1 + (vertical ? 0 : offset);
-            int oTop = top + 1 + (vertical ? offset : 0);
+            int offset = i * 18;
+            int oLeft = left + (isVertical ? 0 : offset);
+            int oTop = top + (isVertical ? offset : 0);
             iRecipeLayout.addSlot(role, oLeft, oTop).addItemStacks(components.get(i).getItems().toList());
         }
     }
 
-    public static void addSizedIngredientsToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean vertical, List<SizedIngredient> components) {
+    public static void addSizedIngredientsToJei(IRecipeLayoutBuilder iRecipeLayout, RecipeIngredientRole role, int left, int top, boolean isVertical, List<SizedIngredient> components) {
         int slots = components.size();
-        if (vertical) {
-            top -= 10 * (slots - 1);
+        int startingOffset = 9 * (slots - 1);
+        if (isVertical) {
+            top -= startingOffset;
         } else {
-            left -= 10 * (slots - 1);
+            left -= startingOffset;
         }
         for (int i = 0; i < slots; i++) {
-            int offset = i * 20;
-            int oLeft = left + 1 + (vertical ? 0 : offset);
-            int oTop = top + 1 + (vertical ? offset : 0);
+            int offset = i * 18;
+            int oLeft = left + (isVertical ? 0 : offset);
+            int oTop = top + (isVertical ? offset : 0);
             iRecipeLayout.addSlot(role, oLeft, oTop).addItemStacks(List.of(components.get(i).getItems()));
         }
     }
@@ -189,8 +189,10 @@ public class JEIHandler implements IModPlugin {
         IJeiHelpers helpers = jeiRuntime.getJeiHelpers();
         IFocusFactory focusFactory = helpers.getFocusFactory();
 
+        if (true) {
+            return;
+        }
         HiddenTagRegistry.rebuildHidingTags();
-
         callbacks.add(HiddenTagHandler.registerHiddenItemListener(() -> {
             var output = HiddenTagHandler.tagsToHide();
 
@@ -224,6 +226,9 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void onRuntimeUnavailable() {
+        if (true) {
+            return;
+        }
         callbacks.forEach(HiddenTagHandler::removeListener);
         callbacks.clear();
         hiddenRecipeSets.clear();

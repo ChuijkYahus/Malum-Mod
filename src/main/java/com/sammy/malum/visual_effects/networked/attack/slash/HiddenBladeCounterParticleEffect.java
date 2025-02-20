@@ -1,6 +1,7 @@
 package com.sammy.malum.visual_effects.networked.attack.slash;
 
 import com.sammy.malum.client.*;
+import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.phys.*;
@@ -31,7 +32,6 @@ public class HiddenBladeCounterParticleEffect extends SlashAttackParticleEffect 
             Vec3 direction = new Vec3(dirX, dirY, dirZ);
             float angle = nbtData.compoundTag.getFloat("angle");
             boolean mirror = nbtData.compoundTag.getBoolean("mirror");
-            var spirit = getSpiritType(nbtData);
 
             final float maxBackwardsOffset = 1.5f;
             final float maxForwardsOffset = 4.5f;
@@ -45,13 +45,13 @@ public class HiddenBladeCounterParticleEffect extends SlashAttackParticleEffect 
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset)));
-                    var slash = WeaponParticleEffects.spawnSlashParticle(level, position, spirit);
+                    var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean() ? ParticleRegistry.SLASH : ParticleRegistry.THIN_SLASH, colorData);
                     slash.getBuilder()
                             .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                             .setScaleData(GenericParticleData.create(scale).build())
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.5f)))
                             .setLifeDelay(lifeDelay)
-                            .setLifetime(2+i)
+                            .setLifetime(2 + i)
                             .setBehavior(new PointyDirectionalBehaviorComponent(direction));
                     slash.spawnParticles();
                 }

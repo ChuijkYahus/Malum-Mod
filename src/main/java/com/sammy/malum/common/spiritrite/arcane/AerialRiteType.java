@@ -1,6 +1,7 @@
 package com.sammy.malum.common.spiritrite.arcane;
 
 import com.sammy.malum.common.spiritrite.*;
+import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.*;
 
@@ -13,11 +14,11 @@ public class AerialRiteType extends TotemicRiteType {
 
     @Override
     public TotemicRiteEffect getNaturalRiteEffect() {
-        return new PotionRiteEffect(LivingEntity.class, MobEffectRegistry.ZEPHYRS_COURAGE);
+        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.ZEPHYRS_COURAGE);
     }
 
     @Override
     public TotemicRiteEffect getCorruptedEffect() {
-        return new PotionRiteEffect(LivingEntity.class, MobEffectRegistry.AETHERS_CHARM);
+        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.AETHERS_CHARM);
     }
 }

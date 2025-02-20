@@ -1,5 +1,6 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.weeping;
 
+import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
@@ -29,14 +30,10 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
-                var gluttony = MobEffectRegistry.GLUTTONY;
-                var effect = livingEntity.getEffect(gluttony);
-
-                if (effect != null) {
-                    EntityHelper.amplifyEffect(effect, livingEntity, 2, 9);
-                } else {
-                    livingEntity.addEffect(new MobEffectInstance(gluttony, 600, 1, true, true, true));
-                }
+                GluttonyEffect.applyGluttony(livingEntity, b -> b
+                        .setInitialData(0, 2)
+                        .setStackingData(0, 2)
+                        .setLimitData(0, 9));
                 livingEntity.playSound(SoundRegistry.GRUESOME_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
             }
         }

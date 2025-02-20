@@ -1,6 +1,10 @@
 {
   "values": [
+    "#malum:is_hidden_blade",
     "malum:voodoo",
-    "malum:hidden_blade_counter"
+    "malum:voodoo_playerless",
+    "malum:void",
+    "malum:karmic",
+    "malum:scythe_maelstrom"
   ]
 }

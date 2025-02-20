@@ -1,0 +1,18 @@
+{
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 1.0,
+  "inputs": [
+    "malum:fractured_copper_impetus"
+  ],
+  "repairMaterial": {
+    "count": 2,
+    "item": "malum:cthonic_gold_fragment"
+  },
+  "repairOutputOverride": "malum:copper_impetus",
+  "spirits": [
+    {
+      "type": "aqueous",
+      "count": 16
+    }
+  ]
+}

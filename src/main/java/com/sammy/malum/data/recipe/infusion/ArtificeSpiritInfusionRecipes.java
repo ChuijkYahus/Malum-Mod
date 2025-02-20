@@ -4,12 +4,14 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.data.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
+import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -19,34 +21,35 @@ import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 public class ArtificeSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVECHARGER.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVECHARGER.get(), 2)
                 .addSpirit(AERIAL_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(Items.REDSTONE, 4)
                 .addExtraItem(ItemRegistry.ETHER.get(), 1)
                 .addExtraItem(ItemTagRegistry.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEBANKER.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEBANKER.get(), 2)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(Items.REDSTONE, 4)
                 .addExtraItem(ItemRegistry.ETHER.get(), 1)
                 .addExtraItem(ItemTagRegistry.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEMAKER.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEMAKER.get(), 2)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(Items.REDSTONE, 4)
                 .addExtraItem(ItemRegistry.ETHER.get(), 1)
                 .addExtraItem(ItemTagRegistry.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEBREAKER.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, ItemRegistry.WAVEBREAKER.get(), 2)
                 .addSpirit(INFERNAL_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(Items.REDSTONE, 4)
                 .addExtraItem(ItemRegistry.ETHER.get(), 1)
                 .addExtraItem(ItemTagRegistry.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
+
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_COPPER), 2, ItemRegistry.ARTIFICERS_CLAW.get(), 1)
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
@@ -75,6 +78,33 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(ItemRegistry.RUNEWOOD_PLANKS.get(), 2)
                 .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 2)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 6, ItemRegistry.SYMPATHY_DRIVE.get(), 1)
+                .addSpirit(SACRED_SPIRIT, 16)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addExtraItem(ItemRegistry.LIVING_FLESH.get(), 8)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 6, ItemRegistry.SUSPICIOUS_DEVICE.get(), 1)
+                .addSpirit(ARCANE_SPIRIT, 16)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 4)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 6, ItemRegistry.CAUSTIC_CATALYST.get(), 1)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .addSpirit(INFERNAL_SPIRIT, 16)
+                .addExtraItem(ItemRegistry.BLAZING_QUARTZ.get(), 8)
+                .addExtraItem(Items.PRISMARINE_CRYSTALS, 8)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 6, ItemRegistry.RESONANCE_TUNER.get(), 1)
+                .addSpirit(EARTHEN_SPIRIT, 16)
+                .addSpirit(AERIAL_SPIRIT, 16)
+                .addExtraItem(ItemRegistry.ASTRAL_WEAVE.get(), 8)
+                .addExtraItem(ItemRegistry.REFINED_BRILLIANCE.get(), 8)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.MENDING_DIFFUSER.get(), 1)
@@ -159,6 +189,15 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 4)
                 .save(recipeOutput);
 
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), 1, ItemRegistry.ZEPHYR_IMPETUS.get(), 1)
+                .addSpirit(AERIAL_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
+                .addExtraItem(Items.WIND_CHARGE, 8)
+                .addExtraItem(ItemRegistry.IRON_NODE.get(), 6)
+                .addExtraItem(ItemRegistry.WIND_NUCLEUS.get(), 4)
+                .addExtraItem(Items.HEAVY_CORE, 1)
+                .save(recipeOutput);
+
         metalImpetusRecipe(recipeOutput, ItemRegistry.IRON_IMPETUS, Items.IRON_INGOT);
         metalImpetusRecipe(recipeOutput, ItemRegistry.COPPER_IMPETUS, Items.COPPER_INGOT);
         metalImpetusRecipe(recipeOutput, ItemRegistry.GOLD_IMPETUS, Items.GOLD_INGOT);
@@ -170,25 +209,27 @@ public class ArtificeSpiritInfusionRecipes {
         metalImpetusRecipe(recipeOutput, ItemRegistry.OSMIUM_IMPETUS, INGOTS_OSMIUM);
         metalImpetusRecipe(recipeOutput, ItemRegistry.ZINC_IMPETUS, INGOTS_ZINC);
         metalImpetusRecipe(recipeOutput, ItemRegistry.TIN_IMPETUS, INGOTS_TIN);
-        metalImpetusRecipe(recipeOutput, ItemRegistry.COBALT_IMPETUS, ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/cobalt"))); //TODO: Move this tag to Lodestone's side.
     }
 
-    public static void metalImpetusRecipe(RecipeOutput recipeOutput, DeferredHolder<Item, ? extends ImpetusItem> output, TagKey<Item> ingot) {
-                new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), output.get(), 1)
-                        .addSpirit(EARTHEN_SPIRIT, 8)
-                        .addSpirit(INFERNAL_SPIRIT, 8)
-                        .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 4))
-                        .addExtraItem(SizedIngredient.of(ItemRegistry.CTHONIC_GOLD.get(), 1))
-                        .addExtraItem(SizedIngredient.of(ingot, 6))
-                .save(recipeOutput, MalumMod.malumPath("impetus_creation_" + ingot.location().getPath().replace("ingots/", "")));
-
-//new NotCondition(new TagEmptyCondition(ingot.location().toString()))
-    }
-
-    public static void metalImpetusRecipe(RecipeOutput recipeOutput, DeferredHolder<Item, ? extends ImpetusItem> output, Item ingot) {
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), output.get(), 1)
+    public static void metalImpetusRecipe(RecipeOutput recipeOutput, Holder<Item> impetus, TagKey<Item> ingot) {
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), impetus.value(), 1)
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)
+                .addSpirit(AQUEOUS_SPIRIT, 8)
+                .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 4))
+                .addExtraItem(SizedIngredient.of(ItemRegistry.CTHONIC_GOLD.get(), 1))
+                .addExtraItem(SizedIngredient.of(ingot, 6))
+                .save(recipeOutput.withConditions(
+                        new NotCondition(
+                                new TagEmptyCondition(ingot.location())
+                        )));
+    }
+
+    public static void metalImpetusRecipe(RecipeOutput recipeOutput, Holder<Item> impetus, Item ingot) {
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), impetus.value(), 1)
+                .addSpirit(EARTHEN_SPIRIT, 8)
+                .addSpirit(INFERNAL_SPIRIT, 8)
+                .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 4))
                 .addExtraItem(SizedIngredient.of(ItemRegistry.CTHONIC_GOLD.get(), 1))
                 .addExtraItem(SizedIngredient.of(ingot, 6))

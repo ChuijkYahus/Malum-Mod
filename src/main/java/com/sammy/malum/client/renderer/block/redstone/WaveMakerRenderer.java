@@ -9,11 +9,14 @@ import team.lodestar.lodestone.systems.easing.Easing;
 public class WaveMakerRenderer extends SpiritDiodeRenderer<WaveMakerBlockEntity> {
 
     public WaveMakerRenderer(BlockEntityRendererProvider.Context context) {
-        super(context, MalumMod.malumPath("textures/block/redstone/wavemaker_overlay.png"));
+        super(context, MalumMod.malumPath("textures/block/spirit_diode/wavemaker_overlay.png"), "malum.waveform_artifice.wavemaker");
     }
 
     @Override
     public float getGlowDelta(WaveMakerBlockEntity blockEntityIn, float delta) {
-        return Easing.EXPO_IN.ease(1-delta, 0, 1);
+        if (blockEntityIn.inputSignal != 0) {
+            return Easing.EXPO_OUT.ease(delta, 0, 1);
+        }
+        return Easing.EXPO_IN.ease(delta, 0, 1);
     }
 }

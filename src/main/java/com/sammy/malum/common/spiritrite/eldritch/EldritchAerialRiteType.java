@@ -1,8 +1,7 @@
 package com.sammy.malum.common.spiritrite.eldritch;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.packets.particle.rite.AerialBlockFallRiteEffectPacket;
-import com.sammy.malum.common.spiritrite.*;
+import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.visual_effects.networked.data.*;
@@ -15,10 +14,8 @@ import net.minecraft.tags.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.*;
 
@@ -31,18 +28,18 @@ public class EldritchAerialRiteType extends TotemicRiteType {
 
     @Override
     public TotemicRiteEffect getNaturalRiteEffect() {
-        return new BlockAffectingRiteEffect() {
+        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT) {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
-                BlockPos pos = totemBase.getBlockPos();
+                var pos = totemBase.getBlockPos();
                 getBlocksAhead(totemBase).forEach(p -> {
-                    BlockState stateBelow = level.getBlockState(p.below());
+                    var stateBelow = level.getBlockState(p.below());
                     if (FallingBlock.isFree(stateBelow) || !stateBelow.canOcclude() || stateBelow.is(BlockTags.SLABS)) {
-                        BlockState state = level.getBlockState(p);
+                        var state = level.getBlockState(p);
                         if (!state.isAir() && level.getBlockEntity(p) == null && canSilkTouch(level, pos, state)) {
                             FallingBlockEntity.fall(level, p, state);
+                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT.createPositionedEffect(level, new PositionEffectData(p), new ColorEffectData(AERIAL_SPIRIT));
                             level.playSound(null, p, SoundRegistry.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
-                            PacketDistributor.sendToPlayersTrackingChunk(level, new ChunkPos(pos), new AerialBlockFallRiteEffectPacket(AERIAL_SPIRIT.getPrimaryColor(), p));
                         }
                     }
                 });
@@ -60,7 +57,7 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                     Stat<ResourceLocation> sleepStat = Stats.CUSTOM.get(Stats.TIME_SINCE_REST);
                     int value = stats.getValue(sleepStat);
                     stats.setValue(p, sleepStat, Math.max(0, value - 1000));
-                    ParticleEffectTypeRegistry.HEXING_SMOKE.createEntityEffect(p, new ColorEffectData(AERIAL_SPIRIT));
+                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(p, new ColorEffectData(AERIAL_SPIRIT));
                 });
             }
         };
@@ -88,7 +85,6 @@ public class EldritchAerialRiteType extends TotemicRiteType {
         if (state.is(BlockTagRegistry.GREATER_AERIAL_WHITELIST)) {
             return true;
         }
-
         ItemStack harvestToolStack = getToolForState(state);
         if (harvestToolStack.isEmpty()) {
             return false;

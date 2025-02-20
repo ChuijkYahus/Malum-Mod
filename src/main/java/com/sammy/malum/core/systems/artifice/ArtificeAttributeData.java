@@ -2,7 +2,10 @@ package com.sammy.malum.core.systems.artifice;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.common.data_components.ArtificeAugmentData;
+import com.sammy.malum.common.data_components.ArtificeAugmentDataComponent;
+import com.sammy.malum.common.item.augment.ImpurityStabilizer;
+import com.sammy.malum.common.item.augment.core.CausticCatalystItem;
+import com.sammy.malum.common.item.augment.core.ResonanceTuner;
 import com.sammy.malum.registry.common.SoundRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import net.minecraft.core.BlockPos;
@@ -31,18 +34,24 @@ public class ArtificeAttributeData {
     public final ArtificeAttributeValue focusingSpeed = new ArtificeAttributeValue(FOCUSING_SPEED);
     public final ArtificeAttributeValue instability = new ArtificeAttributeValue(INSTABILITY);
     public final ArtificeAttributeValue fuelUsageRate = new ArtificeAttributeValue(FUEL_USAGE_RATE);
-
     public final ArtificeAttributeValue fortuneChance = new ArtificeAttributeValue(FORTUNE_CHANCE);
+
     public final ArtificeAttributeValue chainFocusingChance = new ArtificeAttributeValue(CHAIN_FOCUSING_CHANCE);
     public final ArtificeAttributeValue damageAbsorptionChance = new ArtificeAttributeValue(DAMAGE_ABSORPTION_CHANCE);
     public final ArtificeAttributeValue restorationChance = new ArtificeAttributeValue(RESTORATION_CHANCE);
     public final ArtificeAttributeValue weaknessTuning = new ArtificeAttributeValue(WEAKNESS_TUNING);
+
     public final ArtificeAttributeValue tuningPotency = new ArtificeAttributeValue(TUNING_POTENCY);
     public final ArtificeAttributeValue tuningStrain = new ArtificeAttributeValue(TUNING_STRAIN);
 
+    public final ArtificeAttributeValue causticSynergy = new ArtificeAttributeValue(CAUSTIC_SYNERGY);
+    public final ArtificeAttributeValue resonanceTuning = new ArtificeAttributeValue(RESONANCE_TUNING);
+    public final ArtificeAttributeValue misfortuneReversal = new ArtificeAttributeValue(MISFORTUNE_REVERSAL);
+
     public final List<ArtificeAttributeValue> attributes = List.of(
-            focusingSpeed, instability, fuelUsageRate,
-            fortuneChance, chainFocusingChance, damageAbsorptionChance, restorationChance, weaknessTuning, tuningPotency, tuningStrain
+            focusingSpeed, instability, fuelUsageRate, fortuneChance,
+            chainFocusingChance, damageAbsorptionChance, restorationChance, weaknessTuning,
+            tuningPotency, tuningStrain
     );
     public final List<BlockPos> modifierPositions = new ArrayList<>();
     @Nullable
@@ -52,10 +61,14 @@ public class ArtificeAttributeData {
     public boolean demandsFuel;
     public float chainProcessingBonus;
 
-    public ArtificeAttributeData(IArtificeAcceptor target, @Nullable ArtificeInfluenceData influenceData) {
+    public ArtificeAttributeData(IArtificeAcceptor target) {
         if (target.getAttributes() != null) {
             tunedAttribute = target.getAttributes().tunedAttribute;
         }
+        target.applyAugments(this::applyAugment);
+    }
+
+    public ArtificeAttributeData applyModifierInfluence(ArtificeInfluenceData influenceData) {
         this.influenceData = influenceData;
         if (influenceData != null) {
             for (ArtificeModifierSourceInstance modifier : influenceData.modifiers()) {
@@ -67,11 +80,12 @@ public class ArtificeAttributeData {
                 }
             }
         }
-        target.applyAugments(this::applyAugment);
         applyTuning();
+        return this;
     }
 
-    public ArtificeAttributeData(List<ArtificeAttributeValue> attributes, List<BlockPos> modifierPositions, ArtificeAttributeType tunedAttribute, boolean demandsFuel, float chainProcessingBonus) {
+    public ArtificeAttributeData(List<ArtificeAttributeValue> attributes, List<BlockPos> modifierPositions, ArtificeAttributeType tunedAttribute,
+                                 boolean demandsFuel, float chainProcessingBonus) {
         for (int i = 0; i < this.attributes.size(); i++) {
             this.attributes.get(i).copyFrom(attributes.get(i));
         }
@@ -86,10 +100,14 @@ public class ArtificeAttributeData {
     }
 
     public void applyTuning() {
+        for (ArtificeAttributeValue attribute : attributes) {
+            attribute.clearModifiers();
+        }
+        CausticCatalystItem.scalePotency(this);
         var attributesForTuning = getExistingAttributesForTuning();
         if (tunedAttribute != null) {
-            float potency = 1 + tuningPotency.getValue(this);
-            float strain = 1 + tuningStrain.getValue(this);
+            float potency = tuningPotency.getValue(this);
+            float strain = tuningStrain.getValue(this);
             for (ArtificeAttributeType attribute : attributesForTuning) {
                 ArtificeAttributeValue value = attribute.getAttributeValue(this);
                 boolean isBoosted = tunedAttribute.equals(attribute);
@@ -98,18 +116,8 @@ public class ArtificeAttributeData {
                 value.applyModifier(new TuningModifier(TuningModifier.TUNING_FORK, bonus));
             }
         }
-        else {
-            for (ArtificeAttributeValue attribute : attributes) {
-                attribute.removeModifier(TuningModifier.TUNING_FORK);
-            }
-        }
-        for (ArtificeAttributeValue attribute : attributes) {
-            attribute.removeModifier(TuningModifier.WEAKEST_BOOST);
-        }
-        var weakestAttribute = figureOutWeakestAttribute(attributesForTuning);
-        if (weakestAttribute != null) {
-            weakestAttribute.applyModifier(new TuningModifier(TuningModifier.WEAKEST_BOOST, weaknessTuning.getValue(this)));
-        }
+        ImpurityStabilizer.applyWeaknessTuning(this, attributesForTuning);
+        ResonanceTuner.exchangeSpeed(this);
     }
 
     public void applyAugment(ItemStack augment) {
@@ -117,7 +125,7 @@ public class ArtificeAttributeData {
         {
             throw new IllegalArgumentException();
         }
-        ArtificeAugmentData augmentData = augment.get(DataComponentRegistry.ARTIFICE_AUGMENT);
+        ArtificeAugmentDataComponent augmentData = augment.get(DataComponentRegistry.ARTIFICE_AUGMENT);
         for (ArtificeModifier modifier : augmentData.modifiers()) {
             applyModifier(modifier);
         }

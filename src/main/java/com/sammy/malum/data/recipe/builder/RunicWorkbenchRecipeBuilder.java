@@ -10,12 +10,12 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.recipe.builder.AutonamedRecipeBuilder;
+import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class RunicWorkbenchRecipeBuilder implements AutonamedRecipeBuilder<RunicWorkbenchRecipe> {
+public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RunicWorkbenchRecipe> {
     private ItemStack primaryInput;
     private SpiritIngredient secondaryInput;
     private final ItemStack output;
@@ -42,21 +42,15 @@ public class RunicWorkbenchRecipeBuilder implements AutonamedRecipeBuilder<Runic
         return this;
     }
 
-    @Override
-    public Item getResult() {
-        return output.getItem();
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, output.getItem());
     }
 
     @Override
-    public RunicWorkbenchRecipe build(ResourceLocation resourceLocation) {
+    public RunicWorkbenchRecipe buildRecipe(ResourceLocation resourceLocation) {
         return new RunicWorkbenchRecipe(
                 SizedIngredient.of(primaryInput.getItem(), primaryInput.getCount()),
                 secondaryInput, output);
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        defaultSaveFunc(recipeOutput, MalumMod.malumPath(id.getPath()));
     }
 
     @Override

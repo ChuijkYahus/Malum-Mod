@@ -60,6 +60,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.CRUCIBLE_AUGMENT_REMOVE, s -> definition(s).with(sounds("curiosities/augments/augment_remove", 3)));
         this.add(SoundRegistry.WARPING_ENGINE_REVERBERATES, s -> definition(s).with(sounds("curiosities/augments/warping_engine_reverberates", 4)));
         this.add(SoundRegistry.SHIELDING_APPARATUS_SHIELDS, s -> definition(s).with(sounds("curiosities/augments/shielding_apparatus_shields", 2)));
+        this.add(SoundRegistry.SUSPICIOUS_DEVICE_DETONATES, s -> definition(s).with(sounds("curiosities/augments/device_detonate", 3)));
+        this.add(SoundRegistry.SUSPICIOUS_DEVICE_DETONATES_AGAIN, s -> definition(s).with(sounds("curiosities/augments/device_secondary_detonate", 3)));
+        this.add(SoundRegistry.SWAG_MESSIAH, s -> definition(s).with(sound("curiosities/augments/legalize_nuclear_bombs")));
 
         this.add(SoundRegistry.ARCANE_WHISPERS, s -> definition(s).with(sounds("curiosities/spirit/spirit_idle", 4)));
         this.add(SoundRegistry.SPIRIT_PICKUP, s -> definition(s).with(sounds("curiosities/spirit/spirit_pickup", 4)));
@@ -76,6 +79,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.EDGE_OF_DELIVERANCE_CUT, s -> definition(s).with(sounds("curiosities/weapons/scythe/sweep", 7)));
 
         this.add(SoundRegistry.SCYTHE_ASCENSION, s -> definition(s).with(sounds("curiosities/weapons/scythe/throw", 3)));
+        this.add(SoundRegistry.SCYTHE_ASCENSION_LAUNCH, s -> definition(s).with(sounds("minecraft:entity/wind_charge/wind_burst", 3)));
+
         this.add(SoundRegistry.SCYTHE_THROW, s -> definition(s).with(sounds("curiosities/weapons/scythe/throw", 3)));
         this.add(SoundRegistry.SCYTHE_SPINS, s -> definition(s).with(sound("curiosities/weapons/scythe/spin")));
         this.add(SoundRegistry.SCYTHE_CATCH, s -> definition(s).with(sounds("curiosities/weapons/scythe/catch", 2)));
@@ -88,20 +93,30 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.TYRVING_SLASH, s -> definition(s).with(sounds("curiosities/weapons/tyrving/hit", 5)));
         this.add(SoundRegistry.WEIGHT_OF_WORLDS_CUT, s -> definition(s).with(sounds("curiosities/weapons/scythe/sweep", 7)));
 
+        this.add(SoundRegistry.SUNDERING_ANCHOR_SWING, s -> definition(s).with(sounds("curiosities/weapons/sundering_anchor/swing", 6)));
+        this.add(SoundRegistry.SUNDERING_ANCHOR_EXTRA_SWING, s -> definition(s).with(sounds("curiosities/weapons/sundering_anchor/extra_swing", 6)));
+
+        this.add(SoundRegistry.INVERTED_HEART_IMPACT, s -> definition(s).with(sounds("curiosities/geas/soulwashing_impact", 6)));
+        this.add(SoundRegistry.WYRD_RECONSTRUCTION, s -> definition(s).with(sounds("curiosities/geas/wyrd_reconstruction", 2)));
+
         this.add(SoundRegistry.STAFF_FIRES, s -> definition(s).with(sounds("curiosities/weapons/staff/fire", 2)));
-        this.add(SoundRegistry.STAFF_POWERS_UP, s -> definition(s).with(sounds("curiosities/weapons/staff/charge", 2)));
-        this.add(SoundRegistry.STAFF_SIZZLES, s -> definition(s).with(sounds("curiosities/weapons/staff/sizzle", 2)));
-        this.add(SoundRegistry.STAFF_CHARGED, s -> definition(s).with(sounds("curiosities/weapons/staff/sizzle", 2)));
+        this.add(SoundRegistry.STAFF_POWERS_UP, s -> definition(s).with(sounds("curiosities/weapons/staff/power_up", 2)));
+        this.add(SoundRegistry.STAFF_SIZZLES_OUT, s -> definition(s).with(sounds("curiosities/weapons/staff/sizzle", 2)));
+        this.add(SoundRegistry.STAFF_CHARGED, s -> definition(s).with(sounds("curiosities/weapons/staff/charge", 2)));
         this.add(SoundRegistry.STAFF_STRIKES, s -> definition(s).with(sounds("curiosities/weapons/staff/hit", 4)));
 
         this.add(SoundRegistry.AURIC_FLAME_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/auric_cinders", 3)));
         this.add(SoundRegistry.DRAINING_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/draining_bubbling", 3)));
         this.add(SoundRegistry.MALIGNANT_METAL_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/malignant_crit", 3)));
 
+        this.add(SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT, s -> definition(s).with(sounds("curiosities/motifs/worldsoul_minor_impact", 3)));
+        this.add(SoundRegistry.WORLDSOUL_MOTIF_HEAVY_IMPACT, s -> definition(s).with(sounds("curiosities/motifs/worldsoul_impact", 6)));
+        this.add(SoundRegistry.WORLDSOUL_MOTIF_REVERB, s -> definition(s).with(sounds("curiosities/motifs/worldsoul_reverb", 3)));
+
         this.add(SoundRegistry.ALTAR_LOOP, s -> definition(s).with(sound("altar/altar_loop")));
         this.add(SoundRegistry.ALTAR_CRAFT, s -> definition(s).with(sounds("altar/altar_craft", 2)));
-        this.add(SoundRegistry.ALTAR_CONSUME, s -> definition(s).with(sounds("altar/altar_speedup", 2)));
-        this.add(SoundRegistry.ALTAR_SPEED_UP, s -> definition(s).with(sounds("altar/altar_consume", 2)));
+        this.add(SoundRegistry.ALTAR_CONSUME, s -> definition(s).with(sounds("altar/altar_consume", 2)));
+        this.add(SoundRegistry.ALTAR_SPEED_UP, s -> definition(s).with(sounds("altar/altar_speedup", 2)));
 
         this.add(SoundRegistry.CRUCIBLE_LOOP, s -> definition(s).with(sound("crucible/crucible_loop")));
         this.add(SoundRegistry.CRUCIBLE_CRAFT, s -> definition(s).with(sounds("crucible/crucible_craft", 3)));
@@ -201,12 +216,16 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.SPIRIT_DIODE_STEP, s -> definition(s).with(sounds("minecraft:block/copper_bulb/step", 6)));
         this.add(SoundRegistry.SPIRIT_DIODE_PLACE, s -> definition(s).with(sounds("blocks/spirit_diode/place", 4)));
         this.add(SoundRegistry.SPIRIT_DIODE_HIT, s -> definition(s).with(sounds("minecraft:block/copper_bulb/step", 6)));
+        this.add(SoundRegistry.SPIRIT_DIODE_OPEN, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_open", 4)));
+        this.add(SoundRegistry.SPIRIT_DIODE_CLOSE, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_close", 4)));
 
-        this.add(SoundRegistry.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/tick")));
-        this.add(SoundRegistry.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/tick")));
-        this.add(SoundRegistry.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/tick")));
-        this.add(SoundRegistry.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/tick")));
-        this.add(SoundRegistry.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/tick")));
+        this.add(SoundRegistry.SPIRIT_DIODE_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_tick", 8)));
+
+        this.add(SoundRegistry.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(SoundRegistry.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(SoundRegistry.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(SoundRegistry.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(SoundRegistry.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
 
         this.add(SoundRegistry.ARCANE_ROCK_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6)));
         this.add(SoundRegistry.ARCANE_ROCK_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));

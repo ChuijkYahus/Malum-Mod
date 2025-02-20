@@ -2,11 +2,9 @@ package com.sammy.malum.common.capabilities;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
-import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -38,15 +36,37 @@ public class SoulWardData {
         this.soulWardCooldown = soulWardCooldown;
     }
 
+    public void tickData(LivingEntity living) {
+        var capacity = living.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
+        if (capacity != null) {
+            if (getSoulWard() < capacity.getValue()) {
+                if (soulWardCooldown > 0) {
+                    soulWardCooldown--;
+                }
+                if (soulWardCooldown <= 0) {
+                    recoverSoulWard(living, 1);
+                }
+            }
+            if (getSoulWard() > capacity.getValue()) {
+                setSoulWard(capacity.getValue());
+            }
+        }
+    }
+
+    @SuppressWarnings("DataFlowIssue")
     public void recoverSoulWard(LivingEntity entity, double amount) {
-        var multiplier = Optional.ofNullable(entity.getAttribute(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER)).map(AttributeInstance::getValue).orElse(1.0);
-        addSoulWard(amount * multiplier);
-        if (!(entity instanceof Player player) || !player.isCreative()) {
-            var capacity = entity.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
-            if (capacity != null) {
-                var sound = soulWard >= capacity.getValue() ? SoundRegistry.SOUL_WARD_CHARGE : SoundRegistry.SOUL_WARD_GROW;
-                double pitchOffset = (soulWard / capacity.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
-                SoundHelper.playSound(entity, sound.get(), 0.25f, (float) (1f + pitchOffset));
+        var capacity = entity.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
+        if (getSoulWard() < capacity.getValue()) {
+            var multiplier = Optional.ofNullable(entity.getAttribute(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER)).map(AttributeInstance::getValue).orElse(1.0);
+            var previousSoulward = soulWard;
+            addSoulWard(amount * multiplier);
+            if (soulWard > previousSoulward) {
+                if (!(entity instanceof Player player) || !player.isCreative()) {
+                    var sound = soulWard >= capacity.getValue() ? SoundRegistry.SOUL_WARD_CHARGE : SoundRegistry.SOUL_WARD_GROW;
+                    double pitchOffset = (soulWard / capacity.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
+                    SoundHelper.playSound(entity, sound.get(), 0.25f, (float) (1f + pitchOffset));
+
+                }
             }
         }
         addCooldown(entity, 1);
@@ -75,16 +95,6 @@ public class SoulWardData {
             soulWardCooldown = newCooldown;
             setDirty(true);
         }
-    }
-
-    public void tickCooldown() {
-        if (soulWardCooldown > 0) {
-            soulWardCooldown--;
-        }
-    }
-
-    public double getCooldown() {
-        return soulWardCooldown;
     }
 
     public boolean isDirty() {

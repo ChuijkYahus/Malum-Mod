@@ -3,6 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.weeping;
 import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
+import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.packets.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
@@ -33,11 +34,8 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         consumer.accept(ComponentHelper.positiveCurioEffect("scythe_counterattack"));
-        consumer.accept(ComponentHelper.positiveCurioEffect("enhanced_maneuvers"));
         consumer.accept(ComponentHelper.negativeCurioEffect("pacifist_recharge"));
-        consumer.accept(ComponentHelper.negativeCurioEffect("no_sweep"));
     }
-
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
@@ -59,7 +57,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
         if (level.isClientSide()) {
             return;
         }
-        if (!source.is(DamageTypeTagRegistry.IS_SCYTHE)) {
+        if (!source.is(DamageTypeRegistry.SCYTHE_MELEE)) {
             return;
         }
         if (CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
@@ -78,25 +76,22 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 return;
             }
             var scytheWeapon = SoulDataHandler.getScytheWeapon(source, attacker);
-            final boolean isRanged = source.getDirectEntity() != null;
-            var damageDealer = isRanged ? source.getDirectEntity() : attacker;
-            var direction = isRanged ? damageDealer.getDeltaMovement().normalize() : attacker.getLookAngle();
-            var damageCenter = damageDealer.position().add(direction);
+            var direction = attacker.getLookAngle();
+            var damageCenter = attacker.position().add(direction);
             var attributes = attacker.getAttributes();
-            float amplifierScalar = 1+(effect.amplifier+1)*0.2f;
-            float multiplier = (float) Mth.clamp(attributes.getValue(Attributes.ATTACK_SPEED), 0, 2) * amplifierScalar;
+            float multiplier = 1+(effect.amplifier+1)*0.2f;
             int duration = 25;
 
-            float physicalDamage = (float) (attributes.getValue(Attributes.ATTACK_DAMAGE) / duration) * multiplier;
+            float physicalDamage = (float) (event.getNewDamage() +attributes.getValue(Attributes.ATTACK_DAMAGE)) / duration * multiplier;
             float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE) / duration) * multiplier;
 
             var entity = new HiddenBladeDelayedImpactEntity(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
             entity.setData(attacker, physicalDamage, magicDamage, duration);
             entity.setItem(scytheWeapon);
             level.addFreshEntity(entity);
-            data.hiddenBladeNecklaceCooldown = 200;
             PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
             if (!effect.isInfiniteDuration()) {
+                data.hiddenBladeNecklaceCooldown = COOLDOWN_DURATION;
                 attacker.removeEffect(effect.getEffect());
             }
             for (int i = 0; i < 3; i++) {
@@ -104,11 +99,12 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
             }
             var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.HIDDEN_BLADE_COUNTER_FLURRY);
             if (scytheWeapon.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-                particle.setSpiritType(spiritAffiliatedItem);
+                particle.setColor(spiritAffiliatedItem);
             }
             particle.setRandomSlashAngle(random)
                     .mirrorRandomly(random)
                     .spawnForwardSlashingParticle(attacker, direction);
+            event.setNewDamage(0);
         }
     }
     public static void entityTick(EntityTickEvent.Pre event) {
@@ -125,5 +121,4 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
             }
         }
     }
-
 }

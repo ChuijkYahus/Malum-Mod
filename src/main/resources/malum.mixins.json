@@ -6,12 +6,15 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "malum.refmap.json",
   "mixins": [
-    "AccessorFeatureFlagSet",
     "BlockBehaviorMixin",
     "ExplosionMixin",
+    "FeatureFlagSetAccessor",
     "FeatureFlagSetMixin",
     "FishingHookEntityMixin",
+    "FoodDataMixin",
     "ItemStackMixin",
+    "LivingEntityMixin",
+    "MobEffectInstanceMixin",
     "PlayerMixin"
   ],
   "client": [

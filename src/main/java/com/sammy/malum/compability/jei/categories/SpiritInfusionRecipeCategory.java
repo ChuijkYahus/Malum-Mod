@@ -1,7 +1,7 @@
 package com.sammy.malum.compability.jei.categories;
 
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
-import com.sammy.malum.common.recipe.spirit.infusion.SpiritInfusionRecipe;
+import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.compability.jei.JEIHandler;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;
@@ -39,10 +39,10 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
     public void draw(SpiritInfusionRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         int spiritOffset = recipe.spirits.size() > 5 ? (recipe.spirits.size()-5)*10 : 0;
-        ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 19, 48+spiritOffset, mouseX, mouseY, true, true);
+        ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 20, 49+spiritOffset, mouseX, mouseY, false, true);
         if (!recipe.extraIngredients.isEmpty()) {
             int itemOffset = recipe.extraIngredients.size() > 5 ? (recipe.extraIngredients.size()-5)*10 : 0;
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.extraIngredients.size(), 103, 48+itemOffset, mouseX, mouseY, true, false);
+            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.extraIngredients.size(), 104, 49+itemOffset, mouseX, mouseY, true, true);
         }
     }
 
@@ -50,7 +50,6 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
     public RecipeType<SpiritInfusionRecipe> getRecipeType() {
         return JEIHandler.SPIRIT_INFUSION;
     }
-
 
     @Override
     public Component getTitle() {

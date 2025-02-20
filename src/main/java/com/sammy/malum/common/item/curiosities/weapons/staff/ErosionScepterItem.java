@@ -1,7 +1,8 @@
 package com.sammy.malum.common.item.curiosities.weapons.staff;
 
 import com.sammy.malum.common.entity.bolt.*;
-import com.sammy.malum.common.item.ISpiritAffiliatedItem;
+import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
+import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
@@ -14,12 +15,14 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.AddAttributeTooltipsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -33,11 +36,18 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
 
     public static final Color MALIGNANT_PURPLE = new Color(68, 11, 61);
     public static final Color MALIGNANT_BLACK = new Color(12, 4, 11);
-    public static final ColorParticleData MALIGNANT_COLOR_DATA = ColorParticleData.create(MALIGNANT_PURPLE, MALIGNANT_BLACK).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(1.2f).build();
+    public static final ColorParticleData SCEPTER_COLOR_DATA = ColorParticleData.create(MALIGNANT_PURPLE, MALIGNANT_BLACK).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(1.2f).build();
 
-    public ErosionScepterItem(Tier tier, float magicDamage, Properties builderIn) {
-        super(tier, 10, magicDamage, builderIn);
+    public ErosionScepterItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+        super(tier, magicDamage, chargeDuration, chargeCapacity, properties);
     }
+
+    @Override
+    public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
+        event.addTooltipLines(ComponentHelper.positiveEffect("erosive_spread"));
+        event.addTooltipLines(ComponentHelper.positiveEffect("erosive_silence"));
+    }
+
     @Override
     public MalumSpiritType getDefiningSpiritType() {
         return SpiritTypeRegistry.UMBRAL_SPIRIT;
@@ -48,10 +58,10 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
             var silenced = MobEffectRegistry.SILENCED;
             MobEffectInstance effect = target.getEffect(silenced);
             if (effect == null) {
-                target.addEffect(new MobEffectInstance(silenced, 300, 1, true, true, true));
+                target.addEffect(new MobEffectInstance(silenced, 150, 0, true, true, true));
             } else {
-                EntityHelper.amplifyEffect(effect, target, 2, 9);
-                EntityHelper.extendEffect(effect, target, 60, 600);
+                EntityHelper.amplifyEffect(effect, target, 1, 19);
+                EntityHelper.extendEffect(effect, target, 30, 300);
             }
             SoundHelper.playSound(target, SoundRegistry.DRAINING_MOTIF.get(), attacker.getSoundSource(), 1, 1.25f);
         }
@@ -71,7 +81,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
 
     @Override
-    public void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, float chargePercentage, int count) {
+    public void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, int count) {
         int spawnDelay = count * 5;
         float pitchOffset = count * 1.5f;
         float velocity = 4f;
@@ -105,19 +115,21 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, 0.25f, 0.5f).setSpinOffset(RandomHelper.randomBetween(random, 0f, 6.28f)).build();
-        WorldParticleBuilder.create(ParticleRegistry.CIRCLE, new DirectionalBehaviorComponent(pLivingEntity.getLookAngle().normalize()))
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+        WorldParticleBuilder.create(ParticleRegistry.DRAINING_TARGET, new DirectionalBehaviorComponent(pLivingEntity.getLookAngle().normalize()))
+                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.8f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
-                .setSpinData(spinData)
+                .setColorData(SCEPTER_COLOR_DATA.copy().setCoefficient(2f).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
-                .setColorData(ColorParticleData.create(MALIGNANT_BLACK, MALIGNANT_BLACK).build())
-                .setLifetime(5)
-                .setLifeDelay(2)
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.05f))
-                .enableNoClip()
-                .enableForcedSpawn()
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .enableForcedSpawn()
+                .setLifeDelay(2)
+                .enableNoClip()
+                .setLifetime(5)
+                .spawn(pLevel, pos.x, pos.y, pos.z)
+                .setScaleData(GenericParticleData.create(0.4f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
+                .setColorData(SCEPTER_COLOR_DATA.invert().build())
                 .spawn(pLevel, pos.x, pos.y, pos.z);
     }
 }

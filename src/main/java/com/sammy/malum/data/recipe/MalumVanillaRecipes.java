@@ -7,6 +7,7 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +24,7 @@ import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.recipe.NBTCarryRecipe;
+import team.lodestar.lodestone.recipe.builder.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,13 +45,17 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, ItemRegistry.CRUDE_SCYTHE.get()).define('#', Tags.Items.RODS_WOODEN).define('Y', ItemRegistry.REFINED_SOULSTONE.get()).define('X', Tags.Items.INGOTS_IRON).pattern("XXY").pattern(" #X").pattern("#  ").unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_ALTAR.get()).define('Z', Tags.Items.INGOTS_GOLD).define('Y', ItemRegistry.REFINED_SOULSTONE.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).pattern(" Y ").pattern("ZXZ").pattern("XXX").unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.WEAVERS_WORKBENCH.get()).define('Z', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('Y', ItemRegistry.HEX_ASH.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).pattern("XYX").pattern("XZX").unlockedBy("has_hex_ash", has(ItemRegistry.HEX_ASH.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_JAR.get()).define('Z', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('Y', Tags.Items.GLASS_PANES).pattern("YZY").pattern("Y Y").pattern("YYY").unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_JAR.get()).define('X', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('Y', Tags.Items.GLASS_BLOCKS).pattern("X").pattern("Y").unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.SOULWOVEN_POUCH.get()).define('X', Tags.Items.STRINGS).define('Y', ItemRegistry.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").unlockedBy("has_soulwoven_silk", has(ItemRegistry.SOULWOVEN_SILK.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get()).define('X', Tags.Items.RODS_WOODEN).define('Y', ItemTagRegistry.RUNEWOOD_PLANKS).pattern("  Y").pattern(" X ").pattern("X  ").unlockedBy("has_runewood", has(ItemRegistry.RUNEWOOD_PLANKS.get())).save(output);
 
         //CRAFTING COMPONENTS
-        shaped(RecipeCategory.MISC, ItemRegistry.SPECTRAL_LENS.get()).define('X', ItemRegistry.HEX_ASH.get()).define('Y', Tags.Items.GLASS_PANES).pattern(" X ").pattern("XYX").pattern(" X ").unlockedBy("has_hex_ash", has(ItemRegistry.HEX_ASH.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get(), 2).define('#', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).define('Y', ItemRegistry.SPECTRAL_LENS.get()).pattern(" X ").pattern("#Y#").pattern(" X ").unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
+        shapeless(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get())
+                .requires(ItemRegistry.HALLOWED_GOLD_NUGGET.get())
+                .requires(Items.GLASS)
+                .requires(ItemRegistry.WARP_FLUX.get())
+                .requires(ItemRegistry.RUNEWOOD_PLANKS.get())
+                .unlockedBy("has_warp_flux", has(ItemRegistry.WARP_FLUX.get())).save(output);
 
         //ETHER
         etherTorch(output, ItemRegistry.ETHER_TORCH.get(), ItemRegistry.ETHER.get());
@@ -61,10 +67,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
         //BANNERS
         shaped(RecipeCategory.BUILDING_BLOCKS, ItemRegistry.SOULWOVEN_BANNER.get()).define('X', ItemTagRegistry.RUNEWOOD_PLANKS).define('Y', ItemRegistry.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(ItemRegistry.SOULWOVEN_SILK.get())).save(output);
-        bannerRecipe(output, ItemRegistry.ROTTING_ESSENCE.get(), SoulwovenBannerPatternData.HUNGER);
-        bannerRecipe(output, ItemRegistry.GRIM_TALC.get(), SoulwovenBannerPatternData.HORNS);
-        bannerRecipe(output, ItemRegistry.ASTRAL_WEAVE.get(), SoulwovenBannerPatternData.HEFT);
-        bannerRecipe(output, ItemRegistry.WARP_FLUX.get(), SoulwovenBannerPatternData.HALLUCINATION);
+        bannerRecipe(output, ItemRegistry.ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER);
+        bannerRecipe(output, ItemRegistry.GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS);
+        bannerRecipe(output, ItemRegistry.ASTRAL_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT);
+        bannerRecipe(output, ItemRegistry.WARP_FLUX.get(), SoulwovenBannerPatternDataComponent.HALLUCINATION);
 
 
         //SPIRIT METALS
@@ -79,13 +85,11 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, ItemRegistry.HALLOWED_GOLD_NUGGET.get(), 9).requires(ItemRegistry.HALLOWED_GOLD_INGOT.get()).unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
         shapeless(RecipeCategory.MISC, ItemRegistry.HALLOWED_GOLD_INGOT.get(), 9).requires(ItemRegistry.BLOCK_OF_HALLOWED_GOLD.get()).unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output, malumPath("hallowed_gold_from_block"));
 
-
         shaped(RecipeCategory.MISC, ItemRegistry.BLOCK_OF_MALIGNANT_PEWTER.get()).define('#', ItemRegistry.MALIGNANT_PEWTER_INGOT.get()).pattern("###").pattern("###").pattern("###").unlockedBy("has_malignant_alloy", has(ItemRegistry.MALIGNANT_PEWTER_INGOT.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.MALIGNANT_PEWTER_INGOT.get()).define('#', ItemRegistry.MALIGNANT_PEWTER_NUGGET.get()).pattern("###").pattern("###").pattern("###").unlockedBy("has_malignant_alloy", has(ItemRegistry.MALIGNANT_PEWTER_INGOT.get())).save(output, malumPath("malignant_alloy_from_nuggets"));
         shapeless(RecipeCategory.MISC, ItemRegistry.MALIGNANT_PEWTER_NUGGET.get(), 9).requires(ItemRegistry.MALIGNANT_PEWTER_INGOT.get()).unlockedBy("has_malignant_alloy", has(ItemRegistry.MALIGNANT_PEWTER_INGOT.get())).save(output);
         shapeless(RecipeCategory.MISC, ItemRegistry.MALIGNANT_PEWTER_INGOT.get(), 9).requires(ItemRegistry.BLOCK_OF_MALIGNANT_PEWTER.get()).unlockedBy("has_malignant_alloy", has(ItemRegistry.MALIGNANT_PEWTER_INGOT.get())).save(output, malumPath("malignant_alloy_from_block"));
         shaped(RecipeCategory.MISC, ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 2).define('X', ItemRegistry.MALIGNANT_PEWTER_INGOT.get()).define('Y', ItemRegistry.MALIGNANT_PEWTER_NUGGET.get()).pattern(" Y ").pattern("YXY").pattern(" Y ").unlockedBy("has_malignant_alloy", has(ItemRegistry.MALIGNANT_PEWTER_INGOT.get())).save(output);
-
 
         //NODES
         smeltingWithCount(Ingredient.of(ItemRegistry.IRON_NODE.get()), RecipeCategory.MISC, Items.IRON_NUGGET, 6, 0.25f, 200).unlockedBy("has_impetus", has(ItemRegistry.IRON_IMPETUS.get())).save(output, malumPath("iron_from_node_smelting"));
@@ -94,9 +98,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         smeltingWithCount(Ingredient.of(ItemRegistry.GOLD_NODE.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 6, 0.25f, 200).unlockedBy("has_impetus", has(ItemRegistry.GOLD_IMPETUS.get())).save(output, malumPath("gold_from_node_smelting"));
         blastingWithCount(Ingredient.of(ItemRegistry.GOLD_NODE.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 6, 0.25f, 100).unlockedBy("has_impetus", has(ItemRegistry.GOLD_IMPETUS.get())).save(output, malumPath("gold_from_node_blasting"));
 
-        smeltingWithCount(Ingredient.of(ItemRegistry.COPPER_NODE.get()), RecipeCategory.MISC, ItemRegistry.COPPER_NUGGET.get(), 6, 0.25f, 200).unlockedBy("has_impetus", has(ItemRegistry.COPPER_IMPETUS.get())).save(output, malumPath("copper_from_node_smelting"));
-        blastingWithCount(Ingredient.of(ItemRegistry.COPPER_NODE.get()), RecipeCategory.MISC, ItemRegistry.COPPER_NUGGET.get(), 6, 0.25f, 100).unlockedBy("has_impetus", has(ItemRegistry.COPPER_IMPETUS.get())).save(output, malumPath("copper_from_node_blasting"));
-
+        nodeSmelting(output, ItemRegistry.COPPER_NODE, NUGGETS_COPPER);
         nodeSmelting(output, ItemRegistry.LEAD_NODE, NUGGETS_LEAD);
         nodeSmelting(output, ItemRegistry.SILVER_NODE, NUGGETS_SILVER);
         nodeSmelting(output, ItemRegistry.ALUMINUM_NODE, NUGGETS_ALUMINUM);
@@ -131,10 +133,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, ItemRegistry.BLAZING_QUARTZ.get(), 1).requires(ItemRegistry.BLAZING_QUARTZ_FRAGMENT.get(), 8).unlockedBy("has_blazing_quartz", has(ItemRegistry.BLAZING_QUARTZ.get())).save(output, malumPath("blazing_quartz_from_fragment"));
         shapeless(RecipeCategory.MISC, ItemRegistry.ARCANE_CHARCOAL_FRAGMENT.get(), 8).requires(ItemRegistry.ARCANE_CHARCOAL.get()).unlockedBy("has_arcane_charcoal", has(ItemRegistry.ARCANE_CHARCOAL.get())).save(output, malumPath("arcane_charcoal_fragment"));
         shapeless(RecipeCategory.MISC, ItemRegistry.ARCANE_CHARCOAL.get(), 1).requires(ItemRegistry.ARCANE_CHARCOAL_FRAGMENT.get(), 8).unlockedBy("has_arcane_charcoal", has(ItemRegistry.ARCANE_CHARCOAL.get())).save(output, malumPath("arcane_charcoal_from_fragment"));
-
-        //COPPER
-        shaped(RecipeCategory.MISC, Items.COPPER_INGOT).define('#', NUGGETS_COPPER).pattern("###").pattern("###").pattern("###").unlockedBy("has_copper", has(INGOTS_COPPER)).save(output, malumPath("copper_ingot_from_nugget"));
-        shapeless(RecipeCategory.MISC, ItemRegistry.COPPER_NUGGET.get(), 9).requires(INGOTS_COPPER).unlockedBy("has_copper", has(INGOTS_COPPER)).save(output, malumPath("copper_nugget_from_ingot"));
 
         //ORE SMELTING
         smelting(Ingredient.of(ItemRegistry.BLAZING_QUARTZ_ORE.get()), RecipeCategory.MISC, ItemRegistry.BLAZING_QUARTZ.get(), 0.25f, 200).unlockedBy("has_blazing_quartz", has(ItemRegistry.BLAZING_QUARTZ.get())).save(output, malumPath("blazing_quartz_from_smelting"));
@@ -225,11 +223,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, ItemRegistry.CURSED_SAP_BLOCK.get(), 8).requires(ItemRegistry.CURSED_SAP.get(), 4).unlockedBy("has_cursed_sap", has(ItemRegistry.CURSED_SAP.get())).save(output);
 
         //THE DEVICE
-        TheDeviceRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.THE_DEVICE.get()).define('X', ItemRegistry.TWISTED_ROCK.get()).define('Y', ItemRegistry.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.THE_DEVICE.get()).define('X', ItemRegistry.TWISTED_ROCK.get()).define('Y', ItemRegistry.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);
 
         weaveRecipe(output, ItemRegistry.BLIGHTED_GUNK.get(), ItemRegistry.ANCIENT_WEAVE);
         weaveRecipe(output, Items.IRON_INGOT, ItemRegistry.CORNERED_WEAVE);
-        weaveRecipe(output, Items.COPPER_INGOT, ItemRegistry.DREADED_WEAVE);
         weaveRecipe(output, Items.LAPIS_LAZULI, ItemRegistry.MECHANICAL_WEAVE_V1);
         weaveRecipe(output, Items.REDSTONE, ItemRegistry.MECHANICAL_WEAVE_V2);
 
@@ -261,7 +258,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         return blasting(ingredient, category, new ItemStack(resultItem, resultCount), experience, time);
     }
 
-    private static void bannerRecipe(RecipeOutput consumer, Item material, SoulwovenBannerPatternData pattern) {
+    private static void bannerRecipe(RecipeOutput consumer, Item material, SoulwovenBannerPatternDataComponent pattern) {
         shapeless(RecipeCategory.BUILDING_BLOCKS, pattern.getDefaultStack()).requires(ItemRegistry.SOULWOVEN_BANNER.get()).requires(material).unlockedBy("has_soulwoven_silk", has(ItemRegistry.SOULWOVEN_SILK.get())).save(consumer, pattern.getRecipeId());
     }
 
@@ -269,110 +266,39 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, output.get()).requires(ItemRegistry.ESOTERIC_SPOOL.get()).requires(sideItem).unlockedBy("has_spool", has(ItemRegistry.ESOTERIC_SPOOL.get())).save(consumer);
     }
 
-    private static void nodeSmelting(RecipeOutput recipeoutput, DeferredHolder<Item, ? extends Item> node, TagKey<Item> tag) {
-        String name = BuiltInRegistries.ITEM.getKey(node.get()).getPath().replaceFirst("_node", "");
+    private static void nodeSmelting(RecipeOutput recipeoutput, Holder<Item> node, TagKey<Item> tag) {
+        String name = BuiltInRegistries.ITEM.getKey(node.value()).getPath().replaceFirst("_node", "");
 
-        RecipeOutput conditionOutput = recipeoutput.withConditions(new ICondition[]{
-                new NotCondition(new TagEmptyCondition(tag.location().toString()))
-        });
-        MetalNodeCookingRecipeBuilder.smelting(SizedIngredient.of(tag, 6).ingredient(), RecipeCategory.MISC, node.get(), 0.25f, 200)
-                .unlockedBy("has_crucible", has(ItemRegistry.SPIRIT_CRUCIBLE.get()))
+        var input = Ingredient.of(node.value());
+        var output = Ingredient.of(tag);
+        var unlockCondition = has(ItemRegistry.SPIRIT_CRUCIBLE.get());
+        var conditionOutput = recipeoutput.withConditions(new NotCondition(new TagEmptyCondition(tag.location().toString())));
+        MetalNodeCookingRecipeBuilder.smelting(input, RecipeCategory.MISC, output, 6, 0.25f, 200)
+                .unlockedBy("has_crucible", unlockCondition)
                 .save(conditionOutput, MalumMod.malumPath(name + "_from_node_smelting"));
-        MetalNodeCookingRecipeBuilder.blasting(SizedIngredient.of(tag, 6).ingredient(), RecipeCategory.MISC, node.get(), 0.25f, 100)
-                .unlockedBy("has_crucible", has(ItemRegistry.SPIRIT_CRUCIBLE.get()))
+
+        MetalNodeCookingRecipeBuilder.blasting(input, RecipeCategory.MISC, output, 6, 0.25f, 100)
+                .unlockedBy("has_crucible", unlockCondition)
                 .save(conditionOutput, MalumMod.malumPath(name + "_from_node_blasting"));
-
-//        smeltingWithTag(SizedIngredient.of(tag, 6), Ingredient.of(node.get()), 0.25f, 200)
-//                .build(new ConditionalRecipeOutput(recipeoutput, new ICondition[]{
-//                        new NotCondition(new TagEmptyCondition(tag.location().toString()))
-//                }), MalumMod.malumPath(name + "_from_node_smelting"));
-//
-//        blastingWithTag(SizedIngredient.of(tag, 6), Ingredient.of(node.get()), 0.25f, 100)
-//                .build(new ConditionalRecipeOutput(recipeoutput, new ICondition[]{
-//                        new NotCondition(new TagEmptyCondition(tag.location().toString()))
-//                }), MalumMod.malumPath(name + "_from_node_blasting"));
-
     }
 
     private static void etherBrazier(RecipeOutput recipeoutput, ItemLike output, ItemLike rock, ItemLike ether) {
-        new NBTCarryRecipe.Builder(
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 2)
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
                 .define('#', rock)
                 .define('S', Ingredient.of(Tags.Items.RODS_WOODEN))
                 .define('X', ether)
                 .pattern("#X#").pattern("S#S")
-                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get())),
-            Ingredient.of(ether)
-        ).save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
+                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get()))
+                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
     }
 
     private static void etherTorch(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
-        new NBTCarryRecipe.Builder(
-                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
-                        .define('#', Ingredient.of(Tags.Items.RODS_WOODEN))
-                        .define('X', ether)
-                        .pattern("X").pattern("#")
-                        .unlockedBy("has_ether", has(ItemRegistry.ETHER.get())),
-                Ingredient.of(ether)
-        ).save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_alternative");
-    }
-
-    private static void shapelessPlanks(RecipeOutput recipeoutput, ItemLike planks, TagKey<Item> input) {
-        shapeless(RecipeCategory.MISC, planks, 4).requires(input).group("planks").unlockedBy("has_logs", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessWood(RecipeOutput recipeoutput, ItemLike stripped, ItemLike input) {
-        shaped(RecipeCategory.MISC, stripped, 3).define('#', input).pattern("##").pattern("##").group("bark").unlockedBy("has_log", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessButton(RecipeOutput recipeoutput, ItemLike button, ItemLike input) {
-        shapeless(RecipeCategory.MISC, button).requires(input).unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedDoor(RecipeOutput recipeoutput, ItemLike door, ItemLike input) {
-        shaped(RecipeCategory.MISC, door, 3).define('#', input).pattern("##").pattern("##").pattern("##").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedFence(RecipeOutput recipeoutput, ItemLike fence, ItemLike input) {
-        shaped(RecipeCategory.MISC, fence, 3).define('#', Tags.Items.RODS_WOODEN).define('W', input).pattern("W#W").pattern("W#W").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedFenceGate(RecipeOutput recipeoutput, ItemLike fenceGate, ItemLike input) {
-        shaped(RecipeCategory.MISC, fenceGate).define('#', Tags.Items.RODS_WOODEN).define('W', input).pattern("#W#").pattern("#W#").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedPressurePlate(RecipeOutput recipeoutput, ItemLike pressurePlate, ItemLike input) {
-        shaped(RecipeCategory.MISC, pressurePlate).define('#', input).pattern("##").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedSlab(RecipeOutput recipeoutput, ItemLike slab, ItemLike input) {
-        shaped(RecipeCategory.MISC, slab, 6).define('#', input).pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedStairs(RecipeOutput recipeoutput, ItemLike stairs, ItemLike input) {
-        shaped(RecipeCategory.MISC, stairs, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessSolidTrapdoor(RecipeOutput recipeoutput, ItemLike solid, ItemLike normal) {
-        shapeless(RecipeCategory.MISC, solid).requires(normal).unlockedBy("has_input", has(normal)).save(recipeoutput);
-    }
-
-    private static void shapelessSolidTrapdoor(RecipeOutput recipeoutput, ItemLike solid, ItemLike normal, String path) {
-        shapeless(RecipeCategory.MISC, solid).requires(normal).unlockedBy("has_input", has(normal)).save(recipeoutput, malumPath(path));
-    }
-
-    private static void shapedTrapdoor(RecipeOutput recipeoutput, ItemLike trapdoor, ItemLike input) {
-        shaped(RecipeCategory.MISC, trapdoor, 2).define('#', input).pattern("###").pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedSign(RecipeOutput recipeoutput, ItemLike sign, ItemLike input) {
-        String s = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
-        shaped(RecipeCategory.MISC, sign, 3).group("sign").define('#', input).define('X', Tags.Items.RODS_WOODEN).pattern("###").pattern("###").pattern(" X ").unlockedBy("has_" + s, has(input)).save(recipeoutput);
-    }
-
-    public static Criterion<EnterBlockTrigger.TriggerInstance> insideOf(Block block) {
-        return CriteriaTriggers.ENTER_BLOCK
-                .createCriterion(new EnterBlockTrigger.TriggerInstance(Optional.empty(), Optional.of(block.builtInRegistryHolder()), Optional.empty()));
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
+                .define('S', Ingredient.of(Tags.Items.RODS_WOODEN))
+                .define('X', ether)
+                .pattern("X").pattern("S")
+                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get()))
+                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_from_stick");
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints count, ItemLike item) {

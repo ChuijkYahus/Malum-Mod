@@ -1,6 +1,7 @@
 package com.sammy.malum.visual_effects.networked.attack.slash;
 
 import com.sammy.malum.client.*;
+import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
@@ -36,7 +37,6 @@ public class AscensionUppercutParticleEffect extends SlashAttackParticleEffect {
             Vec3 up = left.cross(direction);
             float angle = nbtData.compoundTag.getFloat("angle");
             boolean mirror = nbtData.compoundTag.getBoolean("mirror");
-            var spirit = getSpiritType(nbtData);
 
             for(int i = 0; i < 6; i++) {
                 float upwardsOffset = i*0.4f;
@@ -46,7 +46,7 @@ public class AscensionUppercutParticleEffect extends SlashAttackParticleEffect {
 
                     var slashPosition = positionData.getAsVector().add(direction.scale(slashOffset)).add(up.scale(upwardsOffset));
 
-                    var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, spirit);
+                    var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, ParticleRegistry.SLASH, colorData);
                     slash.getBuilder()
                             .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                             .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2.5f, 3f)).build())

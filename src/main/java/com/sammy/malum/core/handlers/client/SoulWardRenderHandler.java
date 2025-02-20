@@ -19,18 +19,20 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 import java.lang.Math;
 
 public class SoulWardRenderHandler {
-    public static int fadeOut;
+    public static int glow;
 
     public static void tick(ClientTickEvent event) {
         final LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
             if (data.getSoulWard() >= player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY)) {
-                if (fadeOut < 80) {
-                    fadeOut++;
+                if (glow < 20) {
+                    glow++;
                 }
             } else {
-                fadeOut = Mth.clamp(fadeOut - 2, 0, 30);
+                if (glow > 0) {
+                    glow = Math.max(glow - 2, 0);
+                }
             }
         }
     }
@@ -67,13 +69,7 @@ public class SoulWardRenderHandler {
                     shaderInstance.safeGetUniform("XFrequency").set(15f);
                     shaderInstance.safeGetUniform("Speed").set(550f);
                     shaderInstance.safeGetUniform("Intensity").set(120f);
-                    var builder = VFXBuilders.createScreen()
-                            
-                            .setShader(() -> shaderInstance);
-                    if (fadeOut > 20) {
-                        final boolean isDamaged = soulWard < player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY);
-                        builder.setAlpha((80 - fadeOut) / (isDamaged ? 10f : 60f));
-                    }
+                    var builder = VFXBuilders.createScreen().setShader(() -> shaderInstance);
 
                     int size = 13;
                     boolean forceDisplay = soulWard <= 1;
@@ -88,13 +84,12 @@ public class SoulWardRenderHandler {
                         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(xTextureOffset / 45f, (xTextureOffset + size) / 45f, 0, 15 / 45f));
                         shaderInstance.safeGetUniform("TimeOffset").set(i * 150f);
 
-                        builder.setPositionWithWidth(x - 2, y - 2, size, size)
-                                .setUVWithWidth(xTextureOffset, 0, size, size, 45)
-                                .draw(poseStack);
-                        if (fadeOut > 0 && fadeOut < 20) {
-                            float glow = (10 - Math.abs(10 - fadeOut)) / 10f;
+                        builder.setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
+                        builder.blit(poseStack);
+                        if (glow > 0 && glow < 20) {
+                            float alpha = (10 - Math.abs(10 - glow)) / 10f;
                             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-                            builder.setAlpha(glow).draw(poseStack).setAlpha(1);
+                            builder.setAlpha(alpha).blit(poseStack).setAlpha(1);
                             RenderSystem.defaultBlendFunc();
                         }
                     }

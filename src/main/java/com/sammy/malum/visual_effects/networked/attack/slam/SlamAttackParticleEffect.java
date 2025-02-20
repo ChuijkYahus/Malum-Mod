@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects.networked.attack.slam;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
@@ -23,18 +24,12 @@ public class SlamAttackParticleEffect extends ParticleEffectType {
     }
 
     public static NBTEffectData createData(Vec3 direction, float angle) {
-        return createData(direction, angle, null);
-    }
-    public static NBTEffectData createData(Vec3 direction, float angle, MalumSpiritType spiritType) {
         CompoundTag tag = new CompoundTag();
         CompoundTag directionTag = new CompoundTag();
         directionTag.putDouble("x", direction.x);
         directionTag.putDouble("y", direction.y);
         directionTag.putDouble("z", direction.z);
         tag.putFloat("angle", angle);
-        if (spiritType != null) {
-            tag.putString("spiritType", spiritType.getIdentifier());
-        }
         tag.put("direction", directionTag);
         return new NBTEffectData(tag);
     }
@@ -53,10 +48,9 @@ public class SlamAttackParticleEffect extends ParticleEffectType {
             Vec3 direction = new Vec3(dirX, dirY, dirZ);
             float angle = nbtData.compoundTag.getFloat("angle");
             boolean mirror = nbtData.compoundTag.getBoolean("mirror");
-            var spirit = getSpiritType(nbtData);
             float spinOffset = angle + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (mirror ? 3.14f : 0);
 
-            var slam = WeaponParticleEffects.spawnSlamParticle(level, positionData.getAsVector(), spirit);
+            var slam = WeaponParticleEffects.spawnSlamParticle(level, positionData.getAsVector(), ParticleRegistry.SLAM, colorData);
             slam.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
@@ -64,9 +58,5 @@ public class SlamAttackParticleEffect extends ParticleEffectType {
                     .setBehavior(new DirectionalBehaviorComponent(direction));
             slam.spawnParticles();
         };
-    }
-
-    public MalumSpiritType getSpiritType(NBTEffectData data) {
-        return SpiritTypeRegistry.SPIRITS.get(data.compoundTag.getString("spiritType"));
     }
 }

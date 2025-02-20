@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
-import com.sammy.malum.common.spiritrite.*;
+import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -45,7 +45,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public TotemRiteState state = TotemRiteState.IDLE;
     public TotemicRiteType activeRite;
-    public List<BlockPos> totemPolePositions = new ArrayList<>();
+    private List<BlockPos> totemPolePositions = new ArrayList<>();
     private Direction direction;
     public int timer;
 

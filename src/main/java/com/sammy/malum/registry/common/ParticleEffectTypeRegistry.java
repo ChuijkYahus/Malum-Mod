@@ -6,12 +6,14 @@ import com.sammy.malum.visual_effects.networked.attack.slam.SlamAttackParticleEf
 import com.sammy.malum.visual_effects.networked.attack.slash.AscensionRadialSlashParticleEffect;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
-import com.sammy.malum.visual_effects.networked.generic.*;
+import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
 import com.sammy.malum.visual_effects.networked.pylon.*;
 import com.sammy.malum.visual_effects.networked.ritual.*;
 import com.sammy.malum.visual_effects.networked.attack.slash.*;
+import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeCloseParticleEffect;
+import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeOpenParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_mote.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import com.sammy.malum.visual_effects.networked.totem.*;
@@ -23,40 +25,51 @@ public class ParticleEffectTypeRegistry {
 
     public static final Map<String, ParticleEffectType> EFFECT_TYPES = new LinkedHashMap<>();
 
-    //Generic, all-purpose effect application vfx
-    public static final ParticleEffectType HEXING_SMOKE = new HexingSmokeParticleEffect("minor_hexing_smoke", 1);
-    public static final ParticleEffectType MAJOR_HEXING_SMOKE = new HexingSmokeParticleEffect("major_hexing_smoke", 1.75f);
-    public static final ParticleEffectType DRIPPING_SMOKE = new DrippingSmokeParticleEffect("dripping_smoke", 1.25f);
-
-    public static final ParticleEffectType CONCENTRATED_RISING_SPARKLES = new RisingSparklesParticleEffect("concentrated_rising_sparkles");
-
     //Blight vfx
     public static final ParticleEffectType BLIGHTING_MIST = new BlightingMistParticleEffect("blighting_mist");
 
-    //Functional vfx
+    //Spirit Altar
     public static final ParticleEffectType SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");
     public static final ParticleEffectType SPIRIT_ALTAR_EATS_ITEM = new SpiritAltarEatItemParticleEffect("spirit_altar_eats_item");
 
+    //Crucible
     public static final ParticleEffectType SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");
+    public static final ParticleEffectType SUSPICIOUS_DEVICE_PRIMER = new SuspiciousDevicePrimerParticleEffect("suspicious_device_primer");
 
+    //Repair Pylon
     public static final ParticleEffectType REPAIR_PYLON_PREPARES = new PylonPrepareRepairParticleEffect("repair_pylon_prepare");
     public static final ParticleEffectType REPAIR_PYLON_REPAIRS = new PylonRepairParticleEffect("repair_pylon_repairs");
 
+    //Totem Effects
     public static final ParticleEffectType TOTEM_POLE_ACTIVATED = new TotemPoleActivatedParticleEffect("totem_pole_activated");
+    public static final ParticleEffectType ENTITY_RITE_EFFECT = new EntityTotemParticleEffect("entity_rite_effect");
+    public static final ParticleEffectType BLOCK_RITE_EFFECT = new BlockTotemParticleEffect("block_rite_effect");
+    public static final ParticleEffectType BLOCK_FALL_RITE_EFFECT = new BlockFallTotemParticleEffect("block_fall_rite_effect");
 
+    //Ritual Plinth
     public static final ParticleEffectType RITUAL_PLINTH_EATS_ITEM = new RitualPlinthAbsorbItemParticleEffect("ritual_plinth_eats_item");
     public static final ParticleEffectType RITUAL_PLINTH_EATS_SPIRIT = new RitualPlinthAbsorbSpiritParticleEffect("ritual_plinth_eats_spirit");
     public static final ParticleEffectType RITUAL_PLINTH_BEGINS_CHARGING = new RitualPlinthBeginChargingParticleEffect("ritual_plinth_begins_charging");
     public static final ParticleEffectType RITUAL_PLINTH_CHANGES_TIER = new RitualPlinthChangeTierParticleEffect("ritual_plinth_changes_tier");
     public static final ParticleEffectType RITUAL_PLINTH_FAILURE = new RitualPlinthFailureParticleEffect("ritual_plinth_failure");
 
+    //Spirit Diode
+    public static final ParticleEffectType SPIRIT_DIODE_OPEN = new SpiritDiodeOpenParticleEffect("spirit_diode_open");
+    public static final ParticleEffectType SPIRIT_DIODE_CLOSE = new SpiritDiodeCloseParticleEffect("spirit_diode_close");
+
     //Slash Effects
     public static final ParticleEffectType SCYTHE_SLASH = new SlashAttackParticleEffect("scythe_slash");
     public static final ParticleEffectType SCYTHE_ASCENSION_SPIN = new AscensionRadialSlashParticleEffect("scythe_ascension_spin");
     public static final ParticleEffectType SCYTHE_ASCENSION_UPPERCUT = new AscensionUppercutParticleEffect("scythe_ascension_uppercut");
+
     public static final ParticleEffectType TYRVING_SLASH = new TyrvingSlashParticleEffect("tyrving_slash");
+    public static final ParticleEffectType SUNDERING_ANCHOR_SLASH = new SunderingAnchorSlashParticleEffect("sundering_anchor_slash");
+    public static final ParticleEffectType SUNDERING_ANCHOR_SWEEP = new SunderingAnchorSweepParticleEffect("sundering_anchor_sweep");
+    public static final ParticleEffectType SUNDERING_ANCHOR_SCAN = new SunderingAnchorScanParticleEffect("sundering_anchor_scan");
+
     public static final ParticleEffectType WEIGHT_OF_WORLDS_CRIT = new WeightOfWorldsCritParticleEffect("weight_of_worlds_crit");
     public static final ParticleEffectType EDGE_OF_DELIVERANCE_CRIT = new EdgeOfDeliveranceCritParticleEffect("weight_of_worlds_crit");
+
     public static final ParticleEffectType HIDDEN_BLADE_COUNTER_FLURRY = new HiddenBladeCounterParticleEffect("hidden_blade_counter_flurry");
 
     //Slam Effects
@@ -65,7 +78,12 @@ public class ParticleEffectTypeRegistry {
     //Wand
     public static final ParticleEffectType HEX_BOLT_IMPACT = new HexBoltImpactParticleEffect("hex_bolt_impact");
     public static final ParticleEffectType DRAINING_BOLT_IMPACT = new DrainingBoltImpactParticleEffect("draining_bolt_impact");
-    public static final ParticleEffectType AURIC_BOLT_IMPACT = new AuricBoltImpactParticleEffect("auric_bolt_impact");
+    public static final ParticleEffectType ENTROPIC_BOLT_IMPACT = new EntropicBoltImpactParticleEffect("entropic_bolt_impact");
+    public static final ParticleEffectType UNWINDING_CHAOS_CHARGE = new UnwindingChaosChargeParticleEffect("unwinding_chaos_charge");
+
+    //Geas
+    public static final ParticleEffectType INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");
+    public static final ParticleEffectType WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
 
     //Gluttony
     public static final ParticleEffectType THROWN_GLUTTONY_IMPACT = new ThrownGluttonyParticleEffect("splash_of_gluttony");

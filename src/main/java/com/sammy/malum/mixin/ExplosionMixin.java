@@ -1,11 +1,12 @@
 package com.sammy.malum.mixin;
 
+import com.sammy.malum.common.geas.explosion.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDemolitionistRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioHoarderRing;
-import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioProspectorBelt;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.LootParams;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,9 +27,9 @@ public abstract class ExplosionMixin {
 
     @Unique
     boolean malum$hasHoarderRing;
+
     @Unique
     ItemStack malum$droppedItem;
-
 
     @Mutable
     @Shadow
@@ -42,7 +42,8 @@ public abstract class ExplosionMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/Holder;)V", at = @At(value = "RETURN"))
     private void malum$modifyExplosionStats(Level level, Entity source, DamageSource damageSource, ExplosionDamageCalculator damageCalculator, double x, double y, double z, float radius, boolean fire, Explosion.BlockInteraction blockInteraction, ParticleOptions smallExplosionParticles, ParticleOptions largeExplosionParticles, Holder explosionSound, CallbackInfo ci) {
-        this.radius = CurioDemolitionistRing.increaseExplosionRadius(getIndirectSourceEntity(), radius);
+        LivingEntity sourceEntity = getIndirectSourceEntity();
+        this.radius = CurioDemolitionistRing.increaseExplosionRadius(sourceEntity, radius);
     }
 
     @Inject(method = "finalizeExplosion", at = @At(value = "HEAD"))

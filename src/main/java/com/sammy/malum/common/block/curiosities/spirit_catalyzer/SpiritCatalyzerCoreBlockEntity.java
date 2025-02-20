@@ -18,31 +18,37 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
 import net.neoforged.neoforge.items.IItemHandler;
+import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.multiblock.*;
 
 import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IBlockCapabilityProvider<IItemHandler, Direction> {
+public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IItemHandlerSupplier {
 
     public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
     public static final Vec3 CATALYZER_ITEM_OFFSET = new Vec3(0.5f, 2f, 0.5f);
     public static final Vec3 CATALYZER_AUGMENT_OFFSET = new Vec3(0.5f, 2.75f, 0.5f);
 
-    public MalumBlockEntityInventory inventory;
-    public MalumBlockEntityInventory augmentInventory;
+    public LodestoneBlockEntityInventory inventory;
+    public LodestoneBlockEntityInventory augmentInventory;
     public CatalyzerArtificeModifierSourceInstance modifier;
     public float burnTicks;
 
     public SpiritCatalyzerCoreBlockEntity(BlockEntityType<? extends SpiritCatalyzerCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
-        inventory = MalumBlockEntityInventory.singleItemStack(this);
-        augmentInventory = AugmentBlockEntityInventory.augmentInventory(this, 1);
+        inventory = MalumBlockEntityInventory.singleItemStack(this).onContentsChanged(()->triggerRecalibration(level, pos));
+        augmentInventory = AugmentBlockEntityInventory.augmentInventory(this, 1).onContentsChanged(()->triggerRecalibration(level, pos));
     }
 
     public SpiritCatalyzerCoreBlockEntity(BlockPos pos, BlockState state) {
         this(BlockEntityRegistry.SPIRIT_CATALYZER.get(), STRUCTURE.get(), pos, state);
+    }
+
+    @Override
+    public IItemHandler getInventory(Direction direction) {
+        return inventory;
     }
 
     @Override
@@ -109,10 +115,5 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
         inventory.load(registries, compound);
         augmentInventory.load(registries, compound, "augmentInventory");
         super.loadAdditional(compound, registries);
-    }
-
-    @Override
-    public @Nullable IItemHandler getCapability(Level level, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, Direction direction) {
-        return inventory;
     }
 }

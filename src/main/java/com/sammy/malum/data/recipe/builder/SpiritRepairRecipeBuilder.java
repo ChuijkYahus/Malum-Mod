@@ -58,31 +58,22 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
     }
 
     public SpiritRepairRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
-        this.getCriteria().put(name, criterion);
+        criteria.put(name, criterion);
         return this;
     }
 
     @Override
-    public Map<String, Criterion<?>> getCriteria() {
-        return criteria;
+    public void tweakAdvancement(Advancement.Builder advancement) {
+        criteria.forEach(advancement::addCriterion);
     }
 
     @Override
-    public SpiritRepairRecipe build(ResourceLocation resourceLocation) {
+    public SpiritRepairRecipe buildRecipe(ResourceLocation resourceLocation) {
         List<ResourceLocation> inputIds = new ArrayList<>();
         for (Item input : inputs) {
             inputIds.add(BuiltInRegistries.ITEM.getKey(input));
         }
         return new SpiritRepairRecipe(durabilityPercentage, itemIdRegex, modIdRegex, inputIds, repairMaterial, spirits, repairOutputOverride);
-    }
-
-    public void save(RecipeOutput recipeOutput, String recipeName) {
-        save(recipeOutput, MalumMod.malumPath("spirit_crucible/repair/" + recipeName));
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation resourceLocation) {
-        defaultSaveFunc(recipeOutput, resourceLocation);
     }
 
     @Override

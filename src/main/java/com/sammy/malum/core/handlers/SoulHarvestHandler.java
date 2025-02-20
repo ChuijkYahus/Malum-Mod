@@ -3,6 +3,7 @@ package com.sammy.malum.core.handlers;
 import com.sammy.malum.common.capabilities.*;
 import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.events.*;
@@ -21,6 +22,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.common.util.*;
+import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
@@ -170,13 +173,6 @@ public class SoulHarvestHandler {
         if (attacker.getAttribute(spiritSpoils) != null) {
             extra += Mth.ceil(attacker.getAttributeValue(spiritSpoils));
         }
-        if (!stack.isEmpty()) {
-            int spiritPlunder = EnchantmentRegistry.getEnchantmentLevel(attacker.level(), EnchantmentRegistry.SPIRIT_PLUNDER, stack);
-            if (spiritPlunder > 0) {
-                stack.hurtAndBreak(spiritPlunder, attacker, MAINHAND);
-            }
-            extra += spiritPlunder;
-        }
         for (int i = 0; i < extra; i++) {
             int random = attacker.getRandom().nextInt(spirits.size());
             spirits.get(random).grow(1);
@@ -187,35 +183,29 @@ public class SoulHarvestHandler {
 
     public static void pickupSpirit(LivingEntity collector, ItemStack stack) {
         SoulHarvestHandler.triggerSpiritCollection(collector);
-//        if (collector instanceof Player player) {
-//            for (NonNullList<ItemStack> playerInventory : player.getInventory().compartments) {
-//                //TODO: need AT for compartments
-//                for (ItemStack item : playerInventory) {
-//                    if (item.getItem() instanceof SpiritPouchItem) {
-//                        var inventory = SpiritPouchItem.getInventory(item);
-//                        ItemStack result = inventory.addItem(stack);
-//                        if (result.isEmpty()) {
-//                            var random = collector.getRandom();
-//                            float pitch = ((random.nextFloat() - random.nextFloat()) * 0.7F + 1.0F) * 2.0F; //this kinda smells but we want it to match vanilla
-//
-//                            player.playSound(SoundEvents.ITEM_PICKUP, 0.2F, pitch);
-//                            if (player.containerMenu instanceof SpiritPouchContainer pouchMenu) {
-//                                pouchMenu.update(inventory);
-//                            }
-//                            return;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        ItemHelper.giveItemToEntity(collector, stack);
+        ItemEntity entity = new ItemEntity(collector.level(), collector.getX(), collector.getY() + 0.5, collector.getZ(), stack);
+        entity.setPickUpDelay(0);
+        if (collector instanceof Player player) {
+            var result = EventHooks.fireItemPickupPre(entity, player).canPickup();
+            if (result.isFalse()) {
+                return;
+            }
+            player.addItem(stack);
+            player.onItemPickup(entity);
+            if (!stack.isEmpty()) {
+                ItemHelper.spawnItemOnEntity(collector, stack);
+            }
+        }
+        else {
+            collector.level().addFreshEntity(entity);
+        }
     }
 
     public static void triggerSpiritCollection(LivingEntity collector) {
         var collectionEvent = new CollectSpiritEvent(collector);
-        var attribute = collector.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE);
+        var resonance = collector.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE);
         ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
-                (eventResponderItem, stack) -> eventResponderItem.spiritCollectionEvent(collectionEvent, collector, attribute)));
+                (eventResponderItem, stack) -> eventResponderItem.spiritCollectionEvent(collectionEvent, collector, resonance)));
         NeoForge.EVENT_BUS.post(collectionEvent);
     }
 }

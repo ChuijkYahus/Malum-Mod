@@ -24,7 +24,7 @@ public class CatalyzerArtificeModifierSourceInstance extends ArtificeModifierSou
     @Override
     public void modifyFocusing(Consumer<ArtificeModifier> modifierConsumer) {
         modifierConsumer.accept(new ArtificeModifier(ArtificeAttributeType.FOCUSING_SPEED, 0.5f));
-        modifierConsumer.accept(new ArtificeModifier(ArtificeAttributeType.INSTABILITY, 0.08f));
+        modifierConsumer.accept(new ArtificeModifier(ArtificeAttributeType.INSTABILITY, 0.05f));
     }
 
     @Override
@@ -44,16 +44,18 @@ public class CatalyzerArtificeModifierSourceInstance extends ArtificeModifierSou
     }
 
     @Override
-    public boolean canModifyFocusing() {
+    public boolean canModifyFocusing(ArtificeAttributeData attributes) {
+        if (attributes.fuelUsageRate.getValue(attributes) <= 0) {
+            return true;
+        }
         if (catalyzer.burnTicks > 0) {
             return true;
-        } else {
-            ItemStack stack = catalyzer.inventory.getStackInSlot(0);
-            if (!stack.isEmpty() && stack.getBurnTime(RecipeType.SMELTING) > 0) {
-                stack.shrink(1);
-                catalyzer.burnTicks = stack.getBurnTime(RecipeType.SMELTING) / 2f;
-                BlockStateHelper.updateAndNotifyState(catalyzer.getLevel(), catalyzer.getBlockPos());
-            }
+        }
+        ItemStack stack = catalyzer.inventory.getStackInSlot(0);
+        if (!stack.isEmpty() && stack.getBurnTime(RecipeType.SMELTING) > 0) {
+            stack.shrink(1);
+            catalyzer.burnTicks = stack.getBurnTime(RecipeType.SMELTING) / 2f;
+            BlockStateHelper.updateAndNotifyState(catalyzer.getLevel(), catalyzer.getBlockPos());
         }
         return catalyzer.burnTicks > 0;
     }

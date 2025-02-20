@@ -11,6 +11,9 @@ import javax.annotation.*;
 import static com.sammy.malum.client.screen.codex.screens.EntryScreen.*;
 
 public abstract class BookPage {
+
+    public static boolean isVoidThemed = false;
+
     @Nullable
     protected final ResourceLocation background;
     protected BookEntry bookEntry;
@@ -34,14 +37,6 @@ public abstract class BookPage {
 
 
     public void render(Minecraft minecraft, GuiGraphics guiGraphics, EntryScreen screen, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-    }
-
-    public void renderLeft(Minecraft minecraft, GuiGraphics guiGraphics, EntryScreen screen, int mouseX, int mouseY, float partialTicks) {
-
-    }
-
-    public void renderRight(Minecraft minecraft, GuiGraphics guiGraphics, EntryScreen screen, int mouseX, int mouseY, float partialTicks) {
-
     }
 
     public ResourceLocation getBackground(boolean isRightSide) {

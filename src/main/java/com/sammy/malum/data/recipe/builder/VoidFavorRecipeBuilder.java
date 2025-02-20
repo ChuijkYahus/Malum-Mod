@@ -8,9 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import team.lodestar.lodestone.recipe.builder.AutonamedRecipeBuilder;
+import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
-public class VoidFavorRecipeBuilder implements AutonamedRecipeBuilder<FavorOfTheVoidRecipe> {
+public class VoidFavorRecipeBuilder implements LodestoneRecipeBuilder<FavorOfTheVoidRecipe> {
     private final Ingredient input;
 
     private final ItemStack output;
@@ -32,28 +32,13 @@ public class VoidFavorRecipeBuilder implements AutonamedRecipeBuilder<FavorOfThe
         this(input, new ItemStack(output, outputCount));
     }
 
-    public VoidFavorRecipeBuilder(ItemLike input, ItemLike output) {
-        this(input, new ItemStack(output));
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, output.getItem());
     }
 
     @Override
-    public Item getResult() {
-        return output.getItem();
-    }
-
-    @Override
-    public FavorOfTheVoidRecipe build(ResourceLocation resourceLocation) {
+    public FavorOfTheVoidRecipe buildRecipe(ResourceLocation resourceLocation) {
         return new FavorOfTheVoidRecipe(input, output);
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, String recipeName) {
-        save(recipeOutput, MalumMod.malumPath("void_favor/" + recipeName));
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation resourceLocation) {
-        defaultSaveFunc(recipeOutput, resourceLocation);
     }
 
     @Override

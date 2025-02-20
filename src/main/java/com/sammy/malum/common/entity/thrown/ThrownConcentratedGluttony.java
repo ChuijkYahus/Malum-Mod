@@ -137,19 +137,13 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
     private void applyGluttony(ServerLevel level, @Nullable Entity impactedEntity) {
         var targets = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3f, 2f, 3f));
         if (!targets.isEmpty()) {
-            Entity owner = getEffectSource();
-            MobEffectInstance gluttony = ConcentratedGluttonyItem.createGluttonyEffect(owner);
             for (LivingEntity target : targets) {
                 if (target.isAffectedByPotions()) {
                     double distance = this.distanceToSqr(target);
                     if (distance < 6.0D) {
                         float durationScalar = target.equals(impactedEntity) ? 1f : (float) (1f - Math.sqrt(distance) / 4f);
-                        int newDuration = gluttony.mapDuration((d) -> (int) (durationScalar * (double) d + 0.5D));
-                        if (newDuration > 20) {
-                            MobEffectInstance appliedGluttony = ConcentratedGluttonyItem.createGluttonyEffect(owner, durationScalar);
-                            target.addEffect(appliedGluttony, owner);
-                            ConcentratedGluttonyItem.createGluttonyVFX(level, target, 0.25f);
-                        }
+                        ConcentratedGluttonyItem.applyConcentratedGluttonyEffect(target, durationScalar);
+                        ConcentratedGluttonyItem.createGluttonyVFX(level, target, 0.25f);
                     }
                 }
             }

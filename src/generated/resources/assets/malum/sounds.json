@@ -766,6 +766,12 @@
     ],
     "subtitle": "malum.subtitle.impetus_takes_damage"
   },
+  "legalize_nuclear_bombs": {
+    "sounds": [
+      "malum:curiosities/augments/legalize_nuclear_bombs"
+    ],
+    "subtitle": "malum.subtitle.legalize_nuclear_bombs"
+  },
   "malignant_metal_motif": {
     "sounds": [
       "malum:curiosities/motifs/malignant_crit1",
@@ -869,46 +875,6 @@
       "block/basalt/step6"
     ],
     "subtitle": "malum.subtitle.quartz_cluster_block_step"
-  },
-  "redstone_diode_break": {
-    "sounds": [
-      "malum:blocks/spirit_diode/break1",
-      "malum:blocks/spirit_diode/break2",
-      "malum:blocks/spirit_diode/break3",
-      "malum:blocks/spirit_diode/break4"
-    ],
-    "subtitle": "malum.subtitle.redstone_diode_break"
-  },
-  "redstone_diode_hit": {
-    "sounds": [
-      "block/copper_bulb/step1",
-      "block/copper_bulb/step2",
-      "block/copper_bulb/step3",
-      "block/copper_bulb/step4",
-      "block/copper_bulb/step5",
-      "block/copper_bulb/step6"
-    ],
-    "subtitle": "malum.subtitle.redstone_diode_hit"
-  },
-  "redstone_diode_place": {
-    "sounds": [
-      "malum:blocks/spirit_diode/place1",
-      "malum:blocks/spirit_diode/place2",
-      "malum:blocks/spirit_diode/place3",
-      "malum:blocks/spirit_diode/place4"
-    ],
-    "subtitle": "malum.subtitle.redstone_diode_place"
-  },
-  "redstone_diode_step": {
-    "sounds": [
-      "block/copper_bulb/step1",
-      "block/copper_bulb/step2",
-      "block/copper_bulb/step3",
-      "block/copper_bulb/step4",
-      "block/copper_bulb/step5",
-      "block/copper_bulb/step6"
-    ],
-    "subtitle": "malum.subtitle.redstone_diode_step"
   },
   "rejected_by_the_unknown": {
     "sounds": [
@@ -1248,6 +1214,14 @@
       "malum:curiosities/weapons/scythe/sweep7"
     ],
     "subtitle": "malum.subtitle.scythe_sweeps"
+  },
+  "scythe_target_is_launched": {
+    "sounds": [
+      "entity/wind_charge/wind_burst1",
+      "entity/wind_charge/wind_burst2",
+      "entity/wind_charge/wind_burst3"
+    ],
+    "subtitle": "malum.subtitle.scythe_target_is_launched"
   },
   "scythe_thrown": {
     "sounds": [
@@ -1594,8 +1568,8 @@
   },
   "spirit_altar_absorbs_item": {
     "sounds": [
-      "malum:altar/altar_speedup1",
-      "malum:altar/altar_speedup2"
+      "malum:altar/altar_consume1",
+      "malum:altar/altar_consume2"
     ],
     "subtitle": "malum.subtitle.spirit_altar_absorbs_item"
   },
@@ -1614,8 +1588,8 @@
   },
   "spirit_altar_speeds_up": {
     "sounds": [
-      "malum:altar/altar_consume1",
-      "malum:altar/altar_consume2"
+      "malum:altar/altar_speedup1",
+      "malum:altar/altar_speedup2"
     ],
     "subtitle": "malum.subtitle.spirit_altar_speeds_up"
   },
@@ -1632,6 +1606,77 @@
       "malum:crucible/crucible_loop"
     ],
     "subtitle": "malum.subtitle.spirit_crucible_focuses"
+  },
+  "spirit_diode_break": {
+    "sounds": [
+      "malum:blocks/spirit_diode/break1",
+      "malum:blocks/spirit_diode/break2",
+      "malum:blocks/spirit_diode/break3",
+      "malum:blocks/spirit_diode/break4"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_break"
+  },
+  "spirit_diode_close": {
+    "sounds": [
+      "malum:blocks/spirit_diode/waveform_close1",
+      "malum:blocks/spirit_diode/waveform_close2",
+      "malum:blocks/spirit_diode/waveform_close3",
+      "malum:blocks/spirit_diode/waveform_close4"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_close"
+  },
+  "spirit_diode_hit": {
+    "sounds": [
+      "block/copper_bulb/step1",
+      "block/copper_bulb/step2",
+      "block/copper_bulb/step3",
+      "block/copper_bulb/step4",
+      "block/copper_bulb/step5",
+      "block/copper_bulb/step6"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_hit"
+  },
+  "spirit_diode_open": {
+    "sounds": [
+      "malum:blocks/spirit_diode/waveform_open1",
+      "malum:blocks/spirit_diode/waveform_open2",
+      "malum:blocks/spirit_diode/waveform_open3",
+      "malum:blocks/spirit_diode/waveform_open4"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_open"
+  },
+  "spirit_diode_place": {
+    "sounds": [
+      "malum:blocks/spirit_diode/place1",
+      "malum:blocks/spirit_diode/place2",
+      "malum:blocks/spirit_diode/place3",
+      "malum:blocks/spirit_diode/place4"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_place"
+  },
+  "spirit_diode_step": {
+    "sounds": [
+      "block/copper_bulb/step1",
+      "block/copper_bulb/step2",
+      "block/copper_bulb/step3",
+      "block/copper_bulb/step4",
+      "block/copper_bulb/step5",
+      "block/copper_bulb/step6"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_step"
+  },
+  "spirit_diode_tick": {
+    "sounds": [
+      "malum:blocks/spirit_diode/waveform_tick1",
+      "malum:blocks/spirit_diode/waveform_tick2",
+      "malum:blocks/spirit_diode/waveform_tick3",
+      "malum:blocks/spirit_diode/waveform_tick4",
+      "malum:blocks/spirit_diode/waveform_tick5",
+      "malum:blocks/spirit_diode/waveform_tick6",
+      "malum:blocks/spirit_diode/waveform_tick7",
+      "malum:blocks/spirit_diode/waveform_tick8"
+    ],
+    "subtitle": "malum.subtitle.spirit_diode_tick"
   },
   "spirit_engraved": {
     "sounds": [
@@ -1660,8 +1705,8 @@
   },
   "staff_charged": {
     "sounds": [
-      "malum:curiosities/weapons/staff/sizzle1",
-      "malum:curiosities/weapons/staff/sizzle2"
+      "malum:curiosities/weapons/staff/charge1",
+      "malum:curiosities/weapons/staff/charge2"
     ],
     "subtitle": "malum.subtitle.staff_charged"
   },
@@ -1674,17 +1719,17 @@
   },
   "staff_powers_up": {
     "sounds": [
-      "malum:curiosities/weapons/staff/charge1",
-      "malum:curiosities/weapons/staff/charge2"
+      "malum:curiosities/weapons/staff/power_up1",
+      "malum:curiosities/weapons/staff/power_up2"
     ],
     "subtitle": "malum.subtitle.staff_powers_up"
   },
-  "staff_sizzles": {
+  "staff_sizzles_out": {
     "sounds": [
       "malum:curiosities/weapons/staff/sizzle1",
       "malum:curiosities/weapons/staff/sizzle2"
     ],
-    "subtitle": "malum.subtitle.staff_sizzles"
+    "subtitle": "malum.subtitle.staff_sizzles_out"
   },
   "staff_strikes": {
     "sounds": [
@@ -1694,6 +1739,44 @@
       "malum:curiosities/weapons/staff/hit4"
     ],
     "subtitle": "malum.subtitle.staff_strikes"
+  },
+  "sundering_anchor_cuts": {
+    "sounds": [
+      "malum:curiosities/weapons/sundering_anchor/swing1",
+      "malum:curiosities/weapons/sundering_anchor/swing2",
+      "malum:curiosities/weapons/sundering_anchor/swing3",
+      "malum:curiosities/weapons/sundering_anchor/swing4",
+      "malum:curiosities/weapons/sundering_anchor/swing5",
+      "malum:curiosities/weapons/sundering_anchor/swing6"
+    ],
+    "subtitle": "malum.subtitle.sundering_anchor_cuts"
+  },
+  "sundering_anchor_twists_gracefully": {
+    "sounds": [
+      "malum:curiosities/weapons/sundering_anchor/extra_swing1",
+      "malum:curiosities/weapons/sundering_anchor/extra_swing2",
+      "malum:curiosities/weapons/sundering_anchor/extra_swing3",
+      "malum:curiosities/weapons/sundering_anchor/extra_swing4",
+      "malum:curiosities/weapons/sundering_anchor/extra_swing5",
+      "malum:curiosities/weapons/sundering_anchor/extra_swing6"
+    ],
+    "subtitle": "malum.subtitle.sundering_anchor_twists_gracefully"
+  },
+  "suspicious_device_detonates": {
+    "sounds": [
+      "malum:curiosities/augments/device_detonate1",
+      "malum:curiosities/augments/device_detonate2",
+      "malum:curiosities/augments/device_detonate3"
+    ],
+    "subtitle": "malum.subtitle.suspicious_device_detonates"
+  },
+  "suspicious_device_detonates_again": {
+    "sounds": [
+      "malum:curiosities/augments/device_secondary_detonate1",
+      "malum:curiosities/augments/device_secondary_detonate2",
+      "malum:curiosities/augments/device_secondary_detonate3"
+    ],
+    "subtitle": "malum.subtitle.suspicious_device_detonates_again"
   },
   "the_deep_beckons": {
     "sounds": [
@@ -1707,6 +1790,17 @@
     ],
     "subtitle": "malum.subtitle.the_heavens_sing"
   },
+  "the_inverted_heart_shrieks": {
+    "sounds": [
+      "malum:curiosities/geas/soulwashing_impact1",
+      "malum:curiosities/geas/soulwashing_impact2",
+      "malum:curiosities/geas/soulwashing_impact3",
+      "malum:curiosities/geas/soulwashing_impact4",
+      "malum:curiosities/geas/soulwashing_impact5",
+      "malum:curiosities/geas/soulwashing_impact6"
+    ],
+    "subtitle": "malum.subtitle.the_inverted_heart_shrieks"
+  },
   "the_unknown_weeps": {
     "sounds": [
       "malum:weeping_well/uncanny_valley1",
@@ -1719,6 +1813,33 @@
       "malum:weeping_well/void_heartbeat"
     ],
     "subtitle": "malum.subtitle.the_void_heart_beats"
+  },
+  "the_worldsoul_reverberates": {
+    "sounds": [
+      "malum:curiosities/motifs/worldsoul_reverb1",
+      "malum:curiosities/motifs/worldsoul_reverb2",
+      "malum:curiosities/motifs/worldsoul_reverb3"
+    ],
+    "subtitle": "malum.subtitle.the_worldsoul_reverberates"
+  },
+  "the_worldsoul_shifts_erratically": {
+    "sounds": [
+      "malum:curiosities/motifs/worldsoul_impact1",
+      "malum:curiosities/motifs/worldsoul_impact2",
+      "malum:curiosities/motifs/worldsoul_impact3",
+      "malum:curiosities/motifs/worldsoul_impact4",
+      "malum:curiosities/motifs/worldsoul_impact5",
+      "malum:curiosities/motifs/worldsoul_impact6"
+    ],
+    "subtitle": "malum.subtitle.the_worldsoul_shifts_erratically"
+  },
+  "the_worldsoul_shifts_slightly": {
+    "sounds": [
+      "malum:curiosities/motifs/worldsoul_minor_impact1",
+      "malum:curiosities/motifs/worldsoul_minor_impact2",
+      "malum:curiosities/motifs/worldsoul_minor_impact3"
+    ],
+    "subtitle": "malum.subtitle.the_worldsoul_shifts_slightly"
   },
   "totem_charges": {
     "sounds": [
@@ -1805,31 +1926,31 @@
   },
   "wavebanker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/tick"
+      "malum:blocks/spirit_diode/waveform_pulse"
     ],
     "subtitle": "malum.subtitle.wavebanker_stores"
   },
   "wavebreaker_releases": {
     "sounds": [
-      "malum:blocks/spirit_diode/tick"
+      "malum:blocks/spirit_diode/waveform_pulse"
     ],
     "subtitle": "malum.subtitle.wavebreaker_releases"
   },
   "wavebreaker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/tick"
+      "malum:blocks/spirit_diode/waveform_pulse"
     ],
     "subtitle": "malum.subtitle.wavebreaker_stores"
   },
   "wavecharger_charges": {
     "sounds": [
-      "malum:blocks/spirit_diode/tick"
+      "malum:blocks/spirit_diode/waveform_pulse"
     ],
     "subtitle": "malum.subtitle.wavecharger_charges"
   },
   "wavemaker_pulses": {
     "sounds": [
-      "malum:blocks/spirit_diode/tick"
+      "malum:blocks/spirit_diode/waveform_pulse"
     ],
     "subtitle": "malum.subtitle.wavemaker_pulses"
   },
@@ -1851,5 +1972,12 @@
       "malum:curiosities/weapons/scythe/sweep7"
     ],
     "subtitle": "malum.subtitle.weight_of_worlds_cuts"
+  },
+  "wyrd_reconstruction_reconstructs_body": {
+    "sounds": [
+      "malum:curiosities/geas/wyrd_reconstruction1",
+      "malum:curiosities/geas/wyrd_reconstruction2"
+    ],
+    "subtitle": "malum.subtitle.wyrd_reconstruction_reconstructs_body"
   }
 }

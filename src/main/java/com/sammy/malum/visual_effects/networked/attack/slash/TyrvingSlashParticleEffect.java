@@ -1,13 +1,17 @@
 package com.sammy.malum.visual_effects.networked.attack.slash;
 
 import com.sammy.malum.client.*;
+import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.data.*;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.render_types.*;
 
 import java.util.function.*;
 
@@ -31,11 +35,17 @@ public class TyrvingSlashParticleEffect extends SlashAttackParticleEffect {
             Vec3 direction = new Vec3(dirX, dirY, dirZ);
             float angle = nbtData.compoundTag.getFloat("angle");
             boolean mirror = nbtData.compoundTag.getBoolean("mirror");
-            var spirit = getSpiritType(nbtData);
 
             float offsetBase = RandomHelper.randomBetween(random, 0.4f, 0.8f) * (random.nextBoolean() ? 1 : -1) + (mirror ? 3.14f : 0);
-            for (int i = 0; i < 4; i++) {
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), spirit);
+            for (int i = 0; i < 8; i++) {
+                ParticleEffectSpawner slash;
+                if (i >= 6) {
+                    slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, ColorParticleData.create(0.15f, 0.05f, 0.1f).build());
+                    slash.getBuilder().setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT);
+                }
+                else {
+                    slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
+                }
                 float spinOffset = angle + (i % 2 == 0 ? 1 : -1) * offsetBase;
                 int lifeDelay = (i % 2 == 0 ? 3 : 0);
                 slash.getBuilder()

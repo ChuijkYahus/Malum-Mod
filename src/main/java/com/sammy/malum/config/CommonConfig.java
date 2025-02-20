@@ -34,8 +34,12 @@ public class CommonConfig extends LodestoneConfig {
             builder.comment("Multiplier for magic damage taken while soul ward is active.")
                     .defineInRange("soulWardMagic", 0.1f, 0, 1)));
     public static ConfigValueHolder<Integer> SOUL_WARD_RATE = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/soul_ward", (builder ->
-            builder.comment("Base time in ticks it takes for one point of soul ward to recover.")
+            builder.comment("Base time in ticks it takes for one segment of soul ward to recover.")
                     .define("soulWardRate", 100)));
+
+    public static ConfigValueHolder<Integer> STAFF_CHARGE_RATE = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/staff_charge", (builder ->
+            builder.comment("Base time in ticks it takes for one segment of a staff charge to recover.")
+                    .define("staffChargeRate", 100)));
 
     public static ConfigValueHolder<Boolean> IRONS_SPELLBOOKS_SPIRIT_DAMAGE = new ConfigValueHolder<>(MALUM, "common/compat/irons_spellbooks", (builder ->
             builder.comment("Should Iron's Spellbooks' magic damage count as Soul Damage?")

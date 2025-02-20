@@ -136,8 +136,8 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, RUNEWOOD_SAPLING, AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, RUNEWOOD_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, RUNEWOOD_PRESSURE_PLATE);
-        BlockStateSmithTypes.DOOR_BLOCK.act(data, RUNEWOOD_DOOR);
-        BlockStateSmithTypes.TRAPDOOR_BLOCK.act(data, RUNEWOOD_TRAPDOOR, SOLID_RUNEWOOD_TRAPDOOR);
+        BlockStateSmithTypes.DOOR_BLOCK.act(data, RUNEWOOD_DOOR, BOLTED_RUNEWOOD_DOOR, RUNEWOOD_BOARDS_DOOR, BOLTED_RUNEWOOD_BOARDS_DOOR);
+        BlockStateSmithTypes.TRAPDOOR_BLOCK.act(data, RUNEWOOD_TRAPDOOR, BOLTED_RUNEWOOD_TRAPDOOR, RUNEWOOD_BOARDS_TRAPDOOR, BOLTED_RUNEWOOD_BOARDS_TRAPDOOR);
         BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, RUNEWOOD_SIGN, RUNEWOOD_WALL_SIGN);
         BlockStateSmithTypes.FENCE_BLOCK.act(data, RUNEWOOD_FENCE);
         BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, RUNEWOOD_FENCE_GATE);
@@ -168,14 +168,14 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
 
         BlockStateSmithTypes.LOG_BLOCK.act(data, SOULWOOD_BEAM, SOULWOOD_LOG, STRIPPED_SOULWOOD_LOG, EXPOSED_SOULWOOD_LOG, REVEALED_SOULWOOD_LOG);
         BlockStateSmithTypes.WOOD_BLOCK.act(data, SOULWOOD, STRIPPED_SOULWOOD);
-        BlockStateSmithTypes.LEAVES_BLOCK.act(data, SOULWOOD_LEAVES, BUDDING_SOULWOOD_LEAVES);
+        BlockStateSmithTypes.LEAVES_BLOCK.act(data, SOULWOOD_LEAVES);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel, HANGING_SOULWOOD_LEAVES);
 
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, SOULWOOD_GROWTH);
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, SOULWOOD_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, SOULWOOD_PRESSURE_PLATE);
-        BlockStateSmithTypes.DOOR_BLOCK.act(data, SOULWOOD_DOOR);
-        BlockStateSmithTypes.TRAPDOOR_BLOCK.act(data, SOULWOOD_TRAPDOOR, SOLID_SOULWOOD_TRAPDOOR);
+        BlockStateSmithTypes.DOOR_BLOCK.act(data, SOULWOOD_DOOR, BOLTED_SOULWOOD_DOOR, SOULWOOD_BOARDS_DOOR, BOLTED_SOULWOOD_BOARDS_DOOR);
+        BlockStateSmithTypes.TRAPDOOR_BLOCK.act(data, SOULWOOD_TRAPDOOR, BOLTED_SOULWOOD_TRAPDOOR, SOULWOOD_BOARDS_TRAPDOOR, BOLTED_SOULWOOD_BOARDS_TRAPDOOR);
         BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, SOULWOOD_SIGN, SOULWOOD_WALL_SIGN);
         BlockStateSmithTypes.FENCE_BLOCK.act(data, SOULWOOD_FENCE);
         BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, SOULWOOD_FENCE_GATE);
@@ -215,32 +215,32 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
         MalumBlockStateSmithTypes.CALCIFIED_BLIGHT.act(data, CALCIFIED_BLIGHT);
         MalumBlockStateSmithTypes.TALL_CALCIFIED_BLIGHT.act(data, TALL_CALCIFIED_BLIGHT);
 
-        setTexturePath("redstone/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::directionalRedstoneMachineBlock, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
+        setTexturePath("spirit_diode/");
+        MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
 
         setTexturePath("");
         itemModelProvider.setTexturePath("ether/");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, this::etherModel, ETHER);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherTorchModel, ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_MODEL, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, WALL_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, WALL_ETHER_TORCH);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherModel, IRIDESCENT_ETHER);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.IRIDESCENT_ETHER_TORCH_ITEM, this::simpleBlock, this::etherTorchModel, IRIDESCENT_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_MODEL, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, IRIDESCENT_WALL_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, IRIDESCENT_WALL_ETHER_TORCH);
         itemModelProvider.setTexturePath("");
 
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
-                SPIRIT_ALTAR, SPIRIT_JAR, RITUAL_PLINTH);
+                SPIRIT_ALTAR, SPIRIT_JAR, SOUL_BRAZIER, RITUAL_PLINTH);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::predefinedModel,
                 WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.UNIQUE_ITEM_MODEL, this::simpleBlock, this::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, this::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT, BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT, SPIRIT_CRUCIBLE, SPIRIT_CRUCIBLE_COMPONENT, REPAIR_PYLON);
 
         MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, REPAIR_PYLON_COMPONENT);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.UNIQUE_ITEM_MODEL, this::horizontalBlock, this::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::horizontalBlock, this::predefinedModel,
                 SPIRIT_CATALYZER, SPIRIT_CATALYZER_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
@@ -253,7 +253,7 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, THE_DEVICE, THE_VESSEL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_MODEL, this::simpleBlock, this::cubeModelAirTexture, SPIRIT_MOTE);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, SPIRIT_MOTE);
     }
 
     public ModelFile cubeModelAirTexture(Block block) {

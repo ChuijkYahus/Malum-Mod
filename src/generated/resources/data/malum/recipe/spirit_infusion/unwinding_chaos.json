@@ -1,0 +1,47 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraIngredients": [
+    {
+      "count": 1,
+      "item": "malum:fused_consciousness"
+    },
+    {
+      "count": 8,
+      "item": "malum:auric_embers"
+    },
+    {
+      "count": 4,
+      "item": "malum:malignant_pewter_plating"
+    }
+  ],
+  "ingredient": {
+    "count": 1,
+    "item": "malum:mnemonic_hex_staff"
+  },
+  "output": {
+    "count": 1,
+    "id": "malum:unwinding_chaos"
+  },
+  "spirits": [
+    {
+      "type": "wicked",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    },
+    {
+      "type": "infernal",
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
+    },
+    {
+      "type": "eldritch",
+      "count": 32
+    }
+  ]
+}

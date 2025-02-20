@@ -1,0 +1,22 @@
+{
+  "type": "malum:soul_binding",
+  "geas": "malum:pact_of_the_shield",
+  "ingredient": {
+    "count": 12,
+    "item": "malum:soul_stained_steel_plating"
+  },
+  "spirits": [
+    {
+      "type": "arcane",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 4
+    }
+  ]
+}

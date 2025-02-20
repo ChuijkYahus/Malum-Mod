@@ -1,0 +1,20 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 2,
+      "item": "malum:warp_flux"
+    }
+  ],
+  "geas": "malum:pact_of_the_shattering_addict",
+  "ingredient": {
+    "count": 8,
+    "item": "malum:raw_soulstone"
+  },
+  "spirits": [
+    {
+      "type": "eldritch",
+      "count": 4
+    }
+  ]
+}

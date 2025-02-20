@@ -1,9 +1,11 @@
 {
   "values": [
-    "malum:scythe_melee",
-    "malum:scythe_sweep",
+    "#malum:is_scythe",
+    "#malum:is_nitrate",
+    "#malum:is_sundering_anchor",
+    "#malum:soulwashing",
     "malum:voodoo_playerless",
     "malum:voodoo",
-    "malum:hidden_blade_counter"
+    "malum:tyrving"
   ]
 }
