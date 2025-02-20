@@ -65,7 +65,10 @@ public class GeasParticleEffects {
         float distance = 0.7f;
         long gameTime = level.getGameTime();
         Consumer<LodestoneWorldParticle> behavior = p -> {
-            final Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
+            Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
+            if (offset.length() == 0) {
+                offset = new Vec3(0, 0.02f, 0);
+            }
             float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0) * 2;
             float lerp = Easing.QUINTIC_IN.ease(delta, 0, 0.3f);
             float velocity = Easing.CIRC_IN.ease(delta, 0f, 0.3f + offset.length() * 0.6f);

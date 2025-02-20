@@ -37,8 +37,8 @@ public class AscensionHandler {
                 float z = Mth.cos(f);
 
                 var newMotion = player.getDeltaMovement();
-                if (isEnhanced) {
-                    newMotion = newMotion.subtract(x * 0.6f, 0, z * 0.6f);
+                if (isEnhanced && player.onGround()) {
+                    newMotion = newMotion.subtract(x * 1.6f, 0, z * 1.6f);
                 } else {
                     newMotion = newMotion.add(x * 0.75f, 0, z * 0.75f);
                 }

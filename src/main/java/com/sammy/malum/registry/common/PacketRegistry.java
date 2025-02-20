@@ -22,7 +22,6 @@ public class PacketRegistry {
     public static void registerNetworkStuff(RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar("1");
 
-        //functionality
         MALUM_CHANNEL.playToClient(registrar, "void_rejection", VoidRejectionPayload.class, VoidRejectionPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "sync_staff_cooldown_changes", ReplenishingCooldownUpdatePayload.class, ReplenishingCooldownUpdatePayload::new);
         MALUM_CHANNEL.playToClient(registrar, "particle_effect", ParticleEffectPacket.class, ParticleEffectPacket::new);
@@ -31,6 +30,7 @@ public class PacketRegistry {
         MALUM_CHANNEL.playToClient(registrar, "spirit_diode_toggle", SpiritDiodeToggleOpenPayload.class, SpiritDiodeToggleOpenPayload::new);
 
         MALUM_CHANNEL.playToClient(registrar, "sync_soul_ward_data", SyncSoulWardDataPayload.class, SyncSoulWardDataPayload::new);
+        MALUM_CHANNEL.playToClient(registrar, "sync_staff_ability_data", SyncStaffAbilityDataPayload.class, SyncStaffAbilityDataPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "sync_curio_data", SyncCurioDataPayload.class, SyncCurioDataPayload::new);
 
         MALUM_CHANNEL.playToClient(registrar, "sync_lions_heart", SyncLionsHeartDurationPayload.class, SyncLionsHeartDurationPayload::new);

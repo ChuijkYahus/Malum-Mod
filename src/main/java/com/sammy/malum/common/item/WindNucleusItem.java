@@ -30,7 +30,6 @@ public class WindNucleusItem extends Item {
         final float radius = 1.5f;
         float addedMotion = 2f;
         Vec3 pos = player.getEyePosition().add(player.getLookAngle().scale(3f));
-        Vec3 extraMotion = player.getLookAngle().normalize().scale(addedMotion);
         level.explode(
                 player,
                 null,
@@ -49,10 +48,7 @@ public class WindNucleusItem extends Item {
 
         for (Entity entity : explosionAffectedEntities) {
             final Vec3 movement = entity.getDeltaMovement();
-            entity.setDeltaMovement(new Vec3(
-                    movement.x + extraMotion.x,
-                    (1.25f + extraMotion.y) * 0.5f,
-                    movement.z + extraMotion.z));
+            entity.setDeltaMovement(player.getLookAngle().normalize().scale(Math.max(movement.length(), addedMotion)));
         }
         ItemStack itemstack = player.getItemInHand(usedHand);
         player.getCooldowns().addCooldown(this, 10);

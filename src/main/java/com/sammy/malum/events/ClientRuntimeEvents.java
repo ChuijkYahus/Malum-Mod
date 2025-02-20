@@ -37,6 +37,7 @@ public class ClientRuntimeEvents {
 
         HiddenBladeRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
+        StaffAbilityRenderHandler.tick(event);
     }
 
     @SubscribeEvent

@@ -1,13 +1,11 @@
 package com.sammy.malum.core.handlers;
 
-import com.sammy.malum.common.capabilities.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.packets.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -25,18 +23,7 @@ public class SoulWardHandler {
             var level = living.level();
             if (!level.isClientSide) {
                 var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
-                var capacity = living.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
-                if (capacity != null) {
-                    if (data.getSoulWard() < capacity.getValue()) {
-                        data.tickCooldown();
-                        if (data.getCooldown() <= 0) {
-                            data.recoverSoulWard(living, 1);
-                        }
-                    }
-                    if (data.getSoulWard() > capacity.getValue()) {
-                        data.setSoulWard(capacity.getValue());
-                    }
-                }
+                data.tickData(living);
                 if (data.isDirty()) {
                     PacketDistributor.sendToPlayersTrackingEntityAndSelf(living, new SyncSoulWardDataPayload(living.getId(), data));
                     data.setDirty(false);

@@ -1,12 +1,11 @@
 {
   "type": "malum:spirit_repair",
-  "durabilityPercentage": 1.0,
   "inputs": [
     "minecraft:trident"
   ],
   "repairMaterial": {
-    "count": 1,
-    "item": "minecraft:heart_of_the_sea"
+    "count": 8,
+    "item": "minecraft:prismarine_crystals"
   },
   "spirits": [
     {

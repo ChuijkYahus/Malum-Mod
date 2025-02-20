@@ -47,9 +47,9 @@ public class IronsSpellsCompat {
         }
     }
 
-    public static void recoverSpellCooldowns(ServerPlayer serverPlayer, int enchantmentLevel) {
+    public static void recoverSpellCooldowns(LivingEntity mage, int enchantmentLevel) {
         if (LOADED) {
-            LoadedOnly.recoverSpellCooldowns(serverPlayer, enchantmentLevel);
+            LoadedOnly.recoverSpellCooldowns(mage, enchantmentLevel);
         }
     }
     public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {
@@ -110,17 +110,19 @@ public class IronsSpellsCompat {
             }
         }
 
-        public static void generateMana(ServerPlayer collector, float amount) {
-            var magicData = MagicData.getPlayerMagicData(collector);
+        public static void generateMana(ServerPlayer mage, float amount) {
+            var magicData = MagicData.getPlayerMagicData(mage);
             magicData.addMana(amount);
             //TODO: this fucker
 //            UpdateClient.SendManaUpdate(collector, magicData);
         }
 
-        public static void recoverSpellCooldowns(ServerPlayer serverPlayer, float amount) {
-            var cooldowns = MagicData.getPlayerMagicData(serverPlayer).getPlayerCooldowns();
+        public static void recoverSpellCooldowns(LivingEntity mage, float amount) {
+            var cooldowns = MagicData.getPlayerMagicData(mage).getPlayerCooldowns();
             cooldowns.getSpellCooldowns().forEach((key, value) -> cooldowns.decrementCooldown(value, (int) (value.getSpellCooldown() * amount)));
-            cooldowns.syncToPlayer(serverPlayer);
+            if (mage instanceof ServerPlayer serverPlayer) {
+                cooldowns.syncToPlayer(serverPlayer);
+            }
         }
 
         public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {

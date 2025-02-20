@@ -28,18 +28,16 @@ import team.lodestar.lodestone.systems.item.*;
 
 public abstract class AbstractStaffItem extends LodestoneCombatItem implements IMalumEventResponderItem {
 
-    public AbstractStaffItem(Tier tier, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
-        this(tier, -3f, magicDamage, chargeDuration, properties);
+    public AbstractStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+        this(tier, 1f, -3f, magicDamage, chargeDuration, chargeCapacity, properties);
     }
-    public AbstractStaffItem(Tier tier, float attackSpeed, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
-        this(tier, 1f, attackSpeed, magicDamage, chargeDuration, properties);
-    }
-    public AbstractStaffItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
+    public AbstractStaffItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties.mergeAttributes(
                 ItemAttributeModifiers.builder()
                         .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  attackDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(AttributeRegistry.CHARGE_DURATION, new AttributeModifier(AttributeRegistry.CHARGE_DURATION.getId(), chargeDuration, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.MAGIC_DAMAGE.getId(), magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(AttributeRegistry.CHARGE_CAPACITY, new AttributeModifier(AttributeRegistry.CHARGE_CAPACITY.getId(), chargeCapacity, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(AttributeRegistry.CHARGE_DURATION, new AttributeModifier(AttributeRegistry.CHARGE_DURATION.getId(), chargeDuration, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
     }
 
@@ -78,6 +76,12 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
             return InteractionResultHolder.fail(itemstack);
         } else {
             float duration = (float) pPlayer.getAttributes().getValue(AttributeRegistry.CHARGE_DURATION);
+            if (!pPlayer.getAbilities().instabuild) {
+                var data = pPlayer.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+                if (!data.canUseStaff(pPlayer)) {
+                    return InteractionResultHolder.fail(itemstack);
+                }
+            }
             if (pLevel instanceof ServerLevel serverLevel) {
                 if (duration <= 0) {
                     shoot(itemstack, serverLevel, pPlayer, getProjectileCount(pLevel, pPlayer, 1f));
@@ -158,11 +162,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
             if (!player.getAbilities().instabuild) {
                 stack.hurtAndBreak(2, player, EquipmentSlot.MAINHAND);
                 var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
-                if (data.reserveChargeCount > 0) {
-                    data.reserveChargeCount--;
-                } else {
-                    player.getCooldowns().addCooldown(this, getCooldownDuration(level, entity));
-                }
+                data.consumeStaffCharge();
             }
             player.swing(hand, true);
         }

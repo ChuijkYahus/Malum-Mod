@@ -28,8 +28,8 @@ import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
 
 public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
 
-    public HexStaffItem(Tier tier, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
-        super(tier, magicDamage, chargeDuration, properties);
+    public HexStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+        super(tier, magicDamage, chargeDuration, chargeCapacity, properties);
     }
 
     @Override

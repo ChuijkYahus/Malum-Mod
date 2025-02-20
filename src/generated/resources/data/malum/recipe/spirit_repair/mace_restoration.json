@@ -1,12 +1,11 @@
 {
   "type": "malum:spirit_repair",
-  "durabilityPercentage": 1.0,
   "inputs": [
     "minecraft:mace"
   ],
   "repairMaterial": {
-    "count": 1,
-    "item": "minecraft:breeze_rod"
+    "count": 8,
+    "item": "minecraft:wind_charge"
   },
   "spirits": [
     {

@@ -2,13 +2,12 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
+import com.sammy.malum.common.capabilities.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.player.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
 import org.lwjgl.opengl.*;
@@ -18,14 +17,15 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.lang.Math;
 
-public class SoulWardRenderHandler {
+public class StaffAbilityRenderHandler {
+    public static int fadeOut = 40;
     public static int glow;
 
     public static void tick(ClientTickEvent event) {
         final LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
-            var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
-            if (data.getSoulWard() >= player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY)) {
+            var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+            if (data.getStaffChargeDebt() == 0) {
                 if (glow < 20) {
                     glow++;
                 }
@@ -37,30 +37,21 @@ public class SoulWardRenderHandler {
         }
     }
 
-    public static void renderSoulWard(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public static void renderStaffCharges(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();
         if (!minecraft.options.hideGui) {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
-                var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
-                double soulWard = data.getSoulWard();
-                if (soulWard > 0) {
-                    float absorb = Mth.ceil(player.getAbsorptionAmount());
-                    float maxHealth = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
-                    float armor = (float) player.getAttribute(Attributes.ARMOR).getValue();
+                var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+                double staffCharges = data.getAvailableStaffCharges(player);
+                if (staffCharges > 0) {
 
-                    int left = guiGraphics.guiWidth() / 2 - 91;
+                    int left = guiGraphics.guiWidth() / 2 + 9;
                     int top = guiGraphics.guiHeight() - 66;
 
-                    if (armor == 0) {
-                        top += 10;
-                    }
-                    int healthRows = Mth.ceil((maxHealth + absorb) / 2.0F / 10.0F);
-                    int rowHeight = Math.max(10 - (healthRows - 2), 3);
-
                     poseStack.pushPose();
-                    RenderSystem.setShaderTexture(0, getSoulWardTexture());
+                    RenderSystem.setShaderTexture(0, getStaffChargeTexture());
                     RenderSystem.depthMask(true);
                     RenderSystem.enableBlend();
                     RenderSystem.defaultBlendFunc();
@@ -72,13 +63,13 @@ public class SoulWardRenderHandler {
                     var builder = VFXBuilders.createScreen().setShader(() -> shaderInstance);
 
                     int size = 13;
-                    boolean forceDisplay = soulWard <= 1;
-                    double soulWardAmount = forceDisplay ? 1 : Math.ceil(Math.floor(soulWard) / 3f);
+                    boolean forceDisplay = staffCharges <= 1;
+                    double soulWardAmount = forceDisplay ? 1 : Math.ceil(Math.floor(staffCharges) / 3f);
                     for (int i = 0; i < soulWardAmount; i++) {
                         int row = (int) (i / 10f);
                         int x = left + i % 10 * 8;
-                        int y = top - row * 4 + rowHeight * 2 - 15;
-                        int progress = Math.min(3, (int) soulWard - i * 3);
+                        int y = top - row * 4 - 15;
+                        int progress = Math.min(3, (int) staffCharges - i * 3);
                         int xTextureOffset = forceDisplay ? 31 : 1 + (3 - progress) * 15;
 
                         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(xTextureOffset / 45f, (xTextureOffset + size) / 45f, 0, 15 / 45f));
@@ -101,7 +92,7 @@ public class SoulWardRenderHandler {
         }
     }
 
-    public static ResourceLocation getSoulWardTexture() {
-        return MalumMod.malumPath("textures/gui/hud/soul_ward.png");
+    public static ResourceLocation getStaffChargeTexture() {
+        return MalumMod.malumPath("textures/gui/hud/staff_charge.png");
     }
 }

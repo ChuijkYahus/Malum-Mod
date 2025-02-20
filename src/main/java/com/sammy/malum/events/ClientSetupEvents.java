@@ -6,9 +6,7 @@ import com.sammy.malum.client.extensions.SpiritJarClientItemExtensions;
 import com.sammy.malum.client.screen.tooltip.ClientSoulwovenPouchTooltip;
 import com.sammy.malum.common.block.curiosities.mana_mote.ManaMoteBlockClientExtension;
 import com.sammy.malum.common.data_components.SoulwovenPouchContentsComponent;
-import com.sammy.malum.core.handlers.client.HiddenBladeRenderHandler;
-import com.sammy.malum.core.handlers.client.SoulWardRenderHandler;
-import com.sammy.malum.core.handlers.client.TouchOfDarknessRenderHandler;
+import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.ModelRegistry;
 import com.sammy.malum.registry.client.ParticleRegistry;
 import com.sammy.malum.registry.client.ScreenParticleRegistry;
@@ -59,6 +57,8 @@ public class ClientSetupEvents {
     public static void registerOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("soul_ward"),
                 SoulWardRenderHandler::renderSoulWard);
+        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("staff_charges"),
+                StaffAbilityRenderHandler::renderStaffCharges);
 
         event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("hidden_blade_cooldown"),
                 HiddenBladeRenderHandler::renderHiddenBladeCooldown);

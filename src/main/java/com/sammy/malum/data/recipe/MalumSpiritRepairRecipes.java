@@ -64,14 +64,14 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("netherite_restoration"));
 
-        new SpiritRepairRecipeBuilder(1.0f, Ingredient.of(Items.HEART_OF_THE_SEA), 1)
+        new SpiritRepairRecipeBuilder(0.5f, Ingredient.of(Items.PRISMARINE_CRYSTALS), 8)
                 .addItem(Items.TRIDENT)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("trident_restoration"));
 
-        new SpiritRepairRecipeBuilder(1.0f, Ingredient.of(Items.BREEZE_ROD), 1)
+        new SpiritRepairRecipeBuilder(0.5f, Ingredient.of(Items.WIND_CHARGE), 8)
                 .addItem(Items.MACE)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)

@@ -67,7 +67,7 @@ public class LivingSoulData {
     }
 
     public Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
-        return getGeasEffects(entity).entrySet().stream().filter(e -> e.getValue().type.equals(type)).findFirst().orElse(null);
+        return getGeasEffects(entity).entrySet().stream().filter(e -> e.getValue().type.equals(type.value())).findFirst().orElse(null);
     }
 
     @SuppressWarnings("DataFlowIssue")

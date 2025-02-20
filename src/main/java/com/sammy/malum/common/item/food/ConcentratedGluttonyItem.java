@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.food;
 
-import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
+import com.sammy.malum.common.effect.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
@@ -15,9 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
 
-import javax.annotation.*;
 import java.util.*;
-import java.util.function.*;
 
 public class ConcentratedGluttonyItem extends BottledDrinkItem {
     public static final Collection<Holder<Item>> ROTTEN_TRINKETS = List.of(ItemRegistry.RING_OF_DESPERATE_VORACITY, ItemRegistry.GLUTTONOUS_BROOCH, ItemRegistry.BELT_OF_THE_STARVED);
@@ -29,8 +27,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        final MobEffectInstance gluttonyEffect = createGluttonyEffect(pEntityLiving);
-        pEntityLiving.addEffect(gluttonyEffect);
+        applyConcentratedGluttonyEffect(pEntityLiving, 1f);
         SoundHelper.playSound(pEntityLiving, SoundRegistry.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
             createGluttonyVFX(serverLevel, pEntityLiving, gluttonyEffect.getAmplifier());
@@ -38,11 +35,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
         return super.finishUsingItem(pStack, pLevel, pEntityLiving);
     }
 
-    public static MobEffectInstance createGluttonyEffect(LivingEntity target) {
-        return createGluttonyEffect(target, 1);
-    }
-
-    public static MobEffectInstance createGluttonyEffect(LivingEntity target, float durationScalar) {
+    public static GluttonyEffect.GluttonyEffectProperties applyConcentratedGluttonyEffect(LivingEntity target, float durationScalar) {
         int amplifier = 3;
         int duration = 20;
 
@@ -62,7 +55,9 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
                 duration += 40;
             }
         }
-        return new MobEffectInstance(CurioStarvedBelt.getGluttonyEffectType(target), (int) (duration * 20 * durationScalar), amplifier);
+
+        return GluttonyEffect.applyGluttony(target, GluttonyEffect.createGluttony()
+                .setInitialData((int) (duration * 20 * durationScalar), amplifier));
     }
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, int amplifier) {

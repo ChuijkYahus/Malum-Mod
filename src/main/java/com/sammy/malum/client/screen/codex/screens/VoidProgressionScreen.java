@@ -343,17 +343,23 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
         addEntry("void.sundering_anchor", -2, 16, b -> b
                 .configureWidget(w -> w.setIcon(SUNDERING_ANCHOR).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.sundering_anchor", "void.sundering_anchor.1", SUNDERING_ANCHOR.get()))
+                .addPage(new TextPage("void.sundering_anchor.2"))
+                .addPage(new TextPage("void.sundering_anchor.3"))
                 .addPage(SpiritInfusionPage.fromOutput(SUNDERING_ANCHOR.get()))
         );
         addEntry("void.unwinding_chaos", 2, 16, b -> b
                 .configureWidget(w -> w.setIcon(UNWINDING_CHAOS).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.unwinding_chaos", "void.unwinding_chaos.1", UNWINDING_CHAOS.get()))
+                .addPage(new TextPage("void.unwinding_chaos.2"))
+                .addPage(new TextPage("void.unwinding_chaos.3"))
                 .addPage(SpiritInfusionPage.fromOutput(UNWINDING_CHAOS.get()))
         );
 
         addEntry("void.belt_of_the_limitless", -3, 17, b -> b
                 .configureWidget(w -> w.setIcon(BELT_OF_THE_LIMITLESS).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.belt_of_the_limitless", "void.belt_of_the_limitless.1", BELT_OF_THE_LIMITLESS.get()))
+                .addPage(new TextPage("void.belt_of_the_limitless.2"))
+                .addPage(new TextPage("void.belt_of_the_limitless.3"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_LIMITLESS.get()))
         );
 

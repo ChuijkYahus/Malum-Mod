@@ -38,9 +38,10 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     public static final Color MALIGNANT_BLACK = new Color(12, 4, 11);
     public static final ColorParticleData SCEPTER_COLOR_DATA = ColorParticleData.create(MALIGNANT_PURPLE, MALIGNANT_BLACK).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(1.2f).build();
 
-    public ErosionScepterItem(Tier tier, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
-        super(tier, magicDamage, chargeDuration, properties);
+    public ErosionScepterItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+        super(tier, magicDamage, chargeDuration, chargeCapacity, properties);
     }
+
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
         event.addTooltipLines(ComponentHelper.positiveEffect("erosive_spread"));

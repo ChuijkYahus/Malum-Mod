@@ -49,7 +49,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
         if (collector instanceof Player player) {
-            player.causeFoodExhaustion(0.15f);
+            player.causeFoodExhaustion(0.6f);
         }
     }
 

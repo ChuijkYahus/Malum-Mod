@@ -1,11 +1,12 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 
+import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -15,7 +16,6 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioStarvedBelt.getGluttonyEffectType;
 import static com.sammy.malum.registry.common.item.ItemTagRegistry.*;
 
 public class CurioVoraciousRing extends MalumCurioItem {
@@ -41,11 +41,9 @@ public class CurioVoraciousRing extends MalumCurioItem {
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-                var gluttony = getGluttonyEffectType(livingEntity);
-                var effect = livingEntity.getEffect(gluttony);
-                if (effect != null) {
-                    EntityHelper.extendEffect(effect, livingEntity, 300, 3000);
-                }
+                GluttonyEffect.applyGluttony(livingEntity, b -> b
+                        .setStackingData(300, 0)
+                        .setLimitData(3000, 0));
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }

@@ -284,7 +284,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.trial_of_faith", "Gluttony Becomes Trial of Faith");
         add("malum.effect.geas.trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         add("malum.effect.geas.rotten_healing", "Eating Rotten Foods Heals You");
-        add("malum.effect.geas.no_passive_healing", "Saturation And Hunger No Longer Restores Health");
+        add("malum.effect.geas.no_passive_healing", "Saturation And Hunger No Longer Restore Health");
         add("malum.effect.geas.no_normal_foods", "You Must Only Eat Rot");
         add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
@@ -313,7 +313,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.unwinding_chaos_volley", "Charges a Volley of Composite Energy");
         add("malum.effect.unwinding_chaos_burn", "Burn Damage Empowers Volley");
         add("malum.effect.sundering_anchor_damage_split", "Damage is Split Between Several Cuts");
-        add("malum.effect.sundering_anchor_chaos_curse", "Each Cut Inflicts Chaos Curse");
+        add("malum.effect.sundering_anchor_hatred", "Each Cut Applies Hatred");
 
         add("malum.effect.wayne_june.0", "The Iron Crown. Enigmatic, and Ubiquitous");
         add("malum.effect.wayne_june.1", "A Semi-Circle, Radiating Five Points of Power. A Symbol Hidden Deep in the Iconography of Every Ancient Empire");
@@ -427,7 +427,7 @@ public class MalumLang extends LanguageProvider {
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.RESERVE_STAFF_CHARGES, "A capacity for extra staff charges, replenished overtime, consumed when casting.");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "A capacity for extra staff charges, replenished overtime, consumed when casting.");
         addAttributeLibAttributeDescription(AttributeRegistry.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
 
     }

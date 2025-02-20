@@ -1001,9 +1001,6 @@ public class CodexLangDatagen {
         addHeadline("transmutation.deepslate", "Transmutation: Endothermic");
         addHeadline("transmutation.smooth_basalt", "Transmutation: Exothermic");
 
-        addSimpleEntryHeader("corrupted_resonance", "Corrupted Resonance", "Advanced magics");
-        addPages("corrupted_resonance", "To fuel any further magics, I will need a catalyst. Something beautiful, full of magic, serving as the basis for any complex craft born from it. Corrupted Resonance is perfect for the role.");
-
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",
                 "My first scythes damaged the body and soul in sequence to shatter the soul. While I have moved beyond needing to do that, Tyrving is a sword built to weaponize the effect. Hex Ash and Twisted Rock create a distortion in the soul when struck, which inflicts magic damage proportional to the complexity and potency of a soul.",

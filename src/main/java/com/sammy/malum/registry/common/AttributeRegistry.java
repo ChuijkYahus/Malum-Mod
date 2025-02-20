@@ -3,13 +3,11 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.*;
 import team.lodestar.lodestone.systems.attribute.*;
 
 import static com.sammy.malum.MalumMod.MALUM;
@@ -40,8 +38,10 @@ public class AttributeRegistry {
 
     public static final DeferredHolder<Attribute, Attribute> CHARGE_DURATION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("charge_duration"), 0D, 0.0D, 2048.0D).setAsBaseAttribute().setSentiment(Attribute.Sentiment.NEGATIVE).setSyncable(true));
-    public static final DeferredHolder<Attribute, Attribute> RESERVE_STAFF_CHARGES = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("reserve_staff_charges"), 0D, 0.0D, 2048.0D).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> CHARGE_CAPACITY = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_capacity"), 0D, 0.0D, 2048.0D).setAsBaseAttribute().setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> CHARGE_RECOVERY_RATE = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_recovery_rate"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
 
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_CONVERSION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_conversion"), 0D, 0.0D, 1.0D).forcePercentageDisplay().setSyncable(true));

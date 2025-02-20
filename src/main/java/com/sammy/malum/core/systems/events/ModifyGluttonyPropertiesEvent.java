@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.events;
 
+import com.sammy.malum.common.effect.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
@@ -8,13 +9,14 @@ import net.neoforged.neoforge.event.entity.living.*;
 
 public class ModifyGluttonyPropertiesEvent extends LivingEvent {
 
-    public Holder<MobEffect> effect = MobEffectRegistry.GLUTTONY;
+    private final GluttonyEffect.GluttonyEffectProperties properties;
 
-    public ModifyGluttonyPropertiesEvent(LivingEntity entity) {
+    public ModifyGluttonyPropertiesEvent(LivingEntity entity, GluttonyEffect.GluttonyEffectProperties properties) {
         super(entity);
+        this.properties = properties;
     }
 
-    public void replaceEffect(Holder<MobEffect> effect) {
-        this.effect = effect;
+    public GluttonyEffect.GluttonyEffectProperties getProperties() {
+        return properties;
     }
 }

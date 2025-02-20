@@ -91,22 +91,31 @@ public class WeaponParticleEffects {
         return new ParticleEffectSpawner(level, pos, worldParticleBuilder);
     }
 
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, MalumSpiritType spiritType) {
-        if (spiritType == null) {
-            return spawnSlamParticle(level, pos);
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorEffectData color) {
+        if (color == null) {
+            return spawnSlamParticle(level, pos, particleType);
         }
-        return spawnSlamParticle(level, pos, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spiritType));
+        if (color.isSpiritBased()) {
+            return spawnSlamParticle(level, pos, particleType, color.getSpirit());
+        }
+        return spawnSlamParticle(level, pos, particleType, color.getColor());
+    }
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, MalumSpiritType spiritType) {
+        if (spiritType == null) {
+            return spawnSlamParticle(level, pos, particleType);
+        }
+        return spawnSlamParticle(level, pos, particleType, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spiritType));
     }
 
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos) {
-        return spawnSlamParticle(level, pos, o -> WorldParticleBuilder.create(o).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(createGrayParticleColor(level.random)));
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType) {
+        return spawnSlamParticle(level, pos, particleType, o -> WorldParticleBuilder.create(o).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(createGrayParticleColor(level.random)));
     }
 
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, ColorParticleData colorData) {
-        return spawnSlamParticle(level, pos, o -> WorldParticleBuilder.create(o).setColorData(colorData));
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorParticleData colorData) {
+        return spawnSlamParticle(level, pos, particleType, o -> WorldParticleBuilder.create(o).setColorData(colorData));
     }
 
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
         var builder = builderSupplier.apply(new WorldParticleOptions(ParticleRegistry.SLAM));
         return spawnSlamParticle(level, pos, builder);
     }
