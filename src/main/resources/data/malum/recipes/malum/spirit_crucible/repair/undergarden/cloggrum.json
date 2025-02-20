@@ -11,7 +11,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "item": "undergarden:cloggrum_ingot",
+    "tag": "forge:ingots/cloggrum",
     "count": 2
   },
   "spirits": [

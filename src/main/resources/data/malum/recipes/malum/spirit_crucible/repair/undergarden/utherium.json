@@ -11,7 +11,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "item": "undergarden:utherium_crystal",
+    "tag": "forge:ingots/utherium",
     "count": 2
   },
   "spirits": [

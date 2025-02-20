@@ -11,7 +11,7 @@
   "durabilityPercentage": 0.75,
   "inputs": [],
   "repairMaterial": {
-    "item": "undergarden:forgotten_ingot",
+    "tag": "forge:ingots/forgotten_metal",
     "count": 1
   },
   "spirits": [

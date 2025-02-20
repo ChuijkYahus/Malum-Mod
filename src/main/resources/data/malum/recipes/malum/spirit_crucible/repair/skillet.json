@@ -13,7 +13,7 @@
     "farmersdelight:skillet"
   ],
   "repairMaterial": {
-    "item": "minecraft:iron_ingot",
+    "tag": "forge:ingots/iron",
     "count": 2
   },
   "spirits": [

@@ -11,7 +11,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "item": "undergarden:froststeel_ingot",
+    "tag": "forge:ingots/froststeel",
     "count": 2
   },
   "spirits": [

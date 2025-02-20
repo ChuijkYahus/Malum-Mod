@@ -1171,6 +1171,7 @@ public class MalumLang extends LanguageProvider {
         addJEEDEffectDescription(MobEffectRegistry.GRIM_CERTAINTY, "The Weight of Worlds oscillates, sealing the next strike as a critical blow.");
         addJEEDEffectDescription(MobEffectRegistry.IMMINENT_DELIVERANCE, "The Edge of Deliverance oscillates, sealing it's next strike as a critical blow.");
 
+        addTetraMaterial("malignant_pewter", "Malignant Pewter");
         addTetraMaterial("soul_stained_steel", "Soulstained Steel");
         addTetraMaterial("hallowed_gold", "Hallowed Gold");
         addTetraMaterial("runewood", "Runewood");

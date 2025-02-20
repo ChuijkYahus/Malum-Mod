@@ -13,7 +13,7 @@
     "botania:ender_dagger"
   ],
   "repairMaterial": {
-    "item": "botania:manasteel_ingot",
+    "tag": "forge:ingots/manasteel",
     "count": 2
   },
   "spirits": [
