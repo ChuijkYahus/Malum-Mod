@@ -101,6 +101,7 @@ public class GluttonyEffect extends MobEffect {
     public static GluttonyEffectProperties createGluttony() {
         return new GluttonyEffectProperties();
     }
+
     public static final class GluttonyEffectProperties {
 
         private Holder<MobEffect> effectType = MobEffectRegistry.GLUTTONY;
@@ -130,6 +131,16 @@ public class GluttonyEffect extends MobEffect {
             return initialAmplifier;
         }
 
+        public GluttonyEffectProperties scaleInitialDuration(float scalar) {
+            this.initialDuration = (int) (initialDuration * scalar);
+            return this;
+        }
+
+        public GluttonyEffectProperties scaleInitialAmplifier(float scalar) {
+            this.initialAmplifier = (int) (initialAmplifier * scalar);
+            return this;
+        }
+
         public GluttonyEffectProperties setInitialData(int initialDuration, int initialAmplifier) {
             this.initialDuration = initialDuration;
             this.initialAmplifier = initialAmplifier;
@@ -144,6 +155,16 @@ public class GluttonyEffect extends MobEffect {
             return amplifierGain;
         }
 
+        public GluttonyEffectProperties scaleDurationGain(float scalar) {
+            this.durationGain = (int) (durationGain * scalar);
+            return this;
+        }
+
+        public GluttonyEffectProperties scaleAmplifierGain(float scalar) {
+            this.amplifierGain = (int) (amplifierGain * scalar);
+            return this;
+        }
+
         public GluttonyEffectProperties setStackingData(int durationGain, int amplifierGain) {
             this.durationGain = durationGain;
             this.amplifierGain = amplifierGain;
@@ -156,6 +177,16 @@ public class GluttonyEffect extends MobEffect {
 
         public int getAmplifierLimit() {
             return amplifierLimit;
+        }
+
+        public GluttonyEffectProperties scaleDurationLimit(float scalar) {
+            this.durationLimit = (int) (durationLimit * scalar);
+            return this;
+        }
+
+        public GluttonyEffectProperties scaleAmplifierLimit(float scalar) {
+            this.amplifierLimit = (int) (amplifierLimit * scalar);
+            return this;
         }
 
         public GluttonyEffectProperties setLimitData(int durationLimit, int amplifierLimit) {

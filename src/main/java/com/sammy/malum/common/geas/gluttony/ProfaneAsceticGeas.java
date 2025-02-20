@@ -25,7 +25,11 @@ public class ProfaneAsceticGeas extends GeasEffect {
 
     @Override
     public void modifyGluttonyPropertiesEvent(ModifyGluttonyPropertiesEvent event, LivingEntity collector) {
-        event.replaceEffect(MobEffectRegistry.TRIAL_OF_FAITH);
+        event.getProperties()
+                .scaleInitialDuration(2)
+                .scaleDurationGain(2)
+                .scaleDurationLimit(4)
+                .replaceEffectType(MobEffectRegistry.TRIAL_OF_FAITH);
     }
 
     @Override

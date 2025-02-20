@@ -27,37 +27,40 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        applyConcentratedGluttonyEffect(pEntityLiving, 1f);
+        var properties = applyConcentratedGluttonyEffect(pEntityLiving, 1f);
         SoundHelper.playSound(pEntityLiving, SoundRegistry.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
-            createGluttonyVFX(serverLevel, pEntityLiving, gluttonyEffect.getAmplifier());
+            final MobEffectInstance instance = pEntityLiving.getEffect(properties.getEffectType());
+            if (instance != null) {
+                createGluttonyVFX(serverLevel, pEntityLiving, instance.getAmplifier());
+            }
         }
         return super.finishUsingItem(pStack, pLevel, pEntityLiving);
     }
 
     public static GluttonyEffect.GluttonyEffectProperties applyConcentratedGluttonyEffect(LivingEntity target, float durationScalar) {
-        int amplifier = 3;
-        int duration = 20;
+        return GluttonyEffect.applyGluttony(target, b -> {
+            int amplifier = 3;
+            int duration = 20;
 
-        if (CurioHelper.hasCurioEquipped(target, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
-            amplifier++;
-            duration += 40;
-        }
-        for (Holder<Item> rottenTrinket : ROTTEN_TRINKETS) {
-            if (CurioHelper.hasCurioEquipped(target, rottenTrinket.value())) {
-                amplifier++;
-                duration += 10;
-            }
-        }
-        for (Holder<GeasEffectType> rottenGea : ROTTEN_GEAS) {
-            if (GeasEffectHandler.hasGeasEffect(target, rottenGea)) {
+            if (CurioHelper.hasCurioEquipped(target, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 amplifier++;
                 duration += 40;
             }
-        }
-
-        return GluttonyEffect.applyGluttony(target, GluttonyEffect.createGluttony()
-                .setInitialData((int) (duration * 20 * durationScalar), amplifier));
+            for (Holder<Item> rottenTrinket : ROTTEN_TRINKETS) {
+                if (CurioHelper.hasCurioEquipped(target, rottenTrinket.value())) {
+                    amplifier++;
+                    duration += 10;
+                }
+            }
+            for (Holder<GeasEffectType> rottenGea : ROTTEN_GEAS) {
+                if (GeasEffectHandler.hasGeasEffect(target, rottenGea)) {
+                    amplifier++;
+                    duration += 40;
+                }
+            }
+            b.setInitialData((int) (duration * 20 * durationScalar), amplifier);
+        });
     }
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, int amplifier) {
