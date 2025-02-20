@@ -32,6 +32,7 @@ import java.util.List;
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;
 import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static net.minecraft.world.item.Items.ENCHANTED_BOOK;
 
 public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
@@ -222,6 +223,11 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(new TextPage("void.staves_as_foci.4"))
                 .addPage(new TextPage("void.staves_as_foci.5"))
                 .addPage(SpiritInfusionPage.fromOutput(MNEMONIC_HEX_STAFF.get()))
+                .addReference(new EntryReference(ENCHANTED_BOOK,
+                        BookEntry.build("void.staves_as_foci.enchanting")
+                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.replenishing", "void.staves_as_foci.replenishing.1"))
+                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.capacitor", "void.staves_as_foci.enchanting.capacitor.1"))
+                ))
                 .addReference(new EntryReference(RING_OF_THE_ENDLESS_WELL,
                         BookEntry.build("void.staves_as_foci.ring_of_the_endless_well")
                                 .addPage(new HeadlineTextPage("void.staves_as_foci.ring_of_the_endless_well", "void.staves_as_foci.ring_of_the_endless_well.1"))

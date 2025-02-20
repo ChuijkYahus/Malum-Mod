@@ -214,6 +214,7 @@ public class CodexLangDatagen {
                 "Even more interestingly, the spirit crystals, while physically not particularly strong, appear to be utterly chemically inert, and I tried a very extensive set of reactants. Do they even have matter, in the traditional sense? And if not, what does that mean for the Umbral crystal?",
                 "I am not sure of the precise implications of these physical properties, but given the strangeness of the Umbral crystal, there is clearly more to the more mundane aspect of the arcana than I knew.");
 
+        //TODO: staff entry
         addSimpleEntryHeader("void.staves_as_foci", "Staves as Foci", "Imitating the arcana");
         addPages("void.staves_as_foci",
                 "Consideration of the properties I observed in spirit crystals led me to wonder if the structure itself was important somehow. To test this, I constructed a Mnemnosyne replica - the condensed soul memory being the closest substance I could think of - of the Wicked Arcana, precise to a scale of hundreds of thousandths of a block.",
@@ -221,6 +222,17 @@ public class CodexLangDatagen {
                 "When used in melee, staves are... adequate. I would tend to prefer a scythe, but I suppose this works well enough. They tend to focus more on magic damage than on physical damage, which admittedly can be helpful at times. But what makes them special is what happens if I " + italic("use") + " it.",
                 "This Mnemonic Hex Staff is named for its simple effect of launching balls of liquefied Wicked energy, like a witch's hex. It takes a moment to activate, and cannot be quite used consecutively, but each deals potent damage to anything they hit.",
                 "I have not found success in creating any other false Arcana this way, though that might be a matter of material. Mnemnosyne may simply resonate with Wicked through the death required to create Brilliance.");
+
+
+        //TODO: staves enchanting
+        addEntryHeader("void.staves_as_foci.enchanting", "Staves Enchanting", "The Gnomes will have you, wiresegal. They will have you. My Brain told me to write this. Copilot added the 2nd sentence there.");
+        addHeadline("void.staves_as_foci.replenishing", "Replenishing");
+        addPages("void.staves_as_foci.replenishing",
+                "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 25% per level");
+        addHeadline("void.staves_as_foci.capacitor", "Capacitor");
+        addPages("void.staves_as_foci.capacitor",
+                "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level.");
+
 
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
@@ -292,6 +304,7 @@ public class CodexLangDatagen {
                 "It slashes with me, adding magic damage which scars the soul, forcing its Hatred upon the enemy for a time, applying the revocation of progress Malignant armor does by force.",
                 "The blade also can be thrown, akin to Rebound. It will fly like an arrow, especially eager to carve into those it has marked with its Hatred, even swerving in the air to strike them. It will strike entire groups of Hated enemies, one by one, if many are nearby.");
 
+        //TODO: slight changes to account for spell charges here
         addSimpleEntryHeader("void.unwinding_chaos", "Unwinding Chaos", "The dying truth crawls");
         addPages("void.unwinding_chaos",
                 "Fused Consciousness can add thought to action, a mind to impose its own will on the world. And this staff, this destruction, oh, how the Unwinding Chaos wills it be.",
