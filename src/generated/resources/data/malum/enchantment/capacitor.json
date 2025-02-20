@@ -12,7 +12,7 @@
           "per_level_above_first": 1.0
         },
         "attribute": "malum:charge_capacity",
-        "id": "malum:enchantment.reserve_staff_charges",
+        "id": "malum:enchantment.charge_capacity",
         "operation": "add_value"
       }
     ]
