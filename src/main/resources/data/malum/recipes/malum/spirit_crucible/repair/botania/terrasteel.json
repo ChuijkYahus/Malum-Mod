@@ -11,7 +11,7 @@
   "durabilityPercentage": 1,
   "inputs": [],
   "repairMaterial": {
-    "item": "botania:terrasteel_ingot",
+    "tag": "forge:ingots/terrasteel",
     "count": 1
   },
   "spirits": [

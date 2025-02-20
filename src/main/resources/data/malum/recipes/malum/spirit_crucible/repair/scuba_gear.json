@@ -11,7 +11,7 @@
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
-    "item": "minecraft:iron_ingot",
+    "tag": "forge:ingots/iron",
     "count": 2
   },
   "spirits": [
