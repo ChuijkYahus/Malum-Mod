@@ -24,13 +24,16 @@ import static com.sammy.malum.core.systems.artifice.ArtificeAttributeType.*;
 public class ArtificeAttributeData {
 
     public static Codec<ArtificeAttributeData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            ArtificeAttributeValue.CODEC.listOf().fieldOf("values").forGetter(v -> v.attributes),
+            ArtificeAttributeValue.CODEC.listOf().fieldOf("attributes").forGetter(v -> v.attributes),
             BlockPos.CODEC.listOf().fieldOf("modifierPositions").forGetter(v -> v.modifierPositions),
             ArtificeAttributeType.CODEC.optionalFieldOf("tunedAttribute").forGetter(v -> Optional.ofNullable(v.tunedAttribute)),
             Codec.BOOL.fieldOf("demandsFuel").forGetter(v -> v.demandsFuel),
-            Codec.FLOAT.fieldOf("chainProcessingBonus").forGetter(v -> v.chainProcessingBonus)
-    ).apply(obj, ((a, b, h, d, c) -> new ArtificeAttributeData(a, b, h.orElse(null), d, c))));
-
+            Codec.FLOAT.fieldOf("chainProcessingBonus").forGetter(v -> v.chainProcessingBonus),
+            Codec.INT.fieldOf("sympathyDamageStacks").forGetter(v -> v.sympathyDamageStacks),
+            Codec.FLOAT.fieldOf("sympathyBuffStrength").forGetter(v -> v.sympathyBuffStrength),
+            Codec.INT.fieldOf("sympathyBuffedCycles").forGetter(v -> v.sympathyBuffedCycles)
+    ).apply(obj, ((attributes, modifierPositions, tunedAttribute, demandsFuel, chainProcessingBonus, sympathyDamageStacks, sympathyBuffStrength, sympathyBuffedCycles) ->
+            new ArtificeAttributeData(attributes, modifierPositions, tunedAttribute.orElse(null), demandsFuel, chainProcessingBonus, sympathyDamageStacks, sympathyBuffStrength, sympathyBuffedCycles))));
     public final ArtificeAttributeValue focusingSpeed = new ArtificeAttributeValue(FOCUSING_SPEED);
     public final ArtificeAttributeValue instability = new ArtificeAttributeValue(INSTABILITY);
     public final ArtificeAttributeValue fuelUsageRate = new ArtificeAttributeValue(FUEL_USAGE_RATE);
@@ -61,6 +64,10 @@ public class ArtificeAttributeData {
     public boolean demandsFuel;
     public float chainProcessingBonus;
 
+    public int sympathyDamageStacks;
+    public float sympathyBuffStrength;
+    public int sympathyBuffedCycles;
+
     public ArtificeAttributeData(IArtificeAcceptor target) {
         if (target.getAttributes() != null) {
             tunedAttribute = target.getAttributes().tunedAttribute;
@@ -85,7 +92,7 @@ public class ArtificeAttributeData {
     }
 
     public ArtificeAttributeData(List<ArtificeAttributeValue> attributes, List<BlockPos> modifierPositions, ArtificeAttributeType tunedAttribute,
-                                 boolean demandsFuel, float chainProcessingBonus) {
+                                 boolean demandsFuel, float chainProcessingBonus, int sympathyDamageStacks, float sympathyBuffStrength, int sympathyBuffedCycles) {
         for (int i = 0; i < this.attributes.size(); i++) {
             this.attributes.get(i).copyFrom(attributes.get(i));
         }
@@ -93,6 +100,9 @@ public class ArtificeAttributeData {
         this.tunedAttribute = tunedAttribute;
         this.demandsFuel = demandsFuel;
         this.chainProcessingBonus = chainProcessingBonus;
+        this.sympathyDamageStacks = sympathyDamageStacks;
+        this.sympathyBuffStrength = sympathyBuffStrength;
+        this.sympathyBuffedCycles = sympathyBuffedCycles;
     }
 
     public ArtificeAttributeData() {

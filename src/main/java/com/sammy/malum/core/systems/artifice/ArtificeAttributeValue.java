@@ -44,6 +44,9 @@ public class ArtificeAttributeValue {
             }
             value *= bonus;
         }
+        if (accelerationData.sympathyBuffedCycles > 0) {
+            value *= (1 + accelerationData.sympathyBuffStrength);
+        }
         return value;
     }
 

@@ -1,5 +1,11 @@
 {
   "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 4,
+      "item": "malum:refined_soulstone"
+    }
+  ],
   "geas": "malum:pact_of_the_fortress",
   "ingredient": {
     "count": 12,

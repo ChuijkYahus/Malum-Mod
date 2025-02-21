@@ -65,13 +65,13 @@ public class StaffAbilityData {
         this.staffChargeDebtCooldown -= staffChargeProgress;
         if (staffChargeDebtCooldown <= 0) {
             reduceStaffChargeDebt();
+            staffChargeDebtCooldown = 80;
         }
     }
 
     public void reduceStaffChargeDebt() {
         if (staffChargeDebt > 0) {
             staffChargeDebt--;
-            staffChargeDebtCooldown = 80;
             setDirty(true);
         }
     }

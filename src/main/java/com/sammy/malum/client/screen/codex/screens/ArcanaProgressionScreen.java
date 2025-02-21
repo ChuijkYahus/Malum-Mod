@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.entries.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.common.item.codex.*;
@@ -70,8 +69,8 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
     public void setupEntries() {
         addEntry("chronicles_of_the_void", 0, -1, b -> b
-            .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, VoidProgressionScreen::openCodexViaTransition, malumPath("textures/gui/book/icons/void_button.png"), 20, 20))
-            .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setValidityChecker(p -> p.isVoidTouched))
+                .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, VoidProgressionScreen::openCodexViaTransition, malumPath("textures/gui/book/icons/void_button.png"), 20, 20))
+                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setValidityChecker(p -> p.isVoidTouched))
         );
 
         IntroductionEntries.setupEntries(this);
@@ -83,28 +82,28 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         MiscellaneousKnowledgeEntries.setupEntries(this);
 
         addEntry("ritual_magic", 0, 17, b -> b
-            .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
-            .addPage(new HeadlineTextPage("ritual_magic", "ritual_magic.1"))
+                .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .addPage(new HeadlineTextPage("ritual_magic", "ritual_magic.1"))
         );
 //        RitualEntries.setupEntries(ENTRIES);
 
-        addEntry("mirror_magic", 8, 13, b -> b
-            .configureWidget(w -> w.setIcon(SPECTRAL_OPTIC).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
-            .addPage(new HeadlineTextPage("mirror_magic", "mirror_magic.1"))
-            .addPage(SpiritInfusionPage.fromOutput(SPECTRAL_OPTIC.get()))
+        addEntry("mirror_magic", 10, 15, b -> b
+                .configureWidget(w -> w.setIcon(CONVOLUTED_LENS).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .addPage(new HeadlineTextPage("mirror_magic", "mirror_magic.1"))
+                .addPage(new TextPage("mirror_magic.2"))
         );
 
-        addEntry("voodoo_magic", -8, 13, b -> b
-            .configureWidget(w -> w.setIcon(POPPET).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
-            .addPage(new HeadlineTextPage("voodoo_magic", "voodoo_magic.1"))
-            .addPage(SpiritInfusionPage.fromOutput(POPPET.get()))
+        addEntry("voodoo_magic", -10, 15, b -> b
+                .configureWidget(w -> w.setIcon(POPPET).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .addPage(new HeadlineTextPage("voodoo_magic", "voodoo_magic.1"))
+                .addPage(new TextPage("voodoo_magic.2"))
         );
 
         addEntry("the_device", 0, -10, b -> b
             .setWidgetSupplier(VanishingEntryObject::new)
             .configureWidget(w -> w.setIcon(THE_DEVICE).setStyle(BookWidgetStyle.WITHERED))
             .disableTooltip()
-            .addPage(new HeadlineTextPage("the_device", "the_device"))
+                .addPage(new HeadlineTextPage("the_device", "the_device"))
             .addPage(new CraftingPage(THE_DEVICE.get(),
                 TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get(),
                 TAINTED_ROCK.get(), TWISTED_ROCK.get(), TAINTED_ROCK.get(),

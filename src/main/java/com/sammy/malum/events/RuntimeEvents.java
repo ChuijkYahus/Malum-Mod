@@ -138,8 +138,8 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onStartUsingItem(LivingEntityUseItemEvent.Start event) {
-        ProfaneAsceticGeas.slowDownEating(event);
-        CurioVoraciousRing.accelerateEating(event);
+        ProfaneAsceticGeas.modifyEating(event);
+        CurioVoraciousRing.modifyEating(event);
     }
 
     @SubscribeEvent

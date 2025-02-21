@@ -46,19 +46,14 @@ public class SoulWardRenderHandler {
                 var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
                 double soulWard = data.getSoulWard();
                 if (soulWard > 0) {
-                    float absorb = Mth.ceil(player.getAbsorptionAmount());
-                    float maxHealth = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
                     float armor = (float) player.getAttribute(Attributes.ARMOR).getValue();
 
                     int left = guiGraphics.guiWidth() / 2 - 91;
-                    int top = guiGraphics.guiHeight() - 66;
+                    int top = guiGraphics.guiHeight() - minecraft.gui.leftHeight - 2;
 
                     if (armor == 0) {
                         top += 10;
                     }
-                    int healthRows = Mth.ceil((maxHealth + absorb) / 2.0F / 10.0F);
-                    int rowHeight = Math.max(10 - (healthRows - 2), 3);
-
                     poseStack.pushPose();
                     RenderSystem.setShaderTexture(0, getSoulWardTexture());
                     RenderSystem.depthMask(true);
@@ -75,9 +70,9 @@ public class SoulWardRenderHandler {
                     boolean forceDisplay = soulWard <= 1;
                     double soulWardAmount = forceDisplay ? 1 : Math.ceil(Math.floor(soulWard) / 3f);
                     for (int i = 0; i < soulWardAmount; i++) {
-                        int row = (int) (i / 10f);
+                        int row = Mth.floor(i / 10f);
                         int x = left + i % 10 * 8;
-                        int y = top - row * 4 + rowHeight * 2 - 15;
+                        int y = top - row * 4;
                         int progress = Math.min(3, (int) soulWard - i * 3);
                         int xTextureOffset = forceDisplay ? 31 : 1 + (3 - progress) * 15;
 

@@ -6,7 +6,6 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -30,7 +29,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
         consumer.accept(ComponentHelper.positiveCurioEffect("growing_gluttony"));
     }
 
-    public static void accelerateEating(LivingEntityUseItemEvent.Start event) {
+    public static void modifyEating(LivingEntityUseItemEvent.Start event) {
         if (event.getItem().is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
                 event.setDuration((int) (event.getDuration() * 0.5f));

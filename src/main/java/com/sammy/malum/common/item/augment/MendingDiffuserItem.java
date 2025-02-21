@@ -13,14 +13,17 @@ public class MendingDiffuserItem extends AugmentItem {
                 new ArtificeModifier(ArtificeAttributeType.RESTORATION_CHANCE, 0.15f));
     }
 
-    public static void repairImpetus(Level level, ArtificeAttributeData attributes, ItemStack impetus) {
+    public static boolean repairImpetus(Level level, ArtificeAttributeData attributes, ItemStack impetus) {
         float restorationChance = attributes.restorationChance.getValue(attributes);
         var random = level.getRandom();
+        boolean success = false;
         while (restorationChance > 0) {
             if (restorationChance >= 1 || random.nextFloat() < restorationChance) {
                 impetus.setDamageValue((int) Math.max(impetus.getDamageValue() - impetus.getMaxDamage()*0.01f, 0));
+                success = true;
             }
             restorationChance -= 1;
         }
+        return success;
     }
 }

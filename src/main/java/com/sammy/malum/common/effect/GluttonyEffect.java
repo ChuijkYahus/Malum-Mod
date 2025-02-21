@@ -65,8 +65,7 @@ public class GluttonyEffect extends MobEffect {
     }
 
     public static GluttonyEffectProperties applyGluttony(LivingEntity collector, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
-        var properties = createGluttony();
-        gluttonyBuilder.accept(properties);
+        var properties = getGluttonyEffectProperties(collector, gluttonyBuilder);
         var effectType = properties.getEffectType();
         var effectInstance = collector.getEffect(effectType);
         if (effectInstance == null) {
@@ -86,12 +85,14 @@ public class GluttonyEffect extends MobEffect {
     }
 
     public static Holder<MobEffect> getGluttonyEffectType(LivingEntity collector) {
-        final GluttonyEffectProperties properties = getGluttonyEffectProperties(collector, createGluttony());
+        final GluttonyEffectProperties properties = getGluttonyEffectProperties(collector, b -> {});
         return properties.effectType;
     }
 
-    public static GluttonyEffectProperties getGluttonyEffectProperties(LivingEntity collector, GluttonyEffectProperties initialProperties) {
-        var event = new ModifyGluttonyPropertiesEvent(collector, initialProperties);
+    public static GluttonyEffectProperties getGluttonyEffectProperties(LivingEntity collector, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
+        var properties = createGluttony();
+        gluttonyBuilder.accept(properties);
+        var event = new ModifyGluttonyPropertiesEvent(collector, properties);
         ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
                 (eventResponderItem, stack) -> eventResponderItem.modifyGluttonyPropertiesEvent(event, collector)));
         NeoForge.EVENT_BUS.post(event);

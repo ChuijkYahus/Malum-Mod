@@ -14,15 +14,10 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
-import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import team.lodestar.lodestone.recipe.NBTCarryRecipe;
 import team.lodestar.lodestone.recipe.builder.*;
 
 import java.util.Arrays;
@@ -49,12 +44,19 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get()).define('X', Tags.Items.RODS_WOODEN).define('Y', ItemTagRegistry.RUNEWOOD_PLANKS).pattern("  Y").pattern(" X ").pattern("X  ").unlockedBy("has_runewood", has(ItemRegistry.RUNEWOOD_PLANKS.get())).save(output);
 
         //CRAFTING COMPONENTS
-        shapeless(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get())
-                .requires(ItemRegistry.HALLOWED_GOLD_NUGGET.get())
-                .requires(Items.GLASS)
-                .requires(ItemRegistry.WARP_FLUX.get())
-                .requires(ItemRegistry.RUNEWOOD_PLANKS.get())
-                .unlockedBy("has_warp_flux", has(ItemRegistry.WARP_FLUX.get())).save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.CONVOLUTED_LENS.get(), 2)
+                .define('X', ItemRegistry.HALLOWED_GOLD_NUGGET.get())
+                .define('Y', ItemRegistry.WARP_FLUX.get())
+                .pattern(" X ")
+                .pattern("XYX")
+                .pattern(" X ")
+                .unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
+
+        shapeless(RecipeCategory.MISC, ItemRegistry.MIMICRY_RELAY.get())
+                .requires(ItemRegistry.IRON_NODE.get())
+                .requires(ItemRegistry.CTHONIC_GOLD_FRAGMENT.get())
+                .requires(Tags.Items.GEMS_QUARTZ)
+                .unlockedBy("has_iron_impetus", has(ItemRegistry.IRON_IMPETUS.get())).save(output);
 
         //ETHER
         etherTorch(output, ItemRegistry.ETHER_TORCH.get(), ItemRegistry.ETHER.get());
@@ -223,6 +225,8 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         //THE DEVICE
         shaped(RecipeCategory.MISC, ItemRegistry.THE_DEVICE.get()).define('X', ItemRegistry.TWISTED_ROCK.get()).define('Y', ItemRegistry.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);
 
+
+        //WEAVES
         weaveRecipe(output, ItemRegistry.BLIGHTED_GUNK.get(), ItemRegistry.ANCIENT_WEAVE);
         weaveRecipe(output, Items.IRON_INGOT, ItemRegistry.CORNERED_WEAVE);
         weaveRecipe(output, Items.LAPIS_LAZULI, ItemRegistry.MECHANICAL_WEAVE_V1);

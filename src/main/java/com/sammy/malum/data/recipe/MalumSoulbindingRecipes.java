@@ -28,6 +28,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
 
         new SoulBindingRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 4)
@@ -68,10 +69,32 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
 
         new SoulBindingRecipeBuilder(Items.BLAZE_POWDER, 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC)
                 .addExtraItem(Items.TNT, 8)
-                .addExtraItem(Items.BLAZE_ROD, 8)
+                .addExtraItem(Items.FIRE_CHARGE, 8)
                 .addExtraItem(Items.GUNPOWDER, 8)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .save(recipeOutput);
+
+        new SoulBindingRecipeBuilder(ItemRegistry.ROTTING_ESSENCE.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC)
+                .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 8)
+                .addExtraItem(Items.ROTTEN_FLESH, 8)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(ItemRegistry.ROTTING_ESSENCE.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON)
+                .addExtraItem(ItemRegistry.IMITATION_HEART.get(), 8)
+                .addExtraItem(Items.ROTTEN_FLESH, 8)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .save(recipeOutput);
+
+        new SoulBindingRecipeBuilder(ItemRegistry.LIVING_FLESH.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION)
+                .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 8)
+                .addExtraItem(Items.ROTTEN_FLESH, 8)
+                .addExtraItem(Items.CRYING_OBSIDIAN, 4)
+                .addExtraItem(Items.GHAST_TEAR, 4)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
 
     }

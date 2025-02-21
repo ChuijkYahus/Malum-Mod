@@ -226,13 +226,12 @@ public class CodexLangDatagen {
 
         //TODO: staves enchanting
         addEntryHeader("void.staves_as_foci.enchanting", "Staves Enchanting", "The Gnomes will have you, wiresegal. They will have you. My Brain told me to write this. Copilot added the 2nd sentence there.");
-        addHeadline("void.staves_as_foci.replenishing", "Replenishing");
+        addHeadline("void.staves_as_foci.enchanting.replenishing", "Replenishing");
         addPages("void.staves_as_foci.replenishing",
                 "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 25% per level");
-        addHeadline("void.staves_as_foci.capacitor", "Capacitor");
+        addHeadline("void.staves_as_foci.enchanting.capacitor", "Capacitor");
         addPages("void.staves_as_foci.capacitor",
                 "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level.");
-
 
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
@@ -570,7 +569,7 @@ public class CodexLangDatagen {
                 "Infernal and Aqueous mix energetically, often in transformative and destructive ways. The Caustic Catalyst increases Tuning Potency the further the instability of the system rises, harnessing that bubbling backlash for greater power.");
         addSimpleEntryHeader("suspicious_device", "Suspicious Device", "A cautionary tale");
         addPages("suspicious_device",
-                "Being opposed, you" + italic("can") + "use Arcane and Eldritch to create an opposition augment. However, this just causes violent entropy as Arcane flows eagerly into the end state of Eldritch, and the result is... a corruptive explosion generating Blight. This entry serves as a warning, not a recommendation.");
+                "Being opposed, you " + italic("can") + " use Arcane and Eldritch to create an opposition augment. However, this just causes violent entropy as Arcane flows eagerly into the end state of Eldritch, and the result is... a corruptive explosion generating Blight. This entry serves as a warning, not a recommendation.");
 
         addSimpleEntryHeader("mending_diffuser", "Mending Diffuser", "Unliving scar tissue");
         addPages("mending_diffuser",
@@ -829,11 +828,13 @@ public class CodexLangDatagen {
                 "Arcana crystals emit their own strange glow. Why not tune that to be stronger? The tool I use to do this is the Lamplighter's Tongs; simply hold them in one hand and the crystal in another to create a 'mote'.",
                 "These Motes are concentrations of pure arcane energy, with a thin shell of warding magic to keep it from spilling. This has little magical implication, but the resulting lights are pretty.");
 
-        addSimpleEntryHeader("mirror_magic", "Mirror magic", "Magic Funnels");
-        addPages("mirror_magic", "The future holds many secrets..");
+        addSimpleEntryHeader("mirror_magic", "Mirror Magic", "Magic Funnels");
+        addPages("mirror_magic", "Mirror Magic in Malum will be a system centered around transporting items and spirits. It'll be split into two categories, one centered around managing spirit arcana and the other providing you with modular item funnels. You'll be able to connect your spirit jars to your altar or crucible and have it automatically resupply.",
+                "For general item transport, mirrors will create a portal-esque gravity tunnel, a leyline. This leyline will be capable of picking up and transporting items forward. Depending on what lens you create for your mirror, the leyline will acquaint different properties. In the next release, either Voodoo Magic or Mirror Magic will be added to malum.");
 
-        addSimpleEntryHeader("voodoo_magic", "Voodoo magic", "Forbidden arts");
-        addPages("voodoo_magic", "The future holds many secrets..");
+        addSimpleEntryHeader("voodoo_magic", "Voodoo Magic", "Poppet Creation");
+        addPages("voodoo_magic", "Voodoo Magic in Malum will be a system that allows you to program and command little fellas known as poppets. It'll be split into two categories, combat and utility. You can expect to be able to command a small army of combat poppets while you sit back and watch.",
+                "For utility purposes, you'll also be able to employ poppets with simple jobs such as collecting items, putting items in chests, shearing sheep, harvesting crops, that sort of thing. In the next release, either Voodoo Magic or Mirror Magic will be added to malum.");
 
         addSimpleEntryHeader("ritual_magic", "Ritual magic", "Grand Magics");
         addPages("ritual_magic", "The future holds many secrets..");

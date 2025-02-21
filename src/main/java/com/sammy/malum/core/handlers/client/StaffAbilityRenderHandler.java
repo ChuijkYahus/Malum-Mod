@@ -8,6 +8,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.player.*;
 import net.minecraft.resources.*;
+import net.minecraft.util.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
 import org.lwjgl.opengl.*;
@@ -48,8 +49,9 @@ public class StaffAbilityRenderHandler {
                 if (staffCharges > 0) {
 
                     int left = guiGraphics.guiWidth() / 2 + 9;
-                    int top = guiGraphics.guiHeight() - 66;
-
+                    int top = guiGraphics.guiHeight() - minecraft.gui.rightHeight - 2;
+                    int offset = Mth.floor(staffCharges / 30f) * 8;
+                    minecraft.gui.rightHeight += offset;
                     poseStack.pushPose();
                     RenderSystem.setShaderTexture(0, getStaffChargeTexture());
                     RenderSystem.depthMask(true);
@@ -64,11 +66,11 @@ public class StaffAbilityRenderHandler {
 
                     int size = 13;
                     boolean forceDisplay = staffCharges <= 1;
-                    double soulWardAmount = forceDisplay ? 1 : Math.ceil(Math.floor(staffCharges) / 3f);
-                    for (int i = 0; i < soulWardAmount; i++) {
+                    double chargeAmount = forceDisplay ? 1 : Math.ceil(Math.floor(staffCharges) / 3f);
+                    for (int i = 0; i < chargeAmount; i++) {
                         int row = (int) (i / 10f);
                         int x = left + i % 10 * 8;
-                        int y = top - row * 4 - 15;
+                        int y = top - row * 4;
                         int progress = Math.min(3, (int) staffCharges - i * 3);
                         int xTextureOffset = forceDisplay ? 31 : 1 + (3 - progress) * 15;
 

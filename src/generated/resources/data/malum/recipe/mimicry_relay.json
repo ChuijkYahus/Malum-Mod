@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "malum:iron_node"
+    },
+    {
+      "item": "malum:cthonic_gold_fragment"
+    },
+    {
+      "tag": "c:gems/quartz"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "malum:mimicry_relay"
+  }
+}

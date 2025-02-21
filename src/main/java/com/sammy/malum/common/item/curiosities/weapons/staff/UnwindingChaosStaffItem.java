@@ -118,7 +118,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     @Override
     public void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, int count) {
         int ceil = Mth.ceil(count / 2f);
-        int spawnDelay = 1 + Mth.ceil((count % 9) / 2f) * 2;
+        int spawnDelay = 1 + ceil * 2;
+        ceil = Mth.ceil((count%13) / 2f);
         float spread = count > 0 ? ceil * 0.1f * (count % 2L == 0 ? 1 : -1) : 0f;
         float pitchOffset = count > 4 ? 2f + (2f - ceil * 1.5f) : 0.5f;
         float velocity = 3f;
