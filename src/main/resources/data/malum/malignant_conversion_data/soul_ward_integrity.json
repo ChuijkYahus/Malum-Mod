@@ -1,5 +1,5 @@
 {
-  "source_attribute": "malum:soul_ward_strength",
+  "source_attribute": "malum:soul_ward_integrity",
   "ignore_base_value": "true",
   "target_attributes": [
     {

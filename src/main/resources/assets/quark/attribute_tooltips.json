@@ -1,0 +1,15 @@
+{
+  "malum:soul_ward_capacity": {
+    "display": {
+      "mainhand": "flat",
+      "offhand": "flat",
+      "feet": "flat",
+      "legs": "flat",
+      "chest": "flat",
+      "head": "flat",
+      "potion": "flat"
+    },
+    "texture": "malum:attribute/soul_ward_capacity",
+    "compare": "higher_better"
+  }
+}
