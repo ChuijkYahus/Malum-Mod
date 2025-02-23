@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "malum:astral_weave"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:feather"
+    }
+  ],
+  "geas": "malum:pact_of_the_cloudskipper",
+  "ingredient": {
+    "count": 16,
+    "item": "malum:wind_nucleus"
+  },
+  "spirits": [
+    {
+      "type": "aerial",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    }
+  ]
+}

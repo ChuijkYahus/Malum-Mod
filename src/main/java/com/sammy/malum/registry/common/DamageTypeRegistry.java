@@ -14,6 +14,7 @@ public class DamageTypeRegistry {
     public static final ResourceKey<DamageType> NITRATE_PLAYERLESS = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("nitrate_playerless"));
 
     public static final ResourceKey<DamageType> VOID = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("void"));
+    public static final ResourceKey<DamageType> KARMIC = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("karmic"));
 
     public static final ResourceKey<DamageType> SCYTHE_MELEE = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("scythe_melee"));
     public static final ResourceKey<DamageType> SCYTHE_SWEEP = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("scythe_sweep"));
@@ -29,6 +30,7 @@ public class DamageTypeRegistry {
 
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_PHYSICAL_COMBO = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("sundering_anchor_physical_combo"));
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_MAGIC_COMBO = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("sundering_anchor_magic_combo"));
+
 
     public static final ResourceKey<DamageType> SOULWASHING_RETALIATION = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("soulwashing_retaliation"));
     public static final ResourceKey<DamageType> SOULWASHING_PROPAGATION = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("soulwashing_propagation"));

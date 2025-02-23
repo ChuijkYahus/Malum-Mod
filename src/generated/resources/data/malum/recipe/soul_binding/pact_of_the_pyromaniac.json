@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:tnt"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:gunpowder"
+    }
+  ],
+  "geas": "malum:pact_of_the_pyromaniac",
+  "ingredient": {
+    "count": 16,
+    "item": "minecraft:blaze_powder"
+  },
+  "spirits": [
+    {
+      "type": "aerial",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package com.sammy.malum.data.recipe.infusion;
 
+import com.sammy.malum.*;
+import com.sammy.malum.data.lang.*;
 import com.sammy.malum.data.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
@@ -16,14 +18,12 @@ public class MiscSpiritInfusionRecipes {
     public static void buildRecipes(RecipeOutput consumer) {
         new SpiritInfusionRecipeBuilder(ItemRegistry.RUNEWOOD_PLANKS.get(), 2, ItemRegistry.RUNEWOOD_OBELISK.get(), 1)
                 .addExtraItem(ItemRegistry.HALLOWED_GOLD_INGOT.get(), 2)
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 1)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(SACRED_SPIRIT, 8)
                 .save(consumer);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.RUNEWOOD_PLANKS.get(), 2, ItemRegistry.BRILLIANT_OBELISK.get(), 1)
                 .addExtraItem(ItemRegistry.RAW_BRILLIANCE.get(), 2)
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 1)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .save(consumer);
@@ -53,7 +53,7 @@ public class MiscSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(ItemRegistry.CONCENTRATED_GLUTTONY.get(), 1, ItemRegistry.SPLASH_OF_GLUTTONY.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 1))
                 .addSpirit(AQUEOUS_SPIRIT, 1)
-                .save(consumer, "splash_of_gluttony_from_concentrated_gluttony");
+                .save(consumer, MalumMod.malumPath("splash_of_gluttony_from_concentrated_gluttony"));
 
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 2, ItemRegistry.LAMPLIGHTERS_TONGS.get(), 1)
                 .addSpirit(ARCANE_SPIRIT, 8)

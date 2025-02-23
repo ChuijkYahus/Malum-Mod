@@ -20,8 +20,8 @@ public class OvereagerFistGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("staff_autofire"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("staff_autofire"));
     }
 
     @Override

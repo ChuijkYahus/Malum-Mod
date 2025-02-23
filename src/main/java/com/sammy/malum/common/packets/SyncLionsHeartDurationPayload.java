@@ -25,8 +25,7 @@ public class SyncLionsHeartDurationPayload extends OneSidedPayloadData {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
             var data = livingEntity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO);
-            var authority = MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get();
-            var geas = data.getGeasEffect(livingEntity, authority).getValue();
+            var geas = data.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET).getValue();
             if (geas instanceof GleefulTargetOath greedGeas) {
                 greedGeas.lionsHeartDuration = lionsHeartDuration;
             }

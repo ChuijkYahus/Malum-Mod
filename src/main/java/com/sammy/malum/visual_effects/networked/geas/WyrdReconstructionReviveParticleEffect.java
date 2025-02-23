@@ -22,14 +22,15 @@ public class WyrdReconstructionReviveParticleEffect extends ParticleEffectType {
         return new NBTEffectData(tag);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public Supplier<ParticleEffectActor> get() {
         return () -> (level, random, positionData, colorData, nbtData) -> {
-            if (level.isClientSide) {
-                if (!nbtData.compoundTag.contains("targetId")) {
-                    return;
-                }
-                final Entity entity = level.getEntity(nbtData.compoundTag.getInt("targetId"));
+            if (!nbtData.compoundTag.contains("targetId")) {
+                return;
+            }
+            final Entity entity = level.getEntity(nbtData.compoundTag.getInt("targetId"));
+            if (entity != null) {
                 GeasParticleEffects.wyrdReconstructionRevive(level, entity, random, positionData, colorData);
             }
         };

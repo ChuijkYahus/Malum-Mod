@@ -14,15 +14,11 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
-import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import team.lodestar.lodestone.recipe.NBTCarryRecipe;
+import team.lodestar.lodestone.recipe.builder.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,12 +44,19 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get()).define('X', Tags.Items.RODS_WOODEN).define('Y', ItemTagRegistry.RUNEWOOD_PLANKS).pattern("  Y").pattern(" X ").pattern("X  ").unlockedBy("has_runewood", has(ItemRegistry.RUNEWOOD_PLANKS.get())).save(output);
 
         //CRAFTING COMPONENTS
-        shapeless(RecipeCategory.MISC, ItemRegistry.SPECTRAL_OPTIC.get())
-                .requires(ItemRegistry.HALLOWED_GOLD_NUGGET.get())
-                .requires(Items.GLASS)
-                .requires(ItemRegistry.WARP_FLUX.get())
-                .requires(ItemRegistry.RUNEWOOD_PLANKS.get())
-                .unlockedBy("has_warp_flux", has(ItemRegistry.WARP_FLUX.get())).save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.CONVOLUTED_LENS.get(), 2)
+                .define('X', ItemRegistry.HALLOWED_GOLD_NUGGET.get())
+                .define('Y', ItemRegistry.WARP_FLUX.get())
+                .pattern(" X ")
+                .pattern("XYX")
+                .pattern(" X ")
+                .unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
+
+        shapeless(RecipeCategory.MISC, ItemRegistry.MIMICRY_RELAY.get())
+                .requires(ItemRegistry.IRON_NODE.get())
+                .requires(ItemRegistry.CTHONIC_GOLD_FRAGMENT.get())
+                .requires(Tags.Items.GEMS_QUARTZ)
+                .unlockedBy("has_iron_impetus", has(ItemRegistry.IRON_IMPETUS.get())).save(output);
 
         //ETHER
         etherTorch(output, ItemRegistry.ETHER_TORCH.get(), ItemRegistry.ETHER.get());
@@ -220,8 +223,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, ItemRegistry.CURSED_SAP_BLOCK.get(), 8).requires(ItemRegistry.CURSED_SAP.get(), 4).unlockedBy("has_cursed_sap", has(ItemRegistry.CURSED_SAP.get())).save(output);
 
         //THE DEVICE
-        TheDeviceRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.THE_DEVICE.get()).define('X', ItemRegistry.TWISTED_ROCK.get()).define('Y', ItemRegistry.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.THE_DEVICE.get()).define('X', ItemRegistry.TWISTED_ROCK.get()).define('Y', ItemRegistry.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);
 
+
+        //WEAVES
         weaveRecipe(output, ItemRegistry.BLIGHTED_GUNK.get(), ItemRegistry.ANCIENT_WEAVE);
         weaveRecipe(output, Items.IRON_INGOT, ItemRegistry.CORNERED_WEAVE);
         weaveRecipe(output, Items.LAPIS_LAZULI, ItemRegistry.MECHANICAL_WEAVE_V1);
@@ -280,84 +285,22 @@ public class MalumVanillaRecipes implements IConditionBuilder {
     }
 
     private static void etherBrazier(RecipeOutput recipeoutput, ItemLike output, ItemLike rock, ItemLike ether) {
-        new NBTCarryRecipe.Builder(
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 2)
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
                 .define('#', rock)
                 .define('S', Ingredient.of(Tags.Items.RODS_WOODEN))
                 .define('X', ether)
                 .pattern("#X#").pattern("S#S")
-                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get())),
-            Ingredient.of(ether)
-        ).save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
+                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get()))
+                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
     }
 
     private static void etherTorch(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
-        new NBTCarryRecipe.Builder(
-                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
-                        .define('#', Ingredient.of(Tags.Items.RODS_WOODEN))
-                        .define('X', ether)
-                        .pattern("X").pattern("#")
-                        .unlockedBy("has_ether", has(ItemRegistry.ETHER.get())),
-                Ingredient.of(ether)
-        ).save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_alternative");
-    }
-
-    private static void shapelessPlanks(RecipeOutput recipeoutput, ItemLike planks, TagKey<Item> input) {
-        shapeless(RecipeCategory.MISC, planks, 4).requires(input).group("planks").unlockedBy("has_logs", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessWood(RecipeOutput recipeoutput, ItemLike stripped, ItemLike input) {
-        shaped(RecipeCategory.MISC, stripped, 3).define('#', input).pattern("##").pattern("##").group("bark").unlockedBy("has_log", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessButton(RecipeOutput recipeoutput, ItemLike button, ItemLike input) {
-        shapeless(RecipeCategory.MISC, button).requires(input).unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedDoor(RecipeOutput recipeoutput, ItemLike door, ItemLike input) {
-        shaped(RecipeCategory.MISC, door, 3).define('#', input).pattern("##").pattern("##").pattern("##").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedFence(RecipeOutput recipeoutput, ItemLike fence, ItemLike input) {
-        shaped(RecipeCategory.MISC, fence, 3).define('#', Tags.Items.RODS_WOODEN).define('W', input).pattern("W#W").pattern("W#W").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedFenceGate(RecipeOutput recipeoutput, ItemLike fenceGate, ItemLike input) {
-        shaped(RecipeCategory.MISC, fenceGate).define('#', Tags.Items.RODS_WOODEN).define('W', input).pattern("#W#").pattern("#W#").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedPressurePlate(RecipeOutput recipeoutput, ItemLike pressurePlate, ItemLike input) {
-        shaped(RecipeCategory.MISC, pressurePlate).define('#', input).pattern("##").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedSlab(RecipeOutput recipeoutput, ItemLike slab, ItemLike input) {
-        shaped(RecipeCategory.MISC, slab, 6).define('#', input).pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedStairs(RecipeOutput recipeoutput, ItemLike stairs, ItemLike input) {
-        shaped(RecipeCategory.MISC, stairs, 4).define('#', input).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapelessSolidTrapdoor(RecipeOutput recipeoutput, ItemLike solid, ItemLike normal) {
-        shapeless(RecipeCategory.MISC, solid).requires(normal).unlockedBy("has_input", has(normal)).save(recipeoutput);
-    }
-
-    private static void shapelessSolidTrapdoor(RecipeOutput recipeoutput, ItemLike solid, ItemLike normal, String path) {
-        shapeless(RecipeCategory.MISC, solid).requires(normal).unlockedBy("has_input", has(normal)).save(recipeoutput, malumPath(path));
-    }
-
-    private static void shapedTrapdoor(RecipeOutput recipeoutput, ItemLike trapdoor, ItemLike input) {
-        shaped(RecipeCategory.MISC, trapdoor, 2).define('#', input).pattern("###").pattern("###").unlockedBy("has_input", has(input)).save(recipeoutput);
-    }
-
-    private static void shapedSign(RecipeOutput recipeoutput, ItemLike sign, ItemLike input) {
-        String s = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
-        shaped(RecipeCategory.MISC, sign, 3).group("sign").define('#', input).define('X', Tags.Items.RODS_WOODEN).pattern("###").pattern("###").pattern(" X ").unlockedBy("has_" + s, has(input)).save(recipeoutput);
-    }
-
-    public static Criterion<EnterBlockTrigger.TriggerInstance> insideOf(Block block) {
-        return CriteriaTriggers.ENTER_BLOCK
-                .createCriterion(new EnterBlockTrigger.TriggerInstance(Optional.empty(), Optional.of(block.builtInRegistryHolder()), Optional.empty()));
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
+                .define('S', Ingredient.of(Tags.Items.RODS_WOODEN))
+                .define('X', ether)
+                .pattern("X").pattern("S")
+                .unlockedBy("has_ether", has(ItemRegistry.ETHER.get()))
+                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_from_stick");
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints count, ItemLike item) {

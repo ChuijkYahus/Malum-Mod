@@ -11,6 +11,7 @@
     "FeatureFlagSetAccessor",
     "FeatureFlagSetMixin",
     "FishingHookEntityMixin",
+    "FoodDataMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "MobEffectInstanceMixin",

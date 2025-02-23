@@ -2,11 +2,9 @@ package com.sammy.malum.common.capabilities;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
-import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -36,6 +34,23 @@ public class SoulWardData {
     public SoulWardData(double soulWard, double soulWardCooldown) {
         this.soulWard = soulWard;
         this.soulWardCooldown = soulWardCooldown;
+    }
+
+    public void tickData(LivingEntity living) {
+        var capacity = living.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
+        if (capacity != null) {
+            if (getSoulWard() < capacity.getValue()) {
+                if (soulWardCooldown > 0) {
+                    soulWardCooldown--;
+                }
+                if (soulWardCooldown <= 0) {
+                    recoverSoulWard(living, 1);
+                }
+            }
+            if (getSoulWard() > capacity.getValue()) {
+                setSoulWard(capacity.getValue());
+            }
+        }
     }
 
     @SuppressWarnings("DataFlowIssue")
@@ -80,16 +95,6 @@ public class SoulWardData {
             soulWardCooldown = newCooldown;
             setDirty(true);
         }
-    }
-
-    public void tickCooldown() {
-        if (soulWardCooldown > 0) {
-            soulWardCooldown--;
-        }
-    }
-
-    public double getCooldown() {
-        return soulWardCooldown;
     }
 
     public boolean isDirty() {

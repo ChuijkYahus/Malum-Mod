@@ -53,7 +53,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
         event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_damage_split"));
-        event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_chaos_curse"));
+        event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_chaos_hatred"));
     }
 
     @Override

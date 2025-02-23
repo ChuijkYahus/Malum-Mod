@@ -12,6 +12,10 @@ public interface IMalumEventResponderItem extends ItemEventHandler.IEventRespond
 
     }
 
+    default void modifyGluttonyPropertiesEvent(ModifyGluttonyPropertiesEvent event, LivingEntity collector) {
+
+    }
+
     default void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
 
     }

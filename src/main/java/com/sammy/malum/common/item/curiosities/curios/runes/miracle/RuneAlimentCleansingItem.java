@@ -26,7 +26,7 @@ public class RuneAlimentCleansingItem extends AbstractRuneCurioItem {
         consumer.accept(ComponentHelper.positiveCurioEffect("shorten_negative_effect"));
     }
 
-    public static void onPotionApplied(MobEffectEvent.Added event) {
+    public static void scaleDuration(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
         if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, ItemRegistry.RUNE_OF_ALIMENT_CLEANSING.get())) {
             MobEffectInstance effect = event.getEffectInstance();

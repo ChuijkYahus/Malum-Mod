@@ -201,7 +201,7 @@ public class TinkeringEntries {
                 .addPage(new HeadlineTextPage("tyrving", "tyrving.1"))
                 .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))
-                .addPage(SpiritRepairPage.fromId("tyrving"))
+                .addPage(SpiritRepairPage.fromId("tyrving_restoration"))
         );
     }
 }

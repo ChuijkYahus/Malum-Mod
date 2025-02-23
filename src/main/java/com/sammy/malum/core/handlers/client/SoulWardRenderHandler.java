@@ -19,18 +19,20 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 import java.lang.Math;
 
 public class SoulWardRenderHandler {
-    public static int fadeOut;
+    public static int glow;
 
     public static void tick(ClientTickEvent event) {
         final LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
             if (data.getSoulWard() >= player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY)) {
-                if (fadeOut < 80) {
-                    fadeOut++;
+                if (glow < 20) {
+                    glow++;
                 }
             } else {
-                fadeOut = Mth.clamp(fadeOut - 2, 0, 30);
+                if (glow > 0) {
+                    glow = Math.max(glow - 2, 0);
+                }
             }
         }
     }
@@ -44,19 +46,14 @@ public class SoulWardRenderHandler {
                 var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
                 double soulWard = data.getSoulWard();
                 if (soulWard > 0) {
-                    float absorb = Mth.ceil(player.getAbsorptionAmount());
-                    float maxHealth = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
                     float armor = (float) player.getAttribute(Attributes.ARMOR).getValue();
 
                     int left = guiGraphics.guiWidth() / 2 - 91;
-                    int top = guiGraphics.guiHeight() - 66;
+                    int top = guiGraphics.guiHeight() - minecraft.gui.leftHeight - 2;
 
                     if (armor == 0) {
                         top += 10;
                     }
-                    int healthRows = Mth.ceil((maxHealth + absorb) / 2.0F / 10.0F);
-                    int rowHeight = Math.max(10 - (healthRows - 2), 3);
-
                     poseStack.pushPose();
                     RenderSystem.setShaderTexture(0, getSoulWardTexture());
                     RenderSystem.depthMask(true);
@@ -67,34 +64,27 @@ public class SoulWardRenderHandler {
                     shaderInstance.safeGetUniform("XFrequency").set(15f);
                     shaderInstance.safeGetUniform("Speed").set(550f);
                     shaderInstance.safeGetUniform("Intensity").set(120f);
-                    var builder = VFXBuilders.createScreen()
-                            
-                            .setShader(() -> shaderInstance);
-                    if (fadeOut > 20) {
-                        final boolean isDamaged = soulWard < player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY);
-                        builder.setAlpha((80 - fadeOut) / (isDamaged ? 10f : 60f));
-                    }
+                    var builder = VFXBuilders.createScreen().setShader(() -> shaderInstance);
 
                     int size = 13;
                     boolean forceDisplay = soulWard <= 1;
                     double soulWardAmount = forceDisplay ? 1 : Math.ceil(Math.floor(soulWard) / 3f);
                     for (int i = 0; i < soulWardAmount; i++) {
-                        int row = (int) (i / 10f);
+                        int row = Mth.floor(i / 10f);
                         int x = left + i % 10 * 8;
-                        int y = top - row * 4 + rowHeight * 2 - 15;
+                        int y = top - row * 4;
                         int progress = Math.min(3, (int) soulWard - i * 3);
                         int xTextureOffset = forceDisplay ? 31 : 1 + (3 - progress) * 15;
 
                         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(xTextureOffset / 45f, (xTextureOffset + size) / 45f, 0, 15 / 45f));
                         shaderInstance.safeGetUniform("TimeOffset").set(i * 150f);
 
-                        builder.setPositionWithWidth(x - 2, y - 2, size, size)
-                                .setUVWithWidth(xTextureOffset, 0, size, size, 45)
-                                .draw(poseStack);
-                        if (fadeOut > 0 && fadeOut < 20) {
-                            float glow = (10 - Math.abs(10 - fadeOut)) / 10f;
+                        builder.setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
+                        builder.blit(poseStack);
+                        if (glow > 0 && glow < 20) {
+                            float alpha = (10 - Math.abs(10 - glow)) / 10f;
                             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-                            builder.setAlpha(glow).draw(poseStack).setAlpha(1);
+                            builder.setAlpha(alpha).blit(poseStack).setAlpha(1);
                             RenderSystem.defaultBlendFunc();
                         }
                     }

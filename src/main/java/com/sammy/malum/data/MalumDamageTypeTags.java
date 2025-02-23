@@ -24,7 +24,7 @@ public class MalumDamageTypeTags extends DamageTypeTagsProvider {
                 .add(DamageTypeRegistry.SCYTHE_MELEE, DamageTypeRegistry.SCYTHE_SWEEP);
 
         tag(LodestoneDamageTypeTags.IS_MAGIC).add(
-                DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO,
+                DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC,
                 DamageTypeRegistry.TYRVING,
                 DamageTypeRegistry.SOULWASHING_PROPAGATION, DamageTypeRegistry.SOULWASHING_RETALIATION);
 
@@ -56,11 +56,11 @@ public class MalumDamageTypeTags extends DamageTypeTagsProvider {
 
         tag(DamageTypeTags.BYPASSES_COOLDOWN)
                 .addTag(DamageTypeTagRegistry.IS_HIDDEN_BLADE)
-                .add(DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOID)
+                .add(DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC)
                 .add(DamageTypeRegistry.SCYTHE_MAELSTROM);
         tag(DamageTypeTags.NO_KNOCKBACK)
                 .addTags(DamageTypeTagRegistry.IS_HIDDEN_BLADE, DamageTypeTagRegistry.IS_SUNDERING_ANCHOR, DamageTypeTagRegistry.IS_SOULWASHING)
-                .add(DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOID)
+                .add(DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC)
                 .add(DamageTypeRegistry.SCYTHE_MAELSTROM);
     }
 }

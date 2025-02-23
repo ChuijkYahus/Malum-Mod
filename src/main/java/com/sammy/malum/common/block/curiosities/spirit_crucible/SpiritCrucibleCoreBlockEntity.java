@@ -96,7 +96,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             compound.putInt("queuedCracks", queuedCracks);
         }
 
-        compound.put("attributes", CodecUtil.encodeNBT(ArtificeAttributeData.CODEC, attributes));
+        compound.put("attributeData", CodecUtil.encodeNBT(ArtificeAttributeData.CODEC, attributes));
         inventory.save(pRegistries, compound);
         spiritInventory.save(pRegistries, compound, "spiritInventory");
         augmentInventory.save(pRegistries, compound, "augmentInventory");
@@ -109,7 +109,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         progress = compound.getFloat("progress");
         queuedCracks = compound.getInt("queuedCracks");
 
-        attributes = CodecUtil.decodeNBT(ArtificeAttributeData.CODEC, compound.getCompound("attributes"));
+        attributes = CodecUtil.decodeNBT(ArtificeAttributeData.CODEC, compound.getCompound("attributeData"));
 
         inventory.load(pRegistries, compound);
         spiritInventory.load(pRegistries, compound, "spiritInventory");
@@ -211,9 +211,6 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                         }
                     }
                 });
-                if (progress == 0) {
-                    recalibrateAccelerators(level);
-                }
                 progress += speed;
                 if (progress >= recipe.time) {
                     craft(serverLevel);
@@ -260,10 +257,18 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                 }
             }
         }
-        progress = WarpingEngineItem.skipForward(level, worldPosition, attributes) ? recipe.time - 10 * speed : 0;
         if (coreAugmentInventory.getStackInSlot(0).getItem() instanceof SuspiciousDeviceItem) {
             SuspiciousDeviceItem.blowUp(level, getBlockPos());
         }
+        boolean skippedForward = WarpingEngineItem.skipForward(level, worldPosition, attributes);
+        if (skippedForward) {
+            progress = recipe.time - 10 * speed;
+        }
+        else {
+            SympathyDrive.completeCycle(attributes, durabilityCost);
+            progress = 0;
+        }
+
         ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createPositionedEffect(level, new PositionEffectData(worldPosition), ColorEffectData.fromSpiritIngredients(recipe.spirits));
         level.playSound(null, worldPosition, SoundRegistry.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
@@ -281,7 +286,9 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                     inventory.setStackInSlot(0, data.fracturedImpetus().value().getDefaultInstance());
                 }
             });
-            MendingDiffuserItem.repairImpetus(level, attributes, impetus);
+            if (MendingDiffuserItem.repairImpetus(level, attributes, impetus)) {
+                SympathyDrive.repairImpetus(level, attributes, impetus);
+            }
         }
         updateRecipe();
         BlockStateHelper.updateAndNotifyState(level, worldPosition);

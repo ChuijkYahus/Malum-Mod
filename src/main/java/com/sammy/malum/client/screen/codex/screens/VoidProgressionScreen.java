@@ -32,6 +32,7 @@ import java.util.List;
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;
 import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static net.minecraft.world.item.Items.ENCHANTED_BOOK;
 
 public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
@@ -222,6 +223,11 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(new TextPage("void.staves_as_foci.4"))
                 .addPage(new TextPage("void.staves_as_foci.5"))
                 .addPage(SpiritInfusionPage.fromOutput(MNEMONIC_HEX_STAFF.get()))
+                .addReference(new EntryReference(ENCHANTED_BOOK,
+                        BookEntry.build("void.staves_as_foci.enchanting")
+                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.replenishing", "void.staves_as_foci.replenishing.1"))
+                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.capacitor", "void.staves_as_foci.enchanting.capacitor.1"))
+                ))
                 .addReference(new EntryReference(RING_OF_THE_ENDLESS_WELL,
                         BookEntry.build("void.staves_as_foci.ring_of_the_endless_well")
                                 .addPage(new HeadlineTextPage("void.staves_as_foci.ring_of_the_endless_well", "void.staves_as_foci.ring_of_the_endless_well.1"))
@@ -343,17 +349,23 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
         addEntry("void.sundering_anchor", -2, 16, b -> b
                 .configureWidget(w -> w.setIcon(SUNDERING_ANCHOR).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.sundering_anchor", "void.sundering_anchor.1", SUNDERING_ANCHOR.get()))
+                .addPage(new TextPage("void.sundering_anchor.2"))
+                .addPage(new TextPage("void.sundering_anchor.3"))
                 .addPage(SpiritInfusionPage.fromOutput(SUNDERING_ANCHOR.get()))
         );
         addEntry("void.unwinding_chaos", 2, 16, b -> b
                 .configureWidget(w -> w.setIcon(UNWINDING_CHAOS).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.unwinding_chaos", "void.unwinding_chaos.1", UNWINDING_CHAOS.get()))
+                .addPage(new TextPage("void.unwinding_chaos.2"))
+                .addPage(new TextPage("void.unwinding_chaos.3"))
                 .addPage(SpiritInfusionPage.fromOutput(UNWINDING_CHAOS.get()))
         );
 
         addEntry("void.belt_of_the_limitless", -3, 17, b -> b
                 .configureWidget(w -> w.setIcon(BELT_OF_THE_LIMITLESS).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.belt_of_the_limitless", "void.belt_of_the_limitless.1", BELT_OF_THE_LIMITLESS.get()))
+                .addPage(new TextPage("void.belt_of_the_limitless.2"))
+                .addPage(new TextPage("void.belt_of_the_limitless.3"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_LIMITLESS.get()))
         );
 

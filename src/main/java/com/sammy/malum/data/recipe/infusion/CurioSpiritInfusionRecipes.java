@@ -125,7 +125,7 @@ public class CurioSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.ORNATE_NECKLACE.get(), 1, ItemRegistry.NECKLACE_OF_THE_MYSTIC_MIRROR.get(), 1)
                 .addExtraItem(ItemRegistry.RUNEWOOD_PLANKS.get(), 8)
-                .addExtraItem(ItemRegistry.SPECTRAL_OPTIC.get(), 4)
+                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 4)
                 .addExtraItem(Items.ENDER_EYE, 1)
                 .addSpirit(SACRED_SPIRIT, 24)
                 .save(recipeOutput);

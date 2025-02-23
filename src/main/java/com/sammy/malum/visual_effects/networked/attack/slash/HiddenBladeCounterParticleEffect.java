@@ -45,13 +45,13 @@ public class HiddenBladeCounterParticleEffect extends SlashAttackParticleEffect 
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                             RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset)));
-                    var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean()?ParticleRegistry.THIN_ROUNDABOUT_SLASH:ParticleRegistry.ROUNDABOUT_SLASH, colorData);
+                    var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean() ? ParticleRegistry.SLASH : ParticleRegistry.THIN_SLASH, colorData);
                     slash.getBuilder()
                             .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                             .setScaleData(GenericParticleData.create(scale).build())
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.5f)))
                             .setLifeDelay(lifeDelay)
-                            .setLifetime(2+i)
+                            .setLifetime(2 + i)
                             .setBehavior(new PointyDirectionalBehaviorComponent(direction));
                     slash.spawnParticles();
                 }

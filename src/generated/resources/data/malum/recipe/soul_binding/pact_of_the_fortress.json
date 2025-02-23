@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 4,
+      "item": "malum:refined_soulstone"
+    }
+  ],
+  "geas": "malum:pact_of_the_fortress",
+  "ingredient": {
+    "count": 12,
+    "item": "malum:soul_stained_steel_plating"
+  },
+  "spirits": [
+    {
+      "type": "arcane",
+      "count": 16
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 4
+    }
+  ]
+}

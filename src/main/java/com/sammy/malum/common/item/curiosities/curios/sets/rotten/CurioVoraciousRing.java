@@ -1,11 +1,11 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 
+import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -29,9 +29,9 @@ public class CurioVoraciousRing extends MalumCurioItem {
         consumer.accept(ComponentHelper.positiveCurioEffect("growing_gluttony"));
     }
 
-    public static void accelerateEating(LivingEntityUseItemEvent.Start event) {
-        if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-            if (event.getItem().is(GROSS_FOODS)) {
+    public static void modifyEating(LivingEntityUseItemEvent.Start event) {
+        if (event.getItem().is(GROSS_FOODS)) {
+            if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
                 event.setDuration((int) (event.getDuration() * 0.5f));
             }
         }
@@ -40,14 +40,9 @@ public class CurioVoraciousRing extends MalumCurioItem {
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
-                var gluttony = livingEntity.getEffect(MobEffectRegistry.GLUTTONY);
-                var hunger = livingEntity.getEffect(MobEffects.HUNGER);
-                if (gluttony != null) {
-                    EntityHelper.extendEffect(gluttony, livingEntity, 300, 3000);
-                }
-                if (hunger != null) {
-                    EntityHelper.shortenEffect(hunger, livingEntity, 150);
-                }
+                GluttonyEffect.applyGluttony(livingEntity, b -> b
+                        .setStackingData(300, 0)
+                        .setLimitData(3000, 0));
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }

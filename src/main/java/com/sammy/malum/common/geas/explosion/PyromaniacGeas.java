@@ -32,11 +32,10 @@ public class PyromaniacGeas extends GeasEffect {
         for (Entity entity : event.getAffectedEntities()) {
             if (entity instanceof LivingEntity livingEntity) {
                 if (explosion.damageCalculator.shouldDamageEntity(explosion, livingEntity)) {
-                    var geas = GeasEffectHandler.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
+                    var geas = GeasEffectHandler.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC);
                     if (geas != null) {
                         int pyromaniacStacks = 2;
                         if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
-                            event.getAffectedBlocks().clear();
                             pyromaniacStacks = 4;
                         }
                         final MobEffectInstance instance = livingEntity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);

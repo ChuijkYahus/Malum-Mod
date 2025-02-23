@@ -1,0 +1,27 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraIngredients": [
+    {
+      "count": 2,
+      "item": "malum:raw_brilliance"
+    }
+  ],
+  "ingredient": {
+    "count": 2,
+    "item": "malum:runewood_planks"
+  },
+  "output": {
+    "count": 1,
+    "id": "malum:brilliant_obelisk"
+  },
+  "spirits": [
+    {
+      "type": "aerial",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 8
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import io.redspace.ironsspellbooks.api.events.*;
 import io.redspace.ironsspellbooks.api.magic.*;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -46,9 +47,9 @@ public class IronsSpellsCompat {
         }
     }
 
-    public static void recoverSpellCooldowns(ServerPlayer serverPlayer, int enchantmentLevel) {
+    public static void recoverSpellCooldowns(LivingEntity mage, int enchantmentLevel) {
         if (LOADED) {
-            LoadedOnly.recoverSpellCooldowns(serverPlayer, enchantmentLevel);
+            LoadedOnly.recoverSpellCooldowns(mage, enchantmentLevel);
         }
     }
     public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {
@@ -71,6 +72,12 @@ public class IronsSpellsCompat {
     public static void addGluttonySpellPower(GluttonyEffect effect) {
         if (LOADED) {
             LoadedOnly.addGluttonySpellPower(effect);
+        }
+    }
+
+    public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
+        if (LOADED) {
+            LoadedOnly.addTrialOfFaithSpellPower(effect);
         }
     }
 
@@ -103,17 +110,19 @@ public class IronsSpellsCompat {
             }
         }
 
-        public static void generateMana(ServerPlayer collector, float amount) {
-            var magicData = MagicData.getPlayerMagicData(collector);
+        public static void generateMana(ServerPlayer mage, float amount) {
+            var magicData = MagicData.getPlayerMagicData(mage);
             magicData.addMana(amount);
             //TODO: this fucker
 //            UpdateClient.SendManaUpdate(collector, magicData);
         }
 
-        public static void recoverSpellCooldowns(ServerPlayer serverPlayer, float amount) {
-            var cooldowns = MagicData.getPlayerMagicData(serverPlayer).getPlayerCooldowns();
+        public static void recoverSpellCooldowns(LivingEntity mage, float amount) {
+            var cooldowns = MagicData.getPlayerMagicData(mage).getPlayerCooldowns();
             cooldowns.getSpellCooldowns().forEach((key, value) -> cooldowns.decrementCooldown(value, (int) (value.getSpellCooldown() * amount)));
-            cooldowns.syncToPlayer(serverPlayer);
+            if (mage instanceof ServerPlayer serverPlayer) {
+                cooldowns.syncToPlayer(serverPlayer);
+            }
         }
 
         public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {
@@ -132,7 +141,12 @@ public class IronsSpellsCompat {
         }
 
         public static void addGluttonySpellPower(GluttonyEffect effect) {
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.03f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        }
+
+        public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
+            effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {

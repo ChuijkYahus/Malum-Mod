@@ -13,11 +13,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.recipe.builder.AutonamedRecipeBuilder;
+import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import java.util.List;
 
-public class SpiritInfusionRecipeBuilder implements AutonamedRecipeBuilder<SpiritInfusionRecipe> {
+public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<SpiritInfusionRecipe> {
     private final SizedIngredient input;
     private final ItemStack output;
 
@@ -74,19 +74,13 @@ public class SpiritInfusionRecipeBuilder implements AutonamedRecipeBuilder<Spiri
         return this;
     }
 
-    @Override
-    public Item getResult() {
-        return output.getItem();
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, output.getItem());
     }
 
     @Override
-    public SpiritInfusionRecipe build(ResourceLocation resourceLocation) {
+    public SpiritInfusionRecipe buildRecipe(ResourceLocation resourceLocation) {
         return new SpiritInfusionRecipe(input, output, extraIngredients, spirits, false);
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        defaultSaveFunc(recipeOutput, MalumMod.malumPath(id.getPath()));
     }
 
     @Override

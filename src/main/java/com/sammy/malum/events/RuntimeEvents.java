@@ -6,6 +6,7 @@ import com.sammy.malum.common.effect.aura.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.geas.explosion.*;
+import com.sammy.malum.common.geas.gluttony.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
@@ -126,8 +127,9 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onPotionApplied(MobEffectEvent.Added event) {
-        RuneTwinnedDurationItem.onPotionApplied(event);
-        RuneAlimentCleansingItem.onPotionApplied(event);
+        GluttonyEffect.removeExistingHunger(event);
+        RuneTwinnedDurationItem.scaleDuration(event);
+        RuneAlimentCleansingItem.scaleDuration(event);
     }
 
     @SubscribeEvent
@@ -136,7 +138,8 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onStartUsingItem(LivingEntityUseItemEvent.Start event) {
-        CurioVoraciousRing.accelerateEating(event);
+        ProfaneAsceticGeas.modifyEating(event);
+        CurioVoraciousRing.modifyEating(event);
     }
 
     @SubscribeEvent
@@ -190,6 +193,6 @@ public class RuntimeEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
-        CloudHopperGeas.onExplosionKnockback(event);
+        CloudSkipperGeas.onExplosionKnockback(event);
     }
 }

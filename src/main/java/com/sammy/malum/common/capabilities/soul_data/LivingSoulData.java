@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.item.*;
+import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.item.*;
@@ -61,12 +62,12 @@ public class LivingSoulData {
         dirtyGeasEffects = true;
     }
 
-    public boolean hasGeasEffect(LivingEntity living, GeasEffectType type) {
+    public boolean hasGeasEffect(LivingEntity living, Holder<GeasEffectType> type) {
         return getGeasEffect(living, type) != null;
     }
 
-    public Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, GeasEffectType type) {
-        return getGeasEffects(entity).entrySet().stream().filter(e -> e.getValue().type.equals(type)).findFirst().orElse(null);
+    public Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
+        return getGeasEffects(entity).entrySet().stream().filter(e -> e.getValue().type.equals(type.value())).findFirst().orElse(null);
     }
 
     @SuppressWarnings("DataFlowIssue")

@@ -7,7 +7,6 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.worldgen.*;
 import net.minecraft.resources.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
@@ -80,8 +79,8 @@ public class MalumEnchantmentDatagen {
 
                 .withEffect(EnchantmentEffectComponents.ATTRIBUTES,
                         new EnchantmentAttributeEffect(
-                                MalumMod.malumPath("enchantment.reserve_staff_charges"),
-                                AttributeRegistry.RESERVE_STAFF_CHARGES,
+                                MalumMod.malumPath("enchantment.charge_capacity"),
+                                AttributeRegistry.CHARGE_CAPACITY,
                                 LevelBasedValue.perLevel(1F),
                                 AttributeModifier.Operation.ADD_VALUE
                         )

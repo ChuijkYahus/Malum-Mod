@@ -9,6 +9,9 @@ import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.geas.*;
+import net.minecraft.server.level.*;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -37,8 +40,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     public static final ColorParticleData AURIC_COLOR_DATA = EthericNitrateEntity.AURIC_COLOR_DATA;
 
-    public UnwindingChaosStaffItem(Tier tier, float magicDamage, float chargeDuration, LodestoneItemProperties properties) {
-        super(tier, -3.2f, magicDamage, chargeDuration, properties);
+    public UnwindingChaosStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+        super(tier, magicDamage, chargeDuration, chargeCapacity, properties);
     }
 
     @Override
@@ -55,12 +58,14 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     @Override
     public void outgoingDeathEvent(LivingDeathEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).chargeUpUnwindingChaos(2,
-                    () -> {
-                        float pitch = RandomHelper.randomBetween(attacker.level().getRandom(), 0.75f, 1.25f);
-                        SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
-                    });
+        if (!(attacker.level() instanceof ServerLevel serverLevel)) {
+            return;
+        }
+        if (!target.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).shouldDropSpirits()) {
+            return;
+        }
+        if (target.isOnFire()) {
+            addStaffCharges(serverLevel, attacker, target, 80);
         }
     }
 
@@ -69,16 +74,18 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         DamageSource source = event.getSource();
         Level level = attacker.level();
         RandomSource random = level.random;
-        if (source.is(DamageTypeTags.IS_FIRE)) {
-            attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).chargeUpUnwindingChaos(1,
-                    () -> {
-                        float pitch = RandomHelper.randomBetween(attacker.level().getRandom(), 0.75f, 1.25f);
-                        SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
-                    });
+
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
         }
+
+        if (source.is(DamageTypeTags.IS_FIRE)) {
+            addStaffCharges(serverLevel, attacker, target, 20);
+        }
+
         boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC);
         if (canTriggerMagic || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION)) {
-            target.igniteForSeconds(8);
+            target.igniteForSeconds(5);
         }
         if (canTriggerMagic) {
             for (int i = 0; i < 3; i++) {
@@ -103,21 +110,18 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         if (pct == 1f) {
             var data = livingEntity.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
-            if (data.tryEmpowerChaosVolley()) {
-                data.unwindingChaosBurnStacks--;
-                return 17;
-            }
-            return 7;
+            return 3 + data.consumeAllStaffCharges(livingEntity) * 4;
         }
         return 0;
     }
 
     @Override
     public void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, int count) {
-        int ceil =  Mth.ceil(count / 2f);
+        int ceil = Mth.ceil(count / 2f);
+        int spawnDelay = 1 + ceil * 2;
+        ceil = Mth.ceil((count%13) / 2f);
         float spread = count > 0 ? ceil * 0.1f * (count % 2L == 0 ? 1 : -1) : 0f;
         float pitchOffset = count > 4 ? 2f + (2f - ceil * 1.5f) : 0.5f;
-        int spawnDelay = 1 + ceil * 2;
         float velocity = 3f;
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
         Vec3 pos = getProjectileSpawnPos(player, hand, 0.5f, 0.5f);
@@ -131,6 +135,16 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
         entity.setDeltaMovement(entity.getDeltaMovement().add(left.scale(spread)));
         level.addFreshEntity(entity);
+    }
+
+    public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {
+        attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeCooldown(charge);
+        float pitch = RandomHelper.randomBetween(attacker.getRandom(), 0.75f, 1.25f);
+        SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
+        ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createPositionedEffect(serverLevel,
+                new PositionEffectData(target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()),
+                new ColorEffectData(getDefiningSpiritType(), getDefiningSpiritType()),
+                WyrdReconstructionReviveParticleEffect.createData(attacker));
     }
 
     @OnlyIn(Dist.CLIENT)

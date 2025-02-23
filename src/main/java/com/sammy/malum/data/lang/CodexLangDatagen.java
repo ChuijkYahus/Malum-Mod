@@ -214,6 +214,7 @@ public class CodexLangDatagen {
                 "Even more interestingly, the spirit crystals, while physically not particularly strong, appear to be utterly chemically inert, and I tried a very extensive set of reactants. Do they even have matter, in the traditional sense? And if not, what does that mean for the Umbral crystal?",
                 "I am not sure of the precise implications of these physical properties, but given the strangeness of the Umbral crystal, there is clearly more to the more mundane aspect of the arcana than I knew.");
 
+        //TODO: staff entry
         addSimpleEntryHeader("void.staves_as_foci", "Staves as Foci", "Imitating the arcana");
         addPages("void.staves_as_foci",
                 "Consideration of the properties I observed in spirit crystals led me to wonder if the structure itself was important somehow. To test this, I constructed a Mnemnosyne replica - the condensed soul memory being the closest substance I could think of - of the Wicked Arcana, precise to a scale of hundreds of thousandths of a block.",
@@ -221,6 +222,16 @@ public class CodexLangDatagen {
                 "When used in melee, staves are... adequate. I would tend to prefer a scythe, but I suppose this works well enough. They tend to focus more on magic damage than on physical damage, which admittedly can be helpful at times. But what makes them special is what happens if I " + italic("use") + " it.",
                 "This Mnemonic Hex Staff is named for its simple effect of launching balls of liquefied Wicked energy, like a witch's hex. It takes a moment to activate, and cannot be quite used consecutively, but each deals potent damage to anything they hit.",
                 "I have not found success in creating any other false Arcana this way, though that might be a matter of material. Mnemnosyne may simply resonate with Wicked through the death required to create Brilliance.");
+
+
+        //TODO: staves enchanting
+        addEntryHeader("void.staves_as_foci.enchanting", "Staves Enchanting", "The Gnomes will have you, wiresegal. They will have you. My Brain told me to write this. Copilot added the 2nd sentence there.");
+        addHeadline("void.staves_as_foci.enchanting.replenishing", "Replenishing");
+        addPages("void.staves_as_foci.replenishing",
+                "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 25% per level");
+        addHeadline("void.staves_as_foci.enchanting.capacitor", "Capacitor");
+        addPages("void.staves_as_foci.capacitor",
+                "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level.");
 
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
@@ -286,20 +297,24 @@ public class CodexLangDatagen {
         addPages("void.fused_consciousness",
                 "The Future Holds Many Secrets... But you may look at some of them early.\n Create the anomalous design by throwing an iron block into the well. Throw the complete design into the well for the fused consciousness.");
 
-        //TODO: Sundering Anchor
-        addSimpleEntryHeader("void.sundering_anchor", "Sundering Anchor", "");
+        addSimpleEntryHeader("void.sundering_anchor", "The Sundering Anchor", "What I hate, it hates in twain");
         addPages("void.sundering_anchor",
-                "Slashes Enemies Several Times with each hit. Applies Hatred each time, which forces malignant conversion and stacks up quickly. Right click for a cool ranged chain slash attack type deal");
+                "A knife which thinks, which feels, which hates. The Edge and the Weight are simple things, mere tools to use. The Anchor is more. It knows its enemy, and hates them for the crime of continuing to exist.",
+                "It slashes with me, adding magic damage which scars the soul, forcing its Hatred upon the enemy for a time, applying the revocation of progress Malignant armor does by force.",
+                "The blade also can be thrown, akin to Rebound. It will fly like an arrow, especially eager to carve into those it has marked with its Hatred, even swerving in the air to strike them. It will strike entire groups of Hated enemies, one by one, if many are nearby.");
 
-        //TODO: Unwinding Chaos
-        addSimpleEntryHeader("void.unwinding_chaos", "Unwinding Chaos", "");
+        //TODO: slight changes to account for spell charges here
+        addSimpleEntryHeader("void.unwinding_chaos", "Unwinding Chaos", "The dying truth crawls");
         addPages("void.unwinding_chaos",
-                "Blasts enemies with composite energy. Charge to fire a horizontal volley. Applies burn with damage. Burn damage or kills against burning enemies incrementally overcharge the volley, doubling projectile count.");
+                "Fused Consciousness can add thought to action, a mind to impose its own will on the world. And this staff, this destruction, oh, how the Unwinding Chaos wills it be.",
+                "It blasts enemies with some manner of esoteric effect, and can be charged for a volley. The nature of the attack is not Infernal but Eldritch, yet it burns all the same, dragging all closer to the promised end of Eldritch truth in utter entropy.",
+                "The staff drinks in the pain of the flames and the death of the burning with glee, empowering it in its fervor to fire twice the number of blasts, advancing the cycle as it so dearly desires.");
 
-        //TODO: Belt of the Limitless
-        addSimpleEntryHeader("void.belt_of_the_limitless", "Belt of the Limitless", "");
+        addSimpleEntryHeader("void.belt_of_the_limitless", "Belt of the Limitless", "Unfathomable love");
         addPages("void.belt_of_the_limitless",
-                "Doubles Soul Ward Capacity, Soul Ward now absorbs *all* damage. Soul Ward Integrity scales double as soul ward approaches disintigration. Reduces Soul Ward Recovery Speed Slightly.");
+                "Love. It is a curious thing, but the Belt of the Limitless loves without barrier, without condition. It sees you for what and who you are, and loves you despite. I cannot claim to be comfortable with that, though nor can I deny the utility.",
+                "The Belt adds its own Soul Ward to the bearer's, doubling their capacity. The overlaid effects cause the Soul Ward to absorb " + italic("all") + " damage, not merely most. Integrity increases as the Ward grows weaker, giving me a defense when I need it most.",
+                "Unfortunately, it is not wholly benefit. The harmonization of the barriers of two minds is taxing, and Soul Ward suffers in its recovery from this exhaustion. I consider the trade worthwhile.");
 
         addSimpleEntryHeader("introduction", "Introduction", "On the nature of souls");
         addPages("introduction",
@@ -389,10 +404,9 @@ public class CodexLangDatagen {
         addHeadline("esoteric_reaping.astral_weave", "Astral Weave");
         addPages("esoteric_reaping.astral_weave",
                 "The membrane of a phantom will spin into Astral Weave with this magic, a mystic cloth with strange arcane properties.");
-        //TODO: wind nucleus
         addHeadline("esoteric_reaping.wind_nucleus", "Wind Nucleus");
         addPages("esoteric_reaping.wind_nucleus",
-                "The constructed magic of the Breeze persists as the Wind Nucleus, a nodule of wind magics. It's stored energy can be quickly released to push away any nearby creature.");
+                "The strange construction of the Breeze echoes the Trials around them, and the Wind Nucleus appears to be a part of a Breeze's core bindings. In a pinch, those bindings can be released to push surrounding creatures away.");
         addHeadline("esoteric_reaping.warp_flux", "Warp Flux");
         addPages("esoteric_reaping.warp_flux",
                 "The magic that envelops the endermen coalesces into Warp Flux, a strange essence that seems to be inimical to natural law.");
@@ -517,13 +531,11 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("focus_crystals", "Creation of Crystals", "Forming irregular crystals");
         addPages("focus_crystals", "By applying differing qualities of arcana to an Alchemical Impetus, I can cause more mundane crystals to be formed.");
 
-
-        //TODO: look over this. In the future there will be an impetus tied to the blaze as well.
-        addSimpleEntryHeader("focus_elemental", "Rebirth of Remnants", "Creating construct cores");
+        addSimpleEntryHeader("focus_elemental", "Recreation of Relics", "Creating construct cores");
         addHeadline("focus_elemental.zephyr_impetus", "Zephyr Impetus");
         addPages("focus_elemental.zephyr_impetus",
-                "Wind Charges are great. By fusing my basic Impetus with a Heavy Core and fitting it with some Wind Nucleus I've created the Zephyr Impetus, which can be used to focus arcana into Wind Charges and Nucleus alike. Out of all the processes tied to spirit focusing, this one takes by far the longest.",
-                "In my earlier notes on Wind Nucleus, I noted that in some ways it is a living remainder of the Breeze's soul. Having recreated it through spirit focusing, which cannot create life nor soul, I'm able to disprove that theory. While not a soul, it is a core inscribed with protective runes, explaining the Breeze's territorial behavior.");
+                "Wind Charges are objects with fascinating implications. They are clearly created, but historians are not clear on who created them, or why. Regardless, what was created can be made again, given the right Impetus. The Heavy Core and Wind Nucleus create the Zephyr Impetus - though it is extremely slow to operate, due to the complexity.",
+                "The Wind Nucleus is a remnant of the Breeze, and, while it is analogous to a soul, it is not one. Given the fact that I needed a Wind Nucleus to recreate it, this cannot have been how the originals were created, and I do not understand the nature of their artificial existences enough to delve further.");
 
         addSimpleEntryHeader("crucible_acceleration", "Crucible Acceleration", "Heating up");
         addPages("crucible_acceleration",
@@ -536,31 +548,28 @@ public class CodexLangDatagen {
                 "The Spirit Crucible has an annoying habit of breaking the tools to work with it. While a cost is to be expected, I'd rather pay it in installments. I have designed a device I call the Repair Pylon, intended to shore items up as they break down.",
                 "The Repair Pylon requires a toll of Spirit Arcana as well as a properly suited repair material for the job. When fitted with items, the Pylon will search for a nearby damaged item in any Item Pedestal, Item Stand, or Crucible. It should be theoretically possible to repair an item with " + italic("just") + " Arcana.. but that's only theory-crafting at the moment.");
 
-        //TODO: this entry needs writing
-        // First page talks about repairing tools using the pylon in general, second page comments on the extra efficiency in which malum gear is repaired
         addSimpleEntryHeader("arcane_restoration.tool_repair", "Repairing Tools", "Mending for Steelwear");
         addPages("arcane_restoration.tool_repair",
-                "The Repair Pylon isn't just for repairing the impetus. By supplying it with a valid repair ingredient for any given tool or piece of equipment, feeding it spirits, and socketing the tool in a nearby item pedestal, the item will be repaired free of experience cost. Each repair restores 50% of the total durability",
-                "Malum gear happens to be super effective and cool when repaired, restoring 75% of lost durability instead of the standard 50%");
+                "The Repair Pylon can be used for more than just an Impetus. More mundane - or even magical - tools can be repaired without costing experience, by using spirits to fuel the restoration instead of Brilliance. This still requires material to perform the repairs, of course, and restores about half of an item's durability.",
+                "Gear made of material that resonates with spirits - created from or by them - seems to be even more effectively repaired by this. Most, if not all, of the tools and armor written of in this book will be restored by three quarters of durability, rather than half.");
         addSimpleEntryHeader("crucible_augmentation", "Crucible Augmentation", "Tuning the attuner");
         addPages("crucible_augmentation",
                 "The Spirit Crucible is a machine of great, but largely unrealized, potential. Through a process I call Augmentation, revolving around foci of Alchemical Calx, this potential can be extracted.",
                 "Each augment provides a unique effect that can be activated by inserting it in the spirit catalyzer, or placing up to four in the spirit crucible itself. Using more than one instance of the same augment type will compound their effects.",
                 "To assist in controlling this process, I have modified a Tuning Fork for the purpose. While held, I can see all the unique resonances of the crucible and it's augments. On top of that, by using this Tuning Fork on the crucible, I may choose an attribute to improve, at the cost of other attributes lessening in potency.");
 
-        //TODO: core augment entries
-        addSimpleEntryHeader("sympathy_drive", "Sympathy Drive", "");
+        addSimpleEntryHeader("sympathy_drive", "Sympathy Drive", "Harnessing hatreds");
         addPages("sympathy_drive",
-                "When the impetus takes damage, the drive remembers it. When the impetus is healed via mending diffuser, the stored charge is converted into an increase to healing received and a percentage buff to all stats lasting for the next 3 focusing cycles");
-        addSimpleEntryHeader("resonance_tuner", "Resonance Tuner", "");
+                "Wicked and Sacred are opposed forces, so why not harness them together? When a Sympathy Drive-affected Crucible's Impetus takes damage, the Wicked charge will remember. When it is healed by the Mending Diffuser, the Sacred charge will 'forgive' the damage, repairing further and improving stats generally for the next three cycles.");
+        addSimpleEntryHeader("resonance_tuner", "Resonance Tuner", "Dampening dissonance");
         addPages("resonance_tuner",
-                "For each percentage of instability, uses up 2% of your focusing speed to apply a 1% decrease to the total instability. That focusing speed reduction is actually multiplied by 0.8 as to not drain ur focusing speed completely in some situations, but it's still as effective as if not multiplied by 0.8");
-        addSimpleEntryHeader("caustic_catalyst", "Caustic Catalyst", "");
+                "Aerial and Earthen do not interact, generally, but non-interaction is useful in its own way. The Resonance Tuner dampens the interaction of forces in the Crucible, heavily decreasing or even eliminating instability by causing the process to take longer.");
+        addSimpleEntryHeader("caustic_catalyst", "Caustic Catalyst", "Inflaming instability");
         addPages("caustic_catalyst",
-                "Tuning Potency is increased proportionally to instability");
-        addSimpleEntryHeader("suspicious_device", "Suspicious Device", "");
+                "Infernal and Aqueous mix energetically, often in transformative and destructive ways. The Caustic Catalyst increases Tuning Potency the further the instability of the system rises, harnessing that bubbling backlash for greater power.");
+        addSimpleEntryHeader("suspicious_device", "Suspicious Device", "A cautionary tale");
         addPages("suspicious_device",
-                "Blows up. This entry is more of a joke, the whole item is, the author made a silly gizmo and warns anyone to not create it. The gizmo also creates blight in the area upon detonation.");
+                "Being opposed, you " + italic("can") + " use Arcane and Eldritch to create an opposition augment. However, this just causes violent entropy as Arcane flows eagerly into the end state of Eldritch, and the result is... a corruptive explosion generating Blight. This entry serves as a warning, not a recommendation.");
 
         addSimpleEntryHeader("mending_diffuser", "Mending Diffuser", "Unliving scar tissue");
         addPages("mending_diffuser",
@@ -682,21 +691,19 @@ public class CodexLangDatagen {
         addPages("necklace_of_the_narrow_edge",
                 "The sweep of the scythe is its main draw. The ability to cut my targets like so much wheat is invaluable. But that comes at the cost of damage to a single target. This necklace mystically focuses the edge of my attack, directing all of the power into one target for a strong damage boost.");
 
-        //TODO: Rising Edge now lowers cooldown instead, uses wind nucleus in recipe
         addEntryHeader("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "Ring of the Rising Edge", "An A press is an A press");
         addHeadline("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "The Rising Edge");
         addPages("necklace_of_the_narrow_edge.ring_of_the_rising_edge",
-                "The Ascension enchantment allows me to rise on blades of wind - and the opportunity for sympathetic magic there is obvious. Air begets air, and by adding a simple array to alter the airflow, I have created a modifier for Ascension, which I term the Rising Edge.",
-                "At the cost of a decrease to damage, those cut by the blades of wind under the Rising Edge’s effect will also find themselves launched upwards. Useful for crowd control and whatnot, but like the scythe itself, the Narrow Edge can change this purpose.",
+                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Ascension with an effect I name the Rising Edge.",
+                "A Wind Charge is presumably something constructed by tools, though I know not by who or how. Utilizing that connection, at the cost of a decrease to damage, those cut by Ascension's blades of wind under the Rising Edge’s effect will also find themselves launched upwards. Useful for crowd control and whatnot, but like the scythe itself, the Narrow Edge can change this purpose.",
                 "By wearing both the Necklace of the Narrow Edge and the Ring of the Rising Edge, the concentrated sweep of wind launches with vastly increased potency, allowing me to juggle my enemies above me.");
 
-        //TODO: Look through this and potentially change it.
-        addEntryHeader("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "Ring of the Howling Maelstrom", "Slicing Winds");
+        addEntryHeader("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "Ring of the Howling Maelstrom", "30% chance to flinch");
         addHeadline("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "The Howling Maelstrom");
         addPages("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom",
-                "The Rebound enchantment is an effective ranged option for the scythe, and similarly to Ascension it has close connections to Aerial Arcana. Similarly, this ring enables an added functionality to Rebound, which I term the Howling Maelstrom.",
-                "At the cost of a substantially longer cooldown, the Rebound projectile carries with itself a powerful windborne maelstrom, repeatedly damaging everything within a large radius around the scythe.",
-                "By wearing both the Necklace of the Narrow Edge and the Ring of the Howling Maelstrom, the Maelstrom is instead reserved till after the moment of impact, remaining at the striking point for about two seconds.");
+                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Rebound with an effect I name the Howling Maelstrom.",
+                "Rebound is reaping, and a Wind Charge has been reaped. By utilizing that connection, this ring causes cutting winds to spin about the scythe when thrown, damaging things around, at the cost of a longer cooldown afterwards.",
+                "By wearing both the Necklace of the Narrow Edge and the Ring of the Howling Maelstrom, I concentrate these winds to the moment the scythe strikes a foe, creating a small storm there for around two seconds.");
 
         addEntryHeader("runeworking", "Runeworking", "The central pin");
         addHeadline("runeworking", "Runeworking");
@@ -821,11 +828,13 @@ public class CodexLangDatagen {
                 "Arcana crystals emit their own strange glow. Why not tune that to be stronger? The tool I use to do this is the Lamplighter's Tongs; simply hold them in one hand and the crystal in another to create a 'mote'.",
                 "These Motes are concentrations of pure arcane energy, with a thin shell of warding magic to keep it from spilling. This has little magical implication, but the resulting lights are pretty.");
 
-        addSimpleEntryHeader("mirror_magic", "Mirror magic", "Magic Funnels");
-        addPages("mirror_magic", "The future holds many secrets..");
+        addSimpleEntryHeader("mirror_magic", "Mirror Magic", "Magic Funnels");
+        addPages("mirror_magic", "Mirror Magic in Malum will be a system centered around transporting items and spirits. It'll be split into two categories, one centered around managing spirit arcana and the other providing you with modular item funnels. You'll be able to connect your spirit jars to your altar or crucible and have it automatically resupply.",
+                "For general item transport, mirrors will create a portal-esque gravity tunnel, a leyline. This leyline will be capable of picking up and transporting items forward. Depending on what lens you create for your mirror, the leyline will acquaint different properties. In the next release, either Voodoo Magic or Mirror Magic will be added to malum.");
 
-        addSimpleEntryHeader("voodoo_magic", "Voodoo magic", "Forbidden arts");
-        addPages("voodoo_magic", "The future holds many secrets..");
+        addSimpleEntryHeader("voodoo_magic", "Voodoo Magic", "Poppet Creation");
+        addPages("voodoo_magic", "Voodoo Magic in Malum will be a system that allows you to program and command little fellas known as poppets. It'll be split into two categories, combat and utility. You can expect to be able to command a small army of combat poppets while you sit back and watch.",
+                "For utility purposes, you'll also be able to employ poppets with simple jobs such as collecting items, putting items in chests, shearing sheep, harvesting crops, that sort of thing. In the next release, either Voodoo Magic or Mirror Magic will be added to malum.");
 
         addSimpleEntryHeader("ritual_magic", "Ritual magic", "Grand Magics");
         addPages("ritual_magic", "The future holds many secrets..");
@@ -1006,13 +1015,11 @@ public class CodexLangDatagen {
         addHeadline("transmutation.deepslate", "Transmutation: Endothermic");
         addHeadline("transmutation.smooth_basalt", "Transmutation: Exothermic");
 
-        addSimpleEntryHeader("corrupted_resonance", "Corrupted Resonance", "Advanced magics");
-        addPages("corrupted_resonance", "To fuel any further magics, I will need a catalyst. Something beautiful, full of magic, serving as the basis for any complex craft born from it. Corrupted Resonance is perfect for the role.");
-
-        //TODO: Tyrving
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
-        addPages("tyrving", "The Tyrving is a sword with a strange design, making it appear as a weak weapon not suited for combat. However, it's hex ash lining and twisted rock form cause it to deal extra magic damage proportional to the complexity of the target's soul. The greater the soul the more benefit.",
-                "The weapon can also be repaired using arcane restoration quite efficiently.");
+        addPages("tyrving",
+                "My first scythes damaged the body and soul in sequence to shatter the soul. While I have moved beyond needing to do that, Tyrving is a sword built to weaponize the effect. Hex Ash and Twisted Rock create a distortion in the soul when struck, which inflicts magic damage proportional to the complexity and potency of a soul.",
+                "The distortion also 'snaps back', after a moment, causing further damage after the initial strike as the soul violently reasserts itself.",
+                "The weapon has a strange affinity with sharp volcanic glasses, allowing me to repair it with Obsidian in a Spirit Crucible instead of any more expensive material.");
 
         addSimpleEntryHeader("belt_of_the_magebane", "Belt of the Magebane", "Newfound ruin");
         addPages("belt_of_the_magebane", "The Belt of the Magebane is a simple innovation, but a dangerously effective one. Normally, after being struck by any attack, soul ward will not recover until a long moment after. That moment of downtime has proven itself detrimental far too frequently. But that ends now.",

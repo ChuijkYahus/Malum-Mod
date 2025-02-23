@@ -1,0 +1,24 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 4,
+      "item": "malum:arcane_charcoal"
+    }
+  ],
+  "geas": "malum:pact_of_the_dayblessed",
+  "ingredient": {
+    "count": 8,
+    "item": "malum:refined_soulstone"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 16
+    },
+    {
+      "type": "arcane",
+      "count": 16
+    }
+  ]
+}

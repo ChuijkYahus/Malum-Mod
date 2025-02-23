@@ -50,13 +50,11 @@ import net.minecraft.client.renderer.item.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -353,6 +351,8 @@ public class ItemRegistry {
     //endregion
 
     //region blight
+    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", NATURE_PROPERTIES(), BlightedGunkItem::new);
+    public static final DeferredHolder<Item, Item> CALCIFIED_BLIGHT = register("calcified_blight", NATURE_PROPERTIES(), (p) -> new CalcifiedBlightItem(BlockRegistry.CALCIFIED_BLIGHT.get(), p));
     public static final DeferredHolder<Item, Item> BLIGHTED_EARTH = register("blighted_earth", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.BLIGHTED_EARTH.get(), p));
     public static final DeferredHolder<Item, Item> BLIGHTED_SOIL = register("blighted_soil", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.BLIGHTED_SOIL.get(), p));
     //endregion
@@ -517,17 +517,20 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> HEX_ASH = register("hex_ash", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> LIVING_FLESH = register("living_flesh", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> ALCHEMICAL_CALX = register("alchemical_calx", DEFAULT_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> CALCIFIED_BLIGHT = register("calcified_blight", HIDDEN_PROPERTIES(), (p) -> new CalcifiedBlightItem(BlockRegistry.CALCIFIED_BLIGHT.get(), p));
-    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", DEFAULT_PROPERTIES(), BlightedGunkItem::new);
+
+    public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> CONVOLUTED_LENS = register("convoluted_lens", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> MIMICRY_RELAY = register("mimicry_relay", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> IMITATION_FLESH = register("imitation_flesh", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> IMITATION_HEART = register("imitation_heart", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> POPPET = register("poppet", HIDDEN_PROPERTIES(), Item::new);
+
     public static final DeferredHolder<Item, Item> NULL_SLATE = register("null_slate", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> VOID_SALTS = register("void_salts", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> MNEMONIC_FRAGMENT = register("mnemonic_fragment", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> AURIC_EMBERS = register("auric_embers", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> MALIGNANT_LEAD = register("malignant_lead", DEFAULT_PROPERTIES().rarity(RARE), Item::new);
 
-    public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", DEFAULT_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> SPECTRAL_OPTIC = register("spectral_optic", DEFAULT_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> POPPET = register("poppet", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> ANOMALOUS_DESIGN = register("anomalous_design", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> COMPLETE_DESIGN = register("complete_design", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> FUSED_CONSCIOUSNESS = register("fused_consciousness", DEFAULT_PROPERTIES(), (p) -> new FusedConsciousnessItem(p.rarity(RARE)));
@@ -661,8 +664,8 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, Item> TYRVING = register("tyrving", GEAR_PROPERTIES(), (p) -> new TyrvingItem(ItemTiers.TYRVING, 0, -0.3f, p));
 
-    public static final DeferredHolder<Item, Item> MNEMONIC_HEX_STAFF = register("mnemonic_hex_staff", GEAR_PROPERTIES(), (p) -> new HexStaffItem(HEX_STAFF, 5, 20, p));
-    public static final DeferredHolder<Item, Item> EROSION_SCEPTER = register("erosion_scepter", GEAR_PROPERTIES(), (p) -> new ErosionScepterItem(MALIGNANT_ALLOY, 5, 10, p));
+    public static final DeferredHolder<Item, Item> MNEMONIC_HEX_STAFF = register("mnemonic_hex_staff", GEAR_PROPERTIES(), (p) -> new HexStaffItem(HEX_STAFF, 5, 20, 2, p));
+    public static final DeferredHolder<Item, Item> EROSION_SCEPTER = register("erosion_scepter", GEAR_PROPERTIES(), (p) -> new ErosionScepterItem(MALIGNANT_ALLOY, 5, 10, 1, p));
 
     public static final DeferredHolder<Item, Item> WEIGHT_OF_WORLDS = register("weight_of_worlds", GEAR_PROPERTIES(), (p) -> new WeightOfWorldsItem(ItemTiers.MALIGNANT_ALLOY, 1, -0.2f, p));
     public static final DeferredHolder<Item, Item> EDGE_OF_DELIVERANCE = register("edge_of_deliverance", GEAR_PROPERTIES(), (p) -> new EdgeOfDeliveranceItem(ItemTiers.MALIGNANT_ALLOY, 2, -0.1f, p));
@@ -672,7 +675,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> MALIGNANT_STRONGHOLD_LEGGINGS = register("malignant_stronghold_leggings", GEAR_PROPERTIES(), (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.LEGGINGS, p));
     public static final DeferredHolder<Item, Item> MALIGNANT_STRONGHOLD_BOOTS = register("malignant_stronghold_boots", GEAR_PROPERTIES(), (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.BOOTS, p));
 
-    public static final DeferredHolder<Item, Item> UNWINDING_CHAOS = register("unwinding_chaos", GEAR_PROPERTIES().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 7, 30, p));
+    public static final DeferredHolder<Item, Item> UNWINDING_CHAOS = register("unwinding_chaos", GEAR_PROPERTIES().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 30, 3, p));
     public static final DeferredHolder<Item, Item> SUNDERING_ANCHOR = register("sundering_anchor", GEAR_PROPERTIES().rarity(EPIC), (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
 
     public static final DeferredHolder<Item, Item> GILDED_RING = register("gilded_ring", GEAR_PROPERTIES(), CurioGildedRing::new);

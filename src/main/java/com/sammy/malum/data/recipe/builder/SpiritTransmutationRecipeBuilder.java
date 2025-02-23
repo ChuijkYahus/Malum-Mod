@@ -9,11 +9,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import team.lodestar.lodestone.recipe.builder.AutonamedRecipeBuilder;
+import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import javax.annotation.Nullable;
 
-public class SpiritTransmutationRecipeBuilder implements AutonamedRecipeBuilder<SpiritTransmutationRecipe> {
+public class SpiritTransmutationRecipeBuilder implements LodestoneRecipeBuilder<SpiritTransmutationRecipe> {
     private final Ingredient ingredient;
     private final ItemStack output;
 
@@ -23,22 +23,6 @@ public class SpiritTransmutationRecipeBuilder implements AutonamedRecipeBuilder<
     public SpiritTransmutationRecipeBuilder(Ingredient input, ItemStack output) {
         ingredient = input;
         this.output = output;
-    }
-
-    public SpiritTransmutationRecipeBuilder(DeferredHolder<Item, ? extends ItemLike> input, DeferredHolder<Item, ? extends ItemLike> output) {
-        this(input.get(), output.get());
-    }
-
-    public SpiritTransmutationRecipeBuilder(Ingredient input, Item output) {
-        this(input, new ItemStack(output));
-    }
-
-    public SpiritTransmutationRecipeBuilder(ItemLike input, ItemStack output) {
-        this(Ingredient.of(input), output);
-    }
-
-    public SpiritTransmutationRecipeBuilder(ItemStack input, ItemStack output) {
-        this(Ingredient.of(input), output);
     }
 
     public SpiritTransmutationRecipeBuilder(ItemLike input, ItemLike output) {
@@ -55,23 +39,8 @@ public class SpiritTransmutationRecipeBuilder implements AutonamedRecipeBuilder<
     }
 
     @Override
-    public Item getResult() {
-        return output.getItem();
-    }
-
-    @Override
-    public SpiritTransmutationRecipe build(ResourceLocation resourceLocation) {
+    public SpiritTransmutationRecipe buildRecipe(ResourceLocation resourceLocation) {
         return new SpiritTransmutationRecipe(ingredient, output, group);
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, String recipeName) {
-        save(recipeOutput, MalumMod.malumPath("spirit_transmutation/" + recipeName));
-    }
-
-    @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation resourceLocation) {
-        defaultSaveFunc(recipeOutput, resourceLocation);
     }
 
     @Override
