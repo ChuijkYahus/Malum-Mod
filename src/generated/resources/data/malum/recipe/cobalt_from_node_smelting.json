@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/cobalt"
+      }
+    }
+  ],
+  "type": "malum:node_smelting",
+  "cookingTime": 200,
+  "experience": 0.25,
+  "group": "",
+  "ingredient": {
+    "item": "malum:cobalt_node"
+  },
+  "output": {
+    "tag": "c:ingots/cobalt"
+  },
+  "outputCount": 6
+}

@@ -578,6 +578,9 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> TIN_IMPETUS = register("tin_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_TIN_IMPETUS = register("fractured_tin_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
     public static final DeferredHolder<Item, Item> TIN_NODE = register("tin_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
+    public static final DeferredHolder<Item, CrackedImpetusItem> CRACKED_COBALT_IMPETUS = register("cracked_cobalt_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, ImpetusItem> COBALT_IMPETUS = register("cobalt_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
+    public static final DeferredHolder<Item, Item> COBALT_NODE = register("cobalt_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> ZINC_IMPETUS = register("zinc_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_ZINC_IMPETUS = register("fractured_zinc_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
