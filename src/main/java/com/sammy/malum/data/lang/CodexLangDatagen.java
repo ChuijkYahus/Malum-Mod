@@ -214,24 +214,22 @@ public class CodexLangDatagen {
                 "Even more interestingly, the spirit crystals, while physically not particularly strong, appear to be utterly chemically inert, and I tried a very extensive set of reactants. Do they even have matter, in the traditional sense? And if not, what does that mean for the Umbral crystal?",
                 "I am not sure of the precise implications of these physical properties, but given the strangeness of the Umbral crystal, there is clearly more to the more mundane aspect of the arcana than I knew.");
 
-        //TODO: staff entry
         addSimpleEntryHeader("void.staves_as_foci", "Staves as Foci", "Imitating the arcana");
         addPages("void.staves_as_foci",
                 "Consideration of the properties I observed in spirit crystals led me to wonder if the structure itself was important somehow. To test this, I constructed a Mnemnosyne replica - the condensed soul memory being the closest substance I could think of - of the Wicked Arcana, precise to a scale of hundreds of thousandths of a block.",
                 "I did not expect it to explode in my face.\n\nBut explosions are useful, if harnessed. So I did it again, but this time, I gave the false crystal a structure to operate off of - a housing of Soulwood and Soulstained Steel to direct it outwards. The resulting staff acts akin to a rite in miniature when I focus on it, though the resulting effects are different.",
                 "When used in melee, staves are... adequate. I would tend to prefer a scythe, but I suppose this works well enough. They tend to focus more on magic damage than on physical damage, which admittedly can be helpful at times. But what makes them special is what happens if I " + italic("use") + " it.",
-                "This Mnemonic Hex Staff is named for its simple effect of launching balls of liquefied Wicked energy, like a witch's hex. It takes a moment to activate, and cannot be quite used consecutively, but each deals potent damage to anything they hit.",
+                "This Mnemonic Hex Staff launches balls of liquefied Wicked, like a witch's hex. It takes a moment to activate, and seems to be limited in how much it can be used at once, but each use deals potent damage to anything they hit. The staff recharges itself from my soul, and because of this, charge will be distributed over any staves I have.",
                 "I have not found success in creating any other false Arcana this way, though that might be a matter of material. Mnemnosyne may simply resonate with Wicked through the death required to create Brilliance.");
 
 
-        //TODO: staves enchanting
-        addEntryHeader("void.staves_as_foci.enchanting", "Staves Enchanting", "The Gnomes will have you, wiresegal. They will have you. My Brain told me to write this. Copilot added the 2nd sentence there.");
+        addEntryHeader("void.staves_as_foci.enchanting", "Staff Enchanting", "Imitated efficacy");
         addHeadline("void.staves_as_foci.enchanting.replenishing", "Replenishing");
         addPages("void.staves_as_foci.replenishing",
-                "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 40% per level. Incompatible with Capacitor");
+                "A staff is a conduit of physical magic. Obviously, it can flow out, and flow in, but it is possible to do that less passively as well. When a Replenishing staff is used in melee, it will occasionally restore the staff's energy pool by about one shot's worth. Modifying the staff this way makes it unable to accept Capacitor.");
         addHeadline("void.staves_as_foci.enchanting.capacitor", "Capacitor");
-        addPages("void.staves_as_foci.enchanting.capacitor",
-                "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level. Incompatible with Replenishing");
+        addPages("void.staves_as_foci.capacitor",
+                "Spirit crystals can only hold so much power, as I have seen... but that is only true of the strange not-physical matter of the arcana. Capacitor allows the staff to accumulate more energy for the same physical space, allowing it to store about one shot more per level. Modifying the staff this way makes it unable to accept Replenishing.");
 
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
@@ -292,7 +290,7 @@ public class CodexLangDatagen {
                 "Upon activation, the necklace remains inert for a total of ten seconds, requiring rest and concentration in order to recover it's effect. Attacking at any point in this state will prolong this absence of function.",
                 "The counterattack's nature is a strange one, one I have not fully identified. It is as though the blade asserts its existence in multiple places at once, demanding reality make it so.");
 
-        //TODO: Fused Consciousness
+        //TODO: Fused Consciousness (and All/One overlay?)
         addSimpleEntryHeader("void.fused_consciousness", "Fused Consciousness", "The blueprint of everything that ever was and will be");
         addPages("void.fused_consciousness",
                 "The Future Holds Many Secrets... But you may look at some of them early.\n Create the anomalous design by throwing an iron block into the well. Throw the complete design into the well for the fused consciousness.");
@@ -303,12 +301,11 @@ public class CodexLangDatagen {
                 "It slashes with me, adding magic damage which scars the soul, forcing its Hatred upon the enemy for a time, applying the revocation of progress Malignant armor does by force.",
                 "The blade also can be thrown, akin to Rebound. It will fly like an arrow, especially eager to carve into those it has marked with its Hatred, even swerving in the air to strike them. It will strike entire groups of Hated enemies, one by one, if many are nearby.");
 
-        //TODO: slight changes to account for spell charges here
         addSimpleEntryHeader("void.unwinding_chaos", "Unwinding Chaos", "The dying truth crawls");
         addPages("void.unwinding_chaos",
                 "Fused Consciousness can add thought to action, a mind to impose its own will on the world. And this staff, this destruction, oh, how the Unwinding Chaos wills it be.",
                 "It blasts enemies with some manner of esoteric effect, and can be charged for a volley. The nature of the attack is not Infernal but Eldritch, yet it burns all the same, dragging all closer to the promised end of Eldritch truth in utter entropy.",
-                "The staff drinks in the pain of the flames and the death of the burning with glee, empowering it in its fervor to fire twice the number of blasts, advancing the cycle as it so dearly desires.");
+                "The staff drinks in the pain of the flames and the death of the burning with glee, recharging its internal pool all the faster, advancing the cycle as it so dearly desires.");
 
         addSimpleEntryHeader("void.belt_of_the_limitless", "Belt of the Limitless", "Unfathomable love");
         addPages("void.belt_of_the_limitless",
