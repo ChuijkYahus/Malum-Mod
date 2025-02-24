@@ -1,0 +1,9 @@
+{
+  "type": "farmingforblockheads:market",
+  "category": "farmingforblockheads:saplings",
+  "preset": "malum:saplings",
+  "result": {
+    "count": 1,
+    "item": "malum:runewood_sapling"
+  }
+}

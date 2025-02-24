@@ -401,13 +401,14 @@ public class MalumLang extends LanguageProvider {
         addJEEDEffectDescription(MobEffectRegistry.GRIM_CERTAINTY, "The Weight of Worlds oscillates, sealing the next strike as a critical blow.");
         addJEEDEffectDescription(MobEffectRegistry.IMMINENT_DELIVERANCE, "The Edge of Deliverance oscillates, sealing it's next strike as a critical blow.");
 
+        addTetraMaterial("malignant_pewter", "Malignant Pewter");
         addTetraMaterial("soul_stained_steel", "Soulstained Steel");
         addTetraMaterial("hallowed_gold", "Hallowed Gold");
         addTetraMaterial("runewood", "Runewood");
         addTetraMaterial("soulwood", "Soulwood");
         addTetraMaterial("tainted_rock", "Tainted Rock");
         addTetraMaterial("twisted_rock", "Twisted Rock");
-        addTetraMaterial("spirit_fabric", "Spirit Fabric");
+        addTetraMaterial("soulwoven_silk", "Soulwoven Silk");
 
         addTetraImprovement("malum.soul_strike", "Soul Strike", "The item's material allows it to strike the soul.");
 

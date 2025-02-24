@@ -1,5 +1,5 @@
 {
-  "key": "spirit_fabric",
+  "key": "soulwoven_silk",
   "category": "fabric",
   "primary": 1,
   "secondary": 1,
@@ -20,7 +20,7 @@
   ],
   "material": {
     "items": [
-      "malum:spirit_fabric"
+      "malum:soulwoven_silk"
     ]
   },
   "effects": {
