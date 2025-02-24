@@ -95,11 +95,22 @@ public class MaterialSpiritInfusionRecipes {
                 .addSpirit(EARTHEN_SPIRIT, 3)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.HAY_BLOCK, 1, ItemRegistry.POPPET.get(), 2)
-                .addSpirit(WICKED_SPIRIT, 4)
-                .addSpirit(EARTHEN_SPIRIT, 4)
-                .addExtraItem(Items.WHEAT, 2)
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 1)
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.IMITATION_FLESH.get(), 4)
+                .addExtraItem(ItemRegistry.LIVING_FLESH.get(), 8)
+                .addExtraItem(Items.NETHER_WART, 4)
+                .addExtraItem(ItemRegistry.ROTTING_ESSENCE.get(), 2)
+                .addSpirit(SACRED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.IMITATION_HEART.get(), 4)
+                .addExtraItem(ItemRegistry.HEX_ASH.get(), 8)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
+                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 2)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, ItemRegistry.ESOTERIC_SPOOL.get(), 4)

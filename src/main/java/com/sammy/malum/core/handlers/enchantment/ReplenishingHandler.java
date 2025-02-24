@@ -24,26 +24,12 @@ public class ReplenishingHandler {
             if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
                 int level = getEnchantmentLevel(attacker.level(), EnchantmentRegistry.REPLENISHING, stack);
                 if (level > 0) {
-                    float chance = (int) (0.25f * level);
+                    float chance = 0.4f * level;
                     if (attacker.getRandom().nextFloat() < chance) {
                         attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeDebt();
                     }
                 }
             }
-        }
-    }
-
-    public static void replenishStaffCooldown(AbstractStaffItem staff, Player player, int pLevel) {
-        ItemCooldowns cooldowns = player.getCooldowns();
-        int ratio = (int) (staff.getCooldownDuration(player.level(), player) * (0.25f * pLevel));
-        cooldowns.tickCount += ratio;
-        for (Map.Entry<Item, ItemCooldowns.CooldownInstance> itemCooldownInstanceEntry : cooldowns.cooldowns.entrySet()) {
-            if (itemCooldownInstanceEntry.getKey().equals(staff)) {
-                continue;
-            }
-            ItemCooldowns.CooldownInstance value = itemCooldownInstanceEntry.getValue();
-            ItemCooldowns.CooldownInstance cooldownInstance = new ItemCooldowns.CooldownInstance(value.startTime + ratio, value.endTime + ratio);
-            cooldowns.cooldowns.put(itemCooldownInstanceEntry.getKey(), cooldownInstance);
         }
     }
 }

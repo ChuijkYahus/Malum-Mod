@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:poppet"
+        "recipe": "malum:imitation_flesh"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:poppet"
+      "malum:imitation_flesh"
     ]
   }
 }

@@ -1,0 +1,39 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "malum:living_flesh"
+    },
+    {
+      "count": 2,
+      "item": "malum:rotting_essence"
+    },
+    {
+      "count": 2,
+      "tag": "c:ingots/gold"
+    }
+  ],
+  "ingredient": {
+    "count": 4,
+    "item": "malum:alchemical_calx"
+  },
+  "output": {
+    "count": 4,
+    "id": "malum:imitation_flesh"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 16
+    },
+    {
+      "type": "arcane",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 16
+    }
+  ]
+}

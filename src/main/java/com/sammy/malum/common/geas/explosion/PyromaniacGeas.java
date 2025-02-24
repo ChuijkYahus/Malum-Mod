@@ -36,7 +36,6 @@ public class PyromaniacGeas extends GeasEffect {
                     if (geas != null) {
                         int pyromaniacStacks = 2;
                         if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
-                            event.getAffectedBlocks().clear();
                             pyromaniacStacks = 4;
                         }
                         final MobEffectInstance instance = livingEntity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);

@@ -70,7 +70,7 @@ public class UnwindingChaosChargeParticleEffect extends ParticleEffectType {
                     var transparencyData = GenericParticleData.create(0.8f, 0f).build();
                     final int lifeDelay = i * 8;
                     lightSpecs.getBuilder()
-                            .setBehavior(LodestoneBehaviorComponent.SPARK)
+                            .setBehavior(new SparkBehaviorComponent(GenericParticleData.create(0.2f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build()))
                             .setTransparencyData(transparencyData)
                             .setLifeDelay(lifeDelay)
                             .setLifetime(30)

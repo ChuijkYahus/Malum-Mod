@@ -16,7 +16,7 @@ public class NightChildGeas extends NightCycleBasedGeas {
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers, boolean isNight) {
         if (isNight) {
             addAttributeModifier(modifiers, AttributeRegistry.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
-            addAttributeModifier(modifiers, AttributeRegistry.SCYTHE_PROFICIENCY, 0.2f, AttributeModifier.Operation.ADD_VALUE);
+            addAttributeModifier(modifiers, AttributeRegistry.SCYTHE_PROFICIENCY, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
             return modifiers;
         }
         addAttributeModifier(modifiers, Attributes.ATTACK_DAMAGE, -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);

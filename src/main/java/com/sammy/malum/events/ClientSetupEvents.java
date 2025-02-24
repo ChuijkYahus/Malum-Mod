@@ -55,12 +55,12 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("soul_ward"),
+        event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("soul_ward"),
                 SoulWardRenderHandler::renderSoulWard);
-        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("staff_charges"),
+        event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("staff_charges"),
                 StaffAbilityRenderHandler::renderStaffCharges);
 
-        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, MalumMod.malumPath("hidden_blade_cooldown"),
+        event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("hidden_blade_cooldown"),
                 HiddenBladeRenderHandler::renderHiddenBladeCooldown);
 
         event.registerAboveAll(MalumMod.malumPath("touch_of_darkness"),

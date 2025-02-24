@@ -7,7 +7,6 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -46,10 +45,11 @@ public class ProfaneAsceticGeas extends GeasEffect {
         return GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC);
     }
 
-    public static void slowDownEating(LivingEntityUseItemEvent.Start event) {
-        if (!event.getItem().is(GROSS_FOODS)) {
-            if (isProfaneAscetic(event.getEntity())) {
-                event.setDuration((int) (event.getDuration() * 2f));
+    public static void modifyEating(LivingEntityUseItemEvent.Start event) {
+        if (isProfaneAscetic(event.getEntity())) {
+            if (event.getItem().getFoodProperties(event.getEntity()) != null) {
+                final float multiplier = event.getItem().is(GROSS_FOODS) ? 0.66f : 2f;
+                event.setDuration((int) (event.getDuration() * multiplier));
             }
         }
     }

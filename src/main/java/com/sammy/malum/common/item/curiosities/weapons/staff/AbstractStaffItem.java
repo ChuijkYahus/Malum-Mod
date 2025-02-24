@@ -7,6 +7,7 @@ import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -72,24 +73,20 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (pPlayer.getCooldowns().isOnCooldown(itemstack.getItem())) {
-            return InteractionResultHolder.fail(itemstack);
-        } else {
-            float duration = (float) pPlayer.getAttributes().getValue(AttributeRegistry.CHARGE_DURATION);
-            if (!pPlayer.getAbilities().instabuild) {
-                var data = pPlayer.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
-                if (!data.canUseStaff(pPlayer)) {
-                    return InteractionResultHolder.fail(itemstack);
-                }
+        float duration = (float) pPlayer.getAttributes().getValue(AttributeRegistry.CHARGE_DURATION);
+        if (!pPlayer.getAbilities().instabuild) {
+            var data = pPlayer.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+            if (!data.canUseStaff(pPlayer)) {
+                return InteractionResultHolder.fail(itemstack);
             }
-            if (pLevel instanceof ServerLevel serverLevel) {
-                if (duration <= 0) {
-                    shoot(itemstack, serverLevel, pPlayer, getProjectileCount(pLevel, pPlayer, 1f));
-                }
-            }
-            pPlayer.startUsingItem(pHand);
-            return InteractionResultHolder.consume(itemstack);
         }
+        if (pLevel instanceof ServerLevel serverLevel) {
+            if (duration <= 0) {
+                shoot(itemstack, serverLevel, pPlayer, getProjectileCount(pLevel, pPlayer, 1f));
+            }
+        }
+        pPlayer.startUsingItem(pHand);
+        return InteractionResultHolder.consume(itemstack);
     }
 
     @Override
@@ -108,6 +105,9 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
             return;
         }
         int fullyCharged = useDuration - Mth.ceil(duration);
+        if (pLivingEntity instanceof Player player) {
+            player.displayClientMessage(Component.literal(pRemainingUseDuration + "/" + fullyCharged), true);
+        }
         if (pRemainingUseDuration == fullyCharged) {
             float pitch = Mth.nextFloat(pLevel.random, 1.6f, 1.8f);
             pLevel.playSound(null, pLivingEntity.blockPosition(), SoundRegistry.STAFF_CHARGED.get(), SoundSource.PLAYERS, 1.25f, pitch);

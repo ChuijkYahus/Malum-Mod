@@ -311,7 +311,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.erosive_spread", "Charges a Spread of Eroding Sub-munitions");
         add("malum.effect.erosive_silence", "Erosion Damage Silences Targets");
         add("malum.effect.unwinding_chaos_volley", "Charges a Volley of Composite Energy");
-        add("malum.effect.unwinding_chaos_burn", "Burn Damage Empowers Volley");
+        add("malum.effect.unwinding_chaos_burn", "Burn Damage Recovers Charges");
         add("malum.effect.sundering_anchor_damage_split", "Damage is Split Between Several Cuts");
         add("malum.effect.sundering_anchor_hatred", "Each Cut Applies Hatred");
 

@@ -23,7 +23,6 @@ public class PacketRegistry {
         final PayloadRegistrar registrar = event.registrar("1");
 
         MALUM_CHANNEL.playToClient(registrar, "void_rejection", VoidRejectionPayload.class, VoidRejectionPayload::new);
-        MALUM_CHANNEL.playToClient(registrar, "sync_staff_cooldown_changes", ReplenishingCooldownUpdatePayload.class, ReplenishingCooldownUpdatePayload::new);
         MALUM_CHANNEL.playToClient(registrar, "particle_effect", ParticleEffectPacket.class, ParticleEffectPacket::new);
         MALUM_CHANNEL.playToClient(registrar, "block_sparkle_particle", BlockSparkleParticlePacket.class, BlockSparkleParticlePacket::new);
         MALUM_CHANNEL.playToClient(registrar, "spirit_diode_update", SpiritDiodeUpdatePayload.class, SpiritDiodeUpdatePayload::new);
