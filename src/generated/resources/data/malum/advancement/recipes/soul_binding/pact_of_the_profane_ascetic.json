@@ -1,18 +1,9 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:nuggets/cobalt"
-      }
-    }
-  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:cobalt_from_node_smelting"
+        "recipe": "malum:pact_of_the_profane_ascetic"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:cobalt_from_node_smelting"
+      "malum:pact_of_the_profane_ascetic"
     ]
   }
 }

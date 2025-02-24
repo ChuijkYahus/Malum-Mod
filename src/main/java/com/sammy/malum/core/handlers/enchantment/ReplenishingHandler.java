@@ -25,8 +25,11 @@ public class ReplenishingHandler {
                 int level = getEnchantmentLevel(attacker.level(), EnchantmentRegistry.REPLENISHING, stack);
                 if (level > 0) {
                     float chance = 0.4f * level;
-                    if (attacker.getRandom().nextFloat() < chance) {
-                        attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeDebt();
+                    while (chance > 0) {
+                        if (chance >= 1 || attacker.getRandom().nextFloat() < chance) {
+                            attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeDebt(attacker);
+                        }
+                        chance--;
                     }
                 }
             }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:impetus_creation_cobalt"
+        "recipe": "malum:pact_of_the_profane_glutton"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:impetus_creation_cobalt"
+      "malum:pact_of_the_profane_glutton"
     ]
   }
 }

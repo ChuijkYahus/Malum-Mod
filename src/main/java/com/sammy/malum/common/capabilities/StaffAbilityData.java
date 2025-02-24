@@ -8,8 +8,11 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import team.lodestar.lodestone.helpers.SoundHelper;
 
 public class StaffAbilityData {
+
+    public static final int RECHARGE_TIME = 80;
 
     public static Codec<StaffAbilityData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
             Codec.INT.fieldOf("staffCharge").forGetter(c -> c.staffChargeDebt),
@@ -33,7 +36,7 @@ public class StaffAbilityData {
 
     public void tickData(LivingEntity livingEntity) {
         if (staffChargeDebt > 0) {
-            reduceStaffChargeCooldown(1);
+            reduceStaffChargeCooldown(livingEntity, 1);
         }
     }
 
@@ -58,20 +61,24 @@ public class StaffAbilityData {
         int existingDebt = staffChargeDebt;
         staffChargeDebt = getStaffChargeLimit(livingEntity);
         setDirty(true);
-        return (staffChargeDebt - existingDebt) / 3;
+        return Mth.floor((staffChargeDebt - existingDebt) / 3f);
     }
 
-    public void reduceStaffChargeCooldown(int staffChargeProgress) {
+
+    public void reduceStaffChargeCooldown(LivingEntity livingEntity, int staffChargeProgress) {
         this.staffChargeDebtCooldown -= staffChargeProgress;
         if (staffChargeDebtCooldown <= 0) {
-            reduceStaffChargeDebt();
-            staffChargeDebtCooldown = 80;
+            reduceStaffChargeDebt(livingEntity);
+            staffChargeDebtCooldown += RECHARGE_TIME;
         }
     }
 
-    public void reduceStaffChargeDebt() {
+    public void reduceStaffChargeDebt(LivingEntity livingEntity) {
         if (staffChargeDebt > 0) {
             staffChargeDebt--;
+            double pitchOffset = 1.5f - (Mth.ceil(staffChargeDebt) % 3) * 0.25f;
+            var soundType = staffChargeDebt % 3 == 0 ? SoundRegistry.SPELL_CHARGE_FULL : SoundRegistry.SPELL_CHARGE_GROW;
+            SoundHelper.playSound(livingEntity, soundType.get(), 0.75f, (float) (1f + pitchOffset));
             setDirty(true);
         }
     }

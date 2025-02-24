@@ -28,6 +28,7 @@ public class MalumDataMaps extends DataMapProvider {
                 .add(ItemRegistry.ALUMINUM_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_ALUMINUM_IMPETUS), false)
                 .add(ItemRegistry.NICKEL_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_NICKEL_IMPETUS), false)
                 .add(ItemRegistry.URANIUM_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_URANIUM_IMPETUS), false)
+                .add(ItemRegistry.COBALT_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_COBALT_IMPETUS), false)
                 .add(ItemRegistry.OSMIUM_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_OSMIUM_IMPETUS), false)
                 .add(ItemRegistry.ZINC_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_ZINC_IMPETUS), false)
                 .add(ItemRegistry.TIN_IMPETUS, new ImpetusData(ItemRegistry.FRACTURED_TIN_IMPETUS), false);

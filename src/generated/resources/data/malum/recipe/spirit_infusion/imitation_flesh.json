@@ -6,12 +6,12 @@
       "item": "malum:living_flesh"
     },
     {
-      "count": 2,
-      "item": "malum:rotting_essence"
+      "count": 4,
+      "item": "minecraft:nether_wart"
     },
     {
       "count": 2,
-      "tag": "c:ingots/gold"
+      "item": "malum:rotting_essence"
     }
   ],
   "ingredient": {
