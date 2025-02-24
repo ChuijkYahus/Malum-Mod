@@ -102,11 +102,6 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     @Override
-    public int getCooldownDuration(Level level, LivingEntity livingEntity) {
-        return 160;
-    }
-
-    @Override
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         if (pct == 1f) {
             var data = livingEntity.getData(AttachmentTypeRegistry.STAFF_ABILITIES);

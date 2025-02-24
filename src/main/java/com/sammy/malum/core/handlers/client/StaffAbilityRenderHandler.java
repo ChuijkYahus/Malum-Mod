@@ -47,7 +47,6 @@ public class StaffAbilityRenderHandler {
                 var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
                 double staffCharges = data.getAvailableStaffCharges(player);
                 if (staffCharges > 0) {
-
                     int left = guiGraphics.guiWidth() / 2 + 9;
                     int top = guiGraphics.guiHeight() - minecraft.gui.rightHeight - 2;
                     int offset = Mth.floor(staffCharges / 30f) * 8;

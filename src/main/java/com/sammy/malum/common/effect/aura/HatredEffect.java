@@ -6,10 +6,10 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import team.lodestar.lodestone.helpers.*;
 
-public class ChaosCurseEffect extends MobEffect {
-    public ChaosCurseEffect() {
+public class HatredEffect extends MobEffect {
+    public HatredEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.INFERNAL_SPIRIT.getPrimaryColor()));
-        var id = MalumMod.malumPath("chaos_curse");
+        var id = MalumMod.malumPath("hatred");
         addAttributeModifier(AttributeRegistry.MALIGNANT_CONVERSION, id, 0.02f, AttributeModifier.Operation.ADD_VALUE);
     }
 

@@ -8,6 +8,7 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
 import team.lodestar.lodestone.helpers.SoundHelper;
 
 public class StaffAbilityData {
@@ -52,16 +53,16 @@ public class StaffAbilityData {
         return getAvailableStaffCharges(livingEntity) >= 3;
     }
 
-    public void consumeStaffCharge() {
-        staffChargeDebt += 3;
+    public void consumeStaffCharge(LivingEntity livingEntity) {
+        staffChargeDebt = Math.min(staffChargeDebt+3, getStaffChargeLimit(livingEntity));
         setDirty(true);
     }
 
     public int consumeAllStaffCharges(LivingEntity livingEntity) {
-        int existingDebt = staffChargeDebt;
-        staffChargeDebt = getStaffChargeLimit(livingEntity);
+        int toll = Mth.floor((getAvailableStaffCharges(livingEntity)) / 3f);
+        staffChargeDebt = staffChargeDebt + toll * 3 - 3;
         setDirty(true);
-        return Mth.floor((staffChargeDebt - existingDebt) / 3f);
+        return toll;
     }
 
 
@@ -76,9 +77,11 @@ public class StaffAbilityData {
     public void reduceStaffChargeDebt(LivingEntity livingEntity) {
         if (staffChargeDebt > 0) {
             staffChargeDebt--;
-            double pitchOffset = 1.5f - (Mth.ceil(staffChargeDebt) % 3) * 0.25f;
-            var soundType = staffChargeDebt % 3 == 0 ? SoundRegistry.SPELL_CHARGE_FULL : SoundRegistry.SPELL_CHARGE_GROW;
-            SoundHelper.playSound(livingEntity, soundType.get(), 0.75f, (float) (1f + pitchOffset));
+            if (!(livingEntity instanceof Player player) || !player.isCreative()) {
+                double pitchOffset = 1.5f - (Mth.ceil(staffChargeDebt) % 3) * 0.25f;
+                var soundType = staffChargeDebt % 3 == 0 ? SoundRegistry.SPELL_CHARGE_FULL : SoundRegistry.SPELL_CHARGE_GROW;
+                SoundHelper.playSound(livingEntity, soundType.get(), 0.75f, (float) (1f + pitchOffset));
+            }
             setDirty(true);
         }
     }
@@ -92,7 +95,7 @@ public class StaffAbilityData {
     }
 
     public static int getStaffChargeLimit(LivingEntity livingEntity) {
-        return Mth.floor(livingEntity.getAttribute(AttributeRegistry.CHARGE_CAPACITY).getValue() * 3);
+        return Mth.floor(livingEntity.getAttribute(AttributeRegistry.CHARGE_CAPACITY).getValue()) * 3;
     }
 
     public static float getStaffChargeCooldown(LivingEntity living) {

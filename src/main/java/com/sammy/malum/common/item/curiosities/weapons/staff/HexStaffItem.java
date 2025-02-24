@@ -63,11 +63,6 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
     }
 
     @Override
-    public int getCooldownDuration(Level level, LivingEntity livingEntity) {
-        return 80;
-    }
-
-    @Override
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         return pct == 1f ? 3 : 0;
     }

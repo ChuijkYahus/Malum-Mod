@@ -228,10 +228,10 @@ public class CodexLangDatagen {
         addEntryHeader("void.staves_as_foci.enchanting", "Staves Enchanting", "The Gnomes will have you, wiresegal. They will have you. My Brain told me to write this. Copilot added the 2nd sentence there.");
         addHeadline("void.staves_as_foci.enchanting.replenishing", "Replenishing");
         addPages("void.staves_as_foci.replenishing",
-                "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 25% per level");
+                "Replenishing is an enchantment that adds a chance to restore a spell charge when dealing melee damage with the staff. 40% per level. Incompatible with Capacitor");
         addHeadline("void.staves_as_foci.enchanting.capacitor", "Capacitor");
-        addPages("void.staves_as_foci.capacitor",
-                "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level.");
+        addPages("void.staves_as_foci.enchanting.capacitor",
+                "Capacitor increases the maximum number of spell charges a staff can hold by 1 per level. Incompatible with Replenishing");
 
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",

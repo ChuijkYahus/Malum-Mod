@@ -53,7 +53,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
         event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_damage_split"));
-        event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_chaos_hatred"));
+        event.addTooltipLines(ComponentHelper.positiveEffect("sundering_anchor_hatred"));
     }
 
     @Override
@@ -130,7 +130,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         DamageSource source = event.getSource();
         Level level = attacker.level();
         RandomSource random = level.random;
-        var chaosCurse = MobEffectRegistry.CHAOS_CURSE;
+        var chaosCurse = MobEffectRegistry.HATRED;
         var effect = target.getEffect(chaosCurse);
         if (effect == null) {
             target.addEffect(new MobEffectInstance(chaosCurse, 120, 0, true, true, true));

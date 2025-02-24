@@ -69,12 +69,6 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
 
 
-
-    @Override
-    public int getCooldownDuration(Level level, LivingEntity livingEntity) {
-        return 80;
-    }
-
     @Override
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         return pct == 1f ? 2 : 0;
