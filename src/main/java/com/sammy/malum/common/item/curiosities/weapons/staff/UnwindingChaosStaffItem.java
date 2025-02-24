@@ -65,7 +65,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
             return;
         }
         if (target.isOnFire()) {
-            addStaffCharges(serverLevel, attacker, target, 80);
+            addStaffCharges(serverLevel, attacker, target, 160);
         }
     }
 
@@ -80,7 +80,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         }
 
         if (source.is(DamageTypeTags.IS_FIRE)) {
-            addStaffCharges(serverLevel, attacker, target, 20);
+            addStaffCharges(serverLevel, attacker, target, 40);
         }
 
         boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC);
@@ -119,7 +119,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     public void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, int count) {
         int ceil = Mth.ceil(count / 2f);
         int spawnDelay = 1 + ceil * 2;
-        ceil = Mth.ceil((count%13) / 2f);
+        ceil = ceil % 7;
         float spread = count > 0 ? ceil * 0.1f * (count % 2L == 0 ? 1 : -1) : 0f;
         float pitchOffset = count > 4 ? 2f + (2f - ceil * 1.5f) : 0.5f;
         float velocity = 3f;
@@ -138,7 +138,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {
-        attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeCooldown(charge);
+        attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
         float pitch = RandomHelper.randomBetween(attacker.getRandom(), 0.75f, 1.25f);
         SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
         ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createPositionedEffect(serverLevel,

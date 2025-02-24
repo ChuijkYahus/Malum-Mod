@@ -6,6 +6,9 @@
     "malum:aluminum_impetus": {
       "fractured_impetus": "malum:fractured_aluminum_impetus"
     },
+    "malum:cobalt_impetus": {
+      "fractured_impetus": "malum:fractured_cobalt_impetus"
+    },
     "malum:copper_impetus": {
       "fractured_impetus": "malum:fractured_copper_impetus"
     },

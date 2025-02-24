@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:ingots/cobalt"
+        "tag": "c:nuggets/cobalt"
       }
     }
   ],
@@ -16,7 +16,7 @@
     "item": "malum:cobalt_node"
   },
   "output": {
-    "tag": "c:ingots/cobalt"
+    "tag": "c:nuggets/cobalt"
   },
   "outputCount": 6
 }

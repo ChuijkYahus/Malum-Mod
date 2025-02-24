@@ -4,7 +4,7 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
-        "tag": "c:nuggets/cobalt"
+        "tag": "c:ingots/cobalt"
       }
     }
   ],
@@ -12,7 +12,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:cobalt_from_node_smelting"
+        "recipe": "malum:cobalt_impetus"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:cobalt_from_node_smelting"
+      "malum:cobalt_impetus"
     ]
   }
 }

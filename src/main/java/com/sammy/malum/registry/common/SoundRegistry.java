@@ -71,6 +71,9 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_charged")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_DEPLETE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_depleted")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_grow")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_FULL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_full")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SCYTHE_SWEEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scythe_sweeps")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SCYTHE_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scythe_cuts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> EDGE_OF_DELIVERANCE_SWEEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("edge_of_deliverance_sweeps")));

@@ -106,10 +106,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         nodeSmelting(output, ItemRegistry.ALUMINUM_NODE, NUGGETS_ALUMINUM);
         nodeSmelting(output, ItemRegistry.NICKEL_NODE, NUGGETS_NICKEL);
         nodeSmelting(output, ItemRegistry.URANIUM_NODE, NUGGETS_URANIUM);
+        nodeSmelting(output, ItemRegistry.COBALT_NODE, NUGGETS_COBALT);
         nodeSmelting(output, ItemRegistry.OSMIUM_NODE, NUGGETS_OSMIUM);
         nodeSmelting(output, ItemRegistry.ZINC_NODE, NUGGETS_ZINC);
         nodeSmelting(output, ItemRegistry.TIN_NODE, NUGGETS_TIN);
-        nodeSmelting(output, ItemRegistry.COBALT_NODE, ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/cobalt"))); //TODO: Move this tag to lodestone side.
         //TOOLS
         shaped(RecipeCategory.MISC, ItemRegistry.SOUL_STAINED_STEEL_HOE.get()).define('#', Tags.Items.RODS_WOODEN).define('X', ItemRegistry.SOUL_STAINED_STEEL_INGOT.get()).pattern("XX").pattern(" #").pattern(" #").unlockedBy("has_soul_stained_steel", has(ItemRegistry.SOUL_STAINED_STEEL_INGOT.get())).save(output);
         shaped(RecipeCategory.MISC, ItemRegistry.SOUL_STAINED_STEEL_PICKAXE.get()).define('#', Tags.Items.RODS_WOODEN).define('X', ItemRegistry.SOUL_STAINED_STEEL_INGOT.get()).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy("has_soul_stained_steel", has(ItemRegistry.SOUL_STAINED_STEEL_INGOT.get())).save(output);

@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "malum:imitation_flesh"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "geas": "malum:pact_of_the_profane_ascetic",
+  "ingredient": {
+    "count": 16,
+    "item": "malum:rotting_essence"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
+    }
+  ]
+}

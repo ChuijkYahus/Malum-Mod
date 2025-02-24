@@ -1566,6 +1566,24 @@
     ],
     "subtitle": "malum.subtitle.soulwood_trapdoor_open"
   },
+  "spell_charge_full": {
+    "sounds": [
+      "malum:curiosities/spell_charge/charge_full1",
+      "malum:curiosities/spell_charge/charge_full2",
+      "malum:curiosities/spell_charge/charge_full3",
+      "malum:curiosities/spell_charge/charge_full4"
+    ],
+    "subtitle": "malum.subtitle.spell_charge_full"
+  },
+  "spell_charge_grow": {
+    "sounds": [
+      "malum:curiosities/spell_charge/charge1",
+      "malum:curiosities/spell_charge/charge2",
+      "malum:curiosities/spell_charge/charge3",
+      "malum:curiosities/spell_charge/charge4"
+    ],
+    "subtitle": "malum.subtitle.spell_charge_grow"
+  },
   "spirit_altar_absorbs_item": {
     "sounds": [
       "malum:altar/altar_consume1",

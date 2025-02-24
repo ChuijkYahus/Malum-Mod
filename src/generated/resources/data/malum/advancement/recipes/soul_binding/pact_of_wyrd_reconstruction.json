@@ -1,18 +1,9 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:ingots/cobalt"
-      }
-    }
-  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:node_focusing_ingots/cobalt"
+        "recipe": "malum:pact_of_wyrd_reconstruction"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:node_focusing_ingots/cobalt"
+      "malum:pact_of_wyrd_reconstruction"
     ]
   }
 }

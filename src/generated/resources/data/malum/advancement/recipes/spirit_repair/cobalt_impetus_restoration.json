@@ -1,13 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:tag_empty",
-        "tag": "c:ingots/cobalt"
-      }
-    }
-  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_crucible": {
@@ -22,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:cobalt_from_node_blasting"
+        "recipe": "malum:cobalt_impetus_restoration"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -35,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:cobalt_from_node_blasting"
+      "malum:cobalt_impetus_restoration"
     ]
   }
 }

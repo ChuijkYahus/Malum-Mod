@@ -80,6 +80,7 @@ public class MalumSpiritFocusingRecipes implements IConditionBuilder {
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.ALUMINUM_IMPETUS, ItemRegistry.ALUMINUM_NODE, NUGGETS_ALUMINUM);
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.NICKEL_IMPETUS, ItemRegistry.NICKEL_NODE, NUGGETS_NICKEL);
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.URANIUM_IMPETUS, ItemRegistry.URANIUM_NODE, NUGGETS_URANIUM);
+        addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.COBALT_IMPETUS, ItemRegistry.COBALT_NODE, NUGGETS_COBALT);
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.OSMIUM_IMPETUS, ItemRegistry.OSMIUM_NODE, NUGGETS_OSMIUM);
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.ZINC_IMPETUS, ItemRegistry.ZINC_NODE, NUGGETS_ZINC);
         addImpetusRecipes(recipeOutput, metalDuration, ItemRegistry.TIN_IMPETUS, ItemRegistry.TIN_NODE, NUGGETS_TIN);

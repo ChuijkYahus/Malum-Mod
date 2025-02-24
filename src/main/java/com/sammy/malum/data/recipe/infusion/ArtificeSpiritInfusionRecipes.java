@@ -206,6 +206,7 @@ public class ArtificeSpiritInfusionRecipes {
         metalImpetusRecipe(recipeOutput, ItemRegistry.ALUMINUM_IMPETUS, INGOTS_ALUMINUM);
         metalImpetusRecipe(recipeOutput, ItemRegistry.NICKEL_IMPETUS, INGOTS_NICKEL);
         metalImpetusRecipe(recipeOutput, ItemRegistry.URANIUM_IMPETUS, INGOTS_URANIUM);
+        metalImpetusRecipe(recipeOutput, ItemRegistry.COBALT_IMPETUS, INGOTS_COBALT);
         metalImpetusRecipe(recipeOutput, ItemRegistry.OSMIUM_IMPETUS, INGOTS_OSMIUM);
         metalImpetusRecipe(recipeOutput, ItemRegistry.ZINC_IMPETUS, INGOTS_ZINC);
         metalImpetusRecipe(recipeOutput, ItemRegistry.TIN_IMPETUS, INGOTS_TIN);

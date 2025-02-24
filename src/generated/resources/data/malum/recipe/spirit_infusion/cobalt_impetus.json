@@ -1,4 +1,13 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/cobalt"
+      }
+    }
+  ],
   "type": "malum:spirit_infusion",
   "extraIngredients": [
     {
@@ -29,6 +38,10 @@
     },
     {
       "type": "infernal",
+      "count": 8
+    },
+    {
+      "type": "aqueous",
       "count": 8
     }
   ]
