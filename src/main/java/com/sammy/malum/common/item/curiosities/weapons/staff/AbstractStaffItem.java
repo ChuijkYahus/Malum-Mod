@@ -45,8 +45,6 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
     @OnlyIn(Dist.CLIENT)
     public abstract void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float chargePercentage);
 
-    public abstract int getCooldownDuration(Level level, LivingEntity livingEntity);
-
     public abstract int getProjectileCount(Level level, LivingEntity livingEntity, float chargePercentage);
 
     public abstract void fireProjectile(LivingEntity player, ItemStack stack, Level level, InteractionHand hand, int count);
@@ -162,7 +160,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
             if (!player.getAbilities().instabuild) {
                 stack.hurtAndBreak(2, player, EquipmentSlot.MAINHAND);
                 var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
-                data.consumeStaffCharge();
+                data.consumeStaffCharge(player);
             }
             player.swing(hand, true);
         }
