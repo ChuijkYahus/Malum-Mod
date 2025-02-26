@@ -20,14 +20,14 @@ public class ReboundHandler {
     public static void throwScythe(Level level, Player player, InteractionHand hand, ItemStack scythe) {
         int slot = hand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
         if (player instanceof ServerPlayer serverPlayer) {
-            boolean isNarrow = MalumScytheItem.isNarrow(player);
+            boolean isEnhanced = MalumScytheItem.isEnhanced(player);
             boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, ItemRegistry.RING_OF_THE_HOWLING_MAELSTROM.get());
             float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
-            float velocity = (isNarrow ? 3f : 1.75f);
+            float velocity = (isEnhanced ? 3f : 1.75f);
 
             var position = player.position().add(0, player.getBbHeight() * 0.5f, 0);
-            if (isNarrow) {
+            if (isEnhanced) {
                 int angle = hand == InteractionHand.MAIN_HAND ? 225 : 90;
                 double radians = Math.toRadians(angle - player.yHeadRot);
                 position = player.position().add(player.getLookAngle().scale(0.5f)).add(0.75f * Math.sin(radians), player.getBbHeight() * 0.9f, 0.75f * Math.cos(radians));
@@ -38,7 +38,7 @@ public class ReboundHandler {
 
             entity.setData(player, baseDamage, magicDamage, slot, 8);
             entity.setItem(scythe);
-            entity.setNarrow(isNarrow);
+            entity.setNarrow(isEnhanced);
             entity.setMaelstrom(isMaelstrom);
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velocity, 0F);
             level.addFreshEntity(entity);

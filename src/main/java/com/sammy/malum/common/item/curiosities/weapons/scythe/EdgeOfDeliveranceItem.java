@@ -52,7 +52,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
             if (target.hasEffect(effect)) {
                 triggerMalignantCrit(event.getContainer(), attacker, target);
                 var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT);
-                if (isNarrow(attacker)) {
+                if (!canSweep(attacker)) {
                     particle.setVertical();
                 }
                 particle.spawnTargetBoundSlashingParticle(attacker, target);

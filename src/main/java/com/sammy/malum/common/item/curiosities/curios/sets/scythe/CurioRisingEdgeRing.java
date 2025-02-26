@@ -1,24 +1,15 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.scythe;
 
-import com.google.common.collect.*;
-import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import team.lodestar.lodestone.helpers.*;
-import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -40,7 +31,7 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
 
     public static void launchEntity(LivingEntity attacker, LivingEntity target) {
         float velocity = 0.5f;
-        if (MalumScytheItem.isNarrow(attacker)) {
+        if (MalumScytheItem.isEnhanced(attacker)) {
             velocity += 0.3f;
         }
         attacker.level().explode(

@@ -345,13 +345,13 @@ public class MalumLang extends LanguageProvider {
         add("malum.jei.weeping_well", "The Weeping Well");
         add("malum.jei.spirit_transmutation", "The Unchained Rite");
 
-        add("itemGroup.malum_basis_of_magic", "Malum: Basis of Magic");
-        add("itemGroup.malum_arcane_construct", "Malum: Arcane Construct");
-        add("itemGroup.malum_natural_wonders", "Malum: Born from Arcana");
-        add("itemGroup.malum_metallurgic_magics", "Malum: Metallurgic Magics");
-        add("itemGroup.malum_geas", "Malum: Bleghhh:P x3");
+        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles and Madness");
+        add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
+        add("itemGroup.malum_natural_wonders", "Malum: Intertwined With Nature");
+        add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
+        add("itemGroup.malum_geas", "Malum: Sworn Oaths");
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
-        add("itemGroup.malum_cosmetics", "Malum: Self Expression");
+        add("itemGroup.malum_cosmetics", "Malum: Expression of One's True Self");
 
         addDeathMessage(DamageTypeRegistry.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");

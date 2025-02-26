@@ -63,23 +63,22 @@ public class ArcanaCodexHelper {
                 .setColor(0, 0, 0)
                 .setAlpha(overlayAlpha)
                 .setZLevel(200)
-                .setPosColorDefaultFormat()
                 .setShader(GameRenderer::getPositionColorShader)
-                .draw(stack);
+                .blit(stack);
 
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) ShaderRegistry.TOUCH_OF_DARKNESS.getInstance().get();
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
-        builder.setPosColorDefaultFormat().setAlpha(effectAlpha).setShader(shaderInstance);
+        builder.setAlpha(effectAlpha).setShader(shaderInstance);
 
         setZoom.accept(zoom);
         setIntensity.accept(intensity);
-        builder.draw(stack);
+        builder.blit(stack);
 
         setZoom.accept(zoom * 1.25f + 0.15f);
         setIntensity.accept(intensity * 0.8f + 0.5f);
-        builder.draw(stack);
+        builder.blit(stack);
 
         shaderInstance.setUniformDefaults();
         RenderSystem.disableDepthTest();
@@ -536,7 +535,7 @@ public class ArcanaCodexHelper {
         var minecraft = Minecraft.getInstance();
         var font = minecraft.font;
         float guiScale = (float) minecraft.getWindow().getGuiScale();
-        float inverseScale = (4 - guiScale) * 4;
+        float inverseScale = (4 / guiScale) * 4;
 
         int screenWidth = minecraft.getWindow().getScreenWidth();
         int screenHeight = minecraft.getWindow().getScreenHeight();
