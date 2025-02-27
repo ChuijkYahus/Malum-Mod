@@ -225,7 +225,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(SpiritInfusionPage.fromOutput(MNEMONIC_HEX_STAFF.get()))
                 .addReference(new EntryReference(ENCHANTED_BOOK,
                         BookEntry.build("void.staves_as_foci.enchanting")
-                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.replenishing", "void.staves_as_foci.replenishing.1"))
+                                .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.replenishing", "void.staves_as_foci.enchanting.replenishing.1"))
                                 .addPage(new HeadlineTextPage("void.staves_as_foci.enchanting.capacitor", "void.staves_as_foci.enchanting.capacitor.1"))
                 ))
                 .addReference(new EntryReference(RING_OF_THE_ENDLESS_WELL,

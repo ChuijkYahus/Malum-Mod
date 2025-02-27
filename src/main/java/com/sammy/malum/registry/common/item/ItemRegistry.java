@@ -726,7 +726,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> RUNE_OF_DEXTERITY = register("rune_of_dexterity", GEAR_PROPERTIES(), RuneDexterityItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_ALIMENT_CLEANSING = register("rune_of_aliment_cleansing", GEAR_PROPERTIES(), RuneAlimentCleansingItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_REACTIVE_SHIELDING = register("rune_of_reactive_shielding", GEAR_PROPERTIES(), RuneReactiveShieldingItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_FERVOR = register("rune_of_fervor", GEAR_PROPERTIES(), RuneFervorItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_FERVOR = register("rune_of_fervor", GEAR_PROPERTIES(), RuneScorchingItem::new);
 
     public static final DeferredHolder<Item, Item> RUNE_OF_MOTION = register("rune_of_motion", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, SpiritRiteRegistry.AERIAL_RITE, false));
     public static final DeferredHolder<Item, Item> RUNE_OF_LOYALTY = register("rune_of_loyalty", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, SpiritRiteRegistry.AQUEOUS_RITE, false));

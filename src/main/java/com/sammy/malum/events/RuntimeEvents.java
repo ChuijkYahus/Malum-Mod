@@ -104,7 +104,6 @@ public class RuntimeEvents {
     public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
         InfernalAura.increaseDigSpeed(event);
         PyromaniacEffect.increaseDigSpeed(event);
-        RuneFervorItem.increaseDigSpeed(event);
     }
 
     @SubscribeEvent

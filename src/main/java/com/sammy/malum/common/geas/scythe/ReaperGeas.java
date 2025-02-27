@@ -57,7 +57,7 @@ public class ReaperGeas extends GeasEffect {
             }
         }
 
-        final boolean enhanced = MalumScytheItem.isNarrow(attacker);
+        final boolean enhanced = MalumScytheItem.isEnhanced(attacker);
         if (source.is(DamageTypeRegistry.SCYTHE_COMBO)) {
             var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SCYTHE_SLASH);
             var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);

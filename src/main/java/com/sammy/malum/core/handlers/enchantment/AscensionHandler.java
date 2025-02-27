@@ -26,7 +26,7 @@ import static com.sammy.malum.registry.common.item.EnchantmentRegistry.getEnchan
 public class AscensionHandler {
 
     public static void triggerAscension(Level level, Player player, InteractionHand hand, ItemStack scythe) {
-        final boolean isEnhanced = MalumScytheItem.isNarrow(player);
+        final boolean isEnhanced = MalumScytheItem.isEnhanced(player);
         player.resetFallDistance();
         if (level.isClientSide()) {
             Vec3 motion = player.getDeltaMovement();

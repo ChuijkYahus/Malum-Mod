@@ -222,15 +222,15 @@ public class CodexLangDatagen {
                 "This Mnemonic Hex Staff launches balls of liquefied Wicked, like a witch's hex. It takes a moment to activate, and seems to be limited in how much it can be used at once, but each use deals potent damage to anything they hit. The staff recharges itself from my soul, and because of this, charge will be distributed over any staves I have.",
                 "I have not found success in creating any other false Arcana this way, though that might be a matter of material. Mnemnosyne may simply resonate with Wicked through the death required to create Brilliance.");
 
-
         addEntryHeader("void.staves_as_foci.enchanting", "Staff Enchanting", "Imitated efficacy");
         addHeadline("void.staves_as_foci.enchanting.replenishing", "Replenishing");
-        addPages("void.staves_as_foci.replenishing",
-                "A staff is a conduit of physical magic. Obviously, it can flow out, and flow in, but it is possible to do that less passively as well. When a Replenishing staff is used in melee, it will occasionally restore the staff's energy pool by about one shot's worth. Modifying the staff this way makes it unable to accept Capacitor.");
+        addPages("void.staves_as_foci.enchanting.replenishing",
+                "A staff is a conduit of physical magic. Obviously, it can flow out, and flow in, but it is possible to do that less passively as well. When a Replenishing staff is used in melee, it will occasionally restore the staff's energy pool by about one third of a shot's worth. Modifying the staff this way makes it unable to accept Capacitor.");
         addHeadline("void.staves_as_foci.enchanting.capacitor", "Capacitor");
-        addPages("void.staves_as_foci.capacitor",
+        addPages("void.staves_as_foci.enchanting.capacitor",
                 "Spirit crystals can only hold so much power, as I have seen... but that is only true of the strange not-physical matter of the arcana. Capacitor allows the staff to accumulate more energy for the same physical space, allowing it to store about one shot more per level. Modifying the staff this way makes it unable to accept Replenishing.");
 
+        //TODO: slight update to account for staff charges
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
                 "I have recreated the Arcane spirit in false form. A core of Mnemnosyne in Null Slate housing appears to neutralize the Wicked attunement of the Mnemnosyne, leaving raw arcana as the pattern it mimics. The false Arcane spirit appears to hold a charge, one very similar to the Wicked crystal in my staff.",
@@ -738,9 +738,10 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("rune_of_aliment_cleansing", "Rune of Aliment Cleansing", "The impulse to process");
         addPages("rune_of_aliment_cleansing",
                 "The Rune of Aliment Cleansing implores a body to catalyze and change substance, allowing it to burn through and process negative effects quicker than normal.");
-        addSimpleEntryHeader("rune_of_fervor", "Rune of Fervor", "The impulse to expend");
-        addPages("rune_of_fervor",
-                "The Rune of Fervor implores a mind to move with haste, improving the user's mining speed by roughly a quarter.");
+        //TODO: look at this goober, old effect; +25% mining speed, new effect +100% outgoing burning damage
+        addSimpleEntryHeader("rune_of_scorching", "Rune of Scorching", "The impulse to burn");
+        addPages("rune_of_scorching",
+                "The Rune of Scorching implores a body to bring eruption, doubling the strength of outgoing fire effects.");
         addSimpleEntryHeader("rune_of_reactive_shielding", "Rune of Reactive Shielding", "The impulse to withstand");
         addPages("rune_of_reactive_shielding",
                 "The Rune of Reactive Shielding implores a body to stand fast, granting an increase to effective Armor and Armor Toughness by one tenth upon taking damage. The strength of this effect scales as the user receives more damage, reaching an increase of three tenths at full power.");
@@ -1002,7 +1003,7 @@ public class CodexLangDatagen {
                 "Another obvious difference is in its effect on the surroundings - namely, the fact that it echoes the Undirected Rite with the energies of its growth, transmuting the world around it into blight. I ought to create a safely contained area if I wish to grow these trees.");
         addHeadline("soulwood.sap", "Soulwood Study: Sap");
         addPages("soulwood.sap",
-                "The sticky lifeblood of the tree also seems to well up much more often in a tree than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Unholy Syrup enhances it, increasing my attack strength and providing damage resistance.");
+                "The sticky lifeblood of the tree also seems to well up much more often in a tree than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
         addSimpleEntryHeader("transmutation", "Transmutation", "Volatile reactions");
         addPages("transmutation.intro",
