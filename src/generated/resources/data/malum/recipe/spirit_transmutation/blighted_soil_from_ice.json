@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "smooth_basalt",
+  "ingredient": {
+    "item": "minecraft:ice"
+  },
+  "output": {
+    "count": 1,
+    "id": "malum:blighted_soil"
+  }
+}

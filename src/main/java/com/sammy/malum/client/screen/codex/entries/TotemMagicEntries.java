@@ -188,19 +188,36 @@ public class TotemMagicEntries {
 
         screen.addEntry("soulwood", 1, 12, b -> b
                 .configureWidget(w -> w.setIcon(SOULWOOD_GROWTH).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
-                .addPage(new HeadlineTextPage("soulwood.intro", "soulwood.intro.1"))
-                .addPage(new HeadlineTextPage("soulwood.bonemeal", "soulwood.bonemeal.1"))
-                .addPage(new HeadlineTextPage("soulwood.color", "soulwood.color.1"))
+                .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_GROWTH.get()))
+                .addPage(new TextPage("soulwood.2"))
+                .addPage(new SmeltingPage(SOULWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
+                .addPage(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
                 .addPage(new HeadlineTextPage("soulwood.blight", "soulwood.blight.1"))
-                .addPage(new HeadlineTextPage("soulwood.sap", "soulwood.sap.1"))
-        );
-        screen.addEntry("transmutation", 0, 13, b -> b
+                .addPage(new HeadlineTextPage("soulwood.bonemeal", "soulwood.bonemeal.1"))
+                .addPage(new HeadlineTextPage("soulwood.cursed_sap", "soulwood.cursed_sap.1"))
+                .addPage(new CyclingPage(
+                        new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()),
+                        new CraftingPage(new ItemStack(CURSED_SAP_BLOCK.get(), 8), CURSED_SAP.get(), CURSED_SAP.get(), EMPTY, CURSED_SAP.get(), CURSED_SAP.get()))
+                ));
+
+        screen.addEntry("unchained_transmutation", 0, 13, b -> b
                 .configureWidget(w -> w.setIcon(SOUL_SAND).setStyle(BookWidgetStyle.SOULWOOD))
-                .addPage(new HeadlineTextPage("transmutation", "transmutation.intro.1"))
-                .addPage(new TextPage("transmutation.intro.2"))
-                .addPage(new SpiritTransmutationRecipeTreePage("transmutation.stone", STONE))
-                .addPage(new SpiritTransmutationRecipeTreePage("transmutation.deepslate", DEEPSLATE))
-                .addPage(new SpiritTransmutationRecipeTreePage("transmutation.smooth_basalt", SMOOTH_BASALT))
+                .addPage(new HeadlineTextPage("unchained_transmutation", "unchained_transmutation.intro.1"))
+                .addPage(new TextPage("unchained_transmutation.intro.2"))
+                .addPage(new TextPage("unchained_transmutation.dirt.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.dirt", DIRT))
+                .addPage(new TextPage("unchained_transmutation.stone.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.stone", STONE))
+                .addPage(new TextPage("unchained_transmutation.deepslate.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
+                .addPage(new TextPage("unchained_transmutation.smooth_basalt.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.smooth_basalt", SMOOTH_BASALT))
+                .addPage(new TextPage("unchained_transmutation.packed_mud.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.packed_mud", PACKED_MUD))
+                .addPage(new TextPage("unchained_transmutation.snow.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.snow", SNOW))
+                .addPage(new TextPage("unchained_transmutation.polished_basalt.1"))
+                .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.polished_basalt", POLISHED_BASALT))
         );
     }
 }

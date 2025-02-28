@@ -45,7 +45,7 @@ public class MalumRecipes extends VanillaRecipeProvider {
 
         MalumRuneworkingRecipes.buildRecipes(recipeOutput);
         MalumSpiritFocusingRecipes.buildRecipes(recipeOutput);
-        MalumSpiritTransmutationRecipes.buildRecipes(recipeOutput);
+        MalumUnchainedTransmutationRecipes.buildRecipes(recipeOutput);
         MalumVoidFavorRecipes.buildRecipes(recipeOutput);
         MalumSpiritRepairRecipes.buildRecipes(recipeOutput);
         MalumSoulbindingRecipes.buildRecipes(recipeOutput);

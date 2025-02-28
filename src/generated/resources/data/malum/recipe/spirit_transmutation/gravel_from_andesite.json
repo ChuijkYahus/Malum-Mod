@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "polished_basalt",
+  "ingredient": {
+    "item": "minecraft:andesite"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:gravel"
+  }
+}

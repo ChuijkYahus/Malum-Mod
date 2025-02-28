@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "deepslate",
+  "ingredient": {
+    "item": "minecraft:deepslate"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:basalt"
+  }
+}

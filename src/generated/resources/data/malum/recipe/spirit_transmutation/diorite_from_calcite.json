@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "snow",
+  "ingredient": {
+    "item": "minecraft:calcite"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:diorite"
+  }
+}

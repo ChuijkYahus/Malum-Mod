@@ -256,7 +256,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.curio.rebound_maelstrom", "Rebound Creates A Windborne Maelstrom");
         add("malum.effect.curio.longer_rebound_cooldown", "Rebound Suffers a Longer Cooldown");
         add("malum.effect.curio.friendly_enemies", "Reduces Enemy Aggression");
-        add("malum.effect.curio.soul_ward_magic_resilience", "Soul Ward Magic Rerouting");
+        add("malum.effect.curio.soul_ward_magic_resilience", "Soul Ward Reroutes Magic");
         add("malum.effect.curio.soul_ward_long_shatter_cooldown", "Lengthy Soul Ward Recharge upon Disintegration");
         add("malum.effect.curio.rotten_gluttony", "Eating Rotten Food Generates Gluttony");
         add("malum.effect.curio.scythe_counterattack", "Powerful Scythe Counterattack When Struck");

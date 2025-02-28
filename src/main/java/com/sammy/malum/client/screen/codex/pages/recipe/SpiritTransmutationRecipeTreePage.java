@@ -4,12 +4,14 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
 import com.sammy.malum.core.systems.recipe.*;
+import com.sammy.malum.registry.client.ScreenParticleRegistry;
 import com.sammy.malum.registry.common.SpiritTypeRegistry;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,10 +30,10 @@ import team.lodestar.lodestone.systems.recipe.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderIngredient;
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderText;
+import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SpiritTransmutationRecipeTreePage extends BookPage {
+    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation_tree");
 
     private static final ScreenParticleHolder TRANSMUTATION_PARTICLES = new ScreenParticleHolder();
 
@@ -78,30 +80,40 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
             ScreenParticleHandler.renderParticles(TRANSMUTATION_PARTICLES);
         }
         renderIngredient(screen, guiGraphics, itemTree.getFirst(), left + 63, top + 38, mouseX, mouseY);
-        renderIngredient(screen, guiGraphics, itemTree.getLast(), left + 63, top + 120, mouseX, mouseY);
+        renderIngredient(screen, guiGraphics, itemTree.getLast(), left + 63, top + 142, mouseX, mouseY);
 
         int leftStart = left + 73 - (itemTree.size())*10;
         for (int i = 1; i < itemTree.size()-1; i++) {
-            renderIngredient(screen, guiGraphics, itemTree.get(i), leftStart+i*20, top + 79, mouseX, mouseY);
+            renderIngredient(screen, guiGraphics, itemTree.get(i), leftStart+i*20, top + 90, mouseX, mouseY);
         }
+        screen.renderLater(() -> {
+            if (screen.isHovering(mouseX, mouseY, left + 62, top + 60, 18, 18)) {
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+            }
+        });
+
         int particlesX = left + 25;
-        int particlesY = top + 88;
+        int particlesY = top + 98;
         if (ScreenParticleHandler.canSpawnParticles) {
             var level = Minecraft.getInstance().level;
             RandomSource rand = level.random;
-            for (int i = 0; i < 8; i++) {
-                float scale = RandomHelper.randomBetween(rand, 0.1f, 0.2f);
+            long time = level.getGameTime();
+            for (int i = 0; i < 36; i++) {
+                int yOffsetScale = 4 + Mth.floor(i/4f);
+                float scale = RandomHelper.randomBetween(rand, 0.6f, 0.9f);
                 float spin = RandomHelper.randomBetween(rand, 0.2f, 0.4f);
-                final double xOffset = 92 * ((level.getGameTime()+i*30) % 100) / 100f;
-                final double yOffset = Math.sin(((level.getGameTime()+i*16) % 80) / 80f * Math.PI * 2) * 6;
-                ScreenParticleBuilder.create(LodestoneScreenParticleTypes.WISP, TRANSMUTATION_PARTICLES)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.6f, 0f).build())
+                float xTime = ((time + i * 33) % 240) / 240f;
+                float yTime = ((time + i * 27) % 100f) / 100f;
+                final double xOffset = 92 * xTime;
+                final double yOffset = Math.sin(yTime * 6.28f) * yOffsetScale;
+                ScreenParticleBuilder.create(ScreenParticleRegistry.LIGHT_SPEC_SMALL, TRANSMUTATION_PARTICLES)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.4f, 0f).build())
                         .setSpinData(SpinParticleData.create(spin).build())
                         .setScaleData(GenericParticleData.create(0, scale, 0).build())
                         .setColorData(SpiritTypeRegistry.ARCANE_SPIRIT.createColorData().setCoefficient(0.75f).build())
                         .setLifetime(i % 2 == 0 ? 20 : 40)
                         .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
-                        .setLifeDelay(i > 3 ? 0 : 15)
+                        .setLifeDelay(i % 3 == 0 ? 0 : 4)
                         .spawn(particlesX + xOffset, particlesY + yOffset);
             }
         }

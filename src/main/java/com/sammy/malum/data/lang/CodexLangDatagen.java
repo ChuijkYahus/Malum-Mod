@@ -72,6 +72,9 @@ public class CodexLangDatagen {
 
         addRecipeDescriptor("runeworking", "Runeworking. \nRequires a slate for the inscription process. Spirit Arcana must be inserted afterwards.");
 
+        addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms Blocks into other Blocks via Unchained Rite. Requires Blight as a conduit.");
+        addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation Tree. \nA Recipe Tree of Block Transformations via Unchained Rite. Requires Blight as a conduit.");
+
         addRecipeDescriptor("spirit_focusing", "Spirit Focusing. \nRequires a Catalyst and Spirit Arcana to be held within The Crucible. The Catalyst is not consumed, but does get damaged.");
         addRecipeDescriptor("spirit_focusing.spirit", "Spirit Arcana is to be stored directly within the Spirit Crucible.");
 
@@ -282,7 +285,6 @@ public class CodexLangDatagen {
         addPages("void.necklace_of_the_watcher",
                 "Souls emit energy when damaged, not merely when shattered. This necklace allows me to harness that energy, causing effects that normally only occur when I collect a spirit to also happen when I strike an enemy at full health.");
 
-        //TODO: no longer removes sweeping
         addEntryHeader("void.necklace_of_the_hidden_blade", "Necklace of the Hidden Blade", "A knife at their backs");
         addHeadline("void.necklace_of_the_hidden_blade", "The Hidden Blade");
         addPages("void.necklace_of_the_hidden_blade",
@@ -652,8 +654,8 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("belt_of_the_starved", "Belt of the Starved", "Channeling voracity");
         addPages("belt_of_the_starved",
-                "The arcana I collect occasionally have scraps of wishes and desires woven in. Often, given the base nature of what I reap, this comes in the form of hunger, lust, or petty grudges. All of these impurities can be harnessed, and beyond that, I can infuse this power into my magic.",
-                "Doing this carries the perhaps predictable effect that my own hunger amplifies, draining quicker in the process. The magic proficiency this grants is immense, but... I must say, the means are rather distasteful.");
+                "The arcana I collect occasionally have scraps of wishes and desires woven in. Often, given the base nature of what I reap, this comes in the form of hunger, lust, or petty grudges. All of these impurities can be catalyzed into Gluttony, an stacking amplifier towards magic damage.",
+                "Harnessing magical power this way carries the perhaps predictable effect that my own hunger amplifies, draining quicker in the process. The magic proficiency this grants is not to be ignored, but... I must say, the means are rather distasteful.");
         addSimpleEntryHeader("belt_of_the_starved.ring_of_desperate_voracity", "Ring of Desperate Voracity", "Widening the channel");
         addPages("belt_of_the_starved.ring_of_desperate_voracity",
                 "This ring makes rotten foods just a little bit more bearable, allowing me to amass more hunger and saturation from such an unusual diet. Normally, such a diet would be ill-advised, however, a secondary function of the ring allows it to extend the duration of the Gluttony status effect that the Belt of the Starved grants.");
@@ -974,7 +976,7 @@ public class CodexLangDatagen {
                 "Converts nearby zombies to drowned.");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
-        addHeadline("blight.intro", "Blight Study: Preface");
+        addHeadline("blight.intro", "A Study on Blight");
         addPages("blight.intro",
                 "Blight. " + italic("Something which spoils or damages.") + " What the Undirected Rite has created has many strange properties, and I intend to categorize them.",
                 "The naïve explanation is that it is simply another form of power that taints the world, but that isn't right. Blight isn't harmful, not inof itself. It's just... " + italic("gunk."));
@@ -989,29 +991,46 @@ public class CodexLangDatagen {
                 "That echo is why this substance is important for the Unchained Rite. The Rite remembers the violence of its creation, and resonates with the memory within the blight, applying its power to things laying on top of it.");
 
         addEntryHeader("soulwood", "A Study on Soulwood", "Twisted trees");
-        addHeadline("soulwood.intro", "Soulwood Study: Preface");
-        addPages("soulwood.intro",
-                "After further study, I have discovered that the Soulwood produced by the Unchained Rite has actually become an entirely different species from the Runewood it is made from. It grows differently, it acts differently... it appears the spiritual scars that created it go deeper than just its color and magic.");
-        addHeadline("soulwood.bonemeal", "Soulwood Study: Growth");
-        addPages("soulwood.bonemeal",
-                "Much like blight, the sapling accepts both spirit arcana and common fertilizers such as bonemeal. The end result is roughly the same across both options.");
-        addHeadline("soulwood.color", "Soulwood Study: Color");
-        addPages("soulwood.color",
-                "The most obvious differences with the tree itself are shape and leaf color. Soulwood is more spindly than Runewood, and its leaves are a sickly purple-red hue instead of a rich orange-yellow. It can still be used for many of the same things, though.");
+        addHeadline("soulwood", "A Study on Soulwood");
+        addPages("soulwood",
+                "After further study, I have discovered that the Soulwood produced by the Unchained Rite has actually become an entirely different species from the Runewood it is made from. It grows differently, it acts differently...",
+                "It appears the spiritual scars that created it go deeper than just its color and magic. The most obvious differences with the tree itself are shape and leaf color. Soulwood is more spindly than Runewood, and its leaves are a sickly purple-red hue instead of a rich orange-yellow. It can still be used for many of the same things, though.");
         addHeadline("soulwood.blight", "Soulwood Study: Blight");
         addPages("soulwood.blight",
                 "Another obvious difference is in its effect on the surroundings - namely, the fact that it echoes the Undirected Rite with the energies of its growth, transmuting the world around it into blight. I ought to create a safely contained area if I wish to grow these trees.");
-        addHeadline("soulwood.sap", "Soulwood Study: Sap");
-        addPages("soulwood.sap",
+        addHeadline("soulwood.bonemeal", "Soulwood Study: Growth");
+        addPages("soulwood.bonemeal",
+                "Much like blight, the sapling accepts both spirit arcana and common fertilizers such as bonemeal. The end result is roughly the same across both options.");
+        addHeadline("soulwood.cursed_sap", "Soulwood Study: Sap");
+        addPages("soulwood.cursed_sap",
                 "The sticky lifeblood of the tree also seems to well up much more often in a tree than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
-        addSimpleEntryHeader("transmutation", "Transmutation", "Volatile reactions");
-        addPages("transmutation.intro",
+        //TODO: unchained rite entry changes
+        addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
+        addPages("unchained_transmutation.intro",
                 "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified three categories; transmutation trees, of sorts.",
                 "The effect of applying these scars depends on what material we start with. The pulsing of the Rite will shift any given block forward in the tree, with it degrading into blight given enough time.");
-        addHeadline("transmutation.stone", "Transmutation: Basic");
-        addHeadline("transmutation.deepslate", "Transmutation: Endothermic");
-        addHeadline("transmutation.smooth_basalt", "Transmutation: Exothermic");
+        addHeadline("unchained_transmutation.dirt", "Dirt Transmutation Name");
+        addPages("unchained_transmutation.dirt",
+                "Dirt Transmutation Tidbit");
+        addHeadline("unchained_transmutation.stone", "Stone Transmutation Name");
+        addPages("unchained_transmutation.stone",
+                "Stone Transmutation Tidbit");
+        addHeadline("unchained_transmutation.deepslate", "Deepslate Transmutation Name");
+        addPages("unchained_transmutation.deepslate",
+                "Deepslate Transmutation Tidbit");
+        addHeadline("unchained_transmutation.smooth_basalt", "Smooth Basalt Transmutation Name");
+        addPages("unchained_transmutation.smooth_basalt",
+                "Smooth Basalt Transmutation Tidbit");
+        addHeadline("unchained_transmutation.packed_mud", "Packed Mud Transmutation Name");
+        addPages("unchained_transmutation.packed_mud",
+                "Packed Mud Transmutation Tidbit");
+        addHeadline("unchained_transmutation.snow", "Snow Transmutation Name");
+        addPages("unchained_transmutation.snow",
+                "Snow Transmutation Tidbit");
+        addHeadline("unchained_transmutation.polished_basalt", "Polished Basalt Transmutation Name");
+        addPages("unchained_transmutation.polished_basalt",
+                "Polished Basalt Transmutation Tidbit");
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",

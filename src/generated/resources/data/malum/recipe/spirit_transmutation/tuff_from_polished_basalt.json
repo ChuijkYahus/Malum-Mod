@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "polished_basalt",
+  "ingredient": {
+    "item": "minecraft:polished_basalt"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:tuff"
+  }
+}
