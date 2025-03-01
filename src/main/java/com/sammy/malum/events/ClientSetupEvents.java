@@ -28,6 +28,10 @@ public class ClientSetupEvents {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new SpiritJarClientItemExtensions(),
                 ItemRegistry.SPIRIT_JAR);
+
+        event.registerItem(new GeasClientItemExtension(),
+                ItemRegistry.GEAS);
+
         event.registerItem(new ArmorClientItemExtensions(() -> ModelRegistry.SOUL_HUNTER_ARMOR),
                 ItemRegistry.SOUL_HUNTER_CLOAK,
                 ItemRegistry.SOUL_HUNTER_ROBE,

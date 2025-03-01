@@ -25,9 +25,10 @@ public class RuneIgneousSolaceItem extends AbstractRuneCurioItem implements Item
     }
 
     @Override
-    public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            event.setNewDamage(event.getNewDamage() * 2);
+    public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (target.isOnFire()) {
+            event.setNewDamage(event.getNewDamage() * 0.75f);
         }
     }
+
 }

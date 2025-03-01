@@ -78,6 +78,7 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         AugmentationEntries.setupEntries(this);
         TinkeringEntries.setupEntries(this);
         RuneWorkingEntries.setupEntries(this);
+        GeasEntries.setupEntries(this);
         TotemMagicEntries.setupEntries(this);
         MiscellaneousKnowledgeEntries.setupEntries(this);
 

@@ -278,7 +278,6 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         add("malum.effect.geas.weak_legs", "Fall Damage Is Made Deadlier");
         add("malum.effect.geas.explosion_lover", "Absorbed Explosions Generate Haste");
-        add("malum.effect.geas.explosion_protection", "Absorption of Hostile Explosions Spares Terrain");
         add("malum.effect.geas.explosion_fire", "Overexertion Ignites You");
         add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
         add("malum.effect.geas.trial_of_faith", "Gluttony Becomes Trial of Faith");
@@ -345,13 +344,13 @@ public class MalumLang extends LanguageProvider {
         add("malum.jei.weeping_well", "The Weeping Well");
         add("malum.jei.spirit_transmutation", "The Unchained Rite");
 
-        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles and Madness");
+        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles");
         add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
         add("itemGroup.malum_natural_wonders", "Malum: Intertwined With Nature");
         add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
         add("itemGroup.malum_geas", "Malum: Sworn Oaths");
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
-        add("itemGroup.malum_cosmetics", "Malum: Expression of One's True Self");
+        add("itemGroup.malum_cosmetics", "Malum: One's True Self");
 
         addDeathMessage(DamageTypeRegistry.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");

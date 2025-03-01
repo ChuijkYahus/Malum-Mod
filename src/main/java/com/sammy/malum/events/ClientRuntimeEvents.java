@@ -42,7 +42,7 @@ public class ClientRuntimeEvents {
 
     @SubscribeEvent
     public static void itemTooltipEvent(ItemTooltipEvent event) {
-        GeasItem.addEtchingTooltip(event);
+        GeasItem.addGeasTooltip(event);
         AugmentItem.addAugmentAttributeTooltip(event);
     }
 }

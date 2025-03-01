@@ -27,21 +27,14 @@ public class SpiritJarItem extends BlockItem {
         return super.getDescriptionId(pStack);
     }
 
-//    @Override
-//    public void readComponent(int stackQuantity, DataComponentMap.Builder mutableMap, ComponentGetter originalSupplier) {
-//        originalSupplier.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS).ifPresent(contents -> {
-//            if (originalSupplier.get(DataComponents.RARITY).isEmpty())
-//                mutableMap.set(DataComponents.RARITY, SpiritHarvestHandler.getSpiritType(contents.spirit()).getItemRarity());
-//        });
-//    }
-
     @Override
-    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltip, TooltipFlag tooltipFlag) {
-        if (pStack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
-            Contents contents = pStack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        if (stack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
+            Contents contents = stack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
             MalumSpiritType spirit = MalumSpiritType.getSpiritType(contents.spirit());
-            pTooltip.add(Component.translatable("malum.spirit.description.stored_spirit").withStyle(ChatFormatting.GRAY));
-            pTooltip.add(spirit.getSpiritJarCounterComponent(contents.count()));
+            tooltipComponents.add(Component.translatable("malum.spirit.description.stored_spirit").withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(spirit.getSpiritJarCounterComponent(contents.count()));
         }
     }
 

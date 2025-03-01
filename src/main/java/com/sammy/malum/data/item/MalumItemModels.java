@@ -30,7 +30,6 @@ public class MalumItemModels extends LodestoneItemModelProvider {
         Set<Supplier<? extends Item>> items = new HashSet<>(ITEMS.getEntries());
 
         items.removeIf(i -> i.get() instanceof BlockItem);
-        items.remove(GEAS);
 
         ItemModelSmithData data = new ItemModelSmithData(this, items::remove);
         MalumItemModelSmithTypes.PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE).applyModifier(result -> {
