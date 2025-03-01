@@ -72,8 +72,8 @@ public class CodexLangDatagen {
 
         addRecipeDescriptor("runeworking", "Runeworking. \nRequires a slate for the inscription process. Spirit Arcana must be inserted afterwards.");
 
-        addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms Blocks into other Blocks via Unchained Rite. Requires Blight as a conduit.");
-        addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation Tree. \nA Recipe Tree of Block Transformations via Unchained Rite. Requires Blight as a conduit.");
+        addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms blocks into other blocks via Unchained Rite. Requires Blight as a conduit.");
+        addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation. \nA series of block transformations via Unchained Rite. Requires Blight as a conduit.");
 
         addRecipeDescriptor("spirit_focusing", "Spirit Focusing. \nRequires a Catalyst and Spirit Arcana to be held within The Crucible. The Catalyst is not consumed, but does get damaged.");
         addRecipeDescriptor("spirit_focusing.spirit", "Spirit Arcana is to be stored directly within the Spirit Crucible.");
@@ -233,11 +233,10 @@ public class CodexLangDatagen {
         addPages("void.staves_as_foci.enchanting.capacitor",
                 "Spirit crystals can only hold so much power, as I have seen... but that is only true of the strange not-physical matter of the arcana. Capacitor allows the staff to accumulate more energy for the same physical space, allowing it to store about one shot more per level. Modifying the staff this way makes it unable to accept Replenishing.");
 
-        //TODO: slight update to account for staff charges
         addSimpleEntryHeader("void.staves_as_foci.ring_of_the_endless_well", "Ring of the Endless Well", "Storing staff charges");
         addPages("void.staves_as_foci.ring_of_the_endless_well",
                 "I have recreated the Arcane spirit in false form. A core of Mnemnosyne in Null Slate housing appears to neutralize the Wicked attunement of the Mnemnosyne, leaving raw arcana as the pattern it mimics. The false Arcane spirit appears to hold a charge, one very similar to the Wicked crystal in my staff.",
-                "I have fashioned a ring - the Endless Well - with these false crystals in housing. The ring appears to concentrate my focus, allowing me to avoid the time the staff takes to charge back up. The ring charges slower, as it is not a symbolic " + italic("focus") + " like my staff, but it can hold three attacks in reserve for faster use.");
+                "I have fashioned a ring - the Endless Well - with these false crystals in housing. The ring appears to concentrate my focus, allowing me to hold staff charges in reserve. The ring charges slower, as it is not a symbolic " + italic("focus") + " like my staff, but it can hold three attacks in reserve for faster use.");
 
         addSimpleEntryHeader("void.malignant_pewter", "Malignant Pewter", "Progress cast false");
         addPages("void.malignant_pewter",
@@ -559,7 +558,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("sympathy_drive", "Sympathy Drive", "Harnessing hatreds");
         addPages("sympathy_drive",
-                "Wicked and Sacred are opposed forces, so why not harness them together? When a Sympathy Drive-affected Crucible's Impetus takes damage, the Wicked charge will remember. When it is healed by the Mending Diffuser, the Sacred charge will 'forgive' the damage, repairing further and improving stats generally for the next three cycles.");
+                "Wicked and Sacred are opposed forces, so why not harness them together? When a Sympathy Drive-affected Crucible's Impetus takes damage, the Wicked charge will remember. When it is healed by the Mending Diffuser, the Sacred charge will 'forgive' the damage, repairing further and improving stats generally for three cycles.");
         addSimpleEntryHeader("resonance_tuner", "Resonance Tuner", "Dampening dissonance");
         addPages("resonance_tuner",
                 "Aerial and Earthen do not interact, generally, but non-interaction is useful in its own way. The Resonance Tuner dampens the interaction of forces in the Crucible, heavily decreasing or even eliminating instability by causing the process to take longer.");
@@ -740,10 +739,9 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("rune_of_aliment_cleansing", "Rune of Aliment Cleansing", "The impulse to process");
         addPages("rune_of_aliment_cleansing",
                 "The Rune of Aliment Cleansing implores a body to catalyze and change substance, allowing it to burn through and process negative effects quicker than normal.");
-        //TODO: look at this goober, old effect; +25% mining speed, new effect +100% outgoing burning damage
         addSimpleEntryHeader("rune_of_scorching", "Rune of Scorching", "The impulse to burn");
         addPages("rune_of_scorching",
-                "The Rune of Scorching implores a body to bring eruption, doubling the strength of outgoing fire effects.");
+                "The Rune of Scorching implores a mind to share its light with others regardless of what that will cause, doubling the strength of fire damage originating from the user.");
         addSimpleEntryHeader("rune_of_reactive_shielding", "Rune of Reactive Shielding", "The impulse to withstand");
         addPages("rune_of_reactive_shielding",
                 "The Rune of Reactive Shielding implores a body to stand fast, granting an increase to effective Armor and Armor Toughness by one tenth upon taking damage. The strength of this effect scales as the user receives more damage, reaching an increase of three tenths at full power.");
@@ -772,7 +770,6 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("void.rune_of_twinned_duration", "Rune of Twinned Duration", "To suspend what must process");
         addPages("void.rune_of_twinned_duration",
                 "The Rune of Twinned Duration inhibits the body in breaking down substances, causing the body to hold on to positive effects for longer.");
-        //TODO: The effect has been changed, it instead doubles outgoing fire damage
         addSimpleEntryHeader("void.rune_of_igneous_solace", "Rune of Igneous Solace", "To fuel what must burn");
         addPages("void.rune_of_igneous_solace",
                 "The Rune of Igneous Solace toughens the user's skin when burning, giving them a partial resistance to damage. It does not, however, do anything about the flames.");
@@ -1005,32 +1002,31 @@ public class CodexLangDatagen {
         addPages("soulwood.cursed_sap",
                 "The sticky lifeblood of the tree also seems to well up much more often in a tree than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
-        //TODO: unchained rite entry changes
         addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
         addPages("unchained_transmutation.intro",
                 "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified three categories; transmutation trees, of sorts.",
                 "The effect of applying these scars depends on what material we start with. The pulsing of the Rite will shift any given block forward in the tree, with it degrading into blight given enough time.");
-        addHeadline("unchained_transmutation.dirt", "Dirt Transmutation Name");
+        addHeadline("unchained_transmutation.dirt", "Seedless Growth");
         addPages("unchained_transmutation.dirt",
-                "Dirt Transmutation Tidbit");
-        addHeadline("unchained_transmutation.stone", "Stone Transmutation Name");
+                "In dirt, the rite encourages growth without any source. The dirt first grows wooden roots through its structure, which then are forced somehow to become grass. The mechanism is likely conceptual, and the next stage makes that even more clear - moss covers the dirt, consuming the entire volume of it. After that point, the growth has no direction to go, and it becomes randomized, creating Blight.");
+        addHeadline("unchained_transmutation.stone", "Forceless Pulverization");
         addPages("unchained_transmutation.stone",
-                "Stone Transmutation Tidbit");
-        addHeadline("unchained_transmutation.deepslate", "Deepslate Transmutation Name");
-        addPages("unchained_transmutation.deepslate",
-                "Deepslate Transmutation Tidbit");
-        addHeadline("unchained_transmutation.smooth_basalt", "Smooth Basalt Transmutation Name");
-        addPages("unchained_transmutation.smooth_basalt",
-                "Smooth Basalt Transmutation Tidbit");
-        addHeadline("unchained_transmutation.packed_mud", "Packed Mud Transmutation Name");
+                "In raw stone, the rite powders the stone, bit by bit. The process is exponential - Raw stone becomes cobblestone, which becomes gravel, which becomes sand. Afterwards, the particles fail to divide into a finer substance, and the backlash creates Blight.");
+        addHeadline("unchained_transmutation.basalt", "Heatless Incineration");
+        addPages("unchained_transmutation.basalt",
+                "In Basalt, the rite appears to mimic natural stone's pulverization, but through Nether materials instead. Basalt returns to magma, which crumbles apart and cools into fleshy Netherrack, and rots into Soul Sand. The souls react poorly with the rite, and Blight is the result.");
+        addHeadline("unchained_transmutation.mud", "Fluidless Infusion");
+        addPages("unchained_transmutation.mud",
+                "In mud, the rite infuses the material with the concept of water. Mud becomes clay, as it does naturally, but then the clay crystallizes into mineral prismarine, which finally gives in to the water, becoming ice. It cannot become more water than frozen water already is, and so becomes Blight.");
+        addHeadline("unchained_transmutation.packed_mud", "Orange Stones");
         addPages("unchained_transmutation.packed_mud",
-                "Packed Mud Transmutation Tidbit");
-        addHeadline("unchained_transmutation.snow", "Snow Transmutation Name");
+                "One of a trio of seemingly color-based sequences, Packed Mud seems to fulfill the conditions to become Dripstone, oddly enough. That Dripstone will then degrade into Granite, which will then rejoin other types of stone in their sequence.");
+        addHeadline("unchained_transmutation.snow", "White Stones");
         addPages("unchained_transmutation.snow",
-                "Snow Transmutation Tidbit");
-        addHeadline("unchained_transmutation.polished_basalt", "Polished Basalt Transmutation Name");
-        addPages("unchained_transmutation.polished_basalt",
-                "Polished Basalt Transmutation Tidbit");
+                "One of a trio of seemingly color-based sequences, Snow bizarrely will become Calcite. That Calcite will then degrade into Diorite, which will then rejoin other types of stone in their sequence.");
+        addHeadline("unchained_transmutation.deepslate", "Gray Stones");
+        addPages("unchained_transmutation.deepslate",
+                "One of a trio of seemingly color-based sequences, Deepslate will - a bit more logically - become Tuff. That Tuff will then degrade into Andesite, which will then rejoin other types of stone in their sequence.");
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",
