@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:tuff_from_polished_basalt"
+        "recipe": "malum:netherrack_from_magma_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:tuff_from_polished_basalt"
+      "malum:netherrack_from_magma_block"
     ]
   }
 }

@@ -1,6 +1,7 @@
 package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.sammy.malum.common.geas.AnimatedGeas;
 import com.sammy.malum.common.geas.gluttony.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
@@ -11,8 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(FoodData.class)
 public class FoodDataMixin {
 
+    @Shadow private int tickTimer;
     @Unique
     private Player malum$player;
+
+    @Unique
+    private boolean malum$CanHeal;
 
     @Inject(method = "tick", at = @At(value = "HEAD"))
     private void malum$eat(Player player, CallbackInfo ci) {
@@ -20,10 +25,18 @@ public class FoodDataMixin {
     }
 
     @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"))
-    private boolean malum$tick(boolean original) {
+    private boolean malum$cancelHealing(boolean original) {
+        malum$CanHeal = original;
         if (ProfaneAsceticGeas.isProfaneAscetic(malum$player)) {
-            return false;
+            malum$CanHeal = false;
         }
-        return original;
+        return malum$CanHeal;
+    }
+
+    @Inject(method = "tick", at = @At(value = "HEAD"))
+    private void malum$accelerateHealing(Player player, CallbackInfo ci) {
+        if (malum$CanHeal) {
+            tickTimer += AnimatedGeas.accelerateNaturalHealing(player);
+        }
     }
 }

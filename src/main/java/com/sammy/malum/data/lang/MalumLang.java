@@ -270,7 +270,7 @@ public class MalumLang extends LanguageProvider {
 
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
-        add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-attacks");
+        add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-Attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
         add("malum.effect.geas.fall_damage_auto_attack", "Outgoing Fall Damage Strikes Targets With Your Held Weapon Regardless Of Distance");
         add("malum.effect.geas.more_knockback", "Doubles Incoming Knockback");

@@ -44,9 +44,18 @@ public class GeasEntries {
         screen.addEntry("pact_of_the_dayblessed", 1, 11, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED))
         );
-        screen.addEntry("pact_of_the_nightchild", -1, 11    , b -> b
+        screen.addEntry("pact_of_the_nightchild", -1, 11, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD))
         );
+        screen.addEntry("pact_of_the_shattering_addict", 0, 12, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT))
+        );
 
+        screen.addEntry("pact_of_the_shield", -2, 10, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
+        );
+        screen.addEntry("pact_of_the_fortress", -2, 10, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
+        );
     }
 }

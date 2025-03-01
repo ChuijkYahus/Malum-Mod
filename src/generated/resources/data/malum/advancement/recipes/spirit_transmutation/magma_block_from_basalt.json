@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:basalt_from_deepslate"
+        "recipe": "malum:magma_block_from_basalt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:basalt_from_deepslate"
+      "malum:magma_block_from_basalt"
     ]
   }
 }

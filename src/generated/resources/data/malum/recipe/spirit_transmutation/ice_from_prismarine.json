@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "smooth_basalt",
+  "group": "mud",
   "ingredient": {
     "item": "minecraft:prismarine"
   },

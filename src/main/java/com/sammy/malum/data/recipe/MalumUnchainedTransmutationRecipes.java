@@ -79,15 +79,15 @@ public class MalumUnchainedTransmutationRecipes {
 
         createUnchainedRecipeTree(recipeOutput, "stone", Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, BLIGHTED_SOIL.get());
 
-        createUnchainedRecipeTree(recipeOutput, "deepslate", Blocks.DEEPSLATE, Blocks.BASALT, Blocks.NETHERRACK, Blocks.SOUL_SAND, BLIGHTED_SOIL.get());
+        createUnchainedRecipeTree(recipeOutput, "basalt", Blocks.BASALT, Blocks.MAGMA_BLOCK, Blocks.NETHERRACK, Blocks.SOUL_SAND, BLIGHTED_SOIL.get());
 
-        createUnchainedRecipeTree(recipeOutput, "smooth_basalt", Blocks.SMOOTH_BASALT, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, BLIGHTED_SOIL.get());
+        createUnchainedRecipeTree(recipeOutput, "mud", Blocks.MUD, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, BLIGHTED_SOIL.get());
 
         createUnchainedRecipeTree(recipeOutput, "packed_mud", Blocks.PACKED_MUD, Blocks.DRIPSTONE_BLOCK, Blocks.GRANITE, Blocks.GRAVEL);
 
         createUnchainedRecipeTree(recipeOutput, "snow", Blocks.SNOW_BLOCK, Blocks.CALCITE, Blocks.DIORITE, Blocks.GRAVEL);
 
-        createUnchainedRecipeTree(recipeOutput, "polished_basalt", Blocks.POLISHED_BASALT, Blocks.TUFF, Blocks.ANDESITE, Blocks.GRAVEL);
+        createUnchainedRecipeTree(recipeOutput, "polished_basalt", Blocks.DEEPSLATE, Blocks.TUFF, Blocks.ANDESITE, Blocks.GRAVEL);
     }
 
     public static void createUnchainedRecipeTree(RecipeOutput recipeOutput, String group, Block... blocks) {

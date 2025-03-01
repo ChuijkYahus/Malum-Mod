@@ -20,6 +20,6 @@ public class CurioGlassBrooch extends MalumCurioItem {
         var id = MalumMod.malumPath("glass_brooch");
         CuriosApi.addSlotModifier(map, "rune", id, 2, AttributeModifier.Operation.ADD_VALUE);
         addAttributeModifier(map, Attributes.MAX_HEALTH,
-                new AttributeModifier(id, -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                new AttributeModifier(id, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
 }

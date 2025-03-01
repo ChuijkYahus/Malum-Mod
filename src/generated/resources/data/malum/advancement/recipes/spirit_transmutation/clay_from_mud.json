@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:clay_from_smooth_basalt"
+        "recipe": "malum:clay_from_mud"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:clay_from_smooth_basalt"
+      "malum:clay_from_mud"
     ]
   }
 }

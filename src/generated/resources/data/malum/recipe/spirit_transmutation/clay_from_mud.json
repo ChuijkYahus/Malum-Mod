@@ -1,11 +1,11 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "deepslate",
+  "group": "mud",
   "ingredient": {
-    "item": "minecraft:deepslate"
+    "item": "minecraft:mud"
   },
   "output": {
     "count": 1,
-    "id": "minecraft:basalt"
+    "id": "minecraft:clay"
   }
 }

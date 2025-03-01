@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "deepslate",
+  "group": "basalt",
   "ingredient": {
     "item": "minecraft:netherrack"
   },

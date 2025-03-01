@@ -3,13 +3,17 @@ package com.sammy.malum.common.block.ether;
 import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -30,67 +34,52 @@ import team.lodestar.lodestone.systems.particle.data.spin.*;
 import java.awt.*;
 
 public class EtherBlockEntity extends LodestoneBlockEntity {
-    public Color firstColor;
-    public Color secondColor;
+
+    public DyedItemColor firstColor;
+    public DyedItemColor secondColor;
 
     public EtherBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        this.firstColor = AbstractEtherItem.DEFAULT_FIRST_COLOR;
+        this.secondColor = state.getBlock().asItem() instanceof AbstractEtherItem etherItem && etherItem.iridescent
+                ? AbstractEtherItem.DEFAULT_SECOND_COLOR
+                : AbstractEtherItem.DEFAULT_FIRST_COLOR;
     }
 
     public EtherBlockEntity(BlockPos pos, BlockState state) {
         this(BlockEntityRegistry.ETHER.get(), pos, state);
     }
 
-    public void setFirstColor(int rgb) {
-        firstColor = new Color(rgb);
-    }
-
-    public void setSecondColor(int rgb) {
-        secondColor = new Color(rgb);
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        components.set(DataComponents.DYED_COLOR, firstColor);
+        components.set(DataComponentRegistry.SECONDARY_DYE_COLOR, secondColor);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-        setFirstColor(compound.contains("firstColor") ? compound.getInt("firstColor") : EtherItem.DEFAULT_FIRST_COLOR.rgb());
-        if (getBlockState().getBlock().asItem() instanceof AbstractEtherItem etherItem && etherItem.iridescent) {
-            setSecondColor(compound.contains("secondColor") ? compound.getInt("secondColor") : EtherItem.DEFAULT_SECOND_COLOR.rgb());
-        }
-        super.loadAdditional(compound, registries);
+    protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
+        super.applyImplicitComponents(componentInput);
+        firstColor = componentInput.get(DataComponents.DYED_COLOR);
+        secondColor = componentInput.get(DataComponentRegistry.SECONDARY_DYE_COLOR);
+    }
+    @Override
+    public void removeComponentsFromTag(CompoundTag tag) {
+        tag.remove("firstColor");
+        tag.remove("secondColor");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-        if (firstColor != null) {
-            compound.putInt("firstColor", firstColor.getRGB());
-        }
-        if (getBlockState().getBlock().asItem() instanceof AbstractEtherItem etherItem && etherItem.iridescent) {
-            if (secondColor != null && secondColor.getRGB() != EtherItem.DEFAULT_SECOND_COLOR.rgb()) {
-                compound.putInt("secondColor", secondColor.getRGB());
-            }
-        }
-        super.saveAdditional(compound, registries);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        firstColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("firstColor")).result().orElse(firstColor);
+        secondColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("secondColor")).result().orElse(secondColor);
     }
 
     @Override
-    public void onPlace(LivingEntity placer, ItemStack stack) {
-        AbstractEtherItem item = (AbstractEtherItem) stack.getItem();
-        setFirstColor(item.getFirstColor(stack));
-        if (item.iridescent) {
-            setSecondColor(item.getSecondColor(stack));
-        }
-    }
-
-    @Override
-    public ItemStack onClone(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
-        ItemStack stack = state.getBlock().asItem().getDefaultInstance();
-        AbstractEtherItem etherItem = (AbstractEtherItem) stack.getItem();
-        if (firstColor != null) {
-            etherItem.setFirstColor(stack, firstColor.getRGB());
-        }
-        if (secondColor != null) {
-            etherItem.setSecondColor(stack, secondColor.getRGB());
-        }
-        return super.onClone(state, target, level, pos, player);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        tag.put("firstColor", DyedItemColor.CODEC.encodeStart(NbtOps.INSTANCE, firstColor).getOrThrow());
+        tag.put("secondColor", DyedItemColor.CODEC.encodeStart(NbtOps.INSTANCE, secondColor).getOrThrow());
+        super.saveAdditional(tag, registries);
     }
 
     @Override
@@ -101,13 +90,13 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             }
             final RandomSource random = level.random;
             Block block = getBlockState().getBlock();
-            Color firstColor = ColorHelper.darker(this.firstColor, 1);
-            Color secondColor = this.secondColor == null ? firstColor : ColorHelper.brighter(this.secondColor, 1);
+            Color start = new Color(firstColor.rgb());
+            Color end = new Color(secondColor.rgb());
             double x = worldPosition.getX() + 0.5f;
             double y = worldPosition.getY() + 0.5f;
             double z = worldPosition.getZ() + 0.5f;
 
-            switch (block) {
+            switch (block) { //TODO: this sucks
                 case EtherWallTorchBlock etherWallTorchBlock -> {
                     final float offset = 0.15f;
                     Direction direction = getBlockState().getValue(WallTorchBlock.FACING);
@@ -121,7 +110,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 }
             }
 
-            final ColorParticleData colorData = ColorParticleData.create(firstColor, secondColor).setCoefficient(1.5f).setEasing(Easing.BOUNCE_IN_OUT).build();
+            final ColorParticleData colorData = ColorParticleData.create(start, end).setCoefficient(1.5f).setEasing(Easing.BOUNCE_IN_OUT).build();
             if (level.getGameTime() % 8L == 0) {
                 int lifeTime = RandomHelper.randomBetween(random, 40, 60);
                 float scale = RandomHelper.randomBetween(random, 0.6f, 0.7f);
@@ -156,7 +145,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setScaleData(GenericParticleData.create(scale, 0f).build())
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f).build())
-                        .setColorData(ColorParticleData.create(firstColor, secondColor).setEasing(Easing.SINE_IN).setCoefficient(0.5f).build())
+                        .setColorData(ColorParticleData.create(start, end).setEasing(Easing.SINE_IN).setCoefficient(0.5f).build())
                         .setSpinData(SpinParticleData.createRandomDirection(random, 0, 0.4f).setEasing(Easing.QUARTIC_IN).build())
                         .setLifetime(lifeTime)
                         .enableNoClip()
@@ -173,7 +162,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 WorldParticleBuilder.create(ParticleRegistry.SPIRIT_FLAME_PARTICLE)
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setScaleData(GenericParticleData.create(scale * 0.75f, scale, 0).build())
-                        .setColorData(ColorParticleData.create(firstColor, secondColor).setEasing(Easing.CIRC_IN_OUT).setCoefficient(2.5f).build())
+                        .setColorData(ColorParticleData.create(start, end).setEasing(Easing.CIRC_IN_OUT).setCoefficient(2.5f).build())
                         .setTransparencyData(GenericParticleData.create(0f, 1f, 0).setEasing(Easing.SINE_IN, Easing.QUAD_IN).setCoefficient(3.5f).build())
                         .addMotion(0, velocity, 0)
                         .addTickActor(p -> p.setParticleSpeed(p.getParticleSpeed().scale(1f - random.nextFloat() * 0f)))

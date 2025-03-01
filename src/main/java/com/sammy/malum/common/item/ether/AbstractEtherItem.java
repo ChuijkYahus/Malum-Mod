@@ -22,35 +22,26 @@ public abstract class AbstractEtherItem extends BlockItem implements ParticleEmi
         this.iridescent = iridescent;
     }
 
-    public DataComponentType<DyedItemColor> colorLookup() {
-        return iridescent ? DataComponentRegistry.SECONDARY_DYE_COLOR.get() : DataComponents.DYED_COLOR;
-    }
-
     public static Properties applyColor(Properties builder, boolean iridescent) {
         builder.component(DataComponents.DYED_COLOR, DEFAULT_FIRST_COLOR);
-        if (iridescent) {
-            builder.component(DataComponentRegistry.SECONDARY_DYE_COLOR, DEFAULT_SECOND_COLOR);
-        }
+        builder.component(DataComponentRegistry.SECONDARY_DYE_COLOR, iridescent ? DEFAULT_SECOND_COLOR : DEFAULT_FIRST_COLOR);
         return builder;
     }
 
     public int getSecondColor(ItemStack stack) {
-        return Objects.requireNonNullElse(
-                stack.get(colorLookup()), DEFAULT_SECOND_COLOR
-        ).rgb();
-    }
-
-    public void setSecondColor(ItemStack stack, int color) {
-        stack.set(DataComponentRegistry.SECONDARY_DYE_COLOR.get(), new DyedItemColor(color, false));
+        if (!iridescent) {
+            return getFirstColor(stack);
+        }
+        if (stack.has(DataComponentRegistry.SECONDARY_DYE_COLOR)) {
+            return stack.get(DataComponentRegistry.SECONDARY_DYE_COLOR).rgb();
+        }
+        return DEFAULT_SECOND_COLOR.rgb();
     }
 
     public int getFirstColor(ItemStack stack) {
-        return Objects.requireNonNullElse(
-                stack.get(DataComponents.DYED_COLOR), DEFAULT_FIRST_COLOR
-        ).rgb();
-    }
-
-    public void setFirstColor(ItemStack stack, int color) {
-        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color, false));
+        if (stack.has(DataComponents.DYED_COLOR)) {
+            return stack.get(DataComponents.DYED_COLOR).rgb();
+        }
+        return DEFAULT_FIRST_COLOR.rgb();
     }
 }

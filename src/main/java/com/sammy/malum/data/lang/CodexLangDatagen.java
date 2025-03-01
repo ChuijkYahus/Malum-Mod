@@ -1008,7 +1008,7 @@ public class CodexLangDatagen {
                 "The effect of applying these scars depends on what material we start with. The pulsing of the Rite will shift any given block forward in the tree, with it degrading into blight given enough time.");
         addHeadline("unchained_transmutation.dirt", "Seedless Growth");
         addPages("unchained_transmutation.dirt",
-                "In dirt, the rite encourages growth without any source. The dirt first grows wooden roots through its structure, which then are forced somehow to become grass. The mechanism is likely conceptual, and the next stage makes that even more clear - moss covers the dirt, consuming the entire volume of it. After that point, the growth has no direction to go, and it becomes randomized, creating Blight.");
+                "In dirt, the rite encourages growth without any source. The dirt first grows wooden roots through its structure, which then somehow become grass. The mechanism is conceptual, and the next stage makes that even more clear - moss covers the dirt, consuming the entire volume of it. After that point, the growth has no direction to go, and it becomes randomized, creating Blight.");
         addHeadline("unchained_transmutation.stone", "Forceless Pulverization");
         addPages("unchained_transmutation.stone",
                 "In raw stone, the rite powders the stone, bit by bit. The process is exponential - Raw stone becomes cobblestone, which becomes gravel, which becomes sand. Afterwards, the particles fail to divide into a finer substance, and the backlash creates Blight.");

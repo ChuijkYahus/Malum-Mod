@@ -1,11 +1,11 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "polished_basalt",
+  "group": "basalt",
   "ingredient": {
-    "item": "minecraft:polished_basalt"
+    "item": "minecraft:magma_block"
   },
   "output": {
     "count": 1,
-    "id": "minecraft:tuff"
+    "id": "minecraft:netherrack"
   }
 }

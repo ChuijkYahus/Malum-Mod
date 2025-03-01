@@ -1,11 +1,11 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "deepslate",
+  "group": "basalt",
   "ingredient": {
     "item": "minecraft:basalt"
   },
   "output": {
     "count": 1,
-    "id": "minecraft:netherrack"
+    "id": "minecraft:magma_block"
   }
 }

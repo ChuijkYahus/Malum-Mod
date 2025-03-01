@@ -7,6 +7,7 @@ import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.*;
 import net.minecraft.data.loot.*;
 import net.minecraft.world.flag.*;
@@ -116,10 +117,10 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .setRolls(ConstantValue.exactly(1.0F))
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                                            .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY))
-                                            .apply(CopyCustomDataFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
-                                                    .copy("firstColor", "display.firstColor")
-                                                    .copy("secondColor", "display.secondColor")))));
+                                            .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                                    .include(DataComponentRegistry.SECONDARY_DYE_COLOR.get())
+                                                    .include(DataComponents.DYED_COLOR)
+                                            ))));
         }
 
         protected LootTable.Builder createBannerDrop(Block block) {

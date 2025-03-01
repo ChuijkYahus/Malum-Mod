@@ -490,7 +490,7 @@ public class BlockRegistry {
                 BlockEntity blockEntity = l.getBlockEntity(p);
                 if (blockEntity instanceof EtherBlockEntity etherBlockEntity) {
                     if (etherBlockEntity.firstColor != null) {
-                        return c == 0 ? etherBlockEntity.firstColor.getRGB() : -1;
+                        return c == 0 ? etherBlockEntity.firstColor.rgb() : -1;
                     }
                 }
                 return -1;

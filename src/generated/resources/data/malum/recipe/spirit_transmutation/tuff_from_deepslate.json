@@ -1,11 +1,11 @@
 {
   "type": "malum:spirit_transmutation",
-  "group": "smooth_basalt",
+  "group": "polished_basalt",
   "ingredient": {
-    "item": "minecraft:smooth_basalt"
+    "item": "minecraft:deepslate"
   },
   "output": {
     "count": 1,
-    "id": "minecraft:clay"
+    "id": "minecraft:tuff"
   }
 }

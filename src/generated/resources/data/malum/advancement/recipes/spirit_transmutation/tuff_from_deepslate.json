@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:netherrack_from_basalt"
+        "recipe": "malum:tuff_from_deepslate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:netherrack_from_basalt"
+      "malum:tuff_from_deepslate"
     ]
   }
 }
