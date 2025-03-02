@@ -18,21 +18,8 @@
             },
             {
               "function": "minecraft:copy_components",
-              "source": "block_entity"
-            },
-            {
-              "function": "minecraft:copy_custom_data",
-              "ops": [
-                {
-                  "op": "replace",
-                  "source": "spirit",
-                  "target": "spirit"
-                },
-                {
-                  "op": "replace",
-                  "source": "count",
-                  "target": "count"
-                }
+              "include": [
+                "malum:spirit_jar_contents"
               ],
               "source": "block_entity"
             }

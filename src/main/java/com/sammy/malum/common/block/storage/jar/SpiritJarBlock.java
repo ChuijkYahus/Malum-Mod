@@ -37,7 +37,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public boolean handleAttack(Level pLevel, BlockPos pPos, Player pPlayer) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof SpiritJarBlockEntity jar) {
-            IItemHandler jarHandler = jar.getCapability(pLevel, pPos, pLevel.getBlockState(pPos), jar, Direction.DOWN);
+            IItemHandler jarHandler = jar.getInventory(Direction.DOWN);
             ItemStack item = jarHandler.extractItem(0, pPlayer.isShiftKeyDown() ? 64 : 1, false);
             if (!item.isEmpty()) {
                 ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selected);
@@ -59,9 +59,9 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof SpiritJarBlockEntity jar) {
-            if (jar.type == null)
+            if (jar.contents == null)
                 return 0;
-            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(jar.type) + 1, 15);
+            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(jar.contents.spirit()) + 1, 15);
         }
         return 0;
     }

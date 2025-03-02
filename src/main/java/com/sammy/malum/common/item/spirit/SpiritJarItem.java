@@ -1,14 +1,10 @@
 package com.sammy.malum.common.item.spirit;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 
@@ -31,19 +27,10 @@ public class SpiritJarItem extends BlockItem {
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         if (stack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
-            Contents contents = stack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
-            MalumSpiritType spirit = MalumSpiritType.getSpiritType(contents.spirit());
+            var contents = stack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
             tooltipComponents.add(Component.translatable("malum.spirit.description.stored_spirit").withStyle(ChatFormatting.GRAY));
-            tooltipComponents.add(spirit.getSpiritJarCounterComponent(contents.count()));
+            tooltipComponents.add(contents.spirit().getSpiritJarCounterComponent(contents.count()));
         }
     }
 
-    public record Contents(String spirit, int count) {
-        public static Codec<Contents> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                Codec.STRING.fieldOf("spirit").forGetter(Contents::spirit),
-                Codec.INT.fieldOf("count").forGetter(Contents::count)
-        ).apply(instance, Contents::new));
-
-        public static StreamCodec<ByteBuf, Contents> STREAM_CODEC = ByteBufCodecs.fromCodec(Contents.CODEC);
-    }
 }

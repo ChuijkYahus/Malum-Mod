@@ -2,6 +2,7 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
+import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.block.BlockRegistry;
@@ -29,10 +30,7 @@ public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
     public void renderByItem(ItemStack pStack, ItemDisplayContext pTransformType, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         if (pStack.getItem() instanceof SpiritJarItem) {
             if (pStack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
-                SpiritJarItem.Contents contents = pStack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
-                jar.type = MalumSpiritType.getSpiritType(contents.spirit());
-                jar.count = contents.count();
-
+                jar.contents = pStack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
                 this.blockEntityRenderDispatcher.renderItem(jar, pPoseStack, pBuffer, pPackedLight, pPackedOverlay);
             }
         }

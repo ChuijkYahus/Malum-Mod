@@ -139,10 +139,8 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .setRolls(ConstantValue.exactly(1.0F))
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                                            .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY))
-                                            .apply(CopyCustomDataFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
-                                                    .copy("spirit", "spirit")
-                                                    .copy("count", "count")))));
+                                            .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                                    .include(DataComponentRegistry.SPIRIT_JAR_CONTENTS.get())))));
         }
 
         protected LootTable.Builder createSingleItemTableWithSilkTouchOrShears(Block p_124258_, ItemLike p_124259_) {

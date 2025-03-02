@@ -24,8 +24,8 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
     public void render(SpiritJarBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        if (blockEntityIn.type != null) {
-            final MalumSpiritType type = blockEntityIn.type;
+        if (blockEntityIn.contents != null) {
+            var type = blockEntityIn.contents.spirit();
             double time = ((level.getGameTime() + partialTicks) * 0.05f) % 6.28f;
             double y = 0.5f + (float) Math.sin(time) * 0.2f;
             poseStack.pushPose();

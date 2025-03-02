@@ -31,13 +31,11 @@ import java.awt.*;
 
 public class EtherBlockEntity extends LodestoneBlockEntity {
 
-    public DyedItemColor firstColor;
-    public DyedItemColor secondColor;
+    public DyedItemColor firstColor = EtherItem.DEFAULT_FIRST_COLOR;
+    public DyedItemColor secondColor = EtherItem.DEFAULT_SECOND_COLOR;
 
     public EtherBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.firstColor = EtherItem.DEFAULT_FIRST_COLOR;
-        this.secondColor = EtherItem.DEFAULT_FIRST_COLOR;
     }
 
     public EtherBlockEntity(BlockPos pos, BlockState state) {
@@ -57,6 +55,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         firstColor = componentInput.get(DataComponents.DYED_COLOR);
         secondColor = componentInput.get(DataComponentRegistry.SECONDARY_DYED_COLOR);
     }
+
     @Override
     public void removeComponentsFromTag(CompoundTag tag) {
         tag.remove("firstColor");
@@ -65,18 +64,12 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        firstColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("firstColor")).result().orElse(firstColor);
-        if (firstColor == null) {
-            firstColor = EtherItem.DEFAULT_FIRST_COLOR;
-        }
-        secondColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("secondColor")).result().orElse(secondColor);
-        if (secondColor == null) {
-            if (EtherItem.isIridescent(getBlockState().getBlock().asItem().getDefaultInstance())) {
-                secondColor = EtherItem.DEFAULT_SECOND_COLOR;
-                return;
-            }
+        firstColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("firstColor")).result().orElse(EtherItem.DEFAULT_FIRST_COLOR);
+        if (!EtherItem.isIridescent(this)) {
             secondColor = firstColor;
+            return;
         }
+        secondColor = DyedItemColor.CODEC.parse(NbtOps.INSTANCE, tag.get("secondColor")).result().orElse(EtherItem.DEFAULT_SECOND_COLOR);
     }
 
     @Override
@@ -84,8 +77,10 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         if (firstColor != null) {
             tag.put("firstColor", DyedItemColor.CODEC.encodeStart(NbtOps.INSTANCE, firstColor).getOrThrow());
         }
-        if (secondColor != null) {
-            tag.put("secondColor", DyedItemColor.CODEC.encodeStart(NbtOps.INSTANCE, secondColor).getOrThrow());
+        if (EtherItem.isIridescent(this)) {
+            if (secondColor != null) {
+                tag.put("secondColor", DyedItemColor.CODEC.encodeStart(NbtOps.INSTANCE, secondColor).getOrThrow());
+            }
         }
         super.saveAdditional(tag, registries);
     }
@@ -124,7 +119,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 0.7f, 0.9f);
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
-                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, new Vec3(x, y-0.05f, z), color);
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, new Vec3(x, y - 0.05f, z), color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)
@@ -139,7 +134,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 0.3f, 0.5f);
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
-                var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, new Vec3(x, y-0.05f, z), color);
+                var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, new Vec3(x, y - 0.05f, z), color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)

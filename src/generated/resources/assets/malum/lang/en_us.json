@@ -738,6 +738,7 @@
   "malum.effect.geas.explosion_fire": "Overexertion Ignites You",
   "malum.effect.geas.explosion_lover": "Absorbed Explosions Generate Haste",
   "malum.effect.geas.fall_damage_auto_attack": "Outgoing Fall Damage Strikes Targets With Your Held Weapon Regardless Of Distance",
+  "malum.effect.geas.faster_natural_healing": "Saturation Heals Faster",
   "malum.effect.geas.gleeful_target": "Aliments, Blessings, Curses are Paused When Wounded",
   "malum.effect.geas.gleeful_target_arcane_resonance": "Arcane Resonance Aids Stasis Duration",
   "malum.effect.geas.hunger_as_withdrawal": "Addiction to Slaughter",

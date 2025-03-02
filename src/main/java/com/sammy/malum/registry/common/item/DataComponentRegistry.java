@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;
-import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -40,8 +39,8 @@ public class DataComponentRegistry {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CatalystFlingerStateComponent>> CATALYST_LOBBER_STATE = register("catalyst_flinger_state", builder ->
             builder.persistent(CatalystFlingerStateComponent.CODEC).networkSynchronized(CatalystFlingerStateComponent.STREAM_CODEC));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SpiritJarItem.Contents>> SPIRIT_JAR_CONTENTS = register("spirit_jar_contents", builder ->
-            builder.persistent(SpiritJarItem.Contents.CODEC).networkSynchronized(SpiritJarItem.Contents.STREAM_CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SpiritJarContentsComponent>> SPIRIT_JAR_CONTENTS = register("spirit_jar_contents", builder ->
+            builder.persistent(SpiritJarContentsComponent.CODEC).networkSynchronized(SpiritJarContentsComponent.STREAM_CODEC));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<DyedItemColor>> SECONDARY_DYED_COLOR = register("secondary_dye_color", builder ->
             builder.persistent(DyedItemColor.CODEC).networkSynchronized(DyedItemColor.STREAM_CODEC));
