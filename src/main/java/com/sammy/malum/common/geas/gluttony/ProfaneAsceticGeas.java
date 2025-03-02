@@ -28,6 +28,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
                 .scaleInitialDuration(2)
                 .scaleDurationGain(2)
                 .scaleDurationLimit(4)
+                .scaleAmplifierLimit(2)
                 .replaceEffectType(MobEffectRegistry.TRIAL_OF_FAITH);
     }
 
@@ -55,6 +56,9 @@ public class ProfaneAsceticGeas extends GeasEffect {
     }
 
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
+        if (level.isClientSide) {
+            return;
+        }
         if (isProfaneAscetic(livingEntity)) {
             if (food.is(GROSS_FOODS)) {
                 livingEntity.heal(livingEntity.getMaxHealth() / 5);

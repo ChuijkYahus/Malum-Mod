@@ -21,9 +21,14 @@ public class TrialOfFaithEffect extends MobEffect {
     }
 
     @Override
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
     public boolean applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
         if (entityLivingBaseIn instanceof Player player) {
-            player.causeFoodExhaustion(0.005f * (amplifier + 1));
+            player.causeFoodExhaustion(0.0025f * (amplifier + 1));
         }
         return true;
     }

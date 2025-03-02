@@ -38,6 +38,9 @@ public class CurioVoraciousRing extends MalumCurioItem {
     }
 
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
+        if (level.isClientSide) {
+            return;
+        }
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b

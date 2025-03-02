@@ -51,11 +51,18 @@ public class GeasEntries {
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT))
         );
 
-        screen.addEntry("pact_of_the_shield", -2, 10, b -> b
+        screen.addEntry("pact_of_the_shield", -2, 11, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
         );
-        screen.addEntry("pact_of_the_fortress", -2, 10, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
+        screen.addEntry("pact_of_the_fortress", -3, 10, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS))
+        );
+
+        screen.addEntry("pact_of_the_animated", 2, 11, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
+        );
+        screen.addEntry("pact_of_the_wise", 3, 10, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
         );
     }
 }
