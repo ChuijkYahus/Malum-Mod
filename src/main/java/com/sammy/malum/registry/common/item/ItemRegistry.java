@@ -851,13 +851,12 @@ public class ItemRegistry {
                     SOULWOOD_LEAVES.get(), HANGING_SOULWOOD_LEAVES.get());
 
             DataHelper.takeAll(items, i -> i.get() instanceof EtherTorchItem || i.get() instanceof EtherBrazierItem).forEach(i -> event.register((s, c) -> {
-                AbstractEtherItem etherItem = (AbstractEtherItem) s.getItem();
                 switch (c) {
                     case 2 -> {
-                        return etherItem.getSecondColor(s);
+                        return EtherItem.getSecondaryColor(s);
                     }
                     case 1 -> {
-                        return etherItem.getFirstColor(s);
+                        return EtherItem.getPrimaryColor(s);
                     }
                     default -> {
                         return -1;
@@ -865,8 +864,8 @@ public class ItemRegistry {
                 }
             }, i.get()));
             DataHelper.takeAll(items, i -> i.get() instanceof EtherItem).forEach(i -> event.register((s, c) -> {
-                AbstractEtherItem etherItem = (AbstractEtherItem) s.getItem();
-                return c == 0 ? etherItem.getFirstColor(s) : etherItem.getSecondColor(s);
+                EtherItem etherItem = (EtherItem) s.getItem();
+                return c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s);
             }, i.get()));
 
             DataHelper.takeAll(items, i -> i.get() instanceof SpiritShardItem).forEach(item ->

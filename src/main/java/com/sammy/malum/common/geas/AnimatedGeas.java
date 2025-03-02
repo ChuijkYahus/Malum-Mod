@@ -24,13 +24,13 @@ public class AnimatedGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("faster_natural_healing"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("faster_natural_healing"));
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
+        addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(modifiers, Attributes.MAX_HEALTH, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.8f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

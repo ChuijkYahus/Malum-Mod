@@ -136,8 +136,8 @@ public class TinkeringEntries {
                                 .addPage(SpiritInfusionPage.fromOutput(CONCENTRATED_GLUTTONY.get()))
                                 .addPage(new TextPage("belt_of_the_starved.concentrated_gluttony.2"))
                                 .addPage(new CyclingPage(
-                                        SpiritInfusionPage.fromId(malumPath("spirit_infusion/splash_of_gluttony")),
-                                        SpiritInfusionPage.fromId(malumPath("spirit_infusion/splash_of_gluttony_from_concentrated_gluttony"))
+                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony")),
+                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony_from_concentrated_gluttony"))
                                 ))
                 ))
         );

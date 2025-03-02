@@ -1,10 +1,7 @@
 package com.sammy.malum.data.block;
 
-import com.google.common.collect.*;
-import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.storage.jar.*;
-import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -118,7 +115,7 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
                                             .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
-                                                    .include(DataComponentRegistry.SECONDARY_DYE_COLOR.get())
+                                                    .include(DataComponentRegistry.SECONDARY_DYED_COLOR.get())
                                                     .include(DataComponents.DYED_COLOR)
                                             ))));
         }

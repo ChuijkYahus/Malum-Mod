@@ -75,6 +75,9 @@ public class MalumItemTags extends ItemTagsProvider {
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
         tag(Tags.Items.ORES_QUARTZ).add(NATURAL_QUARTZ_ORE.get(), DEEPSLATE_QUARTZ_ORE.get());
+        tag(ItemTags.DYEABLE).add(
+                ETHER.get(), ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
+                IRIDESCENT_ETHER.get(), IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
 
         tag(ItemTagRegistry.MAGIC_CAPABLE_WEAPONS).add(
                 CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(),
@@ -141,7 +144,7 @@ public class MalumItemTags extends ItemTagsProvider {
                 Items.LEATHER, Items.RABBIT_HIDE, Items.FEATHER, Items.INK_SAC);
         tag(ItemTagRegistry.MATERIALS).add(
                 ROTTING_ESSENCE.get(), GRIM_TALC.get(), ASTRAL_WEAVE.get(), WARP_FLUX.get(),
-                HEX_ASH.get(),LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
+                HEX_ASH.get(), LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
                 SOULWOVEN_SILK.get(), ETHER.get(), IRIDESCENT_ETHER.get(),
                 SOUL_STAINED_STEEL_INGOT.get(), SOUL_STAINED_STEEL_NUGGET.get(), SOUL_STAINED_STEEL_PLATING.get(),
                 HALLOWED_GOLD_INGOT.get(), HALLOWED_GOLD_NUGGET.get(),

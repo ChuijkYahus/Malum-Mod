@@ -43,7 +43,7 @@ public class DataComponentRegistry {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SpiritJarItem.Contents>> SPIRIT_JAR_CONTENTS = register("spirit_jar_contents", builder ->
             builder.persistent(SpiritJarItem.Contents.CODEC).networkSynchronized(SpiritJarItem.Contents.STREAM_CODEC));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<DyedItemColor>> SECONDARY_DYE_COLOR = register("secondary_dye_color", builder ->
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<DyedItemColor>> SECONDARY_DYED_COLOR = register("secondary_dye_color", builder ->
             builder.persistent(DyedItemColor.CODEC).networkSynchronized(DyedItemColor.STREAM_CODEC));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Disabled>> DISABLED = register("disabled_item_storage", builder ->

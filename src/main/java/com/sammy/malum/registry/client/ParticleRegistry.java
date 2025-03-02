@@ -1,7 +1,6 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.particles.spiritflame.SpiritFlameParticleType;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.client.event.*;
@@ -11,8 +10,6 @@ import team.lodestar.lodestone.systems.particle.world.type.*;
 
 public class ParticleRegistry {
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MalumMod.MALUM);
-
-    public static DeferredHolder<ParticleType<?>, SpiritFlameParticleType> SPIRIT_FLAME_PARTICLE = PARTICLES.register("spirit_flame", SpiritFlameParticleType::new);
 
     //Simpler Shapes
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> LIGHT_SPEC_SMALL = PARTICLES.register("light_spec_small", LodestoneWorldParticleType::new);
@@ -50,11 +47,7 @@ public class ParticleRegistry {
 
     public static void registerParticleFactory(RegisterParticleProvidersEvent event) {
         for (DeferredHolder<ParticleType<?>, ? extends ParticleType<?>> entry : PARTICLES.getEntries()) {
-            LodestoneWorldParticleType particleType = (LodestoneWorldParticleType)entry.get();
-            if (particleType.equals(SPIRIT_FLAME_PARTICLE.get())) {
-                continue;
-            }
-            event.registerSpriteSet(particleType, LodestoneWorldParticleType.Factory::new);
+            event.registerSpriteSet((LodestoneWorldParticleType)entry.get(), LodestoneWorldParticleType.Factory::new);
         }
     }
 }
