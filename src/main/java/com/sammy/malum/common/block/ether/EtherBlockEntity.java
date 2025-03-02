@@ -75,7 +75,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 secondColor = EtherItem.DEFAULT_SECOND_COLOR;
                 return;
             }
-            secondColor = EtherItem.DEFAULT_FIRST_COLOR;
+            secondColor = firstColor;
         }
     }
 
