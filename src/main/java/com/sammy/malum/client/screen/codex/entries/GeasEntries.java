@@ -54,12 +54,18 @@ public class GeasEntries {
         screen.addEntry("pact_of_the_shield", -2, 11, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
         );
+        screen.addEntry("pact_of_the_reaper", -2, 12, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER))
+        );
         screen.addEntry("pact_of_the_fortress", -3, 12, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS))
         );
 
         screen.addEntry("pact_of_the_animated", 2, 11, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
+        );
+        screen.addEntry("pact_of_the_cloudskipper", 2, 12, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER))
         );
         screen.addEntry("pact_of_the_wise", 3, 12, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))

@@ -9,6 +9,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -41,7 +42,7 @@ public class EdgeOfDeliveranceCritParticleEffect extends SlashAttackParticleEffe
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.5f, 2f)).build())
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.6f, 0.8f)))
                         .setLifetime(3)
-                        .setBehavior(new PointyDirectionalBehaviorComponent(direction));
+                        .setBehavior(new PointyDirectionalParticleBehavior(direction));
                 slash.spawnParticles();
             }
         };

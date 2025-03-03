@@ -13,6 +13,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -55,7 +56,7 @@ public class SunderingAnchorSlashParticleEffect extends SlashAttackParticleEffec
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.8f, 1.3f)))
                             .setLifeDelay(lifeDelay)
                             .setLifetime(4)
-                            .setBehavior(new PointyDirectionalBehaviorComponent(direction));
+                            .setBehavior(new PointyDirectionalParticleBehavior(direction));
                     slash.spawnParticles();
                 }
             }

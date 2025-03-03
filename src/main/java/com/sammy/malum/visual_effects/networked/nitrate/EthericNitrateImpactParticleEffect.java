@@ -14,7 +14,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.awt.*;
 import java.util.function.*;
@@ -67,7 +67,7 @@ public class EthericNitrateImpactParticleEffect extends ParticleEffectType {
                 };
                 float scalar = RandomHelper.randomBetween(random, 0.8f, 1.1f);
                 var lengthData = GenericParticleData.create(3f * scalar, 0.75f * scalar, 0f).setEasing(Easing.QUARTIC_OUT, Easing.SINE_IN_OUT).build();
-                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(new SparkBehaviorComponent(lengthData)));
+                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(new SparkParticleBehavior(lengthData)));
                 sparks.getBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
                         .enableForcedSpawn()

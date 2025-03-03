@@ -1,8 +1,9 @@
 package com.sammy.malum.common.block.storage.jar;
 
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -14,6 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.items.*;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
 
@@ -44,6 +46,8 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
                 if (!pLevel.isClientSide) {
                     BlockStateHelper.updateAndNotifyState(pLevel, pPos);
                 }
+                SoundHelper.playSound(pPlayer, SoundRegistry.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
+
                 return true;
             }
         }

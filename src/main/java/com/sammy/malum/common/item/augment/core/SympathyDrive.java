@@ -26,7 +26,7 @@ public class SympathyDrive extends CoreAugmentItem {
 
     public static void repairImpetus(Level level, ArtificeAttributeData attributes, ItemStack impetus) {
         float misfortuneReversal = attributes.misfortuneReversal.getValue(attributes);
-        float repairPercentage = 0.02f * misfortuneReversal;
+        float repairPercentage = 0.01f * misfortuneReversal;
         float buffStrength = 0.2f + attributes.sympathyDamageStacks * 0.05f;
         int repairedAmount = Mth.ceil(impetus.getMaxDamage() * repairPercentage);
         impetus.setDamageValue(Math.max(impetus.getDamageValue() - repairedAmount, 0));

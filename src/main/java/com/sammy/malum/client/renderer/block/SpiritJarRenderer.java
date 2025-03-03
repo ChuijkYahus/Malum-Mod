@@ -26,12 +26,12 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if (blockEntityIn.contents != null) {
             var type = blockEntityIn.contents.spirit();
-            double time = ((level.getGameTime() + partialTicks) * 0.05f) % 6.28f;
-            double y = 0.5f + (float) Math.sin(time) * 0.2f;
+            float time = level.getGameTime() + partialTicks;
+            double y = 0.5f + (float) Math.sin((time * 0.05f) % 6.28f) * 0.2f;
             poseStack.pushPose();
             poseStack.translate(0.5f, y, 0.5f);
             FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, type, partialTicks);
-            poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
+            poseStack.mulPose(Axis.YP.rotationDegrees((time * 3) % 360));
             poseStack.scale(0.6f, 0.6f, 0.6f);
             itemRenderer.renderStatic(type.getSpiritShard().getDefaultInstance(), ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
             poseStack.popPose();

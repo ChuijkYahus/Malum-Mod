@@ -14,7 +14,7 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.util.function.*;
@@ -54,7 +54,7 @@ public class ItemCrumbleParticleEffects {
                 .addTickActor(slowDown);
     }
 
-    public static LodestoneBehaviorComponent makeCrumbParticleBehavior(Level level) {
-        return level.getRandom().nextBoolean() ? new BedrockDirectionalBehaviorComponent() : null;
+    public static LodestoneParticleBehavior makeCrumbParticleBehavior(Level level) {
+        return level.getRandom().nextBoolean() ? new BedrockDirectionalParticleBehavior() : null;
     }
 }

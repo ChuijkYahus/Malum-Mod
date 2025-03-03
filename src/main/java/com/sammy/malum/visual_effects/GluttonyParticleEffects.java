@@ -14,7 +14,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
@@ -50,7 +50,7 @@ public class GluttonyParticleEffects {
 
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE), distance, count);
         ring.getBuilder()
-                .replaceExistingBehavior(SparkBehaviorComponent.class, c -> new SparkBehaviorComponent(c.getLengthData().multiplyValue(length).bake()))
+                .modifyData(b -> b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(length))
                 .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(gluttonyPotency))
                 .setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.SINE_IN).build());
         ring.spawnParticles();
@@ -62,7 +62,8 @@ public class GluttonyParticleEffects {
 
         for (int i = 0; i < 4; i++) {
             int lifetime = RandomHelper.randomBetween(random, 30, 40);
-            WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE, LodestoneBehaviorComponent.DIRECTIONAL)
+            WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
+                    .setBehavior(new DirectionalParticleBehavior())
                     .setTransparencyData(GenericParticleData.create(0.2f, 0.7f, 0).build())
                     .setColorData(ColorParticleData.create(GLUTTONY_DARK, GLUTTONY_SHADE).setCoefficient(2f).build())
                     .setScaleData(GenericParticleData.create(2f, 0f).setEasing(Easing.EXPO_IN).build())
@@ -78,7 +79,7 @@ public class GluttonyParticleEffects {
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 1.2f, 32);
         ring.spawnParticles();
         ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 0.4f, 16, 0.5f);
-        ring.getBuilder().replaceExistingBehavior(SparkBehaviorComponent.class, c -> new ExtrudingSparkBehaviorComponent(c.getLengthData().multiplyValue(0.5f).bake()));
+        ring.getBuilder().modifyData(b -> b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(0.5f));
         ring.spawnParticles();
     }
 
@@ -90,7 +91,7 @@ public class GluttonyParticleEffects {
         Level level = Minecraft.getInstance().level;
         var random = level.random;
         var lengthData = GenericParticleData.create(0.1f, 0.5f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build();
-        var builder = WorldParticleBuilder.create(options.setBehaviorIfDefault(new ExtrudingSparkBehaviorComponent(lengthData)))
+        var builder = WorldParticleBuilder.create(options.setBehaviorIfDefault(new ExtrudingSparkParticleBehavior(lengthData)))
                 .setScaleData(GenericParticleData.create(0.025f, RandomHelper.randomBetween(random, 0.2f, 0.3f), 0).build())
                 .setTransparencyData(GenericParticleData.create(0.8f, 0f).build());
         return gluttonyRing(center, builder, distance, count, lifetimeScalar);
@@ -118,7 +119,7 @@ public class GluttonyParticleEffects {
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                     var renderTarget = j < 2 ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
                     builder
-                            .modifyOptionalData(b.getBehaviorComponent(SparkBehaviorComponent.class).map(SparkBehaviorComponent::getLengthData), d -> d.overrideValueMultiplier(lengthMultiplier))
+                            .modifyData(b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(lengthMultiplier))
                             .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.bake().multiplyValue(alphaMultiplier))
                             .modifyData(AbstractParticleBuilder::getScaleData, d -> d.bake().multiplyValue(scaleMultiplier))
                             .setColorData(ColorParticleData.create(bright, dark).setCoefficient(colorCoefficient).build())

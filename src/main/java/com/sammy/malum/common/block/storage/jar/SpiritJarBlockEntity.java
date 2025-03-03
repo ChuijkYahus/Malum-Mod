@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.curiosities.SoulwovenPouchItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.common.packets.CodecUtil;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.BlockEntityRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
@@ -14,6 +15,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,6 +33,7 @@ import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.blockentity.*;
@@ -136,10 +139,14 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
+        int inserted;
         if (getLevel().getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID)) {
-            insertAllSpirits(player);
+            inserted = insertAllSpirits(player);
         } else {
-            insertHeldItem(player);
+            inserted = insertHeldItem(player);
+        }
+        if (inserted > 0) {
+            SoundHelper.playSound(player, SoundRegistry.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
         }
 
         lastClickTime = getLevel().getGameTime();
@@ -155,7 +162,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
         int count = 0;
         ItemStack playerStack = player.getInventory().getSelected();
         if (!playerStack.isEmpty())
-            count = insertFromStack(playerStack);
+            count = insertFromStack(playerStack, player);
 
         return count;
     }
@@ -168,7 +175,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
         for (int i = 0, n = player.getInventory().getContainerSize(); i < n; i++) {
             ItemStack subStack = player.getInventory().getItem(i);
             if (!subStack.isEmpty()) {
-                int subCount = insertFromStack(subStack);
+                int subCount = insertFromStack(subStack, player);
                 if (subCount > 0 && subStack.getCount() == 0)
                     player.getInventory().setItem(i, ItemStack.EMPTY);
 
@@ -179,7 +186,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
         return count;
     }
 
-    public int insertFromStack(ItemStack stack) {
+    public int insertFromStack(ItemStack stack, Player player) {
         int inserted = 0;
 
         if (stack.has(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS)) {
@@ -187,11 +194,12 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
             if (!pouchContents.isEmpty()) {
                 ArrayList<ItemStack> remainingSpirits = new ArrayList<>();
                 for (ItemStack item : pouchContents.items()) {
-                    inserted += insertFromStack(item);
+                    inserted += insertFromStack(item, player);
                     if (!item.isEmpty()) {
                         remainingSpirits.add(item);
                     }
                 }
+                SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
                 stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
             }
             return inserted;

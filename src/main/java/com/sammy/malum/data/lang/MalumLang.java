@@ -59,7 +59,7 @@ public class MalumLang extends LanguageProvider {
         add(DataHelper.take(blocks, BlockRegistry.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, BlockRegistry.VOID_CONDUIT).get(), "The Weeping Well");
 
-        add("item.malum.filled.spirit_jar", "Filled Spirit Jar");
+        add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
         add("malum.spirit.description.stored_spirit", "Contains: ");
         add("malum.spirit.description.stored_soul", "Stores Soul With: ");
 
