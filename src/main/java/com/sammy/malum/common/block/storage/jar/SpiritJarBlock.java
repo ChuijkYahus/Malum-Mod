@@ -1,8 +1,9 @@
 package com.sammy.malum.common.block.storage.jar;
 
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -14,6 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.items.*;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
 
@@ -37,13 +39,15 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public boolean handleAttack(Level pLevel, BlockPos pPos, Player pPlayer) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof SpiritJarBlockEntity jar) {
-            IItemHandler jarHandler = jar.getCapability(pLevel, pPos, pLevel.getBlockState(pPos), jar, Direction.DOWN);
+            IItemHandler jarHandler = jar.getInventory(Direction.DOWN);
             ItemStack item = jarHandler.extractItem(0, pPlayer.isShiftKeyDown() ? 64 : 1, false);
             if (!item.isEmpty()) {
                 ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selected);
                 if (!pLevel.isClientSide) {
                     BlockStateHelper.updateAndNotifyState(pLevel, pPos);
                 }
+                SoundHelper.playSound(pPlayer, SoundRegistry.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
+
                 return true;
             }
         }
@@ -59,9 +63,9 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof SpiritJarBlockEntity jar) {
-            if (jar.type == null)
+            if (jar.contents == null)
                 return 0;
-            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(jar.type) + 1, 15);
+            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(jar.contents.spirit()) + 1, 15);
         }
         return 0;
     }

@@ -1,22 +1,27 @@
 package com.sammy.malum.common.block.storage.jar;
 
+import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.curiosities.SoulwovenPouchItem;
-import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.common.packets.CodecUtil;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.BlockEntityRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.component.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,19 +33,20 @@ import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
+import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
 import java.awt.*;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Supplier;
 
-public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlockCapabilityProvider<IItemHandler, Direction> {
+public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemHandlerSupplier {
 
     public SpiritJarBlockEntity(BlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -50,8 +56,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
         this(BlockEntityRegistry.SPIRIT_JAR.get(), pos, state);
     }
 
-    public MalumSpiritType type;
-    public int count;
+    public SpiritJarContentsComponent contents;
 
     // Storage Drawers moment
     private long lastClickTime;
@@ -66,20 +71,25 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
         @NotNull
         @Override
         public ItemStack getStackInSlot(int slot) {
-            if (slot == 0 && type != null) {
-                return new ItemStack(type.getSpiritShard(), count); // Yes, this can create a stack bigger than 64. It's fine.
-            } else
-                return ItemStack.EMPTY;
+            if (slot == 0 && contents != null) {
+                return contents.createStack();
+            }
+            return ItemStack.EMPTY;
         }
 
         @NotNull
         @Override
         public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if (slot == 1 && stack.getItem() instanceof SpiritShardItem spiritItem && (type == null || spiritItem.type == type)) {
+            if (!(stack.getItem() instanceof SpiritShardItem shardItem)) {
+                return stack;
+            }
+            if (slot == 1) {
                 if (!simulate) {
-                    if (type == null)
-                        type = spiritItem.type;
-                    count += stack.getCount();
+                    if (contents == null) {
+                        contents = new SpiritJarContentsComponent(shardItem.type, stack.getCount());
+                    } else if (contents.spirit().equals(shardItem.type)) {
+                        contents = contents.add(stack.getCount());
+                    }
                     if (!level.isClientSide) {
                         BlockStateHelper.updateAndNotifyState(level, worldPosition);
                     }
@@ -92,83 +102,80 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
         @NotNull
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (slot != 0 || count <= 0)
-                return ItemStack.EMPTY;
-            MalumSpiritType extractedType = type;
-            if (extractedType == null)
+            if (contents == null)
                 return ItemStack.EMPTY;
 
-            int amountToExtract = Math.min(count, amount);
+            int amountToExtract = Math.min(contents.count(), amount);
+            var result = contents.createStack(amountToExtract);
             if (!simulate) {
-                count -= amountToExtract;
-                if (count == 0) {
-                    type = null;
-                }
+                contents = contents.remove(amountToExtract);
                 if (!level.isClientSide) {
                     BlockStateHelper.updateAndNotifyState(level, worldPosition);
                 }
             }
-
-            return new ItemStack(extractedType.getSpiritShard(), amountToExtract);
+            return result;
         }
 
         @Override
         public int getSlotLimit(int slot) {
             if (slot == 0)
-                return Math.min(64, count);
+                return contents == null ? 64 : Math.min(64, contents.count());
             return 64;
         }
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return stack.getItem() instanceof SpiritShardItem spiritItem && spiritItem.type == type;
+            if (stack.getItem() instanceof SpiritShardItem spiritShardItem) {
+                return contents == null || contents.spirit().equals(spiritShardItem.type);
+            }
+            return false;
         }
     };
 
 
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack pStack, InteractionHand pHand) {
-        if (getLevel() == null)
+        if (getLevel() == null) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
 
-        int count;
-        if (getLevel().getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID))
-            count = insertAllSpirits(player);
-        else
-            count = insertHeldItem(player);
+        int inserted;
+        if (getLevel().getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID)) {
+            inserted = insertAllSpirits(player);
+        } else {
+            inserted = insertHeldItem(player);
+        }
+        if (inserted > 0) {
+            SoundHelper.playSound(player, SoundRegistry.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+        }
 
         lastClickTime = getLevel().getGameTime();
         lastClickUUID = player.getUUID();
 
-        if (count != 0) {
-            if (player.level().isClientSide) {
-                spawnUseParticles(level, worldPosition, type);
-            } else {
-                BlockStateHelper.updateAndNotifyState(level, worldPosition);
-            }
+        if (!level.isClientSide) {
+            BlockStateHelper.updateAndNotifyState(level, worldPosition);
         }
-
-        return ItemInteractionResult.sidedSuccess(player.level().isClientSide);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     public int insertHeldItem(Player player) {
         int count = 0;
         ItemStack playerStack = player.getInventory().getSelected();
         if (!playerStack.isEmpty())
-            count = insertFromStack(playerStack);
+            count = insertFromStack(playerStack, player);
 
         return count;
     }
 
     public int insertAllSpirits(Player player) {
-        if (type == null)
+        if (contents == null)
             return 0;
 
         int count = 0;
         for (int i = 0, n = player.getInventory().getContainerSize(); i < n; i++) {
             ItemStack subStack = player.getInventory().getItem(i);
             if (!subStack.isEmpty()) {
-                int subCount = insertFromStack(subStack);
+                int subCount = insertFromStack(subStack, player);
                 if (subCount > 0 && subStack.getCount() == 0)
                     player.getInventory().setItem(i, ItemStack.EMPTY);
 
@@ -179,28 +186,32 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
         return count;
     }
 
-    public int insertFromStack(ItemStack stack) {
+    public int insertFromStack(ItemStack stack, Player player) {
         int inserted = 0;
-        if (stack.getItem() instanceof SoulwovenPouchItem) {
-            if (type != null) {
-//                ItemInventory inventory = SpiritPouchItem.getInventory(stack);
-//                for (int i = 0; i < inventory.getContainerSize(); i++) {
-//                    ItemStack spiritStack = inventory.getItem(i);
-//                    if (spiritStack.getItem() instanceof SpiritShardItem spiritItem) {
-//                        MalumSpiritType type = spiritItem.type;
-//                        if (type.getIdentifier().equals(this.type.getIdentifier())) {
-//                            inventory.setItem(i, ItemStack.EMPTY);
-//                            inserted += spiritStack.getCount();
-//                            count += spiritStack.getCount();
-//                        }
-//                    }
-//                }
+
+        if (stack.has(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS)) {
+            var pouchContents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+            if (!pouchContents.isEmpty()) {
+                ArrayList<ItemStack> remainingSpirits = new ArrayList<>();
+                for (ItemStack item : pouchContents.items()) {
+                    inserted += insertFromStack(item, player);
+                    if (!item.isEmpty()) {
+                        remainingSpirits.add(item);
+                    }
+                }
+                SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+                stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
             }
-        } else if (stack.getItem() instanceof SpiritShardItem shard) {
-            if (type == null || type.equals(shard.type)) {
-                type = shard.type;
+            return inserted;
+        }
+        if (stack.getItem() instanceof SpiritShardItem shard) {
+            if (contents == null || contents.spirit().equals(shard.type)) {
+                if (contents == null) {
+                    contents = new SpiritJarContentsComponent(shard.type, stack.getCount());
+                } else if (contents.spirit().equals(shard.type)) {
+                    contents = contents.add(stack.getCount());
+                }
                 inserted += stack.getCount();
-                count += stack.getCount();
                 stack.shrink(stack.getCount());
             }
         }
@@ -208,42 +219,41 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
 
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
-    public void onPlace(LivingEntity placer, ItemStack stack) {
-        if (stack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
-            loadAdditional((CompoundTag) CodecUtil.encodeNBT(SpiritJarItem.Contents.CODEC, stack.get(
-                            DataComponentRegistry.SPIRIT_JAR_CONTENTS
-                    )
-            ), placer.level().registryAccess());
-        }
-        setChanged();
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        components.set(DataComponentRegistry.SPIRIT_JAR_CONTENTS, contents);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        if (type != null) {
-            compound.putString("spirit", type.getIdentifier());
-        }
-        compound.putInt("count", count);
+    protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
+        super.applyImplicitComponents(componentInput);
+        contents = componentInput.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag compound, HolderLookup.Provider pRegistries) {
-        if (compound.contains("spirit")) {
-            type = MalumSpiritType.getSpiritType(compound.getString("spirit"));
-        } else {
-            type = null;
+    public void removeComponentsFromTag(CompoundTag tag) {
+        tag.remove("contents");
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        if (contents != null) {
+            tag.put("contents", SpiritJarContentsComponent.CODEC.encodeStart(NbtOps.INSTANCE, contents).getOrThrow());
         }
-        count = compound.getInt("count");
-        super.loadAdditional(compound, pRegistries);
+    }
+
+    @Override
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        contents = SpiritJarContentsComponent.CODEC.parse(NbtOps.INSTANCE, tag.get("contents")).result().orElse(null);
+        super.loadAdditional(tag, registries);
     }
 
     @Override
     public void tick() {
         if (level.isClientSide) {
-            if (type != null) {
-                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), type, 0.4f, 3);
+            if (contents != null) {
+                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), contents.spirit(), 0.4f, 3);
             }
         }
     }
@@ -256,23 +266,8 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IBlock
         return new Vec3(x, y, z);
     }
 
-    @OnlyIn(value = Dist.CLIENT)
-    public void spawnUseParticles(Level level, BlockPos pos, MalumSpiritType type) {
-        Color color = type.getPrimaryColor();
-        WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                .setTransparencyData(GenericParticleData.create(0.15f, 0f).build())
-                .setScaleData(GenericParticleData.create(0.3f, 0).build())
-                .setSpinData(SpinParticleData.create(0.2f).build())
-                .setColorData(ColorParticleData.create(color, color.darker()).build())
-                .setLifetime(20)
-                .setRandomMotion(0.02f)
-                .setRandomOffset(0.1f, 0.1f)
-                .enableNoClip()
-                .repeat(level, pos.getX() + 0.5f, pos.getY() + 0.5f + Math.sin(level.getGameTime() / 20f) * 0.2f, pos.getZ() + 0.5f, 10);
-    }
-
     @Override
-    public @Nullable IItemHandler getCapability(Level level, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, Direction direction) {
+    public IItemHandler getInventory(Direction direction) {
         return inventory.get();
     }
 }

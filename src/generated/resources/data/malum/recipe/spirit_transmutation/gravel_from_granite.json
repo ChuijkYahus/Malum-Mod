@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "packed_mud",
+  "ingredient": {
+    "item": "minecraft:granite"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:gravel"
+  }
+}

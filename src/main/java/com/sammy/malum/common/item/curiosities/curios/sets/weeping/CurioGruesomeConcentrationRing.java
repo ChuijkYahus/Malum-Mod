@@ -28,6 +28,9 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
     }
 
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
+        if (level.isClientSide) {
+            return;
+        }
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b

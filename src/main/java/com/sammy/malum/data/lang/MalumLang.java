@@ -59,7 +59,7 @@ public class MalumLang extends LanguageProvider {
         add(DataHelper.take(blocks, BlockRegistry.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, BlockRegistry.VOID_CONDUIT).get(), "The Weeping Well");
 
-        add("item.malum.filled.spirit_jar", "Filled Spirit Jar");
+        add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
         add("malum.spirit.description.stored_spirit", "Contains: ");
         add("malum.spirit.description.stored_soul", "Stores Soul With: ");
 
@@ -256,7 +256,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.curio.rebound_maelstrom", "Rebound Creates A Windborne Maelstrom");
         add("malum.effect.curio.longer_rebound_cooldown", "Rebound Suffers a Longer Cooldown");
         add("malum.effect.curio.friendly_enemies", "Reduces Enemy Aggression");
-        add("malum.effect.curio.soul_ward_magic_resilience", "Soul Ward Magic Rerouting");
+        add("malum.effect.curio.soul_ward_magic_resilience", "Soul Ward Reroutes Magic");
         add("malum.effect.curio.soul_ward_long_shatter_cooldown", "Lengthy Soul Ward Recharge upon Disintegration");
         add("malum.effect.curio.rotten_gluttony", "Eating Rotten Food Generates Gluttony");
         add("malum.effect.curio.scythe_counterattack", "Powerful Scythe Counterattack When Struck");
@@ -269,8 +269,9 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.curio.explosions_spare_valuables", "Protects Valuable Items from Explosions");
 
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
+        add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
-        add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-attacks");
+        add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-Attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
         add("malum.effect.geas.fall_damage_auto_attack", "Outgoing Fall Damage Strikes Targets With Your Held Weapon Regardless Of Distance");
         add("malum.effect.geas.more_knockback", "Doubles Incoming Knockback");
@@ -278,7 +279,6 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         add("malum.effect.geas.weak_legs", "Fall Damage Is Made Deadlier");
         add("malum.effect.geas.explosion_lover", "Absorbed Explosions Generate Haste");
-        add("malum.effect.geas.explosion_protection", "Absorption of Hostile Explosions Spares Terrain");
         add("malum.effect.geas.explosion_fire", "Overexertion Ignites You");
         add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
         add("malum.effect.geas.trial_of_faith", "Gluttony Becomes Trial of Faith");
@@ -345,13 +345,13 @@ public class MalumLang extends LanguageProvider {
         add("malum.jei.weeping_well", "The Weeping Well");
         add("malum.jei.spirit_transmutation", "The Unchained Rite");
 
-        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles and Madness");
+        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles");
         add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
         add("itemGroup.malum_natural_wonders", "Malum: Intertwined With Nature");
         add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
         add("itemGroup.malum_geas", "Malum: Sworn Oaths");
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
-        add("itemGroup.malum_cosmetics", "Malum: Expression of One's True Self");
+        add("itemGroup.malum_cosmetics", "Malum: One's True Self");
 
         addDeathMessage(DamageTypeRegistry.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");

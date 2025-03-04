@@ -9,26 +9,24 @@ import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleDataBuilder;
 import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 
 import java.awt.*;
 
-public class EtherBrazierItem extends AbstractEtherItem {
+public class EtherBrazierItem extends EtherItem {
     public EtherBrazierItem(Block blockIn, Properties builder, boolean iridescent) {
         super(blockIn, builder, iridescent);
     }
 
     @Override
     public void spawnLateParticles(ScreenParticleHolder target, Level level, float partialTick, ItemStack stack, float x, float y) {
+        var firstColor = new Color(EtherItem.getPrimaryColor(stack));
+        var secondColor = new Color(EtherItem.getSecondaryColor(stack));
+        float alphaMultiplier = isIridescent ? 0.75f : 0.5f;
         float time = level.getGameTime() + partialTick;
-        AbstractEtherItem etherItem = (AbstractEtherItem) stack.getItem();
-        Color firstColor = new Color(etherItem.getFirstColor(stack));
-        Color secondColor = new Color(etherItem.getSecondColor(stack));
-        float alphaMultiplier = etherItem.iridescent ? 0.75f : 0.5f;
-        SpinParticleDataBuilder spinDataBuilder = SpinParticleData.create(0, 1).setSpinOffset(0.025f * time % 6.28f).setEasing(Easing.EXPO_IN_OUT);
+        var spinDataBuilder = SpinParticleData.create(0, 1).setSpinOffset(0.025f * time % 6.28f).setEasing(Easing.EXPO_IN_OUT);
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.STAR, target)
-                .setTransparencyData(GenericParticleData.create(0.1f * alphaMultiplier, 0f).setEasing(Easing.QUINTIC_IN).build())
+                .setTransparencyData(GenericParticleData.create(0.06f * alphaMultiplier, 0f).setEasing(Easing.QUINTIC_IN).build())
                 .setScaleData(GenericParticleData.create((float) (1.3f + Math.sin(time * 0.1f) * 0.125f), 0).build())
                 .setColorData(ColorParticleData.create(firstColor, secondColor).setCoefficient(1.25f).build())
                 .setLifetime(6)

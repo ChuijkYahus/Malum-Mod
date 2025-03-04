@@ -10,6 +10,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -53,7 +54,7 @@ public class AscensionUppercutParticleEffect extends SlashAttackParticleEffect {
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.2f, 0.4f)).add(0, 0.8f, 0))
                             .setLifetime(3+i)
                             .setLifeDelay(i/2)
-                            .setBehavior(new PointyDirectionalBehaviorComponent(direction));
+                            .setBehavior(new PointyDirectionalParticleBehavior(direction));
                     slash.spawnParticles();
                 }
             }

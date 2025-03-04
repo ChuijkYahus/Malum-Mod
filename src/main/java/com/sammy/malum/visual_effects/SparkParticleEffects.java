@@ -15,7 +15,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.util.function.*;
@@ -42,7 +42,7 @@ public class SparkParticleEffects {
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, WorldParticleOptions options, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
         var lengthData = GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build();
-        var builder = builderSupplier.apply(options.setBehaviorIfDefault(new SparkBehaviorComponent(lengthData)));
+        var builder = builderSupplier.apply(options.setBehaviorIfDefault(new SparkParticleBehavior(lengthData)));
         var bloomBuilder = builderSupplier.apply(new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE));
         return spiritMotionSparks(level, pos, builder, bloomBuilder);
     }

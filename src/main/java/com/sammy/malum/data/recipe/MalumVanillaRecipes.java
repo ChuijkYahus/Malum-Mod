@@ -217,11 +217,11 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
         //SAP & ARCANE CHARCOAL
         smelting(Ingredient.of(ItemTagRegistry.RUNEWOOD_LOGS), RecipeCategory.MISC, ItemRegistry.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_runewood_planks", has(ItemTagRegistry.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
-        shapeless(RecipeCategory.MISC, ItemRegistry.RUNIC_SAPBALL.get()).requires(ItemRegistry.RUNIC_SAP.get(), 2).unlockedBy("has_runic_sap", has(ItemRegistry.RUNIC_SAP.get())).save(output);
+        shapeless(RecipeCategory.MISC, ItemRegistry.RUNIC_SAPBALL.get()).requires(ItemRegistry.RUNIC_SAP.get()).unlockedBy("has_runic_sap", has(ItemRegistry.RUNIC_SAP.get())).save(output);
         shapeless(RecipeCategory.MISC, ItemRegistry.RUNIC_SAP_BLOCK.get(), 8).requires(ItemRegistry.RUNIC_SAP.get(), 4).unlockedBy("has_runic_sap", has(ItemRegistry.RUNIC_SAP.get())).save(output);
 
         smelting(Ingredient.of(ItemTagRegistry.SOULWOOD_LOGS), RecipeCategory.MISC, ItemRegistry.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_soulwood_planks", has(ItemTagRegistry.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
-        shapeless(RecipeCategory.MISC, ItemRegistry.CURSED_SAPBALL.get()).requires(ItemRegistry.CURSED_SAP.get(), 2).unlockedBy("has_cursed_sap", has(ItemRegistry.CURSED_SAP.get())).save(output);
+        shapeless(RecipeCategory.MISC, ItemRegistry.CURSED_SAPBALL.get()).requires(ItemRegistry.CURSED_SAP.get()).unlockedBy("has_cursed_sap", has(ItemRegistry.CURSED_SAP.get())).save(output);
         shapeless(RecipeCategory.MISC, ItemRegistry.CURSED_SAP_BLOCK.get(), 8).requires(ItemRegistry.CURSED_SAP.get(), 4).unlockedBy("has_cursed_sap", has(ItemRegistry.CURSED_SAP.get())).save(output);
 
         //THE DEVICE

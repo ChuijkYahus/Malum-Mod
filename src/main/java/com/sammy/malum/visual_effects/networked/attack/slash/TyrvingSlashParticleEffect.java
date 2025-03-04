@@ -12,6 +12,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -53,7 +54,7 @@ public class TyrvingSlashParticleEffect extends SlashAttackParticleEffect {
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.5f, 0.7f)))
                         .setLifeDelay(lifeDelay)
-                        .setBehavior(new PointyDirectionalBehaviorComponent(direction));
+                        .setBehavior(new PointyDirectionalParticleBehavior(direction));
                 slash.spawnParticles();
             }
         };

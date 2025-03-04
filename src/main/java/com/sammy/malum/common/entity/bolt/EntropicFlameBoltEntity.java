@@ -24,7 +24,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.util.function.*;
@@ -147,7 +147,8 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
 
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
         final float min = Math.min(1f, 2 * scalar);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW, new SparkBehaviorComponent(GenericParticleData.create(1.8f * scalar, 2.4f * scalar, 0.1f * scalar).setEasing(Easing.CUBIC_IN).build()))
+        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW)
+                .setBehavior(new SparkParticleBehavior(GenericParticleData.create(1.8f * scalar, 2.4f * scalar, 0.1f * scalar).setEasing(Easing.CUBIC_IN).build()))
                 .setTransparencyData(GenericParticleData.create(0.5f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(1.2f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
@@ -159,7 +160,8 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
                 .setMotion(norm)
                 .enableNoClip()
                 .spawn(level, position.x, position.y, position.z);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW, new SparkBehaviorComponent(GenericParticleData.create(2f * scalar, 2.8f * scalar, 0.3f * scalar).setEasing(Easing.CUBIC_IN).build()))
+        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW)
+                .setBehavior(new SparkParticleBehavior(GenericParticleData.create(2f * scalar, 2.8f * scalar, 0.3f * scalar).setEasing(Easing.CUBIC_IN).build()))
                 .setTransparencyData(GenericParticleData.create(0.6f * min, 0.3f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setColorData(ColorParticleData.create(EthericNitrateEntity.AURIC_RED, EthericNitrateEntity.AURIC_RED).setCoefficient(3f).build())
                 .setScaleData(GenericParticleData.create(1.5f * scalar, 0.3f * scalar).setEasing(Easing.SINE_IN_OUT).build())

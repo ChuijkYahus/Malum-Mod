@@ -28,7 +28,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.awt.*;
 
@@ -109,7 +109,8 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        WorldParticleBuilder.create(ParticleRegistry.DRAINING_TARGET, new DirectionalBehaviorComponent(pLivingEntity.getLookAngle().normalize()))
+        WorldParticleBuilder.create(ParticleRegistry.DRAINING_TARGET)
+                .setBehavior(new DirectionalParticleBehavior(pLivingEntity.getLookAngle().normalize()))
                 .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.8f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setColorData(SCEPTER_COLOR_DATA.copy().setCoefficient(2f).build())

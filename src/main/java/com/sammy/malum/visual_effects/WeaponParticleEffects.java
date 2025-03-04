@@ -17,6 +17,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 import team.lodestar.lodestone.systems.particle.world.type.*;
 
@@ -25,7 +26,7 @@ import java.util.function.*;
 
 public class WeaponParticleEffects {
 
-    public static final PointyDirectionalBehaviorComponent MAELSTROM_DIRECTION = new PointyDirectionalBehaviorComponent(new Vec3(0, 0, 0));
+    public static final PointyDirectionalParticleBehavior MAELSTROM_DIRECTION = new PointyDirectionalParticleBehavior(new Vec3(0, 0, 0));
 
     public static void spawnMaelstromParticles(AbstractScytheProjectileEntity entity) {
         var level = entity.level();

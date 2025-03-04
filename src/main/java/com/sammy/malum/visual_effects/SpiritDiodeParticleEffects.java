@@ -19,8 +19,7 @@ import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
-import team.lodestar.lodestone.systems.particle.world.behaviors.LodestoneParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.LodestoneBehaviorComponent;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.Consumer;
 
@@ -35,7 +34,7 @@ public class SpiritDiodeParticleEffects {
             float yVelocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
             var square = waveformSquare(level, positionData.getAsVector(), colorData.getColor());
             square.getBuilder()
-                    .setBehavior(LodestoneBehaviorComponent.DIRECTIONAL)
+                    .setBehavior(new DirectionalParticleBehavior())
                     .setLifeDelay(lifeDelay)
                     .setMotion(0, yVelocity, 0);
             square.spawnParticles();

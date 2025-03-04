@@ -13,7 +13,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.DirectionalBehaviorComponent;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -55,7 +55,7 @@ public class SlamAttackParticleEffect extends ParticleEffectType {
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.6f, 0.8f)))
-                    .setBehavior(new DirectionalBehaviorComponent(direction));
+                    .setBehavior(new DirectionalParticleBehavior(direction));
             slam.spawnParticles();
         };
     }

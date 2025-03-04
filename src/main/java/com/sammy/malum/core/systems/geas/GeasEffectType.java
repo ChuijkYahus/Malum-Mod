@@ -1,6 +1,7 @@
 package com.sammy.malum.core.systems.geas;
 
 import com.mojang.serialization.*;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
@@ -40,19 +41,24 @@ public class GeasEffectType {
         return MalumGeasEffectTypeRegistry.GEAS_TYPES_REGISTRY.getKey(this);
     }
 
+    public ResourceLocation getIcon() {
+        return getId().withPath(p -> "textures/item/geas/" + p).withSuffix(".png");
+    }
+
     public ItemStack createDefaultStack() {
         ItemStack geas = new ItemStack(ItemRegistry.GEAS.get());
         geas.set(DataComponentRegistry.GEAS_EFFECT, new GeasDataComponent(this));
         return geas;
     }
+
     public GeasEffect createEffect() {
         return effect.get();
     }
-    public GeasEffect getEffectForDisplay() {
+
+    public GeasEffect getDefaultInstance() {
         if (dummyEffectInstance == null) {
             dummyEffectInstance = effect.get();
         }
         return dummyEffectInstance;
     }
 }
-

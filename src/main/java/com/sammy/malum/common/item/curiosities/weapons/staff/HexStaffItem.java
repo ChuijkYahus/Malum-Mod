@@ -24,7 +24,7 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
 
@@ -46,7 +46,8 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        WorldParticleBuilder.create(ParticleRegistry.HEX_TARGET, new DirectionalBehaviorComponent(pLivingEntity.getLookAngle().normalize()))
+        WorldParticleBuilder.create(ParticleRegistry.HEX_TARGET)
+                .setBehavior(new DirectionalParticleBehavior(pLivingEntity.getLookAngle().normalize()))
                 .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.6f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())

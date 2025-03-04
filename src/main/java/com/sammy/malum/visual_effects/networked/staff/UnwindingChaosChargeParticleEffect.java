@@ -19,7 +19,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
@@ -70,7 +70,7 @@ public class UnwindingChaosChargeParticleEffect extends ParticleEffectType {
                     var transparencyData = GenericParticleData.create(0.8f, 0f).build();
                     final int lifeDelay = i * 8;
                     lightSpecs.getBuilder()
-                            .setBehavior(new SparkBehaviorComponent(GenericParticleData.create(0.2f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build()))
+                            .setBehavior(new SparkParticleBehavior(GenericParticleData.create(0.2f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build()))
                             .setTransparencyData(transparencyData)
                             .setLifeDelay(lifeDelay)
                             .setLifetime(30)

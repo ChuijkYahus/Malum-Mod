@@ -7,8 +7,10 @@ import com.sammy.malum.client.screen.codex.BookWidgetStyle;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.screens.AbstractProgressionCodexScreen;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
+import com.sammy.malum.core.systems.geas.GeasEffectType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -63,8 +65,8 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     public void renderLate(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isHoveredOver && entry.hasTooltip()) {
             final List<Component> list = Arrays.asList(
-                ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
-                ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle));
+                    ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
+                    ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle));
             guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
     }
@@ -74,8 +76,11 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     }
 
     public ProgressionEntryObject setIcon(Item item) {
-        iconStack = item.getDefaultInstance();
-        return this;
+        return setIcon(item.getDefaultInstance());
+    }
+
+    public ProgressionEntryObject setIcon(Holder<GeasEffectType> geas) {
+        return setIcon(geas.value().createDefaultStack());
     }
 
     public ProgressionEntryObject setIcon(ItemStack itemStack) {

@@ -16,10 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderItem;
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderText;
+import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
+import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderIngredient;
 
 public class SpiritTransmutationRecipePage extends BookPage {
+    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation");
     private final String headlineTranslationKey;
     private final List<SpiritTransmutationRecipe> recipes;
 
@@ -45,12 +46,6 @@ public class SpiritTransmutationRecipePage extends BookPage {
         }
     }
 
-    public SpiritTransmutationRecipePage(String headlineTranslationKey, SpiritTransmutationRecipe recipe) {
-        super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_page.png"));
-        this.headlineTranslationKey = headlineTranslationKey;
-        this.recipes = new ArrayList<>(List.of(recipe));
-    }
-
     public String headlineTranslationKey() {
         return "malum.gui.book.entry.page.headline." + headlineTranslationKey;
     }
@@ -74,9 +69,14 @@ public class SpiritTransmutationRecipePage extends BookPage {
         renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2, top + 5);
 
         SpiritTransmutationRecipe recipe = recipes.get(getIndex());
-        renderItem(screen, guiGraphics, recipe.ingredient, left + 63, top + 59, mouseX, mouseY);
-        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 126, mouseX, mouseY);
-    }
+        renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
+        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
+        screen.renderLater(() -> {
+            if (screen.isHovering(mouseX, mouseY, left + 62, top + 78, 18, 18)) {
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+            }
+        });
+     }
 
     public int getIndex() {
         return (int) (Minecraft.getInstance().level.getGameTime() % (20L * recipes.size()) / 20);

@@ -489,7 +489,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties SPIRIT_JAR() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.GOLD)
-                .strength(0.5f, 64f)
+                .strength(1f, 64f)
                 .sound(SoundRegistry.HALLOWED_GOLD)
                 .noOcclusion();
     }

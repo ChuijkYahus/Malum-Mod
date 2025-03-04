@@ -63,7 +63,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     }
 
     public ResourceLocation getRecipeId() {
-        return type().withSuffix("banner_crafting_");
+        return type().withPrefix("banner_crafting_");
     }
 
     public CompoundTag save(CompoundTag tag) {

@@ -48,7 +48,7 @@ public class SpiritInfusionPage extends BookPage {
         var level = Minecraft.getInstance().level;
         var recipe = LodestoneRecipeType.getRecipeHolders(level, RecipeTypeRegistry.SPIRIT_INFUSION.get())
                 .stream()
-                .filter(r -> r.id().equals(recipeId))
+                .filter(r -> r.id().equals(recipeId.withPath(p -> "spirit_infusion/" + p)))
                 .findFirst()
                 .map(RecipeHolder::value)
                 .orElse(null);

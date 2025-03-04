@@ -28,12 +28,11 @@ public class ScarfRenderHandler {
     public static final WeakHashMap<LivingEntity, ScarfRenderData> SCARF_DATA = new WeakHashMap<>();
 
     public static void tickScarfData(ClientTickEvent event) {
-        SCARF_DATA.entrySet().removeIf(e -> !e.getValue().isValid);
+        SCARF_DATA.entrySet().removeIf(e -> !e.getValue().isValid.get());
         for (Map.Entry<LivingEntity, ScarfRenderData> entry : SCARF_DATA.entrySet()) {
             final ScarfRenderData data = entry.getValue();
             final LivingEntity entity = entry.getKey();
             data.tick(entity);
-            data.isValid = false;
         }
     }
     public static void renderScarfData(RenderLevelStageEvent event) {
@@ -52,20 +51,17 @@ public class ScarfRenderHandler {
     }
 
     public static ScarfRenderData addScarfRenderer(LivingEntity living, Function<LivingEntity, ScarfRenderData> constructor) {
-        if (SCARF_DATA.containsKey(living)) {
-            SCARF_DATA.get(living).isValid = true;
-        }
         return SCARF_DATA.computeIfAbsent(living, constructor);
     }
 
     public static class ScarfRenderData {
         public final RenderTypeToken token;
         public final TrailPointBuilder points;
+        public Supplier<Boolean> isValid = () -> true;
 
         public Color primaryColor = Color.WHITE;
         public Color secondaryColor = Color.WHITE;
 
-        public boolean isValid = true;
 
         public float scale = 1;
         public float alpha = 1;
@@ -82,6 +78,11 @@ public class ScarfRenderHandler {
 
         public ScarfRenderData setSecondaryColor(Color secondaryColor) {
             this.secondaryColor = secondaryColor;
+            return this;
+        }
+
+        public ScarfRenderData setPredicate(Supplier<Boolean> isValid) {
+            this.isValid = isValid;
             return this;
         }
 

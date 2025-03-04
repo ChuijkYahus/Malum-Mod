@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "mud",
+  "ingredient": {
+    "item": "minecraft:mud"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:clay"
+  }
+}

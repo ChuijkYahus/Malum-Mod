@@ -10,7 +10,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -55,7 +55,7 @@ public class AscensionRadialSlashParticleEffect extends SlashAttackParticleEffec
                             .setMotion(slashDirection.scale(RandomHelper.randomBetween(random, 0.05f, 0.2f)).add(0, 0.2f, 0))
                             .setLifetime(12+i)
                             .setLifeDelay(i+j/4)
-                            .setBehavior(new PointyDirectionalBehaviorComponent(slashDirection));
+                            .setBehavior(new PointyDirectionalParticleBehavior(slashDirection));
                     slash.spawnParticles();
                 }
                 var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
@@ -64,7 +64,7 @@ public class AscensionRadialSlashParticleEffect extends SlashAttackParticleEffec
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 4.5f, 5f)).build())
                         .setLifetime(12)
                         .setLifeDelay(i*2)
-                        .setBehavior(new DirectionalBehaviorComponent(new Vec3(0, 1, 0)));
+                        .setBehavior(new DirectionalParticleBehavior(new Vec3(0, 1, 0)));
                 slash.spawnParticles();
             }
         };

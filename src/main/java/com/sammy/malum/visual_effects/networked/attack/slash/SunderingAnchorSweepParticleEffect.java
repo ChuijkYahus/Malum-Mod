@@ -12,6 +12,7 @@ import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.awt.*;
 import java.util.function.*;
@@ -41,7 +42,7 @@ public class SunderingAnchorSweepParticleEffect extends ParticleEffectType {
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2f, 3f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.02f, 0.05f)))
                     .setRandomOffset(0.5f)
-                    .setBehavior(new PointyDirectionalBehaviorComponent(direction.scale(directionScalar)));
+                    .setBehavior(new PointyDirectionalParticleBehavior(direction.scale(directionScalar)));
             slash.spawnParticles();
             slash.getBuilder()
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.3f).build())

@@ -30,7 +30,9 @@ public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
                     : MalumRenderTypeTokens.SCARF;
             ScarfRenderHandler.addScarfRenderer(entity,
                     l -> {
-                        var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, 40).setScale(0.4f);
+                        var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, 40)
+                                .setPredicate(() -> entity.getItemBySlot(armorSlot).is(itemStack.getItem()))
+                                .setScale(0.4f);
                         if (skin == null) {
                             data.setPrimaryColor(new Color(183, 45, 69)).setSecondaryColor(new Color(126, 25, 95));
                         }

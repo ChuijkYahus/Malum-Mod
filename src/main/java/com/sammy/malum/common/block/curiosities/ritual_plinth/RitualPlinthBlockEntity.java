@@ -3,6 +3,7 @@ package com.sammy.malum.common.block.curiosities.ritual_plinth;
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.block.storage.jar.*;
+import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
@@ -288,20 +289,21 @@ public class RitualPlinthBlockEntity extends LodestoneBlockEntity implements IBl
             }
         }
         for (SpiritJarBlockEntity jar : jars) {
-            if (spirit.equals(jar.type) && jar.count > 0) {
-                absorptionProgress.compute(jar, (p, i) -> i == null ? 1 : i + 1);
-                if (absorptionProgress.get(jar) >= 5) {
-                    final BlockPos jarPosition = jar.getBlockPos();
-                    final int absorbedAmount = Math.min(jar.count, ritualTier == null ? 4 : ritualTier.spiritThreshold/16);
-                    increase += absorbedAmount;
-                    jar.count -= absorbedAmount;
-                    if (jar.count == 0) {
-                        jar.type = null;
+            final SpiritJarContentsComponent contents = jar.contents;
+            if (contents != null) {
+                var jarSpirit = contents.spirit();
+                if (spirit.equals(jarSpirit)) {
+                    absorptionProgress.compute(jar, (p, i) -> i == null ? 1 : i + 1);
+                    if (absorptionProgress.get(jar) >= 5) {
+                        final BlockPos jarPosition = jar.getBlockPos();
+                        final int absorbedAmount = Math.min(contents.count(), ritualTier == null ? 4 : ritualTier.spiritThreshold / 16);
+                        increase += absorbedAmount;
+                        jar.contents = contents.remove(absorbedAmount);
+                        level.playSound(null, jarPosition, SoundRegistry.RITUAL_ABSORBS_SPIRIT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
+                        ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_SPIRIT.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), new ColorEffectData(spirit), RitualPlinthAbsorbItemParticleEffect.createData(jar.getItemPos(), spirit.getSpiritShard().getDefaultInstance()));
+                        absorptionProgress.remove(jar);
+                        BlockStateHelper.updateAndNotifyState(level, jarPosition);
                     }
-                    level.playSound(null, jarPosition, SoundRegistry.RITUAL_ABSORBS_SPIRIT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-                    ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_SPIRIT.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), new ColorEffectData(spirit), RitualPlinthAbsorbItemParticleEffect.createData(jar.getItemPos(), spirit.getSpiritShard().getDefaultInstance()));
-                    absorptionProgress.remove(jar);
-                    BlockStateHelper.updateAndNotifyState(level, jarPosition);
                 }
             }
         }

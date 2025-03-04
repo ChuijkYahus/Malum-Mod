@@ -136,8 +136,8 @@ public class TinkeringEntries {
                                 .addPage(SpiritInfusionPage.fromOutput(CONCENTRATED_GLUTTONY.get()))
                                 .addPage(new TextPage("belt_of_the_starved.concentrated_gluttony.2"))
                                 .addPage(new CyclingPage(
-                                        SpiritInfusionPage.fromId(malumPath("spirit_infusion/splash_of_gluttony")),
-                                        SpiritInfusionPage.fromId(malumPath("spirit_infusion/splash_of_gluttony_from_concentrated_gluttony"))
+                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony")),
+                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony_from_concentrated_gluttony"))
                                 ))
                 ))
         );
@@ -189,14 +189,14 @@ public class TinkeringEntries {
                 .addPage(new TextPage("necklace_of_blissful_harmony.2"))
         );
 
-        screen.addEntry("belt_of_the_magebane", -5, 14, b -> b
+        screen.addEntry("belt_of_the_magebane", -5, 18, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(BELT_OF_THE_MAGEBANE))
                 .addPage(new HeadlineTextPage("belt_of_the_magebane", "belt_of_the_magebane.1"))
                 .addPage(new TextPage("belt_of_the_magebane.2"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_MAGEBANE.get()))
         );
 
-        screen.addEntry("tyrving", -3, 16, b -> b
+        screen.addEntry("tyrving", -4, 19, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(TYRVING))
                 .addPage(new HeadlineTextPage("tyrving", "tyrving.1"))
                 .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))

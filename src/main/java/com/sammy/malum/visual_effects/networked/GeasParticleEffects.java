@@ -18,7 +18,7 @@ import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.components.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
@@ -45,7 +45,7 @@ public class GeasParticleEffects {
             for (int j = 0; j < 2; j++) {
                 var options = new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR);
                 if (j == 1) {
-                    options.setBehavior(LodestoneBehaviorComponent.DIRECTIONAL);
+                    options.setBehavior(new DirectionalParticleBehavior());
                 }
                 WorldParticleBuilder.create(options)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).build())
@@ -98,7 +98,7 @@ public class GeasParticleEffects {
                 var alphaData = GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier);
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                 var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
-                WorldParticleBuilder.create(new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR).setBehavior(new SparkBehaviorComponent(lengthData).setForcedDirection(new Vec3(0, 1, 0))))
+                WorldParticleBuilder.create(new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR).setBehavior(new SparkParticleBehavior(lengthData).setForcedDirection(new Vec3(0, 1, 0))))
                         .setTransparencyData(alphaData)
                         .setScaleData(scaleData)
                         .addTickActor(behavior)
