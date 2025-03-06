@@ -20,24 +20,15 @@ public class SpiritTypeBuilder {
         this.spiritShard = spiritShard;
     }
 
-    public SpiritTypeBuilder setItemColor(Function<SpiritVisualMotif, Color> colorFunction) {
-        return setItemColor(colorFunction.apply(spiritVisualMotif));
-    }
-
-    public SpiritTypeBuilder setItemColor(Color itemColor) {
-        this.itemColor = itemColor;
-        return this;
-    }
-
     public MalumSpiritType build() {
-        return build((identifier1, spiritShard1, visualMotif, itemColor1) -> new MalumSpiritType(identifier1, visualMotif, spiritShard1, itemColor1));
+        return build(UmbralSpiritType::new);
     }
 
-    public<T extends MalumSpiritType> T  build(SpiritTypeSupplier<T> supplier) {
-        return supplier.makeType(identifier, spiritShard, spiritVisualMotif, itemColor);
+    public <T extends MalumSpiritType> T build(SpiritTypeSupplier<T> supplier) {
+        return supplier.makeType(identifier, spiritShard, spiritVisualMotif);
     }
 
     public interface SpiritTypeSupplier<T extends MalumSpiritType> {
-        T makeType(String identifier, Supplier<SpiritShardItem> spiritShard, SpiritVisualMotif visualMotif, Color itemColor);
+        T makeType(String identifier, Supplier<SpiritShardItem> spiritShard, SpiritVisualMotif visualMotif);
     }
 }

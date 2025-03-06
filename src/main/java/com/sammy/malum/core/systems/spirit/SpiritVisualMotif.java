@@ -4,25 +4,34 @@ import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.awt.*;
+import java.util.function.*;
 
 public class SpiritVisualMotif {
 
-    protected final float alphaMultiplier;
     protected final Color primaryColor;
     protected final Color secondaryColor;
     protected final float colorCoefficient;
     protected final Easing colorEasing;
 
-    public SpiritVisualMotif(Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing) {
-        this(1f, primaryColor, secondaryColor, colorCoefficient, colorEasing);
-    }
+    protected final Color itemColor;
+    protected final float alphaMultiplier;
 
-    public SpiritVisualMotif(float alphaMultiplier, Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing) {
-        this.alphaMultiplier = alphaMultiplier;
+    public SpiritVisualMotif(Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing) {
+        this(primaryColor, secondaryColor, colorCoefficient, colorEasing, primaryColor);
+    }
+    public SpiritVisualMotif(Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing, Function<Color, Color> colorFunction) {
+        this(primaryColor, secondaryColor, colorCoefficient, colorEasing, colorFunction.apply(primaryColor));
+    }
+    public SpiritVisualMotif(Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing, Color itemColor) {
+        this(primaryColor, secondaryColor, colorCoefficient, colorEasing, itemColor, 1f);
+    }
+    public SpiritVisualMotif(Color primaryColor, Color secondaryColor, float colorCoefficient, Easing colorEasing, Color itemColor, float alphaMultiplier) {
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.colorCoefficient = colorCoefficient;
         this.colorEasing = colorEasing;
+        this.itemColor = itemColor;
+        this.alphaMultiplier = alphaMultiplier;
     }
 
     public ColorParticleDataBuilder createColorData() {

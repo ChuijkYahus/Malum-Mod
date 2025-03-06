@@ -19,8 +19,10 @@ import java.util.function.*;
 import java.util.stream.*;
 
 import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static team.lodestar.lodestone.systems.datagen.ItemModelSmithTypes.*;
 
 public class MalumItemModels extends LodestoneItemModelProvider {
+
     public MalumItemModels(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, MalumMod.MALUM, existingFileHelper);
     }
@@ -32,7 +34,7 @@ public class MalumItemModels extends LodestoneItemModelProvider {
         items.removeIf(i -> i.get() instanceof BlockItem);
 
         ItemModelSmithData data = new ItemModelSmithData(this, items::remove);
-        MalumItemModelSmithTypes.PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE).applyModifier(result -> {
+        PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE).applyModifier(result -> {
             var separateTransforms = result.addSeparateTransformData();
             var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelNameAffix("_gui").act(data, result::getItem);
             separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
@@ -60,6 +62,7 @@ public class MalumItemModels extends LodestoneItemModelProvider {
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof NodeItem).collect(Collectors.toList()));
 
         setTexturePath("");
+        MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, GEAS);
         MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, UMBRAL_SPIRIT);
         MalumItemModelSmithTypes.SPIRIT_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SpiritShardItem).collect(Collectors.toList()));
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof DiggerItem).collect(Collectors.toList()));

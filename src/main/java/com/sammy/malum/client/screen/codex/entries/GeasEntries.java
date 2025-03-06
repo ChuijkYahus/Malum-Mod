@@ -42,33 +42,33 @@ public class GeasEntries {
         );
 
         screen.addEntry("pact_of_the_dayblessed", 1, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_nightchild", -1, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_shattering_addict", 0, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
 
         screen.addEntry("pact_of_the_shield", -2, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_reaper", -2, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_fortress", -3, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
 
         screen.addEntry("pact_of_the_animated", 2, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_cloudskipper", 2, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_wise", 3, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
     }
 }

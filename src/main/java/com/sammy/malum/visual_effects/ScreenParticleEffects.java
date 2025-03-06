@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.player.*;
@@ -74,6 +75,42 @@ public class ScreenParticleEffects {
                 .setLifetime(20 + rand.nextInt(8))
                 .setRandomOffset(0.1f)
                 .setRandomMotion(0.4f, 0.4f)
+                .spawnOnStack(0, 0);
+    }
+
+    public static void spawnGeasItemScreenParticles(ScreenParticleHolder target, Level level, float intensity, float partialTick) {
+        float colorMultiplier = Mth.nextFloat(level.random, 0.4f, 1.2f);
+        float timeMultiplier = Mth.nextFloat(level.random, 0.9f, 1.4f);
+        Color color = new Color((int) (31 * colorMultiplier), (int) (19 * colorMultiplier), (int) (31 * colorMultiplier));
+        Color endColor = new Color((int) (111 * colorMultiplier), (int) (31 * colorMultiplier), (int) (121 * colorMultiplier));
+        float gameTime = level.getGameTime() + partialTick;
+        var rand = Minecraft.getInstance().level.getRandom();
+        SpinParticleData spinParticleData = SpinParticleData.createRandomDirection(rand, 0).setSpinOffset(0.0125f * gameTime % 6.28f).build();
+        ScreenParticleBuilder.create(LodestoneScreenParticleTypes.STAR, target)
+                .setScaleData(GenericParticleData.create(1.6f * intensity + rand.nextFloat() * 0.1f * intensity, 0).setEasing(Easing.SINE_IN_OUT, Easing.BOUNCE_IN_OUT).build())
+                .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.SINE_IN_OUT).build())
+                .setColorData(ColorParticleData.create(color, endColor).setCoefficient(2f).build())
+                .setSpinData(spinParticleData)
+                .setLifetime((int) ((10 + rand.nextInt(10)) * timeMultiplier))
+                .setRandomOffset(0.05f)
+                .setRandomMotion(0.05f, 0.05f)
+                .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
+                .spawnOnStack(0, 0);
+
+        ScreenParticleBuilder.create(LodestoneScreenParticleTypes.WISP, target)
+                .setScaleData(GenericParticleData.create(0.8f * intensity + rand.nextFloat() * 0.6f * intensity, 0).setEasing(Easing.EXPO_OUT).build())
+                .setTransparencyData(GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN_OUT).build())
+                .setColorData(ColorParticleData.create(color, endColor.darker()).setCoefficient(1.25f).build())
+                .setSpinData(spinParticleData)
+                .setLifetime(20 + rand.nextInt(8))
+                .setRandomOffset(0.1f)
+                .setRandomMotion(0.4f, 0.4f)
+                .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
+                .spawnOnStack(0, 0)
+                .setLifetime((int) ((10 + rand.nextInt(2)) * timeMultiplier))
+                .setSpinData(SpinParticleData.create(nextFloat(rand, 0.05f, 0.1f)).build())
+                .setScaleData(GenericParticleData.create(0.8f + rand.nextFloat() * 0.4f, 0f).build())
+                .setRandomMotion(0.01f, 0.01f)
                 .spawnOnStack(0, 0);
     }
 

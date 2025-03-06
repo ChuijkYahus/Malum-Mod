@@ -11,7 +11,7 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.*;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.*;
@@ -43,8 +43,7 @@ public class MalumMod {
     public static final String MALUM = "malum";
     public static final RandomSource RANDOM = RandomSource.create();
 
-    public MalumMod() {
-        IEventBus modBus = ModLoadingContext.get().getActiveContainer().getEventBus();
+    public MalumMod(IEventBus modEventBus, ModContainer modContainer) {
 
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
@@ -55,24 +54,24 @@ public class MalumMod {
         AttributeLibCompat.init();
         IronsSpellsCompat.init();
         CreateCompat.init();
-        BLOCKS.register(modBus);
-        BLOCK_ENTITY_TYPES.register(modBus);
-        COMPONENTS.register(modBus);
-        ITEMS.register(modBus);
-        ENTITY_TYPES.register(modBus);
-        EFFECTS.register(modBus);
-        PARTICLES.register(modBus);
-        SOUNDS.register(modBus);
-        CONTAINERS.register(modBus);
-        ATTRIBUTES.register(modBus);
-        RECIPE_TYPES.register(modBus);
-        RECIPE_SERIALIZERS.register(modBus);
-        FEATURE_TYPES.register(modBus);
-        STRUCTURES.register(modBus);
-        CREATIVE_MODE_TABS.register(modBus);
-        ATTACHMENT_TYPES.register(modBus);
-        WORLD_EVENT_TYPES.register(modBus);
-        GEAS_TYPES.register(modBus);
+        BLOCKS.register(modEventBus);
+        BLOCK_ENTITY_TYPES.register(modEventBus);
+        COMPONENTS.register(modEventBus);
+        ITEMS.register(modEventBus);
+        ENTITY_TYPES.register(modEventBus);
+        EFFECTS.register(modEventBus);
+        PARTICLES.register(modEventBus);
+        SOUNDS.register(modEventBus);
+        CONTAINERS.register(modEventBus);
+        ATTRIBUTES.register(modEventBus);
+        RECIPE_TYPES.register(modEventBus);
+        RECIPE_SERIALIZERS.register(modEventBus);
+        FEATURE_TYPES.register(modEventBus);
+        STRUCTURES.register(modEventBus);
+        CREATIVE_MODE_TABS.register(modEventBus);
+        ATTACHMENT_TYPES.register(modEventBus);
+        WORLD_EVENT_TYPES.register(modEventBus);
+        GEAS_TYPES.register(modEventBus);
     }
 
     public static ResourceLocation malumPath(String path) {

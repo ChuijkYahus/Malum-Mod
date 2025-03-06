@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
+import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.*;
 import org.joml.*;
 import org.lwjgl.opengl.*;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
@@ -33,6 +35,7 @@ import java.awt.*;
 import java.lang.Math;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.*;
 import java.util.function.*;
 import java.util.stream.*;
 
@@ -41,7 +44,7 @@ import static net.minecraft.util.FastColor.ARGB32.*;
 
 public class ArcanaCodexHelper {
 
-    public static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen().setPosTexDefaultFormat();
+    public static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
     public static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
 
     public enum BookTheme {
@@ -85,20 +88,19 @@ public class ArcanaCodexHelper {
         RenderSystem.disableBlend();
     }
 
-
-    public static void renderRitualIcon(MalumRitualType rite, PoseStack stack, boolean corrupted, float glowAlpha, int x, int y) {
-        renderRiteIcon(rite.getIcon(), rite.spirit, stack, corrupted, glowAlpha, x, y, 0);
+    public static void renderRitualIcon(MalumRitualType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
+        renderRiteIcon(rite.getIcon(), stack, rite.spirit, corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(TotemicRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, int x, int y) {
-        renderRiteIcon(rite.getIcon(), rite.getIdentifyingSpirit(), stack, corrupted, glowAlpha, x, y, 0);
+    public static void renderRiteIcon(TotemicRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
+        renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, MalumSpiritType spiritType, PoseStack stack, boolean corrupted, float glowAlpha, int x, int y) {
-        renderRiteIcon(texture, spiritType, stack, corrupted, glowAlpha, x, y, 0);
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y) {
+        renderRiteIcon(texture, stack, spiritType, corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, MalumSpiritType spiritType, PoseStack stack, boolean corrupted, float glowAlpha, int x, int y, int z) {
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y, int z) {
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 11f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 12f : 17f);
@@ -126,15 +128,74 @@ public class ArcanaCodexHelper {
         RenderSystem.defaultBlendFunc();
     }
 
-    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, int x, int y) {
+    public static void renderGeasIcon(ResourceLocation location, PoseStack stack, GeasEffectType type, float x, float y) {
+        renderGeasIcon(location, stack, type, x, y, 0);
+    }
+
+    public static void renderGeasIcon(ResourceLocation location, PoseStack stack, GeasEffectType type, float x, float y, int z) {
+        renderGeasIcon(location, stack, type, x, y, z, 16, 16);
+    }
+
+    public static void renderGeasIcon(ResourceLocation location, PoseStack stack, GeasEffectType type, float x, float y, int z, int textureWidth, int textureHeight) {
+        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        shaderInstance.safeGetUniform("YFrequency").set(10f);
+        shaderInstance.safeGetUniform("XFrequency").set(12f);
+        shaderInstance.safeGetUniform("Speed").set(1000f);
+        shaderInstance.safeGetUniform("Intensity").set(50f);
+        shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
+        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
+        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+                .setShader(shaderInstanceSupplier)
+                .setZLevel(z)
+                .setShader(() -> shaderInstance);
+
+        RenderSystem.depthMask(false);
+        RenderSystem.defaultBlendFunc();
+
+        var cycle = new AtomicInteger();
+        var spiritTypes = type.spiritTypes;
+        Supplier<MalumSpiritType> colorSupplier = () -> spiritTypes.get(cycle.getAndIncrement() % spiritTypes.size());
+        var mainColor = colorSupplier.get().getPrimaryColor();
+        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
+        shaderInstance.safeGetUniform("Speed").set(2000f);
+        renderTexture(location, stack, builder, x - 1, y, 0, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x + 1, y, 1, 0, 0, textureWidth, textureHeight);
+        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
+        renderTexture(location, stack, builder, x, y - 1, 2, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y + 0.8f, 3, 0, 0, textureWidth, textureHeight);
+
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        builder.setColor(mainColor).setAlpha(0.7f);
+        shaderInstance.safeGetUniform("Speed").set(1000f);
+        renderTexture(location, stack, builder, x, y, 4, 0, 0, textureWidth, textureHeight);
+
+        builder.setColor(ColorHelper.brighter(mainColor, 4)).setAlpha(0.2f);
+        shaderInstance.safeGetUniform("Speed").set(400f);
+        renderTexture(location, stack, builder, x+2, y+2, 5, 2, 2, 12, 12, textureWidth, textureHeight);
+
+        builder.setColor(colorSupplier.get().getSecondaryColor()).setAlpha(0.2f);
+        shaderInstance.safeGetUniform("Speed").set(2000f);
+        renderTexture(location, stack, builder, x + 1, y, 6, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x - 1, y, 7, 0, 0, textureWidth, textureHeight);
+        builder.setColor(colorSupplier.get().getSecondaryColor());
+        renderTexture(location, stack, builder, x, y + 1, 8, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y - 1, 9, 0, 0, textureWidth, textureHeight);
+
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(true);
+        shaderInstance.setUniformDefaults();
+    }
+
+
+    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y) {
         renderWavyIcon(location, stack, x, y, 0);
     }
 
-    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, int x, int y, int z) {
-        renderWavyIcon(location, stack, x, y, 0, 16, 16);
+    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int z) {
+        renderWavyIcon(location, stack, x, y, z, 16, 16);
     }
 
-    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, int x, int y, int z, int textureWidth, int textureHeight) {
+    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int z, int textureWidth, int textureHeight) {
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(12f);
@@ -153,50 +214,50 @@ public class ArcanaCodexHelper {
         renderTexture(location, stack, builder, x, y, 0, 0, textureWidth, textureHeight);
         builder.setAlpha(0.1f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
-        renderTexture(location, stack, builder, x - 1, y, 0, 0, textureWidth, textureHeight);
-        renderTexture(location, stack, builder, x + 1, y, 0, 0, textureWidth, textureHeight);
-        renderTexture(location, stack, builder, x, y - 1, 0, 0, textureWidth, textureHeight);
-        renderTexture(location, stack, builder, x, y + 1, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x - 1, y, 1, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x + 1, y, 2, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y - 1, 3, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y + 1, 4, 0, 0, textureWidth, textureHeight);
         shaderInstance.setUniformDefaults();
         RenderSystem.defaultBlendFunc();
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, int x, int y, float u, float v, int width, int height) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, x, y, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, int x, int y, int z, float u, float v, int width, int height) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
         renderTexture(texture, poseStack, VFX_BUILDER, x, y, 0, u, v, width, height, textureWidth, textureHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, int x, int y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
         renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, textureWidth, textureHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int x, int y, float u, float v, int width, int height) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int z, float u, float v, int width, int height) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, builder, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
         renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
         builder.setPositionWithWidth(x, y, width, height)
                 .setZLevel(z)
                 .setShaderTexture(texture)
                 .setUVWithWidth(u, v, width, height, textureWidth, textureHeight)
-                .draw(poseStack);
+                .blit(poseStack);
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();
     }
@@ -393,10 +454,10 @@ public class ArcanaCodexHelper {
 
     }
 
-    public static void renderWrappingText(GuiGraphics guiGraphics, String text, int x, int y, int width) {
+    public static void renderWrappingText(GuiGraphics guiGraphics, String text, float x, float y, int width) {
         renderWrappingText(guiGraphics, Component.translatable(text), x, y, width);
     }
-    public static void renderWrappingText(GuiGraphics guiGraphics, Component text, int x, int y, int width) {
+    public static void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
         Font font = Minecraft.getInstance().font;
         final List<String> lines = wrapText(text, width);
         for (int i = 0; i < lines.size(); i++) {
@@ -513,25 +574,25 @@ public class ArcanaCodexHelper {
         return line;
     }
 
-    public static void renderText(GuiGraphics guiGraphics, String text, int x, int y) {
+    public static void renderText(GuiGraphics guiGraphics, String text, float x, float y) {
         renderText(guiGraphics, Component.translatable(text), x, y, 0.4f);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, Component component, int x, int y) {
+    public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
         String text = component.getString();
         renderRawText(guiGraphics, text, x, y, 0.4f);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, String text, int x, int y, float glow) {
+    public static void renderText(GuiGraphics guiGraphics, String text, float x, float y, float glow) {
         renderText(guiGraphics, Component.translatable(text), x, y, glow);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, Component component, int x, int y, float glow) {
+    public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float glow) {
         String text = component.getString();
         renderRawText(guiGraphics, text, x, y, glow);
     }
 
-    private static void renderRawText(GuiGraphics guiGraphics, String text, int x, int y, float glowMultiplier) {
+    private static void renderRawText(GuiGraphics guiGraphics, String text, float x, float y, float glowMultiplier) {
         var minecraft = Minecraft.getInstance();
         var font = minecraft.font;
         float guiScale = (float) minecraft.getWindow().getGuiScale();

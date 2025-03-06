@@ -56,7 +56,7 @@ public class SpiritRiteRecipePage extends BookPage {
             MalumSpiritType spiritType = spirits.get(i);
             ResourceLocation spiritTexture = spiritType.getTotemGlowTexture();
             ItemStack stack = spirits.get(i).getSpiritShard().getDefaultInstance();
-            renderRiteIcon(spiritTexture, spiritType, poseStack, isCorrupted(), 0.25f, riteStartX, y);
+            renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupted(), 0.25f, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);
             }

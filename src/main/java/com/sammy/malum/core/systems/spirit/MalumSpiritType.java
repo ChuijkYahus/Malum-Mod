@@ -4,13 +4,11 @@ import com.google.gson.*;
 import com.mojang.serialization.*;
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
-import com.sammy.malum.common.capabilities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import io.netty.buffer.*;
 import net.minecraft.*;
-import net.minecraft.network.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
@@ -47,16 +45,13 @@ public class MalumSpiritType {
 
     private final SpiritVisualMotif visualMotif;
 
-    private final Color itemColor;
-
     protected Rarity itemRarity;
     protected Component spiritItemDescription;
 
-    public MalumSpiritType(String identifier, SpiritVisualMotif visualMotif, Supplier<SpiritShardItem> spiritShard, Color itemColor) {
+    public MalumSpiritType(String identifier, Supplier<SpiritShardItem> spiritShard, SpiritVisualMotif visualMotif) {
         this.identifier = identifier;
         this.spiritShard = spiritShard;
         this.visualMotif = visualMotif;
-        this.itemColor = itemColor;
     }
 
     public static MalumSpiritType getSpiritType(String spirit) {
@@ -100,7 +95,7 @@ public class MalumSpiritType {
     }
 
     public Color getItemColor() {
-        return itemColor;
+        return visualMotif.itemColor;
     }
 
     public TextColor getTextColor(boolean isTooltip) {

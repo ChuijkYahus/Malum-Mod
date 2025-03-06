@@ -1,8 +1,10 @@
 package com.sammy.malum.core.systems.geas;
 
+import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
@@ -10,6 +12,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 
+import java.awt.*;
+import java.util.List;
 import java.util.function.*;
 
 public class GeasEffectType {
@@ -22,15 +26,21 @@ public class GeasEffectType {
     }, GeasEffectType::getId);
 
     public final Supplier<GeasEffect> effect;
+    public final List<MalumSpiritType> spiritTypes;
 
     public GeasEffect dummyEffectInstance;
 
-    public GeasEffectType(Supplier<GeasEffect> effect) {
+    public GeasEffectType(Supplier<GeasEffect> effect, MalumSpiritType... spiritTypes) {
+        this(effect, List.of(spiritTypes));
+    }
+
+    public GeasEffectType(Supplier<GeasEffect> effect, List<MalumSpiritType> spiritTypes) {
         this.effect = effect;
+        this.spiritTypes = spiritTypes;
     }
 
     public MutableComponent getDescription() {
-        return Component.translatable(getId().getNamespace() + ".gui.geas." + getId().getPath() + ".tooltip");
+        return Component.translatable(getLangKey() + ".tooltip");
     }
 
     public String getLangKey() {

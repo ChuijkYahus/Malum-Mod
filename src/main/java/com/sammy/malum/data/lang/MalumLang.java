@@ -166,7 +166,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_LAST_STAND.get(), "");
+//        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_LAST_STAND.get(), "");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
 

@@ -10,10 +10,11 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
-public class TheLastCurse extends GeasEffect {
+public abstract class TheLastCurse extends GeasEffect {
 
     public TheLastCurse() {
-        super(MalumGeasEffectTypeRegistry.THE_LAST_CURSE.get());
+        super(null);
+//        super(MalumGeasEffectTypeRegistry.THE_LAST_CURSE.get());
     }
 
 
