@@ -29,8 +29,8 @@ public class GeasEffectHandler {
         }
     }
 
-    public static void addGeasEffect(LivingEntity entity, ItemStack stack) {
-        entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).addGeasEffect(stack);
+    public static boolean addGeasEffect(LivingEntity entity, ItemStack stack) {
+        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).addGeasEffect(stack.copy());
     }
 
     public static List<ItemStack> getGeasItemStacks(LivingEntity entity) {

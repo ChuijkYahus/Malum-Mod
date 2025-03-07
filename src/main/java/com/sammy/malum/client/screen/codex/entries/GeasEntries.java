@@ -1,22 +1,10 @@
 package com.sammy.malum.client.screen.codex.entries;
 
-import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
-import com.sammy.malum.client.screen.codex.objects.progression.RiteEntryObject;
-import com.sammy.malum.client.screen.codex.pages.CyclingPage;
-import com.sammy.malum.client.screen.codex.pages.EntryReference;
-import com.sammy.malum.client.screen.codex.pages.EntrySelectorPage;
-import com.sammy.malum.client.screen.codex.pages.recipe.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.SmeltingPage;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextItemPage;
-import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
-import com.sammy.malum.client.screen.codex.pages.text.SpiritRiteTextPage;
 import com.sammy.malum.client.screen.codex.pages.text.TextPage;
 import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
 import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
-import com.sammy.malum.registry.common.SpiritRiteRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -61,14 +49,14 @@ public class GeasEntries {
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
 
-        screen.addEntry("pact_of_the_animated", 2, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
+        screen.addEntry("pact_of_the_lifelong", 2, 11, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
         screen.addEntry("pact_of_the_cloudskipper", 2, 12, b -> b
                 .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
-        screen.addEntry("pact_of_the_wise", 3, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
+        screen.addEntry("pact_of_the_enduring", 3, 12, b -> b
+                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ENDURING).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
         );
     }
 }

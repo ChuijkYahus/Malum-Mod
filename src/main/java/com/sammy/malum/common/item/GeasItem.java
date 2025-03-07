@@ -26,8 +26,15 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        GeasEffectHandler.addGeasEffect(player, player.getItemInHand(usedHand));
-        return super.use(level, player, usedHand);
+        final ItemStack stack = player.getItemInHand(usedHand);
+        if (!level.isClientSide) {
+            if (GeasEffectHandler.addGeasEffect(player, stack)) {
+                player.swing(usedHand);
+                stack.shrink(1);
+            }
+            return InteractionResultHolder.consume(stack);
+        }
+        return InteractionResultHolder.fail(stack);
     }
 
     @Override

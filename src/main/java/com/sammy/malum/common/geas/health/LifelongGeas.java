@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas;
+package com.sammy.malum.common.geas.health;
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
@@ -16,10 +16,10 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.function.Consumer;
 
-public class AnimatedGeas extends GeasEffect {
+public class LifelongGeas extends GeasEffect {
 
-    public AnimatedGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED.get());
+    public LifelongGeas() {
+        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG.get());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AnimatedGeas extends GeasEffect {
     }
 
     public static int accelerateNaturalHealing(LivingEntity entity) {
-        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED)) {
+        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG)) {
             return entity.getHealth() < entity.getMaxHealth()/2f ? 2 : 1;
         }
         return 0;

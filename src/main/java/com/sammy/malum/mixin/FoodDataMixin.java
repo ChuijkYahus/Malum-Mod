@@ -1,7 +1,7 @@
 package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import com.sammy.malum.common.geas.AnimatedGeas;
+import com.sammy.malum.common.geas.health.LifelongGeas;
 import com.sammy.malum.common.geas.gluttony.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
@@ -36,7 +36,7 @@ public class FoodDataMixin {
     @Inject(method = "tick", at = @At(value = "HEAD"))
     private void malum$accelerateHealing(Player player, CallbackInfo ci) {
         if (malum$CanHeal) {
-            tickTimer += AnimatedGeas.accelerateNaturalHealing(player);
+            tickTimer += LifelongGeas.accelerateNaturalHealing(player);
         }
     }
 }

@@ -50,16 +50,17 @@ public class LivingSoulData {
         dirtyGeasEffects = true;
     }
 
-    public void addGeasEffect(ItemStack geas) {
+    public boolean addGeasEffect(ItemStack geas) {
         if (!geas.has(DataComponentRegistry.GEAS_EFFECT)) {
             throw new IllegalArgumentException("Etching Itemstack does not have an geas effect");
         }
         var storedEtching = GeasEffectHandler.getStoredGeasEffect(geas).createEffectInstance();
         if (cachedGeasEffects.values().stream().anyMatch(e -> e.type.equals(storedEtching.type))) {
-            return;
+            return false;
         }
         geasStacks.add(geas);
         dirtyGeasEffects = true;
+        return true;
     }
 
     public boolean hasGeasEffect(LivingEntity living, Holder<GeasEffectType> type) {

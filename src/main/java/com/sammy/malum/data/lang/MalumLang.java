@@ -270,6 +270,7 @@ public class MalumLang extends LanguageProvider {
 
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
         add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
+        add("malum.effect.geas.spirit_collection_absorption", "Spirit Collection Grants Absorption");
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
         add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-Attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
