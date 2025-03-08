@@ -2,7 +2,7 @@ package com.sammy.malum.core.handlers;
 
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
-import com.sammy.malum.common.capabilities.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;

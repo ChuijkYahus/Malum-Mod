@@ -1,6 +1,6 @@
 package com.sammy.malum.common.packets;
 
-import com.sammy.malum.common.capabilities.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.*;
 import net.minecraft.world.entity.*;

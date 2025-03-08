@@ -1,7 +1,7 @@
 package com.sammy.malum.data.item;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.ritual.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

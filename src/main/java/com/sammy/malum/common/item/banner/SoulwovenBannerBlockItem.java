@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.banner;
 
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.*;

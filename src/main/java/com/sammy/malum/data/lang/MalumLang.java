@@ -1,10 +1,12 @@
 package com.sammy.malum.data.lang;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.geas.*;
+import com.sammy.malum.common.item.*;
 import com.sammy.malum.compability.create.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.ritual.*;
@@ -123,18 +125,17 @@ public class MalumLang extends LanguageProvider {
         add("malum.gui.augment.type.augment", "Augment");
         add("malum.gui.augment.type.core_augment", "Core Augment");
 
-        add("malum.gui.geas.sworn", "When Sworn: ");
-        add("malum.gui.geas.any", "Geas");
-        add("malum.gui.geas.day_effect", "During Day: ");
-        add("malum.gui.geas.night_effect", "During Night: ");
+        add(GeasItem.GEAS, "Geas");
+        add(GeasItem.SWORN, "When Sworn: ");
+        add(NightCycleBasedGeas.DAY, "During Day: ");
+        add(NightCycleBasedGeas.NIGHT, "During Night: ");
 
-        add("malum.gui.rite.type", "Type: ");
-        add("malum.gui.rite.medium", "Polarity: ");
-        add("malum.gui.rite.coverage", "Coverage: ");
-        add("malum.gui.rite.effect", "Effect: ");
-
-        add("malum.gui.rite.medium.runewood", "Runewood");
-        add("malum.gui.rite.medium.soulwood", "Soulwood");
+        add(TotemicRiteType.TYPE, "Type: ");
+        add(TotemicRiteType.MEDIUM, "Medium: ");
+        add(TotemicRiteType.RUNEWOOD, "Runewood");
+        add(TotemicRiteType.SOULWOOD, "Soulwood");
+        add(TotemicRiteType.COVERAGE, "Coverage: ");
+        add(TotemicRiteType.EFFECT, "Effect: ");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD.get(), "Find home in the shadows");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED.get(), "Seek the cleansing light of day");
@@ -153,7 +154,7 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness the infernal and blasphemous power");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
@@ -280,13 +281,17 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         add("malum.effect.geas.weak_legs", "Fall Damage Is Made Deadlier");
         add("malum.effect.geas.explosion_lover", "Absorbed Explosions Generate Haste");
-        add("malum.effect.geas.explosion_fire", "Overexertion Ignites You");
-        add("malum.effect.geas.scary_fire", "Fire Damage Is Made Deadlier");
+        add("malum.effect.geas.explosion_resistance", "You Gain Powerful Explosion Resistance");
+        add("malum.effect.geas.explosion_fire", "Too Much Haste Ignites You");
+        add("malum.effect.geas.scary_fire", "Unlike Explosions, Fire Damage Remains Deadly");
         add("malum.effect.geas.trial_of_faith", "Gluttony Becomes Trial of Faith");
         add("malum.effect.geas.trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         add("malum.effect.geas.rotten_healing", "Eating Rotten Foods Heals You");
         add("malum.effect.geas.no_passive_healing", "Saturation And Hunger No Longer Restore Health");
         add("malum.effect.geas.no_normal_foods", "You Must Only Eat Rot");
+        add("malum.effect.geas.desperate_need", "Gluttony Becomes Desperate Need");
+        add("malum.effect.geas.desperate_need_scythe_proficiency", "Desperate Need Substantially Increases Scythe Proficiency");
+        add("malum.effect.geas.desperate_need_betrayal", "The Rot Will Consume You");
         add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
         add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
@@ -359,6 +364,7 @@ public class MalumLang extends LanguageProvider {
 
         addPlayerlessDeathMessage(DamageTypeRegistry.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
+        addPlayerlessDeathMessage(DamageTypeRegistry.ROT, "%1$s was consumed by rot", "%1$s was consumed by rot while trying to escape %2$s");
 
         addDeathMessage(DamageTypeRegistry.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
         addPlayerlessDeathMessage(DamageTypeRegistry.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");
@@ -449,8 +455,8 @@ public class MalumLang extends LanguageProvider {
     }
 
     public void addRite(TotemicRiteType riteType, String basicName, String corruptName) {
-        add(riteType.translationIdentifier(false), basicName);
-        add(riteType.translationIdentifier(true), corruptName);
+        add(riteType.getLangKey(false), basicName);
+        add(riteType.getLangKey(true), corruptName);
     }
 
     public void addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory category) {

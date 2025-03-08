@@ -14,6 +14,9 @@ import java.util.function.*;
 
 public abstract class NightCycleBasedGeas extends GeasEffect {
 
+    public static final String DAY = "malum.gui.geas.day_effect";
+    public static final String NIGHT = "malum.gui.geas.night_effect";
+
     public boolean isNight;
 
     public NightCycleBasedGeas(GeasEffectType type) {
@@ -22,10 +25,10 @@ public abstract class NightCycleBasedGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(Component.translatable("malum.gui.geas.day_effect").withStyle(ChatFormatting.GOLD));
+        tooltipAcceptor.accept(Component.translatable(DAY).withStyle(ChatFormatting.GOLD));
         createAttributeModifiers(entity, false).entries().forEach((entry) -> addTooltipComponent(entry, tooltipAcceptor, tooltipFlag));
         tooltipAcceptor.accept(Component.empty());
-        tooltipAcceptor.accept(Component.translatable("malum.gui.geas.night_effect").withStyle(ChatFormatting.GOLD));
+        tooltipAcceptor.accept(Component.translatable(NIGHT).withStyle(ChatFormatting.GOLD));
         createAttributeModifiers(entity, true).entries().forEach((entry) -> addTooltipComponent(entry, tooltipAcceptor, tooltipFlag));
     }
 

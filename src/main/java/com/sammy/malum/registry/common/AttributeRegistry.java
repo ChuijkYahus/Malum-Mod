@@ -43,6 +43,9 @@ public class AttributeRegistry {
     public static final DeferredHolder<Attribute, Attribute> CHARGE_RECOVERY_RATE = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("charge_recovery_rate"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
 
+    public static final DeferredHolder<Attribute, Attribute> GEAS_LIMIT = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("geas_limit"), 2D, 0.0D, 8.0D).setSyncable(true));
+
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_CONVERSION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_conversion"), 0D, 0.0D, 1.0D).forcePercentageDisplay().setSyncable(true));
 

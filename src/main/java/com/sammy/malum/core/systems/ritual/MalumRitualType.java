@@ -2,8 +2,9 @@ package com.sammy.malum.core.systems.ritual;
 
 import com.google.gson.*;
 import com.mojang.serialization.*;
+import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.common.block.curiosities.ritual_plinth.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
@@ -21,7 +22,7 @@ public abstract class MalumRitualType {
     public static final Codec<MalumRitualType> CODEC = ResourceLocation.CODEC.comapFlatMap(s -> {
         var ritual = RitualRegistry.get(s);
         if (ritual == null) {
-            throw new JsonParseException("No Such Spirit Type: " + s);
+            throw new JsonParseException("No Such Ritual Type: " + s);
         }
         return DataResult.success(ritual);
     }, r -> r.id);
@@ -76,7 +77,7 @@ public abstract class MalumRitualType {
         List<Component> tooltip = new ArrayList<>();
         var spiritStyleModifier = spirit.getItemRarity().getStyleModifier();
         tooltip.add(Component.translatable(translationIdentifier()).withStyle(spiritStyleModifier));
-        tooltip.add(makeDescriptorComponent("malum.gui.rite.effect", "malum.gui.book.entry.page.text." + id + ".hover"));
+        tooltip.add(makeDescriptorComponent("malum.gui.rite.effect", BookPage.TEXT + "." + id + ".hover"));
         return tooltip;
     }
 

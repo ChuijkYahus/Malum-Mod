@@ -1,7 +1,7 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
@@ -29,23 +29,23 @@ public class GeasEffectHandler {
         }
     }
 
-    public static boolean addGeasEffect(LivingEntity entity, ItemStack stack) {
-        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).addGeasEffect(stack.copy());
+    public static boolean tryAddGeasEffect(LivingEntity entity, ItemStack stack) {
+        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO).tryAddGeasEffect(entity, stack);
     }
 
     public static List<ItemStack> getGeasItemStacks(LivingEntity entity) {
-        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasItems();
+        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO).getGeasItems();
     }
 
     public static boolean hasGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
-        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).hasGeasEffect(entity, type);
+        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO).hasGeasEffect(entity, type);
     }
 
     public static Map<ItemStack, GeasEffect> getGeasEffects(LivingEntity entity) {
-        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasEffects(entity);
+        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO).getGeasEffects(entity);
     }
     public static Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
-        return entity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getGeasEffect(entity, type);
+        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO).getGeasEffect(entity, type);
     }
 
     public static GeasEffect getEquippedGeasEffectFromStack(LivingEntity entity, ItemStack stack) {

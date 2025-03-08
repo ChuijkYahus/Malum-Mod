@@ -1,8 +1,8 @@
 package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.capabilities.*;
-import com.sammy.malum.common.capabilities.soul_data.*;
+import com.sammy.malum.common.data.attachment.*;
+import com.sammy.malum.common.data.attachment.soul_data.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -17,6 +17,9 @@ public class AttachmentTypeRegistry {
 
     public static final Supplier<AttachmentType<ProjectileSoulData>> PROJECTILE_SOUL_INFO = ATTACHMENT_TYPES.register(
             "projectile_soul_info", () -> AttachmentType.builder(ProjectileSoulData::new).serialize(ProjectileSoulData.CODEC).build());
+
+    public static final Supplier<AttachmentType<GeasSoulData>> GEAS_SOUL_INFO = ATTACHMENT_TYPES.register(
+            "geas_soul_info", () -> AttachmentType.builder(GeasSoulData::new).serialize(GeasSoulData.CODEC).copyOnDeath().build());
 
     public static final Supplier<AttachmentType<CachedSpiritDropsData>> CACHED_SPIRIT_DROPS = ATTACHMENT_TYPES.register(
             "cached_spirit_drops", () -> AttachmentType.builder(CachedSpiritDropsData::new).serialize(CachedSpiritDropsData.CODEC).build());

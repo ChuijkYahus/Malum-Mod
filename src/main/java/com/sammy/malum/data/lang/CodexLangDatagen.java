@@ -1,5 +1,13 @@
 package com.sammy.malum.data.lang;
 
+import com.sammy.malum.client.screen.codex.pages.*;
+import com.sammy.malum.client.screen.codex.pages.text.*;
+import com.sammy.malum.common.item.*;
+import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.registry.common.*;
+import net.minecraft.core.*;
+
 public class CodexLangDatagen {
 
     private static String obfuscate(String s) {
@@ -22,9 +30,21 @@ public class CodexLangDatagen {
         return "$u" + s + "/$";
     }
 
-    private static void addRiteEntry(String identifier, String riteDescription, String riteHoverDescription) {
-        add("malum.gui.book.entry.page.text." + identifier, riteDescription);
-        add("malum.gui.book.entry.page.text." + identifier + ".hover", riteHoverDescription);
+    private static void addCorruptedRiteDetails(TotemicRiteType riteType, String riteDescription, String riteHoverDescription) {
+        String id = riteType.identifier;
+        add(BookPage.TEXT + ".corrupt_" + id, riteDescription);
+        add(TotemicRiteType.CORRUPTED_EFFECT + "." + id, riteHoverDescription);
+    }
+    private static void addRiteDetails(TotemicRiteType riteType, String riteDescription, String riteHoverDescription) {
+        String id = riteType.identifier;
+        add(BookPage.TEXT + "." + id, riteDescription);
+        add(TotemicRiteType.EFFECT + "." + id, riteHoverDescription);
+    }
+
+    private static void addGeasDetails(Holder<GeasEffectType> geasEffectType, String geasPositives, String geasNegatives) {
+        final GeasEffectType geas = geasEffectType.value();
+        add(geas.getDetailedPros(), geasPositives);
+        add(geas.getDetailedCons(), geasNegatives);
     }
 
     private static void addEntryHeader(String identifier, String name, String description) {
@@ -38,7 +58,7 @@ public class CodexLangDatagen {
     }
 
     private static void addPage(String identifier, String page) {
-        add("malum.gui.book.entry.page.text." + identifier, page);
+        add(BookPage.TEXT + "." + identifier, page);
     }
 
     private static void addPages(String identifier, String... pages) {
@@ -59,9 +79,11 @@ public class CodexLangDatagen {
     private static void addRecipeDescriptor(String identifier, String tooltip) {
         add("malum.gui.book.entry.page.info." + identifier, tooltip);
     }
+
     private static void add(String key, String value) {
         MalumLang.lang.add(key, value);
     }
+
     public static void generateEntries() {
         addSimpleEntryHeader("chronicles_of_the_void", "Chronicles of the Void", "A magecraft of madness");
         addSimpleEntryHeader("chronicles_of_the_soul", "Chronicles of the Soul", "A magecraft of miracles");
@@ -71,6 +93,8 @@ public class CodexLangDatagen {
         addRecipeDescriptor("spirit_infusion.item", "Additional Items must be held on nearby Item Pedestals or Stands.");
 
         addRecipeDescriptor("runeworking", "Runeworking. \nRequires a slate for the inscription process. Spirit Arcana must be inserted afterwards.");
+
+        addRecipeDescriptor("soulbinding", "Soul Binding. \nPhysical and Arcane ingredients are to be inserted into the Brazier. \nAn Etheric Blood Offering initiates the process");
 
         addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms blocks into other blocks via Unchained Rite. Requires Blight as a conduit.");
         addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation. \nA series of block transformations via Unchained Rite. Requires Blight as a conduit.");
@@ -844,6 +868,86 @@ public class CodexLangDatagen {
         addPages("altar_acceleration.brilliant_obelisk",
                 "While not useful for Infusion, per-se, the design of the obelisk can be used in another way as well. By socketing Brilliance instead of Hallowed Gold, the obelisk will harmonize with the Brilliance of enchanting, causing it to provide as much force of enchanting as five bookshelves do.");
 
+        //TODO: Geas Stuff
+        addSimpleEntryHeader("geas_magic", "Geas Magic", "WeeWoo Magic");
+        addPages("geas_magic",
+                "",
+                "",
+                "");
+
+        addSimpleEntryHeader("undoing_geas_bindings", "Undoing Geas Bindings", "No more WeeWoo Magic");
+        addPages("undoing_geas_bindings",
+                "",
+                "",
+                "");
+
+        addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "Day :)");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,
+                """
+                        The Dayblessed revels under the Sun
+                         -Increases Spirit Spoils during Daytime
+                         -Increases Healing Received by one fifth during Daytime""",
+                "The Moon's Borrowed Light brings vulnerability\n -Armor is Reduced by one fifth during Night Time");
+
+        addSimpleEntryHeader("pact_of_the_nightchild", "Pact of The Nightchild", "Day :(");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD,
+                """
+                        The Nightchild flourishes under the Moon
+                         -Increases Spirit Spoils during Nighttime
+                         -Increases Scythe Proficiency by one fifth during Nighttime""",
+                "The Light of the Sun weakens you\n -Damage Output is Reduced by one fifth during Day Time");
+
+        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Killing :)");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
+                """
+                        An incantation forced onto the mind.
+                         -Increases Spirit Spoils
+                         -Increases Arcane Resonance by half""",
+                "Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger as time passes.");
+
+        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Strong Always");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
+                """
+                        A compression of Soul Ward, made greater and condensed.
+                         -Increases Soul Ward Capacity
+                         -Increases Soul Ward Integrity by half""",
+                "The added grandeur brings with itself a heaviness\n -Halves Soul Ward Recovery Rate");
+
+        addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "Always Ready");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD,
+                """
+                        An acceleration of Soul Ward, made to be ready at all times.
+                         -Increases Soul Ward Capacity
+                         -Doubles Soul Ward Recovery Rate""",
+                "The added acceleration brings with itself a brittleness\n -Halves Soul Ward Integrity");
+
+        //TODO: better name for the pact
+        addSimpleEntryHeader("pact_of_the_lifelong", "Pact of The Lifelong", "Meet Your End And Defy It");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG,
+                """
+                        An unnatural regeneration, a desire to grow forever.
+                         -Saturation heals twice as fast, thrice as fast when near death
+                         -Increases Healing Received by one fourth""",
+                "The magics imbued onto the body shift your perception of death, a deadly paranoia.\n -Reduces Max Health by one fourth");
+
+        //TODO: better name for the pact
+        addSimpleEntryHeader("pact_of_the_enduring", "Pact of The Enduring", "Show Strength, Even In It's Absence");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_ENDURING,
+                """
+                        A growth in confidence, a desire to overcome any threat, your pain is only secondary.
+                         -Spirit Collection generates Absorption""",
+                "Blah Blah Blah\n -Reduces Healing Received by four tenths");
+
+        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "Be strong when you are not");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
+                """
+                        A vow to never stray from the blade..
+                         -Scythe Attacks create delayed Combo Attacks""",
+                "Blah Blah Blah\n -Any Weapon that is Not a Scythe deals one tenth of the original damage\n -The non-scythe weapon also breaks very fast");
+
+
+        //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
+
         addSimpleEntryHeader("totem_magic", "Totem Magic", "Arcana unleashed");
         addPages("totem_magic",
                 "Up until now, when performing spirit arcana, I have limited my research to personal enhancement and material production. Now, I affect the world.",
@@ -866,109 +970,109 @@ public class CodexLangDatagen {
                 "The scars of this process linger, allowing me to make more Soulwood by placing Runewood on the results of the ritual.");
         addHeadline("arcane_rite.soulwood", "Soulwood Transmutation");
 
-        addRiteEntry("arcane_rite",
+        addRiteDetails(SpiritRiteRegistry.ARCANE_RITE,
                 "The rite - if you could call something so chaotic that - corrupts and burns through the totem, altering its very base nature, and transmuting the world around it into some indeterminate blighted substance.",
                 "Converts the totem structure into one made up of Soulwood and alters the nearby terrain into a blighted substance.\n- Soulwood totems produce different rite effects.");
-        addRiteEntry("corrupt_arcane_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ARCANE_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem, corrupting and warping the nearby area. Any nearby block placed atop that blighted substance will be altered.",
                 "Transmutes nearby blocks placed atop blighted gunk.");
 
         addEntryHeader("sacred_rite", "Sacred Rites", "Invigorating the soul");
-        addRiteEntry("sacred_rite",
+        addRiteDetails(SpiritRiteRegistry.SACRED_RITE,
                 "A simple rite, while active it will slowly mend the wounds of nearby entities.\n Avoids hostiles.",
                 "Recovers one heart of damage every two seconds.");
-        addRiteEntry("greater_sacred_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_SACRED_RITE,
                 "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",
                 "Periodically ages nearby crops. Coverage matches water coverage.");
 
         addEntryHeader("corrupt_sacred_rite", "Corrupting the Sacred Rites", "Stimulating the soul");
-        addRiteEntry("corrupt_sacred_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.SACRED_RITE,
                 "A simple rite, while active it will apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
                 """
                         Affected animals instantly gain 25 seconds worth of age
                          - Sheep will feed on grass more frequently
                          - Bees pollinate faster and more frequently
                          - Chickens lay eggs more frequently""");
-        addRiteEntry("corrupt_greater_sacred_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_SACRED_RITE,
                 "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
                 "Affected animals are fed until there are more than twenty.\n - This limit applies separately for each type of animal within the range of the rite.");
 
         addEntryHeader("wicked_rite", "Wicked Rites", "Maligning the soul");
-        addRiteEntry("wicked_rite",
+        addRiteDetails(SpiritRiteRegistry.WICKED_RITE,
                 "A simple rite, while active it will slowly bring nearby hostile beings to within an inch of death.",
                 "Deals one heart of non-lethal damage every two seconds.");
-        addRiteEntry("greater_wicked_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_WICKED_RITE,
                 "An advanced rite, while active nearby beings on the brink of death are dealt a fatal blow to the body and soul.",
                 "Affected entities are dealt a fatal blow, dropping items and spirits on death.\n - Avoids entities with more than two and a half hearts remaining.");
 
         addEntryHeader("corrupt_wicked_rite", "Corrupting the Wicked Rites", "Endangering the soul");
-        addRiteEntry("corrupt_wicked_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.WICKED_RITE,
                 "Rather than harm, this rite enhances nearby beings, granting protection, force, and speed. Players are unfortunately omitted from this effect. Might have niche applications.",
                 "Grants all nearby non-Player entities resistance, strength, and speed.");
-        addRiteEntry("corrupt_greater_wicked_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_WICKED_RITE,
                 "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
                 "While there are more than twenty animals within the range of the rite, the excess is removed.\n - This limit applies separately for each type of animal within the range of the rite.");
 
         addEntryHeader("aerial_rite", "Aerial Rites", "Uplifting the soul");
-        addRiteEntry("aerial_rite", "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
+        addRiteDetails(SpiritRiteRegistry.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
                 "Applies Zephyr's Courage, increasing movement speed by two fifths.");
-        addRiteEntry("greater_aerial_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE,
                 "An advanced rite, by twisting the power of the air, blocks before the totem will be made to fall as though they were sand. Nothing Silk Touch cannot grab will be affected, though.",
                 "Causes targeted blocks to fall downwards if there is nothing underneath them.");
 
         addEntryHeader("corrupt_aerial_rite", "Corrupting the Aerial Rites", "Scattering the soul");
-        addRiteEntry("corrupt_aerial_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.AERIAL_RITE,
                 "A simple aura rite, while active nearby friendly beings will have their connection to the earth disrupted, lowering their gravity and increasing jump height.",
                 "Applies Aether's Charm, decreasing gravity by three fifths while also providing a substantial benefit to jump height.");
-        addRiteEntry("corrupt_greater_aerial_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE,
                 "An advanced rite, while active it will slowly ease the stress of time on the mind, offsetting the effects of insomnia for those around it over time.",
                 "Passively reduces the insomnia value of nearby players.\n - Assuming phantoms are just starting to appear, it will take a single totem executing the rite two and two fifths of a minute to fully cleanse insomnia.\n - Naturally, the totem will take longer to fully cleanse insomnia if the player has already been suffering from it for some time.");
 
         addEntryHeader("earthen_rite", "Earthen Rites", "Grounding the soul");
-        addRiteEntry("earthen_rite",
+        addRiteDetails(SpiritRiteRegistry.EARTHEN_RITE,
                 "A simple aura rite, while active nearby friendly beings will find their bodies are tougher and more resistant to damage.",
                 "Applies Gaia's Bulwark, increasing armor by four and armor toughness by two.");
-        addRiteEntry("greater_earthen_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE,
                 "An advanced rite, while active it will cause blocks before the totem base to be broken.",
                 "Breaks targeted blocks. Unbreakable blocks behave as to be expected.");
 
         addEntryHeader("corrupt_earthen_rite", "Corrupting the Earthen Rites", "Honing the soul");
-        addRiteEntry("corrupt_earthen_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.EARTHEN_RITE,
                 "A simple aura rite, while active nearby friendly beings will find their attacks deal more damage.",
                 "Applies Earthen Might, increasing damage dealt by two hearts.");
-        addRiteEntry("corrupt_greater_earthen_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE,
                 "An advanced rite, while active the earth coalesces, and like lava meeting water, cobblestone is created before the totem base.",
                 "Creates cobblestone in place of empty space.");
 
         addEntryHeader("infernal_rite", "Infernal Rites", "Igniting the soul");
-        addRiteEntry("infernal_rite",
+        addRiteDetails(SpiritRiteRegistry.INFERNAL_RITE,
                 "A simple aura rite, while active nearby friendly beings will find that their motions are infused with fiery vigor, letting them swing weapons and tools faster.",
                 "Applies Miner's Rage, increasing attack rate and dig speed by two fifths.");
-        addRiteEntry("greater_infernal_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE,
                 "An advanced rite, while active it will cause blocks before the totem base to be smelted.",
                 "Smelts targeted blocks that can be smelted into other blocks.");
 
         addEntryHeader("corrupt_infernal_rite", "Corrupting the Infernal Rites", "Extinguishing the soul");
-        addRiteEntry("corrupt_infernal_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.INFERNAL_RITE,
                 "A simple aura rite, while active nearby friendly beings and close fires will have the heat sucked out of them, extinguishing them and healing those who were burned, giving them the survivability of denizens of the nether.",
                 "Extinguishes nearby flames, be it affecting the world or an entity.\n - Extinguished entities receive Ifrit's Embrace, recovering two hearts while being extinguished.");
-        addRiteEntry("corrupt_greater_infernal_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE,
                 "An advanced rite, instead of generating heat, this rite compresses it, causing nearby furnaces to operate more quickly.",
                 "Speeds up nearby furnaces by one fourth.\n - Fuel consumption rate is unaffected, meaning the rite also improves fuel efficiency.");
 
         addEntryHeader("aqueous_rite", "Aqueous Rites", "Molding the soul");
-        addRiteEntry("aqueous_rite",
+        addRiteDetails(SpiritRiteRegistry.AQUEOUS_RITE,
                 "A simple aura rite, while active nearby friendly beings will find that their reach is extended, letting them more easily interact with the world.",
                 "Applies Poseidon's Grasp, increasing block reach by two units of space and increasing item pickup range significantly.");
-        addRiteEntry("greater_aqueous_rite",
+        addRiteDetails(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE,
                 "An advanced rite, while active, it will vastly increasing the drip speed of dripstone, causing more fluid to be produced.",
                 "Speeds up dripstone fluid production, works on both lava and water.\n - Only the tip of hanging dripstone needs to be within range for the effect to trigger.");
 
         addEntryHeader("corrupt_aqueous_rite", "Corrupting the Aqueous Rites", "Deforming the soul");
-        addRiteEntry("corrupt_aqueous_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.AQUEOUS_RITE,
                 "A simple aura rite, while active nearby friendly beings will find themselves better at fishing.",
                 "Applies Angler's Lure, providing benefits to fishing skills equal to Lure I and Luck of the Sea I.\n - The effects stack with any enchantment already present on a fishing rod.");
-        addRiteEntry("corrupt_greater_aqueous_rite",
+        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE,
                 "An advanced rite, while active zombies near this rite will find themselves choking on their own breath, drowning even on land.",
                 "Converts nearby zombies to drowned.");
 

@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.aura.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
@@ -41,9 +42,11 @@ public class MobEffectRegistry {
     public static final DeferredHolder<MobEffect, MobEffect> GRIM_CERTAINTY = EFFECTS.register("grim_certainty", GrimCertaintyEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> IMMINENT_DELIVERANCE = EFFECTS.register("imminent_deliverance", ImminentDeliveranceEffect::new);
 
-    public static final DeferredHolder<MobEffect, MobEffect> ASCENSION = EFFECTS.register("ascension", AscensionEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> GLUTTONY = EFFECTS.register("gluttony", GluttonyEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> TRIAL_OF_FAITH = EFFECTS.register("trial_of_faith", TrialOfFaithEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> DESPERATE_NEED = EFFECTS.register("desperate_need", DesperateNeedEffect::new);
+
+    public static final DeferredHolder<MobEffect, MobEffect> ASCENSION = EFFECTS.register("ascension", AscensionEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> SILENCED = EFFECTS.register("silenced", SilencedEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> HATRED = EFFECTS.register("hatred", HatredEffect::new);
 

@@ -265,6 +265,7 @@ public class MalumItemTags extends ItemTagsProvider {
                 }
             }
         }
+        tag(ItemTagRegistry.GEAS).add(GEAS.get());
         tag(ItemTagRegistry.CHARM).add(TOPHAT.get(), TOKEN_OF_GRATITUDE.get());
     }
 

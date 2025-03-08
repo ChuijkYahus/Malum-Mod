@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.food;
 
-import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;

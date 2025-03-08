@@ -1,4 +1,4 @@
-package com.sammy.malum.common.capabilities;
+package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

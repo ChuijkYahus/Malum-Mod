@@ -28,21 +28,16 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
 
         new SoulBindingRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 4)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 4)
-                .save(recipeOutput);
-        new SoulBindingRecipeBuilder(ItemRegistry.BLOCK_OF_SOUL_STAINED_STEEL.get(), 1, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION)
-                .addExtraItem(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 6)
-                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 24)
-                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
-                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
 

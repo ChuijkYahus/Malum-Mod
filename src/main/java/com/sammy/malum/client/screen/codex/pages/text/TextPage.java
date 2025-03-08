@@ -15,7 +15,7 @@ public class TextPage extends BookPage {
     }
 
     public String translationKey() {
-        return "malum.gui.book.entry.page.text." + translationKey;
+        return BookPage.TEXT + "." + translationKey;
     }
 
     @Override

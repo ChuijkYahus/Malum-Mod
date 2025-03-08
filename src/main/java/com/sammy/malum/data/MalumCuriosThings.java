@@ -17,21 +17,26 @@ public class MalumCuriosThings extends top.theillusivec4.curios.api.CuriosDataPr
     public void generate(HolderLookup.Provider registries, ExistingFileHelper fileHelper) {
         createSlot("brooch")
                 .size(1)
-                .addCosmetic(true)
+                .addCosmetic(false)
                 .icon(MalumMod.malumPath("slot/empty_brooch_slot"));
         createSlot("ring")
                 .size(2)
-                .addCosmetic(true);
+                .addCosmetic(false);
         createSlot("necklace")
                 .size(1)
-                .addCosmetic(true);
+                .addCosmetic(false);
         createSlot("belt")
                 .size(1)
-                .addCosmetic(true);
+                .addCosmetic(false);
         createSlot("rune")
                 .size(0)
-                .renderToggle(true)
+                .renderToggle(false)
                 .icon(MalumMod.malumPath("slot/empty_rune_slot"));
+        createSlot("geas")
+                .size(0)
+                .renderToggle(false)
+                .icon(MalumMod.malumPath("slot/empty_geas_slot"));
+
         createSlot("charm")
                 .size(1)
                 .addCosmetic(true);

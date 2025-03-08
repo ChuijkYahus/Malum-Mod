@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.common.item.tabs;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data_components.*;
+
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.registry.common.*;

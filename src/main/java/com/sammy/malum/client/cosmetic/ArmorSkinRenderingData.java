@@ -1,8 +1,7 @@
 package com.sammy.malum.client.cosmetic;
 
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.client.*;
-import net.minecraft.Util;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.resources.*;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import team.lodestar.lodestone.systems.model.LodestoneArmorModel;
 
 import java.util.*;
-import java.util.function.Function;
 
 public abstract class ArmorSkinRenderingData {
 

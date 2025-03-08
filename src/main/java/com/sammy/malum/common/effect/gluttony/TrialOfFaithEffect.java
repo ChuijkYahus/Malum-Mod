@@ -1,4 +1,4 @@
-package com.sammy.malum.common.effect;
+package com.sammy.malum.common.effect.gluttony;
 
 import com.sammy.malum.*;
 import com.sammy.malum.compability.irons_spellbooks.*;
@@ -7,11 +7,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.*;
-
-import static net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result.*;
 
 public class TrialOfFaithEffect extends MobEffect {
     public TrialOfFaithEffect() {
@@ -28,7 +24,7 @@ public class TrialOfFaithEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
         if (entityLivingBaseIn instanceof Player player) {
-            player.causeFoodExhaustion(0.0025f * (amplifier + 1));
+            player.causeFoodExhaustion(0.005f * (amplifier + 1));
         }
         return true;
     }

@@ -35,7 +35,7 @@ public class MalumGeasEffectTypeRegistry {
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SHIELD = GEAS_TYPES.register("pact_of_the_shield", () -> new GeasEffectType(ShieldGeas::new, ARCANE_SPIRIT, AERIAL_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_LIFELONG = GEAS_TYPES.register("pact_of_the_lifelong", () -> new GeasEffectType(LifelongGeas::new, SACRED_SPIRIT, AQUEOUS_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_ENDURING = GEAS_TYPES.register("pact_of_the_enduring", () -> new GeasEffectType(EnduringGeas::new, SACRED_SPIRIT, EARTHEN_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_ENDURING = GEAS_TYPES.register("pact_of_the_enduring", () -> new GeasEffectType(EnduringGeas::new, SACRED_SPIRIT, INFERNAL_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_REAPER = GEAS_TYPES.register("pact_of_the_reaper", () -> new GeasEffectType(ReaperGeas::new, WICKED_SPIRIT, ELDRITCH_SPIRIT));
 
@@ -48,14 +48,9 @@ public class MalumGeasEffectTypeRegistry {
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_ASCETIC = GEAS_TYPES.register("pact_of_the_profane_ascetic", () -> new GeasEffectType(ProfaneAsceticGeas::new, EARTHEN_SPIRIT, WICKED_SPIRIT));
 
-    // Pact of the Profane Glutton
-    //Gluttony is replaced with Desperate Need
-    //Desperate Need stacks to twice as high, providing potentially double the original benefit (200% increase to magic damage, normal is 100%)
-    //Desperate Need also reduces armor, magic resistance, and healing received
-    //Desperate Need is reduced when taking damage
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_GLUTTON = GEAS_TYPES.register("pact_of_the_profane_glutton", () -> new GeasEffectType(ProfaneGluttonGeas::new, EARTHEN_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_GLUTTON = GEAS_TYPES.register("pact_of_the_profane_glutton", () -> new GeasEffectType(ProfaneGluttonGeas::new, EARTHEN_SPIRIT, AQUEOUS_SPIRIT));
     
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
 
 
     // Bond of Beloved Chains
@@ -85,9 +80,9 @@ public class MalumGeasEffectTypeRegistry {
     //This is a void geas
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_UNSIGHTED_RESISTANCE = GEAS_TYPES.register("oath_of_unsighted_resistance", () -> new GeasEffectType(UnsightedResistance::new, EARTHEN_SPIRIT, ARCANE_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_INVERTED_HEART = GEAS_TYPES.register("oath_of_the_inverted_heart", () -> new GeasEffectType(InvertedHeartOath::new, SACRED_SPIRIT, WICKED_SPIRIT, EARTHEN_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_INVERTED_HEART = GEAS_TYPES.register("oath_of_the_inverted_heart", () -> new GeasEffectType(InvertedHeartOath::new, ELDRITCH_SPIRIT, SACRED_SPIRIT, ARCANE_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("oath_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetOath::new, AQUEOUS_SPIRIT, WICKED_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("oath_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetOath::new, ELDRITCH_SPIRIT, AQUEOUS_SPIRIT, INFERNAL_SPIRIT));
 //    // Oath of the Loosened Shackles
 //    //Each time you die, it is instead stored for later
 //    //At a later point in time, all of your deaths will come for you all at once

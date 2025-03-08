@@ -26,6 +26,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
     public void modifyGluttonyPropertiesEvent(ModifyGluttonyPropertiesEvent event, LivingEntity collector) {
         event.getProperties()
                 .scaleInitialDuration(2)
+                .scaleInitialAmplifier(2)
                 .scaleDurationGain(2)
                 .scaleDurationLimit(4)
                 .scaleAmplifierLimit(2)

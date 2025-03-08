@@ -36,7 +36,7 @@ public class LifelongGeas extends GeasEffect {
 
     public static int accelerateNaturalHealing(LivingEntity entity) {
         if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG)) {
-            return entity.getHealth() < entity.getMaxHealth()/2f ? 2 : 1;
+            return entity.getHealth() < entity.getMaxHealth()/4f ? 2 : 1;
         }
         return 0;
     }

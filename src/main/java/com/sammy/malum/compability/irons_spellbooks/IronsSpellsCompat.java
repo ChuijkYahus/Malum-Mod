@@ -3,6 +3,7 @@ package com.sammy.malum.compability.irons_spellbooks;
 import com.google.common.collect.*;
 import com.sammy.malum.*;
 import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
@@ -81,6 +82,12 @@ public class IronsSpellsCompat {
         }
     }
 
+    public static void addDesperateNeedSpellPower(DesperateNeedEffect effect) {
+        if (LOADED) {
+            LoadedOnly.addDesperateNeedSpellPower(effect);
+        }
+    }
+
     public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {
         if (LOADED) {
             LoadedOnly.addSilencedNegativeAttributeModifiers(effect);
@@ -146,6 +153,11 @@ public class IronsSpellsCompat {
 
         public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
             effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        }
+
+        public static void addDesperateNeedSpellPower(DesperateNeedEffect effect) {
+            effect.addAttributeModifier(AttributeRegistry.NATURE_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 

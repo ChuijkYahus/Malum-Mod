@@ -27,6 +27,26 @@ public class PyromaniacGeas extends GeasEffect {
         super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
     }
 
+    @Override
+    public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_resistance"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));
+        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+    }
+
+    @Override
+    public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
+            event.setNewDamage(event.getNewDamage() * 1.5f);
+        }
+        if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
+            float health = target.getHealth();
+            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.25f, 0, health*0.5f));
+        }
+    }
+
     public static void processExplosion(ExplosionEvent.Detonate event) {
         final Explosion explosion = event.getExplosion();
         for (Entity entity : event.getAffectedEntities()) {
@@ -54,24 +74,5 @@ public class PyromaniacGeas extends GeasEffect {
                 }
             }
         }
-    }
-
-    @Override
-    public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            event.setNewDamage(event.getNewDamage() * 1.5f);
-        }
-        if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
-            float health = target.getHealth();
-            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.25f, 0, health*0.5f));
-        }
-    }
-
-    @Override
-    public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));
-        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 }

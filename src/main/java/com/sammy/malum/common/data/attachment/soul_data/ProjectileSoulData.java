@@ -1,4 +1,4 @@
-package com.sammy.malum.common.capabilities.soul_data;
+package com.sammy.malum.common.data.attachment.soul_data;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;

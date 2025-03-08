@@ -1,30 +1,29 @@
-package com.sammy.malum.common.capabilities.soul_data;
+package com.sammy.malum.common.data.attachment.soul_data;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
+import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
 public class LivingSoulData {
 
     public static final Codec<LivingSoulData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            ItemStack.CODEC.listOf().optionalFieldOf("geasEffects").forGetter(sd -> Optional.of(sd.geasStacks)),
             Codec.FLOAT.fieldOf("exposedSoulDuration").forGetter(sd -> sd.exposedSoulDuration),
             Codec.BOOL.fieldOf("soulless").forGetter(sd -> sd.soulless),
             Codec.BOOL.fieldOf("spawnerSpawned").forGetter(sd -> sd.spawnerSpawned)
     ).apply(obj, LivingSoulData::new));
-
-    private final List<ItemStack> geasStacks = new ArrayList<>();
-    private final Map<ItemStack, GeasEffect> cachedGeasEffects = new WeakHashMap<>();
-    private boolean dirtyGeasEffects;
 
     private float exposedSoulDuration;
     private boolean soulless;
@@ -33,59 +32,14 @@ public class LivingSoulData {
     public LivingSoulData() {
     }
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    private LivingSoulData(Optional<List<ItemStack>> geasStacks, float exposedSoulDuration, boolean soulless, boolean spawnerSpawned) {
-        geasStacks.ifPresent(s -> s.forEach(this::addGeasEffect));
+    private LivingSoulData(float exposedSoulDuration, boolean soulless, boolean spawnerSpawned) {
         this.exposedSoulDuration = exposedSoulDuration;
         this.soulless = soulless;
         this.spawnerSpawned = spawnerSpawned;
     }
 
-    public List<ItemStack> getGeasItems() {
-        return geasStacks;
-    }
-
-    public void removeGeasEffect(ItemStack geas) {
-        geasStacks.remove(geas);
-        dirtyGeasEffects = true;
-    }
-
-    public boolean addGeasEffect(ItemStack geas) {
-        if (!geas.has(DataComponentRegistry.GEAS_EFFECT)) {
-            throw new IllegalArgumentException("Etching Itemstack does not have an geas effect");
-        }
-        var storedEtching = GeasEffectHandler.getStoredGeasEffect(geas).createEffectInstance();
-        if (cachedGeasEffects.values().stream().anyMatch(e -> e.type.equals(storedEtching.type))) {
-            return false;
-        }
-        geasStacks.add(geas);
-        dirtyGeasEffects = true;
-        return true;
-    }
-
-    public boolean hasGeasEffect(LivingEntity living, Holder<GeasEffectType> type) {
-        return getGeasEffect(living, type) != null;
-    }
-
-    public Map.Entry<ItemStack, GeasEffect> getGeasEffect(LivingEntity entity, Holder<GeasEffectType> type) {
-        return getGeasEffects(entity).entrySet().stream().filter(e -> e.getValue().type.equals(type.value())).findFirst().orElse(null);
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public Map<ItemStack, GeasEffect> getGeasEffects(LivingEntity entity) {
-        if (dirtyGeasEffects) {
-            cachedGeasEffects.values().forEach(e -> e.removeAttributeModifiers(entity));
-            cachedGeasEffects.clear();
-            for (ItemStack geas : geasStacks) {
-                cachedGeasEffects.put(geas, geas.get(DataComponentRegistry.GEAS_EFFECT).createEffectInstance());
-            }
-            dirtyGeasEffects = false;
-        }
-        return cachedGeasEffects;
-    }
-
     public void setExposed() {
-        exposedSoulDuration = 200;
+        setExposedSoulDuration(200);
     }
 
     public void updateSoullessBehavior(Mob mob) {
@@ -104,13 +58,13 @@ public class LivingSoulData {
     }
 
     public void tickDuration() {
-        if (exposedSoulDuration > 0) {
+        if (shouldDropSpirits()) {
             exposedSoulDuration--;
         }
     }
 
     public boolean shouldDropSpirits() {
-        return !soulless && exposedSoulDuration > 0;
+        return !soulless && getExposedSoulDuration() > 0;
     }
 
     public void setExposedSoulDuration(float exposedSoulDuration) {

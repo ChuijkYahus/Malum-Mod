@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.world.item.*;

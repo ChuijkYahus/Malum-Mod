@@ -1,7 +1,7 @@
 package com.sammy.malum.client.extensions;
 
 import com.sammy.malum.client.cosmetic.ArmorSkinRenderingData;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;

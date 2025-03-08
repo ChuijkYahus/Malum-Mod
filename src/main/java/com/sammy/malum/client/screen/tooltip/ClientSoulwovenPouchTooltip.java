@@ -1,6 +1,6 @@
 package com.sammy.malum.client.screen.tooltip;
 
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.client.gui.screens.inventory.tooltip.*;

@@ -66,7 +66,7 @@ public class SpiritTransmutationRecipePage extends BookPage {
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2, top + 5);
+        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
 
         SpiritTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);

@@ -23,7 +23,7 @@ public class SyncCloudHopperStreakPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext context) {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
-            var data = livingEntity.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO);
+            var data = livingEntity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
             var cloudskipper = MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER;
             if (!data.hasGeasEffect(livingEntity, cloudskipper)) {
                 data.addGeasEffect(cloudskipper.get().createDefaultStack());
@@ -32,7 +32,7 @@ public class SyncCloudHopperStreakPayload extends OneSidedPayloadData {
             if (geas instanceof CloudSkipperGeas cloudSkipperGeas) {
                 cloudSkipperGeas.streak = streak;
             }
-            livingEntity.setData(AttachmentTypeRegistry.LIVING_SOUL_INFO, data);
+            livingEntity.setData(AttachmentTypeRegistry.GEAS_SOUL_INFO, data);
         }
     }
 

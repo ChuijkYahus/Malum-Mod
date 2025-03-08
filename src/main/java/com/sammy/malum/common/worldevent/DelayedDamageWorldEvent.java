@@ -121,29 +121,29 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
             return;
         }
         if (level instanceof ServerLevel serverLevel) {
-            Entity entity = serverLevel.getEntity(targetUUID);
+            Entity target = serverLevel.getEntity(targetUUID);
             Entity attacker = serverLevel.getEntity(attackerUUID);
             Entity projectile = serverLevel.getEntity(projectileUUID);
-            if (entity != null && attacker != null) {
-                if (entity.isAlive()) {
-                    var deltaMovement = entity.getDeltaMovement();
+            if (target != null) {
+                if (target.isAlive()) {
+                    var deltaMovement = target.getDeltaMovement();
                     if (physicalDamage > 0) {
-                        entity.invulnerableTime = 0;
-                        entity.hurt(DamageTypeHelper.create(level, physicalDamageType, projectile, attacker), physicalDamage);
+                        target.invulnerableTime = 0;
+                        target.hurt(DamageTypeHelper.create(level, physicalDamageType, projectile, attacker), physicalDamage);
                     }
                     if (magicDamage > 0) {
-                        entity.invulnerableTime = 0;
-                        entity.hurt(DamageTypeHelper.create(level, magicDamageType, projectile, attacker), magicDamage);
+                        target.invulnerableTime = 0;
+                        target.hurt(DamageTypeHelper.create(level, magicDamageType, projectile, attacker), magicDamage);
                     }
-                    entity.setDeltaMovement(deltaMovement);
+                    target.setDeltaMovement(deltaMovement);
                     if (soundEvent != null) {
-                        float pitch = RandomHelper.randomBetween(attacker.getRandom(), minPitch, maxPitch);
-                        float volume = RandomHelper.randomBetween(attacker.getRandom(), minVolume, maxVolume);
-                        SoundHelper.playSound(attacker, soundEvent.value(), volume, pitch);
+                        float pitch = RandomHelper.randomBetween(serverLevel.getRandom(), minPitch, maxPitch);
+                        float volume = RandomHelper.randomBetween(serverLevel.getRandom(), minVolume, maxVolume);
+                        SoundHelper.playSound(attacker == null ? target : attacker, soundEvent.value(), volume, pitch);
                     }
                     if (particleEffect != null) {
                         particleEffect.createPositionedEffect(serverLevel,
-                                new PositionEffectData(new Vec3(entity.getX(), entity.getY()+entity.getBbHeight()/2f, entity.getZ())),
+                                new PositionEffectData(new Vec3(target.getX(), target.getY()+target.getBbHeight()/2f, target.getZ())),
                                 particleColor, nbtData);
                     }
                 }
@@ -160,7 +160,9 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         if (magicDamageType != DamageTypeRegistry.VOODOO) {
             compoundTag.putString("magicDamageType", magicDamageType.location().toString());
         }
-        compoundTag.putUUID("attackerUUID", attackerUUID);
+        if (attackerUUID != null) {
+            compoundTag.putUUID("attackerUUID", attackerUUID);
+        }
         compoundTag.putUUID("targetUUID", targetUUID);
         compoundTag.putFloat("physicalDamage", physicalDamage);
         compoundTag.putFloat("magicDamage", magicDamage);

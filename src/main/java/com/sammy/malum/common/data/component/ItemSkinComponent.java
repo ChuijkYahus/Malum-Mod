@@ -1,4 +1,4 @@
-package com.sammy.malum.common.data_components;
+package com.sammy.malum.common.data.component;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
@@ -8,7 +8,6 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.item.*;
 
 import java.util.*;
 

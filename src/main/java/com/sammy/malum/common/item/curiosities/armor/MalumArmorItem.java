@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.client.cosmetic.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;

@@ -1,11 +1,8 @@
 package com.sammy.malum.common.item.spirit;
 
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.core.systems.ritual.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;

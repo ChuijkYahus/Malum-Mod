@@ -46,6 +46,11 @@ public class ArcanaCodexHelper {
 
     public static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
     public static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
+    public static final TextColorData DEFAULT_TEXT_COLOR = new TextColorData(new Color(138, 79, 58), new Color(65, 41, 8), new Color(20, 44, 60), new Color(227, 39, 228));
+
+    public static final TextColorData GEAS_POSITIVE_COLOR = new TextColorData(new Color(18, 52, 141), new Color(118, 52, 141), new Color(20, 44, 120), new Color(100, 100, 240));
+    public static final TextColorData GEAS_NEGATIVE_COLOR = new TextColorData(new Color(141, 18, 52), new Color(118, 52, 141), new Color(120, 44, 20), new Color(240, 100, 100));
+
 
     public enum BookTheme {
         DEFAULT, EASY_READING
@@ -171,7 +176,7 @@ public class ArcanaCodexHelper {
 
         builder.setColor(ColorHelper.brighter(mainColor, 4)).setAlpha(0.2f);
         shaderInstance.safeGetUniform("Speed").set(400f);
-        renderTexture(location, stack, builder, x+2, y+2, 5, 2, 2, 12, 12, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x + 2, y + 2, 5, 2, 2, 12, 12, textureWidth, textureHeight);
 
         builder.setColor(colorSupplier.get().getSecondaryColor()).setAlpha(0.2f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
@@ -340,6 +345,7 @@ public class ArcanaCodexHelper {
     public static void renderItemFrames(GuiGraphics guiGraphics, int slots, int left, int top, double mouseX, double mouseY, boolean isSpirits, boolean isVertical) {
         renderItemFrames(guiGraphics, null, slots, left, top, mouseX, mouseY, isSpirits, isVertical);
     }
+
     public static Runnable renderItemFrames(GuiGraphics guiGraphics, @Nullable Component hoverComponent, int slots, int left, int top, double mouseX, double mouseY, boolean isSpirits, boolean isVertical) {
         var poseStack = guiGraphics.pose();
         int startingOffset = 9 * (slots - 1);
@@ -363,8 +369,7 @@ public class ArcanaCodexHelper {
         if (isVertical) {
             renderTexture(EntryScreen.ITEM_SOCKET, poseStack, left - 3, top - 3, 0, 0, 22, 2, 64, 64);
             renderTexture(EntryScreen.ITEM_SOCKET, poseStack, left - 3, top - 1 + 18 * (slots), 0, 20, 22, 2, 64, 64);
-        }
-        else {
+        } else {
             renderTexture(EntryScreen.ITEM_SOCKET, poseStack, left - 3, top - 3, 0, 0, 2, 22, 64, 64);
             renderTexture(EntryScreen.ITEM_SOCKET, poseStack, left - 1 + 18 * (slots), top - 3, 20, 0, 2, 22, 64, 64);
         }
@@ -450,30 +455,39 @@ public class ArcanaCodexHelper {
         return raw;
     }
 
-    public static void renderTooltip() {
-
-    }
-
     public static void renderWrappingText(GuiGraphics guiGraphics, String text, float x, float y, int width) {
         renderWrappingText(guiGraphics, Component.translatable(text), x, y, width);
     }
+
     public static void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
+        renderWrappingText(guiGraphics, DEFAULT_TEXT_COLOR, text, x, y, width);
+    }
+
+    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, int width) {
+        renderWrappingText(guiGraphics, colorData, Component.translatable(text), x, y, width);
+    }
+
+    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width) {
         Font font = Minecraft.getInstance().font;
         final List<String> lines = wrapText(text, width);
         for (int i = 0; i < lines.size(); i++) {
             String currentLine = lines.get(i);
-            renderRawText(guiGraphics, currentLine, x, y + i * (font.lineHeight + 1), 0.2f);
+            renderRawText(guiGraphics, colorData, currentLine, x, y + i * (font.lineHeight + 1), 0.2f);
         }
     }
+
     public static List<Component> wrapComponent(String text, int width) {
         return wrapText(text, width).stream().map(Component::literal).map(Component.class::cast).toList();
     }
+
     public static List<Component> wrapComponent(Component component, int width) {
         return wrapText(component, width).stream().map(Component::literal).map(Component.class::cast).toList();
     }
+
     public static List<String> wrapText(String text, int width) {
         return wrapText(Component.translatable(text), width);
     }
+
     public static List<String> wrapText(Component component, int width) {
         Font font = Minecraft.getInstance().font;
         String text = component.getString() + "\n";
@@ -557,8 +571,8 @@ public class ArcanaCodexHelper {
 
     private static StringBuilder commitComponent(MutableComponent component, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line, UnaryOperator<Style> styleModifier) {
         component.append(Component.literal(line.toString())
-            .withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated))
-            .withStyle(styleModifier));
+                .withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated))
+                .withStyle(styleModifier));
         line = new StringBuilder();
         return line;
     }
@@ -574,25 +588,20 @@ public class ArcanaCodexHelper {
         return line;
     }
 
-    public static void renderText(GuiGraphics guiGraphics, String text, float x, float y) {
-        renderText(guiGraphics, Component.translatable(text), x, y, 0.4f);
-    }
-
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
-        String text = component.getString();
-        renderRawText(guiGraphics, text, x, y, 0.4f);
-    }
-
-    public static void renderText(GuiGraphics guiGraphics, String text, float x, float y, float glow) {
-        renderText(guiGraphics, Component.translatable(text), x, y, glow);
+        renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f);
     }
 
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float glow) {
-        String text = component.getString();
-        renderRawText(guiGraphics, text, x, y, glow);
+        renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, glow);
     }
 
-    private static void renderRawText(GuiGraphics guiGraphics, String text, float x, float y, float glowMultiplier) {
+    public static void renderText(GuiGraphics guiGraphics, TextColorData colorData, Component component, float x, float y, float glow) {
+        String text = component.getString();
+        renderRawText(guiGraphics, colorData, text, x, y, glow);
+    }
+
+    private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier) {
         var minecraft = Minecraft.getInstance();
         var font = minecraft.font;
         float guiScale = (float) minecraft.getWindow().getGuiScale();
@@ -602,11 +611,11 @@ public class ArcanaCodexHelper {
         int screenHeight = minecraft.getWindow().getScreenHeight();
         float mouseX = (float) (minecraft.mouseHandler.xpos() / screenWidth);
         float mouseY = (float) (minecraft.mouseHandler.ypos() / screenHeight);
-        float width = font.width(text)/2f;
+        float width = font.width(text) / 2f;
         float textX = ((x + width) * guiScale) / screenWidth;
         float textY = ((y + font.lineHeight) * guiScale) / screenHeight;
-        float differenceX = (textX-mouseX);
-        float differenceY = (textY-mouseY);
+        float differenceX = (textX - mouseX);
+        float differenceY = (textY - mouseY);
         double horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
         double verticalDelta = Math.clamp(1 - Mth.abs(differenceY) * inverseScale, 0, 1);
         if (differenceY > 0) {
@@ -615,15 +624,15 @@ public class ArcanaCodexHelper {
         double delta = Easing.QUINTIC_OUT.ease(horizontalDelta, 0, 1) * Easing.QUINTIC_OUT.ease(verticalDelta, 0, 1);
         if (EntryScreen.textJump > 0) {
             double jumpDelta = delta * Easing.SINE_IN_OUT.ease(EntryScreen.textJump, 0, 1);
-            glowMultiplier*= (float) (1+jumpDelta);
+            glowMultiplier *= (float) (1 + jumpDelta);
         }
         if (BOOK_THEME.getConfigValue().equals(BookTheme.EASY_READING)) {
             guiGraphics.drawString(font, text, x, y, 0, false);
             return;
         }
 
-        Color gray = new Color(138, 79, 58);
-        Color dark = new Color(65, 41, 8);
+        Color gray = colorData.primaryColor();
+        Color dark = colorData.secondaryColor();
 
         guiGraphics.drawString(font, text, x - 1f, y, color(64, gray.getRGB()), false);
         guiGraphics.drawString(font, text, x + 1f, y, color(32, gray.getRGB()), false);
@@ -635,21 +644,23 @@ public class ArcanaCodexHelper {
         int alpha = Mth.floor(255 * Easing.QUARTIC_IN.ease(delta, 0.4f, 1, 1) * glowMultiplier);
         if (alpha > 15) {
             float color = Easing.CUBIC_IN.ease(delta, 0, 1, 1);
-            int r = (int) Mth.lerp(color, 20, 227);
-            int g = (int) Mth.lerp(color, 44, 39);
-            int b = (int) Mth.lerp(color, 60, 228);
+            Color start = colorData.glowStart();
+            Color end = colorData.glowEnd();
+            int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
+            int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
+            int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
             RenderSystem.enableBlend();
             final LodestoneBufferWrapper buffer = WRAPPER_FUNCTION.apply(guiGraphics);
             font.drawInBatch(text, x, y, color(alpha, r, g, b), false, guiGraphics.pose().last().pose(),
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
-            font.drawInBatch(text, x+1f, y, color(alpha/2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x-1f, y, color(alpha/3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y+1f, color(alpha/2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y-1f, color(alpha/3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
 
@@ -659,5 +670,8 @@ public class ArcanaCodexHelper {
 
     public static boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
         return mouseX > posX && mouseX < posX + width && mouseY > posY && mouseY < posY + height;
+    }
+
+    public record TextColorData(Color primaryColor, Color secondaryColor, Color glowStart, Color glowEnd) {
     }
 }

@@ -2,7 +2,7 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
-      "count": 4,
+      "count": 8,
       "item": "malum:refined_soulstone"
     }
   ],

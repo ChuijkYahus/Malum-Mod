@@ -1,38 +1,65 @@
 package com.sammy.malum.common.item;
 
 import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.player.*;
+import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 import team.lodestar.lodestone.systems.particle.screen.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
 import java.util.function.*;
 
-public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticleSupplier{
+public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticleSupplier, ICurioItem {
+
+    public static final String GEAS = "malum.gui.geas.type";
+    public static final String SWORN = "malum.gui.geas.sworn";
+
     public GeasItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public @NotNull ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, boolean recentlyHit, ItemStack stack) {
+        return ICurio.DropRule.ALWAYS_KEEP;
+    }
+
+    @Override
+    public List<Component> getSlotsTooltip(List<Component> tooltips, TooltipContext context, ItemStack stack) {
+        return Collections.emptyList();
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         final ItemStack stack = player.getItemInHand(usedHand);
         if (!level.isClientSide) {
-            if (GeasEffectHandler.addGeasEffect(player, stack)) {
-                player.swing(usedHand);
+            if (GeasEffectHandler.tryAddGeasEffect(player, stack)) {
                 stack.shrink(1);
+                player.swing(usedHand);
+                return InteractionResultHolder.success(stack);
             }
-            return InteractionResultHolder.consume(stack);
         }
         return InteractionResultHolder.fail(stack);
     }
@@ -69,11 +96,15 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
         List<Component> tooltip = event.getToolTip();
         var index = new AtomicInteger(1);
         Consumer<Component> tooltipConsumer = c -> tooltip.add(index.getAndIncrement(), c);
-        tooltipConsumer.accept(geas.getDescription().withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        tooltipConsumer.accept(Component.translatable("malum.gui.slot").withStyle(ChatFormatting.GOLD)
-                .append(Component.translatable("malum.gui.geas.any").withStyle(ChatFormatting.YELLOW)));
-        tooltipConsumer.accept(Component.empty());
-        tooltipConsumer.accept(Component.translatable("malum.gui.geas.sworn").withStyle(ChatFormatting.GOLD));
+        tooltipConsumer.accept(
+                Component.translatable(geas.getDescription()).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        tooltipConsumer.accept(
+                Component.translatable("malum.gui.slot").withStyle(ChatFormatting.GOLD).append(Component.translatable(GEAS).withStyle(ChatFormatting.YELLOW)));
+        tooltipConsumer.accept(
+                Component.empty());
+        tooltipConsumer.accept(
+                Component.translatable(SWORN).withStyle(ChatFormatting.GOLD));
+
         geas.getDefaultInstance().addTooltipComponents(event.getEntity(), tooltipConsumer, event.getFlags());
     }
 }

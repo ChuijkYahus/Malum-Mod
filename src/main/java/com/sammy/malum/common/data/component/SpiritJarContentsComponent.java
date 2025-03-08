@@ -1,8 +1,7 @@
-package com.sammy.malum.common.data_components;
+package com.sammy.malum.common.data.component;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;

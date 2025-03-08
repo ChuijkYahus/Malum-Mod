@@ -5,7 +5,7 @@ import com.sammy.malum.client.extensions.*;
 import com.sammy.malum.client.extensions.SpiritJarClientItemExtensions;
 import com.sammy.malum.client.screen.tooltip.ClientSoulwovenPouchTooltip;
 import com.sammy.malum.common.block.curiosities.mana_mote.ManaMoteBlockClientExtension;
-import com.sammy.malum.common.data_components.SoulwovenPouchContentsComponent;
+import com.sammy.malum.common.data.component.SoulwovenPouchContentsComponent;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.ModelRegistry;
 import com.sammy.malum.registry.client.ParticleRegistry;

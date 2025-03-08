@@ -1,7 +1,6 @@
-package com.sammy.malum.common.capabilities;
+package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.ai.attributes.*;
 

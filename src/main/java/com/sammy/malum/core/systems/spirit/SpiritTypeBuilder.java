@@ -12,8 +12,6 @@ public class SpiritTypeBuilder {
 
     public final SpiritVisualMotif spiritVisualMotif;
 
-    public Color itemColor;
-
     public SpiritTypeBuilder(String identifier, SpiritVisualMotif spiritVisualMotif, Supplier<SpiritShardItem> spiritShard) {
         this.identifier = identifier;
         this.spiritVisualMotif = spiritVisualMotif;
@@ -21,7 +19,7 @@ public class SpiritTypeBuilder {
     }
 
     public MalumSpiritType build() {
-        return build(UmbralSpiritType::new);
+        return build(MalumSpiritType::new);
     }
 
     public <T extends MalumSpiritType> T build(SpiritTypeSupplier<T> supplier) {

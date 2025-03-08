@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.weavers_workbench;
 
 import com.sammy.malum.common.container.WeaversWorkbenchContainer;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.packets.particle.rite.BlightTransformItemParticlePacket;
 import com.sammy.malum.registry.common.SoundRegistry;
 import com.sammy.malum.registry.common.block.BlockEntityRegistry;

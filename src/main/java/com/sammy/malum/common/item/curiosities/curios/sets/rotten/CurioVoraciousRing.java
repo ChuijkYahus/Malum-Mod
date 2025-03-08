@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 
-import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;

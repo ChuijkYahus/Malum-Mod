@@ -84,6 +84,11 @@ public class WyrdReconstructionGeas extends GeasEffect {
         if (target.hasEffect(MobEffectRegistry.WYRD_EXHAUSTION)) {
             return;
         }
+        if (delay > 0) {
+            event.setCanceled(true);
+            target.setHealth(1);
+            return;
+        }
         float health = RandomHelper.randomBetween(target.getRandom(), 1, target.getMaxHealth() * 0.66f);
         if (target.level() instanceof ServerLevel serverLevel) {
             for (Entity knockbackTarget : serverLevel.getEntities(target, target.getBoundingBox().inflate(2f), t -> canApplyKnockback(target, t))) {

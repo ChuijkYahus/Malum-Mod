@@ -2,9 +2,7 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.block.BlockRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import net.minecraft.client.*;

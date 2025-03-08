@@ -1,4 +1,4 @@
-package com.sammy.malum.common.data_components;
+package com.sammy.malum.common.data.component;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;

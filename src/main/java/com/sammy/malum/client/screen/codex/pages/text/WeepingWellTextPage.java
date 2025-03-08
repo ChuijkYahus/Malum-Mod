@@ -49,7 +49,7 @@ public class WeepingWellTextPage extends BookPage {
     }
 
     public String translationKey() {
-        return "malum.gui.book.entry.page.text." + translationKey;
+        return BookPage.TEXT + "." + translationKey;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class WeepingWellTextPage extends BookPage {
         final ClientLevel level = Minecraft.getInstance().level;
         var rand = level.random;
         Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2, top + 5);
+        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
         renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
