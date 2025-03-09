@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas;
+package com.sammy.malum.common.geas.time;
 
 import com.google.common.collect.*;
 import com.sammy.malum.core.systems.geas.*;

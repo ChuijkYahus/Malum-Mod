@@ -102,12 +102,6 @@ public class RuntimeEvents {
     }
 
     @SubscribeEvent
-    public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
-        InfernalAura.increaseDigSpeed(event);
-        PyromaniacEffect.increaseDigSpeed(event);
-    }
-
-    @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         StaffAbilityHandler.recoverStaffCharges(event);
     }

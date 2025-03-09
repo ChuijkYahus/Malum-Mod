@@ -2,7 +2,8 @@ package com.sammy.malum.data.lang;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.common.geas.*;
+import com.sammy.malum.common.geas.light.*;
+import com.sammy.malum.common.geas.time.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compability.create.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
@@ -125,17 +126,19 @@ public class MalumLang extends LanguageProvider {
         add("malum.gui.augment.type.augment", "Augment");
         add("malum.gui.augment.type.core_augment", "Core Augment");
 
-        add(GeasItem.GEAS, "Geas");
-        add(GeasItem.SWORN, "When Sworn: ");
-        add(NightCycleBasedGeas.DAY, "During Day: ");
-        add(NightCycleBasedGeas.NIGHT, "During Night: ");
-
         add(TotemicRiteType.TYPE, "Type: ");
         add(TotemicRiteType.MEDIUM, "Medium: ");
         add(TotemicRiteType.RUNEWOOD, "Runewood");
         add(TotemicRiteType.SOULWOOD, "Soulwood");
         add(TotemicRiteType.COVERAGE, "Coverage: ");
         add(TotemicRiteType.EFFECT, "Effect: ");
+
+        add(GeasItem.GEAS, "Geas");
+        add(GeasItem.SWORN, "When Sworn: ");
+        add(NightCycleBasedGeas.DAY, "During Day: ");
+        add(NightCycleBasedGeas.NIGHT, "During Night: ");
+        add(LightLevelBasedGeas.LIGHT, "When In Light: ");
+        add(LightLevelBasedGeas.DARKNESS, "When In Darkness: ");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD.get(), "Find home in the shadows");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED.get(), "Seek the cleansing light of day");
@@ -272,6 +275,8 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
         add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
         add("malum.effect.geas.spirit_collection_absorption", "Spirit Collection Grants Absorption");
+        add("malum.effect.geas.burning_sunlight", "The Sun Scorches You");
+        add("malum.effect.geas.darkness_darkness", "Your Vision Is Hindered");
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
         add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-Attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
