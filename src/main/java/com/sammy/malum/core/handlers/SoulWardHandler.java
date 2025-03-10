@@ -8,6 +8,7 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.*;
@@ -18,16 +19,22 @@ import static team.lodestar.lodestone.handlers.ItemEventHandler.*;
 
 public class SoulWardHandler {
 
+    public static void syncSoulWard(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof LivingEntity living) {
+            var level = living.level();
+            if (!level.isClientSide) {
+                var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
+                data.setDirty(true);
+            }
+        }
+    }
+
     public static void recoverSoulWard(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {
                 var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
                 data.tickData(living);
-                if (data.isDirty()) {
-                    PacketDistributor.sendToPlayersTrackingEntityAndSelf(living, new SyncSoulWardDataPayload(living.getId(), data));
-                    data.setDirty(false);
-                }
             }
         }
     }

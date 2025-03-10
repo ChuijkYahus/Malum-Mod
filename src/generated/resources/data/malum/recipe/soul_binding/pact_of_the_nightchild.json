@@ -4,6 +4,10 @@
     {
       "count": 4,
       "item": "malum:arcane_charcoal"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:black_dye"
     }
   ],
   "geas": "malum:pact_of_the_nightchild",

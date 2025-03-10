@@ -83,7 +83,7 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 8)
-                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 4)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("tyrving_restoration"));
 

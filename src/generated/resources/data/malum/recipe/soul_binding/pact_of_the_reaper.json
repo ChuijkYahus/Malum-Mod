@@ -2,12 +2,12 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
-      "count": 16,
+      "count": 8,
       "tag": "c:gems/quartz"
     },
     {
-      "count": 8,
-      "item": "minecraft:iron_ingot"
+      "count": 4,
+      "item": "malum:refined_soulstone"
     }
   ],
   "geas": "malum:pact_of_the_reaper",
@@ -21,8 +21,16 @@
       "count": 32
     },
     {
+      "type": "aerial",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 16
+    },
+    {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

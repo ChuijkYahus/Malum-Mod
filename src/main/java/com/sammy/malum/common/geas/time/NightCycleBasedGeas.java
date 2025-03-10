@@ -37,7 +37,7 @@ public abstract class NightCycleBasedGeas extends GeasEffect {
         boolean wasNight = isNight;
         isNight = event.getEntity().level().isNight();
         if (wasNight != isNight) {
-            markDirty();
+            setDirty();
         }
     }
 

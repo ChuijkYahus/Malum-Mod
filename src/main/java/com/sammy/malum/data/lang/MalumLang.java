@@ -141,23 +141,29 @@ public class MalumLang extends LanguageProvider {
         add(LightLevelBasedGeas.DARKNESS, "When In Darkness: ");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD.get(), "Find home in the shadows");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER.get(), "Live with the darkness");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED.get(), "Seek the cleansing light of day");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SUNKISSED.get(), "Confine yourself to the light");
+
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
+
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT.get(), "Meet your end and defy it");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Know your weakness and hide it");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Wield the scythe, and do not stray");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
+
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
-
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
@@ -275,12 +281,15 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
         add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
         add("malum.effect.geas.spirit_collection_absorption", "Spirit Collection Grants Absorption");
-        add("malum.effect.geas.burning_sunlight", "The Sun Scorches You");
+        add("malum.effect.geas.sun_healing", "The Sun Rejuvenates You");
         add("malum.effect.geas.darkness_darkness", "Your Vision Is Hindered");
+        add("malum.effect.geas.hidden_presence", "Reduces Enemy Aggression");
+        add("malum.effect.geas.burning_sunlight", "The Sun Scorches You");
         add("malum.effect.geas.soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
         add("malum.effect.geas.scythe_combo", "Scythe Cuts Create After-Attacks");
         add("malum.effect.geas.only_scythe", "Regular Weapons Crumble In Your Hands");
-        add("malum.effect.geas.fall_damage_auto_attack", "Outgoing Fall Damage Strikes Targets With Your Held Weapon Regardless Of Distance");
+        add("malum.effect.geas.incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
+        add("malum.effect.geas.outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
         add("malum.effect.geas.more_knockback", "Doubles Incoming Knockback");
         add("malum.effect.geas.rocket_jumping", "Wind Charges Provide Greater Propulsion");
         add("malum.effect.geas.wind_charge_exhaustion", "Continuous Activations Weigh You Down");

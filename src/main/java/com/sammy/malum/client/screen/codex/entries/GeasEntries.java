@@ -35,14 +35,26 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD, -1, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT, 0, 12);
 
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER, -2, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SUNKISSED, 2, 12);
+
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD, -2, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG, 2, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_ENDURING, 3, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT, 2, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER, 3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, -2, 12);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 2, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION, -17, 15);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, -18, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -19, 11);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER, 13, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC, 17, 15);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 18, 13);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, 19, 11);
 
     }
 

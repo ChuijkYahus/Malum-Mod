@@ -24,34 +24,41 @@ public class SunKissedGeas extends LightLevelBasedGeas {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag, boolean isInLight) {
-        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
         if (!isInLight) {
             tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("darkness_darkness"));
         }
+        else {
+            tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("sun_healing"));
+        }
+        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag, isInLight);
     }
 
     @Override
     public void update(EntityTickEvent.Pre event, LivingEntity entity) {
         super.update(event, entity);
-        if (!isInLight && entity.level().getGameTime() % 20L == 0) {
-            entity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100, 0));
+        if (!isInLight) {
+            if (entity.level().getGameTime() % 20L == 0) {
+                entity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100, 0));
+            }
+            if (entity.level().getGameTime() % 100L == 0) {
+                entity.hurt(DamageTypeHelper.create(entity.level(), DamageTypeRegistry.KARMIC), 2);
+            }
+            return;
         }
-        if (isInLight) {
-            final MobEffectInstance instance = entity.getEffect(MobEffects.DARKNESS);
-            if (instance != null) {
-                EntityHelper.shortenEffect(instance, entity, 2);
-            }
-            if (entity.level().getGameTime() % 40L == 0) {
-                entity.heal(1);
-            }
+        var instance = entity.getEffect(MobEffects.DARKNESS);
+        if (instance != null) {
+            EntityHelper.shortenEffect(instance, entity, 2);
+        }
+        if (entity.level().getGameTime() % 40L == 0) {
+            entity.heal(1);
         }
     }
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers, boolean isInLight) {
         if (isInLight) {
-            addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, LodestoneAttributes.MAGIC_RESISTANCE, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, Attributes.ARMOR, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             return modifiers;
         }

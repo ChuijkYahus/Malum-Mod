@@ -15,7 +15,7 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_SWORD.get(), 1, ItemRegistry.TYRVING.get(), 1)
                 .addSpirit(WICKED_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(ItemRegistry.TWISTED_ROCK.get(), 16)
                 .addExtraItem(ItemRegistry.SOULWOOD_PLANKS.get(), 8)
                 .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS, 4))
@@ -26,24 +26,24 @@ public class GearSpiritInfusionRecipes {
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_INGOT.get(), 2)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(WICKED_SPIRIT, 32)
-                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_SCYTHE.get(), 1, ItemRegistry.EDGE_OF_DELIVERANCE.get(), 1)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_INGOT.get(), 2)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(WICKED_SPIRIT, 32)
-                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.TOTEMIC_STAFF.get(), 1, ItemRegistry.MNEMONIC_HEX_STAFF.get(), 1)
                 .addExtraItem(ItemRegistry.MNEMONIC_FRAGMENT.get(), 8)
                 .addExtraItem(ItemRegistry.SOUL_STAINED_STEEL_INGOT.get(), 4)
                 .addExtraItem(ItemRegistry.SOULWOOD_PLANKS.get(), 2)
-                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.MNEMONIC_HEX_STAFF.get(), 1, ItemRegistry.EROSION_SCEPTER.get(), 1)
@@ -51,7 +51,7 @@ public class GearSpiritInfusionRecipes {
                 .addExtraItem(ItemRegistry.VOID_SALTS.get(), 8)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
                 .addSpirit(WICKED_SPIRIT, 32)
-                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.MNEMONIC_HEX_STAFF.get(), 1, ItemRegistry.UNWINDING_CHAOS.get(), 1)
@@ -157,28 +157,32 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_HELMET.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_HELMET.get(), 1)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
-                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_CHESTPLATE.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_CHESTPLATE.get(), 1)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
-                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_LEGGINGS.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_LEGGINGS.get(), 1)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
-                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_BOOTS.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_BOOTS.get(), 1)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
-                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
     }

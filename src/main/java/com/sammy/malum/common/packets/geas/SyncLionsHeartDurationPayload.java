@@ -1,4 +1,4 @@
-package com.sammy.malum.common.packets;
+package com.sammy.malum.common.packets.geas;
 
 import com.sammy.malum.common.geas.oath.*;
 import com.sammy.malum.registry.common.*;

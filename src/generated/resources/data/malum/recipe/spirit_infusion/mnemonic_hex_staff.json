@@ -25,7 +25,7 @@
   "spirits": [
     {
       "type": "wicked",
-      "count": 32
+      "count": 16
     },
     {
       "type": "aerial",
@@ -37,7 +37,7 @@
     },
     {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

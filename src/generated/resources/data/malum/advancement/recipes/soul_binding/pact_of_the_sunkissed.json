@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_fervor"
+        "recipe": "malum:pact_of_the_sunkissed"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_fervor"
+      "malum:pact_of_the_sunkissed"
     ]
   }
 }

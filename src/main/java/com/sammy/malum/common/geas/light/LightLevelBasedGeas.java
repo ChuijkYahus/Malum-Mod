@@ -42,15 +42,19 @@ public abstract class LightLevelBasedGeas extends GeasEffect {
         var level = entity.level();
         boolean wasInLight = isInLight;
         isInLight = false;
-        final BlockPos blockPos = entity.blockPosition();
-        if (level.canSeeSky(blockPos) && level.isDay()) {
+        var blockPos = entity.blockPosition();
+        boolean day = level.isDay();
+        if (level.canSeeSky(blockPos) && day) {
             isInLight = true;
         }
-        if (level.getBrightness(LightLayer.BLOCK, blockPos) > 0) {
+        if (level.getBrightness(LightLayer.BLOCK, blockPos) > 3) {
+            isInLight = true;
+        }
+        if (level.getBrightness(LightLayer.SKY, blockPos) > 5 && day) {
             isInLight = true;
         }
         if (wasInLight != isInLight) {
-            markDirty();
+            setDirty();
         }
     }
 

@@ -8,8 +8,11 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.handlers.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.extensions.*;
 
 import java.util.*;
 
@@ -19,11 +22,37 @@ public class GeasEffectHandler {
             GeasEffectHandler::getGeasItemStacks,
             GeasEffectHandler::getEquippedGeasEffectFromStack));
 
+    public static void registerSlotExtensions(RegisterCuriosExtensionsEvent event) {
+        event.registerSlotExtension(new ICurioSlotExtension() {
+            @Override
+            public ItemStack getDisplayStack(SlotContext slotContext, ItemStack defaultStack) {
+                var geasItemStacks = getGeasItemStacks(slotContext.entity());
+                if (geasItemStacks == null) {
+                    return ItemStack.EMPTY;
+                }
+                if (geasItemStacks.size() > slotContext.index()) {
+                    return geasItemStacks.get(slotContext.index());
+                }
+                return ItemStack.EMPTY;
+            }
+        }, "geas");
+    }
+
+    public static void syncGeas(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof LivingEntity living) {
+            var level = living.level();
+            if (!level.isClientSide) {
+                var data = living.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
+                data.setDirty(true);
+            }
+        }
+    }
+
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             final Collection<GeasEffect> geasEffects = getGeasEffects(living).values();
             geasEffects.forEach(e -> {
-                e.updateDirty(living);
+                e.updateAttribution(living);
                 e.update(event, living);
             });
         }

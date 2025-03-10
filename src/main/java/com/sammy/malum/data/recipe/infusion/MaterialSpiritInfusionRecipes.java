@@ -134,7 +134,7 @@ public class MaterialSpiritInfusionRecipes {
                 .addExtraItem(ItemRegistry.NULL_SLATE.get(), 8)
                 .addExtraItem(Items.NETHERITE_SCRAP, 3)
                 .addSpirit(EARTHEN_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 4)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
     }
 

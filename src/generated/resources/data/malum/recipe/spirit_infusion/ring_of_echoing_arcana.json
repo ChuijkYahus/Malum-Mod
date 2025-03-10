@@ -25,7 +25,7 @@
     },
     {
       "type": "arcane",
-      "count": 16
+      "count": 32
     },
     {
       "type": "wicked",
@@ -33,7 +33,7 @@
     },
     {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

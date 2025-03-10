@@ -43,6 +43,6 @@ public class MalumCuriosThings extends top.theillusivec4.curios.api.CuriosDataPr
 
         createEntities("malum_entities")
                 .addPlayer()
-                .addSlots("brooch", "ring", "necklace", "belt", "rune", "charm");
+                .addSlots("brooch", "ring", "necklace", "belt", "rune", "geas", "charm");
     }
 }

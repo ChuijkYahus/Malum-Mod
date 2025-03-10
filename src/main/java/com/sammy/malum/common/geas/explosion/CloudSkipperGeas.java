@@ -1,7 +1,7 @@
 package com.sammy.malum.common.geas.explosion;
 
 import com.google.common.collect.*;
-import com.sammy.malum.common.packets.*;
+import com.sammy.malum.common.packets.geas.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -114,7 +114,7 @@ public class CloudSkipperGeas extends GeasEffect {
     }
 
     public void sync(LivingEntity entity) {
-        markDirty();
+        setDirty();
         if (!entity.level().isClientSide()) {
             PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new SyncCloudHopperStreakPayload(entity.getId(), streak));
         }

@@ -2,6 +2,7 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import com.sammy.malum.common.packets.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
@@ -10,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
@@ -51,6 +53,12 @@ public class SoulWardData {
                 setSoulWard(capacity.getValue());
             }
         }
+        if (isDirty()) {
+            if (!living.level().isClientSide) {
+                PacketDistributor.sendToPlayersTrackingEntityAndSelf(living, new SyncSoulWardDataPayload(living.getId(), this));
+            }
+            setDirty(false);
+        }
     }
 
     @SuppressWarnings("DataFlowIssue")
@@ -81,7 +89,7 @@ public class SoulWardData {
 
     public void setSoulWard(double soulWard) {
         this.soulWard = Math.max(soulWard, 0);
-        isDirty = true;
+        setDirty(true);
     }
 
     public double getSoulWard() {

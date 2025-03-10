@@ -16,10 +16,10 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.function.Consumer;
 
-public class LifelongGeas extends GeasEffect {
+public class DefiantGeas extends GeasEffect {
 
-    public LifelongGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG.get());
+    public DefiantGeas() {
+        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT.get());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LifelongGeas extends GeasEffect {
     }
 
     public static int accelerateNaturalHealing(LivingEntity entity) {
-        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG)) {
+        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT)) {
             return entity.getHealth() < entity.getMaxHealth()/4f ? 2 : 1;
         }
         return 0;

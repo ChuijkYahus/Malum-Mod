@@ -1,8 +1,6 @@
 package com.sammy.malum.data.lang;
 
 import com.sammy.malum.client.screen.codex.pages.*;
-import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
@@ -881,70 +879,89 @@ public class CodexLangDatagen {
                 "",
                 "");
 
-        addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "Day :)");
+        addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing Sight");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,
                 """
-                        The Dayblessed revels under the Sun
-                         -Increases Spirit Spoils during Daytime
-                         -Increases Healing Received by one fifth during Daytime""",
-                "The Moon's Borrowed Light brings vulnerability\n -Armor is Reduced by one fifth during Night Time");
+                        The Dayblessed revels under the Sun.
+                        During Daytime:
+                         -Increases Spirit Spoils
+                         -Increases Healing Received by One Fifth""",
+                "The Moon's borrowed Light brings vulnerability\n -Armor is Reduced by one fifth during Night Time");
 
-        addSimpleEntryHeader("pact_of_the_nightchild", "Pact of The Nightchild", "Day :(");
+        addSimpleEntryHeader("pact_of_the_nightchild", "Pact of The Nightchild", "A Solitary Passion");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD,
                 """
-                        The Nightchild flourishes under the Moon
-                         -Increases Spirit Spoils during Nighttime
-                         -Increases Scythe Proficiency by one fifth during Nighttime""",
+                        The Nightchild flourishes under the Moon.
+                        During Nighttime:
+                         -Increases Spirit Spoils
+                         -Increases Scythe Proficiency by one fifth""",
                 "The Light of the Sun weakens you\n -Damage Output is Reduced by one fifth during Day Time");
 
-        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Killing :)");
+        addSimpleEntryHeader("pact_of_the_sunkissed", "Pact of The Sunkissed", "Nyctophobia");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SUNKISSED,
+                """
+                        The Sun offers an even greater Boon.
+                        When in Light:
+                         -Increases Healing Received, Magic Resistance and Armor by One Fifth
+                         -Passively Heals You""",
+                """
+                        A primordial fear is manifested within you, Darkness is now your greatest threat.
+                        When in Darkness:
+                         -Your Vision is Dampened
+                         -Your Fear slowly Extinguishes your Soul""");
+
+        addSimpleEntryHeader("pact_of_the_shadewalker", "Pact of The Shadewalker", "Photophobia");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER,
+                """
+                        The Moon awakens an even greater Power.
+                        When in Darkness:
+                         -Increases Movement, Mining and Attack Speed by One Fifth
+                         -Reduces Enemy Aggression""",
+                """
+                        The Light Burns your skin, an Inextinguishable Flame surrounds you.
+                        When in Light:
+                         -You are Engulfed in Flames
+                         -Fire lasts longer
+                        """);
+
+        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Dangerous Spiral");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
                 """
-                        An incantation forced onto the mind.
+                        An Incantation forced onto the mind. An Insatiable Thirst for the Arcana
                          -Increases Spirit Spoils
-                         -Increases Arcane Resonance by half""",
-                "Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger as time passes.");
+                         -Increases Arcane Resonance by Half""",
+                "The Incantation takes quite a toll on you. \n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
 
-        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Strong Always");
+        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Always Strong");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
                 """
-                        A compression of Soul Ward, made greater and condensed.
+                        A compression of Soul Ward, made greater and refined.
                          -Increases Soul Ward Capacity
-                         -Increases Soul Ward Integrity by half""",
-                "The added grandeur brings with itself a heaviness\n -Halves Soul Ward Recovery Rate");
+                         -Increases Soul Ward Integrity by Half""",
+                "The added grandeur brings with itself a lethargic nature\n -Halves Soul Ward Recovery Rate");
 
         addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "Always Ready");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD,
                 """
-                        An acceleration of Soul Ward, made to be ready at all times.
+                        An acceleration of Soul Ward, made to be primed in the nick of time.
                          -Increases Soul Ward Capacity
                          -Doubles Soul Ward Recovery Rate""",
-                "The added acceleration brings with itself a brittleness\n -Halves Soul Ward Integrity");
+                "The added acceleration brings with itself a brittle nature\n -Halves Soul Ward Integrity");
 
-        //TODO: better name for the pact
-        addSimpleEntryHeader("pact_of_the_lifelong", "Pact of The Lifelong", "Meet Your End And Defy It");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFELONG,
+        addSimpleEntryHeader("pact_of_the_defiant", "Pact of The Defiant", "Meet The End And Escape");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT,
                 """
-                        An unnatural regeneration, a desire to grow forever.
-                         -Saturation heals twice as fast, thrice as fast when near death
+                        An unnatural regeneration imbued onto the body, a desire to grow forever.
+                         -Saturation heals you Twice as fast, Thrice as fast when near death
                          -Increases Healing Received by one fourth""",
-                "The magics imbued onto the body shift your perception of death, a deadly paranoia.\n -Reduces Max Health by one fourth");
+                "The magics shift your perception of death, it always feels nearby.\n -Reduces Max Health by One Fourth");
 
-        //TODO: better name for the pact
-        addSimpleEntryHeader("pact_of_the_enduring", "Pact of The Enduring", "Show Strength, Even In It's Absence");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_ENDURING,
+        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "Breathe In And Overcome");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
                 """
                         A growth in confidence, a desire to overcome any threat, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
                 "Blah Blah Blah\n -Reduces Healing Received by four tenths");
-
-        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "Be strong when you are not");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
-                """
-                        A vow to never stray from the blade..
-                         -Scythe Attacks create delayed Combo Attacks""",
-                "Blah Blah Blah\n -Any Weapon that is Not a Scythe deals one tenth of the original damage\n -The non-scythe weapon also breaks very fast");
-
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

@@ -20,6 +20,8 @@ import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SoulBindingPage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.soulbinding");
+    private static final Component SPIRIT = Component.translatable("malum.gui.book.entry.page.info.soulbinding.spirit");
+    private static final Component ITEM = Component.translatable("malum.gui.book.entry.page.info.soulbinding.item");
 
     private final SoulBindingRecipe recipe;
 
@@ -43,8 +45,12 @@ public class SoulBindingPage extends BookPage {
         Component component = Component.translatable(headlineTranslationKey());
         renderText(guiGraphics, component, left + 72 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
         renderItem(screen, guiGraphics, recipe.geas.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
-
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 87, mouseX, mouseY);
+
+        renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 87, mouseX, mouseY, true);
+        if (!recipe.extraIngredients.isEmpty()) {
+            renderIngredients(screen, guiGraphics, recipe.extraIngredients, ITEM, left + 113, top + 87, mouseX, mouseY, true);
+        }
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 60, top + 105, 18, 18)) {
                 guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);

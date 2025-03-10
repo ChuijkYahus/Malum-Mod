@@ -4,6 +4,14 @@
     {
       "count": 8,
       "item": "malum:astral_weave"
+    },
+    {
+      "count": 8,
+      "item": "malum:wind_nucleus"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:phantom_membrane"
     }
   ],
   "geas": "malum:pact_of_the_skybreaker",

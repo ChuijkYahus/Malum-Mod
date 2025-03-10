@@ -4,7 +4,7 @@
   "spirits": [
     {
       "spirit": "eldritch",
-      "count": 1
+      "count": 2
     },
     {
       "spirit": "infernal",
@@ -16,7 +16,7 @@
     },
     {
       "spirit": "aerial",
-      "count": 1
+      "count": 2
     }
   ]
 }
