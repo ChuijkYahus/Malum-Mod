@@ -37,7 +37,7 @@ public class UndiscernedMawGeas extends GeasEffect {
             timer++;
             if (timer > 1200) {
                 streak = 0;
-                markDirty();
+                setDirty();
             }
         }
     }
@@ -61,7 +61,7 @@ public class UndiscernedMawGeas extends GeasEffect {
         streak++;
         timer /= 2;
         if (streak > 3) {
-            markDirty();
+            setDirty();
         }
     }
 }

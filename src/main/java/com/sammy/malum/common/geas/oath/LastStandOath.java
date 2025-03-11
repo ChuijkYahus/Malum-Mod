@@ -29,7 +29,8 @@ public class LastStandOath extends GeasEffect {
     public long scheduledDeath;
 
     public LastStandOath() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_LAST_STAND.get());
+        super(null);
+//        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_LAST_STAND.get());
     }
 
     @Override

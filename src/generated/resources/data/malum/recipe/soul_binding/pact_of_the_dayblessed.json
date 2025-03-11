@@ -4,6 +4,10 @@
     {
       "count": 4,
       "item": "malum:arcane_charcoal"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:yellow_dye"
     }
   ],
   "geas": "malum:pact_of_the_dayblessed",

@@ -1,22 +1,12 @@
 package com.sammy.malum.client.screen.codex.entries;
 
-import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
-import com.sammy.malum.client.screen.codex.objects.progression.RiteEntryObject;
-import com.sammy.malum.client.screen.codex.pages.CyclingPage;
-import com.sammy.malum.client.screen.codex.pages.EntryReference;
-import com.sammy.malum.client.screen.codex.pages.EntrySelectorPage;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.SmeltingPage;
-import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextItemPage;
-import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
-import com.sammy.malum.client.screen.codex.pages.text.SpiritRiteTextPage;
-import com.sammy.malum.client.screen.codex.pages.text.TextPage;
+import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
+import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
-import com.sammy.malum.registry.common.SpiritRiteRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -36,39 +26,43 @@ public class GeasEntries {
         );
         screen.addEntry("undoing_geas_bindings", 0, 11, b -> b
                 .configureWidget(w -> w.setIcon(BARRIER).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
-                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", SOUL_BRAZIER.get()))
-                .addPage(new TextPage("geas_magic.2"))
-                .addPage(new TextPage("geas_magic.3"))
+                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", BARRIER))
+                .addPage(new TextPage("undoing_geas_bindings.2"))
+                .addPage(new TextPage("undoing_geas_bindings.3"))
         );
 
-        screen.addEntry("pact_of_the_dayblessed", 1, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED))
-        );
-        screen.addEntry("pact_of_the_nightchild", -1, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD))
-        );
-        screen.addEntry("pact_of_the_shattering_addict", 0, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT))
-        );
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED, 1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD, -1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT, 0, 12);
 
-        screen.addEntry("pact_of_the_shield", -2, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD))
-        );
-        screen.addEntry("pact_of_the_reaper", -2, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER))
-        );
-        screen.addEntry("pact_of_the_fortress", -3, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS))
-        );
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER, -2, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SUNKISSED, 2, 12);
 
-        screen.addEntry("pact_of_the_animated", 2, 11, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
-        );
-        screen.addEntry("pact_of_the_cloudskipper", 2, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER))
-        );
-        screen.addEntry("pact_of_the_wise", 3, 12, b -> b
-                .configureWidget(w -> w.setIcon(MalumGeasEffectTypeRegistry.PACT_OF_THE_ANIMATED))
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD, -2, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -3, 12);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT, 2, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER, 3, 12);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION, -17, 15);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, -18, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -19, 11);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER, 13, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC, 17, 15);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 18, 13);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, 19, 11);
+
+    }
+
+    public static void addGeasEntry(ArcanaProgressionScreen screen, Holder<GeasEffectType> geas, int x, int y) {
+        screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
+                .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
+                .addPage(SoulBindingPage.fromGeas(geas))
+                .addPage(new GeasInfoPage(geas))
         );
     }
 }

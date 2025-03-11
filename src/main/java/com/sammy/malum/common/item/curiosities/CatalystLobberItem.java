@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.curiosities;
 
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;

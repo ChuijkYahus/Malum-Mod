@@ -2,8 +2,12 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
-      "count": 6,
+      "count": 8,
       "item": "malum:soul_stained_steel_plating"
+    },
+    {
+      "count": 4,
+      "item": "malum:refined_soulstone"
     }
   ],
   "geas": "malum:pact_of_reciprocation",
@@ -14,7 +18,11 @@
   "spirits": [
     {
       "type": "wicked",
-      "count": 24
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
     },
     {
       "type": "arcane",
@@ -22,7 +30,7 @@
     },
     {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

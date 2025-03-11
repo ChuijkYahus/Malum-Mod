@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.augment;
 
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
-import com.sammy.malum.common.data_components.ArtificeAugmentDataComponent;
+import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import net.minecraft.*;

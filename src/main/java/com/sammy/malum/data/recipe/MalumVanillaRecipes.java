@@ -1,7 +1,7 @@
 package com.sammy.malum.data.recipe;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.data.recipe.builder.vanilla.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -10,7 +10,6 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;

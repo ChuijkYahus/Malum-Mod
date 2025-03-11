@@ -1,5 +1,11 @@
 {
   "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "malum:refined_soulstone"
+    }
+  ],
   "geas": "malum:pact_of_the_shield",
   "ingredient": {
     "count": 12,
@@ -16,7 +22,7 @@
     },
     {
       "type": "eldritch",
-      "count": 4
+      "count": 8
     }
   ]
 }

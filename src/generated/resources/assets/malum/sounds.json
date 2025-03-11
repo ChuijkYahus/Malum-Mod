@@ -1819,6 +1819,18 @@
     ],
     "subtitle": "malum.subtitle.the_inverted_heart_shrieks"
   },
+  "the_rot_consumes": {
+    "sounds": [
+      "malum:curiosities/weapons/scythe/sweep1",
+      "malum:curiosities/weapons/scythe/sweep2",
+      "malum:curiosities/weapons/scythe/sweep3",
+      "malum:curiosities/weapons/scythe/sweep4",
+      "malum:curiosities/weapons/scythe/sweep5",
+      "malum:curiosities/weapons/scythe/sweep6",
+      "malum:curiosities/weapons/scythe/sweep7"
+    ],
+    "subtitle": "malum.subtitle.the_rot_consumes"
+  },
   "the_unknown_weeps": {
     "sounds": [
       "malum:weeping_well/uncanny_valley1",

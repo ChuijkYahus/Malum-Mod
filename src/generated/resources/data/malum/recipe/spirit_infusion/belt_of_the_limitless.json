@@ -28,16 +28,16 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "sacred",
       "count": 64
     },
     {
-      "type": "wicked",
+      "type": "arcane",
       "count": 32
     },
     {
       "type": "eldritch",
-      "count": 16
+      "count": 32
     }
   ]
 }

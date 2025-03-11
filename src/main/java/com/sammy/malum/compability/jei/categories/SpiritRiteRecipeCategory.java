@@ -40,8 +40,8 @@ public class SpiritRiteRecipeCategory implements IRecipeCategory<TotemicRiteType
     @Override
     public void draw(TotemicRiteType rite, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
-        String translated = I18n.get(rite.translationIdentifier(false));
-        ArcanaCodexHelper.renderText(guiGraphics, Component.literal(translated), 71 - font.width(translated) / 2, 160);
+        String translated = I18n.get(rite.getLangKey(false));
+        ArcanaCodexHelper.renderText(guiGraphics, Component.literal(translated), 71 - font.width(translated) / 2f, 160);
     }
 
     @Override

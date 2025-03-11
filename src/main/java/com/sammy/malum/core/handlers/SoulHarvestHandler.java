@@ -1,9 +1,8 @@
 package com.sammy.malum.core.handlers;
 
-import com.sammy.malum.common.capabilities.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.events.*;
@@ -22,7 +21,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.common.util.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
@@ -31,7 +29,6 @@ import team.lodestar.lodestone.helpers.*;
 import javax.annotation.*;
 import java.util.*;
 
-import static net.minecraft.world.entity.EquipmentSlot.*;
 import static team.lodestar.lodestone.helpers.RandomHelper.*;
 
 public class SoulHarvestHandler {

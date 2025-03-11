@@ -3,7 +3,7 @@ package com.sammy.malum.core.handlers;
 import com.sammy.malum.*;
 import com.sammy.malum.client.VoidRevelationHandler;
 import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlockEntity;
-import com.sammy.malum.common.capabilities.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.packets.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;

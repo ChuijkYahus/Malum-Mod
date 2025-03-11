@@ -21,7 +21,7 @@ public class GeasEffect implements IMalumEventResponderItem {
         this.type = type;
     }
 
-    public void markDirty() {
+    public void setDirty() {
         isDirty = true;
     }
 
@@ -48,7 +48,7 @@ public class GeasEffect implements IMalumEventResponderItem {
         modifiers.put(attribute, new AttributeModifier(type.getId().withPrefix(type.getId().getPath() + "_"), value, operation));
     }
 
-    public final void updateDirty(LivingEntity entity) {
+    public final void updateAttribution(LivingEntity entity) {
         if (isDirty) {
             applyAttributeModifiers(entity);
             isDirty = false;

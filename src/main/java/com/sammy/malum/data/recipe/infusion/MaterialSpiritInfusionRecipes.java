@@ -1,6 +1,6 @@
 package com.sammy.malum.data.recipe.infusion;
 
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.data.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
@@ -134,7 +134,7 @@ public class MaterialSpiritInfusionRecipes {
                 .addExtraItem(ItemRegistry.NULL_SLATE.get(), 8)
                 .addExtraItem(Items.NETHERITE_SCRAP, 3)
                 .addSpirit(EARTHEN_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 4)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
     }
 

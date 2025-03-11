@@ -3,10 +3,12 @@ package com.sammy.malum.events;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.aura.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.geas.explosion.*;
 import com.sammy.malum.common.geas.gluttony.*;
+import com.sammy.malum.common.geas.light.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
@@ -42,6 +44,8 @@ public class RuntimeEvents {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         CurioTokenOfGratitude.giveItem(event);
         SoulDataHandler.entityJoin(event);
+        SoulWardHandler.syncSoulWard(event);
+        GeasEffectHandler.syncGeas(event);
         TetraCompat.entityJoin(event);
     }
 
@@ -86,6 +90,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
         CurioHarmonyNecklace.preventDetection(event);
+        ShadeWalkerGeas.preventDetection(event);
     }
 
     @SubscribeEvent
@@ -98,12 +103,6 @@ public class RuntimeEvents {
         TouchOfDarknessHandler.entityTick(event);
         CurioWatcherNecklace.entityTick(event);
         CurioHiddenBladeNecklace.entityTick(event);
-    }
-
-    @SubscribeEvent
-    public static void onPlayerBreakSpeed(PlayerEvent.BreakSpeed event) {
-        InfernalAura.increaseDigSpeed(event);
-        PyromaniacEffect.increaseDigSpeed(event);
     }
 
     @SubscribeEvent

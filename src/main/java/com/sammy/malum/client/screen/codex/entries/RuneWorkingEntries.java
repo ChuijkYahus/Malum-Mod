@@ -64,10 +64,10 @@ public class RuneWorkingEntries {
                 .addPage(RuneworkingPage.fromOutput(RUNE_OF_DEXTERITY.get()))
         );
 
-        screen.addEntry("rune_of_fervor", -15, 8, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_FERVOR))
-                .addPage(new HeadlineTextPage("rune_of_fervor", "rune_of_fervor.1"))
-                .addPage(RuneworkingPage.fromOutput(RUNE_OF_FERVOR.get()))
+        screen.addEntry("rune_of_scorching", -15, 8, b -> b
+                .configureWidget(w -> w.setIcon(RUNE_OF_SCORCHING))
+                .addPage(new HeadlineTextPage("rune_of_scorching", "rune_of_scorching.1"))
+                .addPage(RuneworkingPage.fromOutput(RUNE_OF_SCORCHING.get()))
         );
 
         screen.addEntry("rune_of_aliment_cleansing", -15, 9, b -> b

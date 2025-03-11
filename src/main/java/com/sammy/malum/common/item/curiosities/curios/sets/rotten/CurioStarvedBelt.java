@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 
-import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.food.*;
@@ -11,7 +11,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.helpers.*;
 

@@ -128,7 +128,7 @@ public class ArtificeSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.WARPING_ENGINE.get(), 1)
-                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .addExtraItem(ItemRegistry.WARP_FLUX.get(), 2)
                 .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 2)
@@ -186,7 +186,7 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(INFERNAL_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 4)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_IMPETUS.get(), 1, ItemRegistry.ZEPHYR_IMPETUS.get(), 1)

@@ -1,9 +1,6 @@
 package com.sammy.malum.core.systems.events;
 
-import com.sammy.malum.common.effect.*;
-import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
-import net.minecraft.world.effect.*;
+import com.sammy.malum.common.effect.gluttony.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 

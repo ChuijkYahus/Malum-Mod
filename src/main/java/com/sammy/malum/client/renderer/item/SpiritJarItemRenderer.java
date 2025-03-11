@@ -1,16 +1,16 @@
 package com.sammy.malum.client.renderer.item;
 
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
-import com.sammy.malum.common.data_components.*;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.block.BlockRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import net.minecraft.client.*;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -25,14 +25,37 @@ public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
         super(pBlockEntityRenderDispatcher, pEntityModelSet);
         this.blockEntityRenderDispatcher = pBlockEntityRenderDispatcher;
     }
-
     @Override
-    public void renderByItem(ItemStack pStack, ItemDisplayContext pTransformType, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        if (pStack.getItem() instanceof SpiritJarItem) {
-            if (pStack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
-                jar.contents = pStack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
-                this.blockEntityRenderDispatcher.renderItem(jar, pPoseStack, pBuffer, pPackedLight, pPackedOverlay);
+    public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
+        if (stack.getItem() instanceof SpiritJarItem) {
+            ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
+
+            // Pop off the transformations applied by ItemRenderer before calling this
+            poseStack.popPose();
+            poseStack.pushPose();
+
+            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(BlockRegistry.SPIRIT_JAR.get().defaultBlockState());
+            model = model.applyTransform(ctx, poseStack, isLeftHand(ctx));
+            poseStack.translate(-.5, -.5, -.5);
+
+            boolean glint = stack.hasFoil();
+            for (BakedModel pass : model.getRenderPasses(stack, true)) {
+                for (RenderType type : pass.getRenderTypes(stack, true)) {
+                    VertexConsumer consumer = ItemRenderer.getFoilBufferDirect(buffer, type, true, glint);
+                    renderer.renderModelLists(pass, stack, light, overlay, poseStack, consumer);
+                }
+            }
+
+            if (stack.has(DataComponentRegistry.SPIRIT_JAR_CONTENTS)) {
+                jar.contents = stack.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
+                this.blockEntityRenderDispatcher.renderItem(jar, poseStack, buffer, light, overlay);
             }
         }
     }
+
+    public static boolean isLeftHand(ItemDisplayContext ctx)
+    {
+        return ctx == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || ctx == ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+    }
+
 }

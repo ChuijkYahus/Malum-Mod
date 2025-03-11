@@ -15,6 +15,7 @@ public class DamageTypeRegistry {
 
     public static final ResourceKey<DamageType> VOID = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("void"));
     public static final ResourceKey<DamageType> KARMIC = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("karmic"));
+    public static final ResourceKey<DamageType> ROT = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("rot"));
 
     public static final ResourceKey<DamageType> SCYTHE_MELEE = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("scythe_melee"));
     public static final ResourceKey<DamageType> SCYTHE_SWEEP = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("scythe_sweep"));

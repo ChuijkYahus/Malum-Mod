@@ -16,7 +16,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addSpirit(EARTHEN_SPIRIT, 2)
                 .addSpirit(INFERNAL_SPIRIT, 2)
-                .addSpirit(ELDRITCH_SPIRIT, 1)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOULWOOD_LOG.get(), 4, ItemRegistry.SOULWOOD_TOTEM_BASE.get(), 4)
@@ -26,7 +26,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addSpirit(EARTHEN_SPIRIT, 2)
                 .addSpirit(INFERNAL_SPIRIT, 2)
-                .addSpirit(ELDRITCH_SPIRIT, 1)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
     }
 }

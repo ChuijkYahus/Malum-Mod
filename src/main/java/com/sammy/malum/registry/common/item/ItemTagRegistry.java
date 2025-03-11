@@ -54,12 +54,13 @@ public class ItemTagRegistry {
 
     public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = malumTag("arcane_elegy_component");
 
-    public static final TagKey<Item> BROOCH = modTag("curios:brooch");
-    public static final TagKey<Item> BELT = modTag("curios:belt");
-    public static final TagKey<Item> CHARM = modTag("curios:charm");
     public static final TagKey<Item> NECKLACE = modTag("curios:necklace");
     public static final TagKey<Item> RING = modTag("curios:ring");
+    public static final TagKey<Item> BELT = modTag("curios:belt");
+    public static final TagKey<Item> BROOCH = modTag("curios:brooch");
     public static final TagKey<Item> RUNE = modTag("curios:rune");
+    public static final TagKey<Item> CHARM = modTag("curios:charm");
+    public static final TagKey<Item> GEAS = modTag("curios:geas");
 
     public static final TagKey<Item> RUNEWOOD_BOARD_INGREDIENT = malumTag("runewood_board_ingredient");
     public static final TagKey<Item> RUNEWOOD_LOGS = malumTag("runewood_logs");

@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 1,
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "geas": "malum:pact_of_the_defiant",
+  "ingredient": {
+    "count": 12,
+    "item": "malum:living_flesh"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 16
+    },
+    {
+      "type": "infernal",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 8
+    }
+  ]
+}

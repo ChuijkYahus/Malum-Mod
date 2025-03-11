@@ -20,11 +20,11 @@
   },
   "spirits": [
     {
-      "type": "wicked",
+      "type": "arcane",
       "count": 32
     },
     {
-      "type": "arcane",
+      "type": "wicked",
       "count": 16
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

@@ -1,7 +1,7 @@
 package com.sammy.malum.client.extensions;
 
 import com.sammy.malum.client.scarf.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.model.*;
@@ -12,8 +12,6 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
 import java.util.function.*;
-
-import static com.sammy.malum.MalumMod.malumPath;
 
 public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
     public MalignantArmorItemExtensions(Supplier<LodestoneArmorModel> model) {

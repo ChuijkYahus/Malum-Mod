@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.ritual_plinth;
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.block.storage.jar.*;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;

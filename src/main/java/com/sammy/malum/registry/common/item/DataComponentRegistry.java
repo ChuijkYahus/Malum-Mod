@@ -2,7 +2,7 @@ package com.sammy.malum.registry.common.item;
 
 import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data_components.*;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;

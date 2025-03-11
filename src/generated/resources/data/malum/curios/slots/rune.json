@@ -1,5 +1,5 @@
 {
   "icon": "malum:slot/empty_rune_slot",
-  "render_toggle": true,
+  "render_toggle": false,
   "size": 0
 }

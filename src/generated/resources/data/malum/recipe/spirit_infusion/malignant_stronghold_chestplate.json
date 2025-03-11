@@ -20,8 +20,12 @@
       "count": 32
     },
     {
-      "type": "wicked",
+      "type": "aqueous",
       "count": 32
+    },
+    {
+      "type": "wicked",
+      "count": 16
     },
     {
       "type": "eldritch",

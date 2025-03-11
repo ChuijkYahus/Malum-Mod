@@ -2,6 +2,10 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
+      "count": 4,
+      "item": "malum:hex_ash"
+    },
+    {
       "count": 2,
       "item": "malum:warp_flux"
     }
@@ -13,8 +17,12 @@
   },
   "spirits": [
     {
+      "type": "arcane",
+      "count": 16
+    },
+    {
       "type": "eldritch",
-      "count": 4
+      "count": 16
     }
   ]
 }

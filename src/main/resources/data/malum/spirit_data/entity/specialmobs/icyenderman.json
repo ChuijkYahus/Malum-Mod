@@ -4,15 +4,15 @@
   "spirits": [
     {
       "spirit": "eldritch",
-      "count": 1
+      "count": 3
     },
     {
       "spirit": "aqueous",
-      "count": 1
+      "count": 2
     },
     {
       "spirit": "arcane",
-      "count": 2
+      "count": 1
     }
   ]
 }

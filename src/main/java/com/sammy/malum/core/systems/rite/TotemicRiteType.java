@@ -11,6 +11,16 @@ import java.util.*;
 
 public abstract class TotemicRiteType {
 
+    public static final String RITE = "malum.gui.rite";
+    public static final String CORRUPTED_RITE = "malum.gui.rite.corrupt";
+    public static final String TYPE = "malum.gui.rite.type";
+    public static final String MEDIUM = "malum.gui.rite.medium";
+    public static final String RUNEWOOD = "malum.gui.rite.medium.runewood";
+    public static final String SOULWOOD = "malum.gui.rite.medium.soulwood";
+    public static final String COVERAGE = "malum.gui.rite.coverage";
+    public static final String EFFECT = "malum.gui.rite.effect";
+    public static final String CORRUPTED_EFFECT = "malum.gui.rite.effect.corrupt";
+
     public final List<MalumSpiritType> spirits;
     public final String identifier;
     public final TotemicRiteEffect effect;
@@ -23,28 +33,28 @@ public abstract class TotemicRiteType {
         this.corruptedEffect = getCorruptedEffect();
     }
 
-    public List<Component> makeDetailedDescriptor(boolean corrupted) {
+    public List<Component> getDescription(boolean corrupted) {
         List<Component> tooltip = new ArrayList<>();
         var spiritStyleModifier = getIdentifyingSpirit().getItemRarity().getStyleModifier();
         var riteEffect = getRiteEffect(corrupted);
         var riteCategory = riteEffect.category;
-        tooltip.add(Component.translatable(translationIdentifier(corrupted)).withStyle(spiritStyleModifier));
-        tooltip.add(makeDescriptorComponent("malum.gui.rite.type", riteCategory.getTranslationKey()));
-        tooltip.add(makeDescriptorComponent("malum.gui.rite.medium", "malum.gui.rite.medium."+(corrupted?"soulwood":"runewood")));
+        tooltip.add(Component.translatable(getLangKey(corrupted)).withStyle(spiritStyleModifier));
+        tooltip.add(createDescriptionComponent(TYPE, riteCategory.getTranslationKey()));
+        tooltip.add(createDescriptionComponent(MEDIUM, corrupted ? SOULWOOD : RUNEWOOD));
         if (!riteCategory.equals(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT)) {
-            tooltip.add(makeDescriptorComponent("malum.gui.rite.coverage", riteEffect.getRiteCoverageDescriptor()));
+            tooltip.add(createDescriptionComponent(COVERAGE, riteEffect.getRiteCoverageDescriptor()));
         }
-        tooltip.add(makeDescriptorComponent("malum.gui.rite.effect", "malum.gui.book.entry.page.text." + (corrupted ? "corrupt_" : "") + identifier + ".hover"));
+        tooltip.add(createDescriptionComponent(EFFECT, (corrupted ? EFFECT : CORRUPTED_EFFECT) + "." + identifier));
         return tooltip;
     }
 
-    public final Component makeDescriptorComponent(String translationKey1, String translationKey2) {
-        return Component.translatable(translationKey1).withStyle(ChatFormatting.GOLD)
-                .append(Component.translatable(translationKey2).withStyle(ChatFormatting.YELLOW));
+    public final Component createDescriptionComponent(String title, String type) {
+        return Component.translatable(title).withStyle(ChatFormatting.GOLD)
+                .append(Component.translatable(type).withStyle(ChatFormatting.YELLOW));
     }
 
-    public String translationIdentifier(boolean corrupt) {
-        return "malum.gui.rite." + (corrupt ? "corrupted_" : "") + identifier;
+    public String getLangKey(boolean corrupt) {
+        return (corrupt ? CORRUPTED_RITE : RITE) + "." + identifier;
     }
 
     public ResourceLocation getIcon() {
@@ -52,7 +62,7 @@ public abstract class TotemicRiteType {
     }
 
     public MalumSpiritType getIdentifyingSpirit() {
-        return spirits.get(spirits.size() - 1);
+        return spirits.getLast();
     }
 
     protected abstract TotemicRiteEffect getNaturalRiteEffect();

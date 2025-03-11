@@ -29,11 +29,11 @@
     },
     {
       "type": "arcane",
-      "count": 16
+      "count": 32
     },
     {
       "type": "eldritch",
-      "count": 8
+      "count": 16
     }
   ]
 }

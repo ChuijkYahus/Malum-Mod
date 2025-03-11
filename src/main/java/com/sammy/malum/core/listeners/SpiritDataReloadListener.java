@@ -46,7 +46,7 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
             .withSpirit(SpiritTypeRegistry.SACRED_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_BOSS_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.ELDRITCH_SPIRIT, 2)
+            .builder(SpiritTypeRegistry.ELDRITCH_SPIRIT, 4)
             .build();
 
     private static final Gson GSON = (new GsonBuilder()).create();
