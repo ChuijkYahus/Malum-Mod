@@ -10,7 +10,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.*;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 public class ClientRuntimeEvents {
@@ -38,11 +38,17 @@ public class ClientRuntimeEvents {
         HiddenBladeRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
         StaffAbilityRenderHandler.tick(event);
+        WaveformConfigurationHandler.tick(event);
     }
 
     @SubscribeEvent
     public static void itemTooltipEvent(ItemTooltipEvent event) {
         GeasItem.addGeasTooltip(event);
         AugmentItem.addAugmentAttributeTooltip(event);
+    }
+
+    @SubscribeEvent
+    public static void onBlockActivated(PlayerInteractEvent.RightClickBlock event) {
+        WaveformConfigurationHandler.onBlockActivated(event);
     }
 }

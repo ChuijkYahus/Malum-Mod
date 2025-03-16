@@ -216,7 +216,7 @@ public class ArcanaCodexHelper {
                 .setShader(() -> shaderInstance);
 
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-        renderTexture(location, stack, builder, x, y, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y, 0, 0, 0, textureWidth, textureHeight);
         builder.setAlpha(0.1f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 1, 0, 0, textureWidth, textureHeight);
@@ -235,33 +235,39 @@ public class ArcanaCodexHelper {
         renderTexture(texture, poseStack, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, VFX_BUILDER, x, y, 0, u, v, width, height, textureWidth, textureHeight);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, VFX_BUILDER, x, y, 0, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, textureWidth, textureHeight);
-    }
-
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height) {
-        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, width, height);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, canvasWidth, canvasHeight);
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, builder, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, width, height, canvasWidth, canvasHeight);
+    }
+
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight, canvasWidth, canvasHeight);
+    }
+
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, textureWidth, textureHeight, canvasWidth, canvasHeight);
+    }
+
+    private static void renderTexture(PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
-        builder.setPositionWithWidth(x, y, width, height)
-                .setZLevel(z)
-                .setShaderTexture(texture)
-                .setUVWithWidth(u, v, width, height, textureWidth, textureHeight)
+        builder.setZLevel(z)
+                .setUVWithWidth(u, v, width, height, canvasWidth, canvasHeight)
                 .blit(poseStack);
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();

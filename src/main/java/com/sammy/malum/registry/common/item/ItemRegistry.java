@@ -76,8 +76,6 @@ import static net.minecraft.world.item.Rarity.*;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, MALUM);
 
-    public static final List<Item> CONTENT = new ArrayList<>();
-
     public static LodestoneItemProperties DEFAULT_PROPERTIES() {
         return new LodestoneItemProperties(CreativeTabRegistry.CONTENT);
     }
