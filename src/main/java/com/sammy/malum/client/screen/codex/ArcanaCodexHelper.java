@@ -655,18 +655,19 @@ public class ArcanaCodexHelper {
             int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
             int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
             int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
+            var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+            var pose = guiGraphics.pose().last().pose();
             RenderSystem.enableBlend();
-            final LodestoneBufferWrapper buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
-            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
 

@@ -1,39 +1,45 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
+import com.mojang.blaze3d.systems.*;
+import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
+import org.lwjgl.opengl.*;
+import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.shader.*;
+
+import java.lang.Math;
+import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderTexture;
 
 public class ValueSettingsScreen extends Screen {
 
-    public static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
-
-    private static final int ROW_WIDTH = 22;
-    private static final int ROW_HEIGHT = 8;
-    private static final int ROW_SEPARATION = 4;
-    private static final int BORDER_SIZE = 6;
+    private static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
 
     public static final ResourceLocation TEXTURE = malumPath("textures/gui/waveform_configuration.png");
+    public static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_configuration_dial.png");
+
+    private static final int BORDER_SIZE = 6;
+    private static final int DIAL_SIZE = 64;
     private int ticksOpen = 0;
-    private final int rows;
-    private final int columns;
+
     private final int interfaceWidth;
     private final int interfaceHeight;
 
     public ValueSettingsScreen(Component pTitle) {
         super(pTitle);
-        rows = 10;
-        columns = 3;
-        interfaceWidth = 80 + rows * ROW_WIDTH - 15;
-        interfaceHeight = 40 + columns * ROW_HEIGHT + (columns-1) * ROW_SEPARATION;
+        interfaceWidth = 120 + DIAL_SIZE;
+        interfaceHeight = 50 + DIAL_SIZE;
     }
 
     public boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
@@ -60,37 +66,19 @@ public class ValueSettingsScreen extends Screen {
         guiGraphics.fillGradient(fadeStart, guiTop - BORDER_SIZE, fadeEnd, guiTop + interfaceHeight + BORDER_SIZE, 0x101010 | a, 0x101010 | a);
 
         var topText = "Redstone Interval";
+        var middleText = "Scroll To Modify Measurement";
         var bottomText = "Release Right Button To Confirm";
-        int textCenter = guiLeft + interfaceWidth / 2;
-        guiGraphics.drawString(font, topText, textCenter - font.width(topText) / 2, guiTop, 0xdddddd, false);
-        guiGraphics.drawString(font, bottomText, textCenter - font.width(bottomText) / 2, guiTop+interfaceHeight-7, 0xdddddd, false);
+        int xCenter = guiLeft + interfaceWidth / 2;
+        guiGraphics.drawString(font, topText, xCenter - font.width(topText) / 2, guiTop, 0xdddddd, false);
+        guiGraphics.drawString(font, middleText, xCenter - font.width(middleText) / 2, guiTop + interfaceHeight - 17, 0xdddddd, false);
+        guiGraphics.drawString(font, bottomText, xCenter - font.width(bottomText) / 2, guiTop + interfaceHeight - 7, 0xdddddd, false);
 
-
-        int selectionTypeAreaTop = guiTop+20;
-        renderBorder(guiGraphics, guiLeft, guiTop+20, 60, interfaceHeight-40);
-        guiGraphics.drawString(font, "Ticks", guiLeft, selectionTypeAreaTop,0xdddddd, false);
-        guiGraphics.drawString(font, "Seconds", guiLeft, selectionTypeAreaTop+12,0xdddddd, false);
-        guiGraphics.drawString(font, "Minutes", guiLeft, selectionTypeAreaTop+24,0xdddddd, false);
-
-        int selectionAreaLeft = guiLeft+80;
-        int selectionAreaTop = guiTop+20;
-        int selectionAreaWidth = interfaceWidth-80;
-        int selectionAreaHeight = interfaceHeight-40;
-
-        renderBorder(guiGraphics, selectionAreaLeft, selectionAreaTop, selectionAreaWidth, selectionAreaHeight);
-        for (int i = 0; i < columns; i++) {
-            int y = selectionAreaTop + i * (ROW_HEIGHT + ROW_SEPARATION);
-            for (int j = 0; j < rows; j++) {
-                int x = selectionAreaLeft + j * ROW_WIDTH;
-                renderTexture(guiGraphics, x, y, 0, 8, 7, 8);
-                if (j != rows -1) {
-                    renderTexture(guiGraphics, x + 7, y, 0, 0, 15, 8);
-                }
-            }
-            guiGraphics.fillGradient(selectionAreaLeft+1, y+9, selectionAreaLeft+(rows-1)*ROW_WIDTH+6, y+11, 0x80080503, 0x80080503);
-        }
+        int dialLeft = xCenter - DIAL_SIZE/2;
+        int dialTop = guiTop + 20;
+        renderBorderBackground(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
+        renderDialTexture(guiGraphics, dialLeft, dialTop);
+        renderBorder(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
     }
-
 
     @Override
     public void renderBackground(@NotNull GuiGraphics graphics, int pMouseX, int pMouseY, float pPartialTick) {
@@ -98,34 +86,79 @@ public class ValueSettingsScreen extends Screen {
         graphics.fillGradient(0, 0, this.width, this.height, 0x101010 | a, 0x101010 | a);
     }
 
+    public void renderBorderBackground(GuiGraphics graphics, int x, int y, int width, int height) {
+        int borderSize = 5;
+        int startX = x - borderSize;
+        int startY = y - borderSize;
+        int endX = x + width;
+        int endY = y + height;
+        graphics.fillGradient(startX + 1, startY + 1, endX + borderSize - 1, endY + borderSize - 1, 0, 0xFF0F0306, 0xFF1A1314);
+    }
+
     public void renderBorder(GuiGraphics graphics, int x, int y, int width, int height) {
         int borderSize = 5;
-        int startX = x - borderSize - 2;
-        int startY = y - borderSize - 2;
-        int endX = x + width + 2;
-        int endY = y + height + 2;
+        int startX = x - borderSize;
+        int startY = y - borderSize;
+        int endX = x + width;
+        int endY = y + height;
 
-        graphics.fillGradient(startX+1, startY+1, endX+borderSize-1, endY+borderSize-1, 0xFF0F0306, 0xFF1A1314);
-
-
-        renderTexture(graphics, startX, startY, 7, 8, borderSize, borderSize);
-        renderTexture(graphics, endX, startY, 16, 8, borderSize, borderSize);
-        renderTexture(graphics, endX, endY, 16, 17, borderSize, borderSize);
-        renderTexture(graphics, startX, endY, 7, 17, borderSize, borderSize);
+        renderTexture(graphics, startX, startY, 0, 0, borderSize, borderSize);
+        renderTexture(graphics, endX, startY, 9, 0, borderSize, borderSize);
+        renderTexture(graphics, endX, endY, 9, 9, borderSize, borderSize);
+        renderTexture(graphics, startX, endY, 0, 9, borderSize, borderSize);
 
 
-        renderTexture(graphics, startX + 5, startY, 13, 8, endX-startX - 5, 4, 2, 4);
-        renderTexture(graphics, startX + 5, endY+1, 13, 18, endX-startX - 5, 4, 2, 4);
+        renderTexture(graphics, startX + 5, startY, 6, 0, endX - startX - 5, 4, 2, 4);
+        renderTexture(graphics, startX + 5, endY + 1, 6, 10, endX - startX - 5, 4, 2, 4);
 
-        renderTexture(graphics, startX, startY + 5, 7, 14, 4, endY-startY - 5, 4, 2);
-        renderTexture(graphics, endX + 1, startY + 5, 17, 14, 4, endY-startY - 5, 4, 2);
+        renderTexture(graphics, startX, startY + 5, 0, 6, 4, endY - startY - 5, 4, 2);
+        renderTexture(graphics, endX + 1, startY + 5, 10, 6, 4, endY - startY - 5, 4, 2);
     }
 
     public void renderTexture(GuiGraphics graphics, int x, int y, int u, int v, int width, int height) {
         ArcanaCodexHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, width, height, 32, 32);
     }
+
     public void renderTexture(GuiGraphics graphics, int x, int y, int u, int v, int xCoverage, int yCoverage, int width, int height) {
         ArcanaCodexHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, xCoverage, yCoverage, width, height, 32, 32);
+    }
+
+    public void renderDialTexture(GuiGraphics graphics, int x, int y) {
+        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        shaderInstance.safeGetUniform("YFrequency").set(10f);
+        shaderInstance.safeGetUniform("XFrequency").set(10f);
+        shaderInstance.safeGetUniform("Speed").set(1000f);
+        shaderInstance.safeGetUniform("Intensity").set(100f);
+        shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(-1f, 2f, -1f, 2f));
+        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
+
+        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+                .setShader(shaderInstanceSupplier)
+                .setAlpha(0.9f)
+                .setColor(0.7f, 0.1f, 0.1f)
+                .setZLevel(0)
+                .setShader(() -> shaderInstance);
+
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        renderDialTexture(graphics, builder, x, y, 0);
+        builder.setAlpha(0.2f);
+        shaderInstance.safeGetUniform("Speed").set(2000f);
+        renderDialTexture(graphics, builder, x - 1, y, 1);
+        renderDialTexture(graphics, builder, x + 1, y, 2);
+        renderDialTexture(graphics, builder, x, y - 1, 3);
+        renderDialTexture(graphics, builder, x, y + 1, 4);
+        shaderInstance.setUniformDefaults();
+        RenderSystem.defaultBlendFunc();
+    }
+
+    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int z) {
+        RenderSystem.enableBlend();
+        RenderSystem.enableDepthTest();
+        builder.setZLevel(z)
+                .setShaderTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE)
+                .blit(graphics.pose());
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableBlend();
     }
 
     @Override
@@ -161,6 +194,7 @@ public class ValueSettingsScreen extends Screen {
 //                AllKeys.ctrlDown(), netId));
         onClose();
     }
+
     public int getGuiLeft() {
         return (width - interfaceWidth) / 2;
     }
