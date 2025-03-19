@@ -224,6 +224,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.SPIRIT_DIODE_CLOSE, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_close", 4)));
 
         this.add(SoundRegistry.SPIRIT_DIODE_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_tick", 8)));
+        this.add(SoundRegistry.SPIRIT_DIODE_LONG_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_long_tick", 8)));
 
         this.add(SoundRegistry.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
         this.add(SoundRegistry.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));

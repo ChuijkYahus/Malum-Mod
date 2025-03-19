@@ -9,18 +9,24 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import team.lodestar.lodestone.systems.network.OneSidedPayloadData;
 
-public class SpiritDiodeToggleOpenPayload extends OneSidedPayloadData {
+public class SpiritDiodeVisualUpdatePayload extends OneSidedPayloadData {
     private final BlockPos pos;
-    private final boolean isOpen;
+    private final int outputSignal;
+    private final int inputSignal;
+    private final boolean isPowering;
 
-    public SpiritDiodeToggleOpenPayload(BlockPos pos, boolean isOpen) {
+    public SpiritDiodeVisualUpdatePayload(BlockPos pos, int outputSignal, int inputSignal, boolean isPowering) {
         this.pos = pos;
-        this.isOpen = isOpen;
+        this.outputSignal = outputSignal;
+        this.inputSignal = inputSignal;
+        this.isPowering = isPowering;
     }
 
-    public SpiritDiodeToggleOpenPayload(FriendlyByteBuf buf) {
+    public SpiritDiodeVisualUpdatePayload(FriendlyByteBuf buf) {
         this.pos = BlockPos.STREAM_CODEC.decode(buf);
-        this.isOpen = buf.readBoolean();
+        this.outputSignal = buf.readInt();
+        this.inputSignal = buf.readInt();
+        this.isPowering = buf.readBoolean();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -28,13 +34,15 @@ public class SpiritDiodeToggleOpenPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext iPayloadContext) {
         Level level = iPayloadContext.player().level();
         if (level.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity spiritDiode) {
-            spiritDiode.toggleTime = level.getGameTime();
+            spiritDiode.updateVisuals(outputSignal, inputSignal, isPowering);
         }
     }
 
     @Override
     public void serialize(FriendlyByteBuf friendlyByteBuf) {
         BlockPos.STREAM_CODEC.encode(friendlyByteBuf, pos);
-        friendlyByteBuf.writeBoolean(this.isOpen);
+        friendlyByteBuf.writeInt(this.outputSignal);
+        friendlyByteBuf.writeInt(this.inputSignal);
+        friendlyByteBuf.writeBoolean(this.isPowering);
     }
 }

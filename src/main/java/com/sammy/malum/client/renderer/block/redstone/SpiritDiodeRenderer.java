@@ -34,27 +34,25 @@ import java.awt.*;
 
 public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> implements BlockEntityRenderer<T> {
 
+
     private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, RenderHandler.DELAYED_RENDER.getTarget());
 
     protected final RenderTypeToken output;
-    protected final MutableComponent text;
-    protected final MutableComponent outlineText;
+    protected final String langKey;
     protected static final Color COLOR = new Color(170, 15, 1);
 
     public static final HeldItemTracker CLAW_TRACKER = new HeldItemTracker(p -> p.is(ItemTagRegistry.IS_REDSTONE_TOOL));
 
     public SpiritDiodeRenderer(BlockEntityRendererProvider.Context context, ResourceLocation tokenTexture, String langKey) {
         this.output = RenderTypeToken.createToken(tokenTexture);
-
-        text = Component.translatable(langKey).withStyle(ChatFormatting.GOLD);
-        outlineText = Component.translatable(langKey).withStyle(ChatFormatting.RED);
+        this.langKey = langKey;
     }
 
     public abstract float getGlowDelta(T blockEntityIn, float delta);
     @Override
     public void render(T blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        if (blockEntityIn.visualTransitionTime != 0) {
-            float timing = (blockEntityIn.getLevel().getGameTime() - blockEntityIn.visualStartTime) / (float) blockEntityIn.visualTransitionTime;
+        if (blockEntityIn.visualTransitionDuration != 0) {
+            float timing = (blockEntityIn.getLevel().getGameTime() - blockEntityIn.visualStartTime) / (float) blockEntityIn.visualTransitionDuration;
             float delta = Mth.clampedLerp(blockEntityIn.visualTransitionStart, blockEntityIn.visualTransitionEnd, timing);
             float pct = Mth.clamp(getGlowDelta(blockEntityIn, delta), 0, 1);
             if (pct > 0) {
@@ -81,48 +79,44 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
         if (CLAW_TRACKER.isVisible()) {
             Minecraft minecraft = Minecraft.getInstance();
             var font = minecraft.font;
-            float timeDelta = Mth.clamp(((float) minecraft.level.getGameTime() - blockEntityIn.toggleTime) / 20f, 0, 1);
-            float heldDelta = Easing.SINE_IN_OUT.clamped(CLAW_TRACKER.getDelta(partialTicks), 0, 1);
-            if (!blockEntityIn.getBlockState().getValue(SpiritDiodeBlock.OPEN)) {
-                timeDelta = 1 - timeDelta;
-            }
-            float textDelta = timeDelta * heldDelta;
-            float scale = 0.016F - (1 - textDelta) * 0.004f;
+            float delta = Easing.SINE_IN_OUT.clamped(CLAW_TRACKER.getDelta(partialTicks), 0, 1);
+            float scale = 0.016F - (1 - delta) * 0.004f;
             poseStack.pushPose();
             poseStack.translate(0.5f, 1.75f, 0.55f);
             poseStack.mulPose(minecraft.getEntityRenderDispatcher().cameraOrientation());
             poseStack.scale(scale, -scale, -scale);
-            MutableComponent text = Component.translatable(this.text.getString(), blockEntityIn.delay).withStyle(ChatFormatting.RED);
-            MutableComponent outlineText = Component.translatable(this.outlineText.getString(), blockEntityIn.delay).withStyle(ChatFormatting.DARK_RED);
+            var base = Component.translatable(langKey).append(Component.translatable("malum.waveform_artifice.value_display", blockEntityIn.frequency, blockEntityIn.type.getText()));
+            MutableComponent textComponent = base.copy().withStyle(ChatFormatting.RED);
+            MutableComponent outlineComponent = base.withStyle(ChatFormatting.DARK_RED);
 
-            float f = (-font.width(text) / 2f);
+            float f = (-font.width(textComponent) / 2f);
             float xPos = 0 + f;
             Matrix4f pose = poseStack.last().pose();
-            float alpha = 0.38f * textDelta; //We're rendering in additive, so whether we change alpha or the color it doesn't really matter.
+            float alpha = 0.38f * delta; //We're rendering in additive, so whether we change alpha or the color it doesn't really matter.
             //Minecraft for whatever reason treats alpha values between 0-3 as 255 when rendering text, so we're going to modify color instead of alpha
             int color = ColorHelper.getColor(1, 1, 1, alpha);
             if (alpha > 0.02f) {
-                renderText(text, xPos, 0, color, pose);
+                renderText(textComponent, xPos, 0, color, pose);
             }
-            alpha = 0.18f * textDelta;
+            alpha = 0.18f * delta;
             if (alpha > 0.02f) {
                 color = ColorHelper.getColor(1, 1, 1, alpha);
-                renderText(text, xPos - 0.5f, 0, color, pose);
-                renderText(text, xPos - 0.5f, 0, color, pose);
-                renderText(text, xPos, 0.5f, color, pose);
-                renderText(text, xPos, -0.5f, color, pose);
+                renderText(textComponent, xPos - 0.5f, 0, color, pose);
+                renderText(textComponent, xPos - 0.5f, 0, color, pose);
+                renderText(textComponent, xPos, 0.5f, color, pose);
+                renderText(textComponent, xPos, -0.5f, color, pose);
             }
-            alpha = 0.12f * textDelta;
+            alpha = 0.12f * delta;
             if (alpha > 0.02f) {
                 color = ColorHelper.getColor(1, 1, 1, alpha);
-                renderText(text, xPos - 1, 0, color, pose);
-                renderText(outlineText, xPos + 1, 0, color, pose);
-                renderText(outlineText, xPos, 1, color, pose);
-                renderText(text, xPos, -1, color, pose);
-                renderText(outlineText, xPos - 0.5f, -0.5f, color, pose);
-                renderText(text, xPos - 0.5f, 0.5f, color, pose);
-                renderText(outlineText, xPos + 0.5f, 0.5f, color, pose);
-                renderText(text, xPos + 0.5f, -0.5f, color, pose);
+                renderText(textComponent, xPos - 1, 0, color, pose);
+                renderText(outlineComponent, xPos + 1, 0, color, pose);
+                renderText(outlineComponent, xPos, 1, color, pose);
+                renderText(textComponent, xPos, -1, color, pose);
+                renderText(outlineComponent, xPos - 0.5f, -0.5f, color, pose);
+                renderText(textComponent, xPos - 0.5f, 0.5f, color, pose);
+                renderText(outlineComponent, xPos + 0.5f, 0.5f, color, pose);
+                renderText(textComponent, xPos + 0.5f, -0.5f, color, pose);
             }
             poseStack.popPose();
         }

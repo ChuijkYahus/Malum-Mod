@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.geas.light.*;
 import com.sammy.malum.common.geas.time.*;
@@ -180,10 +181,22 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
 
-        add("malum.waveform_artifice.wavecharger", "Redstone Interpolation Time: %s");
-        add("malum.waveform_artifice.wavebanker", "Redstone Pulse Duration: %s");
-        add("malum.waveform_artifice.wavemaker", "Redstone Pulse Frequency: %s");
-        add("malum.waveform_artifice.wavebreaker", "Redstone Pulse Delay: %s");
+
+        add("malum.waveform_artifice.wavecharger", "Redstone Easing Duration");
+        add("malum.waveform_artifice.wavebanker", "Redstone Pulse Duration");
+        add("malum.waveform_artifice.wavemaker", "Redstone Pulse Interval");
+        add("malum.waveform_artifice.wavebreaker", "Redstone Pulse Delay");
+
+        add("malum.waveform_artifice.value_display", ": %1$s %2$s");
+
+        add("malum.waveform_artifice.redstone_ticks", "Redstone Ticks");
+        add("malum.waveform_artifice.seconds", "Seconds");
+        add("malum.waveform_artifice.minutes", "Minutes");
+
+        add("malum.waveform_artifice.guide.2", "Scroll To Fine Tune Value");
+        add("malum.waveform_artifice.guide.1", "Use Left Button To Modify Unit Type");
+        add("malum.waveform_artifice.guide.0", "Release Right Button To Confirm");
+
 
         addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.AURA);
         addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT);

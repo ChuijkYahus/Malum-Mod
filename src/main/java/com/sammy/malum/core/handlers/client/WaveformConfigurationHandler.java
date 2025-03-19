@@ -21,12 +21,21 @@ public class WaveformConfigurationHandler {
     public static int interactionTime;
 
     public static void tick(ClientTickEvent event) {
-        Minecraft minecraft = Minecraft.getInstance();
+        var minecraft = Minecraft.getInstance();
         if (interactionPos == null) {
             return;
         }
-        HitResult hitResult = minecraft.hitResult;
-        if (!(hitResult instanceof BlockHitResult blockHitResult) || !blockHitResult.getBlockPos().equals(interactionPos)) {
+        var hitResult = minecraft.hitResult;
+        if (!(hitResult instanceof BlockHitResult blockHitResult)) {
+            resetInteraction();
+            return;
+        }
+        var blockPos = blockHitResult.getBlockPos();
+        if (!blockPos.equals(interactionPos)) {
+            resetInteraction();
+            return;
+        }
+        if (!(minecraft.level.getBlockEntity(blockPos) instanceof SpiritDiodeBlockEntity spiritDiode)) {
             resetInteraction();
             return;
         }
@@ -37,7 +46,7 @@ public class WaveformConfigurationHandler {
 
         interactionTime++;
         if (interactionTime == 5) {
-            Minecraft.getInstance().setScreen(new ValueSettingsScreen(Component.literal("waaaa")));
+            minecraft.setScreen(new ValueSettingsScreen(spiritDiode));
             resetInteraction();
         }
     }

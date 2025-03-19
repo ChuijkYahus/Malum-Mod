@@ -1,7 +1,5 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeToggleOpenPayload;
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeUpdatePayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -9,7 +7,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
 
@@ -41,16 +37,6 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
     }
 
     /**
-     * Measured in redstone ticks (i.e. 2 game ticks)
-     */
-    public abstract int getDefaultFrequency(BlockPos pos, BlockState state);
-
-    /**
-     * Measured in redstone ticks (i.e. 2 game ticks)
-     */
-    public abstract int[] getFrequencyPresets();
-
-    /**
      * Should update blockstates.
      * Return true if further updates are required.
      */
@@ -64,7 +50,7 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
 
 
     public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, T diode, int newInput) {
-        return Math.max(diode.delay, 1);
+        return Math.max(diode.getAdjustedFrequency(), 1);
     }
 
     @Override
@@ -76,7 +62,7 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
                 Direction direction = state.getValue(FACING);
                 int signal = level.getSignal(pos.relative(direction), direction);
                 if (shouldUpdateWhenNeighborChanged(level, pos, state, (T) spiritDiode, signal)) {
-                    final int delay = 2 * redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
+                    final int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
                     level.scheduleTick(pos, this, delay);
                     if (level instanceof ServerLevel serverLevel) {
                         spiritDiode.updateAnimation(serverLevel, pos, signal);
@@ -94,7 +80,7 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
             Direction direction = state.getValue(FACING);
             int signal = level.getSignal(pos.relative(direction), direction);
             if (processUpdate(level, pos, state, (T) spiritDiode, signal)) {
-                final int delay = 2 * redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
+                final int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
                 level.scheduleTick(pos, this, delay);
                 spiritDiode.updateAnimation(level, pos, signal);
             }

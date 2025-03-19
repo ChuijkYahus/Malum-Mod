@@ -905,7 +905,7 @@ public class CodexLangDatagen {
                          -Increases Healing Received, Magic Resistance and Armor by One Fifth
                          -Passively Heals You""",
                 """
-                        A primordial fear is manifested within you, Darkness is now your greatest threat.
+                        A primordial fear is manifested within you, an Inescapable Shade engulfs you.
                         When in Darkness:
                          -Your Vision is Dampened
                          -Your Fear slowly Extinguishes your Soul""");
@@ -948,12 +948,12 @@ public class CodexLangDatagen {
                          -Doubles Soul Ward Recovery Rate""",
                 "The added acceleration brings with itself a brittle nature\n -Halves Soul Ward Integrity");
 
-        addSimpleEntryHeader("pact_of_the_defiant", "Pact of The Defiant", "Meet The End And Escape");
+        addSimpleEntryHeader("pact_of_the_defiant", "Pact of The Defiant", "Meet The End And Defy");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT,
                 """
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
                          -Saturation heals you Twice as fast, Thrice as fast when near death
-                         -Increases Healing Received by one fourth""",
+                         -Increases Healing Received by One Fourth""",
                 "The magics shift your perception of death, it always feels nearby.\n -Reduces Max Health by One Fourth");
 
         addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "Breathe In And Overcome");
@@ -962,6 +962,31 @@ public class CodexLangDatagen {
                         A growth in confidence, a desire to overcome any threat, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
                 "Your ignorance of your fragility leaves deeper wounds and gashes\n -Reduces Healing Received by Four Tenths");
+
+        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "Swear loyalty to the edge");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
+                """
+                        A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
+                         -Scythe Attacks occasionally trigger follow up cuts""",
+                "To break the bond will be your undoing\n -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths\n -Forsworn Weapons Deteriorate When Used");
+
+        addSimpleEntryHeader("pact_of_the_reciprocation", "Pact of Reciprocation", "Analyze and reimagine");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
+                """
+                        A change in the very nature of Soul Ward, a new overruling mechanism.
+                         -Dealing Magic Damage generates Soul Ward
+                         -Increases Soul Ward Capacity Significantly
+                         -Doubles Soul Ward Received""",
+                "War is all you are.\n -Disables Natural Soul Ward Regeneration");
+
+        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of Pyromaniac", "Self immolation is key");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
+                """
+                        Recklessness and Greed, fueled by Kinetic Impact.
+                         -Blowing Yourself Up Generates Pyromaniac Charges
+                         -Pyromaniac Charges increase Movement and Mining Speed
+                         -Explosion Damage is Limited to Half of your Current Health""",
+                "You can only handle so much heat.\n -Overexertion of Pyromaniac Ignites you When Applied\n -Fire Damage is Deadlier");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

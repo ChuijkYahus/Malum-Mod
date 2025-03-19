@@ -1,13 +1,12 @@
 package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data.attachment.soul_data.*;
 import com.sammy.malum.common.packets.*;
 import com.sammy.malum.common.packets.geas.*;
 import com.sammy.malum.common.packets.particle.rite.*;
 import com.sammy.malum.common.packets.particle.rite.generic.BlockSparkleParticlePacket;
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeToggleOpenPayload;
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeUpdatePayload;
+import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeStateUpdatePayload;
+import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayload;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -27,8 +26,8 @@ public class PacketRegistry {
         MALUM_CHANNEL.playToClient(registrar, "void_rejection", VoidRejectionPayload.class, VoidRejectionPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "particle_effect", ParticleEffectPacket.class, ParticleEffectPacket::new);
         MALUM_CHANNEL.playToClient(registrar, "block_sparkle_particle", BlockSparkleParticlePacket.class, BlockSparkleParticlePacket::new);
-        MALUM_CHANNEL.playToClient(registrar, "spirit_diode_update", SpiritDiodeUpdatePayload.class, SpiritDiodeUpdatePayload::new);
-        MALUM_CHANNEL.playToClient(registrar, "spirit_diode_toggle", SpiritDiodeToggleOpenPayload.class, SpiritDiodeToggleOpenPayload::new);
+        MALUM_CHANNEL.playToClient(registrar, "spirit_diode_update", SpiritDiodeVisualUpdatePayload.class, SpiritDiodeVisualUpdatePayload::new);
+        MALUM_CHANNEL.playToServer(registrar, "spirit_diode_toggle", SpiritDiodeStateUpdatePayload.class, SpiritDiodeStateUpdatePayload::new);
 
         MALUM_CHANNEL.playToClient(registrar, "sync_soul_ward_data", SyncSoulWardDataPayload.class, SyncSoulWardDataPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "sync_curio_data", SyncCurioDataPayload.class, SyncCurioDataPayload::new);

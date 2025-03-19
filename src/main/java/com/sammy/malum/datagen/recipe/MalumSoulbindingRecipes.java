@@ -76,7 +76,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
 
         new SoulBindingRecipeBuilder(Items.IRON_BLOCK, 1, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER)
                 .addExtraItem(Tags.Items.GEMS_QUARTZ, 8)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
@@ -84,7 +84,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(ItemRegistry.BLOCK_OF_SOUL_STAINED_STEEL.get(), 1, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION)
                 .addExtraItem(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 8)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
@@ -95,16 +95,20 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addExtraItem(Items.TNT, 8)
                 .addExtraItem(Items.FIRE_CHARGE, 8)
                 .addExtraItem(Items.GUNPOWDER, 8)
-                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SoulBindingRecipeBuilder(ItemRegistry.LIVING_FLESH.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION)
                 .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 8)
                 .addExtraItem(Items.ROTTEN_FLESH, 8)
                 .addExtraItem(Items.GHAST_TEAR, 4)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
-                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SoulBindingRecipeBuilder(Items.HEAVY_CORE, 1, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER)

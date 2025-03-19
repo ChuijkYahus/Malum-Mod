@@ -21,12 +21,20 @@
   },
   "spirits": [
     {
-      "type": "aerial",
+      "type": "arcane",
       "count": 32
     },
     {
-      "type": "arcane",
+      "type": "infernal",
       "count": 32
+    },
+    {
+      "type": "aerial",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 16
     }
   ]
 }

@@ -63,7 +63,7 @@ public class PyromaniacGeas extends GeasEffect {
                             if (instance.getAmplifier() >= 5) {
                                 livingEntity.igniteForSeconds(5);
                             }
-                            EntityHelper.extendEffect(instance, livingEntity, 600, 600);
+                            EntityHelper.extendEffect(instance, livingEntity, 300, 1200);
                             EntityHelper.amplifyEffect(instance, livingEntity, pyromaniacStacks, 9);
                         }
                         else {
