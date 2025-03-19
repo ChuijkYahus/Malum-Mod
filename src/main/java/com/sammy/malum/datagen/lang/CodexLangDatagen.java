@@ -970,7 +970,7 @@ public class CodexLangDatagen {
                          -Scythe Attacks occasionally trigger follow up cuts""",
                 "To break the bond will be your undoing\n -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths\n -Forsworn Weapons Deteriorate When Used");
 
-        addSimpleEntryHeader("pact_of_the_reciprocation", "Pact of Reciprocation", "Analyze and reimagine");
+        addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "Analyze and reimagine");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
                 """
                         A change in the very nature of Soul Ward, a new overruling mechanism.
@@ -986,7 +986,64 @@ public class CodexLangDatagen {
                          -Blowing Yourself Up Generates Pyromaniac Charges
                          -Pyromaniac Charges increase Movement and Mining Speed
                          -Explosion Damage is Limited to Half of your Current Health""",
-                "You can only handle so much heat.\n -Overexertion of Pyromaniac Ignites you When Applied\n -Fire Damage is Deadlier");
+                """
+                        You can only handle so much pressure.
+                         -Overexertion of Pyromaniac Ignites you When Applied
+                         -Fire Damage is Deadlier""");
+
+        addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "Critically heal for zero");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION,
+                """
+                        Unchecked Power derived from Death Itself.
+                         -Death Triggers Resurrection
+                         -Resurrection is paired with brief Invulnerability and Rapid Activation of Spirit-Collection Effects""",
+                """
+                        The Burning Stars of Wyrd Reconstruction Bleed Through You.
+                         -Resurrection Effect bears a Heavy Cooldown
+                         -Cooldown State Halves Arcane Resonance
+                         -Spirit-Collection Drains Hunger""");
+
+        addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "Heaven's Falling Down");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,
+                """
+                        Gravity; The greatest force to impose onto others.
+                         -Taking Fall Damage Automatically Strikes Nearby Creatures
+                         -Delivering Fall Damage Strikes The Target Regardless of Distance""",
+                """
+                        That which you impose on others shall come back twice over.
+                         -Incoming Knockback is Doubled""");
+
+        addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "High above the ozone");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER,
+                """
+                        Gravity; The greatest force to leverage yourself by.
+                         -All Wind Charge Gusts Affect Targets With Greater Propulsion
+                         -Wind Charge Gusts Grant The User Reduced Gravity""",
+                """
+                        That which you rely on shall eventually crush you.
+                         -Fall Damage Taken is Doubled""");
+
+        addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "Quite the aftertaste");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC,
+                """
+                        Rot is your greatest friend.
+                         -Gluttony becomes Trial of Faith, Increasing Healing Received
+                         -Trial of Faith lasts Significantly Longer and Reaches Greater Potency
+                         -Eating Rotten Foods Heals You and is Always Available""",
+                """
+                        Your loyalty to the Rot takes quite a toll on your body.
+                         -Saturation and Hunger no longer restore health
+                         -Eating Forsworn Foods brings Ruin""");
+
+        addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "Symbiotic parasite");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON,
+                """
+                        Rot is your greatest weapon.
+                         -Gluttony becomes Desperate Need, Increasing Scythe Proficiency
+                         -Desperate Need Reaches Significantly Greater Potency""",
+                """
+                        The Rot will Consume You.
+                         -Upon Taking Damage, the Rot retaliates with a Poisonous Burst""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

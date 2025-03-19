@@ -319,7 +319,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.desperate_need", "Gluttony Becomes Desperate Need");
         add("malum.effect.geas.desperate_need_scythe_proficiency", "Desperate Need Substantially Increases Scythe Proficiency");
         add("malum.effect.geas.desperate_need_betrayal", "The Rot Will Consume You");
-        add("malum.effect.geas.wyrd_reconstruction", "Death Instead Triggers Spirit-Collection Effects");
+        add("malum.effect.geas.wyrd_reconstruction", "Death Triggers Resurrection and Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
         add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
         add("malum.effect.geas.malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
