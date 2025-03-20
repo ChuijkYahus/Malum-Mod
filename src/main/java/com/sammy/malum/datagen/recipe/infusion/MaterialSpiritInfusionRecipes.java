@@ -95,6 +95,13 @@ public class MaterialSpiritInfusionRecipes {
                 .addSpirit(EARTHEN_SPIRIT, 3)
                 .save(recipeOutput);
 
+        new SpiritInfusionRecipeBuilder(ItemRegistry.ETHER.get(), 1, ItemRegistry.PARACAUSAL_FLAME.get(), 1)
+                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 4))
+                .addExtraItem(ItemRegistry.HEX_ASH.get(), 8)
+                .addSpirit(ARCANE_SPIRIT, 8)
+                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .save(recipeOutput);
+
         new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.IMITATION_FLESH.get(), 4)
                 .addExtraItem(ItemRegistry.LIVING_FLESH.get(), 8)
                 .addExtraItem(Items.NETHER_WART, 4)

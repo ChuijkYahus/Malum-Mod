@@ -35,13 +35,69 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput output) {
         //KEY ITEMS
-        shapeless(RecipeCategory.MISC, ItemRegistry.ENCYCLOPEDIA_ARCANA.get()).requires(Items.BOOK).requires(ItemRegistry.REFINED_SOULSTONE.get()).unlockedBy("has_soulstone", has(ItemRegistry.REFINED_SOULSTONE.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.CRUDE_SCYTHE.get()).define('#', Tags.Items.RODS_WOODEN).define('Y', ItemRegistry.REFINED_SOULSTONE.get()).define('X', Tags.Items.INGOTS_IRON).pattern("XXY").pattern(" #X").pattern("#  ").unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_ALTAR.get()).define('Z', Tags.Items.INGOTS_GOLD).define('Y', ItemRegistry.REFINED_SOULSTONE.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).pattern(" Y ").pattern("ZXZ").pattern("XXX").unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.WEAVERS_WORKBENCH.get()).define('Z', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('Y', ItemRegistry.HEX_ASH.get()).define('X', ItemRegistry.RUNEWOOD_PLANKS.get()).pattern("XYX").pattern("XZX").unlockedBy("has_hex_ash", has(ItemRegistry.HEX_ASH.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_JAR.get()).define('X', ItemRegistry.HALLOWED_GOLD_INGOT.get()).define('Y', Tags.Items.GLASS_BLOCKS).pattern("X").pattern("Y").unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.SOULWOVEN_POUCH.get()).define('X', Tags.Items.STRINGS).define('Y', ItemRegistry.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").unlockedBy("has_soulwoven_silk", has(ItemRegistry.SOULWOVEN_SILK.get())).save(output);
-        shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get()).define('X', Tags.Items.RODS_WOODEN).define('Y', ItemTagRegistry.RUNEWOOD_PLANKS).pattern("  Y").pattern(" X ").pattern("X  ").unlockedBy("has_runewood", has(ItemRegistry.RUNEWOOD_PLANKS.get())).save(output);
+        shapeless(RecipeCategory.MISC, ItemRegistry.ENCYCLOPEDIA_ARCANA.get())
+                .requires(Items.BOOK)
+                .requires(ItemRegistry.REFINED_SOULSTONE.get())
+                .unlockedBy("has_soulstone", has(ItemRegistry.REFINED_SOULSTONE.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.CRUDE_SCYTHE.get())
+                .define('#', Tags.Items.RODS_WOODEN)
+                .define('Y', ItemRegistry.REFINED_SOULSTONE.get())
+                .define('X', Tags.Items.INGOTS_IRON)
+                .pattern("XXY")
+                .pattern(" #X")
+                .pattern("#  ")
+                .unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_ALTAR.get())
+                .define('Z', Tags.Items.INGOTS_GOLD)
+                .define('Y', ItemRegistry.REFINED_SOULSTONE.get())
+                .define('X', ItemTagRegistry.RUNEWOOD_PLANKS)
+                .pattern(" Y ")
+                .pattern("ZXZ")
+                .pattern("XXX")
+                .unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.WEAVERS_WORKBENCH.get())
+                .define('Z', ItemRegistry.HALLOWED_GOLD_INGOT.get())
+                .define('Y', ItemRegistry.HEX_ASH.get())
+                .define('X', ItemTagRegistry.RUNEWOOD_PLANKS)
+                .pattern("XYX")
+                .pattern("XZX")
+                .unlockedBy("has_hex_ash", has(ItemRegistry.HEX_ASH.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.SOUL_BRAZIER.get())
+                .define('Z', ItemRegistry.CTHONIC_GOLD.get())
+                .define('Y', ItemRegistry.HALLOWED_GOLD_INGOT.get())
+                .define('X', ItemTagRegistry.RUNEWOOD_PLANKS)
+                .define('W', ItemTagRegistry.TAINTED_ROCK)
+                .pattern("YZY")
+                .pattern("XXX")
+                .pattern("WXW")
+                .unlockedBy("has_soulstone", has(ItemRegistry.RAW_SOULSTONE.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.SPIRIT_JAR.get())
+                .define('X', ItemRegistry.HALLOWED_GOLD_INGOT.get())
+                .define('Y', Tags.Items.GLASS_BLOCKS)
+                .pattern("X")
+                .pattern("Y")
+                .unlockedBy("has_hallowed_gold", has(ItemRegistry.HALLOWED_GOLD_INGOT.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.SOULWOVEN_POUCH.get())
+                .define('X', Tags.Items.STRINGS)
+                .define('Y', ItemRegistry.SOULWOVEN_SILK.get())
+                .pattern("X")
+                .pattern("Y")
+                .unlockedBy("has_soulwoven_silk", has(ItemRegistry.SOULWOVEN_SILK.get()))
+                .save(output);
+        shaped(RecipeCategory.MISC, ItemRegistry.TOTEMIC_STAFF.get())
+                .define('X', Tags.Items.RODS_WOODEN)
+                .define('Y', ItemTagRegistry.RUNEWOOD_PLANKS)
+                .pattern("  Y")
+                .pattern(" X ")
+                .pattern("X  ")
+                .unlockedBy("has_totem_base", has(ItemRegistry.RUNEWOOD_TOTEM_BASE.get()))
+                .save(output);
 
         //CRAFTING COMPONENTS
         shaped(RecipeCategory.MISC, ItemRegistry.CONVOLUTED_LENS.get(), 2)
