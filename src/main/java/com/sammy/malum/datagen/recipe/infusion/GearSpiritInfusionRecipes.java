@@ -18,8 +18,7 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(ItemRegistry.TWISTED_ROCK.get(), 16)
                 .addExtraItem(ItemRegistry.SOULWOOD_PLANKS.get(), 8)
-                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS, 4))
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 4)
+                .addExtraItem(ItemRegistry.PARACAUSAL_FLAME.get(), 1)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_AXE.get(), 1, ItemRegistry.WEIGHT_OF_WORLDS.get(), 1)

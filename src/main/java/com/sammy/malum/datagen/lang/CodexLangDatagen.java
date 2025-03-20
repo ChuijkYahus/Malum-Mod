@@ -1236,8 +1236,9 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",
-                "My first scythes damaged the body and soul in sequence to shatter the soul. While I have moved beyond needing to do that, Tyrving is a sword built to weaponize the effect. Hex Ash and Twisted Rock create a distortion in the soul when struck, which inflicts magic damage proportional to the complexity and potency of a soul.",
-                "The distortion also 'snaps back', after a moment, causing further damage after the initial strike as the soul violently reasserts itself.",
+                "My first scythes damaged the body and soul in sequence to shatter the soul. While I have moved beyond needing to do that, the Tyrving is a sword built to weaponize the effect.",
+                "When Striking a Soul, the Paracausal Flame channeled through Twisted Rock creates a distortion, which inflicts magic damage proportional to the complexity and potency of a soul. The distortion also 'snaps back', after a moment, causing further damage after the initial strike as the soul violently reasserts itself.",
+                "A Unique limitation however is that the sword cannot sweep and by extension cannot accept Sweeping Edge as an enchantment",
                 "The weapon has a strange affinity with sharp volcanic glasses, allowing me to repair it with Obsidian in a Spirit Crucible instead of any more expensive material.");
 
         addSimpleEntryHeader("belt_of_the_magebane", "Belt of the Magebane", "Newfound ruin");
