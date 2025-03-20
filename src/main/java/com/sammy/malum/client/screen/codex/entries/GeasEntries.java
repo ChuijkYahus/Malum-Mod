@@ -32,7 +32,7 @@ public class GeasEntries {
         );
         screen.addEntry("undoing_geas_bindings", 0, 11, b -> b
                 .configureWidget(w -> w.setIcon(PARACAUSAL_FLAME.get()).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
-                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", BARRIER))
+                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", PARACAUSAL_FLAME.get()))
                 .addPage(new TextPage("undoing_geas_bindings.2"))
                 .addPage(SpiritInfusionPage.fromOutput(PARACAUSAL_FLAME.get()))
         );
