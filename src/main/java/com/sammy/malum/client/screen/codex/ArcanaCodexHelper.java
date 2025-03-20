@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex;
 
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
+import com.mojang.datafixers.util.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -474,11 +475,29 @@ public class ArcanaCodexHelper {
     }
 
     public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width) {
+        float scale = 1;
+        String translated = text.getString();
+        if (translated.startsWith("$m")) {
+            final int i = translated.indexOf("/$");
+            float value = Float.parseFloat(translated.substring(3, i));
+            text = Component.literal(translated.substring(i + 2));
+            scale = value;
+        }
+        renderWrappingText(guiGraphics, colorData, text, x, y, width, scale);
+    }
+
+    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
         Font font = Minecraft.getInstance().font;
-        final List<String> lines = wrapText(text, width);
+        final List<String> lines = wrapText(text, (int) (width / scaleMultiplier));
         for (int i = 0; i < lines.size(); i++) {
             String currentLine = lines.get(i);
-            renderRawText(guiGraphics, colorData, currentLine, x, y + i * (font.lineHeight + 1), 0.2f);
+            float textX = x;
+            float textY = y;
+            if (scaleMultiplier != 1) {
+                textX /= scaleMultiplier;
+                textY /= scaleMultiplier;
+            }
+            renderRawText(guiGraphics, colorData, currentLine, textX, textY + i * (font.lineHeight + 1), 0.2f, scaleMultiplier);
         }
     }
 
@@ -608,18 +627,29 @@ public class ArcanaCodexHelper {
     }
 
     private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier) {
+        renderRawText(guiGraphics, colorData, text, x, y, glowMultiplier, 1f);
+    }
+    private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier, float scaleMultiplier) {
         var minecraft = Minecraft.getInstance();
+        var poseStack = guiGraphics.pose();
         var font = minecraft.font;
         float guiScale = (float) minecraft.getWindow().getGuiScale();
-        float inverseScale = (4 / guiScale) * 4;
+        float inverseScale = (4 / guiScale) * 4 * scaleMultiplier;
 
-        int screenWidth = minecraft.getWindow().getScreenWidth();
-        int screenHeight = minecraft.getWindow().getScreenHeight();
+        float width = font.width(text) / 2f;
+        float screenWidth = minecraft.getWindow().getScreenWidth();
+        float screenHeight = minecraft.getWindow().getScreenHeight();
         float mouseX = (float) (minecraft.mouseHandler.xpos() / screenWidth);
         float mouseY = (float) (minecraft.mouseHandler.ypos() / screenHeight);
-        float width = font.width(text) / 2f;
+        float lineHeight = font.lineHeight;
+        if (scaleMultiplier != 1) {
+            poseStack.pushPose();
+            poseStack.scale(scaleMultiplier, scaleMultiplier, 1);
+            mouseX /= scaleMultiplier;
+            mouseY /= scaleMultiplier;
+        }
         float textX = ((x + width) * guiScale) / screenWidth;
-        float textY = ((y + font.lineHeight) * guiScale) / screenHeight;
+        float textY = ((y + lineHeight) * guiScale) / screenHeight;
         float differenceX = (textX - mouseX);
         float differenceY = (textY - mouseY);
         double horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
@@ -632,6 +662,7 @@ public class ArcanaCodexHelper {
             double jumpDelta = delta * Easing.SINE_IN_OUT.ease(EntryScreen.textJump, 0, 1);
             glowMultiplier *= (float) (1 + jumpDelta);
         }
+
         if (BOOK_THEME.getConfigValue().equals(BookTheme.EASY_READING)) {
             guiGraphics.drawString(font, text, x, y, 0, false);
             return;
@@ -656,7 +687,7 @@ public class ArcanaCodexHelper {
             int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
             int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
             var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-            var pose = guiGraphics.pose().last().pose();
+            var pose = poseStack.last().pose();
             RenderSystem.enableBlend();
             font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
@@ -672,6 +703,9 @@ public class ArcanaCodexHelper {
 
 
             RenderSystem.defaultBlendFunc();
+        }
+        if (scaleMultiplier != 1) {
+            poseStack.popPose();
         }
     }
 

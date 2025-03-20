@@ -12,6 +12,11 @@ public class CodexLangDatagen {
         return "$k" + s + "/$";
     }
 
+    //Only supported by geas info pages
+    private static String scaled(float s) {
+        return "$m" + s + "/$";
+    }
+
     private static String italic(String s) {
         return "$i" + s + "/$";
     }
@@ -879,7 +884,7 @@ public class CodexLangDatagen {
                 "",
                 "");
 
-        addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing Sight");
+        addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing sight");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,
                 """
                         The Dayblessed revels under the Sun.
@@ -888,7 +893,7 @@ public class CodexLangDatagen {
                          -Increases Healing Received by One Fifth""",
                 "The Moon's borrowed Light brings vulnerability\n -Armor is Reduced by one fifth during Night Time");
 
-        addSimpleEntryHeader("pact_of_the_nightchild", "Pact of The Nightchild", "A Solitary Passion");
+        addSimpleEntryHeader("pact_of_the_nightchild", "Pact of The Nightchild", "A Solitary passion");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD,
                 """
                         The Nightchild flourishes under the Moon.
@@ -904,7 +909,7 @@ public class CodexLangDatagen {
                         When in Light:
                          -Increases Healing Received, Magic Resistance and Armor by One Fifth
                          -Passively Heals You""",
-                """
+                scaled(0.8f) +"""
                         A primordial fear is manifested within you, an Inescapable Shade engulfs you.
                         When in Darkness:
                          -Your Vision is Dampened
@@ -912,7 +917,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_shadewalker", "Pact of The Shadewalker", "Photophobia");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER,
-                """
+                scaled(0.8f) +"""
                         The Moon awakens an even greater Power.
                         When in Darkness:
                          -Increases Movement, Mining and Attack Speed by One Fifth
@@ -924,7 +929,7 @@ public class CodexLangDatagen {
                          -Fire lasts longer
                         """);
 
-        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Dangerous Spiral");
+        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Dangerous spiral");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
                 """
                         An Incantation forced onto the mind. An Insatiable Thirst for the Arcana
@@ -932,7 +937,7 @@ public class CodexLangDatagen {
                          -Increases Arcane Resonance by Half""",
                 "The Incantation takes quite a toll on you. \n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
 
-        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Know Your Strength And Reinforce");
+        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Know your strengths and reinforce");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
                 """
                         A compression of Soul Ward, made greater and refined.
@@ -940,7 +945,7 @@ public class CodexLangDatagen {
                          -Increases Soul Ward Integrity by Half""",
                 "The added grandeur brings with itself a lethargic nature\n -Halves Soul Ward Recovery Rate");
 
-        addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "Know Your Ambition And Rise");
+        addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "Know your ambition and rise");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD,
                 """
                         An acceleration of Soul Ward, made to be primed in the nick of time.
@@ -948,15 +953,15 @@ public class CodexLangDatagen {
                          -Doubles Soul Ward Recovery Rate""",
                 "The added acceleration brings with itself a brittle nature\n -Halves Soul Ward Integrity");
 
-        addSimpleEntryHeader("pact_of_the_defiant", "Pact of The Defiant", "Meet The End And Defy");
+        addSimpleEntryHeader("pact_of_the_defiant", "Pact of The Defiant", "Meet the end and defy");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT,
-                """
+                scaled(0.8f) +"""
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
                          -Saturation heals you Twice as fast, Thrice as fast when near death
                          -Increases Healing Received by One Fourth""",
                 "The magics shift your perception of death, it always feels nearby.\n -Reduces Max Health by One Fourth");
 
-        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "Breathe In And Overcome");
+        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "Breathe in and overcome");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
                 """
                         A growth in confidence, a desire to overcome any threat, your pain is only secondary.
@@ -973,39 +978,38 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "Analyze and reimagine");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
                 """
-                        A change in the very nature of Soul Ward, a new overruling mechanism.
+                        A change, a new overruling mechanism.
                          -Dealing Magic Damage generates Soul Ward
                          -Increases Soul Ward Capacity Significantly
-                         -Doubles Soul Ward Received""",
+                         -Doubles Soul Ward Gain""",
                 "War is all you are.\n -Disables Natural Soul Ward Regeneration");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of Pyromaniac", "Self immolation is key");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
-                """
-                        Recklessness and Greed, fueled by Kinetic Impact.
-                         -Blowing Yourself Up Generates Pyromaniac Charges
-                         -Pyromaniac Charges increase Movement and Mining Speed
-                         -Explosion Damage is Limited to Half of your Current Health""",
+                scaled(0.8f) +"""
+                        Recklessness and Haste, fueled by Kinetic Impact.
+                         -Blowing Yourself Up Generates Pyromaniac Charges, Increasing Movement and Mining Speed
+                         -Grants Damage Resistance Against Explosions""",
                 """
                         You can only handle so much pressure.
-                         -Overexertion of Pyromaniac Ignites you When Applied
+                         -Overexertion of Pyromaniac Charges Ignites you When Applied
                          -Fire Damage is Deadlier""");
 
         addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "Critically heal for zero");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION,
-                """
+                scaled(0.8f) +"""
                         Unchecked Power derived from Death Itself.
-                         -Death Triggers Resurrection
-                         -Resurrection is paired with brief Invulnerability and Rapid Activation of Spirit-Collection Effects""",
-                """
-                        The Burning Stars of Wyrd Reconstruction Bleed Through You.
-                         -Resurrection Effect bears a Heavy Cooldown
+                         -Death Is Avoided Through Reconstruction
+                         -Reconstruction is paired with brief Invulnerability and Rapid Activation of Spirit-Collection Effects""",
+                scaled(0.8f) +"""
+                        The Burning Stars Exhaust You.
+                         -Reconstruction Effect bears a Heavy Cooldown
                          -Cooldown State Halves Arcane Resonance
                          -Spirit-Collection Drains Hunger""");
 
         addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "Heaven's Falling Down");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,
-                """
+                scaled(0.8f) + """
                         Gravity; The greatest force to impose onto others.
                          -Taking Fall Damage Automatically Strikes Nearby Creatures
                          -Delivering Fall Damage Strikes The Target Regardless of Distance""",
@@ -1016,20 +1020,19 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "High above the ozone");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER,
                 """
-                        Gravity; The greatest force to leverage yourself by.
-                         -All Wind Charge Gusts Affect Targets With Greater Propulsion
-                         -Wind Charge Gusts Grant The User Reduced Gravity""",
+                        Gravity; The greatest force to leverage against.
+                         -Wind Gusts Provide Greater Propulsion and Grant Reduced Gravity""",
                 """
                         That which you rely on shall eventually crush you.
                          -Fall Damage Taken is Doubled""");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "Quite the aftertaste");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC,
-                """
-                        Rot is your greatest friend.
+                scaled(0.65f) + """
+                        Rot shall become your greatest friend.
                          -Gluttony becomes Trial of Faith, Increasing Healing Received
                          -Trial of Faith lasts Significantly Longer and Reaches Greater Potency
-                         -Eating Rotten Foods Heals You and is Always Available""",
+                         -Eating Rotten Foods Heals You and Omits the Demand for Appetite""",
                 """
                         Your loyalty to the Rot takes quite a toll on your body.
                          -Saturation and Hunger no longer restore health
@@ -1037,13 +1040,14 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "Symbiotic parasite");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON,
-                """
-                        Rot is your greatest weapon.
+                scaled(0.8f) + """
+                        Rot shall become your greatest weapon.
                          -Gluttony becomes Desperate Need, Increasing Scythe Proficiency
                          -Desperate Need Reaches Significantly Greater Potency""",
-                """
+                scaled(0.8f) + """
                         The Rot will Consume You.
-                         -Upon Taking Damage, the Rot retaliates with a Poisonous Burst""");
+                         -Upon Taking Damage, the Rot Attacks You with a Poisonous Burst
+                         -Desperate Need reduces Armor, Healing Received and Magic Resistance""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 
