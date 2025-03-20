@@ -874,15 +874,14 @@ public class CodexLangDatagen {
         //TODO: Geas Stuff
         addSimpleEntryHeader("geas_magic", "Geas Magic", "WeeWoo Magic");
         addPages("geas_magic",
-                "",
-                "",
-                "");
+                "Geas magic is GOATED. By using the Soulbinding Brazier you can swear to the effects of a geas thingymajig. Each geas offers a set of benefits as well as a set of drawbacks. These are tied to your very soul and cannot be removed as easily as if taking off a trinket, so choose wisely.",
+                "The Brazier requires a prime item, a set of ingredients and a set of spirit arcanas. All of this is to be inserted into the brazier directly. To initiate the process, the Brazier must be suffused with Ether. Once the process is started, it will require a blood offering to bind the geas to your soul. Any number of willing participants may choose to offer their blood and bind their soul.",
+                "Something something the geas effects can be applied to even non player entities. Also something here or earlier about how the brazier utilizes cthonic gold and hallowed gold to function. Something something you have the capacity for 2 geas thingymajigs.");
 
         addSimpleEntryHeader("undoing_geas_bindings", "Undoing Geas Bindings", "No more WeeWoo Magic");
         addPages("undoing_geas_bindings",
-                "",
-                "",
-                "");
+                "Geas magic is GOATED. But you no doubt want to be able to tinker around with it. Being locked to your initial set of geas can be quite restricting, and so to combat that you may initiate the clergy of undoing- name needed.",
+                "It functions the same as any other geas pact recipe, but requires a Flame of Undoing in place of Ether. The Flame of Undoing requires crying obsidian as well as some other shit, I'll figure the recipe out later. To choose which geas you wanna remove, simply insert the recipe for that geas, but in place of ether, the undoing flame instead");
 
         addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing sight");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,

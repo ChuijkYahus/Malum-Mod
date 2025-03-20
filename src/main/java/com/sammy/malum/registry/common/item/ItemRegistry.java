@@ -517,6 +517,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> ALCHEMICAL_CALX = register("alchemical_calx", DEFAULT_PROPERTIES(), Item::new);
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", DEFAULT_PROPERTIES(), Item::new);
+    public static final DeferredHolder<Item, Item> FLAME_OF_UNDOING = register("flame_of_undoing", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> CONVOLUTED_LENS = register("convoluted_lens", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> MIMICRY_RELAY = register("mimicry_relay", DEFAULT_PROPERTIES(), Item::new);
     public static final DeferredHolder<Item, Item> IMITATION_FLESH = register("imitation_flesh", DEFAULT_PROPERTIES(), Item::new);
