@@ -361,7 +361,6 @@ public class ArcanaCodexHelper {
         } else {
             left -= startingOffset;
         }
-        //item slot
         for (int i = slots - 1; i >= 0; i--) {
             int offset = i * 18;
             int u = isVertical ? 0 : 2;

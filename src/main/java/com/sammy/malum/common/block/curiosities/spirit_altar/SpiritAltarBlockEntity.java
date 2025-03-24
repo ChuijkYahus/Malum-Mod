@@ -27,7 +27,6 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,7 +35,6 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
-import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
@@ -49,14 +47,15 @@ import java.util.function.Supplier;
 
 public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IItemHandlerSupplier {
 
-    private static final Vec3 ALTAR_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
+    public static final Vec3 ALTAR_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
     public static final int HORIZONTAL_RANGE = 4;
     public static final int VERTICAL_RANGE = 3;
 
     public float speed = 1f;
     public int progress;
     public int idleProgress;
-    public float spiritYLevel;
+
+    public float timeActive;
 
     public List<BlockPos> acceleratorPositions = new ArrayList<>();
     public List<IAltarAccelerator> accelerators = new ArrayList<>();
@@ -92,7 +91,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         compound.putInt("progress", progress);
         compound.putInt("idleProgress", idleProgress);
-        compound.putFloat("spiritYLevel", spiritYLevel);
+        compound.putFloat("timeActive", timeActive);
         compound.putFloat("speed", speed);
         compound.putFloat("spiritAmount", spiritAmount);
 
@@ -112,7 +111,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         progress = compound.getInt("progress");
         idleProgress = compound.getInt("idleProgress");
-        spiritYLevel = compound.getFloat("spiritYLevel");
+        timeActive = compound.getFloat("timeActive");
         speed = compound.getFloat("speed");
         spiritAmount = compound.getFloat("spiritAmount");
 
@@ -145,10 +144,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     @Override
-    public void update(@NotNull Level level) {
-    }
-
-    @Override
     public void onBreak(@Nullable Player player) {
         inventory.dumpItems(level, worldPosition);
         spiritInventory.dumpItems(level, worldPosition);
@@ -164,8 +159,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         if (!spiritResult.isEmpty()) {
             return ItemInteractionResult.SUCCESS;
         }
-        var impetusResult = inventory.interact(serverLevel, pPlayer, pHand);
-        if (!impetusResult.isEmpty()) {
+        var result = inventory.interact(serverLevel, pPlayer, pHand);
+        if (!result.isEmpty()) {
             return ItemInteractionResult.SUCCESS;
         }
         return super.onUse(pPlayer, pHand);
@@ -188,8 +183,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         }
 
         if (!possibleRecipes.isEmpty()) {
-            if (spiritYLevel < 30) {
-                spiritYLevel++;
+            if (timeActive < 30) {
+                timeActive++;
             }
             if (!isCrafting && recipe != null) {
                 isCrafting = true;
@@ -217,12 +212,12 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         } else {
             isCrafting = false;
             progress = 0;
-            if (spiritYLevel > 0) {
-                spiritYLevel = Math.max(spiritYLevel - 0.8f, 0);
+            if (timeActive > 0) {
+                timeActive = Math.max(timeActive - 0.8f, 0);
             }
         }
         if (level.isClientSide) {
-            spiritSpin += 1 + spiritYLevel * 0.05f + speed * 0.5f;
+            spiritSpin += 1 + timeActive * 0.05f + speed * 0.5f;
             SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
         }
     }
@@ -350,17 +345,18 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
-        float projectedSpiritSpin = spiritSpin + spiritYLevel * 0.05f + speed * 0.5f;
+        float projectedSpiritSpin = spiritSpin + timeActive * 0.05f + speed * 0.5f;
         float lerpSpiritSpin = spiritSpin + partialTicks * (projectedSpiritSpin - spiritSpin);
-        float distance = 1 - getSpinUp(Easing.SINE_OUT) * 0.25f + (float) Math.sin((lerpSpiritSpin % 6.28f) / 20f) * 0.025f;
+        float distanceOscillation = Mth.sin((lerpSpiritSpin / 20f) % 6.28f) * 0.025f;
+        float distance = 1 - getSpinUp(Easing.SINE_OUT) * 0.25f + distanceOscillation;
         float height = 0.75f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
         return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, spiritAmount, lerpSpiritSpin, 360);
     }
 
     public float getSpinUp(Easing easing) {
-        if (spiritYLevel > 30) {
+        if (timeActive > 30) {
             return 1;
         }
-        return easing.ease(spiritYLevel / 30f, 0, 1, 1);
+        return easing.ease(timeActive / 30f, 0, 1, 1);
     }
 }

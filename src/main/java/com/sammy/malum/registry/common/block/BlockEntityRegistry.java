@@ -133,6 +133,7 @@ public class BlockEntityRegistry {
             event.registerBlockEntityRenderer(SPIRIT_ALTAR.get(), SpiritAltarRenderer::new);
             event.registerBlockEntityRenderer(RUNIC_WORKBENCH.get(), MalumItemHolderRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_JAR.get(), SpiritJarRenderer::new);
+            event.registerBlockEntityRenderer(SOUL_BRAZIER.get(), SoulBrazierRenderer::new);
 
             event.registerBlockEntityRenderer(SPIRIT_CRUCIBLE.get(), SpiritCrucibleRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_CATALYZER.get(), SpiritCatalyzerRenderer::new);

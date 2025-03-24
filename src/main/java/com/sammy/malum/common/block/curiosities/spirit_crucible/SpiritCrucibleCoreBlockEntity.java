@@ -351,14 +351,18 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
-        float distance = 0.75f + (float) Math.sin(((spiritSpin + partialTicks) % 6.28f) / 20f) * 0.025f;
+        float predictedSpiritSpin = spiritSpin + 1 + attributes.focusingSpeed.getValue(attributes) * 0.1f;
+        float spinLerp = spiritSpin + partialTicks * (predictedSpiritSpin - spiritSpin);
+        float distance = 0.75f + (float) Math.sin(((spinLerp + partialTicks) / 20f) % 6.28f) * 0.025f;
         float height = 1.8f;
-        return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, spiritAmount, spiritSpin + partialTicks, 360);
+        return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, spiritAmount, spinLerp, 360);
     }
 
     public Vec3 getAugmentItemOffset(int slot, float partialTicks) {
-        float distance = 0.6f + (float) Math.sin(((spiritSpin + partialTicks) % 6.28f) / 20f) * 0.025f;
+        float predictedSpiritSpin = spiritSpin + 1 + attributes.focusingSpeed.getValue(attributes) * 0.1f;
+        float spinLerp = spiritSpin + partialTicks * (predictedSpiritSpin - spiritSpin);
+        float distance = 0.6f + (float) Math.sin(((spiritSpin + partialTicks) / 20f) % 6.28f) * 0.025f;
         float height = 1.6f;
-        return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, augmentInventory.slotCount, spiritSpin + partialTicks, 240);
+        return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, augmentInventory.slotCount, spinLerp, 240);
     }
 }

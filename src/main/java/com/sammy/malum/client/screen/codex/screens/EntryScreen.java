@@ -21,7 +21,6 @@ import java.util.function.*;
 
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
-//first generic represents the screen itself, the second represents the screen that it was opened from
 public class EntryScreen extends AbstractMalumScreen {
 
     public static EntryScreen entryScreen;
