@@ -45,12 +45,12 @@ public class SpiritFocusingPage extends BookPage {
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 59, top + 16, mouseX, mouseY, false);
-        renderItem(screen, guiGraphics, recipe.ingredient, left + 63, top + 59, mouseX, mouseY);
-        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 126, mouseX, mouseY);
+        renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 63, top + 16, mouseX, mouseY, false);
+        renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
+        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 62, top + 78, 18, 18)) {
-                guiGraphics.renderTooltip(Minecraft.getInstance().font, BASE, mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
             }
         });
     }

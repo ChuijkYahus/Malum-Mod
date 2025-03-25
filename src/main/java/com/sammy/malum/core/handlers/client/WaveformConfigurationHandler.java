@@ -1,0 +1,88 @@
+package com.sammy.malum.core.handlers.client;
+
+import com.sammy.malum.client.screen.waveform.*;
+import com.sammy.malum.common.block.curiosities.redstone.*;
+import com.sammy.malum.registry.common.item.*;
+import net.minecraft.client.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.event.entity.player.*;
+
+public class WaveformConfigurationHandler {
+
+    public static BlockPos interactionPos;
+    public static InteractionHand interactionHand;
+    public static int interactionTime;
+
+    public static void tick(ClientTickEvent event) {
+        var minecraft = Minecraft.getInstance();
+        if (interactionPos == null) {
+            return;
+        }
+        var hitResult = minecraft.hitResult;
+        if (!(hitResult instanceof BlockHitResult blockHitResult)) {
+            resetInteraction();
+            return;
+        }
+        var blockPos = blockHitResult.getBlockPos();
+        if (!blockPos.equals(interactionPos)) {
+            resetInteraction();
+            return;
+        }
+        if (!(minecraft.level.getBlockEntity(blockPos) instanceof SpiritDiodeBlockEntity spiritDiode)) {
+            resetInteraction();
+            return;
+        }
+        if (!minecraft.options.keyUse.isDown()) {
+            resetInteraction();
+            return;
+        }
+
+        interactionTime++;
+        if (interactionTime == 5) {
+            minecraft.setScreen(new ValueSettingsScreen(spiritDiode));
+            resetInteraction();
+        }
+    }
+    public static void onBlockActivated(PlayerInteractEvent.RightClickBlock event) {
+        Level world = event.getLevel();
+        BlockPos pos = event.getPos();
+        Player player = event.getEntity();
+        InteractionHand hand = event.getHand();
+        ItemStack stack = player.getItemInHand(hand);
+        if (!stack.is(ItemTagRegistry.IS_REDSTONE_TOOL)) {
+            return;
+        }
+        if (!canInteract(player)) {
+            return;
+        }
+        if (!(world.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity diode)) {
+            return;
+        }
+        if (interactionPos != null) {
+            event.setCanceled(true);
+            return;
+        }
+        interactionPos = pos;
+        player.swing(hand);
+        interactionHand = hand;
+        interactionTime = 0;
+        event.setCanceled(true);
+    }
+
+    public static void resetInteraction() {
+        interactionPos = null;
+        interactionHand = null;
+        interactionTime = 0;
+    }
+
+    public static boolean canInteract(Player player) {
+        return player != null && !player.isSpectator() && !player.isShiftKeyDown() && player.mayBuild();
+    }
+}

@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_catalyzer;
 
+import com.sammy.malum.registry.common.item.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -28,12 +29,14 @@ public class SpiritCatalyzerComponentBlock extends MultiblockComponentBlock {
     public static final VoxelShape NORTH_SOUTH_SHAPE = makeNorthSouthShape();
     public static final VoxelShape WEST_EAST_SHAPE = makeWestEastShape();
 
-    private final Supplier<Item> cloneStack;
-
-    public SpiritCatalyzerComponentBlock(Properties properties, Supplier<Item> cloneStack) {
+    public SpiritCatalyzerComponentBlock(Properties properties) {
         super(properties);
-        this.cloneStack = cloneStack;
         this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.NORTH));
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return ItemRegistry.SPIRIT_CATALYZER.get().getDefaultInstance();
     }
 
     @Override
@@ -52,11 +55,6 @@ public class SpiritCatalyzerComponentBlock extends MultiblockComponentBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING);
-    }
-
-    @Override
-    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return cloneStack.get().getDefaultInstance();
     }
 
     @Override

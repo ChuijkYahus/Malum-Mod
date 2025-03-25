@@ -18,17 +18,7 @@ public class WaveMakerBlock extends SpiritDiodeBlock<WaveMakerBlockEntity> {
         if (oldState.getBlock().equals(this)) {
             return;
         }
-        level.scheduleTick(pos, this, getDefaultFrequency(pos, state));
-    }
-
-    @Override
-    public int getDefaultFrequency(BlockPos pos, BlockState state) {
-        return 10;
-    }
-
-    @Override
-    public int[] getFrequencyPresets() {
-        return new int[] {10, 20, 40, 80, 160, 320, 640, 1280, 2560};
+        level.scheduleTick(pos, this, 20);
     }
 
     @Override

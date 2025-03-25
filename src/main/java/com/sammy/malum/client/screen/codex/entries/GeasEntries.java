@@ -2,10 +2,12 @@ package com.sammy.malum.client.screen.codex.entries;
 
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
+import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,12 +25,16 @@ public class GeasEntries {
                 .addPage(new HeadlineTextItemPage("geas_magic", "geas_magic.1", SOUL_BRAZIER.get()))
                 .addPage(new TextPage("geas_magic.2"))
                 .addPage(new TextPage("geas_magic.3"))
+                .addPage(new CraftingPage(SOUL_BRAZIER.get(),
+                        HALLOWED_GOLD_INGOT.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INGOT.get(),
+                        RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(),
+                        TAINTED_ROCK.get(), RUNEWOOD_PLANKS.get(), TAINTED_ROCK.get()))
         );
         screen.addEntry("undoing_geas_bindings", 0, 11, b -> b
-                .configureWidget(w -> w.setIcon(BARRIER).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
-                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", BARRIER))
+                .configureWidget(w -> w.setIcon(PARACAUSAL_FLAME.get()).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
+                .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", PARACAUSAL_FLAME.get()))
                 .addPage(new TextPage("undoing_geas_bindings.2"))
-                .addPage(new TextPage("undoing_geas_bindings.3"))
+                .addPage(SpiritInfusionPage.fromOutput(PARACAUSAL_FLAME.get()))
         );
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED, 1, 11);

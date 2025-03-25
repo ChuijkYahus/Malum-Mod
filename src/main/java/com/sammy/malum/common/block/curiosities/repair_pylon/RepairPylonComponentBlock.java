@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.repair_pylon;
 
+import com.sammy.malum.registry.common.item.ItemRegistry;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -21,12 +22,14 @@ public class RepairPylonComponentBlock extends MultiblockComponentBlock {
 
     public static final BooleanProperty TOP = BooleanProperty.create("top");
 
-    private final Supplier<Item> cloneStack;
-
-    public RepairPylonComponentBlock(Properties properties, Supplier<Item> cloneStack) {
+    public RepairPylonComponentBlock(Properties properties) {
         super(properties);
-        this.cloneStack = cloneStack;
         this.registerDefaultState(this.stateDefinition.any().setValue(TOP, false));
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return ItemRegistry.REPAIR_PYLON.get().getDefaultInstance();
     }
 
     @Override
@@ -37,11 +40,6 @@ public class RepairPylonComponentBlock extends MultiblockComponentBlock {
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return pState.getValue(TOP) ? TOP_SHAPE : MIDDLE_SHAPE;
-    }
-
-    @Override
-    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return cloneStack.get().getDefaultInstance();
     }
 
     @Override

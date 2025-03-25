@@ -48,6 +48,7 @@ public class ProfaneGluttonGeas extends GeasEffect {
         if (effect != null) {
             EntityHelper.shortenEffect(effect, target, effect.getDuration() / 4);
             if (event.getSource().is(DamageTypeRegistry.ROT)) {
+                target.addEffect(new MobEffectInstance(MobEffects.POISON, 40, 0, true, true));
                 return;
             }
             var random = target.getRandom();

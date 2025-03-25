@@ -199,8 +199,10 @@ public class TinkeringEntries {
         screen.addEntry("tyrving", -4, 19, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(TYRVING))
                 .addPage(new HeadlineTextPage("tyrving", "tyrving.1"))
-                .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))
+                .addPage(new TextPage("tyrving.3"))
+                .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))
+                .addPage(new TextPage("tyrving.4"))
                 .addPage(SpiritRepairPage.fromId("tyrving_restoration"))
         );
     }

@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex;
 
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
+import com.mojang.datafixers.util.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -216,7 +217,7 @@ public class ArcanaCodexHelper {
                 .setShader(() -> shaderInstance);
 
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-        renderTexture(location, stack, builder, x, y, 0, 0, textureWidth, textureHeight);
+        renderTexture(location, stack, builder, x, y, 0, 0, 0, textureWidth, textureHeight);
         builder.setAlpha(0.1f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 1, 0, 0, textureWidth, textureHeight);
@@ -235,33 +236,39 @@ public class ArcanaCodexHelper {
         renderTexture(texture, poseStack, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, VFX_BUILDER, x, y, 0, u, v, width, height, textureWidth, textureHeight);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, VFX_BUILDER, x, y, 0, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, textureWidth, textureHeight);
-    }
-
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height) {
-        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, width, height);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, canvasWidth, canvasHeight);
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, builder, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight);
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, width, height, canvasWidth, canvasHeight);
+    }
+
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+        renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight, canvasWidth, canvasHeight);
+    }
+
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, textureWidth, textureHeight, canvasWidth, canvasHeight);
+    }
+
+    private static void renderTexture(PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
-        builder.setPositionWithWidth(x, y, width, height)
-                .setZLevel(z)
-                .setShaderTexture(texture)
-                .setUVWithWidth(u, v, width, height, textureWidth, textureHeight)
+        builder.setZLevel(z)
+                .setUVWithWidth(u, v, width, height, canvasWidth, canvasHeight)
                 .blit(poseStack);
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();
@@ -354,7 +361,6 @@ public class ArcanaCodexHelper {
         } else {
             left -= startingOffset;
         }
-        //item slot
         for (int i = slots - 1; i >= 0; i--) {
             int offset = i * 18;
             int u = isVertical ? 0 : 2;
@@ -468,11 +474,29 @@ public class ArcanaCodexHelper {
     }
 
     public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width) {
+        float scale = 1;
+        String translated = text.getString();
+        if (translated.startsWith("$m")) {
+            final int i = translated.indexOf("/$");
+            float value = Float.parseFloat(translated.substring(3, i));
+            text = Component.literal(translated.substring(i + 2));
+            scale = value;
+        }
+        renderWrappingText(guiGraphics, colorData, text, x, y, width, scale);
+    }
+
+    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
         Font font = Minecraft.getInstance().font;
-        final List<String> lines = wrapText(text, width);
+        final List<String> lines = wrapText(text, (int) (width / scaleMultiplier));
         for (int i = 0; i < lines.size(); i++) {
             String currentLine = lines.get(i);
-            renderRawText(guiGraphics, colorData, currentLine, x, y + i * (font.lineHeight + 1), 0.2f);
+            float textX = x;
+            float textY = y;
+            if (scaleMultiplier != 1) {
+                textX /= scaleMultiplier;
+                textY /= scaleMultiplier;
+            }
+            renderRawText(guiGraphics, colorData, currentLine, textX, textY + i * (font.lineHeight + 1), 0.2f, scaleMultiplier);
         }
     }
 
@@ -602,18 +626,29 @@ public class ArcanaCodexHelper {
     }
 
     private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier) {
+        renderRawText(guiGraphics, colorData, text, x, y, glowMultiplier, 1f);
+    }
+    private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier, float scaleMultiplier) {
         var minecraft = Minecraft.getInstance();
+        var poseStack = guiGraphics.pose();
         var font = minecraft.font;
         float guiScale = (float) minecraft.getWindow().getGuiScale();
-        float inverseScale = (4 / guiScale) * 4;
+        float inverseScale = (4 / guiScale) * 4 * scaleMultiplier;
 
-        int screenWidth = minecraft.getWindow().getScreenWidth();
-        int screenHeight = minecraft.getWindow().getScreenHeight();
+        float width = font.width(text) / 2f;
+        float screenWidth = minecraft.getWindow().getScreenWidth();
+        float screenHeight = minecraft.getWindow().getScreenHeight();
         float mouseX = (float) (minecraft.mouseHandler.xpos() / screenWidth);
         float mouseY = (float) (minecraft.mouseHandler.ypos() / screenHeight);
-        float width = font.width(text) / 2f;
+        float lineHeight = font.lineHeight;
+        if (scaleMultiplier != 1) {
+            poseStack.pushPose();
+            poseStack.scale(scaleMultiplier, scaleMultiplier, 1);
+            mouseX /= scaleMultiplier;
+            mouseY /= scaleMultiplier;
+        }
         float textX = ((x + width) * guiScale) / screenWidth;
-        float textY = ((y + font.lineHeight) * guiScale) / screenHeight;
+        float textY = ((y + lineHeight) * guiScale) / screenHeight;
         float differenceX = (textX - mouseX);
         float differenceY = (textY - mouseY);
         double horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
@@ -626,6 +661,7 @@ public class ArcanaCodexHelper {
             double jumpDelta = delta * Easing.SINE_IN_OUT.ease(EntryScreen.textJump, 0, 1);
             glowMultiplier *= (float) (1 + jumpDelta);
         }
+
         if (BOOK_THEME.getConfigValue().equals(BookTheme.EASY_READING)) {
             guiGraphics.drawString(font, text, x, y, 0, false);
             return;
@@ -649,22 +685,26 @@ public class ArcanaCodexHelper {
             int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
             int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
             int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
+            var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+            var pose = poseStack.last().pose();
             RenderSystem.enableBlend();
-            final LodestoneBufferWrapper buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
-            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, guiGraphics.pose().last().pose(),
+            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
 
             RenderSystem.defaultBlendFunc();
+        }
+        if (scaleMultiplier != 1) {
+            poseStack.popPose();
         }
     }
 

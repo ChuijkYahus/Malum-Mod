@@ -92,7 +92,7 @@ public class CloudSkipperGeas extends GeasEffect {
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (event.getSource().is(DamageTypeTags.IS_FALL)) {
-            event.setNewDamage(event.getNewDamage() * 1.5f);
+            event.setNewDamage(event.getNewDamage() * 2f);
         }
     }
 

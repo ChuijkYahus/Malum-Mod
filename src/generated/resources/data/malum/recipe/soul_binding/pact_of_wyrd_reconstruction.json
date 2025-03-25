@@ -21,12 +21,20 @@
   },
   "spirits": [
     {
+      "type": "sacred",
+      "count": 32
+    },
+    {
       "type": "wicked",
       "count": 32
     },
     {
       "type": "aqueous",
-      "count": 32
+      "count": 16
+    },
+    {
+      "type": "earthen",
+      "count": 16
     }
   ]
 }

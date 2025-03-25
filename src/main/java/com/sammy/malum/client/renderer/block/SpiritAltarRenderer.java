@@ -48,9 +48,9 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
         ItemStack stack = blockEntityIn.inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
             poseStack.pushPose();
-            Vec3 offset = blockEntityIn.getCentralItemOffset();
+            Vec3 offset = SpiritAltarBlockEntity.ALTAR_ITEM_OFFSET;
             poseStack.translate(offset.x, offset.y, offset.z);
-            poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
+            poseStack.mulPose(Axis.YP.rotationDegrees((((level.getGameTime() + partialTicks) * 3) % 360)));
             poseStack.scale(0.45f, 0.45f, 0.45f);
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
             poseStack.popPose();
