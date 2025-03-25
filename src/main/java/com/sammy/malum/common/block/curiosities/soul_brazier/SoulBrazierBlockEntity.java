@@ -2,8 +2,13 @@ package com.sammy.malum.common.block.curiosities.soul_brazier;
 
 import com.sammy.malum.common.block.MalumBlockEntityInventory;
 import com.sammy.malum.common.block.MalumSpiritBlockEntityInventory;
+import com.sammy.malum.common.recipe.SoulBindingRecipe;
+import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
+import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +24,7 @@ import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.systems.recipe.LodestoneRecipeType;
 
 import javax.annotation.*;
 import java.util.function.Supplier;
@@ -28,11 +34,11 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public static final Vec3 BRAZIER_ITEM_OFFSET = new Vec3(0.5f, 1.125f, 0.5f);
     private static final int WARMUP_DURATION = 40;
     public LodestoneBlockEntityInventory inventory;
-    public LodestoneBlockEntityInventory extrasInventory;
     public LodestoneBlockEntityInventory spiritInventory;
 
-    public Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, extrasInventory, spiritInventory);
+    public Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, spiritInventory);
 
+    public SoulBindingRecipe recipe;
 
     public float extrasAmount;
     public float extrasSpin;
@@ -49,9 +55,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
 
     public SoulBrazierBlockEntity(BlockPos pos, BlockState state) {
         this(BlockEntityRegistry.SOUL_BRAZIER.get(), pos, state);
-        inventory = MalumBlockEntityInventory.singleStackNotSpirit(this);//.onContentsChanged(this::recalculateRecipes);
-        extrasInventory = MalumBlockEntityInventory.stacksNotSpirits(this, 8);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, SpiritTypeRegistry.SPIRITS.size());//.onContentsChanged(this::recalculateRecipes);
+        inventory = MalumBlockEntityInventory.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
+        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, SpiritTypeRegistry.SPIRITS.size()).onContentsChanged(this::updateRecipe);
     }
 
     @Override
@@ -63,7 +68,6 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         inventory.save(pRegistries, compound);
         spiritInventory.save(pRegistries, compound, "spiritInventory");
-        extrasInventory.save(pRegistries, compound, "extrasInventory");
         compound.putFloat("timeActive", timeActive);
     }
 
@@ -71,7 +75,6 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         inventory.load(pRegistries, compound);
         spiritInventory.load(pRegistries, compound, "spiritInventory");
-        extrasInventory.load(pRegistries, compound, "extrasInventory");
         timeActive = compound.getFloat("timeActive");
         super.loadAdditional(compound, pRegistries);
     }
@@ -80,7 +83,6 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void onBreak(@Nullable Player player) {
         inventory.dumpItems(level, worldPosition);
         spiritInventory.dumpItems(level, worldPosition);
-        extrasInventory.dumpItems(level, worldPosition);
     }
 
     @Override
@@ -90,10 +92,6 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         }
         var spiritResult = spiritInventory.interact(serverLevel, pPlayer, pHand);
         if (!spiritResult.isEmpty()) {
-            return ItemInteractionResult.SUCCESS;
-        }
-        var extraResult = extrasInventory.interact(serverLevel, pPlayer, pHand);
-        if (!extraResult.isEmpty()) {
             return ItemInteractionResult.SUCCESS;
         }
         var result = inventory.interact(serverLevel, pPlayer, pHand);
@@ -107,7 +105,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void tick() {
         super.tick();
         spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-        extrasAmount = Math.max(1, Mth.lerp(0.1f, extrasAmount, extrasInventory.getFilledSlotCount()));
+        extrasAmount = Math.max(1, Mth.lerp(0.1f, extrasAmount, inventory.getFilledSlotCount()-1));
 
         if (isCrafting) {
             timeActive++;
@@ -116,15 +114,24 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             timeActive = Mth.clamp(timeActive-1, 0, WARMUP_DURATION);
         }
         if (level.isClientSide) {
-            float speed = 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.05f;
+            float speed = 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.4f;
             spiritSpin += speed;
             extrasSpin -= speed;
+            SoulBindingBrazierParticleEffects.passiveBrazierParticles(this);
         }
 
         if (level.getGameTime() % 100L == 0) {
             isCrafting = !isCrafting;
         }
     }
+
+    public void updateRecipe() {
+        inventory.updateInventoryCaches();
+        spiritInventory.updateInventoryCaches();
+        recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SOUL_BINDING.get(),
+                new SpiritBasedRecipeInput(inventory.nonEmptyItemStacks, spiritInventory.nonEmptyItemStacks));
+    }
+
 
     public Vec3 getItemPos() {
         return BlockPosHelper.fromBlockPos(getBlockPos()).add(BRAZIER_ITEM_OFFSET);

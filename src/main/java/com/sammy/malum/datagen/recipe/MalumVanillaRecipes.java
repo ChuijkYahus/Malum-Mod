@@ -70,7 +70,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .define('Z', ItemRegistry.CTHONIC_GOLD.get())
                 .define('Y', ItemRegistry.HALLOWED_GOLD_INGOT.get())
                 .define('X', ItemTagRegistry.RUNEWOOD_PLANKS)
-                .define('W', ItemTagRegistry.TAINTED_ROCK)
+                .define('W', ItemRegistry.TAINTED_ROCK.get())
                 .pattern("YZY")
                 .pattern("XXX")
                 .pattern("WXW")

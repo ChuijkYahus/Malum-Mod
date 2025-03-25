@@ -16,6 +16,29 @@ import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
 
 public class MalumBlockProperties {
 
+    public static LodestoneBlockProperties SPIRIT_ALTAR() {
+        return new LodestoneBlockProperties()
+                .strength(2F, 30.0F)
+                .instrument(NoteBlockInstrument.XYLOPHONE)
+                .mapColor(MapColor.TERRACOTTA_BROWN)
+                .sound(SoundRegistry.RUNEWOOD)
+                .setCutoutRenderType()
+                .noOcclusion()
+                .needsAxe();
+    }
+
+    public static LodestoneBlockProperties TAINTED_ROCK_ARTIFICE() {
+        return new LodestoneBlockProperties()
+                .strength(1.75F, 30.0F)
+                .instrument(NoteBlockInstrument.XYLOPHONE)
+                .sound(SoundRegistry.TAINTED_ROCK_BRICKS)
+                .mapColor(MapColor.COLOR_GRAY)
+                .requiresCorrectToolForDrops()
+                .setCutoutRenderType()
+                .needsPickaxe()
+                .noOcclusion();
+    }
+
     public static LodestoneBlockProperties SPIRITED_GLASS() {
         return new LodestoneBlockProperties()
                 .setRenderType(() -> RenderType::translucent)

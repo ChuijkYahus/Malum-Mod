@@ -28,8 +28,8 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
     public void render(SoulBrazierBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         var level = Minecraft.getInstance().level;
         var itemRenderer = Minecraft.getInstance().getItemRenderer();
+        var inventory = blockEntityIn.inventory;
         var spiritInventory = blockEntityIn.spiritInventory;
-        var extrasInventory = blockEntityIn.extrasInventory;
         int spiritsRendered = 0;
         if (!spiritInventory.isEmpty()) {
             for (int i = 0; i < spiritInventory.slotCount; i++) {
@@ -47,9 +47,9 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             }
         }
         int extrasRendered = 0;
-        if (!extrasInventory.isEmpty()) {
-            for (int i = 0; i < extrasInventory.slotCount; i++) {
-                ItemStack item = extrasInventory.getStackInSlot(i);
+        if (!inventory.isEmpty()) {
+            for (int i = 0; i < inventory.slotCount-1; i++) {
+                ItemStack item = inventory.getStackInSlot(i+1);
                 poseStack.pushPose();
                 Vector3f offset = blockEntityIn.getExtrasOffset(extrasRendered++, partialTicks).toVector3f();
                 poseStack.translate(offset.x(), offset.y(), offset.z());
@@ -59,7 +59,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 poseStack.popPose();
             }
         }
-        ItemStack stack = blockEntityIn.inventory.getStackInSlot(0);
+        ItemStack stack = inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
             poseStack.pushPose();
             Vec3 offset = SoulBrazierBlockEntity.BRAZIER_ITEM_OFFSET;

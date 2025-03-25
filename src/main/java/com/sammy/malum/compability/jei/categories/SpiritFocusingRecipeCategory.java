@@ -39,7 +39,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
     public void draw(SpiritFocusingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         if (!recipe.spirits.isEmpty()) {
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, true);
+            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
         }
     }
 

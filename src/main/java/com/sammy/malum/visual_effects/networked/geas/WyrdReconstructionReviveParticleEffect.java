@@ -1,11 +1,10 @@
 package com.sammy.malum.visual_effects.networked.geas;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.visual_effects.GeasParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.data.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 
 import java.util.function.*;
