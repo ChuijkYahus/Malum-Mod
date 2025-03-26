@@ -5,6 +5,7 @@ import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.attack.slam.SlamAttackParticleEffect;
 import com.sammy.malum.visual_effects.networked.attack.slash.AscensionRadialSlashParticleEffect;
 import com.sammy.malum.visual_effects.networked.blight.*;
+import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierStartParticleEffect;
 import com.sammy.malum.visual_effects.networked.crucible.*;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
@@ -45,6 +46,9 @@ public class ParticleEffectTypeRegistry {
     public static final ParticleEffectType ENTITY_RITE_EFFECT = new EntityTotemParticleEffect("entity_rite_effect");
     public static final ParticleEffectType BLOCK_RITE_EFFECT = new BlockTotemParticleEffect("block_rite_effect");
     public static final ParticleEffectType BLOCK_FALL_RITE_EFFECT = new BlockFallTotemParticleEffect("block_fall_rite_effect");
+
+    //Soulbinding Brazier
+    public static final ParticleEffectType SOULBINDING_BRAZIER_BEGINS = new SoulBrazierStartParticleEffect("brazier_start");
 
     //Ritual Plinth
     public static final ParticleEffectType RITUAL_PLINTH_EATS_ITEM = new RitualPlinthAbsorbItemParticleEffect("ritual_plinth_eats_item");

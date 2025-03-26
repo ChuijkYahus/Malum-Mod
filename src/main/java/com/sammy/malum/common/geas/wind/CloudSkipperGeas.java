@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas.explosion;
+package com.sammy.malum.common.geas.wind;
 
 import com.google.common.collect.*;
 import com.sammy.malum.common.packets.geas.*;
@@ -68,11 +68,7 @@ public class CloudSkipperGeas extends GeasEffect {
     }
 
     public static GeasEffect getInstance(LivingEntity entity) {
-        var effect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER);
-        if (effect != null) {
-            return effect.getValue();
-        }
-        return null;
+        return GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER);
     }
 
     @Override

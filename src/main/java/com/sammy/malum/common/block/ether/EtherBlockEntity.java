@@ -113,13 +113,14 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             }
 
 
+            Vec3 sparkPos = new Vec3(x, y - 0.05f, z);
             //Upwards Moving Particles
             if (level.getGameTime() % 2L == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(1.5f).setEasing(Easing.SINE_IN_OUT).build();
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 0.7f, 0.9f);
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
-                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, new Vec3(x, y - 0.05f, z), color);
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, sparkPos, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)
@@ -134,7 +135,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 0.3f, 0.5f);
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
-                var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, new Vec3(x, y - 0.05f, z), color);
+                var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, sparkPos, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)

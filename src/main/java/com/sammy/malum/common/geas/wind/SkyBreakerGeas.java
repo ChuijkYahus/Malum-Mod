@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas;
+package com.sammy.malum.common.geas.wind;
 
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;

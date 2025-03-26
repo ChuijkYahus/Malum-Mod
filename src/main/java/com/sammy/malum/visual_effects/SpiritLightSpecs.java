@@ -38,24 +38,39 @@ public class SpiritLightSpecs {
         centralLightSpecs.spawnParticles();
     }
 
+    public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs, modifier);
+    }
+
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+        rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, colorData, options).act(modifier), distance, rotatingSpecs);
+    }
+
+    public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs) {
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs);
+    }
+
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs) {
+        rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, colorData, options), distance, rotatingSpecs);
+    }
+
     public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs) {
-        rotatingLightSpecs(level, pos, spiritType, distance, rotatingSpecs, b -> {
-        });
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> sharedModifier) {
-        rotatingLightSpecs(level, pos, spiritType, distance, rotatingSpecs, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), sharedModifier);
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, MalumSpiritType spiritType, float distance, int rotatingSpecs) {
+        rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, spiritType, options), distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, WorldParticleOptions options, Consumer<WorldParticleBuilder> sharedModifier) {
-        rotatingLightSpecs(level, pos, spiritType, distance, rotatingSpecs, options, sharedModifier, sharedModifier);
+    public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs, modifier);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> lightSpecModifier, Consumer<WorldParticleBuilder> bloomModifier) {
-        rotatingLightSpecs(level, pos, spiritType, distance, rotatingSpecs, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), lightSpecModifier, bloomModifier);
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+        rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, spiritType, options).act(modifier), distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, WorldParticleOptions options, Consumer<WorldParticleBuilder> lightSpecModifier, Consumer<WorldParticleBuilder> bloomModifier) {
+    public static void rotatingLightSpecs(Level level, Vec3 pos, Function<Vec3, ParticleEffectSpawner> particleSpawner, float distance, int rotatingSpecs) {
         long gameTime = level.getGameTime();
         if (level.getGameTime() % 2L == 0) {
             for (int i = 0; i < rotatingSpecs; i++) {
@@ -63,19 +78,19 @@ public class SpiritLightSpecs {
                 double yOffset = Math.sin((offsetGameTime % 360) / 30f) * 0.1f;
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos.add(0, yOffset, 0), distance, i, rotatingSpecs, gameTime, 160);
 
-                var lightSpecs = spiritLightSpecs(level, offsetPosition, spiritType, options);
-                lightSpecs.getBuilder().act(lightSpecModifier).multiplyLifetime(2f).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
-                lightSpecs.getBloomBuilder().act(bloomModifier).act(b -> b.multiplyLifetime(1.4f).modifyData(List.of(b::getScaleData, b::getTransparencyData), d -> d.multiplyValue(0.6f)));
+                var lightSpecs = particleSpawner.apply(offsetPosition);
+                lightSpecs.getBuilder().multiplyLifetime(2f).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
+                lightSpecs.getBloomBuilder().act(b -> b.multiplyLifetime(1.4f).modifyData(List.of(b::getScaleData, b::getTransparencyData), d -> d.multiplyValue(0.6f)));
                 lightSpecs.spawnParticles();
             }
         }
-        var lightSpecs = spiritLightSpecs(level, pos, spiritType, options);
-        lightSpecs.getBuilder().act(lightSpecModifier)
+        var lightSpecs = particleSpawner.apply(pos);
+        lightSpecs.getBuilder()
                 .multiplyLifetime(0.5f)
                 .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.7f))
                 .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(0.5f));
 
-        lightSpecs.getBloomBuilder().act(bloomModifier)
+        lightSpecs.getBloomBuilder()
                 .multiplyLifetime(0.5f)
                 .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.3f))
                 .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(0.75f));

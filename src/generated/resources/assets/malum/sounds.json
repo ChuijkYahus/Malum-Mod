@@ -1322,6 +1322,37 @@
     ],
     "subtitle": "malum.subtitle.soul_ward_grows"
   },
+  "soulbinding_brazier_accepts_offering": {
+    "sounds": [
+      "malum:brazier/brazier_sacrifice1",
+      "malum:brazier/brazier_sacrifice2",
+      "malum:brazier/brazier_sacrifice3",
+      "malum:brazier/brazier_sacrifice4"
+    ],
+    "subtitle": "malum.subtitle.soulbinding_brazier_accepts_offering"
+  },
+  "soulbinding_brazier_fuses": {
+    "sounds": [
+      "malum:brazier/brazier_loop"
+    ],
+    "subtitle": "malum.subtitle.soulbinding_brazier_fuses"
+  },
+  "soulbinding_sequence_completed": {
+    "sounds": [
+      "malum:brazier/brazier_end1",
+      "malum:brazier/brazier_end2",
+      "malum:brazier/brazier_end3"
+    ],
+    "subtitle": "malum.subtitle.soulbinding_sequence_completed"
+  },
+  "soulbinding_sequence_initiated": {
+    "sounds": [
+      "malum:brazier/brazier_start1",
+      "malum:brazier/brazier_start2",
+      "malum:brazier/brazier_start3"
+    ],
+    "subtitle": "malum.subtitle.soulbinding_sequence_initiated"
+  },
   "soulstone_break": {
     "sounds": [
       "malum:blocks/soulstone/break1",

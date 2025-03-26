@@ -44,8 +44,8 @@ public class GluttonyParticleEffects {
                     .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
         }
         float distance = 0.7f;
-        float length = 0.75f * gluttonyPotency;
-        float scale = 0.2f * gluttonyPotency;
+        float length = 1.25f * gluttonyPotency;
+        float scale = 0.4f * gluttonyPotency;
         int count = gluttonyPotency < 1f ? 6 : 8;
 
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE), distance, count);
@@ -119,7 +119,7 @@ public class GluttonyParticleEffects {
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                     var renderTarget = j < 2 ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
                     builder
-                            .modifyData(b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(lengthMultiplier))
+                            .modifyData(b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.bake().multiplyValue(lengthMultiplier))
                             .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.bake().multiplyValue(alphaMultiplier))
                             .modifyData(AbstractParticleBuilder::getScaleData, d -> d.bake().multiplyValue(scaleMultiplier))
                             .setColorData(ColorParticleData.create(bright, dark).setCoefficient(colorCoefficient).build())

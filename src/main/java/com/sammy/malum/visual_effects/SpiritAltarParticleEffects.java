@@ -49,39 +49,40 @@ public class SpiritAltarParticleEffects {
         if (activeSpiritType == null) {
             return;
         }
-        Level level = altar.getLevel();
+        var level = altar.getLevel();
         var random = level.random;
-        Vec3 itemPos = altar.getItemPos();
-        LodestoneBlockEntityInventory spiritInventory = altar.spiritInventory;
-        SpiritInfusionRecipe recipe = altar.recipe;
+        var itemPos = altar.getItemPos();
+        var spiritInventory = altar.spiritInventory;
+        var recipe = altar.recipe;
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
                 if (accelerator != null) {
                     accelerator.addParticles(altar, activeSpiritType);
                 }
             }
-            SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3, b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.2f)));
+            SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
+                    b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.2f)));
         }
 
         int spiritsRendered = 0;
         for (int i = 0; i < spiritInventory.slotCount; i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
-            if (item.getItem() instanceof SpiritShardItem spiritSplinterItem) {
-                Vec3 offset = altar.getSpiritItemOffset(spiritsRendered++, 0);
-                activeSpiritType = spiritSplinterItem.type;
-                BlockPos blockPos = altar.getBlockPos();
-                Vec3 spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
-                spiritLightSpecs(level, spiritPosition, activeSpiritType).spawnParticles();
+            if (item.getItem() instanceof SpiritShardItem shard) {
+                var spirit = shard.type;
+                var offset = altar.getSpiritItemOffset(spiritsRendered++, 0);
+                var blockPos = altar.getBlockPos();
+                var spiritPosition = offset.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                spiritLightSpecs(level, spiritPosition, spirit).spawnParticles();
                 if (recipe != null) {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
-                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, activeSpiritType);
+                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, spirit);
                         sparkParticles.getBuilder().setMotion(velocity).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.85f) {
-                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, activeSpiritType);
+                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, spirit);
                         lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();

@@ -13,6 +13,8 @@ import com.sammy.malum.common.geas.scythe.*;
 import com.sammy.malum.common.geas.soul_ward.*;
 import com.sammy.malum.common.geas.staff.*;
 import com.sammy.malum.common.geas.time.*;
+import com.sammy.malum.common.geas.wind.CloudSkipperGeas;
+import com.sammy.malum.common.geas.wind.SkyBreakerGeas;
 import com.sammy.malum.core.systems.geas.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;

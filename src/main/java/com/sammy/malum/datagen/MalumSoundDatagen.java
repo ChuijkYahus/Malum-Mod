@@ -130,6 +130,11 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.REPAIR_PYLON_REPAIR_START, s -> definition(s).with(sounds("repair_pylon/repair_pylon_send", 4)));
         this.add(SoundRegistry.REPAIR_PYLON_REPAIR_FINISH, s -> definition(s).with(sounds("repair_pylon/repair_pylon_fix", 4)));
 
+        this.add(SoundRegistry.BRAZIER_LOOP, s -> definition(s).with(sound("brazier/brazier_loop")));
+        this.add(SoundRegistry.BRAZIER_START, s -> definition(s).with(sounds("brazier/brazier_start", 3)));
+        this.add(SoundRegistry.BRAZIER_FINISH, s -> definition(s).with(sounds("brazier/brazier_end", 3)));
+        this.add(SoundRegistry.BRAZIER_SACRIFICE, s -> definition(s).with(sounds("brazier/brazier_sacrifice", 4)));
+
         this.add(SoundRegistry.RUNIC_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft", 2)));
         this.add(SoundRegistry.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft", 2)));
 

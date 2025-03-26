@@ -133,6 +133,11 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> REPAIR_PYLON_REPAIR_START = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("repair_pylon_begins_repairing")));
     public static final DeferredHolder<SoundEvent, SoundEvent> REPAIR_PYLON_REPAIR_FINISH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("repair_pylon_finishes_repairing")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_LOOP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_brazier_fuses")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_START = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_sequence_initiated")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_FINISH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_sequence_completed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_SACRIFICE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_brazier_accepts_offering")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_crafts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEAVERS_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weavers_workbench_weaves")));
 

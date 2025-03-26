@@ -1,6 +1,6 @@
 package com.sammy.malum.common.packets.geas;
 
-import com.sammy.malum.common.geas.explosion.*;
+import com.sammy.malum.common.geas.wind.CloudSkipperGeas;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.*;
 import net.minecraft.world.entity.*;
@@ -26,9 +26,9 @@ public class SyncCloudHopperStreakPayload extends OneSidedPayloadData {
             var data = livingEntity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
             var cloudskipper = MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER;
             if (!data.hasGeasEffect(livingEntity, cloudskipper)) {
-                data.addGeasEffect(cloudskipper.get().createDefaultStack());
+                data.addGeasEffect(cloudskipper.get());
             }
-            var geas = data.getGeasEffect(livingEntity, cloudskipper).getValue();
+            var geas = data.getGeasEffect(livingEntity, cloudskipper);
             if (geas instanceof CloudSkipperGeas cloudSkipperGeas) {
                 cloudSkipperGeas.streak = streak;
             }

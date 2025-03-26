@@ -11,12 +11,12 @@ import team.lodestar.lodestone.systems.particle.world.type.*;
 public class ParticleRegistry {
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MalumMod.MALUM);
 
-    //Simpler Shapes
+    //Simple Shapes :3
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> LIGHT_SPEC_SMALL = PARTICLES.register("light_spec_small", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> STAR = PARTICLES.register("star", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> STRANGE_SMOKE = PARTICLES.register("strange_smoke", LodestoneWorldParticleType::new);
 
-    //Shapes :3
+    //Complex Shapes :3
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> HEXAGON = PARTICLES.register("hexagon", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> CIRCLE = PARTICLES.register("circle", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SQUARE = PARTICLES.register("square", LodestoneWorldParticleType::new);
@@ -40,6 +40,7 @@ public class ParticleRegistry {
 
     //Glowing Bits
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_GLOWING_STAR = PARTICLES.register("giant_glowing_star", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RADIAL_DISPLAY = PARTICLES.register("radial_display", LodestoneWorldParticleType::new);
 
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_ARROW = PARTICLES.register("giant_arrow", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RITUAL_CIRCLE = PARTICLES.register("ritual_circle", LodestoneWorldParticleType::new);
