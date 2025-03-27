@@ -234,6 +234,11 @@ public class SoulBindingBrazierParticleEffects {
                         .setLifetime(lifeTime)
                         .enableNoClip()
                         .spawn(level, x, y-0.4f, z)
+                        //Small Upper Ring
+                        .setScaleData(GenericParticleData.create(1.2f).build())
+                        .setLifetime(50)
+                        .spawn(level, x, y, z)
+                        //Shrinking Central Ring
                         .setTransparencyData(GenericParticleData.create(0f, 0.3f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.4f, 0.5f)).build())
                         .setColorData(color.setCoefficient(1.2f).build())

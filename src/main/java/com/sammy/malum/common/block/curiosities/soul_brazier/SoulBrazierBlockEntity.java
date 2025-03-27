@@ -254,6 +254,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 new PositionEffectData(worldPosition),
                 ColorEffectData.fromSpiritIngredients(recipe.spirits),
                 SoulBrazierStartParticleEffect.createData(this));
+        level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, true), 3);
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
@@ -313,6 +314,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         updateRecipe();
         level.playSound(null, worldPosition, SoundRegistry.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         state = BrazierState.IDLE;
+        level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, false), 3);
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 

@@ -44,8 +44,8 @@ public class GluttonyParticleEffects {
                     .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
         }
         float distance = 0.7f;
-        float length = 1.25f * gluttonyPotency;
-        float scale = 0.4f * gluttonyPotency;
+        float length = 1.4f * gluttonyPotency;
+        float scale = 0.6f * gluttonyPotency;
         int count = gluttonyPotency < 1f ? 6 : 8;
 
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE), distance, count);

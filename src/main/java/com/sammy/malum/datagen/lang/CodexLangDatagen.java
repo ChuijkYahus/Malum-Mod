@@ -907,7 +907,7 @@ public class CodexLangDatagen {
                         The Sun offers an even greater Boon.
                         When in Light:
                          -Increases Healing Received, Magic Resistance and Armor by One Fifth
-                         -Passively Heals You""",
+                         -Grants Passive Healing""",
                 scaled(0.8f) +"""
                         A primordial fear is manifested within you, an Inescapable Shade engulfs you.
                         When in Darkness:
