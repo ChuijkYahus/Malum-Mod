@@ -286,7 +286,7 @@ public class SpiritCrucibleParticleEffects {
             var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, sparkPos, spiritType);
             sparkParticles.getBuilder().setMotion(velocity)
                     .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.5f))
-                    .modifyData(b -> b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(2f).multiplyCoefficient(0.75f))
+                    .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(2f).multiplyCoefficient(0.75f))
                     .modifyColorData(c -> c.multiplyCoefficient(0.8f));
             sparkParticles.getBloomBuilder().setMotion(velocity);
             sparkParticles.spawnParticlesRaw();
@@ -296,7 +296,7 @@ public class SpiritCrucibleParticleEffects {
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
             final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.2f)).randomSpinOffset(random).build();
             WorldParticleBuilder.create(ParticleRegistry.HEXAGON.get())
-                    .setBehavior(new DirectionalParticleBehavior(velocity.normalize()))
+                    .setBehavior(DirectionalParticleBehavior.directional(velocity.normalize()))
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setSpinData(spinData)
                     .setScaleData(GenericParticleData.create(0.15f, 0).setEasing(Easing.SINE_IN_OUT).build())

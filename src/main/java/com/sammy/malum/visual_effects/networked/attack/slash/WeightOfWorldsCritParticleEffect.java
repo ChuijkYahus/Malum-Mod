@@ -44,7 +44,7 @@ public class WeightOfWorldsCritParticleEffect extends SlashAttackParticleEffect 
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 3f, 4f)).build())
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.4f)))
-                        .setBehavior(new PointyDirectionalParticleBehavior(direction));
+                        .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
                 slash.spawnParticles();
             }
         };

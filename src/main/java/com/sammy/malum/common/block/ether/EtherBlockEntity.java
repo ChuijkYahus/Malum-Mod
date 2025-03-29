@@ -153,7 +153,6 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 float scale = RandomHelper.randomBetween(random, 0.9f, 1.2f);
                 WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.2f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)
@@ -168,7 +167,6 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 float scale = RandomHelper.randomBetween(random, 0.25f, 0.35f);
                 WorldParticleBuilder.create(ParticleRegistry.STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.6f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setLifetime(lifeTime)

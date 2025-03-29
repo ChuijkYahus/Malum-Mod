@@ -66,18 +66,18 @@ public class EthericNitrateImpactParticleEffect extends ParticleEffectType {
                     }
                 };
                 float scalar = RandomHelper.randomBetween(random, 0.8f, 1.1f);
-                var lengthData = GenericParticleData.create(3f * scalar, 0.75f * scalar, 0f).setEasing(Easing.QUARTIC_OUT, Easing.SINE_IN_OUT).build();
-                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(new SparkParticleBehavior(lengthData)));
+                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(SparkParticleBehavior.sparkBehavior()));
                 sparks.getBuilder()
+                        .setLengthData(GenericParticleData.create(3f * scalar, 0.75f * scalar, 0f).setEasing(Easing.QUARTIC_OUT, Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN, Easing.QUAD_IN).build())
                         .multiplyLifetime(lifetimeMultiplier)
+                        .addTickActor(sparkBehavior)
                         .enableForcedSpawn()
-                        .addTickActor(sparkBehavior)
-                        .setMotion(motion)
-                        .setScaleData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN, Easing.QUAD_IN).build());
+                        .setMotion(motion);
                 sparks.getBloomBuilder()
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f))
                         .multiplyLifetime(lifetimeMultiplier)
                         .addTickActor(sparkBehavior)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f))
                         .setMotion(motion);
                 sparks.spawnParticles();
             }
@@ -92,7 +92,6 @@ public class EthericNitrateImpactParticleEffect extends ParticleEffectType {
                     .setRandomOffset(0.6f)
                     .enableNoClip()
                     .setRandomMotion(0.02f, 0.02f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeat(level, posX, posY, posZ, 3);
         };
     }

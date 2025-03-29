@@ -147,7 +147,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
         WorldParticleBuilder.create(ParticleRegistry.AURIC_TARGET)
-                .setBehavior(new DirectionalParticleBehavior(pLivingEntity.getLookAngle().normalize()))
+                .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.5f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())

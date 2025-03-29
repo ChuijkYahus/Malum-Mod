@@ -34,7 +34,7 @@ public class SpiritDiodeParticleEffects {
             float yVelocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
             var square = waveformSquare(level, positionData.getAsVector(), colorData.getColor());
             square.getBuilder()
-                    .setBehavior(new DirectionalParticleBehavior())
+                    .setBehavior(DirectionalParticleBehavior.directional())
                     .setLifeDelay(lifeDelay)
                     .setMotion(0, yVelocity, 0);
             square.spawnParticles();

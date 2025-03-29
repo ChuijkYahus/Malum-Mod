@@ -393,9 +393,4 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     public SpiritBasedParticleBuilder setSpritePicker(SimpleParticleOptions.ParticleSpritePicker spritePicker) {
         return (SpiritBasedParticleBuilder)super.setSpritePicker(spritePicker);
     }
-
-    @Override
-    public SpiritBasedParticleBuilder setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType discardFunctionType) {
-        return (SpiritBasedParticleBuilder)super.setDiscardFunction(discardFunctionType);
-    }
 }

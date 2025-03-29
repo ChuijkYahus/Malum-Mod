@@ -56,7 +56,7 @@ public class SunderingAnchorSlashParticleEffect extends SlashAttackParticleEffec
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.8f, 1.3f)))
                             .setLifeDelay(lifeDelay)
                             .setLifetime(4)
-                            .setBehavior(new PointyDirectionalParticleBehavior(direction));
+                            .setBehavior(DirectionalParticleBehavior.directional(direction));
                     slash.spawnParticles();
                 }
             }

@@ -26,7 +26,7 @@ import java.util.function.*;
 
 public class WeaponParticleEffects {
 
-    public static final PointyDirectionalParticleBehavior MAELSTROM_DIRECTION = new PointyDirectionalParticleBehavior(new Vec3(0, 0, 0));
+    public static final PointyDirectionalParticleBehavior MAELSTROM_DIRECTION = PointyDirectionalParticleBehavior.pointyDirectional(new Vec3(0, 0, 0));
 
     public static void spawnMaelstromParticles(AbstractScytheProjectileEntity entity) {
         var level = entity.level();

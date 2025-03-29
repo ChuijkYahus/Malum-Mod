@@ -70,13 +70,14 @@ public class UnwindingChaosChargeParticleEffect extends ParticleEffectType {
                     var transparencyData = GenericParticleData.create(0.8f, 0f).build();
                     final int lifeDelay = i * 8;
                     lightSpecs.getBuilder()
-                            .setBehavior(new SparkParticleBehavior(GenericParticleData.create(0.2f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build()))
+                            .setBehavior(SparkParticleBehavior.sparkBehavior())
+                            .setLengthData(GenericParticleData.create(0.2f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
+                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 2, 2.5f)))
+                            .modifyColorData(c -> c.multiplyCoefficient(0.5f))
                             .setTransparencyData(transparencyData)
                             .setLifeDelay(lifeDelay)
                             .setLifetime(30)
-                            .addTickActor(behavior)
-                            .modifyColorData(c -> c.multiplyCoefficient(0.5f))
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 2, 2.5f)));
+                            .addTickActor(behavior);
                     lightSpecs.getBloomBuilder()
                             .setTransparencyData(transparencyData)
                             .setLifeDelay(lifeDelay)
@@ -85,15 +86,16 @@ public class UnwindingChaosChargeParticleEffect extends ParticleEffectType {
                             .modifyColorData(c -> c.multiplyCoefficient(0.5f))
                             .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)));
                     lightSpecs.spawnParticles();
+
                     lightSpecs = spiritLightSpecs(level, offsetPosition, cyclingSpiritType, new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE.get()));
                     transparencyData = GenericParticleData.create(1f, 0f).setCoefficient(0.5f).build();
                     lightSpecs.getBuilder()
+                            .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                            .setColorData(ColorParticleData.create(smokeColor).build())
                             .setTransparencyData(transparencyData)
                             .setLifeDelay(lifeDelay)
-                            .setLifetime(30)
                             .addTickActor(behavior)
-                            .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                            .setColorData(ColorParticleData.create(smokeColor).build());
+                            .setLifetime(30);
                     lightSpecs.spawnParticlesRaw();
                 }
             }

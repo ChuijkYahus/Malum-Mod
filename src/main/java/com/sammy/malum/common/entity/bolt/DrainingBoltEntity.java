@@ -108,7 +108,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
         WorldParticleBuilder.create(ParticleRegistry.SAW)
-                .setBehavior(new DirectionalParticleBehavior(getDeltaMovement().normalize()))
+                .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)

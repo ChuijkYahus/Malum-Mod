@@ -42,7 +42,7 @@ public class SunderingAnchorSweepParticleEffect extends ParticleEffectType {
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2f, 3f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.02f, 0.05f)))
                     .setRandomOffset(0.5f)
-                    .setBehavior(new PointyDirectionalParticleBehavior(direction.scale(directionScalar)));
+                    .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction.scale(directionScalar)));
             slash.spawnParticles();
             slash.getBuilder()
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.3f).build())

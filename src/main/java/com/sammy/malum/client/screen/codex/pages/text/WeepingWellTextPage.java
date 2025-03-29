@@ -80,7 +80,6 @@ public class WeepingWellTextPage extends BookPage {
                         .setScaleData(GenericParticleData.create(0, scale * 1.6f).build())
                         .setColorData(ColorParticleData.create(new Color(78, 17, 43), new Color(78, 17, 43)).setCoefficient(0.8f).build())
                         .setLifetime(lifetime)
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
                         .spawn(x, y);
                 ScreenParticleBuilder.create(ScreenParticleRegistry.SAW, ITEM_PARTICLES)
@@ -89,7 +88,6 @@ public class WeepingWellTextPage extends BookPage {
                         .setScaleData(GenericParticleData.create(0, scale * 0.9f).build())
                         .setColorData(ColorParticleData.create(new Color(255, 133, 155), new Color(78, 17, 43)).setCoefficient(0.8f).build())
                         .setLifetime(lifetime)
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
                         .spawn(x, y);
             }

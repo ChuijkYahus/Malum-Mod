@@ -109,7 +109,6 @@ public class WeepingWellParticleEffects {
                     .enableNoClip()
                     .setRandomMotion(0.02f, 0.02f)
                     .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .repeat(level, posX, posY + 0.25f, posZ, 5);
         }
@@ -131,7 +130,7 @@ public class WeepingWellParticleEffects {
             Color color = getWeepingWellSmokeColor(rand);
             ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                    .setBehavior(new DirectionalParticleBehavior())
+                    .setBehavior(DirectionalParticleBehavior.directional())
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.4f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(rand, 0.02f, 0.04f, 0).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
                     .setScaleData(GenericParticleData.create(0f, 0.6f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
@@ -139,7 +138,6 @@ public class WeepingWellParticleEffects {
                     .setLifetime(lifetime)
                     .addMotion(0, yMotion, 0)
                     .enableNoClip()
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                     .surroundVoxelShape(level, blockPos, WELL_SHAPE, 12);
@@ -175,7 +173,7 @@ public class WeepingWellParticleEffects {
             Color color = getWeepingWellSmokeColor(rand);
             ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                    .setBehavior(new DirectionalParticleBehavior(new Vec3(0, 1, 0)))
+                    .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
                     .setTransparencyData(GenericParticleData.create(0.8f, 0.6f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(rand, 0.02f, 0.04f, 0).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
                     .setScaleData(GenericParticleData.create(0f, 0.2f, 0.05f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
@@ -183,7 +181,6 @@ public class WeepingWellParticleEffects {
                     .setLifetime(lifetime)
                     .addMotion(0, yMotion, 0)
                     .enableNoClip()
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                     .surroundVoxelShape(level, blockPos, DEPOT_SHAPE, 4);
@@ -222,14 +219,13 @@ public class WeepingWellParticleEffects {
         lightSpecs.getBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
-                .modifyData(b -> b.getBehaviorData(SparkParticleBehavior.class, SparkParticleBehavior::getLengthData), d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
+                .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
                 .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
                 .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f)));
         lightSpecs.getBloomBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
-                .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                 .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f)));
         return lightSpecs;
     }
@@ -253,7 +249,7 @@ public class WeepingWellParticleEffects {
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
-                .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
+               
                 .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f))));
         return lightSpecs;
     }
@@ -265,7 +261,7 @@ public class WeepingWellParticleEffects {
         float yMotion = RandomHelper.randomBetween(rand, 0.04f, 0.06f);
         Vec3 motion = new Vec3(0f, yMotion, 0f);
         var squares = WorldParticleBuilder.create(ParticleRegistry.SQUARE.get())
-                .setBehavior(new DirectionalParticleBehavior())
+                .setBehavior(DirectionalParticleBehavior.directional())
                 .setTransparencyData(GenericParticleData.create(0.9f, 0.05f, 0f).setEasing(Easing.CUBIC_OUT, Easing.EXPO_IN).build())
                 .setScaleData(scaleData)
                 .setColorData(colorData)

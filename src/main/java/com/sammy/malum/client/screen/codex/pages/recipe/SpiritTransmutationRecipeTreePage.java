@@ -112,7 +112,6 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
                         .setScaleData(GenericParticleData.create(0, scale, 0).build())
                         .setColorData(SpiritTypeRegistry.ARCANE_SPIRIT.createColorData().setCoefficient(0.75f).build())
                         .setLifetime(i % 2 == 0 ? 20 : 40)
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .setLifeDelay(i % 3 == 0 ? 0 : 4)
                         .spawn(particlesX + xOffset, particlesY + yOffset);
             }

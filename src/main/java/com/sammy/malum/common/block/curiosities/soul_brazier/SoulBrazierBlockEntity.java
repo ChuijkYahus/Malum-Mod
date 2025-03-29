@@ -11,6 +11,7 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
+import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierEndParticleEffect;
 import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierStartParticleEffect;
 import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
 import com.sammy.malum.visual_effects.networked.data.NBTEffectData;
@@ -65,6 +66,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public static final Vec3 BRAZIER_ITEM_OFFSET = new Vec3(0.5f, 1.125f, 0.5f);
+    public static final Vec3 BRAZIER_GEAS_ICON_OFFSET = new Vec3(0.5f, 4f, 0.5f);
     private static final int WARMUP_DURATION = 40;
     private static final int SOULBINDING_DURATION = 600;
     public LodestoneBlockEntityInventory inventory;
@@ -193,7 +195,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                             targets.add(entity);
                         }
                     }
-                    completeSoulBinding(targets);
+                    completeSoulBinding(serverLevel, targets);
                 }
             }
         } else {
@@ -249,11 +251,13 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void beginSoulbinding(ServerLevel level, BrazierState newState) {
         state = newState;
         sacrificedTargets.clear();
-        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-        ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_BEGINS.createPositionedEffect(level,
-                new PositionEffectData(worldPosition),
-                ColorEffectData.fromSpiritIngredients(recipe.spirits),
-                SoulBrazierStartParticleEffect.createData(this));
+        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 1.3f + level.random.nextFloat() * 0.3f);
+        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 0.9f + level.random.nextFloat() * 0.3f);
+
+        ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_BEGINS.createEffect(worldPosition)
+                .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
+                .customData(SoulBrazierEndParticleEffect.createData(this))
+                .spawn(level);
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, true), 3);
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
@@ -270,7 +274,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         return false;
     }
 
-    public void completeSoulBinding(List<LivingEntity> targets) {
+    public void completeSoulBinding(ServerLevel level, List<LivingEntity> targets) {
         sacrificedTargets.clear();
         if (recipe == null) {
             updateRecipe();
@@ -311,10 +315,14 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.KARMIC), target.getMaxHealth() / 2f);
             }
         }
-        updateRecipe();
+        ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)
+                .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
+                .customData(SoulBrazierEndParticleEffect.createData(this))
+                .spawn(level);
         level.playSound(null, worldPosition, SoundRegistry.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         state = BrazierState.IDLE;
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, false), 3);
+        updateRecipe();
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 

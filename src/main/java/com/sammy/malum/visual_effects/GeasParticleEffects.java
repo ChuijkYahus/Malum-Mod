@@ -44,7 +44,7 @@ public class GeasParticleEffects {
             for (int j = 0; j < 2; j++) {
                 var options = new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR);
                 if (j == 1) {
-                    options.setBehavior(new DirectionalParticleBehavior());
+                    options.setBehavior(DirectionalParticleBehavior.directional());
                 }
                 WorldParticleBuilder.create(options)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).build())
@@ -92,22 +92,21 @@ public class GeasParticleEffects {
                 float scaleMultiplier = (isAdditive ? 1.75f : 5.5f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
                 float alphaMultiplier = isAdditive ? 1.5f : 3f;
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
-                var lengthData = GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier);
-                var scaleData = GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier);
-                var alphaData = GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier);
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                 var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
-                WorldParticleBuilder.create(new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR).setBehavior(new SparkParticleBehavior(lengthData).setForcedDirection(new Vec3(0, 1, 0))))
-                        .setTransparencyData(alphaData)
-                        .setScaleData(scaleData)
-                        .addTickActor(behavior)
-                        .enableNoClip()
+                WorldParticleBuilder.create(new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR))
+                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
+                        .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))
+                        .setScaleData(GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier))
+                        .setTransparencyData(GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier))
                         .setColorData(ColorParticleData.create(start, end).setCoefficient(colorCoefficient).build())
                         .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                        .setLifetime(lifetime)
                         .setRenderTarget(renderTarget)
                         .setRenderType(renderType)
                         .setLifeDelay(j + i / 2)
+                        .addTickActor(behavior)
+                        .setLifetime(lifetime)
+                        .enableNoClip()
                         .setMotion(motion)
                         .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
             }
@@ -128,7 +127,6 @@ public class GeasParticleEffects {
             WorldParticleBuilder.create(ParticleRegistry.SHINE.get())
                     .setScaleData(GenericParticleData.create(0.8f * scaleMultiplier, 0.25f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                     .setLifetime(RandomHelper.randomBetween(random, 5, 15))
                     .setRandomMotion(0.02f, 0.02f)
@@ -142,7 +140,6 @@ public class GeasParticleEffects {
                     .setScaleData(GenericParticleData.create(5f * scaleMultiplier, 0.25f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.4f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setColorData(color.invert().build())
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .setLifetime(RandomHelper.randomBetween(random, 10, 20))
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .setRandomMotion(0.02f, 0.02f)

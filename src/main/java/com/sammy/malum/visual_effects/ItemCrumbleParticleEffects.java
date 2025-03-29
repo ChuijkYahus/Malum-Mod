@@ -49,12 +49,7 @@ public class ItemCrumbleParticleEffects {
                 .setTransparencyData(GenericParticleData.create(0.5f, 1f, 0.25f).setEasing(Easing.EXPO_IN, Easing.SINE_IN_OUT).build())
                 .setScaleData(GenericParticleData.create(0.05f, RandomHelper.randomBetween(rand, 0.06f, 0.07f), 0f).build())
                 .setLifetime(lifetime)
-                .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                 .setRenderType(ParticleRenderType.TERRAIN_SHEET)
                 .addTickActor(slowDown);
-    }
-
-    public static LodestoneParticleBehavior makeCrumbParticleBehavior(Level level) {
-        return level.getRandom().nextBoolean() ? new BedrockDirectionalParticleBehavior() : null;
     }
 }
