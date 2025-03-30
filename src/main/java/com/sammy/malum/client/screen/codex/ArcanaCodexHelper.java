@@ -166,7 +166,7 @@ public class ArcanaCodexHelper {
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 0, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x + 1, y, 1, 0, 0, textureWidth, textureHeight);
-        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
+        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f);
         renderTexture(location, stack, builder, x, y - 1, 2, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x, y + 0.8f, 3, 0, 0, textureWidth, textureHeight);
 
@@ -179,7 +179,7 @@ public class ArcanaCodexHelper {
         shaderInstance.safeGetUniform("Speed").set(400f);
         renderTexture(location, stack, builder, x + 2, y + 2, 5, 2, 2, 12, 12, textureWidth, textureHeight);
 
-        builder.setColor(colorSupplier.get().getSecondaryColor()).setAlpha(0.2f);
+        builder.setColor(colorSupplier.get().getSecondaryColor());
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x + 1, y, 6, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x - 1, y, 7, 0, 0, textureWidth, textureHeight);

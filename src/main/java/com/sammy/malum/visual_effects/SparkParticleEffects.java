@@ -41,8 +41,7 @@ public class SparkParticleEffects {
     }
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, WorldParticleOptions options, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
-        var lengthData = GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build();
-        var builder = builderSupplier.apply(options.setBehaviorIfDefault(new SparkParticleBehavior(lengthData)));
+        var builder = builderSupplier.apply(options.setBehaviorIfDefault(SparkParticleBehavior.sparkBehavior()));
         var bloomBuilder = builderSupplier.apply(new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE));
         return spiritMotionSparks(level, pos, builder, bloomBuilder);
     }
@@ -53,6 +52,7 @@ public class SparkParticleEffects {
         final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
         int lifetime = RandomHelper.randomBetween(rand, 10, 20);
         final WorldParticleBuilder sparkParticleBuilder = builder
+                .setLengthData(GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                 .setScaleData(GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.2f, 0.3f), 0).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())

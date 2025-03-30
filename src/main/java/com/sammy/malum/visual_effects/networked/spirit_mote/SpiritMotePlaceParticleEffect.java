@@ -45,7 +45,6 @@ public class SpiritMotePlaceParticleEffect extends ParticleEffectType {
                         .addMotion(0, 0.25f + random.nextFloat() * 0.1f, 0)
                         .disableNoClip()
                         .setRandomMotion(0.1f, 0.12f)
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .surroundBlock(level, pos);
             }
             for (int i = 0; i < 8; i++) {
@@ -61,7 +60,6 @@ public class SpiritMotePlaceParticleEffect extends ParticleEffectType {
                         .setRandomOffset(0.4f)
                         .enableNoClip()
                         .setRandomMotion(0.01f, 0.01f)
-                        .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                         .repeatSurroundBlock(level, pos, 2);
             }
         };

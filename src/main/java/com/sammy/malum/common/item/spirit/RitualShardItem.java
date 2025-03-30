@@ -66,8 +66,7 @@ public class RitualShardItem extends Item implements ItemParticleSupplier {
                             .setColorData(spiritType.createColorData().build())
                             .setLifetime(RandomHelper.randomBetween(rand, 60, 80))
                             .setRandomOffset(0.1f)
-                            .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
-                            .spawnOnStack(xOffset, yOffset);
+                                .spawnOnStack(xOffset, yOffset);
                     if (!ritualTier.isGreaterThan(MalumRitualTier.BRIGHT)) {
                         break;
                     }

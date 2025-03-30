@@ -871,17 +871,18 @@ public class CodexLangDatagen {
         addPages("altar_acceleration.brilliant_obelisk",
                 "While not useful for Infusion, per-se, the design of the obelisk can be used in another way as well. By socketing Brilliance instead of Hallowed Gold, the obelisk will harmonize with the Brilliance of enchanting, causing it to provide as much force of enchanting as five bookshelves do.");
 
-        //TODO: Geas Stuff
-        addSimpleEntryHeader("geas_magic", "Geas Magic", "WeeWoo Magic");
+        addSimpleEntryHeader("geas_magic", "Geasa, and Other Oaths", "Power for price");
         addPages("geas_magic",
-                "Geas magic is GOATED. By using the Soulbinding Brazier you can swear to the effects of a geas thingymajig. Each geas offers a set of benefits as well as a set of drawbacks. These are tied to your very soul and cannot be removed as easily as if taking off a trinket, so choose wisely.",
-                "The Brazier requires a prime item, a set of ingredients and a set of spirit arcanas. All of this is to be inserted into the brazier directly. To initiate the process, the Brazier must be suffused with Ether. Once the process is started, it will require a blood offering to bind the geas to your soul. Any number of willing participants may choose to offer their blood and bind their soul.",
-                "Something something the geas effects can be applied to even non player entities. Also something here or earlier about how the brazier utilizes cthonic gold and hallowed gold to function. Something something you have the capacity for 2 geas thingymajigs.");
+                "Oaths and sacrifices hold power. Brooches, for example, sacrifice one thing for another. There are legends of those who willingly forswear something, gaining power from that action. I have devised a way to bind to a soul semi-permanently such a pact, or " + bold("geas") + ", through the Soulbinding Brazier.",
+                "The Brazier is less a device and more a conduit, utilizing Hallowed Gold inlay and Cthonic Gold insets to conduct souls. Ether is used to ignite it, once the materials are arranged.",
+                "Each oath requires material sacrifices, in the form of a central item, additional ingredients, and arcana to fuel the bond, inserted into the Brazier directly. Once lit, you must offer blood to seal the pact. Any number of willing participants may offer blood to this end at once.",
+                "Geasa can be applied even to simpler souls, though they might not know how to take advantage of them. A creature can be tempted to join a geas by afflicting it with Weakness before igniting the Brazier.",
+                "Each soul only seems to have capacity for two separate geas at once, with additional ones failing. These are, again, tied to the soul itself, and so cannot be removed without significant effort.");
 
-        addSimpleEntryHeader("undoing_geas_bindings", "Undoing Geas Bindings", "No more WeeWoo Magic");
+        addSimpleEntryHeader("undoing_geas_bindings", "Forswearing Geasa", "For prices too great");
         addPages("undoing_geas_bindings",
-                "Geas magic is GOATED. But you no doubt want to be able to tinker around with it. Being locked to your initial set of geas can be quite restricting, and so to combat that you may initiate the clergy of undoing- name needed.",
-                "It functions the same as any other geas pact recipe, but requires a Flame of Undoing in place of Ether. The Flame of Undoing requires crying obsidian as well as some other shit, I'll figure the recipe out later. To choose which geas you wanna remove, simply insert the recipe for that geas, but in place of ether, the undoing flame instead");
+                "Ah, a pact that binds forever is a heavy thing. Geasa are potent, yes, and can achieve powerful effects, but their downsides are constant companions. These pacts can be forsworn on the Brazier, allowing you to decide what price you are willing to pay.",
+                "To forswear a geas, assemble it on the Brazier as you did initially, but use the Undoing Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
         addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing sight");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,
@@ -907,7 +908,7 @@ public class CodexLangDatagen {
                         The Sun offers an even greater Boon.
                         When in Light:
                          -Increases Healing Received, Magic Resistance and Armor by One Fifth
-                         -Passively Heals You""",
+                         -Grants Passive Healing""",
                 scaled(0.8f) +"""
                         A primordial fear is manifested within you, an Inescapable Shade engulfs you.
                         When in Darkness:
@@ -1045,8 +1046,8 @@ public class CodexLangDatagen {
                          -Desperate Need Reaches Significantly Greater Potency""",
                 scaled(0.8f) + """
                         The Rot will Consume You.
-                         -Upon Taking Damage, the Rot Attacks You with a Poisonous Burst
-                         -Desperate Need reduces Armor, Healing Received and Magic Resistance""");
+                         -Desperate Need reduces Armor, Healing Received and Magic Resistance
+                         -Occasionally, the Rot contributes to your pain, inflicting a Poisonous Lash""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

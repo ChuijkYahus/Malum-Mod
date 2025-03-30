@@ -54,7 +54,7 @@ public class TyrvingSlashParticleEffect extends SlashAttackParticleEffect {
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.5f, 0.7f)))
                         .setLifeDelay(lifeDelay)
-                        .setBehavior(new PointyDirectionalParticleBehavior(direction));
+                        .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
                 slash.spawnParticles();
             }
         };

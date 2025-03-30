@@ -1,22 +1,40 @@
 package com.sammy.malum.client.renderer.block;
 
+import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
+import com.sammy.malum.common.entity.nitrate.EthericNitrateEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
+import com.sammy.malum.common.recipe.SoulBindingRecipe;
+import com.sammy.malum.core.systems.geas.GeasEffectType;
+import com.sammy.malum.core.systems.ritual.MalumRitualTier;
+import com.sammy.malum.core.systems.ritual.MalumRitualType;
+import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.registry.client.MalumRenderTypeTokens;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import team.lodestar.lodestone.handlers.RenderHandler;
+import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
+import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
+
+import java.util.SequencedMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
@@ -67,6 +85,68 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             poseStack.mulPose(Axis.YP.rotationDegrees((((level.getGameTime() + partialTicks) * 3) % 360)));
             poseStack.scale(0.55f, 0.55f, 0.55f);
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
+            poseStack.popPose();
+        }
+
+        if (blockEntityIn.isActive()) {
+            var recipe = blockEntityIn.recipe;
+            var spirits = recipe.spirits;
+            var geas = recipe.geas;
+            var texture = geas.getIcon();
+            var additive = LodestoneRenderTypes.ADDITIVE_DISTORTED_TEXTURE.apply(RenderTypeToken.createToken(texture));
+            var transparent = LodestoneRenderTypes.TRANSPARENT_DISTORTED_TEXTURE.apply(RenderTypeToken.createToken(texture));
+            var offset = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET;
+            float progress = blockEntityIn.progress + partialTicks;
+            float alpha = 0.9f * Math.clamp(progress / 5f, 0, 1);
+            float scale = 0.4f * Math.min(1 + progress / 10f, 2);
+            var worldVFXBuilder = VFXBuilders.createWorld();
+            var cycle = new AtomicInteger();
+            Supplier<MalumSpiritType> colorSupplier = () -> spirits.get(cycle.getAndIncrement() % spirits.size()).getSpiritType();
+            var mainColor = colorSupplier.get().getPrimaryColor();
+
+            poseStack.pushPose();
+            poseStack.translate(offset.x, offset.y, offset.z);
+            poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
+
+            int interval = 160;
+            float gameTime = level.getGameTime() + partialTicks;
+            float distance = scale * 0.08f;
+
+            worldVFXBuilder
+                    .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f)
+                    .setRenderType(transparent)
+                    .setAlpha(alpha*0.4f)
+                    .renderQuad(poseStack, scale);
+            for (int i = 0; i < 4; i++) {
+                double angle = i * 1.57f;
+                angle += ((gameTime % interval) / interval) * 6.28f;
+                double xOffset = (distance * Math.cos(angle));
+                double yOffset = (distance * Math.sin(angle));
+                poseStack.translate(xOffset, yOffset, -0.02*i);
+                worldVFXBuilder
+                        .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f)
+                        .renderQuad(poseStack, scale);
+                poseStack.translate(-xOffset, -yOffset, 0.02*i);
+            }
+
+            worldVFXBuilder
+                    .replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
+                    .setColor(mainColor)
+                    .setRenderType(additive)
+                    .setAlpha(alpha*0.7f)
+                    .renderQuad(poseStack, scale);
+            for (int i = 0; i < 4; i++) {
+                double angle = i * 1.57f;
+                angle += ((gameTime % interval) / interval) * 6.28f;
+                double xOffset = (distance * Math.cos(angle));
+                double yOffset = (distance * Math.sin(angle));
+                poseStack.translate(xOffset, yOffset, 0);
+                worldVFXBuilder
+                        .setAlpha(alpha*0.3f)
+                        .setColor(colorSupplier.get().getSecondaryColor())
+                        .renderQuad(poseStack, scale);
+                poseStack.translate(-xOffset, -yOffset, 0);
+            }
             poseStack.popPose();
         }
     }

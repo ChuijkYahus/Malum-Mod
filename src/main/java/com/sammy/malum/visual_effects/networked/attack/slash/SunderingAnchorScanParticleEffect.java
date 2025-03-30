@@ -50,7 +50,7 @@ public class SunderingAnchorScanParticleEffect extends SlashAttackParticleEffect
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.1f, 0.3f)))
                         .setRandomOffset(0.5f)
                         .setLifeDelay(lifeDelay)
-                        .setBehavior(new PointyDirectionalParticleBehavior(direction.scale(directionScalar)));
+                        .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction.scale(directionScalar)));
                 slash.spawnParticles();
                 slash.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.6f, 0.3f).build())

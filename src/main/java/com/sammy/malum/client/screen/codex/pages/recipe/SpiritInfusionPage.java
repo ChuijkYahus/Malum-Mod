@@ -69,7 +69,7 @@ public class SpiritInfusionPage extends BookPage {
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
         renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 78, 18, 18)) {
+            if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
                 guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
             }
         });

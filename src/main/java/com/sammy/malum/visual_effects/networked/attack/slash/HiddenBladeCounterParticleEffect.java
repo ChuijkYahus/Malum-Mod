@@ -53,7 +53,7 @@ public class HiddenBladeCounterParticleEffect extends SlashAttackParticleEffect 
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.5f)))
                             .setLifeDelay(lifeDelay)
                             .setLifetime(2 + i)
-                            .setBehavior(new PointyDirectionalParticleBehavior(direction));
+                            .setBehavior(DirectionalParticleBehavior.directional(direction));
                     slash.spawnParticles();
                 }
             }

@@ -72,7 +72,7 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> WEAVERS_WORKBENCH = BLOCKS.register("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(BlockEntityRegistry.WEAVERS_WORKBENCH));
     public static final DeferredHolder<Block, Block> RUNIC_WORKBENCH = BLOCKS.register("runic_workbench", () -> new RunicWorkbenchBlock<>(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(BlockEntityRegistry.RUNIC_WORKBENCH));
 
-    public static final DeferredHolder<Block, Block> SOUL_BRAZIER = BLOCKS.register("soulbinding_brazier", () -> new SoulBrazierBlock<>(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(BlockEntityRegistry.SOUL_BRAZIER));
+    public static final DeferredHolder<Block, Block> SOUL_BRAZIER = BLOCKS.register("soulbinding_brazier", () -> new SoulBrazierBlock<>(MalumBlockProperties.SOUL_BRAZIER()).setBlockEntity(BlockEntityRegistry.SOUL_BRAZIER));
 
     public static final DeferredHolder<Block, Block> RITUAL_PLINTH = BLOCKS.register("ritual_plinth", () -> new RitualPlinthBlock<>(MalumBlockProperties.SOULWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(BlockEntityRegistry.RITUAL_PLINTH));
 

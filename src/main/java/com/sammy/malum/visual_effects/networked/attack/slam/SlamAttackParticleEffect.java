@@ -55,7 +55,7 @@ public class SlamAttackParticleEffect extends ParticleEffectType {
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.6f, 0.8f)))
-                    .setBehavior(new DirectionalParticleBehavior(direction));
+                    .setBehavior(DirectionalParticleBehavior.directional(direction));
             slam.spawnParticles();
         };
     }

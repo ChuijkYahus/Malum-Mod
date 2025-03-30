@@ -55,7 +55,7 @@ public class AscensionRadialSlashParticleEffect extends SlashAttackParticleEffec
                             .setMotion(slashDirection.scale(RandomHelper.randomBetween(random, 0.05f, 0.2f)).add(0, 0.2f, 0))
                             .setLifetime(12+i)
                             .setLifeDelay(i+j/4)
-                            .setBehavior(new PointyDirectionalParticleBehavior(slashDirection));
+                            .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(slashDirection));
                     slash.spawnParticles();
                 }
                 var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
@@ -64,7 +64,7 @@ public class AscensionRadialSlashParticleEffect extends SlashAttackParticleEffec
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 4.5f, 5f)).build())
                         .setLifetime(12)
                         .setLifeDelay(i*2)
-                        .setBehavior(new DirectionalParticleBehavior(new Vec3(0, 1, 0)));
+                        .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)));
                 slash.spawnParticles();
             }
         };

@@ -29,9 +29,8 @@ public class ShadeWalkerGeas extends LightLevelBasedGeas {
     }
 
     public static void preventDetection(LivingEvent.LivingVisibilityEvent event) {
-        final Map.Entry<ItemStack, GeasEffect> geasEffect = GeasEffectHandler.getGeasEffect(event.getEntity(), MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER);
-        if (geasEffect != null) {
-            ShadeWalkerGeas shadeWalkerGeas = (ShadeWalkerGeas) geasEffect.getValue();
+        var geasEffect = GeasEffectHandler.getGeasEffect(event.getEntity(), MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER);
+        if (geasEffect instanceof ShadeWalkerGeas shadeWalkerGeas) {
             if (!shadeWalkerGeas.isInLight) {
                 event.modifyVisibility(0.3f);
             }

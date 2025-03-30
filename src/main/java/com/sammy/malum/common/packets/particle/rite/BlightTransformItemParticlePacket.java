@@ -107,7 +107,6 @@ public class BlightTransformItemParticlePacket extends SpiritBasedParticleEffect
                     .addMotion(0, 0.28f + rand.nextFloat() * 0.15f, 0)
                     .disableNoClip()
                     .setRandomMotion(0.1f, 0.15f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeat(level, posX, posY, posZ, 2);
         }
         int spinOffset = rand.nextInt(360);
@@ -122,7 +121,6 @@ public class BlightTransformItemParticlePacket extends SpiritBasedParticleEffect
                     .setRandomOffset(0.4f)
                     .enableNoClip()
                     .setRandomMotion(0.01f, 0.01f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeat(level, posX, posY, posZ, 5);
         }
     }

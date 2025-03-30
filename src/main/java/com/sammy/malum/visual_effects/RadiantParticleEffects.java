@@ -94,7 +94,6 @@ public class RadiantParticleEffects {
                     .setRandomOffset(0.6f)
                     .enableNoClip()
                     .setRandomMotion(0.02f, 0.02f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeat(level, posX, posY + 0.25f, posZ, 5);
 
         }

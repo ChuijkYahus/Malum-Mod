@@ -61,8 +61,8 @@ public class GleefulTargetOath extends GeasEffect {
     }
 
     public static boolean pausePotionEffects(LivingEntity entity, MobEffectInstance instance) {
-        final Map.Entry<ItemStack, GeasEffect> geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET);
-        if (geasEffect != null && geasEffect.getValue() instanceof GleefulTargetOath effect) {
+        var geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET);
+        if (geasEffect instanceof GleefulTargetOath effect) {
             if (effect.lionsHeartDuration > 0) {
                 final MobEffect type = instance.getEffect().value();
                 return !type.isInstantenous();

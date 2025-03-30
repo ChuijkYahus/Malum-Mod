@@ -48,7 +48,7 @@ public class GeasEffect implements IMalumEventResponderItem {
         modifiers.put(attribute, new AttributeModifier(type.getId().withPrefix(type.getId().getPath() + "_"), value, operation));
     }
 
-    public final void updateAttribution(LivingEntity entity) {
+    public final void updateAttributes(LivingEntity entity) {
         if (isDirty) {
             applyAttributeModifiers(entity);
             isDirty = false;

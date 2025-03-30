@@ -1,5 +1,6 @@
 package com.sammy.malum.registry.common.block;
 
+import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.tags.*;
@@ -18,6 +19,18 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties SPIRIT_ALTAR() {
         return new LodestoneBlockProperties()
+                .strength(2F, 30.0F)
+                .instrument(NoteBlockInstrument.XYLOPHONE)
+                .mapColor(MapColor.TERRACOTTA_BROWN)
+                .sound(SoundRegistry.RUNEWOOD)
+                .setCutoutRenderType()
+                .noOcclusion()
+                .needsAxe();
+    }
+
+    public static LodestoneBlockProperties SOUL_BRAZIER() {
+        return new LodestoneBlockProperties()
+                .lightLevel(b -> b.getValue(SoulBrazierBlock.LIT) ? 8 : 0)
                 .strength(2F, 30.0F)
                 .instrument(NoteBlockInstrument.XYLOPHONE)
                 .mapColor(MapColor.TERRACOTTA_BROWN)

@@ -93,9 +93,9 @@ public class WeepingWellRejectionHandler {
             if (voidConduitBlockEntity.isPresent()) {
                 VoidConduitBlockEntity weepingWell = voidConduitBlockEntity.get();
                 BlockPos worldPosition = weepingWell.getBlockPos();
-                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createPositionedEffect(serverLevel, new PositionEffectData(worldPosition.getX() + 0.5f, worldPosition.getY() + 0.6f, worldPosition.getZ() + 0.5f));
+                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
             } else {
-                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEntityEffect(player);
+                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             }
             if (!player.isCreative()) {
                 player.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.VOID), 4);

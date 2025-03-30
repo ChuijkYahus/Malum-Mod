@@ -42,7 +42,7 @@ public class EdgeOfDeliveranceCritParticleEffect extends SlashAttackParticleEffe
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.5f, 2f)).build())
                         .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.6f, 0.8f)))
                         .setLifetime(3)
-                        .setBehavior(new PointyDirectionalParticleBehavior(direction));
+                        .setBehavior(DirectionalParticleBehavior.directional(direction));
                 slash.spawnParticles();
             }
         };

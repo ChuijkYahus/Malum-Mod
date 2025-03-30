@@ -52,19 +52,6 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        final ItemStack stack = player.getItemInHand(usedHand);
-        if (!level.isClientSide) {
-            if (GeasEffectHandler.tryAddGeasEffect(player, stack)) {
-                stack.shrink(1);
-                player.swing(usedHand);
-                return InteractionResultHolder.success(stack);
-            }
-        }
-        return InteractionResultHolder.fail(stack);
-    }
-
-    @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (stack.has(DataComponentRegistry.GEAS_EFFECT)) {
             var geasType = GeasEffectHandler.getStoredGeasEffect(stack).geasEffectType().getDefaultInstance().type;

@@ -50,12 +50,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public static final Vec3 ALTAR_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
     public static final int HORIZONTAL_RANGE = 4;
     public static final int VERTICAL_RANGE = 3;
+    private static final int WARMUP_DURATION = 30;
 
     public float speed = 1f;
     public int progress;
     public int idleProgress;
 
-    public float timeActive;
+    public float warmupTimer;
 
     public List<BlockPos> acceleratorPositions = new ArrayList<>();
     public List<IAltarAccelerator> accelerators = new ArrayList<>();
@@ -91,7 +92,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         compound.putInt("progress", progress);
         compound.putInt("idleProgress", idleProgress);
-        compound.putFloat("timeActive", timeActive);
+        compound.putFloat("warmupTimer", warmupTimer);
         compound.putFloat("speed", speed);
         compound.putFloat("spiritAmount", spiritAmount);
 
@@ -111,7 +112,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         progress = compound.getInt("progress");
         idleProgress = compound.getInt("idleProgress");
-        timeActive = compound.getFloat("timeActive");
+        warmupTimer = compound.getFloat("warmupTimer");
         speed = compound.getFloat("speed");
         spiritAmount = compound.getFloat("spiritAmount");
 
@@ -183,9 +184,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         }
 
         if (!possibleRecipes.isEmpty()) {
-            if (timeActive < 30) {
-                timeActive++;
-            }
+            warmupTimer++;
             if (!isCrafting && recipe != null) {
                 isCrafting = true;
                 BlockStateHelper.updateAndNotifyState(level, worldPosition);
@@ -212,12 +211,10 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         } else {
             isCrafting = false;
             progress = 0;
-            if (timeActive > 0) {
-                timeActive = Math.max(timeActive - 0.8f, 0);
-            }
+            warmupTimer = Mth.clamp(warmupTimer - 1, 0, WARMUP_DURATION);
         }
         if (level.isClientSide) {
-            spiritSpin += 1 + timeActive * 0.05f + speed * 0.5f;
+            spiritSpin += 1 + warmupTimer * 0.05f + speed * 0.5f;
             SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
         }
     }
@@ -345,7 +342,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
-        float projectedSpiritSpin = spiritSpin + timeActive * 0.05f + speed * 0.5f;
+        float projectedSpiritSpin = spiritSpin + warmupTimer * 0.05f + speed * 0.5f;
         float lerpSpiritSpin = spiritSpin + partialTicks * (projectedSpiritSpin - spiritSpin);
         float distanceOscillation = Mth.sin((lerpSpiritSpin / 20f) % 6.28f) * 0.025f;
         float distance = 1 - getSpinUp(Easing.SINE_OUT) * 0.25f + distanceOscillation;
@@ -354,9 +351,9 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public float getSpinUp(Easing easing) {
-        if (timeActive > 30) {
+        if (warmupTimer > WARMUP_DURATION) {
             return 1;
         }
-        return easing.ease(timeActive / 30f, 0, 1, 1);
+        return easing.ease(warmupTimer / WARMUP_DURATION, 0, 1, 1);
     }
 }

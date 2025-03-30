@@ -2,11 +2,13 @@ package com.sammy.malum.visual_effects.networked.data;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import io.netty.buffer.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.*;
+import net.minecraft.world.item.ItemStack;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
@@ -26,6 +28,11 @@ public class ColorEffectData {
     private final List<ColorParticleData> colors;
     private final List<MalumSpiritType> spirits;
     public int colorCycleCounter;
+
+
+    public static ColorEffectData fromSpiritItems(Collection<ItemStack> spirits) {
+        return new ColorEffectData(Collections.emptyList(), spirits.stream().map(s -> ((SpiritShardItem)s.getItem()).type).collect(Collectors.toList()));
+    }
 
     public static ColorEffectData fromSpiritIngredients(Collection<SpiritIngredient> malumSpiritTypes) {
         return new ColorEffectData(Collections.emptyList(), malumSpiritTypes.stream().map(SpiritIngredient::getSpiritType).collect(Collectors.toList()));

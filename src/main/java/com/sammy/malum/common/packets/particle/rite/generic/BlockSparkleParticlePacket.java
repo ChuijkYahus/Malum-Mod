@@ -60,7 +60,6 @@ public class BlockSparkleParticlePacket extends ColorBasedBlockParticleEffectPac
                     .addMotion(0, 0.28f + rand.nextFloat() * 0.15f, 0)
                     .disableNoClip()
                     .setRandomMotion(0.1f, 0.15f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeat(level, pos.getX() + 0.5f, pos.getY() + 0.2f, pos.getZ() + 0.5f, 1);
         }
         for (int i = 0; i < 2; i++) {
@@ -75,7 +74,6 @@ public class BlockSparkleParticlePacket extends ColorBasedBlockParticleEffectPac
                     .setRandomOffset(0.4f)
                     .enableNoClip()
                     .setRandomMotion(0.01f, 0.01f)
-                    .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.ENDING_CURVE_INVISIBLE)
                     .repeatSurroundBlock(level, pos, 1);
         }
         if (addMist) {
