@@ -214,7 +214,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
             warmupTimer = Mth.clamp(warmupTimer - 1, 0, WARMUP_DURATION);
         }
         if (level.isClientSide) {
-            spiritSpin += 1 + warmupTimer * 0.05f + speed * 0.5f;
+            spiritSpin += 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
             SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
         }
     }
@@ -342,7 +342,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
-        float projectedSpiritSpin = spiritSpin + warmupTimer * 0.05f + speed * 0.5f;
+        float projectedSpiritSpin = spiritSpin + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
         float lerpSpiritSpin = spiritSpin + partialTicks * (projectedSpiritSpin - spiritSpin);
         float distanceOscillation = Mth.sin((lerpSpiritSpin / 20f) % 6.28f) * 0.025f;
         float distance = 1 - getSpinUp(Easing.SINE_OUT) * 0.25f + distanceOscillation;
