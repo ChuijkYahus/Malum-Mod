@@ -297,11 +297,11 @@ public class SoulBindingBrazierParticleEffects {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(pos, distance, i, amount, level.getGameTime(), 3000);
                     var spiritType = colorEffectData.getSpirit();
                     int lifeTime = RandomHelper.randomBetween(random, 80, 100);
-                    float scale = RandomHelper.randomBetween(random, 0.2f, 0.3f) * Math.min((brazier.progress + 10) / 40f, 1);
+                    float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.STAR)
+                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.LIGHT_SPEC_SMALL)
                             .setSpirit(spiritType)
-                            .setTransparencyData(GenericParticleData.create(0.1f, 0.3f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                            .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
                             .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                             .setRandomOffset(0.1f)
