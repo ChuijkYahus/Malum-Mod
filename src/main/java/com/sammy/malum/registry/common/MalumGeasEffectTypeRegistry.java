@@ -82,12 +82,8 @@ public class MalumGeasEffectTypeRegistry {
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_OVERKEEN_EYE = GEAS_TYPES.register("oath_of_the_overkeen_eye", () -> new GeasEffectType(OverkeenEyeGeas::new, ARCANE_SPIRIT, AERIAL_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_OVEREAGER_FIST = GEAS_TYPES.register("oath_of_the_overeager_fist", () -> new GeasEffectType(OvereagerFistGeas::new, ARCANE_SPIRIT, INFERNAL_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_UNDISCERNED_MAW = GEAS_TYPES.register("oath_of_the_undiscerned_maw", () -> new GeasEffectType(UndiscernedMawGeas::new, SACRED_SPIRIT, WICKED_SPIRIT));
-    // Oath of Unsighted Resistance
-    //Malignant Deliverance generates Malignant Conversion
-    //Need to think about this one more but the general theming of armor generation will persist
-    //This is a void geas
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_UNSIGHTED_RESISTANCE = GEAS_TYPES.register("oath_of_unsighted_resistance", () -> new GeasEffectType(UnsightedResistance::new, EARTHEN_SPIRIT, ARCANE_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_UNDISCERNED_MAW = GEAS_TYPES.register("oath_of_the_undiscerned_maw", () -> new GeasEffectType(UndiscernedMawGeas::new, ARCANE_SPIRIT, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_UNSIGHTED_RESISTANCE = GEAS_TYPES.register("oath_of_unsighted_resistance", () -> new GeasEffectType(UnsightedResistance::new, ARCANE_SPIRIT, INFERNAL_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_INVERTED_HEART = GEAS_TYPES.register("oath_of_the_inverted_heart", () -> new GeasEffectType(InvertedHeartOath::new, ELDRITCH_SPIRIT, SACRED_SPIRIT, ARCANE_SPIRIT));
 

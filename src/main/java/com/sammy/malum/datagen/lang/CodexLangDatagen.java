@@ -882,7 +882,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("undoing_geas_bindings", "Forswearing Geasa", "For prices too great");
         addPages("undoing_geas_bindings",
                 "Ah, a pact that binds forever is a heavy thing. Geasa are potent, yes, and can achieve powerful effects, but their downsides are constant companions. These pacts can be forsworn on the Brazier, allowing you to decide what price you are willing to pay.",
-                "To forswear a geas, assemble it on the Brazier as you did initially, but use the Undoing Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
+                "To forswear a geas, assemble it on the Brazier as you did initially, but use the Paracausal Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
         addSimpleEntryHeader("pact_of_the_dayblessed", "Pact of The Dayblessed", "A Soothing sight");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED,
@@ -1047,7 +1047,7 @@ public class CodexLangDatagen {
                 scaled(0.8f) + """
                         The Rot will Consume You.
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
-                         -Occasionally, the Rot contributes to your pain, inflicting a Poisonous Lash""");
+                         -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

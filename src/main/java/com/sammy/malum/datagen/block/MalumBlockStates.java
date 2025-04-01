@@ -247,11 +247,10 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
                 SPIRIT_CATALYZER, SPIRIT_CATALYZER_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
-                VOID_CONDUIT, VOID_DEPOT, WEEPING_WELL_BRICKS);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::predefinedModel,
-                WEEPING_WELL_ENCASEMENT, WEEPING_WELL_ENCASEMENT_MIRRORED, WEEPING_WELL_ENCASEMENT_CORNER, WEEPING_WELL_CENTRAL_ENCASEMENT, WEEPING_WELL_SIDE_PILLAR);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::directionalBlock, this::predefinedModel,
-                WEEPING_WELL_CENTRAL_PILLAR, WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT);
+                VOID_CONDUIT, VOID_DEPOT);
+        MalumBlockStateSmithTypes.WEEPING_WELL_BLOCK.act(data, WEEPING_WELL_BRICKS);
+        MalumBlockStateSmithTypes.WEEPING_WELL_LAYERED_BLOCK.act(data, WEEPING_WELL_CENTER, WEEPING_WELL_SIDE, WEEPING_WELL_SIDE_MIRROR, WEEPING_WELL_CORNER);
+
         MalumBlockStateSmithTypes.PRIMORDIAL_SOUP.act(data, PRIMORDIAL_SOUP);
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, THE_DEVICE, THE_VESSEL);

@@ -38,7 +38,6 @@ public class BlightedGrowthBlock extends BushBlock implements BonemealableBlock,
         return super.mayPlaceOn(pState, pLevel, pPos);
     }
 
-
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return true;

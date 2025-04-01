@@ -6,9 +6,11 @@ import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.ParticleRegistry;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -54,15 +56,20 @@ public class SoulBindingBrazierParticleEffects {
     }
 
     public static ColorParticleDataBuilder getParticleColor(SoulBrazierBlockEntity brazier) {
-        Color start = null;
-        Color end = null;
+        Color start;
+        Color end;
         if (brazier.state.equals(SoulBrazierBlockEntity.BrazierState.BINDING)) {
             start = new Color(EtherItem.DEFAULT_FIRST_COLOR.rgb());
             end = new Color(EtherItem.DEFAULT_SECOND_COLOR.rgb());
         } else {
-            throw new IllegalArgumentException("Wawa");
+            start = new Color(213, 21, 95);
+            end = new Color(18, 120, 199);
         }
         return ColorParticleData.create(start, end).setEasing(Easing.SINE_IN_OUT);
+    }
+
+    public static ColorParticleDataBuilder getBloodColor() {
+        return ColorParticleData.create(0.6f, 0.1f, 0.1f);
     }
 
     public static void beginSoulBindingParticles(SoulBrazierBlockEntity brazier, ColorEffectData colorData) {
@@ -97,11 +104,11 @@ public class SoulBindingBrazierParticleEffects {
         }
         for (int i = 0; i < 16; i++) {
             Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 0.5f, i, 16, gameTime, 80);
-            int lifeTime = RandomHelper.randomBetween(random, 20, 30);
+            int lifeTime = RandomHelper.randomBetween(random, 30, 40);
             float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f);
             float length = RandomHelper.randomBetween(random, 1.8f, 2.2f);
-            WorldParticleBuilder.create(LodestoneParticleTypes.THIN_EXTRUDING_SPARK_PARTICLE)
-                    .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+            WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                    .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                     .setLengthData(GenericParticleData.create(length, 0).setEasing(Easing.SINE_IN_OUT).build())
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
                     .setColorData(colorData.getColor())
@@ -144,8 +151,107 @@ public class SoulBindingBrazierParticleEffects {
         }
     }
 
-    public static void finishSoulBindingParticles(SoulBrazierBlockEntity brazier, ColorEffectData colorData) {
+    public static void acceptSacrificeParticles(SoulBrazierBlockEntity brazier, LivingEntity entity, ColorEffectData colorData) {
+        var level = brazier.getLevel();
+        var random = level.random;
+        BlockPos blockPos = brazier.getBlockPos();
+        float x = blockPos.getX() + 0.5f;
+        float y = blockPos.getY() + 1.1f;
+        float z = blockPos.getZ() + 0.5f;
+        float entityX = (float) entity.getX();
+        float entityY = (float) (entity.getY() + entity.getBbHeight() /2f);
+        float entityZ = (float) entity.getZ();
+        Vec3 pos = new Vec3(x, y, z);
+        long gameTime = level.getGameTime();
+        for (int i = 0; i < 16; i++) {
+            Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 0.6f, i, 16, gameTime, 80);
+            int lifeTime = RandomHelper.randomBetween(random, 80, 120);
+            float scale = RandomHelper.randomBetween(random, 0.4f, 0.5f);
+            float length = RandomHelper.randomBetween(random, 0.8f, 1.6f);
+            WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                    .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                    .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)).setLengthCenter(1f))
+                    .setLengthData(GenericParticleData.create(length, 0).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
+                    .setColorData(getBloodColor().build())
+                    .setLifetime(lifeTime)
+                    .setRandomOffset(0.1f)
+                    .spawn(level, rotatingPos.x, rotatingPos.y, rotatingPos.z);
+        }
+        for (int i = 0; i < 3; i++) {
+            float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
+            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                    .setScaleData(GenericParticleData.create(4f * scaleMultiplier, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
+                    .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
+                    .setRandomMotion(0.01f, 0.01f)
+                    .setColorData(getBloodColor().build())
+                    .setRandomOffset(0.2f)
+                    .setLifetime(25)
+                    .enableNoClip()
+                    .spawn(level, x, y, z)
+                    .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                    .spawn(level, x, y, z);
 
+
+            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                    .setScaleData(GenericParticleData.create(2f * scaleMultiplier, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
+                    .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
+                    .setRandomMotion(0.01f, 0.01f)
+                    .setColorData(getBloodColor().build())
+                    .setRandomOffset(0.2f)
+                    .setLifetime(25)
+                    .enableNoClip()
+                    .spawn(level, entityX, entityY, entityZ)
+                    .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                    .spawn(level, entityX, entityY, entityZ);
+        }
+    }
+
+    public static void finishSoulBindingParticles(SoulBrazierBlockEntity brazier, ColorEffectData colorData) {
+        var level = brazier.getLevel();
+        var random = level.random;
+        BlockPos blockPos = brazier.getBlockPos();
+        float x = blockPos.getX() + 0.5f;
+        float y = blockPos.getY() + 1.1f;
+        float z = blockPos.getZ() + 0.5f;
+        Vec3 pos = new Vec3(x, y, z);
+        long gameTime = level.getGameTime();
+        var color = getParticleColor(brazier);
+
+        for (int j = 0; j < 64; j++) {
+            Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 2.15f, j, 64, gameTime, 80);
+            Vec3 direction = rotatingPos.subtract(pos).normalize();
+            int lifeTime = RandomHelper.randomBetween(random, 40, 60);
+            float scale = RandomHelper.randomBetween(random, 1.2f, 1.4f);
+            float length = RandomHelper.randomBetween(random, 4.2f, 6.6f);
+            WorldParticleBuilder.create(LodestoneParticleTypes.SPARK_PARTICLE)
+                    .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                    .setLengthData(GenericParticleData.create(length, 0).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
+                    .setColorData(color.build())
+                    .setMotion(0, 0.001f, 0)
+                    .setBehavior(DirectionalParticleBehavior.directional(direction))
+                    .setLifetime(lifeTime)
+                    .setRandomOffset(0.3f)
+                    .spawn(level, rotatingPos.x, rotatingPos.y - 0.5f, rotatingPos.z);
+        }
+
+        for (int i = 0; i < 6; i++) {
+            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                    .setScaleData(GenericParticleData.create(4f, 6f, 2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
+                    .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).build())
+                    .setRandomMotion(0.01f, 0.01f)
+                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setColorData(color.build())
+                    .setLifetime(20)
+                    .enableNoClip()
+                    .spawn(level, x, y, z)
+                    .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                    .spawn(level, x, y, z);;
+        }
     }
 
     public static void passiveBrazierParticles(SoulBrazierBlockEntity brazier) {
@@ -191,7 +297,7 @@ public class SoulBindingBrazierParticleEffects {
         if (brazier.isActive()) {
             if (!brazier.sacrificedTargets.isEmpty()) {
                 var bloodPos = itemPos.add(0, 0.4f, 0);
-                var color = ColorParticleData.create(0.6f, 0.1f, 0.1f).build();
+                var color = getBloodColor().build();
                 SpiritLightSpecs.rotatingLightSpecs(level, bloodPos, color, 0.6f, brazier.sacrificedTargets.size(),
                         b -> b.setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT).multiplyLifetime(1.5f));
                 SpiritLightSpecs.rotatingLightSpecs(level, bloodPos, color, 0.6f, brazier.sacrificedTargets.size());
@@ -236,22 +342,23 @@ public class SoulBindingBrazierParticleEffects {
                 lightSpecs.spawnParticlesRaw();
             }
             //Big Shine
+            final Vec3 up = new Vec3(0, 1, 0);
             if (gameTime % 12L == 0) {
                 var color = getParticleColor(brazier).setCoefficient(0.6f).build();
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 1.9f, 2.2f);
                 WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setLengthData(GenericParticleData.create(scale*2, 0).setEasing(Easing.SINE_IN).build())
-                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
-                        .setBehavior(SparkParticleBehavior.sparkBehavior())
+                        .setScaleData(GenericParticleData.create(scale*1.5f, 0).setEasing(Easing.SINE_IN).build())
+                        .setBehavior(DirectionalParticleBehavior.directional(up))
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setMotion(0, 0.001f, 0)
                         .setLifetime(lifeTime)
                         .setColorData(color)
                         .enableNoClip()
                         .spawn(level, x, y, z)
-                        .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                        .setLengthData(GenericParticleData.create(scale*2, 0).setEasing(Easing.SINE_IN).build())
+                        .setBehavior(SparkParticleBehavior.sparkBehavior())
                         .spawn(level, x, y, z);
             }
 
@@ -262,9 +369,9 @@ public class SoulBindingBrazierParticleEffects {
                 float spin = RandomHelper.randomBetween(random, 0.005f, 0.01f);
                 float scale = 4.5f;
                 WorldParticleBuilder.create(ParticleRegistry.RADIAL_DISPLAY)
-                        .setTransparencyData(GenericParticleData.create(0f, 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.95f, 1.05f)).build())
-                        .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                        .setBehavior(DirectionalParticleBehavior.directional(up))
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setSpinData(SpinParticleData.create(spin).build())
                         .setColorData(color.setCoefficient(0.7f).build())
@@ -276,9 +383,9 @@ public class SoulBindingBrazierParticleEffects {
                         .setLifetime(50)
                         .spawn(level, x, y, z)
                         //Shrinking Central Ring
-                        .setTransparencyData(GenericParticleData.create(0f, 0.3f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setCoefficient(0.8f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.4f, 0.5f)).build())
-                        .setColorData(color.setCoefficient(1.2f).build())
+                        .setColorData(color.setCoefficient(1.5f).build())
                         .setMotion(0, 0.02f, 0)
                         .setLifetime(40)
                         .spawn(level, x, y-0.4f, z);
@@ -294,33 +401,76 @@ public class SoulBindingBrazierParticleEffects {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(pos, distance, i, amount, level.getGameTime(), 3000);
                     var spiritType = colorEffectData.getSpirit();
                     int lifeTime = RandomHelper.randomBetween(random, 80, 100);
-                    float scale = RandomHelper.randomBetween(random, 0.2f, 0.3f) * Math.min((brazier.progress + 10) / 40f, 1);
-                    final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
-                    var direction = spiritSparkPos.subtract(geasIconPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.STAR)
+                    float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
+                    var direction = geasIconPos.subtract(spiritSparkPos).normalize();
+                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.LIGHT_SPEC_SMALL)
                             .setSpirit(spiritType)
-                            .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                            .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                            .setBehavior(DirectionalParticleBehavior.directional(direction))
                             .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                            .addTickActor(slowDown)
                             .setRandomOffset(0.1f)
                             .setLifetime(lifeTime)
                             .enableNoClip()
+                            .spawn(level, spiritSparkPos.x, spiritSparkPos.y, spiritSparkPos.z)
+                            .setBehavior(DirectionalParticleBehavior.directional(direction))
                             .spawn(level, spiritSparkPos.x, spiritSparkPos.y, spiritSparkPos.z);
 
                     //Pointy Beams
                     SpiritBasedParticleBuilder.createSpirit(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
                             .setSpirit(spiritType)
-                            .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                            .setTransparencyData(GenericParticleData.create(0f, 0.3f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                             .setLengthData(GenericParticleData.create(scale*8f, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                            .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                            .setBehavior(DirectionalParticleBehavior.directional(direction))
+                            .setScaleData(GenericParticleData.create(scale*1.4f, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
+                            .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(direction).setLengthCenter(1f))
                             .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                            .addTickActor(slowDown)
+                            .setRandomOffset(0.1f)
+                            .setLifetime(40)
+                            .enableNoClip()
+                            .spawn(level, spiritSparkPos.x, spiritSparkPos.y, spiritSparkPos.z);
+                }
+            }
+
+            //Geas Shine
+            if (gameTime % 20L == 0) {
+                Vec3 geasIconPos = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                var color = activeSpiritType.createColorData().setCoefficient(0.6f).build();
+                int lifeTime = RandomHelper.randomBetween(random, 50, 60);
+                float scale = RandomHelper.randomBetween(random, 2.4f, 2.8f);
+                WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                        .setTransparencyData(GenericParticleData.create(0f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
+                        .setBehavior(DirectionalParticleBehavior.directional(up))
+                        .setLifetime(lifeTime)
+                        .setColorData(color)
+                        .enableNoClip()
+                        .spawn(level, geasIconPos.x, geasIconPos.y, geasIconPos.z)
+                        .setLengthData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
+                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(up))
+                        .spawn(level, geasIconPos.x, geasIconPos.y, geasIconPos.z);
+            }
+
+            //Geas Rotating Stars
+            if (gameTime % 4 == 0) {
+                float distance = 1.2f;
+                int amount = brazier.spiritInventory.getFilledSlotCount() * 2;
+                ColorEffectData colorEffectData = ColorEffectData.fromSpiritIngredients(brazier.recipe.spirits);
+                Vec3 geasIconPos = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                for (int i = 0; i < amount; i++) {
+                    var spiritSparkPos = VecHelper.rotatingRadialOffset(geasIconPos, distance, i, amount, level.getGameTime(), 600);
+                    var spiritType = colorEffectData.getSpirit();
+                    int lifeTime = RandomHelper.randomBetween(random, 60, 80);
+                    float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
+                    var direction = geasIconPos.subtract(spiritSparkPos).normalize();
+                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.LIGHT_SPEC_SMALL)
+                            .setSpirit(spiritType)
+                            .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                            .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
+                            .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                             .setRandomOffset(0.1f)
                             .setLifetime(lifeTime)
                             .enableNoClip()
+                            .spawn(level, spiritSparkPos.x, spiritSparkPos.y, spiritSparkPos.z)
+                            .setBehavior(DirectionalParticleBehavior.directional(direction))
                             .spawn(level, spiritSparkPos.x, spiritSparkPos.y, spiritSparkPos.z);
                 }
             }

@@ -105,7 +105,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         if (pct == 1f) {
             var data = livingEntity.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
-            return 3 + data.consumeAllStaffCharges(livingEntity) * 4;
+            return 3 + data.consumeAllStaffCharges(livingEntity) * 2;
         }
         return 0;
     }

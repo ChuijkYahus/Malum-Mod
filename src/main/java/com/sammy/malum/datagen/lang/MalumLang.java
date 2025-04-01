@@ -324,7 +324,8 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
         add("malum.effect.geas.malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         add("malum.effect.geas.malignant_crit_healing_overexertion", "Repeated Activations Nullify All Healing");
-        add("malum.effect.geas.malignant_crit_reinforcement", "Malignant Deliverance Improves Conversion");
+        add("malum.effect.geas.malignant_crit_execution", "Malignant Deliverance Excels Against Weakened Targets");
+        add("malum.effect.geas.malignant_crit_weakness", "Malignant Deliverance Suffers Against Healthy Targets");
         add("malum.effect.geas.staff_homing", "Staff Projectiles Home In on Targets");
         add("malum.effect.geas.staff_autofire", "Staff Charges Automatically Fire");
         add("malum.effect.geas.inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");

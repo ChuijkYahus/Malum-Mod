@@ -83,6 +83,9 @@ public class GeasSoulData {
     public boolean hasGeasEffect(LivingEntity living, Holder<GeasEffectType> type) {
         return getGeasEffect(living, type) != null;
     }
+    public boolean hasGeasEffect(LivingEntity living, GeasEffectType type) {
+        return getGeasEffect(living, type) != null;
+    }
 
     public List<ItemStack> getGeasItemStacks(LivingEntity entity) {
         updateCaches(entity);

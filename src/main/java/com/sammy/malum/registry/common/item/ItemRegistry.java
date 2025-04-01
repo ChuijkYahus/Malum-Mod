@@ -791,13 +791,11 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> VOID_DEPOT = register("void_depot", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.VOID_DEPOT.get(), p));
 
     public static final DeferredHolder<Item, Item> WEEPING_WELL_BRICKS = register("weeping_well_bricks", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_BRICKS.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_ENCASEMENT = register("weeping_well_encasement", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_ENCASEMENT.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_ENCASEMENT_MIRRORED = register("weeping_well_encasement_mirrored", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_ENCASEMENT_MIRRORED.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_ENCASEMENT_CORNER = register("weeping_well_encasement_corner", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_ENCASEMENT_CORNER.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_CENTRAL_ENCASEMENT = register("weeping_well_central_encasement", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CENTRAL_ENCASEMENT.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT = register("weeping_well_central_encasement_support", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_CENTRAL_PILLAR = register("weeping_well_central_pillar", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CENTRAL_PILLAR.get(), p));
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_SIDE_PILLAR = register("weeping_well_side_pillar", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_SIDE_PILLAR.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_CENTER = register("weeping_well_center", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CENTER.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_SIDE = register("weeping_well_side", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_SIDE.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_SIDE_MIRROR = register("weeping_well_side_mirror", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_SIDE_MIRROR.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_CORNER = register("weeping_well_corner", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CORNER.get(), p));
+
     //endregion
 
     @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)

@@ -56,7 +56,7 @@ public class SlashAttackParticleEffect extends ParticleEffectType {
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2f, 3f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.4f)))
-                    .setBehavior(DirectionalParticleBehavior.directional(direction));
+                    .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
             slash.spawnParticles();
         };
     }

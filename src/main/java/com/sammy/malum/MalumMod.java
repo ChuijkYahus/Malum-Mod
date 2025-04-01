@@ -6,8 +6,6 @@ import com.sammy.malum.compability.farmersdelight.*;
 import com.sammy.malum.compability.irons_spellbooks.*;
 import com.sammy.malum.compability.tetra.*;
 import com.sammy.malum.config.*;
-import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.bus.api.IEventBus;
@@ -34,7 +32,8 @@ import static com.sammy.malum.registry.common.item.tabs.CreativeTabRegistry.*;
 import static com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry.*;
 import static com.sammy.malum.registry.common.recipe.RecipeTypeRegistry.*;
 import static com.sammy.malum.registry.common.worldgen.FeatureRegistry.*;
-import static com.sammy.malum.registry.common.worldgen.StructureRegistry.*;
+import static com.sammy.malum.registry.common.worldgen.MalumStructurePieceTypes.STRUCTURE_PIECE_TYPES;
+import static com.sammy.malum.registry.common.worldgen.MalumStructureTypes.STRUCTURE_TYPES;
 
 @SuppressWarnings("unused")
 @Mod(MalumMod.MALUM)
@@ -67,7 +66,8 @@ public class MalumMod {
         RECIPE_TYPES.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
         FEATURE_TYPES.register(modEventBus);
-        STRUCTURES.register(modEventBus);
+        STRUCTURE_TYPES.register(modEventBus);
+        STRUCTURE_PIECE_TYPES.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
         ATTACHMENT_TYPES.register(modEventBus);
         WORLD_EVENT_TYPES.register(modEventBus);

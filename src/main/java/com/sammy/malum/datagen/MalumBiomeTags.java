@@ -33,5 +33,7 @@ public class MalumBiomeTags extends BiomeTagsProvider {
 
         tag(BiomeTagRegistry.HAS_AZURE_RUNEWOOD).add(Biomes.SNOWY_PLAINS).add(Biomes.SNOWY_TAIGA).add(Biomes.FROZEN_RIVER).add(Biomes.SNOWY_BEACH);
         tag(BiomeTagRegistry.HAS_RARE_AZURE_RUNEWOOD).add(Biomes.FROZEN_PEAKS).add(Biomes.JAGGED_PEAKS).add(Biomes.SNOWY_SLOPES).add(Biomes.GROVE);
+
+        tag(BiomeTagRegistry.HAS_WEEPING_WELL).addTag(BiomeTags.IS_OVERWORLD);
     }
 }

@@ -113,7 +113,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             float distance = scale * 0.08f;
 
             worldVFXBuilder
-                    .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f)
+                    .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.32f)
                     .setRenderType(transparent)
                     .setAlpha(alpha*0.4f)
                     .renderQuad(poseStack, scale);
@@ -124,7 +124,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 double yOffset = (distance * Math.sin(angle));
                 poseStack.translate(xOffset, yOffset, -0.02*i);
                 worldVFXBuilder
-                        .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f)
+                        .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.32f)
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0.02*i);
             }
@@ -133,7 +133,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                     .replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
                     .setColor(mainColor)
                     .setRenderType(additive)
-                    .setAlpha(alpha*0.7f)
+                    .setAlpha(alpha*0.8f)
                     .renderQuad(poseStack, scale);
             for (int i = 0; i < 4; i++) {
                 double angle = i * 1.57f;
@@ -142,7 +142,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 double yOffset = (distance * Math.sin(angle));
                 poseStack.translate(xOffset, yOffset, 0);
                 worldVFXBuilder
-                        .setAlpha(alpha*0.3f)
+                        .setAlpha(alpha*0.4f)
                         .setColor(colorSupplier.get().getSecondaryColor())
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0);

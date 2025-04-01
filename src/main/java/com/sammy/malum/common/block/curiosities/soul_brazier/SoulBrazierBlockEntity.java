@@ -11,8 +11,7 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
-import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierEndParticleEffect;
-import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierStartParticleEffect;
+import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
 import com.sammy.malum.visual_effects.networked.data.NBTEffectData;
 import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
@@ -22,12 +21,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
@@ -155,7 +155,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             return ItemInteractionResult.SUCCESS;
         }
         if (isActive()) {
-            if (addSacrifice(pPlayer)) {
+            if (addSacrifice(serverLevel, pPlayer)) {
                 return ItemInteractionResult.SUCCESS;
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -188,6 +188,16 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                         return;
                     }
                 }
+                if (progress % 20 == 0) {
+                    AABB radius = new AABB(worldPosition).inflate(4);
+                    List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, radius);
+                    for (LivingEntity entity : entities) {
+                        if (entity.hasEffect(MobEffects.WEAKNESS)) {
+                            addSacrifice(serverLevel, entity);
+                        }
+                    }
+                }
+
                 if (progress > SOULBINDING_DURATION) {
                     List<LivingEntity> targets = new ArrayList<>();
                     for (UUID uuid : sacrificedTargets) {
@@ -262,12 +272,18 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
-    public boolean addSacrifice(LivingEntity entity) {
+    public boolean addSacrifice(ServerLevel level, LivingEntity entity) {
         UUID uuid = entity.getUUID();
         if (!sacrificedTargets.contains(uuid)) {
             sacrificedTargets.add(uuid);
             entity.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.KARMIC), entity.getMaxHealth()/4f);
             level.playSound(null, worldPosition, SoundRegistry.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
+
+            ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
+                    .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
+                    .customData(SoulBrazierAcceptSacrificeParticleEffect.createData(entity))
+                    .spawn(level);
+
             BlockStateHelper.updateAndNotifyState(level, worldPosition);
             return true;
         }
