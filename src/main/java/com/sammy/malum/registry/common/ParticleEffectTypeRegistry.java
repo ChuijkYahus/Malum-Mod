@@ -5,8 +5,7 @@ import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.attack.slam.SlamAttackParticleEffect;
 import com.sammy.malum.visual_effects.networked.attack.slash.AscensionRadialSlashParticleEffect;
 import com.sammy.malum.visual_effects.networked.blight.*;
-import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierEndParticleEffect;
-import com.sammy.malum.visual_effects.networked.brazier.SoulBrazierStartParticleEffect;
+import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
@@ -50,6 +49,7 @@ public class ParticleEffectTypeRegistry {
 
     //Soulbinding Brazier
     public static final ParticleEffectType SOULBINDING_BRAZIER_BEGINS = new SoulBrazierStartParticleEffect("brazier_start");
+    public static final ParticleEffectType SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE = new SoulBrazierAcceptSacrificeParticleEffect("brazier_sacrifice");
     public static final ParticleEffectType SOULBINDING_BRAZIER_ENDS = new SoulBrazierEndParticleEffect("brazier_end");
 
     //Ritual Plinth

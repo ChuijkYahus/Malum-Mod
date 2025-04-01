@@ -66,6 +66,10 @@ public class GeasEffectHandler {
         return getGeasData(entity).hasGeasEffect(entity, type);
     }
 
+    public static boolean hasGeasEffect(LivingEntity entity, GeasEffectType type) {
+        return getGeasData(entity).hasGeasEffect(entity, type);
+    }
+
     public static boolean removeGeasEffect(LivingEntity entity, GeasEffectType geas) {
         return getGeasData(entity).removeGeasEffect(geas);
     }

@@ -54,7 +54,7 @@ public class AscensionUppercutParticleEffect extends SlashAttackParticleEffect {
                             .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.2f, 0.4f)).add(0, 0.8f, 0))
                             .setLifetime(3+i)
                             .setLifeDelay(i/2)
-                            .setBehavior(DirectionalParticleBehavior.directional(direction));
+                            .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
                     slash.spawnParticles();
                 }
             }

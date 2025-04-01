@@ -1,6 +1,8 @@
 package com.sammy.malum.common.item;
 
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.handlers.*;
+import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
@@ -29,6 +31,19 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     public GeasItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        var storedGeasEffect = GeasEffectHandler.getStoredGeasEffect(player.getItemInHand(usedHand));
+        var geas = storedGeasEffect.geasEffectType();
+        if (GeasEffectHandler.hasGeasEffect(player, geas)) {
+            GeasEffectHandler.removeGeasEffect(player, geas);
+        } else {
+            GeasEffectHandler.addGeasEffect(player, geas);
+        }
+
+        return super.use(level, player, usedHand);
     }
 
     @Override

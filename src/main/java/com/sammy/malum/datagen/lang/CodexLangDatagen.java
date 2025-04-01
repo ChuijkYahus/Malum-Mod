@@ -1047,7 +1047,7 @@ public class CodexLangDatagen {
                 scaled(0.8f) + """
                         The Rot will Consume You.
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
-                         -Occasionally, the Rot contributes to your pain, inflicting a Poisonous Lash""");
+                         -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

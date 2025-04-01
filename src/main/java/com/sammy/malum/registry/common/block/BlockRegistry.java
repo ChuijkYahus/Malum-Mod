@@ -23,6 +23,7 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
+import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.block.nature.soulwood.*;
@@ -34,7 +35,6 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.worldgen.*;
-import net.minecraft.client.color.block.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
@@ -111,19 +111,21 @@ public class BlockRegistry {
 
     public static final DeferredHolder<Block, Block> WEEPING_WELL_BRICKS = BLOCKS.register("weeping_well_bricks", () -> new Block(MalumBlockProperties.WEEPING_WELL()));
 
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT = BLOCKS.register("weeping_well_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_MIRRORED = BLOCKS.register("weeping_well_encasement_mirrored", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_CORNER = BLOCKS.register("weeping_well_encasement_corner", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTER = BLOCKS.register("weeping_well_center", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE = BLOCKS.register("weeping_well_side", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE_MIRROR = BLOCKS.register("weeping_well_side_mirror", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_CORNER = BLOCKS.register("weeping_well_corner", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
 
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT = BLOCKS.register("weeping_well_central_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT = BLOCKS.register("weeping_well_central_encasement_support", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
 
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_PILLAR = BLOCKS.register("weeping_well_central_pillar", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE_PILLAR = BLOCKS.register("weeping_well_side_pillar", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT = BLOCKS.register("weeping_well_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_MIRRORED = BLOCKS.register("weeping_well_encasement_mirrored", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_CORNER = BLOCKS.register("weeping_well_encasement_corner", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
 
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_CORNER = BLOCKS.register("weeping_well_corner", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE = BLOCKS.register("weeping_well_side", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_CORE = BLOCKS.register("weeping_well_core", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT = BLOCKS.register("weeping_well_central_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT = BLOCKS.register("weeping_well_central_encasement_support", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
+
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_PILLAR = BLOCKS.register("weeping_well_central_pillar", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
+//    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE_PILLAR = BLOCKS.register("weeping_well_side_pillar", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
     //endregion
 
     //region spirited glass
@@ -250,11 +252,11 @@ public class BlockRegistry {
     //endregion
 
     //region runewood
-    public static final DeferredHolder<Block, Block> RUNEWOOD_SAPLING = BLOCKS.register("runewood_sapling", () -> new MalumSaplingBlock(TreeGrowerRegistry.RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_SAPLING = BLOCKS.register("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
     public static final DeferredHolder<Block, Block> RUNEWOOD_LEAVES = BLOCKS.register("runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
     public static final DeferredHolder<Block, Block> HANGING_RUNEWOOD_LEAVES = BLOCKS.register("hanging_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
 
-    public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_SAPLING = BLOCKS.register("azure_runewood_sapling", () -> new MalumSaplingBlock(TreeGrowerRegistry.AZURE_RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
+    public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_SAPLING = BLOCKS.register("azure_runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.AZURE_RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
     public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_LEAVES = BLOCKS.register("azure_runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
     public static final DeferredHolder<Block, Block> HANGING_AZURE_RUNEWOOD_LEAVES = BLOCKS.register("hanging_azure_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
 
@@ -332,7 +334,7 @@ public class BlockRegistry {
     //endregion
 
     //region soulwood
-    public static final DeferredHolder<Block, Block> SOULWOOD_GROWTH = BLOCKS.register("soulwood_growth", () -> new SoulwoodGrowthBlock(TreeGrowerRegistry.SOULWOOD, MalumBlockProperties.BLIGHTED_PLANTS().setCutoutRenderType().randomTicks()));
+    public static final DeferredHolder<Block, Block> SOULWOOD_GROWTH = BLOCKS.register("soulwood_growth", () -> new SoulwoodGrowthBlock(MalumTreeGrowers.SOULWOOD, MalumBlockProperties.BLIGHTED_PLANTS().setCutoutRenderType().randomTicks()));
     public static final DeferredHolder<Block, Block> SOULWOOD_LEAVES = BLOCKS.register("soulwood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.SOULWOOD_LEAVES().setCutoutRenderType(), new Color(213, 8, 63), new Color(255, 61, 243)));
     public static final DeferredHolder<Block, Block> HANGING_SOULWOOD_LEAVES = BLOCKS.register("hanging_soulwood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_SOULWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), new Color(213, 8, 63), new Color(255, 61, 243)));
 

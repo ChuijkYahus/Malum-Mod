@@ -16,4 +16,7 @@ public class BiomeTagRegistry {
     public static final TagKey<Biome> HAS_RARE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_runewood"));
     public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_azure_runewood"));
     public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_azure_runewood"));
+
+
+    public static final TagKey<Biome> HAS_WEEPING_WELL = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_weeping_well"));
 }

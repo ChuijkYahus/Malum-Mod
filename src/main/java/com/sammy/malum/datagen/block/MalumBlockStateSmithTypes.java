@@ -1,11 +1,13 @@
 package com.sammy.malum.datagen.block;
 
+import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.PrimordialSoupBlock;
+import com.sammy.malum.common.block.curiosities.weeping_well.*;
+import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
@@ -75,6 +77,24 @@ public class MalumBlockStateSmithTypes {
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/repair_pylon_component_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(RepairPylonComponentBlock.TOP) ? topModel : model).build());
     });
+
+
+    public static BlockStateSmith<WeepingWellLayeredBlock> WEEPING_WELL_BLOCK = new BlockStateSmith<>(WeepingWellLayeredBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name));
+        provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(model).build());
+    });
+
+    public static BlockStateSmith<WeepingWellLayeredBlock> WEEPING_WELL_LAYERED_BLOCK = new BlockStateSmith<>(WeepingWellLayeredBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name + "_" + s.getValue(WeepingWellLayeredBlock.LAYER)));
+            var direction = s.getValue(WeepingWellLayeredBlock.FACING);
+            return ConfiguredModel.builder().modelFile(model).rotationY((int) (direction.toYRot() % 360)).build();
+        });
+    });
+
 
     public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addTextureNameAffix("_top"), (block, provider) -> {
         String name = provider.getBlockName(block);

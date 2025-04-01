@@ -48,13 +48,14 @@ public class TouchOfDarknessRenderHandler {
 
         for (int i = 0; i < 4; i++) {
             poseStack.pushPose();
-            if (i != 2) {
+            if (i != 3) {
                 float angle = ((player.level().getGameTime() + deltaTracker.getGameTimeDeltaTicks()) / 80 + i * 2.09f) * 6.28f;
                 float xOffset = Mth.sin(angle) * 20;
                 float yOffset = Mth.cos(angle) * 20;
                 poseStack.translate(xOffset, yOffset, 0);
             }
-            builder.setColor(i==0?55:0, i==1?55:0, i==2?55:0);
+            final float color = 0.1f;
+            builder.setColor(i==0? color :0, i==1? color :0, i==2? color :0);
 
             setZoom.accept(zoom);
             setIntensity.accept(intensity);
