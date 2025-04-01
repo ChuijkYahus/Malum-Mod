@@ -29,7 +29,7 @@ public class StructureDatagen {
     public static void structureSetBootstrap(BootstrapContext<StructureSet> context) {
         context.register(MalumStructureKeys.WEEPING_WELL_STRUCTURE_SET_KEY, new StructureSet(
                 List.of(StructureSet.entry(context.lookup(Registries.STRUCTURE).getOrThrow(MalumStructureKeys.WEEPING_WELL_STRUCTURE_KEY))),
-                new RandomSpreadStructurePlacement(4, 2, RandomSpreadType.TRIANGULAR, 546451665)));
+                new RandomSpreadStructurePlacement(24, 18, RandomSpreadType.TRIANGULAR, 546451665)));
     }
 
     private static Structure.StructureSettings structure(HolderSet<Biome> tag, TerrainAdjustment adj) {

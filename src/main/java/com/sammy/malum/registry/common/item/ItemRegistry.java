@@ -790,11 +790,14 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> VOID_CONDUIT = register("void_conduit", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.VOID_CONDUIT.get(), p));
     public static final DeferredHolder<Item, Item> VOID_DEPOT = register("void_depot", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.VOID_DEPOT.get(), p));
 
-    public static final DeferredHolder<Item, Item> WEEPING_WELL_BRICKS = register("weeping_well_bricks", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_BRICKS.get(), p));
     public static final DeferredHolder<Item, Item> WEEPING_WELL_CENTER = register("weeping_well_center", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CENTER.get(), p));
     public static final DeferredHolder<Item, Item> WEEPING_WELL_SIDE = register("weeping_well_side", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_SIDE.get(), p));
     public static final DeferredHolder<Item, Item> WEEPING_WELL_SIDE_MIRROR = register("weeping_well_side_mirror", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_SIDE_MIRROR.get(), p));
     public static final DeferredHolder<Item, Item> WEEPING_WELL_CORNER = register("weeping_well_corner", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_CORNER.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_FLAGSTONE = register("weeping_well_flagstone", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_FLAGSTONE.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_COLUMN_BASE = register("weeping_well_column_base", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_COLUMN_BASE.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_COLUMN = register("weeping_well_column", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_COLUMN.get(), p));
+    public static final DeferredHolder<Item, Item> WEEPING_WELL_COLUMN_CAP = register("weeping_well_column_cap", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WEEPING_WELL_COLUMN_CAP.get(), p));
 
     //endregion
 

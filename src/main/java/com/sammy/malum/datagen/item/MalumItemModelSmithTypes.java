@@ -6,6 +6,7 @@ import com.sammy.malum.core.systems.ritual.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.neoforged.neoforge.client.model.generators.*;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.systems.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.systems.datagen.itemsmith.ItemModelSmith;
@@ -156,6 +157,17 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         }
         return model;
     });
+
+
+    public static ItemModelSmith WEEPING_WELL_BLOCK_ITEM = new ItemModelSmith(((item, provider) -> {
+        String name = provider.getItemName(item);
+        return provider.getBuilder(name).parent(new ModelFile.UncheckedModelFile(provider.modLoc("block/weeping_well/" + name)));
+    }));
+    public static ItemModelSmith LAYERED_WEEPING_WELL_BLOCK_ITEM = new ItemModelSmith(((item, provider) -> {
+        String name = provider.getItemName(item);
+        return provider.getBuilder(name).parent(new ModelFile.UncheckedModelFile(provider.modLoc("block/weeping_well/" + name + "_0")));
+    }));
+
 
     public static ResourceLocation getDefaultPrideTexturePath(ItemSkinComponent skin, LodestoneArmorItem item) {
         ResourceLocation path = MalumMod.malumPath("item/cosmetic/armor_icons/pride/" + skin.name().getPath());

@@ -34,6 +34,10 @@ public class WeepingWellStructure extends Structure {
         ChunkGenerator chunkGenerator = context.chunkGenerator();
         var levelHeightAccessor = context.heightAccessor();
 
+        if (random.nextFloat() < 0.4f) {
+            return Optional.empty();
+        }
+
         int blockX = chunkPos.getBlockX(random.nextInt(16));
         int blockZ = chunkPos.getBlockZ(random.nextInt(16));
         int baseHeight = chunkGenerator.getBaseHeight(blockX, blockZ, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor, randomState);
