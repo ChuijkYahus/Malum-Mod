@@ -2,6 +2,10 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
+      "count": 4,
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
       "count": 1,
       "item": "minecraft:golden_apple"
     }

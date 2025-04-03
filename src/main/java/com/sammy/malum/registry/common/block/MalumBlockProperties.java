@@ -532,12 +532,12 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties WEEPING_WELL() {
         return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_GRAY)
-                .needsPickaxe()
+                .strength(-1.0F, 3600000.0F)
                 .sound(SoundRegistry.WEEPING_WELL_BRICKS)
-                .requiresCorrectToolForDrops()
                 .isRedstoneConductor((a,b,c) -> false)
-                .strength(-1.0F, 3600000.0F);
+                .mapColor(MapColor.COLOR_GRAY)
+                .isValidSpawn(Blocks::never)
+                .noLootTable();
     }
 
     public static LodestoneBlockProperties PRIMORDIAL_SOUP() {

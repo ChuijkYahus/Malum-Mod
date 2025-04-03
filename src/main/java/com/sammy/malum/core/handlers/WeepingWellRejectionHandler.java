@@ -90,13 +90,15 @@ public class WeepingWellRejectionHandler {
         var level = player.level();
         if (level instanceof ServerLevel serverLevel) {
             final Optional<VoidConduitBlockEntity> voidConduitBlockEntity = WeepingWellData.checkForWeepingWell(player);
-            if (voidConduitBlockEntity.isPresent()) {
-                VoidConduitBlockEntity weepingWell = voidConduitBlockEntity.get();
+            voidConduitBlockEntity.ifPresent(weepingWell -> {
                 BlockPos worldPosition = weepingWell.getBlockPos();
                 ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
-            } else {
-                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
-            }
+                if (weepingWell.reachedStreakGoal) {
+                    GeasEffectHandler.addGeasEffect(player, MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get());
+                    weepingWell.reachedStreakGoal = false;
+                }
+            });
+            ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             if (!player.isCreative()) {
                 player.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.VOID), 4);
             }

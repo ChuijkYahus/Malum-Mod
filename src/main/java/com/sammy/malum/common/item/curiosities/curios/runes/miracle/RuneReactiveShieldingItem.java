@@ -10,6 +10,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import team.lodestar.lodestone.helpers.EntityHelper;
 import team.lodestar.lodestone.handlers.*;
@@ -29,17 +30,19 @@ public class RuneReactiveShieldingItem extends AbstractRuneCurioItem implements 
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
-        Holder<MobEffect> shielding = MobEffectRegistry.REACTIVE_SHIELDING;
-        MobEffectInstance effect = attacked.getEffect(shielding);
-        if (effect == null) {
-            if (attacked.level().random.nextFloat() < 0.5f) {
+        var shielding = MobEffectRegistry.REACTIVE_SHIELDING;
+        var instance = attacked.getEffect(shielding);
+        var level = attacked.level();
+        if (level.random.nextFloat() < 0.5f) {
+            if (instance == null) {
                 attacked.addEffect(new MobEffectInstance(shielding, 80, 0, true, true, true));
             }
         } else {
-            if (attacked.level().random.nextFloat() < 0.5f) {
-                EntityHelper.amplifyEffect(effect, attacked, 1, 3);
+            if(instance == null) {
+                return;
             }
-            EntityHelper.extendEffect(effect, attacked, 40, 100);
+            EntityHelper.amplifyEffect(instance, attacked, 1, 3);
+            EntityHelper.extendEffect(instance, attacked, 40, 100);
         }
     }
 }

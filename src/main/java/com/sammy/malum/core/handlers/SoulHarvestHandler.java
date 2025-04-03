@@ -1,5 +1,6 @@
 package com.sammy.malum.core.handlers;
 
+import com.mojang.serialization.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.common.item.*;
@@ -32,6 +33,7 @@ import java.util.*;
 import static team.lodestar.lodestone.helpers.RandomHelper.*;
 
 public class SoulHarvestHandler {
+    public static final Codec<SoulHarvestHandler> CODEC = Codec.unit(SoulHarvestHandler::new);
 
     public static void onDeath(LivingDeathEvent event) {
         if (event.isCanceled()) {
@@ -46,17 +48,23 @@ public class SoulHarvestHandler {
             return;
         }
         var source = event.getSource();
+        var level = target.level();
         var attacker = source.getEntity() instanceof LivingEntity living ? living : target.getLastHurtByMob();
         if (data.shouldDropSpirits()) {
-            var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(s -> s.itemAsSoul).orElse(null);
-            if (itemAsSoul == null) {
-                spawnSpirits(target, attacker, source);
-            } else {
-                var uuid = attacker != null ? attacker.getUUID() : null;
-                target.setData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(getSpiritDrops(target, attacker, source), uuid));
-            }
             dropSpiritInfusedDrops(target);
             dropEncyclopediaArcana(target, attacker);
+            var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(s -> s.itemAsSoul).orElse(null);
+            if (itemAsSoul != null) {
+                var uuid = attacker != null ? attacker.getUUID() : null;
+                target.setData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(getSpiritDrops(target, attacker, source), uuid));
+                return;
+            }
+            spawnSpirits(target, attacker, source);
+
+
+            if (attacker != null) {
+                attacker.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).setMostRecentShatter(level.getGameTime());
+            }
             data.setSoulless(true);
         }
     }
@@ -153,15 +161,14 @@ public class SoulHarvestHandler {
         return entity;
     }
 
-    public static List<ItemStack> getSpiritDrops(LivingEntity entity, LivingEntity attacker, @Nullable DamageSource source) {
+    public static List<ItemStack> getSpiritDrops(LivingEntity target, LivingEntity attacker, @Nullable DamageSource source) {
         if (attacker == null || source == null) {
-            return EntitySpiritDropData.getSpiritStacks(entity);
+            return EntitySpiritDropData.getSpiritStacks(target);
         }
-        ItemStack stack = SoulDataHandler.getSoulHunterWeapon(source, attacker);
-        return EntitySpiritDropData.getSpiritData(entity).map(data -> applySpiritLootBonuses(EntitySpiritDropData.getSpiritStacks(data), attacker, stack)).orElse(Collections.emptyList());
+        return EntitySpiritDropData.getSpiritData(target).map(data -> applySpiritLootBonuses(EntitySpiritDropData.getSpiritStacks(data), target, attacker)).orElse(Collections.emptyList());
     }
 
-    public static List<ItemStack> applySpiritLootBonuses(List<ItemStack> spirits, LivingEntity attacker, ItemStack stack) {
+    public static List<ItemStack> applySpiritLootBonuses(List<ItemStack> spirits, LivingEntity target, LivingEntity attacker) {
         if (spirits.isEmpty()) {
             return spirits;
         }
@@ -170,13 +177,18 @@ public class SoulHarvestHandler {
         if (attacker.getAttribute(spiritSpoils) != null) {
             extra += Mth.ceil(attacker.getAttributeValue(spiritSpoils));
         }
+        var event = new ModifySpiritSpoilsEvent(target, attacker, extra);
+        var eventResponders = ItemEventHandler.getEventResponders(attacker);
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+                (eventResponderItem, stack) -> eventResponderItem.modifySpiritSpoilsEvent(event, attacker)));
+        NeoForge.EVENT_BUS.post(event);
+        extra += event.getNewExtraSpirits();
         for (int i = 0; i < extra; i++) {
             int random = attacker.getRandom().nextInt(spirits.size());
             spirits.get(random).grow(1);
         }
         return spirits;
     }
-
 
     public static void pickupSpirit(LivingEntity collector, ItemStack stack) {
         SoulHarvestHandler.triggerSpiritCollection(collector);

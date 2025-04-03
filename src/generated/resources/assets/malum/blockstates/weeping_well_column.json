@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "malum:block/weeping_well/weeping_well_column",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "malum:block/weeping_well/weeping_well_column",
+      "x": 90,
+      "y": 270
+    },
+    "facing=north": {
+      "model": "malum:block/weeping_well/weeping_well_column",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south": {
+      "model": "malum:block/weeping_well/weeping_well_column",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "malum:block/weeping_well/weeping_well_column"
+    },
+    "facing=west": {
+      "model": "malum:block/weeping_well/weeping_well_column",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

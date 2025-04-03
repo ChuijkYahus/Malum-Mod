@@ -19,6 +19,8 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.item.*;
 
+import java.util.*;
+
 public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     public EdgeOfDeliveranceItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
@@ -47,16 +49,17 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
             return;
         }
         var source = event.getSource();
-        if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION)) {
+        if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
             var effect = MobEffectRegistry.IMMINENT_DELIVERANCE;
             if (target.hasEffect(effect)) {
-                triggerMalignantCrit(event.getContainer(), attacker, target);
-                var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT);
-                if (!canSweep(attacker)) {
-                    particle.setVertical();
+                if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
+                    var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT);
+                    if (!canSweep(attacker)) {
+                        particle.setVertical();
+                    }
+                    particle.spawnTargetBoundSlashingParticle(attacker, target);
+                    target.removeEffect(effect);
                 }
-                particle.spawnTargetBoundSlashingParticle(attacker, target);
-                target.removeEffect(effect);
             }
             else {
                 event.setNewDamage(event.getNewDamage() * 0.5f);
@@ -73,14 +76,25 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         return canSweep ? SoundRegistry.EDGE_OF_DELIVERANCE_SWEEP : SoundRegistry.EDGE_OF_DELIVERANCE_CUT;
     }
 
-    public static void triggerMalignantCrit(DamageContainer damageContainer, LivingEntity attacker, LivingEntity target) {
+    public static boolean triggerMalignantCrit(DamageContainer damageContainer, LivingEntity attacker, LivingEntity target) {
+        var event = new MalignantCritEvent.Pre(target, damageContainer);
+        var eventResponders = ItemEventHandler.getEventResponders(attacker);
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+                (eventResponderItem, stack) -> eventResponderItem.malignantCritEvent(event, attacker)));
+        NeoForge.EVENT_BUS.post(event);
+
+        if (event.isCanceled()) {
+            return false;
+        }
+        var postEvent = new MalignantCritEvent.Post(target, damageContainer);
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+                (eventResponderItem, stack) -> eventResponderItem.finalizedMalignantCritEvent(postEvent, attacker)));
+        NeoForge.EVENT_BUS.post(postEvent);
+
         damageContainer.setNewDamage(damageContainer.getNewDamage() * 2);
-        var critEvent = new MalignantCritEvent(attacker, damageContainer);
-        ItemEventHandler.getEventResponders(attacker).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
-                (eventResponderItem, stack) -> eventResponderItem.malignantCritEvent(critEvent, attacker)));
-        NeoForge.EVENT_BUS.post(critEvent);
         SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 2f, 0.75f);
         SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.25f);
         SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.75f);
+        return true;
     }
 }

@@ -45,65 +45,94 @@ public class WeepingWellStructurePiece extends StructurePiece {
         BlockPos wellPosition = startPos;
 
         LodestoneBlockFiller filler = new LodestoneBlockFiller().addLayers(WELL);
-        Direction[] directions = new Direction[]{Direction.NORTH, Direction.WEST, Direction.SOUTH, Direction.EAST};
-
-//        BlockPos.MutableBlockPos mutable = startPos.mutable();
-//        int failedSolidChecks = 0;
-//        int failedNonSolidChecks = 0;
-//
-//        for (int x = -2; x <= 2; x++) {
-//            for (int y = -5; y <= 4; y++) {
-//                for (int z = -2; z <= 2; z++) {
-//                    mutable.set(wellPosition.getX() + x, wellPosition.getY() + y, wellPosition.getZ() + z);
-//                    if (y <= 0) {
-//                        if (level.isEmptyBlock(mutable) || !level.isFluidAtPosition(mutable, FluidState::isEmpty)) {
-//                            failedSolidChecks++;
-//                        }
-//                    } else {
-//                        if (!canPlace(level, mutable)) {
-//                            failedNonSolidChecks++;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (failedSolidChecks >= 25) {
-//            return;
-//        }
-//        if (failedNonSolidChecks >= 50) {
-//            return;
-//        }
         var layer = filler.getLayer(WELL);
         var caveAir = create(Blocks.CAVE_AIR.defaultBlockState()).setForcePlace();
 
-        var bricks = create(BlockRegistry.WEEPING_WELL_BRICKS.get().defaultBlockState()).setForcePlace();
 
         var primordialSoupTop = create(BlockRegistry.PRIMORDIAL_SOUP.get().defaultBlockState()).setForcePlace();
         var primordialSoup = create(BlockRegistry.PRIMORDIAL_SOUP.get().defaultBlockState().setValue(PrimordialSoupBlock.TOP, false)).setForcePlace();
         var voidConduit = create(BlockRegistry.VOID_CONDUIT.get().defaultBlockState()).setForcePlace();
 
-        int wellDepth = random.nextInt(6, 9);
+        int airLayer = 3;
+        int wellDepth = random.nextInt(8, 12);
         var mutable = wellPosition.mutable();
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                for (int y = 0; y <= airLayer; y++) {
+                    mutable.set(wellPosition).move(x, y, z);
+                    layer.put(mutable.immutable(), caveAir);
+                }
+            }
+        }
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 for (int y = 0; y <= wellDepth; y++) {
                     mutable.set(wellPosition).move(x, -y, z);
                     var state = caveAir;
-                    if (y == wellDepth) {
-                        state = bricks;
+                    if (y == 2) {
+                        state = x == 0 && z == 0 ? voidConduit : primordialSoupTop;
                     }
-                    else {
-                        if (y >= 2) {
-                            final boolean isTop = y == 2;
-                            state = x == 0 && isTop && z == 0 ? voidConduit : (isTop ? primordialSoupTop : primordialSoup);
-                        }
+                    else if (y > 2) {
+                        state = primordialSoup;
                     }
                     layer.put(mutable.immutable(), state);
                 }
             }
         }
+        var flagstoneState = create(BlockRegistry.WEEPING_WELL_FLAGSTONE.get().defaultBlockState())
+                .setForcePlace();
         for (int i = 0; i < 4; i++) {
             Direction direction = Direction.from2DDataValue(i);
+            if (direction.getAxis().equals(Direction.Axis.X)) {
+                var columnBase = create(BlockRegistry.WEEPING_WELL_COLUMN_BASE.get().defaultBlockState())
+                        .setForcePlace();
+                var column = create(BlockRegistry.WEEPING_WELL_COLUMN.get().defaultBlockState())
+                        .setForcePlace();
+                var columnCap = create(BlockRegistry.WEEPING_WELL_COLUMN_CAP.get().defaultBlockState())
+                        .setForcePlace();
+
+
+                mutable.set(wellPosition).move(direction, 5);
+                int columnHeight = random.nextInt(5, 7);
+                for (int j = 0; j <= columnHeight; j++) {
+                    var state = column;
+                    if (j == 0) {
+                        state = flagstoneState;
+                    }
+                    else if (j == 1) {
+                        state = columnBase;
+                    }
+                    else if (j == columnHeight) {
+                        state = columnCap;
+                    }
+                    layer.put(mutable.above(j), state);
+                }
+
+                for (int j = 0; j < 4; j++) {
+                    Direction columnDirection = Direction.from2DDataValue(j);
+                    var centerState = create(BlockRegistry.WEEPING_WELL_CENTER.get().defaultBlockState()
+                            .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
+                            .setForcePlace();
+                    var cornerState = create(BlockRegistry.WEEPING_WELL_CORNER.get().defaultBlockState()
+                            .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
+                            .setForcePlace();
+                    var centerPos = mutable.relative(columnDirection);
+                    layer.put(centerPos, centerState);
+                    var cornerPos = centerPos.relative(columnDirection.getClockWise());
+                    layer.put(cornerPos, cornerState);
+                    for (int k = 0; k < 4; k++) {
+                        int state = Math.min(k+1, 4);
+                        centerState = create(BlockRegistry.WEEPING_WELL_CENTER.get().defaultBlockState()
+                                .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection)
+                                .setValue(WeepingWellLayeredBlock.LAYER, state));
+                        cornerState = create(BlockRegistry.WEEPING_WELL_CORNER.get().defaultBlockState()
+                                .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection)
+                                .setValue(WeepingWellLayeredBlock.LAYER, state));
+                        layer.put(centerPos.below(state), centerState);
+                        layer.put(cornerPos.below(state), cornerState);
+                    }
+                }
+            }
             for (int j = 0; j <= wellDepth; j++) {
                 int state = Math.min(j, 3);
                 if (j == wellDepth) {
@@ -132,96 +161,21 @@ public class WeepingWellStructurePiece extends StructurePiece {
                 layer.put(mutable.relative(direction.getClockWise(), 2), cornerState);
             }
         }
-
-
-
-
-//        int wellDepth = 4;
-//        int airPocketHeight = 2;
-//        var layer = filler.getLayer(WELL);
-//        var caveAir = create(Blocks.CAVE_AIR.defaultBlockState()).setForcePlace();
-//        for (int i = 0; i < 9; i++) {
-//            int xOffset = (i / 3) - 1;
-//            int zOffset = i % 3 - 1;
-//            for (int j = 0; j < wellDepth; j++) {
-//                BlockPos primordialGoopPos = wellPosition.offset(xOffset, -j, zOffset);
-//                boolean top = j == 0;
-//                BlockState state = top && i == 5
-//                        ? BlockRegistry.VOID_CONDUIT.get().defaultBlockState()
-//                        : BlockRegistry.PRIMORDIAL_SOUP.get().defaultBlockState().setValue(PrimordialSoupBlock.TOP, top);
-//
-//                layer.put(primordialGoopPos, create(state).setForcePlace());
-//            }
-//            for (int j = 1; j <= airPocketHeight; j++) {
-//                BlockPos airPocketPos = wellPosition.offset(xOffset, j, zOffset);
-//                layer.put(airPocketPos, caveAir.setForcePlace());
-//            }
-//        }
-//
-//        BlockPos above = wellPosition.above();
-//        for (Direction direction : directions) {
-//            BlockPos.MutableBlockPos start = above.mutable().move(direction, 2).move(direction.getCounterClockWise(), 2);
-//            for (int i = 0; i < 4; i++) {
-//                Block block = BlockRegistry.WEEPING_WELL_SIDE.get();
-//                BlockPos.MutableBlockPos segmentPosition = start.move(direction.getClockWise());
-//                if (i == 1) {
-//                    block = BlockRegistry.WEEPING_WELL_CORE.get();
-//                }
-//                if (i == 3) {
-//                    block = BlockRegistry.WEEPING_WELL_CORNER.get();
-//                }
-//                BlockState state = block.defaultBlockState().setValue(WeepingWellBlock.FACING, direction);
-//                BlockPos immutable = segmentPosition.immutable();
-//                layer.put(immutable, create(state).setForcePlace());
-//                layer.put(immutable.below(), create(Blocks.DEEPSLATE.defaultBlockState()).setForcePlace());
-//                layer.put(immutable.above(), caveAir);
-//                layer.put(immutable.above(2), caveAir);
-//            }
-//        }
-//
-//        int startingIndex = random.nextInt(2);
-//        Direction cachedChosenDirection = null;
-//        for (int i = 0; i < 2; i++) {
-//            Direction columnDirection = directions[startingIndex + i * 2];
-//            BlockPos.MutableBlockPos columnPosition = wellPosition.mutable().move(0, 2, 0).move(columnDirection, 3);
-//            if (random.nextBoolean()) {
-//                Direction chosenDirection;
-//                if (cachedChosenDirection == null) {
-//                    chosenDirection = random.nextBoolean() ? columnDirection.getCounterClockWise() : columnDirection.getClockWise();
-//                } else {
-//                    chosenDirection = random.nextBoolean() ? cachedChosenDirection.getOpposite() : null;
-//                }
-//                if (chosenDirection != null) {
-//                    columnPosition.move(chosenDirection);
-//                }
-//                cachedChosenDirection = chosenDirection;
-//            }
-//            int columnHeight = 3 + random.nextInt(4);
-//            int wallHeightDifference = 1 + random.nextInt(3);
-//            int wallHeight = columnHeight - wallHeightDifference;
-//            for (int j = 0; j < columnHeight; j++) {
-//                BlockState state;
-//                if (j == 0 || j == columnHeight - 1) {
-//                    state = BlockRegistry.TAINTED_ROCK_COLUMN_CAP.get().defaultBlockState().setValue(BlockStateProperties.FACING, j == 0 ? Direction.DOWN : Direction.UP);
-//                } else {
-//                    state = BlockRegistry.TAINTED_ROCK_COLUMN.get().defaultBlockState().setValue(BlockStateProperties.AXIS, Direction.Axis.Y);
-//                }
-//                layer.put(columnPosition.immutable(), create(state).setForcePlace());
-//                if (j < wallHeight) {
-//                    BlockState wallState = BlockRegistry.TAINTED_ROCK_BRICKS_WALL.get().defaultBlockState();
-//                    final WallSide wallSide = j == wallHeight - 1 ? WallSide.LOW : WallSide.TALL;
-//                    switch (columnDirection) {
-//                        case SOUTH -> wallState = wallState.setValue(WallBlock.SOUTH_WALL, wallSide);
-//                        case NORTH -> wallState = wallState.setValue(WallBlock.NORTH_WALL, wallSide);
-//                        case WEST -> wallState = wallState.setValue(WallBlock.WEST_WALL, wallSide);
-//                        case EAST -> wallState = wallState.setValue(WallBlock.EAST_WALL, wallSide);
-//                    }
-//                    layer.put(columnPosition.move(columnDirection.getOpposite()).immutable(), create(wallState).setForcePlace());
-//                    columnPosition.move(columnDirection);
-//                }
-//                columnPosition.move(0, 1, 0);
-//            }
-//        }
+        for (int i = 0; i < 4; i++) {
+            Direction columnDirection = Direction.from2DDataValue(i);
+            var centerState = create(BlockRegistry.WEEPING_WELL_CENTER.get().defaultBlockState()
+                    .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
+                    .setForcePlace();
+            var cornerState = create(BlockRegistry.WEEPING_WELL_CORNER.get().defaultBlockState()
+                    .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
+                    .setForcePlace();
+            var flagstonePos = mutable.set(wellPosition).move(Direction.DOWN, wellDepth+1);
+            layer.put(flagstonePos.immutable(), flagstoneState);
+            var sidePos = flagstonePos.relative(columnDirection);
+            layer.put(sidePos, centerState);
+            var cornerPos = sidePos.relative(columnDirection.getClockWise());
+            layer.put(cornerPos, cornerState);
+        }
 
         filler.fill(level);
     }

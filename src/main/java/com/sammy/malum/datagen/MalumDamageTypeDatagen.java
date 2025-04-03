@@ -28,6 +28,8 @@ public class MalumDamageTypeDatagen {
         register(context, DamageTypeRegistry.HIDDEN_BLADE_PHYSICAL_COUNTER);
         register(context, DamageTypeRegistry.HIDDEN_BLADE_MAGIC_COUNTER);
 
+        register(context, DamageTypeRegistry.MALIGNANT_METAL_COMBO);
+
         register(context, DamageTypeRegistry.TYRVING);
 
         register(context, DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO);

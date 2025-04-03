@@ -109,12 +109,14 @@ public class BlockRegistry {
 
     public static final DeferredHolder<Block, Block> VOID_DEPOT = BLOCKS.register("void_depot", () -> new VoidDepotBlock<>(MalumBlockProperties.WEEPING_WELL()).setBlockEntity(BlockEntityRegistry.VOID_DEPOT));
 
-    public static final DeferredHolder<Block, Block> WEEPING_WELL_BRICKS = BLOCKS.register("weeping_well_bricks", () -> new Block(MalumBlockProperties.WEEPING_WELL()));
-
     public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTER = BLOCKS.register("weeping_well_center", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
     public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE = BLOCKS.register("weeping_well_side", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
     public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE_MIRROR = BLOCKS.register("weeping_well_side_mirror", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
     public static final DeferredHolder<Block, Block> WEEPING_WELL_CORNER = BLOCKS.register("weeping_well_corner", () -> new WeepingWellLayeredBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_FLAGSTONE = BLOCKS.register("weeping_well_flagstone", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN_BASE = BLOCKS.register("weeping_well_column_base", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN = BLOCKS.register("weeping_well_column", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
+    public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN_CAP = BLOCKS.register("weeping_well_column_cap", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
 
 
 //    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT = BLOCKS.register("weeping_well_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));

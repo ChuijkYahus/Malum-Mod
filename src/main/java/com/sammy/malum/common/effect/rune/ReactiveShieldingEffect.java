@@ -1,4 +1,4 @@
-package com.sammy.malum.common.effect;
+package com.sammy.malum.common.effect.rune;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;

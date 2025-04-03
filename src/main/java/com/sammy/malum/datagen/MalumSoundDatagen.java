@@ -112,6 +112,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.AURIC_FLAME_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/auric_cinders", 3)));
         this.add(SoundRegistry.DRAINING_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/draining_bubbling", 3)));
         this.add(SoundRegistry.MALIGNANT_METAL_MOTIF, s -> definition(s).with(sounds("curiosities/motifs/malignant_crit", 3)));
+        this.add(SoundRegistry.MALIGNANT_METAL_COMBO, s -> definition(s).with(sounds("curiosities/motifs/malignant_crit", 3)));
 
         this.add(SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT, s -> definition(s).with(sounds("curiosities/motifs/worldsoul_minor_impact", 3)));
         this.add(SoundRegistry.WORLDSOUL_MOTIF_HEAVY_IMPACT, s -> definition(s).with(sounds("curiosities/motifs/worldsoul_impact", 6)));

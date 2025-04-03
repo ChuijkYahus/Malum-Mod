@@ -60,9 +60,10 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
             var particleEffectType = ParticleEffectTypeRegistry.SCYTHE_SLASH;
             var effect = MobEffectRegistry.GRIM_CERTAINTY;
             if (attacker.hasEffect(effect) || level.random.nextFloat() < 0.25f) {
-                triggerMalignantCrit(event.getContainer(), attacker, target);
-                particleEffectType = ParticleEffectTypeRegistry.WEIGHT_OF_WORLDS_CRIT;
-                attacker.removeEffect(effect);
+                if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
+                    particleEffectType = ParticleEffectTypeRegistry.WEIGHT_OF_WORLDS_CRIT;
+                    attacker.removeEffect(effect);
+                }
             } else {
                 //We want only the crit to be present in case of exterior triggers such as Soulwashing
                 //Regular swing animations are still tied to the melee attack only

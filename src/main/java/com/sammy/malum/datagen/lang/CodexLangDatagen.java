@@ -784,8 +784,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("void.runes", "Voidish Runecraft", "An altered alphabet");
         addPages("void.runes",
-                "By inscribing the runes on tablets of Null Slate, their effects run wild and warped, seeking Void instead of creation. Each seeks to tear itself apart, creating paradoxical and fascinating effects.",
-                "The effects of the runes vary drastically from their original counterparts; I have my notes on their functions in the attached entries.");
+                "By inscribing the runes on tablets of Null Slate, their effects run wild and warped, seeking Void instead of creation. Each seeks to tear itself apart, creating paradoxical and fascinating effects; I have my notes on their functions in the attached entries.");
 
         addSimpleEntryHeader("void.rune_of_bolstering", "Rune of Bolstering", "To heal what is whole");
         addPages("void.rune_of_bolstering",
@@ -808,7 +807,7 @@ public class CodexLangDatagen {
                 "The Rune of Unnatural Stamina gives its user the speed of hysteria, constantly able to move faster, and even being able to sprint if your hunger would normally prevent you from doing so.");
         addSimpleEntryHeader("void.rune_of_spell_mastery", "Rune of Spell Mastery", "To make what destroys");
         addPages("void.rune_of_spell_mastery",
-                "The Rune of Spell Mastery mirrors the false arcana, allowing me to hold two more staff charges in addition to improving the potency of my magic.");
+                "The Rune of Spell Mastery mirrors the false arcana, allowing me to charge my staves twice as fast.");
         addSimpleEntryHeader("void.rune_of_the_heretic", "Rune of the Heretic", "To destroy what makes");
         addPages("void.rune_of_the_heretic",
                 "The Rune of the Heretic decries magic, Silencing foes much like the Erosion Scepter can. This weakens their spirit magic, and the effect can stack up to complete suppression.");
@@ -1048,6 +1047,62 @@ public class CodexLangDatagen {
                         The Rot will Consume You.
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
+
+        addSimpleEntryHeader("oath_of_the_overkeen_eye", "Oath of The Overkeen Eye", "Ninety Nine Point Nine");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE,
+                """
+                        A Keen Eye Imbued onto Soul
+                        -Staff Projectiles Gain Homing Capabilities""",
+                """
+                        The Imbued Awareness demands Two-Fold Preparation
+                         -Staff Charge Duration is Doubled""");
+        addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "Zero Point Zero One");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST,
+                """
+                        An Eagerness Imbued onto Soul
+                        -Staff Charge Duration Is Halved""",
+                """
+                        The Imbued Eagerness demands Immediate Action
+                         -Staff Charges Fire Immediately once Fully Charged""");
+
+        addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "Devour.");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
+                """
+                        An Etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
+                        -Devoured Essence Heals You""",
+                """
+                        Born from the Malignant Metal, Devoured Essence seeks to Undo
+                        -Overuse of the Healing Effect nullifies All Healing""");
+
+        addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "Above all until not");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN,
+                """
+                        An Etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes Execute Low Health Targets""",
+                """
+                        Born from the Malignant Metal, Deliverance develops quite the Preference
+                        -Malignant Critical Strikes are less likely to occur on High Health Targets""");
+
+        addSimpleEntryHeader("oath_of_the_unsighted_resistance", "Oath of Unsighted Resistance", "Hide behind the blade");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE,
+                """
+                        An Etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes Generate Armor and Armor Toughness""",
+                """
+                        Born from the Malignant Metal, The Armor is an Equivalent Exchange
+                        -Reduces Malignant Critical Strike Damage by Two Fifths""");
+
+        addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "Devour.");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
+                """
+                        An Etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
+                        -Devoured Essence Heals You""",
+                """
+                        Born from the Malignant Metal, Devoured Essence seeks to Undo
+                        -Overuse of the Healing Effect nullifies All Healing""");
+
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

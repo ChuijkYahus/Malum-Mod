@@ -1,5 +1,6 @@
 package com.sammy.malum.core.handlers.client;
 
+import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.common.data.attachment.*;
@@ -9,6 +10,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
+import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
@@ -53,8 +55,12 @@ public class TouchOfDarknessRenderHandler {
                 float xOffset = Mth.sin(angle) * 20;
                 float yOffset = Mth.cos(angle) * 20;
                 poseStack.translate(xOffset, yOffset, 0);
+                RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
             }
-            final float color = 0.1f;
+            else {
+                RenderSystem.defaultBlendFunc();
+            }
+            final float color = 0.06f;
             builder.setColor(i==0? color :0, i==1? color :0, i==2? color :0);
 
             setZoom.accept(zoom);

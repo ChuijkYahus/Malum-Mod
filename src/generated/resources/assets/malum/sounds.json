@@ -772,6 +772,14 @@
     ],
     "subtitle": "malum.subtitle.legalize_nuclear_bombs"
   },
+  "malignant_deliverance_strikes_again": {
+    "sounds": [
+      "malum:curiosities/motifs/malignant_crit1",
+      "malum:curiosities/motifs/malignant_crit2",
+      "malum:curiosities/motifs/malignant_crit3"
+    ],
+    "subtitle": "malum.subtitle.malignant_deliverance_strikes_again"
+  },
   "malignant_metal_motif": {
     "sounds": [
       "malum:curiosities/motifs/malignant_crit1",

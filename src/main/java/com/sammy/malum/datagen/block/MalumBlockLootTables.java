@@ -52,7 +52,12 @@ public class MalumBlockLootTables extends LootTableProvider {
         protected void generate() {
             Set<DeferredHolder<Block, ? extends Block>> blocks = new HashSet<>(BLOCKS.getEntries());
 
-            takeAll(blocks, b -> b.get().properties() instanceof LodestoneBlockProperties && ((LodestoneBlockProperties) b.get().properties()).getDatagenData().hasInheritedLootTable);
+            takeAll(blocks, b -> {
+                if (b.get().properties() instanceof LodestoneBlockProperties properties) {
+                    return properties.getDatagenData().noLootDatagen;
+                }
+                return true;
+            });
 
             takeAll(blocks, RUNEWOOD_LEAVES, HANGING_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
             takeAll(blocks, AZURE_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));

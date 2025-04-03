@@ -7,8 +7,11 @@ import team.lodestar.lodestone.handlers.*;
 
 public interface IMalumEventResponderItem extends ItemEventHandler.IEventResponder {
 
+    default void malignantCritEvent(MalignantCritEvent.Pre event, LivingEntity attacker) {
 
-    default void malignantCritEvent(MalignantCritEvent event, LivingEntity attacker) {
+    }
+
+    default void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
 
     }
 
@@ -20,9 +23,15 @@ public interface IMalumEventResponderItem extends ItemEventHandler.IEventRespond
 
     }
 
+    default void modifySpiritSpoilsEvent(ModifySpiritSpoilsEvent event, LivingEntity attacker) {
+
+    }
+
     default void modifySoulWardPropertiesEvent(ModifySoulWardPropertiesEvent event, LivingEntity wardedEntity, ItemStack stack) {
+
     }
 
     default void soulWardDamageEvent(SoulWardDamageEvent event, LivingEntity wardedEntity, ItemStack stack) {
+
     }
 }
