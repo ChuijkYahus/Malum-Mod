@@ -2,6 +2,7 @@ package com.sammy.malum.core.systems.events;
 
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
 
@@ -14,6 +15,18 @@ public class MalignantCritEvent extends LivingEvent {
         super(livingEntity);
         this.livingEntity = livingEntity;
         this.container = container;
+    }
+
+    public static class Pre extends MalignantCritEvent implements ICancellableEvent {
+        public Pre(LivingEntity livingEntity, DamageContainer container) {
+            super(livingEntity, container);
+        }
+    }
+
+    public static class Post extends MalignantCritEvent {
+        public Post(LivingEntity livingEntity, DamageContainer container) {
+            super(livingEntity, container);
+        }
     }
 
     public LivingEntity getLivingEntity() {

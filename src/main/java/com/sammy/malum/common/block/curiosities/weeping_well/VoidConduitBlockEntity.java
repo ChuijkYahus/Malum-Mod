@@ -30,6 +30,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public final List<ItemStack> eatenItems = new ArrayList<>();
     public int progress;
     public int streak;
+    public boolean reachedStreakGoal;
     public int lingeringRadiance;
 
     public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
@@ -48,6 +49,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         }
         compound.putInt("progress", progress);
         compound.putInt("streak", streak);
+        compound.putBoolean("reachedStreakGoal", reachedStreakGoal);
         compound.putInt("lingeringRadiance", lingeringRadiance);
         super.saveAdditional(compound, registries);
     }
@@ -61,6 +63,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         }
         progress = compound.getInt("progress");
         streak = compound.getInt("streak");
+        reachedStreakGoal = compound.getBoolean("reachedStreakGoal");
         lingeringRadiance = compound.getInt("lingeringRadiance");
     }
 
@@ -85,10 +88,13 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
                 if (progress >= 80) {
                     int resultingProgress = 60;
                     ParticleEffectType particleEffectType = ParticleEffectTypeRegistry.WEEPING_WELL_REACTS;
-                    ItemStack stack = eatenItems.get(eatenItems.size() - 1);
+                    ItemStack stack = eatenItems.getLast();
                     if (stack.getItem().equals(ItemRegistry.BLIGHTED_GUNK.get())) {
-                        resultingProgress += streak / 2f;
-                        streak++;
+                        resultingProgress += (int) (streak / 2f);
+                        streak += stack.getCount();
+                        if (streak >= 4096) {
+                            reachedStreakGoal = true;
+                        }
                         level.playSound(null, worldPosition, SoundRegistry.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, 0.6f + level.random.nextFloat() * 0.3f + streak * 0.05f);
                         level.playSound(null, worldPosition, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.7f, 0.6f + level.random.nextFloat() * 0.2f + streak * 0.05f);
                     } else {
@@ -99,8 +105,9 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
                         }
                     }
                     progress = resultingProgress;
-                    eatenItems.remove(eatenItems.size() - 1);
-                    particleEffectType.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition.getX() + 0.5f, worldPosition.getY() + 0.6f, worldPosition.getZ() + 0.5f));
+                    eatenItems.removeLast();
+
+                    particleEffectType.createEffect(worldPosition.getCenter()).spawn(serverLevel);
                     BlockStateHelper.updateAndNotifyState(level, worldPosition);
                 }
                 if (eatenItems.isEmpty()) {

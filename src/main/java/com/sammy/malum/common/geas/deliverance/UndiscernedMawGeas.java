@@ -51,10 +51,9 @@ public class UndiscernedMawGeas extends GeasEffect {
     }
 
     @Override
-    public void malignantCritEvent(MalignantCritEvent event, LivingEntity attacker) {
-        final LivingEntity target = event.getLivingEntity();
+    public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
         float amount = event.getNewDamage() / Math.max(event.getOriginalDamage(), 0.01f);
-        if (target instanceof Player player) {
+        if (event.getLivingEntity() instanceof Player player) {
             player.causeFoodExhaustion(0.5f * amount);
         }
         attacker.heal(amount);

@@ -1,7 +1,6 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.geas.light.*;
 import com.sammy.malum.common.geas.time.*;
@@ -170,10 +169,12 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure once, cut twice");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN.get(), "Acknowledge no one, and be acknowledged by none");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
@@ -291,6 +292,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.curio.enchanted_explosions", "Explosions are Enchanted with %s");
         add("malum.effect.curio.explosions_spare_valuables", "Protects Valuable Items from Explosions");
 
+        add("malum.effect.geas.chained_spirit_bonus", "Repeated Soul Shatters Occasionally Yields Extra Arcana");
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
         add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
         add("malum.effect.geas.spirit_collection_absorption", "Spirit Collection Grants Absorption");
@@ -324,8 +326,10 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
         add("malum.effect.geas.malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         add("malum.effect.geas.malignant_crit_healing_overexertion", "Repeated Activations Nullify All Healing");
-        add("malum.effect.geas.malignant_crit_execution", "Malignant Deliverance Excels Against Weakened Targets");
-        add("malum.effect.geas.malignant_crit_weakness", "Malignant Deliverance Suffers Against Healthy Targets");
+        add("malum.effect.geas.malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
+        add("malum.effect.geas.malignant_crit_health_condition", "Prevents Malignant Deliverance When Wounded");
+        add("malum.effect.geas.malignant_crit_reinforcement", "Malignant Deliverance Reinforces Armor");
+        add("malum.effect.geas.malignant_crit_reduced_damage", "Reduces Malignant Deliverance Damage");
         add("malum.effect.geas.staff_homing", "Staff Projectiles Home In on Targets");
         add("malum.effect.geas.staff_autofire", "Staff Charges Automatically Fire");
         add("malum.effect.geas.inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");

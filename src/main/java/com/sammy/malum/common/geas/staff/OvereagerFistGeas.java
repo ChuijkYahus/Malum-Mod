@@ -26,7 +26,7 @@ public class OvereagerFistGeas extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.CHARGE_DURATION, -0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, AttributeRegistry.CHARGE_DURATION, -0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         return modifiers;
     }
 }

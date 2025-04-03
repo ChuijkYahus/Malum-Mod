@@ -30,7 +30,7 @@ public class BookEntryBuilder {
     }
 
     public BookEntryBuilder(String identifier) {
-        this(identifier, identifier.startsWith("void."));
+        this(identifier, identifier.startsWith("void.") || BookPage.isVoidThemed);
     }
 
     public BookEntryBuilder addPage(BookPage page) {

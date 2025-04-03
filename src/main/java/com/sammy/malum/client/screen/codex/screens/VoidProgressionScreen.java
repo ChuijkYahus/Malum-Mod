@@ -11,14 +11,15 @@ import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.pages.CyclingPage;
 import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.pages.EntrySelectorPage;
-import com.sammy.malum.client.screen.codex.pages.recipe.RuneworkingPage;
-import com.sammy.malum.client.screen.codex.pages.recipe.SpiritInfusionPage;
+import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.core.systems.events.SetupMalumCodexEntriesEvent;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -235,6 +236,13 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 ))
                 .afterUmbralCrystal()
         );
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE, -7, 13);
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND, -8, 14);
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST, -7, 15);
+
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN, 7, 13);
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE, 8, 14);
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW, 7, 15);
 
         addEntry("void.ring_of_gruesome_concentration", -3, 9, b -> b
                 .withTraceFragmentEntry()
@@ -323,7 +331,6 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
         addEntry("void.runes", 0, 11, b -> b
                 .configureWidget(w -> w.setIcon(RUNE_OF_THE_HERETIC).setStyle(BookWidgetStyle.SOULWOOD))
                 .addPage(new HeadlineTextPage("void.runes", "void.runes.1"))
-                .addPage(new TextPage("void.runes.2"))
                 .addPage(new EntrySelectorPage(item -> {
                     final String translationKey = "void." + BuiltInRegistries.ITEM.getKey(item).getPath();
                     return new EntryReference(item,
@@ -370,5 +377,13 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
         );
 
         BookPage.isVoidThemed = false;
+    }
+
+    public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
+        screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
+                .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
+                .addPage(SoulBindingPage.fromGeas(geas))
+                .addPage(new GeasInfoPage(geas))
+        );
     }
 }

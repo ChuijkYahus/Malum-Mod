@@ -1,8 +1,7 @@
-package com.sammy.malum.common.effect;
+package com.sammy.malum.common.effect.geas;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
@@ -15,13 +14,5 @@ public class PyromaniacEffect extends MobEffect {
         var id = MalumMod.malumPath("pyromaniac");
         addAttributeModifier(Attributes.MOVEMENT_SPEED, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-    }
-
-    public static void increaseDigSpeed(PlayerEvent.BreakSpeed event) {
-        Player player = event.getEntity();
-        if (player.hasEffect(MobEffectRegistry.PYROMANIACS_FERVOR)) {
-            final int amplifier = player.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR).getAmplifier()+1;
-            event.setNewSpeed(event.getOriginalSpeed() * (1 + 0.05f * amplifier));
-        }
     }
 }

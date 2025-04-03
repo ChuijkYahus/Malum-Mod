@@ -115,6 +115,7 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> AURIC_FLAME_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("auric_flame_motif")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DRAINING_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("draining_motif")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_metal_motif")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_COMBO = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_deliverance_strikes_again")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WORLDSOUL_MOTIF_LIGHT_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_worldsoul_shifts_slightly")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WORLDSOUL_MOTIF_HEAVY_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_worldsoul_shifts_erratically")));

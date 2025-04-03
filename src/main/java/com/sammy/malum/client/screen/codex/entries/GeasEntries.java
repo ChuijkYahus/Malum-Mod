@@ -5,7 +5,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
+import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
 import com.sammy.malum.registry.common.item.*;
@@ -66,7 +66,7 @@ public class GeasEntries {
 
     }
 
-    public static void addGeasEntry(ArcanaProgressionScreen screen, Holder<GeasEffectType> geas, int x, int y) {
+    public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
                 .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))

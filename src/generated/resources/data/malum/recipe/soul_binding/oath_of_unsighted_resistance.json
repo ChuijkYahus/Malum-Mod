@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "count": 4,
+      "item": "malum:imitation_flesh"
+    }
+  ],
+  "geas": "malum:oath_of_unsighted_resistance",
+  "ingredient": {
+    "count": 8,
+    "item": "malum:malignant_pewter_plating"
+  },
+  "spirits": [
+    {
+      "type": "earthen",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    },
+    {
+      "type": "eldritch",
+      "count": 32
+    }
+  ]
+}

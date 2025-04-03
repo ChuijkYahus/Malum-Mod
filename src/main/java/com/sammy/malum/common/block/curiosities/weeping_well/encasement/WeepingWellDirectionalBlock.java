@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block.curiosities.weeping_well.encasement;
 
 import com.mojang.serialization.*;
+import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -12,5 +13,6 @@ public class WeepingWellDirectionalBlock extends LodestoneDirectionalBlock {
 
     public WeepingWellDirectionalBlock(Properties builder) {
         super(builder);
+        registerDefaultState(defaultBlockState().setValue(FACING, Direction.UP));
     }
 }
