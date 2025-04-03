@@ -27,15 +27,13 @@ public class UnsightedResistanceGeas extends GeasEffect {
 
     @Override
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
-        event.setNewDamage(event.getNewDamage() * 0.6f);
-        var shielding = MobEffectRegistry.REACTIVE_SHIELDING;
+        event.setNewDamage(event.getNewDamage() * 0.8f);
+        var shielding = MobEffectRegistry.UNSIGHTED_RESISTANCE;
         var instance = attacker.getEffect(shielding);
         if (instance == null) {
             attacker.addEffect(new MobEffectInstance(shielding, 100, 0, true, true, true));
         } else {
-            if (attacker.getRandom().nextFloat()< 0.4f) {
-                EntityHelper.amplifyEffect(instance, attacker, 1, 9);
-            }
+            EntityHelper.amplifyEffect(instance, attacker, 1, 9);
             EntityHelper.extendEffect(instance, attacker, 40, 400);
         }
     }
