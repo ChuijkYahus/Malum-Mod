@@ -19,9 +19,12 @@
     "PlayerMixin"
   ],
   "client": [
+    "client.AbstractContainerScreenAccessor",
     "client.AccessorBakedGlyph",
     "client.AccessorFont",
     "client.ClientPacketListenerMixin",
+    "client.CreativeModeInventoryScreenMixin",
+    "client.CreativeModeTabMixin",
     "client.ElytraLayerMixin",
     "client.FontStringRenderOutputMixin",
     "client.GlyphRenderTypesMixin",

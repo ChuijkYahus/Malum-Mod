@@ -6,6 +6,7 @@ import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlagRegistry;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
 import java.util.function.BooleanSupplier;
@@ -65,5 +66,23 @@ public class HiddenTagHandler {
 				tags.add(entry.getKey());
 		}
 		return tags;
+	}
+
+	public static void hideItems(Collection<ItemStack> items) {
+		Set<TagKey<Item>> disabledTags = new HashSet<>(HiddenTagHandler.tagsToHide());
+		Iterator<ItemStack> iterator = items.iterator();
+		while (iterator.hasNext()) {
+			ItemStack entry = iterator.next();
+			boolean remove = false;
+			for (TagKey<Item> disabledTag : disabledTags) {
+				if (entry.is(disabledTag)) {
+					remove = true;
+					break;
+				}
+			}
+			if (remove) {
+				iterator.remove();
+			}
+		}
 	}
 }
