@@ -19,7 +19,6 @@
     "PlayerMixin"
   ],
   "client": [
-    "client.AbstractContainerScreenAccessor",
     "client.AccessorBakedGlyph",
     "client.AccessorFont",
     "client.ClientPacketListenerMixin",
