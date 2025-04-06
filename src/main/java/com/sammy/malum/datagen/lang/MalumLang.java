@@ -159,14 +159,16 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
+
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
-        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
+//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
+//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure once, cut twice");
@@ -292,10 +294,12 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.curio.enchanted_explosions", "Explosions are Enchanted with %s");
         add("malum.effect.curio.explosions_spare_valuables", "Protects Valuable Items from Explosions");
 
-        add("malum.effect.geas.chained_spirit_bonus", "Repeated Soul Shatters Occasionally Yields Extra Arcana");
+        add("malum.effect.geas.chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
         add("malum.effect.geas.hunger_as_withdrawal", "Addiction to Slaughter");
+        add("malum.effect.geas.spirits_magic_boost", "Spirit Collection Amplifies Magic");
+        add("malum.effect.geas.oops_all_magic", "All Incoming Damage Functions As Magic");
         add("malum.effect.geas.faster_natural_healing", "Saturation Heals Faster");
-        add("malum.effect.geas.spirit_collection_absorption", "Spirit Collection Grants Absorption");
+        add("malum.effect.geas.spirits_absorption", "Spirit Collection Grants Absorption");
         add("malum.effect.geas.sun_healing", "The Sun Rejuvenates You");
         add("malum.effect.geas.darkness_darkness", "Your Vision Is Hindered");
         add("malum.effect.geas.hidden_presence", "Reduces Enemy Aggression");
@@ -323,7 +327,7 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.geas.desperate_need_betrayal", "The Rot Will Consume You");
         add("malum.effect.geas.wyrd_reconstruction", "Death Triggers Resurrection and Spirit-Collection Effects");
         add("malum.effect.geas.wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
-        add("malum.effect.geas.spirit_hunger", "Spirit Collection Drains Hunger");
+        add("malum.effect.geas.spirits_hunger", "Spirit Collection Drains Hunger");
         add("malum.effect.geas.malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         add("malum.effect.geas.malignant_crit_healing_overexertion", "Repeated Activations Nullify All Healing");
         add("malum.effect.geas.malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");

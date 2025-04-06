@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public class CurioMirrorNecklace extends MalumCurioItem implements IMalumEventResponderItem {
+public class CurioMirrorNecklace extends MalumCurioItem implements IMalumEventResponder {
     public CurioMirrorNecklace(Properties builder) {
         super(builder, MalumTrinketType.GILDED);
     }

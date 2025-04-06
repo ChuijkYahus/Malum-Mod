@@ -179,7 +179,7 @@ public class SoulHarvestHandler {
         }
         var event = new ModifySpiritSpoilsEvent(target, attacker, extra);
         var eventResponders = ItemEventHandler.getEventResponders(attacker);
-        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.modifySpiritSpoilsEvent(event, attacker)));
         NeoForge.EVENT_BUS.post(event);
         extra += event.getNewExtraSpirits();
@@ -213,7 +213,7 @@ public class SoulHarvestHandler {
     public static void triggerSpiritCollection(LivingEntity collector) {
         var collectionEvent = new CollectSpiritEvent(collector);
         var resonance = collector.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE);
-        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.spiritCollectionEvent(collectionEvent, collector, resonance)));
         NeoForge.EVENT_BUS.post(collectionEvent);
     }

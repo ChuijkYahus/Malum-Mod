@@ -16,7 +16,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventResponderItem {
+public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventResponder {
 
     public CurioStarvedBelt(Properties builder) {
         super(builder, MalumTrinketType.ROTTEN);

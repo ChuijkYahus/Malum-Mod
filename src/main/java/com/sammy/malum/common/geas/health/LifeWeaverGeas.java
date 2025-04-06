@@ -23,7 +23,7 @@ public class LifeWeaverGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("spirit_collection_absorption"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("spirits_absorption"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
     @Override

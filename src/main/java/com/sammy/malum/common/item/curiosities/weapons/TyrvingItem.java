@@ -18,7 +18,7 @@ import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.*;
 
-public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponderItem {
+public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder {
 
     public TyrvingItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties);

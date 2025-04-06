@@ -91,8 +91,8 @@ public class AugmentationEntries {
         screen.addEntry("warping_engine", 17, 10, b -> b
                 .configureWidget(w -> w.setIcon(WARPING_ENGINE))
                 .addPage(new HeadlineTextPage("warping_engine", "warping_engine.1"))
-                .addPage(new TextPage("warping_engine.2"))
                 .addPage(SpiritInfusionPage.fromOutput(WARPING_ENGINE.get()))
+                .addPage(new TextPage("warping_engine.2"))
         );
     }
 }

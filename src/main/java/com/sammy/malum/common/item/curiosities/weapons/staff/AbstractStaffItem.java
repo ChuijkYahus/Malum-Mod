@@ -7,7 +7,6 @@ import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -27,7 +26,7 @@ import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.item.*;
 
-public abstract class AbstractStaffItem extends LodestoneCombatItem implements IMalumEventResponderItem {
+public abstract class AbstractStaffItem extends LodestoneCombatItem implements IMalumEventResponder {
 
     public AbstractStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
         this(tier, 1f, -3f, magicDamage, chargeDuration, chargeCapacity, properties);

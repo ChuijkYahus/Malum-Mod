@@ -35,7 +35,6 @@ public class IntroductionEntries {
                 .addPage(new TextPage("introduction.5"))
                 .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
                         BookEntry.build("a_personal_note")
-                                .afterSomeTime()
                                 .addPage(new HeadlineTextPage("a_personal_note", "a_personal_note.1"))
                                 .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
                                         BookEntry.build("a_personal_note.commendations")
@@ -118,8 +117,10 @@ public class IntroductionEntries {
                 .addPage(new HeadlineTextItemPage("soulstone", "soulstone.1", REFINED_SOULSTONE.get()))
                 .addPage(new TextPage("soulstone.2"))
                 .addPage(new SmeltingPage(new ItemStack(RAW_SOULSTONE.get()), new ItemStack(REFINED_SOULSTONE.get(), 2)))
-                .addPage(CraftingPage.fullPage(BLOCK_OF_SOULSTONE.get(), REFINED_SOULSTONE.get()))
-                .addPage(CraftingPage.fullPage(BLOCK_OF_RAW_SOULSTONE.get(), RAW_SOULSTONE.get()))
+                .addPage(new CyclingPage(
+                        CraftingPage.fullPage(BLOCK_OF_SOULSTONE.get(), REFINED_SOULSTONE.get()),
+                        CraftingPage.fullPage(BLOCK_OF_RAW_SOULSTONE.get(), RAW_SOULSTONE.get())
+                ))
                 .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
         );
 
@@ -147,12 +148,19 @@ public class IntroductionEntries {
                 .addPage(new TextPage("spirit_infusion.3"))
                 .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
                 .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
-                .addPage(new HeadlineTextPage("spirit_infusion.hex_ash", "spirit_infusion.hex_ash.1"))
-                .addPage(SpiritInfusionPage.fromOutput(HEX_ASH.get()))
-                .addPage(new HeadlineTextPage("spirit_infusion.living_flesh", "spirit_infusion.living_flesh.1"))
-                .addPage(SpiritInfusionPage.fromOutput(LIVING_FLESH.get()))
-                .addPage(new HeadlineTextPage("spirit_infusion.alchemical_calx", "spirit_infusion.alchemical_calx.1"))
-                .addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_CALX.get()))
+                .addReference(new EntryReference(HEX_ASH.get(),
+                        BookEntry.build("spirit_infusion.hex_ash")
+                                .addPage(new HeadlineTextPage("spirit_infusion.hex_ash", "spirit_infusion.hex_ash.1"))
+                                .addPage(SpiritInfusionPage.fromOutput(HEX_ASH.get()))
+                ))
+                .addReference(new EntryReference(LIVING_FLESH.get(), BookEntry.build("spirit_infusion.living_flesh")
+                        .addPage(new HeadlineTextPage("spirit_infusion.living_flesh", "spirit_infusion.living_flesh.1"))
+                        .addPage(SpiritInfusionPage.fromOutput(LIVING_FLESH.get()))
+                ))
+                .addReference(new EntryReference(ALCHEMICAL_CALX.get(), BookEntry.build("spirit_infusion.alchemical_calx")
+                        .addPage(new HeadlineTextPage("spirit_infusion.alchemical_calx", "spirit_infusion.alchemical_calx.1"))
+                        .addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_CALX.get()))
+                ))
         );
 
         screen.addEntry("esoteric_reaping", 0, 6, b -> b

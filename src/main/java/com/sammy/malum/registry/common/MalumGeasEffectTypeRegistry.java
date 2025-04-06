@@ -2,7 +2,6 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.geas.*;
-import com.sammy.malum.common.geas.bond.*;
 import com.sammy.malum.common.geas.deliverance.*;
 import com.sammy.malum.common.geas.explosion.*;
 import com.sammy.malum.common.geas.gluttony.*;
@@ -70,14 +69,14 @@ public class MalumGeasEffectTypeRegistry {
     //All Bound Players can see each other regardless of invisibility
     //All Bound Players receive Healing Received for each Bound Player
     //Healing is Distributed between all Bound Players within a certain radius
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> BOND_OF_BELOVED_CHAINS = GEAS_TYPES.register("bond_of_beloved_chains", () -> new GeasEffectType(BelovedChainsBond::new, SACRED_SPIRIT, EARTHEN_SPIRIT, ELDRITCH_SPIRIT));
+//    public static final DeferredHolder<GeasEffectType, GeasEffectType> BOND_OF_BELOVED_CHAINS = GEAS_TYPES.register("bond_of_beloved_chains", () -> new GeasEffectType(BelovedChainsBond::new, SACRED_SPIRIT, EARTHEN_SPIRIT, ELDRITCH_SPIRIT));
 
     // Bond of Death's Seekers
     //Requires Several Players
     //All Bound Players receive extra Scythe Proficiency for each Bound Player
     //All Bound Players lose some armor for each Bound Player
     //Damage taken is Distributed between all Bound Players within a certain radius
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> BOND_OF_DEATHS_SEEKERS = GEAS_TYPES.register("bond_of_deaths_seekers", () -> new GeasEffectType(DeathsSeekersBond::new, WICKED_SPIRIT, INFERNAL_SPIRIT, ELDRITCH_SPIRIT));
+//    public static final DeferredHolder<GeasEffectType, GeasEffectType> BOND_OF_DEATHS_SEEKERS = GEAS_TYPES.register("bond_of_deaths_seekers", () -> new GeasEffectType(DeathsSeekersBond::new, WICKED_SPIRIT, INFERNAL_SPIRIT, ELDRITCH_SPIRIT));
 
 
 

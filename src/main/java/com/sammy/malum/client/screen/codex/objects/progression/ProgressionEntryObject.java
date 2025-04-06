@@ -5,18 +5,19 @@ import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
+import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.AbstractProgressionCodexScreen;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
 import com.sammy.malum.core.systems.geas.GeasEffectType;
+import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -64,9 +65,15 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     @Override
     public void renderLate(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isHoveredOver && entry.hasTooltip()) {
-            final List<Component> list = Arrays.asList(
+            final List<Component> list = new ArrayList<>(List.of(
                     ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
-                    ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle));
+                    ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
+
+            for (EntryReference reference : entry.references) {
+                MutableComponent slash = Component.literal(" -").withStyle(reference.entry.subtitleStyle);
+                MutableComponent text = slash.append(Component.translatable(reference.entry.translationKey()));
+                list.add(text.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY)));
+            }
             guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
     }
