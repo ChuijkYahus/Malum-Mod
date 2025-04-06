@@ -441,13 +441,13 @@ public class CodexLangDatagen {
                 "By using Runewood's natural magic as a base, I have designed the altar that will serve as the basis for my magecraft - the Spirit Altar. It is the other piece of the equation, the use for the arcana. By infusing them into items, and using the energies to effect other fusions, I can begin to explore this.",
                 "To use the altar, I must lay the item I wish to infuse on top of it, along with an appropriate set of arcana. If I wish to fuse other items in the process, I must place them on some form of Runewood item holder. They must be within four blocks of the altar to work.",
                 "Once all the arcana are present, the power within the crystals will begin to flow into the central item. If other items are fused in, they are pulled in during this process. When all of that is done, the product of the infusion will appear. It " + italic("is") + " rather slow, though...");
-        addHeadline("spirit_infusion.hex_ash", "Hex Ash");
+        addSimpleEntryHeader("spirit_infusion.hex_ash", "Hex Ash", "Obligatory magic powder");
         addPages("spirit_infusion.hex_ash",
                 "My first product with this process is a powder I call Hex Ash, after its color. It is a simple and useful grit, with the niter and sulfur mostly transmuted by the raw arcana, leaving a mixture of reagent and carbon.");
-        addHeadline("spirit_infusion.living_flesh", "Living Flesh");
+        addSimpleEntryHeader("spirit_infusion.living_flesh", "Living Flesh", "Please don't try to eat it");
         addPages("spirit_infusion.living_flesh",
                 "Next, for the sake of understanding how spirit arcana interacts with living substance, I have created... " + italic("something") + " which is now known as Living Flesh. It is a disgusting meaty chunk completely unfit for human consumption. Who knows if I'll end up finding a proper use for it.");
-        addHeadline("spirit_infusion.alchemical_calx", "Alchemical Calx");
+        addSimpleEntryHeader("spirit_infusion.alchemical_calx", "Alchemical Calx", "Clay 2");
         addPages("spirit_infusion.alchemical_calx",
                 "Lastly, I have created an experimental substrate I named Alchemical Calx. It's initially strong and tallow-like, but when met with a lesser amount of force it turns extremely malleable. It's bound to prove an useful ingredient.");
 
@@ -888,7 +888,7 @@ public class CodexLangDatagen {
                 """
                         The Dayblessed revels under the Sun.
                         During Daytime:
-                         -Increases Spirit Spoils
+                         -Soul Shatter yields increased Arcana
                          -Increases Healing Received by One Fifth""",
                 "The Moon's borrowed Light brings vulnerability\n -Armor is Reduced by one fifth during Night Time");
 
@@ -897,7 +897,7 @@ public class CodexLangDatagen {
                 """
                         The Nightchild flourishes under the Moon.
                         During Nighttime:
-                         -Increases Spirit Spoils
+                         -Soul Shatter yields increased Arcana
                          -Increases Scythe Proficiency by one fifth""",
                 "The Light of the Sun weakens you\n -Damage Output is Reduced by one fifth during Day Time");
 
@@ -930,11 +930,11 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "Dangerous spiral");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
-                """
+                scaled(0.8f) + """
                         An Incantation forced onto the mind. An Insatiable Thirst for the Arcana
-                         -Increases Spirit Spoils
-                         -Increases Arcane Resonance by Half""",
-                "The Incantation takes quite a toll on you. \n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
+                         -Soul Shatter yields increased Arcana
+                         -Even more Arcana with Chained Soul Shatters""",
+                "The Incantation takes quite a toll on you.\n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "Know your strengths and reinforce");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
@@ -972,7 +972,10 @@ public class CodexLangDatagen {
                 """
                         A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
                          -Scythe Attacks occasionally trigger follow up cuts""",
-                "To break the bond will be your undoing\n -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths\n -Forsworn Weapons Deteriorate When Used");
+                """
+                        To break the bond will be your undoing
+                         -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
+                         -Forsworn Weapons Deteriorate When Used""");
 
         addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "Analyze and reimagine");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
@@ -1005,6 +1008,16 @@ public class CodexLangDatagen {
                          -Reconstruction Effect bears a Heavy Cooldown
                          -Cooldown State Halves Arcane Resonance
                          -Spirit-Collection Drains Hunger""");
+
+        addSimpleEntryHeader("pact_of_the_arcanaphage", "Pact of The Arcanaphage", "Food for the Body, Arcana for the Soul");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE,
+                scaled(0.75f) +"""
+                        A part of your Soul is drawn out from your body, used as an Attractor for Arcana.
+                         -Soul Shatter yields Extra Arcana
+                         -Spirit Collection Aids most Magical Attributes""",
+                scaled(0.8f) +"""
+                        The Soul remains within for a reason.
+                         -All Incoming Damage is converted into Magic Damage""");
 
         addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "Heaven's Falling Down");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,
@@ -1092,17 +1105,6 @@ public class CodexLangDatagen {
                 """
                         Born from the Malignant Metal, The Armor is an Equivalent Exchange
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
-
-        addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "Devour.");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
-                """
-                        An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
-                        -Devoured Essence Heals You""",
-                """
-                        Born from the Malignant Metal, Devoured Essence seeks to Undo
-                        -Overuse of the Healing Effect nullifies All Healing""");
-
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
 

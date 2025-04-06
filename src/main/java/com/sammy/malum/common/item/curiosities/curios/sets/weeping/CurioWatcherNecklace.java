@@ -17,7 +17,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventResponderItem, IVoidItem {
+public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
     public CurioWatcherNecklace(Properties builder) {
         super(builder, MalumTrinketType.VOID);
     }

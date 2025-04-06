@@ -2,7 +2,7 @@
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.item.IMalumEventResponderItem;
+import com.sammy.malum.common.item.IMalumEventResponder;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
@@ -19,7 +19,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Consumer;
 
-public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResponderItem {
+public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResponder {
 
     public CurioMagebaneBelt(Properties builder) {
         super(builder, MalumTrinketType.ORNATE);

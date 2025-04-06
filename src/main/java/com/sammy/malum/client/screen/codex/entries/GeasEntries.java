@@ -64,11 +64,20 @@ public class GeasEntries {
 //        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 18, 13);
 //        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, 19, 11);
 
+        addSoulwoodGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE, 0, 21);
+
     }
 
     public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
                 .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
+                .addPage(SoulBindingPage.fromGeas(geas))
+                .addPage(new GeasInfoPage(geas))
+        );
+    }
+    public static void addSoulwoodGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
+        screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
+                .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );

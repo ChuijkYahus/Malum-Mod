@@ -39,6 +39,7 @@ public class MobEffectRegistry {
     //Geas
     public static final DeferredHolder<MobEffect, MobEffect> WYRD_EXHAUSTION = EFFECTS.register("wyrd_exhaustion", WyrdExhaustionEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> PYROMANIACS_FERVOR = EFFECTS.register("pyromaniacs_fervor", PyromaniacEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> ARCANAPHAGE = EFFECTS.register("arcanaphage", ArcanaphageEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> UNSIGHTED_RESISTANCE = EFFECTS.register("unsighted_resistance", UnsightedResistanceEffect::new);
 
     //Trinket

@@ -20,7 +20,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.item.*;
 
-public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponderItem {
+public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder {
 
     public MalumScytheItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
         super(tier, attackDamage + 3, attackSpeed - 3.2f, properties);

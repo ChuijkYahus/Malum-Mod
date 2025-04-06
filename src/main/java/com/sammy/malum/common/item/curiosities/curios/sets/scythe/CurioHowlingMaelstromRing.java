@@ -1,28 +1,19 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.scythe;
 
-import com.google.common.collect.*;
-import com.sammy.malum.*;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
-import net.minecraft.core.particles.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import top.theillusivec4.curios.api.*;
 
 import java.util.function.*;
 
-public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumEventResponderItem {
+public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioHowlingMaelstromRing(Properties builder) {
         super(builder, MalumTrinketType.METALLIC);
     }

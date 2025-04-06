@@ -113,7 +113,7 @@ public class CraftingPage extends BookPage {
 
     public static CraftingPage itemStandPage(ItemStack stand, ItemStack fullBlock, ItemStack slab) {
         ItemStack empty = Items.AIR.getDefaultInstance();
-        return new CraftingPage(stand, empty, empty, empty, slab, slab, slab, fullBlock, fullBlock, fullBlock);
+        return new CraftingPage(stand.copyWithCount(2), empty, empty, empty, slab, slab, slab, fullBlock, fullBlock, fullBlock);
     }
 
     public static CraftingPage toolPage(Item tool, Item metal) {

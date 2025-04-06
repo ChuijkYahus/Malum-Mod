@@ -19,8 +19,6 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.item.*;
 
-import java.util.*;
-
 public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     public EdgeOfDeliveranceItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
@@ -79,7 +77,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
     public static boolean triggerMalignantCrit(DamageContainer damageContainer, LivingEntity attacker, LivingEntity target) {
         var event = new MalignantCritEvent.Pre(target, damageContainer);
         var eventResponders = ItemEventHandler.getEventResponders(attacker);
-        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.malignantCritEvent(event, attacker)));
         NeoForge.EVENT_BUS.post(event);
 
@@ -87,7 +85,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
             return false;
         }
         var postEvent = new MalignantCritEvent.Post(target, damageContainer);
-        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.finalizedMalignantCritEvent(postEvent, attacker)));
         NeoForge.EVENT_BUS.post(postEvent);
 

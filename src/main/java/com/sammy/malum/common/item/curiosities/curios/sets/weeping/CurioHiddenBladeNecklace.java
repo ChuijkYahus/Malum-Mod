@@ -23,7 +23,7 @@ import team.lodestar.lodestone.registry.common.*;
 
 import java.util.function.*;
 
-public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEventResponderItem, IVoidItem {
+public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
 
     public static final int COOLDOWN_DURATION = 200;
 

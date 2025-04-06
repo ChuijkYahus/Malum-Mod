@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.alchemical;
 
-import com.sammy.malum.common.item.IMalumEventResponderItem;
+import com.sammy.malum.common.item.IMalumEventResponder;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
@@ -11,7 +11,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.Consumer;
 
-public class CurioProwessRing extends MalumCurioItem implements IMalumEventResponderItem {
+public class CurioProwessRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioProwessRing(Properties builder) {
         super(builder, MalumTrinketType.ALCHEMICAL);
     }

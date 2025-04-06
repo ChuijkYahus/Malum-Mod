@@ -5,7 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import team.lodestar.lodestone.handlers.*;
 
-public interface IMalumEventResponderItem extends ItemEventHandler.IEventResponder {
+public interface IMalumEventResponder extends ItemEventHandler.IEventResponder {
 
     default void malignantCritEvent(MalignantCritEvent.Pre event, LivingEntity attacker) {
 

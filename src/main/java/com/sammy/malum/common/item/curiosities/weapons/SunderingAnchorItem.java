@@ -37,7 +37,7 @@ import team.lodestar.lodestone.systems.item.*;
 
 import java.util.*;
 
-public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEventResponderItem, ISpiritAffiliatedItem {
+public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
     public static final MalumSpiritType[] SPIRITS = new MalumSpiritType[]{SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.EARTHEN_SPIRIT};
 

@@ -98,7 +98,7 @@ public class GluttonyEffect extends MobEffect {
         var properties = createGluttony();
         gluttonyBuilder.accept(properties);
         var event = new ModifyGluttonyPropertiesEvent(collector, properties);
-        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponderItem.class,
+        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.modifyGluttonyPropertiesEvent(event, collector)));
         NeoForge.EVENT_BUS.post(event);
         return event.getProperties();

@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.weeping;
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.item.IMalumEventResponderItem;
+import com.sammy.malum.common.item.IMalumEventResponder;
 import com.sammy.malum.common.item.IVoidItem;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
@@ -19,7 +19,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Consumer;
 
-public class CurioLimitlessBelt extends MalumCurioItem implements IMalumEventResponderItem, IVoidItem {
+public class CurioLimitlessBelt extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
 
     public CurioLimitlessBelt(Properties builder) {
         super(builder, MalumTrinketType.VOID);

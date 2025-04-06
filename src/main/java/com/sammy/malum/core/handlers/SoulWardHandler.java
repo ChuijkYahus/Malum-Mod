@@ -1,7 +1,6 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.common.packets.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
@@ -11,7 +10,6 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 
@@ -58,7 +56,7 @@ public class SoulWardHandler {
             double integrity = living.getAttributeValue(AttributeRegistry.SOUL_WARD_INTEGRITY)*2;
             var eventResponders = getEventResponders(living);
             var propertiesEvent = new ModifySoulWardPropertiesEvent(living, data, source, physicalDamageAbsorption, magicDamageAbsorption, integrity);
-            eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class, (eventResponderItem, stack) ->
+            eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class, (eventResponderItem, stack) ->
                     eventResponderItem.modifySoulWardPropertiesEvent(propertiesEvent, living, stack)));
             NeoForge.EVENT_BUS.post(propertiesEvent);
             magicDamageAbsorption = propertiesEvent.getNewMagicDamageAbsorption();
@@ -71,7 +69,7 @@ public class SoulWardHandler {
             data.reduceSoulWard(soulWardDamage);
 
             var damageEvent = new SoulWardDamageEvent(living, data, source, absorbedDamage, soulWardDamage);
-            eventResponders.forEach(lookup -> lookup.run(IMalumEventResponderItem.class, (eventResponderItem, stack) ->
+            eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class, (eventResponderItem, stack) ->
                     eventResponderItem.soulWardDamageEvent(damageEvent, living, stack)));
             NeoForge.EVENT_BUS.post(damageEvent);
 
