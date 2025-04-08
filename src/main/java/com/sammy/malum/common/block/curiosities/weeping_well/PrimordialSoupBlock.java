@@ -62,9 +62,7 @@ public class PrimordialSoupBlock extends Block {
 
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-        if (pEntity instanceof LivingEntity livingEntity) {
-            WeepingWellRejectionHandler.handlePrimordialSoupContact(livingEntity);
-        }
+        WeepingWellRejectionHandler.handlePrimordialSoupContact(pEntity);
     }
 
     @Override

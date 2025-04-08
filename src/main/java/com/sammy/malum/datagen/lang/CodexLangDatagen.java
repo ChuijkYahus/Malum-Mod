@@ -958,14 +958,14 @@ public class CodexLangDatagen {
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
                          -Saturation heals you Twice as fast, Thrice as fast when near death
                          -Increases Healing Received by One Fourth""",
-                "The magics shift your perception of death, it always feels nearby.\n -Reduces Max Health by One Fourth");
+                "The magics shift your perception of death, each point of damage more significant.\n -Reduces Max Health by One Fourth");
 
         addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "Breathe in and overcome");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
                 """
-                        A growth in confidence, a desire to overcome any threat, your pain is only secondary.
+                        A surplus of confidence imbued onto the mind, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
-                "Your ignorance of your fragility leaves deeper wounds and gashes\n -Reduces Healing Received by Four Tenths");
+                "Your fragility is still very much real. \n -Reduces Healing Received by Four Tenths");
 
         addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "Swear loyalty to the edge");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
@@ -1064,15 +1064,25 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("oath_of_the_overkeen_eye", "Oath of The Overkeen Eye", "Ninety Nine Point Nine");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE,
                 """
-                        A Keen Eye Imbued onto Soul
+                        A Keen Eye for the Arcane Imbued onto the Soul
                         -Staff Projectiles Gain Homing Capabilities""",
                 """
                         The Imbued Awareness demands Two-Fold Preparation
                          -Staff Charge Duration is Doubled""");
+
+        addSimpleEntryHeader("oath_of_the_overburdened_mind", "Oath of The Overburdened Mind", "Two Point Zero");
+        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND,
+                """
+                        A Capacity for Arcane Knowledge Imbued onto the Mind
+                        -Doubles Staff Charge Capacity""",
+                """
+                        The Imbued Insight demands Careful Consideration
+                         -Staff Charge Recovery Rate is Reduced by Two Fifths""");
+
         addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "Zero Point Zero One");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST,
                 """
-                        An Eagerness Imbued onto Soul
+                        An Eagerness Imbued onto the Body and Soul
                         -Staff Charge Duration Is Halved""",
                 """
                         The Imbued Eagerness demands Immediate Action
@@ -1083,7 +1093,7 @@ public class CodexLangDatagen {
                 """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
-                        -Devoured Essence Heals You""",
+                        -Devoured Essence Heals You based on the Damage Dealt""",
                 """
                         Born from the Malignant Metal, Devoured Essence seeks to Undo
                         -Overuse of the Healing Effect nullifies All Healing""");
@@ -1092,18 +1102,18 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN,
                 """
                         An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Execute Low Health Targets""",
+                        -Malignant Critical Strikes Trigger Several Consecutive Slashes""",
                 """
-                        Born from the Malignant Metal, Deliverance develops quite the Preference
-                        -Malignant Critical Strikes are less likely to occur on High Health Targets""");
+                        Born from the Malignant Metal, Deliverance develops quite the Demand
+                        -Malignant Critical Strikes require a Health Threshold to be met""");
 
         addSimpleEntryHeader("oath_of_the_unsighted_resistance", "Oath of Unsighted Resistance", "Hide behind the blade");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE,
                 """
                         An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Generate Armor and Armor Toughness""",
+                        -Malignant Critical Strikes Amplify Existing Armor and Armor Toughness""",
                 """
-                        Born from the Malignant Metal, The Armor is an Equivalent Exchange
+                        Born from the Malignant Metal, This layer of defense is only possible through Equivalent Exchange
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
 
         //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that

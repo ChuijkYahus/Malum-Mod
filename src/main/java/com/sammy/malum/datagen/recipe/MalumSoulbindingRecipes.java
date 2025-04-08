@@ -116,7 +116,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
         new SoulBindingRecipeBuilder(Items.HEAVY_CORE, 1, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER)
                 .addExtraItem(ItemRegistry.ASTRAL_WEAVE.get(), 8)
                 .addExtraItem(ItemRegistry.WIND_NUCLEUS.get(), 8)
-                .addExtraItem(Items.PHANTOM_MEMBRANE, 4)
+                .addExtraItem(Items.PHANTOM_MEMBRANE, 8)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 32)
                 .save(recipeOutput);
@@ -132,12 +132,14 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
         new SoulBindingRecipeBuilder(ItemRegistry.ROTTING_ESSENCE.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC)
                 .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 8)
                 .addExtraItem(Items.ROTTEN_FLESH, 8)
+                .addExtraItem(ItemRegistry.GRIM_TALC.get(), 8)
                 .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(ItemRegistry.ROTTING_ESSENCE.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON)
                 .addExtraItem(ItemRegistry.IMITATION_HEART.get(), 8)
                 .addExtraItem(Items.ROTTEN_FLESH, 8)
+                .addExtraItem(Items.SPIDER_EYE, 8)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
@@ -149,6 +151,14 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addExtraItem(Items.ENDER_PEARL, 4)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(ItemRegistry.MNEMONIC_FRAGMENT.get(), 8, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND)
+                .addExtraItem(ItemRegistry.MNEMONIC_FRAGMENT.get(), 8)
+                .addExtraItem(ItemRegistry.IMITATION_HEART.get(), 4)
+                .addExtraItem(Items.ECHO_SHARD, 4)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(ItemRegistry.MNEMONIC_FRAGMENT.get(), 8, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST)

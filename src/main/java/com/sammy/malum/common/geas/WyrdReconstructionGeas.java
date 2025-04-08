@@ -35,7 +35,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("wyrd_reconstruction"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("wyrd_reconstruction_cooldown"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("spirit_hunger"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("spirits_hunger"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

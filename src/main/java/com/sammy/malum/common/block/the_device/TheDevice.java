@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.the_device;
 
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
@@ -28,7 +29,8 @@ public class TheDevice extends Block {
             pPlayer.swing(pHand, true);
             playSound(pLevel, pPos);
             if (pPlayer.isCreative()) {
-                pPlayer.getData(AttachmentTypeRegistry.PROGRESSION_DATA).hasBeenRejected = false;
+                final ProgressionData data = pPlayer.getData(AttachmentTypeRegistry.PROGRESSION_DATA);
+                data.hasBeenRejected = false;
             }
             return ItemInteractionResult.SUCCESS;
         }

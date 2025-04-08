@@ -32,14 +32,16 @@ public class WeepingWellRejectionHandler {
 
     public static final ResourceLocation GRAVITY_MODIFIER_ID = MalumMod.malumPath("weeping_well_reduced_gravity");
 
-    public static void handlePrimordialSoupContact(LivingEntity livingEntity) {
-        TouchOfDarknessHandler.handlePrimordialSoupContact(livingEntity);
-        var data = livingEntity.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
-        if (data.isInRejectedState) {
-            return;
+    public static void handlePrimordialSoupContact(Entity entity) {
+        if (entity instanceof LivingEntity livingEntity) {
+            TouchOfDarknessHandler.handlePrimordialSoupContact(livingEntity);
+            var data = livingEntity.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
+            if (data.isInRejectedState) {
+                return;
+            }
+            data.setGoopStatus();
         }
-        livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().scale(0.4f));
-        data.setGoopStatus();
+        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.4f));
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {

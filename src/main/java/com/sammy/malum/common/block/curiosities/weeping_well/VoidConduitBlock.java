@@ -44,9 +44,7 @@ public class VoidConduitBlock<T extends VoidConduitBlockEntity> extends Lodeston
 
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-        if (pEntity instanceof LivingEntity livingEntity) {
-            WeepingWellRejectionHandler.handlePrimordialSoupContact(livingEntity);
-        }
+        WeepingWellRejectionHandler.handlePrimordialSoupContact(pEntity);
     }
 
     @Override

@@ -152,6 +152,7 @@ public class JEIHandler implements IModPlugin {
                 .map(SpiritTransmutationWrapper::new)
                 .collect(Collectors.toList()));
 
+            //TODO: this is a mess :(
             registry.addRecipes(FOCUSING, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_FOCUSING.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
             registry.addRecipes(RITES, SpiritRiteRegistry.RITES);
@@ -189,9 +190,6 @@ public class JEIHandler implements IModPlugin {
         IJeiHelpers helpers = jeiRuntime.getJeiHelpers();
         IFocusFactory focusFactory = helpers.getFocusFactory();
 
-        if (true) {
-            return;
-        }
         HiddenTagRegistry.rebuildHidingTags();
         callbacks.add(HiddenTagHandler.registerHiddenItemListener(() -> {
             var output = HiddenTagHandler.tagsToHide();
@@ -226,9 +224,6 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void onRuntimeUnavailable() {
-        if (true) {
-            return;
-        }
         callbacks.forEach(HiddenTagHandler::removeListener);
         callbacks.clear();
         hiddenRecipeSets.clear();

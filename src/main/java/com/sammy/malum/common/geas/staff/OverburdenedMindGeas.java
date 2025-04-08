@@ -21,7 +21,7 @@ public class OverburdenedMindGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         addAttributeModifier(modifiers, AttributeRegistry.CHARGE_CAPACITY, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(modifiers, AttributeRegistry.CHARGE_RECOVERY_RATE, -0.3f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, AttributeRegistry.CHARGE_RECOVERY_RATE, -0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

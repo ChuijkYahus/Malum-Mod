@@ -46,10 +46,16 @@ public class CloudSkipperGeas extends GeasEffect {
         if (sourceEntity != null) {
             entities.add(sourceEntity);
         }
+        GeasEffect instance = null;
         for (LivingEntity entity : entities) {
-            if (!explosion.damageCalculator.shouldDamageEntity(explosion, entity)) {
-                var instance = getInstance(entity);
-                if (instance instanceof CloudSkipperGeas cloudHopper) {
+            instance = getInstance(entity);
+            if (instance != null) {
+                break;
+            }
+        }
+        if (instance instanceof CloudSkipperGeas cloudSkipper) {
+            for (LivingEntity entity : entities) {
+                if (!explosion.damageCalculator.shouldDamageEntity(explosion, entity)) {
                     final double scalar = 1.25f;
                     double horizontalScalar = 2f;
                     final Vec3 knockbackVelocity = event.getKnockbackVelocity();
@@ -60,8 +66,8 @@ public class CloudSkipperGeas extends GeasEffect {
                     if (event.getAffectedEntity().equals(entity)) {
                         entity.addEffect(new MobEffectInstance(MobEffectRegistry.ASCENSION, 100, 1));
                     }
-                    cloudHopper.streak++;
-                    cloudHopper.sync(entity);
+                    cloudSkipper.streak++;
+                    cloudSkipper.sync(entity);
                 }
             }
         }
