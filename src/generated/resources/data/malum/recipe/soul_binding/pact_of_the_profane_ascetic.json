@@ -8,6 +8,10 @@
     {
       "count": 8,
       "item": "minecraft:rotten_flesh"
+    },
+    {
+      "count": 8,
+      "item": "malum:grim_talc"
     }
   ],
   "geas": "malum:pact_of_the_profane_ascetic",

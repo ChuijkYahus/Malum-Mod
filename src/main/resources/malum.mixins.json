@@ -9,8 +9,6 @@
     "BlockBehaviorMixin",
     "DyedItemColorMixin",
     "ExplosionMixin",
-    "FeatureFlagSetAccessor",
-    "FeatureFlagSetMixin",
     "FishingHookEntityMixin",
     "FoodDataMixin",
     "ItemStackMixin",

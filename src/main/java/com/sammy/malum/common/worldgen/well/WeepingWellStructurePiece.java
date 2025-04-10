@@ -179,28 +179,4 @@ public class WeepingWellStructurePiece extends StructurePiece {
 
         filler.fill(level);
     }
-
-    public static boolean canPlace(WorldGenLevel level, BlockPos pos) {
-        if (level.isOutsideBuildHeight(pos)) {
-            return false;
-        }
-        BlockState state = level.getBlockState(pos);
-        return level.isEmptyBlock(pos) || state.canBeReplaced();
-    }
-
-    public boolean isSufficientlyFlat(WorldGenLevel level, BlockPos origin, int check) {
-        List<BlockPos> blockPosList = new ArrayList<>();
-        for (int x = -check; x < check; x++) {
-            for (int z = -check; z < check; z++) {
-                blockPosList.add(origin.offset(x, 0, z));
-            }
-        }
-        int count = 0;
-        for (BlockPos pos : blockPosList) {
-            if (level.getBlockState(pos).isAir() && !level.getBlockState(pos.below()).isAir()) {
-                count++;
-            }
-        }
-        return count >= check * check * 2;
-    }
 }

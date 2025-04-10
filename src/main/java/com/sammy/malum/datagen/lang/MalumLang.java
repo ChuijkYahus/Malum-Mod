@@ -171,7 +171,7 @@ public class MalumLang extends LanguageProvider {
 //        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure once, cut twice");
+        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure carefully, cut later");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN.get(), "Acknowledge no one, and be acknowledged by none");

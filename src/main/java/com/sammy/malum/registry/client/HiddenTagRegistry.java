@@ -24,54 +24,18 @@ import java.util.List;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.BLACK_CRYSTAL;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;
 
-//@EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class HiddenTagRegistry {
-
-	public static final ResourceLocation HIDDEN_ITEM_FLAG_SPACE = MalumMod.malumPath("hiding");
-
-	private static boolean blankFeatureSet = false;
-
-	public static void attachFeatureFlags(FeatureFlagSet set) {
-		// Purely exists to force a rebuild of flags, we check separately
-		//The mixin that ran this I believe is disabled atm
-		((FeatureFlagExpandedUniverseSet) (Object) set).malum$attachFeatureSet(
-			blankFeatureSet ? HiddenTagHandler.createAllEnabledFlagSet() : HiddenTagHandler.createFeatureFlagSet());
-	}
-
-//	@SubscribeEvent(priority = EventPriority.LOWEST)
-//	public static void hideItems(BuildCreativeModeTabContentsEvent event) {
-//		List<TagKey<Item>> disabledTags = HiddenTagHandler.tagsToHide();
-//
-//		//TODO: I believe this just crashes the game atm, confirm
-//		var iterator = event.getTab().getDisplayItems().iterator();
-//		while (iterator.hasNext()) {
-//			var entry = iterator.next();
-//
-//			for (TagKey<Item> disabledTag : disabledTags) {
-//				if (entry.is(disabledTag)) {
-//					iterator.remove();
-//					break;
-//				}
-//			}
-//		}
-//	}
 
 	public static void registerHiddenTags() {
 		HiddenTagHandler.hideTagWhen(ItemTagRegistry.HIDDEN_ALWAYS, () -> true);
 		HiddenTagHandler.hideTagWhen(ItemTagRegistry.HIDDEN_UNTIL_VOID, () -> !VoidRevelationHandler.hasSeenTheRevelation(VOID_READER));
 		HiddenTagHandler.hideTagWhen(ItemTagRegistry.HIDDEN_UNTIL_BLACK_CRYSTAL, () -> !VoidRevelationHandler.hasSeenTheRevelation(BLACK_CRYSTAL));
 
-		HiddenTagHandler.buildFeatureFlagSet(HIDDEN_ITEM_FLAG_SPACE);
-
 		HiddenTagHandler.registerHiddenItemListener(HiddenTagRegistry::rebuildHidingTags);
 	}
 
 	public static void blankOutHidingTags() {
-		Minecraft.getInstance().submit(() -> {
-			blankFeatureSet = true;
-			rebuildTags();
-			blankFeatureSet = false;
-		});
+		Minecraft.getInstance().submit(HiddenTagRegistry::rebuildTags);
 	}
 
 	public static void rebuildHidingTags() {
