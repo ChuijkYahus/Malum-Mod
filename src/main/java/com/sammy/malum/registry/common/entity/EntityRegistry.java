@@ -83,7 +83,7 @@ public class EntityRegistry {
                     .build(MalumMod.malumPath("entropic_flame_bolt").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectileEntity>> SUNDERING_ANCHOR = ENTITY_TYPES.register("sundering_anchor",
-            () -> EntityType.Builder.<SunderingAnchorProjectileEntity>of((e, w) -> new SunderingAnchorProjectileEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
+            () -> EntityType.Builder.<SunderingAnchorProjectileEntity>of((e, w) -> new SunderingAnchorProjectileEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(10)
                     .build(MalumMod.malumPath("sundering_anchor").toString()));
 
     @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)

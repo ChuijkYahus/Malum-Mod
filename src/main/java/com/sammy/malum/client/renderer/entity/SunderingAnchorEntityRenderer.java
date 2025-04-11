@@ -10,6 +10,7 @@ import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.culling.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
@@ -29,6 +30,11 @@ public class SunderingAnchorEntityRenderer extends EntityRenderer<SunderingAncho
     public SunderingAnchorEntityRenderer(EntityRendererProvider.Context context) {
         super(context);
         this.itemRenderer = context.getItemRenderer();
+    }
+
+    @Override
+    public boolean shouldRender(SunderingAnchorProjectileEntity livingEntity, Frustum camera, double camX, double camY, double camZ) {
+        return true;
     }
 
     @Override

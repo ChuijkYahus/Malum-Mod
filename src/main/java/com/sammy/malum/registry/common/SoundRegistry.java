@@ -96,6 +96,9 @@ public class SoundRegistry {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_SWING = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_cuts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_EXTRA_SWING = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_twists_gracefully")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_PROJECTILE_SWING = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("sundering_anchor_lashes_out_ecstatically"), 32f));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_THROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_leaps_out_eagerly")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_returns_with_euphoria")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WYRD_RECONSTRUCTION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wyrd_reconstruction_reconstructs_body")));
@@ -112,9 +115,8 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> STAFF_CHARGED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("staff_charged")));
     public static final DeferredHolder<SoundEvent, SoundEvent> STAFF_STRIKES = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("staff_strikes")));
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> AURIC_FLAME_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("auric_flame_motif")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRAINING_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("draining_motif")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_metal_motif")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRAINING_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_sound_of_silence")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_deliverance_triggers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_COMBO = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_deliverance_strikes_again")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WORLDSOUL_MOTIF_LIGHT_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_worldsoul_shifts_slightly")));

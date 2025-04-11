@@ -4,12 +4,14 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.networked.attack.slash.*;
 import com.sammy.malum.visual_effects.networked.data.*;
 import net.minecraft.core.*;
@@ -81,15 +83,19 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         if (player.getCooldowns().isOnCooldown(this)) {
             return InteractionResultHolder.pass(weaponItem);
         }
-        if (level instanceof ServerLevel) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            int slot = usedHand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
+            float physicalDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
             Vec3 pos = getProjectileSpawnPos(player, usedHand, 0.5f, 0.5f);
             SunderingAnchorProjectileEntity entity = new SunderingAnchorProjectileEntity(level, pos.x, pos.y, pos.z);
-            entity.setData(player, magicDamage);
+            entity.setData(player, physicalDamage, magicDamage, slot);
             entity.setItem(weaponItem);
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 1.75f, 0F);
             level.addFreshEntity(entity);
+            SoundHelper.playSound(player, SoundRegistry.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
+            TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_THE_ANCHOR);
         }
         return InteractionResultHolder.success(weaponItem);
     }

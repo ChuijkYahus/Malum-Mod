@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:item/air",
+  "base": {},
+  "loader": "neoforge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "malum:item/soul_of_the_anchor_gui"
+    },
+    "gui": {
+      "parent": "malum:item/soul_of_the_anchor_gui"
+    }
+  },
+  "textures": {
+    "layer0": "malum:item/soul_of_the_anchor"
+  }
+}

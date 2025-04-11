@@ -781,6 +781,7 @@ public class ItemRegistry {
 
     //region hidden items
     public static final DeferredHolder<Item, Item> SOUL_OF_A_SCYTHE = register("soul_of_a_scythe", HIDDEN_PROPERTIES(), TemporarilyDisabledItem::new);
+    public static final DeferredHolder<Item, Item> SOUL_OF_THE_ANCHOR = register("soul_of_the_anchor", HIDDEN_PROPERTIES(), TemporarilyDisabledItem::new);
 
     public static final DeferredHolder<Item, Item> THE_DEVICE = register("the_device", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.THE_DEVICE.get(), p));
     public static final DeferredHolder<Item, Item> THE_VESSEL = register("the_vessel", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.THE_VESSEL.get(), p));

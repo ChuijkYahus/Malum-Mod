@@ -32,13 +32,13 @@ public class MalumItemModels extends LodestoneItemModelProvider {
         items.removeIf(i -> i.get() instanceof BlockItem);
 
         ItemModelSmithData data = new ItemModelSmithData(this, items::remove);
-        PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE).applyModifier(result -> {
+        PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR).forEach(r -> r.applyModifier(result -> {
             var separateTransforms = result.addSeparateTransformData();
             var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelNameAffix("_gui").act(data, result::getItem);
             separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
             separateTransforms.perspective(ItemDisplayContext.FIXED, guiModel.parentedToThis(existingFileHelper));
             separateTransforms.base(getBuilder("item/air"));
-        });
+        }));
         setTexturePath("cosmetic/weaves/pride/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data,
                 ACE_PRIDEWEAVE, AGENDER_PRIDEWEAVE, ARO_PRIDEWEAVE, AROACE_PRIDEWEAVE, BI_PRIDEWEAVE,
