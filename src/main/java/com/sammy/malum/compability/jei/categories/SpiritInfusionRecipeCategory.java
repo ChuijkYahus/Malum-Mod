@@ -2,7 +2,7 @@ package com.sammy.malum.compability.jei.categories;
 
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
-import com.sammy.malum.compability.jei.JEIHandler;
+import com.sammy.malum.compability.jei.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -76,8 +76,8 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
     public void setRecipe(IRecipeLayoutBuilder builder, SpiritInfusionRecipe recipe, IFocusGroup focuses) {
         int spiritOffset = recipe.spirits.size() > 5 ? (recipe.spirits.size()-5)*10 : 0;
         int itemOffset = recipe.extraIngredients.size() > 5 ? (recipe.extraIngredients.size()-5)*10 : 0;
-        JEIHandler.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 20, 49+spiritOffset, true, recipe.spirits);
-        JEIHandler.addSizedIngredientsToJei(builder, RecipeIngredientRole.INPUT, 104, 49+itemOffset, true, recipe.extraIngredients);
+        JEIHelper.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 20, 49+spiritOffset, true, recipe.spirits);
+        JEIHelper.addSizedIngredientsToJei(builder, RecipeIngredientRole.INPUT, 104, 49+itemOffset, true, recipe.extraIngredients);
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
                 .addItemStacks(Arrays.stream(recipe.ingredient.getItems()).toList());

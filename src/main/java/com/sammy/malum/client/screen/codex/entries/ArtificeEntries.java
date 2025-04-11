@@ -92,8 +92,8 @@ public class ArtificeEntries {
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.ELDRITCH.getRecipeId()),
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.AERIAL.getRecipeId()),
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.AQUEOUS.getRecipeId()),
-                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.EARTHEN.getRecipeId())//,
-//                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.INFERNAL.getRecipeId())
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.EARTHEN.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.INFERNAL.getRecipeId())
                 ))
         );
 

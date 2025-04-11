@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
@@ -37,14 +38,16 @@ public class CloudSkipperGeas extends GeasEffect {
 
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
         final Explosion explosion = event.getExplosion();
-        var sourceEntity = explosion.getIndirectSourceEntity();
 
         List<LivingEntity> entities = new ArrayList<>();
         if (event.getAffectedEntity() instanceof LivingEntity livingEntity) {
             entities.add(livingEntity);
         }
-        if (sourceEntity != null) {
-            entities.add(sourceEntity);
+        if (explosion.getIndirectSourceEntity() != null) {
+            entities.add(explosion.getIndirectSourceEntity());
+        }
+        if (explosion.getDirectSourceEntity() instanceof LivingEntity livingEntity) {
+            entities.add(livingEntity);
         }
         GeasEffect instance = null;
         for (LivingEntity entity : entities) {
@@ -54,20 +57,21 @@ public class CloudSkipperGeas extends GeasEffect {
             }
         }
         if (instance instanceof CloudSkipperGeas cloudSkipper) {
-            for (LivingEntity entity : entities) {
-                if (!explosion.damageCalculator.shouldDamageEntity(explosion, entity)) {
-                    final double scalar = 1.25f;
-                    double horizontalScalar = 2f;
-                    final Vec3 knockbackVelocity = event.getKnockbackVelocity();
-                    if (knockbackVelocity.y < 0.5f) {
-                        event.setKnockbackVelocity(new Vec3(knockbackVelocity.x, 0.5f, knockbackVelocity.z));
-                    }
-                    event.setKnockbackVelocity(knockbackVelocity.multiply(horizontalScalar, scalar, horizontalScalar));
-                    if (event.getAffectedEntity().equals(entity)) {
-                        entity.addEffect(new MobEffectInstance(MobEffectRegistry.ASCENSION, 100, 1));
-                    }
+            var entity = event.getAffectedEntity();
+            if (!explosion.damageCalculator.shouldDamageEntity(explosion, entity)) {
+                float minimumUpwardsVelocity = 0.5f;
+                double horizontalScalar = 2f;
+                double verticalScalar = entity instanceof Player ? 1.25f : 1.75f;
+                var knockbackVelocity = event.getKnockbackVelocity();
+                if (knockbackVelocity.y < minimumUpwardsVelocity) {
+                    final double length = knockbackVelocity.length();
+                    knockbackVelocity = knockbackVelocity.normalize().multiply(length, minimumUpwardsVelocity, length);
+                }
+                event.setKnockbackVelocity(knockbackVelocity.multiply(horizontalScalar, verticalScalar, horizontalScalar));
+                if (entity instanceof Player player) {
+                    player.addEffect(new MobEffectInstance(MobEffectRegistry.ASCENSION, 100, 1));
                     cloudSkipper.streak++;
-                    cloudSkipper.sync(entity);
+                    cloudSkipper.sync(player);
                 }
             }
         }

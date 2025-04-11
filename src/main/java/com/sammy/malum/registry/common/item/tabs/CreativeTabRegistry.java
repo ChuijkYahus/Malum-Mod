@@ -55,7 +55,8 @@ public class CreativeTabRegistry {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_geas"))
                     .withTabsBefore(METALLURGY.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_ritual_shards"))
+//                    .withTabsAfter(MalumMod.malumPath("malum_ritual_shards"))
+                    .withTabsAfter(MalumMod.malumPath("malum_cosmetics"))
                     .displayItems((p, o) -> {
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> etchingType : MalumGeasEffectTypeRegistry.GEAS_TYPES.getEntries()) {
                             final GeasEffectType geasEffectType = etchingType.get();
@@ -65,30 +66,31 @@ public class CreativeTabRegistry {
                             o.accept(geasEffectType.createDefaultStack());
                         }
                     })
-                    .icon(() -> ItemRegistry.GEAS.get().getDefaultInstance()).build()
+                    .icon(() -> MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get().createDefaultStack()).build()
     );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RITUAL_SHARDS = CREATIVE_MODE_TABS.register("malum_ritual_shards",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_ritual_shards"))
-                    .withTabsBefore(GEAS.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_cosmetic"))
-                    .displayItems((p, o) -> {
-                        for (MalumRitualType ritualType : RitualRegistry.RITUALS) {
-                            for (MalumRitualTier ritualTier : MalumRitualTier.TIERS) {
-                                ItemStack shard = new ItemStack(RITUAL_SHARD.get());
-                                shard.set(DataComponentRegistry.RITUAL_DATA, ritualType.createDataComponent(ritualTier));
-                                o.accept(shard);
-                            }
-                        }
-                    })
-                    .icon(() -> RITUAL_PLINTH.get().getDefaultInstance()).build()
-    );
+//    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RITUAL_SHARDS = CREATIVE_MODE_TABS.register("malum_ritual_shards",
+//            () -> CreativeModeTab.builder()
+//                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_ritual_shards"))
+//                    .withTabsBefore(GEAS.getId())
+//                    .withTabsAfter(MalumMod.malumPath("malum_cosmetic"))
+//                    .displayItems((p, o) -> {
+//                        for (MalumRitualType ritualType : RitualRegistry.RITUALS) {
+//                            for (MalumRitualTier ritualTier : MalumRitualTier.TIERS) {
+//                                ItemStack shard = new ItemStack(RITUAL_SHARD.get());
+//                                shard.set(DataComponentRegistry.RITUAL_DATA, ritualType.createDataComponent(ritualTier));
+//                                o.accept(shard);
+//                            }
+//                        }
+//                    })
+//                    .icon(() -> RITUAL_PLINTH.get().getDefaultInstance()).build()
+//    );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> COSMETIC = CREATIVE_MODE_TABS.register("malum_cosmetic",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_cosmetics"))
-                    .withTabsBefore(RITUAL_SHARDS.getId())
+                    .withTabsBefore(GEAS.getId())
+//                    .withTabsBefore(RITUAL_SHARDS.getId())
                     .icon(() -> ItemRegistry.WEAVERS_WORKBENCH.get().getDefaultInstance()).build()
     );
 }

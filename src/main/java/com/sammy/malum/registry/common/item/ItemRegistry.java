@@ -279,11 +279,11 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> AZURE_RUNEWOOD_SAPLING = register("azure_runewood_sapling", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.AZURE_RUNEWOOD_SAPLING.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_LOG = register("runewood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> STRIPPED_RUNEWOOD_LOG = register("stripped_runewood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_RUNEWOOD_LOG.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD = register("runewood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD.get(), p));
-    public static final DeferredHolder<Item, Item> STRIPPED_RUNEWOOD = register("stripped_runewood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_RUNEWOOD.get(), p));
-
     public static final DeferredHolder<Item, Item> EXPOSED_RUNEWOOD_LOG = register("exposed_runewood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.EXPOSED_RUNEWOOD_LOG.get(), p));
+
+    public static final DeferredHolder<Item, Item> STRIPPED_RUNEWOOD_LOG = register("stripped_runewood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_RUNEWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_RUNEWOOD = register("stripped_runewood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_RUNEWOOD.get(), p));
     public static final DeferredHolder<Item, Item> REVEALED_RUNEWOOD_LOG = register("revealed_runewood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.REVEALED_RUNEWOOD_LOG.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOARDS = register("runewood_boards", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_BOARDS.get(), p));
@@ -338,10 +338,10 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOARDS_WALL = register("runewood_boards_wall", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_BOARDS_WALL.get(), p));
 
-    public static final DeferredHolder<Item, Item> RUNEWOOD_ITEM_STAND = register("runewood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_ITEM_STAND.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD_ITEM_PEDESTAL = register("runewood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get(), p));
-    public static final DeferredHolder<Item, Item> GILDED_RUNEWOOD_ITEM_STAND = register("gilded_runewood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.GILDED_RUNEWOOD_ITEM_STAND.get(), p));
     public static final DeferredHolder<Item, Item> GILDED_RUNEWOOD_ITEM_PEDESTAL = register("gilded_runewood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(), p));
+    public static final DeferredHolder<Item, Item> RUNEWOOD_ITEM_STAND = register("runewood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_ITEM_STAND.get(), p));
+    public static final DeferredHolder<Item, Item> GILDED_RUNEWOOD_ITEM_STAND = register("gilded_runewood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.GILDED_RUNEWOOD_ITEM_STAND.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_SIGN = register("runewood_sign", NATURE_PROPERTIES(), (p) -> new SignItem(NATURE_PROPERTIES().stacksTo(16), BlockRegistry.RUNEWOOD_SIGN.get(), BlockRegistry.RUNEWOOD_WALL_SIGN.get()));
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOAT = register("runewood_boat", NATURE_PROPERTIES(), (p) -> new LodestoneBoatItem(NATURE_PROPERTIES().stacksTo(1), EntityRegistry.RUNEWOOD_BOAT));
@@ -365,11 +365,11 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, Item> BLIGHTED_SOULWOOD = register("blighted_soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.BLIGHTED_SOULWOOD.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_LOG = register("soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_SOULWOOD_LOG.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD = register("soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD.get(), p));
-    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD = register("stripped_soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_SOULWOOD.get(), p));
-
     public static final DeferredHolder<Item, Item> EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.EXPOSED_SOULWOOD_LOG.get(), p));
+
+    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD = register("stripped_soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.STRIPPED_SOULWOOD.get(), p));
     public static final DeferredHolder<Item, Item> REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.REVEALED_SOULWOOD_LOG.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS = register("soulwood_boards", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_BOARDS.get(), p));
@@ -424,10 +424,10 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_WALL = register("soulwood_boards_wall", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_BOARDS_WALL.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_STAND = register("soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_ITEM_STAND.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_ITEM_PEDESTAL.get(), p));
-    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_STAND = register("ornate_soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.ORNATE_SOULWOOD_ITEM_STAND.get(), p));
     public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_PEDESTAL = register("ornate_soulwood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_STAND = register("soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_ITEM_STAND.get(), p));
+    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_STAND = register("ornate_soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.ORNATE_SOULWOOD_ITEM_STAND.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_SIGN = register("soulwood_sign", NATURE_PROPERTIES(), (p) -> new SignItem(NATURE_PROPERTIES().stacksTo(16), BlockRegistry.SOULWOOD_SIGN.get(), BlockRegistry.SOULWOOD_WALL_SIGN.get()));
     public static final DeferredHolder<Item, Item> SOULWOOD_BOAT = register("soulwood_boat", NATURE_PROPERTIES(), (p) -> new LodestoneBoatItem(NATURE_PROPERTIES().stacksTo(1), EntityRegistry.SOULWOOD_BOAT));
@@ -480,7 +480,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> REPAIR_PYLON = register("repair_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(BlockRegistry.REPAIR_PYLON.get(), p, RepairPylonCoreBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RUNEWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.SOULWOOD_TOTEM_BASE.get(), p));
-    public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RITUAL_PLINTH.get(), p));
+    public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.RITUAL_PLINTH.get(), p));
 
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.WAVEBANKER.get(), p));

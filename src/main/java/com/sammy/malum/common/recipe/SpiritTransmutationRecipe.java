@@ -32,6 +32,11 @@ public class SpiritTransmutationRecipe extends LodestoneInWorldRecipe<SingleReci
     }
 
     @Override
+    public String getGroup() {
+        return group;
+    }
+
+    @Override
     public boolean matches(SingleRecipeInput input, Level level) {
         return this.ingredient.test(input.item());
     }

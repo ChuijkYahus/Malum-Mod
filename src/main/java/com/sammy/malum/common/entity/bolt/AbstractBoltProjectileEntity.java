@@ -223,7 +223,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         if (spawnDelay > 0 || owner == null || fadingAway) {
             return;
         }
-        List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(25), target -> target != owner && target.isAlive() && !target.isAlliedTo(owner));
+        List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(25), target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(target));
         if (!entities.isEmpty()) {
             LivingEntity nearest = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).get();
             Vec3 nearestPosition = nearest.position().add(0, nearest.getBbHeight() / 2, 0);
@@ -241,11 +241,11 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             if (newMotion.length() == 0) {
                 newMotion = newMotion.add(0.01, 0, 0);
             }
-            float angleScalar = (float) ((dot - 0.6f) * 5f);
+            float angleScalar = Math.max(((Mth.abs((float) (0.5f - dot)) - 0.1f) * 2.5f), 0.1f);
             float factor = 0.15f * angleScalar;
-            final double x = Mth.lerp(factor, motion.x, newMotion.x);
-            final double y = Mth.lerp(factor, motion.y, newMotion.y);
-            final double z = Mth.lerp(factor, motion.z, newMotion.z);
+            final double x = Mth.clampedLerp(motion.x, newMotion.x, factor);
+            final double y = Mth.clampedLerp(motion.y, newMotion.y, factor);
+            final double z = Mth.clampedLerp(motion.z, newMotion.z, factor);
             setDeltaMovement(new Vec3(x, y, z));
         }
     }
@@ -266,25 +266,18 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         return getOwner() != null ? getOwner().getSoundSource() : SoundSource.PLAYERS;
     }
 
-    @Override
-    public void lerpMotion(double pX, double pY, double pZ) {
-        this.setDeltaMovement(pX, pY, pZ);
-        if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
-            double d0 = Math.sqrt(pX * pX + pZ * pZ);
-            this.setXRot((float) (Mth.atan2(pY, d0) * (double) (180F / (float) Math.PI)));
-            this.setYRot((float) (Mth.atan2(pX, pZ) * (double) (180F / (float) Math.PI)));
-            this.xRotO = this.getXRot();
-            this.yRotO = this.getYRot();
-            this.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
-        }
-
-    }
-
     public void shootFromRotation(Entity shooter, float rotationPitch, float rotationYaw, float pitchOffset, float velocity, float innacuracy) {
         float f = -Mth.sin(rotationYaw * ((float) Math.PI / 180F)) * Mth.cos(rotationPitch * ((float) Math.PI / 180F));
         float f1 = -Mth.sin((rotationPitch + pitchOffset) * ((float) Math.PI / 180F));
         float f2 = Mth.cos(rotationYaw * ((float) Math.PI / 180F)) * Mth.cos(rotationPitch * ((float) Math.PI / 180F));
         this.shoot(f, f1, f2, velocity, innacuracy);
+    }
+
+    public boolean hasLineOfSight(Entity target) {
+        Vec3 wrathPosition = new Vec3(getX(), getEyeY(), getZ());
+        Vec3 targetPosition = new Vec3(target.getX(), target.getEyeY(), target.getZ());
+        var clipResult = level().clip(new ClipContext(wrathPosition, targetPosition, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+        return clipResult.getType().equals(HitResult.Type.MISS);
     }
 
     public float getVisualEffectScalar() {
@@ -295,11 +288,6 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             effectScalar = effectScalar / ((fadingTimer + 2) / 2f);
         }
         return effectScalar;
-    }
-
-    @Override
-    public boolean isInWater() {
-        return false;
     }
 
     @Override
