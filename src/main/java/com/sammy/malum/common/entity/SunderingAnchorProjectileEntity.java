@@ -40,7 +40,7 @@ import team.lodestar.lodestone.systems.rendering.trail.*;
 import java.util.*;
 import java.util.function.*;
 
-import static com.sammy.malum.common.item.curiosities.weapons.SunderingAnchorItem.getSunderingAnchorSpirit;
+import static com.sammy.malum.common.item.curiosities.weapons.SunderingAnchorItem.*;
 
 public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
 
@@ -66,7 +66,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     public SunderingAnchorProjectileEntity(Level level, double pX, double pY, double pZ) {
         this(level);
         setPos(pX, pY, pZ);
-        noPhysics = false;
+        noPhysics = true;
     }
 
     public void setData(LivingEntity owner, float damage, float magicDamage, int slot) {
@@ -124,16 +124,10 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         super.onHit(result);
         freeTarget();
         bounce();
-        if (getOwner() instanceof ServerPlayer player) {
-            player.displayClientMessage(Component.literal("We just hit something"), false);
-        }
     }
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
-        if (getOwner() instanceof ServerPlayer player) {
-            player.displayClientMessage(Component.literal("We just hit a block"), false);
-        }
         if (isReturning()) {
             return;
         }
@@ -150,29 +144,26 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         } else if (result.getDirection().getAxis().equals(Direction.Axis.Z)) {
             setDeltaMovement(getDeltaMovement().multiply(1, 1, -1));
         }
-        jumbleMovement();
+        jumbleMovement(0.2f);
     }
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
         if (level() instanceof ServerLevel level) {
-
-            if (getOwner() instanceof ServerPlayer player) {
-                player.displayClientMessage(Component.literal("We just hit an entity"), false);
-            }
             if (getOwner() instanceof LivingEntity owner) {
                 Entity target = result.getEntity();
                 hitEntities.add(target);
                 target.invulnerableTime = 0;
                 DamageSource source = DamageTypeHelper.create(level(), DamageTypeRegistry.VOODOO, this, owner);
                 boolean success = target.hurt(source, magicDamage);
-                if (success && target instanceof LivingEntity) {
+                if (success && target instanceof LivingEntity livingEntity) {
                     int slashCount = 6;
                     var physicalDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO;
                     var magicDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO;
                     int delay = 8;
                     float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
                     SoundHelper.playSound(this, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                    applyHatred(livingEntity);
                     for (int j = 0; j < slashCount; j++) {
                         int comboDelay = delay + j;
                         WorldEventHandler.addWorldEvent(level,
@@ -184,6 +175,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     }
 
                     selectNearbyTarget(level);
+                    jumbleMovement(0.8f);
                 }
             }
         }
@@ -191,15 +183,28 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
 
     @Override
     protected boolean canHitEntity(Entity pTarget) {
+        return false; //TODO: we're implementing custom entity hitting logic cause for whatever reason the motherfucker keeps getting stuck in some sorta loop unable to hit shit
+//        if (pTarget.equals(getOwner())) {
+//            return false;
+//        }
+//        if (pTarget instanceof SunderingAnchorProjectileEntity) {
+//            return false;
+//        }
+//        if (hitEntities.contains(pTarget)) {
+//            return false;
+//        }
+//        return super.canHitEntity(pTarget);
+    }
+    protected boolean canHitEntityStupidCopy(Entity pTarget) {
         if (pTarget.equals(getOwner())) {
             return false;
         }
         if (pTarget instanceof SunderingAnchorProjectileEntity) {
             return false;
         }
-//        if (hitEntities.contains(pTarget)) {
-//            return false;
-//        }
+        if (hitEntities.contains(pTarget)) {
+            return false;
+        }
         return super.canHitEntity(pTarget);
     }
 
@@ -208,22 +213,28 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         var deltaMovement = getDeltaMovement();
         super.tick();
         setDeltaMovement(getDeltaMovement().normalize().scale(deltaMovement.length()));
+
         age++;
         returnTimer++;
         if (level() instanceof ServerLevel level) {
-            if (age % 10 == 0) {
+            final AABB aabb = getBoundingBox().inflate(2);
+            for (Entity target : level.getEntities(this, aabb, this::canHitEntityStupidCopy)) {
+                onHit(new EntityHitResult(target));
+            }
+            if (age % 20 == 0) {
                 freeTarget();
+                selectNearbyTarget(level);
             }
             if (getOwner() instanceof LivingEntity owner) {
                 if (isReturning()) {
                     var ownerPos = owner.position().add(0, owner.getBbHeight() * 0.6f, 0);
                     float velocityLimit = 3f;
                     var motion = getDeltaMovement();
-                    double velocity = Mth.clamp(motion.length() * 3, 0.5f, velocityLimit);
+                    double velocity = Mth.clamp(motion.length() * 1.25f, 0.5f, velocityLimit);
                     var returnMotion = ownerPos.subtract(position()).normalize().scale(velocity);
                     setDeltaMovement(motion.lerp(returnMotion, 0.3f));
 
-                    if (isAlive() && distanceTo(owner) < 1.5f) {
+                    if (isAlive() && distanceTo(owner) < 2.5f) {
                         SoundHelper.playSound(owner, SoundRegistry.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             TemporarilyDisabledItem.enable(player, slot);
@@ -249,7 +260,6 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         }
         else {
             spawnParticles();
-
             Vec3 projectileDirection = getDeltaMovement().normalize();
             float yRot = ((float) (Mth.atan2(projectileDirection.x, projectileDirection.z) * (double) (180F / (float) Math.PI)));
             float yaw = (float) Math.toRadians(yRot);
@@ -288,7 +298,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         return returnTimer > 80 || bounceCount >= 20;
     }
 
-    public void jumbleMovement() {
+    public void jumbleMovement(float weight) {
         float randomRotationX = (float) (Math.random() * Math.PI * 2);
         float randomRotationY = (float) (Math.random() * Math.PI * 2);
         float randomRotationZ = (float) (Math.random() * Math.PI * 2);
@@ -301,7 +311,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         double x = newMotion.x * cosZ - newMotion.y * sinZ;
         double y = newMotion.x * sinZ + newMotion.y * cosZ;
         double z = newMotion.z;
-        final Vec3 lerp = motion.lerp(new Vec3(x, y, z), 0.5f);
+        final Vec3 lerp = motion.lerp(new Vec3(x, y, z), weight);
         setDeltaMovement(lerp.normalize().scale(motion.length()));
     }
 
@@ -325,12 +335,20 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         if (owner == null) {
             return;
         }
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(60),
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(30),
                 target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && !hitEntities.contains(target) && hasLineOfSight(level, target));
         if (!entities.isEmpty()) {
             forcedTarget = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).get();
         }
-        jumbleMovement();
+        if (forcedTarget != null) {
+            var speed = getDeltaMovement().length();
+            for (int i = 0; i < 3; i++) {
+                var distance = forcedTarget.position().subtract(position());
+                var newMotion = getDeltaMovement().lerp(distance.normalize(), 0.3f);
+                setDeltaMovement(newMotion.normalize());
+            }
+            setDeltaMovement(getDeltaMovement().scale(speed));
+        }
     }
 
     public void homeIn(ServerLevel level) {
@@ -351,7 +369,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             demandAccuracy = false;
         }
         else {
-            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(40),
+            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(20),
                     target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && !hitEntities.contains(target) && hasLineOfSight(level, target));
             nearest = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
         }
@@ -374,7 +392,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             float angleScalar = Math.max(((Mth.abs((float) (0.5f - dot)) - 0.2f) * 2.5f), 0.4f);
             float factor = 0.125f * angleScalar;
             if (!demandAccuracy) {
-                factor = Mth.clamp((float) (1 - distance.length() / 40f)*2, 0.3f, 1);
+                factor = Mth.clamp((float) (1 - distance.length() / 80f) *2f, 0.1f, 0.5f);
             }
             final double x = Mth.clampedLerp(motion.x, newMotion.x, factor);
             final double y = Mth.clampedLerp(motion.y, newMotion.y, factor);

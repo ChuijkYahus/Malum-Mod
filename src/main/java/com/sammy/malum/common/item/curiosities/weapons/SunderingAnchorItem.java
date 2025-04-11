@@ -92,7 +92,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             entity.setData(player, physicalDamage, magicDamage, slot);
             entity.setItem(weaponItem);
 
-            entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 1.75f, 0F);
+            entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
             SoundHelper.playSound(player, SoundRegistry.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
             TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_THE_ANCHOR);
@@ -105,15 +105,10 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         DamageSource source = event.getSource();
         Level level = attacker.level();
         RandomSource random = level.random;
-        var chaosCurse = MobEffectRegistry.HATRED;
-        var effect = target.getEffect(chaosCurse);
-        if (effect == null) {
-            target.addEffect(new MobEffectInstance(chaosCurse, 120, 0, true, true, true));
-        } else {
-            EntityHelper.amplifyEffect(effect, target, 1, 49);
-            EntityHelper.extendEffect(effect, target, 60, 3000);
-        }
 
+        if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
+            applyHatred(target);
+        }
         if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
             int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
             float splitDamage = event.getNewDamage() / slashCount;
@@ -139,6 +134,16 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         }
     }
 
+    public static void applyHatred(LivingEntity target) {
+        var hatred = MobEffectRegistry.HATRED;
+        var effect = target.getEffect(hatred);
+        if (effect == null) {
+            target.addEffect(new MobEffectInstance(hatred, 120, 0, true, true, true));
+        } else {
+            EntityHelper.amplifyEffect(effect, target, 1, 49);
+            EntityHelper.extendEffect(effect, target, 60, 3000);
+        }
+    }
     public static Tool createToolProperties(Tier tier, TagKey<Block> blocks) {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F),
                 Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F),
