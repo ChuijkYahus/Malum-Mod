@@ -33,7 +33,7 @@ public class SunderingAnchorSweepParticleEffect extends ParticleEffectType {
             float z = Mth.cos(angle);
             Vec3 direction = new Vec3(x, 0, z);
 
-            ParticleEffectSpawner slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.ROUNDABOUT_SLASH, colorData);
+            ParticleEffectSpawner slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), random.nextBoolean() ? ParticleRegistry.THIN_ROUNDABOUT_SLASH : ParticleRegistry.ROUNDABOUT_SLASH, colorData);
             int lifetime = RandomHelper.randomBetween(random, 8, 12);
             int directionScalar = random.nextBoolean() ? -1 : 1;
             slash.getBuilder()
@@ -46,10 +46,12 @@ public class SunderingAnchorSweepParticleEffect extends ParticleEffectType {
             slash.spawnParticles();
             slash.getBuilder()
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.3f).build())
+                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.5f, 2f)).build())
                     .setLifeDelay(lifetime);
             slash.spawnParticles();
             slash.getBuilder()
                     .setTransparencyData(GenericParticleData.create(0.3f, 0f).build())
+                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.2f, 1.6f)).build())
                     .setLifeDelay(lifetime*2);
             slash.spawnParticles();
 

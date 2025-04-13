@@ -223,8 +223,8 @@ public class MalumItemTags extends ItemTagsProvider {
                 .add(MALIGNANT_STRONGHOLD_HELMET.get(), MALIGNANT_STRONGHOLD_CHESTPLATE.get(),
                         MALIGNANT_STRONGHOLD_LEGGINGS.get(), MALIGNANT_STRONGHOLD_BOOTS.get(),
                         WEIGHT_OF_WORLDS.get(), EDGE_OF_DELIVERANCE.get(),
-                        EROSION_SCEPTER.get(),
-                        MNEMONIC_HEX_STAFF.get(), UNWINDING_CHAOS.get())
+                        MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
+                        UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get())
                 // Runes
                 .add(RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(),
                         RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_THE_HERETIC.get(),

@@ -19,7 +19,6 @@
   "client": [
     "client.AccessorBakedGlyph",
     "client.AccessorFont",
-    "client.ClientPacketListenerMixin",
     "client.CreativeModeInventoryScreenMixin",
     "client.CreativeModeTabMixin",
     "client.ElytraLayerMixin",

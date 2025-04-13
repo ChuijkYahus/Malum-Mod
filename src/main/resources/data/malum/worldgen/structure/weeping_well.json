@@ -1,6 +1,0 @@
-{
-  "type": "malum:weeping_well",
-  "biomes": "#malum:has_weeping_well",
-  "spawn_overrides": {},
-  "step": "underground_structures"
-}

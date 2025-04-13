@@ -35,7 +35,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     public static final SoulwovenBannerPatternDataComponent AERIAL = register("breeze");
     public static final SoulwovenBannerPatternDataComponent AQUEOUS = register("breath");
     public static final SoulwovenBannerPatternDataComponent EARTHEN = register("break");
-//    public static final SoulwovenBannerPatternData INFERNAL = register("burn"));
+    public static final SoulwovenBannerPatternDataComponent INFERNAL = register("burn");
 
     public static final SoulwovenBannerPatternDataComponent HUNGER = register("hunger");
     public static final SoulwovenBannerPatternDataComponent HORNS = register("horns");

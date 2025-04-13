@@ -13,8 +13,6 @@ import team.lodestar.lodestone.helpers.SoundHelper;
 
 public class StaffAbilityData {
 
-    public static final int RECHARGE_TIME = 80;
-
     public static Codec<StaffAbilityData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
             Codec.INT.fieldOf("staffCharge").forGetter(c -> c.staffChargeDebt),
             Codec.FLOAT.fieldOf("staffChargeProgress").forGetter(c -> c.staffChargeDebtCooldown)
@@ -70,7 +68,7 @@ public class StaffAbilityData {
         this.staffChargeDebtCooldown -= staffChargeProgress;
         if (staffChargeDebtCooldown <= 0) {
             reduceStaffChargeDebt(livingEntity);
-            staffChargeDebtCooldown += RECHARGE_TIME;
+            staffChargeDebtCooldown += getStaffChargeCooldown(livingEntity);
         }
     }
 

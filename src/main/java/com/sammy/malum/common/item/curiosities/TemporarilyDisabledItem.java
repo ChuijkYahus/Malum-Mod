@@ -11,6 +11,8 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
+import java.util.function.*;
+
 
 public class TemporarilyDisabledItem extends Item {
 
@@ -18,7 +20,6 @@ public class TemporarilyDisabledItem extends Item {
         super(pProperties);
     }
 
-    @SuppressWarnings("DataFlowIssue")
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         if (pEntity instanceof ServerPlayer player) {
@@ -34,12 +35,9 @@ public class TemporarilyDisabledItem extends Item {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
     }
 
-    public static void disable(ServerPlayer player, int slot) {
-        disable(player, slot, ItemRegistry.SOUL_OF_A_SCYTHE.get());
-    }
-    public static void disable(ServerPlayer player, int slot, Item disabledItemType) {
+    public static void disable(ServerPlayer player, int slot, Supplier<Item> disabledItemType) {
         var inventory = player.getInventory();
-        var disabled = disabledItemType.getDefaultInstance();
+        var disabled = disabledItemType.get().getDefaultInstance();
         disabled.set(DataComponentRegistry.DISABLED, new Disabled(inventory.getItem(slot), player.level().getGameTime() + 300));
         inventory.setItem(slot, disabled);
     }

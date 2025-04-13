@@ -327,7 +327,7 @@ public class CodexLangDatagen {
         addPages("void.sundering_anchor",
                 "A knife which thinks, which feels, which hates. The Edge and the Weight are simple things, mere tools to use. The Anchor is more. It knows its enemy, and hates them for the crime of continuing to exist.",
                 "It slashes with me, adding magic damage which scars the soul, forcing its Hatred upon the enemy for a time, applying the revocation of progress Malignant armor does by force.",
-                "The blade also can be thrown, akin to Rebound. It will fly like an arrow, especially eager to carve into those it has marked with its Hatred, even swerving in the air to strike them. It will strike entire groups of Hated enemies, one by one, if many are nearby.");
+                "The blade also can be thrown, akin to Rebound. It will fly like an arrow, pursuing nearby targets with unwavering eagerness, even swerving in the air to strike them, inflicting Hatred and dealing extra damage with each stack of the effect. It will strike entire groups of Hated enemies, one by one, if many are nearby.");
 
         addSimpleEntryHeader("void.unwinding_chaos", "Unwinding Chaos", "The dying truth crawls");
         addPages("void.unwinding_chaos",

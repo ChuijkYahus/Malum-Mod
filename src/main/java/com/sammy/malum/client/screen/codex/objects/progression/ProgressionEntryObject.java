@@ -70,9 +70,11 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
                     ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
 
             for (EntryReference reference : entry.references) {
-                MutableComponent slash = Component.literal(" -").withStyle(reference.entry.subtitleStyle);
-                MutableComponent text = slash.append(Component.translatable(reference.entry.translationKey()));
-                list.add(text.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY)));
+                if (reference.entry.shouldShow()) {
+                    MutableComponent slash = Component.literal(" -").withStyle(reference.entry.subtitleStyle);
+                    MutableComponent text = slash.append(Component.translatable(reference.entry.translationKey()));
+                    list.add(text.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY)));
+                }
             }
             guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }

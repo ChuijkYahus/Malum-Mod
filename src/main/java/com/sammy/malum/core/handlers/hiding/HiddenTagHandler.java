@@ -1,10 +1,6 @@
 package com.sammy.malum.core.handlers.hiding;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.flag.FeatureFlag;
-import net.minecraft.world.flag.FeatureFlagRegistry;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -34,7 +30,7 @@ public class HiddenTagHandler {
 		INVOKED_WHEN_CONDITIONS_CHANGE.values().forEach(Runnable::run);
 	}
 
-	public static List<TagKey<Item>> tagsToHide() {
+	public static List<TagKey<Item>> getTagsToHide() {
 		List<TagKey<Item>> tags = new ArrayList<>();
 		for (var entry : ITEMS_TO_HIDE.entrySet()) {
 			if (entry.getValue().getAsBoolean())
@@ -44,7 +40,7 @@ public class HiddenTagHandler {
 	}
 
 	public static void hideItems(Collection<ItemStack> items) {
-		Set<TagKey<Item>> disabledTags = new HashSet<>(HiddenTagHandler.tagsToHide());
+		Set<TagKey<Item>> disabledTags = new HashSet<>(HiddenTagHandler.getTagsToHide());
 		Iterator<ItemStack> iterator = items.iterator();
 		while (iterator.hasNext()) {
 			ItemStack entry = iterator.next();

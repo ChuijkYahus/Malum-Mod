@@ -5,6 +5,7 @@ import com.sammy.malum.client.renderer.entity.*;
 import com.sammy.malum.client.renderer.entity.bolt.*;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
+import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.hidden_blade.*;
@@ -81,6 +82,10 @@ public class EntityRegistry {
             () -> EntityType.Builder.<EntropicFlameBoltEntity>of((e, w) -> new EntropicFlameBoltEntity(w), MobCategory.MISC).sized(3F, 3F).clientTrackingRange(10)
                     .build(MalumMod.malumPath("entropic_flame_bolt").toString()));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectileEntity>> SUNDERING_ANCHOR = ENTITY_TYPES.register("sundering_anchor",
+            () -> EntityType.Builder.<SunderingAnchorProjectileEntity>of((e, w) -> new SunderingAnchorProjectileEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(10)
+                    .build(MalumMod.malumPath("sundering_anchor").toString()));
+
     @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
     public static class ClientOnly {
         @SubscribeEvent
@@ -103,6 +108,9 @@ public class EntityRegistry {
             EntityRenderers.register(EntityRegistry.HEX_BOLT.get(), HexBoltEntityRenderer::new);
             EntityRenderers.register(EntityRegistry.DRAINING_BOLT.get(), DrainingBoltEntityRenderer::new);
             EntityRenderers.register(EntityRegistry.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltEntityRenderer::new);
+
+            EntityRenderers.register(EntityRegistry.SUNDERING_ANCHOR.get(), SunderingAnchorEntityRenderer::new);
+
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.sammy.malum.client;
 
 import com.mojang.blaze3d.vertex.*;
+import com.sammy.malum.core.systems.spirit.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -20,12 +21,20 @@ import java.lang.Math;
 public class RenderUtils {
 
 
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, MalumSpiritType spiritType, float effectScalar, float partialTicks) {
+        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
+    }
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, t -> primaryColor, t -> secondaryColor, effectScalar, effectScalar, partialTicks);
     }
 
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, effectScalar, partialTicks);
+    }
+
+
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, MalumSpiritType spiritType, float scaleScalar, float alphaScalar, float partialTicks) {
+        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
     }
 
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {

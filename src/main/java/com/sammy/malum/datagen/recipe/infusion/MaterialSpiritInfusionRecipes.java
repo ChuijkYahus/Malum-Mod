@@ -32,7 +32,7 @@ public class MaterialSpiritInfusionRecipes {
         soulwovenBannerRecipe(recipeOutput, AERIAL_SPIRIT, SoulwovenBannerPatternDataComponent.AERIAL);
         soulwovenBannerRecipe(recipeOutput, AQUEOUS_SPIRIT, SoulwovenBannerPatternDataComponent.AQUEOUS);
         soulwovenBannerRecipe(recipeOutput, EARTHEN_SPIRIT, SoulwovenBannerPatternDataComponent.EARTHEN);
-//        soulwovenBannerRecipe(recipeOutput, INFERNAL_SPIRIT, SoulwovenBannerPatternData.INFERNAL);
+        soulwovenBannerRecipe(recipeOutput, INFERNAL_SPIRIT, SoulwovenBannerPatternDataComponent.INFERNAL);
 
         new SpiritInfusionRecipeBuilder(Items.GUNPOWDER, 1, ItemRegistry.HEX_ASH.get(), 1)
                 .addSpirit(ARCANE_SPIRIT, 1)

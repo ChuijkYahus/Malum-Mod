@@ -43,7 +43,7 @@ public class ReboundHandler {
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velocity, 0F);
             level.addFreshEntity(entity);
             SoundHelper.playSound(player, SoundRegistry.SCYTHE_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f));
-            TemporarilyDisabledItem.disable(serverPlayer, slot);
+            TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);
         player.awardStat(Stats.ITEM_USED.get(scythe.getItem()));

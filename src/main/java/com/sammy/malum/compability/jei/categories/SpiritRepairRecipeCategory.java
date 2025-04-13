@@ -2,7 +2,7 @@ package com.sammy.malum.compability.jei.categories;
 
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.recipe.SpiritRepairRecipe;
-import com.sammy.malum.compability.jei.JEIHandler;
+import com.sammy.malum.compability.jei.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -44,7 +44,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
     public void draw(SpiritRepairRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         if (!recipe.spirits.isEmpty()) {
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, true);
+            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
         }
     }
 
@@ -85,7 +85,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
         if (recipe.repairOutputOverride != Items.AIR) {
             repaired = repaired.stream().map(recipe::getResultItem).toList();
         }
-        JEIHandler.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 62, 13, false, recipe.spirits);
+        JEIHelper.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits);
 
         IRecipeSlotBuilder input = builder.addSlot(RecipeIngredientRole.INPUT, 82, 57)
                 .addItemStacks(damaged);

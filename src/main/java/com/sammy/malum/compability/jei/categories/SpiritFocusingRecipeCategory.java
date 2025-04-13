@@ -3,7 +3,7 @@ package com.sammy.malum.compability.jei.categories;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.recipe.SpiritFocusingRecipe;
-import com.sammy.malum.compability.jei.JEIHandler;
+import com.sammy.malum.compability.jei.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -71,7 +71,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SpiritFocusingRecipe recipe, IFocusGroup focuses) {
-        JEIHandler.addItemsToJei(builder, RecipeIngredientRole.INPUT, 62, 13, false, recipe.spirits.stream().map(ICustomIngredient::toVanilla).toList());
+        JEIHelper.addItemsToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits.stream().map(ICustomIngredient::toVanilla).toList());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
                 .addIngredients(recipe.ingredient);

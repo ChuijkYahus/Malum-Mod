@@ -1,13 +1,17 @@
 package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.entity.*;
+import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.networked.attack.slash.*;
 import com.sammy.malum.visual_effects.networked.data.*;
 import net.minecraft.core.*;
@@ -41,6 +45,10 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     public static final MalumSpiritType[] SPIRITS = new MalumSpiritType[]{SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.EARTHEN_SPIRIT};
 
+    public static MalumSpiritType getSunderingAnchorSpirit() {
+        return SPIRITS[MalumMod.RANDOM.nextInt(SPIRITS.length)];
+    }
+
     public SunderingAnchorItem(Tier tier, float magicDamage, LodestoneItemProperties properties) {
         super(tier, -2f, -2f, properties
                 .component(DataComponents.TOOL, createToolProperties(tier, BlockTagRegistry.MINEABLE_WITH_KNIFE))
@@ -66,7 +74,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     @Override
     public MalumSpiritType getDefiningSpiritType() {
-        return SPIRITS[MalumMod.RANDOM.nextInt(SPIRITS.length)];
+        return getSunderingAnchorSpirit();
     }
 
     @Override
@@ -75,52 +83,19 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         if (player.getCooldowns().isOnCooldown(this)) {
             return InteractionResultHolder.pass(weaponItem);
         }
-        if (level instanceof ServerLevel) {
-            var direction = player.getLookAngle();
-            var random = player.getRandom();
+        if (player instanceof ServerPlayer serverPlayer) {
+            int slot = usedHand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
+            float physicalDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
+            float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+            Vec3 pos = getProjectileSpawnPos(player, usedHand, 0.5f, 0.5f);
+            SunderingAnchorProjectileEntity entity = new SunderingAnchorProjectileEntity(level, pos.x, pos.y, pos.z);
+            entity.setData(player, physicalDamage, magicDamage, slot);
+            entity.setItem(weaponItem);
 
-            int slashCount = 12;
-            var physicalDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO;
-            var magicDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO;
-            float physicalDamage = (float) (player.getAttributes().getValue(Attributes.ATTACK_DAMAGE) / slashCount) * 2;
-            float magicDamage = (float) (player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE) / slashCount) * 2;
-            float forwardOffset = 5f;
-            var sweepArea = player.getBoundingBox().move(direction.scale(forwardOffset)).inflate(6f);
-            for (int i = 0; i < 2; i++) {
-                ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SCAN)
-                        .setColor(getDefiningSpiritType())
-                        .mirrorRandomly(random)
-                        .setForwardOffset(forwardOffset)
-                        .spawnForwardSlashingParticle(player);
-            }
-
-            final List<Entity> entities = level.getEntities(player, sweepArea);
-            int comboDelayOffset = Math.max(16, entities.size() * 4);
-            for (int i = 0; i < entities.size(); i++) {
-                if (entities.get(i) instanceof LivingEntity sweepTarget) {
-                    if (sweepTarget.isAlive()) {
-                        final int delay = i * 2;
-                        final Vec3 slashDirection = sweepTarget.position().subtract(player.position()).normalize();
-                        final NBTEffectData slashProperties = SlashAttackParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
-                        WorldEventHandler.addWorldEvent(level,
-                                new DelayedDamageWorldEvent(sweepTarget)
-                                        .setAttacker(player)
-                                        .setDamageData(physicalDamageType, physicalDamage, magicDamageType, magicDamage, delay)
-                                        .setImpactParticleEffect(ParticleEffectTypeRegistry.TYRVING_SLASH, new ColorEffectData(getDefiningSpiritType()))
-                                        .setParticleEffectNBT(slashProperties)
-                                        .setSound(SoundRegistry.SUNDERING_ANCHOR_SWING, 1.75f, 2f, 0.7f));
-                        for (int j = 0; j < slashCount; j++) {
-                            int comboDelay = delay + comboDelayOffset + j;
-                            WorldEventHandler.addWorldEvent(level,
-                                    new DelayedDamageWorldEvent(sweepTarget)
-                                            .setAttacker(player)
-                                            .setDamageData(physicalDamageType, physicalDamage, magicDamageType, magicDamage, comboDelay)
-                                            .setImpactParticleEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SWEEP, new ColorEffectData(getDefiningSpiritType()))
-                                            .setSound(SoundRegistry.SUNDERING_ANCHOR_EXTRA_SWING, 1.75f, 2f, 0.7f));
-                        }
-                    }
-                }
-            }
+            entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
+            level.addFreshEntity(entity);
+            SoundHelper.playSound(player, SoundRegistry.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
+            TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_THE_ANCHOR);
         }
         return InteractionResultHolder.success(weaponItem);
     }
@@ -130,15 +105,10 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         DamageSource source = event.getSource();
         Level level = attacker.level();
         RandomSource random = level.random;
-        var chaosCurse = MobEffectRegistry.HATRED;
-        var effect = target.getEffect(chaosCurse);
-        if (effect == null) {
-            target.addEffect(new MobEffectInstance(chaosCurse, 120, 0, true, true, true));
-        } else {
-            EntityHelper.amplifyEffect(effect, target, 1, 49);
-            EntityHelper.extendEffect(effect, target, 60, 3000);
-        }
 
+        if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
+            applyHatred(target);
+        }
         if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
             int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
             float splitDamage = event.getNewDamage() / slashCount;
@@ -164,9 +134,25 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         }
     }
 
+    public static void applyHatred(LivingEntity target) {
+        var hatred = MobEffectRegistry.HATRED;
+        var effect = target.getEffect(hatred);
+        if (effect == null) {
+            target.addEffect(new MobEffectInstance(hatred, 120, 0, true, true, true));
+        } else {
+            EntityHelper.amplifyEffect(effect, target, 1, 49);
+            EntityHelper.extendEffect(effect, target, 60, 3000);
+        }
+    }
     public static Tool createToolProperties(Tier tier, TagKey<Block> blocks) {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F),
                 Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F),
                 Tool.Rule.deniesDrops(tier.getIncorrectBlocksForDrops()), Tool.Rule.minesAndDrops(blocks, tier.getSpeed())), 1.0F, 2);
+    }
+
+    public Vec3 getProjectileSpawnPos(LivingEntity player, InteractionHand hand, float distance, float spread) {
+        int angle = hand == InteractionHand.MAIN_HAND ? 225 : 90;
+        double radians = Math.toRadians(angle - player.yHeadRot);
+        return player.position().add(player.getLookAngle().scale(distance)).add(spread * Math.sin(radians), player.getBbHeight() * 0.9f, spread * Math.cos(radians));
     }
 }

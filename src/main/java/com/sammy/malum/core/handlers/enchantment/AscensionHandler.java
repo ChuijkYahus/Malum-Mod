@@ -38,7 +38,7 @@ public class AscensionHandler {
 
                 var newMotion = player.getDeltaMovement();
                 if (isEnhanced) {
-                    newMotion = newMotion.subtract(x * 1.6f, 0, z * 1.6f);
+                    newMotion = newMotion.subtract(x * 0.4f, 0, z * 0.4f);
                 } else {
                     newMotion = newMotion.add(x * 0.75f, 0, z * 0.75f);
                 }
