@@ -2,6 +2,8 @@ package com.sammy.malum.common.data.attachment.soul_data;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import com.sammy.malum.registry.common.*;
+import net.minecraft.world.entity.projectile.*;
 
 public class ProjectileSoulData {
 
@@ -10,6 +12,7 @@ public class ProjectileSoulData {
     ).apply(obj, ProjectileSoulData::new));
 
     private boolean dealsSoulDamage;
+    private Runnable aethersBlessingCallback;
 
     public ProjectileSoulData() {
 
@@ -24,5 +27,19 @@ public class ProjectileSoulData {
 
     public void setSoulDamage(boolean dealsSoulDamage) {
         this.dealsSoulDamage = dealsSoulDamage;
+    }
+
+    public static void triggerAethersBlessing(Projectile projectile) {
+        projectile.getData(AttachmentTypeRegistry.PROJECTILE_SOUL_INFO).triggerAethersBlessing();
+    }
+
+    public void triggerAethersBlessing() {
+        if (aethersBlessingCallback != null) {
+            aethersBlessingCallback.run();
+        }
+    }
+
+    public void setAethersBlessingCallback(Runnable aethersBlessingCallback) {
+        this.aethersBlessingCallback = aethersBlessingCallback;
     }
 }

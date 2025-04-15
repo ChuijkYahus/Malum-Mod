@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
 
-import static com.sammy.malum.registry.common.block.BlockTagRegistry.*;
+import static com.sammy.malum.registry.common.tag.BlockTagRegistry.*;
 
 public class BlightedGrowthBlock extends BushBlock implements BonemealableBlock, IShearable {
 

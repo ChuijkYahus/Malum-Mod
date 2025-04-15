@@ -14,7 +14,8 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "MobEffectInstanceMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "ProjectileMixin"
   ],
   "client": [
     "client.AccessorBakedGlyph",

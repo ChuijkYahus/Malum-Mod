@@ -16,8 +16,8 @@ public class AqueousAura extends MobEffect {
     public AqueousAura() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.AQUEOUS_SPIRIT.getPrimaryColor()));
         var id = MalumMod.malumPath("aqueous_aura");
-        addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, id, 1.5f, AttributeModifier.Operation.ADD_VALUE);
-        addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, id, 0.5f, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     public static AABB growBoundingBox(Player player, AABB original) {

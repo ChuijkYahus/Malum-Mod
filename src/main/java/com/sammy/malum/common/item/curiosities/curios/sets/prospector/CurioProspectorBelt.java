@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import net.minecraft.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;

@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.spiritrite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;

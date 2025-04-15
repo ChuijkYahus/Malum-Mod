@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.artifice.IArtificeModifierSource;
 import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderStateShard;

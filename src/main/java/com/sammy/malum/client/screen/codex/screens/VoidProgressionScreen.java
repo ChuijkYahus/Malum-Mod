@@ -352,6 +352,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .configureWidget(w -> w.setIcon(FUSED_CONSCIOUSNESS).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
                 .addPage(new WeepingWellTextPage("void.fused_consciousness", "void.fused_consciousness.1", FUSED_CONSCIOUSNESS.get()))
                 .addPage(SpiritInfusionPage.fromOutput(COMPLETE_DESIGN.get()))
+                .afterUmbralCrystal()
         );
         addEntry("void.sundering_anchor", -2, 16, b -> b
                 .configureWidget(w -> w.setIcon(SUNDERING_ANCHOR).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
@@ -359,6 +360,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(new TextPage("void.sundering_anchor.2"))
                 .addPage(new TextPage("void.sundering_anchor.3"))
                 .addPage(SpiritInfusionPage.fromOutput(SUNDERING_ANCHOR.get()))
+                .afterUmbralCrystal()
         );
         addEntry("void.unwinding_chaos", 2, 16, b -> b
                 .configureWidget(w -> w.setIcon(UNWINDING_CHAOS).setStyle(BookWidgetStyle.TOTEMIC_SOULWOOD))
@@ -366,6 +368,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(new TextPage("void.unwinding_chaos.2"))
                 .addPage(new TextPage("void.unwinding_chaos.3"))
                 .addPage(SpiritInfusionPage.fromOutput(UNWINDING_CHAOS.get()))
+                .afterUmbralCrystal()
         );
 
         addEntry("void.belt_of_the_limitless", -3, 17, b -> b
@@ -374,6 +377,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(new TextPage("void.belt_of_the_limitless.2"))
                 .addPage(new TextPage("void.belt_of_the_limitless.3"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_LIMITLESS.get()))
+                .afterUmbralCrystal()
         );
 
         BookPage.isVoidThemed = false;
@@ -384,6 +388,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
+                .afterUmbralCrystal()
         );
     }
 }

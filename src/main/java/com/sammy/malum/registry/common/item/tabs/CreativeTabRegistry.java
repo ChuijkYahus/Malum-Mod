@@ -58,12 +58,14 @@ public class CreativeTabRegistry {
 //                    .withTabsAfter(MalumMod.malumPath("malum_ritual_shards"))
                     .withTabsAfter(MalumMod.malumPath("malum_cosmetics"))
                     .displayItems((p, o) -> {
+                        int i = 0;
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> etchingType : MalumGeasEffectTypeRegistry.GEAS_TYPES.getEntries()) {
                             final GeasEffectType geasEffectType = etchingType.get();
                             if (geasEffectType.equals(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get())) {
                                 continue;
                             }
-                            o.accept(geasEffectType.createDefaultStack());
+
+                            o.accept(geasEffectType.getDummyCreativeStack());
                         }
                     })
                     .icon(() -> MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get().createDefaultStack()).build()

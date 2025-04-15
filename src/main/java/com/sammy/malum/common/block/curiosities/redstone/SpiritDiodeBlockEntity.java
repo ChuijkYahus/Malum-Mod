@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.redstone;
 import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayload;
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
 import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
 import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
 import net.minecraft.core.BlockPos;

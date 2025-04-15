@@ -6,6 +6,7 @@ import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;

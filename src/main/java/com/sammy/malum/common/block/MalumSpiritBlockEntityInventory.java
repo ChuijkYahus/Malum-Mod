@@ -1,13 +1,9 @@
 package com.sammy.malum.common.block;
 
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
-import net.minecraft.world.item.Item;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
-
-import java.util.function.Predicate;
 
 public class MalumSpiritBlockEntityInventory extends MalumBlockEntityInventory{
 

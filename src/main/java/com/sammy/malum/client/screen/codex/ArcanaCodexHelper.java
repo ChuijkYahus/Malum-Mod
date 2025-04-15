@@ -10,6 +10,7 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -162,6 +163,11 @@ public class ArcanaCodexHelper {
         var spiritTypes = type.spiritTypes;
         Supplier<MalumSpiritType> colorSupplier = () -> spiritTypes.get(cycle.getAndIncrement() % spiritTypes.size());
         var mainColor = colorSupplier.get().getPrimaryColor();
+        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.AQUEOUS_SPIRIT)) {
+            //Aqueous has a really dark color compared to other spirits to avoid it clashing with Aerial
+            //Other spirits are brighter which leads to the effect looking extremely blurry since the outline is more significant than the main layer
+            mainColor = ColorHelper.brighter(mainColor, 2);
+        }
         builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 0, 0, 0, textureWidth, textureHeight);

@@ -8,13 +8,11 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import static com.sammy.malum.registry.common.item.ItemRegistry.*;
-import static net.minecraft.world.item.Items.*;
 
 public class GeasEntries {
 
@@ -39,32 +37,54 @@ public class GeasEntries {
                 ))
         );
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DAYBLESSED, 1, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_NIGHTCHILD, -1, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT, 0, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE, 2, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE, 3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHADEWALKER, -2, 12);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SUNKISSED, 2, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.WICKED_1, 1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER, 2, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD, -2, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -3, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD, -2, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_DEFIANT, 2, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER, 3, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT, -2, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE, -3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION, -17, 15);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, -18, 13);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -19, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE, 4, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST, 5, 14);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT, 5, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT, 6, 14);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS, -5, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID, -6, 14);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.INFERNAL_1, -4, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.INFERNAL_2, -5, 14);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_3, 18, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_4, 19, 11);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 19, 14);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.WICKED_4, 20, 12);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -18, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ARCANE_4, -19, 11);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_3, -19, 14);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_4, -20, 12);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER, 13, 17);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC, 17, 15);
-//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 18, 13);
-//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, 19, 11);
 
-        addSoulwoodGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE, 0, 21);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.AQUEOUS_3, 14, 18);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.AQUEOUS_4, 16, 17);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);
+
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION, -14, 18);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC, -16, 17);
+
 
     }
 

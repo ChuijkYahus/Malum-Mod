@@ -2,7 +2,7 @@ package com.sammy.malum.registry.client;
 
 import com.sammy.malum.client.VoidRevelationHandler;
 import com.sammy.malum.core.handlers.hiding.HiddenTagHandler;
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.BLACK_CRYSTAL;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;

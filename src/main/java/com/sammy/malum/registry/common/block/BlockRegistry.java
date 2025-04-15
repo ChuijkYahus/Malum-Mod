@@ -55,7 +55,7 @@ import team.lodestar.lodestone.systems.easing.*;
 import java.awt.*;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.registry.common.block.BlockTagRegistry.*;
+import static com.sammy.malum.registry.common.tag.BlockTagRegistry.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.neoforged.neoforge.common.Tags.Blocks.FENCE_GATES_WOODEN;
 import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;

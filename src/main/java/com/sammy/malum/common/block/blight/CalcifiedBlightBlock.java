@@ -20,7 +20,7 @@ import net.neoforged.neoforge.common.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.block.BlockTagRegistry.*;
+import static com.sammy.malum.registry.common.tag.BlockTagRegistry.*;
 
 public class CalcifiedBlightBlock extends BushBlock implements IShearable {
 

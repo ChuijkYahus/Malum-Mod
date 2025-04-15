@@ -1,10 +1,8 @@
 package com.sammy.malum.core.systems.item;
 
-import com.sammy.malum.registry.common.item.ItemTagRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;

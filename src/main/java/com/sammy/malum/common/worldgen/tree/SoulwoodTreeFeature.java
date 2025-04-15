@@ -6,6 +6,7 @@ import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.ClingingBlightBlock.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;

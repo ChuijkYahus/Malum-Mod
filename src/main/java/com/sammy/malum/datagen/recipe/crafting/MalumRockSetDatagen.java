@@ -1,7 +1,8 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
-import com.sammy.malum.datagen.item.*;
+import com.sammy.malum.datagen.tag.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -82,7 +83,7 @@ public class MalumRockSetDatagen {
 
     private static MalumRockSetDatagen.MalumDatagenRockSet cachedRockSet;
 
-    public static void addTags(MalumItemTags provider) {
+    public static void addTags(MalumItemTagDatagen provider) {
         addTags(provider, TAINTED_ROCK);
         addTags(provider, TWISTED_ROCK);
     }
@@ -92,7 +93,7 @@ public class MalumRockSetDatagen {
         buildRecipes(consumer, TWISTED_ROCK);
     }
 
-    protected static void addTags(MalumItemTags provider, MalumRockSetDatagen.MalumDatagenRockSet rockSet) {
+    protected static void addTags(MalumItemTagDatagen provider, MalumRockSetDatagen.MalumDatagenRockSet rockSet) {
         provider.safeCopy(rockSet.setEncompassingTag);
         provider.safeCopy(rockSet.blockTag);
         provider.safeCopy(rockSet.stairTag);

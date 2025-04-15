@@ -7,7 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
@@ -73,9 +73,14 @@ public class CurioTokenOfGratitude extends MalumCurioItem implements ItemEventHa
         if (event.getEntity() instanceof Player playerEntity) {
             if (!playerEntity.level().isClientSide) {
                 if (GRADITUDE_CERTIFIED.stream().anyMatch(u -> u.equals(playerEntity.getUUID()))) {
-                    if (CurioHelper.findCosmeticCurio(s -> s.getItem().equals(ItemRegistry.TOKEN_OF_GRATITUDE.get()), playerEntity).isEmpty()) {
-                        ItemHandlerHelper.giveItemToPlayer(playerEntity, ItemRegistry.TOKEN_OF_GRATITUDE.get().getDefaultInstance());
+                    final Item token = ItemRegistry.TOKEN_OF_GRATITUDE.get();
+                    if (CurioHelper.hasCurioEquipped(playerEntity, token)) {
+                        return;
                     }
+                    if (CurioHelper.findCosmeticCurio(s -> s.getItem().equals(token), playerEntity).isPresent()) {
+                        return;
+                    }
+                    ItemHandlerHelper.giveItemToPlayer(playerEntity, token.getDefaultInstance());
                 }
             }
         }
