@@ -68,7 +68,7 @@ public abstract class ArtificeAcceptorRenderer<T extends LodestoneBlockEntity> i
         }
         Minecraft minecraft = Minecraft.getInstance();
         Color color = DEBUG_COLORS.computeIfAbsent(target, a -> ColorHelper.getColor(Mth.abs(a.hashCode())));
-        var debugGizmo = LodestoneRenderTypes.TEXTURE.applyWithModifierAndCache(MalumRenderTypeTokens.DEBUG_GIZMO, ShaderUniformHandler.LUMITRANSPARENT, b -> b.setWriteMaskState(RenderStateShard.COLOR_WRITE).setDepthTestState(RenderStateShard.NO_DEPTH_TEST));
+        var debugGizmo = LodestoneRenderTypes.TEXTURE.apply(MalumRenderTypeTokens.DEBUG_GIZMO, ShaderUniformHandler.LUMITRANSPARENT, b -> b.setWriteMaskState(RenderStateShard.COLOR_WRITE).setDepthTestState(RenderStateShard.NO_DEPTH_TEST));
         stack.pushPose();
         stack.translate(0.5f, 4f, 0.5f);
         stack.mulPose(minecraft.getEntityRenderDispatcher().cameraOrientation());

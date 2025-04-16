@@ -30,7 +30,7 @@ public class PlacedFeatureDatagen {
         context.register(MalumPlacedFeatures.RUNEWOOD_TREE,
                 new PlacedFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_RUNEWOOD_TREE),
                         ImmutableList.<PlacementModifier>builder().add(
-                                RarityFilter.onAverageOnceEvery(12),
+                                RarityFilter.onAverageOnceEvery(24),
                                 CountPlacement.of(UniformInt.of(1, 3)),
                                 InSquarePlacement.spread(),
                                 PlacementUtils.HEIGHTMAP
@@ -40,7 +40,7 @@ public class PlacedFeatureDatagen {
         context.register(MalumPlacedFeatures.RARE_RUNEWOOD_TREE,
                 new PlacedFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_RUNEWOOD_TREE),
                         ImmutableList.<PlacementModifier>builder().add(
-                                RarityFilter.onAverageOnceEvery(20),
+                                RarityFilter.onAverageOnceEvery(40),
                                 CountPlacement.of(UniformInt.of(1, 2)),
                                 InSquarePlacement.spread(),
                                 PlacementUtils.HEIGHTMAP
@@ -51,7 +51,7 @@ public class PlacedFeatureDatagen {
         context.register(MalumPlacedFeatures.AZURE_RUNEWOOD_TREE,
                 new PlacedFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_AZURE_RUNEWOOD_TREE),
                         ImmutableList.<PlacementModifier>builder().add(
-                                RarityFilter.onAverageOnceEvery(16),
+                                RarityFilter.onAverageOnceEvery(32),
                                 CountPlacement.of(UniformInt.of(1, 3)),
                                 InSquarePlacement.spread(),
                                 PlacementUtils.HEIGHTMAP
@@ -61,7 +61,7 @@ public class PlacedFeatureDatagen {
         context.register(MalumPlacedFeatures.RARE_AZURE_RUNEWOOD_TREE,
                 new PlacedFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_AZURE_RUNEWOOD_TREE),
                         ImmutableList.<PlacementModifier>builder().add(
-                                RarityFilter.onAverageOnceEvery(24),
+                                RarityFilter.onAverageOnceEvery(64),
                                 CountPlacement.of(UniformInt.of(1, 2)),
                                 InSquarePlacement.spread(),
                                 PlacementUtils.HEIGHTMAP

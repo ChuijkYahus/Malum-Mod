@@ -2,11 +2,8 @@ package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.*;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -19,8 +16,6 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.*;
-
-import java.util.*;
 
 import static com.sammy.malum.common.item.curiosities.weapons.scythe.EdgeOfDeliveranceItem.triggerMalignantCrit;
 
@@ -56,7 +51,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
             return;
         }
         var source = event.getSource();
-        if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION)) {
+        if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION)) {
             var particleEffectType = ParticleEffectTypeRegistry.SCYTHE_SLASH;
             var effect = MobEffectRegistry.GRIM_CERTAINTY;
             if (attacker.hasEffect(effect) || level.random.nextFloat() < 0.25f) {

@@ -59,7 +59,6 @@ public class WyrdReconstructionGeas extends GeasEffect {
                 spiritCollectionActivations--;
                 if (spiritCollectionActivations == 0) {
                     entity.addEffect(new MobEffectInstance(MobEffectRegistry.WYRD_EXHAUSTION, COOLDOWN_DURATION, 0, true, true));
-                    setDirty();
                 }
             }
         }
@@ -88,10 +87,9 @@ public class WyrdReconstructionGeas extends GeasEffect {
                 knockbackTarget.setDeltaMovement(knockbackTarget.position().subtract(target.position()).normalize().scale(2f).add(0, 0.5f, 0));
             }
             SoundHelper.playSound(target, SoundRegistry.WYRD_RECONSTRUCTION.get(), 1, 1);
-            ParticleEffectTypeRegistry.WYRD_RECONSTRUCTION_REVIVE.createPositionedEffect(serverLevel,
-                    new PositionEffectData(target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()),
-                    new ColorEffectData(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.INFERNAL_SPIRIT),
-                    WyrdReconstructionReviveParticleEffect.createData(target));
+            ParticleEffectTypeRegistry.WYRD_RECONSTRUCTION_REVIVE.createEffect(target)
+                            .color(new ColorEffectData(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.INFERNAL_SPIRIT))
+                                    .spawn(serverLevel);
         }
 
         event.setCanceled(true);

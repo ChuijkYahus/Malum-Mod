@@ -48,7 +48,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
             return;
         }
         var source = event.getSource();
-        if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
+        if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
             var effect = MobEffectRegistry.IMMINENT_DELIVERANCE;
             if (target.hasEffect(effect)) {
                 if (triggerMalignantCrit(event.getContainer(), attacker, target)) {

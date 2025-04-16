@@ -1115,7 +1115,7 @@ public class CodexLangDatagen {
                         -Devoured Essence Heals You based on the Damage Dealt""",
                 """
                         Born from the Malignant Metal, Devoured Essence seeks to Undo
-                        -Overuse of the Healing Effect nullifies All Healing""");
+                        -Overuse of the Healing Effect gradually diminishes All Healing""");
 
         addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "[Unmakers Disdain]");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN,

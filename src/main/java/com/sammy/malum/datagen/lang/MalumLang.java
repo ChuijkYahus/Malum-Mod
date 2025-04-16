@@ -2,7 +2,6 @@ package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compability.create.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
@@ -339,7 +338,7 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
         addGeasEffect("spirits_hunger", "Spirit Collection Drains Hunger");
         addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
-        addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Nullify All Healing");
+        addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Gradually Diminish All Healing");
         addGeasEffect("malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
         addGeasEffect("malignant_crit_health_condition", "Prevents Malignant Deliverance When Wounded");
         addGeasEffect("malignant_crit_reinforcement", "Malignant Deliverance Reinforces Armor");
@@ -348,7 +347,7 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("staff_autofire", "Staff Charges Automatically Fire");
         addGeasEffect("inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");
         addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
-        addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Wounded");
+        addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Struck");
         addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
         addGeasEffect("last_stand", "Expiration, Demise, Entropy Is Made Lenient");
         addGeasEffect("last_stand_arcane_resonance", "Arcane Resonance Aids Leniency");
@@ -430,8 +429,8 @@ public class MalumLang extends LanguageProvider {
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.SOULWASHING_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
-        addDeathMessage(DamageTypeRegistry.SOULWASHING_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(DamageTypeRegistry.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(DamageTypeRegistry.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
         addJEEDEffectDescription(MobEffectRegistry.GAIAS_BULWARK, "An earthen carapace surrounds your body, functioning as extra armor.");
         addJEEDEffectDescription(MobEffectRegistry.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");

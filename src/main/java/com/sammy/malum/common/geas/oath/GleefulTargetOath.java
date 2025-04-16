@@ -50,7 +50,7 @@ public class GleefulTargetOath extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.LIONS_HEART_BLACKLIST)) {
+        if (event.getSource().is(DamageTypeTagRegistry.GLEEFUL_TARGET_BLACKLIST)) {
             return;
         }
         lionsHeartDuration += Mth.floor(100 * target.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE));

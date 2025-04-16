@@ -84,7 +84,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         }
 
         boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC);
-        if (canTriggerMagic || source.is(DamageTypeRegistry.SOULWASHING_PROPAGATION)) {
+        if (canTriggerMagic || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION)) {
             target.igniteForSeconds(5);
         }
         if (canTriggerMagic) {

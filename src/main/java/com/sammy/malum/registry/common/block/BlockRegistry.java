@@ -181,8 +181,8 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_TILES_STAIRS = BLOCKS.register("runic_tainted_rock_tiles_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
     public static final DeferredHolder<Block, Block> RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_small_tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
 
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BUTTON = BLOCKS.register("tainted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TAINTED_ROCK().addTag(BUTTONS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_PRESSURE_PLATE = BLOCKS.register("tainted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TAINTED_ROCK().addTag(PRESSURE_PLATES)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BUTTON = BLOCKS.register("tainted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TAINTED_ROCK().noCollission().addTag(BUTTONS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_PRESSURE_PLATE = BLOCKS.register("tainted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TAINTED_ROCK().noCollission().addTag(PRESSURE_PLATES)));
 
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_WALL = BLOCKS.register("tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_WALLS)));
     public static final DeferredHolder<Block, Block> SMOOTH_TAINTED_ROCK_WALL = BLOCKS.register("smooth_tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_WALLS)));
@@ -236,8 +236,8 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_TILES_STAIRS = BLOCKS.register("runic_twisted_rock_tiles_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
     public static final DeferredHolder<Block, Block> RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_small_twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
 
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BUTTON = BLOCKS.register("twisted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TWISTED_ROCK().addTag(BUTTONS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_PRESSURE_PLATE = BLOCKS.register("twisted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TWISTED_ROCK().addTag(PRESSURE_PLATES)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BUTTON = BLOCKS.register("twisted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TWISTED_ROCK().noCollission().addTag(BUTTONS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_PRESSURE_PLATE = BLOCKS.register("twisted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TWISTED_ROCK().noCollission().addTag(PRESSURE_PLATES)));
 
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_WALL = BLOCKS.register("twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_WALLS)));
     public static final DeferredHolder<Block, Block> SMOOTH_TWISTED_ROCK_WALL = BLOCKS.register("smooth_twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_WALLS)));
@@ -318,8 +318,8 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS_TRAPDOOR = BLOCKS.register("runewood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
     public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_BOARDS_TRAPDOOR = BLOCKS.register("bolted_runewood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
 
-    public static final DeferredHolder<Block, Block> RUNEWOOD_BUTTON = BLOCKS.register("runewood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.RUNEWOOD, 20, MalumBlockProperties.RUNEWOOD().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_PRESSURE_PLATE = BLOCKS.register("runewood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_BUTTON = BLOCKS.register("runewood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.RUNEWOOD, 20, MalumBlockProperties.RUNEWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_PRESSURE_PLATE = BLOCKS.register("runewood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().noCollission().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_FENCE = BLOCKS.register("runewood_planks_fence", () -> new FenceBlock(MalumBlockProperties.RUNEWOOD().addTags(FENCES, WOODEN_FENCES)));
     public static final DeferredHolder<Block, Block> RUNEWOOD_FENCE_GATE = BLOCKS.register("runewood_planks_fence_gate", () -> new FenceGateBlock( WoodTypeRegistry.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(FENCE_GATES, FENCE_GATES_WOODEN)));
@@ -396,8 +396,8 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS_TRAPDOOR = BLOCKS.register("soulwood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
     public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_BOARDS_TRAPDOOR = BLOCKS.register("bolted_soulwood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
 
-    public static final DeferredHolder<Block, Block> SOULWOOD_BUTTON = BLOCKS.register("soulwood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.SOULWOOD, 20, MalumBlockProperties.SOULWOOD().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
-    public static final DeferredHolder<Block, Block> SOULWOOD_PRESSURE_PLATE = BLOCKS.register("soulwood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
+    public static final DeferredHolder<Block, Block> SOULWOOD_BUTTON = BLOCKS.register("soulwood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.SOULWOOD, 20, MalumBlockProperties.SOULWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
+    public static final DeferredHolder<Block, Block> SOULWOOD_PRESSURE_PLATE = BLOCKS.register("soulwood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().noCollission().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_FENCE = BLOCKS.register("soulwood_planks_fence", () -> new FenceBlock(MalumBlockProperties.SOULWOOD().addTags(FENCES, WOODEN_FENCES)));
     public static final DeferredHolder<Block, Block> SOULWOOD_FENCE_GATE = BLOCKS.register("soulwood_planks_fence_gate", () -> new FenceGateBlock( WoodTypeRegistry.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(FENCE_GATES, FENCE_GATES_WOODEN)));
