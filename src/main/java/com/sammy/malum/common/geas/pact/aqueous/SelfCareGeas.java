@@ -34,7 +34,7 @@ public class SelfCareGeas extends GeasEffect {
         }
         if (livingEntity instanceof Player player) {
             if (GeasEffectHandler.hasGeasEffect(player, MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE)) {
-                player.getFoodData().eat(0, 1.5f);
+                player.getFoodData().add(0, 1.5f);
                 for (MobEffectInstance instance : livingEntity.getActiveEffectsMap().values()) {
                     var e = instance.getEffect().value();
                     if (e.getCategory().equals(MobEffectCategory.HARMFUL)) {

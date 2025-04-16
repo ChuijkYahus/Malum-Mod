@@ -536,6 +536,7 @@ public class MalumBlockProperties {
                 .strength(-1.0F, 3600000.0F)
                 .sound(SoundRegistry.WEEPING_WELL_BRICKS)
                 .isRedstoneConductor((a,b,c) -> false)
+                .addTag(FEATURES_CANNOT_REPLACE)
                 .mapColor(MapColor.COLOR_GRAY)
                 .isValidSpawn(Blocks::never)
                 .noLootTable();
@@ -543,10 +544,11 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties PRIMORDIAL_SOUP() {
         return new LodestoneBlockProperties()
+                .strength(-1.0F, 3600000.0F)
+                .sound(SoundRegistry.BLIGHTED_EARTH)
                 .mapColor(MapColor.TERRACOTTA_BLACK)
                 .pushReaction(PushReaction.BLOCK)
-                .setCutoutRenderType()
-                .sound(SoundRegistry.BLIGHTED_EARTH)
-                .strength(-1.0F, 3600000.0F);
+                .addTag(FEATURES_CANNOT_REPLACE)
+                .setCutoutRenderType();
     }
 }

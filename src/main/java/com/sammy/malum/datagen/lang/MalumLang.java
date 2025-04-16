@@ -466,9 +466,9 @@ public class MalumLang extends LanguageProvider {
 
         addEnchantmentNameAndDescription(EnchantmentRegistry.ANIMATED, "Improves attack speed.");
         addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown much like a boomerang when used.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, pushing away nearby enemies when used.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.REPLENISHING, "Reduces the Staff's ranged attack cooldown when dealing melee damage.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.CAPACITOR, "Adds Reserve Staff Charges for use with the staff");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, slashing  nearby enemies when used.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.CAPACITOR, "Adds additional Spell Charges for use with the staff");
         addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
         addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when killing an enemy.");
 

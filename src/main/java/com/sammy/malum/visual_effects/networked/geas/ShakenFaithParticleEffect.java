@@ -9,11 +9,16 @@ import net.minecraft.nbt.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.particle.*;
+import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
 import java.util.function.*;
+
+import static net.minecraft.util.Mth.nextFloat;
 
 public class ShakenFaithParticleEffect extends SlashAttackParticleEffect {
 
@@ -36,16 +41,18 @@ public class ShakenFaithParticleEffect extends SlashAttackParticleEffect {
             float angle = nbtData.compoundTag.getFloat("angle");
             boolean mirror = nbtData.compoundTag.getBoolean("mirror");
 
-            for (int i = 0; i < 3; i++) {
-                float spinOffset = angle + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (mirror ? 3.14f : 0);
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.ROUNDABOUT_SLASH, colorData);
+            final Vec3 pos = positionData.getAsVector();
+            for (int i = 0; i < 6; i++) {
+                float spinOffset = angle + RandomHelper.randomBetween(random, -1.5f, 1.5f) + (mirror ? 3.14f : 0);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
                 slash.getBuilder()
-                        .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
-                        .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2.5f, 3.5f)+i*0.5f, 0).build())
-                        .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.4f)))
+                        .setSpinData(SpinParticleData.createRandomDirection(random, 0.15f - i * 0.025f, 0.02f).setSpinOffset(spinOffset).build())
+                        .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 0.5f, 1.5f)+i*0.25f, 0).build())
                         .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction))
-                        .multiplyLifetime(2.5f)
-                        .setLifeDelay(i*2);
+                        .setLifetime(RandomHelper.randomBetween(random, 8, 12))
+                        .setLifeDelay(i/2);
+                slash.spawnParticles();
+                slash.getBuilder().setBehavior(BillboardParticleBehavior.INSTANCE);
                 slash.spawnParticles();
             }
         };
