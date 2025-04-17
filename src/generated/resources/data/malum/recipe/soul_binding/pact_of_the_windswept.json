@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:leather"
+    },
+    {
+      "count": 4,
+      "item": "malum:astral_weave"
+    }
+  ],
+  "geas": "malum:pact_of_the_windswept",
+  "ingredient": {
+    "count": 12,
+    "item": "minecraft:feather"
+  },
+  "spirits": [
+    {
+      "type": "aerial",
+      "count": 16
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    }
+  ]
+}

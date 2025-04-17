@@ -54,9 +54,9 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (!(event.getSource().getDirectEntity() instanceof AbstractBoltProjectileEntity) && !event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+        if (!(event.getSource().getDirectEntity() instanceof AbstractBoltProjectileEntity) && event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
             var silenced = MobEffectRegistry.SILENCED;
-            MobEffectInstance effect = target.getEffect(silenced);
+            var effect = target.getEffect(silenced);
             if (effect == null) {
                 target.addEffect(new MobEffectInstance(silenced, 150, 0, true, true, true));
             } else {
@@ -67,7 +67,6 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
         }
         super.outgoingDamageEvent(event, attacker, target, stack);
     }
-
 
     @Override
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {

@@ -1,8 +1,9 @@
 package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import com.sammy.malum.common.geas.health.DefiantGeas;
-import com.sammy.malum.common.geas.gluttony.*;
+import com.sammy.malum.common.geas.pact.aqueous.*;
+import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.sacred.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import org.spongepowered.asm.mixin.*;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public class FoodDataMixin {
 
     @Shadow private int tickTimer;
+    @Shadow private int foodLevel;
     @Unique
     private Player malum$player;
 
@@ -36,7 +38,8 @@ public class FoodDataMixin {
     @Inject(method = "tick", at = @At(value = "HEAD"))
     private void malum$accelerateHealing(Player player, CallbackInfo ci) {
         if (malum$CanHeal) {
-            tickTimer += DefiantGeas.accelerateNaturalHealing(player);
+            tickTimer += DefianceGeas.accelerateNaturalHealing(player);
         }
+        tickTimer += SelfCareGeas.accelerateHunger(player, foodLevel);
     }
 }

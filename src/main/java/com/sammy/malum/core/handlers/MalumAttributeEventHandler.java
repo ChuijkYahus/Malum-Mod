@@ -1,8 +1,8 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.event.entity.living.*;
 

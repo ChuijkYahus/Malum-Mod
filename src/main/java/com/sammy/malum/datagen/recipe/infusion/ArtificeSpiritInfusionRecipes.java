@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.recipe.infusion;
 
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;

@@ -2,10 +2,9 @@ package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;

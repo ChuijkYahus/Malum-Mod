@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:chain"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:emerald"
+    }
+  ],
+  "geas": "malum:pact_of_the_lone_druid",
+  "ingredient": {
+    "count": 12,
+    "tag": "minecraft:saplings"
+  },
+  "spirits": [
+    {
+      "type": "earthen",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 16
+    },
+    {
+      "type": "arcane",
+      "count": 16
+    }
+  ]
+}

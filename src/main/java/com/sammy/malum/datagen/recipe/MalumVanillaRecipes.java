@@ -4,6 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.datagen.recipe.builder.vanilla.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.*;

@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 4,
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "geas": "malum:pact_of_the_parasite",
+  "ingredient": {
+    "count": 12,
+    "item": "malum:living_flesh"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 16
+    },
+    {
+      "type": "aqueous",
+      "count": 16
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    }
+  ]
+}

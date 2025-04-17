@@ -17,12 +17,12 @@
       "count": 16
     },
     {
-      "type": "aqueous",
+      "type": "aerial",
       "count": 16
     },
     {
-      "type": "eldritch",
-      "count": 8
+      "type": "aqueous",
+      "count": 16
     }
   ]
 }

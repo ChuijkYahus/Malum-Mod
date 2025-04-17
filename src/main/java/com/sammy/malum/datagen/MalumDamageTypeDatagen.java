@@ -35,8 +35,8 @@ public class MalumDamageTypeDatagen {
         register(context, DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO);
         register(context, DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO);
 
-        register(context, DamageTypeRegistry.SOULWASHING_RETALIATION);
-        register(context, DamageTypeRegistry.SOULWASHING_PROPAGATION);
+        register(context, DamageTypeRegistry.INVERTED_HEART_RETALIATION);
+        register(context, DamageTypeRegistry.INVERTED_HEART_PROPAGATION);
     }
 
     private static void register(BootstrapContext<DamageType> context, ResourceKey<DamageType> key) {

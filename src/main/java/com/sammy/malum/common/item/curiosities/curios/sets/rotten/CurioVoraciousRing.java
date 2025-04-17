@@ -15,7 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.item.ItemTagRegistry.*;
+import static com.sammy.malum.registry.common.tag.ItemTagRegistry.*;
 
 public class CurioVoraciousRing extends MalumCurioItem {
 

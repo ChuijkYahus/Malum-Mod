@@ -71,7 +71,6 @@ public class ParticleEffectTypeRegistry {
     public static final ParticleEffectType TYRVING_SLASH = new TyrvingSlashParticleEffect("tyrving_slash");
     public static final ParticleEffectType SUNDERING_ANCHOR_SLASH = new SunderingAnchorSlashParticleEffect("sundering_anchor_slash");
     public static final ParticleEffectType SUNDERING_ANCHOR_SWEEP = new SunderingAnchorSweepParticleEffect("sundering_anchor_sweep");
-    public static final ParticleEffectType SUNDERING_ANCHOR_SCAN = new SunderingAnchorScanParticleEffect("sundering_anchor_scan");
 
     public static final ParticleEffectType WEIGHT_OF_WORLDS_CRIT = new WeightOfWorldsCritParticleEffect("weight_of_worlds_crit");
     public static final ParticleEffectType EDGE_OF_DELIVERANCE_CRIT = new EdgeOfDeliveranceCritParticleEffect("weight_of_worlds_crit");
@@ -88,6 +87,7 @@ public class ParticleEffectTypeRegistry {
     public static final ParticleEffectType UNWINDING_CHAOS_CHARGE = new UnwindingChaosChargeParticleEffect("unwinding_chaos_charge");
 
     //Geas
+    public static final ParticleEffectType SHAKEN_FAITH = new ShakenFaithParticleEffect("shaken_faith");
     public static final ParticleEffectType INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");
     public static final ParticleEffectType WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
 

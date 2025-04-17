@@ -18,7 +18,7 @@ import net.minecraft.world.phys.shapes.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.block.BlockTagRegistry.BLIGHTED_BLOCKS;
+import static com.sammy.malum.registry.common.tag.BlockTagRegistry.BLIGHTED_BLOCKS;
 
 public class TallCalcifiedBlightBlock extends DoublePlantBlock {
 

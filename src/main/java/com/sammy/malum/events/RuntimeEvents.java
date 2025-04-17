@@ -5,11 +5,10 @@ import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.aura.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.nitrate.*;
-import com.sammy.malum.common.geas.explosion.*;
-import com.sammy.malum.common.geas.gluttony.*;
-import com.sammy.malum.common.geas.light.*;
-import com.sammy.malum.common.geas.wind.CloudSkipperGeas;
-import com.sammy.malum.common.geas.wind.SkyBreakerGeas;
+import com.sammy.malum.common.geas.pact.aerial.*;
+import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.infernal.*;
+import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
@@ -44,10 +43,13 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         CurioTokenOfGratitude.giveItem(event);
-        SoulDataHandler.entityJoin(event);
+
+        SoulDataHandler.syncData(event);
         SoulWardHandler.syncSoulWard(event);
         GeasEffectHandler.syncGeas(event);
+
         TetraCompat.entityJoin(event);
+        ContinuingShotGeas.entityJoin(event);
     }
 
     @SubscribeEvent
@@ -91,7 +93,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
         CurioHarmonyNecklace.preventDetection(event);
-        ShadeWalkerGeas.preventDetection(event);
+        ChallengerGeas.increaseDetection(event);
     }
 
     @SubscribeEvent
@@ -160,6 +162,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onKnockback(LivingKnockBackEvent event) {
+        WindsweptGeas.scaleKnockback(event);
         SkyBreakerGeas.scaleKnockback(event);
     }
 
@@ -181,6 +184,11 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onItemExpire(ItemExpireEvent event) {
         EnsouledItemHarvestHandler.onItemExpire(event);
+    }
+
+    @SubscribeEvent
+    public static void onItemUseStart(LivingEntityUseItemEvent.Start event) {
+        ContinuingShotGeas.handleItemUseStartEvent(event);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

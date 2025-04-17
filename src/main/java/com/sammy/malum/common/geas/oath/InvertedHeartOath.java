@@ -5,6 +5,7 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.networked.data.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -48,22 +49,22 @@ public class InvertedHeartOath extends GeasEffect {
 
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.IS_SOULWASHING)) {
+        if (event.getSource().is(DamageTypeTagRegistry.INVERTED_HEART_RETALIATION_BLACKLIST)) {
             return;
         }
-        damageTargets(target, null, DamageTypeRegistry.SOULWASHING_RETALIATION, event.getOriginalDamage());
+        damageTargets(target, null, DamageTypeRegistry.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
     }
 
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.SOULWASHING_BLACKLIST)) {
+        if (event.getSource().is(DamageTypeTagRegistry.INVERTED_HEART_PROPAGATION_BLACKLIST)) {
             return;
         }
         if (!attacker.equals(event.getSource().getEntity())) {
             return;
         }
         var damage = event.getNewDamage() / 2f;
-        damageTargets(attacker, target, DamageTypeRegistry.SOULWASHING_PROPAGATION, damage);
+        damageTargets(attacker, target, DamageTypeRegistry.INVERTED_HEART_PROPAGATION, damage);
     }
 
     @Override

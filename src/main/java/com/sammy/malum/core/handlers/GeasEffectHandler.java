@@ -15,6 +15,7 @@ import team.lodestar.lodestone.handlers.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.extensions.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class GeasEffectHandler {
@@ -87,10 +88,11 @@ public class GeasEffectHandler {
     }
 
     public static GeasEffect getEquippedGeasEffectFromStack(LivingEntity entity, ItemStack stack) {
-        if (!stack.has(DataComponentRegistry.GEAS_EFFECT)) {
+        var component = getStoredGeasEffect(stack).orElse(null);
+        if (component == null) {
             return null;
         }
-        var geas = stack.get(DataComponentRegistry.GEAS_EFFECT).geasEffectType();
+        var geas = component.geasEffectType();
         return getGeasData(entity).getGeasEffect(entity, geas);
     }
 
@@ -99,15 +101,14 @@ public class GeasEffectHandler {
     }
 
     @SuppressWarnings("DataFlowIssue")
-    public static GeasDataComponent getStoredGeasEffect(ItemStack stack) {
+    public static Optional<GeasDataComponent> getStoredGeasEffect(ItemStack stack) {
         if (!stack.has(DataComponentRegistry.GEAS_EFFECT)) {
-            throw new IllegalArgumentException("Stack does not have an etching effect");
+            return Optional.empty();
         }
-        final GeasDataComponent geasDataComponent = stack.get(DataComponentRegistry.GEAS_EFFECT);
-        if (geasDataComponent.isInvalid()) {
-            stack.remove(DataComponentRegistry.GEAS_EFFECT);
-            throw new IllegalArgumentException("Stack had a deprecated geas effect type.");
+        var component = stack.get(DataComponentRegistry.GEAS_EFFECT);
+        if (component.isInvalid()) {
+            return Optional.empty();
         }
-        return geasDataComponent;
+        return Optional.of(component);
     }
 }

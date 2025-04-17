@@ -2,7 +2,6 @@ package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.entity.*;
-import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
@@ -10,8 +9,8 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.networked.attack.slash.*;
 import com.sammy.malum.visual_effects.networked.data.*;
 import net.minecraft.core.*;
@@ -79,7 +78,12 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        final ItemStack weaponItem = player.getWeaponItem();
+        if (EntityHelper.pick(player) instanceof BlockHitResult blockHitResult) {
+            if (level.getBlockState(blockHitResult.getBlockPos()).is(BlockTagRegistry.SUNDERING_ANCHOR_KNIFE_BEHAVIOR)) {
+                return InteractionResultHolder.pass(player.getItemInHand(usedHand));
+            }
+        }
+        var weaponItem = player.getWeaponItem();
         if (player.getCooldowns().isOnCooldown(this)) {
             return InteractionResultHolder.pass(weaponItem);
         }

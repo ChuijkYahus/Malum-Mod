@@ -2,26 +2,26 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
-      "count": 4,
+      "count": 8,
       "item": "malum:hex_ash"
     },
     {
-      "count": 2,
+      "count": 4,
       "item": "malum:warp_flux"
     }
   ],
   "geas": "malum:pact_of_the_shattering_addict",
   "ingredient": {
-    "count": 8,
+    "count": 12,
     "item": "malum:raw_soulstone"
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "eldritch",
       "count": 16
     },
     {
-      "type": "eldritch",
+      "type": "wicked",
       "count": 16
     }
   ]

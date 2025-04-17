@@ -1,7 +1,8 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
-import com.sammy.malum.datagen.item.*;
+import com.sammy.malum.datagen.tag.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -77,7 +78,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             ItemRegistry.SOUL_STAINED_STEEL_NUGGET.get()
     );
 
-    public static void addTags(MalumItemTags provider) {
+    public static void addTags(MalumItemTagDatagen provider) {
         addTags(provider, RUNEWOOD);
         addTags(provider, SOULWOOD);
     }
@@ -87,7 +88,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         buildRecipes(recipeOutput, SOULWOOD);
     }
 
-    protected static void addTags(MalumItemTags provider, MalumDatagenWoodSet woodSet) {
+    protected static void addTags(MalumItemTagDatagen provider, MalumDatagenWoodSet woodSet) {
         provider.tag(woodSet.logTag).add(
                         woodSet.log, woodSet.strippedLog, woodSet.wood,
                         woodSet.strippedWood, woodSet.sapFilledLog, woodSet.strippedSapFilledLog);

@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:salmon"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:nautilus_shell"
+    }
+  ],
+  "geas": "malum:pact_of_self_care",
+  "ingredient": {
+    "count": 12,
+    "item": "minecraft:prismarine_crystals"
+  },
+  "spirits": [
+    {
+      "type": "aqueous",
+      "count": 16
+    },
+    {
+      "type": "sacred",
+      "count": 16
+    }
+  ]
+}

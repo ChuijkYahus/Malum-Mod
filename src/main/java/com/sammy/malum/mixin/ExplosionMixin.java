@@ -1,6 +1,5 @@
 package com.sammy.malum.mixin;
 
-import com.sammy.malum.common.geas.explosion.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDemolitionistRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioHoarderRing;
 import net.minecraft.core.BlockPos;

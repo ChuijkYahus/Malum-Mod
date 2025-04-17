@@ -7,7 +7,7 @@ import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;

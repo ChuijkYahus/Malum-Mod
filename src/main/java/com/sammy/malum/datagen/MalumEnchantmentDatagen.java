@@ -3,6 +3,7 @@ package com.sammy.malum.datagen;
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.worldgen.*;

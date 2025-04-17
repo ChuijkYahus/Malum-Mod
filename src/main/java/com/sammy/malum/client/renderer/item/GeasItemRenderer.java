@@ -5,7 +5,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.*;
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
+import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
+import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.block.BlockRegistry;
 import com.sammy.malum.registry.common.item.DataComponentRegistry;
 import net.minecraft.client.*;
@@ -33,14 +35,16 @@ public class GeasItemRenderer extends BlockEntityWithoutLevelRenderer {
     public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         if (ctx.equals(ItemDisplayContext.GUI)) {
             if (stack.has(DataComponentRegistry.GEAS_EFFECT)) {
-                var geasType = GeasEffectHandler.getStoredGeasEffect(stack).geasEffectType().getDefaultInstance().type;
-                poseStack.popPose();
-                poseStack.pushPose();
-                poseStack.mulPose(Axis.ZP.rotation(3.14f));
-                poseStack.mulPose(Axis.YN.rotation(3.14f));
-                poseStack.translate(-.5, -.5, -.5);
-                poseStack.scale(0.0625f, 0.0625f, 0.0625f);
-                ArcanaCodexHelper.renderGeasIcon(geasType.getIcon(), poseStack, geasType, 0, 0);
+                GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
+                    var geas = c.geasEffectType();
+                    poseStack.popPose();
+                    poseStack.pushPose();
+                    poseStack.mulPose(Axis.ZP.rotation(3.14f));
+                    poseStack.mulPose(Axis.YN.rotation(3.14f));
+                    poseStack.translate(-.5, -.5, -.5);
+                    poseStack.scale(0.0625f, 0.0625f, 0.0625f);
+                    ArcanaCodexHelper.renderGeasIcon(geas.getIcon(), poseStack, geas, 0, 0);
+                });
             }
         }
     }

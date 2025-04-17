@@ -6,6 +6,7 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
@@ -17,7 +18,6 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.*;
 
-import java.util.*;
 import java.util.function.*;
 
 public class GleefulTargetOath extends GeasEffect {
@@ -50,12 +50,12 @@ public class GleefulTargetOath extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.LIONS_HEART_BLACKLIST)) {
+        if (event.getSource().is(DamageTypeTagRegistry.GLEEFUL_TARGET_BLACKLIST)) {
             return;
         }
         lionsHeartDuration += Mth.floor(100 * target.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE));
-        if (lionsHeartDuration > 3600) {
-            lionsHeartDuration = 3600;
+        if (lionsHeartDuration > 36000) {
+            lionsHeartDuration = 36000;
         }
         PacketDistributor.sendToPlayersTrackingEntityAndSelf(target, new SyncLionsHeartDurationPayload(target.getId(), lionsHeartDuration));
     }

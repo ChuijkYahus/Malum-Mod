@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.nature;
 
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;

@@ -2,6 +2,7 @@ package com.sammy.malum.common.item.curiosities;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;

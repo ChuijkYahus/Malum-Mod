@@ -35,7 +35,6 @@ public class PacketRegistry {
         MALUM_CHANNEL.playToClient(registrar, "sync_staff_ability_data", SyncStaffAbilityDataPayload.class, SyncStaffAbilityDataPayload::new);
 
         MALUM_CHANNEL.playToClient(registrar, "sync_lions_heart", SyncLionsHeartDurationPayload.class, SyncLionsHeartDurationPayload::new);
-        MALUM_CHANNEL.playToClient(registrar, "sync_maverick", SyncCloudHopperStreakPayload.class, SyncCloudHopperStreakPayload::new);
 
         MALUM_CHANNEL.playToClient(registrar, "blight_mist_particle", BlockSparkleParticlePacket.class, BlockSparkleParticlePacket::new);
         MALUM_CHANNEL.playToClient(registrar, "blight_transformation_item_particle", BlightTransformItemParticlePacket.class, BlightTransformItemParticlePacket::new);

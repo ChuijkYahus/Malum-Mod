@@ -1,0 +1,32 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "malum:warp_flux"
+    },
+    {
+      "count": 4,
+      "item": "malum:soul_stained_steel_plating"
+    }
+  ],
+  "geas": "malum:pact_of_the_arcanaphage",
+  "ingredient": {
+    "count": 12,
+    "item": "malum:raw_soulstone"
+  },
+  "spirits": [
+    {
+      "type": "eldritch",
+      "count": 16
+    },
+    {
+      "type": "arcane",
+      "count": 16
+    },
+    {
+      "type": "wicked",
+      "count": 16
+    }
+  ]
+}

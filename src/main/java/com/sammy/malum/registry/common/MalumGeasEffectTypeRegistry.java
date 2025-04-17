@@ -2,18 +2,17 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.geas.*;
-import com.sammy.malum.common.geas.deliverance.*;
-import com.sammy.malum.common.geas.explosion.*;
-import com.sammy.malum.common.geas.gluttony.*;
-import com.sammy.malum.common.geas.health.*;
-import com.sammy.malum.common.geas.light.*;
+import com.sammy.malum.common.geas.oath.deliverance.*;
+import com.sammy.malum.common.geas.oath.staff.*;
 import com.sammy.malum.common.geas.oath.*;
-import com.sammy.malum.common.geas.scythe.*;
-import com.sammy.malum.common.geas.soul_ward.*;
-import com.sammy.malum.common.geas.staff.*;
-import com.sammy.malum.common.geas.time.*;
-import com.sammy.malum.common.geas.wind.CloudSkipperGeas;
-import com.sammy.malum.common.geas.wind.SkyBreakerGeas;
+import com.sammy.malum.common.geas.pact.aerial.*;
+import com.sammy.malum.common.geas.pact.aqueous.*;
+import com.sammy.malum.common.geas.pact.arcane.*;
+import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.eldritch.*;
+import com.sammy.malum.common.geas.pact.infernal.*;
+import com.sammy.malum.common.geas.pact.sacred.*;
+import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.core.systems.geas.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -30,35 +29,46 @@ public class MalumGeasEffectTypeRegistry {
 
     // Oath, Bond, Pact, Promise, Creed, Coda, Manifesto, Ideal
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_NIGHTCHILD = GEAS_TYPES.register("pact_of_the_nightchild", () -> new GeasEffectType(NightChildGeas::new, WICKED_SPIRIT, ARCANE_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SHADEWALKER = GEAS_TYPES.register("pact_of_the_shadewalker", () -> new GeasEffectType(ShadeWalkerGeas::new, WICKED_SPIRIT, ARCANE_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_DAYBLESSED = GEAS_TYPES.register("pact_of_the_dayblessed", () -> new GeasEffectType(DayBlessedGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SUNKISSED = GEAS_TYPES.register("pact_of_the_sunkissed", () -> new GeasEffectType(SunKissedGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_DEFIANCE = GEAS_TYPES.register("pact_of_defiance", () -> new GeasEffectType(DefianceGeas::new, SACRED_SPIRIT, AQUEOUS_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PARASITE = GEAS_TYPES.register("pact_of_the_parasite", () -> new GeasEffectType(ParasiteGeas::new, SACRED_SPIRIT, INFERNAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> SACRED_3 = GEAS_TYPES.register("sacred_3", () -> new GeasEffectType(Sacred3Geas::new, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> SACRED_4 = GEAS_TYPES.register("sacred_4", () -> new GeasEffectType(Sacred4Geas::new, SACRED_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SHATTERING_ADDICT = GEAS_TYPES.register("pact_of_the_shattering_addict", () -> new GeasEffectType(ShatteringAddictGeas::new, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> WICKED_1 = GEAS_TYPES.register("wicked_1", () -> new GeasEffectType(Wicked1Geas::new, WICKED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_CHALLENGER = GEAS_TYPES.register("pact_of_the_challenger", () -> new GeasEffectType(ChallengerGeas::new, WICKED_SPIRIT, INFERNAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_REAPER = GEAS_TYPES.register("pact_of_the_reaper", () -> new GeasEffectType(ReaperGeas::new, WICKED_SPIRIT, AERIAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> WICKED_4 = GEAS_TYPES.register("wicked_4", () -> new GeasEffectType(Wicked4Geas::new, WICKED_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_FORTRESS = GEAS_TYPES.register("pact_of_the_fortress", () -> new GeasEffectType(FortressGeas::new, ARCANE_SPIRIT, AQUEOUS_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SHIELD = GEAS_TYPES.register("pact_of_the_shield", () -> new GeasEffectType(ShieldGeas::new, ARCANE_SPIRIT, AERIAL_SPIRIT));
-
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_DEFIANT = GEAS_TYPES.register("pact_of_the_defiant", () -> new GeasEffectType(DefiantGeas::new, SACRED_SPIRIT, AQUEOUS_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_LIFEWEAVER = GEAS_TYPES.register("pact_of_the_lifeweaver", () -> new GeasEffectType(LifeWeaverGeas::new, SACRED_SPIRIT, INFERNAL_SPIRIT));
-
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_REAPER = GEAS_TYPES.register("pact_of_the_reaper", () -> new GeasEffectType(ReaperGeas::new, ARCANE_SPIRIT, WICKED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_RECIPROCATION = GEAS_TYPES.register("pact_of_reciprocation", () -> new GeasEffectType(ReciprocationGeas::new, ARCANE_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> ARCANE_4 = GEAS_TYPES.register("arcane_4", () -> new GeasEffectType(Arcane4Geas::new, ARCANE_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PYROMANIAC = GEAS_TYPES.register("pact_of_the_pyromaniac", () -> new GeasEffectType(PyromaniacGeas::new, INFERNAL_SPIRIT, ELDRITCH_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
-
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SHATTERING_ADDICT = GEAS_TYPES.register("pact_of_the_shattering_addict", () -> new GeasEffectType(ShatteringAddictGeas::new, ELDRITCH_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_ARCANAPHAGE = GEAS_TYPES.register("pact_of_the_arcanaphage", () -> new GeasEffectType(ArcanaphageGeas::new, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> ELDRITCH_3 = GEAS_TYPES.register("eldritch_3", () -> new GeasEffectType(Eldritch3Geas::new, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> ELDRITCH_4 = GEAS_TYPES.register("eldritch_4", () -> new GeasEffectType(Eldritch4Geas::new, ELDRITCH_SPIRIT));
 
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_SELF_CARE = GEAS_TYPES.register("pact_of_self_care", () -> new GeasEffectType(SelfCareGeas::new, AQUEOUS_SPIRIT, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_HIGH_PRIEST = GEAS_TYPES.register("pact_of_the_high_priest", () -> new GeasEffectType(HighPriestGeas::new, AQUEOUS_SPIRIT, AERIAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> AQUEOUS_3 = GEAS_TYPES.register("aqueous_3", () -> new GeasEffectType(Aqueous3Geas::new, AQUEOUS_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> AQUEOUS_4 = GEAS_TYPES.register("aqueous_4", () -> new GeasEffectType(Aqueous4Geas::new, AQUEOUS_SPIRIT));
+
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, INFERNAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_CONTINUING_SHOT = GEAS_TYPES.register("pact_of_the_continuing_shot", () -> new GeasEffectType(ContinuingShotGeas::new, AERIAL_SPIRIT, AQUEOUS_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SKYBREAKER = GEAS_TYPES.register("pact_of_the_skybreaker", () -> new GeasEffectType(SkyBreakerGeas::new, AERIAL_SPIRIT, EARTHEN_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_CLOUDSKIPPER = GEAS_TYPES.register("pact_of_the_cloudskipper", () -> new GeasEffectType(CloudSkipperGeas::new, AERIAL_SPIRIT, INFERNAL_SPIRIT));
 
-
-
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_CONTENTEDNESS = GEAS_TYPES.register("pact_of_contentedness", () -> new GeasEffectType(ContentednessGeas::new, EARTHEN_SPIRIT, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_LONE_DRUID = GEAS_TYPES.register("pact_of_the_lone_druid", () -> new GeasEffectType(LoneDruidGeas::new, EARTHEN_SPIRIT, ARCANE_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_ASCETIC = GEAS_TYPES.register("pact_of_the_profane_ascetic", () -> new GeasEffectType(ProfaneAsceticGeas::new, EARTHEN_SPIRIT, WICKED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_GLUTTON = GEAS_TYPES.register("pact_of_the_profane_glutton", () -> new GeasEffectType(ProfaneGluttonGeas::new, EARTHEN_SPIRIT, AQUEOUS_SPIRIT));
+
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> INFERNAL_1 = GEAS_TYPES.register("infernal_1", () -> new GeasEffectType(Infernal1Geas::new, INFERNAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> INFERNAL_2 = GEAS_TYPES.register("infernal_2", () -> new GeasEffectType(Infernal2Geas::new, INFERNAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PYROMANIAC = GEAS_TYPES.register("pact_of_the_pyromaniac", () -> new GeasEffectType(PyromaniacGeas::new, INFERNAL_SPIRIT, ELDRITCH_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
 
 
 
@@ -91,13 +101,6 @@ public class MalumGeasEffectTypeRegistry {
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_INVERTED_HEART = GEAS_TYPES.register("oath_of_the_inverted_heart", () -> new GeasEffectType(InvertedHeartOath::new, ELDRITCH_SPIRIT, SACRED_SPIRIT, ARCANE_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("oath_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetOath::new, ELDRITCH_SPIRIT, AQUEOUS_SPIRIT, INFERNAL_SPIRIT));
-//    // Oath of the Loosened Shackles
-//    //Each time you die, it is instead stored for later
-//    //At a later point in time, all of your deaths will come for you all at once
-//    //As long as you keep dying, this timer is extended
-//    //Reduces Armor significantly
-//    //This is a void geas, might use fused consciousness even
-//    public static final DeferredHolder<GeasEffectType, GeasEffectType> OATH_OF_THE_LAST_STAND = GEAS_TYPES.register("oath_of_the_last_stand", () -> new GeasEffectType(LastStandOath::new, AQUEOUS_SPIRIT, WICKED_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> CREED_OF_THE_BLIGHT_EATER = GEAS_TYPES.register("creed_of_the_blight_eater", () -> new GeasEffectType(BlightEaterCreed::new, ELDRITCH_SPIRIT));
 

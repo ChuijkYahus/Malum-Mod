@@ -28,6 +28,8 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     public static final String GEAS = "malum.gui.geas.type";
     public static final String SWORN = "malum.gui.geas.sworn";
+    public static final String CREATIVE = "malum.gui.geas.creative";
+    public static final String CREATIVE_HELP = "malum.gui.geas.creative_help";
 
     public GeasItem(Properties properties) {
         super(properties);
@@ -35,15 +37,16 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        var storedGeasEffect = GeasEffectHandler.getStoredGeasEffect(player.getItemInHand(usedHand));
-        var geas = storedGeasEffect.geasEffectType();
-        if (GeasEffectHandler.hasGeasEffect(player, geas)) {
-            GeasEffectHandler.removeGeasEffect(player, geas);
-        } else {
-            GeasEffectHandler.addGeasEffect(player, geas);
-        }
-
-        return super.use(level, player, usedHand);
+        final ItemStack stack = player.getItemInHand(usedHand);
+        GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
+            var geas = c.geasEffectType();
+            if (GeasEffectHandler.hasGeasEffect(player, geas)) {
+                GeasEffectHandler.removeGeasEffect(player, geas);
+            } else {
+                GeasEffectHandler.addGeasEffect(player, geas);
+            }
+        });
+        return InteractionResultHolder.success(stack);
     }
 
     @Override
@@ -69,12 +72,13 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (stack.has(DataComponentRegistry.GEAS_EFFECT)) {
-            var geasType = GeasEffectHandler.getStoredGeasEffect(stack).geasEffectType().getDefaultInstance().type;
-            var component = tooltipComponents.getFirst().copy()
-                    .append(": [")
-                    .append(Component.translatable(geasType.getLangKey()).withStyle(ChatFormatting.GOLD))
-                    .append("]");
-            tooltipComponents.set(0, component);
+            GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
+                var component = tooltipComponents.getFirst().copy()
+                        .append(": [")
+                        .append(Component.translatable(c.geasEffectType().getLangKey()).withStyle(ChatFormatting.GOLD))
+                        .append("]");
+                tooltipComponents.set(0, component);
+            });
         }
     }
 
@@ -90,23 +94,27 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     public static void addGeasTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
-        if (!itemStack.has(DataComponentRegistry.GEAS_EFFECT)) {
-            return;
-        }
+        GeasEffectHandler.getStoredGeasEffect(itemStack).ifPresent(c -> {
+            var geas = c.geasEffectType();
+            List<Component> tooltip = event.getToolTip();
+            var index = new AtomicInteger(1);
+            Consumer<Component> tooltipConsumer = t -> tooltip.add(index.getAndIncrement(), t);
+            tooltipConsumer.accept(
+                    Component.translatable(geas.getDescription()).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+            tooltipConsumer.accept(
+                    Component.translatable("malum.gui.slot").withStyle(ChatFormatting.GOLD).append(Component.translatable(GEAS).withStyle(ChatFormatting.YELLOW)));
+            if (c.isCreative() && !itemStack.equals(geas.getDummyCreativeStack())) {
+                tooltipConsumer.accept(
+                        Component.translatable(CREATIVE).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+                tooltipConsumer.accept(
+                        Component.translatable(CREATIVE_HELP).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+            }
+            tooltipConsumer.accept(
+                    Component.empty());
+            tooltipConsumer.accept(
+                    Component.translatable(SWORN).withStyle(ChatFormatting.GOLD));
 
-        var geas = GeasEffectHandler.getStoredGeasEffect(itemStack).geasEffectType();
-        List<Component> tooltip = event.getToolTip();
-        var index = new AtomicInteger(1);
-        Consumer<Component> tooltipConsumer = c -> tooltip.add(index.getAndIncrement(), c);
-        tooltipConsumer.accept(
-                Component.translatable(geas.getDescription()).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        tooltipConsumer.accept(
-                Component.translatable("malum.gui.slot").withStyle(ChatFormatting.GOLD).append(Component.translatable(GEAS).withStyle(ChatFormatting.YELLOW)));
-        tooltipConsumer.accept(
-                Component.empty());
-        tooltipConsumer.accept(
-                Component.translatable(SWORN).withStyle(ChatFormatting.GOLD));
-
-        geas.getDefaultInstance().addTooltipComponents(event.getEntity(), tooltipConsumer, event.getFlags());
+            geas.getDefaultInstance().addTooltipComponents(event.getEntity(), tooltipConsumer, event.getFlags());
+        });
     }
 }
