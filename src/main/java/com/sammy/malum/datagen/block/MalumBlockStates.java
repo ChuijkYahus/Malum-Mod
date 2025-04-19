@@ -301,7 +301,7 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
     }
 
     public ModelFile rockItemPedestalModel(Block block) {
-        return itemPedestalModel(block, "template_rock_item_pedestal");
+        return itemPedestalModel(block, "template_item_pedestal_rock");
     }
 
     public ModelFile woodenItemPedestalModel(Block block) {

@@ -75,6 +75,7 @@ public class MalumBlockEntityInventory extends LodestoneBlockEntityInventory {
         return result;
     }
 
+
     public void playSound(Player player, SoundEvent soundEvent, ItemStack stack) {
         SoundHelper.playSound(player, soundEvent, SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 1f, 1.2f));
         if (stack.getItem() instanceof BlockItem blockItem) {

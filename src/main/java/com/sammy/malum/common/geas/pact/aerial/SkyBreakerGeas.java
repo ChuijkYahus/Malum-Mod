@@ -13,9 +13,12 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 
+import java.util.ArrayList;
 import java.util.function.*;
 
 public class SkyBreakerGeas extends GeasEffect {
+
+    private final ArrayList<LivingEntity> cachedTargets = new ArrayList<>();
 
     public SkyBreakerGeas() {
         super(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get());
@@ -51,10 +54,24 @@ public class SkyBreakerGeas extends GeasEffect {
         if (target instanceof ServerPlayer player) {
             if (event.getSource().is(DamageTypes.FALL)) {
                 var aabb = player.getBoundingBox().inflate(4, 1f, 4);
+                cachedTargets.clear();
                 for (Entity nearbyTarget : player.serverLevel().getEntities(player, aabb, t -> skyBreakerCanHitEntity(player, t))) {
-                    attack(player, nearbyTarget);
-                    if (nearbyTarget instanceof LivingEntity) {
+                    if (nearbyTarget instanceof LivingEntity living) {
+                        cachedTargets.add(living);
                         event.setNewDamage(event.getNewDamage() * 0.8f);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (target instanceof ServerPlayer player) {
+            if (event.getSource().is(DamageTypes.FALL)) {
+                for (LivingEntity cachedTarget : cachedTargets) {
+                    if (cachedTarget.isAlive()) {
+                        attack(player, cachedTarget);
                     }
                 }
             }

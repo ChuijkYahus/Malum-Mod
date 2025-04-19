@@ -4,6 +4,8 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.VoidRevelationHandler;
 import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlockEntity;
 import com.sammy.malum.common.data.attachment.*;
+import com.sammy.malum.common.entity.FloatingItemEntity;
+import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import com.sammy.malum.common.packets.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.ItemRegistry;
@@ -17,6 +19,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -41,7 +44,10 @@ public class WeepingWellRejectionHandler {
             }
             data.setGoopStatus();
         }
-        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.4f));
+        if (entity instanceof FloatingItemEntity || entity instanceof ItemEntity) {
+            return;
+        }
+        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.6f));
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
