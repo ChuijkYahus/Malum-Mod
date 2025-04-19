@@ -80,10 +80,12 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
-        if (pStack.is(ItemTagRegistry.IS_REDSTONE_TOOL)) {
-            level.setBlock(getBlockPos(), getBlockState().rotate(level, getBlockPos(), Rotation.CLOCKWISE_90), 3);
-            level.playSound(null, getBlockPos(), SoundRegistry.SPIRIT_DIODE_TICK.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
-            return ItemInteractionResult.SUCCESS;
+        if (pPlayer.isCrouching()) {
+            if (pStack.is(ItemTagRegistry.IS_REDSTONE_TOOL)) {
+                level.setBlock(getBlockPos(), getBlockState().rotate(level, getBlockPos(), Rotation.CLOCKWISE_90), 3);
+                level.playSound(null, getBlockPos(), SoundRegistry.SPIRIT_DIODE_TICK.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+                return ItemInteractionResult.SUCCESS;
+            }
         }
         return super.onUseWithItem(pPlayer, pStack, pHand);
     }

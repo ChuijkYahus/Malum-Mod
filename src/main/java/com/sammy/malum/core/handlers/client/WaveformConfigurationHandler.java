@@ -69,9 +69,9 @@ public class WaveformConfigurationHandler {
             return;
         }
         interactionPos = pos;
-        player.swing(hand);
         interactionHand = hand;
         interactionTime = 0;
+        player.swing(hand);
         event.setCanceled(true);
     }
 

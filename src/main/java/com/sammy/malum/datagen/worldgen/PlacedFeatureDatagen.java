@@ -21,11 +21,11 @@ public class PlacedFeatureDatagen {
         context.register(MalumPlacedFeatures.ORE_BRILLIANT,
                 addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_BRILLIANT_ORE), -64, 40, 3));
         context.register(MalumPlacedFeatures.ORE_NATURAL_QUARTZ,
-                addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_NATURAL_QUARTZ_ORE), -64, 10, 2));
+                addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_NATURAL_QUARTZ_ORE), -64, 10, 1));
         context.register(MalumPlacedFeatures.ORE_BLAZING_QUARTZ,
                 addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_BLAZING_QUARTZ_ORE), -16, 112, 3));
         context.register(MalumPlacedFeatures.ORE_CTHONIC_GOLD,
-                addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE), -48, 0, 1, RarityFilter.onAverageOnceEvery(2)));
+                addOreFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE), -48, 0, 1, RarityFilter.onAverageOnceEvery(4)));
 
         context.register(MalumPlacedFeatures.RUNEWOOD_TREE,
                 new PlacedFeature(features.getOrThrow(ConfiguredFeatureRegistry.CONFIGURED_RUNEWOOD_TREE),
