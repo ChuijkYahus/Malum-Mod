@@ -1,0 +1,9 @@
+{
+  "remove": [
+    "malum:cthonic_gold",
+    "malum:cthonic_gold_fragment"
+  ],
+  "values": [
+    "#c:raw_materials"
+  ]
+}

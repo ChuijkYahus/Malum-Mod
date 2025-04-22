@@ -3,6 +3,7 @@ package com.sammy.malum.datagen.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -15,7 +16,7 @@ public class MalumVoidFavorRecipes {
         new VoidFavorRecipeBuilder(Ingredient.of(ItemRegistry.ENCYCLOPEDIA_ARCANA.get()), ItemRegistry.ENCYCLOPEDIA_ESOTERICA.get(), 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Ingredient.of(Tags.Items.RAW_MATERIALS), ItemRegistry.RAW_SOULSTONE.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(ItemTagRegistry.VOID_SOULSTONE_CONVERSION), ItemRegistry.RAW_SOULSTONE.get(), 1)
                 .save(recipeOutput);
 
         new VoidFavorRecipeBuilder(Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON), ItemRegistry.ANOMALOUS_DESIGN.get(), 1)

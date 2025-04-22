@@ -7,6 +7,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -74,6 +75,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
         tag(Tags.Items.ORES_QUARTZ).add(NATURAL_QUARTZ_ORE.get(), DEEPSLATE_QUARTZ_ORE.get());
+
         tag(ItemTags.DYEABLE).add(
                 ETHER.get(), ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
                 IRIDESCENT_ETHER.get(), IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
@@ -185,6 +187,10 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
         tag(ItemTagRegistry.SOULWOVEN_POUCH_AUTOCOLLECT)
                 .addTags(ItemTagRegistry.SPIRITS, ItemTagRegistry.MOB_DROPS, ItemTagRegistry.MINERALS);
+
+        tag(ItemTagRegistry.VOID_SOULSTONE_CONVERSION)
+                .addTags(Tags.Items.RAW_MATERIALS)
+                .remove(CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
         tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_INGOT.get());

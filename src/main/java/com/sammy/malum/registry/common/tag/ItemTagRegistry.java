@@ -48,6 +48,8 @@ public class ItemTagRegistry {
     public static final TagKey<Item> SOULHUNTERS_TREASURE = malumTag("soulhunters_treasure");
     public static final TagKey<Item> SOULWOVEN_POUCH_AUTOCOLLECT = malumTag("soulwoven_pouch_autocollect");
 
+    public static final TagKey<Item> VOID_SOULSTONE_CONVERSION = malumTag("void_soulstone_material");
+
     public static final TagKey<Item> HIDDEN_ALWAYS = malumTag("hidden_items/always");
     public static final TagKey<Item> HIDDEN_UNTIL_VOID = malumTag("hidden_items/void");
     public static final TagKey<Item> HIDDEN_UNTIL_BLACK_CRYSTAL = malumTag("hidden_items/black_crystal");
