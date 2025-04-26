@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -44,7 +44,7 @@ public class TotemParticleEffects {
         }
     }
 
-    public static void activateTotemPoleParticles(Level level, ColorEffectData colorData, Vec3 position) {
+    public static void activateTotemPoleParticles(Level level, MalumNetworkedParticleEffectColorData colorData, Vec3 position) {
         long gameTime = level.getGameTime();
         var random = level.random;
         final float time = 16;
@@ -69,7 +69,7 @@ public class TotemParticleEffects {
         }
     }
 
-    public static void triggerEntityEffect(Level level, ColorEffectData colorData, Vec3 position) {
+    public static void triggerEntityEffect(Level level, MalumNetworkedParticleEffectColorData colorData, Vec3 position) {
         long gameTime = level.getGameTime();
         var random = level.random;
         final float time = 16;
@@ -96,7 +96,7 @@ public class TotemParticleEffects {
             }
         }
     }
-    public static void triggerBlockFallEffect(Level level, ColorEffectData colorData, BlockPos position) {
+    public static void triggerBlockFallEffect(Level level, MalumNetworkedParticleEffectColorData colorData, BlockPos position) {
         var random = level.random;
         for (int i = 0; i < 4; i++) {
             int xOffset = Mth.clamp(i%3, 0, 1);
@@ -119,7 +119,7 @@ public class TotemParticleEffects {
         }
     }
 
-    public static void triggerBlockEffect(Level level, ColorEffectData colorData, BlockPos position) {
+    public static void triggerBlockEffect(Level level, MalumNetworkedParticleEffectColorData colorData, BlockPos position) {
         var random = level.random;
         for (int i = 0; i < 4; i++) {
             int xOffset = Mth.clamp(i%3, 0, 1);

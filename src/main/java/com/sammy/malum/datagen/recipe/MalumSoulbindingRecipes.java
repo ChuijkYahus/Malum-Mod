@@ -28,7 +28,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
 
 
-        new SoulBindingRecipeBuilder(ItemRegistry.REFINED_SOULSTONE.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER)
+        new SoulBindingRecipeBuilder(ItemRegistry.REFINED_SOULSTONE.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER)
                 .addExtraItem(ItemRegistry.ARCANE_CHARCOAL.get(), 4)
                 .addExtraItem(ItemRegistry.GRIM_TALC.get(), 4)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 16)

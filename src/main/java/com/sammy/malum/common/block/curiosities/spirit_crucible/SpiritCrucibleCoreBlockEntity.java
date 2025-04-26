@@ -19,7 +19,7 @@ import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.recipe.*;
 import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.*;
@@ -270,7 +270,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             progress = 0;
         }
 
-        ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createPositionedEffect(level, new PositionEffectData(worldPosition), ColorEffectData.fromSpiritIngredients(recipe.spirits));
+        ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createPositionedEffect(level, new NetworkedParticleEffectPositionData(worldPosition), MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits));
         level.playSound(null, worldPosition, SoundRegistry.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
         while (fortuneChance > 0) {

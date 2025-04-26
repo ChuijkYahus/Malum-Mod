@@ -12,9 +12,7 @@ import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.brazier.*;
-import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
-import com.sammy.malum.visual_effects.networked.data.NBTEffectData;
-import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -265,8 +263,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 0.9f + level.random.nextFloat() * 0.3f);
 
         ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_BEGINS.createEffect(worldPosition)
-                .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
-                .customData(SoulBrazierEndParticleEffect.createData(this))
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, true), 3);
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
@@ -280,8 +278,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             level.playSound(null, worldPosition, SoundRegistry.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
 
             ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
-                    .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
-                    .customData(SoulBrazierAcceptSacrificeParticleEffect.createData(entity))
+                    .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                    .customData(new SoulBrazierAcceptSacrificeParticleEffect.SoulBrazierEntityEffectData(entity.getId()))
                     .spawn(level);
 
             BlockStateHelper.updateAndNotifyState(level, worldPosition);
@@ -332,8 +330,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             }
         }
         ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)
-                .color(ColorEffectData.fromSpiritIngredients(recipe.spirits))
-                .customData(SoulBrazierEndParticleEffect.createData(this))
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.playSound(null, worldPosition, SoundRegistry.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         state = BrazierState.IDLE;

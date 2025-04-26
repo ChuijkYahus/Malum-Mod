@@ -899,8 +899,8 @@ public class CodexLangDatagen {
                 "Your fragility is still very much real. \n -Reduces Healing Received by Four Tenths");
 
 
-        addSimpleEntryHeader("pact_of_the_challenger", "Pact of The Challenger", "[Challenger]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER,
+        addSimpleEntryHeader("pact_of_the_sorcerer", "Pact of The Sorcerer", "[Sorcerer]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER,
                 """
                         You are the challenger.
                          -The Initial Hit against Enemies Blasts them with Wicked Energy""",

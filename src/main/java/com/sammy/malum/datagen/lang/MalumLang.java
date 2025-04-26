@@ -138,9 +138,11 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER.get(), "Invite all to test your strength");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
@@ -148,23 +150,21 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
 
 //        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
@@ -322,7 +322,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
-        addGeasEffect("explosion_lover", "Absorbed Explosions Generate Haste");
+        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
+        addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");
         addGeasEffect("explosion_fire", "Too Much Haste Ignites You");
         addGeasEffect("scary_fire", "Unlike Explosions, Fire Damage Remains Deadly");

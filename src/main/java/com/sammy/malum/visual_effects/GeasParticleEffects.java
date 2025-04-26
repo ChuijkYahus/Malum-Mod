@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -10,6 +10,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -26,10 +27,10 @@ import java.util.function.*;
 import static net.minecraft.util.Mth.nextFloat;
 
 public class GeasParticleEffects {
-    public static void wyrdReconstructionRevive(Level level, Entity entity, RandomSource random, PositionEffectData positionData, ColorEffectData colorData) {
-        double posX = positionData.posX;
-        double posY = positionData.posY;
-        double posZ = positionData.posZ;
+    public static void wyrdReconstructionRevive(Level level, Entity entity, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        double posX = positionData.getPosX();
+        double posY = positionData.getPosY();
+        double posZ = positionData.getPosZ();
         Vec3 pos = new Vec3(posX, posY, posZ);
         final Color smokeColor = new Color(45, 15, 15);
 
@@ -112,10 +113,10 @@ public class GeasParticleEffects {
             }
         }
     }
-    public static void invertedHeartDamageEffect(Level level, RandomSource random, PositionEffectData positionData, ColorEffectData colorData) {
-        double posX = positionData.posX;
-        double posY = positionData.posY;
-        double posZ = positionData.posZ;
+    public static void invertedHeartDamageEffect(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        double posX = positionData.getPosX();
+        double posY = positionData.getPosY();
+        double posZ = positionData.getPosZ();
         Vec3 pos = new Vec3(posX, posY, posZ);
         Vec3 directionToPlayer = Minecraft.getInstance().player.getEyePosition().subtract(pos).normalize();
         Vec3 behindPos = pos.subtract(directionToPlayer.scale(2f));

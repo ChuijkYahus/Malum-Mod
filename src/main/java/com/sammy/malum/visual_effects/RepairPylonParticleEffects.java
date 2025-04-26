@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -89,7 +89,7 @@ public class RepairPylonParticleEffects {
         }
     }
 
-    public static void prepareRepairParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, ColorEffectData colorData) {
+    public static void prepareRepairParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
@@ -171,7 +171,7 @@ public class RepairPylonParticleEffects {
         }
     }
 
-    public static void repairItemParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, ColorEffectData colorData) {
+    public static void repairItemParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
@@ -180,7 +180,7 @@ public class RepairPylonParticleEffects {
 //        repairItemParticles(level, activeSpiritType, pylon.getItemPos(), colorData);
         repairItemParticles(level, activeSpiritType, holder.getItemPos(), colorData);
     }
-    public static void repairItemParticles(Level level, MalumSpiritType activeSpiritType, Vec3 itemPos, ColorEffectData colorData) {
+    public static void repairItemParticles(Level level, MalumSpiritType activeSpiritType, Vec3 itemPos, MalumNetworkedParticleEffectColorData colorData) {
         long gameTime = level.getGameTime();
         var random = level.random;
         for (int i = 0; i < 2; i++) {

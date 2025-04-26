@@ -4,8 +4,7 @@ import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayloa
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
 import com.sammy.malum.registry.common.SoundRegistry;
 import com.sammy.malum.registry.common.tag.ItemTagRegistry;
-import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
-import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.*;
@@ -124,8 +123,8 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
                 level.playSound(null, getBlockPos(), value ? SoundRegistry.SPIRIT_DIODE_CLOSE.get() : SoundRegistry.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
                 var particleEffect = value ? ParticleEffectTypeRegistry.SPIRIT_DIODE_CLOSE : ParticleEffectTypeRegistry.SPIRIT_DIODE_OPEN;
                 particleEffect.createPositionedEffect(serverLevel,
-                        new PositionEffectData(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0)),
-                        new ColorEffectData(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build()));
+                        new NetworkedParticleEffectPositionData(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0)),
+                        new MalumNetworkedParticleEffectColorData(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build()));
                 this.type = type;
                 this.frequency = frequency;
                 BlockStateHelper.updateAndNotifyState(level, getBlockPos());

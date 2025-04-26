@@ -3,22 +3,24 @@ package com.sammy.malum.visual_effects.networked.ritual;
 import com.sammy.malum.common.block.curiosities.ritual_plinth.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.*;
 
-public class RitualPlinthAbsorbItemParticleEffect extends ParticleEffectType {
+public class RitualPlinthAbsorbItemParticleEffect extends MalumNetworkedParticleEffectType {
 
     public RitualPlinthAbsorbItemParticleEffect(String id) {
         super(id);
     }
 
-    public static NBTEffectData createData(Vec3 targetPos, ItemStack stack) {
-        NBTEffectData effectData = new NBTEffectData(stack);
+    public static NetworkedParticleEffectExtraData createData(Vec3 targetPos, ItemStack stack) {
+        NetworkedParticleEffectExtraData effectData = new NetworkedParticleEffectExtraData(stack);
         final CompoundTag compoundTag = effectData.compoundTag;
         CompoundTag position = new CompoundTag();
         position.putDouble("x", targetPos.x);

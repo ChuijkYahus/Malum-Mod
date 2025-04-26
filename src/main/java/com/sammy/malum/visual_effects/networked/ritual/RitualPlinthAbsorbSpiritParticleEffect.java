@@ -2,15 +2,15 @@ package com.sammy.malum.visual_effects.networked.ritual;
 
 import com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity;
 import com.sammy.malum.visual_effects.RitualPlinthParticleEffects;
-import com.sammy.malum.visual_effects.networked.ParticleEffectType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.phys.Vec3;
 
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.Supplier;
 
-public class RitualPlinthAbsorbSpiritParticleEffect extends ParticleEffectType {
+public class RitualPlinthAbsorbSpiritParticleEffect extends MalumNetworkedParticleEffectType {
 
     public RitualPlinthAbsorbSpiritParticleEffect(String id) {
         super(id);

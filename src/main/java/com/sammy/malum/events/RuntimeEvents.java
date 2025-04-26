@@ -6,8 +6,8 @@ import com.sammy.malum.common.effect.aura.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.aerial.*;
-import com.sammy.malum.common.geas.pact.earthen.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
+import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
@@ -93,7 +93,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
         CurioHarmonyNecklace.preventDetection(event);
-        ChallengerGeas.increaseDetection(event);
+        SorcererGeas.increaseDetection(event);
     }
 
     @SubscribeEvent

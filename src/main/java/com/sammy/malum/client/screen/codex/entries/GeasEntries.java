@@ -40,8 +40,8 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE, 2, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE, 3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.WICKED_1, 1, 11);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER, 2, 12);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER, 1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 2, 12);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -1, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD, -2, 12);
@@ -61,17 +61,17 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.INFERNAL_1, -4, 13);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.INFERNAL_2, -5, 14);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_3, 18, 13);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_4, 19, 11);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_3, 18, 13);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.SACRED_4, 19, 11);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 19, 14);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.WICKED_4, 20, 12);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.WICKED_4, 20, 12);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -18, 13);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ARCANE_4, -19, 11);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ARCANE_4, -19, 11);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_3, -19, 14);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_4, -20, 12);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_3, -19, 14);
+//        addGeasEntry(screen, MalumGeasEffectTypeRegistry.ELDRITCH_4, -20, 12);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER, 13, 17);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);

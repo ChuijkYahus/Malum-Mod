@@ -163,10 +163,15 @@ public class ArcanaCodexHelper {
         var spiritTypes = type.spiritTypes;
         Supplier<MalumSpiritType> colorSupplier = () -> spiritTypes.get(cycle.getAndIncrement() % spiritTypes.size());
         var mainColor = colorSupplier.get().getPrimaryColor();
-        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.AQUEOUS_SPIRIT)) {
+        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.AQUEOUS_SPIRIT) || spiritTypes.getFirst().equals(SpiritTypeRegistry.WICKED_SPIRIT)) {
             //Aqueous has a really dark color compared to other spirits to avoid it clashing with Aerial
             //Other spirits are brighter which leads to the effect looking extremely blurry since the outline is more significant than the main layer
             mainColor = ColorHelper.brighter(mainColor, 2);
+        }
+        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.SACRED_SPIRIT)) {
+            //Aqueous has a really dark color compared to other spirits to avoid it clashing with Aerial
+            //Other spirits are brighter which leads to the effect looking extremely blurry since the outline is more significant than the main layer
+            mainColor = ColorHelper.brighter(mainColor, 1);
         }
         builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
         shaderInstance.safeGetUniform("Speed").set(2000f);

@@ -2,8 +2,7 @@ package com.sammy.malum.common.entity.bolt;
 
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -60,9 +59,9 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
 
     public abstract int getMaxAge();
 
-    public abstract ParticleEffectType getImpactParticleEffect();
+    public abstract NetworkedParticleEffectType getImpactParticleEffect();
 
-    public abstract ColorEffectData getImpactParticleColor();
+    public abstract MalumNetworkedParticleEffectColorData getImpactParticleColor();
 
     public float getOrbitingTrailDistance() {
         return 0.3f;
@@ -132,7 +131,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         }
         if (level() instanceof ServerLevel serverLevel) {
             getImpactParticleEffect().createPositionedEffect(serverLevel,
-                    new PositionEffectData(position().add(getDeltaMovement().scale(0.25f))),
+                    new NetworkedParticleEffectPositionData(position().add(getDeltaMovement().scale(0.25f))),
                     getImpactParticleColor(),
                     HexBoltImpactParticleEffect.createData(getDeltaMovement().reverse().normalize()));
             playSound(SoundRegistry.STAFF_STRIKES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
@@ -158,7 +157,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
                 if (success && target instanceof LivingEntity livingentity) {
                     onDealDamage(livingentity);
                     getImpactParticleEffect().createPositionedEffect(serverLevel,
-                            new PositionEffectData(position().add(getDeltaMovement().scale(0.5f))),
+                            new NetworkedParticleEffectPositionData(position().add(getDeltaMovement().scale(0.5f))),
                             getImpactParticleColor(),
                             HexBoltImpactParticleEffect.createData(getDeltaMovement().reverse().normalize()));
                     playSound(SoundRegistry.STAFF_STRIKES.get(), 0.75f, Mth.nextFloat(random, 1f, 1.4f));

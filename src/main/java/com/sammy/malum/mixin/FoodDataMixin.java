@@ -2,7 +2,7 @@ package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.sammy.malum.common.geas.pact.aqueous.*;
-import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.geas.pact.sacred.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;

@@ -10,7 +10,7 @@ import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
@@ -20,6 +20,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -35,7 +36,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class SpiritCrucibleParticleEffects {
 
-    public static void suspiciousDevicePrimer(PositionEffectData positionData, ColorEffectData colorData) {
+    public static void suspiciousDevicePrimer(NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         ClientLevel level = Minecraft.getInstance().level;
         var random = level.random;
 
@@ -54,7 +55,7 @@ public class SpiritCrucibleParticleEffects {
                     .setLifetime(20)
                     .setLifeDelay(i)
                     .enableNoClip()
-                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+                    .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
         for (int i = 0; i < 4; i++) {
             final GenericParticleData scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(random, 0.8f, 0.4f), 0f)
@@ -71,7 +72,7 @@ public class SpiritCrucibleParticleEffects {
                     .setLifetime(10)
                     .setLifeDelay(10+i)
                     .enableNoClip()
-                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+                    .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
     }
 
@@ -183,7 +184,7 @@ public class SpiritCrucibleParticleEffects {
         }
     }
 
-    public static void craftItemParticles(SpiritCrucibleCoreBlockEntity crucible, ColorEffectData colorData) {
+    public static void craftItemParticles(SpiritCrucibleCoreBlockEntity crucible, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType activeSpiritType = crucible.getActiveSpiritType();
         if (activeSpiritType == null) {
             return;

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:pact_of_the_challenger"
+        "recipe": "malum:pact_of_the_sorcerer"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:pact_of_the_challenger"
+      "malum:pact_of_the_sorcerer"
     ]
   }
 }

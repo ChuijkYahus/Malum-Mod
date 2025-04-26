@@ -4,10 +4,9 @@ import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.ParticleRegistry;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -92,7 +91,7 @@ public class SpiritAltarParticleEffects {
         }
     }
 
-    public static void eatItemParticles(SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, ColorEffectData colorData, ItemStack stack) {
+    public static void eatItemParticles(SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
         MalumSpiritType activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
@@ -136,7 +135,7 @@ public class SpiritAltarParticleEffects {
         }
     }
 
-    public static void craftItemParticles(SpiritAltarBlockEntity altar, ColorEffectData colorData) {
+    public static void craftItemParticles(SpiritAltarBlockEntity altar, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;

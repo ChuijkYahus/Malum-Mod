@@ -9,7 +9,7 @@ import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.DamageTypeTags;
@@ -137,8 +137,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         float pitch = RandomHelper.randomBetween(attacker.getRandom(), 0.75f, 1.25f);
         SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
         ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createPositionedEffect(serverLevel,
-                new PositionEffectData(target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()),
-                new ColorEffectData(getDefiningSpiritType(), getDefiningSpiritType()),
+                new NetworkedParticleEffectPositionData(target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()),
+                new MalumNetworkedParticleEffectColorData(getDefiningSpiritType(), getDefiningSpiritType()),
                 WyrdReconstructionReviveParticleEffect.createData(attacker));
     }
 

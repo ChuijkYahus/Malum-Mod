@@ -4,10 +4,11 @@ import com.sammy.malum.common.block.curiosities.ritual_plinth.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.*;
 
-public class RitualPlinthBeginChargingParticleEffect extends ParticleEffectType {
+public class RitualPlinthBeginChargingParticleEffect extends MalumNetworkedParticleEffectType {
 
     public RitualPlinthBeginChargingParticleEffect(String id) {
         super(id);

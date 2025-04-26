@@ -2,10 +2,9 @@ package com.sammy.malum.core.helpers;
 
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.attack.slam.SlamAttackParticleEffect;
-import com.sammy.malum.visual_effects.networked.data.*;
-import com.sammy.malum.visual_effects.networked.attack.slash.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.attack.SlamAttackParticleEffect;
+import com.sammy.malum.visual_effects.networked.attack.SlashAttackParticleEffect;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -13,30 +12,30 @@ import net.minecraft.world.phys.*;
 
 public class ParticleHelper {
 
-    public static WeaponParticleEffectBuilder createSlashingEffect(ParticleEffectType effectType) {
+    public static WeaponParticleEffectBuilder createSlashingEffect(NetworkedParticleEffectType effectType) {
         return createEffect(effectType, (d, b) -> SlashAttackParticleEffect.createData(d, b.isMirrored, b.slashAngle));
     }
-    public static WeaponParticleEffectBuilder createSlamEffect(ParticleEffectType effectType) {
+    public static WeaponParticleEffectBuilder createSlamEffect(NetworkedParticleEffectType effectType) {
         return createEffect(effectType, (d, b) -> SlamAttackParticleEffect.createData(d, b.slashAngle));
     }
-    public static WeaponParticleEffectBuilder createEffect(ParticleEffectType effectType, WeaponParticleEffectBuilder.EffectDataSupplier supplier) {
+    public static WeaponParticleEffectBuilder createEffect(NetworkedParticleEffectType effectType, WeaponParticleEffectBuilder.EffectDataSupplier supplier) {
         return new WeaponParticleEffectBuilder(effectType, supplier);
     }
 
     public static class WeaponParticleEffectBuilder {
 
-        public final ParticleEffectType effectType;
+        public final NetworkedParticleEffectType effectType;
         public final EffectDataSupplier supplier;
         public float horizontalOffset;
         public float slashAngle;
         public boolean isMirrored;
-        public ColorEffectData color;
+        public MalumNetworkedParticleEffectColorData color;
 
 
         public Vec3 positionOffset = Vec3.ZERO;
         public float horizontalDirectionOffset = 0, verticalDirectionOffset = 0, forwardOffset = 0, directionOffsetAngle = 0;
 
-        protected WeaponParticleEffectBuilder(ParticleEffectType effectType, EffectDataSupplier supplier) {
+        protected WeaponParticleEffectBuilder(NetworkedParticleEffectType effectType, EffectDataSupplier supplier) {
             this.effectType = effectType;
             this.supplier = supplier;
         }
@@ -77,10 +76,10 @@ public class ParticleHelper {
         }
 
         public WeaponParticleEffectBuilder setColor(MalumSpiritType spiritType) {
-            return setColor(new ColorEffectData(spiritType));
+            return setColor(new MalumNetworkedParticleEffectColorData(spiritType));
         }
 
-        public WeaponParticleEffectBuilder setColor(ColorEffectData color) {
+        public WeaponParticleEffectBuilder setColor(MalumNetworkedParticleEffectColorData color) {
             this.color = color;
             return this;
         }
@@ -202,13 +201,13 @@ public class ParticleHelper {
 
         public void spawnSlashingParticle(ServerLevel level, Vec3 slashPosition, Vec3 slashDirection) {
             effectType.createPositionedEffect(level,
-                    new PositionEffectData(getPosition(slashPosition, slashDirection)),
+                    new NetworkedParticleEffectPositionData(getPosition(slashPosition, slashDirection)),
                     color,
                     supplier.createData(getDirection(slashDirection), this));
         }
 
         public interface EffectDataSupplier {
-            NBTEffectData createData(Vec3 direction, WeaponParticleEffectBuilder builder);
+            NetworkedParticleEffectExtraData createData(Vec3 direction, WeaponParticleEffectBuilder builder);
         }
     }
 }

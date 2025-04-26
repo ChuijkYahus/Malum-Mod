@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
@@ -34,6 +34,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         super(BlockEntityRegistry.SOULWOVEN_BANNER.get(), pos, state);
         this.patternData = SoulwovenBannerPatternDataComponent.DEFAULT;
     }
+
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
@@ -45,6 +46,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         super.applyImplicitComponents(componentInput);
         patternData = componentInput.get(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN);
     }
+
     @Override
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
         if (level instanceof ServerLevel serverLevel) {
@@ -90,16 +92,20 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         tag.putBoolean("intense", intense);
         patternData.save(tag);
     }
+
     @Override
     public void removeComponentsFromTag(CompoundTag tag) {
         tag.remove("pattern");
     }
 
-    public void setSpirit(ServerLevel serverLevel, @Nullable MalumSpiritType spirit) {
+    public void setSpirit(ServerLevel level, @Nullable MalumSpiritType spirit) {
         level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         if (spirit != null) {
-            ParticleEffectTypeRegistry.SOULWOVEN_BANNER_ACTIVATED.createPositionedEffect(serverLevel, new PositionEffectData(worldPosition), new ColorEffectData(spirit));
+            ParticleEffectTypeRegistry.SOULWOVEN_BANNER_ACTIVATED
+                    .createEffect(worldPosition)
+                    .color(spirit)
+                    .spawn(level);
         }
         intense = this.spirit == spirit;
         this.spirit = spirit;

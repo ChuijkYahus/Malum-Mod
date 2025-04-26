@@ -1,9 +1,7 @@
 package com.sammy.malum.common.worldevent;
 
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
@@ -18,7 +16,6 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.worldevent.*;
 
 import javax.annotation.*;
-import java.awt.*;
 import java.util.*;
 
 public class DelayedDamageWorldEvent extends WorldEventInstance {
@@ -39,9 +36,9 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
     protected float minVolume;
     protected float maxVolume;
 
-    protected ParticleEffectType particleEffect;
-    protected ColorEffectData particleColor;
-    protected NBTEffectData nbtData;
+    protected NetworkedParticleEffectType particleEffect;
+    protected MalumNetworkedParticleEffectColorData particleColor;
+    protected NetworkedParticleEffectExtraData nbtData;
 
     public DelayedDamageWorldEvent(Entity target) {
         this();
@@ -103,13 +100,13 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         return this;
     }
 
-    public DelayedDamageWorldEvent setImpactParticleEffect(ParticleEffectType particleEffect, ColorEffectData color) {
+    public DelayedDamageWorldEvent setImpactParticleEffect(NetworkedParticleEffectType particleEffect, MalumNetworkedParticleEffectColorData color) {
         this.particleEffect = particleEffect;
         this.particleColor = color;
         return this;
     }
 
-    public DelayedDamageWorldEvent setParticleEffectNBT(NBTEffectData nbtData) {
+    public DelayedDamageWorldEvent setParticleEffectNBT(NetworkedParticleEffectExtraData nbtData) {
         this.nbtData = nbtData;
         return this;
     }
@@ -143,7 +140,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                     }
                     if (particleEffect != null) {
                         particleEffect.createPositionedEffect(serverLevel,
-                                new PositionEffectData(new Vec3(target.getX(), target.getY()+target.getBbHeight()/2f, target.getZ())),
+                                new NetworkedParticleEffectPositionData(new Vec3(target.getX(), target.getY()+target.getBbHeight()/2f, target.getZ())),
                                 particleColor, nbtData);
                     }
                 }
@@ -175,8 +172,8 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
             compoundTag.putFloat("maxVolume", maxVolume);
         }
         if (particleEffect != null) {
-            compoundTag.put("particleEffect", ParticleEffectType.CODEC.encodeStart(NbtOps.INSTANCE, particleEffect).result().orElseThrow());
-            compoundTag.put("particleColor", ColorEffectData.CODEC.encodeStart(NbtOps.INSTANCE, particleColor).result().orElseThrow());
+            compoundTag.put("particleEffect", NetworkedParticleEffectType.CODEC.encodeStart(NbtOps.INSTANCE, particleEffect).result().orElseThrow());
+            compoundTag.put("particleColor", MalumNetworkedParticleEffectColorData.CODEC.encodeStart(NbtOps.INSTANCE, particleColor).result().orElseThrow());
         }
     }
 
@@ -198,7 +195,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         maxPitch = compoundTag.getFloat("maxPitch");
         minVolume = compoundTag.getFloat("minVolume");
         maxVolume = compoundTag.getFloat("maxVolume");
-        particleEffect = ParticleEffectType.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("particleEffect")).result().orElse(null);
-        particleColor = ColorEffectData.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("particleColor")).result().orElse(null);
+        particleEffect = NetworkedParticleEffectType.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("particleEffect")).result().orElse(null);
+        particleColor = MalumNetworkedParticleEffectColorData.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("particleColor")).result().orElse(null);
     }
 }

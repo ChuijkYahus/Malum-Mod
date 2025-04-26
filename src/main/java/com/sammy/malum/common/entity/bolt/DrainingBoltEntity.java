@@ -5,8 +5,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -72,13 +71,13 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
     }
 
     @Override
-    public ParticleEffectType getImpactParticleEffect() {
+    public NetworkedParticleEffectType getImpactParticleEffect() {
         return ParticleEffectTypeRegistry.DRAINING_BOLT_IMPACT;
     }
 
     @Override
-    public ColorEffectData getImpactParticleColor() {
-        return new ColorEffectData(SCEPTER_COLOR_DATA);
+    public MalumNetworkedParticleEffectColorData getImpactParticleColor() {
+        return new MalumNetworkedParticleEffectColorData(SCEPTER_COLOR_DATA);
     }
 
     @Override

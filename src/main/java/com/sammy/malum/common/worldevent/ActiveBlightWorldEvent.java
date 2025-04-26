@@ -5,8 +5,6 @@ import com.sammy.malum.common.block.blight.BlightedSoilBlock;
 import com.sammy.malum.common.worldgen.tree.SoulwoodTreeFeature;
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
 import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.WorldEventTypeRegistry;
-import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -90,7 +88,7 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
 
     public static void createBlightVFX(ServerLevel level, LodestoneBlockFiller filler) {
         filler.getLayer(BLIGHT).entrySet().stream().filter(e -> e.getValue().getState().getBlock() instanceof BlightedSoilBlock).map(Map.Entry::getKey)
-                .forEach(p -> ParticleEffectTypeRegistry.BLIGHTING_MIST.createPositionedEffect(level, new PositionEffectData(p)));
+                .forEach(p -> ParticleEffectTypeRegistry.BLIGHTING_MIST.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p)));
     }
     private static final PerlinSimplexNoise COVERING_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
 

@@ -6,7 +6,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.tag.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -115,7 +115,7 @@ public class InvertedHeartOath extends GeasEffect {
                 continue;
             }
             if (target.isAlive()) {
-                var color = new ColorEffectData(SpiritTypeRegistry.WICKED_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT);
+                var color = new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT);
                 WorldEventHandler.addWorldEvent(target.level(),
                         new DelayedDamageWorldEvent(target)
                                 .setMagicDamageType(damageType)

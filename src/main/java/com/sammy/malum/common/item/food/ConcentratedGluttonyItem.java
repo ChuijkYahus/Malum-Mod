@@ -5,7 +5,7 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -69,6 +69,6 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, float potency) {
         var position = target.position().add(0, target.getBbHeight() / 2f, 0);
-        ParticleEffectTypeRegistry.GLUTTONY_ABSORB.createPositionedEffect(serverLevel, new PositionEffectData(position), AbsorbGluttonyParticleEffect.createData(potency));
+        ParticleEffectTypeRegistry.GLUTTONY_ABSORB.createPositionedEffect(serverLevel, new NetworkedParticleEffectPositionData(position), AbsorbGluttonyParticleEffect.createData(potency));
     }
 }

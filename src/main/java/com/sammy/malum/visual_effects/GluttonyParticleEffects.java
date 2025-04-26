@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.client.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
@@ -8,6 +8,7 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -25,7 +26,7 @@ public class GluttonyParticleEffects {
     private static final Color GLUTTONY_DARK = new Color(31, 35, 30);
     private static final Color GLUTTONY_SHADE = new Color(14, 14, 16);
 
-    public static void incrementGluttonyStatusEffect(PositionEffectData positionData, float gluttonyPotency) {
+    public static void incrementGluttonyStatusEffect(NetworkedParticleEffectPositionData positionData, float gluttonyPotency) {
         Level level = Minecraft.getInstance().level;
         var random = level.random;
 
@@ -41,7 +42,7 @@ public class GluttonyParticleEffects {
                     .setRandomOffset(0.2f, 0f)
                     .setMotion(0, 0.001f, 0)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT.withDepthFade())
-                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+                    .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
         float distance = 0.7f;
         float length = 1.4f * gluttonyPotency;
@@ -56,7 +57,7 @@ public class GluttonyParticleEffects {
         ring.spawnParticles();
     }
 
-    public static void thrownGluttonySplash(PositionEffectData positionData) {
+    public static void thrownGluttonySplash(NetworkedParticleEffectPositionData positionData) {
         Level level = Minecraft.getInstance().level;
         var random = level.random;
 
@@ -73,7 +74,7 @@ public class GluttonyParticleEffects {
                     .setMotion(0, 0.001f, 0)
                     .setLifetime(lifetime)
                     .enableNoClip()
-                    .repeat(level, positionData.posX, positionData.posY, positionData.posZ, 2);
+                    .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
         var particle = LodestoneParticleTypes.THIN_EXTRUDING_SPARK_PARTICLE;
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 1.2f, 32);

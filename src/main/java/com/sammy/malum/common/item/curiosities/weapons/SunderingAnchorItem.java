@@ -11,8 +11,8 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.tag.*;
-import com.sammy.malum.visual_effects.networked.attack.slash.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.attack.SunderingAnchorSlashParticleEffect;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.server.level.*;
@@ -131,7 +131,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
             SoundHelper.playSound(attacker, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
             var particle = ParticleHelper.createEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SLASH, (d, b) -> SunderingAnchorSlashParticleEffect.createData(d, b.isMirrored, b.slashAngle, slashCount))
-                    .setColor(new ColorEffectData(SPIRITS))
+                    .setColor(new MalumNetworkedParticleEffectColorData(SPIRITS))
                     .setPositionOffset(RandomHelper.randomBetween(random, 0.2f, 0.6f) * (random.nextBoolean() ? 1 : -1))
                     .setRandomSlashAngle(random);
             particle.spawnTargetBoundSlashingParticle(attacker, target);

@@ -3,7 +3,7 @@ package com.sammy.malum.visual_effects;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -14,6 +14,7 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -40,10 +41,10 @@ public class WeepingWellParticleEffects {
         return new Color((int) (12 * colorMultiplier), (int) (3 * colorMultiplier), (int) (12 * colorMultiplier));
     }
 
-    public static void spitOutItemParticles(Level level, PositionEffectData positionEffectData) {
-        double posX = positionEffectData.posX;
-        double posY = positionEffectData.posY;
-        double posZ = positionEffectData.posZ;
+    public static void spitOutItemParticles(Level level, NetworkedParticleEffectPositionData positionEffectData) {
+        double posX = positionEffectData.getPosX();
+        double posY = positionEffectData.getPosY();
+        double posZ = positionEffectData.getPosZ();
         Vec3 pos = new Vec3(posX, posY, posZ);
         RandomSource rand = level.random;
         Color color = getWeepingWellSmokeColor(rand);

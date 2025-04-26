@@ -1,13 +1,19 @@
 package com.sammy.malum.visual_effects.networked.spirit_diode;
 
 import com.sammy.malum.visual_effects.SpiritDiodeParticleEffects;
-import com.sammy.malum.visual_effects.networked.ParticleEffectType;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.Supplier;
 
-public class SpiritDiodeCloseParticleEffect extends ParticleEffectType {
+public class SpiritDiodeCloseParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public SpiritDiodeCloseParticleEffect(String id) {
         super(id);
@@ -15,9 +21,7 @@ public class SpiritDiodeCloseParticleEffect extends ParticleEffectType {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Supplier<ParticleEffectActor> get() {
-        return () -> (level, random, positionData, colorData, nbtData) -> {
-            SpiritDiodeParticleEffects.closeSpiritDiode(positionData, colorData);
-        };
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+        SpiritDiodeParticleEffects.closeSpiritDiode(positionData, colorData);
     }
 }

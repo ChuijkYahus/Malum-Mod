@@ -4,7 +4,7 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
@@ -14,6 +14,8 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -27,16 +29,16 @@ import java.util.function.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
-public class UnwindingChaosChargeParticleEffect extends ParticleEffectType {
+public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEffectType {
 
     public UnwindingChaosChargeParticleEffect(String id) {
         super(id);
     }
 
-    public static NBTEffectData createData(Entity entity) {
+    public static NetworkedParticleEffectExtraData createData(Entity entity) {
         CompoundTag tag = new CompoundTag();
         tag.putInt("targetId", entity.getId());
-        return new NBTEffectData(tag);
+        return new NetworkedParticleEffectExtraData(tag);
     }
 
     @OnlyIn(Dist.CLIENT)

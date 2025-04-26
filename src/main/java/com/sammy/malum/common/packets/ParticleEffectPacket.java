@@ -1,10 +1,7 @@
 package com.sammy.malum.common.packets;
 
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.ParticleEffectType;
-import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
-import com.sammy.malum.visual_effects.networked.data.NBTEffectData;
-import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,19 +9,22 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import team.lodestar.lodestone.systems.network.OneSidedPayloadData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import javax.annotation.Nullable;
 
 public class ParticleEffectPacket extends OneSidedPayloadData {
 
     private final String id;
-    private final PositionEffectData positionData;
+    private final NetworkedParticleEffectPositionData positionData;
     @Nullable
-    private final ColorEffectData colorData;
+    private final MalumNetworkedParticleEffectColorData colorData;
     @Nullable
-    private final NBTEffectData nbtData;
+    private final NetworkedParticleEffectExtraData nbtData;
 
-    public ParticleEffectPacket(String id, PositionEffectData positionData, @Nullable ColorEffectData colorData, @Nullable NBTEffectData nbtData) {
+    public ParticleEffectPacket(String id, NetworkedParticleEffectPositionData positionData, @Nullable MalumNetworkedParticleEffectColorData colorData, @Nullable NetworkedParticleEffectExtraData nbtData) {
         this.id = id;
         this.positionData = positionData;
         this.colorData = colorData;
@@ -33,9 +33,9 @@ public class ParticleEffectPacket extends OneSidedPayloadData {
 
     public ParticleEffectPacket(FriendlyByteBuf buf) {
         this.id = buf.readUtf();
-        this.positionData = new PositionEffectData(buf);
-        this.colorData = buf.readBoolean() ? ColorEffectData.STREAM_CODEC.decode(buf) : null;
-        this.nbtData = buf.readBoolean() ? new NBTEffectData(buf.readNbt()) : null;
+        this.positionData = new NetworkedParticleEffectPositionData(buf);
+        this.colorData = buf.readBoolean() ? MalumNetworkedParticleEffectColorData.STREAM_CODEC.decode(buf) : null;
+        this.nbtData = buf.readBoolean() ? new NetworkedParticleEffectExtraData(buf.readNbt()) : null;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ParticleEffectPacket extends OneSidedPayloadData {
         boolean nonNullColorData = colorData != null;
         buf.writeBoolean(nonNullColorData);
         if (nonNullColorData) {
-            ColorEffectData.STREAM_CODEC.encode(buf, colorData);
+            MalumNetworkedParticleEffectColorData.STREAM_CODEC.encode(buf, colorData);
         }
         boolean nonNullCompoundTag = nbtData != null;
         buf.writeBoolean(nonNullCompoundTag);
@@ -59,11 +59,12 @@ public class ParticleEffectPacket extends OneSidedPayloadData {
     public void handle(IPayloadContext iPayloadContext) {
         Minecraft instance = Minecraft.getInstance();
         ClientLevel level = instance.level;
-        ParticleEffectType particleEffectType = ParticleEffectTypeRegistry.EFFECT_TYPES.get(id);
+        NetworkedParticleEffectType particleEffectType = ParticleEffectTypeRegistry.EFFECT_TYPES.get(id);
         if (particleEffectType == null) {
             throw new RuntimeException("This shouldn't be happening.");
         }
-        ParticleEffectType.ParticleEffectActor particleEffectActor = particleEffectType.get().get();
+        NetworkedParticleEffectType.ParticleEffectActor particleEffectActor = particleEffectType.get().get();
         particleEffectActor.act(level, level.random, positionData, colorData, nbtData);
     }
+
 }

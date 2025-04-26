@@ -4,8 +4,7 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
@@ -21,7 +20,6 @@ import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
 
 import java.awt.*;
-import java.util.List;
 import java.util.function.*;
 
 public class EthericNitrateEntity extends AbstractNitrateEntity {
@@ -50,13 +48,13 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
     }
 
     @Override
-    public ParticleEffectType getImpactParticleEffect() {
+    public NetworkedParticleEffectType getImpactParticleEffect() {
         return ParticleEffectTypeRegistry.ETHERIC_NITRATE_IMPACT;
     }
 
     @Override
-    public ColorEffectData getImpactParticleEffectColor() {
-        return new ColorEffectData(AURIC_COLOR_DATA);
+    public MalumNetworkedParticleEffectColorData getImpactParticleEffectColor() {
+        return new MalumNetworkedParticleEffectColorData(AURIC_COLOR_DATA);
     }
 
     @OnlyIn(Dist.CLIENT)

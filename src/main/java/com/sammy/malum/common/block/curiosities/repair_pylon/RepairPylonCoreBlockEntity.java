@@ -8,7 +8,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -269,8 +269,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
             return;
         }
         ParticleEffectTypeRegistry.REPAIR_PYLON_PREPARES.createPositionedEffect(serverLevel,
-                new PositionEffectData(worldPosition),
-                ColorEffectData.fromSpiritIngredients(recipe.spirits),
+                new NetworkedParticleEffectPositionData(worldPosition),
+                MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits),
                 PylonPrepareRepairParticleEffect.createData(provider.getAccessPointBlockPos()));
         level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
         setState(RepairPylonState.REPAIRING);
@@ -293,7 +293,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         var result = recipe.getResultItem(repairTarget);
         suppliedInventory.setStackInSlot(0, result);
         level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
-        ParticleEffectTypeRegistry.REPAIR_PYLON_REPAIRS.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), ColorEffectData.fromSpiritIngredients(recipe.spirits), PylonPrepareRepairParticleEffect.createData(provider.getAccessPointBlockPos()));
+        ParticleEffectTypeRegistry.REPAIR_PYLON_REPAIRS.createPositionedEffect((ServerLevel) level, new NetworkedParticleEffectPositionData(worldPosition), MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits), PylonPrepareRepairParticleEffect.createData(provider.getAccessPointBlockPos()));
         setState(RepairPylonState.COOLDOWN);
     }
 

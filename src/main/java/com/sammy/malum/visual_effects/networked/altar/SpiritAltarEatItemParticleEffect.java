@@ -1,40 +1,48 @@
 package com.sammy.malum.visual_effects.networked.altar;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
-import com.sammy.malum.visual_effects.networked.ParticleEffectType;
-import com.sammy.malum.visual_effects.networked.data.NBTEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
-import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 
-import java.util.function.Supplier;
+public class SpiritAltarEatItemParticleEffect extends MalumNetworkedParticleEffectType<SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData> {
 
-public class SpiritAltarEatItemParticleEffect extends ParticleEffectType {
+    public record SpiritAltarEatItemEffectData(BlockPos holderPos, ItemStack stack) implements NetworkedParticleEffectExtraData {
+        public static final Codec<SpiritAltarEatItemEffectData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                BlockPos.CODEC.fieldOf("holderPos").forGetter(data -> data.holderPos),
+                ItemStack.CODEC.fieldOf("stack").forGetter(data -> data.stack)
+        ).apply(instance, SpiritAltarEatItemEffectData::new));
+
+        public static final StreamCodec<ByteBuf, SpiritAltarEatItemEffectData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
+    }
 
     public SpiritAltarEatItemParticleEffect(String id) {
         super(id);
     }
 
-    public static NBTEffectData createData(BlockPos holderPos, ItemStack stack) {
-        NBTEffectData effectData = new NBTEffectData(stack);
-        NBTHelper.saveBlockPos(effectData.compoundTag, holderPos);
-        return effectData;
-    }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Supplier<ParticleEffectActor> get() {
-        return () -> (level, random, positionData, colorData, nbtData) -> {
-            if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof SpiritAltarBlockEntity spiritAltar)) {
-                return;
-            }
-            if (!(level.getBlockEntity(NBTHelper.readBlockPos(nbtData.compoundTag)) instanceof IMalumSpecialItemAccessPoint holder)) {
-                return;
-            }
-            SpiritAltarParticleEffects.eatItemParticles(spiritAltar, holder, colorData, nbtData.getStack());
-        };
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, SpiritAltarEatItemEffectData extraData) {
+        if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof SpiritAltarBlockEntity spiritAltar)) {
+            return;
+        }
+        if (!(level.getBlockEntity(extraData.holderPos) instanceof IMalumSpecialItemAccessPoint holder)) {
+            return;
+        }
+        SpiritAltarParticleEffects.eatItemParticles(spiritAltar, holder, colorData, extraData.stack);
     }
 }

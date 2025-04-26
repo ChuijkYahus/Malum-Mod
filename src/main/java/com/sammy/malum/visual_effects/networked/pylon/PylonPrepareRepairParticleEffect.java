@@ -4,21 +4,23 @@ import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.*;
 
-public class PylonPrepareRepairParticleEffect extends ParticleEffectType {
+public class PylonPrepareRepairParticleEffect extends MalumNetworkedParticleEffectType {
 
     public PylonPrepareRepairParticleEffect(String id) {
         super(id);
     }
 
-    public static NBTEffectData createData(BlockPos holderPos) {
-        NBTEffectData effectData = new NBTEffectData(new CompoundTag());
+    public static NetworkedParticleEffectExtraData createData(BlockPos holderPos) {
+        NetworkedParticleEffectExtraData effectData = new NetworkedParticleEffectExtraData(new CompoundTag());
         effectData.compoundTag.putLong("pos", holderPos.asLong());
         return effectData;
     }

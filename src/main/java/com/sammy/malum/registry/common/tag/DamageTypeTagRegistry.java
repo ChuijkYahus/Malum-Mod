@@ -5,6 +5,8 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
+import net.minecraft.world.item.WrittenBookItem;
+import net.minecraft.world.level.block.LecternBlock;
 import team.lodestar.lodestone.registry.common.tag.*;
 
 public class DamageTypeTagRegistry {

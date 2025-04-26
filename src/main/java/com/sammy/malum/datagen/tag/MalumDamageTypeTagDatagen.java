@@ -67,5 +67,8 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
                 .addTags(DamageTypeTagRegistry.IS_HIDDEN_BLADE, DamageTypeTagRegistry.IS_SUNDERING_ANCHOR_COMBO, DamageTypeTagRegistry.IS_INVERTED_HEART)
                 .add(DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC)
                 .add(DamageTypeRegistry.SCYTHE_MAELSTROM);
+        tag(DamageTypeTags.IS_PLAYER_ATTACK)
+                .addTag(DamageTypeTagRegistry.IS_SCYTHE_MELEE);
+
     }
 }

@@ -32,7 +32,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public int progress;
     public int streak;
     public boolean reachedStreakGoal;
-    public int lingeringRadiance;
 
     public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.VOID_CONDUIT.get(), pos, state);
@@ -51,7 +50,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         compound.putInt("progress", progress);
         compound.putInt("streak", streak);
         compound.putBoolean("reachedStreakGoal", reachedStreakGoal);
-        compound.putInt("lingeringRadiance", lingeringRadiance);
         super.saveAdditional(compound, registries);
     }
 
@@ -65,15 +63,11 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         progress = compound.getInt("progress");
         streak = compound.getInt("streak");
         reachedStreakGoal = compound.getBoolean("reachedStreakGoal");
-        lingeringRadiance = compound.getInt("lingeringRadiance");
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (lingeringRadiance > 0) {
-            lingeringRadiance--;
-        }
         if (level instanceof ServerLevel serverLevel) {
             final long gameTime = serverLevel.getGameTime();
             if (gameTime % 100L == 0) {
@@ -95,11 +89,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
                 streak = 0;
             }
         } else {
-            if (lingeringRadiance <= 100) {
-                WeepingWellParticleEffects.passiveWeepingWellParticles(this);
-            } else {
-                RadiantParticleEffects.radiantWeepingWellParticles(this);
-            }
+            WeepingWellParticleEffects.passiveWeepingWellParticles(this);
         }
     }
 
@@ -119,11 +109,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         if (stack.getItem().equals(ItemRegistry.BLIGHTED_GUNK.get())) {
             eatGunk(stack);
         } else {
-            Item result = spitOutItem(stack);
-            if (result.equals(ItemRegistry.FUSED_CONSCIOUSNESS.get())) {
-                lingeringRadiance = 400;
-                particleEffectType = ParticleEffectTypeRegistry.WEEPING_WELL_EMITS_RADIANCE;
-            }
+            spitOutItem(stack);
         }
         progress = PROCESSING_TIME-20;
         eatenItems.removeLast();
@@ -141,7 +127,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         level.playSound(null, worldPosition, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
     }
 
-    public Item spitOutItem(ItemStack stack) {
+    public void spitOutItem(ItemStack stack) {
         var recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.VOID_FAVOR.get(), new SingleRecipeInput(stack));
         float pitch = RandomHelper.randomBetween(level.getRandom(), 0.8f, 1.3f);
         var outputPosition = worldPosition.getCenter();

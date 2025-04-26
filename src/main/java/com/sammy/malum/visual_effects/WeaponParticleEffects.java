@@ -5,7 +5,7 @@ import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
@@ -56,7 +56,7 @@ public class WeaponParticleEffects {
     }
 
 
-    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorEffectData color) {
+    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, MalumNetworkedParticleEffectColorData color) {
         if (color == null) {
             return spawnSlashParticle(level, pos, particleType);
         }
@@ -77,7 +77,7 @@ public class WeaponParticleEffects {
     }
 
     public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType) {
-        return spawnSlashParticle(level, pos, WorldParticleBuilder.create(particleType).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(createGrayParticleColor(level.random)));
+        return spawnSlashParticle(level, pos, WorldParticleBuilder.create(particleType).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(ColorParticleData.createGrayParticleColor(level.random)));
     }
 
     public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, WorldParticleBuilder builder) {
@@ -92,7 +92,7 @@ public class WeaponParticleEffects {
         return new ParticleEffectSpawner(level, pos, worldParticleBuilder);
     }
 
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorEffectData color) {
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, MalumNetworkedParticleEffectColorData color) {
         if (color == null) {
             return spawnSlamParticle(level, pos, particleType);
         }
@@ -109,7 +109,7 @@ public class WeaponParticleEffects {
     }
 
     public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType) {
-        return spawnSlamParticle(level, pos, particleType, o -> WorldParticleBuilder.create(o).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(createGrayParticleColor(level.random)));
+        return spawnSlamParticle(level, pos, particleType, o -> WorldParticleBuilder.create(o).setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT).setColorData(ColorParticleData.createGrayParticleColor(level.random)));
     }
 
     public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorParticleData colorData) {
@@ -131,11 +131,5 @@ public class WeaponParticleEffects {
                 .setLifetime(5)
                 .enableNoClip();
         return new ParticleEffectSpawner(level, pos, worldParticleBuilder);
-    }
-
-    public static ColorParticleData createGrayParticleColor(RandomSource random) {
-        int brightness = (int) (255 * RandomHelper.randomBetween(random, 0.6f, 1f));
-        Color color = new Color(brightness, brightness, brightness);
-        return ColorParticleData.create(color, color.darker()).setEasing(Easing.SINE_IN_OUT).build();
     }
 }

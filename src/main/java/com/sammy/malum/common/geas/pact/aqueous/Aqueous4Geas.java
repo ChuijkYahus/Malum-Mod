@@ -1,7 +1,7 @@
 package com.sammy.malum.common.geas.pact.aqueous;
 
-import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.core.systems.geas.GeasEffect;
+import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
 
 public class Aqueous4Geas extends GeasEffect {
 

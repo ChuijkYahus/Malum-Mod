@@ -1,14 +1,12 @@
 package com.sammy.malum.common.entity.bolt;
 
 import com.sammy.malum.common.entity.nitrate.EthericNitrateEntity;
-import com.sammy.malum.common.item.curiosities.weapons.staff.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
@@ -109,13 +107,13 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
     }
 
     @Override
-    public ParticleEffectType getImpactParticleEffect() {
+    public NetworkedParticleEffectType getImpactParticleEffect() {
         return ParticleEffectTypeRegistry.ENTROPIC_BOLT_IMPACT;
     }
 
     @Override
-    public ColorEffectData getImpactParticleColor() {
-        return new ColorEffectData(AURIC_COLOR_DATA, SpiritTypeRegistry.AQUEOUS_SPIRIT.createColorData().build());
+    public MalumNetworkedParticleEffectColorData getImpactParticleColor() {
+        return new MalumNetworkedParticleEffectColorData(AURIC_COLOR_DATA, SpiritTypeRegistry.AQUEOUS_SPIRIT.createColorData().build());
     }
 
     @Override

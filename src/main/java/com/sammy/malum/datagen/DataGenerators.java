@@ -30,34 +30,41 @@ public class DataGenerators {
         final boolean includeClient = event.includeClient();
         final boolean includeServer = event.includeServer();
 
-        var registryDataProvider = new RegistryDataGenerator(output, provider);
-        generator.addProvider(includeServer, registryDataProvider);
-        var registryProvider = registryDataProvider.getRegistryProvider();
-        generator.addProvider(includeServer, new MalumDataMaps(output, registryProvider));
+        var registryDataDatagen = new RegistryDataGenerator(output, provider);
+        var registryProvider = registryDataDatagen.getRegistryProvider();
 
-        var itemModelsProvider = new MalumItemModels(output, helper);
+        generator.addProvider(includeServer, registryDataDatagen);
 
-        generator.addProvider(includeClient, new MalumBlockStates(output, helper, itemModelsProvider));
-        generator.addProvider(includeClient, itemModelsProvider);
-        generator.addProvider(includeClient, new MalumLang(output));
-        generator.addProvider(includeClient, new MalumSoundDatagen(output, helper));
+        var itemModelsDatagen = new MalumItemModels(output, helper);
+        var blockStateDatagen = new MalumBlockStates(output, helper, itemModelsDatagen);
+        var langDatagen = new MalumLang(output);
+        var soundDatagen = new MalumSoundDatagen(output, helper);
 
-        generator.addProvider(includeServer, new MalumBlockLootTables(output, registryProvider));
+        var dataMapsDatagen = new MalumDataMaps(output, registryProvider);
+        var blockLootDatagen = new MalumBlockLootTables(output, registryProvider);
+        var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
+        var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
+        var geasTagDatagen = new MalumGeasTagDatagen(output, provider, helper);
+        var biomeTagDatagen = new MalumBiomeTags(output, registryProvider, helper);
+        var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
+        var enchantmentTagDatagen = new MalumEnchantmentTags(output, registryProvider, helper);
+        var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
+        var recipeDatagen = new MalumRecipes(output, registryProvider);
 
+        generator.addProvider(includeClient, itemModelsDatagen);
+        generator.addProvider(includeClient, blockStateDatagen);
+        generator.addProvider(includeClient, langDatagen);
+        generator.addProvider(includeClient, soundDatagen);
 
-        var blockTagsProvider = new MalumBlockTagDatagen(output, registryProvider, helper);
-        generator.addProvider(includeServer, blockTagsProvider);
-        generator.addProvider(includeServer, new MalumItemTagDatagen(output, provider, blockTagsProvider.contentsGetter(), helper));
-        generator.addProvider(includeServer, new MalumGeasTagDatagen(output, provider, helper));
-        generator.addProvider(includeServer, new MalumBiomeTags(output, registryProvider, helper));
-        generator.addProvider(includeServer, new MalumDamageTypeTagDatagen(output, registryProvider, helper));
-        generator.addProvider(includeServer, new MalumEnchantmentTags(output, registryProvider, helper));
-
-
-        generator.addProvider(includeServer, new MalumRecipes(output, registryProvider));
-
-        generator.addProvider(includeServer, new MalumCuriosThings(output, helper, registryProvider));
-
-
+        generator.addProvider(includeServer, dataMapsDatagen);
+        generator.addProvider(includeServer, blockLootDatagen);
+        generator.addProvider(includeServer, blockTagsDatagen);
+        generator.addProvider(includeServer, itemTagDatagen);
+        generator.addProvider(includeServer, geasTagDatagen);
+        generator.addProvider(includeServer, biomeTagDatagen);
+        generator.addProvider(includeServer, damageTypeTagDatagen);
+        generator.addProvider(includeServer, enchantmentTagDatagen);
+        generator.addProvider(includeServer, curioDataDatagen);
+        generator.addProvider(includeServer, recipeDatagen);
     }
 }

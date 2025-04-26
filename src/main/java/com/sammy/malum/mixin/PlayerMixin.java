@@ -1,7 +1,7 @@
 package com.sammy.malum.mixin;
 
 import com.sammy.malum.common.effect.aura.*;
-import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.player.*;

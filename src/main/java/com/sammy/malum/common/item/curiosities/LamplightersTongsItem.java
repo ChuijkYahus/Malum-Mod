@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities;
 
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -46,7 +46,7 @@ public class LamplightersTongsItem extends Item {
             spiritStack.shrink(1);
         }
         if (level instanceof ServerLevel serverLevel) {
-            ParticleEffectTypeRegistry.SPIRIT_MOTE_SPARKLES.createPositionedEffect(serverLevel, new PositionEffectData(pPos), new ColorEffectData(spiritType));
+            ParticleEffectTypeRegistry.SPIRIT_MOTE_SPARKLES.createPositionedEffect(serverLevel, new NetworkedParticleEffectPositionData(pPos), new MalumNetworkedParticleEffectColorData(spiritType));
         }
         return InteractionResult.SUCCESS;
     }
