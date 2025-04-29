@@ -18,6 +18,8 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 
+import java.util.*;
+
 public class SpiritAltarEatItemParticleEffect extends MalumNetworkedParticleEffectType<SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData> {
 
     public record SpiritAltarEatItemEffectData(BlockPos holderPos, ItemStack stack) implements NetworkedParticleEffectExtraData {
@@ -33,6 +35,10 @@ public class SpiritAltarEatItemParticleEffect extends MalumNetworkedParticleEffe
         super(id);
     }
 
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(SpiritAltarEatItemEffectData.STREAM_CODEC);
+    }
 
     @OnlyIn(Dist.CLIENT)
     @Override

@@ -1,7 +1,13 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
+import com.sammy.malum.visual_effects.networked.gluttony.*;
+import io.netty.buffer.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -15,25 +21,42 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class SunderingAnchorSlashParticleEffect extends WeaponParticleEffectType {
+public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<SunderingAnchorSlashParticleEffect.SunderingAnchorSlashEffectData> {
+
+    public static class SunderingAnchorSlashEffectData extends WeaponParticleEffectData {
+        public static final Codec<SunderingAnchorSlashEffectData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Vec3.CODEC.fieldOf("direction").forGetter(SunderingAnchorSlashEffectData::getDirection),
+                Codec.BOOL.fieldOf("mirror").forGetter(SunderingAnchorSlashEffectData::isMirrored),
+                Codec.FLOAT.fieldOf("slashRotation").forGetter(SunderingAnchorSlashEffectData::getSlashRotation),
+                Codec.INT.fieldOf("slashCount").forGetter(SunderingAnchorSlashEffectData::slashCount)
+        ).apply(instance, SunderingAnchorSlashEffectData::new));
+
+        public static final StreamCodec<ByteBuf, SunderingAnchorSlashEffectData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
+
+        public final int slashCount;
+
+        public SunderingAnchorSlashEffectData(Vec3 direction, boolean isMirrored, float slashRotation, int slashCount) {
+            super(direction, isMirrored, slashRotation);
+            this.slashCount = slashCount;
+        }
+
+        public int slashCount() {
+            return slashCount;
+        }
+    }
 
     public SunderingAnchorSlashParticleEffect(String id) {
         super(id);
     }
 
-    public static NetworkedParticleEffectExtraData createData(Vec3 direction, boolean mirror, float angle, int slashCount) {
-        var data = SlashAttackParticleEffect.createData(direction, mirror, angle);
-        data.compoundTag.putInt("slashCount", slashCount);
-        return data;
-    }
-
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
-        int slashCount = nbtData.compoundTag.getInt("slashCount");
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, SunderingAnchorSlashEffectData extraData) {
+        int slashCount = extraData.slashCount;
 
         for (int i = 0; i < slashCount; i++) {
-            spinOffset = angle + RandomHelper.randomBetween(random, -3.14f, 3.14f) + (mirror ? 3.14f : 0);
+            float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -3.14f, 3.14f) + (extraData.isMirrored() ? 3.14f : 0);
+            var direction = extraData.getDirection();
             for (int j = 0; j < 2; j++) {
                 var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.THIN_SLASH, colorData);
                 int lifeDelay = (i+j) * 2;

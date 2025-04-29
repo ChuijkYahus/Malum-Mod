@@ -2,9 +2,11 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
@@ -15,18 +17,19 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class SunderingAnchorSweepParticleEffect extends WeaponParticleEffectType {
+public class SunderingAnchorSweepParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public SunderingAnchorSweepParticleEffect(String id) {
         super(id);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
-        angle = random.nextFloat() * 6.28f;
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+        float angle = random.nextFloat() * 6.28f;
         float x = Mth.sin(angle);
         float z = Mth.cos(angle);
-        direction = new Vec3(x, 0, z);
+        Vec3 direction = new Vec3(x, 0, z);
 
         ParticleEffectSpawner slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), random.nextBoolean() ? ParticleRegistry.THIN_ROUNDABOUT_SLASH : ParticleRegistry.ROUNDABOUT_SLASH, colorData);
         int lifetime = RandomHelper.randomBetween(random, 8, 12);

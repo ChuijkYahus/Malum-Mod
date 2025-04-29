@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -15,7 +16,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class WeightOfWorldsCritParticleEffect extends WeaponParticleEffectType {
+public class WeightOfWorldsCritParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
     public WeightOfWorldsCritParticleEffect(String id) {
         super(id);
@@ -23,12 +24,14 @@ public class WeightOfWorldsCritParticleEffect extends WeaponParticleEffectType {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        float spinOffset = extraData.getSlashRotation();
         for (int i = 0; i < 8; i++) {
             if (i % 2 == 0) {
-                spinOffset = angle + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (mirror ? 3.14f : 0);
+                spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (extraData.isMirrored() ? 3.14f : 0);
             }
             var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
+            var direction = extraData.getDirection();
             slash.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 3f, 4f)).build())

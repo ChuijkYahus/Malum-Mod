@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -15,7 +16,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class AscensionRadialSlashParticleEffect extends WeaponParticleEffectType {
+public class AscensionRadialSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
     public AscensionRadialSlashParticleEffect(String id) {
         super(id);
@@ -23,14 +24,15 @@ public class AscensionRadialSlashParticleEffect extends WeaponParticleEffectType
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        var direction = extraData.getDirection();
         float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
         float yaw = (float) Math.toRadians(yRot);
         Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
         for(int i = 0; i < 3; i++) {
             final Vec3 pos = positionData.getAsVector();
             for (int j = 0; j < 16; j++) {
-                spinOffset = angle + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (mirror ? 3.14f : 0);
+                float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (extraData.isMirrored() ? 3.14f : 0);
                 float slashAngle = (i*0.33f+j) / 16f * (float) Math.PI * 2f;
                 var slashDirection = left.scale(Math.sin(slashAngle))
                         .add(direction.scale(Math.cos(slashAngle)))

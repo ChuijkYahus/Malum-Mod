@@ -4,7 +4,9 @@ import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEnt
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
+import io.netty.buffer.*;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.codec.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -12,10 +14,17 @@ import net.neoforged.api.distmarker.OnlyIn;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 
+import java.util.*;
+
 public class SoulBrazierEndParticleEffect extends MalumNetworkedParticleEffectType<SoulBrazierStateEffectData> {
 
     public SoulBrazierEndParticleEffect(String id) {
         super(id);
+    }
+
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(SoulBrazierStateEffectData.STREAM_CODEC);
     }
 
     @OnlyIn(Dist.CLIENT)

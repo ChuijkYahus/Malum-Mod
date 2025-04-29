@@ -13,6 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.worldevent.*;
 
 import javax.annotation.*;
@@ -36,7 +37,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
     protected float minVolume;
     protected float maxVolume;
 
-    protected NetworkedParticleEffectType particleEffect;
+    protected NetworkedParticleEffectType<?> particleEffect;
     protected MalumNetworkedParticleEffectColorData particleColor;
     protected NetworkedParticleEffectExtraData nbtData;
 
@@ -139,9 +140,10 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                         SoundHelper.playSound(attacker == null ? target : attacker, soundEvent.value(), volume, pitch);
                     }
                     if (particleEffect != null) {
-                        particleEffect.createPositionedEffect(serverLevel,
-                                new NetworkedParticleEffectPositionData(new Vec3(target.getX(), target.getY()+target.getBbHeight()/2f, target.getZ())),
-                                particleColor, nbtData);
+                        particleEffect.createEffect(target)
+                                .color(particleColor)
+                                .customData(nbtData)
+                                .spawn(serverLevel);
                     }
                 }
             }

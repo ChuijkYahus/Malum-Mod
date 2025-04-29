@@ -16,6 +16,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.Comparator;
@@ -59,7 +60,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
 
     public abstract int getMaxAge();
 
-    public abstract NetworkedParticleEffectType getImpactParticleEffect();
+    public abstract BoltImpactParticleEffect getImpactParticleEffect();
 
     public abstract MalumNetworkedParticleEffectColorData getImpactParticleColor();
 
@@ -130,10 +131,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             return;
         }
         if (level() instanceof ServerLevel serverLevel) {
-            getImpactParticleEffect().createPositionedEffect(serverLevel,
-                    new NetworkedParticleEffectPositionData(position().add(getDeltaMovement().scale(0.25f))),
-                    getImpactParticleColor(),
-                    HexBoltImpactParticleEffect.createData(getDeltaMovement().reverse().normalize()));
+            spawnEffect(serverLevel, 0.25f);
             playSound(SoundRegistry.STAFF_STRIKES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
             getEntityData().set(DATA_FADING_AWAY, true);
             Vec3 direction = pResult.getLocation().subtract(position());
@@ -141,6 +139,17 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             setPosRaw(getX() - offset.x, getY() - offset.y, getZ() - offset.z);
         }
         super.onHitBlock(pResult);
+    }
+
+    @Override
+    protected boolean canHitEntity(Entity pTarget) {
+        if (pTarget.equals(getOwner())) {
+            return false;
+        }
+        if (pTarget instanceof AbstractBoltProjectileEntity) {
+            return false;
+        }
+        return super.canHitEntity(pTarget);
     }
 
     @Override
@@ -156,10 +165,8 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
                 boolean success = target.hurt(source, magicDamage);
                 if (success && target instanceof LivingEntity livingentity) {
                     onDealDamage(livingentity);
-                    getImpactParticleEffect().createPositionedEffect(serverLevel,
-                            new NetworkedParticleEffectPositionData(position().add(getDeltaMovement().scale(0.5f))),
-                            getImpactParticleColor(),
-                            HexBoltImpactParticleEffect.createData(getDeltaMovement().reverse().normalize()));
+                    spawnEffect(serverLevel, 0.5f);
+
                     playSound(SoundRegistry.STAFF_STRIKES.get(), 0.75f, Mth.nextFloat(random, 1f, 1.4f));
                     setDeltaMovement(getDeltaMovement().scale(0.05f));
                     getEntityData().set(DATA_FADING_AWAY, true);
@@ -216,6 +223,11 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         }
     }
 
+    @Override
+    public SoundSource getSoundSource() {
+        return getOwner() != null ? getOwner().getSoundSource() : SoundSource.PLAYERS;
+    }
+
     public void homeIn() {
         Vec3 motion = getDeltaMovement();
         Entity owner = getOwner();
@@ -249,22 +261,13 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         }
     }
 
-    @Override
-    protected boolean canHitEntity(Entity pTarget) {
-        if (pTarget.equals(getOwner())) {
-            return false;
-        }
-        if (pTarget instanceof AbstractBoltProjectileEntity) {
-            return false;
-        }
-        return super.canHitEntity(pTarget);
+    public void spawnEffect(ServerLevel level, float offset) {
+        getImpactParticleEffect()
+                .createEffect(position().add(getDeltaMovement().scale(offset)))
+                .color(getImpactParticleColor())
+                .customData(new BoltImpactParticleEffect.BoltImpactEffectData(getDeltaMovement().reverse().normalize()))
+                .spawn(level);
     }
-
-    @Override
-    public SoundSource getSoundSource() {
-        return getOwner() != null ? getOwner().getSoundSource() : SoundSource.PLAYERS;
-    }
-
     public void shootFromRotation(Entity shooter, float rotationPitch, float rotationYaw, float pitchOffset, float velocity, float innacuracy) {
         float f = -Mth.sin(rotationYaw * ((float) Math.PI / 180F)) * Mth.cos(rotationPitch * ((float) Math.PI / 180F));
         float f1 = -Mth.sin((rotationPitch + pitchOffset) * ((float) Math.PI / 180F));
@@ -278,6 +281,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         var clipResult = level().clip(new ClipContext(wrathPosition, targetPosition, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
         return clipResult.getType().equals(HitResult.Type.MISS);
     }
+
 
     public float getVisualEffectScalar() {
         float effectScalar = 1;

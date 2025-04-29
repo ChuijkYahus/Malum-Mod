@@ -4,7 +4,6 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.handlers.enchantment.*;
-import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.server.level.*;

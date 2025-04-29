@@ -7,6 +7,7 @@ import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
@@ -16,6 +17,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -107,7 +109,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
     }
 
     @Override
-    public NetworkedParticleEffectType getImpactParticleEffect() {
+    public BoltImpactParticleEffect getImpactParticleEffect() {
         return ParticleEffectTypeRegistry.ENTROPIC_BOLT_IMPACT;
     }
 

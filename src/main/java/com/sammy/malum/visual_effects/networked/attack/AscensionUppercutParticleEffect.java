@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -15,7 +16,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class AscensionUppercutParticleEffect extends WeaponParticleEffectType {
+public class AscensionUppercutParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
     public AscensionUppercutParticleEffect(String id) {
         super(id);
@@ -23,7 +24,8 @@ public class AscensionUppercutParticleEffect extends WeaponParticleEffectType {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        var direction = extraData.getDirection();
         float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
         float yaw = (float) Math.toRadians(yRot);
         Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
@@ -32,7 +34,7 @@ public class AscensionUppercutParticleEffect extends WeaponParticleEffectType {
             float upwardsOffset = i*0.4f;
             float slashOffset = 2 - i*0.6f;
             for (int j = 0; j < 2; j++) {
-                spinOffset = angle + RandomHelper.randomBetween(random, -0.25f, 0.25f) + (mirror ? 3.14f : 0);
+                float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.25f, 0.25f) + (extraData.isMirrored() ? 3.14f : 0);
 
                 var slashPosition = positionData.getAsVector().add(direction.scale(slashOffset)).add(up.scale(upwardsOffset));
 

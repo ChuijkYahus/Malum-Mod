@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.attack.SlashAttackParticleEffect;
+import com.sammy.malum.visual_effects.networked.attack.ScytheSlashParticleEffect;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -54,7 +54,7 @@ public class ProfaneGluttonGeas extends GeasEffect {
             while (chance > 0) {
                 if (random.nextFloat() < chance) {
                     var slashDirection = target.getLookAngle().scale(-1);
-                    var slashProperties = SlashAttackParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
+                    var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
                     WorldEventHandler.addWorldEvent(target.level(),
                             new DelayedDamageWorldEvent(target)
                                     .setDamageData(1, 1, 2)

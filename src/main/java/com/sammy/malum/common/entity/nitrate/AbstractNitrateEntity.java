@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity.nitrate;
 
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.nitrate.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
@@ -49,7 +50,7 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
 
     public abstract float getExplosionRadius();
 
-    public abstract NetworkedParticleEffectType getImpactParticleEffect();
+    public abstract NitrateImpactParticleEffectType getImpactParticleEffect();
 
     public abstract MalumNetworkedParticleEffectColorData getImpactParticleEffectColor();
 
@@ -99,7 +100,10 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
         NitrateExplosion.explode(level(), this, getX(), getY(0.0625D), getZ(), getExplosionRadius());
         onExplode();
         if (level() instanceof ServerLevel serverLevel) {
-            getImpactParticleEffect().createPositionedEffect(serverLevel, new NetworkedParticleEffectPositionData(position()), getImpactParticleEffectColor());
+            getImpactParticleEffect()
+                    .createEffect(position())
+                    .color(getImpactParticleEffectColor())
+                    .spawn(serverLevel);
         }
         if (timesExploded++ >= getMaxPierce()) {
             getEntityData().set(DATA_FADING_AWAY, true);

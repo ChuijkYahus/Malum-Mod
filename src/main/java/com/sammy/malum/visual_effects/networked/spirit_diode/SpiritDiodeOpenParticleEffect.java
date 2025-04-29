@@ -23,6 +23,5 @@ public class SpiritDiodeOpenParticleEffect extends MalumNetworkedParticleEffectT
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
         SpiritDiodeParticleEffects.openSpiritDiode(positionData, colorData);
-
     }
 }

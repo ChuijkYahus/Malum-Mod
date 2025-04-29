@@ -6,7 +6,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.attack.SlashAttackParticleEffect;
+import com.sammy.malum.visual_effects.networked.attack.ScytheSlashParticleEffect;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -33,7 +33,7 @@ public class SorcererGeas extends GeasEffect {
         if (target.getHealth() > target.getMaxHealth() * 0.95f) {
             var random = target.getRandom();
             var slashDirection = attacker.getLookAngle();
-            var slashProperties = SlashAttackParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
+            var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
             WorldEventHandler.addWorldEvent(target.level(),
                     new DelayedDamageWorldEvent(target)
                             .setDamageData(0, 4, 2)

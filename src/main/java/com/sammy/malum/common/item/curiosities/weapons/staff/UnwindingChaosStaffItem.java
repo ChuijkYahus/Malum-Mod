@@ -5,7 +5,6 @@ import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
-import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;

@@ -17,7 +17,7 @@ import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectE
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.world.*;
 
-import java.util.UUID;
+import java.util.*;
 import java.util.function.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
@@ -32,8 +32,14 @@ public class SapCollectionParticleEffect extends MalumNetworkedParticleEffectTyp
 
         public static final StreamCodec<ByteBuf, SapCollectionEffectData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
     }
+
     public SapCollectionParticleEffect(String id) {
         super(id);
+    }
+
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(SapCollectionEffectData.STREAM_CODEC);
     }
 
     @OnlyIn(Dist.CLIENT)

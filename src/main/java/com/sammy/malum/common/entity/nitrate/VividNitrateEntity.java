@@ -5,6 +5,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.nitrate.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
@@ -71,7 +72,7 @@ public class VividNitrateEntity extends AbstractNitrateEntity {
     }
 
     @Override
-    public NetworkedParticleEffectType getImpactParticleEffect() {
+    public NitrateImpactParticleEffectType getImpactParticleEffect() {
         return ParticleEffectTypeRegistry.ETHERIC_NITRATE_IMPACT;
     }
 

@@ -28,7 +28,6 @@ public class DrainingBoltImpactParticleEffect extends BoltImpactParticleEffect {
         super(id);
     }
 
-
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, Vec3 projectileDirection, Vec3 left, Vec3 up) {

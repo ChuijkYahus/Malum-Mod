@@ -64,7 +64,7 @@ public class ParticleEffectTypeRegistry {
     public static final NetworkedParticleEffectType SPIRIT_DIODE_CLOSE = new SpiritDiodeCloseParticleEffect("spirit_diode_close");
 
     //Slash Effects
-    public static final NetworkedParticleEffectType SCYTHE_SLASH = new SlashAttackParticleEffect("scythe_slash");
+    public static final NetworkedParticleEffectType SCYTHE_SLASH = new ScytheSlashParticleEffect("scythe_slash");
     public static final NetworkedParticleEffectType SCYTHE_ASCENSION_SPIN = new AscensionRadialSlashParticleEffect("scythe_ascension_spin");
     public static final NetworkedParticleEffectType SCYTHE_ASCENSION_UPPERCUT = new AscensionUppercutParticleEffect("scythe_ascension_uppercut");
 
@@ -78,13 +78,13 @@ public class ParticleEffectTypeRegistry {
     public static final NetworkedParticleEffectType HIDDEN_BLADE_COUNTER_FLURRY = new HiddenBladeCounterParticleEffect("hidden_blade_counter_flurry");
 
     //Slam Effects
-    public static final NetworkedParticleEffectType STAFF_SLAM = new SlamAttackParticleEffect("staff_slam");
+    public static final NetworkedParticleEffectType STAFF_SLAM = new StaffSlamAttackParticleEffect("staff_slam");
 
     //Wand
-    public static final NetworkedParticleEffectType HEX_BOLT_IMPACT = new HexBoltImpactParticleEffect("hex_bolt_impact");
-    public static final NetworkedParticleEffectType DRAINING_BOLT_IMPACT = new DrainingBoltImpactParticleEffect("draining_bolt_impact");
-    public static final NetworkedParticleEffectType ENTROPIC_BOLT_IMPACT = new EntropicBoltImpactParticleEffect("entropic_bolt_impact");
-    public static final NetworkedParticleEffectType UNWINDING_CHAOS_CHARGE = new UnwindingChaosChargeParticleEffect("unwinding_chaos_charge");
+    public static final BoltImpactParticleEffect HEX_BOLT_IMPACT = new HexBoltImpactParticleEffect("hex_bolt_impact");
+    public static final BoltImpactParticleEffect DRAINING_BOLT_IMPACT = new DrainingBoltImpactParticleEffect("draining_bolt_impact");
+    public static final BoltImpactParticleEffect ENTROPIC_BOLT_IMPACT = new EntropicBoltImpactParticleEffect("entropic_bolt_impact");
+    public static final UnwindingChaosChargeParticleEffect UNWINDING_CHAOS_CHARGE = new UnwindingChaosChargeParticleEffect("unwinding_chaos_charge");
 
     //Geas
     public static final NetworkedParticleEffectType SHAKEN_FAITH = new ShakenFaithParticleEffect("shaken_faith");

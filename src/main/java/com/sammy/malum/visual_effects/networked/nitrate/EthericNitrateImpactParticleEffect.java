@@ -26,7 +26,7 @@ import java.util.function.*;
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
 import static net.minecraft.util.Mth.*;
 
-public class EthericNitrateImpactParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
+public class EthericNitrateImpactParticleEffect extends NitrateImpactParticleEffectType {
 
     public EthericNitrateImpactParticleEffect(String id) {
         super(id);

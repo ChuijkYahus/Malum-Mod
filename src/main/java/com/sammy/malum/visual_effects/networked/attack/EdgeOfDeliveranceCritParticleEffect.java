@@ -2,6 +2,7 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
@@ -15,7 +16,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-public class EdgeOfDeliveranceCritParticleEffect extends WeaponParticleEffectType {
+public class EdgeOfDeliveranceCritParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
     public EdgeOfDeliveranceCritParticleEffect(String id) {
         super(id);
@@ -23,8 +24,9 @@ public class EdgeOfDeliveranceCritParticleEffect extends WeaponParticleEffectTyp
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void spawnParticles(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, NetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData nbtData, Vec3 direction, float angle, boolean mirror, float spinOffset) {
-        spinOffset = angle + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (mirror ? 3.14f : 0);
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (extraData.isMirrored() ? 3.14f : 0);
+        var direction = extraData.getDirection();
         for (int i = 0; i < 4; i++) {
             var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
             slash.getBuilder()
