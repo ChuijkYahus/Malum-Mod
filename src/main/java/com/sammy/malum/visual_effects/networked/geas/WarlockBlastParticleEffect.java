@@ -2,15 +2,15 @@ package com.sammy.malum.visual_effects.networked.geas;
 
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType.*;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.network.particle.*;
 
-public class ShakenFaithParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectData> {
+public class WarlockBlastParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectData> {
 
-    public ShakenFaithParticleEffect(String id) {
+    public WarlockBlastParticleEffect(String id) {
         super(id);
     }
 

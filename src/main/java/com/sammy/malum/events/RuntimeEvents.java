@@ -93,7 +93,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
         CurioHarmonyNecklace.preventDetection(event);
-        SorcererGeas.increaseDetection(event);
+        WarlockGeas.increaseDetection(event);
     }
 
     @SubscribeEvent

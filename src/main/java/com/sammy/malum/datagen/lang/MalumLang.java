@@ -140,7 +140,7 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER.get(), "Weave the arcane");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 

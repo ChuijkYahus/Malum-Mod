@@ -28,7 +28,7 @@ public class TyrvingSlashParticleEffect extends MalumNetworkedWeaponParticleEffe
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        float spinOffset = RandomHelper.randomBetween(random, 0.4f, 0.8f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
+        float offsetBase = RandomHelper.randomBetween(random, 0.4f, 0.8f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
         for (int i = 0; i < 8; i++) {
             ParticleEffectSpawner slash;
             if (i >= 6) {
@@ -38,7 +38,7 @@ public class TyrvingSlashParticleEffect extends MalumNetworkedWeaponParticleEffe
                 slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
             }
             var direction = extraData.getDirection();
-            spinOffset = extraData.getSlashRotation() + (i % 2 == 0 ? 1 : -1) * spinOffset;
+            float spinOffset = extraData.getSlashRotation() + (i % 2 == 0 ? 1 : -1) * offsetBase;
             int lifeDelay = (i % 2 == 0 ? 3 : 0);
             slash.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())

@@ -73,7 +73,7 @@ public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponPart
             float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -3.14f, 3.14f) + (extraData.isMirrored() ? 3.14f : 0);
             var direction = extraData.getDirection();
             for (int j = 0; j < 2; j++) {
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.THIN_SLASH, colorData);
                 int lifeDelay = (i+j) * 2;
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())

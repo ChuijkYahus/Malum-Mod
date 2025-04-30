@@ -25,6 +25,7 @@ import team.lodestar.lodestone.systems.particle.world.options.*;
 import java.awt.*;
 import java.util.function.*;
 
+import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
 import static net.minecraft.util.Mth.nextFloat;
 
 public class GeasParticleEffects {
@@ -114,27 +115,56 @@ public class GeasParticleEffects {
             }
         }
     }
-
-
-    public static void shakenFaithDamageEffect(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
-
-        //TODO: redo this effect
+    
+    public static void warlockBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
         var pos = positionData.getAsVector();
         var direction = extraData.getDirection();
-        var spinOffset = extraData.getSlashRotation();
-        for (int i = 0; i < 6; i++) {
-            var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
-            slash.getBuilder()
-                    .setSpinData(SpinParticleData.createRandomDirection(random, 0.15f - i * 0.025f, 0.02f).setSpinOffset(spinOffset).build())
-                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 0.5f, 1.5f)+i*0.25f, 0).build())
-                    .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction))
-                    .setLifetime(RandomHelper.randomBetween(random, 8, 12))
-                    .setLifeDelay(i/2);
-            slash.spawnParticles();
-            slash.getBuilder().setBehavior(BillboardParticleBehavior.INSTANCE);
-            slash.spawnParticles();
+        float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
+        float yaw = (float) Math.toRadians(yRot);
+        Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
+        Vec3 up = left.cross(direction);
+
+        for (int i = 0; i < 16; i++) {
+            var color = colorData.getColor();
+            float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
+            float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
+            float distance = -RandomHelper.randomBetween(random, 4f, 6f);
+            float angle = i / 16f * (float) Math.PI * 2f;
+
+            Vec3 particleDirection = direction
+                    .add(left.scale(Math.sin(angle) * spread))
+                    .add(up.scale(Math.cos(angle) * spread))
+                    .normalize().scale(speed);
+            Vec3 spawnPosition = pos.add(particleDirection.scale(distance));
+            float lifetimeMultiplier = 0.7f;
+            if (random.nextFloat() < 0.8f) {
+                var lightSpecs = spiritLightSpecs(level, spawnPosition, color);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .enableForcedSpawn()
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .setMotion(particleDirection);
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .setMotion(particleDirection);
+                lightSpecs.spawnParticles();
+            }
+            if (random.nextFloat() < 0.8f) {
+                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color);
+                sparks.getBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .enableForcedSpawn()
+                        .setMotion(particleDirection.scale(1.5f))
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
+                sparks.getBloomBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .setMotion(particleDirection.scale(1.5f));
+                sparks.spawnParticles();
+            }
         }
     }
+
     public static void invertedHeartDamageEffect(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         double posX = positionData.getPosX();
         double posY = positionData.getPosY();

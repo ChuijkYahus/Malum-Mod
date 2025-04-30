@@ -82,6 +82,7 @@ public class ParticleEffectTypeRegistry {
 
     //Geas
     public static final ShakenFaithParticleEffect SHAKEN_FAITH = new ShakenFaithParticleEffect("shaken_faith");
+    public static final WarlockBlastParticleEffect WARLOCK_BLAST = new WarlockBlastParticleEffect("warlock_blast");
     public static final InvertedHeartGeasImpactParticleEffect INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");
     public static final WyrdReconstructionReviveParticleEffect WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
 

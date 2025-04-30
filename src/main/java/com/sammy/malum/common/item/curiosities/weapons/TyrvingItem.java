@@ -1,6 +1,7 @@
 package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
@@ -19,7 +20,7 @@ import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.*;
 
-public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder {
+public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
     public TyrvingItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties);
@@ -28,6 +29,11 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
         event.addTooltipLines(ComponentHelper.positiveEffect("soul_based_damage"));
+    }
+
+    @Override
+    public MalumSpiritType getDefiningSpiritType() {
+        return SpiritTypeRegistry.WICKED_SPIRIT;
     }
 
     @Override
@@ -57,6 +63,8 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
             ParticleEffectTypeRegistry.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)
                     .verticalSlashRotation()
+                    .color(stack.getItem())
+                    .horizontalOffset(0.2f).forwardOffset(0.8f).upwardOffset(-0.2f)
                     .spawn(level);
         }
     }

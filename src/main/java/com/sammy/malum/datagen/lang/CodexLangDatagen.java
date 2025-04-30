@@ -900,7 +900,7 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_the_sorcerer", "Pact of The Sorcerer", "[Sorcerer]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER,
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
                 """
                         You are the challenger.
                          -The Initial Hit against Enemies Blasts them with Wicked Energy""",

@@ -56,6 +56,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
                     .originatesFrom(attacker)
                     .targets(target)
                     .color(stack.getItem())
+                    .forwardOffset(1.4f).upwardOffset(0.3f)
                     .spawn(level);
             if (EnchantmentRegistry.getEnchantmentLevel(level, EnchantmentRegistry.REPLENISHING, stack) > 0) {
                 ReplenishingHandler.triggerReplenishing(event.getSource(), attacker, stack);

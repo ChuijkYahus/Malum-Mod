@@ -40,7 +40,7 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE, 2, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE, 3, 12);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SORCERER, 1, 11);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK, 1, 11);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER, 2, 12);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS, -1, 11);

@@ -63,7 +63,11 @@ public class AscensionHandler {
                 magicDamage *= 1.3f;
                 aabb = aabb.move(player.getLookAngle().scale(2f)).inflate(-2f, 1f, -2f);
                 sound = SoundRegistry.SCYTHE_CUT.get();
-                particle = ParticleEffectTypeRegistry.SCYTHE_ASCENSION_UPPERCUT.createEffect().verticalSlashRotation().mirroredRandomly(random).mirrored();
+                particle = ParticleEffectTypeRegistry.SCYTHE_ASCENSION_UPPERCUT.createEffect()
+                        .verticalSlashRotation()
+                        .mirroredRandomly(random)
+                        .mirrored()
+                        .forwardOffset(0.8f);
             }
             if (hasFunnyRing) {
                 baseDamage *= 0.5f;

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.worldevent;
 
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
@@ -13,6 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.worldevent.*;
 
@@ -141,10 +142,21 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                         SoundHelper.playSound(attacker == null ? target : attacker, soundEvent.value(), volume, pitch);
                     }
                     if (particleEffect != null) {
-                        particleEffect.createEffect(target)
-                                .color(particleColor)
-                                .customData(nbtData)
-                                .spawn(serverLevel);
+                        if (particleEffect instanceof MalumNetworkedWeaponParticleEffectType weaponParticleEffect) {
+                            weaponParticleEffect.createEffect()
+                                    .originatesFrom(attacker)
+                                    .targets(target)
+                                    .tiedToTarget()
+                                    .color(particleColor)
+                                    .customData((WeaponParticleEffectType.WeaponParticleEffectData) nbtData)
+                                    .spawn(serverLevel);
+                        }
+                        else {
+                            particleEffect.createEffect(target)
+                                    .color(particleColor)
+                                    .customData(nbtData)
+                                    .spawn(serverLevel);
+                        }
                     }
                 }
             }

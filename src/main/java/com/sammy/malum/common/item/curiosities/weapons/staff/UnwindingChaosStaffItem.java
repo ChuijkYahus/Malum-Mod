@@ -93,7 +93,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                         .originatesFrom(attacker)
                         .targets(target)
                         .randomOffset(random, 0.3f, 0.8f * (random.nextBoolean() ? 1 : -1))
-                        .deviation(0.4f)
+                        .forwardOffset(1.4f).upwardOffset(0.3f)
+                        .deviation(0.2f)
                         .randomDeviationAngle(random)
                         .color(stack.getItem())
                         .spawn(serverLevel);

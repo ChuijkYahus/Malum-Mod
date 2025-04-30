@@ -52,10 +52,14 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             return;
         }
         var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect()
-                .originatesFrom(attacker).targets(target).color(stack.getItem());
+                .originatesFrom(attacker)
+                .targets(target)
+                .color(stack.getItem())
+                .upwardOffset(-0.4f)
+                .forwardOffset(0.8f);
         if (!canSweep(attacker)) {
             SoundHelper.playSound(attacker, getScytheSound(false).value(), 1, 0.75f);
-            particle.verticalSlashRotation().spawn(serverLevel);
+            particle.verticalSlashRotation().horizontalOffset(0.6f).spawn(serverLevel);
             return;
         }
         SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);

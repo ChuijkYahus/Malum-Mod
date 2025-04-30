@@ -2,6 +2,7 @@ package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.*;
@@ -53,11 +54,11 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
             var source = event.getSource();
             if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION)) {
                 MalumNetworkedWeaponParticleEffectType<?> particleEffectType = ParticleEffectTypeRegistry.SCYTHE_SLASH;
-                var effect = MobEffectRegistry.GRIM_CERTAINTY;
-                if (attacker.hasEffect(effect) || level.random.nextFloat() < 0.25f) {
+                var effectType = MobEffectRegistry.GRIM_CERTAINTY;
+                if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {
                     if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
                         particleEffectType = ParticleEffectTypeRegistry.WEIGHT_OF_WORLDS_CRIT;
-                        attacker.removeEffect(effect);
+                        attacker.removeEffect(effectType);
                     }
                 } else {
                     //We want only the crit to be present in case of exterior triggers such as Soulwashing
@@ -66,10 +67,15 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                         return;
                     }
                 }
-                particleEffectType.createEffect()
+                var effectBuilder = particleEffectType.createEffect()
+                        .originatesFrom(attacker).targets(target)
                         .verticalSlashRotation()
-                        .originatesFrom(attacker).targets(target).tiedToTarget()
-                        .spawn(level);
+                        .horizontalOffset(0.4f)
+                        .forwardOffset(0.8f);
+                if (source.is(DamageTypeTagRegistry.IS_INVERTED_HEART)) {
+                    effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(RandomHelper.randomBetween(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
+                }
+                effectBuilder.spawn(level);
                 SoundHelper.playSound(target, SoundRegistry.WEIGHT_OF_WORLDS_CUT.get(), SoundSource.PLAYERS, 2f, 0.75f);
             }
         }

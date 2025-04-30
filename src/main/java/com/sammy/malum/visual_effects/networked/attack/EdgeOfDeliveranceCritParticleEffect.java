@@ -25,14 +25,15 @@ public class EdgeOfDeliveranceCritParticleEffect extends MalumNetworkedWeaponPar
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (extraData.isMirrored() ? 3.14f : 0);
         var direction = extraData.getDirection();
+        float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.5f, 0.5f) + (extraData.isMirrored() ? 3.14f : 0);
         for (int i = 0; i < 4; i++) {
             var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
             slash.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.5f, 2f)).build())
                     .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.6f, 0.8f)))
+                    .setRandomOffset(0.3f)
                     .setLifetime(3)
                     .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
             slash.spawnParticles();
