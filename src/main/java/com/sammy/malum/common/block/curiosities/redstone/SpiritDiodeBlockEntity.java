@@ -122,9 +122,10 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
                 level.setBlock(getBlockPos(), getBlockState().setValue(SpiritDiodeBlock.OPEN, !value), 3);
                 level.playSound(null, getBlockPos(), value ? SoundRegistry.SPIRIT_DIODE_CLOSE.get() : SoundRegistry.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
                 var particleEffect = value ? ParticleEffectTypeRegistry.SPIRIT_DIODE_CLOSE : ParticleEffectTypeRegistry.SPIRIT_DIODE_OPEN;
-                particleEffect.createPositionedEffect(serverLevel,
-                        new NetworkedParticleEffectPositionData(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0)),
-                        new MalumNetworkedParticleEffectColorData(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build()));
+                particleEffect.createEffect()
+                        .at(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0))
+                        .color(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build())
+                        .spawn(serverLevel);
                 this.type = type;
                 this.frequency = frequency;
                 BlockStateHelper.updateAndNotifyState(level, getBlockPos());

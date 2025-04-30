@@ -10,6 +10,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -52,59 +53,57 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        var source = event.getSource();
-        var level = attacker.level();
-        if (level.isClientSide()) {
-            return;
-        }
-        if (!source.is(DamageTypeRegistry.SCYTHE_MELEE)) {
-            return;
-        }
-        if (CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
-            var data = attacker.getData(AttachmentTypeRegistry.CURIO_DATA);
-            var random = level.getRandom();
-            if (data.hiddenBladeNecklaceCooldown != 0) {
-                if (data.hiddenBladeNecklaceCooldown <= COOLDOWN_DURATION) {
-                    SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_DISRUPTED.get(), 1f, RandomHelper.randomBetween(random, 0.7f, 0.8f));
+        if (attacker.level() instanceof ServerLevel level) {
+            var source = event.getSource();
+            if (!source.is(DamageTypeRegistry.SCYTHE_MELEE)) {
+                return;
+            }
+            if (CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
+                var data = attacker.getData(AttachmentTypeRegistry.CURIO_DATA);
+                var random = level.getRandom();
+                if (data.hiddenBladeNecklaceCooldown != 0) {
+                    if (data.hiddenBladeNecklaceCooldown <= COOLDOWN_DURATION) {
+                        SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_DISRUPTED.get(), 1f, RandomHelper.randomBetween(random, 0.7f, 0.8f));
+                    }
+                    data.hiddenBladeNecklaceCooldown = (int) (COOLDOWN_DURATION * 1.5);
+                    PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
+                    return;
                 }
-                data.hiddenBladeNecklaceCooldown = (int) (COOLDOWN_DURATION * 1.5);
+                var effect = attacker.getEffect(MobEffectRegistry.WICKED_INTENT);
+                if (effect == null) {
+                    return;
+                }
+                var scytheWeapon = SoulDataHandler.getScytheWeapon(source, attacker);
+                var direction = attacker.getLookAngle();
+                var damageCenter = attacker.position().add(direction);
+                var attributes = attacker.getAttributes();
+                float multiplier = 1 + (effect.amplifier + 1) * 0.2f;
+                int duration = 25;
+
+                float physicalDamage = (float) (event.getNewDamage() + attributes.getValue(Attributes.ATTACK_DAMAGE)) / duration * multiplier;
+                float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE) / duration) * multiplier;
+
+                var entity = new HiddenBladeDelayedImpactEntity(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
+                entity.setData(attacker, physicalDamage, magicDamage, duration);
+                entity.setItem(scytheWeapon);
+                level.addFreshEntity(entity);
                 PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
-                return;
+                if (!effect.isInfiniteDuration()) {
+                    data.hiddenBladeNecklaceCooldown = COOLDOWN_DURATION;
+                    attacker.removeEffect(effect.getEffect());
+                }
+                for (int i = 0; i < 3; i++) {
+                    SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_UNLEASHED.get(), 3f, RandomHelper.randomBetween(random, 0.75f, 1.25f));
+                }
+                ParticleEffectTypeRegistry.HIDDEN_BLADE_COUNTER_FLURRY.createEffect()
+                        .originatesFrom(attacker)
+                        .aimedAt(direction)
+                        .color(scytheWeapon.getItem())
+                        .mirroredRandomly(random)
+                        .randomSlashRotation(random)
+                        .spawn(level);
+                event.setNewDamage(0);
             }
-            var effect = attacker.getEffect(MobEffectRegistry.WICKED_INTENT);
-            if (effect == null) {
-                return;
-            }
-            var scytheWeapon = SoulDataHandler.getScytheWeapon(source, attacker);
-            var direction = attacker.getLookAngle();
-            var damageCenter = attacker.position().add(direction);
-            var attributes = attacker.getAttributes();
-            float multiplier = 1+(effect.amplifier+1)*0.2f;
-            int duration = 25;
-
-            float physicalDamage = (float) (event.getNewDamage() +attributes.getValue(Attributes.ATTACK_DAMAGE)) / duration * multiplier;
-            float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE) / duration) * multiplier;
-
-            var entity = new HiddenBladeDelayedImpactEntity(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
-            entity.setData(attacker, physicalDamage, magicDamage, duration);
-            entity.setItem(scytheWeapon);
-            level.addFreshEntity(entity);
-            PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
-            if (!effect.isInfiniteDuration()) {
-                data.hiddenBladeNecklaceCooldown = COOLDOWN_DURATION;
-                attacker.removeEffect(effect.getEffect());
-            }
-            for (int i = 0; i < 3; i++) {
-                SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_UNLEASHED.get(), 3f, RandomHelper.randomBetween(random, 0.75f, 1.25f));
-            }
-            var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.HIDDEN_BLADE_COUNTER_FLURRY);
-            if (scytheWeapon.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-                particle.setColor(spiritAffiliatedItem);
-            }
-            particle.setRandomSlashAngle(random)
-                    .mirrorRandomly(random)
-                    .spawnForwardSlashingParticle(attacker, direction);
-            event.setNewDamage(0);
         }
     }
     public static void entityTick(EntityTickEvent.Pre event) {

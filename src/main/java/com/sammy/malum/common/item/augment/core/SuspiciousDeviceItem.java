@@ -35,9 +35,9 @@ public class SuspiciousDeviceItem extends CoreAugmentItem {
                         .setPosition(pos)
                         .setData(List.of(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8), 1, delay));
         level.playSound(null, pos, sound, SoundSource.BLOCKS, 2.5f, pitch);
-        ParticleEffectTypeRegistry.SUSPICIOUS_DEVICE_PRIMER.createPositionedEffect(level,
-                new NetworkedParticleEffectPositionData(pos.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET)),
-                new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT));
-
+        ParticleEffectTypeRegistry.SUSPICIOUS_DEVICE_PRIMER.createEffect()
+                .at(pos.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET))
+                .color(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT)
+                .spawn(level);
     }
 }

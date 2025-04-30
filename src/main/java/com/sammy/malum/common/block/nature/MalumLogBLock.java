@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -31,24 +32,26 @@ public class MalumLogBLock extends LodestoneLogBlock {
             if (hit.getDirection().equals(Direction.UP) || hit.getDirection().equals(Direction.DOWN)) {
                 return ItemInteractionResult.FAIL;
             }
-            if (level.isClientSide) {
-                return ItemInteractionResult.SUCCESS;
+            if (level instanceof ServerLevel serverLevel) {
+                boolean success = createTotemPole(serverLevel, pos, player, handIn, hit, stack, item);
+                if (success) {
+                    return ItemInteractionResult.SUCCESS;
+                }
             }
-            boolean success = createTotemPole(level, pos, player, handIn, hit, stack, item);
-            if (success) {
+            else {
                 return ItemInteractionResult.SUCCESS;
             }
         }
         return super.useItemOn(stack, state, level, pos, player, handIn, hit);
     }
 
-    public boolean createTotemPole(Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritShardItem spirit) {
+    public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritShardItem spirit) {
         if (spirit.type.equals(SpiritTypeRegistry.UMBRAL_SPIRIT)) {
             return false;
         }
         level.setBlockAndUpdate(pos, spirit.type.getTotemPoleBlockState(isCorrupt, hit));
         if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
-            blockEntity.setSpirit(spirit.type);
+            blockEntity.setSpirit(level, spirit.type);
         }
         if (!player.isCreative()) {
             stack.shrink(1);

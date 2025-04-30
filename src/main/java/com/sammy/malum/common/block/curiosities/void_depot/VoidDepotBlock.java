@@ -28,7 +28,7 @@ public class VoidDepotBlock<T extends VoidDepotBlockEntity> extends LodestoneEnt
             pLevel.setBlock(pPos, pState.setValue(POWERED, true), 2);
             pLevel.scheduleTick(pPos, this, 2);
             if (pLevel.getBlockEntity(pPos) instanceof VoidDepotBlockEntity voidDepotBlockEntity) {
-                voidDepotBlockEntity.onCompletion();
+                voidDepotBlockEntity.onCompletion(pLevel);
             }
         }
         pLevel.updateNeighborsAt(pPos, pState.getBlock());

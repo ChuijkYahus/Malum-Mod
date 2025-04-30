@@ -46,7 +46,9 @@ public class LamplightersTongsItem extends Item {
             spiritStack.shrink(1);
         }
         if (level instanceof ServerLevel serverLevel) {
-            ParticleEffectTypeRegistry.SPIRIT_MOTE_SPARKLES.createPositionedEffect(serverLevel, new NetworkedParticleEffectPositionData(pPos), new MalumNetworkedParticleEffectColorData(spiritType));
+            ParticleEffectTypeRegistry.SPIRIT_MOTE_SPARKLES.createEffect(pPos)
+                    .color(spiritType)
+                    .spawn(serverLevel);
         }
         return InteractionResult.SUCCESS;
     }

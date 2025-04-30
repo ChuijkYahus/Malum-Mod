@@ -7,6 +7,7 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
@@ -39,28 +40,30 @@ public class UnmakersDisdainGeas extends GeasEffect {
 
     @Override
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
-        var source = event.getSource();
-        var target = event.getLivingEntity();
-        if (source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
-            var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SCYTHE_SLASH);
-            if (SoulDataHandler.getScytheWeapon(source, attacker).isEmpty() || !canSweep(attacker)) {
-                particle.setVertical();
+        if (event.getLivingEntity().level() instanceof ServerLevel level) {
+            var source = event.getSource();
+            var target = event.getLivingEntity();
+            if (source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
+                var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect().targets(target).originatesFrom(attacker).tiedToTarget();
+                if (SoulDataHandler.getScytheWeapon(source, attacker).isEmpty() || !canSweep(attacker)) {
+                    particle.verticalSlashRotation();
+                }
+                particle.spawn(level);
+                return;
             }
-            particle.spawnTargetBoundSlashingParticle(attacker, target);
-            return;
-        }
-        var random = target.getRandom();
-        int extraHits = random.nextInt(4, 6);
-        float damage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) / extraHits * 0.5f;
-        for (int i = 0; i < extraHits; i++) {
-            int delay = 4 + i;
-            WorldEventHandler.addWorldEvent(target.level(),
-                    new DelayedDamageWorldEvent(target)
-                            .setAttacker(attacker, source.getDirectEntity())
-                            .setDamageData(damage, 0, delay)
-                            .setPhysicalDamageType(DamageTypeRegistry.MALIGNANT_METAL_COMBO)
-                            .setSound(SoundRegistry.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
+            var random = target.getRandom();
+            int extraHits = random.nextInt(4, 6);
+            float damage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) / extraHits * 0.5f;
+            for (int i = 0; i < extraHits; i++) {
+                int delay = 4 + i;
+                WorldEventHandler.addWorldEvent(target.level(),
+                        new DelayedDamageWorldEvent(target)
+                                .setAttacker(attacker, source.getDirectEntity())
+                                .setDamageData(damage, 0, delay)
+                                .setPhysicalDamageType(DamageTypeRegistry.MALIGNANT_METAL_COMBO)
+                                .setSound(SoundRegistry.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
 
+            }
         }
     }
 }

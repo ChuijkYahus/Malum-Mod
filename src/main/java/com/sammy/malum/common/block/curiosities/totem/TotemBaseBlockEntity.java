@@ -6,6 +6,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -91,23 +92,23 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     @Override
     public void tick() {
         super.tick();
-        if (!level.isClientSide) {
+        if (level instanceof ServerLevel serverLevel) {
             switch (state) {
                 case ACTIVE -> {
                     timer++;
                     if (timer >= activeRite.getRiteEffect(isSoulwood).getRiteEffectTickRate()) {
                         activeRite.executeRite(this);
                         timer = 0;
-                        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+                        BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
                     }
                 }
                 case ASSEMBLING -> {
                     timer--;
                     if (timer <= 0) {
                         BlockPos polePos = worldPosition.above(totemPolePositions.size() + 1);
-                        if (level.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
+                        if (serverLevel.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
                             timer = 20;
-                            addTotemPole(pole);
+                            addTotemPole(serverLevel, pole);
                         } else {
                             TotemicRiteType rite = SpiritRiteRegistry.getRite(getSpirits());
                             if (rite == null) {
@@ -130,7 +131,6 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             }
         }
         else {
-
             if (state.equals(TotemRiteState.IDLE) && radiusVisibility > 0) {
                 radiusVisibility--;
                 if (radiusVisibility == 0) {
@@ -172,7 +172,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
     }
 
-    public void addTotemPole(TotemPoleBlockEntity pole) {
+    public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
         Direction direction = pole.getBlockState().getValue(HORIZONTAL_FACING);
         if (totemPolePositions.isEmpty()) {
             this.direction = direction;
@@ -180,7 +180,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (pole.isSoulwood == isSoulwood && direction.equals(this.direction)) {
             if (pole.spirit != null) {
                 totemPolePositions.add(pole.getBlockPos());
-                pole.riteStarting(this, totemPolePositions.size());
+                pole.riteStarting(level,this, totemPolePositions.size());
             }
         }
         BlockStateHelper.updateState(level, worldPosition);
