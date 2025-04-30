@@ -23,18 +23,6 @@ public class ShakenFaithParticleEffect extends MalumNetworkedWeaponParticleEffec
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        final Vec3 pos = positionData.getAsVector();
-        for (int i = 0; i < 6; i++) {
-            var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
-            slash.getBuilder()
-                    .setSpinData(SpinParticleData.createRandomDirection(random, 0.15f - i * 0.025f, 0.02f).setSpinOffset(extraData.getSlashRotation()).build())
-                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 0.5f, 1.5f)+i*0.25f, 0).build())
-                    .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(extraData.getDirection()))
-                    .setLifetime(RandomHelper.randomBetween(random, 8, 12))
-                    .setLifeDelay(i/2);
-            slash.spawnParticles();
-            slash.getBuilder().setBehavior(BillboardParticleBehavior.INSTANCE);
-            slash.spawnParticles();
-        }
+        GeasParticleEffects.shakenFaithDamageEffect(level, random, positionData, colorData, extraData);
     }
 }

@@ -33,7 +33,10 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
                             var newState = block.defaultBlockState();
                             level.setBlockAndUpdate(p, newState);
                             level.levelEvent(2001, p, Block.getId(newState));
-                            ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p), new MalumNetworkedParticleEffectColorData(INFERNAL_SPIRIT));
+                            ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                    .createEffect(p)
+                                    .color(INFERNAL_SPIRIT)
+                                    .spawn(level);
                         }
                     }
                 });
@@ -48,7 +51,10 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyBlocks(totemBase, AbstractFurnaceBlock.class).forEach(p -> {
                     if (level.getBlockEntity(p) instanceof AbstractFurnaceBlockEntity furnace) {
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(furnace.getBlockPos()), new MalumNetworkedParticleEffectColorData(INFERNAL_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                .createEffect(p)
+                                .color(INFERNAL_SPIRIT)
+                                .spawn(level);
                         furnace.cookingProgress = Math.min(furnace.cookingProgress + 20, furnace.cookingTotalTime - 1);
                     }
                 });

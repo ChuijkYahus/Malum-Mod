@@ -40,7 +40,10 @@ public class SacredRiteType extends TotemicRiteType {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Monster)).forEach(e -> {
                     if (e.getHealth() < e.getMaxHealth()) {
                         e.heal(2);
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(SACRED_SPIRIT));
+                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                .createEffect(e)
+                                .color(SACRED_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }
@@ -57,14 +60,17 @@ public class SacredRiteType extends TotemicRiteType {
                     if (e instanceof Animal animal) {
                         if (animal.getAge() < 0) {
                             if (totemBase.getLevel().random.nextFloat() <= 0.04f) {
-                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(SACRED_SPIRIT));
+                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                        .createEffect(e)
+                                        .color(SACRED_SPIRIT)
+                                        .spawn(level);
                                 animal.ageUp(25);
                             }
                         }
                     }
                     if (NOURISHMENT_RITE_ACTORS.containsKey(e.getClass())) {
                         NourishmentRiteActor<? extends Mob> nourishmentRiteActor = NOURISHMENT_RITE_ACTORS.get(e.getClass());
-                        nourishmentRiteActor.tryAct(totemBase, e);
+                        nourishmentRiteActor.tryAct(level, totemBase, e);
                     }
                 });
             }
@@ -125,10 +131,13 @@ public class SacredRiteType extends TotemicRiteType {
         }
 
         @SuppressWarnings("unchecked")
-        public final void tryAct(TotemBaseBlockEntity totemBaseBlockEntity, Mob mob) {
+        public final void tryAct(ServerLevel level, TotemBaseBlockEntity totemBaseBlockEntity, Mob mob) {
             if (targetClass.isInstance(mob)) {
                 act(totemBaseBlockEntity, (T) mob);
-                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(mob, new MalumNetworkedParticleEffectColorData(SACRED_SPIRIT));
+                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                        .createEffect(mob)
+                        .color(SACRED_SPIRIT)
+                        .spawn(level);
             }
         }
 

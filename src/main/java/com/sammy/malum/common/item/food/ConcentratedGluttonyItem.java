@@ -69,6 +69,8 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, float potency) {
         var position = target.position().add(0, target.getBbHeight() / 2f, 0);
-        ParticleEffectTypeRegistry.GLUTTONY_ABSORB.createPositionedEffect(serverLevel, new NetworkedParticleEffectPositionData(position), AbsorbGluttonyParticleEffect.createData(potency));
+        ParticleEffectTypeRegistry.GLUTTONY_ABSORB.createEffect(position)
+                .customData(new AbsorbGluttonyParticleEffect.AbsorbGluttonyEffectData(potency))
+                .spawn(serverLevel);
     }
 }

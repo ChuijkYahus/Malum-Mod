@@ -6,6 +6,7 @@ import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.*;
 import net.minecraft.util.*;
@@ -54,21 +55,22 @@ public class AscensionHandler {
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
             var aabb = player.getBoundingBox().inflate(4, 1f, 4);
             var sound = SoundRegistry.SCYTHE_SWEEP.get();
-            var particleEffect = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SCYTHE_ASCENSION_SPIN).mirrorRandomly(random);
+            var particle = ParticleEffectTypeRegistry.SCYTHE_ASCENSION_SPIN.createEffect(player)
+                    .mirroredRandomly(random);
+
             if (isEnhanced) {
                 baseDamage *= 1.3f;
                 magicDamage *= 1.3f;
                 aabb = aabb.move(player.getLookAngle().scale(2f)).inflate(-2f, 1f, -2f);
                 sound = SoundRegistry.SCYTHE_CUT.get();
-                particleEffect = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SCYTHE_ASCENSION_UPPERCUT).setVerticalSlashAngle().setMirrored(true);
+                particle = ParticleEffectTypeRegistry.SCYTHE_ASCENSION_UPPERCUT.createEffect().verticalSlashRotation().mirroredRandomly(random).mirrored();
             }
             if (hasFunnyRing) {
                 baseDamage *= 0.5f;
                 magicDamage *= 0.5f;
             }
-            if (scythe.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-                particleEffect.setColor(spiritAffiliatedItem);
-            }
+            particle.color(scythe.getItem());
+
             boolean dealtDamage = false;
             for (Entity target : serverLevel.getEntities(player, aabb, t -> ascensionCanHitEntity(player, t))) {
                 var damageSource = DamageTypeHelper.create(serverLevel, DamageTypeRegistry.SCYTHE_ASCENSION, player);
@@ -93,7 +95,7 @@ public class AscensionHandler {
             }
             var slashPosition = player.position().add(0, player.getBbHeight() * 0.75, 0);
             var slashDirection = player.getLookAngle().multiply(1, 0, 1);
-            particleEffect.spawnSlashingParticle(serverLevel, slashPosition, slashDirection);
+            particle.at(slashPosition).aimedAt(slashDirection).spawn(serverLevel);
             for (int i = 0; i < 3; i++) {
                 SoundHelper.playSound(player, sound, 1f, RandomHelper.randomBetween(random, 1.25f, 1.75f));
             }

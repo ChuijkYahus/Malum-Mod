@@ -88,7 +88,7 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
 
     public static void createBlightVFX(ServerLevel level, LodestoneBlockFiller filler) {
         filler.getLayer(BLIGHT).entrySet().stream().filter(e -> e.getValue().getState().getBlock() instanceof BlightedSoilBlock).map(Map.Entry::getKey)
-                .forEach(p -> ParticleEffectTypeRegistry.BLIGHTING_MIST.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p)));
+                .forEach(p -> ParticleEffectTypeRegistry.BLIGHTING_MIST.createEffect(p).spawn(level));
     }
     private static final PerlinSimplexNoise COVERING_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
 

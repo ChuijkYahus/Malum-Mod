@@ -22,10 +22,9 @@ public class SuspiciousDeviceTriggerWorldEvent extends ActiveBlightWorldEvent {
         final RandomSource random = level.random;
         level.playSound(null, position, SoundRegistry.SUSPICIOUS_DEVICE_DETONATES_AGAIN.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
         final Vec3 center = position.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET);
-        ParticleEffectTypeRegistry.ETHERIC_NITRATE_IMPACT.createPositionedEffect(level,
-                new NetworkedParticleEffectPositionData(center),
-                new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT));
-
+        ParticleEffectTypeRegistry.ETHERIC_NITRATE_IMPACT.createEffect(center)
+                .color(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT)
+                .spawn(level);
         if (level.getBlockEntity(position) instanceof SpiritCrucibleCoreBlockEntity crucible) {
             crucible.destroyMultiblock(null, level, position);
             level.destroyBlock(position, false);

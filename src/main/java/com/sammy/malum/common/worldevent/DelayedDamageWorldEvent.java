@@ -19,6 +19,7 @@ import team.lodestar.lodestone.systems.worldevent.*;
 import javax.annotation.*;
 import java.util.*;
 
+@SuppressWarnings("rawtypes")
 public class DelayedDamageWorldEvent extends WorldEventInstance {
 
     protected ResourceKey<DamageType> physicalDamageType = DamageTypes.PLAYER_ATTACK;
@@ -37,7 +38,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
     protected float minVolume;
     protected float maxVolume;
 
-    protected NetworkedParticleEffectType<?> particleEffect;
+    protected NetworkedParticleEffectType particleEffect;
     protected MalumNetworkedParticleEffectColorData particleColor;
     protected NetworkedParticleEffectExtraData nbtData;
 

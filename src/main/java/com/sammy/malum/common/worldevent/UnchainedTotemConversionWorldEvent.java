@@ -38,16 +38,16 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
         int offset = transformedTotemParts;
         BlockPos totemPos = position.above(offset);
         if (level.getBlockEntity(totemPos) instanceof TotemPoleBlockEntity totemPoleTile) {
-            placeTotemPole(totemPos, totemPoleTile.spirit);
+            placeTotemPole(level, totemPos, totemPoleTile.spirit);
         }
         transformedTotemParts++;
     }
 
-    public void placeTotemPole(BlockPos pos, MalumSpiritType spiritType) {
+    public void placeTotemPole(ServerLevel level, BlockPos pos, MalumSpiritType spiritType) {
         BlockState totemPoleState = BlockStateHelper.setBlockStateWithExistingProperties(level, pos, SOULWOOD_TOTEM_POLE.get().defaultBlockState(), 3);
         TotemPoleBlockEntity totemPole = new TotemPoleBlockEntity(pos, totemPoleState);
         totemPole.setLevel(level);
-        totemPole.setSpirit(spiritType);
+        totemPole.setSpirit(level, spiritType);
         level.setBlockEntity(totemPole);
         placeBlock(pos, totemPoleState);
         maybePlaceBlightedGunk(pos, totemPoleState);

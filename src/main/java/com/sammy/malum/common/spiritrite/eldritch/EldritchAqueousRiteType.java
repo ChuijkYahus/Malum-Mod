@@ -25,7 +25,10 @@ public class EldritchAqueousRiteType extends TotemicRiteType {
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyBlocks(totemBase, PointedDripstoneBlock.class).forEach(p -> {
                     if (level.random.nextFloat() < 0.1f) {
-                        ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p), new MalumNetworkedParticleEffectColorData(AQUEOUS_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT
+                                .createEffect(p)
+                                .color(AQUEOUS_SPIRIT)
+                                .spawn(level);
                         for (int i = 0; i < 4 + level.random.nextInt(2); i++) {
                             level.getBlockState(p).randomTick(level, p, level.random);
                         }
@@ -53,7 +56,10 @@ public class EldritchAqueousRiteType extends TotemicRiteType {
                 getNearbyEntities(totemBase, Zombie.class).filter(z -> !(z instanceof Drowned)).forEach(e -> {
                     if (!e.isUnderWaterConverting()) {
                         e.startUnderWaterConversion(100);
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(AQUEOUS_SPIRIT));
+                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                .createEffect(e)
+                                .color(AQUEOUS_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }

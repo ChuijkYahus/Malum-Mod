@@ -25,7 +25,10 @@ public class EldritchEarthenRiteType extends TotemicRiteType {
                     boolean canBreak = !state.isAir() && state.getDestroySpeed(level, p) != -1;
                     if (canBreak) {
                         level.destroyBlock(p, true);
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p), new MalumNetworkedParticleEffectColorData(EARTHEN_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                .createEffect(p)
+                                .color(EARTHEN_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }
@@ -45,7 +48,10 @@ public class EldritchEarthenRiteType extends TotemicRiteType {
                         BlockState cobblestone = Blocks.COBBLESTONE.defaultBlockState();
                         level.setBlockAndUpdate(p, cobblestone);
                         level.levelEvent(2001, p, Block.getId(cobblestone));
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p), new MalumNetworkedParticleEffectColorData(EARTHEN_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                .createEffect(p)
+                                .color(EARTHEN_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }

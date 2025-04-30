@@ -38,7 +38,11 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                         var state = level.getBlockState(p);
                         if (!state.isAir() && level.getBlockEntity(p) == null && canSilkTouch(level, pos, state)) {
                             FallingBlockEntity.fall(level, p, state);
-                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(p), new MalumNetworkedParticleEffectColorData(AERIAL_SPIRIT));
+
+                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT
+                                    .createEffect(p)
+                                    .color(AERIAL_SPIRIT)
+                                    .spawn(level);
                             level.playSound(null, p, SoundRegistry.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
                         }
                     }
@@ -57,7 +61,10 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                     Stat<ResourceLocation> sleepStat = Stats.CUSTOM.get(Stats.TIME_SINCE_REST);
                     int value = stats.getValue(sleepStat);
                     stats.setValue(p, sleepStat, Math.max(0, value - 1000));
-                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(p, new MalumNetworkedParticleEffectColorData(AERIAL_SPIRIT));
+                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                            .createEffect(p)
+                            .color(AERIAL_SPIRIT)
+                            .spawn(level);
                 });
             }
         };

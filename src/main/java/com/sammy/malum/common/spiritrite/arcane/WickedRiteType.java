@@ -30,7 +30,10 @@ public class WickedRiteType extends TotemicRiteType {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Player)).forEach(e -> {
                     final DamageSource damageSource = DamageTypeHelper.create(e.level(), DamageTypeRegistry.VOODOO_PLAYERLESS);
                     if (e.getHealth() > 2.5f && !e.isInvulnerableTo(damageSource)) {
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(WICKED_SPIRIT));
+                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                .createEffect(e)
+                                .color(WICKED_SPIRIT)
+                                .spawn(level);
                         e.hurt(damageSource, 2);
                     }
                 });
@@ -48,7 +51,10 @@ public class WickedRiteType extends TotemicRiteType {
                     final boolean hadNoEffect = !e.hasEffect(MobEffects.DAMAGE_BOOST);
                     final boolean success = e.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 1));
                     if (hadNoEffect && success) {
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(WICKED_SPIRIT));
+                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                .createEffect(e)
+                                .color(WICKED_SPIRIT)
+                                .spawn(level);
                     }
                     e.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
                     e.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));

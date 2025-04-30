@@ -74,7 +74,11 @@ public class EldritchSacredRiteType extends TotemicRiteType {
                         if (e.canFallInLove() && e.getAge() == 0) {
                             if (level.random.nextFloat() <= 0.2f) {
                                 e.setInLoveTime(600);
-                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new MalumNetworkedParticleEffectColorData(SACRED_SPIRIT));
+
+                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                        .createEffect(e)
+                                        .color(SACRED_SPIRIT)
+                                        .spawn(level);
                             }
                         }
                     });
