@@ -10,6 +10,7 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
+import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.*;
@@ -88,12 +89,15 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         }
         if (canTriggerMagic) {
             for (int i = 0; i < 3; i++) {
-                var particle = ParticleHelper.createSlamEffect(ParticleEffectTypeRegistry.STAFF_SLAM)
-                        .setColor(getDefiningSpiritType())
-                        .setPositionOffset(RandomHelper.randomBetween(random, 0.3f, 0.8f) * (random.nextBoolean() ? 1 : -1))
-                        .setDirectionOffset(RandomHelper.randomBetween(random, -0.4f, 0.4f), random.nextFloat() * 6.28f)
-                        .setRandomSlashAngle(random);
-                particle.spawnTargetBoundSlashingParticle(attacker, target);
+                ParticleEffectTypeRegistry.STAFF_SLAM.createEffect()
+                        .originatesFrom(attacker)
+                        .targets(target)
+                        .randomOffset(random, 0.3f, 0.8f * (random.nextBoolean() ? 1 : -1))
+                        .deviation(0.4f)
+                        .randomDeviationAngle(random)
+                        .color(stack.getItem())
+                        .spawn(serverLevel);
+
             }
             float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
             SoundHelper.playSound(attacker, SoundRegistry.WORLDSOUL_MOTIF_HEAVY_IMPACT.get(), 2f, pitch);
@@ -135,10 +139,10 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
         float pitch = RandomHelper.randomBetween(attacker.getRandom(), 0.75f, 1.25f);
         SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
-        ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createPositionedEffect(serverLevel,
-                new NetworkedParticleEffectPositionData(target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ()),
-                new MalumNetworkedParticleEffectColorData(getDefiningSpiritType(), getDefiningSpiritType()),
-                WyrdReconstructionReviveParticleEffect.createData(attacker));
+        ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createEffect(target)
+                .color(getDefiningSpiritType())
+                .customData(new UnwindingChaosChargeParticleEffect.UnwindingChaosChargeEffectData(attacker.getId()))
+                .spawn(serverLevel);
     }
 
     @OnlyIn(Dist.CLIENT)

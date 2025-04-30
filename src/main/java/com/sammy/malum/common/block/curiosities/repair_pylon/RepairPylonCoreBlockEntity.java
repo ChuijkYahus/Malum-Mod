@@ -169,7 +169,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     @Override
     public void tick() {
         super.tick();
-        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.nonEmptyItemStacks.size()+1));
+        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.nonEmptyItemStacks.size() + 1));
         if (level.isClientSide) {
             spiritSpin++;
             if (state.equals(RepairPylonState.COOLDOWN) && timer < 1200) {
@@ -178,7 +178,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
             var blockEntity = repairablePosition != null ? Optional.ofNullable(level.getBlockEntity(repairablePosition)).map(b -> b instanceof IMalumSpecialItemAccessPoint accessPoint ? accessPoint : null).orElse(null) : null;
             RepairPylonParticleEffects.passiveRepairPylonParticles(this, blockEntity);
         }
-        else {
+        if (level instanceof ServerLevel serverLevel) {
             if (!state.equals(RepairPylonState.IDLE) && !state.equals(RepairPylonState.COOLDOWN)) {
                 if (recipe == null) {
                     setState(RepairPylonState.IDLE);
@@ -197,8 +197,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                         boolean success = tryRepair();
                         if (success) {
                             setState(RepairPylonState.CHARGING);
-                        }
-                        else {
+                        } else {
                             timer = 0;
                         }
                     }
@@ -214,7 +213,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        prepareRepair(provider);
+                        prepareRepair(serverLevel, provider);
                     }
                 }
                 case REPAIRING -> {
@@ -228,7 +227,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        repairItem(provider);
+                        repairItem(serverLevel, provider);
                     }
                 }
                 case COOLDOWN -> {
@@ -264,19 +263,17 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     }
 
 
-    public void prepareRepair(IMalumSpecialItemAccessPoint provider) {
-        if (!(getLevel() instanceof ServerLevel serverLevel)) {
-            return;
-        }
-        ParticleEffectTypeRegistry.REPAIR_PYLON_PREPARES.createPositionedEffect(serverLevel,
-                new NetworkedParticleEffectPositionData(worldPosition),
-                MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits),
-                PylonPrepareRepairParticleEffect.createData(provider.getAccessPointBlockPos()));
+    public void prepareRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
+        ParticleEffectTypeRegistry.REPAIR_PYLON_PREPARES
+                .createEffect(worldPosition)
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
+                .spawn(level);
         level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
         setState(RepairPylonState.REPAIRING);
     }
 
-    public void repairItem(IMalumSpecialItemAccessPoint provider) {
+    public void repairItem(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
         var suppliedInventory = provider.getSuppliedInventory();
         var repairTarget = suppliedInventory.getStackInSlot(0);
         var repairMaterial = inventory.getStackInSlot(0);
@@ -293,7 +290,11 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         var result = recipe.getResultItem(repairTarget);
         suppliedInventory.setStackInSlot(0, result);
         level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
-        ParticleEffectTypeRegistry.REPAIR_PYLON_REPAIRS.createPositionedEffect((ServerLevel) level, new NetworkedParticleEffectPositionData(worldPosition), MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits), PylonPrepareRepairParticleEffect.createData(provider.getAccessPointBlockPos()));
+        ParticleEffectTypeRegistry.REPAIR_PYLON_REPAIRS
+                .createEffect(worldPosition)
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
+                .spawn(level);
         setState(RepairPylonState.COOLDOWN);
     }
 

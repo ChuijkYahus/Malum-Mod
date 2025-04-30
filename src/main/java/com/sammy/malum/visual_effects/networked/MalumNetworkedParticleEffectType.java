@@ -1,5 +1,6 @@
 package com.sammy.malum.visual_effects.networked;
 
+import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
@@ -7,6 +8,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
@@ -60,8 +62,16 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
     }
 
     public static class MalumParticleEffectBuilder<T extends NetworkedParticleEffectExtraData> extends ParticleEffectBuilder<T> {
+
         public MalumParticleEffectBuilder(NetworkedParticleEffectType<T> type) {
             super(type);
+        }
+
+        public MalumParticleEffectBuilder<T> color(Item item) {
+            if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
+                return color(new MalumNetworkedParticleEffectColorData(spiritAffiliatedItem.getDefiningSpiritType()));
+            }
+            return this;
         }
 
         public MalumParticleEffectBuilder<T> color(MalumSpiritType... spiritTypes) {

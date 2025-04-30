@@ -31,6 +31,11 @@ public class AbsorbGluttonyParticleEffect extends MalumNetworkedParticleEffectTy
     }
 
     @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectColorData>> getColorCodec() {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
         return Optional.of(AbsorbGluttonyEffectData.STREAM_CODEC);
     }

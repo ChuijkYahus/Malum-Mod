@@ -106,35 +106,40 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        DamageSource source = event.getSource();
-        Level level = attacker.level();
-        RandomSource random = level.random;
+        if (attacker.level() instanceof ServerLevel level) {
+            var source = event.getSource();
+            var random = level.random;
 
-        if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
-            applyHatred(target);
-        }
-        if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
-            int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
-            float splitDamage = event.getNewDamage() / slashCount;
-            if (target.isAlive()) {
-                for (int i = 0; i < slashCount; i++) {
-                    WorldEventHandler.addWorldEvent(level,
-                            new DelayedDamageWorldEvent(target)
-                                    .setAttacker(attacker)
-                                    .setDamageData(0, splitDamage, i * 2)
-                                    .setPhysicalDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO)
-                                    .setMagicDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO)
-                                    .setSound(SoundRegistry.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
-                }
+            if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
+                applyHatred(target);
             }
-            event.setNewDamage(splitDamage);
-            float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
-            SoundHelper.playSound(attacker, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
-            var particle = ParticleHelper.createEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SLASH, (d, b) -> SunderingAnchorSlashParticleEffect.createData(d, b.isMirrored, b.slashAngle, slashCount))
-                    .setColor(new MalumNetworkedParticleEffectColorData(SPIRITS))
-                    .setPositionOffset(RandomHelper.randomBetween(random, 0.2f, 0.6f) * (random.nextBoolean() ? 1 : -1))
-                    .setRandomSlashAngle(random);
-            particle.spawnTargetBoundSlashingParticle(attacker, target);
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+                int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
+                float splitDamage = event.getNewDamage() / slashCount;
+                if (target.isAlive()) {
+                    for (int i = 0; i < slashCount; i++) {
+                        WorldEventHandler.addWorldEvent(level,
+                                new DelayedDamageWorldEvent(target)
+                                        .setAttacker(attacker)
+                                        .setDamageData(0, splitDamage, i * 2)
+                                        .setPhysicalDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO)
+                                        .setMagicDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO)
+                                        .setSound(SoundRegistry.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
+                    }
+                }
+                event.setNewDamage(splitDamage);
+                float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
+                SoundHelper.playSound(attacker, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+
+                ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SLASH.createEffect()
+                        .originatesFrom(attacker)
+                        .targets(target)
+                        .randomOffset(random, 0.2f, 0.6f * (random.nextBoolean() ? 1 : -1))
+                        .color(SPIRITS)
+                        .customData(new SunderingAnchorSlashParticleEffect.SunderingAnchorSlashEffectData(slashCount))
+                        .randomSlashRotation(random)
+                        .spawn(level);
+            }
         }
     }
 

@@ -270,7 +270,10 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             progress = 0;
         }
 
-        ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createPositionedEffect(level, new NetworkedParticleEffectPositionData(worldPosition), MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits));
+        ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createEffect(worldPosition)
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .spawn(level);
+
         level.playSound(null, worldPosition, SoundRegistry.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
         while (fortuneChance > 0) {

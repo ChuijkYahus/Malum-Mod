@@ -1,5 +1,6 @@
 package com.sammy.malum.visual_effects.networked;
 
+import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
@@ -8,6 +9,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.systems.network.*;
@@ -64,6 +66,13 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
     public static class MalumWeaponParticleEffectBuilder<T extends WeaponParticleEffectData> extends WeaponParticleEffectType.WeaponParticleEffectBuilder<T> {
         public MalumWeaponParticleEffectBuilder(WeaponParticleEffectType<T> type) {
             super(type);
+        }
+
+        public MalumWeaponParticleEffectBuilder<T> color(Item item) {
+            if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
+                return color(new MalumNetworkedParticleEffectColorData(spiritAffiliatedItem.getDefiningSpiritType()));
+            }
+            return this;
         }
 
         public MalumWeaponParticleEffectBuilder<T> color(MalumSpiritType... spiritTypes) {
@@ -149,13 +158,28 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
         }
 
         @Override
+        public MalumWeaponParticleEffectBuilder<T> randomOffset(RandomSource random, float min, float max) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.randomOffset(random, min, max);
+        }
+
+        @Override
         public MalumWeaponParticleEffectBuilder<T> absoluteOffset(Vec3 absoluteOffset) {
             return (MalumWeaponParticleEffectBuilder<T>)super.absoluteOffset(absoluteOffset);
         }
 
         @Override
-        public MalumWeaponParticleEffectBuilder<T> deviation(float deviation, float deviationAngle) {
-            return (MalumWeaponParticleEffectBuilder<T>)super.deviation(deviation, deviationAngle);
+        public MalumWeaponParticleEffectBuilder<T> deviation(float horizontalDeviation, float verticalDeviation, float deviationAngle) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.deviation(horizontalDeviation, verticalDeviation, deviationAngle);
+        }
+
+        @Override
+        public MalumWeaponParticleEffectBuilder<T> deviation(float horizontalDeviation, float verticalDeviation) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.deviation(horizontalDeviation, verticalDeviation);
+        }
+
+        @Override
+        public MalumWeaponParticleEffectBuilder<T> deviation(float deviation) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.deviation(deviation);
         }
 
         @Override
@@ -166,6 +190,11 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
         @Override
         public MalumWeaponParticleEffectBuilder<T> verticalDeviation(float verticalDeviation) {
             return (MalumWeaponParticleEffectBuilder<T>)super.verticalDeviation(verticalDeviation);
+        }
+
+        @Override
+        public MalumWeaponParticleEffectBuilder<T> randomDeviationAngle(RandomSource random) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.randomDeviationAngle(random);
         }
 
         @Override
@@ -211,6 +240,11 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
         @Override
         public MalumWeaponParticleEffectBuilder<T> color(List<ColorParticleData> colors) {
             return (MalumWeaponParticleEffectBuilder<T>)super.color(colors);
+        }
+
+        @Override
+        public MalumWeaponParticleEffectBuilder<T> customData(T extra) {
+            return (MalumWeaponParticleEffectBuilder<T>) super.customData(extra);
         }
 
         @Override

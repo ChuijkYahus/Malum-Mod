@@ -39,6 +39,10 @@ public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponPart
             super(direction, isMirrored, slashRotation);
             this.slashCount = slashCount;
         }
+        public SunderingAnchorSlashEffectData(int slashCount) {
+            super(Vec3.ZERO, false, 0);
+            this.slashCount = slashCount;
+        }
 
         public int slashCount() {
             return slashCount;

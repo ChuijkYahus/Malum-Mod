@@ -141,6 +141,5 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         entity.setDeltaMovement(0, 0.65f, 0.15f);
         level.addFreshEntity(entity);
         level.playSound(null, worldPosition, sound, SoundSource.HOSTILE, 2f, pitch);
-        return outputStack.getItem();
     }
 }

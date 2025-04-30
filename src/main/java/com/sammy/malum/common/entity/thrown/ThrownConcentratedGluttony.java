@@ -129,7 +129,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
         setNoGravity(true);
         level.levelEvent(2002, blockPosition(), MobEffectRegistry.GLUTTONY.get().getColor());
         level.playSound(null, blockPosition(), SoundRegistry.CONCENTRATED_GLUTTONY_DRINK.get(), SoundSource.PLAYERS, 0.5f, 1.25f + level.random.nextFloat() * 0.25f);
-        ParticleEffectTypeRegistry.THROWN_GLUTTONY_IMPACT.createPositionedEffect(level, new NetworkedParticleEffectPositionData(position()));
+        ParticleEffectTypeRegistry.THROWN_GLUTTONY_IMPACT.createEffect(position()).spawn(level);
         applyGluttony(level, impactedEntity);
         super.onHit(pResult);
     }
