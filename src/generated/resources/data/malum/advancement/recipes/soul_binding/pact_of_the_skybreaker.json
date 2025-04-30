@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:pact_of_the_earth_breaker"
+        "recipe": "malum:pact_of_the_skybreaker"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:pact_of_the_earth_breaker"
+      "malum:pact_of_the_skybreaker"
     ]
   }
 }

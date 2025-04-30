@@ -117,6 +117,8 @@ public class GeasParticleEffects {
 
 
     public static void shakenFaithDamageEffect(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
+
+        //TODO: redo this effect
         var pos = positionData.getAsVector();
         var direction = extraData.getDirection();
         var spinOffset = extraData.getSlashRotation();

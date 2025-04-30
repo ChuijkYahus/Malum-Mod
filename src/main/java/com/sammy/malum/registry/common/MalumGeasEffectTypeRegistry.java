@@ -48,10 +48,10 @@ public class MalumGeasEffectTypeRegistry {
     public static final DeferredHolder<GeasEffectType, GeasEffectType> AQUEOUS_3 = GEAS_TYPES.register("aqueous_3", () -> new GeasEffectType(Aqueous3Geas::new, AQUEOUS_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> AQUEOUS_4 = GEAS_TYPES.register("aqueous_4", () -> new GeasEffectType(Aqueous4Geas::new, AQUEOUS_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, EARTHEN_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, ARCANE_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_CONTINUING_SHOT = GEAS_TYPES.register("pact_of_the_continuing_shot", () -> new GeasEffectType(ContinuingShotGeas::new, AERIAL_SPIRIT, INFERNAL_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_CLOUDSKIPPER = GEAS_TYPES.register("pact_of_the_cloudskipper", () -> new GeasEffectType(CloudSkipperGeas::new, AERIAL_SPIRIT, SACRED_SPIRIT));
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SKYBREAKER = GEAS_TYPES.register("pact_of_the_skybreaker", () -> new GeasEffectType(SkyBreakerGeas::new, EARTHEN_SPIRIT, AERIAL_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_SKYBREAKER = GEAS_TYPES.register("pact_of_the_skybreaker", () -> new GeasEffectType(SkyBreakerGeas::new, AERIAL_SPIRIT, EARTHEN_SPIRIT));
 
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_CONTENTEDNESS = GEAS_TYPES.register("pact_of_contentedness", () -> new GeasEffectType(ContentednessGeas::new, EARTHEN_SPIRIT, SACRED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_LONE_DRUID = GEAS_TYPES.register("pact_of_the_lone_druid", () -> new GeasEffectType(LoneDruidGeas::new, EARTHEN_SPIRIT, ARCANE_SPIRIT));

@@ -130,11 +130,11 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                 event.setNewDamage(splitDamage);
                 float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
                 SoundHelper.playSound(attacker, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
-
                 ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)
-                        .targets(target)
-                        .randomOffset(random, 0.2f, 0.6f * (random.nextBoolean() ? 1 : -1))
+                        .forwardOffset(1.5f)
+                        .horizontalOffset(0.3f)
+                        .upwardOffset(-0.2f)
                         .color(SPIRITS)
                         .customData(new SunderingAnchorSlashParticleEffect.SunderingAnchorSlashEffectData(slashCount))
                         .randomSlashRotation(random)

@@ -25,7 +25,7 @@ public class ScytheSlashParticleEffect extends MalumNetworkedWeaponParticleEffec
         var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
         var direction = extraData.getDirection();
         slash.getBuilder()
-                .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()).build())
+                .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
                 .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2f, 3f)).build())
                 .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.4f)))
                 .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));

@@ -21,6 +21,8 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
+import java.util.*;
+
 public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<SunderingAnchorSlashParticleEffect.SunderingAnchorSlashEffectData> {
 
     public static class SunderingAnchorSlashEffectData extends WeaponParticleEffectData {
@@ -47,22 +49,31 @@ public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponPart
         public int slashCount() {
             return slashCount;
         }
+
+        @Override
+        public WeaponParticleEffectData modify(Vec3 direction, boolean isMirrored, float slashRotation) {
+            return new SunderingAnchorSlashEffectData(direction, isMirrored, slashRotation, slashCount);
+        }
     }
 
     public SunderingAnchorSlashParticleEffect(String id) {
         super(id);
     }
 
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(SunderingAnchorSlashEffectData.STREAM_CODEC);
+    }
+
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, SunderingAnchorSlashEffectData extraData) {
         int slashCount = extraData.slashCount;
-
         for (int i = 0; i < slashCount; i++) {
             float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -3.14f, 3.14f) + (extraData.isMirrored() ? 3.14f : 0);
             var direction = extraData.getDirection();
             for (int j = 0; j < 2; j++) {
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.THIN_SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
                 int lifeDelay = (i+j) * 2;
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
