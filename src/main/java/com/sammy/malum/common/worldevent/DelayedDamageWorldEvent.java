@@ -114,6 +114,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void tick(Level level) {
         if (delay > 0) {

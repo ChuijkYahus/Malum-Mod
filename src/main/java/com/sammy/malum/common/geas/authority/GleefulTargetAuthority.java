@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas.oath;
+package com.sammy.malum.common.geas.authority;
 
 import com.google.common.collect.*;
 import com.sammy.malum.common.packets.geas.*;
@@ -20,12 +20,12 @@ import net.neoforged.neoforge.network.*;
 
 import java.util.function.*;
 
-public class GleefulTargetOath extends GeasEffect {
+public class GleefulTargetAuthority extends GeasEffect {
 
     public int lionsHeartDuration;
 
-    public GleefulTargetOath() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get());
+    public GleefulTargetAuthority() {
+        super(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET.get());
     }
 
     @Override
@@ -61,8 +61,8 @@ public class GleefulTargetOath extends GeasEffect {
     }
 
     public static boolean pausePotionEffects(LivingEntity entity, MobEffectInstance instance) {
-        var geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET);
-        if (geasEffect instanceof GleefulTargetOath effect) {
+        var geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET);
+        if (geasEffect instanceof GleefulTargetAuthority effect) {
             if (effect.lionsHeartDuration > 0) {
                 final MobEffect type = instance.getEffect().value();
                 return !type.isInstantenous();

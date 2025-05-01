@@ -102,6 +102,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(SoundRegistry.SUNDERING_ANCHOR_THROW, s -> definition(s).with(sounds("curiosities/weapons/scythe/throw", 3)));
         this.add(SoundRegistry.SUNDERING_ANCHOR_CATCH, s -> definition(s).with(sounds("curiosities/weapons/scythe/catch", 2)));
 
+        this.add(SoundRegistry.WARLOCK_BLAST, s -> definition(s).with(sounds("curiosities/geas/warlock_impact", 2)));
         this.add(SoundRegistry.INVERTED_HEART_IMPACT, s -> definition(s).with(sounds("curiosities/geas/soulwashing_impact", 6)));
         this.add(SoundRegistry.WYRD_RECONSTRUCTION, s -> definition(s).with(sounds("curiosities/geas/wyrd_reconstruction", 2)));
         this.add(SoundRegistry.DESPERATE_NEED_WITHDRAWAL, s -> definition(s).with(sounds("curiosities/weapons/scythe/sweep", 7)));

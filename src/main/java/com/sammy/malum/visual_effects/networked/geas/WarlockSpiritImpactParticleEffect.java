@@ -8,9 +8,9 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class WarlockBlastParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectData> {
+public class WarlockSpiritImpactParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectData> {
 
-    public WarlockBlastParticleEffect(String id) {
+    public WarlockSpiritImpactParticleEffect(String id) {
         super(id);
     }
 

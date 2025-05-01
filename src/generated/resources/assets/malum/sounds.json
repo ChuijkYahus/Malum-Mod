@@ -2073,6 +2073,13 @@
     ],
     "subtitle": "malum.subtitle.weight_of_worlds_cuts"
   },
+  "wicked_energy_bursts_forward": {
+    "sounds": [
+      "malum:curiosities/geas/warlock_impact1",
+      "malum:curiosities/geas/warlock_impact2"
+    ],
+    "subtitle": "malum.subtitle.wicked_energy_bursts_forward"
+  },
   "wyrd_reconstruction_reconstructs_body": {
     "sounds": [
       "malum:curiosities/geas/wyrd_reconstruction1",

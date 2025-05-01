@@ -28,12 +28,12 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
 
         tag(LodestoneDamageTypeTags.IS_MAGIC).add(
                 DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC,
-                DamageTypeRegistry.TYRVING,
-                DamageTypeRegistry.INVERTED_HEART_PROPAGATION, DamageTypeRegistry.INVERTED_HEART_RETALIATION);
+                DamageTypeRegistry.TYRVING, DamageTypeRegistry.WARLOCK_GEAS)
+                .addTag(DamageTypeTagRegistry.IS_INVERTED_HEART);
 
         tag(DamageTypeTagRegistry.SOUL_SHATTER_DAMAGE)
                 .addTags(DamageTypeTagRegistry.IS_SCYTHE, DamageTypeTagRegistry.IS_NITRATE, DamageTypeTagRegistry.IS_SUNDERING_ANCHOR_COMBO, DamageTypeTagRegistry.IS_INVERTED_HEART)
-                .add(DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.TYRVING);
+                .add(DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.TYRVING, DamageTypeRegistry.WARLOCK_GEAS);
 
         tag(DamageTypeTagRegistry.IS_SCYTHE)
                 .addTags(DamageTypeTagRegistry.IS_SCYTHE_MELEE, DamageTypeTagRegistry.IS_HIDDEN_BLADE)

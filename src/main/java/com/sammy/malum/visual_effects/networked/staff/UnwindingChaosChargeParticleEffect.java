@@ -64,16 +64,6 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
             Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
             Vec3 up = left.cross(direction);
 
-            for (int i = 0; i < 16; i++) {
-                var color = colorData.getColor();
-                float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
-                float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-                float distance = -RandomHelper.randomBetween(random, 4f, 6f);
-                float angle = i / 16f * (float) Math.PI * 2f;
-            }
-
-
-
             Consumer<LodestoneWorldParticle> behavior = p -> {
                 Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
                 if (offset.length() == 0) {

@@ -138,11 +138,10 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Give yourself to others");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
@@ -162,6 +161,8 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
@@ -178,8 +179,8 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
+        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
+        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
 
@@ -294,6 +295,8 @@ public class MalumLang extends LanguageProvider {
 
         addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
         addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
+        addGeasEffect("healing_aura", "Healing is Shared with Nearby Creatures");
+        addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
         addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
         addGeasEffect("aggressive_enemies", "Increases Enemy Aggression");
         addGeasEffect("chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
@@ -350,9 +353,6 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
         addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Struck");
         addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
-        addGeasEffect("last_stand", "Expiration, Demise, Entropy Is Made Lenient");
-        addGeasEffect("last_stand_arcane_resonance", "Arcane Resonance Aids Leniency");
-        addGeasEffect("last_stand_patient_death", "Death Comes For Us All... Unless");
 
         add("malum.effect.soul_based_damage", "Deals Soul-Rending Damage");
         add("malum.effect.weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
@@ -429,6 +429,8 @@ public class MalumLang extends LanguageProvider {
 
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
+
+        addDeathMessage(DamageTypeRegistry.WARLOCK_GEAS, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
 
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");

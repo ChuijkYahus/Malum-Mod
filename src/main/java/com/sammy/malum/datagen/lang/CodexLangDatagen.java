@@ -896,10 +896,17 @@ public class CodexLangDatagen {
                 """
                         A surplus of confidence imbued onto the mind, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
-                "Your fragility is still very much real. \n -Reduces Healing Received by Four Tenths");
+                "Your fragility is still very much real.\n -Reduces Healing Received by Four Tenths");
+
+        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "[Lifeweaver]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
+                """
+                        A rare generosity, everything that you are you will share with others.
+                         -Healing also Heals Nearby Beings""",
+                "All creatures are deserving of care.\n -Healing Aura targets Everything, Ally and Enemy alike");
 
 
-        addSimpleEntryHeader("pact_of_the_sorcerer", "Pact of The Sorcerer", "[Sorcerer]");
+        addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "[Warlock]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
                 """
                         You are the challenger.

@@ -2,7 +2,6 @@ package com.sammy.malum.client.screen.codex;
 
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.datafixers.util.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -11,6 +10,7 @@ import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -173,6 +173,7 @@ public class ArcanaCodexHelper {
             //Other spirits are brighter which leads to the effect looking extremely blurry since the outline is more significant than the main layer
             mainColor = ColorHelper.brighter(mainColor, 1);
         }
+
         builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 0, 0, 0, textureWidth, textureHeight);

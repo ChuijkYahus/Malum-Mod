@@ -11,7 +11,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.function.*;
 
@@ -32,16 +31,17 @@ public class WarlockGeas extends GeasEffect {
         if (target.level().isClientSide) {
             return;
         }
-        if (event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
-            if (target.getHealth() > target.getMaxHealth() * 0.95f) {
-                WorldEventHandler.addWorldEvent(target.level(),
-                        new DelayedDamageWorldEvent(target)
-                                .setAttacker(attacker)
-                                .setDamageData(0, 4, 3)
-                                .setMagicDamageType(DamageTypeRegistry.VOODOO)
-                                .setImpactParticleEffect(ParticleEffectTypeRegistry.WARLOCK_BLAST, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT))
-                                .setSound(SoundRegistry.STAFF_STRIKES, 0.5f, 1.5f, 0.3f));
-            }
+        if (event.getSource().is(DamageTypeRegistry.WARLOCK_GEAS)) {
+            return;
+        }
+        if (target.getHealth() > target.getMaxHealth() * 0.95f) {
+            WorldEventHandler.addWorldEvent(target.level(),
+                    new DelayedDamageWorldEvent(target)
+                            .setAttacker(attacker)
+                            .setDamageData(0, 4, 3)
+                            .setMagicDamageType(DamageTypeRegistry.WARLOCK_GEAS)
+                            .setImpactParticleEffect(ParticleEffectTypeRegistry.SPIRIT_IMPACT, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT))
+                            .setSound(SoundRegistry.WARLOCK_BLAST, 1.25f, 1.75f, 0.3f));
         }
     }
 

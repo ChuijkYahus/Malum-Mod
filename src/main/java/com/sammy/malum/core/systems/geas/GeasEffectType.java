@@ -6,10 +6,9 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 
 import java.util.List;
 import java.util.function.*;
@@ -62,6 +61,14 @@ public class GeasEffectType {
 
     public ResourceLocation getIcon() {
         return getId().withPath(p -> "textures/item/geas/" + p).withSuffix(".png");
+    }
+
+    public Holder<GeasEffectType> getHolder() {
+        return MalumGeasEffectTypeRegistry.GEAS_TYPES_REGISTRY.getHolder(getId()).orElseThrow();
+    }
+
+    public boolean is(TagKey<GeasEffectType> tag) {
+        return getHolder().is(tag);
     }
 
     public ItemStack createStack(boolean isCreative) {

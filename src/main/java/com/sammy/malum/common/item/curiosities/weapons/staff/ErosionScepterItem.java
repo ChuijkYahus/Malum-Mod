@@ -6,6 +6,7 @@ import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
@@ -63,7 +64,9 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
                 EntityHelper.amplifyEffect(effect, target, 1, 19);
                 EntityHelper.extendEffect(effect, target, 30, 300);
             }
-            SoundHelper.playSound(target, SoundRegistry.DRAINING_MOTIF.get(), attacker.getSoundSource(), 1, 1.25f);
+            if (!event.getSource().is(DamageTypeTagRegistry.IS_INVERTED_HEART)) {
+                SoundHelper.playSound(target, SoundRegistry.DRAINING_MOTIF.get(), attacker.getSoundSource(), 1, 1.25f);
+            }
         }
         super.outgoingDamageEvent(event, attacker, target, stack);
     }

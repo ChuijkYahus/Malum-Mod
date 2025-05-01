@@ -3,22 +3,16 @@ package com.sammy.malum.datagen.tag;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.data.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.datagen.providers.*;
 
 import java.util.*;
 import java.util.concurrent.*;
-
-import static com.sammy.malum.registry.common.block.BlockRegistry.*;
 
 public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectType> {
 
@@ -47,9 +41,11 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
                 tag(GeasTagRegistry.IS_BOND).add(geas);
                 continue;
             }
-            if (id.getPath().startsWith("ultimatum")) {
-                tag(GeasTagRegistry.IS_ULTIMATUM).add(geas);
+            if (id.getPath().startsWith("authority")) {
+                tag(GeasTagRegistry.IS_AUTHORITY).add(geas);
             }
         }
+
+
     }
 }

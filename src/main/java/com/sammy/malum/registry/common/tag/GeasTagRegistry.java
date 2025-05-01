@@ -3,17 +3,14 @@ package com.sammy.malum.registry.common.tag;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 
 public class GeasTagRegistry {
 
     public static final TagKey<GeasEffectType> IS_BOND = malumTag("is_bond");
     public static final TagKey<GeasEffectType> IS_OATH = malumTag("is_oath");
-    public static final TagKey<GeasEffectType> IS_ULTIMATUM = malumTag("is_ultimatum");
+    public static final TagKey<GeasEffectType> IS_AUTHORITY = malumTag("is_authority");
 
     private static TagKey<GeasEffectType> modTag(String path) {
         return TagKey.create(MalumGeasEffectTypeRegistry.GEAS_TYPES_KEY, ResourceLocation.parse(path));

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.packets.geas;
 
-import com.sammy.malum.common.geas.oath.*;
+import com.sammy.malum.common.geas.authority.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.*;
 import net.minecraft.world.entity.*;
@@ -25,8 +25,8 @@ public class SyncLionsHeartDurationPayload extends OneSidedPayloadData {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
             var data = livingEntity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
-            var geas = data.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET);
-            if (geas instanceof GleefulTargetOath greedGeas) {
+            var geas = data.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET);
+            if (geas instanceof GleefulTargetAuthority greedGeas) {
                 greedGeas.lionsHeartDuration = lionsHeartDuration;
             }
             livingEntity.setData(AttachmentTypeRegistry.GEAS_SOUL_INFO, data);

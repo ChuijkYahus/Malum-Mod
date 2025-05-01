@@ -8,6 +8,7 @@ import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.aerial.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
+import com.sammy.malum.common.geas.pact.sacred.*;
 import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.*;
@@ -169,6 +170,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onHeal(LivingHealEvent event) {
         MalumAttributeEventHandler.heal(event);
+        LifeweaverGeas.onHeal(event);
     }
 
     @SubscribeEvent

@@ -1,4 +1,4 @@
-package com.sammy.malum.common.geas.oath;
+package com.sammy.malum.common.geas.authority;
 
 import com.google.common.collect.*;
 import com.sammy.malum.common.worldevent.*;
@@ -26,12 +26,12 @@ import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-public class InvertedHeartOath extends GeasEffect {
+public class InvertedHeartAuthority extends GeasEffect {
 
     public WeakHashMap<UUID, LivingEntity> visibleTargets = new WeakHashMap<>();
 
-    public InvertedHeartOath() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get());
+    public InvertedHeartAuthority() {
+        super(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART.get());
     }
 
     @Override
