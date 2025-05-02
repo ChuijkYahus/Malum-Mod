@@ -64,6 +64,8 @@ public class ReaperGeas extends GeasEffect {
                 var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect()
                         .originatesFrom(attacker)
                         .targets(target)
+                        .tiedToTarget()
+                        .forwardOffset(-2f)
                         .color(scytheStack.getItem())
                         .mirroredRandomly(attacker.getRandom());
                 if (canSweep) {

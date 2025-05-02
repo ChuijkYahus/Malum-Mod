@@ -135,12 +135,11 @@ public class GeasParticleEffects {
             final Consumer<LodestoneWorldParticle> behavior = p -> {
                 float partialTick = Minecraft.getInstance().timer.getGameTimeDeltaPartialTick(true);
                 var spark = (SparkParticleBehavior) p.behavior;
-                var sourcePos = source.getPosition(partialTick).add(0, source.getBbHeight() / 2f, 0);
-                final Vec3 distance = target.getPosition(partialTick).subtract(source.getPosition(partialTick));
+                final Vec3 distance = target.getPosition(partialTick).add(0, target.getBbHeight()/2f, 0).subtract(p.getParticlePosition());
                 spark.setForcedDirection(distance.normalize());
-                p.setParticlePosition(p.getParticlePosition().lerp(sourcePos, 0.2f));
-                p.lengthData.overrideValueMultiplier((float) distance.length() / 6f);
-                p.scaleData.overrideValueMultiplier((float) distance.length() / 4f);
+                final float length = (float) Math.clamp(distance.length(), 2, 4);
+                p.lengthData.overrideValueMultiplier(length / 6f);
+                p.scaleData.overrideValueMultiplier(length / 4f);
             };
             for (int i = 0; i < 4; i++) {
                 MalumSpiritType cyclingSpiritType = colorData.getSpirit();
@@ -151,19 +150,37 @@ public class GeasParticleEffects {
                         .add(left.scale(Math.sin(angle) * spread))
                         .add(up.scale(Math.cos(angle) * spread))
                         .normalize().scale(speed);
-                Vec3 particlePosition = pos.add(particleDirection.scale(0.7f));
+                Vec3 particlePosition = pos.add(particleDirection.scale(0.4f));
+                final int lifeDelay = i * 2;
                 SpiritBasedParticleBuilder.createSpirit(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
                         .setSpirit(cyclingSpiritType)
-                        .setTransparencyData(GenericParticleData.create(0f, 0.4f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(0f, 0.7f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setLengthData(GenericParticleData.create(0.8f, 2.6f, 0.4f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(0.2f, 0.4f, 0.2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(direction).setLengthCenter(1f))
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                         .setRandomOffset(0.1f)
                         .setLifetime(15)
-                        .setLifeDelay(i*4)
+                        .setLifeDelay(lifeDelay)
                         .enableNoClip()
                         .addRenderActor(behavior)
+                        .spawn(level, particlePosition.x, particlePosition.y, particlePosition.z);
+
+
+                SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.GIANT_GLOWING_STAR)
+                        .setSpirit(cyclingSpiritType)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.3f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.3f, 0.6f, 0.2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setLifetime(15)
+                        .setLifeDelay(lifeDelay)
+                        .enableNoClip()
+                        .spawn(level, particlePosition.x, particlePosition.y, particlePosition.z);
+                SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.STAR)
+                        .setSpirit(cyclingSpiritType)
+                        .setTransparencyData(GenericParticleData.create(0.15f, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.05f, 0.2f, 0.1f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setLifetime(15)
+                        .setLifeDelay(lifeDelay)
+                        .enableNoClip()
                         .spawn(level, particlePosition.x, particlePosition.y, particlePosition.z);
             }
 

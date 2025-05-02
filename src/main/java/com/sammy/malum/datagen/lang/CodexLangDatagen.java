@@ -965,11 +965,16 @@ public class CodexLangDatagen {
                         A part of your Soul is drawn out from your body, used as an Attractor for Arcana.
                          -Soul Shatter yields Extra Arcana
                          -Spirit Collection Aids most Magical Attributes""",
-                scaled(0.8f) +"""
+                """
                         The Soul remains within for a reason.
                          -All Incoming Damage is converted into Magic Damage""");
 
-
+        addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "[Rune Exploitation]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION,
+                scaled(0.8f) + """
+                        A part of your Soul becomes a Housing for Runes.
+                         -Grants you Two Rune Slots""",
+                "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
 
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "[Self-Care]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE,

@@ -149,7 +149,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
@@ -166,6 +166,7 @@ public class MalumLang extends LanguageProvider {
 
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
 
 //        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
@@ -303,6 +304,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("hunger_as_withdrawal", "Addiction to Slaughter");
         addGeasEffect("spirits_magic_boost", "Spirit Collection Amplifies Magic");
         addGeasEffect("oops_all_magic", "All Incoming Damage Functions As Magic");
+        addGeasEffect("more_runes", "2 Rune Slots");
+        addGeasEffect("rune_vulnerability", "Each Equipped Rune Dampens Healing, Armor and Magic Resistance");
         addGeasEffect("more_saturation", "Meals Provide Extra Saturation");
         addGeasEffect("food_effect_cleanse", "Eating Cleanses Debuffs");
         addGeasEffect("faster_starving", "Starvation Occurs Faster");
@@ -468,22 +471,32 @@ public class MalumLang extends LanguageProvider {
         addTetraImprovement("malum.soul_strike", "Soul Strike", "The item's material allows it to strike the soul.");
 
         addEnchantmentNameAndDescription(EnchantmentRegistry.ANIMATED, "Improves attack speed.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown much like a boomerang when used.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, slashing  nearby enemies when used.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when shattering a soul.");
+
+        addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown when used.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, damaging nearby enemies when used.");
+
         addEnchantmentNameAndDescription(EnchantmentRegistry.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
         addEnchantmentNameAndDescription(EnchantmentRegistry.CAPACITOR, "Adds additional Spell Charges for use with the staff");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when killing an enemy.");
 
         addAttributeLibAttributeDescription(AttributeRegistry.SCYTHE_PROFICIENCY, "Damage multiplier for Scythes");
         addAttributeLibAttributeDescription(AttributeRegistry.SPIRIT_SPOILS, "Flat increase to spirits looted from slain foes");
         addAttributeLibAttributeDescription(AttributeRegistry.ARCANE_RESONANCE, "Bonus potency for spirit-collection effects");
 
+        addAttributeLibAttributeDescription(AttributeRegistry.HEALING_MULTIPLIER, "An increase in healing received");
+
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
+        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER, "A percentile increase the amount of Soul Ward recovered");
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "A capacity for extra staff charges, replenished overtime, consumed when casting.");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_DURATION, "The duration for charging a staff");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "The capacity for Spell Charges");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_RECOVERY_RATE, "A percentile increase in recovery rate for Spell Charges");
+
+        addAttributeLibAttributeDescription(AttributeRegistry.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
+
         addAttributeLibAttributeDescription(AttributeRegistry.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
 
     }

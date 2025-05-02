@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import com.sammy.malum.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
@@ -45,7 +46,11 @@ public class GeasEffect implements IMalumEventResponder {
     }
 
     public void addAttributeModifier(Multimap<Holder<Attribute>, AttributeModifier> modifiers, Holder<Attribute> attribute, double value, AttributeModifier.Operation operation) {
-        modifiers.put(attribute, new AttributeModifier(type.getId().withPrefix(type.getId().getPath() + "_"), value, operation));
+        modifiers.put(attribute, new AttributeModifier(getModifierId(), value, operation));
+    }
+
+    public ResourceLocation getModifierId() {
+        return type.getId().withPrefix(type.getId().getPath() + "_");
     }
 
     public final void updateAttributes(LivingEntity entity) {
@@ -61,7 +66,7 @@ public class GeasEffect implements IMalumEventResponder {
         }
     }
 
-    private void applyAttributeModifiers(LivingEntity entity) {
+    protected void applyAttributeModifiers(LivingEntity entity) {
         removeAttributeModifiers(entity);
         final Multimap<Holder<Attribute>, AttributeModifier> attributes = createAttributeModifiers(entity);
         entity.getAttributes().addTransientAttributeModifiers(attributes);
