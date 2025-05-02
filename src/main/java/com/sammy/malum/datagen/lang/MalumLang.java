@@ -356,6 +356,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
         addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Struck");
         addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
+        addGeasEffect("presence_breaker", "Refusal, Detachment, Exile is Forced onto Targets");
+        addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
 
         add("malum.effect.soul_based_damage", "Deals Soul-Rending Damage");
         add("malum.effect.weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
