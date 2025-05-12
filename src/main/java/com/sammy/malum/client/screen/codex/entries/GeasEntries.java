@@ -76,7 +76,7 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER, 13, 17);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.AQUEOUS_3, 14, 18);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY, 14, 18);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.AQUEOUS_4, 16, 17);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);

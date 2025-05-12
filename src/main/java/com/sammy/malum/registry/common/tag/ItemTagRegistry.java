@@ -12,8 +12,10 @@ public class ItemTagRegistry {
     public static final TagKey<Item> MAGIC_CAPABLE_WEAPONS = malumTag("magic_capable_weapon");
     public static final TagKey<Item> SCYTHES = malumTag("scythe");
     public static final TagKey<Item> STAVES = malumTag("staff");
-    public static final TagKey<Item> KNIVES_FD = modTag("farmersdelight:tools/knives");
-    public static final TagKey<Item> KNIVES = commonTag("tools/knife");
+    public static final TagKey<Item> SCYTHES_COMMON = commonTag("tools/scythe");
+    public static final TagKey<Item> STAVES_COMMON = commonTag("tools/staff");
+    public static final TagKey<Item> KNIVES = modTag("farmersdelight:tools/knives");
+    public static final TagKey<Item> KNIVES_COMMON = commonTag("tools/knife");
 
     public static final TagKey<Item> ANIMATED_ENCHANTABLE = malumTag("enchantable/animated");
     public static final TagKey<Item> REBOUND_ENCHANTABLE = malumTag("enchantable/rebound");

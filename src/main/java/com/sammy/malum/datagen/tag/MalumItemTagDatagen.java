@@ -7,7 +7,6 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -91,6 +90,9 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(ItemTagRegistry.SCYTHES).add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
         tag(ItemTagRegistry.STAVES).add(MNEMONIC_HEX_STAFF.get(), UNWINDING_CHAOS.get(), EROSION_SCEPTER.get());
 
+        tag(ItemTagRegistry.SCYTHES_COMMON).addTag(ItemTagRegistry.SCYTHES);
+        tag(ItemTagRegistry.STAVES_COMMON).addTag(ItemTagRegistry.STAVES);
+
         tag(ItemTagRegistry.SOUL_SHATTER_CAPABLE_WEAPONS)
                 .addTags(ItemTagRegistry.SCYTHES, ItemTagRegistry.STAVES)
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
@@ -120,8 +122,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(ItemTags.SHOVELS).add(SOUL_STAINED_STEEL_SHOVEL.get());
         tag(ItemTags.HOES).add(SOUL_STAINED_STEEL_HOE.get());
 
+        tag(ItemTagRegistry.KNIVES_COMMON).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
         tag(ItemTagRegistry.KNIVES).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
-        tag(ItemTagRegistry.KNIVES_FD).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
 
         tag(ItemTagRegistry.REBOUND_ENCHANTABLE).addTag(ItemTagRegistry.SCYTHES);
         tag(ItemTagRegistry.ASCENSION_ENCHANTABLE).addTag(ItemTagRegistry.SCYTHES);
