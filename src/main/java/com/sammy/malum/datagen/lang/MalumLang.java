@@ -138,10 +138,11 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Give yourself to others");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Weave miracles, share them with all");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER.get(), "Your pain, their pain");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
