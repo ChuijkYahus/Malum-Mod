@@ -2,12 +2,18 @@ package com.sammy.malum.visual_effects.networked.altar;
 
 import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
-import com.sammy.malum.visual_effects.networked.ParticleEffectType;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.function.Supplier;
 
-public class SpiritAltarCraftParticleEffect extends ParticleEffectType {
+public class SpiritAltarCraftParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public SpiritAltarCraftParticleEffect(String id) {
         super(id);
@@ -15,12 +21,10 @@ public class SpiritAltarCraftParticleEffect extends ParticleEffectType {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Supplier<ParticleEffectActor> get() {
-        return () -> (level, random, positionData, colorData, nbtData) -> {
-            if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof SpiritAltarBlockEntity spiritAltar)) {
-                return;
-            }
-            SpiritAltarParticleEffects.craftItemParticles(spiritAltar, colorData);
-        };
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+        if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof SpiritAltarBlockEntity spiritAltar)) {
+            return;
+        }
+        SpiritAltarParticleEffects.craftItemParticles(spiritAltar, colorData);
     }
 }

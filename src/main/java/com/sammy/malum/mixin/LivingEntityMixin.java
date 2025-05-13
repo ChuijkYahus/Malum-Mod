@@ -1,7 +1,7 @@
 package com.sammy.malum.mixin;
 
 import com.sammy.malum.common.geas.pact.aqueous.*;
-import com.sammy.malum.common.geas.pact.earthen.*;
+import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioVoraciousRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.CurioGruesomeConcentrationRing;
 import net.minecraft.world.entity.LivingEntity;

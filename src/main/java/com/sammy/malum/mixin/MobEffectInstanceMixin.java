@@ -1,6 +1,6 @@
 package com.sammy.malum.mixin;
 
-import com.sammy.malum.common.geas.oath.*;
+import com.sammy.malum.common.geas.authority.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
@@ -22,7 +22,7 @@ public class MobEffectInstanceMixin {
     private void malum$tickDownDuration(CallbackInfoReturnable<Integer> cir) {
         if (malum$entity != null) {
             final MobEffectInstance instance = (MobEffectInstance) (Object) this;
-            if (GleefulTargetOath.pausePotionEffects(malum$entity, instance)) {
+            if (GleefulTargetAuthority.pausePotionEffects(malum$entity, instance)) {
                 cir.setReturnValue((instance).getDuration());
             }
         }

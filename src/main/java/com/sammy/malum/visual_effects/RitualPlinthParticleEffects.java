@@ -3,7 +3,7 @@ package com.sammy.malum.visual_effects;
 import com.sammy.malum.common.block.curiosities.ritual_plinth.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -12,7 +12,6 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -30,7 +29,7 @@ import static net.minecraft.util.Mth.*;
 
 public class RitualPlinthParticleEffects {
 
-    public static void failRitualParticles(RitualPlinthBlockEntity plinth, ColorEffectData colorData) {
+    public static void failRitualParticles(RitualPlinthBlockEntity plinth, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType spiritType = colorData.getSpirit();
         Level level = plinth.getLevel();
         var random = level.random;
@@ -119,7 +118,7 @@ public class RitualPlinthParticleEffects {
         }
     }
 
-    public static void incrementRitualTierParticles(RitualPlinthBlockEntity plinth, ColorEffectData colorData) {
+    public static void incrementRitualTierParticles(RitualPlinthBlockEntity plinth, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType spiritType = colorData.getSpirit();
         Level level = plinth.getLevel();
         var random = level.random;
@@ -203,7 +202,7 @@ public class RitualPlinthParticleEffects {
         }
     }
 
-    public static void beginChargingParticles(RitualPlinthBlockEntity plinth, ColorEffectData colorData) {
+    public static void beginChargingParticles(RitualPlinthBlockEntity plinth, MalumNetworkedParticleEffectColorData colorData) {
         MalumSpiritType spiritType = colorData.getSpirit();
         Level level = plinth.getLevel();
         long gameTime = level.getGameTime();
@@ -333,7 +332,7 @@ public class RitualPlinthParticleEffects {
         }
     }
 
-    public static void eatItemParticles(RitualPlinthBlockEntity plinth, Vec3 targetPos, ColorEffectData colorData, ItemStack stack) {
+    public static void eatItemParticles(RitualPlinthBlockEntity plinth, Vec3 targetPos, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
         MalumSpiritType spiritType = colorData.getSpirit();
         Level level = plinth.getLevel();
         long gameTime = level.getGameTime();
@@ -387,7 +386,7 @@ public class RitualPlinthParticleEffects {
         }
     }
 
-    public static void eatSpiritParticles(RitualPlinthBlockEntity plinth, Vec3 targetPos, ColorEffectData colorData, ItemStack stack) {
+    public static void eatSpiritParticles(RitualPlinthBlockEntity plinth, Vec3 targetPos, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
         MalumSpiritType spiritType = colorData.getSpirit();
         Level level = plinth.getLevel();
         long gameTime = level.getGameTime();

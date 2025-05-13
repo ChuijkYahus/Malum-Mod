@@ -3,7 +3,7 @@ package com.sammy.malum.common.spiritrite.eldritch;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.monster.*;
@@ -25,7 +25,10 @@ public class EldritchAqueousRiteType extends TotemicRiteType {
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyBlocks(totemBase, PointedDripstoneBlock.class).forEach(p -> {
                     if (level.random.nextFloat() < 0.1f) {
-                        ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT.createPositionedEffect(level, new PositionEffectData(p), new ColorEffectData(AQUEOUS_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT
+                                .createEffect(p)
+                                .color(AQUEOUS_SPIRIT)
+                                .spawn(level);
                         for (int i = 0; i < 4 + level.random.nextInt(2); i++) {
                             level.getBlockState(p).randomTick(level, p, level.random);
                         }
@@ -53,7 +56,10 @@ public class EldritchAqueousRiteType extends TotemicRiteType {
                 getNearbyEntities(totemBase, Zombie.class).filter(z -> !(z instanceof Drowned)).forEach(e -> {
                     if (!e.isUnderWaterConverting()) {
                         e.startUnderWaterConversion(100);
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new ColorEffectData(AQUEOUS_SPIRIT));
+                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                .createEffect(e)
+                                .color(AQUEOUS_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }

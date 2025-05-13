@@ -8,6 +8,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -44,23 +45,25 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         var level = attacker.level();
-        if (level.isClientSide()) {
+        if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }
         if (!event.getSource().is(DamageTypeRegistry.SCYTHE_MELEE)) {
             return;
         }
-        var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.SCYTHE_SLASH);
-        if (stack.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-            particle.setColor(spiritAffiliatedItem);
-        }
+        var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect()
+                .originatesFrom(attacker)
+                .targets(target)
+                .color(stack.getItem())
+                .upwardOffset(-0.4f)
+                .forwardOffset(0.8f);
         if (!canSweep(attacker)) {
             SoundHelper.playSound(attacker, getScytheSound(false).value(), 1, 0.75f);
-            particle.setVertical().spawnForwardSlashingParticle(attacker);
+            particle.verticalSlashRotation().horizontalOffset(0.6f).spawn(serverLevel);
             return;
         }
         SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);
-        particle.mirrorRandomly(attacker.getRandom()).spawnForwardSlashingParticle(attacker);
+        particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
 
         int sweeping = EnchantmentRegistry.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
         float damage = event.getNewDamage() * (0.66f + sweeping * 0.33f);

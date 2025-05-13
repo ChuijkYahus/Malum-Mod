@@ -4,7 +4,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.*;
@@ -240,9 +240,9 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
         }
     }
 
-    public void onCompletion() {
+    public void onCompletion(ServerLevel level) {
         float pitch = Mth.nextFloat(level.getRandom(), 1.5f, 1.75f);
-        ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition.getX()+0.5f, worldPosition.getY()+0.9f, worldPosition.getZ()+0.5f));
+        ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter().add(0, 0.4f, 0)).spawn(level);
         level.playSound(null, worldPosition, SoundRegistry.FLESH_RING_ABSORBS.get(), SoundSource.HOSTILE, 0.7f, pitch);
         level.playSound(null, worldPosition, SoundRegistry.VOID_TRANSMUTATION.get(), SoundSource.HOSTILE, 2f, pitch);
         if (repeatable) {

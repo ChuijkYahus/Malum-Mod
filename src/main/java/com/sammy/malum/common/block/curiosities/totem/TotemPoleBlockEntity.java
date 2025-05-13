@@ -5,7 +5,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.tag.ItemTagRegistry;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -79,8 +79,10 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
             }
         }
         if (success) {
-            if (spirit != null) {
-                ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), new ColorEffectData(spirit));
+            if (level instanceof ServerLevel serverLevel && spirit != null) {
+                ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+                        .at(worldPosition).color(spirit)
+                        .spawn(serverLevel);
             }
             float pitch = totemPoleState == VISUAL_ONLY ? 1.2f : 0.7f;
             level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch + Mth.nextFloat(level.random, -0.2f, 0.2f));
@@ -144,21 +146,26 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         }
     }
 
-    public void setSpirit(MalumSpiritType type) {
+    public void setSpirit(ServerLevel level, MalumSpiritType spirit) {
         level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
-        this.spirit = type;
+        this.spirit = spirit;
         this.chargeProgress = 10;
-        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), new ColorEffectData(spirit));
+        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+                .at(worldPosition).color(spirit)
+                .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
     }
 
-    public void riteStarting(TotemBaseBlockEntity totemBase, int height) {
+    public void riteStarting(ServerLevel level, TotemBaseBlockEntity totemBase, int height) {
         level.playSound(null, worldPosition, SoundRegistry.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * height);
         this.totemBaseYLevel = worldPosition.getY() - height;
         this.totemBase = totemBase;
         this.totemPoleState = CHARGING;
-        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createPositionedEffect((ServerLevel) level, new PositionEffectData(worldPosition), new ColorEffectData(spirit));
+
+        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+                .at(worldPosition).color(spirit)
+                .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
     }
 

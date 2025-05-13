@@ -5,8 +5,8 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.attack.slash.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.attack.ScytheSlashParticleEffect;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
@@ -78,12 +78,12 @@ public class HighPriestGeas extends GeasEffect {
         }
         var random = target.getRandom();
         var slashDirection = attacker.getLookAngle();
-        var slashProperties = SlashAttackParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
+        var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
         WorldEventHandler.addWorldEvent(target.level(),
                 new DelayedDamageWorldEvent(target)
                         .setDamageData(2, 2, 2)
                         .setMagicDamageType(DamageTypeRegistry.KARMIC)
-                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new ColorEffectData(SpiritTypeRegistry.AQUEOUS_SPIRIT))
+                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.AQUEOUS_SPIRIT))
                         .setParticleEffectNBT(slashProperties)
                         .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
     }

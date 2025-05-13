@@ -24,48 +24,45 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
     }
 
     public void renderQuad(VoidConduitBlockEntity voidConduit, PoseStack poseStack, float partialTicks) {
-        if (voidConduit.lingeringRadiance == 0) {
-            float height = 0.375f;
-            float width = 1.5f;
+        float height = 0.375f;
+        float width = 1.5f;
 
+        Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
+        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
+        poseStack.pushPose();
+        poseStack.translate(0.5f, 0.01f, 0.5f);
 
-            Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
-            VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.01f, 0.5f);
+        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE))
+                .renderQuad(poseStack, positions, 1f);
+        final long gameTime = voidConduit.getLevel().getGameTime();
+        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
+        float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
+        float alpha = 0.05f;
 
-            builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
-                    .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE))
-                    .renderQuad(poseStack, positions, 1f);
-            final long gameTime = voidConduit.getLevel().getGameTime();
-            float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
-            float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
-            float alpha = 0.05f;
-
-            final LodestoneRenderType renderType = RenderTypeRegistry.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
-            builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
-            for (int i = 0; i < 3; i++) {
-                float speed = 1000f + 250f * i;
-                builder.setColor(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor())
-                        .setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
-                            s.safeGetUniform("Speed").set(speed);
-                            s.safeGetUniform("Width").set(48f);
-                            s.safeGetUniform("Height").set(48f);
-                            s.safeGetUniform("UVCoordinates").set(new Vector4f(-2, 4, -2, 4));
-                        }));
-                builder.setAlpha(alpha);
-                builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
-                builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
-                alpha -= 0.0125f;
-                uOffset = -uOffset - 0.2f;
-                vOffset = -vOffset + 0.4f;
-                poseStack.translate(0, 0.05f, 0);
-                poseStack.mulPose(Axis.YP.rotationDegrees(90));
-                if (i == 0) {
-                    builder.setColor(SpiritTypeRegistry.ELDRITCH_SPIRIT.getPrimaryColor());
-                }
+        final LodestoneRenderType renderType = RenderTypeRegistry.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
+        builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
+        for (int i = 0; i < 3; i++) {
+            float speed = 1000f + 250f * i;
+            builder.setColor(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor())
+                    .setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
+                        s.safeGetUniform("Speed").set(speed);
+                        s.safeGetUniform("Width").set(48f);
+                        s.safeGetUniform("Height").set(48f);
+                        s.safeGetUniform("UVCoordinates").set(new Vector4f(-2, 4, -2, 4));
+                    }));
+            builder.setAlpha(alpha);
+            builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
+            builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
+            alpha -= 0.0125f;
+            uOffset = -uOffset - 0.2f;
+            vOffset = -vOffset + 0.4f;
+            poseStack.translate(0, 0.05f, 0);
+            poseStack.mulPose(Axis.YP.rotationDegrees(90));
+            if (i == 0) {
+                builder.setColor(SpiritTypeRegistry.ELDRITCH_SPIRIT.getPrimaryColor());
             }
-            poseStack.popPose();
         }
+        poseStack.popPose();
     }
 }

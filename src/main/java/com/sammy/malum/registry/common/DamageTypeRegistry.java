@@ -34,6 +34,8 @@ public class DamageTypeRegistry {
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_PHYSICAL_COMBO = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("sundering_anchor_physical_combo"));
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_MAGIC_COMBO = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("sundering_anchor_magic_combo"));
 
+    public static final ResourceKey<DamageType> WARLOCK_GEAS = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("warlock_geas"));
+
     public static final ResourceKey<DamageType> INVERTED_HEART_RETALIATION = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("inverted_heart_retaliation"));
     public static final ResourceKey<DamageType> INVERTED_HEART_PROPAGATION = ResourceKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath("inverted_heart_propagation"));
 }

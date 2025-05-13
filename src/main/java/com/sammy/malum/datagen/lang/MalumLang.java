@@ -138,9 +138,11 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Weave miracles, share them with all");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER.get(), "Invite all to test your strength");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER.get(), "Your pain, their pain");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
@@ -148,14 +150,15 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
@@ -178,8 +181,8 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
         addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
+        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
+        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
 
@@ -294,12 +297,16 @@ public class MalumLang extends LanguageProvider {
 
         addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
         addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
+        addGeasEffect("healing_aura", "Healing is Shared with Nearby Creatures");
+        addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
         addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
         addGeasEffect("aggressive_enemies", "Increases Enemy Aggression");
         addGeasEffect("chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
         addGeasEffect("hunger_as_withdrawal", "Addiction to Slaughter");
         addGeasEffect("spirits_magic_boost", "Spirit Collection Amplifies Magic");
         addGeasEffect("oops_all_magic", "All Incoming Damage Functions As Magic");
+        addGeasEffect("more_runes", "2 Rune Slots");
+        addGeasEffect("rune_vulnerability", "Each Equipped Rune Dampens Healing, Armor and Magic Resistance");
         addGeasEffect("more_saturation", "Meals Provide Extra Saturation");
         addGeasEffect("food_effect_cleanse", "Eating Cleanses Debuffs");
         addGeasEffect("faster_starving", "Starvation Occurs Faster");
@@ -322,7 +329,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
-        addGeasEffect("explosion_lover", "Absorbed Explosions Generate Haste");
+        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
+        addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");
         addGeasEffect("explosion_fire", "Too Much Haste Ignites You");
         addGeasEffect("scary_fire", "Unlike Explosions, Fire Damage Remains Deadly");
@@ -349,9 +357,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
         addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Struck");
         addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
-        addGeasEffect("last_stand", "Expiration, Demise, Entropy Is Made Lenient");
-        addGeasEffect("last_stand_arcane_resonance", "Arcane Resonance Aids Leniency");
-        addGeasEffect("last_stand_patient_death", "Death Comes For Us All... Unless");
+        addGeasEffect("presence_breaker", "Refusal, Detachment, Exile is Forced onto Targets");
+        addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
 
         add("malum.effect.soul_based_damage", "Deals Soul-Rending Damage");
         add("malum.effect.weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
@@ -429,6 +436,8 @@ public class MalumLang extends LanguageProvider {
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
 
+        addDeathMessage(DamageTypeRegistry.WARLOCK_GEAS, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
@@ -465,22 +474,32 @@ public class MalumLang extends LanguageProvider {
         addTetraImprovement("malum.soul_strike", "Soul Strike", "The item's material allows it to strike the soul.");
 
         addEnchantmentNameAndDescription(EnchantmentRegistry.ANIMATED, "Improves attack speed.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown much like a boomerang when used.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, slashing  nearby enemies when used.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when shattering a soul.");
+
+        addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown when used.");
+        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, damaging nearby enemies when used.");
+
         addEnchantmentNameAndDescription(EnchantmentRegistry.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
         addEnchantmentNameAndDescription(EnchantmentRegistry.CAPACITOR, "Adds additional Spell Charges for use with the staff");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when killing an enemy.");
 
         addAttributeLibAttributeDescription(AttributeRegistry.SCYTHE_PROFICIENCY, "Damage multiplier for Scythes");
         addAttributeLibAttributeDescription(AttributeRegistry.SPIRIT_SPOILS, "Flat increase to spirits looted from slain foes");
         addAttributeLibAttributeDescription(AttributeRegistry.ARCANE_RESONANCE, "Bonus potency for spirit-collection effects");
 
+        addAttributeLibAttributeDescription(AttributeRegistry.HEALING_MULTIPLIER, "An increase in healing received");
+
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
+        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER, "A percentile increase the amount of Soul Ward recovered");
         addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "A capacity for extra staff charges, replenished overtime, consumed when casting.");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_DURATION, "The duration for charging a staff");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "The capacity for Spell Charges");
+        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_RECOVERY_RATE, "A percentile increase in recovery rate for Spell Charges");
+
+        addAttributeLibAttributeDescription(AttributeRegistry.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
+
         addAttributeLibAttributeDescription(AttributeRegistry.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
 
     }

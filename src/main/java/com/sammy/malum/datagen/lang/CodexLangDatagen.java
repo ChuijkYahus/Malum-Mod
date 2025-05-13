@@ -896,11 +896,18 @@ public class CodexLangDatagen {
                 """
                         A surplus of confidence imbued onto the mind, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
-                "Your fragility is still very much real. \n -Reduces Healing Received by Four Tenths");
+                "Your fragility is still very much real.\n -Reduces Healing Received by Four Tenths");
+
+        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "[Lifeweaver]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
+                """
+                        A rare generosity, everything that you are you will share with others.
+                         -Healing also Heals Nearby Beings""",
+                "All creatures are deserving of care.\n -Healing Aura targets Everything, Ally and Enemy alike");
 
 
-        addSimpleEntryHeader("pact_of_the_challenger", "Pact of The Challenger", "[Challenger]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CHALLENGER,
+        addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "[Warlock]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
                 """
                         You are the challenger.
                          -The Initial Hit against Enemies Blasts them with Wicked Energy""",
@@ -958,11 +965,16 @@ public class CodexLangDatagen {
                         A part of your Soul is drawn out from your body, used as an Attractor for Arcana.
                          -Soul Shatter yields Extra Arcana
                          -Spirit Collection Aids most Magical Attributes""",
-                scaled(0.8f) +"""
+                """
                         The Soul remains within for a reason.
                          -All Incoming Damage is converted into Magic Damage""");
 
-
+        addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "[Rune Exploitation]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION,
+                scaled(0.8f) + """
+                        A part of your Soul becomes a Housing for Runes.
+                         -Grants you Two Rune Slots""",
+                "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
 
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "[Self-Care]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE,

@@ -1,7 +1,6 @@
 package com.sammy.malum.common.geas.pact.aerial;
 
 import com.google.common.collect.*;
-import com.sammy.malum.common.packets.geas.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;

@@ -1,10 +1,12 @@
 package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -18,7 +20,7 @@ import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.*;
 
-public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder {
+public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
     public TyrvingItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties);
@@ -30,35 +32,41 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     }
 
     @Override
-    public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        var level = attacker.level();
-        if (level.isClientSide) {
-            return;
-        }
-        if (!event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
-            return;
-        }
-        float magicDamage = EntitySpiritDropData.getSpiritData(target).map(d -> d.totalSpirits).orElse(0);
-        if (target instanceof Player) {
-            magicDamage = 2 * Math.max(1, (1 + target.getArmorValue() / 12f) * (1 + (1 - 1 / (float) target.getArmorValue())) / 12f);
-        }
-        if (target.isAlive()) {
-            target.invulnerableTime = 0;
-            target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.TYRVING, attacker), magicDamage);
-        }
-        if (target.isAlive()) {
-            WorldEventHandler.addWorldEvent(level,
-                    new DelayedDamageWorldEvent(target)
-                            .setAttacker(attacker)
-                            .setMagicDamageType(DamageTypeRegistry.TYRVING)
-                            .setDamageData(0, magicDamage, 3));
-        }
+    public MalumSpiritType getDefiningSpiritType() {
+        return SpiritTypeRegistry.WICKED_SPIRIT;
+    }
 
-        SoundHelper.playSound(attacker, SoundRegistry.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
-        ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.TYRVING_SLASH)
-                .setColor(SpiritTypeRegistry.WICKED_SPIRIT)
-                .setVerticalSlashAngle()
-                .spawnForwardSlashingParticle(attacker);
+    @Override
+    public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (attacker.level() instanceof ServerLevel level) {
+            if (!event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+                return;
+            }
+            float magicDamage = EntitySpiritDropData.getSpiritData(target).map(d -> d.totalSpirits).orElse(0);
+            if (target instanceof Player) {
+                magicDamage = 2 * Math.max(1, (1 + target.getArmorValue() / 12f) * (1 + (1 - 1 / (float) target.getArmorValue())) / 12f);
+            }
+            if (target.isAlive()) {
+                target.invulnerableTime = 0;
+                target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.TYRVING, attacker), magicDamage);
+            }
+            if (target.isAlive()) {
+                WorldEventHandler.addWorldEvent(level,
+                        new DelayedDamageWorldEvent(target)
+                                .setAttacker(attacker)
+                                .setMagicDamageType(DamageTypeRegistry.TYRVING)
+                                .setDamageData(0, magicDamage, 3));
+            }
+
+            SoundHelper.playSound(attacker, SoundRegistry.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+
+            ParticleEffectTypeRegistry.TYRVING_SLASH.createEffect()
+                    .originatesFrom(attacker).targets(target)
+                    .verticalSlashRotation()
+                    .color(stack.getItem())
+                    .horizontalOffset(0.2f).forwardOffset(0.8f).upwardOffset(-0.2f)
+                    .spawn(level);
+        }
     }
 
     @Override

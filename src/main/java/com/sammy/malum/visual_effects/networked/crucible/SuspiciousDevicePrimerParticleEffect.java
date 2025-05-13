@@ -2,11 +2,14 @@ package com.sammy.malum.visual_effects.networked.crucible;
 
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.*;
 
 import java.util.function.*;
 
-public class SuspiciousDevicePrimerParticleEffect extends ParticleEffectType {
+public class SuspiciousDevicePrimerParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public SuspiciousDevicePrimerParticleEffect(String id) {
         super(id);
@@ -14,9 +17,7 @@ public class SuspiciousDevicePrimerParticleEffect extends ParticleEffectType {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Supplier<ParticleEffectActor> get() {
-        return () -> (level, random, positionData, colorData, nbtData) -> {
-            SpiritCrucibleParticleEffects.suspiciousDevicePrimer(positionData, colorData);
-        };
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+        SpiritCrucibleParticleEffects.suspiciousDevicePrimer(positionData, colorData);
     }
 }

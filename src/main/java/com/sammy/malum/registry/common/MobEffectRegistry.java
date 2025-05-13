@@ -46,6 +46,8 @@ public class MobEffectRegistry {
     public static final DeferredHolder<MobEffect, MobEffect> PYROMANIACS_FERVOR = EFFECTS.register("pyromaniacs_fervor", PyromaniacEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> UNSIGHTED_RESISTANCE = EFFECTS.register("unsighted_resistance", UnsightedResistanceEffect::new);
 
+    public static final DeferredHolder<MobEffect, MobEffect> GLEEFUL_TARGET = EFFECTS.register("gleeful_target", GleefulTargetEffect::new);
+
     //Trinket
     public static final DeferredHolder<MobEffect, MobEffect> CANCEROUS_GROWTH = EFFECTS.register("cancerous_growth", GrowingFleshEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> ECHOING_ARCANA = EFFECTS.register("echoing_arcana", EchoingArcanaEffect::new);

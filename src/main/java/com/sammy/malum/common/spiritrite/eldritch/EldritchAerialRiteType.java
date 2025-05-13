@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.tag.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -38,7 +38,11 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                         var state = level.getBlockState(p);
                         if (!state.isAir() && level.getBlockEntity(p) == null && canSilkTouch(level, pos, state)) {
                             FallingBlockEntity.fall(level, p, state);
-                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT.createPositionedEffect(level, new PositionEffectData(p), new ColorEffectData(AERIAL_SPIRIT));
+
+                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT
+                                    .createEffect(p)
+                                    .color(AERIAL_SPIRIT)
+                                    .spawn(level);
                             level.playSound(null, p, SoundRegistry.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
                         }
                     }
@@ -57,7 +61,10 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                     Stat<ResourceLocation> sleepStat = Stats.CUSTOM.get(Stats.TIME_SINCE_REST);
                     int value = stats.getValue(sleepStat);
                     stats.setValue(p, sleepStat, Math.max(0, value - 1000));
-                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(p, new ColorEffectData(AERIAL_SPIRIT));
+                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                            .createEffect(p)
+                            .color(AERIAL_SPIRIT)
+                            .spawn(level);
                 });
             }
         };

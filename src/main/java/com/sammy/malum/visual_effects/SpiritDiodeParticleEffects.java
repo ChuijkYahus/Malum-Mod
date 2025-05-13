@@ -1,8 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.registry.client.ParticleRegistry;
-import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
-import com.sammy.malum.visual_effects.networked.data.PositionEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.util.RandomSource;
@@ -10,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.ParticleEffectSpawner;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.AbstractParticleBuilder;
@@ -25,7 +25,7 @@ import java.util.function.Consumer;
 
 public class SpiritDiodeParticleEffects {
 
-    public static void openSpiritDiode(PositionEffectData positionData, ColorEffectData colorData) {
+    public static void openSpiritDiode(NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         ClientLevel level = Minecraft.getInstance().level;
         var random = level.random;
 
@@ -40,7 +40,7 @@ public class SpiritDiodeParticleEffects {
             square.spawnParticles();
         }
     }
-    public static void closeSpiritDiode(PositionEffectData positionData, ColorEffectData colorData) {
+    public static void closeSpiritDiode(NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         ClientLevel level = Minecraft.getInstance().level;
         var random = level.random;
 

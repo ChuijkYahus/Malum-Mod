@@ -7,17 +7,14 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.data.*;
-import net.minecraft.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -170,7 +167,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                                 new DelayedDamageWorldEvent(target)
                                         .setAttacker(owner)
                                         .setDamageData(physicalDamageType, damage/slashCount, magicDamageType, magicDamage/slashCount, comboDelay)
-                                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SWEEP, new ColorEffectData(getSunderingAnchorSpirit()))
+                                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
                                         .setSound(SoundRegistry.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
                     }
 

@@ -5,7 +5,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -88,8 +88,9 @@ public class WyrdReconstructionGeas extends GeasEffect {
             }
             SoundHelper.playSound(target, SoundRegistry.WYRD_RECONSTRUCTION.get(), 1, 1);
             ParticleEffectTypeRegistry.WYRD_RECONSTRUCTION_REVIVE.createEffect(target)
-                            .color(new ColorEffectData(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.INFERNAL_SPIRIT))
-                                    .spawn(serverLevel);
+                    .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.INFERNAL_SPIRIT))
+                    .customData(new WyrdReconstructionReviveParticleEffect.WyrdReconstructionEffectData(target.getId()))
+                    .spawn(serverLevel);
         }
 
         event.setCanceled(true);

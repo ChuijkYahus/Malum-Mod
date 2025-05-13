@@ -1,8 +1,7 @@
 package com.sammy.malum.common.block.nature;
 
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -42,11 +41,14 @@ public class SapFilledLogBlock extends RotatedPillarBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (itemstack.getItem() == Items.GLASS_BOTTLE) {
-            if (!level.isClientSide) {
+            if (level instanceof ServerLevel serverLevel) {
                 itemstack.shrink(1);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(sap.get()));
-                ParticleEffectTypeRegistry.SAP_COLLECTED.createPositionedEffect((ServerLevel) level, new PositionEffectData(pos), ColorEffectData.fromColors(sapColor), SapCollectionParticleEffect.createData(hit.getDirection()));
+                ParticleEffectTypeRegistry.SAP_COLLECTED.createEffect(pos)
+                        .customData(new SapCollectionParticleEffect.SapCollectionEffectData(hit.getDirection(), player.getUUID()))
+                        .color(sapColor)
+                        .spawn(serverLevel);
                 if (level.random.nextBoolean()) {
                     BlockStateHelper.setBlockStateWithExistingProperties(level, pos, drained.get().defaultBlockState(), 3);
                 }

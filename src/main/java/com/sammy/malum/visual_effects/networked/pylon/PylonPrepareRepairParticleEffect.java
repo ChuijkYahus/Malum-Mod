@@ -1,39 +1,40 @@
 package com.sammy.malum.visual_effects.networked.pylon;
 
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.altar.*;
+import io.netty.buffer.*;
+import net.minecraft.network.codec.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.*;
 
 import java.util.function.*;
 
-public class PylonPrepareRepairParticleEffect extends ParticleEffectType {
+public class PylonPrepareRepairParticleEffect extends MalumNetworkedParticleEffectType<PylonEffectData> {
 
     public PylonPrepareRepairParticleEffect(String id) {
         super(id);
     }
 
-    public static NBTEffectData createData(BlockPos holderPos) {
-        NBTEffectData effectData = new NBTEffectData(new CompoundTag());
-        effectData.compoundTag.putLong("pos", holderPos.asLong());
-        return effectData;
-    }
-
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Supplier<ParticleEffectActor> get() {
-        return () -> (level, random, positionData, colorData, nbtData) -> {
-            if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof RepairPylonCoreBlockEntity pylon)) {
-                return;
-            }
-            if (!(level.getBlockEntity(BlockPos.of(nbtData.compoundTag.getLong("pos"))) instanceof IMalumSpecialItemAccessPoint holder)) {
-                return;
-            }
-            RepairPylonParticleEffects.prepareRepairParticles(pylon, holder, colorData);
-        };
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, PylonEffectData extraData) {
+        if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof RepairPylonCoreBlockEntity pylon)) {
+            return;
+        }
+        if (!(level.getBlockEntity(extraData.holderPos()) instanceof IMalumSpecialItemAccessPoint holder)) {
+            return;
+        }
+        RepairPylonParticleEffects.prepareRepairParticles(pylon, holder, colorData);
     }
 }

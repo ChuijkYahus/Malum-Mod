@@ -5,14 +5,12 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.attack.slash.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.visual_effects.networked.attack.ScytheSlashParticleEffect;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
@@ -56,13 +54,13 @@ public class ProfaneGluttonGeas extends GeasEffect {
             while (chance > 0) {
                 if (random.nextFloat() < chance) {
                     var slashDirection = target.getLookAngle().scale(-1);
-                    var slashProperties = SlashAttackParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
+                    var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
                     WorldEventHandler.addWorldEvent(target.level(),
                             new DelayedDamageWorldEvent(target)
                                     .setDamageData(1, 1, 2)
                                     .setPhysicalDamageType(DamageTypeRegistry.ROT)
                                     .setMagicDamageType(DamageTypeRegistry.ROT)
-                                    .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new ColorEffectData(SpiritTypeRegistry.EARTHEN_SPIRIT))
+                                    .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.EARTHEN_SPIRIT))
                                     .setParticleEffectNBT(slashProperties)
                                     .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
                 }

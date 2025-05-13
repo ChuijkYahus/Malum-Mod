@@ -3,7 +3,7 @@ package com.sammy.malum.common.spiritrite.eldritch;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -33,7 +33,10 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
                             var newState = block.defaultBlockState();
                             level.setBlockAndUpdate(p, newState);
                             level.levelEvent(2001, p, Block.getId(newState));
-                            ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new PositionEffectData(p), new ColorEffectData(INFERNAL_SPIRIT));
+                            ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                    .createEffect(p)
+                                    .color(INFERNAL_SPIRIT)
+                                    .spawn(level);
                         }
                     }
                 });
@@ -48,7 +51,10 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyBlocks(totemBase, AbstractFurnaceBlock.class).forEach(p -> {
                     if (level.getBlockEntity(p) instanceof AbstractFurnaceBlockEntity furnace) {
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT.createPositionedEffect(level, new PositionEffectData(furnace.getBlockPos()), new ColorEffectData(INFERNAL_SPIRIT));
+                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                                .createEffect(p)
+                                .color(INFERNAL_SPIRIT)
+                                .spawn(level);
                         furnace.cookingProgress = Math.min(furnace.cookingProgress + 20, furnace.cookingTotalTime - 1);
                     }
                 });

@@ -4,7 +4,6 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.handlers.enchantment.*;
-import com.sammy.malum.core.helpers.ParticleHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.server.level.*;
@@ -50,17 +49,15 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (attacker instanceof Player player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
-            var level = player.level();
-            if (!level.isClientSide) {
-                SoundHelper.playSound(target, SoundRegistry.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, RandomHelper.randomBetween(level.random, 0.85f, 1.25f));
-                var particle = ParticleHelper.createSlamEffect(ParticleEffectTypeRegistry.STAFF_SLAM)
-                        .setVerticalSlashAngle();
-                if (stack.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-                    particle.setColor(spiritAffiliatedItem);
-                }
-                particle.spawnTargetBoundSlashingParticle(attacker, target);
-            }
+        if (attacker instanceof ServerPlayer player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+            var level = player.serverLevel();
+            SoundHelper.playSound(target, SoundRegistry.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, RandomHelper.randomBetween(level.random, 0.85f, 1.25f));
+            ParticleEffectTypeRegistry.STAFF_SLAM.createEffect()
+                    .originatesFrom(attacker)
+                    .targets(target)
+                    .color(stack.getItem())
+                    .forwardOffset(1.4f).upwardOffset(0.3f)
+                    .spawn(level);
             if (EnchantmentRegistry.getEnchantmentLevel(level, EnchantmentRegistry.REPLENISHING, stack) > 0) {
                 ReplenishingHandler.triggerReplenishing(event.getSource(), attacker, stack);
             }

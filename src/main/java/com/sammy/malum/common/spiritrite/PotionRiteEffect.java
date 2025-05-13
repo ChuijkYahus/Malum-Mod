@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.data.ColorEffectData;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,10 +30,12 @@ public class PotionRiteEffect extends TotemicRiteEffect {
     public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
         getNearbyEntities(totemBase, targetClass).filter(getEntityPredicate()).forEach(e -> {
             MobEffectInstance instance = new MobEffectInstance(mobEffectHolder, 1200, 1, true, true);
-            final boolean success = e.addEffect(instance);
+            boolean success = e.addEffect(instance);
             if (!e.hasEffect(instance.getEffect()) && success) {
-                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEntityEffect(e, new ColorEffectData(definingSpirit));
             }
+            ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEffect(e)
+                    .color(definingSpirit)
+                    .spawn(level);
         });
     }
 

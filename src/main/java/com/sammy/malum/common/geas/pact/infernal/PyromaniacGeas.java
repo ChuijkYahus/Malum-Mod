@@ -30,6 +30,7 @@ public class PyromaniacGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("pyromaniac"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_resistance"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));

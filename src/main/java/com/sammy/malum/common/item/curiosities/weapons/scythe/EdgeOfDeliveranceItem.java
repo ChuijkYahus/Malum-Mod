@@ -6,6 +6,7 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -43,29 +44,27 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         super.outgoingDamageEvent(event, attacker, target, stack);
-        var level = attacker.level();
-        if (level.isClientSide()) {
-            return;
-        }
-        var source = event.getSource();
-        if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
-            var effect = MobEffectRegistry.IMMINENT_DELIVERANCE;
-            if (target.hasEffect(effect)) {
-                if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
-                    var particle = ParticleHelper.createSlashingEffect(ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT);
-                    if (!canSweep(attacker)) {
-                        particle.setVertical();
+        if (attacker.level() instanceof ServerLevel level) {
+            var source = event.getSource();
+            if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
+                var effect = MobEffectRegistry.IMMINENT_DELIVERANCE;
+                if (target.hasEffect(effect)) {
+                    if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
+                        var particle = ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT.createEffect()
+                                .originatesFrom(attacker).targets(target).tiedToTarget().forwardOffset(-0.8f).upwardOffset(-0.4f);
+                        if (!canSweep(attacker)) {
+                            particle.verticalSlashRotation();
+                        }
+                        particle.spawn(level);
+                        target.removeEffect(effect);
                     }
-                    particle.spawnTargetBoundSlashingParticle(attacker, target);
-                    target.removeEffect(effect);
+                } else {
+                    event.setNewDamage(event.getNewDamage() * 0.5f);
+                    if (source.is(DamageTypeTagRegistry.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() >= 0.4f) {
+                        return;
+                    }
+                    target.addEffect(new MobEffectInstance(MobEffectRegistry.IMMINENT_DELIVERANCE, 60));
                 }
-            }
-            else {
-                event.setNewDamage(event.getNewDamage() * 0.5f);
-                if (source.is(DamageTypeTagRegistry.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() >= 0.4f) {
-                    return;
-                }
-                target.addEffect(new MobEffectInstance(MobEffectRegistry.IMMINENT_DELIVERANCE, 60));
             }
         }
     }

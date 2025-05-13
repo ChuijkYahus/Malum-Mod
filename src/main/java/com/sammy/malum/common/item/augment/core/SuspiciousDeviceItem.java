@@ -6,7 +6,7 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.data.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -35,9 +35,9 @@ public class SuspiciousDeviceItem extends CoreAugmentItem {
                         .setPosition(pos)
                         .setData(List.of(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8), 1, delay));
         level.playSound(null, pos, sound, SoundSource.BLOCKS, 2.5f, pitch);
-        ParticleEffectTypeRegistry.SUSPICIOUS_DEVICE_PRIMER.createPositionedEffect(level,
-                new PositionEffectData(pos.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET)),
-                new ColorEffectData(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT));
-
+        ParticleEffectTypeRegistry.SUSPICIOUS_DEVICE_PRIMER.createEffect()
+                .at(pos.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET))
+                .color(SpiritTypeRegistry.ARCANE_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT)
+                .spawn(level);
     }
 }
