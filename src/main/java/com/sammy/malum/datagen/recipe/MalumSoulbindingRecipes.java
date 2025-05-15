@@ -7,7 +7,6 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.conditions.*;
 
 public class MalumSoulbindingRecipes implements IConditionBuilder {
@@ -26,22 +25,37 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
-
+        new SoulBindingRecipeBuilder(ItemRegistry.IMITATION_FLESH.get(), 8, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER)
+                .addExtraItem(Items.GOLDEN_CARROT, 4)
+                .addExtraItem(Items.GOLDEN_APPLE, 4)
+                .addExtraItem(Items.GLISTERING_MELON_SLICE, 4)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .save(recipeOutput);
 
         new SoulBindingRecipeBuilder(ItemRegistry.REFINED_SOULSTONE.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK)
                 .addExtraItem(ItemRegistry.ARCANE_CHARCOAL.get(), 4)
-                .addExtraItem(ItemRegistry.GRIM_TALC.get(), 4)
+                .addExtraItem(ItemRegistry.HEX_ASH.get(), 4)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(ItemRegistry.REFINED_SOULSTONE.get(), 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER)
+                .addExtraItem(ItemRegistry.GRIM_TALC.get(), 4)
+                .addExtraItem(ItemRegistry.HEX_ASH.get(), 4)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 16)
                 .save(recipeOutput);
-        new SoulBindingRecipeBuilder(Items.IRON_BLOCK, 1, MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER)
-                .addExtraItem(Tags.Items.GEMS_QUARTZ, 8)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
+        new SoulBindingRecipeBuilder(ItemRegistry.IMITATION_HEART.get(), 8, MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER)
+                .addExtraItem(ItemRegistry.LIVING_FLESH.get(), 16)
+                .addExtraItem(ItemRegistry.GRIM_TALC.get(), 16)
+                .addExtraItem(Items.ROTTEN_FLESH, 16)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
-                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
-                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
 
@@ -56,13 +70,14 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
-        new SoulBindingRecipeBuilder(ItemRegistry.BLOCK_OF_SOUL_STAINED_STEEL.get(), 1, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION)
-                .addExtraItem(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 8)
+        new SoulBindingRecipeBuilder(ItemRegistry.IMITATION_FLESH.get(), 8, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION)
+                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 8)
                 .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
-                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
-                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
-                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
-                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 16)
+                .addExtraItem(ItemRegistry.SOUL_STAINED_STEEL_PLATING.get(), 8)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
 
@@ -79,17 +94,26 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 16)
                 .save(recipeOutput);
+        new SoulBindingRecipeBuilder(ItemRegistry.IMITATION_HEART.get(), 8, MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION)
+                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 8)
+                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 8)
+                .addExtraItem(ItemRegistry.HEX_ASH.get(), 8)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .save(recipeOutput);
 
 
         new SoulBindingRecipeBuilder(Items.PRISMARINE_CRYSTALS, 12, MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE)
                 .addExtraItem(Items.SALMON, 8)
-                .addExtraItem(Items.NAUTILUS_SHELL, 4)
+                .addExtraItem(Items.NAUTILUS_SHELL, 2)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 16)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.PRISMARINE_CRYSTALS, 12, MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST)
                 .addExtraItem(Items.PRISMARINE_SHARD, 8)
-                .addExtraItem(Items.NAUTILUS_SHELL, 4)
+                .addExtraItem(Items.NAUTILUS_SHELL, 2)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
@@ -163,10 +187,10 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
-        new SoulBindingRecipeBuilder(ItemRegistry.LIVING_FLESH.get(), 16, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION)
+        new SoulBindingRecipeBuilder(Items.BLAZE_POWDER, 16, MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION)
                 .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 8)
                 .addExtraItem(Items.ROTTEN_FLESH, 8)
-                .addExtraItem(Items.GHAST_TEAR, 4)
+                .addExtraItem(Items.GHAST_TEAR, 8)
                 .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 16)

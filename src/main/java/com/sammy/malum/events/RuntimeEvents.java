@@ -48,7 +48,6 @@ public class RuntimeEvents {
         SoulDataHandler.syncData(event);
         SoulWardHandler.syncSoulWard(event);
         GeasEffectHandler.syncGeas(event);
-
         TetraCompat.entityJoin(event);
         ContinuingShotGeas.entityJoin(event);
     }

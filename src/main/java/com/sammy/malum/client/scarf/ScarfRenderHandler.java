@@ -38,16 +38,19 @@ public class ScarfRenderHandler {
     public static void renderScarfData(RenderLevelStageEvent event) {
         final PoseStack poseStack = event.getPoseStack();
         final Camera camera = event.getCamera();
+        poseStack.pushPose();
         poseStack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
         for (Map.Entry<LivingEntity, ScarfRenderData> entry : SCARF_DATA.entrySet()) {
             final ScarfRenderData data = entry.getValue();
             final LivingEntity entity = entry.getKey();
             final float partialTicks = event.getPartialTick().getRealtimeDeltaTicks();
             var position = entity.getPosition(partialTicks);
+            poseStack.pushPose();
             poseStack.translate(position.x, position.y, position.z);
             data.render(entity, poseStack, partialTicks);
-            poseStack.translate(-position.x, -position.y, -position.z);
+            poseStack.popPose();
         }
+        poseStack.popPose();
     }
 
     public static ScarfRenderData addScarfRenderer(LivingEntity living, Function<LivingEntity, ScarfRenderData> constructor) {

@@ -53,15 +53,12 @@ public class ProfaneGluttonGeas extends GeasEffect {
             float chance = effect.getAmplifier() * 0.02f;
             while (chance > 0) {
                 if (random.nextFloat() < chance) {
-                    var slashDirection = target.getLookAngle().scale(-1);
-                    var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
                     WorldEventHandler.addWorldEvent(target.level(),
                             new DelayedDamageWorldEvent(target)
                                     .setDamageData(1, 1, 2)
                                     .setPhysicalDamageType(DamageTypeRegistry.ROT)
                                     .setMagicDamageType(DamageTypeRegistry.ROT)
                                     .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.EARTHEN_SPIRIT))
-                                    .setParticleEffectNBT(slashProperties)
                                     .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
                 }
                 chance--;

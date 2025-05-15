@@ -2,34 +2,30 @@
   "type": "malum:soul_binding",
   "extraIngredients": [
     {
-      "count": 8,
-      "tag": "c:gems/quartz"
+      "count": 4,
+      "item": "malum:grim_talc"
     },
     {
-      "count": 8,
-      "item": "malum:refined_soulstone"
+      "count": 4,
+      "item": "malum:hex_ash"
     }
   ],
   "geas": "malum:pact_of_the_reaper",
   "ingredient": {
-    "count": 1,
-    "item": "minecraft:iron_block"
+    "count": 12,
+    "item": "malum:refined_soulstone"
   },
   "spirits": [
     {
       "type": "wicked",
-      "count": 32
-    },
-    {
-      "type": "aerial",
-      "count": 32
-    },
-    {
-      "type": "arcane",
       "count": 16
     },
     {
-      "type": "eldritch",
+      "type": "aerial",
+      "count": 16
+    },
+    {
+      "type": "infernal",
       "count": 16
     }
   ]

@@ -10,14 +10,14 @@
       "item": "minecraft:rotten_flesh"
     },
     {
-      "count": 4,
+      "count": 8,
       "item": "minecraft:ghast_tear"
     }
   ],
   "geas": "malum:pact_of_wyrd_reconstruction",
   "ingredient": {
     "count": 16,
-    "item": "malum:living_flesh"
+    "item": "minecraft:blaze_powder"
   },
   "spirits": [
     {

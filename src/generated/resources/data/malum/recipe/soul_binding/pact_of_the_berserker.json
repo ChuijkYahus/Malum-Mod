@@ -1,0 +1,40 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 16,
+      "item": "malum:living_flesh"
+    },
+    {
+      "count": 16,
+      "item": "malum:grim_talc"
+    },
+    {
+      "count": 16,
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "geas": "malum:pact_of_the_berserker",
+  "ingredient": {
+    "count": 8,
+    "item": "malum:imitation_heart"
+  },
+  "spirits": [
+    {
+      "type": "wicked",
+      "count": 32
+    },
+    {
+      "type": "aerial",
+      "count": 32
+    },
+    {
+      "type": "infernal",
+      "count": 32
+    },
+    {
+      "type": "eldritch",
+      "count": 32
+    }
+  ]
+}

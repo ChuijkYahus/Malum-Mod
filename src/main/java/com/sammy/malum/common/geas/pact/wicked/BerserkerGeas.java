@@ -40,8 +40,9 @@ public class BerserkerGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("scythe_combo"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("only_scythe"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("damage_buildup"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("damage_release"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("more_damage"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 }

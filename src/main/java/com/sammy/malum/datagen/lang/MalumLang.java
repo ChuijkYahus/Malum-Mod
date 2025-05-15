@@ -138,7 +138,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Weave miracles, share them with all");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Weave your life into miracles");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
@@ -150,7 +150,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
@@ -301,6 +301,11 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
         addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
         addGeasEffect("aggressive_enemies", "Increases Enemy Aggression");
+        addGeasEffect("scythe_combo", "Scythe Cuts Create Combo-Attacks");
+        addGeasEffect("only_scythe", "Regular Weapons Crumble In Your Hands");
+        addGeasEffect("damage_buildup", "Taking Damage Charges Up Wrath");
+        addGeasEffect("damage_release", "Wrath Is Released When Striking A Target");
+        addGeasEffect("more_damage", "All Incoming Damage Is Increased");
         addGeasEffect("chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
         addGeasEffect("hunger_as_withdrawal", "Addiction to Slaughter");
         addGeasEffect("spirits_magic_boost", "Spirit Collection Amplifies Magic");
@@ -314,15 +319,14 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
         addGeasEffect("no_armor_armor", "The Absence of Equipped Armour Becomes Armor");
         addGeasEffect("no_armor", "Equipped Armour Damages You");
-        addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Damaged");
+        addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
+        addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
         addGeasEffect("fragile_reach_damage", "The Ruler's Hand Grips Tightly");
         addGeasEffect("movement_acceleration", "Sprinting Builds Up Extra Momentum");
         addGeasEffect("knockback_also_accelerates", "High Momentum Amplifies Received Knockback");
         addGeasEffect("faster_draw_time", "Successful Ranged Damage Builds Up Extra Draw Speed");
         addGeasEffect("missing_halts_draw_time", "Missing Inverts The Benefit");
         addGeasEffect("soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
-        addGeasEffect("scythe_combo", "Scythe Cuts Create Combo-Attacks");
-        addGeasEffect("only_scythe", "Regular Weapons Crumble In Your Hands");
         addGeasEffect("incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
         addGeasEffect("outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
         addGeasEffect("more_knockback", "Doubles Incoming Knockback");
@@ -342,7 +346,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("desperate_need", "Gluttony Becomes Desperate Need");
         addGeasEffect("desperate_need_scythe_proficiency", "Desperate Need Substantially Increases Scythe Proficiency");
         addGeasEffect("desperate_need_betrayal", "The Rot Will Consume You");
-        addGeasEffect("wyrd_reconstruction", "Death Triggers Resurrection and Spirit-Collection Effects");
+        addGeasEffect("wyrd_reconstruction", "Death Triggers Resurrection");
+        addGeasEffect("wyrd_reconstruction_spirits", "Resurrection Repeatedly Activates Spirit-Collection Effects");
         addGeasEffect("wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
         addGeasEffect("spirits_hunger", "Spirit Collection Drains Hunger");
         addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");

@@ -210,6 +210,35 @@ public class GeasParticleEffects {
         }
     }
 
+    public static void shakenFaith(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        long gameTime = level.getGameTime();
+        float time = 16;
+        for (int i = 0; i < 12; i++) {
+            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 12, gameTime, time);
+            double timeOffset = (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f;
+            offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
+            for (int j = 0; j < 3; j++) {
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = -RandomHelper.randomBetween(random, 0.4f, 0.6f);
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(velocity);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(0.5f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(0.4f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
     public static void warlockBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
         var pos = positionData.getAsVector();
         var direction = extraData.getDirection();

@@ -923,6 +923,16 @@ public class CodexLangDatagen {
                          -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
                          -Forsworn Weapons Deteriorate When Used""");
 
+        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "[Reaper]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
+                """
+                        A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
+                         -Scythe Attacks occasionally trigger follow up cuts""",
+                """
+                        To break the bond will be your undoing
+                         -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
+                         -Forsworn Weapons Deteriorate When Used""");
+
 
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "[Fortress]");
@@ -970,7 +980,7 @@ public class CodexLangDatagen {
                          -All Incoming Damage is converted into Magic Damage""");
 
         addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "[Rune Exploitation]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION,
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION,
                 scaled(0.8f) + """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
@@ -987,7 +997,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_the_high_priest", "Pact of The High Priest", "[High Priest]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST,
                 scaled(0.8f) + """
-                        Feign Control over the World.
+                        Grasp the World.
                          -Increases Block Reach by Two Fifths and Entity Reach by One Tenth""",
                 scaled(0.8f) + """
                         That which you take is temporary.
@@ -999,15 +1009,15 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,
                 """
                         Move like the Zephyr.
-                         -Sprinting builds up Momentum""",
-                "Be moved by the Zephyr\n -High Momentum amplifies received knockback");
+                         -Continuously Sprinting builds up Movement Speed""",
+                "Be moved by the Zephyr\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
 
         addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "[Continuing Shot]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT,
                 """
                         Precision is Key.
                          -Dealing Ranged Damage accelerates Draw Speed for most Ranged Weapons""",
-                "To feign perfection will be your downfall.\n -Missing a Shot will dampen your Draw Speed");
+                "You cannot feign perfection.\n -Missing a Shot will remove any Draw Speed bonuses and instead dampen it");
 
         addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "Heaven's Falling Down");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,

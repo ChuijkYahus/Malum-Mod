@@ -41,6 +41,7 @@ public class HighPriestGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("bonus_reach"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fragile_reach"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fragile_reach_damage"));
     }
@@ -59,32 +60,17 @@ public class HighPriestGeas extends GeasEffect {
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (event.getSource().getDirectEntity() != null && event.getSource().getEntity() != null) {
-            triggerRulersHandSecret(attacker, target);
+            if (hasEffect) {
+                return;
+            }
+            WorldEventHandler.addWorldEvent(target.level(),
+                    new DelayedDamageWorldEvent(target)
+                            .setDamageData(2, 2, 2)
+                            .setMagicDamageType(DamageTypeRegistry.KARMIC)
+                            .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.AQUEOUS_SPIRIT))
+                            .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
             target.addEffect(new MobEffectInstance(MobEffectRegistry.SHAKEN_FAITH, COOLDOWN_DURATION, 0, true, true, true));
             setDirty();
         }
-    }
-
-    @Override
-    public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (attacker.getRandom().nextFloat() < 0.05f) {
-            triggerRulersHandSecret(attacker, target);
-        }
-    }
-
-    public void triggerRulersHandSecret(LivingEntity attacker, LivingEntity target) {
-        if (hasEffect) {
-            return;
-        }
-        var random = target.getRandom();
-        var slashDirection = attacker.getLookAngle();
-        var slashProperties = ScytheSlashParticleEffect.createData(slashDirection, random.nextBoolean(), RandomHelper.randomBetween(random, -0.5f, 0.5f));
-        WorldEventHandler.addWorldEvent(target.level(),
-                new DelayedDamageWorldEvent(target)
-                        .setDamageData(2, 2, 2)
-                        .setMagicDamageType(DamageTypeRegistry.KARMIC)
-                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.AQUEOUS_SPIRIT))
-                        .setParticleEffectNBT(slashProperties)
-                        .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
     }
 }
