@@ -441,7 +441,8 @@ public class MalumLang extends LanguageProvider {
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
         addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.WARLOCK_GEAS, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
 
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
         addDeathMessage(DamageTypeRegistry.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");

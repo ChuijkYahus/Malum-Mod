@@ -868,6 +868,15 @@
     ],
     "subtitle": "malum.subtitle.quartz_cluster_block_step"
   },
+  "reaper_scythe_slashes": {
+    "sounds": [
+      "malum:curiosities/geas/reaper_impact1",
+      "malum:curiosities/geas/reaper_impact2",
+      "malum:curiosities/geas/reaper_impact3",
+      "malum:curiosities/geas/reaper_impact4"
+    ],
+    "subtitle": "malum.subtitle.reaper_scythe_slashes"
+  },
   "rejected_by_the_unknown": {
     "sounds": [
       "malum:weeping_well/void_rejection"
@@ -1883,13 +1892,10 @@
   },
   "the_rot_consumes": {
     "sounds": [
-      "malum:curiosities/weapons/scythe/sweep1",
-      "malum:curiosities/weapons/scythe/sweep2",
-      "malum:curiosities/weapons/scythe/sweep3",
-      "malum:curiosities/weapons/scythe/sweep4",
-      "malum:curiosities/weapons/scythe/sweep5",
-      "malum:curiosities/weapons/scythe/sweep6",
-      "malum:curiosities/weapons/scythe/sweep7"
+      "malum:curiosities/geas/reaper_impact1",
+      "malum:curiosities/geas/reaper_impact2",
+      "malum:curiosities/geas/reaper_impact3",
+      "malum:curiosities/geas/reaper_impact4"
     ],
     "subtitle": "malum.subtitle.the_rot_consumes"
   },

@@ -100,7 +100,8 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_THROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_leaps_out_eagerly")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_returns_with_euphoria")));
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WARLOCK_BLAST = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wicked_energy_bursts_forward")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_BLAST = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wicked_energy_bursts_forward")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> REAPER_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("reaper_scythe_slashes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WYRD_RECONSTRUCTION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wyrd_reconstruction_reconstructs_body")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_WITHDRAWAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_consumes")));

@@ -923,8 +923,8 @@ public class CodexLangDatagen {
                          -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
                          -Forsworn Weapons Deteriorate When Used""");
 
-        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "[Reaper]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
+        addSimpleEntryHeader("pact_of_the_berserker", "Pact of The Berserker", "[Berserker]");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER,
                 """
                         A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
                          -Scythe Attacks occasionally trigger follow up cuts""",
@@ -932,8 +932,6 @@ public class CodexLangDatagen {
                         To break the bond will be your undoing
                          -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
                          -Forsworn Weapons Deteriorate When Used""");
-
-
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "[Fortress]");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,

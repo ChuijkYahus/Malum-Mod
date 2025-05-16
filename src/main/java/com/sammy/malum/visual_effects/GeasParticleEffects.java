@@ -239,6 +239,75 @@ public class GeasParticleEffects {
         }
     }
 
+    public static void berserkerBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+
+        float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
+        WorldParticleBuilder.create(ParticleRegistry.STAR.get())
+                .setTransparencyData(GenericParticleData.create(0.4f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+                .setLifetime(12)
+                .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
+                .setScaleData(GenericParticleData.create(1.5f * scaleMultiplier, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
+                .setColorData(colorData.getColor())
+                .setRandomOffset(0.2f)
+                .enableNoClip()
+                .setRandomMotion(0.02f, 0.02f)
+                .repeat(level, pos.x, pos.y, pos.z, 3)
+                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(0.6f))
+                .repeat(level, pos.x, pos.y, pos.z, 2);
+
+        long gameTime = level.getGameTime();
+        float time = 16;
+        for (int i = 0; i < 8; i++) {
+            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 8, gameTime, time);
+            float angleOffset = random.nextFloat() * 6.28f;
+            var direction = pos.subtract(offsetTargetPosition).normalize();
+            float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
+            float yaw = (float) Math.toRadians(yRot);
+            Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
+            Vec3 up = left.cross(direction);
+            for (int j = 0; j < 3; j++) {
+                var color = colorData.getColor();
+                float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
+                float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
+                float distance = -RandomHelper.randomBetween(random, 4f, 6f);
+                float angle = angleOffset + j / 3f * (float) Math.PI * 2f;
+
+                Vec3 particleDirection = direction
+                        .add(left.scale(Math.sin(angle) * spread))
+                        .add(up.scale(Math.cos(angle) * spread))
+                        .normalize().scale(speed);
+                Vec3 spawnPosition = pos.add(particleDirection.scale(distance));
+                float lifetimeMultiplier = 0.4f;
+                if (random.nextFloat() < 0.8f) {
+                    var lightSpecs = spiritLightSpecs(level, spawnPosition, color);
+                    lightSpecs.getBuilder()
+                            .multiplyLifetime(lifetimeMultiplier)
+                            .enableForcedSpawn()
+                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                            .setMotion(particleDirection);
+                    lightSpecs.getBloomBuilder()
+                            .multiplyLifetime(lifetimeMultiplier)
+                            .setMotion(particleDirection);
+                    lightSpecs.spawnParticles();
+                }
+                if (random.nextFloat() < 0.8f) {
+                    var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color);
+                    sparks.getBuilder()
+                            .multiplyLifetime(lifetimeMultiplier)
+                            .enableForcedSpawn()
+                            .setMotion(particleDirection.scale(1.5f))
+                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                            .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f));
+                    sparks.getBloomBuilder()
+                            .multiplyLifetime(lifetimeMultiplier)
+                            .setMotion(particleDirection.scale(1.5f));
+                    sparks.spawnParticles();
+                }
+            }
+        }
+    }
+
     public static void warlockBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
         var pos = positionData.getAsVector();
         var direction = extraData.getDirection();
@@ -248,16 +317,18 @@ public class GeasParticleEffects {
         Vec3 up = left.cross(direction);
 
         float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR.get())
-                .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+        WorldParticleBuilder.create(ParticleRegistry.STAR.get())
+                .setTransparencyData(GenericParticleData.create(0.5f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                 .setLifetime(15)
                 .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
-                .setScaleData(GenericParticleData.create(2f * scaleMultiplier, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
+                .setScaleData(GenericParticleData.create(1.25f * scaleMultiplier, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
                 .setColorData(colorData.getColor())
                 .setRandomOffset(0.2f)
                 .enableNoClip()
                 .setRandomMotion(0.02f, 0.02f)
-                .repeat(level, pos.x, pos.y, pos.z, 3);
+                .repeat(level, pos.x, pos.y, pos.z, 3)
+                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(0.6f))
+                .repeat(level, pos.x, pos.y, pos.z, 2);
 
         for (int i = 0; i < 16; i++) {
             var color = colorData.getColor();
