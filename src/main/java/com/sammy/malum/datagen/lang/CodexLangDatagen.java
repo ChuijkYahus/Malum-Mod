@@ -909,9 +909,9 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "To fight forever");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
                 """
-                        You are the challenger.
-                         -The Initial Hit against Enemies Blasts them with Wicked Energy""",
-                "The invitation does not go unnoticed\n -Enemies detect you from Twice as Far");
+                        A pact designed to weave anger into pain.
+                         -The Initial Hit against Enemies Blasts them with Wicked Arcana""",
+                "Feel anger, cause anger\n -Enemies detect you from Twice as Far");
 
         addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "To master the harvest blade");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
@@ -923,15 +923,16 @@ public class CodexLangDatagen {
                          -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
                          -Forsworn Weapons Deteriorate When Used""");
 
-        addSimpleEntryHeader("pact_of_the_berserker", "Pact of The Berserker", "[Berserker]");
+        addSimpleEntryHeader("pact_of_the_berserker", "Pact of The Berserker", "To return pain in kind");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER,
+                scaled(0.7f) + """
+                        An endless wrath, a constant anger, your pain brings rage, and rage is power.
+                         -Taking damage converts it to Wrath
+                         -Dealing damage utilizes Wrath to Repeatedly Blast Enemies with Wicked Arcana""",
                 """
-                        A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
-                         -Scythe Attacks occasionally trigger follow up cuts""",
-                """
-                        To break the bond will be your undoing
-                         -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
-                         -Forsworn Weapons Deteriorate When Used""");
+                        Hurt yourself, hurt others
+                         -Wrath decreases overtime
+                         -Increases all damage taken by One Fourth""");
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "To stand and defend");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
@@ -979,7 +980,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "To follow the ancient pacts");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION,
-                scaled(0.8f) + """
+                """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
                 "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
@@ -994,14 +995,23 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_high_priest", "Pact of The High Priest", "To spread oneself thin");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST,
-                scaled(0.8f) + """
-                        Grasp the World.
+                """
+                        The Whole World is yours.
                          -Increases Block Reach by Two Fifths and Entity Reach by One Tenth""",
                 scaled(0.8f) + """
-                        That which you take is temporary.
+                        Your over-encroaching grip is a harmful one.
                          -Reach Effect enters Cooldown State when Struck by a Target
-                         -When Triggered, you are Struck with an Aqueous Lash""");
+                         -When Reach Effect is Lost, you are Struck with Aqueous Arcana""");
 
+        addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
+                scaled(0.65f) + """
+                        Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
+                         -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
+                         -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
+                """
+                        The chains of the ocean grip your heart tightly.
+                         -You Cannot Heal Outside of Water""");
 
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,

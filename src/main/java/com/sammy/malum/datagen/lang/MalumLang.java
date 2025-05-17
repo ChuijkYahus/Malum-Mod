@@ -93,6 +93,7 @@ public class MalumLang extends LanguageProvider {
             add("effect.malum." + BuiltInRegistries.MOB_EFFECT.getKey(e.get()).getPath(), name);
         });
 
+
         attributes.forEach(a -> {
             String name = DataHelper.toTitleCase(a.getId().getPath(), "_");
             add("attribute.name.malum." + BuiltInRegistries.ATTRIBUTE.getKey(a.get()).getPath(), name);
@@ -154,6 +155,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY.get(), "Swear loyalty to the sea");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
@@ -321,7 +323,11 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("no_armor", "Equipped Armour Damages You");
         addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
         addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
-        addGeasEffect("fragile_reach_damage", "The Ruler's Hand Grips Tightly");
+        addGeasEffect("fragile_reach_damage", "The High Priest's Rule Grips You Tightly");
+        addGeasEffect("water_agility", "You Move and Swing Faster In Water");
+        addGeasEffect("water_damage_resistance", "You Take Reduced Damage in Water");
+        addGeasEffect("conduit_bonus", "Conduit Power Heals You And Amplifies Damage Reduction");
+        addGeasEffect("fish_healing", "You Cannot Heal Outside Of Water");
         addGeasEffect("movement_acceleration", "Sprinting Builds Up Extra Momentum");
         addGeasEffect("knockback_also_accelerates", "High Momentum Amplifies Received Knockback");
         addGeasEffect("faster_draw_time", "Successful Ranged Damage Builds Up Extra Draw Speed");

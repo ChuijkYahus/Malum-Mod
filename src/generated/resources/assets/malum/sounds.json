@@ -2086,6 +2086,15 @@
     ],
     "subtitle": "malum.subtitle.wicked_energy_bursts_forward"
   },
+  "wrathful_energy_surges": {
+    "sounds": [
+      "malum:curiosities/geas/berserker_impact1",
+      "malum:curiosities/geas/berserker_impact2",
+      "malum:curiosities/geas/berserker_impact3",
+      "malum:curiosities/geas/berserker_impact4"
+    ],
+    "subtitle": "malum.subtitle.wrathful_energy_surges"
+  },
   "wyrd_reconstruction_reconstructs_body": {
     "sounds": [
       "malum:curiosities/geas/wyrd_reconstruction1",

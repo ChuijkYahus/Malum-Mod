@@ -27,6 +27,14 @@
     {
       "type": "arcane",
       "count": 32
+    },
+    {
+      "type": "sacred",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 16
     }
   ]
 }

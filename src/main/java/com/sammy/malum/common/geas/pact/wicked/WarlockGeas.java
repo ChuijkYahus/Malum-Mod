@@ -41,7 +41,7 @@ public class WarlockGeas extends GeasEffect {
                             .setDamageData(0, 4, 3)
                             .setMagicDamageType(DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT)
                             .setImpactParticleEffect(ParticleEffectTypeRegistry.WARLOCK_IMPACT, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT))
-                            .setSound(SoundRegistry.SPIRIT_BLAST, 1.5f, 1.75f, 1));
+                            .setSound(SoundRegistry.WARLOCK_BLAST, 1.5f, 1.75f, 1));
         }
     }
 

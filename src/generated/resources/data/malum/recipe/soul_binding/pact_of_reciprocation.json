@@ -25,16 +25,16 @@
       "count": 32
     },
     {
-      "type": "infernal",
+      "type": "aqueous",
       "count": 32
     },
     {
       "type": "earthen",
-      "count": 32
+      "count": 16
     },
     {
       "type": "eldritch",
-      "count": 32
+      "count": 16
     }
   ]
 }

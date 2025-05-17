@@ -50,6 +50,7 @@ public class BerserkerGeas extends GeasEffect {
         }
         if (resetDamageNextTick) {
             storedDamage = 0;
+            resetDamageNextTick = false;
         }
         else if (entity.level().getGameTime() % 40L == 0) {
             storedDamage *= 0.95f;
@@ -64,17 +65,16 @@ public class BerserkerGeas extends GeasEffect {
         if (event.getSource().is(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT)) {
             return;
         }
-        if (storedDamage >= 2) {
-            int hits = Mth.ceil(storedDamage/2);
+        if (storedDamage >= 4) {
+            int hits = Mth.ceil(storedDamage/4);
             for (int i = 0; i < hits; i++) {
-                float pitch = 0.8f + i * 0.1f;
                 WorldEventHandler.addWorldEvent(target.level(),
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker)
-                                .setDamageData(0, 2, Mth.ceil(storedDamage))
+                                .setDamageData(0, 2, 10+i*2)
                                 .setMagicDamageType(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT)
                                 .setImpactParticleEffect(ParticleEffectTypeRegistry.BERSERKER_IMPACT, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT))
-                                .setSound(SoundRegistry.SPIRIT_BLAST, pitch, pitch+0.1f, 1));
+                                .setSound(SoundRegistry.BERSERKER_WRATH, 0.7f, 1.3f, 1));
             }
             resetDamageNextTick = true;
         }
