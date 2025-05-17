@@ -307,7 +307,7 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("only_scythe", "Regular Weapons Crumble In Your Hands");
         addGeasEffect("damage_buildup", "Taking Damage Charges Up Wrath");
         addGeasEffect("damage_release", "Wrath Is Released When Striking A Target");
-        addGeasEffect("more_damage", "All Incoming Damage Is Increased");
+        addGeasEffect("more_damage", "All Incoming Damage Is Doubled");
         addGeasEffect("chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
         addGeasEffect("hunger_as_withdrawal", "Addiction to Slaughter");
         addGeasEffect("spirits_magic_boost", "Spirit Collection Amplifies Magic");

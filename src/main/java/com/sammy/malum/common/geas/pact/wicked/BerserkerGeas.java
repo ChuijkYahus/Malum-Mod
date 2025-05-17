@@ -27,12 +27,12 @@ public class BerserkerGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        storedDamage = (storedDamage + event.getAmount()) * 0.8f;
+        storedDamage = (storedDamage + 2 + event.getAmount()) * 0.8f;
     }
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        event.setNewDamage(event.getNewDamage() * 1.25f);
+        event.setNewDamage(event.getNewDamage() * 2f);
     }
 
     @Override

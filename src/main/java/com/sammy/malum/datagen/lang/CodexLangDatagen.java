@@ -931,8 +931,8 @@ public class CodexLangDatagen {
                          -Dealing damage utilizes Wrath to Repeatedly Blast Enemies with Wicked Arcana""",
                 """
                         Hurt yourself, hurt others
-                         -Wrath decreases overtime
-                         -Increases all damage taken by One Fourth""");
+                         -Wrath Decreases Overtime
+                         -All Incoming Damage is Doubled""");
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "To stand and defend");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
