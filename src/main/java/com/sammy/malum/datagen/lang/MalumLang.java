@@ -315,7 +315,7 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("more_runes", "2 Rune Slots");
         addGeasEffect("rune_vulnerability", "Each Equipped Rune Dampens Healing, Armor and Magic Resistance");
         addGeasEffect("more_saturation", "Meals Provide Extra Saturation");
-        addGeasEffect("food_effect_cleanse", "Eating Cleanses Debuffs");
+        addGeasEffect("food_effect_cleanse", "Eating Cleanses Negative Effects");
         addGeasEffect("faster_starving", "Starvation Occurs Faster");
         addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
