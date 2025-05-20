@@ -210,6 +210,33 @@ public class GeasParticleEffects {
         }
     }
 
+    public static void patienceRepaid(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        long gameTime = level.getGameTime();
+        float time = 64;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.25f-0.05f*j, i, 12, gameTime+j, time);
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = 0.075f;
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
     public static void shakenFaith(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
         long gameTime = level.getGameTime();

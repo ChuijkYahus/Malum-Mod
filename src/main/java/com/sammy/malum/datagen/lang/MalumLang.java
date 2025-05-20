@@ -155,7 +155,8 @@ public class MalumLang extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY.get(), "Swear loyalty to the sea");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY.get(), "Become the ocean's avatar");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID.get(), "A warped echo");
 
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
@@ -328,6 +329,9 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("water_damage_resistance", "You Take Reduced Damage in Water");
         addGeasEffect("conduit_bonus", "Conduit Power Heals You And Amplifies Damage Reduction");
         addGeasEffect("fish_healing", "You Cannot Heal Outside Of Water");
+        addGeasEffect("buffered_damage", "Half Of Incoming Damage Is Buffered");
+        addGeasEffect("buffered_damage_non_lethal", "Buffered Damage Is Applied Overtime And Cannot Kill You");
+        addGeasEffect("buffered_damage_more_overall", "Buffered Damage Is Amplified");
         addGeasEffect("movement_acceleration", "Sprinting Builds Up Extra Momentum");
         addGeasEffect("knockback_also_accelerates", "High Momentum Amplifies Received Knockback");
         addGeasEffect("faster_draw_time", "Successful Ranged Damage Builds Up Extra Draw Speed");

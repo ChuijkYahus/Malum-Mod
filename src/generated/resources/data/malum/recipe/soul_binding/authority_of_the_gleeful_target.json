@@ -1,0 +1,56 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 16,
+      "item": "malum:malignant_pewter_plating"
+    },
+    {
+      "count": 16,
+      "item": "malum:imitation_flesh"
+    },
+    {
+      "count": 16,
+      "item": "malum:void_salts"
+    }
+  ],
+  "geas": "malum:authority_of_the_gleeful_target",
+  "ingredient": {
+    "count": 1,
+    "item": "malum:fused_consciousness"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 32
+    },
+    {
+      "type": "wicked",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    },
+    {
+      "type": "eldritch",
+      "count": 32
+    },
+    {
+      "type": "aerial",
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
+    },
+    {
+      "type": "earthen",
+      "count": 32
+    },
+    {
+      "type": "infernal",
+      "count": 32
+    }
+  ]
+}

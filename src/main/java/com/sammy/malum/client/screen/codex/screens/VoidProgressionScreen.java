@@ -379,6 +379,9 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_LIMITLESS.get()))
                 .afterUmbralCrystal()
         );
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART, -2, 18);
+        addGeasEntry(this, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET, 2, 18);
+
 
         BookPage.isVoidThemed = false;
     }

@@ -11,10 +11,10 @@
     },
     {
       "count": 8,
-      "item": "minecraft:kelp"
+      "item": "minecraft:copper_ingot"
     }
   ],
-  "geas": "malum:pact_of_tidal_affinity",
+  "geas": "malum:pact_of_patience_repaid",
   "ingredient": {
     "count": 1,
     "item": "minecraft:heart_of_the_sea"
@@ -29,7 +29,7 @@
       "count": 32
     },
     {
-      "type": "aerial",
+      "type": "earthen",
       "count": 16
     },
     {

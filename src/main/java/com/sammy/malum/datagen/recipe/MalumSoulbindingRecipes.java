@@ -124,6 +124,15 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addExtraItem(Items.KELP, 8)
                 .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 16)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(Items.HEART_OF_THE_SEA, 1, MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID)
+                .addExtraItem(Items.PRISMARINE_SHARD, 8)
+                .addExtraItem(Items.PRISMARINE_CRYSTALS, 8)
+                .addExtraItem(Items.COPPER_INGOT, 8)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 16)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
@@ -260,6 +269,34 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .save(recipeOutput);
+
+
+        new SoulBindingRecipeBuilder(ItemRegistry.FUSED_CONSCIOUSNESS.get(), 1, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET)
+                .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 16)
+                .addExtraItem(ItemRegistry.IMITATION_FLESH.get(), 16)
+                .addExtraItem(ItemRegistry.VOID_SALTS.get(), 16)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 32)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(ItemRegistry.FUSED_CONSCIOUSNESS.get(), 1, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART)
+                .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 16)
+                .addExtraItem(ItemRegistry.IMITATION_HEART.get(), 16)
+                .addExtraItem(ItemRegistry.MNEMONIC_FRAGMENT.get(), 16)
+                .addSpirit(SpiritTypeRegistry.SACRED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AERIAL_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.AQUEOUS_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT, 32)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 32)
                 .save(recipeOutput);
 
     }

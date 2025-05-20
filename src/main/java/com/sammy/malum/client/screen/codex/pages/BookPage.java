@@ -11,8 +11,9 @@ import javax.annotation.*;
 import static com.sammy.malum.client.screen.codex.screens.EntryScreen.*;
 
 public abstract class BookPage {
-    
+
     public static final String TEXT = "malum.gui.book.entry.page.text";
+    public static final String HEADLINE = "malum.gui.book.entry.page.headline";
 
     public static boolean isVoidThemed = false;
 
@@ -28,9 +29,9 @@ public abstract class BookPage {
         return true;
     }
 
-
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
+
     public void renderLate(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
 

@@ -54,10 +54,11 @@ public class ArcanaCodexHelper {
     public static final TextColorData GEAS_NEGATIVE_COLOR = new TextColorData(new Color(141, 18, 52), new Color(118, 52, 141), new Color(120, 44, 20), new Color(240, 100, 100));
 
 
-    public enum BookTheme {
-        DEFAULT, EASY_READING
-    }
 
+
+    public enum BookTheme {
+        DEFAULT, EASY_READING;
+    }
     public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
         final float pct = screen.transitionTimer / (float) screen.getTransitionDuration();
         float overlayAlpha = Easing.SINE_IN_OUT.ease(pct, 0, 1, 1);
@@ -624,22 +625,40 @@ public class ArcanaCodexHelper {
         return line;
     }
 
+    public static void renderHeadline(GuiGraphics graphics, Component component, int left, int top) {
+        final int width = Minecraft.getInstance().font.width(component.getString());
+        float scale = 1f;
+        if (width > 100) {
+            scale -= (width-100) / 200f;
+        }
+        float textLeft = left + 72;
+        float textTop = top + 5;
+
+        if (scale != 1) {
+            textLeft /= scale;
+            textTop /= scale;
+            textTop += 5 * (1 - scale);
+        }
+        renderText(graphics, component, textLeft- width / 2f, textTop, scale);
+    }
+
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
         renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float glow) {
-        renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, glow);
+    public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float scale) {
+        renderRawText(guiGraphics, DEFAULT_TEXT_COLOR, component.getString(), x, y, 0.4f, scale);
     }
 
     public static void renderText(GuiGraphics guiGraphics, TextColorData colorData, Component component, float x, float y, float glow) {
-        String text = component.getString();
-        renderRawText(guiGraphics, colorData, text, x, y, glow);
+        renderText(guiGraphics, colorData, component, x, y, glow, 1f);
     }
 
-    private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier) {
-        renderRawText(guiGraphics, colorData, text, x, y, glowMultiplier, 1f);
+    public static void renderText(GuiGraphics guiGraphics, TextColorData colorData, Component component, float x, float y, float glow, float scale) {
+        String text = component.getString();
+        renderRawText(guiGraphics, colorData, text, x, y, glow, scale);
     }
+
     private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier, float scaleMultiplier) {
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();

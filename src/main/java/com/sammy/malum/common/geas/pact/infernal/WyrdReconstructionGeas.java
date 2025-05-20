@@ -77,6 +77,9 @@ public class WyrdReconstructionGeas extends GeasEffect {
         if (target.hasEffect(MobEffectRegistry.WYRD_EXHAUSTION)) {
             return;
         }
+        if (event.isCanceled()) {
+            return;
+        }
         if (delay > 0) {
             event.setCanceled(true);
             target.setHealth(1);

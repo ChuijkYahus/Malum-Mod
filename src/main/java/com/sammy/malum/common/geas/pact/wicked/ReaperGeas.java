@@ -43,6 +43,7 @@ public class ReaperGeas extends GeasEffect {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
+    //TODO: This thing is rlly needlessly complicated
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {

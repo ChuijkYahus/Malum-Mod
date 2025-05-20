@@ -76,7 +76,7 @@ public class CodexLangDatagen {
     }
 
     private static void addHeadline(String identifier, String tooltip) {
-        add("malum.gui.book.entry.page.headline." + identifier, tooltip);
+        add(BookPage.HEADLINE + "." + identifier, tooltip);
     }
 
     private static void addRecipeDescriptor(String identifier, String tooltip) {
@@ -701,18 +701,18 @@ public class CodexLangDatagen {
                 "If raw explosive power is not sufficient, you simply aren't using enough of it. This ring amplifies explosions, mitigating that issue.");
 
         addEntryHeader("necklace_of_blissful_harmony", "Necklace of Blissful Harmony", "No sign of morning coming");
-        addHeadline("necklace_of_blissful_harmony", "The Blissful Harmony");
+        addHeadline("necklace_of_blissful_harmony", "Necklace of Blissful Harmony");
         addPages("necklace_of_blissful_harmony",
                 "To focus on my magics I more often than not need peace and clarity. As such, I have devised a tool to redirect attention around me. While worn, this accessory will hide my presence from nearby adversaries, decreasing their likelihood of taking interest in me.",
                 "Upon further studies, it would appear that the effects of my newly forged trinket are " + italic("especially") + " potent when exerting their influence over any soul bearing a Wicked spirit.");
 
         addEntryHeader("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror", "As without, so within");
-        addHeadline("necklace_of_the_mystic_mirror", "The Mystic Mirror");
+        addHeadline("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror");
         addPages("necklace_of_the_mystic_mirror",
                 "I have devised another way to capture some of the lost energy from loose spirits. The Resonant Lens I socketed in is able to focus magic, collecting a little bit of excess energy as I pick up arcana. This energy is then redistributed to the rest of my trinkets, increasing the effect of any that act upon collecting spirits.");
 
         addEntryHeader("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge", "Focused and sharpened");
-        addHeadline("necklace_of_the_narrow_edge", "The Narrow Edge");
+        addHeadline("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge");
         addPages("necklace_of_the_narrow_edge",
                 "The sweep of the scythe is its main draw. The ability to cut my targets like so much wheat is invaluable. But that comes at the cost of damage to a single target. This necklace mystically focuses the edge of my attack, directing all of the power into one target for a strong damage boost.");
 
@@ -934,6 +934,7 @@ public class CodexLangDatagen {
                          -Wrath Decreases Overtime
                          -All Incoming Damage is Doubled""");
 
+
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "To stand and defend");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
                 """
@@ -985,6 +986,7 @@ public class CodexLangDatagen {
                          -Grants you Two Rune Slots""",
                 "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
 
+
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "To care for oneself");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE,
                 """
@@ -1005,7 +1007,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.75f) + """
+                scaled(0.7f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
                          -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
@@ -1013,12 +1015,23 @@ public class CodexLangDatagen {
                         The chains of the ocean grip your heart tightly.
                          -You Cannot Heal Outside of Water""");
 
+        addSimpleEntryHeader("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID,
+                scaled(0.75f) + """
+                        Split the Impact, Soften the Blow.
+                         -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
+                         -Buffered Damage Cannot Kill You""",
+                """
+                        Prolonged Pain is Greater Pain.
+                         -Buffered Damage is overall Two Fifths More Potent""");
+
+
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,
                 """
-                        Move like the Zephyr.
+                        Move with the Wind.
                          -Continuously Sprinting builds up Movement Speed""",
-                "Be moved by the Zephyr\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
+                "Be Moved by the Wind\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
 
         addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "To be the arrow");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT,
@@ -1085,9 +1098,7 @@ public class CodexLangDatagen {
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
 
-
-
-        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of Pyromaniac", "To spread the fire");
+        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
                 scaled(0.8f) +"""
                         Recklessness and Haste, fueled by Kinetic Impact.
@@ -1165,7 +1176,26 @@ public class CodexLangDatagen {
                         Born from the Malignant Metal, This layer of defense is only possible through Equivalent Exchange
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
 
-        //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
+        addSimpleEntryHeader("authority_of_the_inverted_heart", "Authority of the Inverted Heart", "To tie all hearts as one");
+        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART,
+                scaled(0.7f) + """
+                        An Authority, a pact between your Soul and the World itself.
+                        -Your Soul Exposes Itself to the World Around You. When Witnessed by another Soul it will Bind You Together
+                        -Bound Targets will Receive Any Damage you Take or Deal""",
+                scaled(0.8f) +"""
+                        Your Soul is the World's Soul. Your Heart is the World's Heart. It is Open, Open for all to See, Vulnerable for all to Grasp.
+                        -Quadruples Incoming Magic Damage""");
+
+        addSimpleEntryHeader("authority_of_the_gleeful_target", "Authority of the Gleeful Target", "To be the most satisfied existence");
+        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET,
+                scaled(0.6f) + """
+                        An Authority, a pact between your Soul and the World itself.
+                        -Your Body is Wrapped in a Sleeping Stasis. Whenever Struck, the Stasis is Activated
+                        -While in Stasis, all Potion Effects are Paused and Cannot Ever Expire.
+                        -Effects such as Regeneration Cease Function, However Any Attributes or Other Effects that are gained Will Remain""",
+                scaled(0.8f) +"""
+                        Your Body is Frozen in Time, an Anomaly upon this World. It does not Age, nor does it not Feel.
+                        -Quarters All Incoming Healing""");
 
         addSimpleEntryHeader("totem_magic", "Totem Magic", "Arcana unleashed");
         addPages("totem_magic",
