@@ -1005,7 +1005,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.65f) + """
+                scaled(0.75f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
                          -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
@@ -1139,7 +1139,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "To devour all");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
-                """
+                scaled(0.8f) + """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
                         -Devoured Essence Heals You based on the Damage Dealt""",
@@ -1161,7 +1161,7 @@ public class CodexLangDatagen {
                 """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Amplify Existing Armor and Armor Toughness""",
-                """
+                scaled(0.8f) +"""
                         Born from the Malignant Metal, This layer of defense is only possible through Equivalent Exchange
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
 

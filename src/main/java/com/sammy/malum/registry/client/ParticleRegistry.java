@@ -33,8 +33,8 @@ public class ParticleRegistry {
 
     //Staff Charge Effects
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> HEX_TARGET = PARTICLES.register("hex_target", LodestoneWorldParticleType::new);
-    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> AURIC_TARGET = PARTICLES.register("auric_target", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> DRAINING_TARGET = PARTICLES.register("draining_target", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> CHAOS_TARGET = PARTICLES.register("chaos_target", LodestoneWorldParticleType::new);
 
 
 

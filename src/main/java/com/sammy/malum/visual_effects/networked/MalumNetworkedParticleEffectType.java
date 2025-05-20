@@ -100,17 +100,17 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
 
         @Override
         public MalumParticleEffectBuilder<T> color(Color color) {
-            return(MalumParticleEffectBuilder<T>)super.color(color);
+            return color(ColorParticleData.create(color).build());
         }
 
         @Override
         public MalumParticleEffectBuilder<T> color(ColorParticleData color) {
-            return(MalumParticleEffectBuilder<T>)super.color(color);
+            return color(MalumNetworkedParticleEffectColorData.fromColor(color));
         }
 
         @Override
         public MalumParticleEffectBuilder<T> color(List<ColorParticleData> colors) {
-            return(MalumParticleEffectBuilder<T>)super.color(colors);
+            return color(MalumNetworkedParticleEffectColorData.fromColors(colors));
         }
 
         @Override

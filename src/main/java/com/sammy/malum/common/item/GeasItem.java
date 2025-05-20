@@ -114,12 +114,11 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
                     Component.empty());
             tooltipConsumer.accept(
                     Component.translatable(SWORN).withStyle(ChatFormatting.GOLD));
-            GeasEffect geasEffect = GeasEffectHandler.getGeasEffect(entity, c.geasEffectType().getHolder());
+            GeasEffect geasEffect = entity != null ? GeasEffectHandler.getGeasEffect(entity, c.geasEffectType().getHolder()) : null;
             if (geasEffect == null) {
                 geasEffect = c.geasEffectType().getDefaultInstance();
             }
             geasEffect.addTooltipComponents(entity, tooltipConsumer, event.getFlags());
-
         });
     }
 }

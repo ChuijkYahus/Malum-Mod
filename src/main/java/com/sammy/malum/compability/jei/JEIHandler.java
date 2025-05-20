@@ -4,12 +4,10 @@ import com.google.common.collect.Maps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.common.recipe.void_favor.*;
-import com.sammy.malum.core.systems.rite.TotemicRiteType;
 import com.sammy.malum.compability.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compability.jei.categories.*;
 import com.sammy.malum.compability.jei.recipes.SpiritTransmutationWrapper;
 import com.sammy.malum.core.handlers.hiding.HiddenTagHandler;
-import com.sammy.malum.registry.common.SpiritRiteRegistry;
 import com.sammy.malum.registry.common.item.ItemRegistry;
 import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
 import mezz.jei.api.IModPlugin;
@@ -24,7 +22,8 @@ import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
 import org.apache.commons.compress.utils.Lists;
 import team.lodestar.lodestone.systems.recipe.*;
 
@@ -114,44 +113,44 @@ public class JEIHandler implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ItemRegistry.RUNIC_WORKBENCH.get()), RUNEWORKING);
         registry.addRecipeCatalyst(new ItemStack(ItemRegistry.VOID_DEPOT.get()), WEEPING_WELL);
     }
-    private static final Map<RecipeType<?>, HiddenRecipeSet<?>> hiddenRecipeSets = new HashMap<>();
-    private static final List<UUID> callbacks = new ArrayList<>();
 
-    private static final Set<ItemStack> hiddenStacks = new LinkedHashSet<>();
+    private static final Map<RecipeType<?>, HiddenRecipeSet<?>> HIDDEN_RECIPE_SETS = new HashMap<>();
+    private static final List<UUID> CALLBACKS = new ArrayList<>();
+    private static final Set<ItemStack> HIDDEN_STACKS = new LinkedHashSet<>();
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
-        if (true) {
-            return;
-        }
         var recipeRegistry = jeiRuntime.getRecipeManager();
         var ingredientManager = jeiRuntime.getIngredientManager();
         var helpers = jeiRuntime.getJeiHelpers();
         var focusFactory = helpers.getFocusFactory();
 
-        callbacks.add(HiddenTagHandler.registerHiddenItemListener(() -> {
+        CALLBACKS.add(HiddenTagHandler.registerHiddenItemListener(() -> {
             var output = HiddenTagHandler.getTagsToHide();
 
-            if (!hiddenStacks.isEmpty()) {
-                ingredientManager.addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, hiddenStacks);
-                hiddenStacks.clear();
+            if (!HIDDEN_STACKS.isEmpty()) {
+                ingredientManager.addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, HIDDEN_STACKS);
+                HIDDEN_STACKS.clear();
             }
 
             if (!output.isEmpty()) {
                 Collection<ItemStack> ingredients = ingredientManager.getAllIngredients(VanillaTypes.ITEM_STACK);
 
                 for (ItemStack stack : ingredients) {
-                    if (output.stream().anyMatch(stack::is)) {
-                        hiddenStacks.add(stack);
+                    for (TagKey<Item> tag : output) {
+                        if (stack.is(tag)){
+                            HIDDEN_STACKS.add(stack);
+                            break;
+                        }
                     }
                 }
 
-                if (!hiddenStacks.isEmpty())
-                    ingredientManager.removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, hiddenStacks);
+                if (!HIDDEN_STACKS.isEmpty())
+                    ingredientManager.removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, HIDDEN_STACKS);
             }
 
             helpers.getAllRecipeTypes().forEach(it -> {
-                HiddenRecipeSet<?> hiddenRecipes = hiddenRecipeSets.computeIfAbsent(it, HiddenRecipeSet::createSet);
+                HiddenRecipeSet<?> hiddenRecipes = HIDDEN_RECIPE_SETS.computeIfAbsent(it, HiddenRecipeSet::createSet);
 
                 hiddenRecipes.unhidePreviouslyHiddenRecipes(recipeRegistry);
                 if (!output.isEmpty())
@@ -162,9 +161,9 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void onRuntimeUnavailable() {
-        callbacks.forEach(HiddenTagHandler::removeListener);
-        callbacks.clear();
-        hiddenRecipeSets.clear();
-        hiddenStacks.clear();
+        CALLBACKS.forEach(HiddenTagHandler::removeListener);
+        CALLBACKS.clear();
+        HIDDEN_RECIPE_SETS.clear();
+        HIDDEN_STACKS.clear();
     }
 }

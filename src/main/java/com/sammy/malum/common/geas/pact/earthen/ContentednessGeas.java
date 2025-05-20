@@ -24,7 +24,7 @@ public class ContentednessGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("high_hunger_more_armor"));
-        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+//        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("low_hunger_less_armor"));
     }
 
