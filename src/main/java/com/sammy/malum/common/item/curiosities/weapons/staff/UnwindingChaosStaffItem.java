@@ -8,8 +8,6 @@ import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.DamageTypeTags;
@@ -150,20 +148,26 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        WorldParticleBuilder.create(ParticleRegistry.AURIC_TARGET)
+        final WorldParticleBuilder builder = WorldParticleBuilder.create(ParticleRegistry.CHAOS_TARGET)
+                .setTransparencyData(GenericParticleData.create(0.7f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
-                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
-                .setTransparencyData(GenericParticleData.create(0.5f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                .setColorData(SpiritTypeRegistry.INFERNAL_SPIRIT.createColorData().build())
                 .enableForcedSpawn()
-                .setLifeDelay(2)
-                .setLifetime(5)
-                .enableNoClip()
-                .spawn(pLevel, pos.x, pos.y, pos.z)
-                .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .spawn(pLevel, pos.x, pos.y, pos.z);
+                .setLifetime(4)
+                .enableNoClip();
+        for (int i = 0; i < 2; i++) {
+            var spin = SpinParticleData.create(0.05f, 0.1f);
+            final long delta = (i == 1 ? 1 : -1) * (pLevel.getGameTime() + i * 5);
+            float offset = 0.4f * Mth.sin((delta / 8f) % 6.28f);
+            var spirit = i == 0 ? SpiritTypeRegistry.AQUEOUS_SPIRIT : SpiritTypeRegistry.INFERNAL_SPIRIT;
+            builder.setColorData(spirit.createColorData().build()).setLifeDelay(i==0 ? 2 : 4)
+                    .setSpinData(spin.setSpinOffset(i * 1.57f + offset).build())
+                    .setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
+                    .spawn(pLevel, pos.x, pos.y, pos.z)
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                    .spawn(pLevel, pos.x, pos.y, pos.z);
+        }
     }
 }

@@ -6,9 +6,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType.*;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.network.particle.*;
 
-public class ShakenFaithParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectData> {
+public class ShakenFaithParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public ShakenFaithParticleEffect(String id) {
         super(id);
@@ -16,7 +16,7 @@ public class ShakenFaithParticleEffect extends MalumNetworkedWeaponParticleEffec
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        GeasParticleEffects.warlockBlast(level, random, positionData, colorData, extraData);
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+        GeasParticleEffects.shakenFaith(level, random, positionData, colorData);
     }
 }

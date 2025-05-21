@@ -1,0 +1,40 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 4,
+      "item": "minecraft:golden_carrot"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:glistering_melon_slice"
+    }
+  ],
+  "geas": "malum:pact_of_the_lifeweaver",
+  "ingredient": {
+    "count": 8,
+    "item": "malum:imitation_flesh"
+  },
+  "spirits": [
+    {
+      "type": "sacred",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 16
+    }
+  ]
+}

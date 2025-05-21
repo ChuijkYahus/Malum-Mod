@@ -26,14 +26,15 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
         tag(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)
                 .add(DamageTypeRegistry.SCYTHE_MELEE, DamageTypeRegistry.SCYTHE_SWEEP);
 
-        tag(LodestoneDamageTypeTags.IS_MAGIC).add(
-                DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC,
-                DamageTypeRegistry.TYRVING, DamageTypeRegistry.WARLOCK_GEAS)
+        tag(LodestoneDamageTypeTags.IS_MAGIC)
+                .add(DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.VOID, DamageTypeRegistry.KARMIC,
+                        DamageTypeRegistry.TYRVING,
+                        DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT, DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT)
                 .addTag(DamageTypeTagRegistry.IS_INVERTED_HEART);
 
         tag(DamageTypeTagRegistry.SOUL_SHATTER_DAMAGE)
                 .addTags(DamageTypeTagRegistry.IS_SCYTHE, DamageTypeTagRegistry.IS_NITRATE, DamageTypeTagRegistry.IS_SUNDERING_ANCHOR_COMBO, DamageTypeTagRegistry.IS_INVERTED_HEART)
-                .add(DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.TYRVING, DamageTypeRegistry.WARLOCK_GEAS);
+                .add(DamageTypeRegistry.VOODOO_PLAYERLESS, DamageTypeRegistry.VOODOO, DamageTypeRegistry.TYRVING, DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT, DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT);
 
         tag(DamageTypeTagRegistry.IS_SCYTHE)
                 .addTags(DamageTypeTagRegistry.IS_SCYTHE_MELEE, DamageTypeTagRegistry.IS_HIDDEN_BLADE)

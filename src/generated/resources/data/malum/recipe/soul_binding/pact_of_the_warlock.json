@@ -7,7 +7,7 @@
     },
     {
       "count": 4,
-      "item": "malum:grim_talc"
+      "item": "malum:hex_ash"
     }
   ],
   "geas": "malum:pact_of_the_warlock",
@@ -22,10 +22,6 @@
     },
     {
       "type": "aqueous",
-      "count": 16
-    },
-    {
-      "type": "infernal",
       "count": 16
     }
   ]

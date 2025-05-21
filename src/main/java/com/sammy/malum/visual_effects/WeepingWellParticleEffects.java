@@ -284,14 +284,13 @@ public class WeepingWellParticleEffects {
         var squares = WorldParticleBuilder.create(ParticleRegistry.SQUARE.get())
                 .setBehavior(DirectionalParticleBehavior.directional())
                 .setTransparencyData(GenericParticleData.create(0.9f, 0.05f, 0f).setEasing(Easing.CUBIC_OUT, Easing.EXPO_IN).build())
+                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .setScaleData(scaleData)
                 .setColorData(colorData)
-                .setLifetime(100)
+                .addTickActor(behavior)
                 .setMotion(motion)
-                .enableNoClip()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.RANDOM_SPRITE)
-                .addTickActor(behavior);
+                .setLifetime(100)
+                .enableNoClip();
         Consumer<WorldParticleBuilder> squareSpawner = b -> b
                 .spawn(level, pos.x, pos.y, pos.z)
                 .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.EXPO_OUT).build())

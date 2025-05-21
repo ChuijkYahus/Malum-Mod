@@ -34,6 +34,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("wyrd_reconstruction"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("wyrd_reconstruction_spirits"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("wyrd_reconstruction_cooldown"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("spirits_hunger"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
@@ -76,6 +77,9 @@ public class WyrdReconstructionGeas extends GeasEffect {
         if (target.hasEffect(MobEffectRegistry.WYRD_EXHAUSTION)) {
             return;
         }
+        if (event.isCanceled()) {
+            return;
+        }
         if (delay > 0) {
             event.setCanceled(true);
             target.setHealth(1);
@@ -92,11 +96,10 @@ public class WyrdReconstructionGeas extends GeasEffect {
                     .customData(new WyrdReconstructionReviveParticleEffect.WyrdReconstructionEffectData(target.getId()))
                     .spawn(serverLevel);
         }
-
-        event.setCanceled(true);
-        target.setHealth(health);
         delay = 15;
         spiritCollectionActivations = TRIGGERS;
+        event.setCanceled(true);
+        target.setHealth(health);
     }
 
     protected static boolean canApplyKnockback(LivingEntity attacker, Entity pTarget) {

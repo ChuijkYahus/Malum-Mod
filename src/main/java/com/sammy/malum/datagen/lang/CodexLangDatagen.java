@@ -76,7 +76,7 @@ public class CodexLangDatagen {
     }
 
     private static void addHeadline(String identifier, String tooltip) {
-        add("malum.gui.book.entry.page.headline." + identifier, tooltip);
+        add(BookPage.HEADLINE + "." + identifier, tooltip);
     }
 
     private static void addRecipeDescriptor(String identifier, String tooltip) {
@@ -701,18 +701,18 @@ public class CodexLangDatagen {
                 "If raw explosive power is not sufficient, you simply aren't using enough of it. This ring amplifies explosions, mitigating that issue.");
 
         addEntryHeader("necklace_of_blissful_harmony", "Necklace of Blissful Harmony", "No sign of morning coming");
-        addHeadline("necklace_of_blissful_harmony", "The Blissful Harmony");
+        addHeadline("necklace_of_blissful_harmony", "Necklace of Blissful Harmony");
         addPages("necklace_of_blissful_harmony",
                 "To focus on my magics I more often than not need peace and clarity. As such, I have devised a tool to redirect attention around me. While worn, this accessory will hide my presence from nearby adversaries, decreasing their likelihood of taking interest in me.",
                 "Upon further studies, it would appear that the effects of my newly forged trinket are " + italic("especially") + " potent when exerting their influence over any soul bearing a Wicked spirit.");
 
         addEntryHeader("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror", "As without, so within");
-        addHeadline("necklace_of_the_mystic_mirror", "The Mystic Mirror");
+        addHeadline("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror");
         addPages("necklace_of_the_mystic_mirror",
                 "I have devised another way to capture some of the lost energy from loose spirits. The Resonant Lens I socketed in is able to focus magic, collecting a little bit of excess energy as I pick up arcana. This energy is then redistributed to the rest of my trinkets, increasing the effect of any that act upon collecting spirits.");
 
         addEntryHeader("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge", "Focused and sharpened");
-        addHeadline("necklace_of_the_narrow_edge", "The Narrow Edge");
+        addHeadline("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge");
         addPages("necklace_of_the_narrow_edge",
                 "The sweep of the scythe is its main draw. The ability to cut my targets like so much wheat is invaluable. But that comes at the cost of damage to a single target. This necklace mystically focuses the edge of my attack, directing all of the power into one target for a strong damage boost.");
 
@@ -883,7 +883,7 @@ public class CodexLangDatagen {
                 "Ah, a pact that binds forever is a heavy thing. Geasa are potent, yes, and can achieve powerful effects, but their downsides are constant companions. These pacts can be forsworn on the Brazier, allowing you to decide what price you are willing to pay.",
                 "To forswear a geas, assemble it on the Brazier as you did initially, but use the Paracausal Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
-        addSimpleEntryHeader("pact_of_defiance", "Pact of Defiance", "[Defiance]");
+        addSimpleEntryHeader("pact_of_defiance", "Pact of Defiance", "To accept no limit");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE,
                 scaled(0.8f) +"""
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
@@ -891,14 +891,14 @@ public class CodexLangDatagen {
                          -Increases Healing Received by One Fourth""",
                 "The magics shift your perception of death, each point of damage more significant.\n -Reduces Max Health by One Fourth");
 
-        addSimpleEntryHeader("pact_of_the_parasite", "Pact of The Parasite", "[Parasite]");
+        addSimpleEntryHeader("pact_of_the_parasite", "Pact of The Parasite", "To hide by stolen shields");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE,
                 """
                         A surplus of confidence imbued onto the mind, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
                 "Your fragility is still very much real.\n -Reduces Healing Received by Four Tenths");
 
-        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "[Lifeweaver]");
+        addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "To share with any and all");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
                 """
                         A rare generosity, everything that you are you will share with others.
@@ -906,14 +906,14 @@ public class CodexLangDatagen {
                 "All creatures are deserving of care.\n -Healing Aura targets Everything, Ally and Enemy alike");
 
 
-        addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "[Warlock]");
+        addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "To fight forever");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
                 """
-                        You are the challenger.
-                         -The Initial Hit against Enemies Blasts them with Wicked Energy""",
-                "The invitation does not go unnoticed\n -Enemies detect you from Twice as Far");
+                        A pact designed to weave anger into pain.
+                         -The Initial Hit against Enemies Blasts them with Wicked Arcana""",
+                "Feel anger, cause anger\n -Enemies detect you from Twice as Far");
 
-        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "[Reaper]");
+        addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "To master the harvest blade");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
                 """
                         A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
@@ -923,9 +923,19 @@ public class CodexLangDatagen {
                          -Reduces Damage Dealt using Forsworn Weapons by Nine Tenths
                          -Forsworn Weapons Deteriorate When Used""");
 
+        addSimpleEntryHeader("pact_of_the_berserker", "Pact of The Berserker", "To return pain in kind");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER,
+                scaled(0.7f) + """
+                        An endless wrath, a constant anger, your pain brings rage, and rage is power.
+                         -Taking damage converts it to Wrath
+                         -Dealing damage utilizes Wrath to Repeatedly Blast Enemies with Wicked Arcana""",
+                """
+                        Hurt yourself, hurt others
+                         -Wrath Decreases Overtime
+                         -All Incoming Damage is Doubled""");
 
 
-        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "[Fortress]");
+        addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "To stand and defend");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
                 """
                         A compression of Soul Ward, made greater and refined.
@@ -933,7 +943,7 @@ public class CodexLangDatagen {
                          -Increases Soul Ward Integrity by Half""",
                 "The added grandeur brings with itself a lethargic nature\n -Halves Soul Ward Recovery Rate");
 
-        addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "[Shield]");
+        addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "To always walk with vigilance");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD,
                 """
                         An acceleration of Soul Ward, made to be primed in the nick of time.
@@ -941,7 +951,7 @@ public class CodexLangDatagen {
                          -Doubles Soul Ward Recovery Rate""",
                 "The added acceleration brings with itself a brittle nature\n -Halves Soul Ward Integrity");
 
-        addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "[Reciprocation]");
+        addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "Two eyes for an eye");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
                 """
                         A change, a new overruling mechanism.
@@ -951,7 +961,7 @@ public class CodexLangDatagen {
                 "War is all you are.\n -Disables Natural Soul Ward Regeneration");
 
 
-        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "[Shattering Addict]");
+        addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "To shatter and shatter");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
                 scaled(0.8f) + """
                         An Incantation forced onto the mind. An Insatiable Thirst for the Arcana
@@ -959,7 +969,7 @@ public class CodexLangDatagen {
                          -Even more Arcana with Chained Soul Shatters""",
                 "The Incantation takes quite a toll on you.\n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
 
-        addSimpleEntryHeader("pact_of_the_arcanaphage", "Pact of The Arcanaphage", "[Arcanaphage]");
+        addSimpleEntryHeader("pact_of_the_arcanaphage", "Pact of The Arcanaphage", "To extend beyond oneself");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE,
                 scaled(0.75f) +"""
                         A part of your Soul is drawn out from your body, used as an Attractor for Arcana.
@@ -969,14 +979,15 @@ public class CodexLangDatagen {
                         The Soul remains within for a reason.
                          -All Incoming Damage is converted into Magic Damage""");
 
-        addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "[Rune Exploitation]");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION,
-                scaled(0.8f) + """
+        addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "To follow the ancient pacts");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION,
+                """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
                 "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
 
-        addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "[Self-Care]");
+
+        addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "To care for oneself");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE,
                 """
                         Revel in Delight and Cleanse your Soul.
@@ -984,32 +995,51 @@ public class CodexLangDatagen {
                          -Eating Food Cleanses Negative Effects""",
                 "To Starve is to lose yourself completely.\n -Low Hunger Drains Health Much Faster");
 
-        addSimpleEntryHeader("pact_of_the_high_priest", "Pact of The High Priest", "[High Priest]");
+        addSimpleEntryHeader("pact_of_the_high_priest", "Pact of The High Priest", "To spread oneself thin");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST,
-                scaled(0.8f) + """
-                        Feign Control over the World.
+                """
+                        The Whole World is yours.
                          -Increases Block Reach by Two Fifths and Entity Reach by One Tenth""",
                 scaled(0.8f) + """
-                        That which you take is temporary.
+                        Your over-encroaching grip is a harmful one.
                          -Reach Effect enters Cooldown State when Struck by a Target
-                         -When Triggered, you are Struck with an Aqueous Lash""");
+                         -When Reach Effect is Lost, you are Struck with Aqueous Arcana""");
 
+        addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
+                scaled(0.7f) + """
+                        Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
+                         -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
+                         -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
+                """
+                        The chains of the ocean grip your heart tightly.
+                         -You Cannot Heal Outside of Water""");
 
-        addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "[Windswept]");
+        addSimpleEntryHeader("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID,
+                scaled(0.8f) + """
+                        Split the Impact, Soften the Blow.
+                         -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
+                         -Buffered Damage Cannot Kill You""",
+                """
+                        Prolonged Pain is Greater Pain.
+                         -Buffered Damage is overall Two Fifths More Potent""");
+        
+        addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,
                 """
-                        Move like the Zephyr.
-                         -Sprinting builds up Momentum""",
-                "Be moved by the Zephyr\n -High Momentum amplifies received knockback");
+                        Move with the Wind.
+                         -Continuously Sprinting builds up Movement Speed""",
+                "Be Moved by the Wind\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
 
-        addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "[Continuing Shot]");
+        addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "To be the arrow");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT,
                 """
                         Precision is Key.
                          -Dealing Ranged Damage accelerates Draw Speed for most Ranged Weapons""",
-                "To feign perfection will be your downfall.\n -Missing a Shot will dampen your Draw Speed");
+                "You cannot feign perfection.\n -Missing a Shot will remove any Draw Speed bonuses and instead dampen it");
 
-        addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "Heaven's Falling Down");
+        addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "To bring it all down");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,
                 scaled(0.8f) + """
                         Gravity; The greatest force to impose onto others.
@@ -1019,7 +1049,7 @@ public class CodexLangDatagen {
                         That which you impose on others shall come back twice over.
                          -Incoming Knockback is Doubled""");
 
-        addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "High above the ozone");
+        addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "To rise above all");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER,
                 """
                         Gravity; The greatest force to leverage against.
@@ -1029,21 +1059,21 @@ public class CodexLangDatagen {
                          -Fall Damage Taken is Doubled""");
 
 
-        addSimpleEntryHeader("pact_of_contentedness", "Pact of Contentedness", "[Contentedness]");
+        addSimpleEntryHeader("pact_of_contentedness", "Pact of Contentedness", "To seek satisfaction");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS,
                 """
                         To be full is to be complete.
                          -Armor and Armor Toughness is Increased by One Fifth when near Satiation""",
                 "To be full is a necessity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
 
-        addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "[Lone Druid]");
+        addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID,
                 """
                         To be complete is to be free.
                          -Each Empty Armor Slot grants Four Armor and Two Armor Toughness""",
                 "To be free is a comfort\n -Wearing any Armour Hurts You");
 
-        addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "Quite the aftertaste");
+        addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC,
                 scaled(0.65f) + """
                         Rot shall become your greatest friend.
@@ -1055,7 +1085,7 @@ public class CodexLangDatagen {
                          -Saturation and Hunger no longer restore health
                          -Eating Forsworn Foods brings Ruin""");
 
-        addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "Symbiotic parasite");
+        addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "To consume");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON,
                 scaled(0.8f) + """
                         Rot shall become your greatest weapon.
@@ -1067,9 +1097,7 @@ public class CodexLangDatagen {
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
 
-
-
-        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of Pyromaniac", "My main goal");
+        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
                 scaled(0.8f) +"""
                         Recklessness and Haste, fueled by Kinetic Impact.
@@ -1080,7 +1108,7 @@ public class CodexLangDatagen {
                          -Overexertion of Pyromaniac Charges Ignites you When Applied
                          -Fire Damage is Deadlier""");
 
-        addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "Critically heal for zero");
+        addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "To survive one's fate");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION,
                 scaled(0.8f) +"""
                         Unchecked Power derived from Death Itself.
@@ -1092,7 +1120,7 @@ public class CodexLangDatagen {
                          -Cooldown State Halves Arcane Resonance
                          -Spirit-Collection Drains Hunger""");
 
-        addSimpleEntryHeader("oath_of_the_overkeen_eye", "Oath of The Overkeen Eye", "[Overkeen Eye]");
+        addSimpleEntryHeader("oath_of_the_overkeen_eye", "Oath of The Overkeen Eye", "To hit one's target");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE,
                 """
                         A Keen Eye for the Arcane Imbued onto the Soul
@@ -1101,7 +1129,7 @@ public class CodexLangDatagen {
                         The Imbued Awareness demands Two-Fold Preparation
                          -Staff Charge Duration is Doubled""");
 
-        addSimpleEntryHeader("oath_of_the_overburdened_mind", "Oath of The Overburdened Mind", "[Overburdened Mind]");
+        addSimpleEntryHeader("oath_of_the_overburdened_mind", "Oath of The Overburdened Mind", "To strike overwhemlingly");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND,
                 """
                         A Capacity for Arcane Knowledge Imbued onto the Mind
@@ -1110,7 +1138,7 @@ public class CodexLangDatagen {
                         The Imbued Insight demands Careful Consideration
                          -Staff Charge Recovery Rate is Reduced by Two Fifths""");
 
-        addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "[Overeager Fist]");
+        addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "To never hesitate");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST,
                 """
                         An Eagerness Imbued onto the Body and Soul
@@ -1119,9 +1147,9 @@ public class CodexLangDatagen {
                         The Imbued Eagerness demands Immediate Action
                          -Staff Charges Fire Immediately once Fully Charged""");
 
-        addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "[Undiscerned Maw]");
+        addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "To devour all");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
-                """
+                scaled(0.8f) + """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
                         -Devoured Essence Heals You based on the Damage Dealt""",
@@ -1129,7 +1157,7 @@ public class CodexLangDatagen {
                         Born from the Malignant Metal, Devoured Essence seeks to Undo
                         -Overuse of the Healing Effect gradually diminishes All Healing""");
 
-        addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "[Unmakers Disdain]");
+        addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "To lord above");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN,
                 """
                         An Etching imbued onto Malignant Deliverance
@@ -1138,16 +1166,35 @@ public class CodexLangDatagen {
                         Born from the Malignant Metal, Deliverance develops quite the Demand
                         -Malignant Critical Strikes require a Health Threshold to be met""");
 
-        addSimpleEntryHeader("oath_of_unsighted_resistance", "Oath of Unsighted Resistance", "[Unsighted Resistance]");
+        addSimpleEntryHeader("oath_of_unsighted_resistance", "Oath of Unsighted Resistance", "To wade into slaughter");
         addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE,
                 """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Amplify Existing Armor and Armor Toughness""",
-                """
+                scaled(0.8f) +"""
                         Born from the Malignant Metal, This layer of defense is only possible through Equivalent Exchange
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
 
-        //TODO: This is more so like, hey, Geas Stuff ends here, totem magic beneath so no need to touch that
+        addSimpleEntryHeader("authority_of_the_inverted_heart", "Authority of the Inverted Heart", "To tie all hearts as one");
+        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART,
+                scaled(0.7f) + """
+                        An Authority, a pact between your Soul and the World itself.
+                        -Your Soul Exposes Itself to the World Around You. When Witnessed by another Soul it will Bind You Together
+                        -Bound Targets will Receive Any Damage you Take or Deal""",
+                scaled(0.8f) +"""
+                        Your Soul is the World's Soul. Your Heart is the World's Heart. It is Open, Open for all to See, Vulnerable for all to Grasp.
+                        -Quadruples Incoming Magic Damage""");
+
+        addSimpleEntryHeader("authority_of_the_gleeful_target", "Authority of the Gleeful Target", "To be the most satisfied existence");
+        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET,
+                scaled(0.6f) + """
+                        An Authority, a pact between your Soul and the World itself.
+                        -Your Body is Wrapped in a Sleeping Stasis. Whenever Struck, the Stasis is Activated
+                        -While in Stasis, all Potion Effects are Paused and Cannot Ever Expire.
+                        -Effects such as Regeneration Cease Function, However Any Attributes or Other Effects that are gained Will Remain""",
+                scaled(0.8f) +"""
+                        Your Body is Frozen in Time, an Anomaly upon this World. It does not Age, nor does it not Feel.
+                        -Quarters All Incoming Healing""");
 
         addSimpleEntryHeader("totem_magic", "Totem Magic", "Arcana unleashed");
         addPages("totem_magic",

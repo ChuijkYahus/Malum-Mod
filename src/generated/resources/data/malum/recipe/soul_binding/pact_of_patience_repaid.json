@@ -1,0 +1,40 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:prismarine_shard"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:prismarine_crystals"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:copper_ingot"
+    }
+  ],
+  "geas": "malum:pact_of_patience_repaid",
+  "ingredient": {
+    "count": 1,
+    "item": "minecraft:heart_of_the_sea"
+  },
+  "spirits": [
+    {
+      "type": "aqueous",
+      "count": 32
+    },
+    {
+      "type": "sacred",
+      "count": 32
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 16
+    }
+  ]
+}

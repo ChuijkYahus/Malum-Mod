@@ -3,21 +3,25 @@
   "extraIngredients": [
     {
       "count": 8,
-      "item": "malum:soul_stained_steel_plating"
+      "item": "malum:warp_flux"
     },
     {
       "count": 8,
       "item": "malum:refined_soulstone"
+    },
+    {
+      "count": 8,
+      "item": "malum:soul_stained_steel_plating"
     }
   ],
   "geas": "malum:pact_of_reciprocation",
   "ingredient": {
-    "count": 1,
-    "item": "malum:block_of_soul_stained_steel"
+    "count": 8,
+    "item": "malum:imitation_flesh"
   },
   "spirits": [
     {
-      "type": "wicked",
+      "type": "arcane",
       "count": 32
     },
     {
@@ -25,7 +29,7 @@
       "count": 32
     },
     {
-      "type": "arcane",
+      "type": "earthen",
       "count": 16
     },
     {

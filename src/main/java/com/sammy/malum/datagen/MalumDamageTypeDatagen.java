@@ -35,7 +35,8 @@ public class MalumDamageTypeDatagen {
         register(context, DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO);
         register(context, DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO);
 
-        register(context, DamageTypeRegistry.WARLOCK_GEAS);
+        register(context, DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT);
+        register(context, DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT);
 
         register(context, DamageTypeRegistry.INVERTED_HEART_RETALIATION);
         register(context, DamageTypeRegistry.INVERTED_HEART_PROPAGATION);

@@ -27,18 +27,19 @@ public class HiddenRecipeSet<T> {
 
 	public void scanAndHideRecipes(IRecipeManager manager, IFocusFactory focusFactory, Collection<TagKey<Item>> nowHidden) {
 		List<IFocus<ItemStack>> foci = nowHidden.stream()
-				.flatMap(tag -> BuiltInRegistries.ITEM.getTags().map((d) -> d.getSecond().contents))
+				.map(BuiltInRegistries.ITEM::getTag)
+				.filter(Optional::isPresent)
+				.map(o -> o.get().contents)
 				.flatMap(Collection::stream)
 				.map(Holder::value)
 				.distinct()
 				.flatMap(item -> {
-					ItemStack stack = new ItemStack(item);
+					ItemStack stack = item.getDefaultInstance();
 					IFocus<ItemStack> asIngredient = focusFactory.createFocus(RecipeIngredientRole.INPUT, VanillaTypes.ITEM_STACK, stack);
 					IFocus<ItemStack> asResult = focusFactory.createFocus(RecipeIngredientRole.OUTPUT, VanillaTypes.ITEM_STACK, stack);
 					IFocus<ItemStack> asCatalyst = focusFactory.createFocus(RecipeIngredientRole.CATALYST, VanillaTypes.ITEM_STACK, stack);
 					return Stream.of(asIngredient, asResult, asCatalyst);
 				}).toList();
-
 		manager.createRecipeLookup(recipeType)
 				.limitFocus(foci)
 				.get()

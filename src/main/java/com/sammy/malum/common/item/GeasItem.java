@@ -95,6 +95,7 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
     public static void addGeasTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
         GeasEffectHandler.getStoredGeasEffect(itemStack).ifPresent(c -> {
+            var entity = event.getEntity();
             var geas = c.geasEffectType();
             List<Component> tooltip = event.getToolTip();
             var index = new AtomicInteger(1);
@@ -113,8 +114,11 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
                     Component.empty());
             tooltipConsumer.accept(
                     Component.translatable(SWORN).withStyle(ChatFormatting.GOLD));
-
-            geas.getDefaultInstance().addTooltipComponents(event.getEntity(), tooltipConsumer, event.getFlags());
+            GeasEffect geasEffect = entity != null ? GeasEffectHandler.getGeasEffect(entity, c.geasEffectType().getHolder()) : null;
+            if (geasEffect == null) {
+                geasEffect = c.geasEffectType().getDefaultInstance();
+            }
+            geasEffect.addTooltipComponents(entity, tooltipConsumer, event.getFlags());
         });
     }
 }

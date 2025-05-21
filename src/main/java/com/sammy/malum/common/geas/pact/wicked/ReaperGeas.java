@@ -43,16 +43,17 @@ public class ReaperGeas extends GeasEffect {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
+    //TODO: This thing is rlly needlessly complicated
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            var mainHandItem = attacker.getMainHandItem();
-            if (!mainHandItem.isEmpty()) {
+            var heldItem = attacker.getMainHandItem();
+            if (!heldItem.isEmpty()) {
                 if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypeRegistry.TYRVING)) {
                     event.setNewDamage(event.getNewDamage() * 0.1f);
-                    if (mainHandItem.isDamageableItem()) {
-                        mainHandItem.hurtAndBreak(10, attacker, MAINHAND);
+                    if (heldItem.isDamageableItem()) {
+                        heldItem.hurtAndBreak(10, attacker, MAINHAND);
                     }
                     return;
                 }
@@ -112,12 +113,6 @@ public class ReaperGeas extends GeasEffect {
                 if (level.getRandom().nextFloat() > chance) {
                     return;
                 }
-                Holder<SoundEvent> scytheSound = SoundRegistry.SCYTHE_SWEEP;
-                var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
-                if (scytheStack.getItem() instanceof MalumScytheItem scytheItem) {
-                    scytheSound = scytheItem.getScytheSound(canSweep);
-                }
-
                 for (int i = 0; i < extraHits; i++) {
                     int delay = 4 + i * 3;
                     WorldEventHandler.addWorldEvent(level,
@@ -125,7 +120,7 @@ public class ReaperGeas extends GeasEffect {
                                     .setAttacker(attacker, source.getDirectEntity())
                                     .setDamageData(physicalDamage, magicDamage, delay)
                                     .setPhysicalDamageType(DamageTypeRegistry.SCYTHE_COMBO)
-                                    .setSound(scytheSound, 0.5f, 1.5f, 0.3f));
+                                    .setSound(SoundRegistry.REAPER_CUT, 0.9f, 1.1f, 1));
 
                 }
             }

@@ -27,6 +27,14 @@
     {
       "type": "earthen",
       "count": 32
+    },
+    {
+      "type": "wicked",
+      "count": 16
+    },
+    {
+      "type": "eldritch",
+      "count": 16
     }
   ]
 }

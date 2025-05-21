@@ -68,10 +68,10 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER, 15, 16);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY, 14, 18);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.AQUEOUS_4, 16, 17);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID, 16, 17);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION, -15, 14);
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_RUNE_EXPLOITATION, -14, 15);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION, -14, 15);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, -13, 17);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);

@@ -21,7 +21,4 @@ public class AscensionEffect extends MobEffect {
             event.setDistance(event.getDistance() / (6 + effectInstance.getAmplifier()));
         }
     }
-
-
-
 }
