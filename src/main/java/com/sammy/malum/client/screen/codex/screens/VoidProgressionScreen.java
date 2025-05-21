@@ -18,6 +18,7 @@ import com.sammy.malum.core.systems.events.SetupMalumCodexEntriesEvent;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
+import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -89,7 +90,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
         addEntry("chronicles_of_the_soul", 0, 0, b -> b
                 .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, ArcanaProgressionScreen::openCodexViaTransition, malumPath("textures/gui/book/icons/arcana_button.png"), 20, 20))
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_SOULWOOD))
+                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_SOULWOOD).setHeadlineFormatting(ChatFormatting.YELLOW))
         );
         addEntry("void.the_weeping_well", 0, 1, b -> b
                 .configureWidget(w -> w.setIcon(VOID_DEPOT).setStyle(BookWidgetStyle.GILDED_SOULWOOD))

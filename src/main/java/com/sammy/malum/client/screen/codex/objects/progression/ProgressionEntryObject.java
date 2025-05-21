@@ -6,8 +6,7 @@ import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.pages.*;
-import com.sammy.malum.client.screen.codex.screens.AbstractProgressionCodexScreen;
-import com.sammy.malum.client.screen.codex.screens.EntryScreen;
+import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.geas.GeasEffectType;
 import net.minecraft.*;
 import net.minecraft.client.Minecraft;
@@ -27,6 +26,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     public final BookEntry entry;
     public BookWidgetStyle style = BookWidgetStyle.RUNEWOOD;
+    public ChatFormatting headlineFormatting;
     public Predicate<AbstractProgressionCodexScreen> isValid = t -> true;
     public ItemStack iconStack;
 
@@ -65,8 +65,9 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     @Override
     public void renderLate(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isHoveredOver && entry.hasTooltip()) {
-            final List<Component> list = new ArrayList<>(List.of(
-                    ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
+            ChatFormatting formatting = getHeadlineStyle(screen);
+            List<Component> list = new ArrayList<>(List.of(
+                    ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle).withStyle(formatting),
                     ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
 
             for (EntryReference reference : entry.references) {
@@ -78,6 +79,17 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
             }
             guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
+    }
+
+    public ChatFormatting getHeadlineStyle(AbstractProgressionCodexScreen screen) {
+        if (headlineFormatting != null) {
+            return headlineFormatting;
+        }
+        ChatFormatting formatting = screen instanceof VoidProgressionScreen ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD;
+        if (style.equals(BookWidgetStyle.GILDED_RUNEWOOD) || style.equals(BookWidgetStyle.GILDED_SOULWOOD)) {
+            formatting = screen instanceof VoidProgressionScreen ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.YELLOW;
+        }
+        return formatting;
     }
 
     public ProgressionEntryObject setIcon(Supplier<? extends Item> item) {
@@ -99,6 +111,11 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     public ProgressionEntryObject setStyle(BookWidgetStyle style) {
         this.style = style;
+        return this;
+    }
+
+    public ProgressionEntryObject setHeadlineFormatting(ChatFormatting formatting) {
+        this.headlineFormatting = formatting;
         return this;
     }
 

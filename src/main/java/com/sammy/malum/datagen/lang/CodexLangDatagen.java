@@ -1017,15 +1017,14 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID,
-                scaled(0.75f) + """
+                scaled(0.8f) + """
                         Split the Impact, Soften the Blow.
                          -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
                          -Buffered Damage Cannot Kill You""",
                 """
                         Prolonged Pain is Greater Pain.
                          -Buffered Damage is overall Two Fifths More Potent""");
-
-
+        
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,
                 """

@@ -66,7 +66,7 @@ public class TidalAffinityGeas extends GeasEffect {
         if (entity.level().getGameTime() % 10L == 0) {
             boolean wasInWater = isInWater;
             boolean hadConduitEffect = hasConduitEffect;
-            isInWater = entity.isInWater();
+            isInWater = entity.isInWaterOrRain();
             hasConduitEffect = entity.hasEffect(MobEffects.CONDUIT_POWER);
             if (isInWater && hasConduitEffect) {
                 entity.heal(1);

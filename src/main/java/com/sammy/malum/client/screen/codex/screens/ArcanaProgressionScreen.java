@@ -9,6 +9,7 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.common.item.codex.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.common.*;
@@ -70,7 +71,7 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
     public void setupEntries() {
         addEntry("chronicles_of_the_void", 0, -1, b -> b
                 .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, VoidProgressionScreen::openCodexViaTransition, malumPath("textures/gui/book/icons/void_button.png"), 20, 20))
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setValidityChecker(p -> p.isVoidTouched))
+                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setHeadlineFormatting(ChatFormatting.LIGHT_PURPLE).setValidityChecker(p -> p.isVoidTouched))
         );
 
         IntroductionEntries.setupEntries(this);

@@ -36,14 +36,15 @@ public class ScarfRenderHandler {
         }
     }
     public static void renderScarfData(RenderLevelStageEvent event) {
-        final PoseStack poseStack = event.getPoseStack();
-        final Camera camera = event.getCamera();
+        PoseStack poseStack = event.getPoseStack();
+        Camera camera = event.getCamera();
+        Vec3 cameraPosition = camera.getPosition();
         poseStack.pushPose();
-        poseStack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
+        poseStack.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
         for (Map.Entry<LivingEntity, ScarfRenderData> entry : SCARF_DATA.entrySet()) {
             final ScarfRenderData data = entry.getValue();
             final LivingEntity entity = entry.getKey();
-            final float partialTicks = event.getPartialTick().getRealtimeDeltaTicks();
+            final float partialTicks = event.getPartialTick().getGameTimeDeltaPartialTick(true);
             var position = entity.getPosition(partialTicks);
             poseStack.pushPose();
             poseStack.translate(position.x, position.y, position.z);
@@ -104,18 +105,17 @@ public class ScarfRenderHandler {
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
-            final Vec3 scarfStart = getScarfStart(entity, 0);
+            Vec3 scarfStart = getScarfStart(entity, partialTicks);
             points.setOrigin(scarfStart);
             poseStack.pushPose();
             float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
-            builder.usePartialTicks(partialTicks).renderTrail(poseStack, points,
+            builder.usePartialTicks(0).renderTrail(poseStack, points,
                     f -> scale * (2.5f - f * 1.75f),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
             );
-            poseStack.translate(trailOffsetX, trailOffsetY, trailOffsetZ);
             poseStack.popPose();
         }
 

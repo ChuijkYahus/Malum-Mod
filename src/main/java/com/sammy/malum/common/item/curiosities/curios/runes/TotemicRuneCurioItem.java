@@ -1,7 +1,9 @@
 package com.sammy.malum.common.item.curiosities.curios.runes;
 
 import com.sammy.malum.common.spiritrite.*;
+import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.rite.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -31,10 +33,15 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     }
 
     @Override
+    public void addExtraTooltipLines(Consumer<Component> consumer) {
+        consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", mobEffectHolder.get().getDisplayName()));
+    }
+
+    @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         final LivingEntity livingEntity = slotContext.entity();
         if (!livingEntity.level().isClientSide() && livingEntity.level().getGameTime() % interval == 0 && entityPredicate.test(livingEntity)) {
-           livingEntity.addEffect(new MobEffectInstance(mobEffectHolder, 200, 0, true, true));
+            livingEntity.addEffect(new MobEffectInstance(mobEffectHolder, 200, 0, true, true));
         }
         super.curioTick(slotContext, stack);
     }

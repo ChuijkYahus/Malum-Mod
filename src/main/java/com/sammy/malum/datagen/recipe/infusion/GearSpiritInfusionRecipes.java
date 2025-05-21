@@ -154,6 +154,7 @@ public class GearSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_HELMET.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_HELMET.get(), 1)
+                .addExtraItem(ItemRegistry.SOULWOVEN_SILK.get(), 8)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
@@ -162,6 +163,7 @@ public class GearSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_CHESTPLATE.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_CHESTPLATE.get(), 1)
+                .addExtraItem(ItemRegistry.SOULWOVEN_SILK.get(), 8)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
@@ -170,6 +172,7 @@ public class GearSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_LEGGINGS.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_LEGGINGS.get(), 1)
+                .addExtraItem(ItemRegistry.SOULWOVEN_SILK.get(), 8)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
@@ -178,6 +181,7 @@ public class GearSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ItemRegistry.SOUL_STAINED_STEEL_BOOTS.get(), 1, ItemRegistry.MALIGNANT_STRONGHOLD_BOOTS.get(), 1)
+                .addExtraItem(ItemRegistry.SOULWOVEN_SILK.get(), 8)
                 .addExtraItem(ItemRegistry.MALIGNANT_PEWTER_PLATING.get(), 3)
                 .addSpirit(EARTHEN_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 32)

@@ -264,8 +264,9 @@ public class MalumLang extends LanguageProvider {
         addCurioEffect("attacked_resistance", "Damage Resistance When Attacked");
         addCurioEffect("low_health_speed", "Speed at Low Health");
         addCurioEffect("always_sprint", "Sprinting Always Available");
-        addCurioEffect("fervor", "Increased Mining Speed");
         addCurioEffect("burning_damage", "Burning Damage");
+        addCurioEffect("totem_effect", "Grants %s");
+
         addCurioEffect("spirits_heal", "Spirit Collection Replenishes Health");
         addCurioEffect("spirits_xp", "Spirit Collection Generates Experience Points");
         addCurioEffect("spirits_extend_effect", "Spirit Collection Aids Potion Durations");
