@@ -344,6 +344,9 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
+        addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
+        addGeasEffect("magic_fire", "Dealing Magic Damage Ignites Targets");
+        addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
         addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");

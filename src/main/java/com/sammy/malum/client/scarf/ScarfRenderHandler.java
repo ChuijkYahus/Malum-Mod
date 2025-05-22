@@ -112,6 +112,7 @@ public class ScarfRenderHandler {
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
+            //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
             builder.usePartialTicks(0).renderTrail(poseStack, points,
                     f -> scale * (2.5f - f * 1.75f),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
