@@ -820,6 +820,21 @@
     ],
     "subtitle": "malum.subtitle.pedestal_spirit_picked_up"
   },
+  "player_experiences_combustion_whiplash": {
+    "sounds": [
+      "random/fizz"
+    ],
+    "subtitle": "malum.subtitle.player_experiences_combustion_whiplash"
+  },
+  "player_patiently_drowns": {
+    "sounds": [
+      "entity/player/hurt/drown1",
+      "entity/player/hurt/drown2",
+      "entity/player/hurt/drown3",
+      "entity/player/hurt/drown4"
+    ],
+    "subtitle": "malum.subtitle.player_patiently_drowns"
+  },
   "quartz_cluster_block_break": {
     "sounds": [
       "malum:blocks/gemstone/break1",

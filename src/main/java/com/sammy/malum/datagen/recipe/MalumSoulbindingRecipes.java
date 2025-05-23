@@ -204,6 +204,13 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(SpiritTypeRegistry.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
+        new SoulBindingRecipeBuilder(Items.GUNPOWDER, 12, MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION)
+                .addExtraItem(Items.BLAZE_POWDER, 8)
+                .addExtraItem(Items.BLAZE_ROD, 4)
+                .addSpirit(SpiritTypeRegistry.INFERNAL_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.WICKED_SPIRIT, 16)
+                .addSpirit(SpiritTypeRegistry.ARCANE_SPIRIT, 16)
+                .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.BLAZE_POWDER, 16, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC)
                 .addExtraItem(Items.TNT, 8)
                 .addExtraItem(Items.FIRE_CHARGE, 8)

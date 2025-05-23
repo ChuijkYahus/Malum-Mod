@@ -6,6 +6,6 @@ import com.sammy.malum.registry.common.*;
 public class Infernal2Geas extends GeasEffect {
 
     public Infernal2Geas() {
-        super(MalumGeasEffectTypeRegistry.INFERNAL_2.get());
+        super(MalumGeasEffectTypeRegistry.INFERNAL_1.get());
     }
 }

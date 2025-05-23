@@ -247,18 +247,18 @@ public class GeasParticleEffects {
             offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
             for (int j = 0; j < 3; j++) {
                 var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                float velocity = -RandomHelper.randomBetween(random, 0.4f, 0.6f);
-                var motion = offsetTargetPosition.subtract(pos).normalize().scale(velocity);
+                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
                 lightSpecs.getBuilder()
-                        .multiplyLifetime(0.5f)
+                        .multiplyLifetime(0.6f)
                         .setMotion(motion)
-                        .setLifeDelay(j*2)
+                        .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
                         .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(0.4f)
+                        .multiplyLifetime(0.6f)
                         .setMotion(motion)
-                        .setLifeDelay(j*2)
+                        .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
                         .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();

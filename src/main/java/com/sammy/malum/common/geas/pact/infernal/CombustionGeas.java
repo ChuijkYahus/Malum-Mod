@@ -1,23 +1,24 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
 import com.sammy.malum.common.worldevent.*;
+import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.tags.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.function.*;
 
 public class CombustionGeas extends GeasEffect {
+
 
     public CombustionGeas() {
         super(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get());
@@ -42,11 +43,15 @@ public class CombustionGeas extends GeasEffect {
     }
 
     public static void extinguish(LivingEntity entity) {
-        WorldEventHandler.addWorldEvent(entity.level(),
-                new DelayedDamageWorldEvent(entity)
-                        .setDamageData(2, 2, 2)
-                        .setMagicDamageType(DamageTypeRegistry.KARMIC)
-                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT))
-                        .setSound(SoundRegistry.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
+        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION)) {
+            if (entity.wasOnFire) {
+                WorldEventHandler.addWorldEvent(entity.level(),
+                        new DelayedDamageWorldEvent(entity)
+                                .setDamageData(5, 5, 2)
+                                .setMagicDamageType(DamageTypeRegistry.KARMIC)
+                                .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT))
+                                .setSound(SoundRegistry.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));
+            }
+        }
     }
 }

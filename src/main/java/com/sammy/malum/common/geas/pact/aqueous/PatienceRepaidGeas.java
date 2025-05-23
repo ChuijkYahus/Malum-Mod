@@ -7,7 +7,6 @@ import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -71,7 +70,7 @@ public class PatienceRepaidGeas extends GeasEffect {
                     ParticleEffectTypeRegistry.PATIENCE_REPAID.createEffect(entity)
                             .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT))
                             .spawn(level);
-                    SoundHelper.playSound(entity, SoundEvents.PLAYER_HURT_DROWN, entity.getSoundSource(), 1.0f, RandomHelper.randomBetween(level.random, 0.9f, 1.1f));
+                    SoundHelper.playSound(entity, SoundRegistry.PATIENT_DROWNING.get(), entity.getSoundSource(), 1.0f, RandomHelper.randomBetween(level.random, 0.9f, 1.1f));
 
                     bufferedDamage -= damage;
                     damageTimer = 0;
