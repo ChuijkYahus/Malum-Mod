@@ -7,6 +7,7 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -27,7 +28,6 @@ public class CombustionGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("hotter_fire"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("magic_fire"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("extinguish_hurt"));
     }
 
@@ -36,21 +36,26 @@ public class CombustionGeas extends GeasEffect {
         if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
             target.setRemainingFireTicks(Math.max(target.getRemainingFireTicks()-8, 0));
             target.invulnerableTime = 0;
-        }
-        else if (event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
-            target.igniteForSeconds(5);
+            if (attacker.level() instanceof ServerLevel level) {
+                ParticleEffectTypeRegistry.COMBUSTION_BURN.createEffect(target)
+                        .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT))
+                        .spawn(level);
+            }
         }
     }
 
     public static void extinguish(LivingEntity entity) {
         if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION)) {
             if (entity.wasOnFire) {
-                WorldEventHandler.addWorldEvent(entity.level(),
-                        new DelayedDamageWorldEvent(entity)
-                                .setDamageData(5, 5, 2)
-                                .setMagicDamageType(DamageTypeRegistry.KARMIC)
-                                .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT))
-                                .setSound(SoundRegistry.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));
+                for (int i = 0; i < 3; i++) {
+                    WorldEventHandler.addWorldEvent(entity.level(),
+                            new DelayedDamageWorldEvent(entity)
+                                    .setDamageData(2, 2, (i+1)*2)
+                                    .setMagicDamageType(DamageTypeRegistry.KARMIC)
+                                    .setImpactParticleEffect(ParticleEffectTypeRegistry.COMBUSTION_BURN, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.WICKED_SPIRIT))
+                                    .setSound(SoundRegistry.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));
+
+                }
             }
         }
     }

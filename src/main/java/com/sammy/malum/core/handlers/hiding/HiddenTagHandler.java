@@ -30,30 +30,29 @@ public class HiddenTagHandler {
 		INVOKED_WHEN_CONDITIONS_CHANGE.values().forEach(Runnable::run);
 	}
 
+	public static void hideItems(Collection<ItemStack> items) {
+		items.removeIf(HiddenTagHandler::isHiddenItem);
+	}
+
+	public static boolean isHiddenItem(ItemStack stack) {
+		if (stack.getItem() instanceof HiddenItem hiddenItem) {
+			return hiddenItem.shouldBeHidden(stack);
+		}
+		for (TagKey<Item> tag : getTagsToHide()) {
+			if (stack.is(tag)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static List<TagKey<Item>> getTagsToHide() {
 		List<TagKey<Item>> tags = new ArrayList<>();
 		for (var entry : ITEMS_TO_HIDE.entrySet()) {
-			if (entry.getValue().getAsBoolean())
+			if (entry.getValue().getAsBoolean()) {
 				tags.add(entry.getKey());
+			}
 		}
 		return tags;
-	}
-
-	public static void hideItems(Collection<ItemStack> items) {
-		Set<TagKey<Item>> disabledTags = new HashSet<>(HiddenTagHandler.getTagsToHide());
-		Iterator<ItemStack> iterator = items.iterator();
-		while (iterator.hasNext()) {
-			ItemStack entry = iterator.next();
-			boolean remove = false;
-			for (TagKey<Item> disabledTag : disabledTags) {
-				if (entry.is(disabledTag)) {
-					remove = true;
-					break;
-				}
-			}
-			if (remove) {
-				iterator.remove();
-			}
-		}
 	}
 }

@@ -36,6 +36,6 @@ public class SoulStainedSteelArmorItem extends MalumArmorItem {
 
     @Override
     public ResourceLocation getArmorTexture() {
-        return MalumMod.malumPath("textures/armor/soul_stained_steel_reforged.png");
+        return MalumMod.malumPath("textures/armor/soul_stained_steel.png");
     }
 }

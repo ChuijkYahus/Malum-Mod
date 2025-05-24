@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 
 public class ArmorTiers {
 
-    public static final Holder<ArmorMaterial> SOUL_HUNTER = register("spirit_hunter", Util.make(new EnumMap<>(ArmorItem.Type.class), defense -> {
+    public static final Holder<ArmorMaterial> SOUL_HUNTER = register("soul_hunter", Util.make(new EnumMap<>(ArmorItem.Type.class), defense -> {
         defense.put(ArmorItem.Type.BOOTS, 1);
         defense.put(ArmorItem.Type.LEGGINGS, 3);
         defense.put(ArmorItem.Type.CHESTPLATE, 4);

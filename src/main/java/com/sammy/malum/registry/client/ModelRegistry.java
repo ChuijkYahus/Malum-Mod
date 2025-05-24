@@ -77,7 +77,6 @@ public class ModelRegistry {
         event.registerLayerDefinition(ScarfModel.LAYER, ScarfModel::createBodyLayer);
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.AddLayers event) {
         SOUL_HUNTER_ARMOR = new SoulHunterArmorModel(event.getEntityModels().bakeLayer(SoulHunterArmorModel.LAYER));

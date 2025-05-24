@@ -266,6 +266,32 @@ public class GeasParticleEffects {
         }
     }
 
+
+    public static void combustionBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 2; j++) {
+                var offsetTargetPosition = VecHelper.radialOffset(pos, 1f-j*0.1f, i, 16);
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = 0.075f;
+                int delay = (int) (j * 2 + i * 0.75f);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(0, velocity, 0)
+                        .setLifeDelay(delay)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(0, velocity, 0)
+                        .setLifeDelay(delay)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
     public static void berserkerBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
 

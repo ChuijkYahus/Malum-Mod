@@ -1096,13 +1096,11 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
-
-        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel the flame");
+        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION,
                 """
                         There is no force more powerful than the human soul on fire.
-                         -Fire Effects you Inflict onto Enemies are Amplified
-                         -Dealing Magic Damage Ignites Enemies""",
+                         -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
