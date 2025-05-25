@@ -168,6 +168,7 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER.get(), "Wawa, wawa, wawa, wawa, wawa, wawa, wawa, wawa");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get(), "There is no force more powerful than the human soul on fire");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
@@ -242,8 +243,8 @@ public class MalumLang extends LanguageProvider {
             add("malum.gui.ritual.tier." + id, name);
         }
 
-        add("item.malum.music_disc_arcane_elegy.desc", "Kultik - Arcane Elegy");
-        add("item.malum.music_disc_aesthetica.desc", "Kultik - Aesthetica");
+        add("jukebox_song.arcane_elegy.desc", "Kultik - Arcane Elegy");
+        add("jukebox_song.aesthetica.desc", "Kultik - Aesthetica");
 
         add("curios.identifier.brooch", "Brooch");
         add("curios.modifiers.brooch", "When worn:");
@@ -344,12 +345,15 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
+        addGeasEffect("mining_buffs", "Breaking Blocks Or Taking Damage Grants Flamekeeper's Fervor");
+        addGeasEffect("flamekeeper", "Flamekeeper's Fervor grants Mining and Attack Speed");
+        addGeasEffect("self_immolation", "High Fervor Briefly Ignites You When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
-        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
-        addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
+        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac's Fervor");
+        addGeasEffect("pyromaniac", "Pyromaniac's Fervor grants Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");
-        addGeasEffect("explosion_fire", "Too Much Haste Ignites You");
+        addGeasEffect("explosion_fire", "High Fervor Ignites You Upon Blast Impact");
         addGeasEffect("scary_fire", "Unlike Explosions, Fire Damage Remains Deadly");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");

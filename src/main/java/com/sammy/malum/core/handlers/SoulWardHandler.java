@@ -27,7 +27,7 @@ public class SoulWardHandler {
         }
     }
 
-    public static void recoverSoulWard(EntityTickEvent.Pre event) {
+    public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {

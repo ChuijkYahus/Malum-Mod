@@ -11,7 +11,7 @@ import team.lodestar.lodestone.helpers.*;
 public class PyromaniacEffect extends MobEffect {
     public PyromaniacEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(255, 230, 93));
-        var id = MalumMod.malumPath("pyromaniac");
+        var id = MalumMod.malumPath("pyromaniacs_fervor");
         addAttributeModifier(Attributes.MOVEMENT_SPEED, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }

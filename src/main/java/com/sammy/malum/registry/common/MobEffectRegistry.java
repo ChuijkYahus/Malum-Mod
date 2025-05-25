@@ -41,6 +41,7 @@ public class MobEffectRegistry {
     public static final DeferredHolder<MobEffect, MobEffect> SHAKEN_FAITH = EFFECTS.register("shaken_faith", ShakenFaithEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> TRUE_SHOT = EFFECTS.register("true_shot", TrueShotEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> FLAWED_AIM = EFFECTS.register("flawed_aim", FlawedAimEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> FLAMEKEEPERS_FERVOR = EFFECTS.register("flamekeepers_fervor", FlamekeeperEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> PYROMANIACS_FERVOR = EFFECTS.register("pyromaniacs_fervor", PyromaniacEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> WYRD_EXHAUSTION = EFFECTS.register("wyrd_exhaustion", WyrdExhaustionEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> UNSIGHTED_RESISTANCE = EFFECTS.register("unsighted_resistance", UnsightedResistanceEffect::new);
@@ -60,11 +61,12 @@ public class MobEffectRegistry {
     public static final DeferredHolder<MobEffect, MobEffect> TRIAL_OF_FAITH = EFFECTS.register("trial_of_faith", TrialOfFaithEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> DESPERATE_NEED = EFFECTS.register("desperate_need", DesperateNeedEffect::new);
 
+    //Silence
+    public static final DeferredHolder<MobEffect, MobEffect> SILENCED = EFFECTS.register("silenced", SilencedEffect::new);
+
     //Misc
     public static final DeferredHolder<MobEffect, MobEffect> ASCENSION = EFFECTS.register("ascension", AscensionEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> SILENCED = EFFECTS.register("silenced", SilencedEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> HATRED = EFFECTS.register("hatred", HatredEffect::new);
-
     public static final DeferredHolder<MobEffect, MobEffect> REJECTED = EFFECTS.register("rejected", RejectedEffect::new);
 
     @SubscribeEvent

@@ -79,7 +79,7 @@ public class SoulWardRenderHandler {
                         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(xTextureOffset / 45f, (xTextureOffset + size) / 45f, 0, 15 / 45f));
                         shaderInstance.safeGetUniform("TimeOffset").set(i * 150f);
 
-                        builder.setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
+                        builder.setAlpha(1).setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
                         builder.blit(poseStack);
                         if (glow > 0 && glow < 20) {
                             float alpha = (10 - Math.abs(10 - glow)) / 10f;

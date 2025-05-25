@@ -1,0 +1,28 @@
+{
+  "type": "malum:soul_binding",
+  "extraIngredients": [
+    {
+      "count": 8,
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:raw_gold"
+    }
+  ],
+  "geas": "malum:pact_of_the_flamekeeper",
+  "ingredient": {
+    "count": 12,
+    "item": "minecraft:gunpowder"
+  },
+  "spirits": [
+    {
+      "type": "infernal",
+      "count": 16
+    },
+    {
+      "type": "aerial",
+      "count": 16
+    }
+  ]
+}

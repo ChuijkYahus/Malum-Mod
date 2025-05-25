@@ -131,8 +131,8 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, Item> ENCYCLOPEDIA_ESOTERICA = register("encyclopedia_esoterica", GEAR_PROPERTIES().rarity(EPIC), EncyclopediaEsotericaItem::new);
 
-    public static final DeferredHolder<Item, Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", HIDDEN_PROPERTIES().rarity(RARE), ArcaneElegyMusicDiscItem::new);
-    public static final DeferredHolder<Item, Item> AESTHETICA = register("music_disc_aesthetica", HIDDEN_PROPERTIES().rarity(RARE), AestheticaMusicDiscItem::new);
+    public static final DeferredHolder<Item, Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", GEAR_PROPERTIES().rarity(RARE), ArcaneElegyMusicDiscItem::new);
+    public static final DeferredHolder<Item, Item> AESTHETICA = register("music_disc_aesthetica", GEAR_PROPERTIES().rarity(RARE), AestheticaMusicDiscItem::new);
 
     //region random stuff
         public static DeferredHolder<Item, Item> COPPER_NUGGET;

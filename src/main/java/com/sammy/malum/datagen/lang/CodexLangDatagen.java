@@ -1096,10 +1096,17 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
+        addSimpleEntryHeader("pact_of_the_flamekeeper", "Pact of the Flamekeeper", "To kindle the pyre");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER,
+                """
+                        Your soul, fueled by heat and flame.
+                         -Breaking Blocks or Taking Damage Generates Flamekeeper's Fervor, Increasing Mining and Attack Speed""",
+                "You cannot deny the flame it's purpose\n -High Fervor Ignites You When Struck");
+
         addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION,
                 """
-                        There is no force more powerful than the human soul on fire.
+                        No force more powerful.
                          -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
@@ -1107,12 +1114,12 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
                 scaled(0.8f) +"""
                         Recklessness and Haste, fueled by Kinetic Impact.
-                         -Blowing Yourself Up Generates Pyromaniac Charges, Increasing Movement and Mining Speed
+                         -Blowing Yourself Up Generates Pyromaniac's Fervor, Increasing Movement and Mining Speed
                          -Grants Damage Resistance Against Explosions""",
                 """
                         You can only handle so much pressure.
-                         -Overexertion of Pyromaniac Charges Ignites you When Applied
-                         -Fire Damage is Deadlier""");
+                         -High Fervor Ignites You When Struck By Blast Impact
+                         -Incoming Fire Damage is Doubled""");
 
         addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "To survive one's fate");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION,

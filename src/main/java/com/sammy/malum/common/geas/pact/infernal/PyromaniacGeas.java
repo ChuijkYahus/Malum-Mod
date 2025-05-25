@@ -40,11 +40,11 @@ public class PyromaniacGeas extends GeasEffect {
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            event.setNewDamage(event.getNewDamage() * 1.5f);
+            event.setNewDamage(event.getNewDamage() * 2f);
         }
         if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
             float health = target.getHealth();
-            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.25f, 0, health*0.5f));
+            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.25f, 0, health * 0.5f));
         }
     }
 
@@ -53,27 +53,29 @@ public class PyromaniacGeas extends GeasEffect {
         for (Entity entity : event.getAffectedEntities()) {
             if (entity instanceof LivingEntity livingEntity) {
                 if (explosion.damageCalculator.shouldDamageEntity(explosion, livingEntity)) {
-                    var geas = GeasEffectHandler.getGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC);
-                    if (geas != null) {
-                        int pyromaniacStacks = 2;
-                        if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
-                            pyromaniacStacks = 4;
-                        }
-                        final MobEffectInstance instance = livingEntity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);
-                        if (instance != null) {
-                            if (instance.getAmplifier() >= 5) {
-                                livingEntity.igniteForSeconds(5);
-                            }
-                            EntityHelper.extendEffect(instance, livingEntity, 300, 1200);
-                            EntityHelper.amplifyEffect(instance, livingEntity, pyromaniacStacks, 9);
-                        }
-                        else {
-                            livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.PYROMANIACS_FERVOR, 600, pyromaniacStacks-1));
-                        }
-                        return;
+                    if (GeasEffectHandler.hasGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC)) {
+                        applyPyromaniac(livingEntity, explosion);
                     }
                 }
             }
+        }
+    }
+
+
+    public static void applyPyromaniac(LivingEntity entity, Explosion explosion) {
+        int pyromaniacStacks = 2;
+        if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
+            pyromaniacStacks = 4;
+        }
+        final MobEffectInstance instance = entity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);
+        if (instance != null) {
+            if (instance.getAmplifier() >= 5) {
+                entity.igniteForSeconds(5);
+            }
+            EntityHelper.extendEffect(instance, entity, 300, 1200);
+            EntityHelper.amplifyEffect(instance, entity, pyromaniacStacks, 9);
+        } else {
+            entity.addEffect(new MobEffectInstance(MobEffectRegistry.PYROMANIACS_FERVOR, 600, pyromaniacStacks - 1));
         }
     }
 }

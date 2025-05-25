@@ -44,7 +44,6 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         CurioTokenOfGratitude.giveItem(event);
-
         SoulDataHandler.syncData(event);
         SoulWardHandler.syncSoulWard(event);
         GeasEffectHandler.syncGeas(event);
@@ -53,6 +52,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void playerLeftClick(PlayerInteractEvent.LeftClickBlock event) {
+        //TODO: move this to the jar class
         BlockPos pos = event.getPos();
         Level level = event.getLevel();
         BlockState state = level.getBlockState(pos);
@@ -99,7 +99,7 @@ public class RuntimeEvents {
     public static void onLivingTick(EntityTickEvent.Pre event) {
         GeasEffectHandler.entityTick(event);
         SoulDataHandler.entityTick(event);
-        SoulWardHandler.recoverSoulWard(event);
+        SoulWardHandler.entityTick(event);
         MalignantConversionHandler.entityTick(event);
         WeepingWellRejectionHandler.entityTick(event);
         TouchOfDarknessHandler.entityTick(event);
@@ -110,6 +110,11 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         StaffAbilityHandler.recoverStaffCharges(event);
+    }
+
+    @SubscribeEvent
+    public static void onBreakBlock(BlockEvent.BreakEvent event) {
+        FlameKeeperGeas.breakBlock(event);
     }
 
     @SubscribeEvent
