@@ -984,7 +984,7 @@ public class CodexLangDatagen {
                 """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
-                "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
+                scaled(0.8f) + "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
 
 
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "To care for oneself");
@@ -1007,7 +1007,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.7f) + """
+                scaled(0.65f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
                          -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
@@ -1062,16 +1062,16 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_contentedness", "Pact of Contentedness", "To seek satisfaction");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS,
                 """
-                        To be full is to be complete.
+                        To be complete is to be satisfied.
                          -Armor and Armor Toughness is Increased by One Fifth when near Satiation""",
-                "To be full is a necessity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
+                "To be satisfied can be a shackling necessity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
 
         addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID,
                 """
-                        To be complete is to be free.
+                        To be complete is to be unburdened.
                          -Each Empty Armor Slot grants Four Armor and Two Armor Toughness""",
-                "To be free is a comfort\n -Wearing any Armour Hurts You");
+                "To be unburdened can be a shackling standard\n -Wearing any Armour Hurts You");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC,
@@ -1096,6 +1096,12 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
+        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
+        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION,
+                """
+                        There is no force more powerful than the human soul on fire.
+                         -Fire Effects you Inflict onto Enemies are Amplified""",
+                "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,

@@ -2,6 +2,10 @@
   "type": "malum:spirit_infusion",
   "extraIngredients": [
     {
+      "count": 8,
+      "item": "malum:soulwoven_silk"
+    },
+    {
       "count": 3,
       "item": "malum:malignant_pewter_plating"
     }

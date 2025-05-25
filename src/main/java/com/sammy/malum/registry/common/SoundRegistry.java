@@ -103,6 +103,8 @@ public class SoundRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> WARLOCK_BLAST = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wicked_energy_bursts_forward")));
     public static final DeferredHolder<SoundEvent, SoundEvent> REAPER_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("reaper_scythe_slashes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BERSERKER_WRATH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wrathful_energy_surges")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> PATIENT_DROWNING = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_patiently_drowns")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> COMBUSTION_WHIPLASH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_experiences_combustion_whiplash")));
     public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WYRD_RECONSTRUCTION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wyrd_reconstruction_reconstructs_body")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_WITHDRAWAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_consumes")));

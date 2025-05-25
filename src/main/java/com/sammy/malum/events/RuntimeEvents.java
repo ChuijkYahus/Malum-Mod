@@ -49,7 +49,6 @@ public class RuntimeEvents {
         SoulWardHandler.syncSoulWard(event);
         GeasEffectHandler.syncGeas(event);
         TetraCompat.entityJoin(event);
-        ContinuingShotGeas.entityJoin(event);
     }
 
     @SubscribeEvent
@@ -189,7 +188,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onItemUseStart(LivingEntityUseItemEvent.Start event) {
-        ContinuingShotGeas.handleItemUseStartEvent(event);
+        ContinuingShotGeas.onItemUseStart(event);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

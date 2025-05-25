@@ -12,6 +12,8 @@ public class GeasTagRegistry {
     public static final TagKey<GeasEffectType> IS_OATH = malumTag("is_oath");
     public static final TagKey<GeasEffectType> IS_AUTHORITY = malumTag("is_authority");
 
+    public static final TagKey<GeasEffectType> HIDDEN_UNTIL_BLACK_CRYSTAL = malumTag("hidden_geas/black_crystal");
+
     private static TagKey<GeasEffectType> modTag(String path) {
         return TagKey.create(MalumGeasEffectTypeRegistry.GEAS_TYPES_KEY, ResourceLocation.parse(path));
     }

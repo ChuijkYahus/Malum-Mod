@@ -25,6 +25,7 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
         return "Malum Geas Tags";
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         Set<DeferredHolder<GeasEffectType, ? extends GeasEffectType>> gease = new HashSet<>(MalumGeasEffectTypeRegistry.GEAS_TYPES.getEntries());
@@ -46,6 +47,6 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
             }
         }
 
-
+        tag(GeasTagRegistry.HIDDEN_UNTIL_BLACK_CRYSTAL).addTags(GeasTagRegistry.IS_OATH, GeasTagRegistry.IS_AUTHORITY);
     }
 }

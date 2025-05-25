@@ -168,7 +168,7 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get(), "There is no force more powerful than the human soul on fire");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
@@ -344,6 +344,8 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
+        addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
+        addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
         addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");

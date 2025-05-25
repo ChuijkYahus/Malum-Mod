@@ -32,6 +32,6 @@ public class SoulHunterArmorItem extends MalumArmorItem {
 
     @Override
     public ResourceLocation getArmorTexture() {
-        return MalumMod.malumPath("textures/armor/spirit_hunter_reforged.png");
+        return MalumMod.malumPath("textures/armor/soul_hunter.png");
     }
 }

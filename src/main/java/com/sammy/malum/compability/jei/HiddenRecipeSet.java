@@ -25,6 +25,11 @@ public class HiddenRecipeSet<T> {
 		this.recipeType = recipeType;
 	}
 
+	public void unhidePreviouslyHiddenRecipes(IRecipeManager manager) {
+		manager.unhideRecipes(recipeType, hiddenRecipes);
+		hiddenRecipes.clear();
+	}
+
 	public void scanAndHideRecipes(IRecipeManager manager, IFocusFactory focusFactory, Collection<TagKey<Item>> nowHidden) {
 		List<IFocus<ItemStack>> foci = nowHidden.stream()
 				.map(BuiltInRegistries.ITEM::getTag)
@@ -48,9 +53,4 @@ public class HiddenRecipeSet<T> {
 		manager.hideRecipes(recipeType, hiddenRecipes);
 	}
 
-
-	public void unhidePreviouslyHiddenRecipes(IRecipeManager manager) {
-		manager.unhideRecipes(recipeType, hiddenRecipes);
-		hiddenRecipes.clear();
-	}
 }
