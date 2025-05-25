@@ -58,7 +58,7 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS, -5, 13);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID, -6, 14);
 
-        addGeasEntry(screen, MalumGeasEffectTypeRegistry.INFERNAL_1, -4, 13);
+        addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER, -4, 13);
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION, -5, 14);
 
         addGeasEntry(screen, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER, 15, 14);
