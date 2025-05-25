@@ -27,9 +27,11 @@ public class BlockTagRegistry {
     public static final TagKey<Block> TWISTED_WALLS = malumTag("twisted_rock_walls");
 
     public static final TagKey<Block> UNCHAINED_RITE_CATALYST = malumTag("unchained_rite_catalyst");
-    public static final TagKey<Block> RITE_IMMUNE = malumTag("rite_immune");
+    public static final TagKey<Block> IS_RITE_IMMUNE = malumTag("is_rite_immune");
 
-    public static final TagKey<Block> ENDLESS_FLAME = malumTag("endless_flame");
+    public static final TagKey<Block> WEEPING_WELL = malumTag("weeping_well");
+
+    public static final TagKey<Block> INEXTINGUISHABLE_FLAME = malumTag("inextinguishable_flame");
     public static final TagKey<Block> SUNDERING_ANCHOR_KNIFE_BEHAVIOR = malumTag("sundering_anchor_please_be_a_knife");
 
     public static final TagKey<Block> GREATER_AERIAL_WHITELIST = malumTag("greater_aerial_whitelist");
@@ -38,7 +40,7 @@ public class BlockTagRegistry {
     public static final TagKey<Block> HEAT_SOURCES = modTag("farmersdelight:heat_sources");
     public static final TagKey<Block> MINEABLE_WITH_KNIFE = modTag("farmersdelight:mineable/knife");
 
-    public static final TagKey<Block> WRENCH_PICKUP = modTag("create:wrench_pickup");
+    public static final TagKey<Block> CREATE_WRENCH_PICKUP = modTag("create:wrench_pickup");
 
     public static final TagKey<Block> STRIPPED_LOGS = commonTag("stripped_logs");
     public static final TagKey<Block> STRIPPED_WOODS = commonTag("stripped_woods");

@@ -7,6 +7,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -246,6 +247,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .add(STELLAR_MECHANISM.get())
                 // Aesthetica
                 .add(AESTHETICA.get());
+
+        tag(ItemTagRegistry.ARCANE_ELEGY_COMPONENTS).addTag(Tags.Items.MUSIC_DISCS).remove(ARCANE_ELEGY.get(), AESTHETICA.get());
 
         for (DeferredHolder<Item, ? extends Item> i : items) {
             if (i.get() instanceof MalumCurioItem) {

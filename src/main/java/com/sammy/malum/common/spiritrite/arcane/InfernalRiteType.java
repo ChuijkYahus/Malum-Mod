@@ -35,7 +35,7 @@ public class InfernalRiteType extends TotemicRiteType {
                 super.doRiteEffect(totemBase, level);
                 getNearbyBlocks(totemBase, BaseFireBlock.class).forEach(p -> {
                     BlockState state = totemBase.getLevel().getBlockState(p);
-                    if (!state.is(BlockTagRegistry.ENDLESS_FLAME)) {
+                    if (!state.is(BlockTagRegistry.INEXTINGUISHABLE_FLAME)) {
                         level.playSound(null, p, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
                         totemBase.getLevel().removeBlock(p, false);
                     }

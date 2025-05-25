@@ -13,6 +13,7 @@ import team.lodestar.lodestone.systems.block.*;
 
 import java.awt.*;
 
+import static com.sammy.malum.registry.common.tag.BlockTagRegistry.WEEPING_WELL;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
 
@@ -412,7 +413,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties WAVEFORM_DIODE() {
         return new LodestoneBlockProperties()
-                .addTag(BlockTagRegistry.WRENCH_PICKUP)
+                .addTag(BlockTagRegistry.CREATE_WRENCH_PICKUP)
                 .mapColor(COPPER_BLOCK.defaultMapColor())
                 .strength(3.0F, 6.0F)
                 .sound(SoundRegistry.SPIRIT_DIODE)
@@ -536,7 +537,7 @@ public class MalumBlockProperties {
                 .strength(-1.0F, 3600000.0F)
                 .sound(SoundRegistry.WEEPING_WELL_BRICKS)
                 .isRedstoneConductor((a,b,c) -> false)
-                .addTag(FEATURES_CANNOT_REPLACE)
+                .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
                 .mapColor(MapColor.COLOR_GRAY)
                 .isValidSpawn(Blocks::never)
                 .noLootTable();
@@ -548,7 +549,7 @@ public class MalumBlockProperties {
                 .sound(SoundRegistry.BLIGHTED_EARTH)
                 .mapColor(MapColor.TERRACOTTA_BLACK)
                 .pushReaction(PushReaction.BLOCK)
-                .addTag(FEATURES_CANNOT_REPLACE)
+                .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
                 .setCutoutRenderType();
     }
 }

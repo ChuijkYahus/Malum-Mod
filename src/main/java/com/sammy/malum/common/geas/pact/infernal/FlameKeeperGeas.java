@@ -1,5 +1,6 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
+import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
@@ -41,7 +42,9 @@ public class FlameKeeperGeas extends GeasEffect {
     }
 
     public static void breakBlock(BlockEvent.BreakEvent event) {
-        applyEffect(event.getPlayer());
+        if (GeasEffectHandler.hasGeasEffect(event.getPlayer(), MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER)) {
+            applyEffect(event.getPlayer());
+        }
     }
 
     public static void applyEffect(LivingEntity target) {

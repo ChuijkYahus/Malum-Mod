@@ -33,9 +33,9 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsProvider {
         Set<DeferredHolder<Block, ? extends Block>> blocks = new HashSet<>(BLOCKS.getEntries());
 
         tag(BlockTagRegistry.UNCHAINED_RITE_CATALYST).add(BlockRegistry.BLIGHTED_EARTH.get(), BlockRegistry.BLIGHTED_SOIL.get());
-        tag(BlockTagRegistry.RITE_IMMUNE).addTags(BlockTagRegistry.TAINTED_ROCK, BlockTagRegistry.TWISTED_ROCK);
+        tag(BlockTagRegistry.IS_RITE_IMMUNE).addTags(BlockTagRegistry.TAINTED_ROCK, BlockTagRegistry.TWISTED_ROCK, BlockTagRegistry.WEEPING_WELL);
 
-        tag(BlockTagRegistry.ENDLESS_FLAME);
+        tag(BlockTagRegistry.INEXTINGUISHABLE_FLAME);
         tag(BlockTagRegistry.GREATER_AERIAL_WHITELIST);
 
         tag(BlockTagRegistry.SUNDERING_ANCHOR_KNIFE_BEHAVIOR).addOptional(ResourceLocation.parse("farmersdelight:cutting_board"));

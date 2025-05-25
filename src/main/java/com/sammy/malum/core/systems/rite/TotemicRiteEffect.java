@@ -124,6 +124,6 @@ public abstract class TotemicRiteEffect {
     }
 
     public boolean canAffectBlock(TotemBaseBlockEntity totemBase, BlockState state, BlockPos pos) {
-        return !state.is(BlockTagRegistry.RITE_IMMUNE);
+        return !state.is(BlockTagRegistry.IS_RITE_IMMUNE);
     }
 }

@@ -168,8 +168,8 @@ public class MalumLang extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER.get(), "Wawa, wawa, wawa, wawa, wawa, wawa, wawa, wawa");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get(), "There is no force more powerful than the human soul on fire");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FLAMEKEEPER.get(), "Care for the flame");
+        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get(), "Set yourself ablaze, figuratively");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
@@ -243,8 +243,8 @@ public class MalumLang extends LanguageProvider {
             add("malum.gui.ritual.tier." + id, name);
         }
 
-        add("jukebox_song.arcane_elegy.desc", "Kultik - Arcane Elegy");
-        add("jukebox_song.aesthetica.desc", "Kultik - Aesthetica");
+        add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
+        add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
         add("curios.identifier.brooch", "Brooch");
         add("curios.modifiers.brooch", "When worn:");

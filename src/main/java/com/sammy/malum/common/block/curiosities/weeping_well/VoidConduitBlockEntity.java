@@ -75,6 +75,8 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
             }
             if (gameTime % 20L == 0) {
                 level.playSound(null, worldPosition, SoundRegistry.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
+            }
+            if (gameTime % 10L == 0) {
                 acceptItems(serverLevel);
             }
             if (!eatenItems.isEmpty()) {
@@ -94,11 +96,13 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     }
 
     public void acceptItems(ServerLevel serverLevel) {
-        AABB aabb = new AABB(worldPosition).inflate(1, 2, 1).move(0, -2, 0);
+        AABB aabb = new AABB(worldPosition).inflate(1, 3, 1).move(0, -3, 0);
         List<ItemEntity> items = serverLevel.getEntitiesOfClass(ItemEntity.class, aabb).stream().sorted(Comparator.comparingInt(ItemEntity::getAge)).toList();
         for (ItemEntity entity : items) {
-            eatenItems.add(entity.getItem());
-            entity.discard();
+            if (entity.getInBlockState().getBlock() instanceof PrimordialSoupBlock) {
+                eatenItems.add(entity.getItem());
+                entity.discard();
+            }
         }
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }

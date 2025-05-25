@@ -91,11 +91,11 @@ public class BlockRegistry {
     public static final DeferredHolder<Block, Block> REPAIR_PYLON = BLOCKS.register("repair_pylon", () -> new RepairPylonCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(BlockEntityRegistry.REPAIR_PYLON));
     public static final DeferredHolder<Block, Block> REPAIR_PYLON_COMPONENT = BLOCKS.register("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
 
-    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_BASE = BLOCKS.register("runewood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.RUNEWOOD().addTag(RITE_IMMUNE).noOcclusion(), false).setBlockEntity(BlockEntityRegistry.TOTEM_BASE));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(RITE_IMMUNE).noOcclusion(), BlockRegistry.RUNEWOOD_LOG, false).setBlockEntity(BlockEntityRegistry.TOTEM_POLE));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_BASE = BLOCKS.register("runewood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(BlockEntityRegistry.TOTEM_BASE));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockRegistry.RUNEWOOD_LOG, false).setBlockEntity(BlockEntityRegistry.TOTEM_POLE));
 
-    public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(RITE_IMMUNE).noOcclusion(), true).setBlockEntity(BlockEntityRegistry.TOTEM_BASE));
-    public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(RITE_IMMUNE).noOcclusion(), BlockRegistry.SOULWOOD_LOG, true).setBlockEntity(BlockEntityRegistry.TOTEM_POLE));
+    public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(BlockEntityRegistry.TOTEM_BASE));
+    public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockRegistry.SOULWOOD_LOG, true).setBlockEntity(BlockEntityRegistry.TOTEM_POLE));
 
     public static final DeferredHolder<Block, Block> WAVECHARGER = BLOCKS.register("wavecharger", () -> new WaveChargerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(BlockEntityRegistry.WAVECHARGER));
     public static final DeferredHolder<Block, Block> WAVEBANKER = BLOCKS.register("wavebanker", () -> new WaveBankerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(BlockEntityRegistry.WAVEBANKER));
