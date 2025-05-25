@@ -12,7 +12,7 @@ public class StaffAbilityHandler {
     public static void recoverStaffCharges(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         if (!player.level().isClientSide) {
-            final StaffAbilityData data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+            final StaffAbilityData data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
             data.tickData(player);
             if (data.isDirty()) {
                 PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new SyncStaffAbilityDataPayload(player.getId(), data));

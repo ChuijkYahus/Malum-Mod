@@ -45,7 +45,7 @@ public class SapFilledLogBlock extends RotatedPillarBlock {
                 itemstack.shrink(1);
                 serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(sap.get()));
-                ParticleEffectTypeRegistry.SAP_COLLECTED.createEffect(pos)
+                MalumParticleEffectTypes.SAP_COLLECTED.createEffect(pos)
                         .customData(new SapCollectionParticleEffect.SapCollectionEffectData(hit.getDirection(), player.getUUID()))
                         .color(sapColor)
                         .spawn(serverLevel);

@@ -4,16 +4,13 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.multiplayer.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
@@ -82,7 +79,7 @@ public class WeepingWellTextPage extends BookPage {
                         .setLifetime(lifetime)
                         .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
                         .spawn(x, y);
-                ScreenParticleBuilder.create(ScreenParticleRegistry.SAW, ITEM_PARTICLES)
+                ScreenParticleBuilder.create(MalumScreenParticles.SAW, ITEM_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.02f, 0.3f, 0f).setCoefficient(1.2f).build())
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spin).build())
                         .setScaleData(GenericParticleData.create(0, scale * 0.9f).build())

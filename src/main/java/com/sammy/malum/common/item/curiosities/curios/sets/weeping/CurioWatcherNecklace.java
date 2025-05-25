@@ -30,7 +30,7 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (target.getHealth() >= target.getMaxHealth() * 0.9875f) {
-            var data = target.getData(AttachmentTypeRegistry.CURIO_DATA);
+            var data = target.getData(MalumAttachmentTypes.CURIO_DATA);
             if (data.watcherNecklaceCooldown == 0) {
                 float speed = 0.4f;
                 final Level level = attacker.level();
@@ -51,7 +51,7 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity entity) {
-            var data = entity.getData(AttachmentTypeRegistry.CURIO_DATA);
+            var data = entity.getData(MalumAttachmentTypes.CURIO_DATA);
             if (data.watcherNecklaceCooldown > 0) {
                 data.watcherNecklaceCooldown--;
             }

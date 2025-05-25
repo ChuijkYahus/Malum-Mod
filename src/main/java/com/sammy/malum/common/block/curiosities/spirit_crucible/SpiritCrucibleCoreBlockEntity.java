@@ -17,7 +17,6 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.recipe.*;
-import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
@@ -48,7 +47,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
     public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0f, 2.5f, 0f);
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
 
     public LodestoneBlockEntityInventory inventory;
     public LodestoneBlockEntityInventory spiritInventory;
@@ -76,7 +75,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     public SpiritCrucibleCoreBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.SPIRIT_CRUCIBLE.get(), STRUCTURE.get(), pos, state);
+        this(MalumBlockEntities.SPIRIT_CRUCIBLE.get(), STRUCTURE.get(), pos, state);
     }
 
     @Override
@@ -145,7 +144,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.CONSUME;
         }
-        if (pStack.is(ItemTagRegistry.IS_ARTIFICE_TOOL)) {
+        if (pStack.is(MalumTags.ItemTags.IS_ARTIFICE_TOOL)) {
             attributes.applyTuningForkBuff(serverLevel, worldPosition);
             return ItemInteractionResult.SUCCESS;
         }
@@ -158,7 +157,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             return ItemInteractionResult.CONSUME;
         }
         var heldStack = pPlayer.getItemInHand(pHand);
-        boolean isAugment = heldStack.has(DataComponentRegistry.ARTIFICE_AUGMENT);
+        boolean isAugment = heldStack.has(MalumDataComponents.ARTIFICE_AUGMENT);
         if (!isAugment || heldStack.isEmpty()) {
             var spiritResult = spiritInventory.interact(serverLevel, pPlayer, pHand);
             if (!spiritResult.isEmpty()) {
@@ -170,7 +169,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             }
         }
         if (isAugment || heldStack.isEmpty()) {
-            if (heldStack.isEmpty() || !heldStack.get(DataComponentRegistry.ARTIFICE_AUGMENT).isCoreAugment()) {
+            if (heldStack.isEmpty() || !heldStack.get(MalumDataComponents.ARTIFICE_AUGMENT).isCoreAugment()) {
                 var augment = augmentInventory.interact(serverLevel, pPlayer, pHand);
                 if (!augment.isEmpty()) {
                     return ItemInteractionResult.SUCCESS;
@@ -196,7 +195,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                         crackTimer = 0;
                     }
                     float pitch = RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f) * (0.95f + (crackTimer - 8) * 0.015f);
-                    level.playSound(null, worldPosition, SoundRegistry.IMPETUS_CRACK.get(), SoundSource.BLOCKS, 0.7f, pitch);
+                    level.playSound(null, worldPosition, MalumSoundEvents.IMPETUS_CRACK.get(), SoundSource.BLOCKS, 0.7f, pitch);
                     queuedCracks--;
                     if (queuedCracks == 0) {
                         crackTimer = 0;
@@ -270,11 +269,11 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             progress = 0;
         }
 
-        ParticleEffectTypeRegistry.SPIRIT_CRUCIBLE_CRAFTS.createEffect(worldPosition)
+        MalumParticleEffectTypes.SPIRIT_CRUCIBLE_CRAFTS.createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .spawn(level);
 
-        level.playSound(null, worldPosition, SoundRegistry.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
+        level.playSound(null, worldPosition, MalumSoundEvents.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
         while (fortuneChance > 0) {
             if (fortuneChance >= 1 || random.nextFloat() < fortuneChance) {
@@ -284,8 +283,8 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         }
         if (durabilityCost > 0) {
             impetus.hurtAndBreak(durabilityCost, level, null, brokenStack -> {
-                Holder<Item> itemHolder = level.registryAccess().registry(Registries.ITEM).orElseThrow().wrapAsHolder(brokenStack.asItem());
-                ImpetusDataMap data = itemHolder.getData(DataMapRegistry.FRACTURED_IMPETUS_VARIANT);
+                Holder<net.minecraft.world.item.Item> itemHolder = level.registryAccess().registry(Registries.ITEM).orElseThrow().wrapAsHolder(brokenStack.asItem());
+                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
                 if (data != null) {
                     inventory.setStackInSlot(0, data.fracturedImpetus().value().getDefaultInstance());
                 }
@@ -316,7 +315,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     @Override
     public MalumSpiritType getActiveSpiritType() {
         int spiritCount = spiritInventory.getFilledSlotCount();
-        Item currentItem = spiritInventory.getStackInSlot(0).getItem();
+        net.minecraft.world.item.Item currentItem = spiritInventory.getStackInSlot(0).getItem();
         if (spiritCount > 1) {
             float duration = 60f * spiritCount;
             float gameTime = (getLevel().getGameTime() % duration) / 60f;
@@ -351,7 +350,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public void updateRecipe() {
         spiritInventory.updateInventoryCaches();
-        recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SPIRIT_FOCUSING.get(), new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks));
+        recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_FOCUSING.get(), new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks));
     }
 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {

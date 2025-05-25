@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.tag.BlockTagRegistry.BLIGHTED_BLOCKS;
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHTED_BLOCKS;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
 public class ClingingBlightBlock extends Block {

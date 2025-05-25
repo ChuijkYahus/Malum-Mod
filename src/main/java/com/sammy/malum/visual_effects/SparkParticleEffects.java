@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
@@ -25,11 +25,11 @@ import static net.minecraft.util.Mth.*;
 public class SparkParticleEffects {
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, MalumSpiritType spiritType) {
-        return spiritMotionSparks(level, pos, spiritType, new WorldParticleOptions(ParticleRegistry.SPARK));
+        return spiritMotionSparks(level, pos, spiritType, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleData colorData) {
-        return spiritMotionSparks(level, pos, colorData, new WorldParticleOptions(ParticleRegistry.SPARK));
+        return spiritMotionSparks(level, pos, colorData, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, MalumSpiritType spiritType, WorldParticleOptions options) {

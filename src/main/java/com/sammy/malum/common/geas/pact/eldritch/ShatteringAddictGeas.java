@@ -19,7 +19,7 @@ import java.util.function.*;
 public class ShatteringAddictGeas extends GeasEffect {
 
     public ShatteringAddictGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT.get());
     }
 
     @Override
@@ -31,14 +31,14 @@ public class ShatteringAddictGeas extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(modifiers, MalumAttributes.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
         return modifiers;
     }
 
     @Override
     public void modifySpiritSpoilsEvent(ModifySpiritSpoilsEvent event, LivingEntity attacker) {
         if (attacker.level() instanceof ServerLevel serverLevel) {
-            long timeSince = serverLevel.getGameTime() - attacker.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getMostRecentShatter();
+            long timeSince = serverLevel.getGameTime() - attacker.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).getMostRecentShatter();
             if (timeSince < 2) {
                 event.addSpirits(1);
             }
@@ -49,7 +49,7 @@ public class ShatteringAddictGeas extends GeasEffect {
     public void update(EntityTickEvent.Pre event, LivingEntity entity) {
         if (entity instanceof Player player) {
             if (player.level() instanceof ServerLevel serverLevel) {
-                long timeSince = serverLevel.getGameTime() - player.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).getMostRecentShatter();
+                long timeSince = serverLevel.getGameTime() - player.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).getMostRecentShatter();
                 if (timeSince > 32000) {
                     float drain = 0.005f;
                     long remainder = timeSince - 32000;

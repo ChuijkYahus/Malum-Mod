@@ -2,7 +2,7 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.common.item.banner.*;
 import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.registry.common.DataMapRegistry;
+import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.block.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
@@ -21,7 +21,7 @@ public class SetupEvents {
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        BlockEntityRegistry.registerCapabilities(event);
+        MalumBlockEntities.registerCapabilities(event);
     }
 
     @SubscribeEvent
@@ -31,6 +31,6 @@ public class SetupEvents {
 
     @SubscribeEvent
     public static void registerDataMaps(RegisterDataMapTypesEvent event) {
-        DataMapRegistry.registerDataMapTypes(event);
+        MalumDataMaps.registerDataMapTypes(event);
     }
 }

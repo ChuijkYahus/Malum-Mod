@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class MarineSpoilRitualType extends MalumRitualType {
     public MarineSpoilRitualType() {
-        super(MalumMod.malumPath("marine_spoil"), SpiritTypeRegistry.AQUEOUS_SPIRIT);
+        super(MalumMod.malumPath("marine_spoil"), MalumSpiritTypes.AQUEOUS_SPIRIT);
     }
 
     @Override

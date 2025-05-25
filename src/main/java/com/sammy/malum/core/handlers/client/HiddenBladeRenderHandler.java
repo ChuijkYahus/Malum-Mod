@@ -21,9 +21,9 @@ public class HiddenBladeRenderHandler {
     public static void tick(ClientTickEvent event) {
         var player = Minecraft.getInstance().player;
         if (player != null) {
-            var cooldown = player.getData(AttachmentTypeRegistry.CURIO_DATA).hiddenBladeNecklaceCooldown;
+            var cooldown = player.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown;
             if (cooldown == 0) {
-                if (player.hasEffect(MobEffectRegistry.WICKED_INTENT)) {
+                if (player.hasEffect(MalumMobEffects.WICKED_INTENT)) {
                     if (fadeOut > 30) {
                         fadeOut = 30;
                     }
@@ -47,7 +47,7 @@ public class HiddenBladeRenderHandler {
         if (!minecraft.options.hideGui) {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
-                var cooldown = player.getData(AttachmentTypeRegistry.CURIO_DATA).hiddenBladeNecklaceCooldown;
+                var cooldown = player.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown;
                 if (cooldown > 0 || fadeOut <= 80) {
                     int left = guiGraphics.guiWidth() / 2 - 8;
                     int top = guiGraphics.guiHeight() - 52;
@@ -70,7 +70,7 @@ public class HiddenBladeRenderHandler {
                     int xOffset = 16 * (Mth.floor(delta * 8)) - (secondRow ? 64 : 0);
                     int yOffset = secondRow ? 16 : 0;
                     if (fadeOut > 20) {
-                        final boolean hasEffect = player.hasEffect(MobEffectRegistry.WICKED_INTENT);
+                        final boolean hasEffect = player.hasEffect(MalumMobEffects.WICKED_INTENT);
                         builder.setAlpha((80 - fadeOut) / (hasEffect ? 10f : 60f));
                     }
                     builder.setPositionWithWidth(left, top, size, size)

@@ -61,16 +61,16 @@ public record ItemSkinComponent(ResourceLocation name, int id) {
 
     @SuppressWarnings("DataFlowIssue")
     public static int getSkinId(ItemStack stack) {
-        if (!stack.has(DataComponentRegistry.ITEM_SKIN)) {
+        if (!stack.has(MalumDataComponents.ITEM_SKIN)) {
             return -1;
         }
-        return stack.get(DataComponentRegistry.ITEM_SKIN.get()).id;
+        return stack.get(MalumDataComponents.ITEM_SKIN.get()).id;
     }
     @SuppressWarnings("DataFlowIssue")
     public static int getAppliedSkinId(ItemStack stack) {
-        if (!stack.has(DataComponentRegistry.APPLIED_ITEM_SKIN)) {
+        if (!stack.has(MalumDataComponents.APPLIED_ITEM_SKIN)) {
             return -1;
         }
-        return stack.get(DataComponentRegistry.APPLIED_ITEM_SKIN.get()).id;
+        return stack.get(MalumDataComponents.APPLIED_ITEM_SKIN.get()).id;
     }
 }

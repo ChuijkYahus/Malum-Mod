@@ -1,6 +1,5 @@
 package com.sammy.malum.compability.tetra;
 
-import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
@@ -50,7 +49,7 @@ public class TetraCompat {
             if (event.getEntity() instanceof Arrow arrow) {
                 if (arrow.getOwner() instanceof Player player) {
                     if (hasSoulStrikeModifier(player.getUseItem())) {
-                        arrow.getData(AttachmentTypeRegistry.PROJECTILE_SOUL_INFO).setSoulDamage(true);
+                        arrow.getData(MalumAttachmentTypes.PROJECTILE_SOUL_INFO).setSoulDamage(true);
                     }
                 }
             }

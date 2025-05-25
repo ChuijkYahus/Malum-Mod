@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.blight;
 
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.block.BlockRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.block.MalumBlocks;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
@@ -18,9 +18,9 @@ public class BlightedSoulwoodBlock extends Block {
     public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
         if (itemAbility.equals(ItemAbilities.AXE_STRIP)) {
             if (!simulate) {
-                context.getLevel().playSound(null, context.getClickedPos(), SoundRegistry.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+                context.getLevel().playSound(null, context.getClickedPos(), MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
             }
-            return BlockRegistry.SOULWOOD_LOG.get().defaultBlockState();
+            return MalumBlocks.SOULWOOD_LOG.get().defaultBlockState();
         }
         return null;
     }

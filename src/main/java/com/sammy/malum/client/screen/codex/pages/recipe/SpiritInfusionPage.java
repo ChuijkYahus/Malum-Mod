@@ -26,7 +26,7 @@ public class SpiritInfusionPage extends BookPage {
     private final SpiritInfusionRecipe recipe;
 
     public SpiritInfusionPage(Predicate<SpiritInfusionRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, RecipeTypeRegistry.SPIRIT_INFUSION.get(), predicate));
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_INFUSION.get(), predicate));
     }
 
     public SpiritInfusionPage(SpiritInfusionRecipe recipe) {
@@ -46,7 +46,7 @@ public class SpiritInfusionPage extends BookPage {
 
     public static SpiritInfusionPage fromId(ResourceLocation recipeId) {
         var level = Minecraft.getInstance().level;
-        var recipe = LodestoneRecipeType.getRecipeHolders(level, RecipeTypeRegistry.SPIRIT_INFUSION.get())
+        var recipe = LodestoneRecipeType.getRecipeHolders(level, MalumRecipeTypes.SPIRIT_INFUSION.get())
                 .stream()
                 .filter(r -> r.id().equals(recipeId.withPath(p -> "spirit_infusion/" + p)))
                 .findFirst()

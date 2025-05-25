@@ -41,12 +41,12 @@ public abstract class ArmorSkinRenderingData {
         addPrideData(ItemSkinComponent.PRIDE);
         addPrideData(ItemSkinComponent.TRANS);
 
-        addData(ItemSkinComponent.BLUE_MACHINE, ModelRegistry.ULTRAKILL_MACHINE);
-        addData(ItemSkinComponent.RED_MACHINE, ModelRegistry.ULTRAKILL_MACHINE);
-        addData(ItemSkinComponent.COMMANDO, ModelRegistry.COMMANDO);
+        addData(ItemSkinComponent.BLUE_MACHINE, MalumModels.ULTRAKILL_MACHINE);
+        addData(ItemSkinComponent.RED_MACHINE, MalumModels.ULTRAKILL_MACHINE);
+        addData(ItemSkinComponent.COMMANDO, MalumModels.COMMANDO);
 
-        addData(ItemSkinComponent.ANCIENT_CLOTH, ModelRegistry.ANCIENT_SOUL_HUNTER_ARMOR);
-        addData(ItemSkinComponent.ANCIENT_METAL, ModelRegistry.ANCIENT_SOUL_STAINED_STEEL_ARMOR);
+        addData(ItemSkinComponent.ANCIENT_CLOTH, MalumModels.ANCIENT_SOUL_HUNTER_ARMOR);
+        addData(ItemSkinComponent.ANCIENT_METAL, MalumModels.ANCIENT_SOUL_STAINED_STEEL_ARMOR);
     }
 
     public abstract ResourceLocation getTexture(LivingEntity livingEntity, boolean slim);

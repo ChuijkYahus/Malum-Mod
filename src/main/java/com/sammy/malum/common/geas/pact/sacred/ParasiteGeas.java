@@ -18,7 +18,7 @@ import java.util.function.*;
 public class ParasiteGeas extends GeasEffect {
 
     public ParasiteGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_PARASITE.get());
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ParasiteGeas extends GeasEffect {
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, -0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

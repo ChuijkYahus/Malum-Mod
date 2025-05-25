@@ -11,12 +11,12 @@ import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class MalumSpiritRepairRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
-        var has = MalumRecipes.has(ItemRegistry.SPIRIT_CRUCIBLE.get());
+        var has = MalumRecipes.has(MalumItems.SPIRIT_CRUCIBLE.get());
         new SpiritRepairRecipeBuilder("wooden_.+", 0.5f, Ingredient.of(ItemTags.PLANKS), 4)
                 .addSpirit(SACRED_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
@@ -41,7 +41,7 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .save(recipeOutput, MalumMod.malumPath("copper_restoration"));
 
         new SpiritRepairRecipeBuilder("iron_.+", 0.5f, Ingredient.of(Tags.Items.INGOTS_IRON), 2)
-                .addItem(ItemRegistry.CRUDE_SCYTHE.get())
+                .addItem(MalumItems.CRUDE_SCYTHE.get())
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("iron_restoration"));
@@ -79,7 +79,7 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .save(recipeOutput, MalumMod.malumPath("mace_restoration"));
 
         new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(Items.OBSIDIAN), 2)
-                .addItem(ItemRegistry.TYRVING.get())
+                .addItem(MalumItems.TYRVING.get())
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 8)
@@ -87,70 +87,70 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("tyrving_restoration"));
 
-        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(ItemRegistry.SOUL_STAINED_STEEL_INGOT.get()), 2)
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_SCYTHE.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_HELMET.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_CHESTPLATE.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_LEGGINGS.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_BOOTS.get())
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOUL_STAINED_STEEL_INGOT.get()), 2)
+                .addItem(MalumItems.SOUL_STAINED_STEEL_SCYTHE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_HELMET.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_CHESTPLATE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_LEGGINGS.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_BOOTS.get())
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("special_soul_stained_steel_restoration"));
 
-        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(ItemRegistry.SOUL_STAINED_STEEL_INGOT.get()), 2)
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_SWORD.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_AXE.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_PICKAXE.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_SHOVEL.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_HOE.get())
-                .addItem(ItemRegistry.SOUL_STAINED_STEEL_KNIFE.get())
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOUL_STAINED_STEEL_INGOT.get()), 2)
+                .addItem(MalumItems.SOUL_STAINED_STEEL_SWORD.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_AXE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_PICKAXE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_SHOVEL.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_HOE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_KNIFE.get())
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_stained_steel_restoration"));
 
-        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(ItemRegistry.SOULWOVEN_SILK.get()), 2)
-                .addItem(ItemRegistry.SOUL_HUNTER_CLOAK.get())
-                .addItem(ItemRegistry.SOUL_HUNTER_ROBE.get())
-                .addItem(ItemRegistry.SOUL_HUNTER_LEGGINGS.get())
-                .addItem(ItemRegistry.SOUL_HUNTER_BOOTS.get())
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOULWOVEN_SILK.get()), 2)
+                .addItem(MalumItems.SOUL_HUNTER_CLOAK.get())
+                .addItem(MalumItems.SOUL_HUNTER_ROBE.get())
+                .addItem(MalumItems.SOUL_HUNTER_LEGGINGS.get())
+                .addItem(MalumItems.SOUL_HUNTER_BOOTS.get())
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(AERIAL_SPIRIT, 4)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_hunter_armor_restoration"));
 
-        new SpiritRepairRecipeBuilder(1f, Ingredient.of(ItemRegistry.ALCHEMICAL_CALX.get()), 2)
-                .addItem(ItemRegistry.FRACTURED_ALCHEMICAL_IMPETUS.get())
+        new SpiritRepairRecipeBuilder(1f, Ingredient.of(MalumItems.ALCHEMICAL_CALX.get()), 2)
+                .addItem(MalumItems.FRACTURED_ALCHEMICAL_IMPETUS.get())
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
-                .overrideOutput(ItemRegistry.ALCHEMICAL_IMPETUS.get())
+                .overrideOutput(MalumItems.ALCHEMICAL_IMPETUS.get())
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("alchemical_impetus_restoration"));
 
-        new SpiritRepairRecipeBuilder(1f, Ingredient.of(ItemRegistry.WIND_NUCLEUS.get()), 4)
-                .addItem(ItemRegistry.FRACTURED_ZEPHYR_IMPETUS.get())
+        new SpiritRepairRecipeBuilder(1f, Ingredient.of(MalumItems.WIND_NUCLEUS.get()), 4)
+                .addItem(MalumItems.FRACTURED_ZEPHYR_IMPETUS.get())
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(AERIAL_SPIRIT, 8)
-                .overrideOutput(ItemRegistry.ZEPHYR_IMPETUS.get())
+                .overrideOutput(MalumItems.ZEPHYR_IMPETUS.get())
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("zephyr_impetus_restoration"));
 
-        var crackedMetalImpetus = ItemRegistry.ITEMS.getEntries()
+        var crackedMetalImpetus = MalumItems.ITEMS.getEntries()
                 .stream().filter(i -> i.get() instanceof CrackedImpetusItem).sorted((d1, d2) -> d1.getId().compareNamespaced(d2.getId())).toList();
-        var metalImpetus = ItemRegistry.ITEMS.getEntries()
+        var metalImpetus = MalumItems.ITEMS.getEntries()
                 .stream().filter(i -> i.get() instanceof ImpetusItem).sorted((d1, d2) -> d1.getId().compareNamespaced(d2.getId())).toList();
         for (int i = 0; i < crackedMetalImpetus.size(); i++) {
             var metal = metalImpetus.get(i);
             var cracked = crackedMetalImpetus.get(i);
-            if (metal.get().equals(ItemRegistry.ALCHEMICAL_IMPETUS.get()) || metal.get().equals(ItemRegistry.ZEPHYR_IMPETUS.get())) {
+            if (metal.get().equals(MalumItems.ALCHEMICAL_IMPETUS.get()) || metal.get().equals(MalumItems.ZEPHYR_IMPETUS.get())) {
                 continue;
             }
             var id = cracked.getId().withPath(cracked.getId().getPath().split("_")[1] + "_impetus_restoration");
-            new SpiritRepairRecipeBuilder(1f, Ingredient.of(ItemRegistry.CTHONIC_GOLD_FRAGMENT.get()), 2)
+            new SpiritRepairRecipeBuilder(1f, Ingredient.of(MalumItems.CTHONIC_GOLD_FRAGMENT.get()), 2)
                     .addItem(cracked.get())
                     .overrideOutput(metal.get())
                     .addSpirit(AQUEOUS_SPIRIT, 16)

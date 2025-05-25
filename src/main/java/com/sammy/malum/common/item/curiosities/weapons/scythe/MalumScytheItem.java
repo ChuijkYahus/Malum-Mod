@@ -1,12 +1,11 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.handlers.enchantment.*;
-import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
+
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -31,11 +30,11 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         var stack = player.getItemInHand(hand);
-        if (EnchantmentRegistry.getEnchantmentLevel(level, EnchantmentRegistry.REBOUND, stack) > 0) {
+        if (EnchantmentKeys.getEnchantmentLevel(level, EnchantmentKeys.REBOUND, stack) > 0) {
             ReboundHandler.throwScythe(level, player, hand, stack);
             return InteractionResultHolder.success(stack);
         }
-        if (EnchantmentRegistry.getEnchantmentLevel(level, EnchantmentRegistry.ASCENSION, stack) > 0) {
+        if (EnchantmentKeys.getEnchantmentLevel(level, EnchantmentKeys.ASCENSION, stack) > 0) {
             AscensionHandler.triggerAscension(level, player, hand, stack);
             return InteractionResultHolder.success(stack);
         }
@@ -48,10 +47,10 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }
-        if (!event.getSource().is(DamageTypeRegistry.SCYTHE_MELEE)) {
+        if (!event.getSource().is(MalumDataTypes.SCYTHE_MELEE)) {
             return;
         }
-        var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect()
+        var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
                 .originatesFrom(attacker)
                 .targets(target)
                 .color(stack.getItem())
@@ -65,13 +64,13 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);
         particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
 
-        int sweeping = EnchantmentRegistry.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
+        int sweeping = EnchantmentKeys.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
         float damage = event.getNewDamage() * (0.66f + sweeping * 0.33f);
         float radius = 1 + sweeping * 0.25f;
         level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
             if (e instanceof LivingEntity sweepTarget) {
                 if (sweepTarget.isAlive() && sweepTarget != target) {
-                    sweepTarget.hurt((DamageTypeHelper.create(level, DamageTypeRegistry.SCYTHE_SWEEP, attacker)), damage);
+                    sweepTarget.hurt((DamageTypeHelper.create(level, MalumDataTypes.SCYTHE_SWEEP, attacker)), damage);
                     sweepTarget.knockback(0.4F,
                             Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
                             (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
@@ -80,7 +79,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         });
     }
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? SoundRegistry.SCYTHE_SWEEP : SoundRegistry.SCYTHE_CUT;
+        return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
     }
 
     @Override
@@ -92,16 +91,16 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     }
 
     public static boolean canSweep(LivingEntity attacker) {
-        return !isEnhanced(attacker) && !CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE.get());
+        return !isEnhanced(attacker) && !CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE.get());
     }
 
     public static boolean isEnhanced(LivingEntity attacker) {
-        return CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_NARROW_EDGE.get());
+        return CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_NARROW_EDGE.get());
     }
 
     public static DamageSource replaceDamageSource(Player player, DamageSource source) {
-        if (player.getMainHandItem().is(ItemTagRegistry.SCYTHES)) {
-            return DamageTypeHelper.create(player.level(), DamageTypeRegistry.SCYTHE_MELEE, player);
+        if (player.getMainHandItem().is(MalumTags.ItemTags.SCYTHES)) {
+            return DamageTypeHelper.create(player.level(), MalumDataTypes.SCYTHE_MELEE, player);
         }
         return source;
     }

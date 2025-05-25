@@ -1,10 +1,7 @@
 package com.sammy.malum.common.entity.scythe;
 
-import com.sammy.malum.client.*;
-import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.core.handlers.enchantment.*;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
@@ -16,8 +13,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 public class ScytheBoomerangEntity extends AbstractScytheProjectileEntity {
@@ -29,11 +24,11 @@ public class ScytheBoomerangEntity extends AbstractScytheProjectileEntity {
     public final TrailPointBuilder theLatter = TrailPointBuilder.create(8);
 
     public ScytheBoomerangEntity(Level level) {
-        super(EntityRegistry.SCYTHE_BOOMERANG.get(), level);
+        super(MalumEntities.SCYTHE_BOOMERANG.get(), level);
     }
 
     public ScytheBoomerangEntity(Level level, double pX, double pY, double pZ) {
-        super(EntityRegistry.SCYTHE_BOOMERANG.get(), pX, pY, pZ, level);
+        super(MalumEntities.SCYTHE_BOOMERANG.get(), pX, pY, pZ, level);
     }
 
     @Override
@@ -140,7 +135,7 @@ public class ScytheBoomerangEntity extends AbstractScytheProjectileEntity {
                         if (scytheOwner instanceof ServerPlayer player) {
                             ReboundHandler.pickupScythe(this, scythe, player);
                         }
-                        SoundHelper.playSound(scytheOwner, SoundRegistry.SCYTHE_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+                        SoundHelper.playSound(scytheOwner, MalumSoundEvents.SCYTHE_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
                         remove(RemovalReason.DISCARDED);
                     }
                 }
@@ -164,8 +159,8 @@ public class ScytheBoomerangEntity extends AbstractScytheProjectileEntity {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, SoundRegistry.SCYTHE_SPINS.get(), 0.6f * volumeScalar, pitch);
-            SoundHelper.playSound(this, SoundRegistry.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SPINS.get(), 0.6f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
         }
     }
 

@@ -15,7 +15,7 @@ import java.util.function.*;
 public class OverkeenEyeGeas extends GeasEffect {
 
     public OverkeenEyeGeas() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get());
+        super(MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE.get());
     }
 
     @Override
@@ -26,7 +26,7 @@ public class OverkeenEyeGeas extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.CHARGE_DURATION, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.CHARGE_DURATION, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 }

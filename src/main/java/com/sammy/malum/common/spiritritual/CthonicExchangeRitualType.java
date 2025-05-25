@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class CthonicExchangeRitualType extends MalumRitualType {
     public CthonicExchangeRitualType() {
-        super(MalumMod.malumPath("cthonic_exchange"), SpiritTypeRegistry.INFERNAL_SPIRIT);
+        super(MalumMod.malumPath("cthonic_exchange"), MalumSpiritTypes.INFERNAL_SPIRIT);
     }
 
     @Override

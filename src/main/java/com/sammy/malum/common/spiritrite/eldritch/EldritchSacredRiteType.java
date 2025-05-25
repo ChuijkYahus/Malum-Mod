@@ -2,8 +2,7 @@ package com.sammy.malum.common.spiritrite.eldritch;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.animal.*;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.state.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class EldritchSacredRiteType extends TotemicRiteType {
     public EldritchSacredRiteType() {
@@ -75,7 +74,7 @@ public class EldritchSacredRiteType extends TotemicRiteType {
                             if (level.random.nextFloat() <= 0.2f) {
                                 e.setInLoveTime(600);
 
-                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                         .createEffect(e)
                                         .color(SACRED_SPIRIT)
                                         .spawn(level);

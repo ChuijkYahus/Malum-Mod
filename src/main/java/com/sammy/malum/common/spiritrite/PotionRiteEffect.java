@@ -3,8 +3,7 @@ package com.sammy.malum.common.spiritrite;
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,7 +32,7 @@ public class PotionRiteEffect extends TotemicRiteEffect {
             boolean success = e.addEffect(instance);
             if (!e.hasEffect(instance.getEffect()) && success) {
             }
-            ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT.createEffect(e)
+            MalumParticleEffectTypes.ENTITY_RITE_EFFECT.createEffect(e)
                     .color(definingSpirit)
                     .spawn(level);
         });

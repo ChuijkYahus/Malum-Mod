@@ -59,7 +59,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.TOTEM_BASE.get(), pos, state);
+        this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
         state = compound.contains("state") ? CODEC.byName(compound.getString("state")) : TotemRiteState.IDLE;
-        activeRite = SpiritRiteRegistry.getRite(compound.getString("rite"));
+        activeRite = MalumSpiritRiteTypes.getRite(compound.getString("rite"));
         direction = Direction.byName(compound.getString("direction"));
         totemPolePositions.clear();
         for (int i = 1; i <= compound.getInt("height"); i++) {
@@ -110,7 +110,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                             timer = 20;
                             addTotemPole(serverLevel, pole);
                         } else {
-                            TotemicRiteType rite = SpiritRiteRegistry.getRite(getSpirits());
+                            TotemicRiteType rite = MalumSpiritRiteTypes.getRite(getSpirits());
                             if (rite == null) {
                                 setState(TotemRiteState.IDLE);
                             } else {
@@ -222,11 +222,11 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public void setState(TotemRiteState state) {
         if (state.equals(TotemRiteState.ACTIVE)) {
-            level.playSound(null, worldPosition, SoundRegistry.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
+            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
         }
         if (state.equals(TotemRiteState.IDLE)) {
             if (isActiveOrAssembling()) {
-                level.playSound(null, worldPosition, SoundRegistry.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
+                level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
             }
             modifyTotemPoles(TotemPoleBlockEntity.TotemPoleState.INACTIVE);
             totemPolePositions.clear();

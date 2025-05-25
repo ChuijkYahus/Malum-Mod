@@ -2,25 +2,20 @@ package com.sammy.malum.common.geas.pact.wicked;
 
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
-import net.minecraft.core.*;
+import com.sammy.malum.registry.common.enchantment.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
@@ -33,7 +28,7 @@ import static net.minecraft.world.entity.EquipmentSlot.MAINHAND;
 public class ReaperGeas extends GeasEffect {
 
     public ReaperGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_REAPER.get());
     }
 
     @Override
@@ -50,7 +45,7 @@ public class ReaperGeas extends GeasEffect {
             var source = event.getSource();
             var heldItem = attacker.getMainHandItem();
             if (!heldItem.isEmpty()) {
-                if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypeRegistry.TYRVING)) {
+                if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDataTypes.TYRVING)) {
                     event.setNewDamage(event.getNewDamage() * 0.1f);
                     if (heldItem.isDamageableItem()) {
                         heldItem.hurtAndBreak(10, attacker, MAINHAND);
@@ -60,9 +55,9 @@ public class ReaperGeas extends GeasEffect {
             }
 
             boolean canSweep = MalumScytheItem.canSweep(attacker);
-            if (source.is(DamageTypeRegistry.SCYTHE_COMBO)) {
+            if (source.is(MalumDataTypes.SCYTHE_COMBO)) {
                 var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
-                var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect()
+                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
                         .originatesFrom(attacker)
                         .targets(target)
                         .tiedToTarget()
@@ -70,13 +65,13 @@ public class ReaperGeas extends GeasEffect {
                         .color(scytheStack.getItem())
                         .mirroredRandomly(attacker.getRandom());
                 if (canSweep) {
-                    int sweeping = EnchantmentRegistry.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
+                    int sweeping = EnchantmentKeys.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
                     float damage = event.getNewDamage() * (0.66f + sweeping * 0.33f);
                     float radius = 1.5f + sweeping * 0.25f;
                     level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
                         if (e instanceof LivingEntity sweepTarget) {
                             if (sweepTarget.isAlive() && sweepTarget != target) {
-                                sweepTarget.hurt((DamageTypeHelper.create(level, DamageTypeRegistry.SCYTHE_SWEEP, attacker)), damage);
+                                sweepTarget.hurt((DamageTypeHelper.create(level, MalumDataTypes.SCYTHE_SWEEP, attacker)), damage);
                                 sweepTarget.knockback(0.4F,
                                         Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
                                         (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
@@ -90,7 +85,7 @@ public class ReaperGeas extends GeasEffect {
                 particle.spawn(level);
                 return;
             }
-            if (source.is(DamageTypeTagRegistry.IS_SCYTHE)) {
+            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
                 float chance = 0.3f;
                 int extraHits = 2;
                 float physicalDamage;
@@ -119,8 +114,8 @@ public class ReaperGeas extends GeasEffect {
                             new DelayedDamageWorldEvent(target)
                                     .setAttacker(attacker, source.getDirectEntity())
                                     .setDamageData(physicalDamage, magicDamage, delay)
-                                    .setPhysicalDamageType(DamageTypeRegistry.SCYTHE_COMBO)
-                                    .setSound(SoundRegistry.REAPER_CUT, 0.9f, 1.1f, 1));
+                                    .setPhysicalDamageType(MalumDataTypes.SCYTHE_COMBO)
+                                    .setSound(MalumSoundEvents.REAPER_CUT, 0.9f, 1.1f, 1));
 
                 }
             }

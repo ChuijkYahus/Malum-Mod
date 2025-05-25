@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEnt
 import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
-import com.sammy.malum.registry.client.ParticleRegistry;
+import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -82,7 +82,7 @@ public class SoulBindingBrazierParticleEffects {
             int lifeTime = RandomHelper.randomBetween(random, 20, 25);
             float spin = RandomHelper.randomBetween(random, 0.01f, 0.02f);
             float scale = 5f;
-            WorldParticleBuilder.create(ParticleRegistry.RADIAL_DISPLAY)
+            WorldParticleBuilder.create(MalumParticles.RADIAL_DISPLAY)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.SINE_OUT, Easing.CUBIC_OUT).build())
                     .setScaleData(GenericParticleData.create(scale * 0.2f, scale * RandomHelper.randomBetween(random, 0.9f, 1.1f)).build())
                     .setColorData(color.setCoefficient(0.7f).build())
@@ -116,7 +116,7 @@ public class SoulBindingBrazierParticleEffects {
         }
         for (int i = 0; i < 3; i++) {
             float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setScaleData(GenericParticleData.create(4f * scaleMultiplier, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
@@ -132,7 +132,7 @@ public class SoulBindingBrazierParticleEffects {
         float geasY = (float) (blockPos.getY() + SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.y);
         for (int i = 0; i < 5; i++) {
             float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setScaleData(GenericParticleData.create(0.5f, 4f * scaleMultiplier, 2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.3f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).build())
@@ -176,7 +176,7 @@ public class SoulBindingBrazierParticleEffects {
         }
         for (int i = 0; i < 3; i++) {
             float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setScaleData(GenericParticleData.create(4f * scaleMultiplier, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
@@ -190,7 +190,7 @@ public class SoulBindingBrazierParticleEffects {
                     .spawn(level, x, y, z);
 
 
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setScaleData(GenericParticleData.create(2f * scaleMultiplier, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
@@ -235,7 +235,7 @@ public class SoulBindingBrazierParticleEffects {
         }
 
         for (int i = 0; i < 6; i++) {
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setScaleData(GenericParticleData.create(4f, 6f, 2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).build())
@@ -343,7 +343,7 @@ public class SoulBindingBrazierParticleEffects {
                 var color = getParticleColor(brazier).setCoefficient(0.6f).build();
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 1.9f, 2.2f);
-                WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale*1.5f, 0).setEasing(Easing.SINE_IN).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
@@ -364,7 +364,7 @@ public class SoulBindingBrazierParticleEffects {
                 int lifeTime = RandomHelper.randomBetween(random, 80, 100);
                 float spin = RandomHelper.randomBetween(random, 0.005f, 0.01f);
                 float scale = 4.5f;
-                WorldParticleBuilder.create(ParticleRegistry.RADIAL_DISPLAY)
+                WorldParticleBuilder.create(MalumParticles.RADIAL_DISPLAY)
                         .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.95f, 1.05f)).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
@@ -399,7 +399,7 @@ public class SoulBindingBrazierParticleEffects {
                     int lifeTime = RandomHelper.randomBetween(random, 80, 100);
                     float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.LIGHT_SPEC_SMALL)
+                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC_SMALL)
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
@@ -432,7 +432,7 @@ public class SoulBindingBrazierParticleEffects {
                 var color = activeSpiritType.createColorData().setCoefficient(0.6f).build();
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 2.4f, 2.8f);
-                WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
@@ -457,7 +457,7 @@ public class SoulBindingBrazierParticleEffects {
                     int lifeTime = RandomHelper.randomBetween(random, 60, 80);
                     float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.LIGHT_SPEC_SMALL)
+                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC_SMALL)
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())

@@ -2,10 +2,9 @@ package com.sammy.malum.visual_effects.networked.attack;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.gluttony.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.RandomSource;
@@ -13,8 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -73,7 +70,7 @@ public class SunderingAnchorSlashParticleEffect extends MalumNetworkedWeaponPart
             float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -3.14f, 3.14f) + (extraData.isMirrored() ? 3.14f : 0);
             var direction = extraData.getDirection();
             for (int j = 0; j < 2; j++) {
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.THIN_SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.THIN_SLASH, colorData);
                 int lifeDelay = (i+j) * 2;
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())

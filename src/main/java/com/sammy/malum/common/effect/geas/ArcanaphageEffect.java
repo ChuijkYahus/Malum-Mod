@@ -15,11 +15,11 @@ public class ArcanaphageEffect extends MobEffect {
         addAttributeModifier(LodestoneAttributes.MAGIC_RESISTANCE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(LodestoneAttributes.MAGIC_PROFICIENCY, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
-        addAttributeModifier(AttributeRegistry.SOUL_WARD_INTEGRITY, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(AttributeRegistry.SOUL_WARD_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.SOUL_WARD_INTEGRITY, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
-        addAttributeModifier(AttributeRegistry.CHARGE_DURATION, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(AttributeRegistry.CHARGE_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.CHARGE_DURATION, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.CHARGE_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }

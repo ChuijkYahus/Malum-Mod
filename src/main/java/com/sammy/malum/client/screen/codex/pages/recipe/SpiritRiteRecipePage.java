@@ -65,7 +65,7 @@ public class SpiritRiteRecipePage extends BookPage {
                 float xOffset = 25;
                 float yMotion = RandomHelper.randomBetween(rand, -0.05f, -0.3f);
                 int lifetime = RandomHelper.randomBetween(rand, 60, 120);
-                ScreenParticleBuilder.create(ScreenParticleRegistry.LIGHT_SPEC_SMALL, RITE_PARTICLES)
+                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC_SMALL, RITE_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.04f, 0.4f, 0f).setEasing(Easing.CUBIC_OUT, Easing.SINE_IN_OUT).build())
                         .setSpinData(SpinParticleData.createRandomDirection(rand, RandomHelper.randomBetween(rand, 0.1f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 0.8f, 2.4f), 0).setEasing(Easing.SINE_IN_OUT).build())

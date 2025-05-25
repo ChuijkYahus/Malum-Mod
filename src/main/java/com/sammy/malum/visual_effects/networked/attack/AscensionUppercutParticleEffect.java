@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
@@ -9,8 +9,6 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
@@ -38,7 +36,7 @@ public class AscensionUppercutParticleEffect extends MalumNetworkedWeaponParticl
 
                 var slashPosition = positionData.getAsVector().add(direction.scale(slashOffset)).add(up.scale(upwardsOffset));
 
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, ParticleRegistry.SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, MalumParticles.SLASH, colorData);
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2.5f, 3f)).build())

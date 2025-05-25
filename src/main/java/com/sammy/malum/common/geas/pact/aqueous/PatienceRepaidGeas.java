@@ -22,7 +22,7 @@ public class PatienceRepaidGeas extends GeasEffect {
     private int damageTimer;
 
     public PatienceRepaidGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID.get());
+        super(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID.get());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class PatienceRepaidGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.isCanceled() || event.getSource().is(DamageTypeRegistry.KARMIC)) {
+        if (event.isCanceled() || event.getSource().is(MalumDataTypes.KARMIC)) {
             return;
         }
         float half = event.getAmount() * 0.5f;
@@ -44,7 +44,7 @@ public class PatienceRepaidGeas extends GeasEffect {
 
     @Override
     public void incomingDeathEvent(LivingDeathEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeRegistry.KARMIC)) {
+        if (event.getSource().is(MalumDataTypes.KARMIC)) {
             event.setCanceled(true);
             target.setHealth(1);
         }
@@ -61,16 +61,16 @@ public class PatienceRepaidGeas extends GeasEffect {
                     float percentage = 1f - delta * 0.8f;
                     float damage = bufferedDamage * percentage;
                     var velocity = entity.getDeltaMovement();
-                    entity.hurt(DamageTypeHelper.create(entity.level(), DamageTypeRegistry.KARMIC), damage);
+                    entity.hurt(DamageTypeHelper.create(entity.level(), MalumDataTypes.KARMIC), damage);
                     entity.setDeltaMovement(velocity);
                     if (entity instanceof ServerPlayer serverplayer) {
                         serverplayer.connection.send(new ClientboundSetEntityMotionPacket(serverplayer));
                     }
 
-                    ParticleEffectTypeRegistry.PATIENCE_REPAID.createEffect(entity)
-                            .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT))
+                    MalumParticleEffectTypes.PATIENCE_REPAID.createEffect(entity)
+                            .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
                             .spawn(level);
-                    SoundHelper.playSound(entity, SoundRegistry.PATIENT_DROWNING.get(), entity.getSoundSource(), 1.0f, RandomHelper.randomBetween(level.random, 0.9f, 1.1f));
+                    SoundHelper.playSound(entity, MalumSoundEvents.PATIENT_DROWNING.get(), entity.getSoundSource(), 1.0f, RandomHelper.randomBetween(level.random, 0.9f, 1.1f));
 
                     bufferedDamage -= damage;
                     damageTimer = 0;

@@ -7,7 +7,7 @@ import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
 import com.sammy.malum.client.screen.codex.pages.text.TextPage;
 import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
 
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class MiscellaneousKnowledgeEntries {
 

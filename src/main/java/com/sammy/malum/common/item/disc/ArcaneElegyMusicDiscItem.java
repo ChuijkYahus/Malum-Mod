@@ -1,11 +1,11 @@
 package com.sammy.malum.common.item.disc;
 
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.world.item.*;
 
 public class ArcaneElegyMusicDiscItem extends Item {
 
     public ArcaneElegyMusicDiscItem(Properties builder) {
-        super(builder.jukeboxPlayable(SoundRegistry.ARCANE_ELEGY_KEY));
+        super(builder.jukeboxPlayable(MalumSoundEvents.ARCANE_ELEGY_KEY));
     }
 }

@@ -9,7 +9,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class ManaboundEnhancementRitualType extends MalumRitualType {
     public ManaboundEnhancementRitualType() {
-        super(MalumMod.malumPath("manabound_enhancement"), SpiritTypeRegistry.ARCANE_SPIRIT);
+        super(MalumMod.malumPath("manabound_enhancement"), MalumSpiritTypes.ARCANE_SPIRIT);
     }
 
     @Override

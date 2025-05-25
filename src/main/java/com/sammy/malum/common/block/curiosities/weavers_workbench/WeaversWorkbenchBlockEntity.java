@@ -3,9 +3,9 @@ package com.sammy.malum.common.block.curiosities.weavers_workbench;
 import com.sammy.malum.common.container.WeaversWorkbenchContainer;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.packets.particle.rite.BlightTransformItemParticlePacket;
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -29,14 +29,14 @@ import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
 
 import java.util.List;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.ARCANE_SPIRIT;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.ARCANE_SPIRIT;
 
 public class WeaversWorkbenchBlockEntity extends LodestoneBlockEntity implements IBlockCapabilityProvider<IItemHandler, Direction> {
 
     public final WeaversWorkbenchItemHandler itemHandler = new WeaversWorkbenchItemHandler(2, 1, this);
 
     public WeaversWorkbenchBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.WEAVERS_WORKBENCH.get(), pos, state);
+        super(MalumBlockEntities.WEAVERS_WORKBENCH.get(), pos, state);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class WeaversWorkbenchBlockEntity extends LodestoneBlockEntity implements
         if (!level.isClientSide) {
             Vec3 itemPos = getItemPos();
             PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, new ChunkPos(getBlockPos()), new BlightTransformItemParticlePacket(List.of(ARCANE_SPIRIT.getIdentifier()), itemPos));
-            level.playSound(null, getBlockPos(), SoundRegistry.WEAVERS_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
+            level.playSound(null, getBlockPos(), MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
         }
         itemHandler.getStackInSlot(0).shrink(1);
         itemHandler.getStackInSlot(1).shrink(1);
@@ -76,20 +76,20 @@ public class WeaversWorkbenchBlockEntity extends LodestoneBlockEntity implements
         ItemStack target = itemHandler.getStackInSlot(0);
         ItemStack weave = itemHandler.getStackInSlot(1);
         if (!target.isEmpty() && weave.isEmpty()) {
-            if (target.has(DataComponentRegistry.APPLIED_ITEM_SKIN)) {
+            if (target.has(MalumDataComponents.APPLIED_ITEM_SKIN)) {
                 ItemStack result = target.copy();
-                result.remove(DataComponentRegistry.APPLIED_ITEM_SKIN);
+                result.remove(MalumDataComponents.APPLIED_ITEM_SKIN);
                 return result;
             }
         }
         if (!target.isEmpty() && !weave.isEmpty()) {
             ItemStack result = target.copy();
-            if (weave.has(DataComponentRegistry.ITEM_SKIN)) {
-                final ItemSkinComponent weaveSkin = weave.get(DataComponentRegistry.ITEM_SKIN);
-                if (weaveSkin.equals(target.get(DataComponentRegistry.APPLIED_ITEM_SKIN))) {
+            if (weave.has(MalumDataComponents.ITEM_SKIN)) {
+                final ItemSkinComponent weaveSkin = weave.get(MalumDataComponents.ITEM_SKIN);
+                if (weaveSkin.equals(target.get(MalumDataComponents.APPLIED_ITEM_SKIN))) {
                     return ItemStack.EMPTY;
                 }
-                result.set(DataComponentRegistry.APPLIED_ITEM_SKIN, weaveSkin);
+                result.set(MalumDataComponents.APPLIED_ITEM_SKIN, weaveSkin);
                 return result;
             }
         }

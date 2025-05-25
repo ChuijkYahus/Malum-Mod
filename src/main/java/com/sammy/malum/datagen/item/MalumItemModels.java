@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static team.lodestar.lodestone.systems.datagen.ItemModelSmithTypes.*;
 
 public class MalumItemModels extends LodestoneItemModelProvider {

@@ -2,10 +2,7 @@ package com.sammy.malum.common.recipe.void_favor;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.recipe.*;
-import net.minecraft.network.*;
-import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
@@ -25,7 +22,7 @@ public class FavorOfTheVoidRecipe extends LodestoneInWorldRecipe<SingleRecipeInp
     public final ItemStack output;
 
     public FavorOfTheVoidRecipe(Ingredient ingredient, ItemStack output) {
-        super(RecipeSerializerRegistry.VOID_FAVOR_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.VOID_FAVOR.get(), output);
+        super(MalumRecipeSerializers.VOID_FAVOR_RECIPE_SERIALIZER.get(), MalumRecipeTypes.VOID_FAVOR.get(), output);
         this.ingredient = ingredient;
         this.output = output;
     }

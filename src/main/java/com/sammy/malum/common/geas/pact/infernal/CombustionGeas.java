@@ -12,9 +12,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.handlers.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.function.*;
 
@@ -22,7 +20,7 @@ public class CombustionGeas extends GeasEffect {
 
 
     public CombustionGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get());
+        super(MalumGeasEffectTypes.PACT_OF_COMBUSTION.get());
     }
 
     @Override
@@ -37,23 +35,23 @@ public class CombustionGeas extends GeasEffect {
             target.setRemainingFireTicks(Math.max(target.getRemainingFireTicks()-8, 0));
             target.invulnerableTime = 0;
             if (attacker.level() instanceof ServerLevel level) {
-                ParticleEffectTypeRegistry.COMBUSTION_BURN.createEffect(target)
-                        .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT))
+                MalumParticleEffectTypes.COMBUSTION_BURN.createEffect(target)
+                        .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
                         .spawn(level);
             }
         }
     }
 
     public static void extinguish(LivingEntity entity) {
-        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION)) {
+        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_COMBUSTION)) {
             if (entity.wasOnFire) {
                 for (int i = 0; i < 3; i++) {
                     WorldEventHandler.addWorldEvent(entity.level(),
                             new DelayedDamageWorldEvent(entity)
                                     .setDamageData(2, 2, (i+1)*2)
-                                    .setMagicDamageType(DamageTypeRegistry.KARMIC)
-                                    .setImpactParticleEffect(ParticleEffectTypeRegistry.COMBUSTION_BURN, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.WICKED_SPIRIT))
-                                    .setSound(SoundRegistry.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));
+                                    .setMagicDamageType(MalumDataTypes.KARMIC)
+                                    .setImpactParticleEffect(MalumParticleEffectTypes.COMBUSTION_BURN, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.WICKED_SPIRIT))
+                                    .setSound(MalumSoundEvents.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));
 
                 }
             }

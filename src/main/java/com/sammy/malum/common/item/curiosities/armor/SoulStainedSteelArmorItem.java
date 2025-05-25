@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.AttributeRegistry;
+import com.sammy.malum.registry.common.MalumAttributes;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.component.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.item.ArmorTiers.SOUL_STAINED_STEEL;
+import static com.sammy.malum.registry.common.item.MalumArmorTiers.SOUL_STAINED_STEEL;
 
 public class SoulStainedSteelArmorItem extends MalumArmorItem {
     public SoulStainedSteelArmorItem(ArmorItem.Type slot, Properties builder) {
@@ -23,12 +23,12 @@ public class SoulStainedSteelArmorItem extends MalumArmorItem {
         var resourcelocation = MalumMod.malumPath("soul_stained_steel_armor." + type.getName());
         return List.of(
                 new ItemAttributeModifiers.Entry(
-                        AttributeRegistry.SOUL_WARD_CAPACITY,
+                        MalumAttributes.SOUL_WARD_CAPACITY,
                         new AttributeModifier(resourcelocation, 3f, AttributeModifier.Operation.ADD_VALUE),
                         group),
 
                 new ItemAttributeModifiers.Entry(
-                        AttributeRegistry.SOUL_WARD_RECOVERY_RATE,
+                        MalumAttributes.SOUL_WARD_RECOVERY_RATE,
                         new AttributeModifier(resourcelocation, 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                         group)
         );

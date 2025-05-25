@@ -16,7 +16,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 
-import java.util.*;
 import java.util.function.*;
 
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
@@ -40,7 +39,7 @@ public class EntryScreen extends AbstractMalumScreen {
     public int grouping;
 
     public EntryScreen(BookEntry openEntry, Consumer<Boolean> onClose) {
-        super(Component.empty(), openEntry.isVoid ? SoundRegistry.ARCANA_SWEETENER_EVIL : SoundRegistry.ARCANA_SWEETENER_NORMAL);
+        super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
         this.openEntry = openEntry;
         this.onClose = onClose;
         final int left = -21;
@@ -174,14 +173,14 @@ public class EntryScreen extends AbstractMalumScreen {
     public void nextPage() {
         if (hasNextPage()) {
             grouping += 1;
-            playPageFlipSound(SoundRegistry.ARCANA_PAGE_FLIP, getSweetenerPitch());
+            playPageFlipSound(MalumSoundEvents.ARCANA_PAGE_FLIP, getSweetenerPitch());
         }
     }
 
     public void previousPage(boolean ignore) {
         if (grouping > 0) {
             grouping -= 1;
-            playPageFlipSound(SoundRegistry.ARCANA_PAGE_FLIP, getSweetenerPitch());
+            playPageFlipSound(MalumSoundEvents.ARCANA_PAGE_FLIP, getSweetenerPitch());
         } else {
             close(ignore);
         }
@@ -189,7 +188,7 @@ public class EntryScreen extends AbstractMalumScreen {
 
     public void close(boolean ignoreNextInput) {
         onClose.accept(ignoreNextInput);
-        playSweetenedSound(SoundRegistry.ARCANA_ENTRY_CLOSE, 0.85f);
+        playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_CLOSE, 0.85f);
     }
 
     public static<K extends AbstractProgressionCodexScreen> void openScreen(K screen, ProgressionEntryObject progressionEntryObject) {
@@ -205,7 +204,7 @@ public class EntryScreen extends AbstractMalumScreen {
 
     public static void openScreen(BookEntry bookEntry, Consumer<Boolean> onClose) {
         entryScreen = new EntryScreen(bookEntry, onClose);
-        entryScreen.playSweetenedSound(SoundRegistry.ARCANA_ENTRY_OPEN, 1.15f);
+        entryScreen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_OPEN, 1.15f);
         Minecraft.getInstance().setScreen(entryScreen);
     }
 

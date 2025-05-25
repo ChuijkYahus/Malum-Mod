@@ -5,8 +5,8 @@ import com.mojang.datafixers.util.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.ClingingBlightBlock.*;
 import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -45,7 +45,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     private static final PerlinSimplexNoise BLIGHT_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
 
     private static BlockState makeClingingBlight(BlightType blightType, Direction direction) {
-        return BlockRegistry.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
+        return MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
     }
 
     private int getSapBlockCount(RandomSource random) {
@@ -88,14 +88,14 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         var level = context.level();
         var pos = context.origin();
-        if (level.isEmptyBlock(pos.below()) || !BlockRegistry.SOULWOOD_GROWTH.get().defaultBlockState().canSurvive(level, pos)) {
+        if (level.isEmptyBlock(pos.below()) || !MalumBlocks.SOULWOOD_GROWTH.get().defaultBlockState().canSurvive(level, pos)) {
             return false;
         }
         var rand = context.random();
         List<Pair<Direction, BlockPos>> validSoulwoodSpikePositions = new ArrayList<>();
 
-        var logState = BlockRegistry.SOULWOOD_LOG.get().defaultBlockState();
-        var blightedLogState = BlockRegistry.BLIGHTED_SOULWOOD.get().defaultBlockState();
+        var logState = MalumBlocks.SOULWOOD_LOG.get().defaultBlockState();
+        var blightedLogState = MalumBlocks.BLIGHTED_SOULWOOD.get().defaultBlockState();
 
         var filler = new LodestoneBlockFiller().addLayers(LOGS, LEAVES, HANGING_LEAVES, BLIGHT);
 
@@ -204,10 +204,10 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         Collections.shuffle(sapBlockPositions);
         for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
             var entry = filler.getLayer(LOGS).get(blockPos);
-            if (entry.getState().getBlock().equals(BlockRegistry.BLIGHTED_SOULWOOD.get())) {
+            if (entry.getState().getBlock().equals(MalumBlocks.BLIGHTED_SOULWOOD.get())) {
                 continue;
             }
-            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), BlockRegistry.EXPOSED_SOULWOOD_LOG.get().defaultBlockState())).build());
+            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.EXPOSED_SOULWOOD_LOG.get().defaultBlockState())).build());
         }
 
         int spikeCount = 6;
@@ -277,7 +277,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                         final int colorValue = Mth.clamp(offsetColor + Mth.floor(i*scalar), 0, 4);
                         var vinePos = hangingLeavesPos.move(Direction.DOWN).immutable();
                         boolean hanging = i == length;
-                        var block = (hanging ? BlockRegistry.HANGING_SOULWOOD_LEAVES : BlockRegistry.SOULWOOD_LEAVES).get();
+                        var block = (hanging ? MalumBlocks.HANGING_SOULWOOD_LEAVES : MalumBlocks.SOULWOOD_LEAVES).get();
                         var entry = create(block.defaultBlockState().setValue(MalumLeavesBlock.COLOR, colorValue));
                         if (hanging) {
                             entry.setDiscardPredicate((l, p, s) -> !filler.getLayer(LEAVES).containsKey(p.above()) || filler.getLayer(LOGS).containsKey(p.above()));
@@ -286,7 +286,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                         layer.put(vinePos, entry.build());
                     }
                 } else {
-                    filler.getLayer(LEAVES).put(leavesPos, create(BlockRegistry.SOULWOOD_LEAVES.get().defaultBlockState().setValue(MalumLeavesBlock.COLOR, offsetColor)));
+                    filler.getLayer(LEAVES).put(leavesPos, create(MalumBlocks.SOULWOOD_LEAVES.get().defaultBlockState().setValue(MalumLeavesBlock.COLOR, offsetColor)));
                 }
             }
         }
@@ -336,7 +336,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                         if (plantState.isAir()) {
                             break;
                         }
-                        if (plantState.is(BlockTagRegistry.BLIGHTED_PLANTS)) {
+                        if (plantState.is(MalumTags.BlockTags.BLIGHTED_PLANTS)) {
                             break;
                         }
                         if ((plantState.canBeReplaced() || plantState.is(REPLACEABLE) || plantState.is(FLOWERS))) {
@@ -352,9 +352,9 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                     while (true);
 
                     if (level.getBlockState(blockPos).is(MOSS_REPLACEABLE)) {
-                        filler.getLayer(BLIGHT).put(blockPos.immutable(), create(BlockRegistry.BLIGHTED_SOIL.get().defaultBlockState()).setForcePlace());
+                        filler.getLayer(BLIGHT).put(blockPos.immutable(), create(MalumBlocks.BLIGHTED_SOIL.get().defaultBlockState()).setForcePlace());
                         if (level.getBlockState(blockPos.move(0, -1, 0)).is(DIRT)) {
-                            filler.getLayer(BLIGHT).put(blockPos.immutable(), create(BlockRegistry.BLIGHTED_EARTH.get().defaultBlockState()).setForcePlace());
+                            filler.getLayer(BLIGHT).put(blockPos.immutable(), create(MalumBlocks.BLIGHTED_EARTH.get().defaultBlockState()).setForcePlace());
                         }
                         final RandomSource random = level.getRandom();
                         if (random.nextFloat() < 0.75f) {
@@ -364,7 +364,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                                 if (lastSaplingPos == null || lastSaplingPos.distanceToSqr(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 5) {
                                     if (center.getCenter().distanceToSqr(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 4) {
                                         if (random.nextFloat() < 0.5f / (Math.pow(saplingsPlaced + 1, 2))) {
-                                            filler.getLayer(BLIGHT).put(plantPos, create(BlockRegistry.SOULWOOD_GROWTH.get().defaultBlockState()));
+                                            filler.getLayer(BLIGHT).put(plantPos, create(MalumBlocks.SOULWOOD_GROWTH.get().defaultBlockState()));
                                             lastSaplingPos = new Vec3(plantPos.getX(), plantPos.getY(), plantPos.getZ());
                                             saplingsPlaced++;
                                         }
@@ -372,11 +372,11 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                                 }
                             }
                             if (!filler.getLayer(BLIGHT).containsKey(plantPos)) {
-                                BlockState state = (BlockRegistry.BLIGHTED_GROWTH).get().defaultBlockState();
+                                BlockState state = (MalumBlocks.BLIGHTED_GROWTH).get().defaultBlockState();
                                 if (random.nextFloat() < 0.4f) {
-                                    state = BlockRegistry.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, GROUNDED_ROOTS).setValue(BlockStateProperties.HORIZONTAL_FACING, DIRECTIONS[random.nextInt(4)]);
+                                    state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, GROUNDED_ROOTS).setValue(BlockStateProperties.HORIZONTAL_FACING, DIRECTIONS[random.nextInt(4)]);
                                 }
-                                if ((blockState.isAir() || blockState.canBeReplaced()) && !blockState.is(BlockTagRegistry.BLIGHTED_PLANTS)) {
+                                if ((blockState.isAir() || blockState.canBeReplaced()) && !blockState.is(MalumTags.BlockTags.BLIGHTED_PLANTS)) {
                                     filler.getLayer(BLIGHT).put(plantPos, create(state));
                                 }
                             }

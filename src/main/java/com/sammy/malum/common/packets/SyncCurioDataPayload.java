@@ -24,7 +24,7 @@ public class SyncCurioDataPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext context) {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.setData(AttachmentTypeRegistry.CURIO_DATA, data);
+            livingEntity.setData(MalumAttachmentTypes.CURIO_DATA, data);
         }
     }
 

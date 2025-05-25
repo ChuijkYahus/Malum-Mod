@@ -2,19 +2,18 @@ package com.sammy.malum.core.handlers.hiding;
 
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.registry.common.tag.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
 import java.util.function.BooleanSupplier;
 
 public class HiddenTagHandler {
-	private static final Map<TagKey<Item>, BooleanSupplier> ITEMS_TO_HIDE = new HashMap<>();
+	private static final Map<TagKey<net.minecraft.world.item.Item>, BooleanSupplier> ITEMS_TO_HIDE = new HashMap<>();
 	private static final HashMap<UUID, Runnable> INVOKED_WHEN_CONDITIONS_CHANGE = new HashMap<>();
 
-	public static void hideTagWhen(TagKey<Item> item, BooleanSupplier condition) {
+	public static void hideTagWhen(TagKey<net.minecraft.world.item.Item> item, BooleanSupplier condition) {
 		ITEMS_TO_HIDE.put(item, condition);
 	}
 
@@ -39,11 +38,11 @@ public class HiddenTagHandler {
 
 	public static boolean isHiddenItem(ItemStack stack) {
 		if (stack.getItem() instanceof GeasItem) {
-			if (ITEMS_TO_HIDE.get(ItemTagRegistry.HIDDEN_UNTIL_BLACK_CRYSTAL).getAsBoolean()) {
-				return GeasEffectHandler.getStoredGeasEffect(stack).map(g -> g.geasEffectType().is(GeasTagRegistry.HIDDEN_UNTIL_BLACK_CRYSTAL)).orElse(false);
+			if (ITEMS_TO_HIDE.get(MalumTags.ItemTags.HIDDEN_UNTIL_BLACK_CRYSTAL).getAsBoolean()) {
+				return GeasEffectHandler.getStoredGeasEffect(stack).map(g -> g.geasEffectType().is(MalumTags.GeasTags.HIDDEN_UNTIL_BLACK_CRYSTAL)).orElse(false);
 			}
 		}
-		for (TagKey<Item> tag : getTagsToHide()) {
+		for (TagKey<net.minecraft.world.item.Item> tag : getTagsToHide()) {
 			if (stack.is(tag)) {
 				return true;
 			}
@@ -51,8 +50,8 @@ public class HiddenTagHandler {
 		return false;
 	}
 
-	public static List<TagKey<Item>> getTagsToHide() {
-		List<TagKey<Item>> tags = new ArrayList<>();
+	public static List<TagKey<net.minecraft.world.item.Item>> getTagsToHide() {
+		List<TagKey<net.minecraft.world.item.Item>> tags = new ArrayList<>();
 		for (var entry : ITEMS_TO_HIDE.entrySet()) {
 			if (entry.getValue().getAsBoolean()) {
 				tags.add(entry.getKey());

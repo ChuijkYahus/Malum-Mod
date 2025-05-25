@@ -1,11 +1,11 @@
 package com.sammy.malum.common.block.curiosities.spirit_crucible;
 
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import team.lodestar.lodestone.systems.sound.*;
 
 public class CrucibleSoundInstance extends CachedBlockEntitySoundInstance<SpiritCrucibleCoreBlockEntity> {
     public CrucibleSoundInstance(SpiritCrucibleCoreBlockEntity blockEntity, float volume, float pitch) {
-        super(blockEntity, SoundRegistry.CRUCIBLE_LOOP, volume, pitch);
+        super(blockEntity, MalumSoundEvents.CRUCIBLE_LOOP, volume, pitch);
     }
 
     @Override

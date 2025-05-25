@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
@@ -22,7 +22,7 @@ public class ScytheSlashParticleEffect extends MalumNetworkedWeaponParticleEffec
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
+        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.SLASH, colorData);
         var direction = extraData.getDirection();
         slash.getBuilder()
                 .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())

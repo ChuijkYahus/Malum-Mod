@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.block.BlockRegistry.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 import static team.lodestar.lodestone.helpers.DataHelper.*;
 
 public class MalumBlockLootTables extends LootTableProvider {
@@ -63,18 +63,18 @@ public class MalumBlockLootTables extends LootTableProvider {
             takeAll(blocks, AZURE_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
             takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_GROWTH.get(), MAGIC_SAPLING_DROP_CHANCE)));
 
-            add(take(blocks, BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), ItemRegistry.SOULWOOD_LOG.get()));
+            add(take(blocks, BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), MalumItems.SOULWOOD_LOG.get()));
             add(take(blocks, BLIGHTED_SOIL).get(), createBlightedDrop(BLIGHTED_SOIL.get(), 4));
             add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4).withPool(LootPool.lootPool().add(applyExplosionDecay(BLIGHTED_EARTH.get(), LootItem.lootTableItem(Blocks.DIRT)))));
             add(take(blocks, BLIGHTED_GROWTH).get(), createBlightedPlantDrop(BLIGHTED_GROWTH.get(), 1));
 
-            add(take(blocks, BRILLIANT_STONE).get(), createOreDrop(BRILLIANT_STONE.get(), ItemRegistry.RAW_BRILLIANCE.get()));
-            add(take(blocks, BRILLIANT_DEEPSLATE).get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), ItemRegistry.RAW_BRILLIANCE.get()));
-            add(take(blocks, SOULSTONE_ORE).get(), createOreDrop(SOULSTONE_ORE.get(), ItemRegistry.RAW_SOULSTONE.get()));
-            add(take(blocks, DEEPSLATE_SOULSTONE_ORE).get(), createOreDrop(DEEPSLATE_SOULSTONE_ORE.get(), ItemRegistry.RAW_SOULSTONE.get()));
-            add(take(blocks, BLAZING_QUARTZ_ORE).get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), ItemRegistry.BLAZING_QUARTZ.get()));
-            add(take(blocks, NATURAL_QUARTZ_ORE).get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), ItemRegistry.NATURAL_QUARTZ.get()));
-            add(take(blocks, DEEPSLATE_QUARTZ_ORE).get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), ItemRegistry.NATURAL_QUARTZ.get()));
+            add(take(blocks, BRILLIANT_STONE).get(), createOreDrop(BRILLIANT_STONE.get(), MalumItems.RAW_BRILLIANCE.get()));
+            add(take(blocks, BRILLIANT_DEEPSLATE).get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), MalumItems.RAW_BRILLIANCE.get()));
+            add(take(blocks, SOULSTONE_ORE).get(), createOreDrop(SOULSTONE_ORE.get(), MalumItems.RAW_SOULSTONE.get()));
+            add(take(blocks, DEEPSLATE_SOULSTONE_ORE).get(), createOreDrop(DEEPSLATE_SOULSTONE_ORE.get(), MalumItems.RAW_SOULSTONE.get()));
+            add(take(blocks, BLAZING_QUARTZ_ORE).get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), MalumItems.BLAZING_QUARTZ.get()));
+            add(take(blocks, NATURAL_QUARTZ_ORE).get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), MalumItems.NATURAL_QUARTZ.get()));
+            add(take(blocks, DEEPSLATE_QUARTZ_ORE).get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), MalumItems.NATURAL_QUARTZ.get()));
             add(take(blocks, CTHONIC_GOLD_ORE).get(), createCthonicGoldOreDrop(CTHONIC_GOLD_ORE.get()));
 
             add(take(blocks, SOULWOVEN_BANNER).get(), createBannerDrop(SOULWOVEN_BANNER.get()));
@@ -95,19 +95,19 @@ public class MalumBlockLootTables extends LootTableProvider {
 
         protected LootTable.Builder createCthonicGoldOreDrop(Block block) {
             return createSilkTouchDispatchTable(block,
-                    applyExplosionDecay(block, LootItem.lootTableItem(ItemRegistry.CTHONIC_GOLD_FRAGMENT.get())
+                    applyExplosionDecay(block, LootItem.lootTableItem(MalumItems.CTHONIC_GOLD_FRAGMENT.get())
                             .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 4.0F)))));
         }
 
         protected LootTable.Builder createBlightedDrop(Block block, int gunkAmount) {
             return createSilkTouchDispatchTable(block,
-                    applyExplosionCondition(ItemRegistry.BLIGHTED_GUNK.get(), LootItem.lootTableItem(ItemRegistry.BLIGHTED_GUNK.get())
+                    applyExplosionCondition(MalumItems.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItems.BLIGHTED_GUNK.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(gunkAmount)))));
         }
 
         protected LootTable.Builder createBlightedPlantDrop(Block block, int gunkAmount) {
             return createSilkTouchOrShearsDispatchTable(block,
-                    applyExplosionCondition(ItemRegistry.BLIGHTED_GUNK.get(), LootItem.lootTableItem(ItemRegistry.BLIGHTED_GUNK.get())
+                    applyExplosionCondition(MalumItems.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItems.BLIGHTED_GUNK.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(gunkAmount)))));
         }
 
@@ -119,7 +119,7 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
                                             .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
-                                                    .include(DataComponentRegistry.SECONDARY_DYED_COLOR.get())
+                                                    .include(MalumDataComponents.SECONDARY_DYED_COLOR.get())
                                                     .include(DataComponents.DYED_COLOR)
                                             ))));
         }
@@ -132,7 +132,7 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
                                             .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
-                                                    .include(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN.get())))));
+                                                    .include(MalumDataComponents.SOULWOVEN_BANNER_PATTERN.get())))));
 
         }
 
@@ -144,7 +144,7 @@ public class MalumBlockLootTables extends LootTableProvider {
                                     .add(LootItem.lootTableItem(block)
                                             .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
                                             .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
-                                                    .include(DataComponentRegistry.SPIRIT_JAR_CONTENTS.get())))));
+                                                    .include(MalumDataComponents.SPIRIT_JAR_CONTENTS.get())))));
         }
 
         protected LootTable.Builder createSingleItemTableWithSilkTouchOrShears(Block p_124258_, ItemLike p_124259_) {

@@ -10,13 +10,13 @@ import team.lodestar.lodestone.helpers.*;
 
 public class AscensionEffect extends MobEffect {
     public AscensionEffect() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.AERIAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AERIAL_SPIRIT.getPrimaryColor()));
         addAttributeModifier(Attributes.GRAVITY, MalumMod.malumPath("ascension"), -0.10f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     public static void onEntityFall(LivingFallEvent event) {
         LivingEntity entity = event.getEntity();
-        MobEffectInstance effectInstance = entity.getEffect(MobEffectRegistry.ASCENSION);
+        MobEffectInstance effectInstance = entity.getEffect(MalumMobEffects.ASCENSION);
         if (effectInstance != null) {
             event.setDistance(event.getDistance() / (6 + effectInstance.getAmplifier()));
         }

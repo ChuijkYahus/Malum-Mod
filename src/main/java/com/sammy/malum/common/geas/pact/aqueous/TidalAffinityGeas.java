@@ -13,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import team.lodestar.lodestone.registry.common.*;
 
 import java.util.function.*;
 
@@ -23,7 +22,7 @@ public class TidalAffinityGeas extends GeasEffect {
     private boolean hasConduitEffect;
 
     public TidalAffinityGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY.get());
+        super(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY.get());
     }
 
     @Override
@@ -36,11 +35,11 @@ public class TidalAffinityGeas extends GeasEffect {
             addAttributeModifier(modifiers, Attributes.BLOCK_BREAK_SPEED, attackSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, Attributes.SUBMERGED_MINING_SPEED, 4f, AttributeModifier.Operation.ADD_VALUE);
             if (hasConduitEffect) {
-                addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+                addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             }
         }
         else {
-            addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }

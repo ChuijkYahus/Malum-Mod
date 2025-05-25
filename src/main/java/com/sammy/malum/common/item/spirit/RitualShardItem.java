@@ -10,7 +10,6 @@ import team.lodestar.lodestone.handlers.screenparticle.ParticleEmitterHandler.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
@@ -25,7 +24,7 @@ public class RitualShardItem extends Item implements ItemParticleSupplier {
     }
 
     public static int getStateDisplay(ItemStack stack) {
-        var data = stack.get(DataComponentRegistry.RITUAL_DATA);
+        var data = stack.get(MalumDataComponents.RITUAL_DATA);
         if (data == null) {
             return -1;
         }
@@ -34,7 +33,7 @@ public class RitualShardItem extends Item implements ItemParticleSupplier {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        var data = stack.get(DataComponentRegistry.RITUAL_DATA);
+        var data = stack.get(MalumDataComponents.RITUAL_DATA);
         if (data != null) {
             tooltipComponents.addAll(data.ritualType().makeRitualShardDescriptor(data.ritualTier()));
         }
@@ -42,7 +41,7 @@ public class RitualShardItem extends Item implements ItemParticleSupplier {
 
     @Override
     public void spawnLateParticles(ScreenParticleHolder target, Level level, float partialTick, ItemStack stack, float x, float y) {
-        var data = stack.get(DataComponentRegistry.RITUAL_DATA);
+        var data = stack.get(MalumDataComponents.RITUAL_DATA);
         if (data != null) {
             var ritualType = data.ritualType();
             var ritualTier = data.ritualTier();

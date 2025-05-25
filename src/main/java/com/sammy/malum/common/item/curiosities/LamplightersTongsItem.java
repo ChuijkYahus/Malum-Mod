@@ -2,7 +2,6 @@ package com.sammy.malum.common.item.curiosities;
 
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -41,12 +40,12 @@ public class LamplightersTongsItem extends Item {
         SoundType soundtype = spiritMote.getSoundType(level, pPos, player);
         level.setBlock(pPos, spiritMote, 3);
         level.levelEvent(2001, pPos, Block.getId(spiritMote));
-        level.playSound(player, pPos, SoundRegistry.SPIRIT_MOTE_CREATED.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, Mth.nextFloat(level.random, 1.1f, 1.4f));
+        level.playSound(player, pPos, MalumSoundEvents.SPIRIT_MOTE_CREATED.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, Mth.nextFloat(level.random, 1.1f, 1.4f));
         if (!player.getAbilities().instabuild) {
             spiritStack.shrink(1);
         }
         if (level instanceof ServerLevel serverLevel) {
-            ParticleEffectTypeRegistry.SPIRIT_MOTE_SPARKLES.createEffect(pPos)
+            MalumParticleEffectTypes.SPIRIT_MOTE_SPARKLES.createEffect(pPos)
                     .color(spiritType)
                     .spawn(serverLevel);
         }

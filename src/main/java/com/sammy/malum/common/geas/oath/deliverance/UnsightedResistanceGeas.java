@@ -15,7 +15,7 @@ import java.util.function.*;
 public class UnsightedResistanceGeas extends GeasEffect {
 
     public UnsightedResistanceGeas() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get());
+        super(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE.get());
     }
 
     @Override
@@ -28,7 +28,7 @@ public class UnsightedResistanceGeas extends GeasEffect {
     @Override
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
         event.setNewDamage(event.getNewDamage() * 0.8f);
-        var shielding = MobEffectRegistry.UNSIGHTED_RESISTANCE;
+        var shielding = MalumMobEffects.UNSIGHTED_RESISTANCE;
         var instance = attacker.getEffect(shielding);
         if (instance == null) {
             attacker.addEffect(new MobEffectInstance(shielding, 100, 0, true, true, true));

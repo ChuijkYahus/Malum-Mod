@@ -21,55 +21,55 @@ public class ConfiguredFeatureDatagen {
     private static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
     public static final List<OreConfiguration.TargetBlockState> SOULSTONE_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, BlockRegistry.SOULSTONE_ORE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, BlockRegistry.DEEPSLATE_SOULSTONE_ORE.get().defaultBlockState()));
+            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.SOULSTONE_ORE.get().defaultBlockState()),
+            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.DEEPSLATE_SOULSTONE_ORE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, BlockRegistry.BRILLIANT_STONE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, BlockRegistry.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
+            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.BRILLIANT_STONE.get().defaultBlockState()),
+            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> NATURAL_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, BlockRegistry.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, BlockRegistry.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
+            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
+            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> CTHONIC_GOLD_TARGET_LIST = List.of(
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, BlockRegistry.CTHONIC_GOLD_ORE.get().defaultBlockState()),
+            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.CTHONIC_GOLD_ORE.get().defaultBlockState()),
             OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> BLAZING_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), BlockRegistry.BLAZING_QUARTZ_ORE.get().defaultBlockState()));
+            OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), MalumBlocks.BLAZING_QUARTZ_ORE.get().defaultBlockState()));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_SOULSTONE_ORE, addOreConfig(SOULSTONE_TARGET_LIST, 8));
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE, addOreConfig(FeatureRegistry.CTHONIC_GOLD_ORE.get(), CTHONIC_GOLD_TARGET_LIST, 8));
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_SOULSTONE_ORE, addOreConfig(SOULSTONE_TARGET_LIST, 8));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE, addOreConfig(MalumFeatures.CTHONIC_GOLD_ORE.get(), CTHONIC_GOLD_TARGET_LIST, 8));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
 
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_RUNEWOOD_TREE, addTreeConfig(FeatureRegistry.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
-                BlockRegistry.RUNEWOOD_SAPLING.get(),
-                BlockRegistry.RUNEWOOD_LOG.get(),
-                BlockRegistry.EXPOSED_RUNEWOOD_LOG.get(),
-                BlockRegistry.RUNEWOOD_LEAVES.get(),
-                BlockRegistry.HANGING_RUNEWOOD_LEAVES.get()
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
+                MalumBlocks.RUNEWOOD_SAPLING.get(),
+                MalumBlocks.RUNEWOOD_LOG.get(),
+                MalumBlocks.EXPOSED_RUNEWOOD_LOG.get(),
+                MalumBlocks.RUNEWOOD_LEAVES.get(),
+                MalumBlocks.HANGING_RUNEWOOD_LEAVES.get()
         )));
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_AZURE_RUNEWOOD_TREE, addTreeConfig(FeatureRegistry.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
-                BlockRegistry.RUNEWOOD_SAPLING.get(),
-                BlockRegistry.RUNEWOOD_LOG.get(),
-                BlockRegistry.EXPOSED_RUNEWOOD_LOG.get(),
-                BlockRegistry.AZURE_RUNEWOOD_LEAVES.get(),
-                BlockRegistry.HANGING_AZURE_RUNEWOOD_LEAVES.get()
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_AZURE_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
+                MalumBlocks.RUNEWOOD_SAPLING.get(),
+                MalumBlocks.RUNEWOOD_LOG.get(),
+                MalumBlocks.EXPOSED_RUNEWOOD_LOG.get(),
+                MalumBlocks.AZURE_RUNEWOOD_LEAVES.get(),
+                MalumBlocks.HANGING_AZURE_RUNEWOOD_LEAVES.get()
         )));
 
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_SOULWOOD_TREE, addTreeConfig(FeatureRegistry.SOULWOOD_TREE.get(), NoneFeatureConfiguration.INSTANCE));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_SOULWOOD_TREE, addTreeConfig(MalumFeatures.SOULWOOD_TREE.get(), NoneFeatureConfiguration.INSTANCE));
 
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_QUARTZ_GEODE_FEATURE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_QUARTZ_GEODE_FEATURE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
                 new GeodeBlockSettings(
                         BlockStateProvider.simple(Blocks.AIR),
-                        BlockStateProvider.simple(BlockRegistry.NATURAL_QUARTZ_ORE.get()),
-                        BlockStateProvider.simple(BlockRegistry.NATURAL_QUARTZ_ORE.get()),
+                        BlockStateProvider.simple(MalumBlocks.NATURAL_QUARTZ_ORE.get()),
+                        BlockStateProvider.simple(MalumBlocks.NATURAL_QUARTZ_ORE.get()),
                         BlockStateProvider.simple(Blocks.TUFF), BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                        List.of(BlockRegistry.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
+                        List.of(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
                 new GeodeLayerSettings(1D, 1.2D, 2.2D, 2.8D),
                 new GeodeCrackSettings(1f, 4.0D, 3),
                 0.85D,
@@ -85,14 +85,14 @@ public class ConfiguredFeatureDatagen {
         ));
 
 
-        context.register(ConfiguredFeatureRegistry.CONFIGURED_DEEPSLATE_QUARTZ_GEODE_FEATURE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_DEEPSLATE_QUARTZ_GEODE_FEATURE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
                 new GeodeBlockSettings(
                         BlockStateProvider.simple(Blocks.AIR),
-                        BlockStateProvider.simple(BlockRegistry.DEEPSLATE_QUARTZ_ORE.get()),
-                        BlockStateProvider.simple(BlockRegistry.DEEPSLATE_QUARTZ_ORE.get()),
+                        BlockStateProvider.simple(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get()),
+                        BlockStateProvider.simple(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get()),
                         BlockStateProvider.simple(Blocks.CALCITE),
                         BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
-                        List.of(BlockRegistry.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()),
+                        List.of(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()),
                         BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
                 new GeodeLayerSettings(1D, 1.4D, 2.6D, 4.2D),
                 new GeodeCrackSettings(1f, 4.0D, 3),

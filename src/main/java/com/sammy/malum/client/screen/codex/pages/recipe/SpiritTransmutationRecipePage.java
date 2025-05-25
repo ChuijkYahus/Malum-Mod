@@ -30,11 +30,11 @@ public class SpiritTransmutationRecipePage extends BookPage {
         final Level level = Minecraft.getInstance().level;
         if (level != null) {
             this.recipes = new ArrayList<>();
-            var recipe = LodestoneRecipeType.findRecipe(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get(), predicate);
+            var recipe = LodestoneRecipeType.findRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), predicate);
             if (recipe != null) {
                 recipes.add(recipe);
                 if (recipe.group != null) {
-                    for (SpiritTransmutationRecipe otherRecipe : LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get())) {
+                    for (SpiritTransmutationRecipe otherRecipe : LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get())) {
                         if (!recipe.equals(otherRecipe) && recipe.group.equals(otherRecipe.group)) {
                             recipes.add(otherRecipe);
                         }

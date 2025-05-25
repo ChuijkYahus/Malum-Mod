@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.nature;
 
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -45,7 +45,7 @@ public class MalumLeavesBlock extends LeavesBlock implements IGradientedLeavesBl
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hitResult) {
-        if (stack.getItem().equals(ItemRegistry.INFERNAL_SPIRIT.get())) {
+        if (stack.getItem().equals(MalumItems.INFERNAL_SPIRIT.get())) {
             level.setBlockAndUpdate(pos, state.setValue(COLOR, (state.getValue(COLOR) + 1) % 5));
             player.swing(handIn);
             player.playSound(SoundEvents.BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);

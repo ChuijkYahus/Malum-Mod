@@ -1,8 +1,8 @@
 package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.*;
@@ -15,7 +15,7 @@ import team.lodestar.lodestone.systems.datagen.providers.LodestoneBlockTagsProvi
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-import static com.sammy.malum.registry.common.block.BlockRegistry.BLOCKS;
+import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 
 public class MalumBlockTagDatagen extends LodestoneBlockTagsProvider {
 
@@ -32,13 +32,13 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         Set<DeferredHolder<Block, ? extends Block>> blocks = new HashSet<>(BLOCKS.getEntries());
 
-        tag(BlockTagRegistry.UNCHAINED_RITE_CATALYST).add(BlockRegistry.BLIGHTED_EARTH.get(), BlockRegistry.BLIGHTED_SOIL.get());
-        tag(BlockTagRegistry.IS_RITE_IMMUNE).addTags(BlockTagRegistry.TAINTED_ROCK, BlockTagRegistry.TWISTED_ROCK, BlockTagRegistry.WEEPING_WELL);
+        tag(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST).add(MalumBlocks.BLIGHTED_EARTH.get(), MalumBlocks.BLIGHTED_SOIL.get());
+        tag(MalumTags.BlockTags.IS_RITE_IMMUNE).addTags(MalumTags.BlockTags.TAINTED_ROCK, MalumTags.BlockTags.TWISTED_ROCK, MalumTags.BlockTags.WEEPING_WELL);
 
-        tag(BlockTagRegistry.INEXTINGUISHABLE_FLAME);
-        tag(BlockTagRegistry.GREATER_AERIAL_WHITELIST);
+        tag(MalumTags.BlockTags.INEXTINGUISHABLE_FLAME);
+        tag(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST);
 
-        tag(BlockTagRegistry.SUNDERING_ANCHOR_KNIFE_BEHAVIOR).addOptional(ResourceLocation.parse("farmersdelight:cutting_board"));
+        tag(MalumTags.BlockTags.SUNDERING_ANCHOR_KNIFE_BEHAVIOR).addOptional(ResourceLocation.parse("farmersdelight:cutting_board"));
 
 
         addTagsFromBlockProperties(blocks);

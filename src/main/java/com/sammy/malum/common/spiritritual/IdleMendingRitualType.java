@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class IdleMendingRitualType extends MalumRitualType {
     public IdleMendingRitualType() {
-        super(MalumMod.malumPath("idle_mending"), SpiritTypeRegistry.SACRED_SPIRIT);
+        super(MalumMod.malumPath("idle_mending"), MalumSpiritTypes.SACRED_SPIRIT);
     }
 
     @Override

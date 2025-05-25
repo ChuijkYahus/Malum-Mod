@@ -14,25 +14,25 @@ import static net.minecraft.world.item.CreativeModeTab.TabVisibility.PARENT_AND_
 
 public class SoulwovenBannerBlockItem extends BlockItem {
     public SoulwovenBannerBlockItem(Properties properties) {
-        super(BlockRegistry.SOULWOVEN_BANNER.get(), properties.component(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
+        super(MalumBlocks.SOULWOVEN_BANNER.get(), properties.component(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        var pattern = stack.get(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN);
+        var pattern = stack.get(MalumDataComponents.SOULWOVEN_BANNER_PATTERN);
         if (pattern != null && !pattern.equals(SoulwovenBannerPatternDataComponent.DEFAULT)) {
             tooltipComponents.add(Component.translatable(pattern.translationKey()).withStyle(ChatFormatting.GRAY));
         }
     }
 
     public static float getBannerPattern(ItemStack stack) {
-        var pattern = stack.getOrDefault(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT);
+        var pattern = stack.getOrDefault(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT);
         return SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS.contains(pattern) ? SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS.indexOf(pattern) : 0;
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        final ItemStack defaultInstance = ItemRegistry.SOULWOVEN_BANNER.get().getDefaultInstance();
+        final ItemStack defaultInstance = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
         if (event.getParentEntries().contains(defaultInstance)) {
             for (SoulwovenBannerPatternDataComponent pattern : SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS) {
                 if (pattern.equals(SoulwovenBannerPatternDataComponent.DEFAULT)) {

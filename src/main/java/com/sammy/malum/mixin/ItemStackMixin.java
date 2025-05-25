@@ -28,7 +28,7 @@ public abstract class ItemStackMixin {
                 double amount = modifier.amount();
 
                 if (modifier.id().equals(BASE_ATTACK_DAMAGE_ID)) {
-                    AttributeInstance instance = player.getAttribute(AttributeRegistry.SCYTHE_PROFICIENCY);
+                    AttributeInstance instance = player.getAttribute(MalumAttributes.SCYTHE_PROFICIENCY);
                     if (instance != null && instance.getValue() > 0) {
                         amount += instance.getValue() * 0.5f;
                     }

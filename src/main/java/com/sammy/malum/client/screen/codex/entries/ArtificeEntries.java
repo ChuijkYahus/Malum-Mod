@@ -9,7 +9,7 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.data.component.*;
 import net.minecraft.world.item.*;
 
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
 public class ArtificeEntries {

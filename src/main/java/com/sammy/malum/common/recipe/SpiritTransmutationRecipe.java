@@ -25,7 +25,7 @@ public class SpiritTransmutationRecipe extends LodestoneInWorldRecipe<SingleReci
     public final String group;
 
     public SpiritTransmutationRecipe(Ingredient ingredient, ItemStack output, String group) {
-        super(RecipeSerializerRegistry.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get(), output);
+        super(MalumRecipeSerializers.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), output);
         this.ingredient = ingredient;
         this.output = output;
         this.group = group;

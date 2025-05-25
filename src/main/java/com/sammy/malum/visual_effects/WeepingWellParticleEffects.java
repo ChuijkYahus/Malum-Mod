@@ -2,8 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
-import com.sammy.malum.registry.client.*;
-import team.lodestar.lodestone.systems.network.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -260,7 +259,7 @@ public class WeepingWellParticleEffects {
 
     public static ParticleEffectSpawner weepingWellSpecs(Level level, Vec3 pos, ColorParticleData colorData, LodestoneWorldParticleRenderType renderType) {
         var rand = level.random;
-        var lightSpecs = spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()));
+        var lightSpecs = spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()));
         lightSpecs.getBuilder().act(b -> b
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
@@ -281,7 +280,7 @@ public class WeepingWellParticleEffects {
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
         float yMotion = RandomHelper.randomBetween(rand, 0.04f, 0.06f);
         Vec3 motion = new Vec3(0f, yMotion, 0f);
-        var squares = WorldParticleBuilder.create(ParticleRegistry.SQUARE.get())
+        var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setBehavior(DirectionalParticleBehavior.directional())
                 .setTransparencyData(GenericParticleData.create(0.9f, 0.05f, 0f).setEasing(Easing.CUBIC_OUT, Easing.EXPO_IN).build())
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)

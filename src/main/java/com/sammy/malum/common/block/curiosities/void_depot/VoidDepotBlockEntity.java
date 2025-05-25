@@ -4,7 +4,6 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
-import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.*;
@@ -34,7 +33,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     public float textVisibility = 0;
 
     public VoidDepotBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.VOID_DEPOT.get(), pos, state);
+        super(MalumBlockEntities.VOID_DEPOT.get(), pos, state);
     }
 
     @Override
@@ -126,7 +125,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack stack, InteractionHand hand) {
         if (!goals.isEmpty()) {
-            if (player.getItemInHand(hand).getItem().equals(ItemRegistry.VOID_DEPOT.get())) {
+            if (player.getItemInHand(hand).getItem().equals(MalumItems.VOID_DEPOT.get())) {
                 List<VoidDepotGoal> newGoals = new ArrayList<>();
                 for (VoidDepotGoal goal : goals) {
                     if (goal instanceof ItemGoal itemGoal) {
@@ -143,7 +142,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
                 BlockStateHelper.updateState(level, getBlockPos());
                 return ItemInteractionResult.SUCCESS;
             }
-            if (player.getItemInHand(hand).getItem().equals(ItemRegistry.VOID_CONDUIT.get())) {
+            if (player.getItemInHand(hand).getItem().equals(MalumItems.VOID_CONDUIT.get())) {
                 List<VoidDepotGoal> newGoals = new ArrayList<>();
                 for (VoidDepotGoal goal : goals) {
                     if (goal instanceof ItemGoal itemGoal) {
@@ -208,7 +207,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
                 }
 
                 final RandomSource random = level.random;
-                level.playSound(null, worldPosition, SoundRegistry.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, 0.6f + random.nextFloat() * 0.3f);
+                level.playSound(null, worldPosition, MalumSoundEvents.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, 0.6f + random.nextFloat() * 0.3f);
                 level.playSound(null, worldPosition, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.7f, 0.6f + random.nextFloat() * 0.2f);
                 level.playSound(null, worldPosition, SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.1F, (random.nextFloat() - random.nextFloat()) * 0.35F + 0.9F);
                 BlockStateHelper.updateState(level, getBlockPos());
@@ -242,9 +241,9 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
 
     public void onCompletion(ServerLevel level) {
         float pitch = Mth.nextFloat(level.getRandom(), 1.5f, 1.75f);
-        ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter().add(0, 0.4f, 0)).spawn(level);
-        level.playSound(null, worldPosition, SoundRegistry.FLESH_RING_ABSORBS.get(), SoundSource.HOSTILE, 0.7f, pitch);
-        level.playSound(null, worldPosition, SoundRegistry.VOID_TRANSMUTATION.get(), SoundSource.HOSTILE, 2f, pitch);
+        MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter().add(0, 0.4f, 0)).spawn(level);
+        level.playSound(null, worldPosition, MalumSoundEvents.FLESH_RING_ABSORBS.get(), SoundSource.HOSTILE, 0.7f, pitch);
+        level.playSound(null, worldPosition, MalumSoundEvents.VOID_TRANSMUTATION.get(), SoundSource.HOSTILE, 2f, pitch);
         if (repeatable) {
             for (VoidDepotGoal goal : goals) {
                 goal.reset();

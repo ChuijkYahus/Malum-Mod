@@ -21,7 +21,7 @@ public class SkyBreakerGeas extends GeasEffect {
     private final ArrayList<LivingEntity> cachedTargets = new ArrayList<>();
 
     public SkyBreakerGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER.get());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SkyBreakerGeas extends GeasEffect {
 
     public static void scaleKnockback(LivingKnockBackEvent event) {
         final LivingEntity entity = event.getEntity();
-        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER);
+        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER);
         if (geas != null) {
             event.setStrength(event.getStrength() * 3);
         }

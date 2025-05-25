@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import team.lodestar.lodestone.registry.client.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<SpiritCollectionActivatorEntity> {
     public final ItemRenderer itemRenderer;

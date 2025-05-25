@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.nature.soulwood;
 
 import com.sammy.malum.common.block.nature.MalumLogBLock;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.SoundSource;
@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -30,7 +29,7 @@ public class SoulwoodLogBlock extends MalumLogBLock {
     public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
         if (itemAbility.equals(ItemAbilities.AXE_STRIP)) {
             if (!simulate) {
-                context.getLevel().playSound(null, context.getClickedPos(), SoundRegistry.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+                context.getLevel().playSound(null, context.getClickedPos(), MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
             }
             return stripped.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
         }
@@ -41,7 +40,7 @@ public class SoulwoodLogBlock extends MalumLogBLock {
     public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritShardItem spirit) {
         boolean success = super.createTotemPole(level, pos, player, handIn, hit, stack, spirit);
         if (success) {
-            level.playSound(null, pos, SoundRegistry.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+            level.playSound(null, pos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
         }
         return success;
     }

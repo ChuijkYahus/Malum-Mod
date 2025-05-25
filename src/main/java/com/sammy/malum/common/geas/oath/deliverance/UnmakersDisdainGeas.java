@@ -20,7 +20,7 @@ import static com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScythe
 public class UnmakersDisdainGeas extends GeasEffect {
 
     public UnmakersDisdainGeas() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN.get());
+        super(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN.get());
     }
 
     @Override
@@ -43,8 +43,8 @@ public class UnmakersDisdainGeas extends GeasEffect {
         if (event.getLivingEntity().level() instanceof ServerLevel level) {
             var source = event.getSource();
             var target = event.getLivingEntity();
-            if (source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
-                var particle = ParticleEffectTypeRegistry.SCYTHE_SLASH.createEffect().targets(target).originatesFrom(attacker).tiedToTarget();
+            if (source.is(MalumDataTypes.MALIGNANT_METAL_COMBO)) {
+                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect().targets(target).originatesFrom(attacker).tiedToTarget();
                 if (SoulDataHandler.getScytheWeapon(source, attacker).isEmpty() || !canSweep(attacker)) {
                     particle.verticalSlashRotation();
                 }
@@ -60,8 +60,8 @@ public class UnmakersDisdainGeas extends GeasEffect {
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker, source.getDirectEntity())
                                 .setDamageData(damage, 0, delay)
-                                .setPhysicalDamageType(DamageTypeRegistry.MALIGNANT_METAL_COMBO)
-                                .setSound(SoundRegistry.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
+                                .setPhysicalDamageType(MalumDataTypes.MALIGNANT_METAL_COMBO)
+                                .setSound(MalumSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
 
             }
         }

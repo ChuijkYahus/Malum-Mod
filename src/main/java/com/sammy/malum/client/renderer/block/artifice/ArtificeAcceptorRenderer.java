@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.artifice.IArtificeModifierSource;
 import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderStateShard;
@@ -27,7 +27,7 @@ public abstract class ArtificeAcceptorRenderer<T extends LodestoneBlockEntity> i
 
     public static final WeakHashMap<IArtificeAcceptor, Color> DEBUG_COLORS = new WeakHashMap<>();
 
-    public static final HeldItemTracker FORK_TRACKER = new HeldItemTracker(p -> p.is(ItemTagRegistry.IS_ARTIFICE_TOOL));
+    public static final HeldItemTracker FORK_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_ARTIFICE_TOOL));
 
     @SuppressWarnings({"rawtypes", "unchecked", "DataFlowIssue"})
     public static void renderModifiers(IArtificeAcceptor target, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {

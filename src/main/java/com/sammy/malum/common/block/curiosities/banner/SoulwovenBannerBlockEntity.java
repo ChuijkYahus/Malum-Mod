@@ -6,7 +6,6 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
@@ -31,20 +30,20 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     public boolean intense;
 
     public SoulwovenBannerBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.SOULWOVEN_BANNER.get(), pos, state);
+        super(MalumBlockEntities.SOULWOVEN_BANNER.get(), pos, state);
         this.patternData = SoulwovenBannerPatternDataComponent.DEFAULT;
     }
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
-        components.set(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN, patternData);
+        components.set(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, patternData);
     }
 
     @Override
     protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
         super.applyImplicitComponents(componentInput);
-        patternData = componentInput.get(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN);
+        patternData = componentInput.get(MalumDataComponents.SOULWOVEN_BANNER_PATTERN);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             if (pStack.getItem() instanceof SpiritShardItem shardItem) {
                 var spirit = shardItem.type;
-                if ((spirit.equals(this.spirit) && intense) || spirit.equals(SpiritTypeRegistry.UMBRAL_SPIRIT)) {
+                if ((spirit.equals(this.spirit) && intense) || spirit.equals(MalumSpiritTypes.UMBRAL_SPIRIT)) {
                     return super.onUseWithItem(pPlayer, pStack, pHand);
                 }
                 if (!pPlayer.isCreative()) {
@@ -99,10 +98,10 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     }
 
     public void setSpirit(ServerLevel level, @Nullable MalumSpiritType spirit) {
-        level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         if (spirit != null) {
-            ParticleEffectTypeRegistry.SOULWOVEN_BANNER_ACTIVATED
+            MalumParticleEffectTypes.SOULWOVEN_BANNER_ACTIVATED
                     .createEffect(worldPosition)
                     .color(spirit)
                     .spawn(level);

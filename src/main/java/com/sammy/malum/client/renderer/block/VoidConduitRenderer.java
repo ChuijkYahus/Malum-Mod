@@ -40,11 +40,11 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.05f;
 
-        final LodestoneRenderType renderType = RenderTypeRegistry.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
+        final LodestoneRenderType renderType = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
         builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
         for (int i = 0; i < 3; i++) {
             float speed = 1000f + 250f * i;
-            builder.setColor(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor())
+            builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor())
                     .setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
                         s.safeGetUniform("Speed").set(speed);
                         s.safeGetUniform("Width").set(48f);
@@ -60,7 +60,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
             poseStack.translate(0, 0.05f, 0);
             poseStack.mulPose(Axis.YP.rotationDegrees(90));
             if (i == 0) {
-                builder.setColor(SpiritTypeRegistry.ELDRITCH_SPIRIT.getPrimaryColor());
+                builder.setColor(MalumSpiritTypes.ELDRITCH_SPIRIT.getPrimaryColor());
             }
         }
         poseStack.popPose();

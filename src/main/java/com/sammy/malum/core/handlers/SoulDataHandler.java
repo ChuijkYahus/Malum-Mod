@@ -5,7 +5,6 @@ import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.staff.*;
 import com.sammy.malum.compability.tetra.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -19,25 +18,25 @@ public class SoulDataHandler {
 
     public static void markAsSpawnerSpawned(MobSpawnEvent.PositionCheck event) {
         if (event.getSpawner() != null) {
-            event.getEntity().getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).setSpawnerSpawned(true);
+            event.getEntity().getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setSpawnerSpawned(true);
         }
     }
 
     public static void syncData(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof Mob mob) {
-            mob.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).updateSoullessBehavior(mob);
+            mob.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).updateSoullessBehavior(mob);
         }
     }
 
     public static void preventTargeting(LivingChangeTargetEvent event) {
         if (event.getEntity() instanceof Mob mob) {
-            mob.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).updateSoullessTargeting(event);
+            mob.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).updateSoullessTargeting(event);
         }
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
-            living.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).tickDuration();
+            living.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).tickDuration();
         }
     }
 
@@ -47,15 +46,15 @@ public class SoulDataHandler {
         }
         var target = event.getEntity();
         var source = event.getSource();
-        var data = target.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO);
-        if (source.is(DamageTypeTagRegistry.SOUL_SHATTER_DAMAGE)) {
+        var data = target.getData(MalumAttachmentTypes.LIVING_SOUL_INFO);
+        if (source.is(MalumTags.DamageTypeTags.SOUL_SHATTER_DAMAGE)) {
             data.setExposed();
             return;
         }
 
         var directEntity = source.getDirectEntity();
         if (directEntity != null) {
-            var projectileData = directEntity.getData(AttachmentTypeRegistry.PROJECTILE_SOUL_INFO);
+            var projectileData = directEntity.getData(MalumAttachmentTypes.PROJECTILE_SOUL_INFO);
             if (projectileData.dealsSoulDamage()) {
                 data.setExposed();
                 return;
@@ -63,7 +62,7 @@ public class SoulDataHandler {
         }
         if (source.getEntity() instanceof LivingEntity attacker) {
             ItemStack stack = getSoulHunterWeapon(source, attacker);
-            if (stack.is(ItemTagRegistry.SOUL_SHATTER_CAPABLE_WEAPONS) || TetraCompat.hasSoulStrikeModifier(stack)) {
+            if (stack.is(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS) || TetraCompat.hasSoulStrikeModifier(stack)) {
                 data.setExposed();
             }
         }

@@ -2,7 +2,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavebreaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +13,7 @@ public class WaveBreakerBlockEntity extends SpiritDiodeBlockEntity {
     public int pendingSignal;
 
     public WaveBreakerBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.WAVEBREAKER.get(), pos, state);
+        super(MalumBlockEntities.WAVEBREAKER.get(), pos, state);
     }
 
     @Override

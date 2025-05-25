@@ -7,7 +7,7 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.world.item.*;
 
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class RuneWorkingEntries {
 

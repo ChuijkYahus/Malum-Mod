@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -24,7 +24,7 @@ public class CurioHoarderRing extends MalumCurioItem {
     }
 
     public static boolean hasHoarderRing(LivingEntity entity) {
-        return entity != null && CurioHelper.hasCurioEquipped(entity, ItemRegistry.RING_OF_THE_HOARDER.get());
+        return entity != null && CurioHelper.hasCurioEquipped(entity, MalumItems.RING_OF_THE_HOARDER.get());
     }
 
     public static BlockPos getExplosionPos(boolean hasTheRing, BlockPos originalPos, LivingEntity entity, ItemStack droppedItem) {

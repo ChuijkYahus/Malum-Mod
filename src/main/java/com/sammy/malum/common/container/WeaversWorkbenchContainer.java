@@ -2,7 +2,7 @@ package com.sammy.malum.common.container;
 
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchItemHandler;
-import com.sammy.malum.registry.common.ContainerRegistry;
+import com.sammy.malum.registry.common.MalumContainers;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.Component;
@@ -11,13 +11,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.systems.item.LodestoneArmorItem;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
 
 public class WeaversWorkbenchContainer extends AbstractContainerMenu {
 
@@ -34,7 +31,7 @@ public class WeaversWorkbenchContainer extends AbstractContainerMenu {
     }
 
     public WeaversWorkbenchContainer(int containerId, Inventory playerInventory, final ContainerLevelAccess access) {
-        super(ContainerRegistry.WEAVERS_WORKBENCH.get(), containerId);
+        super(MalumContainers.WEAVERS_WORKBENCH.get(), containerId);
 
         var blockEntity = access.evaluate((Level::getBlockEntity)).filter(b -> b instanceof WeaversWorkbenchBlockEntity).map(b -> (WeaversWorkbenchBlockEntity)b);
         this.itemHandler = blockEntity.map(b -> b.itemHandler).orElse(null);
@@ -49,7 +46,7 @@ public class WeaversWorkbenchContainer extends AbstractContainerMenu {
             addSlot(new SlotItemHandler(itemHandler, 1, 54, 52) {
                 @Override
                 public boolean mayPlace(ItemStack pStack) {
-                    return pStack.has(DataComponentRegistry.ITEM_SKIN);
+                    return pStack.has(MalumDataComponents.ITEM_SKIN);
                 }
             });
 

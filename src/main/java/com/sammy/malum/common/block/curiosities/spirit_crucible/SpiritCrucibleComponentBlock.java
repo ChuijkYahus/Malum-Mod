@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_crucible;
 
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,7 +30,7 @@ public class SpiritCrucibleComponentBlock extends MultiblockComponentBlock {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return ItemRegistry.SPIRIT_CRUCIBLE.get().getDefaultInstance();
+        return MalumItems.SPIRIT_CRUCIBLE.get().getDefaultInstance();
     }
 
     @Override

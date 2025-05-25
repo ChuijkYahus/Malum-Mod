@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 public class RuneVolatileDistortionItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneVolatileDistortionItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.ELDRITCH_SPIRIT);
+        super(builder, MalumSpiritTypes.ELDRITCH_SPIRIT);
     }
 
     @Override

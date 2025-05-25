@@ -24,7 +24,7 @@ public class SyncSoulWardDataPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext context) {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.setData(AttachmentTypeRegistry.SOUL_WARD, data);
+            livingEntity.setData(MalumAttachmentTypes.SOUL_WARD, data);
         }
     }
 

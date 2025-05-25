@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavemaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -31,7 +31,7 @@ public class WaveMakerBlock extends SpiritDiodeBlock<WaveMakerBlockEntity> {
         diode.outputSignal = signal;
 
         if (!diode.inverted) {
-            level.playSound(null, pos, SoundRegistry.WAVEMAKER_PULSE.get(), SoundSource.BLOCKS, 0.3f, 1.8f);
+            level.playSound(null, pos, MalumSoundEvents.WAVEMAKER_PULSE.get(), SoundSource.BLOCKS, 0.3f, 1.8f);
             emitRedstoneParticles(level, pos);
         }
         diode.inverted = !diode.inverted;

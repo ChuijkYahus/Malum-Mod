@@ -1,0 +1,216 @@
+package com.sammy.malum.registry.common;
+
+import com.sammy.malum.*;
+import com.sammy.malum.core.systems.geas.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.*;
+
+public class MalumTags {
+
+    public static class ItemTags {
+
+        public static final TagKey<Item> SOUL_SHATTER_CAPABLE_WEAPONS = tag("soul_shatter_capable_weapons");
+        public static final TagKey<Item> MAGIC_CAPABLE_WEAPONS = tag("magic_capable_weapon");
+        public static final TagKey<Item> SCYTHES = tag("scythe");
+        public static final TagKey<Item> STAVES = tag("staff");
+        public static final TagKey<Item> SCYTHES_COMMON = commonTag("tools/scythe");
+        public static final TagKey<Item> STAVES_COMMON = commonTag("tools/staff");
+        public static final TagKey<Item> KNIVES = modTag("farmersdelight:tools/knives");
+        public static final TagKey<Item> KNIVES_COMMON = commonTag("tools/knife");
+
+        public static final TagKey<Item> ANIMATED_ENCHANTABLE = tag("enchantable/animated");
+        public static final TagKey<Item> REBOUND_ENCHANTABLE = tag("enchantable/rebound");
+        public static final TagKey<Item> ASCENSION_ENCHANTABLE = tag("enchantable/ascension");
+        public static final TagKey<Item> REPLENISHING_ENCHANTABLE = tag("enchantable/replenishing");
+        public static final TagKey<Item> CAPACITOR_ENCHANTABLE = tag("enchantable/capacitor");
+        public static final TagKey<Item> HAUNTED_ENCHANTABLE = tag("enchantable/haunted");
+        public static final TagKey<Item> SPIRIT_SPOILS_ENCHANTABLE = tag("enchantable/spirit_spoils");
+
+        public static final TagKey<Item> SPIRITS = tag("spirits");
+        public static final TagKey<Item> ASPECTED_SPIRITS = tag("aspected_spirits");
+        public static final TagKey<Item> MOB_DROPS = tag("mob_drops");
+        public static final TagKey<Item> MATERIALS = tag("materials");
+        public static final TagKey<Item> MINERALS = tag("minerals");
+        public static final TagKey<Item> AUGMENTS = tag("augments");
+        public static final TagKey<Item> IMPETUS = tag("impetus");
+        public static final TagKey<Item> FRACTURED_IMPETUS = tag("fractured_impetus");
+        public static final TagKey<Item> METAL_IMPETUS = tag("metal_impetus");
+        public static final TagKey<Item> FRACTURED_METAL_IMPETUS = tag("fractured_metal_impetus");
+        public static final TagKey<Item> METAL_NODES = tag("metal_nodes");
+        public static final TagKey<Item> SOULWOVEN_BANNERS = tag("soulwoven_banners");
+
+        public static final TagKey<Item> IS_TOTEMIC_TOOL = tag("totemic_tool");
+        public static final TagKey<Item> IS_REDSTONE_TOOL = tag("redstone_tool");
+        public static final TagKey<Item> IS_ARTIFICE_TOOL = tag("artifice_tool");
+
+        public static final TagKey<Item> SAPBALLS = tag("sapballs");
+        public static final TagKey<Item> GROSS_FOODS = tag("gross_foods");
+
+        public static final TagKey<Item> PROSPECTORS_TREASURE = tag("prospectors_treasure");
+
+        public static final TagKey<Item> SOULHUNTERS_TREASURE = tag("soulhunters_treasure");
+        public static final TagKey<Item> SOULWOVEN_POUCH_AUTOCOLLECT = tag("soulwoven_pouch_autocollect");
+
+        public static final TagKey<Item> VOID_SOULSTONE_CONVERSION = tag("void_soulstone_material");
+
+        public static final TagKey<Item> HIDDEN_ALWAYS = tag("hidden_items/always");
+        public static final TagKey<Item> HIDDEN_UNTIL_VOID = tag("hidden_items/void");
+        public static final TagKey<Item> HIDDEN_UNTIL_BLACK_CRYSTAL = tag("hidden_items/black_crystal");
+
+        public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = tag("arcane_elegy_component");
+
+        public static final TagKey<Item> NECKLACE = modTag("curios:necklace");
+        public static final TagKey<Item> RING = modTag("curios:ring");
+        public static final TagKey<Item> BELT = modTag("curios:belt");
+        public static final TagKey<Item> BROOCH = modTag("curios:brooch");
+        public static final TagKey<Item> RUNE = modTag("curios:rune");
+        public static final TagKey<Item> CHARM = modTag("curios:charm");
+        public static final TagKey<Item> GEAS = modTag("curios:geas");
+
+        public static final TagKey<Item> RUNEWOOD_BOARD_INGREDIENT = tag("runewood_board_ingredient");
+        public static final TagKey<Item> RUNEWOOD_LOGS = tag("runewood_logs");
+        public static final TagKey<Item> RUNEWOOD_PLANKS = tag("runewood_planks");
+        public static final TagKey<Item> RUNEWOOD_BOARDS = tag("runewood_boards");
+        public static final TagKey<Item> RUNEWOOD_SLABS = tag("runewood_slabs");
+        public static final TagKey<Item> RUNEWOOD_STAIRS = tag("runewood_stairs");
+
+        public static final TagKey<Item> SOULWOOD_BOARD_INGREDIENT = tag("soulwood_board_ingredient");
+        public static final TagKey<Item> SOULWOOD_LOGS = tag("soulwood_logs");
+        public static final TagKey<Item> SOULWOOD_PLANKS = tag("soulwood_planks");
+        public static final TagKey<Item> SOULWOOD_BOARDS = tag("soulwood_boards");
+        public static final TagKey<Item> SOULWOOD_SLABS = tag("soulwood_slabs");
+        public static final TagKey<Item> SOULWOOD_STAIRS = tag("soulwood_stairs");
+
+        public static final TagKey<Item> TAINTED_ROCK = tag("tainted_rock");
+        public static final TagKey<Item> TAINTED_BLOCKS = tag("tainted_rock_blocks");
+        public static final TagKey<Item> TAINTED_SLABS = tag("tainted_rock_slabs");
+        public static final TagKey<Item> TAINTED_STAIRS = tag("tainted_rock_stairs");
+        public static final TagKey<Item> TAINTED_WALLS = tag("tainted_rock_walls");
+
+        public static final TagKey<Item> TWISTED_ROCK = tag("twisted_rock");
+        public static final TagKey<Item> TWISTED_BLOCKS = tag("twisted_rock_blocks");
+        public static final TagKey<Item> TWISTED_SLABS = tag("twisted_rock_slabs");
+        public static final TagKey<Item> TWISTED_STAIRS = tag("twisted_rock_stairs");
+        public static final TagKey<Item> TWISTED_WALLS = tag("twisted_rock_walls");
+
+        public static final TagKey<Item> STRIPPED_LOGS = commonTag("stripped_logs");
+        public static final TagKey<Item> STRIPPED_WOODS = commonTag("stripped_woods");
+
+
+        private static TagKey<Item> modTag(String path) {
+            return TagKey.create(Registries.ITEM, ResourceLocation.parse(path));
+        }
+
+        private static TagKey<Item> tag(String path) {
+            return TagKey.create(Registries.ITEM, MalumMod.malumPath(path));
+        }
+
+        private static TagKey<Item> commonTag(String name) {
+            return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        }
+    }
+
+    public static class BlockTags {
+
+        public static final TagKey<Block> BLIGHTED_BLOCKS = tag("blighted_blocks");
+        public static final TagKey<Block> BLIGHTED_PLANTS = tag("blighted_plants");
+
+        public static final TagKey<Block> RUNEWOOD_LOGS = tag("runewood_logs");
+        public static final TagKey<Block> SOULWOOD_LOGS = tag("soulwood_logs");
+
+        public static final TagKey<Block> TAINTED_ROCK = tag("tainted_rock");
+        public static final TagKey<Block> TAINTED_BLOCKS = tag("tainted_rock_blocks");
+        public static final TagKey<Block> TAINTED_SLABS = tag("tainted_rock_slabs");
+        public static final TagKey<Block> TAINTED_STAIRS = tag("tainted_rock_stairs");
+        public static final TagKey<Block> TAINTED_WALLS = tag("tainted_rock_walls");
+
+        public static final TagKey<Block> TWISTED_ROCK = tag("twisted_rock");
+        public static final TagKey<Block> TWISTED_BLOCKS = tag("twisted_rock_blocks");
+        public static final TagKey<Block> TWISTED_SLABS = tag("twisted_rock_slabs");
+        public static final TagKey<Block> TWISTED_STAIRS = tag("twisted_rock_stairs");
+        public static final TagKey<Block> TWISTED_WALLS = tag("twisted_rock_walls");
+
+        public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
+        public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
+
+        public static final TagKey<Block> WEEPING_WELL = tag("weeping_well");
+
+        public static final TagKey<Block> INEXTINGUISHABLE_FLAME = tag("inextinguishable_flame");
+        public static final TagKey<Block> SUNDERING_ANCHOR_KNIFE_BEHAVIOR = tag("sundering_anchor_please_be_a_knife");
+
+        public static final TagKey<Block> GREATER_AERIAL_WHITELIST = tag("greater_aerial_whitelist");
+
+        public static final TagKey<Block> TRAY_HEAT_SOURCES = modTag("farmersdelight:tray_heat_sources");
+        public static final TagKey<Block> HEAT_SOURCES = modTag("farmersdelight:heat_sources");
+        public static final TagKey<Block> MINEABLE_WITH_KNIFE = modTag("farmersdelight:mineable/knife");
+
+        public static final TagKey<Block> CREATE_WRENCH_PICKUP = modTag("create:wrench_pickup");
+
+        public static final TagKey<Block> STRIPPED_LOGS = commonTag("stripped_logs");
+        public static final TagKey<Block> STRIPPED_WOODS = commonTag("stripped_woods");
+
+        private static TagKey<Block> modTag(String path) {
+            return TagKey.create(Registries.BLOCK, ResourceLocation.parse(path));
+        }
+
+        private static TagKey<Block> tag(String path) {
+            return TagKey.create(Registries.BLOCK, MalumMod.malumPath(path));
+        }
+
+        private static TagKey<Block> commonTag(String name) {
+            return net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        }
+    }
+
+    public static class GeasTags {
+
+        public static final TagKey<GeasEffectType> IS_BOND = tag("is_bond");
+        public static final TagKey<GeasEffectType> IS_OATH = tag("is_oath");
+        public static final TagKey<GeasEffectType> IS_AUTHORITY = tag("is_authority");
+
+        public static final TagKey<GeasEffectType> HIDDEN_UNTIL_BLACK_CRYSTAL = tag("hidden_geas/black_crystal");
+
+        private static TagKey<GeasEffectType> tag(String path) {
+            return TagKey.create(MalumGeasEffectTypes.GEAS_TYPES_KEY, MalumMod.malumPath(path));
+        }
+    }
+
+    public static class DamageTypeTags {
+
+        public static final TagKey<DamageType> SOUL_SHATTER_DAMAGE = tag("can_soul_shatter");
+        public static final TagKey<DamageType> IS_SCYTHE = tag("is_scythe");
+        public static final TagKey<DamageType> IS_SCYTHE_MELEE = tag("is_scythe_melee");
+        public static final TagKey<DamageType> IS_NITRATE = tag("is_nitrate");
+        public static final TagKey<DamageType> IS_HIDDEN_BLADE = tag("is_hidden_blade");
+        public static final TagKey<DamageType> IS_SUNDERING_ANCHOR_COMBO = tag("is_sundering_anchor_combo");
+        public static final TagKey<DamageType> IS_INVERTED_HEART = tag("soulwashing");
+        public static final TagKey<DamageType> INVERTED_HEART_RETALIATION_BLACKLIST = tag("inverted_heart_retaliation_blacklist");
+        public static final TagKey<DamageType> INVERTED_HEART_PROPAGATION_BLACKLIST = tag("inverted_heart_propagation_blacklist");
+        public static final TagKey<DamageType> GLEEFUL_TARGET_BLACKLIST = tag("lions_heart_blacklist");
+
+        public static TagKey<DamageType> tag(String path) {
+            return TagKey.create(Registries.DAMAGE_TYPE, MalumMod.malumPath(path));
+        }
+    }
+
+    public static class BiomeTags {
+        public static final TagKey<Biome> HAS_SOULSTONE = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_soulstone"));
+        public static final TagKey<Biome> HAS_BRILLIANT = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_brilliant"));
+        public static final TagKey<Biome> HAS_BLAZING_QUARTZ = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_blazing_quartz"));
+        public static final TagKey<Biome> HAS_QUARTZ = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_quartz"));
+        public static final TagKey<Biome> HAS_CTHONIC = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_earths"));
+
+        public static final TagKey<Biome> HAS_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_runewood"));
+        public static final TagKey<Biome> HAS_RARE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_runewood"));
+        public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_azure_runewood"));
+        public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_azure_runewood"));
+
+
+        public static final TagKey<Biome> HAS_WEEPING_WELL = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_weeping_well"));
+    }
+}

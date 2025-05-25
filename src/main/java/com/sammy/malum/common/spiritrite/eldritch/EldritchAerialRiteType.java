@@ -3,14 +3,11 @@ package com.sammy.malum.common.spiritrite.eldritch;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
@@ -19,7 +16,7 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class EldritchAerialRiteType extends TotemicRiteType {
     public EldritchAerialRiteType() {
@@ -34,16 +31,16 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                 var pos = totemBase.getBlockPos();
                 getBlocksAhead(totemBase).forEach(p -> {
                     var stateBelow = level.getBlockState(p.below());
-                    if (FallingBlock.isFree(stateBelow) || !stateBelow.canOcclude() || stateBelow.is(BlockTags.SLABS)) {
+                    if (FallingBlock.isFree(stateBelow) || !stateBelow.canOcclude() || stateBelow.is(net.minecraft.tags.BlockTags.SLABS)) {
                         var state = level.getBlockState(p);
                         if (!state.isAir() && level.getBlockEntity(p) == null && canSilkTouch(level, pos, state)) {
                             FallingBlockEntity.fall(level, p, state);
 
-                            ParticleEffectTypeRegistry.BLOCK_FALL_RITE_EFFECT
+                            MalumParticleEffectTypes.BLOCK_FALL_RITE_EFFECT
                                     .createEffect(p)
                                     .color(AERIAL_SPIRIT)
                                     .spawn(level);
-                            level.playSound(null, p, SoundRegistry.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
+                            level.playSound(null, p, MalumSoundEvents.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
                         }
                     }
                 });
@@ -61,7 +58,7 @@ public class EldritchAerialRiteType extends TotemicRiteType {
                     Stat<ResourceLocation> sleepStat = Stats.CUSTOM.get(Stats.TIME_SINCE_REST);
                     int value = stats.getValue(sleepStat);
                     stats.setValue(p, sleepStat, Math.max(0, value - 1000));
-                    ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                    MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                             .createEffect(p)
                             .color(AERIAL_SPIRIT)
                             .spawn(level);
@@ -89,7 +86,7 @@ public class EldritchAerialRiteType extends TotemicRiteType {
     }
 
     private static boolean canSilkTouch(ServerLevel level, BlockPos pos, BlockState state) {
-        if (state.is(BlockTagRegistry.GREATER_AERIAL_WHITELIST)) {
+        if (state.is(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST)) {
             return true;
         }
         ItemStack harvestToolStack = getToolForState(state);

@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class HexingTransmissionRitualType extends MalumRitualType {
     public HexingTransmissionRitualType() {
-        super(MalumMod.malumPath("hexing_transmission"), SpiritTypeRegistry.ELDRITCH_SPIRIT);
+        super(MalumMod.malumPath("hexing_transmission"), MalumSpiritTypes.ELDRITCH_SPIRIT);
     }
 
     @Override

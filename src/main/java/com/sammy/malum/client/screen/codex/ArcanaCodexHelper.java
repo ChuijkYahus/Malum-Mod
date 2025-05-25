@@ -10,7 +10,6 @@ import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -77,7 +76,7 @@ public class ArcanaCodexHelper {
                 .setShader(GameRenderer::getPositionColorShader)
                 .blit(stack);
 
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) ShaderRegistry.TOUCH_OF_DARKNESS.getInstance().get();
+        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) MalumShaders.TOUCH_OF_DARKNESS.getInstance().get();
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
@@ -164,10 +163,10 @@ public class ArcanaCodexHelper {
         var spiritTypes = type.spiritTypes;
         Supplier<MalumSpiritType> colorSupplier = () -> spiritTypes.get(cycle.getAndIncrement() % spiritTypes.size());
         var mainColor = colorSupplier.get().getPrimaryColor();
-        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.AQUEOUS_SPIRIT)) {
+        if (spiritTypes.getFirst().equals(MalumSpiritTypes.AQUEOUS_SPIRIT)) {
             mainColor = ColorHelper.brighter(mainColor, 2);
         }
-        if (spiritTypes.getFirst().equals(SpiritTypeRegistry.SACRED_SPIRIT)  || spiritTypes.getFirst().equals(SpiritTypeRegistry.WICKED_SPIRIT)) {
+        if (spiritTypes.getFirst().equals(MalumSpiritTypes.SACRED_SPIRIT)  || spiritTypes.getFirst().equals(MalumSpiritTypes.WICKED_SPIRIT)) {
             mainColor = ColorHelper.brighter(mainColor, 1);
         }
 

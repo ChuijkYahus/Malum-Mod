@@ -7,7 +7,7 @@ import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.enchantment.*;
 import io.redspace.ironsspellbooks.api.events.*;
 import io.redspace.ironsspellbooks.api.magic.*;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
@@ -24,7 +24,7 @@ import net.neoforged.fml.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 
-import static com.sammy.malum.registry.common.item.EnchantmentRegistry.*;
+import static com.sammy.malum.registry.common.enchantment.EnchantmentKeys.*;
 
 public class IronsSpellsCompat {
 
@@ -101,7 +101,7 @@ public class IronsSpellsCompat {
                     CommonConfig.IRONS_SPELLBOOKS_SPIRIT_DAMAGE.getConfigValue() :
                     CommonConfig.IRONS_SPELLBOOKS_NON_PLAYER_SPIRIT_DAMAGE.getConfigValue();
             if (canShatter) {
-                event.getEntity().getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).setExposed();
+                event.getEntity().getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setExposed();
             }
         }
 
@@ -111,7 +111,7 @@ public class IronsSpellsCompat {
             if (directEntity instanceof ServerPlayer serverPlayer) {
                 if (serverPlayer.getAttackStrengthScale(0) > 0.8f) {
                     ItemStack stack = serverPlayer.getMainHandItem();
-                    int level = getEnchantmentLevel(serverPlayer.level(), EnchantmentRegistry.REPLENISHING, stack);
+                    int level = getEnchantmentLevel(serverPlayer.level(), EnchantmentKeys.REPLENISHING, stack);
                     recoverSpellCooldowns(serverPlayer, 0.025f * level);
                 }
             }

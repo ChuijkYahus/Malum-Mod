@@ -39,7 +39,7 @@ public class SoulWardData {
     }
 
     public void tickData(LivingEntity living) {
-        var capacity = living.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
+        var capacity = living.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
         if (capacity != null) {
             if (getSoulWard() < capacity.getValue()) {
                 if (soulWardCooldown > 0) {
@@ -63,14 +63,14 @@ public class SoulWardData {
 
     @SuppressWarnings("DataFlowIssue")
     public void recoverSoulWard(LivingEntity entity, double amount) {
-        var capacity = entity.getAttribute(AttributeRegistry.SOUL_WARD_CAPACITY);
+        var capacity = entity.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
         if (getSoulWard() < capacity.getValue()) {
-            var multiplier = Optional.ofNullable(entity.getAttribute(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER)).map(AttributeInstance::getValue).orElse(1.0);
+            var multiplier = Optional.ofNullable(entity.getAttribute(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER)).map(AttributeInstance::getValue).orElse(1.0);
             var previousSoulward = soulWard;
             addSoulWard(amount * multiplier);
             if (soulWard > previousSoulward) {
                 if (!(entity instanceof Player player) || !player.isCreative()) {
-                    var sound = soulWard >= capacity.getValue() ? SoundRegistry.SOUL_WARD_CHARGE : SoundRegistry.SOUL_WARD_GROW;
+                    var sound = soulWard >= capacity.getValue() ? MalumSoundEvents.SOUL_WARD_CHARGE : MalumSoundEvents.SOUL_WARD_GROW;
                     double pitchOffset = (soulWard / capacity.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
                     SoundHelper.playSound(entity, sound.get(), 0.25f, (float) (1f + pitchOffset));
                 }
@@ -117,7 +117,7 @@ public class SoulWardData {
     }
 
     public static float getSoulWardCooldown(LivingEntity living) {
-        return getSoulWardCooldown(living.getAttributeValue(AttributeRegistry.SOUL_WARD_RECOVERY_RATE));
+        return getSoulWardCooldown(living.getAttributeValue(MalumAttributes.SOUL_WARD_RECOVERY_RATE));
     }
 
     public static float getSoulWardCooldown(double recoverySpeed) {

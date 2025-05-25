@@ -1,6 +1,5 @@
 package com.sammy.malum.common.entity.bolt;
 
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
@@ -32,7 +31,7 @@ import static com.sammy.malum.common.item.curiosities.weapons.staff.ErosionScept
 public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
 
     public DrainingBoltEntity(Level level) {
-        super(EntityRegistry.DRAINING_BOLT.get(), level);
+        super(MalumEntities.DRAINING_BOLT.get(), level);
         noPhysics = false;
     }
 
@@ -45,9 +44,9 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
     @Override
     public void onDealDamage(LivingEntity target) {
         if (target.getRandom().nextFloat() < 0.3f) {
-            var effect = target.getEffect(MobEffectRegistry.SILENCED);
+            var effect = target.getEffect(MalumMobEffects.SILENCED);
             if (effect == null) {
-                target.addEffect(new MobEffectInstance(MobEffectRegistry.SILENCED, 150, 0, true, true, true));
+                target.addEffect(new MobEffectInstance(MalumMobEffects.SILENCED, 150, 0, true, true, true));
             } else {
                 EntityHelper.amplifyEffect(effect, target, 1, 19);
                 EntityHelper.extendEffect(effect, target, 15, 300);
@@ -58,7 +57,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
     @Override
     public void playSound(SoundEvent pSound, float pVolume, float pPitch) {
         super.playSound(pSound, pVolume, pPitch-0.2f);
-        super.playSound(SoundRegistry.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
+        super.playSound(MalumSoundEvents.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
 
     @Override
     public BoltImpactParticleEffect getImpactParticleEffect() {
-        return ParticleEffectTypeRegistry.DRAINING_BOLT_IMPACT;
+        return MalumParticleEffectTypes.DRAINING_BOLT_IMPACT;
     }
 
     @Override
@@ -83,7 +82,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.EROSION_SCEPTER.get();
+        return MalumItems.EROSION_SCEPTER.get();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -107,7 +106,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
         lightSpecs.spawnParticles();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
-        WorldParticleBuilder.create(ParticleRegistry.SAW)
+        WorldParticleBuilder.create(MalumParticles.SAW)
                 .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())

@@ -2,8 +2,9 @@ package com.sammy.malum.common.data.component;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
+
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.entity.player.*;
@@ -49,11 +50,11 @@ public final class SoulwovenPouchContentsComponent implements TooltipComponent {
     }
 
     static Fraction getWeight(ItemStack stack) {
-        var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (contents != null) {
             return BUNDLE_IN_BUNDLE_WEIGHT.add(contents.weight());
         } else {
-            int weightMultiplier = stack.is(ItemTagRegistry.SOULHUNTERS_TREASURE) ? 8 : 1;
+            int weightMultiplier = stack.is(MalumTags.ItemTags.SOULHUNTERS_TREASURE) ? 8 : 1;
             return Fraction.getFraction(1, stack.getMaxStackSize()*weightMultiplier);
         }
     }

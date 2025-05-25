@@ -27,7 +27,7 @@ import java.util.function.*;
 public class MalumSpiritType {
 
     public static final Codec<MalumSpiritType> CODEC = Codec.STRING.comapFlatMap(s -> {
-        final MalumSpiritType spiritType = SpiritTypeRegistry.SPIRITS.get(s);
+        final MalumSpiritType spiritType = MalumSpiritTypes.SPIRITS.get(s);
         if (spiritType == null) {
             throw new JsonParseException("No Such Spirit Type: " + s);
         }
@@ -55,7 +55,7 @@ public class MalumSpiritType {
     }
 
     public static MalumSpiritType getSpiritType(String spirit) {
-        return SpiritTypeRegistry.SPIRITS.getOrDefault(spirit, SpiritTypeRegistry.SACRED_SPIRIT);
+        return MalumSpiritTypes.SPIRITS.getOrDefault(spirit, MalumSpiritTypes.SACRED_SPIRIT);
     }
 
     public String getIdentifier() {
@@ -136,11 +136,11 @@ public class MalumSpiritType {
     }
 
     public BlockState getTotemPoleBlockState(boolean isCorrupt, BlockHitResult hit) {
-        Block base = isCorrupt ? BlockRegistry.SOULWOOD_TOTEM_POLE.get() : BlockRegistry.RUNEWOOD_TOTEM_POLE.get();
-        return base.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, hit.getDirection()).setValue(SpiritTypeRegistry.SPIRIT_TYPE_PROPERTY, identifier);
+        Block base = isCorrupt ? MalumBlocks.SOULWOOD_TOTEM_POLE.get() : MalumBlocks.RUNEWOOD_TOTEM_POLE.get();
+        return base.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, hit.getDirection()).setValue(MalumSpiritTypes.SPIRIT_TYPE_PROPERTY, identifier);
     }
 
     public BlockState getSpiritMoteBlockState() {
-        return BlockRegistry.SPIRIT_MOTE.get().defaultBlockState().setValue(ManaMoteBlock.SPIRIT_TYPE, identifier);
+        return MalumBlocks.SPIRIT_MOTE.get().defaultBlockState().setValue(ManaMoteBlock.SPIRIT_TYPE, identifier);
     }
 }

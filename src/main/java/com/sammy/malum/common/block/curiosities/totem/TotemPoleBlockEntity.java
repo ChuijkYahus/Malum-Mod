@@ -3,9 +3,8 @@ package com.sammy.malum.common.block.curiosities.totem;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
+
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -55,13 +54,13 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     }
 
     public TotemPoleBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.TOTEM_POLE.get(), pos, state);
+        this(MalumBlockEntities.TOTEM_POLE.get(), pos, state);
     }
 
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack held, InteractionHand hand) {
         boolean success = false;
-        if (held.is(ItemTagRegistry.IS_TOTEMIC_TOOL) && !totemPoleState.equals(ACTIVE) && !totemPoleState.equals(CHARGING)) {
+        if (held.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL) && !totemPoleState.equals(ACTIVE) && !totemPoleState.equals(CHARGING)) {
             if (level.isClientSide) {
                 return ItemInteractionResult.SUCCESS;
             }
@@ -80,14 +79,14 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         }
         if (success) {
             if (level instanceof ServerLevel serverLevel && spirit != null) {
-                ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+                MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                         .at(worldPosition).color(spirit)
                         .spawn(serverLevel);
             }
             float pitch = totemPoleState == VISUAL_ONLY ? 1.2f : 0.7f;
-            level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch + Mth.nextFloat(level.random, -0.2f, 0.2f));
+            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch + Mth.nextFloat(level.random, -0.2f, 0.2f));
             if (isSoulwood) {
-                level.playSound(null, worldPosition, SoundRegistry.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+                level.playSound(null, worldPosition, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
             }
             BlockStateHelper.updateState(level, worldPosition);
             return ItemInteractionResult.SUCCESS;
@@ -147,23 +146,23 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     }
 
     public void setSpirit(ServerLevel level, MalumSpiritType spirit) {
-        level.playSound(null, worldPosition, SoundRegistry.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         this.spirit = spirit;
         this.chargeProgress = 10;
-        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+        MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
     }
 
     public void riteStarting(ServerLevel level, TotemBaseBlockEntity totemBase, int height) {
-        level.playSound(null, worldPosition, SoundRegistry.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * height);
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * height);
         this.totemBaseYLevel = worldPosition.getY() - height;
         this.totemBase = totemBase;
         this.totemPoleState = CHARGING;
 
-        ParticleEffectTypeRegistry.TOTEM_POLE_ACTIVATED.createEffect()
+        MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);

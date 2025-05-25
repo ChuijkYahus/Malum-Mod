@@ -3,7 +3,6 @@ package com.sammy.malum.common.item.curiosities.curios.sets.weeping;
 import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.packets.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
@@ -43,11 +42,11 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
         if (attacked.level().isClientSide()) {
             return;
         }
-        if (attacked.getData(AttachmentTypeRegistry.CURIO_DATA).hiddenBladeNecklaceCooldown == 0) {
+        if (attacked.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown == 0) {
             float damage = event.getOriginalDamage();
             int amplifier = Math.min(Mth.floor(damage / 4), 9);
-            attacked.addEffect(new MobEffectInstance(MobEffectRegistry.WICKED_INTENT, 80, amplifier));
-            SoundHelper.playSound(attacked, SoundRegistry.HIDDEN_BLADE_PRIMED.get(), 1f, RandomHelper.randomBetween(attacked.level().getRandom(), 1.4f, 1.6f));
+            attacked.addEffect(new MobEffectInstance(MalumMobEffects.WICKED_INTENT, 80, amplifier));
+            SoundHelper.playSound(attacked, MalumSoundEvents.HIDDEN_BLADE_PRIMED.get(), 1f, RandomHelper.randomBetween(attacked.level().getRandom(), 1.4f, 1.6f));
         }
     }
 
@@ -55,21 +54,21 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (!source.is(DamageTypeRegistry.SCYTHE_MELEE)) {
+            if (!source.is(MalumDataTypes.SCYTHE_MELEE)) {
                 return;
             }
-            if (CurioHelper.hasCurioEquipped(attacker, ItemRegistry.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
-                var data = attacker.getData(AttachmentTypeRegistry.CURIO_DATA);
+            if (CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
+                var data = attacker.getData(MalumAttachmentTypes.CURIO_DATA);
                 var random = level.getRandom();
                 if (data.hiddenBladeNecklaceCooldown != 0) {
                     if (data.hiddenBladeNecklaceCooldown <= COOLDOWN_DURATION) {
-                        SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_DISRUPTED.get(), 1f, RandomHelper.randomBetween(random, 0.7f, 0.8f));
+                        SoundHelper.playSound(attacker, MalumSoundEvents.HIDDEN_BLADE_DISRUPTED.get(), 1f, RandomHelper.randomBetween(random, 0.7f, 0.8f));
                     }
                     data.hiddenBladeNecklaceCooldown = (int) (COOLDOWN_DURATION * 1.5);
                     PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
                     return;
                 }
-                var effect = attacker.getEffect(MobEffectRegistry.WICKED_INTENT);
+                var effect = attacker.getEffect(MalumMobEffects.WICKED_INTENT);
                 if (effect == null) {
                     return;
                 }
@@ -93,9 +92,9 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                     attacker.removeEffect(effect.getEffect());
                 }
                 for (int i = 0; i < 3; i++) {
-                    SoundHelper.playSound(attacker, SoundRegistry.HIDDEN_BLADE_UNLEASHED.get(), 3f, RandomHelper.randomBetween(random, 0.75f, 1.25f));
+                    SoundHelper.playSound(attacker, MalumSoundEvents.HIDDEN_BLADE_UNLEASHED.get(), 3f, RandomHelper.randomBetween(random, 0.75f, 1.25f));
                 }
-                ParticleEffectTypeRegistry.HIDDEN_BLADE_COUNTER_FLURRY.createEffect()
+                MalumParticleEffectTypes.HIDDEN_BLADE_COUNTER_FLURRY.createEffect()
                         .originatesFrom(attacker)
                         .aimedAt(direction)
                         .color(scytheWeapon.getItem())
@@ -109,12 +108,12 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity entity) {
             var level = entity.level();
-            var data = entity.getData(AttachmentTypeRegistry.CURIO_DATA);
+            var data = entity.getData(MalumAttachmentTypes.CURIO_DATA);
             if (data.hiddenBladeNecklaceCooldown > 0) {
                 data.hiddenBladeNecklaceCooldown--;
                 if (!level.isClientSide()) {
                     if (data.hiddenBladeNecklaceCooldown == 0) {
-                        SoundHelper.playSound(entity, SoundRegistry.HIDDEN_BLADE_CHARGED.get(), 1f, RandomHelper.randomBetween(level.getRandom(), 1.0f, 1.2f));
+                        SoundHelper.playSound(entity, MalumSoundEvents.HIDDEN_BLADE_CHARGED.get(), 1f, RandomHelper.randomBetween(level.getRandom(), 1.0f, 1.2f));
                     }
                 }
             }

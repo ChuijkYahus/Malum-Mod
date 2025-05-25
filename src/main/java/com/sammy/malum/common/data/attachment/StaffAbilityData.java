@@ -77,7 +77,7 @@ public class StaffAbilityData {
             staffChargeDebt--;
             if (!(livingEntity instanceof Player player) || !player.isCreative()) {
                 double pitchOffset = 1.5f - (Mth.ceil(staffChargeDebt) % 3) * 0.25f;
-                var soundType = staffChargeDebt % 3 == 0 ? SoundRegistry.SPELL_CHARGE_FULL : SoundRegistry.SPELL_CHARGE_GROW;
+                var soundType = staffChargeDebt % 3 == 0 ? MalumSoundEvents.SPELL_CHARGE_FULL : MalumSoundEvents.SPELL_CHARGE_GROW;
                 SoundHelper.playSound(livingEntity, soundType.get(), 0.75f, (float) (1f + pitchOffset));
             }
             setDirty(true);
@@ -93,11 +93,11 @@ public class StaffAbilityData {
     }
 
     public static int getStaffChargeLimit(LivingEntity livingEntity) {
-        return Mth.floor(livingEntity.getAttribute(AttributeRegistry.CHARGE_CAPACITY).getValue()) * 3;
+        return Mth.floor(livingEntity.getAttribute(MalumAttributes.CHARGE_CAPACITY).getValue()) * 3;
     }
 
     public static float getStaffChargeCooldown(LivingEntity living) {
-        return getStaffChargeCooldown(living.getAttributeValue(AttributeRegistry.CHARGE_RECOVERY_RATE));
+        return getStaffChargeCooldown(living.getAttributeValue(MalumAttributes.CHARGE_RECOVERY_RATE));
     }
     public static int getStaffChargeCooldown(double recoverySpeed) {
         return Mth.floor(CommonConfig.STAFF_CHARGE_RATE.getConfigValue() / recoverySpeed);

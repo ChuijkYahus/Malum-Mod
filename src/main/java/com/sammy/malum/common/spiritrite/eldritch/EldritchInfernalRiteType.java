@@ -3,14 +3,13 @@ package com.sammy.malum.common.spiritrite.eldritch;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class EldritchInfernalRiteType extends TotemicRiteType {
     public EldritchInfernalRiteType() {
@@ -33,7 +32,7 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
                             var newState = block.defaultBlockState();
                             level.setBlockAndUpdate(p, newState);
                             level.levelEvent(2001, p, Block.getId(newState));
-                            ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                            MalumParticleEffectTypes.BLOCK_RITE_EFFECT
                                     .createEffect(p)
                                     .color(INFERNAL_SPIRIT)
                                     .spawn(level);
@@ -51,7 +50,7 @@ public class EldritchInfernalRiteType extends TotemicRiteType {
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyBlocks(totemBase, AbstractFurnaceBlock.class).forEach(p -> {
                     if (level.getBlockEntity(p) instanceof AbstractFurnaceBlockEntity furnace) {
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                        MalumParticleEffectTypes.BLOCK_RITE_EFFECT
                                 .createEffect(p)
                                 .color(INFERNAL_SPIRIT)
                                 .spawn(level);

@@ -1,22 +1,18 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
-import com.google.common.collect.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.level.*;
-import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
@@ -24,7 +20,7 @@ import java.util.function.*;
 public class PyromaniacGeas extends GeasEffect {
 
     public PyromaniacGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC.get());
     }
 
     @Override
@@ -53,7 +49,7 @@ public class PyromaniacGeas extends GeasEffect {
         for (Entity entity : event.getAffectedEntities()) {
             if (entity instanceof LivingEntity livingEntity) {
                 if (explosion.damageCalculator.shouldDamageEntity(explosion, livingEntity)) {
-                    if (GeasEffectHandler.hasGeasEffect(livingEntity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC)) {
+                    if (GeasEffectHandler.hasGeasEffect(livingEntity, MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC)) {
                         applyPyromaniac(livingEntity, explosion);
                     }
                 }
@@ -67,7 +63,7 @@ public class PyromaniacGeas extends GeasEffect {
         if (!entity.equals(explosion.getIndirectSourceEntity()) && !entity.equals(explosion.getDirectSourceEntity())) {
             pyromaniacStacks = 4;
         }
-        final MobEffectInstance instance = entity.getEffect(MobEffectRegistry.PYROMANIACS_FERVOR);
+        final MobEffectInstance instance = entity.getEffect(MalumMobEffects.PYROMANIACS_FERVOR);
         if (instance != null) {
             if (instance.getAmplifier() >= 5) {
                 entity.igniteForSeconds(5);
@@ -75,7 +71,7 @@ public class PyromaniacGeas extends GeasEffect {
             EntityHelper.extendEffect(instance, entity, 300, 1200);
             EntityHelper.amplifyEffect(instance, entity, pyromaniacStacks, 9);
         } else {
-            entity.addEffect(new MobEffectInstance(MobEffectRegistry.PYROMANIACS_FERVOR, 600, pyromaniacStacks - 1));
+            entity.addEffect(new MobEffectInstance(MalumMobEffects.PYROMANIACS_FERVOR, 600, pyromaniacStacks - 1));
         }
     }
 }

@@ -4,7 +4,6 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.*;
-import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -22,7 +21,7 @@ public class RuneworkingPage extends BookPage {
     private final RunicWorkbenchRecipe recipe;
 
     public RuneworkingPage(Predicate<RunicWorkbenchRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, RecipeTypeRegistry.RUNEWORKING.get(), predicate));
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.RUNEWORKING.get(), predicate));
     }
 
     public RuneworkingPage(RunicWorkbenchRecipe recipe) {

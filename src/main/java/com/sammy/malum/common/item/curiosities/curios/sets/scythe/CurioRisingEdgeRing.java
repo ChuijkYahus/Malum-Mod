@@ -46,7 +46,7 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
                 Level.ExplosionInteraction.TRIGGER,
                 ParticleTypes.GUST,
                 ParticleTypes.GUST,
-                SoundRegistry.SCYTHE_ASCENSION_LAUNCH
+                MalumSoundEvents.SCYTHE_ASCENSION_LAUNCH
         );
         target.setDeltaMovement(target.getDeltaMovement().add(0, velocity, 0));
     }

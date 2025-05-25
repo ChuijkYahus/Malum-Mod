@@ -22,7 +22,7 @@ public class SpiritFocusingPage extends BookPage {
     public static final Component SPIRIT = Component.translatable("malum.gui.book.entry.page.info.spirit_focusing.spirit");
 
     public SpiritFocusingPage(Predicate<SpiritFocusingRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, RecipeTypeRegistry.SPIRIT_FOCUSING.get(), predicate));
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_FOCUSING.get(), predicate));
     }
 
     public SpiritFocusingPage(SpiritFocusingRecipe recipe) {

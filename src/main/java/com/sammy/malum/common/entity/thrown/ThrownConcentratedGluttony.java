@@ -4,12 +4,10 @@ import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
-import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -32,15 +30,15 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
     public int fadingTimer;
 
     public ThrownConcentratedGluttony(Level pLevel) {
-        super(EntityRegistry.THROWN_GLUTTONY.get(), pLevel);
+        super(MalumEntities.THROWN_GLUTTONY.get(), pLevel);
     }
 
     public ThrownConcentratedGluttony(Level pLevel, LivingEntity pShooter) {
-        super(EntityRegistry.THROWN_GLUTTONY.get(), pShooter, pLevel);
+        super(MalumEntities.THROWN_GLUTTONY.get(), pShooter, pLevel);
     }
 
     public ThrownConcentratedGluttony(Level pLevel, double pX, double pY, double pZ) {
-        super(EntityRegistry.THROWN_GLUTTONY.get(), pX, pY, pZ, pLevel);
+        super(MalumEntities.THROWN_GLUTTONY.get(), pX, pY, pZ, pLevel);
     }
 
     @Override
@@ -80,7 +78,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.SPLASH_OF_GLUTTONY.get();
+        return MalumItems.SPLASH_OF_GLUTTONY.get();
     }
 
     @Override
@@ -127,9 +125,9 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
         getEntityData().set(DATA_FADING_AWAY, true);
         setDeltaMovement(getDeltaMovement().scale(0.05f));
         setNoGravity(true);
-        level.levelEvent(2002, blockPosition(), MobEffectRegistry.GLUTTONY.get().getColor());
-        level.playSound(null, blockPosition(), SoundRegistry.CONCENTRATED_GLUTTONY_DRINK.get(), SoundSource.PLAYERS, 0.5f, 1.25f + level.random.nextFloat() * 0.25f);
-        ParticleEffectTypeRegistry.THROWN_GLUTTONY_IMPACT.createEffect(position()).spawn(level);
+        level.levelEvent(2002, blockPosition(), MalumMobEffects.GLUTTONY.get().getColor());
+        level.playSound(null, blockPosition(), MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), SoundSource.PLAYERS, 0.5f, 1.25f + level.random.nextFloat() * 0.25f);
+        MalumParticleEffectTypes.THROWN_GLUTTONY_IMPACT.createEffect(position()).spawn(level);
         applyGluttony(level, impactedEntity);
         super.onHit(pResult);
     }

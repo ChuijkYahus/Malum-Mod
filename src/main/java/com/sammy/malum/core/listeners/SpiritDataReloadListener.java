@@ -6,7 +6,7 @@ import com.mojang.serialization.JsonOps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -22,31 +22,31 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
     public static final Set<ResourceLocation> HAS_NO_DATA = new HashSet<>();
 
     public static final EntitySpiritDropData DEFAULT_MONSTER_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.WICKED_SPIRIT)
+            .builder(MalumSpiritTypes.WICKED_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_CREATURE_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.SACRED_SPIRIT)
+            .builder(MalumSpiritTypes.SACRED_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_AMBIENT_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.AERIAL_SPIRIT)
+            .builder(MalumSpiritTypes.AERIAL_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_WATER_CREATURE_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.AQUEOUS_SPIRIT)
-            .withSpirit(SpiritTypeRegistry.SACRED_SPIRIT)
+            .builder(MalumSpiritTypes.AQUEOUS_SPIRIT)
+            .withSpirit(MalumSpiritTypes.SACRED_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_WATER_AMBIENT_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.AQUEOUS_SPIRIT)
+            .builder(MalumSpiritTypes.AQUEOUS_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_UNDERGROUND_WATER_CREATURE_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.AQUEOUS_SPIRIT)
-            .withSpirit(SpiritTypeRegistry.EARTHEN_SPIRIT)
+            .builder(MalumSpiritTypes.AQUEOUS_SPIRIT)
+            .withSpirit(MalumSpiritTypes.EARTHEN_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_AXOLOTL_SPIRIT_DATA = EntitySpiritDropData // They're their own category
-            .builder(SpiritTypeRegistry.AQUEOUS_SPIRIT, 2)
-            .withSpirit(SpiritTypeRegistry.SACRED_SPIRIT)
+            .builder(MalumSpiritTypes.AQUEOUS_SPIRIT, 2)
+            .withSpirit(MalumSpiritTypes.SACRED_SPIRIT)
             .build();
     public static final EntitySpiritDropData DEFAULT_BOSS_SPIRIT_DATA = EntitySpiritDropData
-            .builder(SpiritTypeRegistry.ELDRITCH_SPIRIT, 4)
+            .builder(MalumSpiritTypes.ELDRITCH_SPIRIT, 4)
             .build();
 
     private static final Gson GSON = (new GsonBuilder()).create();

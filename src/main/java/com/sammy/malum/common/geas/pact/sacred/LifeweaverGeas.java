@@ -1,7 +1,6 @@
 package com.sammy.malum.common.geas.pact.sacred;
 
 import com.google.common.collect.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -21,7 +20,7 @@ import java.util.function.*;
 public class LifeweaverGeas extends GeasEffect {
 
     public LifeweaverGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER.get());
     }
 
     @Override
@@ -39,7 +38,7 @@ public class LifeweaverGeas extends GeasEffect {
     public static void onHeal(LivingHealEvent event) {
         var entity = event.getEntity();
         if (entity.level() instanceof ServerLevel level) {
-            if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER)) {
+            if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER)) {
                 float horizontalRadius = 6f;
                 float verticalRadius = 4f;
                 var aabb = entity.getBoundingBox().inflate(horizontalRadius, verticalRadius, horizontalRadius);
@@ -48,17 +47,17 @@ public class LifeweaverGeas extends GeasEffect {
                     if (target == entity) {
                         continue;
                     }
-                    if (!GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER)) {
+                    if (!GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER)) {
                         float health = target.getHealth();
                         if (target.isInvertedHealAndHarm()) {
-                            target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.VOODOO, entity), event.getAmount() * 2f);
+                            target.hurt(DamageTypeHelper.create(level, MalumDataTypes.VOODOO, entity), event.getAmount() * 2f);
                         }
                         else {
                             target.heal(event.getAmount() * 1.5f);
                         }
                         if (health != target.getHealth()) {
-                            ParticleEffectTypeRegistry.HEALING_BEAM.createEffect(entity)
-                                    .color(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.ARCANE_SPIRIT)
+                            MalumParticleEffectTypes.HEALING_BEAM.createEffect(entity)
+                                    .color(MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT)
                                     .customData(new LifeweaverHealingBeamParticleEffect.LifeweaverHealingBeamEffectData(target.getId(), entity.getId()))
                                     .spawn(level);
                             success = true;

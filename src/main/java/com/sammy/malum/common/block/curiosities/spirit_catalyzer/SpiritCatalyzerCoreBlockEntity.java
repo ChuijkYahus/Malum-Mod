@@ -5,18 +5,16 @@ import com.sammy.malum.core.systems.artifice.ArtificeModifierSourceInstance;
 import com.sammy.malum.core.systems.artifice.IArtificeModifierSource;
 import com.sammy.malum.common.block.AugmentBlockEntityInventory;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
 import net.neoforged.neoforge.items.IItemHandler;
 import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.multiblock.*;
@@ -27,7 +25,7 @@ import java.util.function.*;
 
 public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IItemHandlerSupplier {
 
-    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
     public static final Vec3 CATALYZER_ITEM_OFFSET = new Vec3(0.5f, 2f, 0.5f);
     public static final Vec3 CATALYZER_AUGMENT_OFFSET = new Vec3(0.5f, 2.75f, 0.5f);
 
@@ -43,7 +41,7 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
     }
 
     public SpiritCatalyzerCoreBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.SPIRIT_CATALYZER.get(), STRUCTURE.get(), pos, state);
+        this(MalumBlockEntities.SPIRIT_CATALYZER.get(), STRUCTURE.get(), pos, state);
     }
 
     @Override
@@ -67,7 +65,7 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
             return ItemInteractionResult.CONSUME;
         }
         var heldStack = pPlayer.getItemInHand(pHand);
-        boolean isAugment = heldStack.has(DataComponentRegistry.ARTIFICE_AUGMENT);
+        boolean isAugment = heldStack.has(MalumDataComponents.ARTIFICE_AUGMENT);
         if (!isAugment || heldStack.isEmpty()) {
             var result = inventory.interact(serverLevel, pPlayer, pHand);
             if (!result.isEmpty()) {

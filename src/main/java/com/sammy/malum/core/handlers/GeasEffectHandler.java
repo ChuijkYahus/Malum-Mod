@@ -15,7 +15,6 @@ import team.lodestar.lodestone.handlers.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.extensions.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class GeasEffectHandler {
@@ -44,7 +43,7 @@ public class GeasEffectHandler {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {
-                var data = living.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
+                var data = living.getData(MalumAttachmentTypes.GEAS_SOUL_INFO);
                 data.setDirty(true);
             }
         }
@@ -97,15 +96,15 @@ public class GeasEffectHandler {
     }
 
     public static GeasSoulData getGeasData(LivingEntity entity) {
-        return entity.getData(AttachmentTypeRegistry.GEAS_SOUL_INFO);
+        return entity.getData(MalumAttachmentTypes.GEAS_SOUL_INFO);
     }
 
     @SuppressWarnings("DataFlowIssue")
     public static Optional<GeasDataComponent> getStoredGeasEffect(ItemStack stack) {
-        if (!stack.has(DataComponentRegistry.GEAS_EFFECT)) {
+        if (!stack.has(MalumDataComponents.GEAS_EFFECT)) {
             return Optional.empty();
         }
-        var component = stack.get(DataComponentRegistry.GEAS_EFFECT);
+        var component = stack.get(MalumDataComponents.GEAS_EFFECT);
         if (component.isInvalid()) {
             return Optional.empty();
         }

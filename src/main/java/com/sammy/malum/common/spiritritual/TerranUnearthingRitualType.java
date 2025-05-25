@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class TerranUnearthingRitualType extends MalumRitualType {
     public TerranUnearthingRitualType() {
-        super(MalumMod.malumPath("terran_unearthing"), SpiritTypeRegistry.EARTHEN_SPIRIT);
+        super(MalumMod.malumPath("terran_unearthing"), MalumSpiritTypes.EARTHEN_SPIRIT);
     }
 
     @Override

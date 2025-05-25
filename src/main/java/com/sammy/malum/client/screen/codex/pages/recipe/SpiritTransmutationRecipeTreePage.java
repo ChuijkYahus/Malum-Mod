@@ -3,10 +3,9 @@ package com.sammy.malum.client.screen.codex.pages.recipe;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
-import com.sammy.malum.core.systems.recipe.*;
-import com.sammy.malum.registry.client.ScreenParticleRegistry;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.client.MalumScreenParticles;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.item.MalumItems;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -19,8 +18,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.handlers.screenparticle.ScreenParticleHandler;
 import team.lodestar.lodestone.helpers.RandomHelper;
-import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
@@ -47,15 +44,15 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
         Level level = Minecraft.getInstance().level;
         if (level != null) {
 
-            var recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
+            var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
             while (true) {
                 if (recipe == null) {
-                    itemTree.add(Ingredient.of(ItemRegistry.BLIGHTED_SOIL.get()));
+                    itemTree.add(Ingredient.of(MalumItems.BLIGHTED_SOIL.get()));
                     break;
                 }
                 itemTree.add(recipe.ingredient);
                 ItemStack output = recipe.output;
-                recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(output));
+                recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(output));
             }
         }
     }
@@ -106,11 +103,11 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
                 float yTime = ((time + i * 27) % 100f) / 100f;
                 final double xOffset = 92 * xTime;
                 final double yOffset = Math.sin(yTime * 6.28f) * yOffsetScale;
-                ScreenParticleBuilder.create(ScreenParticleRegistry.LIGHT_SPEC_SMALL, TRANSMUTATION_PARTICLES)
+                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC_SMALL, TRANSMUTATION_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.4f, 0f).build())
                         .setSpinData(SpinParticleData.create(spin).build())
                         .setScaleData(GenericParticleData.create(0, scale, 0).build())
-                        .setColorData(SpiritTypeRegistry.ARCANE_SPIRIT.createColorData().setCoefficient(0.75f).build())
+                        .setColorData(MalumSpiritTypes.ARCANE_SPIRIT.createColorData().setCoefficient(0.75f).build())
                         .setLifetime(i % 2 == 0 ? 20 : 40)
                         .setLifeDelay(i % 3 == 0 ? 0 : 4)
                         .spawn(particlesX + xOffset, particlesY + yOffset);

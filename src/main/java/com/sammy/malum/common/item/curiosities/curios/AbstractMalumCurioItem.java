@@ -17,14 +17,14 @@ import java.util.function.*;
 public abstract class AbstractMalumCurioItem extends Item implements ICurioItem {
 
     public enum MalumTrinketType {
-        CLOTH(SoundRegistry.CLOTH_TRINKET_EQUIP),
-        ORNATE(SoundRegistry.ORNATE_TRINKET_EQUIP),
-        GILDED(SoundRegistry.GILDED_TRINKET_EQUIP),
-        ALCHEMICAL(SoundRegistry.ALCHEMICAL_TRINKET_EQUIP),
-        ROTTEN(SoundRegistry.ROTTEN_TRINKET_EQUIP),
-        METALLIC(SoundRegistry.METALLIC_TRINKET_EQUIP),
-        RUNE(SoundRegistry.RUNE_TRINKET_EQUIP),
-        VOID(SoundRegistry.VOID_TRINKET_EQUIP);
+        CLOTH(MalumSoundEvents.CLOTH_TRINKET_EQUIP),
+        ORNATE(MalumSoundEvents.ORNATE_TRINKET_EQUIP),
+        GILDED(MalumSoundEvents.GILDED_TRINKET_EQUIP),
+        ALCHEMICAL(MalumSoundEvents.ALCHEMICAL_TRINKET_EQUIP),
+        ROTTEN(MalumSoundEvents.ROTTEN_TRINKET_EQUIP),
+        METALLIC(MalumSoundEvents.METALLIC_TRINKET_EQUIP),
+        RUNE(MalumSoundEvents.RUNE_TRINKET_EQUIP),
+        VOID(MalumSoundEvents.VOID_TRINKET_EQUIP);
         final Supplier<SoundEvent> sound;
 
         MalumTrinketType(Supplier<SoundEvent> sound) {

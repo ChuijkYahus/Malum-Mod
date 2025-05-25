@@ -4,9 +4,8 @@ import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 
 import com.sammy.malum.core.systems.rite.TotemicRiteEffect;
 import com.sammy.malum.core.systems.rite.TotemicRiteType;
-import com.sammy.malum.registry.common.DamageTypeRegistry;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.registry.common.MalumDataTypes;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,7 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import team.lodestar.lodestone.helpers.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class WickedRiteType extends TotemicRiteType {
     public WickedRiteType() {
@@ -28,9 +27,9 @@ public class WickedRiteType extends TotemicRiteType {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Player)).forEach(e -> {
-                    final DamageSource damageSource = DamageTypeHelper.create(e.level(), DamageTypeRegistry.VOODOO_PLAYERLESS);
+                    final DamageSource damageSource = DamageTypeHelper.create(e.level(), MalumDataTypes.VOODOO_PLAYERLESS);
                     if (e.getHealth() > 2.5f && !e.isInvulnerableTo(damageSource)) {
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                        MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                 .createEffect(e)
                                 .color(WICKED_SPIRIT)
                                 .spawn(level);
@@ -51,7 +50,7 @@ public class WickedRiteType extends TotemicRiteType {
                     final boolean hadNoEffect = !e.hasEffect(MobEffects.DAMAGE_BOOST);
                     final boolean success = e.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 1));
                     if (hadNoEffect && success) {
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                        MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                 .createEffect(e)
                                 .color(WICKED_SPIRIT)
                                 .spawn(level);

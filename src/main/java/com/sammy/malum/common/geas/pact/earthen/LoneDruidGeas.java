@@ -19,7 +19,7 @@ public class LoneDruidGeas extends GeasEffect {
 
     public float coverPercentage;
     public LoneDruidGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID.get());
     }
 
     @Override
@@ -47,8 +47,8 @@ public class LoneDruidGeas extends GeasEffect {
                 WorldEventHandler.addWorldEvent(entity.level(),
                         new DelayedDamageWorldEvent(entity)
                                 .setDamageData(1, 1, 4)
-                                .setPhysicalDamageType(DamageTypeRegistry.KARMIC)
-                                .setMagicDamageType(DamageTypeRegistry.KARMIC));
+                                .setPhysicalDamageType(MalumDataTypes.KARMIC)
+                                .setMagicDamageType(MalumDataTypes.KARMIC));
             }
             if (oldCoverPercentage != coverPercentage) {
                 setDirty();

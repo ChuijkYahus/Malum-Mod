@@ -21,6 +21,6 @@ public class MagicScytheItem extends MalumScytheItem implements ISpiritAffiliate
 
     @Override
     public MalumSpiritType getDefiningSpiritType() {
-        return SpiritTypeRegistry.WICKED_SPIRIT;
+        return MalumSpiritTypes.WICKED_SPIRIT;
     }
 }

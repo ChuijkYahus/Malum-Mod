@@ -4,8 +4,8 @@ import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 public class RuneUnnaturalStaminaItem extends AbstractRuneCurioItem {
 
     public RuneUnnaturalStaminaItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.AERIAL_SPIRIT);
+        super(builder, MalumSpiritTypes.AERIAL_SPIRIT);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class RuneUnnaturalStaminaItem extends AbstractRuneCurioItem {
     }
 
     public static boolean forceSprint(LivingEntity livingEntity) {
-        return CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RUNE_OF_UNNATURAL_STAMINA.get());
+        return CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RUNE_OF_UNNATURAL_STAMINA.get());
     }
 }

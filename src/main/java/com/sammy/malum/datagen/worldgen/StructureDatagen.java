@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.worldgen;
 
 import com.sammy.malum.common.worldgen.well.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -19,16 +20,16 @@ import java.util.*;
 public class StructureDatagen {
 
     public static void structureBootstrap(BootstrapContext<Structure> context) {
-        context.register(MalumStructureKeys.WEEPING_WELL_STRUCTURE_KEY,
+        context.register(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_KEY,
                 new WeepingWellStructure(
-                        structure(context.lookup(Registries.BIOME).getOrThrow(BiomeTagRegistry.HAS_WEEPING_WELL), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE)
+                        structure(context.lookup(Registries.BIOME).getOrThrow(MalumTags.BiomeTags.HAS_WEEPING_WELL), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE)
                 )
         );
     }
 
     public static void structureSetBootstrap(BootstrapContext<StructureSet> context) {
-        context.register(MalumStructureKeys.WEEPING_WELL_STRUCTURE_SET_KEY, new StructureSet(
-                List.of(StructureSet.entry(context.lookup(Registries.STRUCTURE).getOrThrow(MalumStructureKeys.WEEPING_WELL_STRUCTURE_KEY))),
+        context.register(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_SET_KEY, new StructureSet(
+                List.of(StructureSet.entry(context.lookup(Registries.STRUCTURE).getOrThrow(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_KEY))),
                 new RandomSpreadStructurePlacement(24, 18, RandomSpreadType.TRIANGULAR, 546451665)));
     }
 

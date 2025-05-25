@@ -15,7 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.tag.ItemTagRegistry.*;
+import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
 
 public class CurioVoraciousRing extends MalumCurioItem {
 
@@ -31,7 +31,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
 
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
         if (event.getItem().is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(event.getEntity(), ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
+            if (CurioHelper.hasCurioEquipped(event.getEntity(), MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
                 event.setDuration((int) (event.getDuration() * 0.5f));
             }
         }
@@ -42,14 +42,14 @@ public class CurioVoraciousRing extends MalumCurioItem {
             return;
         }
         if (food.is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_DESPERATE_VORACITY.get())) {
+            if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b
                         .setStackingData(300, 0)
                         .setLimitData(3000, 0));
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }
-                livingEntity.playSound(SoundRegistry.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
+                livingEntity.playSound(MalumSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
             }
         }
     }

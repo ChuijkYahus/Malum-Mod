@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.banner;
 
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -51,7 +51,7 @@ public class SoulwovenBannerBlock extends LodestoneEntityBlock<SoulwovenBannerBl
     public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
         final ItemStack stack = super.getCloneItemStack(state, target, level, pos, player);
         if (level.getBlockEntity(pos) instanceof SoulwovenBannerBlockEntity banner) {
-            stack.set(DataComponentRegistry.SOULWOVEN_BANNER_PATTERN, banner.patternData);
+            stack.set(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, banner.patternData);
         }
         return stack;
     }

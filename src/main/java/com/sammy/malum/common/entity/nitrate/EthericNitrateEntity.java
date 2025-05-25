@@ -1,6 +1,5 @@
 package com.sammy.malum.common.entity.nitrate;
 
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
@@ -31,11 +30,11 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
     public static final ColorParticleData AURIC_COLOR_DATA = ColorParticleData.create(AURIC_YELLOW, AURIC_PURPLE).setEasing(Easing.SINE_IN_OUT).setCoefficient(0.9f).build();
 
     public EthericNitrateEntity(Level level) {
-        super(EntityRegistry.ETHERIC_NITRATE.get(), level);
+        super(MalumEntities.ETHERIC_NITRATE.get(), level);
     }
 
     public EthericNitrateEntity(LivingEntity owner) {
-        super(EntityRegistry.ETHERIC_NITRATE.get(), owner, owner.level());
+        super(MalumEntities.ETHERIC_NITRATE.get(), owner, owner.level());
     }
 
     @Override
@@ -50,7 +49,7 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
 
     @Override
     public NitrateImpactParticleEffectType getImpactParticleEffect() {
-        return ParticleEffectTypeRegistry.ETHERIC_NITRATE_IMPACT;
+        return MalumParticleEffectTypes.ETHERIC_NITRATE_IMPACT;
     }
 
     @Override
@@ -75,7 +74,7 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
             int lifetime = (int) (RandomHelper.randomBetween(random, 60, 80) * (1 - i / 3f));
             final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, 0, RandomHelper.randomBetween(random, 0f, 0.4f), 0).randomSpinOffset(random).build();
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
-            WorldParticleBuilder.create(ParticleRegistry.STRANGE_SMOKE)
+            WorldParticleBuilder.create(MalumParticles.STRANGE_SMOKE)
                     .setTransparencyData(GenericParticleData.create(0.7f * scalar, 0.9f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setSpinData(spinData)
                     .setScaleData(GenericParticleData.create(0.2f * scalar, 0.4f * scalar, 0.6f * scalar).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())

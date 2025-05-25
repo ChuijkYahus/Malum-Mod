@@ -4,13 +4,11 @@ import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -21,7 +19,6 @@ import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 import team.lodestar.lodestone.systems.particle.world.type.*;
 
-import java.awt.*;
 import java.util.function.*;
 
 public class WeaponParticleEffects {
@@ -33,7 +30,7 @@ public class WeaponParticleEffects {
         if (level.getGameTime() % 2L == 0) {
             var random = level.getRandom();
             var spirit = entity.getItem().getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType() : null;
-            var slash = WeaponParticleEffects.spawnSlashParticle(level, entity.position(), ParticleRegistry.ROUNDABOUT_SLASH, spirit);
+            var slash = WeaponParticleEffects.spawnSlashParticle(level, entity.position(), MalumParticles.ROUNDABOUT_SLASH, spirit);
             float spinOffset = RandomHelper.randomBetween(random, -0.8f, 0.8f);
             int age = RandomHelper.randomBetween(random, 8, 18);
             slash.getBuilder()
@@ -117,7 +114,7 @@ public class WeaponParticleEffects {
     }
 
     public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
-        var builder = builderSupplier.apply(new WorldParticleOptions(ParticleRegistry.SLAM));
+        var builder = builderSupplier.apply(new WorldParticleOptions(MalumParticles.SLAM));
         return spawnSlamParticle(level, pos, builder);
     }
 

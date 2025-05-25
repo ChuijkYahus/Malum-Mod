@@ -3,12 +3,11 @@ package com.sammy.malum.common.spiritrite.eldritch;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class EldritchEarthenRiteType extends TotemicRiteType {
     public EldritchEarthenRiteType() {
@@ -25,7 +24,7 @@ public class EldritchEarthenRiteType extends TotemicRiteType {
                     boolean canBreak = !state.isAir() && state.getDestroySpeed(level, p) != -1;
                     if (canBreak) {
                         level.destroyBlock(p, true);
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                        MalumParticleEffectTypes.BLOCK_RITE_EFFECT
                                 .createEffect(p)
                                 .color(EARTHEN_SPIRIT)
                                 .spawn(level);
@@ -48,7 +47,7 @@ public class EldritchEarthenRiteType extends TotemicRiteType {
                         BlockState cobblestone = Blocks.COBBLESTONE.defaultBlockState();
                         level.setBlockAndUpdate(p, cobblestone);
                         level.levelEvent(2001, p, Block.getId(cobblestone));
-                        ParticleEffectTypeRegistry.BLOCK_RITE_EFFECT
+                        MalumParticleEffectTypes.BLOCK_RITE_EFFECT
                                 .createEffect(p)
                                 .color(EARTHEN_SPIRIT)
                                 .spawn(level);

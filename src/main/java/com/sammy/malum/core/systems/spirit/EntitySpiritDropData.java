@@ -16,7 +16,7 @@ import java.util.stream.*;
 
 public class EntitySpiritDropData {
 
-    public static final EntitySpiritDropData EMPTY = new EntitySpiritDropData(SpiritTypeRegistry.SACRED_SPIRIT, new ArrayList<>(), null);
+    public static final EntitySpiritDropData EMPTY = new EntitySpiritDropData(MalumSpiritTypes.SACRED_SPIRIT, new ArrayList<>(), null);
 
     public final MalumSpiritType primaryType;
     public final int totalSpirits;

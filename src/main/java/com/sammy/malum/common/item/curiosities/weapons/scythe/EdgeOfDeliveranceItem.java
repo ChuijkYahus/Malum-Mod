@@ -4,7 +4,6 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -46,11 +45,11 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         super.outgoingDamageEvent(event, attacker, target, stack);
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(DamageTypeTagRegistry.IS_SCYTHE) || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION) || source.is(DamageTypeRegistry.MALIGNANT_METAL_COMBO)) {
-                var effect = MobEffectRegistry.IMMINENT_DELIVERANCE;
+            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDataTypes.INVERTED_HEART_PROPAGATION) || source.is(MalumDataTypes.MALIGNANT_METAL_COMBO)) {
+                var effect = MalumMobEffects.IMMINENT_DELIVERANCE;
                 if (target.hasEffect(effect)) {
                     if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
-                        var particle = ParticleEffectTypeRegistry.EDGE_OF_DELIVERANCE_CRIT.createEffect()
+                        var particle = MalumParticleEffectTypes.EDGE_OF_DELIVERANCE_CRIT.createEffect()
                                 .originatesFrom(attacker).targets(target).tiedToTarget().forwardOffset(-0.8f).upwardOffset(-0.4f);
                         if (!canSweep(attacker)) {
                             particle.verticalSlashRotation();
@@ -60,10 +59,10 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
                     }
                 } else {
                     event.setNewDamage(event.getNewDamage() * 0.5f);
-                    if (source.is(DamageTypeTagRegistry.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() >= 0.4f) {
+                    if (source.is(MalumTags.DamageTypeTags.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() >= 0.4f) {
                         return;
                     }
-                    target.addEffect(new MobEffectInstance(MobEffectRegistry.IMMINENT_DELIVERANCE, 60));
+                    target.addEffect(new MobEffectInstance(MalumMobEffects.IMMINENT_DELIVERANCE, 60));
                 }
             }
         }
@@ -71,7 +70,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     @Override
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? SoundRegistry.EDGE_OF_DELIVERANCE_SWEEP : SoundRegistry.EDGE_OF_DELIVERANCE_CUT;
+        return canSweep ? MalumSoundEvents.EDGE_OF_DELIVERANCE_SWEEP : MalumSoundEvents.EDGE_OF_DELIVERANCE_CUT;
     }
 
     public static boolean triggerMalignantCrit(DamageContainer damageContainer, LivingEntity attacker, LivingEntity target) {
@@ -90,9 +89,9 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         NeoForge.EVENT_BUS.post(postEvent);
 
         damageContainer.setNewDamage(damageContainer.getNewDamage() * 2);
-        SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 2f, 0.75f);
-        SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.25f);
-        SoundHelper.playSound(target, SoundRegistry.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.75f);
+        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 2f, 0.75f);
+        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.25f);
+        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.75f);
         return true;
     }
 }

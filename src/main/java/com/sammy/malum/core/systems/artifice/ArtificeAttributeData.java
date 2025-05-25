@@ -6,8 +6,8 @@ import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
 import com.sammy.malum.common.item.augment.ImpurityStabilizer;
 import com.sammy.malum.common.item.augment.core.CausticCatalystItem;
 import com.sammy.malum.common.item.augment.core.ResonanceTuner;
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -131,11 +131,11 @@ public class ArtificeAttributeData {
     }
 
     public void applyAugment(ItemStack augment) {
-        if (!augment.has(DataComponentRegistry.ARTIFICE_AUGMENT))
+        if (!augment.has(MalumDataComponents.ARTIFICE_AUGMENT))
         {
             throw new IllegalArgumentException();
         }
-        ArtificeAugmentDataComponent augmentData = augment.get(DataComponentRegistry.ARTIFICE_AUGMENT);
+        ArtificeAugmentDataComponent augmentData = augment.get(MalumDataComponents.ARTIFICE_AUGMENT);
         for (ArtificeModifier modifier : augmentData.modifiers()) {
             applyModifier(modifier);
         }
@@ -156,7 +156,7 @@ public class ArtificeAttributeData {
         applyTuning();
         float volume = RandomHelper.randomBetween(level.getRandom(), 1.25f, 1.75f);
         float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f);
-        level.playSound(null, pos, SoundRegistry.TUNING_FORK_TINKER.get(), SoundSource.BLOCKS, volume, pitch);
+        level.playSound(null, pos, MalumSoundEvents.TUNING_FORK_TINKER.get(), SoundSource.BLOCKS, volume, pitch);
         BlockStateHelper.updateAndNotifyState(level, pos);
     }
 

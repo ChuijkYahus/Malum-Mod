@@ -1,9 +1,9 @@
 package com.sammy.malum.common.block.ether;
 
 import com.sammy.malum.common.item.ether.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponentMap;
@@ -17,15 +17,11 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
 
@@ -39,21 +35,21 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
     }
 
     public EtherBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.ETHER.get(), pos, state);
+        this(MalumBlockEntities.ETHER.get(), pos, state);
     }
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
         components.set(DataComponents.DYED_COLOR, firstColor);
-        components.set(DataComponentRegistry.SECONDARY_DYED_COLOR, secondColor);
+        components.set(MalumDataComponents.SECONDARY_DYED_COLOR, secondColor);
     }
 
     @Override
     protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
         super.applyImplicitComponents(componentInput);
         firstColor = componentInput.get(DataComponents.DYED_COLOR);
-        secondColor = componentInput.get(DataComponentRegistry.SECONDARY_DYED_COLOR);
+        secondColor = componentInput.get(MalumDataComponents.SECONDARY_DYED_COLOR);
     }
 
     @Override
@@ -151,7 +147,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
                 int lifeTime = RandomHelper.randomBetween(random, 50, 60);
                 float scale = RandomHelper.randomBetween(random, 0.9f, 1.2f);
-                WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR)
+                WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.2f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
@@ -165,7 +161,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
                 var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
                 int lifeTime = RandomHelper.randomBetween(random, 20, 30);
                 float scale = RandomHelper.randomBetween(random, 0.25f, 0.35f);
-                WorldParticleBuilder.create(ParticleRegistry.STAR)
+                WorldParticleBuilder.create(MalumParticles.STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.6f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)

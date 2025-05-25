@@ -4,7 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.recipe.SpiritFocusingRecipe;
 import com.sammy.malum.compability.jei.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -32,7 +32,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
 
     public SpiritFocusingRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(MalumMod.malumPath("textures/gui/spirit_focusing_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ItemRegistry.SPIRIT_CRUCIBLE.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItems.SPIRIT_CRUCIBLE.get()));
     }
 
     @Override

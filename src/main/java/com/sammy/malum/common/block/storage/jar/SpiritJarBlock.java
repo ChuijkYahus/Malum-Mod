@@ -46,7 +46,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
                 if (!pLevel.isClientSide) {
                     BlockStateHelper.updateAndNotifyState(pLevel, pPos);
                 }
-                SoundHelper.playSound(pPlayer, SoundRegistry.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
+                SoundHelper.playSound(pPlayer, MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
 
                 return true;
             }
@@ -65,7 +65,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
         if (be instanceof SpiritJarBlockEntity jar) {
             if (jar.contents == null)
                 return 0;
-            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(jar.contents.spirit()) + 1, 15);
+            return Math.min(MalumSpiritTypes.getIndexForSpiritType(jar.contents.spirit()) + 1, 15);
         }
         return 0;
     }

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.ether;
 
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -41,8 +41,8 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
     }
 
     public static int getSecondaryColor(ItemStack stack) {
-        if (stack.has(DataComponentRegistry.SECONDARY_DYED_COLOR)) {
-            return stack.get(DataComponentRegistry.SECONDARY_DYED_COLOR).rgb();
+        if (stack.has(MalumDataComponents.SECONDARY_DYED_COLOR)) {
+            return stack.get(MalumDataComponents.SECONDARY_DYED_COLOR).rgb();
         }
         return DEFAULT_SECOND_COLOR.rgb();
     }
@@ -91,7 +91,7 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
             int k = 0;
             int l = 0;
             int i1 = 0;
-            DyedItemColor dyeditemcolor = itemstack.get(DataComponentRegistry.SECONDARY_DYED_COLOR);
+            DyedItemColor dyeditemcolor = itemstack.get(MalumDataComponents.SECONDARY_DYED_COLOR);
             if (dyeditemcolor != null) {
                 int j1 = FastColor.ARGB32.red(dyeditemcolor.rgb());
                 int k1 = FastColor.ARGB32.green(dyeditemcolor.rgb());
@@ -125,7 +125,7 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
             k3 = (int) ((float) k3 * f / f1);
             int l3 = FastColor.ARGB32.color(0, l2, i3, k3);
             boolean flag = dyeditemcolor == null || dyeditemcolor.showInTooltip();
-            itemstack.set(DataComponentRegistry.SECONDARY_DYED_COLOR, new DyedItemColor(l3, flag));
+            itemstack.set(MalumDataComponents.SECONDARY_DYED_COLOR, new DyedItemColor(l3, flag));
             return itemstack;
         }
     }

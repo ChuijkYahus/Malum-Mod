@@ -46,7 +46,7 @@ public class MalumLogBLock extends LodestoneLogBlock {
     }
 
     public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritShardItem spirit) {
-        if (spirit.type.equals(SpiritTypeRegistry.UMBRAL_SPIRIT)) {
+        if (spirit.type.equals(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return false;
         }
         level.setBlockAndUpdate(pos, spirit.type.getTotemPoleBlockState(isCorrupt, hit));

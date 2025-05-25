@@ -2,7 +2,8 @@ package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.registry.common.tag.*;
+import com.sammy.malum.registry.common.*;
+
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
@@ -55,7 +56,7 @@ public class WaveformConfigurationHandler {
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack stack = player.getItemInHand(hand);
-        if (!stack.is(ItemTagRegistry.IS_REDSTONE_TOOL)) {
+        if (!stack.is(MalumTags.ItemTags.IS_REDSTONE_TOOL)) {
             return;
         }
         if (!canInteract(player)) {

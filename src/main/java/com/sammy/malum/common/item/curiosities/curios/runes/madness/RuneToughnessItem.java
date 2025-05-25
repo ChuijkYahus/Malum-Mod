@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.*;
 public class RuneToughnessItem extends AbstractRuneCurioItem {
 
     public RuneToughnessItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.EARTHEN_SPIRIT);
+        super(builder, MalumSpiritTypes.EARTHEN_SPIRIT);
     }
 
     @Override

@@ -5,6 +5,7 @@ package com.sammy.malum.client.model;
 
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.MalumMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -42,10 +43,16 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
     }
 
     @Override
+    public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int p_350361_) {
+        super.renderToBuffer(matrixStack, vertexConsumer, packedLight, packedOverlay, p_350361_);
+    }
+
+    @Override
     public void copyFromDefault(HumanoidModel model) {
         super.copyFromDefault(model);
         cape.copyFrom(model.body);
         hood.copyFrom(model.body);
+        model.hat.visible = false;
     }
 
     @Override

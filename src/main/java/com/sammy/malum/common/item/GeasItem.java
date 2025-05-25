@@ -1,12 +1,9 @@
 package com.sammy.malum.common.item;
 
-import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
@@ -73,7 +70,7 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if (stack.has(DataComponentRegistry.GEAS_EFFECT)) {
+        if (stack.has(MalumDataComponents.GEAS_EFFECT)) {
             GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
                 var component = tooltipComponents.getFirst().copy()
                         .append(": [")
@@ -91,7 +88,7 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     @Override
     public void spawnLateParticles(ScreenParticleHolder target, Level level, float partialTick, ItemStack stack, float x, float y) {
-        ScreenParticleEffects.spawnSpiritShardScreenParticles(target, SpiritTypeRegistry.ELDRITCH_SPIRIT);
+        ScreenParticleEffects.spawnSpiritShardScreenParticles(target, MalumSpiritTypes.ELDRITCH_SPIRIT);
     }
 
     public static void addGeasTooltip(ItemTooltipEvent event) {

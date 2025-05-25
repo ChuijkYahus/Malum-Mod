@@ -4,9 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.*;
-import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
@@ -16,12 +14,9 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
-
-import java.awt.*;
 
 public class SunderingAnchorEntityRenderer extends EntityRenderer<SunderingAnchorProjectileEntity> {
 
@@ -54,11 +49,11 @@ public class SunderingAnchorEntityRenderer extends EntityRenderer<SunderingAncho
         var additive = LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
         var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL, ShaderUniformHandler.LUMITRANSPARENT);
         VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(additive);
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, SpiritTypeRegistry.EARTHEN_SPIRIT, scale * 1.2f, alpha*0.4f, partialTicks);
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, SpiritTypeRegistry.EARTHEN_SPIRIT, scale * 2f, alpha, partialTicks);
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, MalumSpiritTypes.EARTHEN_SPIRIT, scale * 1.2f, alpha*0.4f, partialTicks);
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, MalumSpiritTypes.EARTHEN_SPIRIT, scale * 2f, alpha, partialTicks);
         builder.setRenderType(transparent);
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, SpiritTypeRegistry.AERIAL_SPIRIT, scale * 0.6f, alpha*0.3f, partialTicks);
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, SpiritTypeRegistry.AERIAL_SPIRIT, scale, alpha, partialTicks);
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, MalumSpiritTypes.AERIAL_SPIRIT, scale * 0.6f, alpha*0.3f, partialTicks);
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, MalumSpiritTypes.AERIAL_SPIRIT, scale, alpha, partialTicks);
 
         super.render(entity, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
     }

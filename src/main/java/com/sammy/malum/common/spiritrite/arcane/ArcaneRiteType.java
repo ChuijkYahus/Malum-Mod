@@ -3,8 +3,8 @@ package com.sammy.malum.common.spiritrite.arcane;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.recipe.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
@@ -18,7 +18,7 @@ import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class ArcaneRiteType extends TotemicRiteType {
     public ArcaneRiteType() {
@@ -46,7 +46,7 @@ public class ArcaneRiteType extends TotemicRiteType {
 
             @Override
             public boolean canAffectBlock(TotemBaseBlockEntity totemBase, BlockState state, BlockPos pos) {
-                return state.is(BlockTagRegistry.UNCHAINED_RITE_CATALYST) && super.canAffectBlock(totemBase, state, pos);
+                return state.is(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST) && super.canAffectBlock(totemBase, state, pos);
             }
 
             @SuppressWarnings("ConstantConditions")
@@ -58,7 +58,7 @@ public class ArcaneRiteType extends TotemicRiteType {
                     var targetPos = p.above();
                     var targetState = level.getBlockState(targetPos);
                     var targetAsItem = targetState.getBlock().asItem().getDefaultInstance();
-                    var recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(targetAsItem));
+                    var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(targetAsItem));
                     if (recipe != null) {
                         if (recipe.output.getItem() instanceof BlockItem blockItem) {
                             Block resultBlock = blockItem.getBlock();

@@ -20,7 +20,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
     public int soundCooldown = 20 + random.nextInt(100);
 
     public SpiritItemEntity(Level level) {
-        super(EntityRegistry.NATURAL_SPIRIT.get(), level);
+        super(MalumEntities.NATURAL_SPIRIT.get(), level);
         maxAge = 4000;
     }
 
@@ -50,7 +50,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
             ItemHelper.giveItemToEntity(owner, stack);
         }
         if (random.nextFloat() < 0.6f) {
-            SoundHelper.playSound(this, SoundRegistry.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.1f, 2f));
+            SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.1f, 2f));
         }
         SoundHelper.playSound(this, SoundEvents.ITEM_PICKUP, 0.3f, Mth.nextFloat(random, 1.1f, 2f));
     }
@@ -61,7 +61,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
         if (!level().isClientSide()) {
             if (soundCooldown-- == 0) {
                 if (random.nextFloat() < 0.4f) {
-                    SoundHelper.playSound(this, SoundRegistry.ARCANE_WHISPERS.get(), 0.3f, Mth.nextFloat(random, 0.8f, 2f));
+                    SoundHelper.playSound(this, MalumSoundEvents.ARCANE_WHISPERS.get(), 0.3f, Mth.nextFloat(random, 0.8f, 2f));
                 }
                 soundCooldown = 40 + random.nextInt(40);
             }

@@ -14,7 +14,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.tag.ItemTagRegistry.*;
+import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
 
 public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IVoidItem {
     public CurioGruesomeConcentrationRing(Properties builder) {
@@ -31,12 +31,12 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
             return;
         }
         if (food.is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
+            if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b
                         .setInitialData(600, 2)
                         .setStackingData(0, 2)
                         .setLimitData(0, 9));
-                livingEntity.playSound(SoundRegistry.GRUESOME_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
+                livingEntity.playSound(MalumSoundEvents.GRUESOME_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
             }
         }
     }

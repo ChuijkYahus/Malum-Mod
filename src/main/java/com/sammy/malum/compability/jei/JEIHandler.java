@@ -8,8 +8,8 @@ import com.sammy.malum.compability.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compability.jei.categories.*;
 import com.sammy.malum.compability.jei.recipes.SpiritTransmutationWrapper;
 import com.sammy.malum.core.handlers.hiding.HiddenTagHandler;
-import com.sammy.malum.registry.common.item.ItemRegistry;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -67,9 +67,9 @@ public class JEIHandler implements IModPlugin {
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         ClientLevel level = Minecraft.getInstance().level;
         if (level != null) {
-            registry.addRecipes(SPIRIT_INFUSION, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_INFUSION.get()));
+            registry.addRecipes(SPIRIT_INFUSION, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get()));
 
-            List<SpiritTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_TRANSMUTATION.get());
+            List<SpiritTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get());
             List<SpiritTransmutationRecipe> leftovers = Lists.newArrayList();
             Map<String, List<SpiritTransmutationRecipe>> groups = Maps.newLinkedHashMap();
             for (SpiritTransmutationRecipe recipe : transmutation) {
@@ -90,13 +90,13 @@ public class JEIHandler implements IModPlugin {
                     .collect(Collectors.toList()));
 
             //TODO: this is a mess :(
-            registry.addRecipes(FOCUSING, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_FOCUSING.get()).stream()
+            registry.addRecipes(FOCUSING, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_FOCUSING.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
-            registry.addRecipes(SPIRIT_REPAIR, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_REPAIR.get()).stream()
+            registry.addRecipes(SPIRIT_REPAIR, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_REPAIR.get()).stream()
                 .filter(it -> !it.itemsForRepair.isEmpty()).collect(Collectors.toList()));
-            registry.addRecipes(WEEPING_WELL, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.VOID_FAVOR.get()).stream()
+            registry.addRecipes(WEEPING_WELL, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.VOID_FAVOR.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
-            registry.addRecipes(RUNEWORKING, LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.RUNEWORKING.get()).stream()
+            registry.addRecipes(RUNEWORKING, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.RUNEWORKING.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
             if (FarmersDelightCompat.LOADED) {
                 FarmersDelightCompat.AndJeiLoadedOnly.addInfo(registry);
@@ -106,12 +106,12 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.SPIRIT_CRUCIBLE.get()), FOCUSING);
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.REPAIR_PYLON.get()), SPIRIT_REPAIR);
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.RUNIC_WORKBENCH.get()), RUNEWORKING);
-        registry.addRecipeCatalyst(new ItemStack(ItemRegistry.VOID_DEPOT.get()), WEEPING_WELL);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.SPIRIT_CRUCIBLE.get()), FOCUSING);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.REPAIR_PYLON.get()), SPIRIT_REPAIR);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.RUNIC_WORKBENCH.get()), RUNEWORKING);
+        registry.addRecipeCatalyst(new ItemStack(MalumItems.VOID_DEPOT.get()), WEEPING_WELL);
     }
 
     private static final Set<ItemStack> HIDDEN_ITEMS = new LinkedHashSet<>();

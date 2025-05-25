@@ -21,7 +21,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT, SpiritTypeRegistry.ARCANE_SPIRIT.getIdentifier());
+        builder.define(DATA_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT.getIdentifier());
     }
 
     @Override
@@ -50,7 +50,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     }
 
     public MalumSpiritType getSpiritType() {
-        return SpiritTypeRegistry.SPIRITS.get(getEntityData().get(DATA_SPIRIT));
+        return MalumSpiritTypes.SPIRITS.get(getEntityData().get(DATA_SPIRIT));
     }
 
     public void setSpirit(MalumSpiritType spiritType) {

@@ -5,7 +5,7 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class AqueousRiteType extends TotemicRiteType {
     public AqueousRiteType() {
@@ -14,11 +14,11 @@ public class AqueousRiteType extends TotemicRiteType {
 
     @Override
     public TotemicRiteEffect getNaturalRiteEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.POSEIDONS_GRASP);
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.POSEIDONS_GRASP);
     }
 
     @Override
     public TotemicRiteEffect getCorruptedEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.ANGLERS_LURE);
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.ANGLERS_LURE);
     }
 }

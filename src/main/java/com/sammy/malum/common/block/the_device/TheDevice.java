@@ -29,7 +29,7 @@ public class TheDevice extends Block {
             pPlayer.swing(pHand, true);
             playSound(pLevel, pPos);
             if (pPlayer.isCreative()) {
-                final ProgressionData data = pPlayer.getData(AttachmentTypeRegistry.PROGRESSION_DATA);
+                final ProgressionData data = pPlayer.getData(MalumAttachmentTypes.PROGRESSION_DATA);
                 data.hasBeenRejected = false;
             }
             return ItemInteractionResult.SUCCESS;
@@ -59,6 +59,6 @@ public class TheDevice extends Block {
 //        if (level instanceof ServerLevel serverLevel) {
 //            PacketDistributor.sendToPlayersTrackingChunk(serverLevel, new ChunkPos(pos), new PositionedScreenshakePayload(40, BlockPosHelper.fromBlockPos(pos), 4f, 10f, Easing.EXPO_OUT).setIntensity(4f, 0));
 //        }
-        level.playSound(null, pos, SoundRegistry.THE_DEEP_BECKONS.get(), SoundSource.BLOCKS, 1, 1);
+        level.playSound(null, pos, MalumSoundEvents.THE_DEEP_BECKONS.get(), SoundSource.BLOCKS, 1, 1);
     }
 }

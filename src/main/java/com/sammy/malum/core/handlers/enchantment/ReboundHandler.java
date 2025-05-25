@@ -4,6 +4,7 @@ import com.sammy.malum.common.entity.scythe.ScytheBoomerangEntity;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.Stats;
@@ -21,7 +22,7 @@ public class ReboundHandler {
         int slot = hand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
         if (player instanceof ServerPlayer serverPlayer) {
             boolean isEnhanced = MalumScytheItem.isEnhanced(player);
-            boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, ItemRegistry.RING_OF_THE_HOWLING_MAELSTROM.get());
+            boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, MalumItems.RING_OF_THE_HOWLING_MAELSTROM.get());
             float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
             float velocity = (isEnhanced ? 3f : 1.75f);
@@ -42,8 +43,8 @@ public class ReboundHandler {
             entity.setMaelstrom(isMaelstrom);
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velocity, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, SoundRegistry.SCYTHE_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f));
-            TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_A_SCYTHE);
+            SoundHelper.playSound(player, MalumSoundEvents.SCYTHE_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f));
+            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);
         player.awardStat(Stats.ITEM_USED.get(scythe.getItem()));
@@ -51,7 +52,7 @@ public class ReboundHandler {
 
     public static void pickupScythe(ScytheBoomerangEntity entity, ItemStack stack, ServerPlayer player) {
         if (!player.isCreative()) {
-            int enchantmentLevel = EnchantmentRegistry.getEnchantmentLevel(player.level(), EnchantmentRegistry.REBOUND, stack);
+            int enchantmentLevel = EnchantmentKeys.getEnchantmentLevel(player.level(), EnchantmentKeys.REBOUND, stack);
             int cooldown = 120 - 35 * (enchantmentLevel - 1);
             if (entity.isMaelstrom()) {
                 cooldown = (cooldown + 30) * 2;

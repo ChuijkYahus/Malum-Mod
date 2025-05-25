@@ -1,6 +1,5 @@
 package com.sammy.malum.common.entity.bolt;
 
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
@@ -28,7 +27,7 @@ import java.util.function.*;
 public class HexBoltEntity extends AbstractBoltProjectileEntity {
 
     public HexBoltEntity(Level level) {
-        super(EntityRegistry.HEX_BOLT.get(), level);
+        super(MalumEntities.HEX_BOLT.get(), level);
         noPhysics = false;
     }
 
@@ -45,17 +44,17 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
 
     @Override
     public BoltImpactParticleEffect getImpactParticleEffect() {
-        return ParticleEffectTypeRegistry.HEX_BOLT_IMPACT;
+        return MalumParticleEffectTypes.HEX_BOLT_IMPACT;
     }
 
     @Override
     public MalumNetworkedParticleEffectColorData getImpactParticleColor() {
-        return new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT);
+        return new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.MNEMONIC_HEX_STAFF.get();
+        return MalumItems.MNEMONIC_HEX_STAFF.get();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -65,7 +64,7 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
         Vec3 position = position();
         float scalar = getVisualEffectScalar();
         Vec3 norm = getDeltaMovement().normalize().scale(0.05f);
-        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, SpiritTypeRegistry.WICKED_SPIRIT);
+        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, MalumSpiritTypes.WICKED_SPIRIT);
         lightSpecs.getBuilder()
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .multiplyLifetime(1.25f)
@@ -77,11 +76,11 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
         lightSpecs.spawnParticles();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
-        WorldParticleBuilder.create(ParticleRegistry.SAW)
+        WorldParticleBuilder.create(MalumParticles.SAW)
                 .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                 .setTransparencyData(GenericParticleData.create(0.9f * scalar, 0.4f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.4f * scalar, 0.3f * scalar).setEasing(Easing.SINE_IN_OUT).build())
-                .setColorData(SpiritTypeRegistry.WICKED_SPIRIT.createColorData().build())
+                .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 30))
@@ -93,7 +92,7 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
                 .setScaleData(GenericParticleData.create(0.5f * scalar, 0.3f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setColorData(ColorParticleData.create(ColorHelper.darker(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor(), 2)).build())
+                .setColorData(ColorParticleData.create(ColorHelper.darker(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor(), 2)).build())
                 .spawn(level, position.x, position.y, position.z);
     }
 }

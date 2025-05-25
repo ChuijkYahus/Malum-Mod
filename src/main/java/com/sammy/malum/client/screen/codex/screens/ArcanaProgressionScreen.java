@@ -17,7 +17,7 @@ import net.neoforged.neoforge.common.*;
 import java.util.*;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
@@ -28,7 +28,7 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
     public static final List<PlacedBookEntry> ENTRIES = new ArrayList<>();
 
     protected ArcanaProgressionScreen() {
-        super(SoundRegistry.ARCANA_SWEETENER_NORMAL, 1024, 2560);
+        super(MalumSoundEvents.ARCANA_SWEETENER_NORMAL, 1024, 2560);
         minecraft = Minecraft.getInstance();
         setupEntries();
         NeoForge.EVENT_BUS.post(new SetupMalumCodexEntriesEvent());
@@ -46,13 +46,13 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         final ArcanaProgressionScreen screenInstance = getScreenInstance();
         screenInstance.openScreen(true);
         screenInstance.isVoidTouched = isVoidTouched;
-        screen.playSweetenedSound(SoundRegistry.ARCANA_CODEX_OPEN, 1.25f);
+        screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
     }
 
     public static void openCodexViaTransition() {
         getScreenInstance().openScreen(false);
         screen.faceObject(screen.bookObjectHandler.get(0));
-        screen.playSound(SoundRegistry.ARCANA_TRANSITION_NORMAL, 1.25f, 1f);
+        screen.playSound(MalumSoundEvents.ARCANA_TRANSITION_NORMAL, 1.25f, 1f);
         screen.timesTransitioned++;
         screen.transitionTimer = screen.getTransitionDuration();
         EncyclopediaEsotericaItem.shouldOpenVoidCodex = false;

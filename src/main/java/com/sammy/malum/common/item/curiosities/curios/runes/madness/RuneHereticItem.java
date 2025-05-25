@@ -2,9 +2,9 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.MobEffectRegistry;
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumMobEffects;
+import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 public class RuneHereticItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneHereticItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.ELDRITCH_SPIRIT);
+        super(builder, MalumSpiritTypes.ELDRITCH_SPIRIT);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class RuneHereticItem extends AbstractRuneCurioItem implements ItemEventH
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
-        Holder<MobEffect> silenced = MobEffectRegistry.SILENCED;
+        Holder<MobEffect> silenced = MalumMobEffects.SILENCED;
         MobEffectInstance effect = attacker.getEffect(silenced);
         if (effect == null) {
             attacker.addEffect(new MobEffectInstance(silenced, 60, 0, true, true, true));
@@ -41,6 +41,6 @@ public class RuneHereticItem extends AbstractRuneCurioItem implements ItemEventH
             }
             EntityHelper.extendEffect(effect, attacker, 30, 600);
         }
-        SoundHelper.playSound(attacked, SoundRegistry.DRAINING_MOTIF.get(), 1f, 1.5f);
+        SoundHelper.playSound(attacked, MalumSoundEvents.DRAINING_MOTIF.get(), 1f, 1.5f);
     }
 }

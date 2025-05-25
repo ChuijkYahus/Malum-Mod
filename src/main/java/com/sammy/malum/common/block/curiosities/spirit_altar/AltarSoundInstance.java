@@ -5,7 +5,7 @@ import team.lodestar.lodestone.systems.sound.*;
 
 public class AltarSoundInstance extends CachedBlockEntitySoundInstance<SpiritAltarBlockEntity> {
     public AltarSoundInstance(SpiritAltarBlockEntity blockEntity, float volume, float pitch) {
-        super(blockEntity, SoundRegistry.ALTAR_LOOP, volume, pitch);
+        super(blockEntity, MalumSoundEvents.ALTAR_LOOP, volume, pitch);
         this.pitch = 0.8f;
     }
 

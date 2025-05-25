@@ -3,8 +3,7 @@ package com.sammy.malum.common.spiritrite.arcane;
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.systems.rite.TotemicRiteEffect;
 import com.sammy.malum.core.systems.rite.TotemicRiteType;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.*;
@@ -22,8 +21,8 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.ARCANE_SPIRIT;
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.SACRED_SPIRIT;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.ARCANE_SPIRIT;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.SACRED_SPIRIT;
 import static net.minecraft.world.entity.ai.goal.EatBlockGoal.IS_TALL_GRASS;
 
 public class SacredRiteType extends TotemicRiteType {
@@ -40,7 +39,7 @@ public class SacredRiteType extends TotemicRiteType {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Monster)).forEach(e -> {
                     if (e.getHealth() < e.getMaxHealth()) {
                         e.heal(2);
-                        ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                        MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                 .createEffect(e)
                                 .color(SACRED_SPIRIT)
                                 .spawn(level);
@@ -60,7 +59,7 @@ public class SacredRiteType extends TotemicRiteType {
                     if (e instanceof Animal animal) {
                         if (animal.getAge() < 0) {
                             if (totemBase.getLevel().random.nextFloat() <= 0.04f) {
-                                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                                MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                         .createEffect(e)
                                         .color(SACRED_SPIRIT)
                                         .spawn(level);
@@ -134,7 +133,7 @@ public class SacredRiteType extends TotemicRiteType {
         public final void tryAct(ServerLevel level, TotemBaseBlockEntity totemBaseBlockEntity, Mob mob) {
             if (targetClass.isInstance(mob)) {
                 act(totemBaseBlockEntity, (T) mob);
-                ParticleEffectTypeRegistry.ENTITY_RITE_EFFECT
+                MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                         .createEffect(mob)
                         .color(SACRED_SPIRIT)
                         .spawn(level);

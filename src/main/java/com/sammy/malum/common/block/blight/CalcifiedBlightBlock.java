@@ -20,7 +20,7 @@ import net.neoforged.neoforge.common.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.tag.BlockTagRegistry.*;
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 
 public class CalcifiedBlightBlock extends BushBlock implements IShearable {
 
@@ -43,19 +43,19 @@ public class CalcifiedBlightBlock extends BushBlock implements IShearable {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (stack.getItem().equals(ItemRegistry.CALCIFIED_BLIGHT.get())) {
+        if (stack.getItem().equals(MalumItems.CALCIFIED_BLIGHT.get())) {
             final int stage = state.getValue(STAGE);
             if (stage < 3) {
                 level.setBlock(pos, state.setValue(STAGE, stage + 1), 3);
             }
             else {
-                TallCalcifiedBlightBlock.placeAt(level, BlockRegistry.TALL_CALCIFIED_BLIGHT.get().defaultBlockState(), pos, 3);
+                TallCalcifiedBlightBlock.placeAt(level, MalumBlocks.TALL_CALCIFIED_BLIGHT.get().defaultBlockState(), pos, 3);
             }
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
             SoundType soundtype = state.getSoundType(level, pos, player);
-            level.playSound(null, pos, SoundRegistry.CALCIFIED_BLIGHT_PLACE.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * (1 + stage * 0.1f));
+            level.playSound(null, pos, MalumSoundEvents.CALCIFIED_BLIGHT_PLACE.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * (1 + stage * 0.1f));
             return ItemInteractionResult.SUCCESS;
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

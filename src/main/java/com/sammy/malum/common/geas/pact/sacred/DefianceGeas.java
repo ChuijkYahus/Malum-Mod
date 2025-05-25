@@ -4,8 +4,8 @@ import com.google.common.collect.Multimap;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.geas.GeasEffect;
-import com.sammy.malum.registry.common.AttributeRegistry;
-import com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry;
+import com.sammy.malum.registry.common.MalumAttributes;
+import com.sammy.malum.registry.common.MalumGeasEffectTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 public class DefianceGeas extends GeasEffect {
 
     public DefianceGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get());
+        super(MalumGeasEffectTypes.PACT_OF_DEFIANCE.get());
     }
 
     @Override
@@ -29,13 +29,13 @@ public class DefianceGeas extends GeasEffect {
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, 0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(modifiers, Attributes.MAX_HEALTH, -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 
     public static int accelerateNaturalHealing(LivingEntity entity) {
-        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE)) {
+        if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_DEFIANCE)) {
             return entity.getHealth() < entity.getMaxHealth()/4f ? 2 : 1;
         }
         return 0;

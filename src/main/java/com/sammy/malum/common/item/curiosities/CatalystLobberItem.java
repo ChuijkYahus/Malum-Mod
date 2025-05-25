@@ -23,7 +23,7 @@ public class CatalystLobberItem extends Item {
     }
 
     public static int getStateDisplay(ItemStack stack) {
-        var data = stack.get(DataComponentRegistry.CATALYST_LOBBER_STATE);
+        var data = stack.get(MalumDataComponents.CATALYST_LOBBER_STATE);
         if (data == null) {
             return -1;
         }
@@ -31,12 +31,12 @@ public class CatalystLobberItem extends Item {
     }
     @Override
     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-        return repairCandidate.getItem().equals(ItemRegistry.MALIGNANT_LEAD.get()) || super.isValidRepairItem(stack, repairCandidate);
+        return repairCandidate.getItem().equals(MalumItems.MALIGNANT_LEAD.get()) || super.isValidRepairItem(stack, repairCandidate);
     }
 
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        var data = pStack.get(DataComponentRegistry.CATALYST_LOBBER_STATE);
+        var data = pStack.get(MalumDataComponents.CATALYST_LOBBER_STATE);
         if (data != null) {
             int state = data.state();
             if (state != 0) {
@@ -51,9 +51,9 @@ public class CatalystLobberItem extends Item {
                     timer = 0;
                     stashedState = state;
                     state = 0;
-                    pEntity.playSound(SoundRegistry.CATALYST_LOBBER_LOCKED.get(), 1.2f, 0.8f);
+                    pEntity.playSound(MalumSoundEvents.CATALYST_LOBBER_LOCKED.get(), 1.2f, 0.8f);
                 }
-                pStack.set(DataComponentRegistry.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent(timer, state, stashedState));
+                pStack.set(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent(timer, state, stashedState));
             }
         }
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
@@ -62,7 +62,7 @@ public class CatalystLobberItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
-        var component = stack.getOrDefault(DataComponentRegistry.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent());
+        var component = stack.getOrDefault(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent());
         int timer = component.timer();
         int state = component.state();
         int stashedState = component.stashedState();
@@ -72,14 +72,14 @@ public class CatalystLobberItem extends Item {
             case 0 -> {
                 cooldown = 100;
                 state = Math.max(1, stashedState);
-                sound = SoundRegistry.CATALYST_LOBBER_UNLOCKED.get();
+                sound = MalumSoundEvents.CATALYST_LOBBER_UNLOCKED.get();
             }
             case 1 -> {
                 if (!playerIn.isCreative()) {
                     var ammo = ItemStack.EMPTY;
                     for (int i = 0; i < playerIn.getInventory().getContainerSize(); i++) {
                         ItemStack maybeAmmo = playerIn.getInventory().getItem(i);
-                        if (maybeAmmo.getItem().equals(ItemRegistry.AURIC_EMBERS.get())) {
+                        if (maybeAmmo.getItem().equals(MalumItems.AURIC_EMBERS.get())) {
                             ammo = maybeAmmo;
                             break;
                         }
@@ -91,7 +91,7 @@ public class CatalystLobberItem extends Item {
                 }
                 cooldown = 20;
                 state = 2;
-                sound = SoundRegistry.CATALYST_LOBBER_PRIMED.get();
+                sound = MalumSoundEvents.CATALYST_LOBBER_PRIMED.get();
             }
             case 2 -> {
                 if (!worldIn.isClientSide) {
@@ -108,14 +108,14 @@ public class CatalystLobberItem extends Item {
                     stack.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
                 }
                 state = 1;
-                sound = SoundRegistry.CATALYST_LOBBER_FIRED.get();
+                sound = MalumSoundEvents.CATALYST_LOBBER_FIRED.get();
             }
             default -> {
-                stack.set(DataComponentRegistry.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent());
+                stack.set(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent());
                 throw new IllegalStateException("Catalyst lobber used with an invalid state.");
             }
         }
-        stack.set(DataComponentRegistry.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent(timer, state, stashedState));
+        stack.set(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent(timer, state, stashedState));
         if (cooldown != 0) {
             playerIn.getCooldowns().addCooldown(this, cooldown);
         }

@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.ParticleRegistry;
+import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
@@ -156,7 +156,7 @@ public class SpiritAltarParticleEffects {
             float zOffset = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, 0.1f, 0.5f)*(random.nextBoolean()?-1:1);
             var offsetPos = targetPos.add(xOffset, yOffset, zOffset);
             int lifeDelay = 5 + i * 3;
-            var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, offsetPos, cyclingSpiritType, new WorldParticleOptions(ParticleRegistry.SHINE));
+            var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, offsetPos, cyclingSpiritType, new WorldParticleOptions(MalumParticles.SHINE));
             lightSpecs.getBuilder()
                     .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f))
                     .setSpinData(SpinParticleData.create(0).randomSpinOffset(random).build())

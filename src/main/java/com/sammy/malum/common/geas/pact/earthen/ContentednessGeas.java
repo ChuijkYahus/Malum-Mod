@@ -18,7 +18,7 @@ public class ContentednessGeas extends GeasEffect {
 
     private int foodLevel = 20;
     public ContentednessGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS.get());
+        super(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS.get());
     }
 
     @Override

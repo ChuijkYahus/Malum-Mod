@@ -11,19 +11,19 @@ import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class MaterialSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        spiritedGlassRecipe(recipeOutput, SACRED_SPIRIT, ItemRegistry.SACRED_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, WICKED_SPIRIT, ItemRegistry.WICKED_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, ARCANE_SPIRIT, ItemRegistry.ARCANE_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, ELDRITCH_SPIRIT, ItemRegistry.ELDRITCH_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, AERIAL_SPIRIT, ItemRegistry.AERIAL_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, AQUEOUS_SPIRIT, ItemRegistry.AQUEOUS_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, EARTHEN_SPIRIT, ItemRegistry.EARTHEN_SPIRITED_GLASS.get());
-        spiritedGlassRecipe(recipeOutput, INFERNAL_SPIRIT, ItemRegistry.INFERNAL_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, SACRED_SPIRIT, MalumItems.SACRED_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, WICKED_SPIRIT, MalumItems.WICKED_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, ARCANE_SPIRIT, MalumItems.ARCANE_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, ELDRITCH_SPIRIT, MalumItems.ELDRITCH_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, AERIAL_SPIRIT, MalumItems.AERIAL_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, AQUEOUS_SPIRIT, MalumItems.AQUEOUS_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, EARTHEN_SPIRIT, MalumItems.EARTHEN_SPIRITED_GLASS.get());
+        spiritedGlassRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_SPIRITED_GLASS.get());
 
         soulwovenBannerRecipe(recipeOutput, SACRED_SPIRIT, SoulwovenBannerPatternDataComponent.SACRED);
 //        soulwovenBannerRecipe(recipeOutput, WICKED_SPIRIT, SoulwovenBannerPatternData.WICKED);
@@ -34,98 +34,98 @@ public class MaterialSpiritInfusionRecipes {
         soulwovenBannerRecipe(recipeOutput, EARTHEN_SPIRIT, SoulwovenBannerPatternDataComponent.EARTHEN);
         soulwovenBannerRecipe(recipeOutput, INFERNAL_SPIRIT, SoulwovenBannerPatternDataComponent.INFERNAL);
 
-        new SpiritInfusionRecipeBuilder(Items.GUNPOWDER, 1, ItemRegistry.HEX_ASH.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.GUNPOWDER, 1, MalumItems.HEX_ASH.get(), 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.ROTTEN_FLESH, 4, ItemRegistry.LIVING_FLESH.get(), 2)
+        new SpiritInfusionRecipeBuilder(Items.ROTTEN_FLESH, 4, MalumItems.LIVING_FLESH.get(), 2)
                 .addSpirit(SACRED_SPIRIT, 2)
                 .addSpirit(WICKED_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.CLAY_BALL, 4, ItemRegistry.ALCHEMICAL_CALX.get(), 4)
+        new SpiritInfusionRecipeBuilder(Items.CLAY_BALL, 4, MalumItems.ALCHEMICAL_CALX.get(), 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addSpirit(EARTHEN_SPIRIT, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.COALS), 4, ItemRegistry.ARCANE_CHARCOAL.get(), 4)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.COALS), 4, MalumItems.ARCANE_CHARCOAL.get(), 4)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .addSpirit(INFERNAL_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, ItemRegistry.TAINTED_ROCK.get(), 16)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, MalumItems.TAINTED_ROCK.get(), 16)
                 .addSpirit(SACRED_SPIRIT, 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, ItemRegistry.TWISTED_ROCK.get(), 16)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, MalumItems.TWISTED_ROCK.get(), 16)
                 .addSpirit(WICKED_SPIRIT, 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.GLOWSTONE_DUST, 4, ItemRegistry.ETHER.get(), 2)
+        new SpiritInfusionRecipeBuilder(Items.GLOWSTONE_DUST, 4, MalumItems.ETHER.get(), 2)
                 .addSpirit(INFERNAL_SPIRIT, 2)
                 .addSpirit(ARCANE_SPIRIT, 1)
-                .addExtraItem(ItemRegistry.BLAZING_QUARTZ.get(), 1)
+                .addExtraItem(MalumItems.BLAZING_QUARTZ.get(), 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ETHER.get(), 1, ItemRegistry.IRIDESCENT_ETHER.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ETHER.get(), 1, MalumItems.IRIDESCENT_ETHER.get(), 1)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addExtraItem(Items.PRISMARINE_CRYSTALS, 1)
-                .addExtraItem(ItemRegistry.ARCANE_CHARCOAL.get(), 1)
+                .addExtraItem(MalumItems.ARCANE_CHARCOAL.get(), 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.GOLD_INGOT, 1, ItemRegistry.HALLOWED_GOLD_INGOT.get(), 1)
+        new SpiritInfusionRecipeBuilder(Items.GOLD_INGOT, 1, MalumItems.HALLOWED_GOLD_INGOT.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GEMS_QUARTZ, 4))
                 .addSpirit(SACRED_SPIRIT, 2)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.IRON_INGOT, 1, ItemRegistry.SOUL_STAINED_STEEL_INGOT.get(), 1)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
+        new SpiritInfusionRecipeBuilder(Items.IRON_INGOT, 1, MalumItems.SOUL_STAINED_STEEL_INGOT.get(), 1)
+                .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 4)
                 .addSpirit(WICKED_SPIRIT, 3)
                 .addSpirit(EARTHEN_SPIRIT, 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.WOOL), 2, ItemRegistry.SOULWOVEN_SILK.get(), 4)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.WOOL), 2, MalumItems.SOULWOVEN_SILK.get(), 4)
                 .addExtraItem(SizedIngredient.of(Tags.Items.STRINGS, 2))
                 .addSpirit(AERIAL_SPIRIT, 3)
                 .addSpirit(EARTHEN_SPIRIT, 3)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ETHER.get(), 1, ItemRegistry.PARACAUSAL_FLAME.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ETHER.get(), 1, MalumItems.PARACAUSAL_FLAME.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 4))
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 8)
+                .addExtraItem(MalumItems.HEX_ASH.get(), 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.IMITATION_FLESH.get(), 4)
-                .addExtraItem(ItemRegistry.LIVING_FLESH.get(), 8)
+        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 4, MalumItems.IMITATION_FLESH.get(), 4)
+                .addExtraItem(MalumItems.LIVING_FLESH.get(), 8)
                 .addExtraItem(Items.NETHER_WART, 4)
-                .addExtraItem(ItemRegistry.ROTTING_ESSENCE.get(), 2)
+                .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 2)
                 .addSpirit(SACRED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ALCHEMICAL_CALX.get(), 4, ItemRegistry.IMITATION_HEART.get(), 4)
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 8)
-                .addExtraItem(ItemRegistry.REFINED_SOULSTONE.get(), 4)
-                .addExtraItem(ItemRegistry.WARP_FLUX.get(), 2)
+        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 4, MalumItems.IMITATION_HEART.get(), 4)
+                .addExtraItem(MalumItems.HEX_ASH.get(), 8)
+                .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 4)
+                .addExtraItem(MalumItems.WARP_FLUX.get(), 2)
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, ItemRegistry.ESOTERIC_SPOOL.get(), 4)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, MalumItems.ESOTERIC_SPOOL.get(), 4)
                 .addSpirit(ARCANE_SPIRIT, 4)
-                .addExtraItem(ItemRegistry.HEX_ASH.get(), 2)
+                .addExtraItem(MalumItems.HEX_ASH.get(), 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(ItemRegistry.ANOMALOUS_DESIGN.get(), 1, ItemRegistry.COMPLETE_DESIGN.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ANOMALOUS_DESIGN.get(), 1, MalumItems.COMPLETE_DESIGN.get(), 1)
                 .addSpirit(SACRED_SPIRIT, 4)
                 .addSpirit(WICKED_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 4)
@@ -136,9 +136,9 @@ public class MaterialSpiritInfusionRecipes {
                 .addSpirit(INFERNAL_SPIRIT, 4)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, ItemRegistry.MALIGNANT_PEWTER_INGOT.get(), 1)
-                .addExtraItem(ItemRegistry.MALIGNANT_LEAD.get(), 1)
-                .addExtraItem(ItemRegistry.NULL_SLATE.get(), 8)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, MalumItems.MALIGNANT_PEWTER_INGOT.get(), 1)
+                .addExtraItem(MalumItems.MALIGNANT_LEAD.get(), 1)
+                .addExtraItem(MalumItems.NULL_SLATE.get(), 8)
                 .addExtraItem(Items.NETHERITE_SCRAP, 3)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
@@ -153,7 +153,7 @@ public class MaterialSpiritInfusionRecipes {
     }
 
     public static void soulwovenBannerRecipe(RecipeOutput recipeOutput, MalumSpiritType spirit, SoulwovenBannerPatternDataComponent pattern) {
-        new SpiritInfusionRecipeBuilder(ItemRegistry.SOULWOVEN_BANNER.get(), pattern.getDefaultStack())
+        new SpiritInfusionRecipeBuilder(MalumItems.SOULWOVEN_BANNER.get(), pattern.getDefaultStack())
                 .addSpirit(spirit, 1)
                 .save(recipeOutput, pattern.getRecipeId());
     }

@@ -28,7 +28,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
     public int delay;
 
     public WyrdReconstructionGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get());
+        super(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION.get());
     }
 
     @Override
@@ -59,7 +59,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
                 delay = 2;
                 spiritCollectionActivations--;
                 if (spiritCollectionActivations == 0) {
-                    entity.addEffect(new MobEffectInstance(MobEffectRegistry.WYRD_EXHAUSTION, COOLDOWN_DURATION, 0, true, true));
+                    entity.addEffect(new MobEffectInstance(MalumMobEffects.WYRD_EXHAUSTION, COOLDOWN_DURATION, 0, true, true));
                 }
             }
         }
@@ -71,10 +71,10 @@ public class WyrdReconstructionGeas extends GeasEffect {
         if (source.is(Tags.DamageTypes.IS_TECHNICAL)) {
             return;
         }
-        if (source.is(DamageTypeRegistry.VOID)) {
+        if (source.is(MalumDataTypes.VOID)) {
             return;
         }
-        if (target.hasEffect(MobEffectRegistry.WYRD_EXHAUSTION)) {
+        if (target.hasEffect(MalumMobEffects.WYRD_EXHAUSTION)) {
             return;
         }
         if (event.isCanceled()) {
@@ -90,9 +90,9 @@ public class WyrdReconstructionGeas extends GeasEffect {
             for (Entity knockbackTarget : serverLevel.getEntities(target, target.getBoundingBox().inflate(2f), t -> canApplyKnockback(target, t))) {
                 knockbackTarget.setDeltaMovement(knockbackTarget.position().subtract(target.position()).normalize().scale(2f).add(0, 0.5f, 0));
             }
-            SoundHelper.playSound(target, SoundRegistry.WYRD_RECONSTRUCTION.get(), 1, 1);
-            ParticleEffectTypeRegistry.WYRD_RECONSTRUCTION_REVIVE.createEffect(target)
-                    .color(new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.INFERNAL_SPIRIT))
+            SoundHelper.playSound(target, MalumSoundEvents.WYRD_RECONSTRUCTION.get(), 1, 1);
+            MalumParticleEffectTypes.WYRD_RECONSTRUCTION_REVIVE.createEffect(target)
+                    .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT))
                     .customData(new WyrdReconstructionReviveParticleEffect.WyrdReconstructionEffectData(target.getId()))
                     .spawn(serverLevel);
         }

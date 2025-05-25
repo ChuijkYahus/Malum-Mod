@@ -1,10 +1,9 @@
 package com.sammy.malum.common.block.curiosities.spirit_catalyzer;
 
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
@@ -21,8 +20,6 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.systems.multiblock.MultiBlockComponentEntity;
 import team.lodestar.lodestone.systems.multiblock.MultiblockComponentBlock;
 
-import java.util.function.Supplier;
-
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class SpiritCatalyzerComponentBlock extends MultiblockComponentBlock {
@@ -36,7 +33,7 @@ public class SpiritCatalyzerComponentBlock extends MultiblockComponentBlock {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return ItemRegistry.SPIRIT_CATALYZER.get().getDefaultInstance();
+        return MalumItems.SPIRIT_CATALYZER.get().getDefaultInstance();
     }
 
     @Override

@@ -1,18 +1,15 @@
 package com.sammy.malum.visual_effects.networked.nitrate;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -20,7 +17,6 @@ import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
-import java.awt.*;
 import java.util.function.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
@@ -85,7 +81,7 @@ public class EthericNitrateImpactParticleEffect extends NitrateImpactParticleEff
         }
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build();
         float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR.get())
+        WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR.get())
                 .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                 .setLifetime(15)
                 .setSpinData(spinData)

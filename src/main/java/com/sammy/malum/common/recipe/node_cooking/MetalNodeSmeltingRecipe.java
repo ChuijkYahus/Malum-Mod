@@ -1,6 +1,6 @@
 package com.sammy.malum.common.recipe.node_cooking;
 
-import com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry;
+import com.sammy.malum.registry.common.recipe.MalumRecipeSerializers;
 import net.minecraft.core.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -21,7 +21,7 @@ public class MetalNodeSmeltingRecipe extends SmeltingRecipe implements INodeCook
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializerRegistry.METAL_NODE_SMELTING_SERIALIZER.get();
+        return MalumRecipeSerializers.METAL_NODE_SMELTING_SERIALIZER.get();
     }
 
     @Override

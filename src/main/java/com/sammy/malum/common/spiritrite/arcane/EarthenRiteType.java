@@ -5,7 +5,7 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class EarthenRiteType extends TotemicRiteType {
     public EarthenRiteType() {
@@ -14,11 +14,11 @@ public class EarthenRiteType extends TotemicRiteType {
 
     @Override
     public TotemicRiteEffect getNaturalRiteEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.GAIAS_BULWARK);
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.GAIAS_BULWARK);
     }
 
     @Override
     public TotemicRiteEffect getCorruptedEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.EARTHEN_MIGHT);
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.EARTHEN_MIGHT);
     }
 }

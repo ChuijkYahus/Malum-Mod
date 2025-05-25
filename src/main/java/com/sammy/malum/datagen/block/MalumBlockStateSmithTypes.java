@@ -11,7 +11,7 @@ import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -33,8 +33,8 @@ public class MalumBlockStateSmithTypes {
         ResourceLocation side = provider.getBlockTexture(woodName + "_log");
         ResourceLocation top = provider.getBlockTexture(woodName + "_log_top");
         provider.getVariantBuilder(block).forAllStates(s -> {
-            String type = s.getValue(SpiritTypeRegistry.SPIRIT_TYPE_PROPERTY);
-            MalumSpiritType spiritType = SpiritTypeRegistry.SPIRITS.get(type);
+            String type = s.getValue(MalumSpiritTypes.SPIRIT_TYPE_PROPERTY);
+            MalumSpiritType spiritType = MalumSpiritTypes.SPIRITS.get(type);
             ResourceLocation front = provider.modLoc("block/totem_poles/" + spiritType.getIdentifier() + "_" + woodName + "_cutout");
             ModelFile pole = provider.models().withExistingParent(name + "_" + spiritType.getIdentifier(), parent)
                     .texture("side", side)

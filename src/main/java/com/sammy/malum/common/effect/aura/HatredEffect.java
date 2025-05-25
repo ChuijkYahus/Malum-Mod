@@ -8,9 +8,9 @@ import team.lodestar.lodestone.helpers.*;
 
 public class HatredEffect extends MobEffect {
     public HatredEffect() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.INFERNAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.INFERNAL_SPIRIT.getPrimaryColor()));
         var id = MalumMod.malumPath("hatred");
-        addAttributeModifier(AttributeRegistry.MALIGNANT_CONVERSION, id, 0.02f, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(MalumAttributes.MALIGNANT_CONVERSION, id, 0.02f, AttributeModifier.Operation.ADD_VALUE);
     }
 
 

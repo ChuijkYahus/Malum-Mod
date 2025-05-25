@@ -87,7 +87,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
         }
         if (getOwner() instanceof LivingEntity owner) {
             var target = result.getEntity();
-            var source = DamageTypeHelper.create(level(), DamageTypeRegistry.SCYTHE_REBOUND, this, owner);
+            var source = DamageTypeHelper.create(level(), MalumDataTypes.SCYTHE_REBOUND, this, owner);
             var heldItem = owner.getMainHandItem();
 
             owner.setItemInHand(InteractionHand.MAIN_HAND, getItem());
@@ -97,14 +97,14 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
                 if (magicDamage > 0) {
                     if (!livingentity.isDeadOrDying()) {
                         livingentity.invulnerableTime = 0;
-                        livingentity.hurt(DamageTypeHelper.create(level(), DamageTypeRegistry.VOODOO, this, owner), magicDamage);
+                        livingentity.hurt(DamageTypeHelper.create(level(), MalumDataTypes.VOODOO, this, owner), magicDamage);
                     }
                 }
                 enemiesHit++;
                 returnTimer += 2;
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
-            SoundHelper.playSound(this, SoundRegistry.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
         }
         super.onHitEntity(result);
     }
@@ -132,7 +132,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.CRUDE_SCYTHE.get();
+        return MalumItems.CRUDE_SCYTHE.get();
     }
 
     @Override

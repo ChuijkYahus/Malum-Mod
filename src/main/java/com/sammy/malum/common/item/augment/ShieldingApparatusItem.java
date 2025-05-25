@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 
 public class ShieldingApparatusItem extends AugmentItem {
     public ShieldingApparatusItem(Properties pProperties) {
-        super(pProperties, SpiritTypeRegistry.ARCANE_SPIRIT,
+        super(pProperties, MalumSpiritTypes.ARCANE_SPIRIT,
                 new ArtificeModifier(ArtificeAttributeType.DAMAGE_ABSORPTION_CHANCE, 0.1f),
                 new ArtificeModifier(ArtificeAttributeType.INSTABILITY, -0.05f),
                 new ArtificeModifier(ArtificeAttributeType.FOCUSING_SPEED, -0.2f));
@@ -22,7 +22,7 @@ public class ShieldingApparatusItem extends AugmentItem {
         RandomSource random = level.getRandom();
         boolean success = chance > 0 && random.nextFloat() < chance;
         if (success) {
-            level.playSound(null, pos, SoundRegistry.SHIELDING_APPARATUS_SHIELDS.get(), SoundSource.BLOCKS, 0.5f, 0.25f + random.nextFloat() * 0.25f);
+            level.playSound(null, pos, MalumSoundEvents.SHIELDING_APPARATUS_SHIELDS.get(), SoundSource.BLOCKS, 0.5f, 0.25f + random.nextFloat() * 0.25f);
         }
         return success;
     }

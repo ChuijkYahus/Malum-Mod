@@ -9,11 +9,11 @@ import net.minecraft.world.entity.ai.attributes.*;
 
 public class BlightEaterCreed extends GeasEffect {
     public BlightEaterCreed() {
-        super(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get());
+        super(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get());
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.GEAS_LIMIT, 1, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(modifiers, MalumAttributes.GEAS_LIMIT, 1, AttributeModifier.Operation.ADD_VALUE);
         return modifiers;
     }
 }
