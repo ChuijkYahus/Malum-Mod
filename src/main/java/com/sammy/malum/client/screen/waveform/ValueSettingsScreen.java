@@ -99,7 +99,7 @@ public class ValueSettingsScreen extends Screen {
         super.tick();
         ticksOpen++;
         if (oldAngle != angle) {
-            playSound(SoundRegistry.SPIRIT_DIODE_TICK);
+            playSound(MalumSoundEvents.SPIRIT_DIODE_TICK);
             oldAngle = angle;
         }
         if (ticksOpen % 20 == 0) {
@@ -122,7 +122,7 @@ public class ValueSettingsScreen extends Screen {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         timeInterval = SpiritDiodeBlockEntity.TimeIntervalType.values()[(timeInterval.ordinal() + 1) % 3];
-        playSound(SoundRegistry.SPIRIT_DIODE_LONG_TICK);
+        playSound(MalumSoundEvents.SPIRIT_DIODE_LONG_TICK);
         return super.mouseClicked(mouseX, mouseY, button);
     }
 

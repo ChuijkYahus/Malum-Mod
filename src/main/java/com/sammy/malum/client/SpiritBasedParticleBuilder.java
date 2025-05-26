@@ -8,7 +8,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.neoforge.registries.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.systems.particle.*;
@@ -18,7 +17,6 @@ import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 import team.lodestar.lodestone.systems.particle.world.type.*;
 
@@ -59,7 +57,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     public boolean isUmbral() {
-        return spiritType != null && spiritType.equals(SpiritTypeRegistry.UMBRAL_SPIRIT);
+        return spiritType != null && spiritType.equals(MalumSpiritTypes.UMBRAL_SPIRIT);
     }
 
     @Override

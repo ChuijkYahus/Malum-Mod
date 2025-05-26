@@ -25,7 +25,7 @@ public class SoulBindingPage extends BookPage {
     private final SoulBindingRecipe recipe;
 
     public SoulBindingPage(Predicate<SoulBindingRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, RecipeTypeRegistry.SOUL_BINDING.get(), predicate));
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SOUL_BINDING.get(), predicate));
     }
 
     public SoulBindingPage(SoulBindingRecipe recipe) {

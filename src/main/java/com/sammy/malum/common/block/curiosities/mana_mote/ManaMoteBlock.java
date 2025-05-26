@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.mana_mote;
 
 import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -9,7 +9,7 @@ import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
 
 public class ManaMoteBlock extends LodestoneEntityBlock<ManaMoteBlockEntity> {
 
-    public static final SpiritTypeProperty SPIRIT_TYPE = SpiritTypeRegistry.SPIRIT_TYPE_PROPERTY;
+    public static final SpiritTypeProperty SPIRIT_TYPE = MalumSpiritTypes.SPIRIT_TYPE_PROPERTY;
 
     public ManaMoteBlock(Properties properties) {
         super(properties);

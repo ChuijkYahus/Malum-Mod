@@ -1,12 +1,11 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.tag.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 
@@ -21,64 +20,64 @@ public class MalumRockSetDatagen {
 
     private static final MalumDatagenRockSet TAINTED_ROCK = new MalumDatagenRockSet(
             "tainted_rock",
-            ItemRegistry.TAINTED_ROCK.get(), ItemRegistry.SMOOTH_TAINTED_ROCK.get(), ItemRegistry.POLISHED_TAINTED_ROCK.get(),
-            ItemRegistry.TAINTED_ROCK_STAIRS.get(), ItemRegistry.SMOOTH_TAINTED_ROCK_STAIRS.get(), ItemRegistry.POLISHED_TAINTED_ROCK_STAIRS.get(),
-            ItemRegistry.TAINTED_ROCK_SLAB.get(), ItemRegistry.SMOOTH_TAINTED_ROCK_SLAB.get(), ItemRegistry.POLISHED_TAINTED_ROCK_SLAB.get(),
+            MalumItems.TAINTED_ROCK.get(), MalumItems.SMOOTH_TAINTED_ROCK.get(), MalumItems.POLISHED_TAINTED_ROCK.get(),
+            MalumItems.TAINTED_ROCK_STAIRS.get(), MalumItems.SMOOTH_TAINTED_ROCK_STAIRS.get(), MalumItems.POLISHED_TAINTED_ROCK_STAIRS.get(),
+            MalumItems.TAINTED_ROCK_SLAB.get(), MalumItems.SMOOTH_TAINTED_ROCK_SLAB.get(), MalumItems.POLISHED_TAINTED_ROCK_SLAB.get(),
 
-            ItemRegistry.TAINTED_ROCK_BRICKS.get(), ItemRegistry.TAINTED_ROCK_TILES.get(), ItemRegistry.SMALL_TAINTED_ROCK_BRICKS.get(),
-            ItemRegistry.TAINTED_ROCK_BRICKS_STAIRS.get(), ItemRegistry.TAINTED_ROCK_TILES_STAIRS.get(), ItemRegistry.SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(),
-            ItemRegistry.TAINTED_ROCK_BRICKS_SLAB.get(), ItemRegistry.TAINTED_ROCK_TILES_SLAB.get(), ItemRegistry.SMALL_TAINTED_ROCK_BRICKS_SLAB.get(),
+            MalumItems.TAINTED_ROCK_BRICKS.get(), MalumItems.TAINTED_ROCK_TILES.get(), MalumItems.SMALL_TAINTED_ROCK_BRICKS.get(),
+            MalumItems.TAINTED_ROCK_BRICKS_STAIRS.get(), MalumItems.TAINTED_ROCK_TILES_STAIRS.get(), MalumItems.SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(),
+            MalumItems.TAINTED_ROCK_BRICKS_SLAB.get(), MalumItems.TAINTED_ROCK_TILES_SLAB.get(), MalumItems.SMALL_TAINTED_ROCK_BRICKS_SLAB.get(),
 
-            ItemRegistry.RUNIC_TAINTED_ROCK_BRICKS.get(), ItemRegistry.RUNIC_TAINTED_ROCK_TILES.get(), ItemRegistry.RUNIC_SMALL_TAINTED_ROCK_BRICKS.get(),
-            ItemRegistry.RUNIC_TAINTED_ROCK_BRICKS_STAIRS.get(), ItemRegistry.RUNIC_TAINTED_ROCK_TILES_STAIRS.get(), ItemRegistry.RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(),
-            ItemRegistry.RUNIC_TAINTED_ROCK_BRICKS_SLAB.get(), ItemRegistry.RUNIC_TAINTED_ROCK_TILES_SLAB.get(), ItemRegistry.RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB.get(),
+            MalumItems.RUNIC_TAINTED_ROCK_BRICKS.get(), MalumItems.RUNIC_TAINTED_ROCK_TILES.get(), MalumItems.RUNIC_SMALL_TAINTED_ROCK_BRICKS.get(),
+            MalumItems.RUNIC_TAINTED_ROCK_BRICKS_STAIRS.get(), MalumItems.RUNIC_TAINTED_ROCK_TILES_STAIRS.get(), MalumItems.RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(),
+            MalumItems.RUNIC_TAINTED_ROCK_BRICKS_SLAB.get(), MalumItems.RUNIC_TAINTED_ROCK_TILES_SLAB.get(), MalumItems.RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB.get(),
 
-            ItemRegistry.TAINTED_ROCK_WALL.get(), ItemRegistry.SMOOTH_TAINTED_ROCK_WALL.get(), ItemRegistry.POLISHED_TAINTED_ROCK_WALL.get(),
-            ItemRegistry.TAINTED_ROCK_BRICKS_WALL.get(), ItemRegistry.TAINTED_ROCK_TILES_WALL.get(), ItemRegistry.SMALL_TAINTED_ROCK_BRICKS_WALL.get(),
-            ItemRegistry.RUNIC_TAINTED_ROCK_BRICKS_WALL.get(), ItemRegistry.RUNIC_TAINTED_ROCK_TILES_WALL.get(), ItemRegistry.RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL.get(),
+            MalumItems.TAINTED_ROCK_WALL.get(), MalumItems.SMOOTH_TAINTED_ROCK_WALL.get(), MalumItems.POLISHED_TAINTED_ROCK_WALL.get(),
+            MalumItems.TAINTED_ROCK_BRICKS_WALL.get(), MalumItems.TAINTED_ROCK_TILES_WALL.get(), MalumItems.SMALL_TAINTED_ROCK_BRICKS_WALL.get(),
+            MalumItems.RUNIC_TAINTED_ROCK_BRICKS_WALL.get(), MalumItems.RUNIC_TAINTED_ROCK_TILES_WALL.get(), MalumItems.RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL.get(),
 
-            ItemRegistry.TAINTED_ROCK_COLUMN.get(), ItemRegistry.TAINTED_ROCK_COLUMN_CAP.get(),
+            MalumItems.TAINTED_ROCK_COLUMN.get(), MalumItems.TAINTED_ROCK_COLUMN_CAP.get(),
 
-            ItemRegistry.CUT_TAINTED_ROCK.get(), ItemRegistry.CHECKERED_TAINTED_ROCK.get(),
+            MalumItems.CUT_TAINTED_ROCK.get(), MalumItems.CHECKERED_TAINTED_ROCK.get(),
 
-            ItemRegistry.CHISELED_TAINTED_ROCK.get(),
+            MalumItems.CHISELED_TAINTED_ROCK.get(),
 
-            ItemRegistry.TAINTED_ROCK_PRESSURE_PLATE.get(), ItemRegistry.TAINTED_ROCK_BUTTON.get(),
+            MalumItems.TAINTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TAINTED_ROCK_BUTTON.get(),
 
-            ItemRegistry.TAINTED_ROCK_ITEM_STAND.get(), ItemRegistry.TAINTED_ROCK_ITEM_PEDESTAL.get(),
+            MalumItems.TAINTED_ROCK_ITEM_STAND.get(), MalumItems.TAINTED_ROCK_ITEM_PEDESTAL.get(),
 
-            ItemTagRegistry.TAINTED_ROCK, ItemTagRegistry.TAINTED_BLOCKS, ItemTagRegistry.TAINTED_STAIRS, ItemTagRegistry.TAINTED_SLABS, ItemTagRegistry.TAINTED_WALLS
+            MalumTags.ItemTags.TAINTED_ROCK, MalumTags.ItemTags.TAINTED_BLOCKS, MalumTags.ItemTags.TAINTED_STAIRS, MalumTags.ItemTags.TAINTED_SLABS, MalumTags.ItemTags.TAINTED_WALLS
     );
 
     private static final MalumDatagenRockSet TWISTED_ROCK = new MalumDatagenRockSet(
             "twisted_rock",
-            ItemRegistry.TWISTED_ROCK.get(), ItemRegistry.SMOOTH_TWISTED_ROCK.get(), ItemRegistry.POLISHED_TWISTED_ROCK.get(),
-            ItemRegistry.TWISTED_ROCK_STAIRS.get(), ItemRegistry.SMOOTH_TWISTED_ROCK_STAIRS.get(), ItemRegistry.POLISHED_TWISTED_ROCK_STAIRS.get(),
-            ItemRegistry.TWISTED_ROCK_SLAB.get(), ItemRegistry.SMOOTH_TWISTED_ROCK_SLAB.get(), ItemRegistry.POLISHED_TWISTED_ROCK_SLAB.get(),
+            MalumItems.TWISTED_ROCK.get(), MalumItems.SMOOTH_TWISTED_ROCK.get(), MalumItems.POLISHED_TWISTED_ROCK.get(),
+            MalumItems.TWISTED_ROCK_STAIRS.get(), MalumItems.SMOOTH_TWISTED_ROCK_STAIRS.get(), MalumItems.POLISHED_TWISTED_ROCK_STAIRS.get(),
+            MalumItems.TWISTED_ROCK_SLAB.get(), MalumItems.SMOOTH_TWISTED_ROCK_SLAB.get(), MalumItems.POLISHED_TWISTED_ROCK_SLAB.get(),
 
-            ItemRegistry.TWISTED_ROCK_BRICKS.get(), ItemRegistry.TWISTED_ROCK_TILES.get(), ItemRegistry.SMALL_TWISTED_ROCK_BRICKS.get(),
-            ItemRegistry.TWISTED_ROCK_BRICKS_STAIRS.get(), ItemRegistry.TWISTED_ROCK_TILES_STAIRS.get(), ItemRegistry.SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(),
-            ItemRegistry.TWISTED_ROCK_BRICKS_SLAB.get(), ItemRegistry.TWISTED_ROCK_TILES_SLAB.get(), ItemRegistry.SMALL_TWISTED_ROCK_BRICKS_SLAB.get(),
+            MalumItems.TWISTED_ROCK_BRICKS.get(), MalumItems.TWISTED_ROCK_TILES.get(), MalumItems.SMALL_TWISTED_ROCK_BRICKS.get(),
+            MalumItems.TWISTED_ROCK_BRICKS_STAIRS.get(), MalumItems.TWISTED_ROCK_TILES_STAIRS.get(), MalumItems.SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(),
+            MalumItems.TWISTED_ROCK_BRICKS_SLAB.get(), MalumItems.TWISTED_ROCK_TILES_SLAB.get(), MalumItems.SMALL_TWISTED_ROCK_BRICKS_SLAB.get(),
 
-            ItemRegistry.RUNIC_TWISTED_ROCK_BRICKS.get(), ItemRegistry.RUNIC_TWISTED_ROCK_TILES.get(), ItemRegistry.RUNIC_SMALL_TWISTED_ROCK_BRICKS.get(),
-            ItemRegistry.RUNIC_TWISTED_ROCK_BRICKS_STAIRS.get(), ItemRegistry.RUNIC_TWISTED_ROCK_TILES_STAIRS.get(), ItemRegistry.RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(),
-            ItemRegistry.RUNIC_TWISTED_ROCK_BRICKS_SLAB.get(), ItemRegistry.RUNIC_TWISTED_ROCK_TILES_SLAB.get(), ItemRegistry.RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB.get(),
+            MalumItems.RUNIC_TWISTED_ROCK_BRICKS.get(), MalumItems.RUNIC_TWISTED_ROCK_TILES.get(), MalumItems.RUNIC_SMALL_TWISTED_ROCK_BRICKS.get(),
+            MalumItems.RUNIC_TWISTED_ROCK_BRICKS_STAIRS.get(), MalumItems.RUNIC_TWISTED_ROCK_TILES_STAIRS.get(), MalumItems.RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(),
+            MalumItems.RUNIC_TWISTED_ROCK_BRICKS_SLAB.get(), MalumItems.RUNIC_TWISTED_ROCK_TILES_SLAB.get(), MalumItems.RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB.get(),
 
-            ItemRegistry.TWISTED_ROCK_WALL.get(), ItemRegistry.SMOOTH_TWISTED_ROCK_WALL.get(), ItemRegistry.POLISHED_TWISTED_ROCK_WALL.get(),
-            ItemRegistry.TWISTED_ROCK_BRICKS_WALL.get(), ItemRegistry.TWISTED_ROCK_TILES_WALL.get(), ItemRegistry.SMALL_TWISTED_ROCK_BRICKS_WALL.get(),
-            ItemRegistry.RUNIC_TWISTED_ROCK_BRICKS_WALL.get(), ItemRegistry.RUNIC_TWISTED_ROCK_TILES_WALL.get(), ItemRegistry.RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL.get(),
+            MalumItems.TWISTED_ROCK_WALL.get(), MalumItems.SMOOTH_TWISTED_ROCK_WALL.get(), MalumItems.POLISHED_TWISTED_ROCK_WALL.get(),
+            MalumItems.TWISTED_ROCK_BRICKS_WALL.get(), MalumItems.TWISTED_ROCK_TILES_WALL.get(), MalumItems.SMALL_TWISTED_ROCK_BRICKS_WALL.get(),
+            MalumItems.RUNIC_TWISTED_ROCK_BRICKS_WALL.get(), MalumItems.RUNIC_TWISTED_ROCK_TILES_WALL.get(), MalumItems.RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL.get(),
 
-            ItemRegistry.TWISTED_ROCK_COLUMN.get(), ItemRegistry.TWISTED_ROCK_COLUMN_CAP.get(),
+            MalumItems.TWISTED_ROCK_COLUMN.get(), MalumItems.TWISTED_ROCK_COLUMN_CAP.get(),
 
-            ItemRegistry.CUT_TWISTED_ROCK.get(), ItemRegistry.CHECKERED_TWISTED_ROCK.get(),
+            MalumItems.CUT_TWISTED_ROCK.get(), MalumItems.CHECKERED_TWISTED_ROCK.get(),
 
-            ItemRegistry.CHISELED_TWISTED_ROCK.get(),
+            MalumItems.CHISELED_TWISTED_ROCK.get(),
 
-            ItemRegistry.TWISTED_ROCK_PRESSURE_PLATE.get(), ItemRegistry.TWISTED_ROCK_BUTTON.get(),
+            MalumItems.TWISTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TWISTED_ROCK_BUTTON.get(),
 
-            ItemRegistry.TWISTED_ROCK_ITEM_STAND.get(), ItemRegistry.TWISTED_ROCK_ITEM_PEDESTAL.get(),
+            MalumItems.TWISTED_ROCK_ITEM_STAND.get(), MalumItems.TWISTED_ROCK_ITEM_PEDESTAL.get(),
 
-            ItemTagRegistry.TWISTED_ROCK, ItemTagRegistry.TWISTED_BLOCKS, ItemTagRegistry.TWISTED_STAIRS, ItemTagRegistry.TWISTED_SLABS, ItemTagRegistry.TWISTED_WALLS
+            MalumTags.ItemTags.TWISTED_ROCK, MalumTags.ItemTags.TWISTED_BLOCKS, MalumTags.ItemTags.TWISTED_STAIRS, MalumTags.ItemTags.TWISTED_SLABS, MalumTags.ItemTags.TWISTED_WALLS
     );
 
     private static MalumRockSetDatagen.MalumDatagenRockSet cachedRockSet;
@@ -232,7 +231,7 @@ public class MalumRockSetDatagen {
         stoneCutting(recipeOutput, input, output);
     }
 
-    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, Item input) {
+    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, net.minecraft.world.item.Item input) {
         shapeless(RecipeCategory.MISC, button)
                 .requires(input)
                 .unlockedBy("has_input", has(input))
@@ -240,7 +239,7 @@ public class MalumRockSetDatagen {
         stoneCutting(recipeOutput, input, button);
     }
 
-    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, Item input) {
+    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, net.minecraft.world.item.Item input) {
         shaped(RecipeCategory.MISC, pressurePlate)
                 .define('#', input)
                 .pattern("##")
@@ -249,7 +248,7 @@ public class MalumRockSetDatagen {
         stoneCutting(recipeOutput, input, pressurePlate);
     }
 
-    private static void shapedSlab(RecipeOutput recipeOutput, ItemLike slab, Item input) {
+    private static void shapedSlab(RecipeOutput recipeOutput, ItemLike slab, net.minecraft.world.item.Item input) {
         shaped(RecipeCategory.MISC, slab, 6)
                 .define('#', input)
                 .pattern("###")
@@ -261,7 +260,7 @@ public class MalumRockSetDatagen {
         }
     }
 
-    private static void shapedStairs(RecipeOutput recipeOutput, ItemLike stairs, Item input) {
+    private static void shapedStairs(RecipeOutput recipeOutput, ItemLike stairs, net.minecraft.world.item.Item input) {
         shaped(RecipeCategory.MISC, stairs, 4)
                 .define('#', input)
                 .pattern("#  ")
@@ -275,7 +274,7 @@ public class MalumRockSetDatagen {
         }
     }
 
-    private static void shapedWall(RecipeOutput recipeOutput, ItemLike wall, Item input) {
+    private static void shapedWall(RecipeOutput recipeOutput, ItemLike wall, net.minecraft.world.item.Item input) {
         shaped(RecipeCategory.MISC, wall, 6)
                 .define('#', input)
                 .pattern("###")
@@ -299,32 +298,32 @@ public class MalumRockSetDatagen {
     public record MalumDatagenRockSet(
             String prefix,
 
-            Item rock, Item smoothRock, Item polishedRock,
-            Item rockStairs, Item smoothRockStairs, Item polishedRockStairs,
-            Item rockSlab, Item smoothRockSlab, Item polishedRockSlab,
+            net.minecraft.world.item.Item rock, net.minecraft.world.item.Item smoothRock, net.minecraft.world.item.Item polishedRock,
+            net.minecraft.world.item.Item rockStairs, net.minecraft.world.item.Item smoothRockStairs, net.minecraft.world.item.Item polishedRockStairs,
+            net.minecraft.world.item.Item rockSlab, net.minecraft.world.item.Item smoothRockSlab, net.minecraft.world.item.Item polishedRockSlab,
 
-            Item bricks, Item tiles, Item smallBricks,
-            Item bricksStairs, Item tilesStairs, Item smallBricksStairs,
-            Item bricksSlab, Item tilesSlab, Item smallBricksSlab,
+            net.minecraft.world.item.Item bricks, net.minecraft.world.item.Item tiles, net.minecraft.world.item.Item smallBricks,
+            net.minecraft.world.item.Item bricksStairs, net.minecraft.world.item.Item tilesStairs, net.minecraft.world.item.Item smallBricksStairs,
+            net.minecraft.world.item.Item bricksSlab, net.minecraft.world.item.Item tilesSlab, net.minecraft.world.item.Item smallBricksSlab,
 
-            Item runicBricks, Item runicTiles, Item runicSmallBricks,
-            Item runicBricksStairs, Item runicTilesStairs, Item runicSmallBricksStairs,
-            Item runicBricksSlab, Item runicTilesSlab, Item runicSmallBricksSlab,
+            net.minecraft.world.item.Item runicBricks, net.minecraft.world.item.Item runicTiles, net.minecraft.world.item.Item runicSmallBricks,
+            net.minecraft.world.item.Item runicBricksStairs, net.minecraft.world.item.Item runicTilesStairs, net.minecraft.world.item.Item runicSmallBricksStairs,
+            net.minecraft.world.item.Item runicBricksSlab, net.minecraft.world.item.Item runicTilesSlab, net.minecraft.world.item.Item runicSmallBricksSlab,
 
-            Item rockWall, Item smoothRockWall, Item polishedRockWall,
-            Item bricksWall, Item tilesWall, Item smallBricksWall,
-            Item runicBricksWall, Item runicTilesWall, Item runicSmallBricksWall,
+            net.minecraft.world.item.Item rockWall, net.minecraft.world.item.Item smoothRockWall, net.minecraft.world.item.Item polishedRockWall,
+            net.minecraft.world.item.Item bricksWall, net.minecraft.world.item.Item tilesWall, net.minecraft.world.item.Item smallBricksWall,
+            net.minecraft.world.item.Item runicBricksWall, net.minecraft.world.item.Item runicTilesWall, net.minecraft.world.item.Item runicSmallBricksWall,
 
-            Item column, Item columnCap,
+            net.minecraft.world.item.Item column, net.minecraft.world.item.Item columnCap,
 
-            Item cutRock, Item checkeredRock,
+            net.minecraft.world.item.Item cutRock, net.minecraft.world.item.Item checkeredRock,
 
-            Item chiseledRock,
+            net.minecraft.world.item.Item chiseledRock,
 
-            Item pressurePlate, Item button,
+            net.minecraft.world.item.Item pressurePlate, net.minecraft.world.item.Item button,
 
-            Item itemStand, Item itemPedestal,
+            net.minecraft.world.item.Item itemStand, net.minecraft.world.item.Item itemPedestal,
 
-            TagKey<Item> setEncompassingTag, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag, TagKey<Item> wallTag
+            TagKey<net.minecraft.world.item.Item> setEncompassingTag, TagKey<net.minecraft.world.item.Item> blockTag, TagKey<net.minecraft.world.item.Item> stairTag, TagKey<net.minecraft.world.item.Item> slabTag, TagKey<net.minecraft.world.item.Item> wallTag
             ) { }
 }

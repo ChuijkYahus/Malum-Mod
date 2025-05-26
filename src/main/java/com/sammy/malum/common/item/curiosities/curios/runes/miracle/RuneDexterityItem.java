@@ -4,7 +4,7 @@ import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +30,7 @@ public class RuneDexterityItem extends AbstractRuneCurioItem {
     };
 
     public RuneDexterityItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.AERIAL_SPIRIT);
+        super(builder, MalumSpiritTypes.AERIAL_SPIRIT);
     }
 
     @Override

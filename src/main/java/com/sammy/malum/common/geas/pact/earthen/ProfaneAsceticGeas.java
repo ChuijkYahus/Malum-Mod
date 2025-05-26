@@ -14,12 +14,12 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.tag.ItemTagRegistry.GROSS_FOODS;
+import static com.sammy.malum.registry.common.MalumTags.ItemTags.GROSS_FOODS;
 
 public class ProfaneAsceticGeas extends GeasEffect {
 
     public ProfaneAsceticGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC.get());
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
                 .scaleDurationGain(2)
                 .scaleDurationLimit(4)
                 .scaleAmplifierLimit(2)
-                .replaceEffectType(MobEffectRegistry.TRIAL_OF_FAITH);
+                .replaceEffectType(MalumMobEffects.TRIAL_OF_FAITH);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
     }
 
     public static boolean isProfaneAscetic(LivingEntity entity) {
-        return GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC);
+        return GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC);
     }
 
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
@@ -64,7 +64,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
             if (food.is(GROSS_FOODS)) {
                 livingEntity.heal(livingEntity.getMaxHealth() / 5);
             } else {
-                livingEntity.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.KARMIC), livingEntity.getMaxHealth() / 2);
+                livingEntity.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), livingEntity.getMaxHealth() / 2);
             }
         }
     }

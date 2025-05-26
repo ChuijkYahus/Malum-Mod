@@ -11,7 +11,6 @@ import net.minecraft.world.level.chunk.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.pieces.*;
-import net.minecraft.world.level.material.*;
 
 import java.util.Optional;
 
@@ -99,6 +98,6 @@ public class WeepingWellStructure extends Structure {
 
     @Override
     public StructureType<?> type() {
-        return MalumStructureTypes.WEEPING_WELL.get();
+        return MalumStructures.StructureTypes.WEEPING_WELL.get();
     }
 }

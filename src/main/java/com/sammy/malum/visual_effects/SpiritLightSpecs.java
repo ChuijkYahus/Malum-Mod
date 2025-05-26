@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
@@ -24,7 +24,7 @@ import static net.minecraft.util.Mth.*;
 public class SpiritLightSpecs {
 
     public static void coolLookingShinyThing(Level level, Vec3 pos, MalumSpiritType spiritType) {
-        var centralLightSpecs = spiritLightSpecs(level, pos, spiritType, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()));
+        var centralLightSpecs = spiritLightSpecs(level, pos, spiritType, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()));
         centralLightSpecs.getBuilder()
                 .multiplyLifetime(0.6f)
                 .modifyColorData(d -> d.multiplyCoefficient(0.5f))
@@ -39,7 +39,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs, modifier);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs, modifier);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
@@ -47,7 +47,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs) {
@@ -55,7 +55,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, MalumSpiritType spiritType, float distance, int rotatingSpecs) {
@@ -63,7 +63,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs, modifier);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), spiritType, distance, rotatingSpecs, modifier);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, MalumSpiritType spiritType, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
@@ -99,11 +99,11 @@ public class SpiritLightSpecs {
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType) {
-        return spiritLightSpecs(level, pos, spiritType, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL));
+        return spiritLightSpecs(level, pos, spiritType, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL));
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleData colorData) {
-        return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(ParticleRegistry.LIGHT_SPEC_SMALL));
+        return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL));
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, MalumSpiritType spiritType, WorldParticleOptions options) {

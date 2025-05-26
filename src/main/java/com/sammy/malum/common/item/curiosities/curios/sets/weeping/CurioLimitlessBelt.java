@@ -7,7 +7,7 @@ import com.sammy.malum.common.item.IVoidItem;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
-import com.sammy.malum.registry.common.AttributeRegistry;
+import com.sammy.malum.registry.common.MalumAttributes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.*;
@@ -34,15 +34,15 @@ public class CurioLimitlessBelt extends MalumCurioItem implements IMalumEventRes
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
         var id = MalumMod.malumPath("belt_of_the_limitless");
-        addAttributeModifier(map, AttributeRegistry.SOUL_WARD_CAPACITY, new AttributeModifier(id, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        addAttributeModifier(map, AttributeRegistry.SOUL_WARD_RECOVERY_RATE, new AttributeModifier(id, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        addAttributeModifier(map, MalumAttributes.SOUL_WARD_CAPACITY, new AttributeModifier(id, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        addAttributeModifier(map, MalumAttributes.SOUL_WARD_RECOVERY_RATE, new AttributeModifier(id, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
 
     @Override
     public void modifySoulWardPropertiesEvent(ModifySoulWardPropertiesEvent event, LivingEntity wardedEntity, ItemStack stack) {
         var handler = event.getSoulWardHandler();
 
-        double capacity = wardedEntity.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY);
+        double capacity = wardedEntity.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY);
         double delta = (1 - handler.getSoulWard() / capacity);
 
         double integrityMultiplier = Mth.lerp(delta, 0.75f, 2f);

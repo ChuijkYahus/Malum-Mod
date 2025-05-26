@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block;
 
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
@@ -16,7 +16,7 @@ public class MalumSpiritBlockEntityInventory extends MalumBlockEntityInventory{
 
     protected MalumSpiritBlockEntityInventory(LodestoneBlockEntity blockEntity, int slotCount, int allowedItemSize) {
         super(blockEntity, slotCount, allowedItemSize);
-        setInputPredicate(p -> p.is(ItemTagRegistry.SPIRITS));
+        setInputPredicate(p -> p.is(MalumTags.ItemTags.SPIRITS));
     }
 
     @Override

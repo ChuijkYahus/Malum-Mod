@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
@@ -22,7 +22,7 @@ public class StaffSlamAttackParticleEffect extends MalumNetworkedWeaponParticleE
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        var slam = WeaponParticleEffects.spawnSlamParticle(level, positionData.getAsVector(), ParticleRegistry.SLAM, colorData);
+        var slam = WeaponParticleEffects.spawnSlamParticle(level, positionData.getAsVector(), MalumParticles.SLAM, colorData);
         var direction = extraData.getDirection();
         slam.getBuilder()
                 .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()).build())

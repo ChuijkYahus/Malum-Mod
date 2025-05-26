@@ -1,16 +1,13 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
@@ -38,7 +35,7 @@ public class HiddenBladeCounterParticleEffect extends MalumNetworkedWeaponPartic
                         RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                         RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
                         RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset)));
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean() ? ParticleRegistry.SLASH : ParticleRegistry.THIN_SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean() ? MalumParticles.SLASH : MalumParticles.THIN_SLASH, colorData);
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                         .setScaleData(GenericParticleData.create(scale).build())

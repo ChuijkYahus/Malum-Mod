@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.spirit;
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
-import com.sammy.malum.registry.common.AttributeRegistry;
+import com.sammy.malum.registry.common.MalumAttributes;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -18,7 +18,7 @@ public class CurioArcaneSpoilRing extends MalumCurioItem {
 
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
-        addAttributeModifier(map, AttributeRegistry.SPIRIT_SPOILS,
+        addAttributeModifier(map, MalumAttributes.SPIRIT_SPOILS,
                 new AttributeModifier(MalumMod.malumPath("arcane_spoil_ring"), 1f, AttributeModifier.Operation.ADD_VALUE));
     }
 }

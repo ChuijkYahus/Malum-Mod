@@ -3,8 +3,8 @@ package com.sammy.malum.common.block.storage.jar;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,7 +36,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
     }
 
     public SpiritJarBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.SPIRIT_JAR.get(), pos, state);
+        this(MalumBlockEntities.SPIRIT_JAR.get(), pos, state);
     }
 
     public SpiritJarContentsComponent contents;
@@ -129,7 +129,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
             inserted = insertHeldItem(player);
         }
         if (inserted > 0) {
-            SoundHelper.playSound(player, SoundRegistry.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+            SoundHelper.playSound(player, MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
         }
 
         lastClickTime = getLevel().getGameTime();
@@ -172,8 +172,8 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
     public int insertFromStack(ItemStack stack, Player player) {
         int inserted = 0;
 
-        if (stack.has(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS)) {
-            var pouchContents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+        if (stack.has(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS)) {
+            var pouchContents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
             if (!pouchContents.isEmpty()) {
                 ArrayList<ItemStack> remainingSpirits = new ArrayList<>();
                 for (ItemStack item : pouchContents.items()) {
@@ -183,7 +183,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
                     }
                 }
                 SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
-                stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
+                stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
             }
             return inserted;
         }
@@ -205,13 +205,13 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
-        components.set(DataComponentRegistry.SPIRIT_JAR_CONTENTS, contents);
+        components.set(MalumDataComponents.SPIRIT_JAR_CONTENTS, contents);
     }
 
     @Override
     protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
         super.applyImplicitComponents(componentInput);
-        contents = componentInput.get(DataComponentRegistry.SPIRIT_JAR_CONTENTS);
+        contents = componentInput.get(MalumDataComponents.SPIRIT_JAR_CONTENTS);
     }
 
     @Override

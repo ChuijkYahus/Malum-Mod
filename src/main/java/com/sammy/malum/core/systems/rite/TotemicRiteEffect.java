@@ -1,7 +1,7 @@
 package com.sammy.malum.core.systems.rite;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.registry.common.tag.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
@@ -124,6 +124,6 @@ public abstract class TotemicRiteEffect {
     }
 
     public boolean canAffectBlock(TotemBaseBlockEntity totemBase, BlockState state, BlockPos pos) {
-        return !state.is(BlockTagRegistry.RITE_IMMUNE);
+        return !state.is(MalumTags.BlockTags.IS_RITE_IMMUNE);
     }
 }

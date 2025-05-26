@@ -6,7 +6,6 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.attack.ScytheSlashParticleEffect;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -20,7 +19,7 @@ import java.util.function.*;
 public class ProfaneGluttonGeas extends GeasEffect {
 
     public ProfaneGluttonGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON.get());
     }
 
     @Override
@@ -29,7 +28,7 @@ public class ProfaneGluttonGeas extends GeasEffect {
                 .scaleInitialAmplifier(2)
                 .scaleAmplifierGain(2)
                 .scaleAmplifierLimit(4)
-                .replaceEffectType(MobEffectRegistry.DESPERATE_NEED);
+                .replaceEffectType(MalumMobEffects.DESPERATE_NEED);
     }
 
     @Override
@@ -42,10 +41,10 @@ public class ProfaneGluttonGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        var effect = target.getEffect(MobEffectRegistry.DESPERATE_NEED);
+        var effect = target.getEffect(MalumMobEffects.DESPERATE_NEED);
         if (effect != null) {
             EntityHelper.shortenEffect(effect, target, effect.getDuration() / 4);
-            if (event.getSource().is(DamageTypeRegistry.ROT)) {
+            if (event.getSource().is(MalumDataTypes.ROT)) {
                 target.addEffect(new MobEffectInstance(MobEffects.POISON, 40, 0, true, true));
                 return;
             }
@@ -56,10 +55,10 @@ public class ProfaneGluttonGeas extends GeasEffect {
                     WorldEventHandler.addWorldEvent(target.level(),
                             new DelayedDamageWorldEvent(target)
                                     .setDamageData(1, 1, 2)
-                                    .setPhysicalDamageType(DamageTypeRegistry.ROT)
-                                    .setMagicDamageType(DamageTypeRegistry.ROT)
-                                    .setImpactParticleEffect(ParticleEffectTypeRegistry.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.EARTHEN_SPIRIT))
-                                    .setSound(SoundRegistry.DESPERATE_NEED_WITHDRAWAL, 0.5f, 1.5f, 0.3f));
+                                    .setPhysicalDamageType(MalumDataTypes.ROT)
+                                    .setMagicDamageType(MalumDataTypes.ROT)
+                                    .setImpactParticleEffect(MalumParticleEffectTypes.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.EARTHEN_SPIRIT))
+                                    .setSound(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, 0.5f, 1.5f, 0.3f));
                 }
                 chance--;
             }

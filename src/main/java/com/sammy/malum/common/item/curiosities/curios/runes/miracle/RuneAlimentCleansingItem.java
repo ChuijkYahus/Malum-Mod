@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class RuneAlimentCleansingItem extends AbstractRuneCurioItem {
 
     public RuneAlimentCleansingItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.AQUEOUS_SPIRIT);
+        super(builder, MalumSpiritTypes.AQUEOUS_SPIRIT);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RuneAlimentCleansingItem extends AbstractRuneCurioItem {
 
     public static void scaleDuration(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
-        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, ItemRegistry.RUNE_OF_ALIMENT_CLEANSING.get())) {
+        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, MalumItems.RUNE_OF_ALIMENT_CLEANSING.get())) {
             MobEffectInstance effect = event.getEffectInstance();
             MobEffect type = effect.getEffect().value();
             if (type.getCategory().equals(MobEffectCategory.HARMFUL)) {

@@ -39,7 +39,7 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
     public final Item repairOutputOverride;
 
     public SpiritRepairRecipe(float durabilityPercentage, String itemIdRegex, String modIdRegex, List<ResourceLocation> itemsForRepair, SizedIngredient repairMaterial, List<SpiritIngredient> spirits, Item repairOutputOverride) {
-        super(RecipeSerializerRegistry.REPAIR_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.SPIRIT_REPAIR.get());
+        super(MalumRecipeSerializers.REPAIR_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_REPAIR.get());
         this.durabilityPercentage = durabilityPercentage;
         this.itemIdRegex = itemIdRegex;
         this.modIdRegex = modIdRegex;
@@ -79,7 +79,7 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         for (int i = 0; i < BuiltInRegistries.ITEM.size(); i++) {
             Item item = BuiltInRegistries.ITEM.byId(i);
             if (item.isRepairable(item.getDefaultInstance())) {
-                var damagedImpetusVariant = item.builtInRegistryHolder().getData(DataMapRegistry.FRACTURED_IMPETUS_VARIANT);
+                var damagedImpetusVariant = item.builtInRegistryHolder().getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
                 if (damagedImpetusVariant != null) {
                     continue;
                 }

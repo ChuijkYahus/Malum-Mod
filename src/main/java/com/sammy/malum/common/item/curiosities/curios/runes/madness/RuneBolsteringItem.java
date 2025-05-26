@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.*;
 public class RuneBolsteringItem extends AbstractRuneCurioItem {
 
     public RuneBolsteringItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.SACRED_SPIRIT);
+        super(builder, MalumSpiritTypes.SACRED_SPIRIT);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.*;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
@@ -32,7 +32,7 @@ public class SpiritRepairPage extends BookPage {
     private final List<ItemStack> repairedStacks;
 
     public SpiritRepairPage(Predicate<SpiritRepairRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, RecipeTypeRegistry.SPIRIT_REPAIR.get(), predicate));
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_REPAIR.get(), predicate));
     }
 
     public SpiritRepairPage(SpiritRepairRecipe recipe) {
@@ -57,7 +57,7 @@ public class SpiritRepairPage extends BookPage {
     public static SpiritRepairPage fromId(ResourceLocation recipeId) {
         var level = Minecraft.getInstance().level;
         final ResourceLocation other = recipeId.withPrefix("spirit_repair/");
-        var recipe = LodestoneRecipeType.getRecipeHolders(level, RecipeTypeRegistry.SPIRIT_REPAIR.get())
+        var recipe = LodestoneRecipeType.getRecipeHolders(level, MalumRecipeTypes.SPIRIT_REPAIR.get())
                 .stream()
                 .filter(r -> r.id().equals(other))
                 .findFirst()

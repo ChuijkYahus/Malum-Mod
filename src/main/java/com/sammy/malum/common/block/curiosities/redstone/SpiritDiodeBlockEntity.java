@@ -1,10 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
 import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayload;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.*;
@@ -80,9 +77,9 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
     @Override
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
         if (pPlayer.isCrouching()) {
-            if (pStack.is(ItemTagRegistry.IS_REDSTONE_TOOL)) {
+            if (pStack.is(MalumTags.ItemTags.IS_REDSTONE_TOOL)) {
                 level.setBlock(getBlockPos(), getBlockState().rotate(level, getBlockPos(), Rotation.CLOCKWISE_90), 3);
-                level.playSound(null, getBlockPos(), SoundRegistry.SPIRIT_DIODE_TICK.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+                level.playSound(null, getBlockPos(), MalumSoundEvents.SPIRIT_DIODE_TICK.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
                 return ItemInteractionResult.SUCCESS;
             }
         }
@@ -120,8 +117,8 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
             boolean value = getBlockState().getValue(SpiritDiodeBlock.OPEN);
             if (value != newValue) {
                 level.setBlock(getBlockPos(), getBlockState().setValue(SpiritDiodeBlock.OPEN, !value), 3);
-                level.playSound(null, getBlockPos(), value ? SoundRegistry.SPIRIT_DIODE_CLOSE.get() : SoundRegistry.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
-                var particleEffect = value ? ParticleEffectTypeRegistry.SPIRIT_DIODE_CLOSE : ParticleEffectTypeRegistry.SPIRIT_DIODE_OPEN;
+                level.playSound(null, getBlockPos(), value ? MalumSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumSoundEvents.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+                var particleEffect = value ? MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE : MalumParticleEffectTypes.SPIRIT_DIODE_OPEN;
                 particleEffect.createEffect()
                         .at(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0))
                         .color(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build())

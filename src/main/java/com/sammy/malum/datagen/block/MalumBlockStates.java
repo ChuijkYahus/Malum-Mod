@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.registry.common.block.BlockRegistry.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 
 public class MalumBlockStates extends LodestoneBlockStateProvider {
 

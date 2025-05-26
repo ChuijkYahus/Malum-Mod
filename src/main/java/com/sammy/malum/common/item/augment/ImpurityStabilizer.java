@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ImpurityStabilizer extends AugmentItem {
     public ImpurityStabilizer(Properties pProperties) {
-        super(pProperties, SpiritTypeRegistry.WICKED_SPIRIT,
+        super(pProperties, MalumSpiritTypes.WICKED_SPIRIT,
                 new ArtificeModifier(ArtificeAttributeType.WEAKNESS_TUNING, 0.4f),
                 new ArtificeModifier(ArtificeAttributeType.TUNING_STRAIN, 0.08f));
     }

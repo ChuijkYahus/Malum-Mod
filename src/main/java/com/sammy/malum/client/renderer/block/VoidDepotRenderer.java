@@ -2,7 +2,6 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
-import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
@@ -20,7 +19,6 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
 import java.util.List;
@@ -59,12 +57,12 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.05f;
 
-        final LodestoneRenderType renderType = RenderTypeRegistry.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
+        final LodestoneRenderType renderType = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
         builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
         for (int i = 0; i < 2; i++) {
             builder.setAlpha(alpha);
             float speed = 1000f + 250f * i;
-            builder.setColor(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor()).setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
+            builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor()).setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
                 s.safeGetUniform("Speed").set(speed);
                 s.safeGetUniform("Width").set(16f);
                 s.safeGetUniform("Height").set(16f);
@@ -78,7 +76,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
             poseStack.translate(0, 0.05f, 0);
             poseStack.mulPose(Axis.YP.rotationDegrees(90));
             if (i == 0) {
-                builder.setColor(SpiritTypeRegistry.ELDRITCH_SPIRIT.getPrimaryColor());
+                builder.setColor(MalumSpiritTypes.ELDRITCH_SPIRIT.getPrimaryColor());
             }
         }
         poseStack.popPose();
@@ -109,7 +107,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
                     MultiBufferSource bufferToUse = isAdditive ? ADDITIVE : TRANSPARENT;
                     MutableComponent outlineText = text.copy();
 
-                    text.withStyle(isAdditive ? style -> style.withColor(TextColor.fromRgb(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor().getRGB())) : style -> style.withColor(TextColor.fromRgb(new Color(50, 0, 50).getRGB())));
+                    text.withStyle(isAdditive ? style -> style.withColor(TextColor.fromRgb(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor().getRGB())) : style -> style.withColor(TextColor.fromRgb(new Color(50, 0, 50).getRGB())));
                     outlineText.withStyle(isAdditive ? ChatFormatting.RED : ChatFormatting.BLACK);
 
                     poseStack.pushPose();

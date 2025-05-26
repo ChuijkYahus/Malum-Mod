@@ -8,8 +8,8 @@ import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
@@ -89,9 +89,9 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public SoulBrazierBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.SOUL_BRAZIER.get(), pos, state);
+        this(MalumBlockEntities.SOUL_BRAZIER.get(), pos, state);
         inventory = MalumBlockEntityInventory.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, SpiritTypeRegistry.SPIRITS.size()).onContentsChanged(this::updateRecipe);
+        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, MalumSpiritTypes.SPIRITS.size()).onContentsChanged(this::updateRecipe);
     }
 
     @Override
@@ -242,9 +242,9 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             return false;
         }
         var item = stack.getItem();
-        if (item.equals(ItemRegistry.ETHER.get())) {
+        if (item.equals(MalumItems.ETHER.get())) {
             beginSoulbinding(level, BrazierState.BINDING);
-        } else if (item.equals(ItemRegistry.PARACAUSAL_FLAME.get())) {
+        } else if (item.equals(MalumItems.PARACAUSAL_FLAME.get())) {
             beginSoulbinding(level, BrazierState.UNBINDING);
         }
         if (isIdle()) {
@@ -259,10 +259,10 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void beginSoulbinding(ServerLevel level, BrazierState newState) {
         state = newState;
         sacrificedTargets.clear();
-        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 1.3f + level.random.nextFloat() * 0.3f);
-        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 0.9f + level.random.nextFloat() * 0.3f);
+        level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 1.3f + level.random.nextFloat() * 0.3f);
+        level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 0.9f + level.random.nextFloat() * 0.3f);
 
-        ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_BEGINS.createEffect(worldPosition)
+        MalumParticleEffectTypes.SOULBINDING_BRAZIER_BEGINS.createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
@@ -274,10 +274,10 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         UUID uuid = entity.getUUID();
         if (!sacrificedTargets.contains(uuid)) {
             sacrificedTargets.add(uuid);
-            entity.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.KARMIC), entity.getMaxHealth()/4f);
-            level.playSound(null, worldPosition, SoundRegistry.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
+            entity.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), entity.getMaxHealth()/4f);
+            level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
 
-            ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
+            MalumParticleEffectTypes.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
                     .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                     .customData(new SoulBrazierAcceptSacrificeParticleEffect.SoulBrazierEntityEffectData(entity.getId()))
                     .spawn(level);
@@ -326,14 +326,14 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 success = GeasEffectHandler.removeGeasEffect(target, recipe.geas);
             }
             if (!success) {
-                target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.KARMIC), target.getMaxHealth() / 2f);
+                target.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), target.getMaxHealth() / 2f);
             }
         }
-        ParticleEffectTypeRegistry.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)
+        MalumParticleEffectTypes.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
-        level.playSound(null, worldPosition, SoundRegistry.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
+        level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         state = BrazierState.IDLE;
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, false), 3);
         updateRecipe();
@@ -343,7 +343,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public void updateRecipe() {
         inventory.updateInventoryCaches();
         spiritInventory.updateInventoryCaches();
-        recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.SOUL_BINDING.get(),
+        recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SOUL_BINDING.get(),
                 new SpiritBasedRecipeInput(inventory.nonEmptyItemStacks, spiritInventory.nonEmptyItemStacks));
     }
 

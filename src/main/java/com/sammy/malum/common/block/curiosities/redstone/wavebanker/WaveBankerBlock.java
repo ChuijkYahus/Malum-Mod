@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavebanker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -18,7 +18,7 @@ public class WaveBankerBlock extends SpiritDiodeBlock<WaveBankerBlockEntity> {
         diode.outputSignal = signal;
 
         if (previousSignal > diode.outputSignal) {
-            level.playSound(null, pos, SoundRegistry.WAVEBANKER_STORE.get(), SoundSource.BLOCKS, 0.3f, 1.2f);
+            level.playSound(null, pos, MalumSoundEvents.WAVEBANKER_STORE.get(), SoundSource.BLOCKS, 0.3f, 1.2f);
             emitRedstoneParticles(level, pos);
         }
         updateState(level, pos, state, diode);

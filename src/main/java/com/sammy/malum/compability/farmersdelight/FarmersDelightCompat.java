@@ -1,8 +1,8 @@
 package com.sammy.malum.compability.farmersdelight;
 
 import com.sammy.malum.common.item.curiosities.MagicKnifeItem;
-import com.sammy.malum.registry.common.item.ItemRegistry;
-import com.sammy.malum.registry.common.item.ItemTiers;
+import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.item.MalumItemTiers;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.Item;
@@ -21,14 +21,14 @@ public class FarmersDelightCompat {
     public static class LoadedOnly {
 
         public static Item makeMagicKnife(LodestoneItemProperties properties) {
-            return new MagicKnifeItem(ItemTiers.SOUL_STAINED_STEEL, -1.5f, 0, 2, properties);
+            return new MagicKnifeItem(MalumItemTiers.SOUL_STAINED_STEEL, -1.5f, 0, 2, properties);
         }
     }
 
     public static class AndJeiLoadedOnly {
 
         public static void addInfo(IRecipeRegistration registration) {
-            registration.addIngredientInfo(new ItemStack(ItemRegistry.SOUL_STAINED_STEEL_KNIFE.get()), VanillaTypes.ITEM_STACK, TextUtils.getTranslation("jei.info.knife"));
+            registration.addIngredientInfo(new ItemStack(MalumItems.SOUL_STAINED_STEEL_KNIFE.get()), VanillaTypes.ITEM_STACK, TextUtils.getTranslation("jei.info.knife"));
         }
     }
 }

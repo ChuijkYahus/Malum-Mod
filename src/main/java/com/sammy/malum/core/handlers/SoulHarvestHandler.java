@@ -43,7 +43,7 @@ public class SoulHarvestHandler {
         if (target instanceof Player) {
             return;
         }
-        var data = target.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO);
+        var data = target.getData(MalumAttachmentTypes.LIVING_SOUL_INFO);
         if (data.isSoulless() || (CommonConfig.SOULLESS_SPAWNERS.getConfigValue() && data.isSpawnerSpawned())) {
             return;
         }
@@ -56,14 +56,14 @@ public class SoulHarvestHandler {
             var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(s -> s.itemAsSoul).orElse(null);
             if (itemAsSoul != null) {
                 var uuid = attacker != null ? attacker.getUUID() : null;
-                target.setData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(getSpiritDrops(target, attacker, source), uuid));
+                target.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(getSpiritDrops(target, attacker, source), uuid));
                 return;
             }
             spawnSpirits(target, attacker, source);
 
 
             if (attacker != null) {
-                attacker.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).setMostRecentShatter(level.getGameTime());
+                attacker.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setMostRecentShatter(level.getGameTime());
             }
             data.setSoulless(true);
         }
@@ -92,12 +92,12 @@ public class SoulHarvestHandler {
             return;
         }
         if (target.getType().is(EntityTypeTags.UNDEAD) && attacker instanceof Player player) {
-            var data = player.getData(AttachmentTypeRegistry.PROGRESSION_DATA);
+            var data = player.getData(MalumAttachmentTypes.PROGRESSION_DATA);
             if (data.obtainedEncyclopedia) {
                 return;
             }
             data.obtainedEncyclopedia = true;
-            SoulHarvestHandler.spawnItemsAsSpirits(target, attacker, List.of(ItemRegistry.ENCYCLOPEDIA_ARCANA.get().getDefaultInstance()));
+            SoulHarvestHandler.spawnItemsAsSpirits(target, attacker, List.of(MalumItems.ENCYCLOPEDIA_ARCANA.get().getDefaultInstance()));
         }
     }
 
@@ -148,7 +148,7 @@ public class SoulHarvestHandler {
                 createSpiritEntity(level, attacker, stack, position);
             }
         }
-        level.playSound(null, position.x, position.y, position.z, SoundRegistry.SOUL_SHATTER, SoundSource.PLAYERS, 1.0F, 0.7f + random.nextFloat() * 0.4f);
+        level.playSound(null, position.x, position.y, position.z, MalumSoundEvents.SOUL_SHATTER, SoundSource.PLAYERS, 1.0F, 0.7f + random.nextFloat() * 0.4f);
     }
 
     private static SpiritItemEntity createSpiritEntity(Level level, @Nullable LivingEntity spiritOwner, ItemStack stack, Vec3 position) {
@@ -173,7 +173,7 @@ public class SoulHarvestHandler {
             return spirits;
         }
         int extra = 0;
-        var spiritSpoils = AttributeRegistry.SPIRIT_SPOILS;
+        var spiritSpoils = MalumAttributes.SPIRIT_SPOILS;
         if (attacker.getAttribute(spiritSpoils) != null) {
             extra += Mth.ceil(attacker.getAttributeValue(spiritSpoils));
         }
@@ -212,7 +212,7 @@ public class SoulHarvestHandler {
 
     public static void triggerSpiritCollection(LivingEntity collector) {
         var collectionEvent = new CollectSpiritEvent(collector);
-        var resonance = collector.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE);
+        var resonance = collector.getAttributeValue(MalumAttributes.ARCANE_RESONANCE);
         ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponder.class,
                 (eventResponderItem, stack) -> eventResponderItem.spiritCollectionEvent(collectionEvent, collector, resonance)));
         NeoForge.EVENT_BUS.post(collectionEvent);

@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -41,7 +41,7 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
     protected final String langKey;
     protected static final Color COLOR = new Color(170, 15, 1);
 
-    public static final HeldItemTracker CLAW_TRACKER = new HeldItemTracker(p -> p.is(ItemTagRegistry.IS_REDSTONE_TOOL));
+    public static final HeldItemTracker CLAW_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_REDSTONE_TOOL));
 
     public SpiritDiodeRenderer(BlockEntityRendererProvider.Context context, ResourceLocation tokenTexture, String langKey) {
         this.output = RenderTypeToken.createToken(tokenTexture);

@@ -6,7 +6,6 @@ import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.server.level.*;
@@ -50,7 +49,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     @Override
     public MalumSpiritType getDefiningSpiritType() {
-        var spirits = new MalumSpiritType[]{SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.EARTHEN_SPIRIT};
+        var spirits = new MalumSpiritType[]{MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT};
         return spirits[MalumMod.RANDOM.nextInt(spirits.length)];
     }
 
@@ -59,7 +58,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         if (!(attacker.level() instanceof ServerLevel serverLevel)) {
             return;
         }
-        if (!target.getData(AttachmentTypeRegistry.LIVING_SOUL_INFO).shouldDropSpirits()) {
+        if (!target.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).shouldDropSpirits()) {
             return;
         }
         if (target.isOnFire()) {
@@ -82,12 +81,12 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         }
 
         boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC);
-        if (canTriggerMagic || source.is(DamageTypeRegistry.INVERTED_HEART_PROPAGATION)) {
+        if (canTriggerMagic || source.is(MalumDataTypes.INVERTED_HEART_PROPAGATION)) {
             target.igniteForSeconds(5);
         }
         if (canTriggerMagic) {
             for (int i = 0; i < 3; i++) {
-                ParticleEffectTypeRegistry.STAFF_SLAM.createEffect()
+                MalumParticleEffectTypes.STAFF_SLAM.createEffect()
                         .originatesFrom(attacker)
                         .targets(target)
                         .randomOffset(random, 0.3f, 0.8f * (random.nextBoolean() ? 1 : -1))
@@ -99,14 +98,14 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
             }
             float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
-            SoundHelper.playSound(attacker, SoundRegistry.WORLDSOUL_MOTIF_HEAVY_IMPACT.get(), 2f, pitch);
+            SoundHelper.playSound(attacker, MalumSoundEvents.WORLDSOUL_MOTIF_HEAVY_IMPACT.get(), 2f, pitch);
         }
     }
 
     @Override
     public int getProjectileCount(Level level, LivingEntity livingEntity, float pct) {
         if (pct == 1f) {
-            var data = livingEntity.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+            var data = livingEntity.getData(MalumAttachmentTypes.STAFF_ABILITIES);
             return 3 + data.consumeAllStaffCharges(livingEntity) * 2;
         }
         return 0;
@@ -135,10 +134,10 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {
-        attacker.getData(AttachmentTypeRegistry.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
+        attacker.getData(MalumAttachmentTypes.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
         float pitch = RandomHelper.randomBetween(attacker.getRandom(), 0.75f, 1.25f);
-        SoundHelper.playSound(target, SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
-        ParticleEffectTypeRegistry.UNWINDING_CHAOS_CHARGE.createEffect(target)
+        SoundHelper.playSound(target, MalumSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
+        MalumParticleEffectTypes.UNWINDING_CHAOS_CHARGE.createEffect(target)
                 .color(getDefiningSpiritType())
                 .customData(new UnwindingChaosChargeParticleEffect.UnwindingChaosChargeEffectData(attacker.getId()))
                 .spawn(serverLevel);
@@ -148,7 +147,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        final WorldParticleBuilder builder = WorldParticleBuilder.create(ParticleRegistry.CHAOS_TARGET)
+        final WorldParticleBuilder builder = WorldParticleBuilder.create(MalumParticles.CHAOS_TARGET)
                 .setTransparencyData(GenericParticleData.create(0.7f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
@@ -161,7 +160,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
             var spin = SpinParticleData.create(0.05f, 0.1f);
             final long delta = (i == 1 ? 1 : -1) * (pLevel.getGameTime() + i * 5);
             float offset = 0.4f * Mth.sin((delta / 8f) % 6.28f);
-            var spirit = i == 0 ? SpiritTypeRegistry.AQUEOUS_SPIRIT : SpiritTypeRegistry.INFERNAL_SPIRIT;
+            var spirit = i == 0 ? MalumSpiritTypes.AQUEOUS_SPIRIT : MalumSpiritTypes.INFERNAL_SPIRIT;
             builder.setColorData(spirit.createColorData().build()).setLifeDelay(i==0 ? 2 : 4)
                     .setSpinData(spin.setSpinOffset(i * 1.57f + offset).build())
                     .setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)

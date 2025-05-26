@@ -1,6 +1,5 @@
 package com.sammy.malum.core.handlers.client;
 
-import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.common.data.attachment.*;
@@ -23,7 +22,7 @@ public class TouchOfDarknessRenderHandler {
         Minecraft minecraft = Minecraft.getInstance();
         PoseStack poseStack = guiGraphics.pose();
         Player player = minecraft.player;
-        var data = player.getData(AttachmentTypeRegistry.TOUCH_OF_DARKNESS);
+        var data = player.getData(MalumAttachmentTypes.TOUCH_OF_DARKNESS);
         if (data.touchOfDarkness == 0f) {
             return;
         }
@@ -35,7 +34,7 @@ public class TouchOfDarknessRenderHandler {
         float zoom = 0.5f + Math.min(0.35f, effectStrength);
         float intensity = 1f + (effectStrength > 0.5f ? (effectStrength - 0.5f) * 2.5f : 0);
 
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) ShaderRegistry.TOUCH_OF_DARKNESS.getInstance().get();
+        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) MalumShaders.TOUCH_OF_DARKNESS.getInstance().get();
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavemaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +13,7 @@ public class WaveMakerBlockEntity extends SpiritDiodeBlockEntity {
     public boolean inverted;
 
     public WaveMakerBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.WAVEMAKER.get(), pos, state);
+        super(MalumBlockEntities.WAVEMAKER.get(), pos, state);
     }
 
     @Override

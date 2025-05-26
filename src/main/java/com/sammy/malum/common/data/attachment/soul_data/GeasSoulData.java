@@ -60,7 +60,7 @@ public class GeasSoulData {
     }
 
     public boolean tryAddGeasEffect(LivingEntity target, GeasEffectType geas) {
-        var attribute = target.getAttribute(AttributeRegistry.GEAS_LIMIT);
+        var attribute = target.getAttribute(MalumAttributes.GEAS_LIMIT);
         if (attribute == null) {
             return false;
         }

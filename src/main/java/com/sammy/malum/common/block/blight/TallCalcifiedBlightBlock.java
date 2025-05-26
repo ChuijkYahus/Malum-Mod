@@ -18,7 +18,7 @@ import net.minecraft.world.phys.shapes.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.tag.BlockTagRegistry.BLIGHTED_BLOCKS;
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHTED_BLOCKS;
 
 public class TallCalcifiedBlightBlock extends DoublePlantBlock {
 
@@ -38,15 +38,15 @@ public class TallCalcifiedBlightBlock extends DoublePlantBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (stack.getItem().equals(ItemRegistry.CALCIFIED_BLIGHT.get())) {
+        if (stack.getItem().equals(MalumItems.CALCIFIED_BLIGHT.get())) {
             final int stage = state.getValue(STAGE);
             if (stage < 3) {
-                placeAt(level, BlockRegistry.TALL_CALCIFIED_BLIGHT.get().defaultBlockState().setValue(STAGE, stage+1), state.getValue(HALF).equals(DoubleBlockHalf.UPPER) ? pos.below() : pos, 3);
+                placeAt(level, MalumBlocks.TALL_CALCIFIED_BLIGHT.get().defaultBlockState().setValue(STAGE, stage+1), state.getValue(HALF).equals(DoubleBlockHalf.UPPER) ? pos.below() : pos, 3);
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }
                 SoundType soundtype = state.getSoundType(level, pos, player);
-                level.playSound(player, pos, SoundRegistry.CALCIFIED_BLIGHT_PLACE.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * (1.3f + stage * 0.1f));
+                level.playSound(player, pos, MalumSoundEvents.CALCIFIED_BLIGHT_PLACE.get(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * (1.3f + stage * 0.1f));
                 return ItemInteractionResult.SUCCESS;
             }
         }

@@ -4,7 +4,6 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.spiritrite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.SpiritTypeRegistry.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
 
 public class InfernalRiteType extends TotemicRiteType {
     public InfernalRiteType() {
@@ -22,12 +21,12 @@ public class InfernalRiteType extends TotemicRiteType {
 
     @Override
     public TotemicRiteEffect getNaturalRiteEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.MINERS_RAGE);
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.MINERS_RAGE);
     }
 
     @Override
     public TotemicRiteEffect getCorruptedEffect() {
-        return new PotionRiteEffect(SpiritTypeRegistry.AERIAL_SPIRIT, LivingEntity.class, MobEffectRegistry.IFRITS_EMBRACE) {
+        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.IFRITS_EMBRACE) {
 
             @SuppressWarnings("ConstantConditions")
             @Override
@@ -35,7 +34,7 @@ public class InfernalRiteType extends TotemicRiteType {
                 super.doRiteEffect(totemBase, level);
                 getNearbyBlocks(totemBase, BaseFireBlock.class).forEach(p -> {
                     BlockState state = totemBase.getLevel().getBlockState(p);
-                    if (!state.is(BlockTagRegistry.ENDLESS_FLAME)) {
+                    if (!state.is(MalumTags.BlockTags.INEXTINGUISHABLE_FLAME)) {
                         level.playSound(null, p, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
                         totemBase.getLevel().removeBlock(p, false);
                     }

@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.registry.client.ParticleRegistry;
+import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -62,7 +62,7 @@ public class SpiritDiodeParticleEffects {
                 .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
                 .setCoefficient(RandomHelper.randomBetween(rand, 1f, 1.25f)).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
-        var squares = WorldParticleBuilder.create(ParticleRegistry.SQUARE.get())
+        var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setTransparencyData(GenericParticleData.create(0.7f, 0f).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setScaleData(scaleData)

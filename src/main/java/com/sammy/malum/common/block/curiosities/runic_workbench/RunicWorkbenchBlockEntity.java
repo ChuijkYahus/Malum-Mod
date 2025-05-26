@@ -3,11 +3,10 @@ package com.sammy.malum.common.block.curiosities.runic_workbench;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.packets.particle.rite.BlightTransformItemParticlePacket;
-import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
@@ -34,7 +33,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     public RunicWorkbenchBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.RUNIC_WORKBENCH.get(), pos, state);
+        this(MalumBlockEntities.RUNIC_WORKBENCH.get(), pos, state);
     }
 
     @Override
@@ -50,14 +49,14 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     public ItemInteractionResult onUseWithItem(Player player, ItemStack heldStack, InteractionHand hand) {
         var primaryInput = inventory.getStackInSlot(0);
         if (!primaryInput.isEmpty()) {
-            var recipe = LodestoneRecipeType.getRecipe(player.level(), RecipeTypeRegistry.RUNEWORKING.get(), new SpiritBasedRecipeInput(primaryInput, heldStack));
+            var recipe = LodestoneRecipeType.getRecipe(player.level(), MalumRecipeTypes.RUNEWORKING.get(), new SpiritBasedRecipeInput(primaryInput, heldStack));
             if (recipe != null) {
                 Vec3 itemPos = getItemPos();
                 if (!level.isClientSide) {
                     primaryInput.shrink(recipe.primaryInput.count());
                     heldStack.shrink(recipe.secondaryInput.getCount());
                     level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, recipe.output.copy()));
-                    level.playSound(null, worldPosition, SoundRegistry.RUNIC_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
+                    level.playSound(null, worldPosition, MalumSoundEvents.RUNIC_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
                     if (heldStack.getItem() instanceof SpiritShardItem spirit) {
                         PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, new ChunkPos(getBlockPos()), new BlightTransformItemParticlePacket(List.of(spirit.type.getIdentifier()), itemPos));
                     }

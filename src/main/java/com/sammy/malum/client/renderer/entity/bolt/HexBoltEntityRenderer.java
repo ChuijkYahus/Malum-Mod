@@ -6,6 +6,6 @@ import net.minecraft.client.renderer.entity.*;
 
 public class HexBoltEntityRenderer extends AbstractBoltEntityRenderer<HexBoltEntity> {
     public HexBoltEntityRenderer(EntityRendererProvider.Context context) {
-        super(context, SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor(), SpiritTypeRegistry.WICKED_SPIRIT.getSecondaryColor());
+        super(context, MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor(), MalumSpiritTypes.WICKED_SPIRIT.getSecondaryColor());
     }
 }

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.effect.aura;
 
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -8,7 +8,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class CorruptedInfernalAura extends MobEffect {
     public CorruptedInfernalAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.INFERNAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.INFERNAL_SPIRIT.getPrimaryColor()));
     }
 
     @Override

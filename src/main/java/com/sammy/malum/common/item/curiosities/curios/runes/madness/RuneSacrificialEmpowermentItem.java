@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.MobEffectRegistry;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumMobEffects;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneSacrificialEmpowermentItem(Properties builder) {
-        super(builder, SpiritTypeRegistry.WICKED_SPIRIT);
+        super(builder, MalumSpiritTypes.WICKED_SPIRIT);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implem
 
     @Override
     public void outgoingDeathEvent(LivingDeathEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        Holder<MobEffect> sacrificialEmpowerment = MobEffectRegistry.SACRIFICIAL_EMPOWERMENT;
+        Holder<MobEffect> sacrificialEmpowerment = MalumMobEffects.SACRIFICIAL_EMPOWERMENT;
         MobEffectInstance effect = attacker.getEffect(sacrificialEmpowerment);
         if (effect == null) {
             attacker.addEffect(new MobEffectInstance(sacrificialEmpowerment, 200, 0, true, true, true));

@@ -103,7 +103,7 @@ public class ScarfRenderHandler {
         public void render(LivingEntity entity, PoseStack poseStack, float partialTicks) {
             BlockPos blockpos = entity.blockPosition().above(2);
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
-            var renderType = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(token);
+            var renderType = LodestoneRenderTypes.TEXTURE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
             Vec3 scarfStart = getScarfStart(entity, partialTicks);
             points.setOrigin(scarfStart);

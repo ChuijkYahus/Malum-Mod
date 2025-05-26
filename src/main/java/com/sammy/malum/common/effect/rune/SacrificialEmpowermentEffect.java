@@ -8,7 +8,7 @@ import team.lodestar.lodestone.helpers.*;
 
 public class SacrificialEmpowermentEffect extends MobEffect {
     public SacrificialEmpowermentEffect() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.WICKED_SPIRIT.getPrimaryColor()));
-        addAttributeModifier(AttributeRegistry.SCYTHE_PROFICIENCY, MalumMod.malumPath("sacrificial_empowerment"), 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor()));
+        addAttributeModifier(MalumAttributes.SCYTHE_PROFICIENCY, MalumMod.malumPath("sacrificial_empowerment"), 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }

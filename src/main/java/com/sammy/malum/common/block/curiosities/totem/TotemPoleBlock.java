@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEntityBlock<T> {
 
-    public static final SpiritTypeProperty SPIRIT_TYPE = SpiritTypeRegistry.SPIRIT_TYPE_PROPERTY;
+    public static final SpiritTypeProperty SPIRIT_TYPE = MalumSpiritTypes.SPIRIT_TYPE_PROPERTY;
 
     public final Supplier<? extends Block> logBlock;
     public final boolean isSoulwood;
@@ -44,7 +44,7 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof TotemPoleBlockEntity pole) {
-            return Math.min(SpiritTypeRegistry.getIndexForSpiritType(pole.spirit) + 1, 15);
+            return Math.min(MalumSpiritTypes.getIndexForSpiritType(pole.spirit) + 1, 15);
         }
         return 0;
     }

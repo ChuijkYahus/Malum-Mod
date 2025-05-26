@@ -24,7 +24,7 @@ public class StaffAbilityRenderHandler {
     public static void tick(ClientTickEvent event) {
         final LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
-            var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+            var data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
             if (data.getStaffChargeDebt() == 0) {
                 if (glow < 20) {
                     glow++;
@@ -43,7 +43,7 @@ public class StaffAbilityRenderHandler {
         if (!minecraft.options.hideGui) {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
-                var data = player.getData(AttachmentTypeRegistry.STAFF_ABILITIES);
+                var data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
                 double staffCharges = data.getAvailableStaffCharges(player);
                 if (staffCharges > 0) {
                     int left = guiGraphics.guiWidth() / 2 + 9;

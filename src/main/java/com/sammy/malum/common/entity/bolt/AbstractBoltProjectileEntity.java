@@ -16,7 +16,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.Comparator;
@@ -49,10 +48,10 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         getEntityData().set(DATA_SPAWN_DELAY, spawnDelay);
         if (!level().isClientSide) {
             if (spawnDelay == 0) {
-                playSound(SoundRegistry.STAFF_FIRES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
+                playSound(MalumSoundEvents.STAFF_FIRES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
             }
         }
-        isHoming = GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE);
+        isHoming = GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -132,7 +131,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         }
         if (level() instanceof ServerLevel serverLevel) {
             spawnEffect(serverLevel, 0.25f);
-            playSound(SoundRegistry.STAFF_STRIKES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
+            playSound(MalumSoundEvents.STAFF_STRIKES.get(), 0.5f, Mth.nextFloat(random, 0.9F, 1.5F));
             getEntityData().set(DATA_FADING_AWAY, true);
             Vec3 direction = pResult.getLocation().subtract(position());
             Vec3 offset = direction.normalize().scale(0.5f);
@@ -161,13 +160,13 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             if (getOwner() instanceof LivingEntity staffOwner) {
                 Entity target = result.getEntity();
                 target.invulnerableTime = 0;
-                DamageSource source = DamageTypeHelper.create(level(), DamageTypeRegistry.VOODOO, this, staffOwner);
+                DamageSource source = DamageTypeHelper.create(level(), MalumDataTypes.VOODOO, this, staffOwner);
                 boolean success = target.hurt(source, magicDamage);
                 if (success && target instanceof LivingEntity livingentity) {
                     onDealDamage(livingentity);
                     spawnEffect(serverLevel, 0.5f);
 
-                    playSound(SoundRegistry.STAFF_STRIKES.get(), 0.75f, Mth.nextFloat(random, 1f, 1.4f));
+                    playSound(MalumSoundEvents.STAFF_STRIKES.get(), 0.75f, Mth.nextFloat(random, 1f, 1.4f));
                     setDeltaMovement(getDeltaMovement().scale(0.05f));
                     getEntityData().set(DATA_FADING_AWAY, true);
                 }
@@ -182,7 +181,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             spawnDelay--;
             if (spawnDelay == 0 && !level().isClientSide) {
                 spawnDelay = -1;
-                playSound(SoundRegistry.STAFF_FIRES.get(), 1f, Mth.nextFloat(random, 0.9F, 1.5F));
+                playSound(MalumSoundEvents.STAFF_FIRES.get(), 1f, Mth.nextFloat(random, 0.9F, 1.5F));
             }
             return;
         }

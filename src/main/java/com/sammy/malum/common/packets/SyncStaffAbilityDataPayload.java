@@ -24,7 +24,7 @@ public class SyncStaffAbilityDataPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext context) {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.setData(AttachmentTypeRegistry.STAFF_ABILITIES.get(), data);
+            livingEntity.setData(MalumAttachmentTypes.STAFF_ABILITIES.get(), data);
         }
     }
 

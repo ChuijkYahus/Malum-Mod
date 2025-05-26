@@ -22,12 +22,12 @@ public class RareEarthSoundType extends ExtendedSoundType {
 
     @Override
     public void onPlayBreakSound(Level level, BlockPos pos) {
-        level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundRegistry.CTHONIC_GOLD_BREAK.get(), SoundSource.BLOCKS, (getVolume() + 1.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f, false);
+        level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, MalumSoundEvents.CTHONIC_GOLD_BREAK.get(), SoundSource.BLOCKS, (getVolume() + 1.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f, false);
     }
 
     @Override
     public void onPlayPlaceSound(Level level, BlockPos pos, Player player) {
-        level.playSound(player, pos, SoundRegistry.CTHONIC_GOLD_PLACE.get(), SoundSource.BLOCKS, (getVolume() + 2.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f);
+        level.playSound(player, pos, MalumSoundEvents.CTHONIC_GOLD_PLACE.get(), SoundSource.BLOCKS, (getVolume() + 2.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class RareEarthSoundType extends ExtendedSoundType {
             float progress = gameMode.destroyProgress;
             float volume = (getVolume() + progress * progress * 4f) / 8f;
             float pitch = getPitch() * (0.5f + 0.15f * progress);
-            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(SoundRegistry.QUARTZ_CLUSTER_BLOCK_HIT.get(), SoundSource.BLOCKS, volume, pitch, MalumMod.RANDOM, pos));
+            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_HIT.get(), SoundSource.BLOCKS, volume, pitch, MalumMod.RANDOM, pos));
         }
     }
 }

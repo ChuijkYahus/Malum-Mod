@@ -1,8 +1,9 @@
 package com.sammy.malum.common.item.curiosities;
 
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
+
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -25,15 +26,15 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
 
-public class SoulwovenPouchItem extends Item {
+public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
     private static final int BAR_COLOR = Mth.color(0.4F, 0.4F, 1.0F);
 
-    public SoulwovenPouchItem(Item.Properties properties) {
-        super(properties.component(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY));
+    public SoulwovenPouchItem(net.minecraft.world.item.Item.Properties properties) {
+        super(properties.component(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY));
     }
 
     public static float getFullnessDisplay(ItemStack stack) {
-        var contents = stack.getOrDefault(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
         return contents.weight().floatValue();
     }
 
@@ -47,12 +48,12 @@ public class SoulwovenPouchItem extends Item {
         }
         final Player player = event.getPlayer();
         final ItemStack pickedUp = itemEntity.getItem();
-        if (!pickedUp.is(ItemTagRegistry.SOULWOVEN_POUCH_AUTOCOLLECT)) {
+        if (!pickedUp.is(MalumTags.ItemTags.SOULWOVEN_POUCH_AUTOCOLLECT)) {
             return;
         }
         for (NonNullList<ItemStack> playerInventory : player.getInventory().compartments) {
             for (ItemStack item : playerInventory) {
-                if (item.has(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS)) {
+                if (item.has(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS)) {
                     if (player.getCooldowns().isOnCooldown(item.getItem())) {
                         continue;
                     }
@@ -62,7 +63,7 @@ public class SoulwovenPouchItem extends Item {
         }
     }
     public static int trySwallowItem(Player player, ItemStack stack, ItemStack pickedUp) {
-        var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (contents == null) {
             return 0;
         } else {
@@ -73,7 +74,7 @@ public class SoulwovenPouchItem extends Item {
                     pouch.playInsertSound(player);
                 }
             }
-            stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
+            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
             return i;
         }
     }
@@ -83,7 +84,7 @@ public class SoulwovenPouchItem extends Item {
         if (stack.getCount() != 1 || action != ClickAction.SECONDARY) {
             return false;
         } else {
-            var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+            var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
             if (contents == null) {
                 return false;
             } else {
@@ -103,7 +104,7 @@ public class SoulwovenPouchItem extends Item {
                     }
                 }
 
-                stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
+                stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
                 return true;
             }
         }
@@ -115,7 +116,7 @@ public class SoulwovenPouchItem extends Item {
             return false;
         }
         if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
-            var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+            var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
             if (contents == null) {
                 return false;
             } else {
@@ -133,7 +134,7 @@ public class SoulwovenPouchItem extends Item {
                     }
                 }
 
-                stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
+                stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
                 return true;
             }
         } else {
@@ -156,13 +157,13 @@ public class SoulwovenPouchItem extends Item {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        var contents = stack.getOrDefault(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
         return contents.weight().compareTo(Fraction.ZERO) > 0;
     }
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        var contents = stack.getOrDefault(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
         return Math.min(1 + Mth.mulAndTruncate(contents.weight(), 12), 13);
     }
 
@@ -172,9 +173,9 @@ public class SoulwovenPouchItem extends Item {
     }
 
     private static boolean dropContents(ItemStack stack, Player player) {
-        var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (contents != null && !contents.isEmpty()) {
-            stack.set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
             if (player instanceof ServerPlayer) {
                 contents.itemsCopy().forEach(item -> player.drop(item, true));
             }
@@ -188,13 +189,13 @@ public class SoulwovenPouchItem extends Item {
     @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
-                ? Optional.ofNullable(stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS))
+                ? Optional.ofNullable(stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS))
                 : Optional.empty();
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        var contents = stack.get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+    public void appendHoverText(ItemStack stack, net.minecraft.world.item.Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (contents != null) {
             int i = Mth.mulAndTruncate(contents.weight(), 512);
             tooltipComponents.add(Component.translatable("item.minecraft.bundle.fullness", i, 512).withStyle(ChatFormatting.GRAY));
@@ -203,9 +204,9 @@ public class SoulwovenPouchItem extends Item {
 
     @Override
     public void onDestroyed(ItemEntity itemEntity) {
-        var contents = itemEntity.getItem().get(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS);
+        var contents = itemEntity.getItem().get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (contents != null) {
-            itemEntity.getItem().set(DataComponentRegistry.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+            itemEntity.getItem().set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
             ItemUtils.onContainerDestroyed(itemEntity, contents.itemsCopy());
         }
     }

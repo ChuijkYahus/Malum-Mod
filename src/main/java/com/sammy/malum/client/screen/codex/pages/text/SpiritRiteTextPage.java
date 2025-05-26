@@ -14,15 +14,17 @@ public class SpiritRiteTextPage extends BookPage {
 
     public final TotemicRiteType riteType;
     private final Component text;
+    private final boolean isCorrupted;
 
     public SpiritRiteTextPage(TotemicRiteType riteType, String text) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png"));
         this.riteType = riteType;
         this.text = Component.translatable(BookPage.TEXT + "." + text);
+        this.isCorrupted = text.contains("corrupt");
     }
 
     public String headlineTranslationKey() {
-        return riteType.getLangKey(isCorrupted());
+        return riteType.getLangKey(isCorrupted);
     }
 
     @Override
@@ -33,13 +35,9 @@ public class SpiritRiteTextPage extends BookPage {
 
         final int riteIconX = left + 63;
         final int riteIconY = top + 38;
-        renderRiteIcon(riteType, guiGraphics.pose(), isCorrupted(), 0.4f, riteIconX, riteIconY);
+        renderRiteIcon(riteType, guiGraphics.pose(), isCorrupted, 0.4f, riteIconX, riteIconY);
         if (screen.isHovering(mouseX, mouseY, riteIconX, riteIconY, 16, 16)) {
-            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, riteType.getDescription(isCorrupted()), mouseX, mouseY));
+            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, riteType.getDescription(isCorrupted), mouseX, mouseY));
         }
-    }
-
-    public boolean isCorrupted() {
-        return text.getString().contains("corrupt");
     }
 }

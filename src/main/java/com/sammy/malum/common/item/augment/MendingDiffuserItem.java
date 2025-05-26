@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 
 public class MendingDiffuserItem extends AugmentItem {
     public MendingDiffuserItem(Properties pProperties) {
-        super(pProperties, SpiritTypeRegistry.SACRED_SPIRIT,
+        super(pProperties, MalumSpiritTypes.SACRED_SPIRIT,
                 new ArtificeModifier(ArtificeAttributeType.RESTORATION_CHANCE, 0.15f));
     }
 

@@ -10,8 +10,6 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.attack.SunderingAnchorSlashParticleEffect;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -19,7 +17,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -42,7 +39,7 @@ import java.util.*;
 
 public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
-    public static final MalumSpiritType[] SPIRITS = new MalumSpiritType[]{SpiritTypeRegistry.INFERNAL_SPIRIT, SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.AQUEOUS_SPIRIT, SpiritTypeRegistry.EARTHEN_SPIRIT};
+    public static final MalumSpiritType[] SPIRITS = new MalumSpiritType[]{MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT};
 
     public static MalumSpiritType getSunderingAnchorSpirit() {
         return SPIRITS[MalumMod.RANDOM.nextInt(SPIRITS.length)];
@@ -50,7 +47,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     public SunderingAnchorItem(Tier tier, float magicDamage, LodestoneItemProperties properties) {
         super(tier, -2f, -2f, properties
-                .component(DataComponents.TOOL, createToolProperties(tier, BlockTagRegistry.MINEABLE_WITH_KNIFE))
+                .component(DataComponents.TOOL, createToolProperties(tier, MalumTags.BlockTags.MINEABLE_WITH_KNIFE))
                 .mergeAttributes(
                         ItemAttributeModifiers.builder()
                                 .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.MAGIC_DAMAGE.getId(), magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -79,7 +76,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         if (EntityHelper.pick(player) instanceof BlockHitResult blockHitResult) {
-            if (level.getBlockState(blockHitResult.getBlockPos()).is(BlockTagRegistry.SUNDERING_ANCHOR_KNIFE_BEHAVIOR)) {
+            if (level.getBlockState(blockHitResult.getBlockPos()).is(MalumTags.BlockTags.SUNDERING_ANCHOR_KNIFE_BEHAVIOR)) {
                 return InteractionResultHolder.pass(player.getItemInHand(usedHand));
             }
         }
@@ -98,8 +95,8 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, SoundRegistry.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
-            TemporarilyDisabledItem.disable(serverPlayer, slot, ItemRegistry.SOUL_OF_THE_ANCHOR);
+            SoundHelper.playSound(player, MalumSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
+            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_THE_ANCHOR);
         }
         return InteractionResultHolder.success(weaponItem);
     }
@@ -122,15 +119,15 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                                 new DelayedDamageWorldEvent(target)
                                         .setAttacker(attacker)
                                         .setDamageData(0, splitDamage, i * 2)
-                                        .setPhysicalDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO)
-                                        .setMagicDamageType(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO)
-                                        .setSound(SoundRegistry.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
+                                        .setPhysicalDamageType(MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO)
+                                        .setMagicDamageType(MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO)
+                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
                     }
                 }
                 event.setNewDamage(splitDamage);
                 float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
-                SoundHelper.playSound(attacker, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
-                ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SLASH.createEffect()
+                SoundHelper.playSound(attacker, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                MalumParticleEffectTypes.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)
                         .forwardOffset(1.5f)
                         .horizontalOffset(0.3f)
@@ -144,7 +141,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     public static void applyHatred(LivingEntity target) {
-        var hatred = MobEffectRegistry.HATRED;
+        var hatred = MalumMobEffects.HATRED;
         var effect = target.getEffect(hatred);
         if (effect == null) {
             target.addEffect(new MobEffectInstance(hatred, 120, 0, true, true, true));
@@ -155,7 +152,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
     public static Tool createToolProperties(Tier tier, TagKey<Block> blocks) {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F),
-                Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F),
+                Tool.Rule.overrideSpeed(net.minecraft.tags.BlockTags.SWORD_EFFICIENT, 1.5F),
                 Tool.Rule.deniesDrops(tier.getIncorrectBlocksForDrops()), Tool.Rule.minesAndDrops(blocks, tier.getSpeed())), 1.0F, 2);
     }
 

@@ -6,7 +6,6 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -17,9 +16,9 @@ import java.util.function.*;
 public class GeasEffectType {
 
     public static final Codec<GeasEffectType> CODEC = ResourceLocation.CODEC.xmap(s -> {
-        final GeasEffectType geasEffectType = MalumGeasEffectTypeRegistry.GEAS_TYPES_REGISTRY.get(s);
+        final GeasEffectType geasEffectType = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.get(s);
         if (geasEffectType == null) {
-            return MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get();
+            return MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get();
         }
         return geasEffectType;
     }, GeasEffectType::getId);
@@ -57,7 +56,7 @@ public class GeasEffectType {
     }
 
     public ResourceLocation getId() {
-        return MalumGeasEffectTypeRegistry.GEAS_TYPES_REGISTRY.getKey(this);
+        return MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getKey(this);
     }
 
     public ResourceLocation getIcon() {
@@ -65,7 +64,7 @@ public class GeasEffectType {
     }
 
     public Holder<GeasEffectType> getHolder() {
-        return MalumGeasEffectTypeRegistry.GEAS_TYPES_REGISTRY.getHolder(getId()).orElseThrow();
+        return MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getHolder(getId()).orElseThrow();
     }
 
     public boolean is(TagKey<GeasEffectType> tag) {
@@ -73,8 +72,8 @@ public class GeasEffectType {
     }
 
     public ItemStack createStack(boolean isCreative) {
-        ItemStack geas = new ItemStack(ItemRegistry.GEAS.get());
-        geas.set(DataComponentRegistry.GEAS_EFFECT, new GeasDataComponent(this, isCreative));
+        ItemStack geas = new ItemStack(MalumItems.GEAS.get());
+        geas.set(MalumDataComponents.GEAS_EFFECT, new GeasDataComponent(this, isCreative));
         return geas;
     }
 

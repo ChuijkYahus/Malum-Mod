@@ -21,17 +21,17 @@ public class SoulWardHandler {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {
-                var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
+                var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
                 data.setDirty(true);
             }
         }
     }
 
-    public static void recoverSoulWard(EntityTickEvent.Pre event) {
+    public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {
-                var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
+                var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
                 data.tickData(living);
             }
         }
@@ -46,14 +46,14 @@ public class SoulWardHandler {
             return;
         }
 
-        var data = living.getData(AttachmentTypeRegistry.SOUL_WARD);
+        var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
         data.addCooldown(living, 4f);
         if (!data.isDepleted()) {
             var source = event.getSource();
             float amount = event.getNewDamage();
             double magicDamageAbsorption = 1 - CommonConfig.SOUL_WARD_MAGIC.getConfigValue();
             double physicalDamageAbsorption = 1 - CommonConfig.SOUL_WARD_PHYSICAL.getConfigValue();
-            double integrity = living.getAttributeValue(AttributeRegistry.SOUL_WARD_INTEGRITY)*2;
+            double integrity = living.getAttributeValue(MalumAttributes.SOUL_WARD_INTEGRITY)*2;
             var eventResponders = getEventResponders(living);
             var propertiesEvent = new ModifySoulWardPropertiesEvent(living, data, source, physicalDamageAbsorption, magicDamageAbsorption, integrity);
             eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class, (eventResponderItem, stack) ->
@@ -73,7 +73,7 @@ public class SoulWardHandler {
                     eventResponderItem.soulWardDamageEvent(damageEvent, living, stack)));
             NeoForge.EVENT_BUS.post(damageEvent);
 
-            var sound = data.getSoulWard() == 0 ? SoundRegistry.SOUL_WARD_DEPLETE : SoundRegistry.SOUL_WARD_HIT;
+            var sound = data.getSoulWard() == 0 ? MalumSoundEvents.SOUL_WARD_DEPLETE : MalumSoundEvents.SOUL_WARD_HIT;
             SoundHelper.playSound(living, sound.get(), 1, Mth.nextFloat(living.getRandom(), 1f, 1.5f));
             event.setNewDamage((float) (amount - absorbedDamage));
         }

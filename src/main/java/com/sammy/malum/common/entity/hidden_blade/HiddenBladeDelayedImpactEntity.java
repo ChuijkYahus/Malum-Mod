@@ -22,12 +22,12 @@ public class HiddenBladeDelayedImpactEntity extends ThrowableItemProjectile {
     public int enemiesHit;
 
     public HiddenBladeDelayedImpactEntity(Level level) {
-        super(EntityRegistry.HIDDEN_BLADE_DELAYED_IMPACT.get(), level);
+        super(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), level);
         noPhysics = false;
     }
 
     public HiddenBladeDelayedImpactEntity(Level level, double pX, double pY, double pZ) {
-        super(EntityRegistry.HIDDEN_BLADE_DELAYED_IMPACT.get(), pX, pY, pZ, level);
+        super(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), pX, pY, pZ, level);
         noPhysics = false;
     }
 
@@ -77,7 +77,7 @@ public class HiddenBladeDelayedImpactEntity extends ThrowableItemProjectile {
     protected void onHitEntity(EntityHitResult result) {
         if (getOwner() instanceof LivingEntity owner) {
             var target = result.getEntity();
-            var source = DamageTypeHelper.create(level(), DamageTypeRegistry.HIDDEN_BLADE_PHYSICAL_COUNTER, this, owner);
+            var source = DamageTypeHelper.create(level(), MalumDataTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, this, owner);
             var heldItem = owner.getMainHandItem();
             var motion = target.getDeltaMovement();
 
@@ -87,14 +87,14 @@ public class HiddenBladeDelayedImpactEntity extends ThrowableItemProjectile {
                 if (magicDamage > 0) {
                     if (!livingentity.isDeadOrDying()) {
                         livingentity.invulnerableTime = 0;
-                        livingentity.hurt(DamageTypeHelper.create(level(), DamageTypeRegistry.HIDDEN_BLADE_MAGIC_COUNTER, this, owner), magicDamage);
+                        livingentity.hurt(DamageTypeHelper.create(level(), MalumDataTypes.HIDDEN_BLADE_MAGIC_COUNTER, this, owner), magicDamage);
                     }
                 }
                 enemiesHit++;
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
             target.setDeltaMovement(motion);
-            SoundHelper.playSound(this, SoundRegistry.SCYTHE_CUT.get(), 1.0F, 0.9f + level().getRandom().nextFloat() * 0.2f);
+            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_CUT.get(), 1.0F, 0.9f + level().getRandom().nextFloat() * 0.2f);
         }
         super.onHitEntity(result);
     }
@@ -114,7 +114,7 @@ public class HiddenBladeDelayedImpactEntity extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.SOUL_STAINED_STEEL_SCYTHE.get();
+        return MalumItems.SOUL_STAINED_STEEL_SCYTHE.get();
     }
 
     @Override

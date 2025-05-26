@@ -884,7 +884,7 @@ public class CodexLangDatagen {
                 "To forswear a geas, assemble it on the Brazier as you did initially, but use the Paracausal Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
         addSimpleEntryHeader("pact_of_defiance", "Pact of Defiance", "To accept no limit");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_DEFIANCE,
                 scaled(0.8f) +"""
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
                          -Saturation heals you Twice as fast, Thrice as fast when near death
@@ -892,14 +892,14 @@ public class CodexLangDatagen {
                 "The magics shift your perception of death, each point of damage more significant.\n -Reduces Max Health by One Fourth");
 
         addSimpleEntryHeader("pact_of_the_parasite", "Pact of The Parasite", "To hide by stolen shields");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PARASITE,
                 """
                         A surplus of confidence imbued onto the mind, your pain is only secondary.
                          -Spirit Collection generates Absorption""",
                 "Your fragility is still very much real.\n -Reduces Healing Received by Four Tenths");
 
         addSimpleEntryHeader("pact_of_the_lifeweaver", "Pact of The Lifeweaver", "To share with any and all");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER,
                 """
                         A rare generosity, everything that you are you will share with others.
                          -Healing also Heals Nearby Beings""",
@@ -907,14 +907,14 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_the_warlock", "Pact of The Warlock", "To fight forever");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_WARLOCK,
                 """
                         A pact designed to weave anger into pain.
                          -The Initial Hit against Enemies Blasts them with Wicked Arcana""",
                 "Feel anger, cause anger\n -Enemies detect you from Twice as Far");
 
         addSimpleEntryHeader("pact_of_the_reaper", "Pact of The Reaper", "To master the harvest blade");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_REAPER,
                 """
                         A pact forged between your Soul and your Scythe, the Chains of Arcana bind you together.
                          -Scythe Attacks occasionally trigger follow up cuts""",
@@ -924,7 +924,7 @@ public class CodexLangDatagen {
                          -Forsworn Weapons Deteriorate When Used""");
 
         addSimpleEntryHeader("pact_of_the_berserker", "Pact of The Berserker", "To return pain in kind");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_BERSERKER,
                 scaled(0.7f) + """
                         An endless wrath, a constant anger, your pain brings rage, and rage is power.
                          -Taking damage converts it to Wrath
@@ -936,7 +936,7 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_the_fortress", "Pact of The Fortress", "To stand and defend");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_FORTRESS,
                 """
                         A compression of Soul Ward, made greater and refined.
                          -Increases Soul Ward Capacity
@@ -944,7 +944,7 @@ public class CodexLangDatagen {
                 "The added grandeur brings with itself a lethargic nature\n -Halves Soul Ward Recovery Rate");
 
         addSimpleEntryHeader("pact_of_the_shield", "Pact of The Shield", "To always walk with vigilance");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_SHIELD,
                 """
                         An acceleration of Soul Ward, made to be primed in the nick of time.
                          -Increases Soul Ward Capacity
@@ -952,7 +952,7 @@ public class CodexLangDatagen {
                 "The added acceleration brings with itself a brittle nature\n -Halves Soul Ward Integrity");
 
         addSimpleEntryHeader("pact_of_reciprocation", "Pact of Reciprocation", "Two eyes for an eye");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_RECIPROCATION,
                 """
                         A change, a new overruling mechanism.
                          -Dealing Magic Damage generates Soul Ward
@@ -962,7 +962,7 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_the_shattering_addict", "Pact of The Shattering Addict", "To shatter and shatter");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT,
                 scaled(0.8f) + """
                         An Incantation forced onto the mind. An Insatiable Thirst for the Arcana
                          -Soul Shatter yields increased Arcana
@@ -970,7 +970,7 @@ public class CodexLangDatagen {
                 "The Incantation takes quite a toll on you.\n -Each Day without Reaping Spirits builds up withdrawal, draining more and more hunger until your Thirst is Satiated.");
 
         addSimpleEntryHeader("pact_of_the_arcanaphage", "Pact of The Arcanaphage", "To extend beyond oneself");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE,
                 scaled(0.75f) +"""
                         A part of your Soul is drawn out from your body, used as an Attractor for Arcana.
                          -Soul Shatter yields Extra Arcana
@@ -980,7 +980,7 @@ public class CodexLangDatagen {
                          -All Incoming Damage is converted into Magic Damage""");
 
         addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "To follow the ancient pacts");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_RUNE_EXPLOITATION,
                 """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
@@ -988,7 +988,7 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "To care for oneself");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_SELF_CARE,
                 """
                         Revel in Delight and Cleanse your Soul.
                          -Food grants Increased Saturation
@@ -996,7 +996,7 @@ public class CodexLangDatagen {
                 "To Starve is to lose yourself completely.\n -Low Hunger Drains Health Much Faster");
 
         addSimpleEntryHeader("pact_of_the_high_priest", "Pact of The High Priest", "To spread oneself thin");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST,
                 """
                         The Whole World is yours.
                          -Increases Block Reach by Two Fifths and Entity Reach by One Tenth""",
@@ -1006,7 +1006,7 @@ public class CodexLangDatagen {
                          -When Reach Effect is Lost, you are Struck with Aqueous Arcana""");
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY,
                 scaled(0.65f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
@@ -1016,7 +1016,7 @@ public class CodexLangDatagen {
                          -You Cannot Heal Outside of Water""");
 
         addSimpleEntryHeader("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID,
                 scaled(0.8f) + """
                         Split the Impact, Soften the Blow.
                          -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
@@ -1026,21 +1026,21 @@ public class CodexLangDatagen {
                          -Buffered Damage is overall Two Fifths More Potent""");
         
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT,
                 """
                         Move with the Wind.
                          -Continuously Sprinting builds up Movement Speed""",
                 "Be Moved by the Wind\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
 
         addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "To be the arrow");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT,
                 """
                         Precision is Key.
                          -Dealing Ranged Damage accelerates Draw Speed for most Ranged Weapons""",
                 "You cannot feign perfection.\n -Missing a Shot will remove any Draw Speed bonuses and instead dampen it");
 
         addSimpleEntryHeader("pact_of_the_skybreaker", "Pact of The Skybreaker", "To bring it all down");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER,
                 scaled(0.8f) + """
                         Gravity; The greatest force to impose onto others.
                          -Taking Fall Damage Automatically Strikes Nearby Creatures
@@ -1050,7 +1050,7 @@ public class CodexLangDatagen {
                          -Incoming Knockback is Doubled""");
 
         addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "To rise above all");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER,
                 """
                         Gravity; The greatest force to leverage against.
                          -Wind Gusts Provide Greater Propulsion and Grant Reduced Gravity""",
@@ -1060,21 +1060,21 @@ public class CodexLangDatagen {
 
 
         addSimpleEntryHeader("pact_of_contentedness", "Pact of Contentedness", "To seek satisfaction");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS,
                 """
                         To be complete is to be satisfied.
                          -Armor and Armor Toughness is Increased by One Fifth when near Satiation""",
                 "To be satisfied can be a shackling necessity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
 
         addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
                 """
                         To be complete is to be unburdened.
                          -Each Empty Armor Slot grants Four Armor and Two Armor Toughness""",
                 "To be unburdened can be a shackling standard\n -Wearing any Armour Hurts You");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,
                 scaled(0.65f) + """
                         Rot shall become your greatest friend.
                          -Gluttony becomes Trial of Faith, Increasing Healing Received
@@ -1086,7 +1086,7 @@ public class CodexLangDatagen {
                          -Eating Forsworn Foods brings Ruin""");
 
         addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "To consume");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON,
                 scaled(0.8f) + """
                         Rot shall become your greatest weapon.
                          -Gluttony becomes Desperate Need, Increasing Scythe Proficiency
@@ -1096,26 +1096,33 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
-        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION,
+        addSimpleEntryHeader("pact_of_the_flamekeeper", "Pact of the Flamekeeper", "To kindle the pyre");
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER,
                 """
-                        There is no force more powerful than the human soul on fire.
+                        Your soul, fueled by heat and flame.
+                         -Breaking Blocks or Taking Damage Generates Flamekeeper's Fervor, Increasing Mining and Attack Speed""",
+                "You cannot deny the flame it's purpose\n -High Fervor Ignites You When Struck");
+
+        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_COMBUSTION,
+                """
+                        No force more powerful.
                          -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC,
                 scaled(0.8f) +"""
                         Recklessness and Haste, fueled by Kinetic Impact.
-                         -Blowing Yourself Up Generates Pyromaniac Charges, Increasing Movement and Mining Speed
+                         -Blowing Yourself Up Generates Pyromaniac's Fervor, Increasing Movement and Mining Speed
                          -Grants Damage Resistance Against Explosions""",
                 """
                         You can only handle so much pressure.
-                         -Overexertion of Pyromaniac Charges Ignites you When Applied
-                         -Fire Damage is Deadlier""");
+                         -High Fervor Ignites You When Struck By Blast Impact
+                         -Incoming Fire Damage is Doubled""");
 
         addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "To survive one's fate");
-        addGeasDetails(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION,
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION,
                 scaled(0.8f) +"""
                         Unchecked Power derived from Death Itself.
                          -Death Is Avoided Through Reconstruction
@@ -1127,7 +1134,7 @@ public class CodexLangDatagen {
                          -Spirit-Collection Drains Hunger""");
 
         addSimpleEntryHeader("oath_of_the_overkeen_eye", "Oath of The Overkeen Eye", "To hit one's target");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE,
                 """
                         A Keen Eye for the Arcane Imbued onto the Soul
                         -Staff Projectiles Gain Homing Capabilities""",
@@ -1136,7 +1143,7 @@ public class CodexLangDatagen {
                          -Staff Charge Duration is Doubled""");
 
         addSimpleEntryHeader("oath_of_the_overburdened_mind", "Oath of The Overburdened Mind", "To strike overwhemlingly");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND,
                 """
                         A Capacity for Arcane Knowledge Imbued onto the Mind
                         -Doubles Staff Charge Capacity""",
@@ -1145,7 +1152,7 @@ public class CodexLangDatagen {
                          -Staff Charge Recovery Rate is Reduced by Two Fifths""");
 
         addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "To never hesitate");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST,
                 """
                         An Eagerness Imbued onto the Body and Soul
                         -Staff Charge Duration Is Halved""",
@@ -1154,7 +1161,7 @@ public class CodexLangDatagen {
                          -Staff Charges Fire Immediately once Fully Charged""");
 
         addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "To devour all");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW,
                 scaled(0.8f) + """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
@@ -1164,7 +1171,7 @@ public class CodexLangDatagen {
                         -Overuse of the Healing Effect gradually diminishes All Healing""");
 
         addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "To lord above");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN,
                 """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Trigger Several Consecutive Slashes""",
@@ -1173,7 +1180,7 @@ public class CodexLangDatagen {
                         -Malignant Critical Strikes require a Health Threshold to be met""");
 
         addSimpleEntryHeader("oath_of_unsighted_resistance", "Oath of Unsighted Resistance", "To wade into slaughter");
-        addGeasDetails(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE,
+        addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE,
                 """
                         An Etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes Amplify Existing Armor and Armor Toughness""",
@@ -1182,7 +1189,7 @@ public class CodexLangDatagen {
                         -Reduces Malignant Critical Strike Damage by Two Fifths""");
 
         addSimpleEntryHeader("authority_of_the_inverted_heart", "Authority of the Inverted Heart", "To tie all hearts as one");
-        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART,
+        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART,
                 scaled(0.7f) + """
                         An Authority, a pact between your Soul and the World itself.
                         -Your Soul Exposes Itself to the World Around You. When Witnessed by another Soul it will Bind You Together
@@ -1192,7 +1199,7 @@ public class CodexLangDatagen {
                         -Quadruples Incoming Magic Damage""");
 
         addSimpleEntryHeader("authority_of_the_gleeful_target", "Authority of the Gleeful Target", "To be the most satisfied existence");
-        addGeasDetails(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET,
+        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET,
                 scaled(0.6f) + """
                         An Authority, a pact between your Soul and the World itself.
                         -Your Body is Wrapped in a Sleeping Stasis. Whenever Struck, the Stasis is Activated
@@ -1224,109 +1231,109 @@ public class CodexLangDatagen {
                 "The scars of this process linger, allowing me to make more Soulwood by placing Runewood on the results of the ritual.");
         addHeadline("arcane_rite.soulwood", "Soulwood Transmutation");
 
-        addRiteDetails(SpiritRiteRegistry.ARCANE_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ARCANE_RITE,
                 "The rite - if you could call something so chaotic that - corrupts and burns through the totem, altering its very base nature, and transmuting the world around it into some indeterminate blighted substance.",
                 "Converts the totem structure into one made up of Soulwood and alters the nearby terrain into a blighted substance.\n- Soulwood totems produce different rite effects.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ARCANE_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ARCANE_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem, corrupting and warping the nearby area. Any nearby block placed atop that blighted substance will be altered.",
                 "Transmutes nearby blocks placed atop blighted gunk.");
 
         addEntryHeader("sacred_rite", "Sacred Rites", "Invigorating the soul");
-        addRiteDetails(SpiritRiteRegistry.SACRED_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
                 "A simple rite, while active it will slowly mend the wounds of nearby entities.\n Avoids hostiles.",
                 "Recovers one heart of damage every two seconds.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_SACRED_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
                 "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",
                 "Periodically ages nearby crops. Coverage matches water coverage.");
 
         addEntryHeader("corrupt_sacred_rite", "Corrupting the Sacred Rites", "Stimulating the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.SACRED_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
                 "A simple rite, while active it will apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
                 """
                         Affected animals instantly gain 25 seconds worth of age
                          - Sheep will feed on grass more frequently
                          - Bees pollinate faster and more frequently
                          - Chickens lay eggs more frequently""");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_SACRED_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
                 "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
                 "Affected animals are fed until there are more than twenty.\n - This limit applies separately for each type of animal within the range of the rite.");
 
         addEntryHeader("wicked_rite", "Wicked Rites", "Maligning the soul");
-        addRiteDetails(SpiritRiteRegistry.WICKED_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
                 "A simple rite, while active it will slowly bring nearby hostile beings to within an inch of death.",
                 "Deals one heart of non-lethal damage every two seconds.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_WICKED_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
                 "An advanced rite, while active nearby beings on the brink of death are dealt a fatal blow to the body and soul.",
                 "Affected entities are dealt a fatal blow, dropping items and spirits on death.\n - Avoids entities with more than two and a half hearts remaining.");
 
         addEntryHeader("corrupt_wicked_rite", "Corrupting the Wicked Rites", "Endangering the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.WICKED_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
                 "Rather than harm, this rite enhances nearby beings, granting protection, force, and speed. Players are unfortunately omitted from this effect. Might have niche applications.",
                 "Grants all nearby non-Player entities resistance, strength, and speed.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_WICKED_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
                 "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
                 "While there are more than twenty animals within the range of the rite, the excess is removed.\n - This limit applies separately for each type of animal within the range of the rite.");
 
         addEntryHeader("aerial_rite", "Aerial Rites", "Uplifting the soul");
-        addRiteDetails(SpiritRiteRegistry.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
+        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
                 "Applies Zephyr's Courage, increasing movement speed by two fifths.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
                 "An advanced rite, by twisting the power of the air, blocks before the totem will be made to fall as though they were sand. Nothing Silk Touch cannot grab will be affected, though.",
                 "Causes targeted blocks to fall downwards if there is nothing underneath them.");
 
         addEntryHeader("corrupt_aerial_rite", "Corrupting the Aerial Rites", "Scattering the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.AERIAL_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE,
                 "A simple aura rite, while active nearby friendly beings will have their connection to the earth disrupted, lowering their gravity and increasing jump height.",
                 "Applies Aether's Charm, decreasing gravity by three fifths while also providing a substantial benefit to jump height.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
                 "An advanced rite, while active it will slowly ease the stress of time on the mind, offsetting the effects of insomnia for those around it over time.",
                 "Passively reduces the insomnia value of nearby players.\n - Assuming phantoms are just starting to appear, it will take a single totem executing the rite two and two fifths of a minute to fully cleanse insomnia.\n - Naturally, the totem will take longer to fully cleanse insomnia if the player has already been suffering from it for some time.");
 
         addEntryHeader("earthen_rite", "Earthen Rites", "Grounding the soul");
-        addRiteDetails(SpiritRiteRegistry.EARTHEN_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
                 "A simple aura rite, while active nearby friendly beings will find their bodies are tougher and more resistant to damage.",
                 "Applies Gaia's Bulwark, increasing armor by four and armor toughness by two.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
                 "An advanced rite, while active it will cause blocks before the totem base to be broken.",
                 "Breaks targeted blocks. Unbreakable blocks behave as to be expected.");
 
         addEntryHeader("corrupt_earthen_rite", "Corrupting the Earthen Rites", "Honing the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.EARTHEN_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
                 "A simple aura rite, while active nearby friendly beings will find their attacks deal more damage.",
                 "Applies Earthen Might, increasing damage dealt by two hearts.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
                 "An advanced rite, while active the earth coalesces, and like lava meeting water, cobblestone is created before the totem base.",
                 "Creates cobblestone in place of empty space.");
 
         addEntryHeader("infernal_rite", "Infernal Rites", "Igniting the soul");
-        addRiteDetails(SpiritRiteRegistry.INFERNAL_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
                 "A simple aura rite, while active nearby friendly beings will find that their motions are infused with fiery vigor, letting them swing weapons and tools faster.",
                 "Applies Miner's Rage, increasing attack rate and dig speed by two fifths.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
                 "An advanced rite, while active it will cause blocks before the totem base to be smelted.",
                 "Smelts targeted blocks that can be smelted into other blocks.");
 
         addEntryHeader("corrupt_infernal_rite", "Corrupting the Infernal Rites", "Extinguishing the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.INFERNAL_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
                 "A simple aura rite, while active nearby friendly beings and close fires will have the heat sucked out of them, extinguishing them and healing those who were burned, giving them the survivability of denizens of the nether.",
                 "Extinguishes nearby flames, be it affecting the world or an entity.\n - Extinguished entities receive Ifrit's Embrace, recovering two hearts while being extinguished.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
                 "An advanced rite, instead of generating heat, this rite compresses it, causing nearby furnaces to operate more quickly.",
                 "Speeds up nearby furnaces by one fourth.\n - Fuel consumption rate is unaffected, meaning the rite also improves fuel efficiency.");
 
         addEntryHeader("aqueous_rite", "Aqueous Rites", "Molding the soul");
-        addRiteDetails(SpiritRiteRegistry.AQUEOUS_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
                 "A simple aura rite, while active nearby friendly beings will find that their reach is extended, letting them more easily interact with the world.",
                 "Applies Poseidon's Grasp, increasing block reach by two units of space and increasing item pickup range significantly.");
-        addRiteDetails(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
                 "An advanced rite, while active, it will vastly increasing the drip speed of dripstone, causing more fluid to be produced.",
                 "Speeds up dripstone fluid production, works on both lava and water.\n - Only the tip of hanging dripstone needs to be within range for the effect to trigger.");
 
         addEntryHeader("corrupt_aqueous_rite", "Corrupting the Aqueous Rites", "Deforming the soul");
-        addCorruptedRiteDetails(SpiritRiteRegistry.AQUEOUS_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
                 "A simple aura rite, while active nearby friendly beings will find themselves better at fishing.",
                 "Applies Angler's Lure, providing benefits to fishing skills equal to Lure I and Luck of the Sea I.\n - The effects stack with any enchantment already present on a fishing rod.");
-        addCorruptedRiteDetails(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE,
+        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
                 "An advanced rite, while active zombies near this rite will find themselves choking on their own breath, drowning even on land.",
                 "Converts nearby zombies to drowned.");
 

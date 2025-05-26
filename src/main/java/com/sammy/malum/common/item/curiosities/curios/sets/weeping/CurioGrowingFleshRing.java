@@ -5,8 +5,8 @@ import com.sammy.malum.common.item.IVoidItem;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
-import com.sammy.malum.registry.common.MobEffectRegistry;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumMobEffects;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -28,7 +28,7 @@ public class CurioGrowingFleshRing extends MalumCurioItem implements IVoidItem, 
 
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
-        Holder<MobEffect> cancerousGrowth = MobEffectRegistry.CANCEROUS_GROWTH;
+        Holder<MobEffect> cancerousGrowth = MalumMobEffects.CANCEROUS_GROWTH;
         MobEffectInstance effect = collector.getEffect(cancerousGrowth);
         int addedDuration = (int) (150 * arcaneResonance);
         if (effect == null) {
@@ -37,6 +37,6 @@ public class CurioGrowingFleshRing extends MalumCurioItem implements IVoidItem, 
             EntityHelper.extendEffect(effect, collector, addedDuration, 72000);
             EntityHelper.amplifyEffect(effect, collector, 1, 19);
         }
-        collector.playSound(SoundRegistry.FLESH_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
+        collector.playSound(MalumSoundEvents.FLESH_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
     }
 }

@@ -21,7 +21,7 @@ public class UndiscernedMawGeas extends GeasEffect {
     private int streak;
 
     public UndiscernedMawGeas() {
-        super(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get());
+        super(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW.get());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UndiscernedMawGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         if (streak > 3) {
-            addAttributeModifier(modifiers, AttributeRegistry.HEALING_MULTIPLIER, -0.05f * (streak - 3), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -0.05f * (streak - 3), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }

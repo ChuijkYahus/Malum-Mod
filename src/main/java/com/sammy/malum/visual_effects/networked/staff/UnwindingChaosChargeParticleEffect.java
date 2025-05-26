@@ -3,11 +3,10 @@ package com.sammy.malum.visual_effects.networked.staff;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
@@ -86,7 +85,7 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                         .add(up.scale(Math.cos(angle) * spread))
                         .normalize().scale(speed);
                 Vec3 particlePosition = pos.add(particleDirection.scale(2f));
-                var lightSpecs = spiritLightSpecs(level, particlePosition, cyclingSpiritType, new WorldParticleOptions(ParticleRegistry.SPARK.get()));
+                var lightSpecs = spiritLightSpecs(level, particlePosition, cyclingSpiritType, new WorldParticleOptions(MalumParticles.SPARK.get()));
                 var transparencyData = GenericParticleData.create(0.4f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.EXPO_IN_OUT).build();
                 final int lifeDelay = i * 2;
                 lightSpecs.getBuilder()

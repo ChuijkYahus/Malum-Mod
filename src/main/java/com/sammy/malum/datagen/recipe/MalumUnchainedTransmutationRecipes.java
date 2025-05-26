@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.block.BlockRegistry.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 
 public class MalumUnchainedTransmutationRecipes {
 

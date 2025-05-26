@@ -1,16 +1,13 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -32,10 +29,10 @@ public class TyrvingSlashParticleEffect extends MalumNetworkedWeaponParticleEffe
         for (int i = 0; i < 8; i++) {
             ParticleEffectSpawner slash;
             if (i >= 6) {
-                slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, ColorParticleData.create(0.15f, 0.05f, 0.1f).build());
+                slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.SLASH, ColorParticleData.create(0.15f, 0.05f, 0.1f).build());
                 slash.getBuilder().setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT);
             } else {
-                slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), ParticleRegistry.SLASH, colorData);
+                slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.SLASH, colorData);
             }
             var direction = extraData.getDirection();
             float spinOffset = extraData.getSlashRotation() + (i % 2 == 0 ? 1 : -1) * offsetBase;

@@ -35,7 +35,7 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
                     .setStackingData(0, 1)
                     .setLimitData(0, Mth.floor(arcaneResonance * 5 - 1)));
             var random = serverLevel.random;
-            SoundHelper.playSound(collector, SoundRegistry.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
+            SoundHelper.playSound(collector, MalumSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
             SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
             ConcentratedGluttonyItem.createGluttonyVFX(serverLevel, collector, 0.5f);
         }

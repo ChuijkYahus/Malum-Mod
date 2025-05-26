@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.grower.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 
-import static com.sammy.malum.registry.common.tag.BlockTagRegistry.*;
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 
 public class SoulwoodGrowthBlock extends MalumSaplingBlock {
     public SoulwoodGrowthBlock(TreeGrower treeGrower, Properties properties) {
@@ -34,7 +34,7 @@ public class SoulwoodGrowthBlock extends MalumSaplingBlock {
     public void performBonemeal(ServerLevel pLevel, RandomSource pRand, BlockPos pPos, BlockState pState) {
         super.performBonemeal(pLevel, pRand, pPos, pState);
         pLevel.levelEvent(1505, pPos, 0);
-        pLevel.playSound(null, pPos, SoundRegistry.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
+        pLevel.playSound(null, pPos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
         pLevel.playSound(null, pPos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
     }
 

@@ -7,12 +7,12 @@ import net.neoforged.neoforge.event.tick.*;
 public class TouchOfDarknessHandler {
 
     public static void handlePrimordialSoupContact(LivingEntity livingEntity) {
-        livingEntity.getData(AttachmentTypeRegistry.TOUCH_OF_DARKNESS.get()).setAfflictionLevel(100);
+        livingEntity.getData(MalumAttachmentTypes.TOUCH_OF_DARKNESS.get()).setAfflictionLevel(100);
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
-            livingEntity.getData(AttachmentTypeRegistry.TOUCH_OF_DARKNESS).update(livingEntity);
+            livingEntity.getData(MalumAttachmentTypes.TOUCH_OF_DARKNESS).update(livingEntity);
         }
     }
 }

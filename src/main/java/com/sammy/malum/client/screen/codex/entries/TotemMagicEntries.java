@@ -11,7 +11,7 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
 
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
 public class TotemMagicEntries {
@@ -44,109 +44,109 @@ public class TotemMagicEntries {
         screen.addEntry("sacred_rite", -2, 15, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.SACRED_RITE, "sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.SACRED_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_SACRED_RITE, "greater_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_SACRED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.SACRED_RITE, "sacred_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.SACRED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE, "greater_sacred_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE))
         );
 
         screen.addEntry("corrupt_sacred_rite", -3, 15, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.SACRED_RITE, "corrupt_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.SACRED_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_SACRED_RITE, "corrupt_greater_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_SACRED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.SACRED_RITE, "corrupt_sacred_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.SACRED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE, "corrupt_greater_sacred_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE))
         );
 
         screen.addEntry("infernal_rite", -3, 16, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.INFERNAL_RITE, "infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.INFERNAL_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE, "greater_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.INFERNAL_RITE, "infernal_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.INFERNAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "greater_infernal_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE))
         );
 
         screen.addEntry("corrupt_infernal_rite", -4, 16, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.INFERNAL_RITE, "corrupt_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.INFERNAL_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE, "corrupt_greater_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.INFERNAL_RITE, "corrupt_infernal_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.INFERNAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "corrupt_greater_infernal_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE))
         );
 
         screen.addEntry("earthen_rite", -3, 17, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.EARTHEN_RITE, "earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.EARTHEN_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE, "greater_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.EARTHEN_RITE, "earthen_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.EARTHEN_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "greater_earthen_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE))
         );
 
         screen.addEntry("corrupt_earthen_rite", -4, 17, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.EARTHEN_RITE, "corrupt_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.EARTHEN_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE, "corrupt_greater_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.EARTHEN_RITE, "corrupt_earthen_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.EARTHEN_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "corrupt_greater_earthen_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE))
         );
 
         screen.addEntry("wicked_rite", 2, 15, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.WICKED_RITE, "wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.WICKED_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_WICKED_RITE, "greater_wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_WICKED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.WICKED_RITE, "wicked_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.WICKED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE, "greater_wicked_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE))
         );
 
         screen.addEntry("corrupt_wicked_rite", 3, 15, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.WICKED_RITE, "corrupt_wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.WICKED_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_WICKED_RITE, "corrupt_greater_wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_WICKED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.WICKED_RITE, "corrupt_wicked_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.WICKED_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE, "corrupt_greater_wicked_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE))
         );
 
         screen.addEntry("aerial_rite", 3, 16, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.AERIAL_RITE, "aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.AERIAL_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE, "greater_aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.AERIAL_RITE, "aerial_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AERIAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "greater_aerial_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE))
         );
 
         screen.addEntry("corrupt_aerial_rite", 4, 16, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.AERIAL_RITE, "corrupt_aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.AERIAL_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE, "corrupt_greater_aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.AERIAL_RITE, "corrupt_aerial_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AERIAL_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "corrupt_greater_aerial_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE))
         );
 
         screen.addEntry("aqueous_rite", 3, 17, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.AQUEOUS_RITE, "aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.AQUEOUS_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE, "greater_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.AQUEOUS_RITE, "aqueous_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AQUEOUS_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "greater_aqueous_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE))
         );
 
         screen.addEntry("corrupt_aqueous_rite", 4, 17, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.AQUEOUS_RITE, "corrupt_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.AQUEOUS_RITE))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE, "corrupt_greater_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.AQUEOUS_RITE, "corrupt_aqueous_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AQUEOUS_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "corrupt_greater_aqueous_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE))
         );
 
         screen.addEntry("arcane_rite", 0, 16, b -> b
@@ -154,10 +154,10 @@ public class TotemMagicEntries {
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
                 .addPage(new HeadlineTextPage("arcane_rite", "arcane_rite.description.1"))
                 .addPage(new TextPage("arcane_rite.description.2"))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ARCANE_RITE, "arcane_rite"))
-                .addPage(new SpiritRiteRecipePage(SpiritRiteRegistry.ARCANE_RITE))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ARCANE_RITE, "arcane_rite"))
+                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ARCANE_RITE))
                 .addPage(new TextPage("arcane_rite.description.3"))
-                .addPage(new SpiritRiteTextPage(SpiritRiteRegistry.ARCANE_RITE, "corrupt_arcane_rite"))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ARCANE_RITE, "corrupt_arcane_rite"))
                 .addPage(SpiritTransmutationRecipePage.fromInput("arcane_rite.soulwood", RUNEWOOD_SAPLING.get()))
                 .addPage(new TextPage("arcane_rite.description.4"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))

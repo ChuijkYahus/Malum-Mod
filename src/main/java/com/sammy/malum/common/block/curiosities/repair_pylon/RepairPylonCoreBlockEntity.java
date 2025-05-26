@@ -6,7 +6,7 @@ import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.pylon.*;
@@ -43,8 +43,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     private static final int VERTICAL_RANGE = 4;
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(
-            new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
-            new MultiBlockStructure.StructurePiece(0, 2, 0, BlockRegistry.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
+            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
+            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumBlocks.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
 
     public static final StringRepresentable.EnumCodec<RepairPylonState> CODEC = StringRepresentable.fromEnum(RepairPylonState::values);
 
@@ -86,7 +86,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     }
 
     public RepairPylonCoreBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.REPAIR_PYLON.get(), STRUCTURE.get(), pos, state);
+        this(MalumBlockEntities.REPAIR_PYLON.get(), STRUCTURE.get(), pos, state);
     }
 
     @Override
@@ -264,12 +264,12 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
 
 
     public void prepareRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
-        ParticleEffectTypeRegistry.REPAIR_PYLON_PREPARES
+        MalumParticleEffectTypes.REPAIR_PYLON_PREPARES
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
                 .spawn(level);
-        level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
+        level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
         setState(RepairPylonState.REPAIRING);
     }
 
@@ -289,8 +289,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         }
         var result = recipe.getResultItem(repairTarget);
         suppliedInventory.setStackInSlot(0, result);
-        level.playSound(null, worldPosition, SoundRegistry.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
-        ParticleEffectTypeRegistry.REPAIR_PYLON_REPAIRS
+        level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
+        MalumParticleEffectTypes.REPAIR_PYLON_REPAIRS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
@@ -306,7 +306,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
 
     public void findRecipe() {
         recipe = LodestoneRecipeType.findRecipe(level,
-                RecipeTypeRegistry.SPIRIT_REPAIR.get(),
+                MalumRecipeTypes.SPIRIT_REPAIR.get(),
                 c -> c.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), level));
     }
 

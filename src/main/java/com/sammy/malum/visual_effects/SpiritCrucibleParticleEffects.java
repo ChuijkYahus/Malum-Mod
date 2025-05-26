@@ -9,7 +9,7 @@ import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
@@ -45,7 +45,7 @@ public class SpiritCrucibleParticleEffects {
                     .setEasing(Easing.BOUNCE_IN_OUT)
                     .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
-            WorldParticleBuilder.create(ParticleRegistry.CIRCLE.get())
+            WorldParticleBuilder.create(MalumParticles.CIRCLE.get())
                     .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.4f, 0.8f)).build())
                     .setColorData(colorData.getColor())
@@ -62,7 +62,7 @@ public class SpiritCrucibleParticleEffects {
                     .setEasing(Easing.BOUNCE_IN_OUT)
                     .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
-            WorldParticleBuilder.create(ParticleRegistry.SHINE.get())
+            WorldParticleBuilder.create(MalumParticles.SHINE.get())
                     .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.3f)).build())
                     .setColorData(colorData.getColor())
@@ -114,7 +114,7 @@ public class SpiritCrucibleParticleEffects {
             });
         }
         if (recipe != null) {
-            var lightSpecs = spiritLightSpecs(level, itemPos, activeSpiritType, new WorldParticleOptions(ParticleRegistry.STAR.get()));
+            var lightSpecs = spiritLightSpecs(level, itemPos, activeSpiritType, new WorldParticleOptions(MalumParticles.STAR.get()));
             lightSpecs.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset((level.getGameTime() * 0.05f) % 6.28f).build())
                     .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f))
@@ -251,7 +251,7 @@ public class SpiritCrucibleParticleEffects {
             float yVelocity = RandomHelper.randomBetween(random, 0.015f, 0.035f);
             float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
             if (random.nextFloat() < 0.85f) {
-                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, crucibleItemPos.subtract(0, 0.5f, 0), cyclingSpiritType, new WorldParticleOptions(ParticleRegistry.STRANGE_SMOKE.get()));
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, crucibleItemPos.subtract(0, 0.5f, 0), cyclingSpiritType, new WorldParticleOptions(MalumParticles.STRANGE_SMOKE.get()));
                 lightSpecs.getBuilder()
                         .disableNoClip()
                         .setLifeDelay(i)
@@ -296,7 +296,7 @@ public class SpiritCrucibleParticleEffects {
             Vec3 velocity = targetPos.subtract(startPos).normalize().scale(0.02f * targetPos.distanceTo(startPos));
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
             final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.2f)).randomSpinOffset(random).build();
-            WorldParticleBuilder.create(ParticleRegistry.HEXAGON.get())
+            WorldParticleBuilder.create(MalumParticles.HEXAGON.get())
                     .setBehavior(DirectionalParticleBehavior.directional(velocity.normalize()))
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setSpinData(spinData)

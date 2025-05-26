@@ -23,7 +23,7 @@ public class TemporarilyDisabledItem extends Item {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         if (pEntity instanceof ServerPlayer player) {
-            var disabled = pStack.get(DataComponentRegistry.DISABLED);
+            var disabled = pStack.get(MalumDataComponents.DISABLED);
             if (disabled != null) {
                 long time = disabled.time();
                 if (pLevel.getGameTime() >= time) {
@@ -38,14 +38,14 @@ public class TemporarilyDisabledItem extends Item {
     public static void disable(ServerPlayer player, int slot, Supplier<Item> disabledItemType) {
         var inventory = player.getInventory();
         var disabled = disabledItemType.get().getDefaultInstance();
-        disabled.set(DataComponentRegistry.DISABLED, new Disabled(inventory.getItem(slot), player.level().getGameTime() + 300));
+        disabled.set(MalumDataComponents.DISABLED, new Disabled(inventory.getItem(slot), player.level().getGameTime() + 300));
         inventory.setItem(slot, disabled);
     }
 
     public static void enable(ServerPlayer player, int slot) {
         var inventory = player.getInventory();
         var disabledItem = inventory.getItem(slot);
-        var disabled = disabledItem.get(DataComponentRegistry.DISABLED);
+        var disabled = disabledItem.get(MalumDataComponents.DISABLED);
         if (disabled != null) {
             var original = disabled.item();
             if (!original.isEmpty()) {

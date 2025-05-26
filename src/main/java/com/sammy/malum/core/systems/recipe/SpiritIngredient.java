@@ -55,6 +55,6 @@ public class SpiritIngredient implements ICustomIngredient {
 
     @Override
     public IngredientType<?> getType() {
-        return IngredientTypeRegistry.SPIRIT.get();
+        return MalumIngredientTypes.SPIRIT.get();
     }
 }

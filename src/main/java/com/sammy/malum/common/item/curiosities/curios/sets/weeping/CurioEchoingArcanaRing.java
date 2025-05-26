@@ -28,7 +28,7 @@ public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem,
 
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
-        var echoingArcana = MobEffectRegistry.ECHOING_ARCANA;
+        var echoingArcana = MalumMobEffects.ECHOING_ARCANA;
         var effect = collector.getEffect(echoingArcana);
         int addedDuration = (int) (150 * arcaneResonance);
         if (effect == null) {
@@ -37,6 +37,6 @@ public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem,
             EntityHelper.extendEffect(effect, collector, addedDuration, 72000);
             EntityHelper.amplifyEffect(effect, collector, 1, 19);
         }
-        collector.playSound(SoundRegistry.ECHOING_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
+        collector.playSound(MalumSoundEvents.ECHOING_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
     }
 }

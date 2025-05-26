@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.enchantment.*;
 import net.minecraft.core.HolderLookup.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
@@ -19,14 +19,14 @@ public class MalumEnchantmentTags extends EnchantmentTagsProvider {
     @Override
     protected void addTags(Provider pProvider) {
         tag(EnchantmentTags.NON_TREASURE).add(
-                EnchantmentRegistry.HAUNTED, EnchantmentRegistry.ANIMATED,
-                EnchantmentRegistry.ASCENSION, EnchantmentRegistry.REBOUND,
-                EnchantmentRegistry.REPLENISHING, EnchantmentRegistry.CAPACITOR,
-                EnchantmentRegistry.SPIRIT_PLUNDER);
+                EnchantmentKeys.HAUNTED, EnchantmentKeys.ANIMATED,
+                EnchantmentKeys.ASCENSION, EnchantmentKeys.REBOUND,
+                EnchantmentKeys.REPLENISHING, EnchantmentKeys.CAPACITOR,
+                EnchantmentKeys.SPIRIT_PLUNDER);
         tag(EnchantmentTags.IN_ENCHANTING_TABLE).add(
-                EnchantmentRegistry.HAUNTED, EnchantmentRegistry.ANIMATED,
-                EnchantmentRegistry.ASCENSION, EnchantmentRegistry.REBOUND,
-                EnchantmentRegistry.REPLENISHING, EnchantmentRegistry.CAPACITOR,
-                EnchantmentRegistry.SPIRIT_PLUNDER);
+                EnchantmentKeys.HAUNTED, EnchantmentKeys.ANIMATED,
+                EnchantmentKeys.ASCENSION, EnchantmentKeys.REBOUND,
+                EnchantmentKeys.REPLENISHING, EnchantmentKeys.CAPACITOR,
+                EnchantmentKeys.SPIRIT_PLUNDER);
     }
 }

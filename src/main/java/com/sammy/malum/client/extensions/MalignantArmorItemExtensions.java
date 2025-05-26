@@ -2,6 +2,7 @@ package com.sammy.malum.client.extensions;
 
 import com.sammy.malum.client.scarf.*;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.config.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.model.*;
@@ -22,13 +23,13 @@ public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
     public LodestoneArmorModel getHumanoidArmorModel(LivingEntity entity, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel _default) {
         final LodestoneArmorModel model = super.getHumanoidArmorModel(entity, itemStack, armorSlot, _default);
         if (armorSlot.equals(EquipmentSlot.CHEST)) {
-            final ItemSkinComponent skin = itemStack.get(DataComponentRegistry.APPLIED_ITEM_SKIN);
+            final ItemSkinComponent skin = itemStack.get(MalumDataComponents.APPLIED_ITEM_SKIN);
             RenderTypeToken scarfToken = skin != null ?
                     RenderTypeToken.createToken(skin.name().withPrefix("textures/vfx/scarf/").withSuffix(".png"))
                     : MalumRenderTypeTokens.SCARF;
             ScarfRenderHandler.addScarfRenderer(entity,
                     l -> {
-                        var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, 30)
+                        var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, ClientConfig.SCARF_LENGTH.getConfigValue())
                                 .setPredicate(() -> entity.getItemBySlot(armorSlot).is(itemStack.getItem()))
                                 .setScale(0.4f);
                         if (skin == null) {

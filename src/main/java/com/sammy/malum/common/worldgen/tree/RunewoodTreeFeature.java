@@ -122,7 +122,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         ArrayList<BlockPos> sapBlockPositions = new ArrayList<>(filler.getLayer(LOGS).keySet());
         Collections.shuffle(sapBlockPositions);
         for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
-            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), BlockRegistry.EXPOSED_RUNEWOOD_LOG.get().defaultBlockState())).build());
+            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.EXPOSED_RUNEWOOD_LOG.get().defaultBlockState())).build());
         }
 
         filler.fill(level);

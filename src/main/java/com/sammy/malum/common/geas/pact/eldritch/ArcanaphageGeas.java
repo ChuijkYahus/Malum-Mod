@@ -20,12 +20,12 @@ import java.util.function.*;
 public class ArcanaphageGeas extends GeasEffect {
 
     public ArcanaphageGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE.get());
     }
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(modifiers, MalumAttributes.SPIRIT_SPOILS, 1, AttributeModifier.Operation.ADD_VALUE);
         return modifiers;
     }
 
@@ -38,7 +38,7 @@ public class ArcanaphageGeas extends GeasEffect {
 
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
-        var effect = MobEffectRegistry.ARCANAPHAGE;
+        var effect = MalumMobEffects.ARCANAPHAGE;
         var instance = collector.getEffect(effect);
         if (instance == null) {
             collector.addEffect(new MobEffectInstance(effect, 100, 0, true, true, true));
@@ -54,7 +54,7 @@ public class ArcanaphageGeas extends GeasEffect {
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (!event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
             event.setCanceled(true);
-            event.getEntity().hurt(DamageTypeHelper.create(attacker.level(), DamageTypeRegistry.VOODOO), event.getAmount());
+            event.getEntity().hurt(DamageTypeHelper.create(attacker.level(), MalumDataTypes.VOODOO), event.getAmount());
         }
     }
 }

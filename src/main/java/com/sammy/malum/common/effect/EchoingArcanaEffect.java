@@ -12,7 +12,7 @@ import java.awt.*;
 public class EchoingArcanaEffect extends MobEffect {
     public EchoingArcanaEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(new Color(255, 79, 234)));
-        addAttributeModifier(AttributeRegistry.ARCANE_RESONANCE, MalumMod.malumPath("echoing_arcana"), 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.ARCANE_RESONANCE, MalumMod.malumPath("echoing_arcana"), 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         IronsSpellsCompat.addEchoingArcanaSpellCooldown(this);
     }
 }

@@ -7,7 +7,7 @@ import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.tag.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;
@@ -20,7 +20,7 @@ import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 
 public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEntity> {
 
-    public static final HeldItemTracker STAFF_TRACKER = new HeldItemTracker(p -> p.is(ItemTagRegistry.IS_TOTEMIC_TOOL));
+    public static final HeldItemTracker STAFF_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL));
 
     public TotemBaseRenderer(BlockEntityRendererProvider.Context context) {
     }

@@ -4,14 +4,14 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeData;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.core.systems.artifice.TuningModifier;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.util.Mth;
 
 import java.util.List;
 
 public class ResonanceTuner extends CoreAugmentItem {
     public ResonanceTuner(Properties pProperties) {
-        super(pProperties, List.of(SpiritTypeRegistry.EARTHEN_SPIRIT, SpiritTypeRegistry.AERIAL_SPIRIT), true,
+        super(pProperties, List.of(MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.AERIAL_SPIRIT), true,
                 new ArtificeModifier(ArtificeAttributeType.RESONANCE_TUNING, 1f));
     }
 

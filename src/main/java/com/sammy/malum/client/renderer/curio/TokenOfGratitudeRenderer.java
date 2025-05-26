@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.cosmetic.curios.CurioTokenOfGratitude;
-import com.sammy.malum.registry.client.ModelRegistry;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -78,8 +78,8 @@ public class TokenOfGratitudeRenderer implements ICurioRenderer {
 
     public static void renderGlowingEyes(AbstractClientPlayer playerEntity, RenderType renderType, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(renderType);
-        ICurioRenderer.followHeadRotations(playerEntity, ModelRegistry.HEAD_OVERLAY_MODEL.overlay);
-        ModelRegistry.HEAD_OVERLAY_MODEL.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
+        ICurioRenderer.followHeadRotations(playerEntity, MalumModels.HEAD_OVERLAY_MODEL.overlay);
+        MalumModels.HEAD_OVERLAY_MODEL.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
     }
 
 
@@ -102,11 +102,11 @@ public class TokenOfGratitudeRenderer implements ICurioRenderer {
         double ambientYRotation = Math.cos(playerEntity.level().getGameTime() / 24f) * -ambientFactor;
         poseStack.mulPose(Axis.YP.rotationDegrees((float) ambientYRotation));
         VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(renderTypeBuffer, RenderType.armorCutoutNoCull(texture), stack.hasFoil());
-        ModelRegistry.TAIL_MODEL.setupAnim(playerEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ModelRegistry.TAIL_MODEL.prepareMobModel(playerEntity, limbSwing, limbSwingAmount, partialTicks);
+        MalumModels.TAIL_MODEL.setupAnim(playerEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        MalumModels.TAIL_MODEL.prepareMobModel(playerEntity, limbSwing, limbSwingAmount, partialTicks);
         ICurioRenderer.translateIfSneaking(poseStack, playerEntity);
         ICurioRenderer.rotateIfSneaking(poseStack, playerEntity);
-        ModelRegistry.TAIL_MODEL.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
+        MalumModels.TAIL_MODEL.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
         poseStack.popPose();
     }
 
@@ -121,10 +121,10 @@ public class TokenOfGratitudeRenderer implements ICurioRenderer {
         if (render instanceof LivingEntityRenderer livingEntityRenderer) {
             EntityModel<AbstractClientPlayer> model = livingEntityRenderer.getModel();
             if (model instanceof HumanoidModel humanoidModel) {
-                ModelRegistry.SCARF.copyFromDefault(humanoidModel);
+                MalumModels.SCARF.copyFromDefault(humanoidModel);
             }
         }
-        ModelRegistry.SCARF.setupAnim(playerEntity, playerEntity.walkAnimation.position(), playerEntity.walkAnimation.speed(), playerEntity.tickCount + pticks, netHeadYaw, netHeadPitch);
-        ModelRegistry.SCARF.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
+        MalumModels.SCARF.setupAnim(playerEntity, playerEntity.walkAnimation.position(), playerEntity.walkAnimation.speed(), playerEntity.tickCount + pticks, netHeadYaw, netHeadPitch);
+        MalumModels.SCARF.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
     }
 }

@@ -33,7 +33,7 @@ import java.util.List;
 
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.ENCHANTED_BOOK;
 
 public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
@@ -45,7 +45,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
     public static final List<PlacedBookEntry> VOID_ENTRIES = new ArrayList<>();
 
     protected VoidProgressionScreen() {
-        super(SoundRegistry.ARCANA_SWEETENER_EVIL, 1024, 768);
+        super(MalumSoundEvents.ARCANA_SWEETENER_EVIL, 1024, 768);
         minecraft = Minecraft.getInstance();
         setupEntries();
         NeoForge.EVENT_BUS.post(new SetupMalumCodexEntriesEvent());
@@ -71,13 +71,13 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
     public static void openCodexViaItem() {
         getScreenInstance().openScreen(true);
-        screen.playSweetenedSound(SoundRegistry.ARCANA_CODEX_OPEN, 1.25f);
+        screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
     }
 
     public static void openCodexViaTransition() {
         getScreenInstance().openScreen(false);
         screen.faceObject(screen.bookObjectHandler.get(0));
-        screen.playSound(SoundRegistry.ARCANA_TRANSITION_EVIL, 1.25f, 1f);
+        screen.playSound(MalumSoundEvents.ARCANA_TRANSITION_EVIL, 1.25f, 1f);
         screen.timesTransitioned++;
         screen.transitionTimer = screen.getTransitionDuration();
         EncyclopediaEsotericaItem.shouldOpenVoidCodex = true;
@@ -237,13 +237,13 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 ))
                 .afterUmbralCrystal()
         );
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE, -7, 13);
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND, -8, 14);
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST, -7, 15);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE, -7, 13);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND, -8, 14);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST, -7, 15);
 
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN, 7, 13);
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE, 8, 14);
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW, 7, 15);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN, 7, 13);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE, 8, 14);
+        addGeasEntry(this, MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW, 7, 15);
 
         addEntry("void.ring_of_gruesome_concentration", -3, 9, b -> b
                 .withTraceFragmentEntry()
@@ -380,8 +380,8 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_LIMITLESS.get()))
                 .afterUmbralCrystal()
         );
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART, -2, 18);
-        addGeasEntry(this, MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET, 2, 18);
+        addGeasEntry(this, MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART, -2, 18);
+        addGeasEntry(this, MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET, 2, 18);
 
 
         BookPage.isVoidThemed = false;

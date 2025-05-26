@@ -22,7 +22,7 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
     public SpiritCollectionActivatorEntity(Level level) {
-        super(EntityRegistry.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
+        super(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 
@@ -43,7 +43,7 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
     @Override
     public void collect() {
         SoulHarvestHandler.triggerSpiritCollection(owner);
-        SoundHelper.playSound(this, SoundRegistry.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
+        SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
     public void spawnParticles(double x, double y, double z) {
         Vec3 motion = getDeltaMovement();
         Vec3 norm = motion.normalize().scale(0.05f);
-        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), new Vec3(x, y, z), SpiritTypeRegistry.UMBRAL_SPIRIT);
+        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), new Vec3(x, y, z), MalumSpiritTypes.UMBRAL_SPIRIT);
         lightSpecs.getBuilder().setMotion(norm);
         lightSpecs.getBloomBuilder().setMotion(norm);
         lightSpecs.spawnParticles();

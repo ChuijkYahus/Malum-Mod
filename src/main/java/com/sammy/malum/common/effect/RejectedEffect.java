@@ -18,12 +18,12 @@ public class RejectedEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        pLivingEntity.getData(AttachmentTypeRegistry.TOUCH_OF_DARKNESS).setAfflictionLevel(40);
+        pLivingEntity.getData(MalumAttachmentTypes.TOUCH_OF_DARKNESS).setAfflictionLevel(40);
         if (pLivingEntity.level().getGameTime() % 60L == 0) {
             if (pLivingEntity instanceof Player player && player.isCreative()) {
                 return false;
             }
-            pLivingEntity.hurt(DamageTypeHelper.create(pLivingEntity.level(), DamageTypeRegistry.VOID), 2);
+            pLivingEntity.hurt(DamageTypeHelper.create(pLivingEntity.level(), MalumDataTypes.VOID), 2);
             return true;
         }
         return false;

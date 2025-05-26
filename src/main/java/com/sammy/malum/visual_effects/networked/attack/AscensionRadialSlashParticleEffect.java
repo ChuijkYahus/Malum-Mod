@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.attack;
 
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
@@ -9,8 +9,6 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
@@ -39,7 +37,7 @@ public class AscensionRadialSlashParticleEffect extends MalumNetworkedWeaponPart
                         .normalize();
                 var slashPosition = pos.add(slashDirection.scale(0.14f));
 
-                var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
+                var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, MalumParticles.ROUNDABOUT_SLASH, colorData);
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2.5f, 5f)).build())
@@ -49,7 +47,7 @@ public class AscensionRadialSlashParticleEffect extends MalumNetworkedWeaponPart
                         .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(slashDirection));
                 slash.spawnParticles();
             }
-            var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, ParticleRegistry.ROUNDABOUT_SLASH, colorData);
+            var slash = WeaponParticleEffects.spawnSlashParticle(level, pos, MalumParticles.ROUNDABOUT_SLASH, colorData);
             slash.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(i * 1.57f).build())
                     .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 4.5f, 5f)).build())

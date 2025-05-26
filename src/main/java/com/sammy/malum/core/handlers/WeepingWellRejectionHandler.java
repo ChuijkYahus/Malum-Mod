@@ -7,7 +7,7 @@ import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.FloatingItemEntity;
 import com.sammy.malum.common.packets.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -36,7 +36,7 @@ public class WeepingWellRejectionHandler {
     public static void handlePrimordialSoupContact(Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
             TouchOfDarknessHandler.handlePrimordialSoupContact(livingEntity);
-            var data = livingEntity.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
+            var data = livingEntity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
             if (data.isInRejectedState) {
                 return;
             }
@@ -51,7 +51,7 @@ public class WeepingWellRejectionHandler {
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             var level = livingEntity.level();
-            var data = livingEntity.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
+            var data = livingEntity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
             data.update(livingEntity);
             var gravity = livingEntity.getAttribute(Attributes.GRAVITY);
             if (gravity != null) {
@@ -69,12 +69,12 @@ public class WeepingWellRejectionHandler {
     }
 
     public static void handleRejectionState(Level level, LivingEntity living) {
-        var data = living.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
+        var data = living.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
         if (!level.isClientSide) {
             if (living instanceof Player && level.getGameTime() % 6L == 0) {
                 float volume = 0.5f + data.voidRejection * 0.02f;
                 float pitch = 0.5f + data.voidRejection * 0.03f;
-                SoundHelper.playSound(living, SoundRegistry.SONG_OF_THE_VOID.get(), SoundSource.HOSTILE, volume, pitch);
+                SoundHelper.playSound(living, MalumSoundEvents.SONG_OF_THE_VOID.get(), SoundSource.HOSTILE, volume, pitch);
             }
             if (data.wasJustRejected()) {
                 if (!(living instanceof Player player)) {
@@ -92,33 +92,33 @@ public class WeepingWellRejectionHandler {
     }
 
     public static void launchPlayer(Player player) {
-        var progression = player.getData(AttachmentTypeRegistry.PROGRESSION_DATA);
+        var progression = player.getData(MalumAttachmentTypes.PROGRESSION_DATA);
         var level = player.level();
         if (level instanceof ServerLevel serverLevel) {
             final Optional<VoidConduitBlockEntity> voidConduitBlockEntity = WeepingWellData.checkForWeepingWell(player);
             voidConduitBlockEntity.ifPresent(weepingWell -> {
                 BlockPos worldPosition = weepingWell.getBlockPos();
-                ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
+                MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
                 if (weepingWell.reachedStreakGoal) {
-                    GeasEffectHandler.addGeasEffect(player, MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get());
+                    GeasEffectHandler.addGeasEffect(player, MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get());
                     weepingWell.reachedStreakGoal = false;
                 }
             });
-            ParticleEffectTypeRegistry.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
+            MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             if (!player.isCreative()) {
-                player.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.VOID), 4);
+                player.hurt(DamageTypeHelper.create(level, MalumDataTypes.VOID), 4);
             }
             if (!progression.hasBeenRejected) {
-                SoulHarvestHandler.spawnSpirits(level, player, player.position(), List.of(ItemRegistry.UMBRAL_SPIRIT.get().getDefaultInstance()));
+                SoulHarvestHandler.spawnSpirits(level, player, player.position(), List.of(MalumItems.UMBRAL_SPIRIT.get().getDefaultInstance()));
             }
             PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new VoidRejectionPayload(player.getId()));
-            SoundHelper.playSound(player, SoundRegistry.VOID_REJECTION.get(), 2f, Mth.nextFloat(player.getRandom(), 0.5f, 0.8f));
+            SoundHelper.playSound(player, MalumSoundEvents.VOID_REJECTION.get(), 2f, Mth.nextFloat(player.getRandom(), 0.5f, 0.8f));
         } else {
             VoidRevelationHandler.seeTheRevelation(BLACK_CRYSTAL);
         }
 
         progression.hasBeenRejected = true;
-        player.addEffect(new MobEffectInstance(MobEffectRegistry.REJECTED, 400, 0));
+        player.addEffect(new MobEffectInstance(MalumMobEffects.REJECTED, 400, 0));
     }
 
     public static AttributeModifier getEntityGravityAttributeModifier(LivingEntity livingEntity) {
@@ -126,7 +126,7 @@ public class WeepingWellRejectionHandler {
     }
 
     public static double updateEntityGravity(LivingEntity living) {
-        var data = living.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO);
+        var data = living.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
         if (data.voidRejection > 0) {
             return -Math.min(60, data.voidRejection) / 60f;
         }

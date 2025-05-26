@@ -31,14 +31,14 @@ public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumE
             float damage = entity.damage * 0.2f;
             float magicDamage = entity.magicDamage * 0.2f;
             for (Entity target : serverLevel.getEntities(entity, aabb, t -> maelstromCanHitEntity(scytheOwner, t))) {
-                var damageSource = DamageTypeHelper.create(serverLevel, DamageTypeRegistry.SCYTHE_MAELSTROM, entity, scytheOwner);
+                var damageSource = DamageTypeHelper.create(serverLevel, MalumDataTypes.SCYTHE_MAELSTROM, entity, scytheOwner);
                 target.invulnerableTime = 0;
                 boolean success = target.hurt(damageSource, damage);
                 if (success && target instanceof LivingEntity livingentity) {
                     if (entity.magicDamage > 0) {
                         if (!livingentity.isDeadOrDying()) {
                             livingentity.invulnerableTime = 0;
-                            livingentity.hurt(DamageTypeHelper.create(serverLevel, DamageTypeRegistry.VOODOO, entity, scytheOwner), magicDamage);
+                            livingentity.hurt(DamageTypeHelper.create(serverLevel, MalumDataTypes.VOODOO, entity, scytheOwner), magicDamage);
                         }
                     }
                     dealtDamage = true;

@@ -133,7 +133,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumScreen
     @Override
     public void onClose() {
         super.onClose();
-        playSweetenedSound(SoundRegistry.ARCANA_CODEX_CLOSE, 0.75f);
+        playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_CLOSE, 0.75f);
     }
 
     @Override

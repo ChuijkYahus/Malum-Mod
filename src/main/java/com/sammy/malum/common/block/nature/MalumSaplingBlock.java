@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.nature;
 
-import com.sammy.malum.registry.common.tag.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -15,7 +15,7 @@ public class MalumSaplingBlock extends SaplingBlock {
 
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        if (pLevel.getBlockState(pPos.below()).is(BlockTagRegistry.BLIGHTED_BLOCKS)) {
+        if (pLevel.getBlockState(pPos.below()).is(MalumTags.BlockTags.BLIGHTED_BLOCKS)) {
             return true;
         }
         return super.canSurvive(pState, pLevel, pPos);

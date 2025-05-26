@@ -31,7 +31,7 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
     public final boolean carryOverData;
 
     public SpiritInfusionRecipe(SizedIngredient ingredient, ItemStack output, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverData) {
-        super(RecipeSerializerRegistry.INFUSION_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.SPIRIT_INFUSION.get());
+        super(MalumRecipeSerializers.INFUSION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_INFUSION.get());
         this.ingredient = ingredient;
         this.output = output;
         this.extraIngredients = extraIngredients;

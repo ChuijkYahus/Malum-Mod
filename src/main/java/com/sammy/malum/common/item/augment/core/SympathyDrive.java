@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.augment.core;
 
 import com.sammy.malum.core.systems.artifice.*;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SympathyDrive extends CoreAugmentItem {
     public SympathyDrive(Properties pProperties) {
-        super(pProperties, List.of(SpiritTypeRegistry.SACRED_SPIRIT, SpiritTypeRegistry.WICKED_SPIRIT), true,
+        super(pProperties, List.of(MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.WICKED_SPIRIT), true,
                 new ArtificeModifier(ArtificeAttributeType.MISFORTUNE_REVERSAL, 1f));
     }
 

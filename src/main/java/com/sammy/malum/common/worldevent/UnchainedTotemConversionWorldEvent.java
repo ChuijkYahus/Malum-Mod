@@ -1,7 +1,6 @@
 package com.sammy.malum.common.worldevent;
 
 import com.sammy.malum.common.block.blight.*;
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import com.sammy.malum.registry.common.*;
@@ -16,14 +15,14 @@ import net.minecraft.world.level.block.state.properties.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 
-import static com.sammy.malum.registry.common.block.BlockRegistry.SOULWOOD_TOTEM_BASE;
-import static com.sammy.malum.registry.common.block.BlockRegistry.SOULWOOD_TOTEM_POLE;
+import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_BASE;
+import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_POLE;
 
 public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public int transformedTotemParts;
 
     public UnchainedTotemConversionWorldEvent() {
-        super(WorldEventTypeRegistry.UNCHAINED_TOTEM_CONVERSION.get());
+        super(MalumWorldEventTypes.UNCHAINED_TOTEM_CONVERSION.get());
     }
 
     @Override
@@ -56,7 +55,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void placeBlock(BlockPos pos, BlockState state) {
         level.setBlockAndUpdate(pos, state);
         level.levelEvent(null, 2001, pos, Block.getId(state));
-        level.playSound(null, pos, SoundRegistry.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
+        level.playSound(null, pos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
     }
     public void maybePlaceBlightedGunk(BlockPos pos, BlockState totemPoleState) {
         final RandomSource random = level.getRandom();
@@ -65,7 +64,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
             if (direction.equals(totemPoleState.getValue(BlockStateProperties.HORIZONTAL_FACING))) {
                 return;
             }
-            var state = BlockRegistry.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(ClingingBlightBlock.BLIGHT_TYPE, ClingingBlightBlock.BlightType.SOULWOOD_SPIKE);
+            var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(ClingingBlightBlock.BLIGHT_TYPE, ClingingBlightBlock.BlightType.SOULWOOD_SPIKE);
             placeBlock(pos.relative(direction), state);
         }
     }

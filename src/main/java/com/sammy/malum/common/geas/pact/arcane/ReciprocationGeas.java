@@ -17,13 +17,13 @@ import java.util.function.*;
 public class ReciprocationGeas extends GeasEffect {
 
     public ReciprocationGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get());
+        super(MalumGeasEffectTypes.PACT_OF_RECIPROCATION.get());
     }
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker instanceof ServerPlayer player) {
-            var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
+            var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
             double attackSpeed = Math.max(attacker.getAttributeValue(Attributes.ATTACK_SPEED), 0.01f);
             data.recoverSoulWard(player, 0.25f / attackSpeed);
         }
@@ -37,9 +37,9 @@ public class ReciprocationGeas extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, AttributeRegistry.SOUL_WARD_CAPACITY, 12, AttributeModifier.Operation.ADD_VALUE);
-        addAttributeModifier(modifiers, AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(modifiers, AttributeRegistry.SOUL_WARD_RECOVERY_RATE, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_CAPACITY, 12, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_RATE, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 }

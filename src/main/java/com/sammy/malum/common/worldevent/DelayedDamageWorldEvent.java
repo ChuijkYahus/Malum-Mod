@@ -11,7 +11,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
@@ -24,7 +23,7 @@ import java.util.*;
 public class DelayedDamageWorldEvent extends WorldEventInstance {
 
     protected ResourceKey<DamageType> physicalDamageType = DamageTypes.PLAYER_ATTACK;
-    protected ResourceKey<DamageType> magicDamageType = DamageTypeRegistry.VOODOO;
+    protected ResourceKey<DamageType> magicDamageType = MalumDataTypes.VOODOO;
 
     protected UUID attackerUUID;
     protected UUID projectileUUID;
@@ -49,7 +48,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
     }
 
     public DelayedDamageWorldEvent() {
-        this(WorldEventTypeRegistry.DELAYED_DAMAGE.get());
+        this(MalumWorldEventTypes.DELAYED_DAMAGE.get());
     }
 
     public DelayedDamageWorldEvent(WorldEventType type) {
@@ -170,7 +169,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         if (physicalDamageType != DamageTypes.PLAYER_ATTACK) {
             compoundTag.putString("physicalDamageType", physicalDamageType.location().toString());
         }
-        if (magicDamageType != DamageTypeRegistry.VOODOO) {
+        if (magicDamageType != MalumDataTypes.VOODOO) {
             compoundTag.putString("magicDamageType", magicDamageType.location().toString());
         }
         if (attackerUUID != null) {
@@ -200,7 +199,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                 : DamageTypes.PLAYER_ATTACK;
         magicDamageType = compoundTag.contains("magicDamageType")
                 ? ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse(compoundTag.getString("magicDamageType")))
-                : DamageTypeRegistry.VOODOO;
+                : MalumDataTypes.VOODOO;
         attackerUUID = compoundTag.getUUID("attackerUUID");
         targetUUID = compoundTag.getUUID("targetUUID");
         physicalDamage = compoundTag.getFloat("physicalDamage");

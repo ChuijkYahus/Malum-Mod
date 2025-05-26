@@ -1,7 +1,6 @@
 package com.sammy.malum.common.entity.bolt;
 
 import com.sammy.malum.common.entity.nitrate.EthericNitrateEntity;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
@@ -17,7 +16,6 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -36,7 +34,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
     public TrailPointBuilder secondarySpinningTrailPointBuilder;
 
     public EntropicFlameBoltEntity(Level level) {
-        super(EntityRegistry.ENTROPIC_FLAME_BOLT.get(), level);
+        super(MalumEntities.ENTROPIC_FLAME_BOLT.get(), level);
         noPhysics = false;
         trailPointBuilder = TrailPointBuilder.create(32);
         secondarySpinningTrailPointBuilder = TrailPointBuilder.create(24);
@@ -99,8 +97,8 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
     @Override
     public void playSound(SoundEvent pSound, float pVolume, float pPitch) {
         super.playSound(pSound, pVolume, pPitch-0.2f);
-        super.playSound(SoundRegistry.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), pVolume - 0.2f, pPitch + 0.5f);
-        super.playSound(SoundRegistry.WORLDSOUL_MOTIF_REVERB.get(), pVolume - 0.2f, pPitch + 0.5f);
+        super.playSound(MalumSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), pVolume - 0.2f, pPitch + 0.5f);
+        super.playSound(MalumSoundEvents.WORLDSOUL_MOTIF_REVERB.get(), pVolume - 0.2f, pPitch + 0.5f);
     }
 
     @Override
@@ -110,17 +108,17 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
 
     @Override
     public BoltImpactParticleEffect getImpactParticleEffect() {
-        return ParticleEffectTypeRegistry.ENTROPIC_BOLT_IMPACT;
+        return MalumParticleEffectTypes.ENTROPIC_BOLT_IMPACT;
     }
 
     @Override
     public MalumNetworkedParticleEffectColorData getImpactParticleColor() {
-        return new MalumNetworkedParticleEffectColorData(AURIC_COLOR_DATA, SpiritTypeRegistry.AQUEOUS_SPIRIT.createColorData().build());
+        return new MalumNetworkedParticleEffectColorData(AURIC_COLOR_DATA, MalumSpiritTypes.AQUEOUS_SPIRIT.createColorData().build());
     }
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.UNWINDING_CHAOS.get();
+        return MalumItems.UNWINDING_CHAOS.get();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -147,7 +145,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
 
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
         final float min = Math.min(1f, 2 * scalar);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW)
+        WorldParticleBuilder.create(MalumParticles.GIANT_ARROW)
                 .setBehavior(SparkParticleBehavior.sparkBehavior())
                 .setLengthData(GenericParticleData.create(1.8f * scalar, 2.4f * scalar, 0.1f * scalar).setEasing(Easing.CUBIC_IN).build())
                 .setTransparencyData(GenericParticleData.create(0.5f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
@@ -161,7 +159,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
                 .setMotion(norm)
                 .enableNoClip()
                 .spawn(level, position.x, position.y, position.z);
-        WorldParticleBuilder.create(ParticleRegistry.GIANT_ARROW)
+        WorldParticleBuilder.create(MalumParticles.GIANT_ARROW)
                 .setBehavior(SparkParticleBehavior.sparkBehavior())
                 .setLengthData(GenericParticleData.create(2f * scalar, 2.8f * scalar, 0.3f * scalar).setEasing(Easing.CUBIC_IN).build())
                 .setTransparencyData(GenericParticleData.create(0.6f * min, 0.3f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())

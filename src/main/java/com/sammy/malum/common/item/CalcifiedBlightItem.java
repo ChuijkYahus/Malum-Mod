@@ -14,6 +14,6 @@ public class CalcifiedBlightItem extends ItemNameBlockItem {
     @Override
     public void registerBlocks(Map<Block, Item> pBlockToItemMap, Item pItem) {
         super.registerBlocks(pBlockToItemMap, pItem);
-        pBlockToItemMap.put(BlockRegistry.TALL_CALCIFIED_BLIGHT.get(), pItem);
+        pBlockToItemMap.put(MalumBlocks.TALL_CALCIFIED_BLIGHT.get(), pItem);
     }
 }

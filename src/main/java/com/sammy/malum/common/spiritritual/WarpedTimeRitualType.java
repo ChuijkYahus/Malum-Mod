@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class WarpedTimeRitualType extends MalumRitualType {
     public WarpedTimeRitualType() {
-        super(MalumMod.malumPath("warped_time"), SpiritTypeRegistry.AERIAL_SPIRIT);
+        super(MalumMod.malumPath("warped_time"), MalumSpiritTypes.AERIAL_SPIRIT);
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.MalumSpiritType;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -39,19 +38,19 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
 
     @Override
     public MalumSpiritType getDefiningSpiritType() {
-        return SpiritTypeRegistry.WICKED_SPIRIT;
+        return MalumSpiritTypes.WICKED_SPIRIT;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
         RandomSource random = pLevel.random;
-        WorldParticleBuilder.create(ParticleRegistry.HEX_TARGET)
+        WorldParticleBuilder.create(MalumParticles.HEX_TARGET)
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.6f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
-                .setColorData(SpiritTypeRegistry.WICKED_SPIRIT.createColorData().build())
+                .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .enableForcedSpawn()

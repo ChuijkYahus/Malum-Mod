@@ -12,7 +12,7 @@ import team.lodestar.lodestone.helpers.*;
 public class TrialOfFaithEffect extends MobEffect {
     public TrialOfFaithEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(88, 86, 60));
-        addAttributeModifier(AttributeRegistry.HEALING_MULTIPLIER, MalumMod.malumPath("trial_of_faith"), 0.08f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.HEALING_MULTIPLIER, MalumMod.malumPath("trial_of_faith"), 0.08f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         IronsSpellsCompat.addTrialOfFaithSpellPower(this);
     }
 

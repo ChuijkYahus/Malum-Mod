@@ -3,8 +3,8 @@ package com.sammy.malum.common.worldevent;
 import com.google.common.collect.*;
 import com.sammy.malum.common.block.blight.BlightedSoilBlock;
 import com.sammy.malum.common.worldgen.tree.SoulwoodTreeFeature;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.registry.common.SoundRegistry;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -83,12 +83,12 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
             SoulwoodTreeFeature.generateBlight(level, filler, noiseValues, position, intensity);
         }
         createBlightVFX(level, filler);
-        level.playSound(null, position, SoundRegistry.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, 1.8f);
+        level.playSound(null, position, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, 1.8f);
     }
 
     public static void createBlightVFX(ServerLevel level, LodestoneBlockFiller filler) {
         filler.getLayer(BLIGHT).entrySet().stream().filter(e -> e.getValue().getState().getBlock() instanceof BlightedSoilBlock).map(Map.Entry::getKey)
-                .forEach(p -> ParticleEffectTypeRegistry.BLIGHTING_MIST.createEffect(p).spawn(level));
+                .forEach(p -> MalumParticleEffectTypes.BLIGHTING_MIST.createEffect(p).spawn(level));
     }
     private static final PerlinSimplexNoise COVERING_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
 

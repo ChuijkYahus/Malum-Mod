@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import net.minecraft.client.*;
@@ -49,7 +49,7 @@ public class GeasParticleEffects {
             final float spin = RandomHelper.randomBetween(random, 0.04f, 0.08f);
             float randomOffset = i * 0.2f;
             for (int j = 0; j < 2; j++) {
-                var options = new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR);
+                var options = new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR);
                 if (j == 1) {
                     options.setBehavior(DirectionalParticleBehavior.directional());
                 }
@@ -101,7 +101,7 @@ public class GeasParticleEffects {
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                 var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
-                WorldParticleBuilder.create(new WorldParticleOptions(ParticleRegistry.GIANT_GLOWING_STAR))
+                WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
                         .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
                         .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))
                         .setScaleData(GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier))
@@ -166,7 +166,7 @@ public class GeasParticleEffects {
                         .spawn(level, particlePosition.x, particlePosition.y, particlePosition.z);
 
 
-                SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.GIANT_GLOWING_STAR)
+                SpiritBasedParticleBuilder.createSpirit(MalumParticles.GIANT_GLOWING_STAR)
                         .setSpirit(cyclingSpiritType)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.3f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(0.3f, 0.6f, 0.2f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
@@ -174,7 +174,7 @@ public class GeasParticleEffects {
                         .setLifeDelay(lifeDelay)
                         .enableNoClip()
                         .spawn(level, particlePosition.x, particlePosition.y, particlePosition.z);
-                SpiritBasedParticleBuilder.createSpirit(ParticleRegistry.STAR)
+                SpiritBasedParticleBuilder.createSpirit(MalumParticles.STAR)
                         .setSpirit(cyclingSpiritType)
                         .setTransparencyData(GenericParticleData.create(0.15f, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(0.05f, 0.2f, 0.1f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
@@ -296,7 +296,7 @@ public class GeasParticleEffects {
         var pos = positionData.getAsVector();
 
         float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-        WorldParticleBuilder.create(ParticleRegistry.STAR.get())
+        WorldParticleBuilder.create(MalumParticles.STAR.get())
                 .setTransparencyData(GenericParticleData.create(0.4f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                 .setLifetime(12)
                 .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
@@ -370,7 +370,7 @@ public class GeasParticleEffects {
         Vec3 up = left.cross(direction);
 
         float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-        WorldParticleBuilder.create(ParticleRegistry.STAR.get())
+        WorldParticleBuilder.create(MalumParticles.STAR.get())
                 .setTransparencyData(GenericParticleData.create(0.5f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                 .setLifetime(15)
                 .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
@@ -436,7 +436,7 @@ public class GeasParticleEffects {
             final ColorParticleData color = colorData.getColor();
             final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, nextFloat(random, 0.15f, 0.3f)).randomSpinOffset(random).build();
             float scaleMultiplier = RandomHelper.randomBetween(random, 0.5f, 1f);
-            WorldParticleBuilder.create(ParticleRegistry.SHINE.get())
+            WorldParticleBuilder.create(MalumParticles.SHINE.get())
                     .setScaleData(GenericParticleData.create(0.8f * scaleMultiplier, 0.25f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
@@ -448,7 +448,7 @@ public class GeasParticleEffects {
                     .enableNoClip()
                     .repeat(level, inFrontPos.x, inFrontPos.y, inFrontPos.z, 2);
 
-            WorldParticleBuilder.create(ParticleRegistry.GIANT_GLOWING_STAR.get())
+            WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR.get())
                     .setScaleData(GenericParticleData.create(5f * scaleMultiplier, 0.25f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.4f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setColorData(color.invert().build())

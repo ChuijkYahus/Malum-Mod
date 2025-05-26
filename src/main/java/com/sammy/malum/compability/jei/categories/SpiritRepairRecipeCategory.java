@@ -3,7 +3,7 @@ package com.sammy.malum.compability.jei.categories;
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.common.recipe.SpiritRepairRecipe;
 import com.sammy.malum.compability.jei.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
+import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
@@ -37,7 +37,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
 
     public SpiritRepairRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(malumPath("textures/gui/spirit_repair_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ItemRegistry.REPAIR_PYLON.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItems.REPAIR_PYLON.get()));
     }
 
     @Override

@@ -20,7 +20,7 @@ public class ContinuingShotGeas extends GeasEffect {
     public static final int MAX_DRAW_SPEED_STACKS = 5;
 
     public ContinuingShotGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT.get());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ContinuingShotGeas extends GeasEffect {
         }
         if (projectile instanceof AbstractArrow || projectile instanceof AbstractBoltProjectileEntity) {
             if (projectile.getOwner() instanceof LivingEntity owner) {
-                if (GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT)) {
+                if (GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT)) {
                     applyEffect(owner, false);
                 }
             }
@@ -52,12 +52,12 @@ public class ContinuingShotGeas extends GeasEffect {
 
     public static void onItemUseStart(LivingEntityUseItemEvent.Start event) {
         LivingEntity entity = event.getEntity();
-        GeasEffect geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT);
+        GeasEffect geasEffect = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT);
         if (geasEffect instanceof ContinuingShotGeas) {
             int duration = event.getDuration();
             int drawSpeedStacks = 0;
-            var positive = entity.getEffect(MobEffectRegistry.TRUE_SHOT);
-            var negative = entity.getEffect(MobEffectRegistry.FLAWED_AIM);
+            var positive = entity.getEffect(MalumMobEffects.TRUE_SHOT);
+            var negative = entity.getEffect(MalumMobEffects.FLAWED_AIM);
             if (positive != null) {
                 drawSpeedStacks += positive.getAmplifier() + 1;
             }
@@ -74,8 +74,8 @@ public class ContinuingShotGeas extends GeasEffect {
     }
 
     public static void applyEffect(LivingEntity entity, boolean isPositive) {
-        entity.removeEffect(isPositive ? MobEffectRegistry.FLAWED_AIM : MobEffectRegistry.TRUE_SHOT);
-        var effect = isPositive ? MobEffectRegistry.TRUE_SHOT : MobEffectRegistry.FLAWED_AIM;
+        entity.removeEffect(isPositive ? MalumMobEffects.FLAWED_AIM : MalumMobEffects.TRUE_SHOT);
+        var effect = isPositive ? MalumMobEffects.TRUE_SHOT : MalumMobEffects.FLAWED_AIM;
         var instance = entity.getEffect(effect);
         if (instance == null) {
             entity.addEffect(new MobEffectInstance(effect, 200, 0, true, true, true));

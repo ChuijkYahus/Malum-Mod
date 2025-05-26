@@ -6,11 +6,10 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
 public class TinkeringEntries {

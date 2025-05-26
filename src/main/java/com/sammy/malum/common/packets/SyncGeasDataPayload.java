@@ -1,6 +1,5 @@
 package com.sammy.malum.common.packets;
 
-import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.data.attachment.soul_data.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.*;
@@ -25,7 +24,7 @@ public class SyncGeasDataPayload extends OneSidedPayloadData {
     public void handle(IPayloadContext context) {
         Entity entity = context.player().level().getEntity(entityId);
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.setData(AttachmentTypeRegistry.GEAS_SOUL_INFO, data);
+            livingEntity.setData(MalumAttachmentTypes.GEAS_SOUL_INFO, data);
         }
     }
 

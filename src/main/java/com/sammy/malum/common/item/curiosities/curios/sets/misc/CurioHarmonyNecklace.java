@@ -3,7 +3,6 @@ package com.sammy.malum.common.item.curiosities.curios.sets.misc;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
@@ -26,7 +25,7 @@ public class CurioHarmonyNecklace extends MalumCurioItem {
     public static void preventDetection(LivingVisibilityEvent event) {
         if (event.getLookingEntity() instanceof LivingEntity watcher) {
             LivingEntity target = event.getEntity();
-            if (CurioHelper.hasCurioEquipped(target, ItemRegistry.NECKLACE_OF_BLISSFUL_HARMONY.get())) {
+            if (CurioHelper.hasCurioEquipped(target, MalumItems.NECKLACE_OF_BLISSFUL_HARMONY.get())) {
                 float visibilityModifier = EntitySpiritDropData.getSpiritData(watcher).map(data -> 0.5f / (1 + (long) data.dataEntries.size())).orElse(0.5f);
                 if (target.hasEffect(MobEffects.INVISIBILITY)) {
                     visibilityModifier *= 0.5f;

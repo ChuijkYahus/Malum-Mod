@@ -21,7 +21,7 @@ public class WindsweptGeas extends GeasEffect {
     public int sprintStacks;
 
     public WindsweptGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT.get());
     }
 
     @Override
@@ -41,7 +41,7 @@ public class WindsweptGeas extends GeasEffect {
 
     public static void scaleKnockback(LivingKnockBackEvent event) {
         final LivingEntity entity = event.getEntity();
-        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT);
+        var geas = GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT);
         if (geas instanceof WindsweptGeas windsweptGeas) {
             if (windsweptGeas.sprintStacks > 0) {
                 float knockbackStrength = Math.max(0, windsweptGeas.sprintStacks - MAX_SPRINT_STACKS/5)*0.1f;

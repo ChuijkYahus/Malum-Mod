@@ -19,7 +19,7 @@ public class CthonicGoldOreFeature extends LayeredOreFeature{
     @Override
     protected boolean doPlace(WorldGenLevel pLevel, RandomSource pRandom, OreConfiguration pConfig, double pMinX, double pMaxX, double pMinZ, double pMaxZ, double pMinY, double pMaxY, int pX, int pY, int pZ, int pWidth, int pHeight) {
         int i = 0;
-        boolean isCthonicGold = pConfig.targetStates.get(0).state.getBlock().equals(BlockRegistry.CTHONIC_GOLD_ORE.get());
+        boolean isCthonicGold = pConfig.targetStates.get(0).state.getBlock().equals(MalumBlocks.CTHONIC_GOLD_ORE.get());
         List<Runnable> clusterPlacements = new ArrayList<>();
         List<Runnable> cthonicGoldPlacements = isCthonicGold ? new ArrayList<>() : null;
         BitSet bitset = new BitSet(pWidth * pHeight * pWidth);
@@ -114,7 +114,7 @@ public class CthonicGoldOreFeature extends LayeredOreFeature{
                                                                             final int clusterZ = SectionPos.sectionRelative(mutable.getZ());
                                                                             if (offsetSection.getBlockState(clusterX, clusterY, clusterZ).isAir()) {
                                                                                 clusterPlacements.add(
-                                                                                        () -> offsetSection.setBlockState(clusterX, clusterY, clusterZ, BlockRegistry.CTHONIC_GOLD_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction), false)
+                                                                                        () -> offsetSection.setBlockState(clusterX, clusterY, clusterZ, MalumBlocks.CTHONIC_GOLD_CLUSTER.get().defaultBlockState().setValue(BlockStateProperties.FACING, direction), false)
                                                                                 );
                                                                             }
                                                                         }

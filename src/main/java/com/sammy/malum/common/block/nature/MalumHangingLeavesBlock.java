@@ -57,7 +57,7 @@ public class MalumHangingLeavesBlock extends Block implements SimpleWaterloggedB
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (stack.getItem().equals(ItemRegistry.INFERNAL_SPIRIT.get())) {
+        if (stack.getItem().equals(MalumItems.INFERNAL_SPIRIT.get())) {
             level.setBlockAndUpdate(pos, state.setValue(COLOR, (state.getValue(COLOR) + 1) % 5));
             player.swing(handIn);
             player.playSound(SoundEvents.BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);

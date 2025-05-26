@@ -110,7 +110,7 @@ public class GluttonyEffect extends MobEffect {
 
     public static final class GluttonyEffectProperties {
 
-        private Holder<MobEffect> effectType = MobEffectRegistry.GLUTTONY;
+        private Holder<MobEffect> effectType = MalumMobEffects.GLUTTONY;
         private int initialDuration;
         private int initialAmplifier;
         private int durationGain;

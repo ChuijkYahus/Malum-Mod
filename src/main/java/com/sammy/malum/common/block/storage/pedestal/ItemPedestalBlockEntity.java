@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.storage.pedestal;
 
 import com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,7 +17,7 @@ public class ItemPedestalBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     public ItemPedestalBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.ITEM_PEDESTAL.get(), pos, state);
+        this(MalumBlockEntities.ITEM_PEDESTAL.get(), pos, state);
     }
 
     @Override

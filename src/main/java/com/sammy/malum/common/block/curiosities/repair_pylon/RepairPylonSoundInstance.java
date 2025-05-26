@@ -5,7 +5,7 @@ import team.lodestar.lodestone.systems.sound.*;
 
 public class RepairPylonSoundInstance extends CachedBlockEntitySoundInstance<RepairPylonCoreBlockEntity> {
     public RepairPylonSoundInstance(RepairPylonCoreBlockEntity blockEntity, float volume, float pitch) {
-        super(blockEntity, SoundRegistry.REPAIR_PYLON_LOOP, volume, pitch);
+        super(blockEntity, MalumSoundEvents.REPAIR_PYLON_LOOP, volume, pitch);
         this.x = blockEntity.getBlockPos().getX() + 0.5f;
         this.y = blockEntity.getBlockPos().getY() + 0.5f;
         this.z = blockEntity.getBlockPos().getZ() + 0.5f;

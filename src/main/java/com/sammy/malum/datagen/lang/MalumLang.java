@@ -11,8 +11,8 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.BlockRegistry;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.block.MalumBlocks;
+import com.sammy.malum.registry.common.enchantment.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.*;
@@ -31,12 +31,12 @@ import team.lodestar.lodestone.helpers.DataHelper;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static com.sammy.malum.registry.common.AttributeRegistry.ATTRIBUTES;
-import static com.sammy.malum.registry.common.MobEffectRegistry.EFFECTS;
-import static com.sammy.malum.registry.common.SoundRegistry.SOUNDS;
-import static com.sammy.malum.registry.common.block.BlockRegistry.BLOCKS;
-import static com.sammy.malum.registry.common.entity.EntityRegistry.ENTITY_TYPES;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
+import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
+import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
+import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
+import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class MalumLang extends LanguageProvider {
     public static MalumLang lang;
@@ -57,8 +57,8 @@ public class MalumLang extends LanguageProvider {
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
 
-        add(DataHelper.take(blocks, BlockRegistry.PRIMORDIAL_SOUP).get(), "The Weeping Well");
-        add(DataHelper.take(blocks, BlockRegistry.VOID_CONDUIT).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
 
         add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
         add("malum.spirit.description.stored_spirit", "Contains: ");
@@ -104,7 +104,7 @@ public class MalumLang extends LanguageProvider {
             add("entity.malum." + BuiltInRegistries.ENTITY_TYPE.getKey(e.get()).getPath(), name);
         });
 
-        for (MalumSpiritType spirit : SpiritTypeRegistry.SPIRITS.values()) {
+        for (MalumSpiritType spirit : MalumSpiritTypes.SPIRITS.values()) {
             add(spirit.getSpiritDescription(), DataHelper.toTitleCase(spirit.getIdentifier() + "_spirit", "_"));
         }
         for (SoulwovenBannerPatternDataComponent pattern : SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS) {
@@ -114,7 +114,7 @@ public class MalumLang extends LanguageProvider {
             add(attribute.getLangKey(), DataHelper.toTitleCase(attribute.id.getPath().toLowerCase(Locale.ROOT), "_"));
         }
 
-        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geas : MalumGeasEffectTypeRegistry.GEAS_TYPES.getEntries()) {
+        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geas : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
             var effectType = geas.get();
             add(effectType.getLangKey(), DataHelper.toTitleCase(geas.getId().getPath().toLowerCase(Locale.ROOT), "_"));
         }
@@ -137,57 +137,58 @@ public class MalumLang extends LanguageProvider {
         add(GeasItem.CREATIVE, "Creative Item for Debug Purposes.");
         add(GeasItem.CREATIVE_HELP, "Use To Swear/Forswear Geas Effect.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LIFEWEAVER.get(), "Weave your life into miracles");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER.get(), "Weave your life into miracles");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_BERSERKER.get(), "Your pain, their pain");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BERSERKER.get(), "Your pain, their pain");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_TIDAL_AFFINITY.get(), "Become the ocean's avatar");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_PATIENCE_REPAID.get(), "A warped echo");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY.get(), "Become the ocean's avatar");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID.get(), "A warped echo");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_COMBUSTION.get(), "There is no force more powerful than the human soul on fire");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
-        addGeasDescription(MalumGeasEffectTypeRegistry.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER.get(), "Care for the flame");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION.get(), "Set yourself ablaze, figuratively");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
 
 
 //        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
 //        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure carefully, cut later");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure carefully, cut later");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNMAKERS_DISDAIN.get(), "Acknowledge no one, and be acknowledged by none");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
-        addGeasDescription(MalumGeasEffectTypeRegistry.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN.get(), "Acknowledge no one, and be acknowledged by none");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
-        addGeasDescription(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
+        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
+        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
 
-        addGeasDescription(MalumGeasEffectTypeRegistry.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
+        addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
 
 
         add("malum.waveform_artifice.wavecharger", "Redstone Easing Duration");
@@ -212,21 +213,21 @@ public class MalumLang extends LanguageProvider {
         addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT);
         addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT);
 
-        addRite(SpiritRiteRegistry.SACRED_RITE, "Rite of Healing", "Rite of Nourishment");
-        addRite(SpiritRiteRegistry.WICKED_RITE, "Rite of Decay", "Rite of Empowerment");
-        addRite(SpiritRiteRegistry.EARTHEN_RITE, "Rite of Warding", "Rite of the Arena");
-        addRite(SpiritRiteRegistry.INFERNAL_RITE, "Rite of Haste", "Rite of the Hells");
-        addRite(SpiritRiteRegistry.AERIAL_RITE, "Rite of Motion", "Rite of the Aether");
-        addRite(SpiritRiteRegistry.AQUEOUS_RITE, "Rite of Loyalty", "Rite of the Seas");
+        addRite(MalumSpiritRiteTypes.SACRED_RITE, "Rite of Healing", "Rite of Nourishment");
+        addRite(MalumSpiritRiteTypes.WICKED_RITE, "Rite of Decay", "Rite of Empowerment");
+        addRite(MalumSpiritRiteTypes.EARTHEN_RITE, "Rite of Warding", "Rite of the Arena");
+        addRite(MalumSpiritRiteTypes.INFERNAL_RITE, "Rite of Haste", "Rite of the Hells");
+        addRite(MalumSpiritRiteTypes.AERIAL_RITE, "Rite of Motion", "Rite of the Aether");
+        addRite(MalumSpiritRiteTypes.AQUEOUS_RITE, "Rite of Loyalty", "Rite of the Seas");
 
-        addRite(SpiritRiteRegistry.ARCANE_RITE, "Undirected Rite", "Unchained Rite");
+        addRite(MalumSpiritRiteTypes.ARCANE_RITE, "Undirected Rite", "Unchained Rite");
 
-        addRite(SpiritRiteRegistry.ELDRITCH_SACRED_RITE, "Rite of Growth", "Rite of Lust");
-        addRite(SpiritRiteRegistry.ELDRITCH_WICKED_RITE, "Rite of Exorcism", "Rite of Culling");
-        addRite(SpiritRiteRegistry.ELDRITCH_EARTHEN_RITE, "Rite of Destruction", "Rite of Shaping");
-        addRite(SpiritRiteRegistry.ELDRITCH_INFERNAL_RITE, "Rite of Smelting", "Rite of Quickening");
-        addRite(SpiritRiteRegistry.ELDRITCH_AERIAL_RITE, "Rite of Gravity", "Rite of Unwinding");
-        addRite(SpiritRiteRegistry.ELDRITCH_AQUEOUS_RITE, "Rite of Sapping", "Rite of Drowning");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE, "Rite of Growth", "Rite of Lust");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE, "Rite of Exorcism", "Rite of Culling");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "Rite of Destruction", "Rite of Shaping");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "Rite of Smelting", "Rite of Quickening");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "Rite of Gravity", "Rite of Unwinding");
+        addRite(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "Rite of Sapping", "Rite of Drowning");
 
         add("malum.gui.ritual.type", "Ritual Type: ");
         add("malum.gui.ritual.tier", "Ritual Tier: ");
@@ -242,8 +243,8 @@ public class MalumLang extends LanguageProvider {
             add("malum.gui.ritual.tier." + id, name);
         }
 
-        add("item.malum.music_disc_arcane_elegy.desc", "Kultik - Arcane Elegy");
-        add("item.malum.music_disc_aesthetica.desc", "Kultik - Aesthetica");
+        add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
+        add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
         add("curios.identifier.brooch", "Brooch");
         add("curios.modifiers.brooch", "When worn:");
@@ -343,14 +344,17 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("more_knockback", "Doubles Incoming Knockback");
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
-        addGeasEffect("weak_legs", "Fall Damage Is Made Deadlier");
+        addGeasEffect("weak_legs", "Fall Damage Is Amplified");
+        addGeasEffect("mining_buffs", "Breaking Blocks Or Taking Damage Grants Flamekeeper's Fervor");
+        addGeasEffect("flamekeeper", "Flamekeeper's Fervor grants Mining and Attack Speed");
+        addGeasEffect("self_immolation", "High Fervor Briefly Ignites You When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
-        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac Charges");
-        addGeasEffect("pyromaniac", "Pyromaniac Charges grant Mining and Movement Speed");
+        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac's Fervor");
+        addGeasEffect("pyromaniac", "Pyromaniac's Fervor grants Mining and Movement Speed");
         addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");
-        addGeasEffect("explosion_fire", "Too Much Haste Ignites You");
-        addGeasEffect("scary_fire", "Unlike Explosions, Fire Damage Remains Deadly");
+        addGeasEffect("explosion_fire", "High Fervor Ignites You Upon Blast Impact");
+        addGeasEffect("scary_fire", "Fire Damage Is Amplified");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         addGeasEffect("rotten_healing", "Eating Rotten Foods Heals You");
@@ -429,57 +433,57 @@ public class MalumLang extends LanguageProvider {
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
         add("itemGroup.malum_cosmetics", "Malum: One's True Self");
 
-        addDeathMessage(DamageTypeRegistry.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
-        addPlayerlessDeathMessage(DamageTypeRegistry.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");
+        addDeathMessage(MalumDataTypes.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addPlayerlessDeathMessage(MalumDataTypes.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");
 
-        addPlayerlessDeathMessage(DamageTypeRegistry.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
-        addPlayerlessDeathMessage(DamageTypeRegistry.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
-        addPlayerlessDeathMessage(DamageTypeRegistry.ROT, "%1$s was consumed by rot", "%1$s was consumed by rot while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDataTypes.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDataTypes.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDataTypes.ROT, "%1$s was consumed by rot", "%1$s was consumed by rot while trying to escape %2$s");
 
-        addDeathMessage(DamageTypeRegistry.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
-        addPlayerlessDeathMessage(DamageTypeRegistry.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");
+        addDeathMessage(MalumDataTypes.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
+        addPlayerlessDeathMessage(MalumDataTypes.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");
 
-        addDeathMessage(DamageTypeRegistry.SCYTHE_MELEE, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SCYTHE_SWEEP, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SCYTHE_REBOUND, "%1$s was boomeranged by %2$s", "%1$s was boomeranged by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SCYTHE_ASCENSION, "%1$s was cleaved using ascension by %2$s", "%1$s was cleaved using ascension by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SCYTHE_COMBO, "%1$s was sliced in half and then again by %2$s", "%1$s was sliced in half and then again by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SCYTHE_MAELSTROM, "%1$s was sliced and diced by %2$s", "%1$s was sliced and diced by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_MELEE, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_SWEEP, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_REBOUND, "%1$s was boomeranged by %2$s", "%1$s was boomeranged by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_ASCENSION, "%1$s was cleaved using ascension by %2$s", "%1$s was cleaved using ascension by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_COMBO, "%1$s was sliced in half and then again by %2$s", "%1$s was sliced in half and then again by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SCYTHE_MAELSTROM, "%1$s was sliced and diced by %2$s", "%1$s was sliced and diced by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.HIDDEN_BLADE_PHYSICAL_COUNTER, "%1$s was sliced into innumerable pieces by %2$s", "%1$s was sliced into innumerable pieces by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul sliced into innumerable pieces by %2$s", "%1$s had their soul sliced into innumerable pieces by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, "%1$s was sliced into innumerable pieces by %2$s", "%1$s was sliced into innumerable pieces by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul sliced into innumerable pieces by %2$s", "%1$s had their soul sliced into innumerable pieces by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.TYRVING, "%1$s had their soul scarred by %2$s", "%1$s had their soul scarred by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.TYRVING, "%1$s had their soul scarred by %2$s", "%1$s had their soul scarred by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
-        addDeathMessage(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(MalumDataTypes.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
 
-        addDeathMessage(DamageTypeRegistry.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
-        addDeathMessage(DamageTypeRegistry.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(MalumDataTypes.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(MalumDataTypes.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
-        addJEEDEffectDescription(MobEffectRegistry.GAIAS_BULWARK, "An earthen carapace surrounds your body, functioning as extra armor.");
-        addJEEDEffectDescription(MobEffectRegistry.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");
-        addJEEDEffectDescription(MobEffectRegistry.MINERS_RAGE, "Your tools are bolstered with radiance, increasing your mining and attack speed.");
-        addJEEDEffectDescription(MobEffectRegistry.IFRITS_EMBRACE, "The warm embrace of fire coats your soul, mending your seared scars.");
-        addJEEDEffectDescription(MobEffectRegistry.ZEPHYRS_COURAGE, "The zephyr propels you forward, increasing your movement speed.");
-        addJEEDEffectDescription(MobEffectRegistry.AETHERS_CHARM, "The heavens call for you, increasing jump height and decreasing gravity.");
-        addJEEDEffectDescription(MobEffectRegistry.POSEIDONS_GRASP, "You reach out for further power, increasing your reach and item pickup distance.");
-        addJEEDEffectDescription(MobEffectRegistry.ANGLERS_LURE, "Let any fish who meets my gaze learn the true meaning of fear; for I am the harbinger of death. The bane of creatures sub-aqueous, my rod is true and unwavering as I cast into the aquatic abyss. A man, scorned by this uncaring Earth, finds solace in the sea. My only friend, the worm upon my hook. Wriggling, writhing, struggling to surmount the mortal pointlessness that permeates this barren world. I am alone. I am empty. And yet, I fish.");
+        addJEEDEffectDescription(MalumMobEffects.GAIAS_BULWARK, "An earthen carapace surrounds your body, functioning as extra armor.");
+        addJEEDEffectDescription(MalumMobEffects.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");
+        addJEEDEffectDescription(MalumMobEffects.MINERS_RAGE, "Your tools are bolstered with radiance, increasing your mining and attack speed.");
+        addJEEDEffectDescription(MalumMobEffects.IFRITS_EMBRACE, "The warm embrace of fire coats your soul, mending your seared scars.");
+        addJEEDEffectDescription(MalumMobEffects.ZEPHYRS_COURAGE, "The zephyr propels you forward, increasing your movement speed.");
+        addJEEDEffectDescription(MalumMobEffects.AETHERS_CHARM, "The heavens call for you, increasing jump height and decreasing gravity.");
+        addJEEDEffectDescription(MalumMobEffects.POSEIDONS_GRASP, "You reach out for further power, increasing your reach and item pickup distance.");
+        addJEEDEffectDescription(MalumMobEffects.ANGLERS_LURE, "Let any fish who meets my gaze learn the true meaning of fear; for I am the harbinger of death. The bane of creatures sub-aqueous, my rod is true and unwavering as I cast into the aquatic abyss. A man, scorned by this uncaring Earth, finds solace in the sea. My only friend, the worm upon my hook. Wriggling, writhing, struggling to surmount the mortal pointlessness that permeates this barren world. I am alone. I am empty. And yet, I fish.");
 
-        addJEEDEffectDescription(MobEffectRegistry.REACTIVE_SHIELDING, "A Runic Power bolsters your armor and toughness by a tenth.");
-        addJEEDEffectDescription(MobEffectRegistry.SACRIFICIAL_EMPOWERMENT, "A Runic Power reaps extra scythe proficiency for your blade.");
+        addJEEDEffectDescription(MalumMobEffects.REACTIVE_SHIELDING, "A Runic Power bolsters your armor and toughness by a tenth.");
+        addJEEDEffectDescription(MalumMobEffects.SACRIFICIAL_EMPOWERMENT, "A Runic Power reaps extra scythe proficiency for your blade.");
 
-        addJEEDEffectDescription(MobEffectRegistry.ASCENSION, "Eases your fall and reduces gravity after a successful Scythe Ascenison.");
-        addJEEDEffectDescription(MobEffectRegistry.GLUTTONY, "You feed on the vulnerable, increasing magic proficiency at the expense of hunger./");
-        addJEEDEffectDescription(MobEffectRegistry.CANCEROUS_GROWTH, "You are emboldened by uncontrolled growth, increasing maximum health.");
-        addJEEDEffectDescription(MobEffectRegistry.ECHOING_ARCANA, "You are made wiser by uncontrolled magnification, increasing arcane resonance.");
-        addJEEDEffectDescription(MobEffectRegistry.WICKED_INTENT, "You bring forth a powerful counter attack, your next scythe attack will unleash an impossible volley of cuts.");
-        addJEEDEffectDescription(MobEffectRegistry.SILENCED, "You are silenced, leaving your magical capabilities neutered.");
-        addJEEDEffectDescription(MobEffectRegistry.GRIM_CERTAINTY, "The Weight of Worlds oscillates, sealing the next strike as a critical blow.");
-        addJEEDEffectDescription(MobEffectRegistry.IMMINENT_DELIVERANCE, "The Edge of Deliverance oscillates, sealing it's next strike as a critical blow.");
+        addJEEDEffectDescription(MalumMobEffects.ASCENSION, "Eases your fall and reduces gravity after a successful Scythe Ascenison.");
+        addJEEDEffectDescription(MalumMobEffects.GLUTTONY, "You feed on the vulnerable, increasing magic proficiency at the expense of hunger./");
+        addJEEDEffectDescription(MalumMobEffects.CANCEROUS_GROWTH, "You are emboldened by uncontrolled growth, increasing maximum health.");
+        addJEEDEffectDescription(MalumMobEffects.ECHOING_ARCANA, "You are made wiser by uncontrolled magnification, increasing arcane resonance.");
+        addJEEDEffectDescription(MalumMobEffects.WICKED_INTENT, "You bring forth a powerful counter attack, your next scythe attack will unleash an impossible volley of cuts.");
+        addJEEDEffectDescription(MalumMobEffects.SILENCED, "You are silenced, leaving your magical capabilities neutered.");
+        addJEEDEffectDescription(MalumMobEffects.GRIM_CERTAINTY, "The Weight of Worlds oscillates, sealing the next strike as a critical blow.");
+        addJEEDEffectDescription(MalumMobEffects.IMMINENT_DELIVERANCE, "The Edge of Deliverance oscillates, sealing it's next strike as a critical blow.");
 
         addTetraMaterial("malignant_pewter", "Malignant Pewter");
         addTetraMaterial("soul_stained_steel", "Soulstained Steel");
@@ -492,34 +496,34 @@ public class MalumLang extends LanguageProvider {
 
         addTetraImprovement("malum.soul_strike", "Soul Strike", "The item's material allows it to strike the soul.");
 
-        addEnchantmentNameAndDescription(EnchantmentRegistry.ANIMATED, "Improves attack speed.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.HAUNTED, "Improves the Weapon's Magic Damage");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.SPIRIT_PLUNDER, "Reaps extra Spirits when shattering a soul.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.ANIMATED, "Improves attack speed.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.HAUNTED, "Improves the Weapon's Magic Damage");
+        addEnchantmentNameAndDescription(EnchantmentKeys.SPIRIT_PLUNDER, "Reaps extra Spirits when shattering a soul.");
 
-        addEnchantmentNameAndDescription(EnchantmentRegistry.REBOUND, "Allows the Scythe to be thrown when used.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.ASCENSION, "Enables the Scythe to propel the player upwards, damaging nearby enemies when used.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.REBOUND, "Allows the Scythe to be thrown when used.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.ASCENSION, "Enables the Scythe to propel the player upwards, damaging nearby enemies when used.");
 
-        addEnchantmentNameAndDescription(EnchantmentRegistry.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
-        addEnchantmentNameAndDescription(EnchantmentRegistry.CAPACITOR, "Adds additional Spell Charges for use with the staff");
+        addEnchantmentNameAndDescription(EnchantmentKeys.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.CAPACITOR, "Adds additional Spell Charges for use with the staff");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.SCYTHE_PROFICIENCY, "Damage multiplier for Scythes");
-        addAttributeLibAttributeDescription(AttributeRegistry.SPIRIT_SPOILS, "Flat increase to spirits looted from slain foes");
-        addAttributeLibAttributeDescription(AttributeRegistry.ARCANE_RESONANCE, "Bonus potency for spirit-collection effects");
+        addAttributeLibAttributeDescription(MalumAttributes.SCYTHE_PROFICIENCY, "Damage multiplier for Scythes");
+        addAttributeLibAttributeDescription(MalumAttributes.SPIRIT_SPOILS, "Flat increase to spirits looted from slain foes");
+        addAttributeLibAttributeDescription(MalumAttributes.ARCANE_RESONANCE, "Bonus potency for spirit-collection effects");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.HEALING_MULTIPLIER, "An increase in healing received");
+        addAttributeLibAttributeDescription(MalumAttributes.HEALING_MULTIPLIER, "An increase in healing received");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
-        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
-        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_RECOVERY_MULTIPLIER, "A percentile increase the amount of Soul Ward recovered");
-        addAttributeLibAttributeDescription(AttributeRegistry.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
+        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
+        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
+        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, "A percentile increase the amount of Soul Ward recovered");
+        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_DURATION, "The duration for charging a staff");
-        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_CAPACITY, "The capacity for Spell Charges");
-        addAttributeLibAttributeDescription(AttributeRegistry.CHARGE_RECOVERY_RATE, "A percentile increase in recovery rate for Spell Charges");
+        addAttributeLibAttributeDescription(MalumAttributes.CHARGE_DURATION, "The duration for charging a staff");
+        addAttributeLibAttributeDescription(MalumAttributes.CHARGE_CAPACITY, "The capacity for Spell Charges");
+        addAttributeLibAttributeDescription(MalumAttributes.CHARGE_RECOVERY_RATE, "A percentile increase in recovery rate for Spell Charges");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
+        addAttributeLibAttributeDescription(MalumAttributes.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
 
-        addAttributeLibAttributeDescription(AttributeRegistry.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
 
     }
 

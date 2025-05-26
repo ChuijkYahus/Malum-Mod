@@ -4,7 +4,7 @@ import com.sammy.malum.common.packets.CodecUtil;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -34,7 +34,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public boolean reachedStreakGoal;
 
     public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.VOID_CONDUIT.get(), pos, state);
+        super(MalumBlockEntities.VOID_CONDUIT.get(), pos, state);
     }
 
     @Override
@@ -71,10 +71,12 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             final long gameTime = serverLevel.getGameTime();
             if (gameTime % 100L == 0) {
-                level.playSound(null, worldPosition, SoundRegistry.UNCANNY_VALLEY.get(), SoundSource.HOSTILE, 1f, Mth.nextFloat(level.getRandom(), 0.55f, 1.75f));
+                level.playSound(null, worldPosition, MalumSoundEvents.UNCANNY_VALLEY.get(), SoundSource.HOSTILE, 1f, Mth.nextFloat(level.getRandom(), 0.55f, 1.75f));
             }
             if (gameTime % 20L == 0) {
-                level.playSound(null, worldPosition, SoundRegistry.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
+                level.playSound(null, worldPosition, MalumSoundEvents.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
+            }
+            if (gameTime % 10L == 0) {
                 acceptItems(serverLevel);
             }
             if (!eatenItems.isEmpty()) {
@@ -94,19 +96,21 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     }
 
     public void acceptItems(ServerLevel serverLevel) {
-        AABB aabb = new AABB(worldPosition).inflate(1, 2, 1).move(0, -2, 0);
+        AABB aabb = new AABB(worldPosition).inflate(1, 3, 1).move(0, -3, 0);
         List<ItemEntity> items = serverLevel.getEntitiesOfClass(ItemEntity.class, aabb).stream().sorted(Comparator.comparingInt(ItemEntity::getAge)).toList();
         for (ItemEntity entity : items) {
-            eatenItems.add(entity.getItem());
-            entity.discard();
+            if (entity.getInBlockState().getBlock() instanceof PrimordialSoupBlock) {
+                eatenItems.add(entity.getItem());
+                entity.discard();
+            }
         }
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
     public void processItem(ServerLevel serverLevel) {
-        var particleEffectType = ParticleEffectTypeRegistry.WEEPING_WELL_REACTS;
+        var particleEffectType = MalumParticleEffectTypes.WEEPING_WELL_REACTS;
         var stack = eatenItems.getLast();
-        if (stack.getItem().equals(ItemRegistry.BLIGHTED_GUNK.get())) {
+        if (stack.getItem().equals(MalumItems.BLIGHTED_GUNK.get())) {
             eatGunk(stack);
         } else {
             spitOutItem(stack);
@@ -123,19 +127,19 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         if (streak >= 4096) {
             reachedStreakGoal = true;
         }
-        level.playSound(null, worldPosition, SoundRegistry.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
+        level.playSound(null, worldPosition, MalumSoundEvents.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
         level.playSound(null, worldPosition, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
     }
 
     public void spitOutItem(ItemStack stack) {
-        var recipe = LodestoneRecipeType.getRecipe(level, RecipeTypeRegistry.VOID_FAVOR.get(), new SingleRecipeInput(stack));
+        var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.VOID_FAVOR.get(), new SingleRecipeInput(stack));
         float pitch = RandomHelper.randomBetween(level.getRandom(), 0.8f, 1.3f);
         var outputPosition = worldPosition.getCenter();
-        var sound = SoundRegistry.VOID_REJECTION.get();
+        var sound = MalumSoundEvents.VOID_REJECTION.get();
         var outputStack = stack.copy();
         if (recipe != null) {
             outputStack = recipe.output.copyWithCount(stack.getCount());
-            sound = SoundRegistry.VOID_TRANSMUTATION.get();
+            sound = MalumSoundEvents.VOID_TRANSMUTATION.get();
         }
         ItemEntity entity = new ItemEntity(level, outputPosition.x, outputPosition.y, outputPosition.z, outputStack);
         entity.setDeltaMovement(0, 0.65f, 0.15f);

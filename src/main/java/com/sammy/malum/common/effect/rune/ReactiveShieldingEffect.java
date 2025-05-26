@@ -8,7 +8,7 @@ import team.lodestar.lodestone.helpers.*;
 
 public class ReactiveShieldingEffect extends MobEffect {
     public ReactiveShieldingEffect() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(SpiritTypeRegistry.EARTHEN_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_SPIRIT.getPrimaryColor()));
         addAttributeModifier(Attributes.ARMOR, MalumMod.malumPath("reactive_shielding"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.ARMOR_TOUGHNESS, MalumMod.malumPath("reactive_shielding"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 

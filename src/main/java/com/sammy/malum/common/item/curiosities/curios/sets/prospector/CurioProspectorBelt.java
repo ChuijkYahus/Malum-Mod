@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.ItemRegistry;
-import com.sammy.malum.registry.common.tag.ItemTagRegistry;
+import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -37,15 +37,15 @@ public class CurioProspectorBelt extends MalumCurioItem {
 
     public static void processExplosion(ExplosionEvent.Detonate event) {
         LivingEntity exploder = event.getExplosion().getIndirectSourceEntity();
-        if (exploder != null && CurioHelper.hasCurioEquipped(exploder, ItemRegistry.BELT_OF_THE_PROSPECTOR.get())) {
-            event.getAffectedEntities().removeIf(e -> e instanceof ItemEntity itemEntity && itemEntity.getItem().is(ItemTagRegistry.PROSPECTORS_TREASURE));
+        if (exploder != null && CurioHelper.hasCurioEquipped(exploder, MalumItems.BELT_OF_THE_PROSPECTOR.get())) {
+            event.getAffectedEntities().removeIf(e -> e instanceof ItemEntity itemEntity && itemEntity.getItem().is(MalumTags.ItemTags.PROSPECTORS_TREASURE));
         }
     }
 
     public static LootParams.Builder applyFortune(Entity source, LootParams.Builder builder) {
         if (source instanceof LivingEntity livingEntity) {
             HolderLookup.RegistryLookup<Enchantment> registriesProvider = livingEntity.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-            if (CurioHelper.hasCurioEquipped(livingEntity, ItemRegistry.BELT_OF_THE_PROSPECTOR.get())) {
+            if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.BELT_OF_THE_PROSPECTOR.get())) {
                 int fortuneBonus = 3 + CuriosApi.getCuriosInventory(livingEntity).map(h -> h.getFortuneLevel(null)).orElse(0);
                 ItemStack diamondPickaxe = new ItemStack(Items.DIAMOND_PICKAXE);
                 diamondPickaxe.enchant(registriesProvider.getOrThrow(Enchantments.FORTUNE), fortuneBonus);

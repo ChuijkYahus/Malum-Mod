@@ -15,25 +15,25 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.*;
 import org.apache.logging.log4j.*;
 
-import static com.sammy.malum.registry.client.ParticleRegistry.*;
-import static com.sammy.malum.registry.common.AttachmentTypeRegistry.ATTACHMENT_TYPES;
-import static com.sammy.malum.registry.common.AttributeRegistry.*;
-import static com.sammy.malum.registry.common.ContainerRegistry.*;
-import static com.sammy.malum.registry.common.MalumGeasEffectTypeRegistry.GEAS_TYPES;
-import static com.sammy.malum.registry.common.MobEffectRegistry.*;
-import static com.sammy.malum.registry.common.SoundRegistry.*;
-import static com.sammy.malum.registry.common.WorldEventTypeRegistry.WORLD_EVENT_TYPES;
-import static com.sammy.malum.registry.common.block.BlockEntityRegistry.*;
-import static com.sammy.malum.registry.common.block.BlockRegistry.*;
-import static com.sammy.malum.registry.common.entity.EntityRegistry.*;
-import static com.sammy.malum.registry.common.item.DataComponentRegistry.*;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
-import static com.sammy.malum.registry.common.item.tabs.CreativeTabRegistry.*;
-import static com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry.*;
-import static com.sammy.malum.registry.common.recipe.RecipeTypeRegistry.*;
-import static com.sammy.malum.registry.common.worldgen.FeatureRegistry.*;
-import static com.sammy.malum.registry.common.worldgen.MalumStructurePieceTypes.STRUCTURE_PIECE_TYPES;
-import static com.sammy.malum.registry.common.worldgen.MalumStructureTypes.STRUCTURE_TYPES;
+import static com.sammy.malum.registry.common.MalumParticles.*;
+import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TYPES;
+import static com.sammy.malum.registry.common.MalumAttributes.*;
+import static com.sammy.malum.registry.common.MalumContainers.*;
+import static com.sammy.malum.registry.common.MalumGeasEffectTypes.GEAS_TYPES;
+import static com.sammy.malum.registry.common.MalumMobEffects.*;
+import static com.sammy.malum.registry.common.MalumSoundEvents.*;
+import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
+import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.entity.MalumEntities.*;
+import static com.sammy.malum.registry.common.item.MalumDataComponents.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.MalumCreativeTabs.*;
+import static com.sammy.malum.registry.common.recipe.MalumRecipeSerializers.*;
+import static com.sammy.malum.registry.common.recipe.MalumRecipeTypes.*;
+import static com.sammy.malum.registry.common.worldgen.MalumFeatures.*;
+import static com.sammy.malum.registry.common.worldgen.MalumStructures.StructurePieceTypes.STRUCTURE_PIECE_TYPES;
+import static com.sammy.malum.registry.common.worldgen.MalumStructures.StructureTypes.STRUCTURE_TYPES;
 
 @SuppressWarnings("unused")
 @Mod(MalumMod.MALUM)

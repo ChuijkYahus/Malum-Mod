@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.curio;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.registry.client.ModelRegistry;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -27,7 +27,7 @@ public class TopHatCurioRenderer implements ICurioRenderer {
 
     public static void renderTopHat(LivingEntity livingEntity, RenderType renderType, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(renderType);
-        ICurioRenderer.followHeadRotations(livingEntity, ModelRegistry.TOP_HAT.topHat);
-        ModelRegistry.TOP_HAT.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
+        ICurioRenderer.followHeadRotations(livingEntity, MalumModels.TOP_HAT.topHat);
+        MalumModels.TOP_HAT.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 16777215);
     }
 }

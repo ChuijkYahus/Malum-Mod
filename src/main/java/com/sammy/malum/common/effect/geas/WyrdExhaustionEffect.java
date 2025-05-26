@@ -12,7 +12,7 @@ import java.util.*;
 public class WyrdExhaustionEffect extends MobEffect {
     public WyrdExhaustionEffect() {
         super(MobEffectCategory.HARMFUL, ColorHelper.getColor(64, 48, 100));
-        addAttributeModifier(AttributeRegistry.ARCANE_RESONANCE, MalumMod.malumPath("wyrd_exhaustion"), -0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.ARCANE_RESONANCE, MalumMod.malumPath("wyrd_exhaustion"), -0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override

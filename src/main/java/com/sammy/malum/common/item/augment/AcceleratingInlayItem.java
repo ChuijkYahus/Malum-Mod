@@ -6,6 +6,6 @@ import com.sammy.malum.registry.common.*;
 
 public class AcceleratingInlayItem extends AugmentItem {
     public AcceleratingInlayItem(Properties pProperties) {
-        super(pProperties, SpiritTypeRegistry.AERIAL_SPIRIT, new ArtificeModifier(ArtificeAttributeType.FOCUSING_SPEED, 1f));
+        super(pProperties, MalumSpiritTypes.AERIAL_SPIRIT, new ArtificeModifier(ArtificeAttributeType.FOCUSING_SPEED, 1f));
     }
 }

@@ -11,11 +11,11 @@ public class MalumBlockSetTypes {
                     true,
                     true,
                     BlockSetType.PressurePlateSensitivity.EVERYTHING,
-                    SoundRegistry.RUNEWOOD,
-                    SoundRegistry.RUNEWOOD_DOOR_CLOSE.get(), SoundRegistry.RUNEWOOD_DOOR_OPEN.get(),
-                    SoundRegistry.RUNEWOOD_TRAPDOOR_CLOSE.get(), SoundRegistry.RUNEWOOD_TRAPDOOR_OPEN.get(),
-                    SoundRegistry.RUNEWOOD_PRESSURE_PLATE_CLICK_OFF.get(), SoundRegistry.RUNEWOOD_PRESSURE_PLATE_CLICK_ON.get(),
-                    SoundRegistry.RUNEWOOD_BUTTON_CLICK_OFF.get(), SoundRegistry.RUNEWOOD_BUTTON_CLICK_ON.get()));
+                    MalumSoundEvents.RUNEWOOD,
+                    MalumSoundEvents.RUNEWOOD_DOOR_CLOSE.get(), MalumSoundEvents.RUNEWOOD_DOOR_OPEN.get(),
+                    MalumSoundEvents.RUNEWOOD_TRAPDOOR_CLOSE.get(), MalumSoundEvents.RUNEWOOD_TRAPDOOR_OPEN.get(),
+                    MalumSoundEvents.RUNEWOOD_PRESSURE_PLATE_CLICK_OFF.get(), MalumSoundEvents.RUNEWOOD_PRESSURE_PLATE_CLICK_ON.get(),
+                    MalumSoundEvents.RUNEWOOD_BUTTON_CLICK_OFF.get(), MalumSoundEvents.RUNEWOOD_BUTTON_CLICK_ON.get()));
 
     public static final BlockSetType SOULWOOD = BlockSetType.register(
             new BlockSetType(
@@ -24,15 +24,15 @@ public class MalumBlockSetTypes {
                     true,
                     true,
                     BlockSetType.PressurePlateSensitivity.EVERYTHING,
-                    SoundRegistry.SOULWOOD,
-                    SoundRegistry.SOULWOOD_DOOR_CLOSE.get(),
-                    SoundRegistry.SOULWOOD_DOOR_OPEN.get(),
-                    SoundRegistry.SOULWOOD_TRAPDOOR_CLOSE.get(),
-                    SoundRegistry.SOULWOOD_TRAPDOOR_OPEN.get(),
-                    SoundRegistry.SOULWOOD_PRESSURE_PLATE_CLICK_OFF.get(),
-                    SoundRegistry.SOULWOOD_PRESSURE_PLATE_CLICK_ON.get(),
-                    SoundRegistry.SOULWOOD_BUTTON_CLICK_OFF.get(),
-                    SoundRegistry.SOULWOOD_BUTTON_CLICK_ON.get()
+                    MalumSoundEvents.SOULWOOD,
+                    MalumSoundEvents.SOULWOOD_DOOR_CLOSE.get(),
+                    MalumSoundEvents.SOULWOOD_DOOR_OPEN.get(),
+                    MalumSoundEvents.SOULWOOD_TRAPDOOR_CLOSE.get(),
+                    MalumSoundEvents.SOULWOOD_TRAPDOOR_OPEN.get(),
+                    MalumSoundEvents.SOULWOOD_PRESSURE_PLATE_CLICK_OFF.get(),
+                    MalumSoundEvents.SOULWOOD_PRESSURE_PLATE_CLICK_ON.get(),
+                    MalumSoundEvents.SOULWOOD_BUTTON_CLICK_OFF.get(),
+                    MalumSoundEvents.SOULWOOD_BUTTON_CLICK_ON.get()
             )
     );
 }

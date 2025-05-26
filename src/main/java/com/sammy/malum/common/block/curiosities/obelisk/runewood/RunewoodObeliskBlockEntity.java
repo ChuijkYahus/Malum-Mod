@@ -18,10 +18,10 @@ public class RunewoodObeliskBlockEntity extends ObeliskCoreBlockEntity implement
     private static final Vec3 OBELISK_PARTICLE_OFFSET = new Vec3(0.5f, 2f, 0.5f);
 
     public static final AltarAcceleratorType OBELISK = new AltarAcceleratorType(4, "obelisk");
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, BlockRegistry.RUNEWOOD_OBELISK_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.RUNEWOOD_OBELISK_COMPONENT.get().defaultBlockState())));
 
     public RunewoodObeliskBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.RUNEWOOD_OBELISK.get(), STRUCTURE.get(), pos, state);
+        super(MalumBlockEntities.RUNEWOOD_OBELISK.get(), STRUCTURE.get(), pos, state);
     }
 
     @Override

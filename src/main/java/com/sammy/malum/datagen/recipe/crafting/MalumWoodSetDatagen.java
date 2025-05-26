@@ -1,8 +1,9 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.tag.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.tag.*;
+
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -20,62 +21,62 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
 
     private static final MalumDatagenWoodSet RUNEWOOD = new MalumDatagenWoodSet(
             "runewood",
-            ItemRegistry.RUNEWOOD_LOG.get(), ItemRegistry.RUNEWOOD.get(),
-            ItemRegistry.STRIPPED_RUNEWOOD_LOG.get(), ItemRegistry.STRIPPED_RUNEWOOD.get(),
-            ItemRegistry.REVEALED_RUNEWOOD_LOG.get(), ItemRegistry.EXPOSED_RUNEWOOD_LOG.get(),
-            ItemRegistry.RUNEWOOD_BOARDS.get(), ItemRegistry.VERTICAL_RUNEWOOD_BOARDS.get(),
-            ItemRegistry.RUNEWOOD_BOARDS_SLAB.get(), ItemRegistry.VERTICAL_RUNEWOOD_BOARDS_SLAB.get(),
-            ItemRegistry.RUNEWOOD_BOARDS_STAIRS.get(), ItemRegistry.VERTICAL_RUNEWOOD_BOARDS_STAIRS.get(),
-            ItemRegistry.RUNEWOOD_PLANKS.get(), ItemRegistry.VERTICAL_RUNEWOOD_PLANKS.get(), ItemRegistry.RUNEWOOD_TILES.get(),
-            ItemRegistry.RUSTIC_RUNEWOOD_PLANKS.get(), ItemRegistry.VERTICAL_RUSTIC_RUNEWOOD_PLANKS.get(), ItemRegistry.RUSTIC_RUNEWOOD_TILES.get(),
-            ItemRegistry.RUNEWOOD_PLANKS_SLAB.get(), ItemRegistry.VERTICAL_RUNEWOOD_PLANKS_SLAB.get(), ItemRegistry.RUNEWOOD_TILES_SLAB.get(),
-            ItemRegistry.RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), ItemRegistry.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), ItemRegistry.RUSTIC_RUNEWOOD_TILES_SLAB.get(),
-            ItemRegistry.RUNEWOOD_PLANKS_STAIRS.get(), ItemRegistry.VERTICAL_RUNEWOOD_PLANKS_STAIRS.get(), ItemRegistry.RUNEWOOD_TILES_STAIRS.get(),
-            ItemRegistry.RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), ItemRegistry.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), ItemRegistry.RUSTIC_RUNEWOOD_TILES_STAIRS.get(),
-            ItemRegistry.RUNEWOOD_PANEL.get(), ItemRegistry.CUT_RUNEWOOD_PLANKS.get(), ItemRegistry.RUNEWOOD_BEAM.get(),
-            ItemRegistry.RUNEWOOD_BUTTON.get(), ItemRegistry.RUNEWOOD_PRESSURE_PLATE.get(),
-            ItemRegistry.RUNEWOOD_DOOR.get(), ItemRegistry.BOLTED_RUNEWOOD_DOOR.get(),
-            ItemRegistry.RUNEWOOD_BOARDS_DOOR.get(), ItemRegistry.BOLTED_RUNEWOOD_BOARDS_DOOR.get(),
-            ItemRegistry.RUNEWOOD_TRAPDOOR.get(), ItemRegistry.BOLTED_RUNEWOOD_TRAPDOOR.get(),
-            ItemRegistry.RUNEWOOD_BOARDS_TRAPDOOR.get(), ItemRegistry.BOLTED_RUNEWOOD_BOARDS_TRAPDOOR.get(),
-            ItemRegistry.RUNEWOOD_FENCE.get(), ItemRegistry.RUNEWOOD_FENCE_GATE.get(),
-            ItemRegistry.RUNEWOOD_BOARDS_WALL.get(),
-            ItemRegistry.RUNEWOOD_SIGN.get(), ItemRegistry.RUNEWOOD_SIGN.get(),
-            ItemRegistry.RUNEWOOD_ITEM_STAND.get(), ItemRegistry.RUNEWOOD_ITEM_PEDESTAL.get(),
-            ItemRegistry.GILDED_RUNEWOOD_ITEM_STAND.get(), ItemRegistry.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(),
-            ItemTagRegistry.RUNEWOOD_LOGS, ItemTagRegistry.RUNEWOOD_BOARD_INGREDIENT, ItemTagRegistry.RUNEWOOD_PLANKS, ItemTagRegistry.RUNEWOOD_BOARDS, ItemTagRegistry.RUNEWOOD_STAIRS, ItemTagRegistry.RUNEWOOD_SLABS,
-            ItemRegistry.RUNEWOOD_BOAT.get(),
-            ItemRegistry.HALLOWED_GOLD_NUGGET.get()
+            MalumItems.RUNEWOOD_LOG.get(), MalumItems.RUNEWOOD.get(),
+            MalumItems.STRIPPED_RUNEWOOD_LOG.get(), MalumItems.STRIPPED_RUNEWOOD.get(),
+            MalumItems.REVEALED_RUNEWOOD_LOG.get(), MalumItems.EXPOSED_RUNEWOOD_LOG.get(),
+            MalumItems.RUNEWOOD_BOARDS.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS.get(),
+            MalumItems.RUNEWOOD_BOARDS_SLAB.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS_SLAB.get(),
+            MalumItems.RUNEWOOD_BOARDS_STAIRS.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS_STAIRS.get(),
+            MalumItems.RUNEWOOD_PLANKS.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS.get(), MalumItems.RUNEWOOD_TILES.get(),
+            MalumItems.RUSTIC_RUNEWOOD_PLANKS.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS.get(), MalumItems.RUSTIC_RUNEWOOD_TILES.get(),
+            MalumItems.RUNEWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.RUNEWOOD_TILES_SLAB.get(),
+            MalumItems.RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.RUSTIC_RUNEWOOD_TILES_SLAB.get(),
+            MalumItems.RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.RUNEWOOD_TILES_STAIRS.get(),
+            MalumItems.RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.RUSTIC_RUNEWOOD_TILES_STAIRS.get(),
+            MalumItems.RUNEWOOD_PANEL.get(), MalumItems.CUT_RUNEWOOD_PLANKS.get(), MalumItems.RUNEWOOD_BEAM.get(),
+            MalumItems.RUNEWOOD_BUTTON.get(), MalumItems.RUNEWOOD_PRESSURE_PLATE.get(),
+            MalumItems.RUNEWOOD_DOOR.get(), MalumItems.BOLTED_RUNEWOOD_DOOR.get(),
+            MalumItems.RUNEWOOD_BOARDS_DOOR.get(), MalumItems.BOLTED_RUNEWOOD_BOARDS_DOOR.get(),
+            MalumItems.RUNEWOOD_TRAPDOOR.get(), MalumItems.BOLTED_RUNEWOOD_TRAPDOOR.get(),
+            MalumItems.RUNEWOOD_BOARDS_TRAPDOOR.get(), MalumItems.BOLTED_RUNEWOOD_BOARDS_TRAPDOOR.get(),
+            MalumItems.RUNEWOOD_FENCE.get(), MalumItems.RUNEWOOD_FENCE_GATE.get(),
+            MalumItems.RUNEWOOD_BOARDS_WALL.get(),
+            MalumItems.RUNEWOOD_SIGN.get(), MalumItems.RUNEWOOD_SIGN.get(),
+            MalumItems.RUNEWOOD_ITEM_STAND.get(), MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(),
+            MalumItems.GILDED_RUNEWOOD_ITEM_STAND.get(), MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(),
+            MalumTags.ItemTags.RUNEWOOD_LOGS, MalumTags.ItemTags.RUNEWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.RUNEWOOD_PLANKS, MalumTags.ItemTags.RUNEWOOD_BOARDS, MalumTags.ItemTags.RUNEWOOD_STAIRS, MalumTags.ItemTags.RUNEWOOD_SLABS,
+            MalumItems.RUNEWOOD_BOAT.get(),
+            MalumItems.HALLOWED_GOLD_NUGGET.get()
     );
 
     private static final MalumDatagenWoodSet SOULWOOD = new MalumDatagenWoodSet(
             "soulwood",
-            ItemRegistry.SOULWOOD_LOG.get(), ItemRegistry.SOULWOOD.get(),
-            ItemRegistry.STRIPPED_SOULWOOD_LOG.get(), ItemRegistry.STRIPPED_SOULWOOD.get(),
-            ItemRegistry.REVEALED_SOULWOOD_LOG.get(), ItemRegistry.EXPOSED_SOULWOOD_LOG.get(),
-            ItemRegistry.SOULWOOD_BOARDS.get(), ItemRegistry.VERTICAL_SOULWOOD_BOARDS.get(),
-            ItemRegistry.SOULWOOD_BOARDS_SLAB.get(), ItemRegistry.VERTICAL_SOULWOOD_BOARDS_SLAB.get(),
-            ItemRegistry.SOULWOOD_BOARDS_STAIRS.get(), ItemRegistry.VERTICAL_SOULWOOD_BOARDS_STAIRS.get(),
-            ItemRegistry.SOULWOOD_PLANKS.get(), ItemRegistry.VERTICAL_SOULWOOD_PLANKS.get(), ItemRegistry.SOULWOOD_TILES.get(),
-            ItemRegistry.RUSTIC_SOULWOOD_PLANKS.get(), ItemRegistry.VERTICAL_RUSTIC_SOULWOOD_PLANKS.get(), ItemRegistry.RUSTIC_SOULWOOD_TILES.get(),
-            ItemRegistry.SOULWOOD_PLANKS_SLAB.get(), ItemRegistry.VERTICAL_SOULWOOD_PLANKS_SLAB.get(), ItemRegistry.SOULWOOD_TILES_SLAB.get(),
-            ItemRegistry.RUSTIC_SOULWOOD_PLANKS_SLAB.get(), ItemRegistry.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB.get(), ItemRegistry.RUSTIC_SOULWOOD_TILES_SLAB.get(),
-            ItemRegistry.SOULWOOD_PLANKS_STAIRS.get(), ItemRegistry.VERTICAL_SOULWOOD_PLANKS_STAIRS.get(), ItemRegistry.SOULWOOD_TILES_STAIRS.get(),
-            ItemRegistry.RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), ItemRegistry.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), ItemRegistry.RUSTIC_SOULWOOD_TILES_STAIRS.get(),
-            ItemRegistry.SOULWOOD_PANEL.get(), ItemRegistry.CUT_SOULWOOD_PLANKS.get(), ItemRegistry.SOULWOOD_BEAM.get(),
-            ItemRegistry.SOULWOOD_BUTTON.get(), ItemRegistry.SOULWOOD_PRESSURE_PLATE.get(),
-            ItemRegistry.SOULWOOD_DOOR.get(), ItemRegistry.BOLTED_SOULWOOD_DOOR.get(),
-            ItemRegistry.SOULWOOD_BOARDS_DOOR.get(), ItemRegistry.BOLTED_SOULWOOD_BOARDS_DOOR.get(),
-            ItemRegistry.SOULWOOD_TRAPDOOR.get(), ItemRegistry.BOLTED_SOULWOOD_TRAPDOOR.get(),
-            ItemRegistry.SOULWOOD_BOARDS_TRAPDOOR.get(), ItemRegistry.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(),
-            ItemRegistry.SOULWOOD_FENCE.get(), ItemRegistry.SOULWOOD_FENCE_GATE.get(),
-            ItemRegistry.SOULWOOD_BOARDS_WALL.get(),
-            ItemRegistry.SOULWOOD_SIGN.get(), ItemRegistry.SOULWOOD_SIGN.get(),
-            ItemRegistry.SOULWOOD_ITEM_STAND.get(), ItemRegistry.SOULWOOD_ITEM_PEDESTAL.get(),
-            ItemRegistry.ORNATE_SOULWOOD_ITEM_STAND.get(), ItemRegistry.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(),
-            ItemTagRegistry.SOULWOOD_LOGS, ItemTagRegistry.SOULWOOD_BOARD_INGREDIENT, ItemTagRegistry.SOULWOOD_PLANKS, ItemTagRegistry.SOULWOOD_BOARDS, ItemTagRegistry.SOULWOOD_STAIRS, ItemTagRegistry.SOULWOOD_SLABS,
-            ItemRegistry.SOULWOOD_BOAT.get(),
-            ItemRegistry.SOUL_STAINED_STEEL_NUGGET.get()
+            MalumItems.SOULWOOD_LOG.get(), MalumItems.SOULWOOD.get(),
+            MalumItems.STRIPPED_SOULWOOD_LOG.get(), MalumItems.STRIPPED_SOULWOOD.get(),
+            MalumItems.REVEALED_SOULWOOD_LOG.get(), MalumItems.EXPOSED_SOULWOOD_LOG.get(),
+            MalumItems.SOULWOOD_BOARDS.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS.get(),
+            MalumItems.SOULWOOD_BOARDS_SLAB.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS_SLAB.get(),
+            MalumItems.SOULWOOD_BOARDS_STAIRS.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS_STAIRS.get(),
+            MalumItems.SOULWOOD_PLANKS.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS.get(), MalumItems.SOULWOOD_TILES.get(),
+            MalumItems.RUSTIC_SOULWOOD_PLANKS.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS.get(), MalumItems.RUSTIC_SOULWOOD_TILES.get(),
+            MalumItems.SOULWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS_SLAB.get(), MalumItems.SOULWOOD_TILES_SLAB.get(),
+            MalumItems.RUSTIC_SOULWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB.get(), MalumItems.RUSTIC_SOULWOOD_TILES_SLAB.get(),
+            MalumItems.SOULWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.SOULWOOD_TILES_STAIRS.get(),
+            MalumItems.RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.RUSTIC_SOULWOOD_TILES_STAIRS.get(),
+            MalumItems.SOULWOOD_PANEL.get(), MalumItems.CUT_SOULWOOD_PLANKS.get(), MalumItems.SOULWOOD_BEAM.get(),
+            MalumItems.SOULWOOD_BUTTON.get(), MalumItems.SOULWOOD_PRESSURE_PLATE.get(),
+            MalumItems.SOULWOOD_DOOR.get(), MalumItems.BOLTED_SOULWOOD_DOOR.get(),
+            MalumItems.SOULWOOD_BOARDS_DOOR.get(), MalumItems.BOLTED_SOULWOOD_BOARDS_DOOR.get(),
+            MalumItems.SOULWOOD_TRAPDOOR.get(), MalumItems.BOLTED_SOULWOOD_TRAPDOOR.get(),
+            MalumItems.SOULWOOD_BOARDS_TRAPDOOR.get(), MalumItems.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(),
+            MalumItems.SOULWOOD_FENCE.get(), MalumItems.SOULWOOD_FENCE_GATE.get(),
+            MalumItems.SOULWOOD_BOARDS_WALL.get(),
+            MalumItems.SOULWOOD_SIGN.get(), MalumItems.SOULWOOD_SIGN.get(),
+            MalumItems.SOULWOOD_ITEM_STAND.get(), MalumItems.SOULWOOD_ITEM_PEDESTAL.get(),
+            MalumItems.ORNATE_SOULWOOD_ITEM_STAND.get(), MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(),
+            MalumTags.ItemTags.SOULWOOD_LOGS, MalumTags.ItemTags.SOULWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.SOULWOOD_PLANKS, MalumTags.ItemTags.SOULWOOD_BOARDS, MalumTags.ItemTags.SOULWOOD_STAIRS, MalumTags.ItemTags.SOULWOOD_SLABS,
+            MalumItems.SOULWOOD_BOAT.get(),
+            MalumItems.SOUL_STAINED_STEEL_NUGGET.get()
     );
 
     public static void addTags(MalumItemTagDatagen provider) {
@@ -270,7 +271,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .unlockedBy("has_input", has(input)).save(recipeOutput, recipeID);
     }
 
-    private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<Item> input) {
+    private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<net.minecraft.world.item.Item> input) {
         shapeless(RecipeCategory.MISC, planks, 4)
                 .requires(input)
                 .group("planks")
@@ -278,7 +279,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedBoards(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+    private static void shapedBoards(RecipeOutput recipeOutput, ItemLike output, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, output, 20)
                 .define('#', input)
                 .pattern(" # ")
@@ -288,7 +289,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedPanel(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+    private static void shapedPanel(RecipeOutput recipeOutput, ItemLike output, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, output, 9)
                 .define('#', input)
                 .pattern("###")
@@ -308,14 +309,14 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<Item> input) {
+    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<net.minecraft.world.item.Item> input) {
         shapeless(RecipeCategory.MISC, button)
                 .requires(input)
                 .unlockedBy("has_input", has(input))
                 .save(recipeOutput);
     }
 
-    private static void shapedDoor(RecipeOutput recipeOutput, ItemLike door, TagKey<Item> input) {
+    private static void shapedDoor(RecipeOutput recipeOutput, ItemLike door, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, door, 3)
                 .define('#', input)
                 .pattern("##")
@@ -325,7 +326,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedFence(RecipeOutput recipeOutput, ItemLike fence, TagKey<Item> input) {
+    private static void shapedFence(RecipeOutput recipeOutput, ItemLike fence, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, fence, 3)
                 .define('#', Tags.Items.RODS_WOODEN)
                 .define('W', input)
@@ -335,7 +336,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedFenceGate(RecipeOutput recipeOutput, ItemLike fenceGate, TagKey<Item> input) {
+    private static void shapedFenceGate(RecipeOutput recipeOutput, ItemLike fenceGate, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, fenceGate)
                 .define('#', Tags.Items.RODS_WOODEN)
                 .define('W', input)
@@ -345,7 +346,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, TagKey<Item> input) {
+    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, pressurePlate)
                 .define('#', input)
                 .pattern("##")
@@ -371,7 +372,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedTrapdoor(RecipeOutput recipeOutput, ItemLike trapdoor, TagKey<Item> input) {
+    private static void shapedTrapdoor(RecipeOutput recipeOutput, ItemLike trapdoor, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, trapdoor, 2)
                 .define('#', input)
                 .pattern("###")
@@ -380,7 +381,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedSign(RecipeOutput recipeOutput, ItemLike sign, TagKey<Item> input) {
+    private static void shapedSign(RecipeOutput recipeOutput, ItemLike sign, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, sign, 3)
                 .group("sign")
                 .define('#', input)
@@ -392,7 +393,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedBoat(RecipeOutput recipeOutput, ItemLike boat, TagKey<Item> input) {
+    private static void shapedBoat(RecipeOutput recipeOutput, ItemLike boat, TagKey<net.minecraft.world.item.Item> input) {
         shaped(RecipeCategory.MISC, boat)
                 .define('#', input)
                 .pattern("# #")
@@ -403,45 +404,45 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
     public record MalumDatagenWoodSet(
             String prefix,
 
-            Item log, Item wood,
-            Item strippedLog, Item strippedWood,
+            net.minecraft.world.item.Item log, net.minecraft.world.item.Item wood,
+            net.minecraft.world.item.Item strippedLog, net.minecraft.world.item.Item strippedWood,
 
-            Item sapFilledLog, Item strippedSapFilledLog,
+            net.minecraft.world.item.Item sapFilledLog, net.minecraft.world.item.Item strippedSapFilledLog,
 
-            Item boards, Item verticalBoards,
-            Item boardsSlab, Item verticalBoardsSlab,
-            Item boardsStairs, Item verticalBoardsStairs,
+            net.minecraft.world.item.Item boards, net.minecraft.world.item.Item verticalBoards,
+            net.minecraft.world.item.Item boardsSlab, net.minecraft.world.item.Item verticalBoardsSlab,
+            net.minecraft.world.item.Item boardsStairs, net.minecraft.world.item.Item verticalBoardsStairs,
 
-            Item planks, Item verticalPlanks, Item tiles,
-            Item rusticPlanks, Item verticalRusticPlanks, Item rusticTiles,
-            Item planksSlab, Item verticalPlanksSlab, Item tilesSlab,
-            Item rusticPlanksSlab, Item verticalRusticPlanksSlab, Item rusticTilesSlab,
-            Item planksStairs, Item verticalPlanksStairs, Item tilesStairs,
-            Item rusticPlanksStairs, Item verticalRusticPlanksStairs, Item rusticTilesStairs,
+            net.minecraft.world.item.Item planks, net.minecraft.world.item.Item verticalPlanks, net.minecraft.world.item.Item tiles,
+            net.minecraft.world.item.Item rusticPlanks, net.minecraft.world.item.Item verticalRusticPlanks, net.minecraft.world.item.Item rusticTiles,
+            net.minecraft.world.item.Item planksSlab, net.minecraft.world.item.Item verticalPlanksSlab, net.minecraft.world.item.Item tilesSlab,
+            net.minecraft.world.item.Item rusticPlanksSlab, net.minecraft.world.item.Item verticalRusticPlanksSlab, net.minecraft.world.item.Item rusticTilesSlab,
+            net.minecraft.world.item.Item planksStairs, net.minecraft.world.item.Item verticalPlanksStairs, net.minecraft.world.item.Item tilesStairs,
+            net.minecraft.world.item.Item rusticPlanksStairs, net.minecraft.world.item.Item verticalRusticPlanksStairs, net.minecraft.world.item.Item rusticTilesStairs,
 
-            Item panel, Item cutPlanks, Item beam,
+            net.minecraft.world.item.Item panel, net.minecraft.world.item.Item cutPlanks, net.minecraft.world.item.Item beam,
 
-            Item button, Item pressurePlate,
+            net.minecraft.world.item.Item button, net.minecraft.world.item.Item pressurePlate,
 
-            Item door, Item boltedDoor,
-            Item boardsDoor, Item boltedBoardsDoor,
+            net.minecraft.world.item.Item door, net.minecraft.world.item.Item boltedDoor,
+            net.minecraft.world.item.Item boardsDoor, net.minecraft.world.item.Item boltedBoardsDoor,
 
-            Item trapdoor, Item boltedTrapdoor,
-            Item boardsTrapdoor, Item boltedBoardsTrapdoor,
+            net.minecraft.world.item.Item trapdoor, net.minecraft.world.item.Item boltedTrapdoor,
+            net.minecraft.world.item.Item boardsTrapdoor, net.minecraft.world.item.Item boltedBoardsTrapdoor,
 
-            Item fence, Item fenceGate,
+            net.minecraft.world.item.Item fence, net.minecraft.world.item.Item fenceGate,
 
-            Item boardWall,
+            net.minecraft.world.item.Item boardWall,
 
-            Item sign, Item hangingSign,
+            net.minecraft.world.item.Item sign, net.minecraft.world.item.Item hangingSign,
 
-            Item itemStand, Item itemPedestal,
-            Item decoratedItemStand, Item decoratedItemPedestal,
+            net.minecraft.world.item.Item itemStand, net.minecraft.world.item.Item itemPedestal,
+            net.minecraft.world.item.Item decoratedItemStand, net.minecraft.world.item.Item decoratedItemPedestal,
 
-            TagKey<Item> logTag, TagKey<Item> boardIngredientTag, TagKey<Item> planksTag, TagKey<Item> boardsTag, TagKey<Item> stairsTag, TagKey<Item> slabTag,
+            TagKey<net.minecraft.world.item.Item> logTag, TagKey<net.minecraft.world.item.Item> boardIngredientTag, TagKey<net.minecraft.world.item.Item> planksTag, TagKey<net.minecraft.world.item.Item> boardsTag, TagKey<net.minecraft.world.item.Item> stairsTag, TagKey<net.minecraft.world.item.Item> slabTag,
 
-            Item boat,
+            net.minecraft.world.item.Item boat,
 
-            Item metalNugget
+            net.minecraft.world.item.Item metalNugget
     ) { }
 }

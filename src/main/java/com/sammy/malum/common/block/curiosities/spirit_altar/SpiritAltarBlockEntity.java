@@ -6,13 +6,12 @@ import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
-import com.sammy.malum.registry.common.ParticleEffectTypeRegistry;
-import com.sammy.malum.registry.common.SoundRegistry;
-import com.sammy.malum.registry.common.SpiritTypeRegistry;
-import com.sammy.malum.registry.common.block.BlockEntityRegistry;
-import com.sammy.malum.registry.common.recipe.RecipeTypeRegistry;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
+import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import com.sammy.malum.visual_effects.networked.altar.SpiritAltarEatItemParticleEffect;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.BlockPos;
@@ -77,10 +76,10 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.SPIRIT_ALTAR.get(), pos, state);
+        super(MalumBlockEntities.SPIRIT_ALTAR.get(), pos, state);
         inventory = MalumBlockEntityInventory.singleStackNotSpirit(this).onContentsChanged(this::recalculateRecipes);
         extrasInventory = MalumBlockEntityInventory.stacksNotSpirits(this, 8);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, SpiritTypeRegistry.SPIRITS.size()).onContentsChanged(this::recalculateRecipes);
+        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, MalumSpiritTypes.SPIRITS.size()).onContentsChanged(this::recalculateRecipes);
     }
 
     @Override
@@ -224,7 +223,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         inventory.updateInventoryCaches();
         ItemStack stack = inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
-            final Collection<SpiritInfusionRecipe> all = LodestoneRecipeType.getRecipes(level, RecipeTypeRegistry.SPIRIT_INFUSION.get());
+            final Collection<SpiritInfusionRecipe> all = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get());
             Collection<SpiritInfusionRecipe> recipes = all.stream().filter(r -> r.matches(new SpiritBasedRecipeInput(stack, spiritInventory.nonEmptyItemStacks), level)).toList();
             possibleRecipes.clear();
             IItemHandlerModifiable pedestalItems = AltarCraftingHelper.createPedestalInventoryCapture(AltarCraftingHelper.capturePedestals(level, worldPosition));
@@ -267,8 +266,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                 ItemStack providedStack = inventoryForAltar.extractItem(0, nextIngredient.count(), true);
 
                 if (nextIngredient.ingredient().test(providedStack)) {
-                    level.playSound(null, provider.getAccessPointBlockPos(), SoundRegistry.ALTAR_CONSUME.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() * 0.5f);
-                    ParticleEffectTypeRegistry.SPIRIT_ALTAR_EATS_ITEM
+                    level.playSound(null, provider.getAccessPointBlockPos(), MalumSoundEvents.ALTAR_CONSUME.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() * 0.5f);
+                    MalumParticleEffectTypes.SPIRIT_ALTAR_EATS_ITEM
                             .createEffect(worldPosition)
                             .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                             .customData(new SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData(provider.getAccessPointBlockPos(), providedStack))
@@ -291,11 +290,11 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         ItemStack stack = inventory.getStackInSlot(0);
         ItemStack outputStack = recipe.output.copy();
         Vec3 itemPos = getItemPos();
-        ParticleEffectTypeRegistry.SPIRIT_ALTAR_CRAFTS
+        MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
                 .spawn(level);
-        level.playSound(null, worldPosition, SoundRegistry.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
+        level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         if (recipe.carryOverData) {
             outputStack.applyComponents(stack.getComponents());
         }

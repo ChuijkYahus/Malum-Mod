@@ -15,11 +15,9 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
-import net.neoforged.neoforge.network.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -32,7 +30,7 @@ public class CloudSkipperGeas extends GeasEffect {
     public int streak;
 
     public CloudSkipperGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER.get());
     }
 
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
@@ -68,7 +66,7 @@ public class CloudSkipperGeas extends GeasEffect {
                 }
                 event.setKnockbackVelocity(knockbackVelocity.multiply(horizontalScalar, verticalScalar, horizontalScalar));
                 if (entity instanceof Player player) {
-                    player.addEffect(new MobEffectInstance(MobEffectRegistry.ASCENSION, 100, 1));
+                    player.addEffect(new MobEffectInstance(MalumMobEffects.ASCENSION, 100, 1));
                     cloudSkipper.streak++;
                     cloudSkipper.setDirty();
                 }
@@ -77,7 +75,7 @@ public class CloudSkipperGeas extends GeasEffect {
     }
 
     public static GeasEffect getInstance(LivingEntity entity) {
-        return GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypeRegistry.PACT_OF_THE_CLOUDSKIPPER);
+        return GeasEffectHandler.getGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER);
     }
 
     @Override

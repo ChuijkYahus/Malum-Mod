@@ -28,7 +28,7 @@ public class CurioManaweavingRing extends MalumCurioItem implements IMalumEventR
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
         if (collector instanceof ServerPlayer player) {
-            var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
+            var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
             data.recoverSoulWard(player, arcaneResonance);
             IronsSpellsCompat.generateMana(player, 10 * arcaneResonance);
         }

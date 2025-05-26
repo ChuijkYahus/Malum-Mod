@@ -22,8 +22,8 @@ public class MalignantConversionHandler {
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             if (!livingEntity.level().isClientSide) {
-                var data = livingEntity.getData(AttachmentTypeRegistry.MALIGNANT_INFLUENCE);
-                var conversionAttribute = AttributeRegistry.MALIGNANT_CONVERSION;
+                var data = livingEntity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+                var conversionAttribute = MalumAttributes.MALIGNANT_CONVERSION;
                 AttributeInstance conversionInstance = livingEntity.getAttribute(conversionAttribute);
                 if (conversionInstance != null) {
                     if (data.skipConversionLogic) {
@@ -60,7 +60,7 @@ public class MalignantConversionHandler {
 
     private static void convertAttribute(MalignantInfluenceData data, LivingEntity livingEntity, Holder<Attribute> sourceAttribute, double consumptionRatio, boolean ignoreBaseValue, List<Pair<Holder<Attribute>, Double>> targetAttributes, boolean skipCacheComparison) {
         var attributes = livingEntity.getAttributes();
-        double malignantConversion = attributes.getValue(AttributeRegistry.MALIGNANT_CONVERSION);
+        double malignantConversion = attributes.getValue(MalumAttributes.MALIGNANT_CONVERSION);
 
         var sourceInstance = livingEntity.getAttribute(sourceAttribute);
         if (sourceInstance != null) {

@@ -31,7 +31,7 @@ public class SoulBindingRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipeI
     public final boolean carryOverData;
 
     public SoulBindingRecipe(SizedIngredient ingredient, GeasEffectType geas, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverData) {
-        super(RecipeSerializerRegistry.SOUL_BINDING_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.SOUL_BINDING.get());
+        super(MalumRecipeSerializers.SOUL_BINDING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SOUL_BINDING.get());
         this.ingredient = ingredient;
         this.geas = geas;
         this.extraIngredients = extraIngredients;

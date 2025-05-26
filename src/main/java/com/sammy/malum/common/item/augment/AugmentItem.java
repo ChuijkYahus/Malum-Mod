@@ -4,7 +4,7 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.item.DataComponentRegistry;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
@@ -36,7 +36,7 @@ public class AugmentItem extends Item {
     }
 
     public AugmentItem(Properties pProperties, List<MalumSpiritType> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
-        super(pProperties.component(DataComponentRegistry.ARTIFICE_AUGMENT, new ArtificeAugmentDataComponent(isCoreAugment, List.of(modifiers))));
+        super(pProperties.component(MalumDataComponents.ARTIFICE_AUGMENT, new ArtificeAugmentDataComponent(isCoreAugment, List.of(modifiers))));
         this.spiritTypes = spiritTypes;
     }
 
@@ -48,10 +48,10 @@ public class AugmentItem extends Item {
 
     public static void addAugmentAttributeTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
-        if (!itemStack.has(DataComponentRegistry.ARTIFICE_AUGMENT)) {
+        if (!itemStack.has(MalumDataComponents.ARTIFICE_AUGMENT)) {
             return;
         }
-        ArtificeAugmentDataComponent augmentData = itemStack.get(DataComponentRegistry.ARTIFICE_AUGMENT);
+        ArtificeAugmentDataComponent augmentData = itemStack.get(MalumDataComponents.ARTIFICE_AUGMENT);
         List<Component> tooltip = event.getToolTip();
         tooltip.add(Component.empty());
         tooltip.add(Component.translatable("malum.gui.augment.installed").withStyle(ChatFormatting.GOLD));

@@ -2,7 +2,6 @@ package com.sammy.malum.common.entity;
 
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.worldevent.*;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
@@ -56,7 +55,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     private LivingEntity forcedTarget;
 
     public SunderingAnchorProjectileEntity(Level level) {
-        super(EntityRegistry.SUNDERING_ANCHOR.get(), level);
+        super(MalumEntities.SUNDERING_ANCHOR.get(), level);
         noPhysics = false;
     }
 
@@ -75,7 +74,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.SUNDERING_ANCHOR.get();
+        return MalumItems.SUNDERING_ANCHOR.get();
     }
 
     @Override
@@ -151,15 +150,15 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                 Entity target = result.getEntity();
                 hitEntities.add(target);
                 target.invulnerableTime = 0;
-                DamageSource source = DamageTypeHelper.create(level(), DamageTypeRegistry.VOODOO, this, owner);
+                DamageSource source = DamageTypeHelper.create(level(), MalumDataTypes.VOODOO, this, owner);
                 boolean success = target.hurt(source, magicDamage);
                 if (success && target instanceof LivingEntity livingEntity) {
                     int slashCount = 6;
-                    var physicalDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_PHYSICAL_COMBO;
-                    var magicDamageType = DamageTypeRegistry.SUNDERING_ANCHOR_MAGIC_COMBO;
+                    var physicalDamageType = MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
+                    var magicDamageType = MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
                     int delay = 8;
                     float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
-                    SoundHelper.playSound(this, SoundRegistry.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                    SoundHelper.playSound(this, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                     applyHatred(livingEntity);
                     for (int j = 0; j < slashCount; j++) {
                         int comboDelay = delay + j;
@@ -167,8 +166,8 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                                 new DelayedDamageWorldEvent(target)
                                         .setAttacker(owner)
                                         .setDamageData(physicalDamageType, damage/slashCount, magicDamageType, magicDamage/slashCount, comboDelay)
-                                        .setImpactParticleEffect(ParticleEffectTypeRegistry.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
-                                        .setSound(SoundRegistry.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
+                                        .setImpactParticleEffect(MalumParticleEffectTypes.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
+                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
                     }
 
                     selectNearbyTarget(level);
@@ -232,7 +231,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     setDeltaMovement(motion.lerp(returnMotion, 0.3f));
 
                     if (isAlive() && distanceTo(owner) < 2.5f) {
-                        SoundHelper.playSound(owner, SoundRegistry.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
+                        SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             TemporarilyDisabledItem.enable(player, slot);
                             if (!player.isCreative()) {
@@ -435,7 +434,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         for (int i = 0; i < count; i++) {
             spirit = getSunderingAnchorSpirit();
             Vec3 position = getPosition(i / count);
-            WorldParticleBuilder.create(ParticleRegistry.ROUNDABOUT_SLASH)
+            WorldParticleBuilder.create(MalumParticles.ROUNDABOUT_SLASH)
                     .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                     .setTransparencyData(GenericParticleData.create(0.9f * scalar, 0.7f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())

@@ -11,7 +11,7 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.registry.common.item.ItemRegistry.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
 public class IntroductionEntries {
@@ -127,7 +127,7 @@ public class IntroductionEntries {
         screen.addEntry("scythes", 0, 3, b -> b
                 .configureWidget(w -> w.setIcon(CRUDE_SCYTHE))
                 .addPage(new HeadlineTextPage("scythes", "scythes.1"))
-                .addPage(CraftingPage.scythePage(ItemRegistry.CRUDE_SCYTHE.get(), Items.IRON_INGOT, REFINED_SOULSTONE.get()))
+                .addPage(CraftingPage.scythePage(MalumItems.CRUDE_SCYTHE.get(), Items.IRON_INGOT, REFINED_SOULSTONE.get()))
                 .addPage(new TextPage("scythes.2"))
                 .addReference(new EntryReference(ENCHANTED_BOOK,
                         BookEntry.build("scythes.enchanting")

@@ -5,7 +5,6 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.tag.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -31,7 +30,7 @@ public class InvertedHeartAuthority extends GeasEffect {
     public WeakHashMap<UUID, LivingEntity> visibleTargets = new WeakHashMap<>();
 
     public InvertedHeartAuthority() {
-        super(MalumGeasEffectTypeRegistry.AUTHORITY_OF_THE_INVERTED_HEART.get());
+        super(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART.get());
     }
 
     @Override
@@ -49,22 +48,22 @@ public class InvertedHeartAuthority extends GeasEffect {
 
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.INVERTED_HEART_RETALIATION_BLACKLIST)) {
+        if (event.getSource().is(MalumTags.DamageTypeTags.INVERTED_HEART_RETALIATION_BLACKLIST)) {
             return;
         }
-        damageTargets(target, null, DamageTypeRegistry.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
+        damageTargets(target, null, MalumDataTypes.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
     }
 
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTagRegistry.INVERTED_HEART_PROPAGATION_BLACKLIST)) {
+        if (event.getSource().is(MalumTags.DamageTypeTags.INVERTED_HEART_PROPAGATION_BLACKLIST)) {
             return;
         }
         if (!attacker.equals(event.getSource().getEntity())) {
             return;
         }
         var damage = event.getNewDamage() / 2f;
-        damageTargets(attacker, target, DamageTypeRegistry.INVERTED_HEART_PROPAGATION, damage);
+        damageTargets(attacker, target, MalumDataTypes.INVERTED_HEART_PROPAGATION, damage);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class InvertedHeartAuthority extends GeasEffect {
         if (level.getGameTime() % 40L == 0) {
             visibleTargets.clear();
             double influence = 8f;
-            influence *= entity.getAttributeValue(AttributeRegistry.ARCANE_RESONANCE);
+            influence *= entity.getAttributeValue(MalumAttributes.ARCANE_RESONANCE);
             for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, geasHolder.getBoundingBox().inflate(influence*2, influence, influence*2))) {
                 if (target == geasHolder || target.isSpectator()) {
                     continue;
@@ -115,12 +114,12 @@ public class InvertedHeartAuthority extends GeasEffect {
                 continue;
             }
             if (target.isAlive()) {
-                var color = new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT);
+                var color = new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT);
                 WorldEventHandler.addWorldEvent(target.level(),
                         new DelayedDamageWorldEvent(target)
                                 .setMagicDamageType(damageType)
-                                .setImpactParticleEffect(ParticleEffectTypeRegistry.INVERTED_HEART_IMPACT, color)
-                                .setSound(SoundRegistry.INVERTED_HEART_IMPACT, 1f, 2f, 0.5f)
+                                .setImpactParticleEffect(MalumParticleEffectTypes.INVERTED_HEART_IMPACT, color)
+                                .setSound(MalumSoundEvents.INVERTED_HEART_IMPACT, 1f, 2f, 0.5f)
                                 .setAttacker(wrathBearer)
                                 .setDamageData(0, damage, 8 + i * 2));
             }

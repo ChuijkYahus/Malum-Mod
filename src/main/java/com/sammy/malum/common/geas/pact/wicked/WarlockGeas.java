@@ -17,11 +17,11 @@ import java.util.function.*;
 public class WarlockGeas extends GeasEffect {
 
     public WarlockGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_WARLOCK.get());
     }
 
     public static void increaseDetection(LivingEvent.LivingVisibilityEvent event) {
-        if (GeasEffectHandler.hasGeasEffect(event.getEntity(), MalumGeasEffectTypeRegistry.PACT_OF_THE_WARLOCK)) {
+        if (GeasEffectHandler.hasGeasEffect(event.getEntity(), MalumGeasEffectTypes.PACT_OF_THE_WARLOCK)) {
             event.modifyVisibility(2f);
         }
     }
@@ -31,7 +31,7 @@ public class WarlockGeas extends GeasEffect {
         if (target.level().isClientSide) {
             return;
         }
-        if (event.getSource().is(DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT)) {
+        if (event.getSource().is(MalumDataTypes.WARLOCK_SPIRIT_IMPACT)) {
             return;
         }
         if (target.getHealth() > target.getMaxHealth() * 0.95f) {
@@ -39,9 +39,9 @@ public class WarlockGeas extends GeasEffect {
                     new DelayedDamageWorldEvent(target)
                             .setAttacker(attacker)
                             .setDamageData(0, 4, 3)
-                            .setMagicDamageType(DamageTypeRegistry.WARLOCK_SPIRIT_IMPACT)
-                            .setImpactParticleEffect(ParticleEffectTypeRegistry.WARLOCK_IMPACT, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT))
-                            .setSound(SoundRegistry.WARLOCK_BLAST, 1.5f, 1.75f, 1));
+                            .setMagicDamageType(MalumDataTypes.WARLOCK_SPIRIT_IMPACT)
+                            .setImpactParticleEffect(MalumParticleEffectTypes.WARLOCK_IMPACT, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT))
+                            .setSound(MalumSoundEvents.WARLOCK_BLAST, 1.5f, 1.75f, 1));
         }
     }
 

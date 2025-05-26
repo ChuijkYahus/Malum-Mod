@@ -2,7 +2,6 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.player.*;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -193,7 +191,7 @@ public class ScreenParticleEffects {
         @Override
         public void spawnEarlyParticles(ScreenParticleHolder target, Level level, float partialTick, ItemStack stack, float x, float y) {
             final LocalPlayer player = Minecraft.getInstance().player;
-            isNearWell = player.getData(AttachmentTypeRegistry.WEEPING_WELL_INFO).isNearWeepingWell;
+            isNearWell = player.getData(MalumAttachmentTypes.WEEPING_WELL_INFO).isNearWeepingWell;
             if (!isNearWell) {
                 return;
             }

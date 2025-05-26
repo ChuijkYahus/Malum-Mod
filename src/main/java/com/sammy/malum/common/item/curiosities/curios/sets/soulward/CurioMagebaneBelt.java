@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.IMalumEventResponder;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
-import com.sammy.malum.registry.common.AttributeRegistry;
+import com.sammy.malum.registry.common.MalumAttributes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
@@ -54,9 +54,9 @@ public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResp
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
         final ResourceLocation id = MalumMod.malumPath("magebane_belt");
-        addAttributeModifier(map, AttributeRegistry.SOUL_WARD_RECOVERY_RATE,
+        addAttributeModifier(map, MalumAttributes.SOUL_WARD_RECOVERY_RATE,
                 new AttributeModifier(id, 0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        addAttributeModifier(map, AttributeRegistry.SOUL_WARD_CAPACITY,
+        addAttributeModifier(map, MalumAttributes.SOUL_WARD_CAPACITY,
                 new AttributeModifier(id, 6f, AttributeModifier.Operation.ADD_VALUE));
     }
 }

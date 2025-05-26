@@ -26,8 +26,8 @@ public class EnsouledItemHarvestHandler {
     }
 
     public static void moveSpiritDropsOntoItem(ItemEntity item, LivingEntity entity) {
-        var entityData = entity.getData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS);
-        item.setData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS, entityData);
+        var entityData = entity.getData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS);
+        item.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, entityData);
         item.setNeverPickUp();
         item.age = item.lifespan - 20;
         item.setNoGravity(true);
@@ -36,7 +36,7 @@ public class EnsouledItemHarvestHandler {
 
     public static void onItemExpire(ItemExpireEvent event) {
         var item = event.getEntity();
-        var data = item.getData(AttachmentTypeRegistry.CACHED_SPIRIT_DROPS);
+        var data = item.getData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS);
         if (!data.getSpiritDrops().isEmpty()) {
             LivingEntity spiritOwner = data.getSpiritOwner() != null ? item.level().getPlayerByUUID(data.getSpiritOwner()) : null;
             SoulHarvestHandler.spawnSpirits(item.level(), spiritOwner, item.position().add(0, item.getBbHeight()/2, 0), data.getSpiritDrops());

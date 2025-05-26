@@ -17,7 +17,7 @@ public class ItemStandBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     public ItemStandBlockEntity(BlockPos pos, BlockState state) {
-        this(BlockEntityRegistry.ITEM_STAND.get(), pos, state);
+        this(MalumBlockEntities.ITEM_STAND.get(), pos, state);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class BerserkerGeas extends GeasEffect {
     private boolean resetDamageNextTick;
 
     public BerserkerGeas() {
-        super(MalumGeasEffectTypeRegistry.PACT_OF_THE_REAPER.get());
+        super(MalumGeasEffectTypes.PACT_OF_THE_REAPER.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BerserkerGeas extends GeasEffect {
         if (target.level().isClientSide) {
             return;
         }
-        if (event.getSource().is(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT)) {
+        if (event.getSource().is(MalumDataTypes.BERSERKER_SPIRIT_IMPACT)) {
             return;
         }
         if (storedDamage >= 4) {
@@ -72,9 +72,9 @@ public class BerserkerGeas extends GeasEffect {
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker)
                                 .setDamageData(0, 2, 10+i*2)
-                                .setMagicDamageType(DamageTypeRegistry.BERSERKER_SPIRIT_IMPACT)
-                                .setImpactParticleEffect(ParticleEffectTypeRegistry.BERSERKER_IMPACT, new MalumNetworkedParticleEffectColorData(SpiritTypeRegistry.WICKED_SPIRIT, SpiritTypeRegistry.ELDRITCH_SPIRIT))
-                                .setSound(SoundRegistry.BERSERKER_WRATH, 0.7f, 1.3f, 1));
+                                .setMagicDamageType(MalumDataTypes.BERSERKER_SPIRIT_IMPACT)
+                                .setImpactParticleEffect(MalumParticleEffectTypes.BERSERKER_IMPACT, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
+                                .setSound(MalumSoundEvents.BERSERKER_WRATH, 0.7f, 1.3f, 1));
             }
             resetDamageNextTick = true;
         }

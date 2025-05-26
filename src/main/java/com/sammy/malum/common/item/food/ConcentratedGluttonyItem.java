@@ -5,7 +5,6 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-import team.lodestar.lodestone.systems.network.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -18,8 +17,8 @@ import team.lodestar.lodestone.helpers.*;
 import java.util.*;
 
 public class ConcentratedGluttonyItem extends BottledDrinkItem {
-    public static final Collection<Holder<Item>> ROTTEN_TRINKETS = List.of(ItemRegistry.RING_OF_DESPERATE_VORACITY, ItemRegistry.GLUTTONOUS_BROOCH, ItemRegistry.BELT_OF_THE_STARVED);
-    public static final Collection<Holder<GeasEffectType>> ROTTEN_GEAS = List.of(MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_ASCETIC, MalumGeasEffectTypeRegistry.PACT_OF_THE_PROFANE_GLUTTON);
+    public static final Collection<Holder<Item>> ROTTEN_TRINKETS = List.of(MalumItems.RING_OF_DESPERATE_VORACITY, MalumItems.GLUTTONOUS_BROOCH, MalumItems.BELT_OF_THE_STARVED);
+    public static final Collection<Holder<GeasEffectType>> ROTTEN_GEAS = List.of(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON);
 
     public ConcentratedGluttonyItem(Properties builder) {
         super(builder);
@@ -28,7 +27,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         var properties = applyConcentratedGluttonyEffect(pEntityLiving, 1f);
-        SoundHelper.playSound(pEntityLiving, SoundRegistry.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
+        SoundHelper.playSound(pEntityLiving, MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
             final MobEffectInstance instance = pEntityLiving.getEffect(properties.getEffectType());
             if (instance != null) {
@@ -43,7 +42,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
             int amplifier = 3;
             int duration = 20;
 
-            if (CurioHelper.hasCurioEquipped(target, ItemRegistry.RING_OF_GRUESOME_CONCENTRATION.get())) {
+            if (CurioHelper.hasCurioEquipped(target, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 amplifier++;
                 duration += 40;
             }
@@ -69,7 +68,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, float potency) {
         var position = target.position().add(0, target.getBbHeight() / 2f, 0);
-        ParticleEffectTypeRegistry.GLUTTONY_ABSORB.createEffect(position)
+        MalumParticleEffectTypes.GLUTTONY_ABSORB.createEffect(position)
                 .customData(new AbsorbGluttonyParticleEffect.AbsorbGluttonyEffectData(potency))
                 .spawn(serverLevel);
     }

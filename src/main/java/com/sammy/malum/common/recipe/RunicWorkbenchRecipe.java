@@ -4,12 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.recipe.*;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
 import team.lodestar.lodestone.systems.recipe.*;
@@ -28,7 +23,7 @@ public class RunicWorkbenchRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
     public final SpiritIngredient secondaryInput;
 
     public RunicWorkbenchRecipe(SizedIngredient primaryInput, SpiritIngredient secondaryInput, ItemStack output) {
-        super(RecipeSerializerRegistry.RUNEWORKING_RECIPE_SERIALIZER.get(), RecipeTypeRegistry.RUNEWORKING.get(), output);
+        super(MalumRecipeSerializers.RUNEWORKING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.RUNEWORKING.get(), output);
         this.primaryInput = primaryInput;
         this.secondaryInput = secondaryInput;
     }

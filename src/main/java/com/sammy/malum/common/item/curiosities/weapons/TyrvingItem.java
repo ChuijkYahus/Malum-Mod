@@ -33,7 +33,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
 
     @Override
     public MalumSpiritType getDefiningSpiritType() {
-        return SpiritTypeRegistry.WICKED_SPIRIT;
+        return MalumSpiritTypes.WICKED_SPIRIT;
     }
 
     @Override
@@ -48,19 +48,19 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
             }
             if (target.isAlive()) {
                 target.invulnerableTime = 0;
-                target.hurt(DamageTypeHelper.create(level, DamageTypeRegistry.TYRVING, attacker), magicDamage);
+                target.hurt(DamageTypeHelper.create(level, MalumDataTypes.TYRVING, attacker), magicDamage);
             }
             if (target.isAlive()) {
                 WorldEventHandler.addWorldEvent(level,
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker)
-                                .setMagicDamageType(DamageTypeRegistry.TYRVING)
+                                .setMagicDamageType(MalumDataTypes.TYRVING)
                                 .setDamageData(0, magicDamage, 3));
             }
 
-            SoundHelper.playSound(attacker, SoundRegistry.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+            SoundHelper.playSound(attacker, MalumSoundEvents.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
 
-            ParticleEffectTypeRegistry.TYRVING_SLASH.createEffect()
+            MalumParticleEffectTypes.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)
                     .verticalSlashRotation()
                     .color(stack.getItem())

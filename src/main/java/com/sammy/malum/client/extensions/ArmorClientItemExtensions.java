@@ -33,7 +33,7 @@ public class ArmorClientItemExtensions implements IClientItemExtensions {
 		float netHeadYaw = f1 - f;
 		float netHeadPitch = Mth.lerp(pticks, entity.xRotO, entity.getXRot());
 		LodestoneArmorModel model = this.model.get();
-		ItemSkinComponent skin = itemStack.get(DataComponentRegistry.APPLIED_ITEM_SKIN);
+		ItemSkinComponent skin = itemStack.get(MalumDataComponents.APPLIED_ITEM_SKIN);
 		if (skin != null) {
 			if (ArmorSkinRenderingData.ARMOR_RENDERING_DATA.containsKey(skin)) {
 				model = ArmorSkinRenderingData.ARMOR_RENDERING_DATA.get(skin).getModel(entity);

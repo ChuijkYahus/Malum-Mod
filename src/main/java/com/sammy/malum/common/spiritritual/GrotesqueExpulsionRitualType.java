@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.*;
 
 public class GrotesqueExpulsionRitualType extends MalumRitualType {
     public GrotesqueExpulsionRitualType() {
-        super(MalumMod.malumPath("grotesque_expulsion"), SpiritTypeRegistry.WICKED_SPIRIT);
+        super(MalumMod.malumPath("grotesque_expulsion"), MalumSpiritTypes.WICKED_SPIRIT);
     }
 
     @Override

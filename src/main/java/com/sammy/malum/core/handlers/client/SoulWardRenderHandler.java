@@ -24,8 +24,8 @@ public class SoulWardRenderHandler {
     public static void tick(ClientTickEvent event) {
         final LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
-            var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
-            if (data.getSoulWard() >= player.getAttributeValue(AttributeRegistry.SOUL_WARD_CAPACITY)) {
+            var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
+            if (data.getSoulWard() >= player.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY)) {
                 if (glow < 20) {
                     glow++;
                 }
@@ -43,7 +43,7 @@ public class SoulWardRenderHandler {
         if (!minecraft.options.hideGui) {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
-                var data = player.getData(AttachmentTypeRegistry.SOUL_WARD);
+                var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
                 double soulWard = data.getSoulWard();
                 if (soulWard > 0) {
                     float armor = (float) player.getAttribute(Attributes.ARMOR).getValue();
@@ -79,7 +79,7 @@ public class SoulWardRenderHandler {
                         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(xTextureOffset / 45f, (xTextureOffset + size) / 45f, 0, 15 / 45f));
                         shaderInstance.safeGetUniform("TimeOffset").set(i * 150f);
 
-                        builder.setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
+                        builder.setAlpha(1f).setPositionWithWidth(x - 2, y - 2, size, size).setUVWithWidth(xTextureOffset, 0, size, size, 45);
                         builder.blit(poseStack);
                         if (glow > 0 && glow < 20) {
                             float alpha = (10 - Math.abs(10 - glow)) / 10f;
