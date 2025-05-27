@@ -1931,7 +1931,7 @@
   "malum.gui.book.entry.pact_of_rune_exploitation": "符文竭耗条约",
   "malum.gui.book.entry.pact_of_rune_exploitation.description": "遵守古约",
   "malum.gui.book.entry.page.headline.pact_of_rune_exploitation": "符文竭耗条约",
-  "malum.gui.geas.pact_of_rune_exploitation.cons": "你的灵魂有其承载极限。\n -每誊刻一枚符文均令所受治疗、 护甲值、盔甲韧性、魔法抗性降低 四十分之一",
+  "malum.gui.geas.pact_of_rune_exploitation.cons": "你的灵魂有其承载极限。\n -每誊刻一枚符文均令所受治疗、 护甲值、盔甲韧性、魔法抗性降低 二十分之一",
   "malum.gui.geas.pact_of_rune_exploitation.pros": "你灵魂的一部分变为了符文嵌槽。\n -给予两个符文槽",
 
   "malum.gui.book.entry.pact_of_the_profane_ascetic": "腐烂苦修条约",
