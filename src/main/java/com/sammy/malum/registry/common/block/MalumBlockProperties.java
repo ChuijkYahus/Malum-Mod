@@ -3,7 +3,9 @@ package com.sammy.malum.registry.common.block;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.Tags;
@@ -144,8 +146,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a,b,c) -> false)
-                .isViewBlocking((a,b,c) -> false)
+                .isSuffocating((a, b, c) -> false)
+                .isViewBlocking((a, b, c) -> false)
                 .setCutoutRenderType()
                 .sound(MalumSoundEvents.RUNEWOOD_LEAVES)
                 .needsHoe();
@@ -158,8 +160,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a,b,c) -> false)
-                .isViewBlocking((a,b,c) -> false)
+                .isSuffocating((a, b, c) -> false)
+                .isViewBlocking((a, b, c) -> false)
                 .setCutoutRenderType()
                 .sound(MalumSoundEvents.RUNEWOOD_LEAVES)
                 .needsHoe();
@@ -203,8 +205,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a,b,c) -> false)
-                .isViewBlocking((a,b,c) -> false)
+                .isSuffocating((a, b, c) -> false)
+                .isViewBlocking((a, b, c) -> false)
                 .sound(MalumSoundEvents.SOULWOOD_LEAVES);
     }
 
@@ -216,8 +218,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a,b,c) -> false)
-                .isViewBlocking((a,b,c) -> false)
+                .isSuffocating((a, b, c) -> false)
+                .isViewBlocking((a, b, c) -> false)
                 .sound(MalumSoundEvents.SOULWOOD_LEAVES);
     }
 
@@ -246,34 +248,48 @@ public class MalumBlockProperties {
                 .noOcclusion();
     }
 
-    public static LodestoneBlockProperties BLIGHT() {
+    public static LodestoneBlockProperties SOULWOOD_SAPLING() {
         return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_BLACK)
-                .addTag(MalumTags.BlockTags.BLIGHTED_BLOCKS)
-                .needsShovel()
-                .needsHoe()
-                .sound(MalumSoundEvents.BLIGHTED_EARTH)
-                .strength(0.7f);
-    }
-
-    public static LodestoneBlockProperties BLIGHTED_PLANTS() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_BLACK)
                 .addTag(MalumTags.BlockTags.BLIGHTED_PLANTS)
-                .noCollission()
-                .noOcclusion()
                 .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
+                .mapColor(MapColor.TERRACOTTA_BLACK)
+                .setCutoutRenderType()
+                .noCollission()
+                .randomTicks()
+                .noOcclusion()
+                .replaceable()
                 .instabreak();
     }
 
-
-    public static LodestoneBlockProperties CALCIFIED_BLIGHT() {
+    public static LodestoneBlockProperties BLIGHT() {
         return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_WHITE)
-                .addTag(MalumTags.BlockTags.BLIGHTED_PLANTS)
+                .addTag(MalumTags.BlockTags.BLIGHTED_BLOCKS)
+                .sound(MalumSoundEvents.BLIGHTED_EARTH)
+                .mapColor(MapColor.COLOR_BLACK)
+                .needsShovel()
+                .needsHoe();
+    }
+
+    public static LodestoneBlockProperties BLIGHTED_COVERING() {
+        return BLIGHT()
+                .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
+                .addTag(REPLACEABLE_BY_TREES)
+                .setCutoutRenderType()
                 .noCollission()
                 .noOcclusion()
-                .sound(MalumSoundEvents.CALCIFIED_BLIGHT)
+                .replaceable()
+                .instabreak();
+    }
+
+    public static LodestoneBlockProperties BLIGHTED_PLANTS() {
+        return BLIGHT()
+                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS, REPLACEABLE_BY_TREES)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
+                .setCutoutRenderType()
+                .noCollission()
+                .noOcclusion()
+                .replaceable()
                 .instabreak();
     }
 

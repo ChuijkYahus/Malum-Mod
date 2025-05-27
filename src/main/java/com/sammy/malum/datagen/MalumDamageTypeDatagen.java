@@ -18,6 +18,7 @@ public class MalumDamageTypeDatagen {
         register(context, MalumDataTypes.KARMIC);
         register(context, MalumDataTypes.ROT);
 
+
         register(context, MalumDataTypes.SCYTHE_MELEE);
         register(context, MalumDataTypes.SCYTHE_SWEEP);
         register(context, MalumDataTypes.SCYTHE_REBOUND);

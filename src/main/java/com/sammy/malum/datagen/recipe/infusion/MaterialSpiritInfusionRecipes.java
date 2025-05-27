@@ -74,6 +74,7 @@ public class MaterialSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addExtraItem(Items.PRISMARINE_CRYSTALS, 1)
                 .addExtraItem(MalumItems.ARCANE_CHARCOAL.get(), 1)
+                .carryOverComponentData()
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(Items.GOLD_INGOT, 1, MalumItems.HALLOWED_GOLD_INGOT.get(), 1)

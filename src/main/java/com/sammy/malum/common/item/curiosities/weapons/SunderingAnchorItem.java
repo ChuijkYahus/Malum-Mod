@@ -97,6 +97,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             level.addFreshEntity(entity);
             SoundHelper.playSound(player, MalumSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_THE_ANCHOR);
+            applyCooldown(weaponItem, player);
         }
         return InteractionResultHolder.success(weaponItem);
     }
@@ -140,6 +141,12 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         }
     }
 
+    public static void applyCooldown(ItemStack stack, Player player) {
+        if (!player.isCreative()) {
+            int cooldown = 120;
+            player.getCooldowns().addCooldown(stack.getItem(), cooldown);
+        }
+    }
     public static void applyHatred(LivingEntity target) {
         var hatred = MalumMobEffects.HATRED;
         var effect = target.getEffect(hatred);

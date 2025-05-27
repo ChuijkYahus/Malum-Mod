@@ -1,28 +1,20 @@
 package com.sammy.malum.common.worldevent;
 
-import com.google.common.collect.*;
-import com.sammy.malum.common.block.blight.BlightedSoilBlock;
-import com.sammy.malum.common.worldgen.tree.SoulwoodTreeFeature;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.common.worldgen.blight.*;
+import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.registry.common.*;
+import com.sammy.malum.visual_effects.networked.*;
+import com.sammy.malum.visual_effects.networked.blight.*;
 import net.minecraft.core.*;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.synth.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.worldevent.*;
 import team.lodestar.lodestone.systems.worldgen.LodestoneBlockFiller;
-import team.lodestar.lodestone.systems.worldgen.LodestoneBlockFiller.*;
 
 import java.util.*;
-import java.util.function.*;
-
-import static com.sammy.malum.common.worldgen.tree.SoulwoodTreeFeature.BLIGHT;
 
 public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
     protected List<Integer> intensity = new ArrayList<>();
@@ -30,7 +22,6 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
     protected int delay;
     protected int timer;
     protected BlockPos position;
-    public Map<Integer, Double> noiseValues;
 
     public ActiveBlightWorldEvent(WorldEventType type) {
         super(type);
@@ -67,88 +58,45 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compoundTag) {
-
+        compoundTag.putInt("timer", timer);
+        compoundTag.putInt("frequency", frequency);
+        compoundTag.putInt("delay", delay);
+        compoundTag.put("position", NbtUtils.writeBlockPos(position));
+        ListTag intensityList = new ListTag();
+        for (Integer i : intensity) {
+            intensityList.add(IntTag.valueOf(i));
+        }
+        compoundTag.put("intensity", intensityList);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compoundTag) {
-
+        timer = compoundTag.getInt("timer");
+        frequency = compoundTag.getInt("frequency");
+        delay = compoundTag.getInt("delay");
+        position = NbtUtils.readBlockPos(compoundTag, "position").orElseThrow();
+        intensity.clear();
+        ListTag intensityList = compoundTag.getList("intensity", Tag.TAG_INT);
+        for (int i = 0; i < intensityList.size(); i++) {
+            intensity.add(intensityList.getInt(i));
+        }
     }
 
     public void createBlight(ServerLevel level, int intensity) {
-        LodestoneBlockFiller filler = new LodestoneBlockFiller(new LodestoneBlockFillerLayer(BLIGHT));
-        if (noiseValues == null) {
-            noiseValues = SoulwoodTreeFeature.generateBlight(level, filler, position, intensity);
-        } else {
-            SoulwoodTreeFeature.generateBlight(level, filler, noiseValues, position, intensity);
-        }
-        createBlightVFX(level, filler);
+        LodestoneBlockFiller filler = BlightFeature.generateBlight(level, position, intensity);
+        filler.fill(level);
+        createBlightVFX(level, position, filler, MalumSpiritTypes.ARCANE_SPIRIT);
         level.playSound(null, position, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, 1.8f);
     }
 
-    public static void createBlightVFX(ServerLevel level, LodestoneBlockFiller filler) {
-        filler.getLayer(BLIGHT).entrySet().stream().filter(e -> e.getValue().getState().getBlock() instanceof BlightedSoilBlock).map(Map.Entry::getKey)
-                .forEach(p -> MalumParticleEffectTypes.BLIGHTING_MIST.createEffect(p).spawn(level));
-    }
-    private static final PerlinSimplexNoise COVERING_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
-
-    public static Set<BlockPos> fetchCoveringPositions(ServerLevelAccessor level, BlockPos center, int radius) {
-        return fetchCoveringPositions(level, center, radius,
-                p -> {
-                    BlockState state = level.getBlockState(p);
-                    if (state.canBeReplaced() || !state.isFaceSturdy(level, p, Direction.UP)) {
-                        return false;
-                    }
-                    return !level.getBlockState(p.below()).canBeReplaced() && level.getBlockState(p.above()).canBeReplaced();
-                },
-                false);
-    }
-    public static Set<BlockPos> fetchHangingBlockPositions(ServerLevelAccessor level, BlockPos center, int radius) {
-        return fetchCoveringPositions(level, center, radius,
-                p -> {
-                    BlockState state = level.getBlockState(p);
-                    if (state.canBeReplaced() || !state.isFaceSturdy(level, p, Direction.DOWN)) {
-                        BlockState above = level.getBlockState(p.above());
-                        return false;
-                    }
-                    return level.getBlockState(p.below()).canBeReplaced();
-                },
-                true);
-    }
-    public static Set<BlockPos> fetchCoveringPositions(ServerLevelAccessor level, BlockPos center, int radius, Predicate<BlockPos> statePredicate, boolean flipVerticalConditions) {
-        Set<BlockPos> positions = new HashSet<>();
-        int x = center.getX();
-        int z = center.getZ();
-        var mutable = new BlockPos.MutableBlockPos();
-
-        int verticalRange = 6;
-        float limit = Mth.sqrt(radius * radius + radius * radius);
-        for (int i = -radius; i <= radius; i++) {
-            for (int j = -radius; j <= radius; j++) {
-                int offsetX = x + i;
-                int offsetZ = z + j;
-                float differenceX = x - offsetX;
-                float differenceZ = z - offsetZ;
-                float distance = Mth.sqrt(differenceX * differenceX + differenceZ * differenceZ);
-                double theta = Math.toDegrees(Math.atan2(differenceX, differenceZ)) * 0.01f;
-                double noise = (COVERING_NOISE.getValue(x * 10000 + theta, z * 10000 + theta, true)+1)/2;
-                double threshold = Easing.SINE_IN_OUT.clamped(noise, 0.5f, 2) * radius * (limit-distance)/limit;
-                if (distance <= threshold) {
-                    mutable.set(offsetX, center.getY(), offsetZ);
-                    for (int k = 0; !level.isStateAtPosition(mutable, BlockBehaviour.BlockStateBase::canBeReplaced) && k < verticalRange; ++k) {
-                        mutable.move(flipVerticalConditions ? Direction.DOWN : Direction.UP);
-                    }
-                    for (int k = 0; level.isStateAtPosition(mutable, BlockBehaviour.BlockStateBase::canBeReplaced) && k < verticalRange; ++k) {
-                        mutable.move(flipVerticalConditions ? Direction.UP : Direction.DOWN);
-                    }
-                    if (statePredicate.test(mutable)) {
-                        positions.add(mutable.immutable());
-                    }
-                }
+    public static void createBlightVFX(ServerLevel level, BlockPos sourcePos, LodestoneBlockFiller filler, MalumSpiritType spiritType) {
+        for (Map.Entry<BlockPos, LodestoneBlockFiller.BlockStateEntry> entry : filler.getLayer(BlightFeature.BLIGHT).entrySet()) {
+            if (entry.getValue().getState().is(MalumTags.BlockTags.BLIGHTED_BLOCKS)) {
+                MalumParticleEffectTypes.BLIGHTING_MIST.createEffect(entry.getKey())
+                        .customData(new BlightPropagationParticleEffect.BlightPropagationEffectData(sourcePos))
+                        .color(spiritType)
+                        .spawn(level);
             }
         }
-        return positions;
     }
-
-
 }

@@ -30,7 +30,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
         super.createBlight(level, intensity);
         if (transformedTotemParts == 0) {
             BlockState state = BlockStateHelper.setBlockStateWithExistingProperties(level, position, SOULWOOD_TOTEM_BASE.get().defaultBlockState(), 3);
-            placeBlock(position, state);
+            placeBlock(level, position, state);
             transformedTotemParts++;
             return;
         }
@@ -48,16 +48,16 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
         totemPole.setLevel(level);
         totemPole.setSpirit(level, spiritType);
         level.setBlockEntity(totemPole);
-        placeBlock(pos, totemPoleState);
-        maybePlaceBlightedGunk(pos, totemPoleState);
+        placeBlock(level, pos, totemPoleState);
+        maybePlaceBlightedGunk(level, pos, totemPoleState);
     }
 
-    public void placeBlock(BlockPos pos, BlockState state) {
+    public void placeBlock(ServerLevel level, BlockPos pos, BlockState state) {
         level.setBlockAndUpdate(pos, state);
         level.levelEvent(null, 2001, pos, Block.getId(state));
         level.playSound(null, pos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
     }
-    public void maybePlaceBlightedGunk(BlockPos pos, BlockState totemPoleState) {
+    public void maybePlaceBlightedGunk(ServerLevel level, BlockPos pos, BlockState totemPoleState) {
         final RandomSource random = level.getRandom();
         if (random.nextFloat() < 0.4f) {
             var direction = Direction.from2DDataValue(random.nextInt(4));
@@ -65,7 +65,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
                 return;
             }
             var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(ClingingBlightBlock.BLIGHT_TYPE, ClingingBlightBlock.BlightType.SOULWOOD_SPIKE);
-            placeBlock(pos.relative(direction), state);
+            placeBlock(level, pos.relative(direction), state);
         }
     }
 }

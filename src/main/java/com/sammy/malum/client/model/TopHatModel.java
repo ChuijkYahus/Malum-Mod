@@ -32,11 +32,14 @@ public class TopHatModel extends EntityModel<Player> {
 
     @Override
     public void setupAnim(Player entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
+        topHat.y -= 1.25f;
+        topHat.xScale = 0.8f;
+        topHat.yScale = 0.8f;
+        topHat.zScale = 0.8f;
         topHat.render(poseStack, buffer, packedLight, packedOverlay, color);
     }
 }

@@ -64,9 +64,10 @@ public class MalumBlockLootTables extends LootTableProvider {
             takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_GROWTH.get(), MAGIC_SAPLING_DROP_CHANCE)));
 
             add(take(blocks, BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), MalumItems.SOULWOOD_LOG.get()));
-            add(take(blocks, BLIGHTED_SOIL).get(), createBlightedDrop(BLIGHTED_SOIL.get(), 4));
-            add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4).withPool(LootPool.lootPool().add(applyExplosionDecay(BLIGHTED_EARTH.get(), LootItem.lootTableItem(Blocks.DIRT)))));
+            add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4));
             add(take(blocks, BLIGHTED_GROWTH).get(), createBlightedPlantDrop(BLIGHTED_GROWTH.get(), 1));
+            add(take(blocks, BLIGHTPEARL).get(), createBlightedPlantDrop(BLIGHTPEARL.get(), 1));
+            add(take(blocks, BLIGHTROOT).get(), createBlightedPlantDrop(BLIGHTROOT.get(), 1));
 
             add(take(blocks, BRILLIANT_STONE).get(), createOreDrop(BRILLIANT_STONE.get(), MalumItems.RAW_BRILLIANCE.get()));
             add(take(blocks, BRILLIANT_DEEPSLATE).get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), MalumItems.RAW_BRILLIANCE.get()));

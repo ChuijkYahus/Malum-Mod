@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity;
 
 import com.sammy.malum.common.item.curiosities.*;
+import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
@@ -213,7 +214,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         age++;
         returnTimer++;
         if (level() instanceof ServerLevel level) {
-            final AABB aabb = getBoundingBox().inflate(2);
+            var aabb = getBoundingBox().inflate(2);
             for (Entity target : level.getEntities(this, aabb, this::canHitEntityStupidCopy)) {
                 onHit(new EntityHitResult(target));
             }
@@ -234,12 +235,8 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                         SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             TemporarilyDisabledItem.enable(player, slot);
-                            if (!player.isCreative()) {
-                                int cooldown = 120;
-                                player.getCooldowns().addCooldown(getItem().getItem(), cooldown);
-                            }
+                            SunderingAnchorItem.applyCooldown(getWeaponItem(), player);
                         }
-
                         remove(RemovalReason.DISCARDED);
                     }
                 }
@@ -331,10 +328,16 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         if (owner == null) {
             return;
         }
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(30),
-                target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && !hitEntities.contains(target) && hasLineOfSight(level, target));
+        var aabb = getBoundingBox().inflate(30);
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb,
+                target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(level, target));
         if (!entities.isEmpty()) {
-            forcedTarget = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).get();
+            if (entities.size() == 1) {
+                forcedTarget = entities.getFirst();
+            }
+            else {
+                forcedTarget = entities.stream().filter(e -> !hitEntities.contains(e)).min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
+            }
         }
         if (forcedTarget != null) {
             var speed = getDeltaMovement().length();

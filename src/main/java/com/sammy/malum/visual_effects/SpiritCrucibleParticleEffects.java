@@ -245,13 +245,14 @@ public class SpiritCrucibleParticleEffects {
             }
         }
 
+        var smokePos = crucibleItemPos.subtract(0, 0.5f, 0);
         for (int i = 0; i < 8; i++) {
             MalumSpiritType cyclingSpiritType = colorData.getSpirit();
             float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
             float yVelocity = RandomHelper.randomBetween(random, 0.015f, 0.035f);
             float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
             if (random.nextFloat() < 0.85f) {
-                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, crucibleItemPos.subtract(0, 0.5f, 0), cyclingSpiritType, new WorldParticleOptions(MalumParticles.STRANGE_SMOKE.get()));
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, smokePos, cyclingSpiritType, new WorldParticleOptions(MalumParticles.STRANGE_SMOKE.get()));
                 lightSpecs.getBuilder()
                         .disableNoClip()
                         .setLifeDelay(i)

@@ -1,0 +1,11 @@
+{
+  "type": "malum:spirit_transmutation",
+  "group": "dirt",
+  "ingredient": {
+    "item": "minecraft:moss_block"
+  },
+  "output": {
+    "count": 1,
+    "id": "malum:blighted_earth"
+  }
+}

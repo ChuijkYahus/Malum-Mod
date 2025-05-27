@@ -117,6 +117,8 @@ public class MalumTags {
 
     public static class BlockTags {
 
+        public static final TagKey<Block> BLIGHT_REPLACEABLE = tag("blight_replaceable");
+        public static final TagKey<Block> BLIGHT_REMOVABLE = tag("blight_removable");
         public static final TagKey<Block> BLIGHTED_BLOCKS = tag("blighted_blocks");
         public static final TagKey<Block> BLIGHTED_PLANTS = tag("blighted_plants");
 

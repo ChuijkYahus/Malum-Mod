@@ -1,0 +1,9 @@
+{
+  "remove": [
+    "#malum:blighted_plants"
+  ],
+  "values": [
+    "#minecraft:flowers",
+    "#minecraft:replaceable"
+  ]
+}

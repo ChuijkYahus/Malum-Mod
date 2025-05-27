@@ -347,10 +347,11 @@ public class MalumItems {
     //endregion
 
     //region blight
-    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", NATURE_PROPERTIES(), BlightedGunkItem::new);
-    public static final DeferredHolder<Item, Item> CALCIFIED_BLIGHT = register("calcified_blight", NATURE_PROPERTIES(), (p) -> new CalcifiedBlightItem(MalumBlocks.CALCIFIED_BLIGHT.get(), p));
     public static final DeferredHolder<Item, Item> BLIGHTED_EARTH = register("blighted_earth", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_EARTH.get(), p));
-    public static final DeferredHolder<Item, Item> BLIGHTED_SOIL = register("blighted_soil", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_SOIL.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHT = register("blight", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHT.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", NATURE_PROPERTIES(), BlightedGunkItem::new);
+    public static final DeferredHolder<Item, Item> BLIGHTPEARL = register("blightpearl", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTPEARL.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTROOT = register("blightroot", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTROOT.get(), p));
     //endregion
 
     //region soulwood
@@ -497,7 +498,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> BLOCK_OF_HEX_ASH = register("block_of_hex_ash", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_HEX_ASH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_LIVING_FLESH = register("block_of_living_flesh", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_LIVING_FLESH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ALCHEMICAL_CALX.get(), p));
-    //    public static final DeferredHolder<Item, Item> BLOCK_OF_CALCIFIED_BLIGHT = register("block_of_calcified_blight", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.BLOCK_OF_CALCIFIED_BLIGHT.get(), p));
     public static final DeferredHolder<Item, Item> MASS_OF_BLIGHTED_GUNK = register("mass_of_blighted_gunk", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.MASS_OF_BLIGHTED_GUNK.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_NULL_SLATE = register("block_of_null_slate", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_NULL_SLATE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_VOID_SALTS = register("block_of_void_salts", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_VOID_SALTS.get(), p));
