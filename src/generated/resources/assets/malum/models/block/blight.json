@@ -1,0 +1,6 @@
+{
+  "parent": "malum:block/templates/template_covering",
+  "textures": {
+    "covering": "malum:block/blight/blight"
+  }
+}

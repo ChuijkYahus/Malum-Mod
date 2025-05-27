@@ -26,7 +26,7 @@ public class WorldgenHelper {
                 if (!logPositions.contains(mutable)) {
                     BlockState blockstate = pLevel.getBlockState(mutable);
                     if (blockstate.hasProperty(MalumLeavesBlock.DISTANCE)) {
-                        list.get(0).add(mutable.immutable());
+                        list.getFirst().add(mutable.immutable());
                         pLevel.setBlock(mutable, blockstate.setValue(MalumLeavesBlock.DISTANCE, 1), 19);
                     }
                 }

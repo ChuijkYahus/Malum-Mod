@@ -47,7 +47,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
             var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
             while (true) {
                 if (recipe == null) {
-                    itemTree.add(Ingredient.of(MalumItems.BLIGHTED_SOIL.get()));
+                    itemTree.add(Ingredient.of(MalumItems.BLIGHTED_EARTH.get()));
                     break;
                 }
                 itemTree.add(recipe.ingredient);

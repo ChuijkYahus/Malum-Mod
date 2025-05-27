@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -181,6 +182,9 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
             return false;
         }
         BlockState state = level.getBlockState(pos);
-        return state.getBlock() instanceof MalumSaplingBlock || state.getBlock() instanceof BlightedGrowthBlock || level.isEmptyBlock(pos) || state.canBeReplaced();
+        if (state.is(BlockTags.REPLACEABLE_BY_TREES)) {
+            return true;
+        }
+        return level.isEmptyBlock(pos) || state.canBeReplaced();
     }
 }

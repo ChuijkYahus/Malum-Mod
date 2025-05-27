@@ -23,6 +23,8 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
     private final List<SpiritIngredient> spirits = Lists.newArrayList();
     private final List<SizedIngredient> extraIngredients = Lists.newArrayList();
 
+    private boolean carryOverComponentData = false;
+
     public SpiritInfusionRecipeBuilder(Ingredient input, ItemStack output) {
         this.input = new SizedIngredient(input, 1);
         this.output = output;
@@ -73,13 +75,18 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         return this;
     }
 
+    public SpiritInfusionRecipeBuilder carryOverComponentData() {
+        carryOverComponentData = true;
+        return this;
+    }
+
     public void save(RecipeOutput recipeOutput) {
         this.save(recipeOutput, output.getItem());
     }
 
     @Override
     public SpiritInfusionRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new SpiritInfusionRecipe(input, output, extraIngredients, spirits, false);
+        return new SpiritInfusionRecipe(input, output, extraIngredients, spirits, carryOverComponentData);
     }
 
     @Override

@@ -48,15 +48,15 @@ public class BlightedGrowthBlock extends BushBlock implements BonemealableBlock,
         final BlockPos below = pPos.below();
         final BlockState state = pLevel.getBlockState(below);
         final Block block = state.getBlock();
-        return block instanceof BlightedSoilBlock blightedSoilBlock && blightedSoilBlock.isBonemealSuccess(pLevel, pRandom, below, state);
+        return block instanceof BlightedEarthBlock blightedEarthBlock && blightedEarthBlock.isBonemealSuccess(pLevel, pRandom, below, state);
     }
 
     @Override
     public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
         final BlockPos below = pPos.below();
         final BlockState state = pLevel.getBlockState(below);
-        if (state.getBlock() instanceof BlightedSoilBlock blightedSoilBlock) {
-            blightedSoilBlock.performBonemeal(pLevel, pRandom, below, state);
+        if (state.getBlock() instanceof BlightedEarthBlock blightedEarthBlock) {
+            blightedEarthBlock.performBonemeal(pLevel, pRandom, below, state);
         }
     }
 }

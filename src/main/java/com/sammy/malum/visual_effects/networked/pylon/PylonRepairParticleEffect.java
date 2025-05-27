@@ -4,6 +4,8 @@ import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
+import io.netty.buffer.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.systems.network.*;
@@ -12,12 +14,18 @@ import net.minecraft.nbt.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
+import java.util.*;
 import java.util.function.*;
 
 public class PylonRepairParticleEffect extends MalumNetworkedParticleEffectType<PylonEffectData> {
 
     public PylonRepairParticleEffect(String id) {
         super(id);
+    }
+
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(PylonEffectData.STREAM_CODEC);
     }
 
     @OnlyIn(Dist.CLIENT)

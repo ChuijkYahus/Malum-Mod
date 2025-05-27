@@ -999,7 +999,7 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST,
                 """
                         The Whole World is yours.
-                         -Increases Block Reach by Two Fifths and Entity Reach by One Tenth""",
+                         -Increases Block Reach by One Fifth and Entity Reach by One Tenth""",
                 scaled(0.8f) + """
                         Your over-encroaching grip is a harmful one.
                          -Reach Effect enters Cooldown State when Struck by a Target
@@ -1397,7 +1397,7 @@ public class CodexLangDatagen {
         addPages("tyrving",
                 "My first scythes damaged the body and soul in sequence to shatter the soul. While I have moved beyond needing to do that, the Tyrving is a sword built to weaponize the effect.",
                 "When Striking a Soul, the Paracausal Flame channeled through Twisted Rock creates a distortion, which inflicts magic damage proportional to the complexity and potency of a soul. The distortion also 'snaps back', after a moment, causing further damage after the initial strike as the soul violently reasserts itself.",
-                "A Unique limitation however is that the sword cannot sweep and by extension cannot accept Sweeping Edge as an enchantment",
+                "A Unique limitation however is that the sword cannot sweep and by extension cannot accept Sweeping Edge as an enchantment.",
                 "The weapon has a strange affinity with sharp volcanic glasses, allowing me to repair it with Obsidian in a Spirit Crucible instead of any more expensive material.");
 
         addSimpleEntryHeader("belt_of_the_magebane", "Belt of the Magebane", "Newfound ruin");

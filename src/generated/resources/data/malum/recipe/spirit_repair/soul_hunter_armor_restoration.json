@@ -13,16 +13,12 @@
   },
   "spirits": [
     {
-      "type": "wicked",
-      "count": 8
-    },
-    {
       "type": "arcane",
       "count": 8
     },
     {
       "type": "aerial",
-      "count": 4
+      "count": 8
     }
   ]
 }

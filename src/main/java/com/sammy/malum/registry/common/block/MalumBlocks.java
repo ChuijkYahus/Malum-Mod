@@ -336,7 +336,7 @@ public class MalumBlocks {
     //endregion
 
     //region soulwood
-    public static final DeferredHolder<Block, Block> SOULWOOD_GROWTH = BLOCKS.register("soulwood_growth", () -> new SoulwoodGrowthBlock(MalumTreeGrowers.SOULWOOD, MalumBlockProperties.BLIGHTED_PLANTS().setCutoutRenderType().randomTicks()));
+    public static final DeferredHolder<Block, Block> SOULWOOD_GROWTH = BLOCKS.register("soulwood_growth", () -> new SoulwoodGrowthBlock(MalumTreeGrowers.SOULWOOD, MalumBlockProperties.SOULWOOD_SAPLING()));
     public static final DeferredHolder<Block, Block> SOULWOOD_LEAVES = BLOCKS.register("soulwood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.SOULWOOD_LEAVES().setCutoutRenderType(), new Color(213, 8, 63), new Color(255, 61, 243)));
     public static final DeferredHolder<Block, Block> HANGING_SOULWOOD_LEAVES = BLOCKS.register("hanging_soulwood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_SOULWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), new Color(213, 8, 63), new Color(255, 61, 243)));
 
@@ -414,14 +414,13 @@ public class MalumBlocks {
     //endregion
 
     //region blight
-    public static final DeferredHolder<Block, Block> BLIGHTED_EARTH = BLOCKS.register("blighted_earth", () -> new BlightedSoilBlock(MalumBlockProperties.BLIGHT()));
-    public static final DeferredHolder<Block, Block> BLIGHTED_SOIL = BLOCKS.register("blighted_soil", () -> new BlightedSoilBlock(MalumBlockProperties.BLIGHT()));
-    public static final DeferredHolder<Block, Block> BLIGHTED_GROWTH = BLOCKS.register("blighted_growth", () -> new BlightedGrowthBlock(MalumBlockProperties.BLIGHTED_PLANTS().replaceable().setCutoutRenderType()));
-    public static final DeferredHolder<Block, Block> CLINGING_BLIGHT = BLOCKS.register("clinging_blight", () -> new ClingingBlightBlock(MalumBlockProperties.BLIGHTED_PLANTS().replaceable().setCutoutRenderType()));
+    public static final DeferredHolder<Block, Block> BLIGHTED_EARTH = BLOCKS.register("blighted_earth", () -> new BlightedEarthBlock(MalumBlockProperties.BLIGHT()));
+    public static final DeferredHolder<Block, Block> BLIGHT = BLOCKS.register("blight", () -> new BlightedCoverageBlock(MalumBlockProperties.BLIGHTED_COVERING()));
+    public static final DeferredHolder<Block, Block> BLIGHTED_GROWTH = BLOCKS.register("blighted_growth", () -> new BlightedGrowthBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> BLIGHTPEARL = BLOCKS.register("blightpearl", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> BLIGHTROOT = BLOCKS.register("blightroot", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> CLINGING_BLIGHT = BLOCKS.register("clinging_blight", () -> new ClingingBlightBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
     public static final DeferredHolder<Block, Block> BLIGHTED_SOULWOOD = BLOCKS.register("blighted_soulwood", () -> new BlightedSoulwoodBlock(MalumBlockProperties.SOULWOOD().addTags(LOGS, SOULWOOD_LOGS)));
-
-    public static final DeferredHolder<Block, Block> CALCIFIED_BLIGHT = BLOCKS.register("calcified_blight", () -> new CalcifiedBlightBlock(MalumBlockProperties.CALCIFIED_BLIGHT().setCutoutRenderType()));
-    public static final DeferredHolder<Block, Block> TALL_CALCIFIED_BLIGHT = BLOCKS.register("tall_calcified_blight", () -> new TallCalcifiedBlightBlock(MalumBlockProperties.CALCIFIED_BLIGHT().setCutoutRenderType()));
     //endregion
 
     //region ether

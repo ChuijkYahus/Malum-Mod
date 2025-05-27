@@ -46,8 +46,7 @@ public class LoneDruidGeas extends GeasEffect {
             if (coverPercentage > 0) {
                 WorldEventHandler.addWorldEvent(entity.level(),
                         new DelayedDamageWorldEvent(entity)
-                                .setDamageData(1, 1, 4)
-                                .setPhysicalDamageType(MalumDataTypes.KARMIC)
+                                .setDamageData(0, 2, 4)
                                 .setMagicDamageType(MalumDataTypes.KARMIC));
             }
             if (oldCoverPercentage != coverPercentage) {

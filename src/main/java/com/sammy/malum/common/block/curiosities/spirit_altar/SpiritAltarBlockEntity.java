@@ -288,16 +288,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     public void craft(ServerLevel level) {
         ItemStack stack = inventory.getStackInSlot(0);
-        ItemStack outputStack = recipe.output.copy();
+        ItemStack outputStack = recipe.getOutput(stack);
         Vec3 itemPos = getItemPos();
-        MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
-                .createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
-                .spawn(level);
-        level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-        if (recipe.carryOverData) {
-            outputStack.applyComponents(stack.getComponents());
-        }
         extrasInventory.clear();
         progress -= (int) (progress * 0.2f);
         stack.shrink(recipe.ingredient.count());
@@ -311,6 +303,11 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                 }
             }
         }
+        MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
+                .createEffect(worldPosition)
+                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .spawn(level);
+        level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         recalibrateAccelerators();
         recalculateRecipes();
         BlockStateHelper.updateAndNotifyState(level, worldPosition);

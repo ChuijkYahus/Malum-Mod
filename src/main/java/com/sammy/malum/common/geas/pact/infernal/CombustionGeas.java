@@ -48,7 +48,7 @@ public class CombustionGeas extends GeasEffect {
                 for (int i = 0; i < 3; i++) {
                     WorldEventHandler.addWorldEvent(entity.level(),
                             new DelayedDamageWorldEvent(entity)
-                                    .setDamageData(2, 2, (i+1)*2)
+                                    .setDamageData(0, 4, (i+1)*2)
                                     .setMagicDamageType(MalumDataTypes.KARMIC)
                                     .setImpactParticleEffect(MalumParticleEffectTypes.COMBUSTION_BURN, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.WICKED_SPIRIT))
                                     .setSound(MalumSoundEvents.COMBUSTION_WHIPLASH, 0.5f, 0.4f, 1f));

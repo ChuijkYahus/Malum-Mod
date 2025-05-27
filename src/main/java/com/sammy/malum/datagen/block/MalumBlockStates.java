@@ -205,15 +205,12 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.LOG_BLOCK.act(data, BLOCK_OF_GRIM_TALC);
 
         setTexturePath("blight/");
-        MalumBlockStateSmithTypes.BLIGHTED_BLOCK.act(data, BLIGHTED_SOIL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedEarthModel, BLIGHTED_EARTH);
+        MalumBlockStateSmithTypes.COVERING_BLOCK.act(data, BLIGHT);
         MalumBlockStateSmithTypes.BLIGHTED_GROWTH.act(data, BLIGHTED_GROWTH);
         MalumBlockStateSmithTypes.CLINGING_BLIGHT.act(data, CLINGING_BLIGHT);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedEarthModel, BLIGHTED_EARTH);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BLIGHTPEARL, BLIGHTROOT);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedSoulwoodModel, BLIGHTED_SOULWOOD);
-
-        setTexturePath("blight/calcified/");
-        MalumBlockStateSmithTypes.CALCIFIED_BLIGHT.act(data, CALCIFIED_BLIGHT);
-        MalumBlockStateSmithTypes.TALL_CALCIFIED_BLIGHT.act(data, TALL_CALCIFIED_BLIGHT);
 
         setTexturePath("spirit_diode/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
@@ -376,16 +373,15 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
     public ModelFile blightedSoulwoodModel(Block block) {
         String name = getBlockName(block);
         ResourceLocation side = getBlockTexture(name);
-        ResourceLocation bottom = getBlockTexture("blighted_soil_0");
+        ResourceLocation bottom = getBlockTexture("blighted_earth_bottom");
         ResourceLocation top = getStaticBlockTexture("soulwood/soulwood_log_top");
         return models().cubeBottomTop(name, side, bottom, top);
     }
-
     public ModelFile blightedEarthModel(Block block) {
         String name = getBlockName(block);
-        ResourceLocation side = getBlockTexture(name);
-        ResourceLocation bottom = ResourceLocation.withDefaultNamespace("block/dirt");
-        ResourceLocation top = getBlockTexture("blighted_soil_0");
+        ResourceLocation side = getBlockTexture(name + "_side");
+        ResourceLocation bottom = getBlockTexture(name + "_bottom");
+        ResourceLocation top = getBlockTexture(name);
         return models().cubeBottomTop(name, side, bottom, top);
     }
 }

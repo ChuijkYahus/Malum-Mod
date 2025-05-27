@@ -54,14 +54,14 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         return this.itemsForRepair.stream().anyMatch(i -> i.equals(input.getItem()));
     }
 
-    public ItemStack getResultItem(ItemStack repaired) {
+    public ItemStack getResultItem(ItemStack input) {
         if (repairOutputOverride != Items.AIR) {
             var output = repairOutputOverride.getDefaultInstance();
-            output.applyComponents(repaired.getComponents());
+            output.applyComponents(input.getComponents());
             return output;
         }
-        var output = repaired.copy();
-        output.setDamageValue(Math.max(0, repaired.getDamageValue() - (int) (output.getMaxDamage() * durabilityPercentage)));
+        var output = input.copy();
+        output.setDamageValue(Math.max(0, input.getDamageValue() - (int) (output.getMaxDamage() * durabilityPercentage)));
         return output;
     }
 

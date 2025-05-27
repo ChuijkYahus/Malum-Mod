@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.ClingingBlightBlock.*;
 import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.worldgen.blight.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -41,8 +42,6 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     public SoulwoodTreeFeature() {
         super(NoneFeatureConfiguration.CODEC);
     }
-
-    private static final PerlinSimplexNoise BLIGHT_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(1234L)), ImmutableList.of(0));
 
     private static BlockState makeClingingBlight(BlightType blightType, Direction direction) {
         return MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
@@ -196,9 +195,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             }
             makeLeafBlob(filler, rand, mutable.move(Direction.DOWN, branchHeight-1));
         }
-        makeLeafBlob(filler, rand, mutable.set(trunkTop));
-
-        generateBlight(level, filler, pos.below(), 8);
+        BlightFeature.generateBlight(level, pos, 8).fill(level);
 
         ArrayList<BlockPos> sapBlockPositions = new ArrayList<>(filler.getLayer(LOGS).keySet());
         Collections.shuffle(sapBlockPositions);
@@ -290,104 +287,5 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
-    }
-
-    public static Map<Integer, Double> generateBlight(ServerLevelAccessor level, LodestoneBlockFiller filler, BlockPos pos, int radius) {
-        Map<Integer, Double> noiseValues = new HashMap<>();
-        for (int i = 0; i <= 360; i++) {
-            noiseValues.put(i, BLIGHT_NOISE.getValue(pos.getX() + pos.getZ() + i * 0.02f, pos.getY() / 0.05f, true) * 2.5f);
-        }
-        generateBlight(level, filler, noiseValues, pos, radius);
-        return noiseValues;
-    }
-
-    public static void generateBlight(ServerLevelAccessor level, LodestoneBlockFiller filler, Map<Integer, Double> noiseValues, BlockPos pos, int radius) {
-        generateBlight(level, filler, pos, radius * 2, radius, noiseValues);
-        filler.fill(level);
-    }
-
-    public static void generateBlight(ServerLevelAccessor level, LodestoneBlockFiller filler, BlockPos center, int coverage, int radius, Map<Integer, Double> noiseValues) {
-        int x = center.getX();
-        int z = center.getZ();
-        BlockPos.MutableBlockPos blockPos = new BlockPos.MutableBlockPos();
-        int saplingsPlaced = 0;
-        Vec3 lastSaplingPos = null;
-        for (int i = 0; i < coverage * 2 + 1; i++) {
-            for (int j = 0; j < coverage * 2 + 1; j++) {
-                int xp = x + i - coverage;
-                int zp = z + j - coverage;
-                blockPos.set(xp, center.getY(), zp);
-                double theta = 180 + 180 / Math.PI * Math.atan2(x - xp, z - zp);
-                double naturalNoiseValue = noiseValues.get(Mth.floor(theta));
-                if (naturalNoiseValue > 1f) {
-                    naturalNoiseValue *= naturalNoiseValue;
-                }
-                int floor = (int) Math.floor(pointDistancePlane(xp, zp, x, z));
-                if (floor <= (radius + Math.floor(naturalNoiseValue) - 1)) {
-                    int verticalRange = 4;
-                    for (int i1 = 0; level.isStateAtPosition(blockPos, (s) -> !s.isAir()) && i1 < verticalRange; ++i1) {
-                        blockPos.move(Direction.UP);
-                    }
-                    for (int k = 0; level.isStateAtPosition(blockPos, BlockBehaviour.BlockStateBase::isAir) && k < verticalRange; ++k) {
-                        blockPos.move(Direction.DOWN);
-                    }
-                    do {
-                        BlockState plantState = level.getBlockState(blockPos);
-                        if (plantState.isAir()) {
-                            break;
-                        }
-                        if (plantState.is(MalumTags.BlockTags.BLIGHTED_PLANTS)) {
-                            break;
-                        }
-                        if ((plantState.canBeReplaced() || plantState.is(REPLACEABLE) || plantState.is(FLOWERS))) {
-                            final BlockPos immutable = blockPos.immutable();
-                            if (!filler.getLayer(BLIGHT).containsKey(blockPos)) {
-                                filler.getLayer(BLIGHT).put(immutable, create(Blocks.AIR.defaultBlockState()).setForcePlace());
-                            }
-                            blockPos.move(Direction.DOWN);
-                        } else {
-                            break;
-                        }
-                    }
-                    while (true);
-
-                    if (level.getBlockState(blockPos).is(MOSS_REPLACEABLE)) {
-                        filler.getLayer(BLIGHT).put(blockPos.immutable(), create(MalumBlocks.BLIGHTED_SOIL.get().defaultBlockState()).setForcePlace());
-                        if (level.getBlockState(blockPos.move(0, -1, 0)).is(DIRT)) {
-                            filler.getLayer(BLIGHT).put(blockPos.immutable(), create(MalumBlocks.BLIGHTED_EARTH.get().defaultBlockState()).setForcePlace());
-                        }
-                        final RandomSource random = level.getRandom();
-                        if (random.nextFloat() < 0.75f) {
-                            BlockPos plantPos = blockPos.offset(0, 2, 0);
-                            BlockState blockState = level.getBlockState(plantPos);
-                            if (naturalNoiseValue > 2.5f) {
-                                if (lastSaplingPos == null || lastSaplingPos.distanceToSqr(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 5) {
-                                    if (center.getCenter().distanceToSqr(plantPos.getX(), plantPos.getY(), plantPos.getZ()) > 4) {
-                                        if (random.nextFloat() < 0.5f / (Math.pow(saplingsPlaced + 1, 2))) {
-                                            filler.getLayer(BLIGHT).put(plantPos, create(MalumBlocks.SOULWOOD_GROWTH.get().defaultBlockState()));
-                                            lastSaplingPos = new Vec3(plantPos.getX(), plantPos.getY(), plantPos.getZ());
-                                            saplingsPlaced++;
-                                        }
-                                    }
-                                }
-                            }
-                            if (!filler.getLayer(BLIGHT).containsKey(plantPos)) {
-                                BlockState state = (MalumBlocks.BLIGHTED_GROWTH).get().defaultBlockState();
-                                if (random.nextFloat() < 0.4f) {
-                                    state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(ClingingBlightBlock.BLIGHT_TYPE, GROUNDED_ROOTS).setValue(BlockStateProperties.HORIZONTAL_FACING, DIRECTIONS[random.nextInt(4)]);
-                                }
-                                if ((blockState.isAir() || blockState.canBeReplaced()) && !blockState.is(MalumTags.BlockTags.BLIGHTED_PLANTS)) {
-                                    filler.getLayer(BLIGHT).put(plantPos, create(state));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public static float pointDistancePlane(double x1, double z1, double x2, double z2) {
-        return (float) Math.hypot(x1 - x2, z1 - z2);
     }
 }

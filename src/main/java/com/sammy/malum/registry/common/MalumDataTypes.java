@@ -17,6 +17,7 @@ public class MalumDataTypes {
     public static final ResourceKey<DamageType> KARMIC = createDamageType("karmic");
     public static final ResourceKey<DamageType> ROT = createDamageType("rot");
 
+
     public static final ResourceKey<DamageType> SCYTHE_MELEE = createDamageType("scythe_melee");
     public static final ResourceKey<DamageType> SCYTHE_SWEEP = createDamageType("scythe_sweep");
     public static final ResourceKey<DamageType> SCYTHE_REBOUND = createDamageType("scythe_rebound");
@@ -34,6 +35,7 @@ public class MalumDataTypes {
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_PHYSICAL_COMBO = createDamageType("sundering_anchor_physical_combo");
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_MAGIC_COMBO = createDamageType("sundering_anchor_magic_combo");
 
+    //Geas
     public static final ResourceKey<DamageType> WARLOCK_SPIRIT_IMPACT = createDamageType("warlock_spirit_impact");
     public static final ResourceKey<DamageType> BERSERKER_SPIRIT_IMPACT = createDamageType("berserker_spirit_impact");
 

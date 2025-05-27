@@ -224,8 +224,8 @@ public class ArtificeEntries {
                         .addPage(SpiritRepairPage.fromId("trident_restoration"))
                         .addPage(SpiritRepairPage.fromId("mace_restoration"))
                         .addPage(new TextPage("arcane_restoration.tool_repair.2"))
-                        .addPage(SpiritRepairPage.fromId("special_soul_stained_steel_restoration"))
                         .addPage(SpiritRepairPage.fromId("soul_stained_steel_restoration"))
+                        .addPage(SpiritRepairPage.fromId("soul_stained_steel_armor_restoration"))
                         .addPage(SpiritRepairPage.fromId("soul_hunter_armor_restoration"))
                 ))
         );

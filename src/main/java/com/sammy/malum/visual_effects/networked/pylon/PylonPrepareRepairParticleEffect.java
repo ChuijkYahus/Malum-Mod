@@ -18,12 +18,18 @@ import net.minecraft.nbt.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
+import java.util.*;
 import java.util.function.*;
 
 public class PylonPrepareRepairParticleEffect extends MalumNetworkedParticleEffectType<PylonEffectData> {
 
     public PylonPrepareRepairParticleEffect(String id) {
         super(id);
+    }
+
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(PylonEffectData.STREAM_CODEC);
     }
 
     @OnlyIn(Dist.CLIENT)

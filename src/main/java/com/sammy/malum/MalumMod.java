@@ -6,6 +6,7 @@ import com.sammy.malum.compability.farmersdelight.*;
 import com.sammy.malum.compability.irons_spellbooks.*;
 import com.sammy.malum.compability.tetra.*;
 import com.sammy.malum.config.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.bus.api.IEventBus;
@@ -43,16 +44,17 @@ public class MalumMod {
     public static final RandomSource RANDOM = RandomSource.create();
 
     public MalumMod(IEventBus modEventBus, ModContainer modContainer) {
-
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
 
         NeoForgeMod.enableMergedAttributeTooltips();
+
         TetraCompat.init();
         FarmersDelightCompat.init();
         AttributeLibCompat.init();
         IronsSpellsCompat.init();
         CreateCompat.init();
+
         BLOCKS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         COMPONENTS.register(modEventBus);
@@ -72,6 +74,8 @@ public class MalumMod {
         ATTACHMENT_TYPES.register(modEventBus);
         WORLD_EVENT_TYPES.register(modEventBus);
         GEAS_TYPES.register(modEventBus);
+
+        MalumParticleEffectTypes.init();
     }
 
     public static ResourceLocation malumPath(String path) {

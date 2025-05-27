@@ -88,38 +88,36 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .save(recipeOutput, MalumMod.malumPath("tyrving_restoration"));
 
         new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOUL_STAINED_STEEL_INGOT.get()), 2)
-                .addItem(MalumItems.SOUL_STAINED_STEEL_SCYTHE.get())
-                .addItem(MalumItems.SOUL_STAINED_STEEL_HELMET.get())
-                .addItem(MalumItems.SOUL_STAINED_STEEL_CHESTPLATE.get())
-                .addItem(MalumItems.SOUL_STAINED_STEEL_LEGGINGS.get())
-                .addItem(MalumItems.SOUL_STAINED_STEEL_BOOTS.get())
-                .addSpirit(WICKED_SPIRIT, 8)
-                .addSpirit(ARCANE_SPIRIT, 8)
-                .addSpirit(EARTHEN_SPIRIT, 4)
-                .unlockedBy("has_crucible", has)
-                .save(recipeOutput, MalumMod.malumPath("special_soul_stained_steel_restoration"));
-
-        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOUL_STAINED_STEEL_INGOT.get()), 2)
                 .addItem(MalumItems.SOUL_STAINED_STEEL_SWORD.get())
                 .addItem(MalumItems.SOUL_STAINED_STEEL_AXE.get())
                 .addItem(MalumItems.SOUL_STAINED_STEEL_PICKAXE.get())
                 .addItem(MalumItems.SOUL_STAINED_STEEL_SHOVEL.get())
                 .addItem(MalumItems.SOUL_STAINED_STEEL_HOE.get())
                 .addItem(MalumItems.SOUL_STAINED_STEEL_KNIFE.get())
-                .addSpirit(WICKED_SPIRIT, 8)
+                .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_stained_steel_restoration"));
+
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOUL_STAINED_STEEL_PLATING.get()), 3)
+                .addItem(MalumItems.SOUL_STAINED_STEEL_HELMET.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_CHESTPLATE.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_LEGGINGS.get())
+                .addItem(MalumItems.SOUL_STAINED_STEEL_BOOTS.get())
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 8)
+                .addSpirit(EARTHEN_SPIRIT, 4)
+                .unlockedBy("has_crucible", has)
+                .save(recipeOutput, MalumMod.malumPath("soul_stained_steel_armor_restoration"));
 
         new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.SOULWOVEN_SILK.get()), 2)
                 .addItem(MalumItems.SOUL_HUNTER_CLOAK.get())
                 .addItem(MalumItems.SOUL_HUNTER_ROBE.get())
                 .addItem(MalumItems.SOUL_HUNTER_LEGGINGS.get())
                 .addItem(MalumItems.SOUL_HUNTER_BOOTS.get())
-                .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
-                .addSpirit(AERIAL_SPIRIT, 4)
+                .addSpirit(AERIAL_SPIRIT, 8)
                 .unlockedBy("has_crucible", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_hunter_armor_restoration"));
 

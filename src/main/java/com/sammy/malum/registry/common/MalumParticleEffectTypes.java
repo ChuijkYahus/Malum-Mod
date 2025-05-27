@@ -21,7 +21,7 @@ import com.sammy.malum.visual_effects.networked.weeping_well.*;
 public class MalumParticleEffectTypes {
 
     //Blight vfx
-    public static final BlightingMistParticleEffect BLIGHTING_MIST = new BlightingMistParticleEffect("blighting_mist");
+    public static final BlightPropagationParticleEffect BLIGHTING_MIST = new BlightPropagationParticleEffect("blight_propagation");
 
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");
@@ -105,4 +105,7 @@ public class MalumParticleEffectTypes {
     public static final SoulwovenBannerParticleEffect SOULWOVEN_BANNER_ACTIVATED = new SoulwovenBannerParticleEffect("soulwoven_banner_activated");
     public static final SapCollectionParticleEffect SAP_COLLECTED = new SapCollectionParticleEffect("sap_collected");
 
+    public static void init() {
+
+    }
 }

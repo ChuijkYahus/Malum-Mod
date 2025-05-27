@@ -18,7 +18,7 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
             ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output),
             SizedIngredient.FLAT_CODEC.listOf().optionalFieldOf("extraIngredients", List.of()).forGetter(recipe -> recipe.extraIngredients),
             SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter(recipe -> recipe.spirits),
-            Codec.BOOL.optionalFieldOf("carryOverComponentData", false).forGetter(recipe -> recipe.carryOverData)
+            Codec.BOOL.optionalFieldOf("carryOverComponentData", false).forGetter(recipe -> recipe.carryOverComponentData)
     ).apply(obj, SpiritInfusionRecipe::new));
 
     public static final String NAME = "spirit_infusion";
@@ -28,19 +28,27 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
 
     public final List<SizedIngredient> extraIngredients;
     public final List<SpiritIngredient> spirits;
-    public final boolean carryOverData;
+    public final boolean carryOverComponentData;
 
-    public SpiritInfusionRecipe(SizedIngredient ingredient, ItemStack output, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverData) {
+    public SpiritInfusionRecipe(SizedIngredient ingredient, ItemStack output, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverComponentData) {
         super(MalumRecipeSerializers.INFUSION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_INFUSION.get());
         this.ingredient = ingredient;
         this.output = output;
         this.extraIngredients = extraIngredients;
         this.spirits = spirits;
-        this.carryOverData = carryOverData;
+        this.carryOverComponentData = carryOverComponentData;
     }
 
     @Override
     public boolean matches(SpiritBasedRecipeInput input, Level level) {
         return input.test(ingredient, spirits);
+    }
+
+    public ItemStack getOutput(ItemStack input) {
+        ItemStack outputStack = output.copy();
+        if (carryOverComponentData) {
+            outputStack.applyComponents(input.getComponents());
+        }
+        return outputStack;
     }
 }

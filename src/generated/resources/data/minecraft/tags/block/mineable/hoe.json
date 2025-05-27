@@ -7,7 +7,11 @@
     "malum:soulwood_leaves",
     "malum:hanging_soulwood_leaves",
     "malum:blighted_earth",
-    "malum:blighted_soil",
+    "malum:blight",
+    "malum:blighted_growth",
+    "malum:blightpearl",
+    "malum:blightroot",
+    "malum:clinging_blight",
     "malum:block_of_astral_weave",
     "malum:block_of_hex_ash",
     "malum:mass_of_blighted_gunk"

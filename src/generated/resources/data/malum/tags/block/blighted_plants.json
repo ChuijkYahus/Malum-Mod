@@ -2,8 +2,8 @@
   "values": [
     "malum:soulwood_growth",
     "malum:blighted_growth",
-    "malum:clinging_blight",
-    "malum:calcified_blight",
-    "malum:tall_calcified_blight"
+    "malum:blightpearl",
+    "malum:blightroot",
+    "malum:clinging_blight"
   ]
 }
