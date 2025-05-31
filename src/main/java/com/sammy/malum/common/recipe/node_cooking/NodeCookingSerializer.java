@@ -35,7 +35,7 @@ public class NodeCookingSerializer<T extends AbstractCookingRecipe & INodeCookin
     public T fromNetwork(RegistryFriendlyByteBuf buffer) {
         String group = buffer.readUtf();
         Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
-        Ingredient result = Ingredient.of(ItemStack.STREAM_CODEC.decode(buffer));
+        Ingredient result = Ingredient.of(ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer));
         int outputCount = buffer.readInt();
         float xp = buffer.readFloat();
         int ctime = buffer.readInt();
@@ -45,7 +45,7 @@ public class NodeCookingSerializer<T extends AbstractCookingRecipe & INodeCookin
     public void toNetwork(RegistryFriendlyByteBuf buffer, T pRecipe) {
         buffer.writeUtf(pRecipe.getGroup());
         Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, pRecipe.getInput());
-        ItemStack.STREAM_CODEC.encode(buffer, pRecipe.getOutput());
+        ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, pRecipe.getOutput());
         buffer.writeInt(pRecipe.getOutputCount());
         buffer.writeFloat(pRecipe.getExperience());
         buffer.writeInt(pRecipe.getCookingTime());

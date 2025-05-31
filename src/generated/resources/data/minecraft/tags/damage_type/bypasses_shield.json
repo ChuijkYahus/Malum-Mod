@@ -1,0 +1,8 @@
+{
+  "remove": [
+    "#malum:is_sundering_anchor_combo"
+  ],
+  "values": [
+    "malum:void"
+  ]
+}
