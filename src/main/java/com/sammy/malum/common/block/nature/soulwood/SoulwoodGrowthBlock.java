@@ -24,7 +24,7 @@ public class SoulwoodGrowthBlock extends MalumSaplingBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        if (pState.is(BLIGHTED_BLOCKS)) {
+        if (pState.is(BLIGHT_PLACEABLE_ON)) {
             return true;
         }
         return super.mayPlaceOn(pState, pLevel, pPos);

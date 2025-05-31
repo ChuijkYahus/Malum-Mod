@@ -8,16 +8,16 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "item": "malum:gold_node"
+      "id": "malum:gold_node"
     }
   ],
   "results": [
     {
-      "item": "minecraft:gold_nugget",
+      "id": "minecraft:gold_nugget",
       "count": 6
     },
     {
-      "item": "minecraft:quartz",
+      "id": "minecraft:quartz",
       "chance": 0.5
     }
   ]

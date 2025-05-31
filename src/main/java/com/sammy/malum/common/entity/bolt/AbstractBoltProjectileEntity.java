@@ -160,7 +160,7 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
             if (getOwner() instanceof LivingEntity staffOwner) {
                 Entity target = result.getEntity();
                 target.invulnerableTime = 0;
-                DamageSource source = DamageTypeHelper.create(level(), MalumDataTypes.VOODOO, this, staffOwner);
+                DamageSource source = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, staffOwner);
                 boolean success = target.hurt(source, magicDamage);
                 if (success && target instanceof LivingEntity livingentity) {
                     onDealDamage(livingentity);

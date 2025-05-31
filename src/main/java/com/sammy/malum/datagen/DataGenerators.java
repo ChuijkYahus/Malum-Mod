@@ -48,6 +48,7 @@ public class DataGenerators {
         var biomeTagDatagen = new MalumBiomeTags(output, registryProvider, helper);
         var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
         var enchantmentTagDatagen = new MalumEnchantmentTags(output, registryProvider, helper);
+        var componentTagDatagen = new MalumDataComponentTypeTagDatagen(output, provider, helper);
         var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
         var recipeDatagen = new MalumRecipes(output, registryProvider);
 
@@ -64,6 +65,7 @@ public class DataGenerators {
         generator.addProvider(includeServer, biomeTagDatagen);
         generator.addProvider(includeServer, damageTypeTagDatagen);
         generator.addProvider(includeServer, enchantmentTagDatagen);
+        generator.addProvider(includeServer, componentTagDatagen);
         generator.addProvider(includeServer, curioDataDatagen);
         generator.addProvider(includeServer, recipeDatagen);
     }

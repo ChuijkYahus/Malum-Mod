@@ -45,7 +45,7 @@ public class ReaperGeas extends GeasEffect {
             var source = event.getSource();
             var heldItem = attacker.getMainHandItem();
             if (!heldItem.isEmpty()) {
-                if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDataTypes.TYRVING)) {
+                if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDamageTypes.TYRVING)) {
                     event.setNewDamage(event.getNewDamage() * 0.1f);
                     if (heldItem.isDamageableItem()) {
                         heldItem.hurtAndBreak(10, attacker, MAINHAND);
@@ -55,7 +55,7 @@ public class ReaperGeas extends GeasEffect {
             }
 
             boolean canSweep = MalumScytheItem.canSweep(attacker);
-            if (source.is(MalumDataTypes.SCYTHE_COMBO)) {
+            if (source.is(MalumDamageTypes.SCYTHE_COMBO)) {
                 var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
                 var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
                         .originatesFrom(attacker)
@@ -71,7 +71,7 @@ public class ReaperGeas extends GeasEffect {
                     level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
                         if (e instanceof LivingEntity sweepTarget) {
                             if (sweepTarget.isAlive() && sweepTarget != target) {
-                                sweepTarget.hurt((DamageTypeHelper.create(level, MalumDataTypes.SCYTHE_SWEEP, attacker)), damage);
+                                sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
                                 sweepTarget.knockback(0.4F,
                                         Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
                                         (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
@@ -114,7 +114,7 @@ public class ReaperGeas extends GeasEffect {
                             new DelayedDamageWorldEvent(target)
                                     .setAttacker(attacker, source.getDirectEntity())
                                     .setDamageData(physicalDamage, magicDamage, delay)
-                                    .setPhysicalDamageType(MalumDataTypes.SCYTHE_COMBO)
+                                    .setPhysicalDamageType(MalumDamageTypes.SCYTHE_COMBO)
                                     .setSound(MalumSoundEvents.REAPER_CUT, 0.9f, 1.1f, 1));
 
                 }

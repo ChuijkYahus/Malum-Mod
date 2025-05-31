@@ -51,7 +51,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
 
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(MalumDataTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;
                 var effectType = MalumMobEffects.GRIM_CERTAINTY;
                 if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {

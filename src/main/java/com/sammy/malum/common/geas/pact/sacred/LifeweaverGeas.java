@@ -50,7 +50,7 @@ public class LifeweaverGeas extends GeasEffect {
                     if (!GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER)) {
                         float health = target.getHealth();
                         if (target.isInvertedHealAndHarm()) {
-                            target.hurt(DamageTypeHelper.create(level, MalumDataTypes.VOODOO, entity), event.getAmount() * 2f);
+                            target.hurt(DamageTypeHelper.create(level, MalumDamageTypes.VOODOO, entity), event.getAmount() * 2f);
                         }
                         else {
                             target.heal(event.getAmount() * 1.5f);

@@ -44,7 +44,7 @@ public class ProfaneGluttonGeas extends GeasEffect {
         var effect = target.getEffect(MalumMobEffects.DESPERATE_NEED);
         if (effect != null) {
             EntityHelper.shortenEffect(effect, target, effect.getDuration() / 4);
-            if (event.getSource().is(MalumDataTypes.ROT)) {
+            if (event.getSource().is(MalumDamageTypes.ROT)) {
                 target.addEffect(new MobEffectInstance(MobEffects.POISON, 40, 0, true, true));
                 return;
             }
@@ -55,8 +55,8 @@ public class ProfaneGluttonGeas extends GeasEffect {
                     WorldEventHandler.addWorldEvent(target.level(),
                             new DelayedDamageWorldEvent(target)
                                     .setDamageData(1, 1, 2)
-                                    .setPhysicalDamageType(MalumDataTypes.ROT)
-                                    .setMagicDamageType(MalumDataTypes.ROT)
+                                    .setPhysicalDamageType(MalumDamageTypes.ROT)
+                                    .setMagicDamageType(MalumDamageTypes.ROT)
                                     .setImpactParticleEffect(MalumParticleEffectTypes.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.EARTHEN_SPIRIT))
                                     .setSound(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, 0.5f, 1.5f, 0.3f));
                 }

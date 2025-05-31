@@ -43,7 +43,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
         if (event.getLivingEntity().level() instanceof ServerLevel level) {
             var source = event.getSource();
             var target = event.getLivingEntity();
-            if (source.is(MalumDataTypes.MALIGNANT_METAL_COMBO)) {
+            if (source.is(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)) {
                 var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect().targets(target).originatesFrom(attacker).tiedToTarget();
                 if (SoulDataHandler.getScytheWeapon(source, attacker).isEmpty() || !canSweep(attacker)) {
                     particle.verticalSlashRotation();
@@ -60,7 +60,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker, source.getDirectEntity())
                                 .setDamageData(damage, 0, delay)
-                                .setPhysicalDamageType(MalumDataTypes.MALIGNANT_METAL_COMBO)
+                                .setPhysicalDamageType(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)
                                 .setSound(MalumSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
 
             }

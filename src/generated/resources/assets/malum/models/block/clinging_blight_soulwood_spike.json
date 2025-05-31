@@ -1,9 +1,10 @@
 {
-  "parent": "malum:block/templates/template_creeping_blight_wall",
+  "parent": "malum:block/templates/blight/template_soulwood_spike",
   "textures": {
-    "big": "malum:block/blight/soulwood_spike",
     "bracing": "malum:block/blight/soulwood_spike_bracing",
-    "particle": "malum:block/blight/soulwood_spike",
+    "large": "malum:block/blight/soulwood_spike_large",
+    "large_extension": "malum:block/blight/soulwood_spike_large_extension",
+    "particle": "malum:block/blight/soulwood_spike_large",
     "small": "malum:block/blight/soulwood_spike_small"
   }
 }

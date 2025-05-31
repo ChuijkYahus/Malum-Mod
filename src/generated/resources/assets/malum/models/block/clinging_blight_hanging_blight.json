@@ -1,9 +1,10 @@
 {
-  "parent": "malum:block/templates/template_creeping_blight_ceiling",
+  "parent": "malum:block/templates/blight/template_hanging_blight",
   "textures": {
-    "big": "malum:block/blight/hanging_blight",
     "bracing": "malum:block/blight/hanging_blight_bracing",
-    "particle": "malum:block/blight/hanging_blight",
+    "large": "malum:block/blight/hanging_blight_large",
+    "large_extension": "malum:block/blight/hanging_blight_large_extension",
+    "particle": "malum:block/blight/hanging_blight_large",
     "small": "malum:block/blight/hanging_blight_small"
   }
 }

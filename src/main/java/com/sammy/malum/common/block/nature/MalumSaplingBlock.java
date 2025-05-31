@@ -15,7 +15,7 @@ public class MalumSaplingBlock extends SaplingBlock {
 
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        if (pLevel.getBlockState(pPos.below()).is(MalumTags.BlockTags.BLIGHTED_BLOCKS)) {
+        if (pLevel.getBlockState(pPos.below()).is(MalumTags.BlockTags.BLIGHT_PLACEABLE_ON)) {
             return true;
         }
         return super.canSurvive(pState, pLevel, pPos);

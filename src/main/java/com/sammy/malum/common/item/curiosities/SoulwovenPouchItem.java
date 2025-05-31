@@ -1,6 +1,7 @@
 package com.sammy.malum.common.item.curiosities;
 
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
@@ -62,11 +63,9 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
             }
         }
     }
-    public static int trySwallowItem(Player player, ItemStack stack, ItemStack pickedUp) {
+    public static void trySwallowItem(Player player, ItemStack stack, ItemStack pickedUp) {
         var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
-        if (contents == null) {
-            return 0;
-        } else {
+        if (contents != null) {
             var mutable = new SoulwovenPouchContentsComponent.Mutable(contents);
             int i = mutable.tryInsert(pickedUp);
             if (i > 0) {
@@ -75,7 +74,6 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
                 }
             }
             stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
-            return i;
         }
     }
 

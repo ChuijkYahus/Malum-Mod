@@ -71,9 +71,9 @@ public class RuneWorkingEntries {
         );
 
         screen.addEntry("rune_of_aliment_cleansing", -15, 9, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_ALIMENT_CLEANSING))
+                .configureWidget(w -> w.setIcon(RUNE_OF_AILMENT_CLEANSING))
                 .addPage(new HeadlineTextPage("rune_of_aliment_cleansing", "rune_of_aliment_cleansing.1"))
-                .addPage(RuneworkingPage.fromOutput(RUNE_OF_ALIMENT_CLEANSING.get()))
+                .addPage(RuneworkingPage.fromOutput(RUNE_OF_AILMENT_CLEANSING.get()))
         );
 
         screen.addEntry("rune_of_reactive_shielding", -16, 9, b -> b

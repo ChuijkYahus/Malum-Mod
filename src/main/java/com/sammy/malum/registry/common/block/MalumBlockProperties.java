@@ -3,7 +3,6 @@ package com.sammy.malum.registry.common.block;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
@@ -13,11 +12,21 @@ import team.lodestar.lodestone.systems.block.*;
 
 import java.awt.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.WEEPING_WELL;
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
 
 public class MalumBlockProperties {
+
+    public static LodestoneBlockProperties POTTED_PLANT() {
+        return new LodestoneBlockProperties()
+                .setCutoutRenderType()
+                .addTag(FLOWER_POTS)
+                .instabreak()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY);
+    }
+
 
     public static LodestoneBlockProperties SPIRIT_ALTAR() {
         return new LodestoneBlockProperties()
@@ -223,29 +232,11 @@ public class MalumBlockProperties {
                 .sound(MalumSoundEvents.SOULWOOD_LEAVES);
     }
 
-    public static LodestoneBlockProperties RUNIC_SAP() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_YELLOW)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .friction(0.8F)
-                .sound(SoundType.SLIME_BLOCK)
-                .noOcclusion();
-    }
-
     public static LodestoneBlockProperties SOULWOVEN_BANNER() {
         return RUNEWOOD()
                 .noOcclusion()
                 .noCollission()
                 .setCutoutRenderType();
-    }
-
-    public static LodestoneBlockProperties CURSED_SAP() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_RED)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .friction(0.8F)
-                .sound(MalumSoundEvents.CURSED_SAP)
-                .noOcclusion();
     }
 
     public static LodestoneBlockProperties SOULWOOD_SAPLING() {
@@ -261,11 +252,55 @@ public class MalumBlockProperties {
                 .instabreak();
     }
 
+    public static LodestoneBlockProperties SCARSTONE() {
+        return new LodestoneBlockProperties()
+                .sound(MalumSoundEvents.SCARSTONE)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .strength(4f, 3f)
+                .addTag(BLIGHT_PLACEABLE_ON)
+                .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties STRANGE_CRYSTAL() {
+        return new LodestoneBlockProperties()
+                .strength(3f, 3f)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .sound(MalumSoundEvents.STRANGE_CRYSTAL)
+                .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                .requiresCorrectToolForDrops()
+                .setCutoutRenderType()
+                .noCollission()
+                .lightLevel(b -> 7)
+                .needsPickaxe()
+                .noOcclusion()
+                .randomTicks();
+    }
+
+    public static LodestoneBlockProperties STRANGEROOT() {
+        return new LodestoneBlockProperties()
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .sound(MalumSoundEvents.STRANGE_CRYSTAL)
+                .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                .setCutoutRenderType()
+                .noCollission()
+                .lightLevel(b -> 4)
+                .noOcclusion()
+                .randomTicks();
+    }
+
     public static LodestoneBlockProperties BLIGHT() {
         return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.BLIGHTED_BLOCKS)
+                .addTags(MalumTags.BlockTags.BLIGHT)
+                .mapColor(MapColor.COLOR_BLACK);
+    }
+
+    public static LodestoneBlockProperties BLIGHTED_EARTH() {
+        return BLIGHT()
+                .strength(1.2f, 0f)
                 .sound(MalumSoundEvents.BLIGHTED_EARTH)
-                .mapColor(MapColor.COLOR_BLACK)
+                .addTag(BLIGHT_PLACEABLE_ON)
+                .needsPickaxe()
+                .needsAxe()
                 .needsShovel()
                 .needsHoe();
     }
@@ -283,9 +318,22 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties BLIGHTED_PLANTS() {
         return BLIGHT()
-                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS, REPLACEABLE_BY_TREES)
-                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS)
                 .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .addTag(REPLACEABLE_BY_TREES)
+                .setCutoutRenderType()
+                .noCollission()
+                .noOcclusion()
+                .replaceable()
+                .instabreak();
+    }
+
+    public static LodestoneBlockProperties CLINGING_BLIGHT() {
+        return BLIGHT()
+                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS)
+                .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
+                .addTag(REPLACEABLE_BY_TREES)
                 .setCutoutRenderType()
                 .noCollission()
                 .noOcclusion()

@@ -54,7 +54,7 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .setSecondaryInput(MalumSpiritTypes.AERIAL_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_ALIMENT_CLEANSING.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_AILMENT_CLEANSING.get(), 1)
                 .setPrimaryInput(MalumItems.TAINTED_ROCK.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);

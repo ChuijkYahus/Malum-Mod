@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.geas.*;
+import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -117,9 +118,11 @@ public class MalumTags {
 
     public static class BlockTags {
 
+        public static final TagKey<Block> BLIGHT_PLACEABLE_ON = tag("blight_placeable_on");
         public static final TagKey<Block> BLIGHT_REPLACEABLE = tag("blight_replaceable");
         public static final TagKey<Block> BLIGHT_REMOVABLE = tag("blight_removable");
-        public static final TagKey<Block> BLIGHTED_BLOCKS = tag("blighted_blocks");
+
+        public static final TagKey<Block> BLIGHT = tag("blight");
         public static final TagKey<Block> BLIGHTED_PLANTS = tag("blighted_plants");
 
         public static final TagKey<Block> RUNEWOOD_LOGS = tag("runewood_logs");
@@ -214,5 +217,9 @@ public class MalumTags {
 
 
         public static final TagKey<Biome> HAS_WEEPING_WELL = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_weeping_well"));
+    }
+
+    public static class DataComponentTags {
+        public static final TagKey<DataComponentType<?>> SPIRIT_INFUSION_BLACKLIST = TagKey.create(Registries.DATA_COMPONENT_TYPE, MalumMod.malumPath("spirit_infusion_blacklist"));
     }
 }

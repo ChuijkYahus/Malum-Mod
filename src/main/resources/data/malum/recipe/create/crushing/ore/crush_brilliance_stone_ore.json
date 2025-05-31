@@ -8,29 +8,29 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "malum:brilliant_stone"
+      "id": "malum:brilliant_stone"
     }
   ],
   "results": [
     {
-      "item": "malum:crushed_brilliance",
+      "id": "malum:crushed_brilliance",
       "count": 1
     },
     {
-      "item": "malum:crushed_brilliance",
+      "id": "malum:crushed_brilliance",
       "count": 1,
       "chance": 0.75
     },
     {
-      "item": "create:experience_nugget",
+      "id": "create:experience_nugget",
       "count": 3,
       "chance": 0.75
     },
     {
-      "item": "minecraft:cobblestone",
+      "id": "minecraft:cobblestone",
       "count": 1,
       "chance": 0.125
     }
   ],
-  "processingTime": 300
+  "processing_time": 300
 }

@@ -1,5 +1,7 @@
 {
   "remove": [
+    "malum:raw_soulstone",
+    "malum:raw_brilliance",
     "malum:cthonic_gold",
     "malum:cthonic_gold_fragment"
   ],

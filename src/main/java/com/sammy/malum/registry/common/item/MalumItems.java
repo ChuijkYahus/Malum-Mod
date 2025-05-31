@@ -90,6 +90,10 @@ public class MalumItems {
         return new LodestoneItemProperties(MalumCreativeTabs.NATURE);
     }
 
+    public static LodestoneItemProperties SCARRED_NATURE_PROPERTIES() {
+        return new LodestoneItemProperties(MalumCreativeTabs.SCARRED_NATURE);
+    }
+
     public static LodestoneItemProperties METALLURGIC_NODE_PROPERTIES() {
         return new LodestoneItemProperties(MalumCreativeTabs.METALLURGY);
     }
@@ -267,7 +271,6 @@ public class MalumItems {
     //region runewood
     public static final DeferredHolder<Item, Item> RUNIC_SAP = register("runic_sap", NATURE_PROPERTIES(), (p) -> new BottledDrinkItem(NATURE_PROPERTIES().food(MalumFoodProperties.RUNIC_SAP)));
     public static final DeferredHolder<Item, Item> RUNIC_SAPBALL = register("runic_sapball", NATURE_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> RUNIC_SAP_BLOCK = register("runic_sap_block", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNIC_SAP_BLOCK.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_LEAVES = register("runewood_leaves", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNEWOOD_LEAVES.get(), p));
     public static final DeferredHolder<Item, Item> HANGING_RUNEWOOD_LEAVES = register("hanging_runewood_leaves", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.HANGING_RUNEWOOD_LEAVES.get(), p));
@@ -346,91 +349,97 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOAT = register("runewood_boat", NATURE_PROPERTIES(), (p) -> new LodestoneBoatItem(NATURE_PROPERTIES().stacksTo(1), MalumEntities.RUNEWOOD_BOAT));
     //endregion
 
+    //region scarstone
+    public static final DeferredHolder<Item, Item> SCARSTONE = register("scarstone", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SCARSTONE.get(), p));
+    public static final DeferredHolder<Item, Item> LARGE_STRANGE_CRYSTAL = register("large_strange_crystal", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.LARGE_STRANGE_CRYSTAL.get(), p));
+    public static final DeferredHolder<Item, Item> STRANGE_CRYSTAL = register("strange_crystal", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRANGE_CRYSTAL.get(), p));
+    public static final DeferredHolder<Item, Item> STRANGEROOT = register("strangeroot", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRANGEROOT.get(), p));
+    //endregion
+
     //region blight
-    public static final DeferredHolder<Item, Item> BLIGHTED_EARTH = register("blighted_earth", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_EARTH.get(), p));
-    public static final DeferredHolder<Item, Item> BLIGHT = register("blight", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHT.get(), p));
-    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", NATURE_PROPERTIES(), BlightedGunkItem::new);
-    public static final DeferredHolder<Item, Item> BLIGHTPEARL = register("blightpearl", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTPEARL.get(), p));
-    public static final DeferredHolder<Item, Item> BLIGHTROOT = register("blightroot", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTROOT.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTED_EARTH = register("blighted_earth", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_EARTH.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHT = register("blight", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHT.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTED_GUNK = register("blighted_gunk", SCARRED_NATURE_PROPERTIES(), BlightedGunkItem::new);
+    public static final DeferredHolder<Item, Item> BLIGHTPEARL = register("blightpearl", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTPEARL.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTROOT = register("blightroot", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTROOT.get(), p));
     //endregion
 
     //region soulwood
-    public static final DeferredHolder<Item, Item> CURSED_SAP = register("cursed_sap", NATURE_PROPERTIES(), (p) -> new BottledDrinkItem(NATURE_PROPERTIES().food(MalumFoodProperties.CURSED_SAP)));
-    public static final DeferredHolder<Item, Item> CURSED_SAPBALL = register("cursed_sapball", NATURE_PROPERTIES(), Item::new);
-    public static final DeferredHolder<Item, Item> CURSED_SAP_BLOCK = register("cursed_sap_block", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.CURSED_SAP_BLOCK.get(), p));
+    public static final DeferredHolder<Item, Item> CURSED_SAP = register("cursed_sap", SCARRED_NATURE_PROPERTIES(), (p) -> new BottledDrinkItem(SCARRED_NATURE_PROPERTIES().food(MalumFoodProperties.CURSED_SAP)));
+    public static final DeferredHolder<Item, Item> CURSED_SAPBALL = register("cursed_sapball", SCARRED_NATURE_PROPERTIES(), Item::new);
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_LEAVES = register("soulwood_leaves", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_LEAVES.get(), p));
-    public static final DeferredHolder<Item, Item> HANGING_SOULWOOD_LEAVES = register("hanging_soulwood_leaves", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.HANGING_SOULWOOD_LEAVES.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_GROWTH = register("soulwood_growth", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_GROWTH.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_LEAVES = register("soulwood_leaves", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_LEAVES.get(), p));
+    public static final DeferredHolder<Item, Item> HANGING_SOULWOOD_LEAVES = register("hanging_soulwood_leaves", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.HANGING_SOULWOOD_LEAVES.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_GROWTH = register("soulwood_growth", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_GROWTH.get(), p));
 
-    public static final DeferredHolder<Item, Item> BLIGHTED_SOULWOOD = register("blighted_soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_SOULWOOD.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_LOG = register("soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD = register("soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD.get(), p));
-    public static final DeferredHolder<Item, Item> EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.EXPOSED_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> BLIGHTED_SOULWOOD = register("blighted_soulwood", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLIGHTED_SOULWOOD.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_LOG = register("soulwood_log", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD = register("soulwood", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD.get(), p));
+    public static final DeferredHolder<Item, Item> EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.EXPOSED_SOULWOOD_LOG.get(), p));
 
-    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRIPPED_SOULWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD = register("stripped_soulwood", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRIPPED_SOULWOOD.get(), p));
-    public static final DeferredHolder<Item, Item> REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.REVEALED_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD_LOG = register("stripped_soulwood_log", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRIPPED_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD = register("stripped_soulwood", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.STRIPPED_SOULWOOD.get(), p));
+    public static final DeferredHolder<Item, Item> REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.REVEALED_SOULWOOD_LOG.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS = register("soulwood_boards", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS = register("vertical_soulwood_boards", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS = register("soulwood_boards", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS = register("vertical_soulwood_boards", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS = register("soulwood_planks", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS = register("vertical_soulwood_planks", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_TILES = register("soulwood_tiles", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS = register("rustic_soulwood_planks", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS = register("vertical_rustic_soulwood_planks", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES = register("rustic_soulwood_tiles", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS = register("soulwood_planks", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS = register("vertical_soulwood_planks", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_TILES = register("soulwood_tiles", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS = register("rustic_soulwood_planks", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS = register("vertical_rustic_soulwood_planks", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES = register("rustic_soulwood_tiles", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_PANEL = register("soulwood_panel", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PANEL.get(), p));
-    public static final DeferredHolder<Item, Item> CUT_SOULWOOD_PLANKS = register("cut_soulwood_planks", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.CUT_SOULWOOD_PLANKS.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_BEAM = register("soulwood_beam", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BEAM.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_PANEL = register("soulwood_panel", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PANEL.get(), p));
+    public static final DeferredHolder<Item, Item> CUT_SOULWOOD_PLANKS = register("cut_soulwood_planks", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.CUT_SOULWOOD_PLANKS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BEAM = register("soulwood_beam", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BEAM.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_STAIRS = register("soulwood_boards_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS_STAIRS = register("vertical_soulwood_boards_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS_STAIRS = register("soulwood_planks_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS_STAIRS = register("vertical_soulwood_planks_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_TILES_STAIRS = register("soulwood_tiles_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS_STAIRS = register("rustic_soulwood_planks_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS = register("vertical_rustic_soulwood_planks_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES_STAIRS = register("rustic_soulwood_tiles_stairs", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_STAIRS = register("soulwood_boards_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS_STAIRS = register("vertical_soulwood_boards_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS_STAIRS = register("soulwood_planks_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS_STAIRS = register("vertical_soulwood_planks_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_TILES_STAIRS = register("soulwood_tiles_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS_STAIRS = register("rustic_soulwood_planks_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS = register("vertical_rustic_soulwood_planks_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES_STAIRS = register("rustic_soulwood_tiles_stairs", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES_STAIRS.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_SLAB = register("soulwood_boards_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS_SLAB = register("vertical_soulwood_boards_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS_SLAB = register("soulwood_planks_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS_SLAB = register("vertical_soulwood_planks_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_TILES_SLAB = register("soulwood_tiles_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS_SLAB = register("rustic_soulwood_planks_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB = register("vertical_rustic_soulwood_planks_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES_SLAB = register("rustic_soulwood_tiles_slab", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_SLAB = register("soulwood_boards_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_BOARDS_SLAB = register("vertical_soulwood_boards_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_BOARDS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_PLANKS_SLAB = register("soulwood_planks_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PLANKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_SOULWOOD_PLANKS_SLAB = register("vertical_soulwood_planks_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_SOULWOOD_PLANKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_TILES_SLAB = register("soulwood_tiles_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TILES_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_PLANKS_SLAB = register("rustic_soulwood_planks_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_PLANKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB = register("vertical_rustic_soulwood_planks_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES_SLAB = register("rustic_soulwood_tiles_slab", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES_SLAB.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_DOOR = register("soulwood_door", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_DOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_DOOR = register("bolted_soulwood_door", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_DOOR.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_DOOR = register("soulwood_door", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_DOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_DOOR = register("bolted_soulwood_door", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_DOOR.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_TRAPDOOR = register("soulwood_trapdoor", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TRAPDOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_TRAPDOOR = register("bolted_soulwood_trapdoor", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_TRAPDOOR.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_TRAPDOOR = register("soulwood_trapdoor", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TRAPDOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_TRAPDOOR = register("bolted_soulwood_trapdoor", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_TRAPDOOR.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_DOOR = register("soulwood_boards_door", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_DOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_DOOR = register("bolted_soulwood_boards_door", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_DOOR.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_DOOR = register("soulwood_boards_door", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_DOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_DOOR = register("bolted_soulwood_boards_door", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_DOOR.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_TRAPDOOR = register("soulwood_boards_trapdoor", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_TRAPDOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_TRAPDOOR = register("bolted_soulwood_boards_trapdoor", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_TRAPDOOR = register("soulwood_boards_trapdoor", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_TRAPDOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_TRAPDOOR = register("bolted_soulwood_boards_trapdoor", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BUTTON = register("soulwood_planks_button", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BUTTON.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_PRESSURE_PLATE = register("soulwood_planks_pressure_plate", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PRESSURE_PLATE.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BUTTON = register("soulwood_planks_button", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BUTTON.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_PRESSURE_PLATE = register("soulwood_planks_pressure_plate", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_PRESSURE_PLATE.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_FENCE = register("soulwood_planks_fence", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_FENCE.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_FENCE_GATE = register("soulwood_planks_fence_gate", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_FENCE_GATE.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_FENCE = register("soulwood_planks_fence", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_FENCE.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_FENCE_GATE = register("soulwood_planks_fence_gate", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_FENCE_GATE.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_WALL = register("soulwood_boards_wall", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_WALL = register("soulwood_boards_wall", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_WALL.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_ITEM_PEDESTAL.get(), p));
-    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_PEDESTAL = register("ornate_soulwood_item_pedestal", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(), p));
-    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_STAND = register("soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_ITEM_STAND.get(), p));
-    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_STAND = register("ornate_soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.ORNATE_SOULWOOD_ITEM_STAND.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_PEDESTAL = register("soulwood_item_pedestal", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_ITEM_PEDESTAL.get(), p));
+    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_PEDESTAL = register("ornate_soulwood_item_pedestal", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_ITEM_STAND = register("soulwood_item_stand", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_ITEM_STAND.get(), p));
+    public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_STAND = register("ornate_soulwood_item_stand", SCARRED_NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.ORNATE_SOULWOOD_ITEM_STAND.get(), p));
 
-    public static final DeferredHolder<Item, Item> SOULWOOD_SIGN = register("soulwood_sign", NATURE_PROPERTIES(), (p) -> new SignItem(NATURE_PROPERTIES().stacksTo(16), MalumBlocks.SOULWOOD_SIGN.get(), MalumBlocks.SOULWOOD_WALL_SIGN.get()));
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOAT = register("soulwood_boat", NATURE_PROPERTIES(), (p) -> new LodestoneBoatItem(NATURE_PROPERTIES().stacksTo(1), MalumEntities.SOULWOOD_BOAT));
+    public static final DeferredHolder<Item, Item> SOULWOOD_SIGN = register("soulwood_sign", SCARRED_NATURE_PROPERTIES().stacksTo(16), (p) -> new SignItem(p, MalumBlocks.SOULWOOD_SIGN.get(), MalumBlocks.SOULWOOD_WALL_SIGN.get()));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOAT = register("soulwood_boat", SCARRED_NATURE_PROPERTIES().stacksTo(1), (p) -> new LodestoneBoatItem(p, MalumEntities.SOULWOOD_BOAT));
     //endregion
 
     //region ores
@@ -721,7 +730,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_REINFORCEMENT = register("rune_of_reinforcement", GEAR_PROPERTIES(), RuneReinforcementItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_VOLATILE_DISTORTION = register("rune_of_volatile_distortion", GEAR_PROPERTIES(), RuneVolatileDistortionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_DEXTERITY = register("rune_of_dexterity", GEAR_PROPERTIES(), RuneDexterityItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_ALIMENT_CLEANSING = register("rune_of_aliment_cleansing", GEAR_PROPERTIES(), RuneAlimentCleansingItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_AILMENT_CLEANSING = register("rune_of_ailment_cleansing", GEAR_PROPERTIES(), RuneAilmentCleansingItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_REACTIVE_SHIELDING = register("rune_of_reactive_shielding", GEAR_PROPERTIES(), RuneReactiveShieldingItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SCORCHING = register("rune_of_scorching", GEAR_PROPERTIES(), RuneScorchingItem::new);
 

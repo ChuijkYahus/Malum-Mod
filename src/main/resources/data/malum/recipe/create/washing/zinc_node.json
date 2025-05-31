@@ -8,16 +8,16 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "item": "malum:zinc_node"
+      "id": "malum:zinc_node"
     }
   ],
   "results": [
     {
-      "item": "create:zinc_nugget",
+      "id": "create:zinc_nugget",
       "count": 6
     },
     {
-      "item": "minecraft:gunpowder",
+      "id": "minecraft:gunpowder",
       "chance": 0.25
     }
   ]

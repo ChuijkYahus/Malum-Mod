@@ -35,7 +35,6 @@ public class EldritchSacredRiteType extends TotemicRiteType {
 
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
-                BlockPos pos = totemBase.getBlockPos();
                 getNearbyBlocks(totemBase, BonemealableBlock.class).forEach(p -> {
                     if (level.random.nextFloat() <= 0.06f) {
                         BlockState state = level.getBlockState(p);
@@ -51,6 +50,10 @@ public class EldritchSacredRiteType extends TotemicRiteType {
                             }
                         }
                         BlockPos particlePos = state.canOcclude() ? p : p.below();
+                        MalumParticleEffectTypes.BLOCK_GROW_RITE_EFFECT
+                                .createEffect(particlePos)
+                                .color(SACRED_SPIRIT)
+                                .spawn(level);
                     }
                 });
             }

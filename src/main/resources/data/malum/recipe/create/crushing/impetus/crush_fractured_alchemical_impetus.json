@@ -8,19 +8,19 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "malum:fractured_alchemical_impetus"
+      "id": "malum:fractured_alchemical_impetus"
     }
   ],
   "results": [
     {
-      "item": "malum:alchemical_calx",
+      "id": "malum:alchemical_calx",
       "count": 2
     },
     {
-      "item": "malum:alchemical_calx",
+      "id": "malum:alchemical_calx",
       "count": 2,
       "chance": 0.5
     }
   ],
-  "processingTime": 600
+  "processing_time": 600
 }

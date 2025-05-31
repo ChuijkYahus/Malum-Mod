@@ -8,14 +8,14 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "malum:stripped_runewood_log"
+      "id": "malum:stripped_runewood_log"
     }
   ],
   "results": [
     {
-      "item": "malum:runewood_planks",
+      "id": "malum:runewood_planks",
       "count": 6
     }
   ],
-  "processingTime": 50
+  "processing_time": 50
 }

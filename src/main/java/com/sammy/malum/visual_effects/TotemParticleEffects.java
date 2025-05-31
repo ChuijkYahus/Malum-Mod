@@ -143,4 +143,32 @@ public class TotemParticleEffects {
             }
         }
     }
+
+    public static void triggerBlockGrowEffect(Level level, MalumNetworkedParticleEffectColorData colorData, BlockPos position) {
+        var random = level.random;
+        for (int i = 0; i < 4; i++) {
+            int xOffset = Mth.clamp(i%3, 0, 1);
+            int zOffset = Mth.clamp((i-1)%4, 0, 1);
+            float xMotion = (i%2) * (i > 1 ? 0.06f : -0.06f);
+            float yMotion = 0.08f;
+            float zMotion = ((i + 1) % 2) * (i > 1 ? -0.06f : 0.06f);
+            for (int j = 0; j < 6; j++) {
+                Vec3 offsetPosition = new Vec3(position.getX()+xOffset, position.getY()+j%2, position.getZ()+zOffset);
+                var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(3.5f)
+                        .setMotion(xMotion, yMotion, zMotion)
+                        .setLifeDelay((j / 2) * 4)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(2.5f)
+                        .setMotion(xMotion, yMotion, zMotion)
+                        .setLifeDelay((j / 2) * 4)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
 }

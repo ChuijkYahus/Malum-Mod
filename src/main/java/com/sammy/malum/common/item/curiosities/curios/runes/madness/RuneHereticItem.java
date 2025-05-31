@@ -31,6 +31,9 @@ public class RuneHereticItem extends AbstractRuneCurioItem implements ItemEventH
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
+        if (attacker == null) {
+            return;
+        }
         Holder<MobEffect> silenced = MalumMobEffects.SILENCED;
         MobEffectInstance effect = attacker.getEffect(silenced);
         if (effect == null) {

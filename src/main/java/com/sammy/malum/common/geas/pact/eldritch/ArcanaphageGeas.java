@@ -54,7 +54,7 @@ public class ArcanaphageGeas extends GeasEffect {
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (!event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
             event.setCanceled(true);
-            event.getEntity().hurt(DamageTypeHelper.create(attacker.level(), MalumDataTypes.VOODOO), event.getAmount());
+            event.getEntity().hurt(DamageTypeHelper.create(attacker.level(), MalumDamageTypes.VOODOO), event.getAmount());
         }
     }
 }

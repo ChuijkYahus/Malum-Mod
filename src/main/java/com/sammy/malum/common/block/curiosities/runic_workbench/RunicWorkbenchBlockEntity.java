@@ -15,6 +15,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -53,8 +54,10 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             if (recipe != null) {
                 Vec3 itemPos = getItemPos();
                 if (!level.isClientSide) {
-                    primaryInput.shrink(recipe.primaryInput.count());
-                    heldStack.shrink(recipe.secondaryInput.getCount());
+                    if (!player.isCreative()) {
+                        primaryInput.shrink(recipe.primaryInput.count());
+                        heldStack.shrink(recipe.secondaryInput.getCount());
+                    }
                     level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, recipe.output.copy()));
                     level.playSound(null, worldPosition, MalumSoundEvents.RUNIC_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
                     if (heldStack.getItem() instanceof SpiritShardItem spirit) {

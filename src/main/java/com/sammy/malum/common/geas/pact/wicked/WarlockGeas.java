@@ -31,7 +31,7 @@ public class WarlockGeas extends GeasEffect {
         if (target.level().isClientSide) {
             return;
         }
-        if (event.getSource().is(MalumDataTypes.WARLOCK_SPIRIT_IMPACT)) {
+        if (event.getSource().is(MalumDamageTypes.WARLOCK_SPIRIT_IMPACT)) {
             return;
         }
         if (target.getHealth() > target.getMaxHealth() * 0.95f) {
@@ -39,7 +39,7 @@ public class WarlockGeas extends GeasEffect {
                     new DelayedDamageWorldEvent(target)
                             .setAttacker(attacker)
                             .setDamageData(0, 4, 3)
-                            .setMagicDamageType(MalumDataTypes.WARLOCK_SPIRIT_IMPACT)
+                            .setMagicDamageType(MalumDamageTypes.WARLOCK_SPIRIT_IMPACT)
                             .setImpactParticleEffect(MalumParticleEffectTypes.WARLOCK_IMPACT, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT))
                             .setSound(MalumSoundEvents.WARLOCK_BLAST, 1.5f, 1.75f, 1));
         }

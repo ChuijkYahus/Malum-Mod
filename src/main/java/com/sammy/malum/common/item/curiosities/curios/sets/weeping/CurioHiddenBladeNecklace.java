@@ -54,7 +54,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (!source.is(MalumDataTypes.SCYTHE_MELEE)) {
+            if (!source.is(MalumDamageTypes.SCYTHE_MELEE)) {
                 return;
             }
             if (CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {

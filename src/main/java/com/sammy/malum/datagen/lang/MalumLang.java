@@ -377,7 +377,7 @@ public class MalumLang extends LanguageProvider {
         addGeasEffect("staff_autofire", "Staff Charges Automatically Fire");
         addGeasEffect("inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");
         addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
-        addGeasEffect("gleeful_target", "Aliments, Blessings, Curses are Paused When Struck");
+        addGeasEffect("gleeful_target", "Ailments, Blessings, Curses are Paused When Struck");
         addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
         addGeasEffect("presence_breaker", "Refusal, Detachment, Exile is Forced onto Targets");
         addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
@@ -428,41 +428,42 @@ public class MalumLang extends LanguageProvider {
         add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles");
         add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
         add("itemGroup.malum_natural_wonders", "Malum: Intertwined With Nature");
+        add("itemGroup.malum_scars_of_arcana", "Malum: Scars of Arcana");
         add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
         add("itemGroup.malum_geas", "Malum: Sworn Oaths");
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
         add("itemGroup.malum_cosmetics", "Malum: One's True Self");
 
-        addDeathMessage(MalumDataTypes.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
-        addPlayerlessDeathMessage(MalumDataTypes.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");
+        addDeathMessage(MalumDamageTypes.VOODOO, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addPlayerlessDeathMessage(MalumDamageTypes.VOODOO_PLAYERLESS, "%1$s had their soul shattered", "%1$s had their soul shattered while trying to escape %2$s");
 
-        addPlayerlessDeathMessage(MalumDataTypes.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
-        addPlayerlessDeathMessage(MalumDataTypes.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
-        addPlayerlessDeathMessage(MalumDataTypes.ROT, "%1$s was consumed by rot", "%1$s was consumed by rot while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDamageTypes.VOID, "%1$s underwent reality erosion", "%1$s underwent reality erosion while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDamageTypes.KARMIC, "%1$s was forsworn", "%1$s was forsworn while trying to escape %2$s");
+        addPlayerlessDeathMessage(MalumDamageTypes.ROT, "%1$s was consumed by rot", "%1$s was consumed by rot while trying to escape %2$s");
 
-        addDeathMessage(MalumDataTypes.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
-        addPlayerlessDeathMessage(MalumDataTypes.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");
+        addDeathMessage(MalumDamageTypes.NITRATE, "%1$s had their soul detonated by %2$s", "%1$s had their soul detonated by %2$s using %3$s");
+        addPlayerlessDeathMessage(MalumDamageTypes.NITRATE_PLAYERLESS, "%1$s had their soul detonated", "%1$s had their soul detonated while trying to escape %2$s");
 
-        addDeathMessage(MalumDataTypes.SCYTHE_MELEE, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SCYTHE_SWEEP, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SCYTHE_REBOUND, "%1$s was boomeranged by %2$s", "%1$s was boomeranged by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SCYTHE_ASCENSION, "%1$s was cleaved using ascension by %2$s", "%1$s was cleaved using ascension by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SCYTHE_COMBO, "%1$s was sliced in half and then again by %2$s", "%1$s was sliced in half and then again by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SCYTHE_MAELSTROM, "%1$s was sliced and diced by %2$s", "%1$s was sliced and diced by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_MELEE, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_SWEEP, "%1$s was sliced in half by %2$s", "%1$s was sliced in half by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_REBOUND, "%1$s was boomeranged by %2$s", "%1$s was boomeranged by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_ASCENSION, "%1$s was cleaved using ascension by %2$s", "%1$s was cleaved using ascension by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_COMBO, "%1$s was sliced in half and then again by %2$s", "%1$s was sliced in half and then again by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SCYTHE_MAELSTROM, "%1$s was sliced and diced by %2$s", "%1$s was sliced and diced by %2$s using %3$s");
 
-        addDeathMessage(MalumDataTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, "%1$s was sliced into innumerable pieces by %2$s", "%1$s was sliced into innumerable pieces by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul sliced into innumerable pieces by %2$s", "%1$s had their soul sliced into innumerable pieces by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, "%1$s was sliced into innumerable pieces by %2$s", "%1$s was sliced into innumerable pieces by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul sliced into innumerable pieces by %2$s", "%1$s had their soul sliced into innumerable pieces by %2$s using %3$s");
 
-        addDeathMessage(MalumDataTypes.TYRVING, "%1$s had their soul scarred by %2$s", "%1$s had their soul scarred by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.TYRVING, "%1$s had their soul scarred by %2$s", "%1$s had their soul scarred by %2$s using %3$s");
 
-        addDeathMessage(MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
 
-        addDeathMessage(MalumDataTypes.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
-        addDeathMessage(MalumDataTypes.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
 
-        addDeathMessage(MalumDataTypes.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
-        addDeathMessage(MalumDataTypes.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(MalumDamageTypes.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
+        addDeathMessage(MalumDamageTypes.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
         addJEEDEffectDescription(MalumMobEffects.GAIAS_BULWARK, "An earthen carapace surrounds your body, functioning as extra armor.");
         addJEEDEffectDescription(MalumMobEffects.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");

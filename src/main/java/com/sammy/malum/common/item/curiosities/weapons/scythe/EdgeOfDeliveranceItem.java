@@ -45,7 +45,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         super.outgoingDamageEvent(event, attacker, target, stack);
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDataTypes.INVERTED_HEART_PROPAGATION) || source.is(MalumDataTypes.MALIGNANT_METAL_COMBO)) {
+            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION) || source.is(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)) {
                 var effect = MalumMobEffects.IMMINENT_DELIVERANCE;
                 if (target.hasEffect(effect)) {
                     if (triggerMalignantCrit(event.getContainer(), attacker, target)) {

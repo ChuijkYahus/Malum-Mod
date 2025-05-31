@@ -428,42 +428,6 @@
     ],
     "subtitle": "malum.subtitle.brilliance_block_step"
   },
-  "calcified_blight_break": {
-    "sounds": [
-      "malum:blocks/calcified_blight/break1",
-      "malum:blocks/calcified_blight/break2",
-      "malum:blocks/calcified_blight/break3",
-      "malum:blocks/calcified_blight/break4"
-    ],
-    "subtitle": "malum.subtitle.calcified_blight_break"
-  },
-  "calcified_blight_hit": {
-    "sounds": [
-      "malum:blocks/calcified_blight/hit1",
-      "malum:blocks/calcified_blight/hit2",
-      "malum:blocks/calcified_blight/hit3",
-      "malum:blocks/calcified_blight/hit4"
-    ],
-    "subtitle": "malum.subtitle.calcified_blight_hit"
-  },
-  "calcified_blight_place": {
-    "sounds": [
-      "malum:blocks/calcified_blight/break1",
-      "malum:blocks/calcified_blight/break2",
-      "malum:blocks/calcified_blight/break3",
-      "malum:blocks/calcified_blight/break4"
-    ],
-    "subtitle": "malum.subtitle.calcified_blight_place"
-  },
-  "calcified_blight_step": {
-    "sounds": [
-      "malum:blocks/calcified_blight/hit1",
-      "malum:blocks/calcified_blight/hit2",
-      "malum:blocks/calcified_blight/hit3",
-      "malum:blocks/calcified_blight/hit4"
-    ],
-    "subtitle": "malum.subtitle.calcified_blight_step"
-  },
   "catalyst_lobber_fired": {
     "sounds": [
       "malum:curiosities/catalyst_lobber/fire1",

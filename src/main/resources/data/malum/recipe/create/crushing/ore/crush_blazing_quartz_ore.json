@@ -8,23 +8,23 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "malum:blazing_quartz_ore"
+      "id": "malum:blazing_quartz_ore"
     }
   ],
   "results": [
     {
-      "item": "malum:blazing_quartz",
+      "id": "malum:blazing_quartz",
       "count": 2
     },
     {
-      "item": "create:experience_nugget",
+      "id": "create:experience_nugget",
       "chance": 0.75
     },
     {
-      "item": "minecraft:netherrack",
+      "id": "minecraft:netherrack",
       "count": 1,
       "chance": 0.125
     }
   ],
-  "processingTime": 300
+  "processing_time": 300
 }

@@ -73,10 +73,8 @@ public class IntroductionEntries {
                 .addPage(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
                 .addPage(new HeadlineTextPage("runewood.runic_sap", "runewood.runic_sap.1"))
                 .addPage(new TextPage("runewood.runic_sap.2"))
-                .addPage(new CyclingPage(
-                        new CraftingPage(new ItemStack(RUNIC_SAPBALL.get()), RUNIC_SAP.get()),
-                        new CraftingPage(new ItemStack(RUNIC_SAP_BLOCK.get(), 8), RUNIC_SAP.get(), RUNIC_SAP.get(), EMPTY, RUNIC_SAP.get(), RUNIC_SAP.get()))
-                ));
+                .addPage(new CraftingPage(new ItemStack(RUNIC_SAPBALL.get()), RUNIC_SAP.get()))
+        );
 
 
         screen.addEntry("natural_quartz", 3, 1, b -> b

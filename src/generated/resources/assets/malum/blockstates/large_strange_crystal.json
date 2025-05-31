@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "malum:block/large_strange_crystal_lower"
+    },
+    "half=upper": {
+      "model": "malum:block/large_strange_crystal_upper"
+    }
+  }
+}

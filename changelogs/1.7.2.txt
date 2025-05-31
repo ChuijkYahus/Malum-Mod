@@ -1,0 +1,19 @@
+Added a Particle Effect for the Rite of Growth
+Added the ability to put Malum Plants into Pots
+Added Scarstone, Strangeroots and Strange Crystals
+- These are rare new world generation features you can create by spreading blight
+Updated the charge-up particle effect for the Unwinding Chaos
+Updated Blight Propagation particle effects
+Updated the looks of various Blight Decals
+Corrected some Codex entries
+Corrected any use of the word "Aliment" in place of "Ailment"
+Made the requirement for a blood sacrifice in the gease entry a bit more descriptive
+
+Fixed Spirit Infusion copying durability and attribute data from gear over to the result
+ - This is done through a blacklist tag for component types
+Fixed a crash tied to the Sundering Anchor encountered when loading into a world with the thrown anchor loaded from memory
+Fixed detailed spirit descriptions still being wrong
+Fixed certain totem effect particles appearing excessively
+Fixed Create Recipe Compat Not Working
+Fixed Raw Brilliance and Raw Soulstone becoming Raw Soulstone in Weeping Well Transmutation
+Fixed the Malignant Stronghold Scarf remaining even when the associated entity is killed

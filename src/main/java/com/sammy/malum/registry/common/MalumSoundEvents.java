@@ -296,11 +296,6 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_step")));
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> CALCIFIED_BLIGHT_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("calcified_blight_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> CALCIFIED_BLIGHT_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("calcified_blight_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> CALCIFIED_BLIGHT_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("calcified_blight_step")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> CALCIFIED_BLIGHT_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("calcified_blight_hit")));
-
     public static final DeferredHolder<SoundEvent, SoundEvent> MAJOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MINOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts_faintly")));
 
@@ -349,14 +344,13 @@ public class MalumSoundEvents {
     public static final SoundType SOULWOOD_HANGING_SIGN = new DeferredSoundType(1.0F, 1.1f, SOULWOOD_HANGING_SIGN_BREAK, SOULWOOD_HANGING_SIGN_STEP, SOULWOOD_HANGING_SIGN_PLACE, SOULWOOD_HANGING_SIGN_HIT, () -> SoundEvents.CHERRY_WOOD_FALL);
     public static final SoundType SOULWOOD_LEAVES = new BlightedSoundType(1.0F, 0.9F, SOULWOOD_LEAVES_BREAK, SOULWOOD_LEAVES_STEP, SOULWOOD_LEAVES_PLACE, SOULWOOD_LEAVES_HIT, () -> SoundEvents.AZALEA_LEAVES_FALL);
 
-
     public static final SoundType WEEPING_WELL_BRICKS = new DeferredSoundType(1.0F, 0.6f, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, () -> SoundEvents.BASALT_FALL);
+
+    public static final SoundType SCARSTONE = new BlightedSoundType(1.0F, 1.4F, () -> SoundEvents.NETHERRACK_BREAK, () -> SoundEvents.NETHERRACK_STEP, () -> SoundEvents.NETHERRACK_PLACE, () -> SoundEvents.NETHERRACK_HIT, () -> SoundEvents.NETHERRACK_FALL);
+    public static final SoundType STRANGE_CRYSTAL = new BlightedSoundType(1.0F, 0.8f, () -> SoundEvents.AMETHYST_BLOCK_BREAK, () -> SoundEvents.AMETHYST_BLOCK_STEP, () -> SoundEvents.AMETHYST_BLOCK_PLACE, () -> SoundEvents.AMETHYST_BLOCK_HIT, () -> SoundEvents.AMETHYST_BLOCK_FALL);
 
     public static final SoundType BLIGHTED_FOLIAGE = new BlightedSoundType(1.0F, 1.0F, () -> SoundEvents.NETHER_WART_BREAK, () -> SoundEvents.STONE_STEP, () -> SoundEvents.NETHER_WART_PLANTED, () -> SoundEvents.STONE_HIT, () -> SoundEvents.STONE_FALL);
     public static final SoundType BLIGHTED_EARTH = new BlightedSoundType(1.0F, 1.0F, () -> SoundEvents.NYLIUM_BREAK, () -> SoundEvents.NYLIUM_STEP, () -> SoundEvents.NYLIUM_PLACE, () -> SoundEvents.NYLIUM_HIT, () -> SoundEvents.NYLIUM_FALL);
-    public static final SoundType CURSED_SAP = new BlightedSoundType(1.0F, 0.9F, () -> SoundEvents.SLIME_BLOCK_BREAK, () -> SoundEvents.SLIME_BLOCK_STEP, () -> SoundEvents.SLIME_BLOCK_PLACE, () -> SoundEvents.SLIME_BLOCK_HIT, () -> SoundEvents.SLIME_BLOCK_FALL);
-
-    public static final SoundType CALCIFIED_BLIGHT = new DeferredSoundType(1.0F, 1.25F, CALCIFIED_BLIGHT_BREAK, CALCIFIED_BLIGHT_STEP, CALCIFIED_BLIGHT_PLACE, CALCIFIED_BLIGHT_HIT, () -> SoundEvents.BONE_BLOCK_FALL);
 
     public static final SoundType ETHER = new DeferredSoundType(1.0F, 1.0F, ETHER_BREAK, () -> SoundEvents.WOOL_STEP, ETHER_PLACE, () -> SoundEvents.ANCIENT_DEBRIS_HIT, () -> SoundEvents.WOOL_FALL);
 

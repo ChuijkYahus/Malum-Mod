@@ -8,7 +8,7 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "item": "malum:blazing_quartz"
+      "id": "malum:blazing_quartz"
     }
   ],
   "processing_time": 100,

@@ -763,9 +763,9 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("rune_of_culling", "Rune of Culling", "The impulse to break");
         addPages("rune_of_culling",
                 "The Rune of Culling implores a mind to seek ruin, granting the user a bonus to Magic Proficiency which improves magic damage output by roughly two fifths.");
-        addSimpleEntryHeader("rune_of_aliment_cleansing", "Rune of Aliment Cleansing", "The impulse to process");
-        addPages("rune_of_aliment_cleansing",
-                "The Rune of Aliment Cleansing implores a body to catalyze and change substance, allowing it to burn through and process negative effects quicker than normal.");
+        addSimpleEntryHeader("rune_of_ailment_cleansing", "Rune of Ailment Cleansing", "The impulse to process");
+        addPages("rune_of_ailment_cleansing",
+                "The Rune of Ailment Cleansing implores a body to catalyze and change substance, allowing it to burn through and process negative effects quicker than normal.");
         addSimpleEntryHeader("rune_of_scorching", "Rune of Scorching", "The impulse to burn");
         addPages("rune_of_scorching",
                 "The Rune of Scorching implores a mind to share its light with others regardless of what that will cause, doubling the strength of fire damage originating from the user.");
@@ -874,7 +874,7 @@ public class CodexLangDatagen {
         addPages("geas_magic",
                 "Oaths and sacrifices hold power. Brooches, for example, sacrifice one thing for another. There are legends of those who willingly forswear something, gaining power from that action. I have devised a way to bind to a soul semi-permanently such a pact, or " + bold("geas") + ", through the Soulbinding Brazier.",
                 "The Brazier is less a device and more a conduit, utilizing Hallowed Gold inlay and Cthonic Gold insets to conduct souls. Ether is used to ignite it, once the materials are arranged.",
-                "Each oath requires material sacrifices, in the form of a central item, additional ingredients, and arcana to fuel the bond, inserted into the Brazier directly. Once lit, you must offer blood to seal the pact. Any number of willing participants may offer blood to this end at once.",
+                "Each oath requires material sacrifices, in the form of a central item, additional ingredients, and arcana to fuel the bond, inserted into the Brazier directly. Once lit, you must offer blood to seal the pact. Do so by interacting with the brazier. Any number of willing participants may offer blood to this end at once.",
                 "Geasa can be applied even to simpler souls, though they might not know how to take advantage of them. A creature can be tempted to join a geas by afflicting it with Weakness before igniting the Brazier.",
                 "Each soul only seems to have capacity for two separate geas at once, with additional ones failing. These are, again, tied to the soul itself, and so cannot be removed without significant effort.");
 
@@ -976,7 +976,7 @@ public class CodexLangDatagen {
                          -Soul Shatter yields Extra Arcana
                          -Spirit Collection Aids most Magical Attributes""",
                 """
-                        The Soul remains within for a reason.
+                        The Soul remains on the inside for a reason.
                          -All Incoming Damage is converted into Magic Damage""");
 
         addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "To follow the ancient pacts");
@@ -984,7 +984,7 @@ public class CodexLangDatagen {
                 """
                         A part of your Soul becomes a Housing for Runes.
                          -Grants you Two Rune Slots""",
-                scaled(0.8f) + "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by Half of One Twentieth");
+                scaled(0.8f) + "Your Soul can carry only so much\n -Each Equipped Rune reduces your Healing Received, Armor, Armor Toughness and Magic Resistance by One Twentieth");
 
 
         addSimpleEntryHeader("pact_of_self_care", "Pact of Self-Care", "To care for oneself");

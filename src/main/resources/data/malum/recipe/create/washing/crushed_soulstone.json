@@ -8,16 +8,16 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "item": "malum:crushed_soulstone"
+      "id": "malum:crushed_soulstone"
     }
   ],
   "results": [
     {
-      "item": "malum:refined_soulstone",
+      "id": "malum:refined_soulstone",
       "count": 2
     },
     {
-      "item": "malum:hex_ash",
+      "id": "malum:hex_ash",
       "chance": 0.25
     }
   ]

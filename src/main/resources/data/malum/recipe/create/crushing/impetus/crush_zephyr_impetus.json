@@ -8,23 +8,23 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "malum:zephyr_impetus"
+      "id": "malum:zephyr_impetus"
     }
   ],
   "results": [
     {
-      "item": "malum:wind_nucleus",
+      "id": "malum:wind_nucleus",
       "count": 2
     },
     {
-      "item": "malum:iron_node",
+      "id": "malum:iron_node",
       "count": 2
     },
     {
-      "item": "malum:iron_node",
+      "id": "malum:iron_node",
       "count": 2,
       "chance": 0.75
     }
   ],
-  "processingTime": 600
+  "processing_time": 600
 }

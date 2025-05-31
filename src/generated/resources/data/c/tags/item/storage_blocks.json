@@ -20,8 +20,6 @@
     "malum:block_of_malignant_lead",
     "malum:block_of_soul_stained_steel",
     "malum:block_of_hallowed_gold",
-    "malum:block_of_malignant_pewter",
-    "malum:runic_sap_block",
-    "malum:cursed_sap_block"
+    "malum:block_of_malignant_pewter"
   ]
 }

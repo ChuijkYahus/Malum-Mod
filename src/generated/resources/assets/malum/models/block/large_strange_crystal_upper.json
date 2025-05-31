@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "malum:block/blight/scarstone/large_strange_crystal_upper"
+  }
+}
