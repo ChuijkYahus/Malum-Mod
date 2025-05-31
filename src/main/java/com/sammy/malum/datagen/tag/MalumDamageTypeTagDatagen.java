@@ -59,7 +59,7 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
         addTags(MalumDamageTypes.TYRVING, genericMagic);
 
         addTags(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, genericPhysical, IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK);
-        addTags(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO, genericMagic, IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK);
+        addTags(    MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO, genericMagic, IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK);
 
         addTags(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO, genericPhysical);
 
