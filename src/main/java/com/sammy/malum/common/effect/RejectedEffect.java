@@ -23,7 +23,7 @@ public class RejectedEffect extends MobEffect {
             if (pLivingEntity instanceof Player player && player.isCreative()) {
                 return false;
             }
-            pLivingEntity.hurt(DamageTypeHelper.create(pLivingEntity.level(), MalumDataTypes.VOID), 2);
+            pLivingEntity.hurt(DamageTypeHelper.create(pLivingEntity.level(), MalumDamageTypes.VOID), 2);
             return true;
         }
         return false;

@@ -8,26 +8,26 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "malum:deepslate_quartz_ore"
+      "id": "malum:deepslate_quartz_ore"
     }
   ],
   "results": [
     {
-      "item": "malum:natural_quartz",
+      "id": "malum:natural_quartz",
       "count": 2
     },
     {
-      "item": "malum:natural_quartz",
+      "id": "malum:natural_quartz",
       "chance": 0.25
     },
     {
-      "item": "create:experience_nugget",
+      "id": "create:experience_nugget",
       "chance": 0.75
     },
     {
-      "item": "minecraft:cobbled_deepslate",
+      "id": "minecraft:cobbled_deepslate",
       "chance": 0.125
     }
   ],
-  "processingTime": 350
+  "processing_time": 350
 }

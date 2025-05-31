@@ -71,7 +71,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
         if (source.is(Tags.DamageTypes.IS_TECHNICAL)) {
             return;
         }
-        if (source.is(MalumDataTypes.VOID)) {
+        if (source.is(MalumDamageTypes.VOID)) {
             return;
         }
         if (target.hasEffect(MalumMobEffects.WYRD_EXHAUSTION)) {

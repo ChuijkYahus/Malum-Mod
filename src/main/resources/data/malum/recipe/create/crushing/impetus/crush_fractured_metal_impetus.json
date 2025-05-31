@@ -13,14 +13,14 @@
   ],
   "results": [
     {
-      "item": "malum:cthonic_gold_fragment",
+      "id": "malum:cthonic_gold_fragment",
       "count": 3
     },
     {
-      "item": "malum:cthonic_gold_fragment",
+      "id": "malum:cthonic_gold_fragment",
       "count": 3,
       "chance": 0.5
     }
   ],
-  "processingTime": 600
+  "processing_time": 600
 }

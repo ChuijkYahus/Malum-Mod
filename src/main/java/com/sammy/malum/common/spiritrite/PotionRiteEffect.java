@@ -31,10 +31,10 @@ public class PotionRiteEffect extends TotemicRiteEffect {
             MobEffectInstance instance = new MobEffectInstance(mobEffectHolder, 1200, 1, true, true);
             boolean success = e.addEffect(instance);
             if (!e.hasEffect(instance.getEffect()) && success) {
+                MalumParticleEffectTypes.ENTITY_RITE_EFFECT.createEffect(e)
+                        .color(definingSpirit)
+                        .spawn(level);
             }
-            MalumParticleEffectTypes.ENTITY_RITE_EFFECT.createEffect(e)
-                    .color(definingSpirit)
-                    .spawn(level);
         });
     }
 

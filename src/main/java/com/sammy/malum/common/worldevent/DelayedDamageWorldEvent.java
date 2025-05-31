@@ -23,7 +23,7 @@ import java.util.*;
 public class DelayedDamageWorldEvent extends WorldEventInstance {
 
     protected ResourceKey<DamageType> physicalDamageType = DamageTypes.PLAYER_ATTACK;
-    protected ResourceKey<DamageType> magicDamageType = MalumDataTypes.VOODOO;
+    protected ResourceKey<DamageType> magicDamageType = MalumDamageTypes.VOODOO;
 
     protected UUID attackerUUID;
     protected UUID projectileUUID;
@@ -169,7 +169,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
         if (physicalDamageType != DamageTypes.PLAYER_ATTACK) {
             compoundTag.putString("physicalDamageType", physicalDamageType.location().toString());
         }
-        if (magicDamageType != MalumDataTypes.VOODOO) {
+        if (magicDamageType != MalumDamageTypes.VOODOO) {
             compoundTag.putString("magicDamageType", magicDamageType.location().toString());
         }
         if (attackerUUID != null) {
@@ -199,7 +199,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                 : DamageTypes.PLAYER_ATTACK;
         magicDamageType = compoundTag.contains("magicDamageType")
                 ? ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse(compoundTag.getString("magicDamageType")))
-                : MalumDataTypes.VOODOO;
+                : MalumDamageTypes.VOODOO;
         attackerUUID = compoundTag.getUUID("attackerUUID");
         targetUUID = compoundTag.getUUID("targetUUID");
         physicalDamage = compoundTag.getFloat("physicalDamage");

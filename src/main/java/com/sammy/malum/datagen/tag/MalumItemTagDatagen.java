@@ -192,7 +192,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
 
         tag(MalumTags.ItemTags.VOID_SOULSTONE_CONVERSION)
                 .addTags(Tags.Items.RAW_MATERIALS)
-                .remove(CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+                .remove(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
         tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_INGOT.get());

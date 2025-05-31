@@ -64,14 +64,14 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
             Vec3 up = left.cross(direction);
 
             Consumer<LodestoneWorldParticle> behavior = p -> {
-                Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
-                if (offset.length() == 0) {
-                    offset = new Vec3(0, 0.02f, 0);
+                Vec3 distance = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
+                if (distance.length() == 0) {
+                    distance = new Vec3(0, 0.02f, 0);
                 }
                 float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0);
                 float lerp = Easing.QUINTIC_IN_OUT.ease(delta, 0.05f, 0.5f);
-                float velocity = Easing.CIRC_IN.ease(delta, 0.05f, 0.2f + offset.length() * 1.4f);
-                final Vec3 speed = p.getParticleSpeed().lerp(offset.normalize().scale(velocity), lerp);
+                float velocity = Easing.CIRC_IN.ease(delta, 0.05f, 0.2f + distance.length() * 1.2f);
+                final Vec3 speed = p.getParticleSpeed().lerp(distance.normalize().scale(velocity), lerp);
                 p.setParticleSpeed(speed);
             };
 
@@ -87,7 +87,8 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                 Vec3 particlePosition = pos.add(particleDirection.scale(2f));
                 var lightSpecs = spiritLightSpecs(level, particlePosition, cyclingSpiritType, new WorldParticleOptions(MalumParticles.SPARK.get()));
                 var transparencyData = GenericParticleData.create(0.4f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.EXPO_IN_OUT).build();
-                final int lifeDelay = i * 2;
+                int lifeDelay = i * 2;
+                int lifetime = 20;
                 lightSpecs.getBuilder()
                         .setBehavior(SparkParticleBehavior.sparkBehavior())
                         .setLengthData(GenericParticleData.create(0.2f, 2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
@@ -95,26 +96,27 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
                         .setTransparencyData(transparencyData)
                         .setLifeDelay(lifeDelay)
-                        .setLifetime(10)
+                        .setLifetime(lifetime)
                         .addTickActor(behavior);
                 lightSpecs.getBloomBuilder()
                         .setTransparencyData(transparencyData)
                         .setLifeDelay(lifeDelay)
-                        .setLifetime(10)
+                        .setLifetime(lifetime)
                         .addTickActor(behavior)
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)));
+                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)))
+                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(1.4f));
                 lightSpecs.spawnParticles();
 
                 lightSpecs = spiritLightSpecs(level, particlePosition, cyclingSpiritType, new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE.get()));
-                transparencyData = GenericParticleData.create(1f, 0f).setCoefficient(0.5f).build();
+                transparencyData = GenericParticleData.create(1f, 0f).setCoefficient(1.5f).build();
                 lightSpecs.getBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .setColorData(ColorParticleData.create(smokeColor).build())
                         .setTransparencyData(transparencyData)
                         .setLifeDelay(lifeDelay)
                         .addTickActor(behavior)
-                        .setLifetime(10);
+                        .setLifetime(lifetime);
                 lightSpecs.spawnParticlesRaw();
             }
         }

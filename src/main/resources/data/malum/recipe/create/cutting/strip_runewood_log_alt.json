@@ -8,13 +8,13 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "malum:exposed_runewood_log"
+      "id": "malum:exposed_runewood_log"
     }
   ],
   "results": [
     {
-      "item": "malum:revealed_runewood_log"
+      "id": "malum:revealed_runewood_log"
     }
   ],
-  "processingTime": 50
+  "processing_time": 50
 }

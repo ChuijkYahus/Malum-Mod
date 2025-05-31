@@ -8,16 +8,16 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "item": "malum:iron_node"
+      "id": "malum:iron_node"
     }
   ],
   "results": [
     {
-      "item": "minecraft:iron_nugget",
+      "id": "minecraft:iron_nugget",
       "count": 6
     },
     {
-      "item": "minecraft:redstone",
+      "id": "minecraft:redstone",
       "chance": 0.75
     }
   ]

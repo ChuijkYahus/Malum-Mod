@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 
 import com.sammy.malum.core.systems.rite.TotemicRiteEffect;
 import com.sammy.malum.core.systems.rite.TotemicRiteType;
-import com.sammy.malum.registry.common.MalumDataTypes;
+import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
@@ -27,7 +27,7 @@ public class WickedRiteType extends TotemicRiteType {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Player)).forEach(e -> {
-                    final DamageSource damageSource = DamageTypeHelper.create(e.level(), MalumDataTypes.VOODOO_PLAYERLESS);
+                    final DamageSource damageSource = DamageTypeHelper.create(e.level(), MalumDamageTypes.VOODOO_PLAYERLESS);
                     if (e.getHealth() > 2.5f && !e.isInvulnerableTo(damageSource)) {
                         MalumParticleEffectTypes.ENTITY_RITE_EFFECT
                                 .createEffect(e)

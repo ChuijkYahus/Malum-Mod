@@ -6,6 +6,7 @@ import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.block.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
@@ -13,6 +14,11 @@ import top.theillusivec4.curios.api.extensions.*;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class SetupEvents {
+
+    @SubscribeEvent
+    public static void commonSetup(FMLCommonSetupEvent event){
+        MalumBlocks.addPottedBlocks(event);
+    }
 
     @SubscribeEvent
     public static void registerCurioExtensions(RegisterCuriosExtensionsEvent event) {

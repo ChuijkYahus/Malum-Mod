@@ -151,12 +151,12 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                 Entity target = result.getEntity();
                 hitEntities.add(target);
                 target.invulnerableTime = 0;
-                DamageSource source = DamageTypeHelper.create(level(), MalumDataTypes.VOODOO, this, owner);
+                DamageSource source = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner);
                 boolean success = target.hurt(source, magicDamage);
                 if (success && target instanceof LivingEntity livingEntity) {
                     int slashCount = 6;
-                    var physicalDamageType = MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
-                    var magicDamageType = MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
+                    var physicalDamageType = MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
+                    var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
                     int delay = 8;
                     float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
                     SoundHelper.playSound(this, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
@@ -216,6 +216,9 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         if (level() instanceof ServerLevel level) {
             var aabb = getBoundingBox().inflate(2);
             for (Entity target : level.getEntities(this, aabb, this::canHitEntityStupidCopy)) {
+                if (getOwner() instanceof LivingEntity owner && target.isAlliedTo(owner)) {
+                    continue;
+                }
                 onHit(new EntityHitResult(target));
             }
             if (age % 20 == 0) {
@@ -235,7 +238,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                         SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             TemporarilyDisabledItem.enable(player, slot);
-                            SunderingAnchorItem.applyCooldown(getWeaponItem(), player);
+                            SunderingAnchorItem.applyCooldown(getItem(), player);
                         }
                         remove(RemovalReason.DISCARDED);
                     }

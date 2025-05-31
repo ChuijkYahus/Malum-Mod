@@ -75,14 +75,14 @@ public class AscensionHandler {
 
             boolean dealtDamage = false;
             for (Entity target : serverLevel.getEntities(player, aabb, t -> ascensionCanHitEntity(player, t))) {
-                var damageSource = DamageTypeHelper.create(serverLevel, MalumDataTypes.SCYTHE_ASCENSION, player);
+                var damageSource = DamageTypeHelper.create(serverLevel, MalumDamageTypes.SCYTHE_ASCENSION, player);
                 target.invulnerableTime = 0;
                 boolean success = target.hurt(damageSource, baseDamage);
                 if (success && target instanceof LivingEntity livingentity) {
                     if (magicDamage > 0) {
                         if (!livingentity.isDeadOrDying()) {
                             livingentity.invulnerableTime = 0;
-                            livingentity.hurt(DamageTypeHelper.create(serverLevel, MalumDataTypes.VOODOO, player), magicDamage);
+                            livingentity.hurt(DamageTypeHelper.create(serverLevel, MalumDamageTypes.VOODOO, player), magicDamage);
                         }
                     }
                     SoundHelper.playSound(player, sound, 2.0f, RandomHelper.randomBetween(random, 0.75f, 1.25f));

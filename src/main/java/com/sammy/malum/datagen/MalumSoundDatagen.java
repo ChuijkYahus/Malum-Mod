@@ -304,13 +304,6 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.MAJOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/blight_motif", 6)));
         this.add(MalumSoundEvents.MINOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/minor_blight_motif", 6)));
 
-
-
-        this.add(MalumSoundEvents.CALCIFIED_BLIGHT_BREAK, s -> definition(s).with(sounds("blocks/calcified_blight/break", 4)));
-        this.add(MalumSoundEvents.CALCIFIED_BLIGHT_STEP, s -> definition(s).with(sounds("blocks/calcified_blight/hit", 4)));
-        this.add(MalumSoundEvents.CALCIFIED_BLIGHT_PLACE, s -> definition(s).with(sounds("blocks/calcified_blight/break", 4)));
-        this.add(MalumSoundEvents.CALCIFIED_BLIGHT_HIT, s -> definition(s).with(sounds("blocks/calcified_blight/hit", 4)));
-
         this.add(MalumSoundEvents.ETHER_BREAK, s -> definition(s).with(sounds("blocks/ether/break", 4)));
         this.add(MalumSoundEvents.ETHER_PLACE, s -> definition(s).with(sounds("blocks/ether/break", 4)));
 

@@ -51,7 +51,7 @@ public class InvertedHeartAuthority extends GeasEffect {
         if (event.getSource().is(MalumTags.DamageTypeTags.INVERTED_HEART_RETALIATION_BLACKLIST)) {
             return;
         }
-        damageTargets(target, null, MalumDataTypes.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
+        damageTargets(target, null, MalumDamageTypes.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class InvertedHeartAuthority extends GeasEffect {
             return;
         }
         var damage = event.getNewDamage() / 2f;
-        damageTargets(attacker, target, MalumDataTypes.INVERTED_HEART_PROPAGATION, damage);
+        damageTargets(attacker, target, MalumDamageTypes.INVERTED_HEART_PROPAGATION, damage);
     }
 
     @Override

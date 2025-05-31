@@ -62,7 +62,7 @@ public class BerserkerGeas extends GeasEffect {
         if (target.level().isClientSide) {
             return;
         }
-        if (event.getSource().is(MalumDataTypes.BERSERKER_SPIRIT_IMPACT)) {
+        if (event.getSource().is(MalumDamageTypes.BERSERKER_SPIRIT_IMPACT)) {
             return;
         }
         if (storedDamage >= 4) {
@@ -72,7 +72,7 @@ public class BerserkerGeas extends GeasEffect {
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker)
                                 .setDamageData(0, 2, 10+i*2)
-                                .setMagicDamageType(MalumDataTypes.BERSERKER_SPIRIT_IMPACT)
+                                .setMagicDamageType(MalumDamageTypes.BERSERKER_SPIRIT_IMPACT)
                                 .setImpactParticleEffect(MalumParticleEffectTypes.BERSERKER_IMPACT, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
                                 .setSound(MalumSoundEvents.BERSERKER_WRATH, 0.7f, 1.3f, 1));
             }

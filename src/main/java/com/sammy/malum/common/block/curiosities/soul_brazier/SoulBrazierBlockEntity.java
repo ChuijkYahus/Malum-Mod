@@ -274,7 +274,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         UUID uuid = entity.getUUID();
         if (!sacrificedTargets.contains(uuid)) {
             sacrificedTargets.add(uuid);
-            entity.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), entity.getMaxHealth()/4f);
+            entity.hurt(DamageTypeHelper.create(level, MalumDamageTypes.KARMIC), entity.getMaxHealth()/4f);
             level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
 
             MalumParticleEffectTypes.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
@@ -326,7 +326,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 success = GeasEffectHandler.removeGeasEffect(target, recipe.geas);
             }
             if (!success) {
-                target.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), target.getMaxHealth() / 2f);
+                target.hurt(DamageTypeHelper.create(level, MalumDamageTypes.KARMIC), target.getMaxHealth() / 2f);
             }
         }
         MalumParticleEffectTypes.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)

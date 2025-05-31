@@ -2,6 +2,7 @@
   "values": [
     "#minecraft:moss_replaceable",
     "#minecraft:sand",
-    "minecraft:clay"
+    "minecraft:clay",
+    "minecraft:gravel"
   ]
 }

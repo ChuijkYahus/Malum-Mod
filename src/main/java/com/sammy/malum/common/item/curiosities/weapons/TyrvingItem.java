@@ -48,13 +48,13 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
             }
             if (target.isAlive()) {
                 target.invulnerableTime = 0;
-                target.hurt(DamageTypeHelper.create(level, MalumDataTypes.TYRVING, attacker), magicDamage);
+                target.hurt(DamageTypeHelper.create(level, MalumDamageTypes.TYRVING, attacker), magicDamage);
             }
             if (target.isAlive()) {
                 WorldEventHandler.addWorldEvent(level,
                         new DelayedDamageWorldEvent(target)
                                 .setAttacker(attacker)
-                                .setMagicDamageType(MalumDataTypes.TYRVING)
+                                .setMagicDamageType(MalumDamageTypes.TYRVING)
                                 .setDamageData(0, magicDamage, 3));
             }
 

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.entity.nitrate;
 
-import com.sammy.malum.registry.common.MalumDataTypes;
+import com.sammy.malum.registry.common.MalumDamageTypes;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
@@ -33,7 +33,7 @@ public class NitrateExplosion extends Explosion {
     }
 
     public static NitrateExplosion explode(Level level, @Nullable Entity source, @Nullable ExplosionDamageCalculator damageCalculator, double x, double y, double z, float radius, boolean spawnParticles) {
-        var damageSource = DamageTypeHelper.create(level, source != null ? MalumDataTypes.NITRATE : MalumDataTypes.NITRATE_PLAYERLESS, source);
+        var damageSource = DamageTypeHelper.create(level, source != null ? MalumDamageTypes.NITRATE : MalumDamageTypes.NITRATE_PLAYERLESS, source);
         var explosion = new NitrateExplosion(
                 level, source, damageSource, damageCalculator,
                 x, y, z, radius, false,

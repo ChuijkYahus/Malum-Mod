@@ -64,7 +64,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
             if (direction.equals(totemPoleState.getValue(BlockStateProperties.HORIZONTAL_FACING))) {
                 return;
             }
-            var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(ClingingBlightBlock.BLIGHT_TYPE, ClingingBlightBlock.BlightType.SOULWOOD_SPIKE);
+            var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(CreepingBlightBlock.BLIGHT_TYPE, CreepingBlightBlock.BlightType.SOULWOOD_SPIKE);
             placeBlock(level, pos.relative(direction), state);
         }
     }

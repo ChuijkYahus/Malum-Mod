@@ -75,14 +75,14 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        var stack = player.getItemInHand(usedHand);
         if (EntityHelper.pick(player) instanceof BlockHitResult blockHitResult) {
             if (level.getBlockState(blockHitResult.getBlockPos()).is(MalumTags.BlockTags.SUNDERING_ANCHOR_KNIFE_BEHAVIOR)) {
-                return InteractionResultHolder.pass(player.getItemInHand(usedHand));
+                return InteractionResultHolder.pass(stack);
             }
         }
-        var weaponItem = player.getWeaponItem();
         if (player.getCooldowns().isOnCooldown(this)) {
-            return InteractionResultHolder.pass(weaponItem);
+            return InteractionResultHolder.pass(stack);
         }
         if (player instanceof ServerPlayer serverPlayer) {
             int slot = usedHand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
@@ -91,15 +91,15 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             Vec3 pos = getProjectileSpawnPos(player, usedHand, 0.5f, 0.5f);
             SunderingAnchorProjectileEntity entity = new SunderingAnchorProjectileEntity(level, pos.x, pos.y, pos.z);
             entity.setData(player, physicalDamage, magicDamage, slot);
-            entity.setItem(weaponItem);
+            entity.setItem(stack);
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
             SoundHelper.playSound(player, MalumSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_THE_ANCHOR);
-            applyCooldown(weaponItem, player);
+            applyCooldown(stack, player);
         }
-        return InteractionResultHolder.success(weaponItem);
+        return InteractionResultHolder.success(stack);
     }
 
     @Override
@@ -120,8 +120,8 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                                 new DelayedDamageWorldEvent(target)
                                         .setAttacker(attacker)
                                         .setDamageData(0, splitDamage, i * 2)
-                                        .setPhysicalDamageType(MalumDataTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO)
-                                        .setMagicDamageType(MalumDataTypes.SUNDERING_ANCHOR_MAGIC_COMBO)
+                                        .setPhysicalDamageType(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO)
+                                        .setMagicDamageType(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO)
                                         .setSound(MalumSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
                     }
                 }
@@ -143,7 +143,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     public static void applyCooldown(ItemStack stack, Player player) {
         if (!player.isCreative()) {
-            int cooldown = 120;
+            int cooldown = 200;
             player.getCooldowns().addCooldown(stack.getItem(), cooldown);
         }
     }

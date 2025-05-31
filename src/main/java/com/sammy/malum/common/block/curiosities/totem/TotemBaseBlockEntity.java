@@ -46,7 +46,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public TotemRiteState state = TotemRiteState.IDLE;
     public TotemicRiteType activeRite;
-    private List<BlockPos> totemPolePositions = new ArrayList<>();
+    private final List<BlockPos> totemPolePositions = new ArrayList<>();
     private Direction direction;
     public int timer;
 
@@ -59,7 +59,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
-        this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
+          this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
     }
 
     @Override

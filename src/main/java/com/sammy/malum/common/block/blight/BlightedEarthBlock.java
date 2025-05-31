@@ -1,11 +1,8 @@
 package com.sammy.malum.common.block.blight;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.common.worldgen.blight.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -19,11 +16,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-
-import javax.annotation.*;
-import java.awt.*;
 
 public class BlightedEarthBlock extends Block implements BonemealableBlock {
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
@@ -55,12 +47,12 @@ public class BlightedEarthBlock extends Block implements BonemealableBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level instanceof ServerLevel serverLevel) {
-            if (stack.getItem() instanceof SpiritShardItem shardItem) {
+            if (stack.getItem() instanceof SpiritShardItem) {
                 if (!player.isCreative()) {
                     stack.shrink(1);
                 }
                 serverLevel.levelEvent(1505, pos, 0);
-                spread(serverLevel, pos, shardItem.type);
+                performBonemeal(serverLevel, level.random, pos, state);
                 return ItemInteractionResult.SUCCESS;
             }
         }
@@ -79,14 +71,8 @@ public class BlightedEarthBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
-        spread(pLevel, pPos, MalumSpiritTypes.EARTHEN_SPIRIT);
-    }
-
-    public void spread(ServerLevel pLevel, BlockPos pPos, MalumSpiritType spiritType) {
         pLevel.playSound(null, pPos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 0.8f, 0.8f);
         pLevel.playSound(null, pPos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1.2f, 0.8f);
-        var filler = BlightFeature.generateBlight(pLevel, pPos, 6);
-        filler.fill(pLevel);
-        ActiveBlightWorldEvent.createBlightVFX(pLevel, pPos, filler, spiritType);
+        BlightFeature.generateBlightWithVisuals(pLevel, pPos, true, 6).place(pLevel);
     }
 }

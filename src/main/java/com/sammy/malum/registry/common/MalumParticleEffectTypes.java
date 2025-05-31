@@ -21,7 +21,8 @@ import com.sammy.malum.visual_effects.networked.weeping_well.*;
 public class MalumParticleEffectTypes {
 
     //Blight vfx
-    public static final BlightPropagationParticleEffect BLIGHTING_MIST = new BlightPropagationParticleEffect("blight_propagation");
+    public static final BlightPropagationParticleEffect BLIGHT_PROPAGATION = new BlightPropagationParticleEffect("blight_propagation");
+    public static final BlightPlantGrowthParticleEffect BLIGHT_PLANT_GROWTH = new BlightPlantGrowthParticleEffect("blight_plant_growth");
 
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");
@@ -40,6 +41,7 @@ public class MalumParticleEffectTypes {
     public static final EntityTotemParticleEffect ENTITY_RITE_EFFECT = new EntityTotemParticleEffect("entity_rite_effect");
     public static final BlockTotemParticleEffect BLOCK_RITE_EFFECT = new BlockTotemParticleEffect("block_rite_effect");
     public static final BlockFallTotemParticleEffect BLOCK_FALL_RITE_EFFECT = new BlockFallTotemParticleEffect("block_fall_rite_effect");
+    public static final BlockGrowTotemParticleEffect BLOCK_GROW_RITE_EFFECT = new BlockGrowTotemParticleEffect("block_grow_rite_effect");
 
     //Soulbinding Brazier
     public static final SoulBrazierStartParticleEffect SOULBINDING_BRAZIER_BEGINS = new SoulBrazierStartParticleEffect("brazier_start");

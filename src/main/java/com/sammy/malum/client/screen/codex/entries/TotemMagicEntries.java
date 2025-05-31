@@ -180,10 +180,8 @@ public class TotemMagicEntries {
                 .addPage(new HeadlineTextPage("soulwood.blight", "soulwood.blight.1"))
                 .addPage(new HeadlineTextPage("soulwood.bonemeal", "soulwood.bonemeal.1"))
                 .addPage(new HeadlineTextPage("soulwood.cursed_sap", "soulwood.cursed_sap.1"))
-                .addPage(new CyclingPage(
-                        new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()),
-                        new CraftingPage(new ItemStack(CURSED_SAP_BLOCK.get(), 8), CURSED_SAP.get(), CURSED_SAP.get(), EMPTY, CURSED_SAP.get(), CURSED_SAP.get()))
-                ));
+                .addPage(new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()))
+        );
 
         screen.addEntry("unchained_transmutation", 0, 18, b -> b
                 .configureWidget(w -> w.setIcon(SOUL_SAND).setStyle(BookWidgetStyle.SOULWOOD))

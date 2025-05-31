@@ -44,7 +44,7 @@ public abstract class TotemicRiteType {
         if (!riteCategory.equals(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT)) {
             tooltip.add(createDescriptionComponent(COVERAGE, riteEffect.getRiteCoverageDescriptor()));
         }
-        tooltip.add(createDescriptionComponent(EFFECT, (corrupted ? EFFECT : CORRUPTED_EFFECT) + "." + identifier));
+        tooltip.add(createDescriptionComponent(EFFECT, (corrupted ? CORRUPTED_EFFECT : EFFECT) + "." + identifier));
         return tooltip;
     }
 

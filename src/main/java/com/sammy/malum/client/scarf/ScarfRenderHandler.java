@@ -28,12 +28,16 @@ public class ScarfRenderHandler {
     public static final WeakHashMap<LivingEntity, ScarfRenderData> SCARF_DATA = new WeakHashMap<>();
 
     public static void tickScarfData(ClientTickEvent event) {
-        SCARF_DATA.entrySet().removeIf(e -> !e.getValue().isValid.get());
+        ArrayList<LivingEntity> toRemove = new ArrayList<>();
         for (Map.Entry<LivingEntity, ScarfRenderData> entry : SCARF_DATA.entrySet()) {
             final ScarfRenderData data = entry.getValue();
             final LivingEntity entity = entry.getKey();
             data.tick(entity);
+            if (!data.isValid(entity)) {
+                toRemove.add(entity);
+            }
         }
+        toRemove.forEach(SCARF_DATA::remove);
     }
     public static void renderScarfData(RenderLevelStageEvent event) {
         PoseStack poseStack = event.getPoseStack();
@@ -73,6 +77,10 @@ public class ScarfRenderHandler {
         public ScarfRenderData(RenderTypeToken token, int trailLength) {
             this.token = token;
             this.points = new TrailPointBuilder(()->trailLength);
+        }
+
+        public boolean isValid(LivingEntity entity) {
+            return isValid.get() && !entity.isRemoved() && !entity.isDeadOrDying();
         }
 
         public ScarfRenderData setPrimaryColor(Color primaryColor) {

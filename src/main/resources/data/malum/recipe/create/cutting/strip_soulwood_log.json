@@ -8,13 +8,13 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "malum:soulwood_log"
+      "id": "malum:soulwood_log"
     }
   ],
   "results": [
     {
-      "item": "malum:stripped_soulwood_log"
+      "id": "malum:stripped_soulwood_log"
     }
   ],
-  "processingTime": 50
+  "processing_time": 50
 }

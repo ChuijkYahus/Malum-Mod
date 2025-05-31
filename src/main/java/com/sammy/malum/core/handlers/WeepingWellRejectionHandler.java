@@ -106,7 +106,7 @@ public class WeepingWellRejectionHandler {
             });
             MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             if (!player.isCreative()) {
-                player.hurt(DamageTypeHelper.create(level, MalumDataTypes.VOID), 4);
+                player.hurt(DamageTypeHelper.create(level, MalumDamageTypes.VOID), 4);
             }
             if (!progression.hasBeenRejected) {
                 SoulHarvestHandler.spawnSpirits(level, player, player.position(), List.of(MalumItems.UMBRAL_SPIRIT.get().getDefaultInstance()));

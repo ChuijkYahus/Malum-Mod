@@ -47,7 +47,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }
-        if (!event.getSource().is(MalumDataTypes.SCYTHE_MELEE)) {
+        if (!event.getSource().is(MalumDamageTypes.SCYTHE_MELEE)) {
             return;
         }
         var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
@@ -70,7 +70,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
             if (e instanceof LivingEntity sweepTarget) {
                 if (sweepTarget.isAlive() && sweepTarget != target) {
-                    sweepTarget.hurt((DamageTypeHelper.create(level, MalumDataTypes.SCYTHE_SWEEP, attacker)), damage);
+                    sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
                     sweepTarget.knockback(0.4F,
                             Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
                             (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
@@ -100,7 +100,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
 
     public static DamageSource replaceDamageSource(Player player, DamageSource source) {
         if (player.getMainHandItem().is(MalumTags.ItemTags.SCYTHES)) {
-            return DamageTypeHelper.create(player.level(), MalumDataTypes.SCYTHE_MELEE, player);
+            return DamageTypeHelper.create(player.level(), MalumDamageTypes.SCYTHE_MELEE, player);
         }
         return source;
     }

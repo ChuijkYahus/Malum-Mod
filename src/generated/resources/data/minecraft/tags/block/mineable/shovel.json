@@ -1,12 +1,6 @@
 {
   "values": [
     "malum:blighted_earth",
-    "malum:blight",
-    "malum:blighted_growth",
-    "malum:blightpearl",
-    "malum:blightroot",
-    "malum:clinging_blight",
-    "malum:mass_of_blighted_gunk",
     "malum:block_of_void_salts"
   ]
 }

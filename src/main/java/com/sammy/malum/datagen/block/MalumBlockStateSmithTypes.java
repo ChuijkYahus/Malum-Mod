@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
+import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
@@ -25,6 +26,39 @@ import java.util.function.Function;
 import static com.sammy.malum.MalumMod.malumPath;
 
 public class MalumBlockStateSmithTypes {
+
+    //TODO: Move this goober to lodestone
+    public static BlockStateSmith<FlowerPotBlock> POTTED_PLANT = new BlockStateSmith<>(FlowerPotBlock.class, MalumItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ResourceLocation texture = provider.getBlockTexture(name.replace("potted_", ""));
+        provider.simpleBlock(block, provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/flower_pot_cross")).texture("plant", texture));
+    });
+
+    //TODO: Move this goober to lodestone
+    public static BlockStateSmith<BlightedCoverageBlock> COVERING_BLOCK = new BlockStateSmith<>(BlightedCoverageBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ModelFile model = provider.models().withExistingParent(name, MalumMod.malumPath("block/templates/template_covering"))
+                .texture("covering", provider.getBlockTexture(name));
+        MultiPartBlockStateBuilder multipartBuilder = provider.getMultipartBuilder(block);
+        for (Direction direction : Direction.values()) {
+            BooleanProperty property = (BooleanProperty) block.defaultBlockState().getProperties().stream().filter(p -> p.getName().equals(direction.getName())).findFirst().orElseThrow();
+            int yRotation = ((int) direction.toYRot() + 180) % 360;
+            int xRotation = 0;
+            if (direction.getAxis().isVertical()) {
+                xRotation = direction.equals(Direction.UP) ? 270 : 90;
+            }
+            multipartBuilder.part().modelFile(model).rotationY(yRotation).rotationX(xRotation).addModel()
+                    .condition(property, true).end();
+
+            //handles the situation where the block is all alone, not connected to anything
+            final MultiPartBlockStateBuilder.PartBuilder partBuilder = multipartBuilder.part().modelFile(model).rotationY(yRotation).rotationX(xRotation).addModel();
+            for (Direction again : Direction.values()) {
+                property = (BooleanProperty) block.defaultBlockState().getProperties().stream().filter(p -> p.getName().equals(again.getName())).findFirst().orElseThrow();
+                partBuilder.condition(property, false);
+            }
+            partBuilder.end();
+        }
+    });
 
     public static BlockStateSmith<TotemPoleBlock> TOTEM_POLE = new BlockStateSmith<>(TotemPoleBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         String name = provider.getBlockName(block);
@@ -117,55 +151,54 @@ public class MalumBlockStateSmithTypes {
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(PrimordialSoupBlock.TOP) ? topModel : model).build());
     });
 
-    public static BlockStateSmith<ClingingBlightBlock> CLINGING_BLIGHT = new BlockStateSmith<>(ClingingBlightBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+
+    public static BlockStateSmith<LargeStrangeCrystalBlock> LARGE_STRANGE_CRYSTAL = new BlockStateSmith<>(LargeStrangeCrystalBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
-        ResourceLocation creeping = malumPath("block/templates/template_creeping_blight");
-        ResourceLocation creepingWall = malumPath("block/templates/template_creeping_blight_wall");
-        ResourceLocation creepingCeiling = malumPath("block/templates/template_creeping_blight_ceiling");
+        provider.getVariantBuilder(block)
+                .forAllStates(state -> {
+                    ResourceLocation upper = provider.getBlockTexture(name+"_upper");
+                    ResourceLocation lower = provider.getBlockTexture(name+"_lower");
+                    final DoubleBlockHalf half = state.getValue(LargeStrangeCrystalBlock.HALF);
+                    boolean isTop = half.equals(DoubleBlockHalf.UPPER);
+                    var model = provider.models().cross(name+"_"+half.getSerializedName(), isTop ? upper : lower);
+                    return ConfiguredModel.builder().modelFile(model).build();
+                });
+    });
+
+    public static BlockStateSmith<CreepingBlightBlock> CREEPING_BLIGHT = new BlockStateSmith<>(CreepingBlightBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ResourceLocation roots = malumPath("block/templates/blight/template_soulwood_roots");
+        ResourceLocation spike = malumPath("block/templates/blight/template_soulwood_spike");
+        ResourceLocation clinging = malumPath("block/templates/blight/template_clinging_blight");
+        ResourceLocation hanging = malumPath("block/templates/blight/template_hanging_blight");
+
         provider.getVariantBuilder(block).forAllStates(s -> {
-            final ClingingBlightBlock.BlightType value = s.getValue(ClingingBlightBlock.BLIGHT_TYPE);
-            final String valueName = value.getSerializedName();
-            ResourceLocation parent = creepingWall;
-            if (value.equals(ClingingBlightBlock.BlightType.HANGING_ROOTS) || value.equals(ClingingBlightBlock.BlightType.GROUNDED_ROOTS) || value.equals(ClingingBlightBlock.BlightType.HANGING_BLIGHT_CONNECTION)) {
-                parent = creeping;
+            CreepingBlightBlock.BlightType value = s.getValue(CreepingBlightBlock.BLIGHT_TYPE);
+            String valueName = value.getSerializedName();
+            ResourceLocation parent = switch (value) {
+                case SOULWOOD_ROOTS -> roots;
+                case SOULWOOD_SPIKE -> spike;
+                case CLINGING_BLIGHT -> clinging;
+                case HANGING_BLIGHT -> hanging;
+            };
+            ResourceLocation large = provider.getBlockTexture(valueName+"_large");
+            ResourceLocation largeExtension = provider.getBlockTexture(valueName+"_large_extension");
+            ResourceLocation side = provider.getBlockTexture(valueName +"_small");
+            var model = provider.models().withExistingParent(name+"_"+ valueName, parent)
+                    .texture("large", large)
+                    .texture("large_extension", largeExtension)
+                    .texture("small", side)
+                    .texture("particle", large);
+            if (parent.equals(roots)) {
+                ResourceLocation small_extension = provider.getBlockTexture(valueName +"_small_extension");
+                model.texture("small_extension", small_extension);
             }
-            if (value.equals(ClingingBlightBlock.BlightType.HANGING_BLIGHT)) {
-                parent = creepingCeiling;
-            }
-            ResourceLocation texture = provider.getBlockTexture(valueName);
-            ResourceLocation smallTexture = provider.getBlockTexture(valueName +"_small");
-            var model = provider.models().withExistingParent(name+"_"+ valueName, parent).texture("big", texture).texture("small", smallTexture).texture("particle", texture);
-            if (!parent.equals(creeping)) {
+            else {
                 ResourceLocation bracingTexture = provider.getBlockTexture(valueName +"_bracing");
                 model.texture("bracing", bracingTexture);
             }
             return ConfiguredModel.builder().modelFile(model).rotationY(((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
         });
-    });
-
-    public static BlockStateSmith<BlightedCoverageBlock> COVERING_BLOCK = new BlockStateSmith<>(BlightedCoverageBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ModelFile model = provider.models().withExistingParent(name, MalumMod.malumPath("block/templates/template_covering"))
-                .texture("covering", provider.getBlockTexture(name));
-        MultiPartBlockStateBuilder multipartBuilder = provider.getMultipartBuilder(block);
-        for (Direction direction : Direction.values()) {
-            BooleanProperty property = (BooleanProperty) block.defaultBlockState().getProperties().stream().filter(p -> p.getName().equals(direction.getName())).findFirst().orElseThrow();
-            int yRotation = ((int) direction.toYRot() + 180) % 360;
-            int xRotation = 0;
-            if (direction.getAxis().isVertical()) {
-                xRotation = direction.equals(Direction.UP) ? 270 : 90;
-            }
-            multipartBuilder.part().modelFile(model).rotationY(yRotation).rotationX(xRotation).addModel()
-                    .condition(property, true).end();
-
-            //handles the situation where the block is all alone, not connected to anything
-            final MultiPartBlockStateBuilder.PartBuilder partBuilder = multipartBuilder.part().modelFile(model).rotationY(yRotation).rotationX(xRotation).addModel();
-            for (Direction again : Direction.values()) {
-                property = (BooleanProperty) block.defaultBlockState().getProperties().stream().filter(p -> p.getName().equals(again.getName())).findFirst().orElseThrow();
-                partBuilder.condition(property, false);
-            }
-            partBuilder.end();
-        }
     });
 
     public static BlockStateSmith<Block> BLIGHTED_GROWTH = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {

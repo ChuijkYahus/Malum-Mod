@@ -35,8 +35,8 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         Set<DeferredHolder<Block, ? extends Block>> blocks = new HashSet<>(BLOCKS.getEntries());
 
-        tag(MalumTags.BlockTags.BLIGHT_REPLACEABLE).addTags(BlockTags.MOSS_REPLACEABLE, BlockTags.SAND).add(Blocks.CLAY);
-        tag(MalumTags.BlockTags.BLIGHT_REMOVABLE).addTags(BlockTags.FLOWERS, BlockTags.REPLACEABLE).remove(MalumTags.BlockTags.BLIGHTED_PLANTS);
+        tag(MalumTags.BlockTags.BLIGHT_REPLACEABLE).addTags(BlockTags.MOSS_REPLACEABLE, BlockTags.SAND).add(Blocks.CLAY, Blocks.GRAVEL);
+        tag(MalumTags.BlockTags.BLIGHT_REMOVABLE).addTags(BlockTags.FLOWERS, BlockTags.REPLACEABLE).remove(MalumTags.BlockTags.BLIGHTED_PLANTS).remove(MalumBlocks.CLINGING_BLIGHT.get());
 
         tag(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST).add(MalumBlocks.BLIGHTED_EARTH.get());
         tag(MalumTags.BlockTags.IS_RITE_IMMUNE).addTags(MalumTags.BlockTags.TAINTED_ROCK, MalumTags.BlockTags.TWISTED_ROCK, MalumTags.BlockTags.WEEPING_WELL);

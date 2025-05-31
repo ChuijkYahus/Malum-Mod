@@ -38,7 +38,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
 
-@EventBusSubscriber
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME)
 public class RuntimeEvents {
 
     @SubscribeEvent
@@ -134,7 +134,7 @@ public class RuntimeEvents {
     public static void onPotionApplied(MobEffectEvent.Added event) {
         GluttonyEffect.removeExistingHunger(event);
         RuneTwinnedDurationItem.scaleDuration(event);
-        RuneAlimentCleansingItem.scaleDuration(event);
+        RuneAilmentCleansingItem.scaleDuration(event);
     }
 
     @SubscribeEvent

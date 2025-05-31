@@ -10,9 +10,7 @@ import java.util.*;
 
 public class WorldgenHelper {
 
-    public static final Direction[] DIRECTIONS = new Direction[]{Direction.NORTH, Direction.WEST, Direction.SOUTH, Direction.EAST};
-
-    public static void updateLeaves(LevelAccessor pLevel, Set<BlockPos> logPositions) {
+    public static void updateLeaves(LevelAccessor pLevel, Collection<BlockPos> logPositions) {
         List<Set<BlockPos>> list = Lists.newArrayList();
         for (int j = 0; j < 6; ++j) {
             list.add(Sets.newHashSet());

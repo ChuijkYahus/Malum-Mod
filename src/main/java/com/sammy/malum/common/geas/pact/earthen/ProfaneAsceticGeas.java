@@ -64,7 +64,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
             if (food.is(GROSS_FOODS)) {
                 livingEntity.heal(livingEntity.getMaxHealth() / 5);
             } else {
-                livingEntity.hurt(DamageTypeHelper.create(level, MalumDataTypes.KARMIC), livingEntity.getMaxHealth() / 2);
+                livingEntity.hurt(DamageTypeHelper.create(level, MalumDamageTypes.KARMIC), livingEntity.getMaxHealth() / 2);
             }
         }
     }

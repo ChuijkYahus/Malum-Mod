@@ -3,7 +3,11 @@ package com.sammy.malum.common.recipe;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.systems.recipe.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.recipe.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -47,7 +51,21 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
     public ItemStack getOutput(ItemStack input) {
         ItemStack outputStack = output.copy();
         if (carryOverComponentData) {
-            outputStack.applyComponents(input.getComponents());
+            List<DataComponentType<?>> toCopy = new ArrayList<>();
+            for (TypedDataComponent<?> component : input.getComponents()) {
+                var key = BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(component.type());
+                if (key == null) {
+                    throw new IllegalArgumentException("Data component type " + component.type() + " is not registered, somehow.");
+                }
+                Holder<DataComponentType<?>> holder = BuiltInRegistries.DATA_COMPONENT_TYPE.getHolder(key).orElseThrow();
+                if (holder.is(MalumTags.DataComponentTags.SPIRIT_INFUSION_BLACKLIST)) {
+                    continue;
+                }
+                toCopy.add(component.type());
+            }
+            for (DataComponentType<?> dataComponentType : toCopy) {
+                outputStack.copyFrom(input, dataComponentType);
+            }
         }
         return outputStack;
     }

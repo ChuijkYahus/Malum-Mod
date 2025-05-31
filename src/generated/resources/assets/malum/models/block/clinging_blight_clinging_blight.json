@@ -1,0 +1,10 @@
+{
+  "parent": "malum:block/templates/blight/template_clinging_blight",
+  "textures": {
+    "bracing": "malum:block/blight/clinging_blight_bracing",
+    "large": "malum:block/blight/clinging_blight_large",
+    "large_extension": "malum:block/blight/clinging_blight_large_extension",
+    "particle": "malum:block/blight/clinging_blight_large",
+    "small": "malum:block/blight/clinging_blight_small"
+  }
+}

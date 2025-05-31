@@ -1,6 +1,7 @@
 {
   "remove": [
-    "#malum:blighted_plants"
+    "#malum:blighted_plants",
+    "malum:clinging_blight"
   ],
   "values": [
     "#minecraft:flowers",

@@ -8,7 +8,7 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "item": "malum:arcane_charcoal"
+      "id": "malum:arcane_charcoal"
     }
   ],
   "processing_time": 100,
