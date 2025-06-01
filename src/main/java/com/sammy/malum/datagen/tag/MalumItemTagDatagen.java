@@ -108,7 +108,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addOptional(ResourceLocation.parse("irons_spellbooks:keeper_flamberge"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:spellbreaker"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:amethyst_rapier"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:irons_spellbooks:pyrium_staff"))
+                .addOptional(ResourceLocation.parse("irons_spellbooks:pyrium_staff"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:legionnaire_flamberge"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:decrepit_scythe"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:hellrazor"))
