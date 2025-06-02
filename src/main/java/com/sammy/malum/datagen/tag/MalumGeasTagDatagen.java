@@ -12,6 +12,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.*;
 
 public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectType> {
 
@@ -27,9 +28,11 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        Set<DeferredHolder<GeasEffectType, ? extends GeasEffectType>> gease = new HashSet<>(MalumGeasEffectTypes.GEAS_TYPES.getEntries());
-
-        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> holder : gease) {
+        var gease = new HashSet<>(MalumGeasEffectTypes.GEAS_TYPES.getEntries());
+        var sorted = gease.stream()
+                .sorted(Comparator.comparing(DeferredHolder::getId))
+                .toList();
+        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> holder : sorted) {
             var geas = holder.get();
             geas.getId();
             var id = holder.getId();

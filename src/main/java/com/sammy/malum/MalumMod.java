@@ -55,6 +55,8 @@ public class MalumMod {
         IronsSpellsCompat.init();
         CreateCompat.init();
 
+        MalumRegistryAliases.registerAliases();
+
         BLOCKS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         COMPONENTS.register(modEventBus);

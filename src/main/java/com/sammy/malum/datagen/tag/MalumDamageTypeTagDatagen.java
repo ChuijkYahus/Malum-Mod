@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.tag;
 
+import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.HolderLookup.*;
@@ -10,120 +11,139 @@ import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.function.*;
 
+import static com.sammy.malum.registry.common.MalumDamageTypes.*;
 import static com.sammy.malum.registry.common.MalumTags.DamageTypeTags.*;
 import static net.minecraft.tags.DamageTypeTags.*;
-import static net.neoforged.neoforge.common.Tags.DamageTypes.IS_PHYSICAL;
+import static net.minecraft.world.damagesource.DamageTypes.*;
+import static net.neoforged.neoforge.common.Tags.DamageTypes.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags.*;
+import static team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags.IS_MAGIC;
 
 public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
 
+    private static MalumDamageTypeTagDatagen DATAGEN;
+
     public MalumDamageTypeTagDatagen(PackOutput pOutput, CompletableFuture<Provider> pProvider, ExistingFileHelper existingFileHelper) {
         super(pOutput, pProvider, MalumMod.MALUM, existingFileHelper);
+        DATAGEN = this;
     }
+
+    private final Function<ResourceKey<DamageType>, TagBuilder> MAGIC = type -> {
+        final TagBuilder builder = addTag(type);
+        builder.add(IS_MAGIC, SOUL_SHATTER_DAMAGE, BYPASSES_COOLDOWN, AVOIDS_GUARDIAN_THORNS, PANIC_CAUSES);
+        builder.remove(BYPASSES_SHIELD);
+        return builder;
+    };
+    private final Function<ResourceKey<DamageType>, TagBuilder> PHYSICAL = type -> {
+        final TagBuilder builder = addTag(type);
+        builder.add(IS_PHYSICAL, PANIC_CAUSES, CAN_BREAK_ARMOR_STAND);
+        return builder;
+    };
+    private final Function<ResourceKey<DamageType>, TagBuilder> SCYTHE = type -> {
+        final TagBuilder builder = addTag(type);
+        builder.add(IS_PHYSICAL, IS_SCYTHE, SOUL_SHATTER_DAMAGE, PANIC_CAUSES, CAN_BREAK_ARMOR_STAND);
+        return builder;
+    };
+    private final Function<ResourceKey<DamageType>, TagBuilder> TRUE_DAMAGE = type -> {
+        final TagBuilder builder = addTag(type);
+        builder.add(BYPASSES_ARMOR, BYPASSES_SHIELD, BYPASSES_INVULNERABILITY, BYPASSES_COOLDOWN, BYPASSES_EFFECTS, BYPASSES_RESISTANCE, BYPASSES_ENCHANTMENTS);
+        return builder;
+    };
+
 
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(Provider pProvider) {
-        var genericMagic = List.of(IS_MAGIC, SOUL_SHATTER_DAMAGE, BYPASSES_COOLDOWN, NO_KNOCKBACK, AVOIDS_GUARDIAN_THORNS, PANIC_CAUSES);
-        var genericPhysical = List.of(IS_PHYSICAL, PANIC_CAUSES, CAN_BREAK_ARMOR_STAND);
-        var genericScythe = List.of(IS_SCYTHE, SOUL_SHATTER_DAMAGE, PANIC_CAUSES, CAN_BREAK_ARMOR_STAND);
-        var genericPhysicalScythe = List.of(IS_PHYSICAL, IS_SCYTHE, SOUL_SHATTER_DAMAGE, PANIC_CAUSES, CAN_BREAK_ARMOR_STAND);
-        var hiddenBlade = List.of(IS_PHYSICAL, IS_SCYTHE, SOUL_SHATTER_DAMAGE, PANIC_CAUSES);
-        var trueDamage = List.of(BYPASSES_ARMOR, BYPASSES_SHIELD, BYPASSES_INVULNERABILITY, BYPASSES_COOLDOWN, BYPASSES_EFFECTS, BYPASSES_RESISTANCE, BYPASSES_ENCHANTMENTS);
+        MAGIC.apply(VOODOO).add(NO_KNOCKBACK);
+        MAGIC.apply(VOODOO_PLAYERLESS).add(NO_KNOCKBACK);
 
-        addTags(MalumDamageTypes.VOODOO, genericMagic);
-        addTags(MalumDamageTypes.VOODOO_PLAYERLESS, genericMagic);
+        MAGIC.apply(NITRATE).add(IS_NITRATE, IS_EXPLOSION);
+        MAGIC.apply(NITRATE_PLAYERLESS).add(IS_NITRATE, IS_EXPLOSION);
 
-        addTags(MalumDamageTypes.NITRATE, genericMagic, IS_NITRATE, IS_EXPLOSION);
-        addTags(MalumDamageTypes.NITRATE_PLAYERLESS, genericMagic, IS_NITRATE, IS_EXPLOSION);
+        TRUE_DAMAGE.apply(VOID).add(IS_MAGIC, NO_KNOCKBACK);
 
-        addManyTags(MalumDamageTypes.VOID, genericMagic, trueDamage);
-        addTags(MalumDamageTypes.KARMIC, genericMagic);
-        addTags(MalumDamageTypes.ROT, genericMagic);
+        MAGIC.apply(KARMIC).add(NO_KNOCKBACK);
+        MAGIC.apply(ROT).add(NO_KNOCKBACK);
 
-        addTags(MalumDamageTypes.SCYTHE_MELEE, genericPhysicalScythe, CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE, IS_PLAYER_ATTACK);
-        addTags(MalumDamageTypes.SCYTHE_SWEEP, genericPhysicalScythe, CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE);
-        addTags(MalumDamageTypes.SCYTHE_REBOUND, genericPhysicalScythe, CAN_TRIGGER_MAGIC, IS_PROJECTILE);
-        addTags(MalumDamageTypes.SCYTHE_ASCENSION, genericPhysicalScythe, CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE);
-        addTags(MalumDamageTypes.SCYTHE_COMBO, genericPhysicalScythe, BYPASSES_COOLDOWN, NO_KNOCKBACK);
-        addTags(MalumDamageTypes.SCYTHE_MAELSTROM, genericPhysicalScythe, BYPASSES_COOLDOWN, NO_KNOCKBACK);
+        SCYTHE.apply(SCYTHE_MELEE).add(CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE, IS_PLAYER_ATTACK);
+        SCYTHE.apply(SCYTHE_SWEEP).add(CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE);
+        SCYTHE.apply(SCYTHE_REBOUND).add(CAN_TRIGGER_MAGIC, IS_PROJECTILE);
+        SCYTHE.apply(SCYTHE_ASCENSION).add(CAN_TRIGGER_MAGIC, IS_SCYTHE_MELEE);
+        SCYTHE.apply(SCYTHE_COMBO).add(BYPASSES_COOLDOWN, NO_KNOCKBACK);
+        SCYTHE.apply(SCYTHE_MAELSTROM).add(BYPASSES_COOLDOWN, NO_KNOCKBACK);
 
-        addTags(MalumDamageTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, genericScythe, IS_HIDDEN_BLADE, NO_KNOCKBACK);
-        addTags(MalumDamageTypes.HIDDEN_BLADE_MAGIC_COUNTER, genericMagic, IS_SCYTHE, IS_HIDDEN_BLADE, NO_KNOCKBACK);
+        SCYTHE.apply(HIDDEN_BLADE_PHYSICAL_COUNTER).add(IS_HIDDEN_BLADE, BYPASSES_COOLDOWN, NO_KNOCKBACK);
+        MAGIC.apply(HIDDEN_BLADE_MAGIC_COUNTER).add(IS_HIDDEN_BLADE, BYPASSES_COOLDOWN, NO_KNOCKBACK);
+        MAGIC.apply(TYRVING);
 
-        addTags(MalumDamageTypes.TYRVING, genericMagic);
+        PHYSICAL.apply(SUNDERING_ANCHOR_PHYSICAL_COMBO).add(IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK).remove(BYPASSES_SHIELD);
+        MAGIC.apply(SUNDERING_ANCHOR_MAGIC_COMBO).add(IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK).remove(BYPASSES_SHIELD);
 
-        addTags(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, genericPhysical, IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK);
-        addTags(    MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO, genericMagic, IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK);
+        PHYSICAL.apply(UNMAKERS_DISDAIN_COMBO).add(NO_KNOCKBACK);
 
-        addTags(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO, genericPhysical);
+        MAGIC.apply(WARLOCK_SPIRIT_IMPACT);
+        MAGIC.apply(BERSERKER_SPIRIT_IMPACT);
 
-        addTags(MalumDamageTypes.WARLOCK_SPIRIT_IMPACT, genericMagic);
-        addTags(MalumDamageTypes.BERSERKER_SPIRIT_IMPACT, genericMagic);
+        MAGIC.apply(INVERTED_HEART_RETALIATION).add(IS_INVERTED_HEART);
+        MAGIC.apply(INVERTED_HEART_PROPAGATION).add(IS_INVERTED_HEART);
 
-        addTags(MalumDamageTypes.INVERTED_HEART_RETALIATION, genericMagic, IS_INVERTED_HEART);
-        addTags(MalumDamageTypes.INVERTED_HEART_PROPAGATION, genericMagic, IS_INVERTED_HEART);
+        addToTag(INVERTED_HEART_PROPAGATION_BLACKLIST).add(SCYTHE_SWEEP, THORNS).add(IS_INVERTED_HEART, IS_TECHNICAL);
+        addToTag(INVERTED_HEART_RETALIATION_BLACKLIST).add(IS_INVERTED_HEART, IS_TECHNICAL);
 
-        tag(MalumTags.DamageTypeTags.INVERTED_HEART_RETALIATION_BLACKLIST)
-                .addTag(MalumTags.DamageTypeTags.IS_INVERTED_HEART).add(DamageTypes.GENERIC_KILL).addTag(Tags.DamageTypes.IS_TECHNICAL);
-        tag(MalumTags.DamageTypeTags.INVERTED_HEART_PROPAGATION_BLACKLIST)
-                .addTag(MalumTags.DamageTypeTags.IS_INVERTED_HEART).add(MalumDamageTypes.SCYTHE_SWEEP).addTag(Tags.DamageTypes.IS_TECHNICAL);
-
-        tag(MalumTags.DamageTypeTags.GLEEFUL_TARGET_BLACKLIST).addTag(net.minecraft.tags.DamageTypeTags.BYPASSES_ARMOR);
-
-        tag(DamageTypeTags.BYPASSES_SHIELD)
-                .remove(MalumTags.DamageTypeTags.IS_SUNDERING_ANCHOR_COMBO);
-
+        addToTag(GLEEFUL_TARGET_BLACKLIST).add(BYPASSES_ARMOR);
     }
 
-    @SafeVarargs
-    public final void addTags(ResourceKey<DamageType> damageType, TagKey<DamageType>... tags) {
-        addTags(damageType, Arrays.asList(tags));
+    public TagBuilder addTag(ResourceKey<DamageType> target) {
+        return new TagBuilder(target);
     }
-    @SafeVarargs
-    public final void addManyTags(ResourceKey<DamageType> damageType, List<TagKey<DamageType>>... extraTags) {
-        for (List<TagKey<DamageType>> extraTagList : extraTags) {
-            for (TagKey<DamageType> extraTag : extraTagList) {
-                this.tag(extraTag).add(damageType);
+    public TagBuilder addToTag(TagKey<DamageType> target) {
+        return new TagBuilder(target);
+    }
+
+    public static class TagBuilder {
+        private final Either<ResourceKey<DamageType>, TagKey<DamageType>> target;
+
+        public TagBuilder(ResourceKey<DamageType> target) {
+            this.target = Either.left(target);
+        }
+
+        public TagBuilder(TagKey<DamageType> target) {
+            this.target = Either.right(target);
+        }
+
+        @SafeVarargs
+        public final TagBuilder add(TagKey<DamageType>... tags) {
+            return add(List.of(tags));
+        }
+
+        public final TagBuilder add(List<TagKey<DamageType>> tags) {
+            for (TagKey<DamageType> tag : tags) {
+                target.ifLeft(left -> DATAGEN.tag(tag).add(left));
+                target.ifRight(right -> DATAGEN.tag(right).addTag(tag));
             }
+            return this;
         }
-    }
 
-    @SafeVarargs
-    public final void addTags(ResourceKey<DamageType> damageType, List<TagKey<DamageType>> tags, TagKey<DamageType>... extraTags) {
-        for (TagKey<DamageType> tag : tags) {
-            this.tag(tag).add(damageType);
-        }
-        for (TagKey<DamageType> extraTag : extraTags) {
-            this.tag(extraTag).add(damageType);
-        }
-    }
-
-    @SafeVarargs
-    public final void removeTags(ResourceKey<DamageType> damageType, TagKey<DamageType>... tags) {
-        removeTags(damageType, Arrays.asList(tags));
-    }
-    @SafeVarargs
-    public final void removeManyTags(ResourceKey<DamageType> damageType, List<TagKey<DamageType>>... extraTags) {
-        for (List<TagKey<DamageType>> extraTagList : extraTags) {
-            for (TagKey<DamageType> extraTag : extraTagList) {
-                this.tag(extraTag).remove(damageType);
+        @SafeVarargs
+        public final TagBuilder remove(TagKey<DamageType>... damageTypes) {
+            for (TagKey<DamageType> tag : damageTypes) {
+                target.ifLeft(left -> DATAGEN.tag(tag).remove(left));
+                target.ifRight(right -> DATAGEN.tag(right).remove(tag));
             }
+            return this;
         }
-    }
 
-    @SafeVarargs
-    public final void removeTags(ResourceKey<DamageType> damageType, List<TagKey<DamageType>> tags, TagKey<DamageType>... extraTags) {
-        for (TagKey<DamageType> tag : tags) {
-            this.tag(tag).remove(damageType);
-        }
-        for (TagKey<DamageType> extraTag : extraTags) {
-            this.tag(extraTag).remove(damageType);
+        @SafeVarargs
+        public final TagBuilder add(ResourceKey<DamageType>... damageType) {
+            for (ResourceKey<DamageType> type : damageType) {
+                target.ifRight(right -> DATAGEN.tag(right).add(type));
+            }
+            return this;
         }
     }
 }

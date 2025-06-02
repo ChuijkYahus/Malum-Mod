@@ -28,7 +28,6 @@ public class RuneHereticItem extends AbstractRuneCurioItem implements ItemEventH
         consumer.accept(ComponentHelper.positiveCurioEffect("silence"));
     }
 
-
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity attacked, ItemStack stack) {
         if (attacker == null) {

@@ -35,7 +35,7 @@ public class MalumCreativeTabs {
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_scars_of_arcana"))
                     .withTabsBefore(NATURE.getId())
                     .withTabsAfter(MalumMod.malumPath("malum_building"))
-                    .icon(() -> MalumItems.SOULWOOD_GROWTH.get().getDefaultInstance()).build()
+                    .icon(() -> MalumItems.SOULWOOD_SAPLING.get().getDefaultInstance()).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING = CREATIVE_MODE_TABS.register("malum_building",

@@ -26,7 +26,7 @@ public class MaterialSpiritInfusionRecipes {
         spiritedGlassRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_SPIRITED_GLASS.get());
 
         soulwovenBannerRecipe(recipeOutput, SACRED_SPIRIT, SoulwovenBannerPatternDataComponent.SACRED);
-//        soulwovenBannerRecipe(recipeOutput, WICKED_SPIRIT, SoulwovenBannerPatternData.WICKED);
+        soulwovenBannerRecipe(recipeOutput, WICKED_SPIRIT, SoulwovenBannerPatternDataComponent.WICKED);
         soulwovenBannerRecipe(recipeOutput, ARCANE_SPIRIT, SoulwovenBannerPatternDataComponent.ARCANE);
         soulwovenBannerRecipe(recipeOutput, ELDRITCH_SPIRIT, SoulwovenBannerPatternDataComponent.ELDRITCH);
         soulwovenBannerRecipe(recipeOutput, AERIAL_SPIRIT, SoulwovenBannerPatternDataComponent.AERIAL);

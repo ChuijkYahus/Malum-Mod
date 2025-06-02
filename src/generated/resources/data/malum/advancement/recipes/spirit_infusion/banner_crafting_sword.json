@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:soulwood/soulwood_growth_soulwood_transmutation"
+        "recipe": "malum:banner_crafting_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:soulwood/soulwood_growth_soulwood_transmutation"
+      "malum:banner_crafting_sword"
     ]
   }
 }

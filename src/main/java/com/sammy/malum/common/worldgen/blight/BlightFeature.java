@@ -63,7 +63,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         var random = level.getRandom();
 
         var builder = LodestoneWorldgenBuilder.create().addAdditionalPlacement(BlightFeature::cleanupFoliage);
-        if (allowScarstone && level.getRandom().nextFloat() < 0.1f) {
+        if (allowScarstone && level.getRandom().nextFloat() < 0.08f) {
             int offset = (int) (radius*0.8f);
             int xOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset/2, offset*2) * (random.nextBoolean() ? 1 : -1);
             int zOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset/2, offset*2) * (random.nextBoolean() ? 1 : -1);
@@ -104,7 +104,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 Block block;
                 if (radius > 3 && !hasSoulwood && random.nextFloat() < 0.1f) {
-                    block = MalumBlocks.SOULWOOD_GROWTH.get();
+                    block = MalumBlocks.SOULWOOD_SAPLING.get();
                     hasSoulwood = true;
                 } else if (random.nextFloat() < 0.4f) {
                     block = random.nextFloat() < 0.2f ? MalumBlocks.BLIGHTPEARL.get() : MalumBlocks.BLIGHTROOT.get();

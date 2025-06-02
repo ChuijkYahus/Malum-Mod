@@ -66,6 +66,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.INFERNAL_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "greater_infernal_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_HASTE.get()))
         );
 
         screen.addEntry("corrupt_infernal_rite", -4, 16, b -> b
@@ -75,6 +76,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.INFERNAL_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "corrupt_greater_infernal_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_THE_HELLS.get()))
         );
 
         screen.addEntry("earthen_rite", -3, 17, b -> b
@@ -84,6 +86,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.EARTHEN_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "greater_earthen_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_WARDING.get()))
         );
 
         screen.addEntry("corrupt_earthen_rite", -4, 17, b -> b
@@ -93,6 +96,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.EARTHEN_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "corrupt_greater_earthen_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_THE_ARENA.get()))
         );
 
         screen.addEntry("wicked_rite", 2, 15, b -> b
@@ -120,6 +124,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AERIAL_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "greater_aerial_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_MOTION.get()))
         );
 
         screen.addEntry("corrupt_aerial_rite", 4, 16, b -> b
@@ -129,6 +134,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AERIAL_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "corrupt_greater_aerial_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_THE_AETHER.get()))
         );
 
         screen.addEntry("aqueous_rite", 3, 17, b -> b
@@ -138,6 +144,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AQUEOUS_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "greater_aqueous_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_LOYALTY.get()))
         );
 
         screen.addEntry("corrupt_aqueous_rite", 4, 17, b -> b
@@ -147,6 +154,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.AQUEOUS_RITE))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "corrupt_greater_aqueous_rite"))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE))
+                .addReference(totemicRuneEntry(RUNE_OF_THE_SEAS.get()))
         );
 
         screen.addEntry("arcane_rite", 0, 16, b -> b
@@ -163,17 +171,18 @@ public class TotemMagicEntries {
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))
         );
 
-        screen.addEntry("blight", -1, 17, b -> b
-                .configureWidget(w -> w.setIcon(BLIGHTED_GUNK).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
-                .addPage(new HeadlineTextPage("blight.intro", "blight.intro.1"))
+        screen.addEntry("blight", 1, 17, b -> b
+                .configureWidget(w -> w.setIcon(BLIGHTED_EARTH).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
+                .addPage(new HeadlineTextItemPage("blight.intro", "blight.intro.1", BLIGHTED_EARTH.get()))
                 .addPage(new HeadlineTextPage("blight.composition", "blight.composition.1"))
+                .addPage(new HeadlineTextPage("blight.flora", "blight.flora.1"))
                 .addPage(new HeadlineTextPage("blight.spread", "blight.spread.1"))
                 .addPage(new HeadlineTextPage("blight.arcane_rite", "blight.arcane_rite.1"))
         );
 
-        screen.addEntry("soulwood", 1, 17, b -> b
-                .configureWidget(w -> w.setIcon(SOULWOOD_GROWTH).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
-                .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_GROWTH.get()))
+        screen.addEntry("soulwood", 0, 18, b -> b
+                .configureWidget(w -> w.setIcon(SOULWOOD_SAPLING).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
+                .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("soulwood.2"))
                 .addPage(new SmeltingPage(SOULWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
                 .addPage(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
@@ -183,7 +192,18 @@ public class TotemMagicEntries {
                 .addPage(new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()))
         );
 
-        screen.addEntry("unchained_transmutation", 0, 18, b -> b
+        screen.addEntry("scarstone", -1, 19, b -> b
+                .configureWidget(w -> w.setIcon(SCARSTONE).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
+                .addPage(new HeadlineTextItemPage("scarstone", "scarstone.1", SCARSTONE.get()))
+                .addPage(new HeadlineTextPage("scarstone.material", "scarstone.material.1"))
+                .addPage(new HeadlineTextPage("scarstone.creation", "scarstone.creation.1"))
+                .addPage(new HeadlineTextPage("scarstone.strange_crystal", "scarstone.strange_crystal.1"))
+                .addPage(new HeadlineTextItemPage("strange_crystal.material", "strange_crystal.material.1", LARGE_STRANGE_CRYSTAL.get()))
+                .addPage(new HeadlineTextPage("strange_crystal.purpose", "strange_crystal.purpose.1"))
+                .addPage(new TextPage("strange_crystal.purpose.2"))
+        );
+
+        screen.addEntry("unchained_transmutation", 0, 20, b -> b
                 .configureWidget(w -> w.setIcon(SOUL_SAND).setStyle(BookWidgetStyle.SOULWOOD))
                 .addPage(new HeadlineTextPage("unchained_transmutation", "unchained_transmutation.intro.1"))
                 .addPage(new TextPage("unchained_transmutation.intro.2"))
@@ -202,20 +222,12 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("unchained_transmutation.deepslate.1"))
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
+    }
 
-        screen.addEntry("totemic_runes", 0, 17, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_THE_ARENA).setStyle(BookWidgetStyle.SOULWOOD))
-                .addPage(new HeadlineTextPage("totemic_runes", "totemic_runes.1"))
-                .addPage(new TextPage("totemic_runes.2"))
-                .addPage(new EntrySelectorPage(item -> {
-                    final String translationKey = BuiltInRegistries.ITEM.getKey(item).getPath();
-                    return new EntryReference(item,
-                            BookEntry.build(translationKey)
-                                    .addPage(new HeadlineTextPage(translationKey))
-                                    .addPage(RuneworkingPage.fromOutput(item)));
-                },
-                        RUNE_OF_MOTION.get(), RUNE_OF_LOYALTY.get(), RUNE_OF_WARDING.get(), RUNE_OF_HASTE.get(),
-                        RUNE_OF_THE_AETHER.get(), RUNE_OF_THE_SEAS.get(), RUNE_OF_THE_ARENA.get(), RUNE_OF_THE_HELLS.get()))
-        );
+    public static EntryReference totemicRuneEntry(Item item) {
+        String translationKey = BuiltInRegistries.ITEM.getKey(item).getPath();
+        return new EntryReference(item, BookEntry.build(translationKey)
+                .addPage(new HeadlineTextPage(translationKey))
+                .addPage(RuneworkingPage.fromOutput(item)));
     }
 }

@@ -48,7 +48,7 @@ public class EntitySpiritDropData {
         if (spiritData != null)
             return Optional.of(spiritData);
 
-        if (!entity.canUsePortal(false))
+        if (entity.getMaxHealth() > 60f)
             return Optional.of(SpiritDataReloadListener.DEFAULT_BOSS_SPIRIT_DATA);
 
         if (!CommonConfig.USE_DEFAULT_SPIRIT_VALUES.getConfigValue())

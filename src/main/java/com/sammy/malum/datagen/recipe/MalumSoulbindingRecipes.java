@@ -212,7 +212,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.GUNPOWDER, 12, MalumGeasEffectTypes.PACT_OF_COMBUSTION)
                 .addExtraItem(Items.BLAZE_POWDER, 8)
-                .addExtraItem(Items.BLAZE_ROD, 4)
+                .addExtraItem(MalumItems.BLAZING_QUARTZ.get(), 4)
                 .addSpirit(MalumSpiritTypes.INFERNAL_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.WICKED_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.ARCANE_SPIRIT, 16)

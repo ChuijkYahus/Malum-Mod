@@ -28,7 +28,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     public static final SoulwovenBannerPatternDataComponent DEFAULT = register("default");
 
     public static final SoulwovenBannerPatternDataComponent SACRED = register("sequence");
-//    public static final SoulwovenBannerPatternData WICKED = register("slash"));
+    public static final SoulwovenBannerPatternDataComponent WICKED = register("sword");
     public static final SoulwovenBannerPatternDataComponent ARCANE = register("spawn");
     public static final SoulwovenBannerPatternDataComponent ELDRITCH = register("sanity");
 

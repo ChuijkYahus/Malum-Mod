@@ -24,10 +24,10 @@
     "malum:runewood_sapling": {
       "chance": 0.3
     },
-    "malum:soulwood_growth": {
+    "malum:soulwood_leaves": {
       "chance": 0.3
     },
-    "malum:soulwood_leaves": {
+    "malum:soulwood_sapling": {
       "chance": 0.3
     }
   }

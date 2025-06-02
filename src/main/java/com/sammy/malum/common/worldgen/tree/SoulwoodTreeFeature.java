@@ -3,12 +3,9 @@ package com.sammy.malum.common.worldgen.tree;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
 import com.sammy.malum.common.block.nature.*;
-import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.common.worldgen.blight.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
-import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -78,7 +75,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         var level = context.level();
         var pos = context.origin();
-        if (level.isEmptyBlock(pos.below()) || !MalumBlocks.SOULWOOD_GROWTH.get().defaultBlockState().canSurvive(level, pos)) {
+        if (level.isEmptyBlock(pos.below()) || !MalumBlocks.SOULWOOD_SAPLING.get().defaultBlockState().canSurvive(level, pos)) {
             return false;
         }
         var rand = context.random();

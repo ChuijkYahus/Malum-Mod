@@ -26,11 +26,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:soulwood_growth"
+          "name": "malum:soulwood_sapling"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/potted_soulwood_growth"
+  "random_sequence": "malum:blocks/potted_soulwood_sapling"
 }
