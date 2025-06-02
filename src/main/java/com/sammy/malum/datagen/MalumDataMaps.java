@@ -39,7 +39,7 @@ public class MalumDataMaps extends DataMapProvider {
                 .add(MalumItems.AZURE_RUNEWOOD_SAPLING, new Compostable(0.3f), false)
                 .add(MalumItems.AZURE_RUNEWOOD_LEAVES, new Compostable(0.3f), false)
                 .add(MalumItems.HANGING_AZURE_RUNEWOOD_LEAVES, new Compostable(0.2f), false)
-                .add(MalumItems.SOULWOOD_GROWTH, new Compostable(0.3f), false)
+                .add(MalumItems.SOULWOOD_SAPLING, new Compostable(0.3f), false)
                 .add(MalumItems.SOULWOOD_LEAVES, new Compostable(0.3f), false)
                 .add(MalumItems.HANGING_SOULWOOD_LEAVES, new Compostable(0.2f), false)
                 .add(MalumItems.BLIGHTED_GUNK, new Compostable(0.1f), false);

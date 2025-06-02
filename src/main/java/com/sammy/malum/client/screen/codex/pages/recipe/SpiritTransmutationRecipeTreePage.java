@@ -34,12 +34,12 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
 
     private static final ScreenParticleHolder TRANSMUTATION_PARTICLES = new ScreenParticleHolder();
 
-    private final String headlineTranslationKey;
+    private final Component headline;
     private final List<Ingredient> itemTree = new ArrayList<>();
 
-    public SpiritTransmutationRecipeTreePage(String headlineTranslationKey, Item start) {
+    public SpiritTransmutationRecipeTreePage(String headline, Item start) {
         super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_tree_page.png"));
-        this.headlineTranslationKey = headlineTranslationKey;
+        this.headline = Component.translatable(headline);
 
         Level level = Minecraft.getInstance().level;
         if (level != null) {
@@ -57,10 +57,6 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
         }
     }
 
-    public String headlineTranslationKey() {
-        return "malum.gui.book.entry.page.headline." + headlineTranslationKey;
-    }
-
     @Override
     public boolean isValid() {
         return !itemTree.isEmpty();
@@ -68,8 +64,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
+        renderHeadline(guiGraphics, headline, left, top);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 TRANSMUTATION_PARTICLES.tick();

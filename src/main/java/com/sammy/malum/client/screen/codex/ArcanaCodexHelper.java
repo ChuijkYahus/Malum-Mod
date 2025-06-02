@@ -689,45 +689,48 @@ public class ArcanaCodexHelper {
         }
 
         if (BOOK_THEME.getConfigValue().equals(BookTheme.EASY_READING)) {
+            Color color = colorData.secondaryColor();
             guiGraphics.drawString(font, text, x, y, 0, false);
-            return;
+            font.drawInBatch(text, x, y, color(1, color.getRGB()), false, poseStack.last().pose(),
+                    guiGraphics.bufferSource, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
         }
+        else {
+            Color gray = colorData.primaryColor();
+            Color dark = colorData.secondaryColor();
 
-        Color gray = colorData.primaryColor();
-        Color dark = colorData.secondaryColor();
+            guiGraphics.drawString(font, text, x - 1f, y, color(64, gray.getRGB()), false);
+            guiGraphics.drawString(font, text, x + 1f, y, color(32, gray.getRGB()), false);
+            guiGraphics.drawString(font, text, x, y - 1f, color(32, gray.getRGB()), false);
+            guiGraphics.drawString(font, text, x, y + 1f, color(92, gray.getRGB()), false);
 
-        guiGraphics.drawString(font, text, x - 1f, y, color(64, gray.getRGB()), false);
-        guiGraphics.drawString(font, text, x + 1f, y, color(32, gray.getRGB()), false);
-        guiGraphics.drawString(font, text, x, y - 1f, color(32, gray.getRGB()), false);
-        guiGraphics.drawString(font, text, x, y + 1f, color(92, gray.getRGB()), false);
+            guiGraphics.drawString(font, text, x, y, color(255, dark.getRGB()), false);
 
-        guiGraphics.drawString(font, text, x, y, color(255, dark.getRGB()), false);
+            int alpha = Mth.floor(255 * Easing.QUARTIC_IN.ease(delta, 0.4f, 1, 1) * glowMultiplier);
+            if (alpha > 15) {
+                float color = Easing.CUBIC_IN.ease(delta, 0, 1, 1);
+                Color start = colorData.glowStart();
+                Color end = colorData.glowEnd();
+                int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
+                int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
+                int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
+                var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+                var pose = poseStack.last().pose();
+                RenderSystem.enableBlend();
+                font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
+                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
-        int alpha = Mth.floor(255 * Easing.QUARTIC_IN.ease(delta, 0.4f, 1, 1) * glowMultiplier);
-        if (alpha > 15) {
-            float color = Easing.CUBIC_IN.ease(delta, 0, 1, 1);
-            Color start = colorData.glowStart();
-            Color end = colorData.glowEnd();
-            int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
-            int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
-            int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
-            var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-            var pose = poseStack.last().pose();
-            RenderSystem.enableBlend();
-            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
-                    buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-
-            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
-                    buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
-                    buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
-                    buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
-                    buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+                font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
+                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+                font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
+                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+                font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
+                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+                font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
+                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
 
 
-            RenderSystem.defaultBlendFunc();
+                RenderSystem.defaultBlendFunc();
+            }
         }
         if (scaleMultiplier != 1) {
             poseStack.popPose();

@@ -87,7 +87,7 @@ public class ArtificeEntries {
                 ))
                 .addPage(new CyclingPage(
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.SACRED.getRecipeId()),
-//                        SpiritInfusionPage.fromId(SoulwovenBannerPatternData.WICKED.getRecipeId()),
+                        SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.WICKED.getRecipeId()),
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.ARCANE.getRecipeId()),
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.ELDRITCH.getRecipeId()),
                         SpiritInfusionPage.fromId(SoulwovenBannerPatternDataComponent.AERIAL.getRecipeId()),

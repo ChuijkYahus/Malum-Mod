@@ -313,10 +313,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> RUNEWOOD_BUTTON = BLOCKS.register("runewood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.RUNEWOOD, 20, MalumBlockProperties.RUNEWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
     public static final DeferredHolder<Block, Block> RUNEWOOD_PRESSURE_PLATE = BLOCKS.register("runewood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().noCollission().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
 
+    public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS_WALL = BLOCKS.register("runewood_boards_wall", () -> new WallBlock(MalumBlockProperties.RUNEWOOD().addTags(WALLS)));
     public static final DeferredHolder<Block, Block> RUNEWOOD_FENCE = BLOCKS.register("runewood_planks_fence", () -> new FenceBlock(MalumBlockProperties.RUNEWOOD().addTags(FENCES, WOODEN_FENCES)));
     public static final DeferredHolder<Block, Block> RUNEWOOD_FENCE_GATE = BLOCKS.register("runewood_planks_fence_gate", () -> new FenceGateBlock(MalumWoodTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(FENCE_GATES, FENCE_GATES_WOODEN)));
-
-    public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS_WALL = BLOCKS.register("runewood_boards_wall", () -> new WallBlock(MalumBlockProperties.RUNEWOOD().addTags(WALLS)));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_ITEM_STAND = BLOCKS.register("runewood_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.RUNEWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
     public static final DeferredHolder<Block, Block> GILDED_RUNEWOOD_ITEM_PEDESTAL = BLOCKS.register("gilded_runewood_item_pedestal", () -> new DecoratedItemPedestalBlock<>(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
@@ -328,7 +327,8 @@ public class MalumBlocks {
     //endregion
 
     //region soulwood
-    public static final DeferredHolder<Block, Block> SOULWOOD_GROWTH = BLOCKS.register("soulwood_growth", () -> new SoulwoodGrowthBlock(MalumTreeGrowers.SOULWOOD, MalumBlockProperties.SOULWOOD_SAPLING()));
+    public static final DeferredHolder<Block, Block> SOULWOOD_SAPLING = BLOCKS.register("soulwood_sapling", () -> new SoulwoodGrowthBlock(MalumTreeGrowers.SOULWOOD, MalumBlockProperties.SOULWOOD_SAPLING()));
+
     public static final DeferredHolder<Block, Block> SOULWOOD_LEAVES = BLOCKS.register("soulwood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.SOULWOOD_LEAVES().setCutoutRenderType(), new Color(213, 8, 63), new Color(255, 61, 243)));
     public static final DeferredHolder<Block, Block> HANGING_SOULWOOD_LEAVES = BLOCKS.register("hanging_soulwood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_SOULWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), new Color(213, 8, 63), new Color(255, 61, 243)));
 
@@ -392,10 +392,10 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_BUTTON = BLOCKS.register("soulwood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.SOULWOOD, 20, MalumBlockProperties.SOULWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
     public static final DeferredHolder<Block, Block> SOULWOOD_PRESSURE_PLATE = BLOCKS.register("soulwood_planks_pressure_plate", () -> new PressurePlateBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().noCollission().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
 
+    public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS_WALL = BLOCKS.register("soulwood_boards_wall", () -> new WallBlock(MalumBlockProperties.SOULWOOD().addTags(WALLS)));
     public static final DeferredHolder<Block, Block> SOULWOOD_FENCE = BLOCKS.register("soulwood_planks_fence", () -> new FenceBlock(MalumBlockProperties.SOULWOOD().addTags(FENCES, WOODEN_FENCES)));
     public static final DeferredHolder<Block, Block> SOULWOOD_FENCE_GATE = BLOCKS.register("soulwood_planks_fence_gate", () -> new FenceGateBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(FENCE_GATES, FENCE_GATES_WOODEN)));
 
-    public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS_WALL = BLOCKS.register("soulwood_boards_wall", () -> new WallBlock(MalumBlockProperties.SOULWOOD().addTags(WALLS)));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_ITEM_PEDESTAL = BLOCKS.register("soulwood_item_pedestal", () -> new WoodItemPedestalBlock<>(MalumBlockProperties.SOULWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
     public static final DeferredHolder<Block, Block> ORNATE_SOULWOOD_ITEM_PEDESTAL = BLOCKS.register("ornate_soulwood_item_pedestal", () -> new DecoratedItemPedestalBlock<>(MalumBlockProperties.SOULWOOD().setCutoutRenderType().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
@@ -479,7 +479,7 @@ public class MalumBlocks {
 
     public static final DeferredHolder<Block, Block> POTTED_RUNEWOOD_SAPLING = BLOCKS.register("potted_runewood_sapling", () -> flowerPot(RUNEWOOD_SAPLING));
     public static final DeferredHolder<Block, Block> POTTED_AZURE_RUNEWOOD_SAPLING = BLOCKS.register("potted_azure_runewood_sapling", () -> flowerPot(AZURE_RUNEWOOD_SAPLING));
-    public static final DeferredHolder<Block, Block> POTTED_SOULWOOD_GROWTH = BLOCKS.register("potted_soulwood_growth", () -> flowerPot(SOULWOOD_GROWTH));
+    public static final DeferredHolder<Block, Block> POTTED_SOULWOOD_SAPLING = BLOCKS.register("potted_soulwood_sapling", () -> flowerPot(SOULWOOD_SAPLING));
     public static final DeferredHolder<Block, Block> POTTED_BLIGHTROOT = BLOCKS.register("potted_blightroot", () -> flowerPot(BLIGHTROOT));
     public static final DeferredHolder<Block, Block> POTTED_BLIGHTPEARL = BLOCKS.register("potted_blightpearl", () -> flowerPot(BLIGHTPEARL));
     public static final DeferredHolder<Block, Block> POTTED_STRANGEROOT = BLOCKS.register("potted_strangeroot", () -> flowerPot(STRANGEROOT));
@@ -496,7 +496,7 @@ public class MalumBlocks {
         FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
         flowerPot.addPlant(RUNEWOOD_SAPLING.getId(), POTTED_RUNEWOOD_SAPLING);
         flowerPot.addPlant(AZURE_RUNEWOOD_SAPLING.getId(), POTTED_AZURE_RUNEWOOD_SAPLING);
-        flowerPot.addPlant(SOULWOOD_GROWTH.getId(), POTTED_SOULWOOD_GROWTH);
+        flowerPot.addPlant(SOULWOOD_SAPLING.getId(), POTTED_SOULWOOD_SAPLING);
         flowerPot.addPlant(BLIGHTROOT.getId(), POTTED_BLIGHTROOT);
         flowerPot.addPlant(BLIGHTPEARL.getId(), POTTED_BLIGHTPEARL);
         flowerPot.addPlant(STRANGEROOT.getId(), POTTED_STRANGEROOT);

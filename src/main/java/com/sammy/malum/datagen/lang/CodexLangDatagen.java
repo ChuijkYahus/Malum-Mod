@@ -381,7 +381,8 @@ public class CodexLangDatagen {
         addHeadline("runewood.runic_sap", "Runic Sap");
         addPages("runewood.runic_sap",
                 "Runewood trees tend to have a buildup of sticky sap on the sides of their logs. When this happens, if you strip off the bark, you'll be able to bottle the sap, which makes for a rejuvenating drink.",
-                "The sap can also be used to create sapballs, able to be used interchangeably with slimeballs for most recipes. Runic sap can also be turned into a block form, which is rather sticky.");
+                "In terms of taste, it is a bit like honey, sweet but with a more earthly flavor. The aftertaste in particular is quite special, it is rejuvenating in the purest of forms as it mends your wounds.",
+                "The sap can also be used to create sapballs, able to be used interchangeably with slimeballs for most recipes.");
 
         addSimpleEntryHeader("blazing_quartz", "Blazing Quartz", "Ignition");
         addPages("blazing_quartz",
@@ -812,11 +813,6 @@ public class CodexLangDatagen {
         addPages("void.rune_of_the_heretic",
                 "The Rune of the Heretic decries magic, Silencing foes much like the Erosion Scepter can. This weakens their spirit magic, and the effect can stack up to complete suppression.");
 
-        addSimpleEntryHeader("totemic_runes", "Totemic Runes", "Ritual as runecraft");
-        addPages("totemic_runes",
-                "Trinkets are not the only things that can be inscribed into Runes. I have managed to create runic tablets of Runewood and Soulwood, on which I can inscribe the patterns of what I refer to as \"aura rites\". The ritual's effect is more potent, but the rune doesn't need to stay in one place.",
-                "These tablets are inscribed much the same as any other rune, though only the basic rites of the four elements are functional. These entries go into further detail on each.");
-
         addSimpleEntryHeader("rune_of_motion", "Rune of Motion", "Uplifting your impulses");
         addPages("rune_of_motion",
                 "The Rune of Motion conveys the Rite of Motion, granting Zephyr's Courage to its wearer at a reduced potency, speeding them up.");
@@ -840,7 +836,7 @@ public class CodexLangDatagen {
                 "The Rune of the Arena conveys the Rite of the Arena, granting Earthen Might to its wearer at a reduced potency, causing their attacks to do more damage.");
         addSimpleEntryHeader("rune_of_the_hells", "Rune of the Hells", "Extinguishing your impulses");
         addPages("rune_of_the_hells",
-                "The Rune of the Hells conveys the Rite of the Hells, granting Ifrit's Courage to its wearer at a reduced potency when they are on fire, extinguishing and healing them.");
+                "The Rune of the Hells conveys the Rite of the Hells, granting Ifrit's Embrace to its wearer at a reduced potency when they are on fire, extinguishing and healing them.");
 
         addSimpleEntryHeader("spirited_glass", "Spirited Glass", "Not suitable for Oculators");
         addPages("spirited_glass",
@@ -977,7 +973,8 @@ public class CodexLangDatagen {
                          -Spirit Collection Aids most Magical Attributes""",
                 """
                         The Soul remains on the inside for a reason.
-                         -All Incoming Damage is converted into Magic Damage""");
+                         -All Incoming Damage is converted into Magic Damage
+                         -Soul Ward Integrity is halved""");
 
         addSimpleEntryHeader("pact_of_rune_exploitation", "Pact of The Rune Exploitation", "To follow the ancient pacts");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_RUNE_EXPLOITATION,
@@ -1345,6 +1342,9 @@ public class CodexLangDatagen {
         addHeadline("blight.composition", "Blight Study: Substance");
         addPages("blight.composition",
                 "The Undirected Rite, as the name suggests, is random. It transmutes, but it has no pattern to transmute things to. So, instead, you get something random, bits of disparate matter all jumbled together into a foul-smelling powder. I wouldn't recommend eating it, or growing things on it, but it's otherwise harmless.");
+        addHeadline("blight.flora", "Blight Study: Flora");
+        addPages("blight.flora",
+                "While experimenting with the interaction between Blight and Bonemeal, I have observed two plants that frequently emerge; the Blightroot and the Blightpearl. Neither of these are useful in any way whatsoever, but they appear to thrive within Blight alone without the need for water or light. Interesting.");
         addHeadline("blight.spread", "Blight Study: Spread");
         addPages("blight.spread",
                 "Blight does not spread on its own. It's just random matter, after all. But it has a spiritual memory, a pattern which to replicate. When given arcana, or a valid fertilizer, blight will haphazardly echo this pattern on the nearby area.");
@@ -1365,7 +1365,29 @@ public class CodexLangDatagen {
                 "Much like blight, the sapling accepts both spirit arcana and common fertilizers such as bonemeal. The end result is roughly the same across both options.");
         addHeadline("soulwood.cursed_sap", "Soulwood Study: Sap");
         addPages("soulwood.cursed_sap",
-                "The sticky lifeblood of the tree also seems to well up much more often in a tree than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
+                "The sticky lifeblood of the tree also seems to well up much more often in Soulwood than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
+
+        addEntryHeader("scarstone", "A Study on Soulwood", "Warped Rock");
+        addHeadline("scarstone", "A Study on Scarstone");
+        addPages("scarstone",
+                "Initially I sought to contain the growth of Blight as much as possible. Having now spread it quite extensively to create Soulwood, I ended up discovering a sibling to Blight I call Scarstone.");
+        addHeadline("scarstone.material", "Scarstone Study: Material");
+        addPages("scarstone.material",
+                "Scarstone is a strange type of rock that mimics Blight in it's nature. It bears the same scars of arcana as the Undirected Rite dictated, but does not appear to be capable of echoing the rite the same way Blight can.");
+        addHeadline("scarstone.creation", "Scarstone Study: Creation");
+        addPages("scarstone.creation",
+                "I cannot discern what conditions are required for the creation of Scarstone. Based on my research thus far, around every tenth Blight Propagation creates a Scarstone Deposit. Much like Blight, everything about it seems to be nothing more than a tangled mess of Arcana and Entropy.");
+        addHeadline("scarstone.strange_crystal", "Scarstone Study: Strange Crystal");
+        addPages("scarstone.strange_crystal",
+                "Although Scarstone does not mimic the Undirected Rite like Blight does, the echo of the Rite is still imbued within it. But unlike Blight, the potential energy seeks to rise, not spread. Through this rising flow of energy Scarstone forms Strange Crystals upon creation.");
+        addHeadline("strange_crystal.material", "Strange Crystal Study: Material");
+        addPages("strange_crystal.material",
+                "Strange Crystals are an erratic, tough and incredibly chromatic gemstone. Their unique color pattern appears to be a memory of the echo. They generate as tall as two blocks in most cases, however smaller shards of crystal do exist too.");
+        addHeadline("strange_crystal.purpose", "Strange Crystal Study: Purpose");
+        addPages("strange_crystal.purpose",
+                "Further study of the Strange Crystal has yielded no results. It doesn't manipulate Arcana in any way despite it's origin, attempting to use it as a reagent or target of Spirit Infusion results in the crystal shattering, and it is completely unsuitable for any kind of tool.",
+                "Based on the complete lack of anything of note, I cannot attribute any positive trait to Strange Crystals. It is " + italic("just") + " a nice looking crystal, pleasant to look at I suppose.");
+
 
         addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
         addPages("unchained_transmutation.intro",

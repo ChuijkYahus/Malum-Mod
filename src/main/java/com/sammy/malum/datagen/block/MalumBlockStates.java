@@ -172,8 +172,8 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.LEAVES_BLOCK.act(data, SOULWOOD_LEAVES);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel, HANGING_SOULWOOD_LEAVES);
 
-        MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_SOULWOOD_GROWTH);
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, SOULWOOD_GROWTH);
+        MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_SOULWOOD_SAPLING);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, SOULWOOD_SAPLING);
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, SOULWOOD_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, SOULWOOD_PRESSURE_PLATE);
         BlockStateSmithTypes.DOOR_BLOCK.act(data, SOULWOOD_DOOR, BOLTED_SOULWOOD_DOOR, SOULWOOD_BOARDS_DOOR, BOLTED_SOULWOOD_BOARDS_DOOR);

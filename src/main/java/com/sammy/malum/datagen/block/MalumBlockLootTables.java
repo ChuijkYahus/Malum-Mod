@@ -91,7 +91,7 @@ public class MalumBlockLootTables extends LootTableProvider {
 
             takeAll(blocks, RUNEWOOD_LEAVES, HANGING_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
             takeAll(blocks, AZURE_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
-            takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_GROWTH.get(), MAGIC_SAPLING_DROP_CHANCE)));
+            takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
 
             add(take(blocks, STRANGE_CRYSTAL).get(), createSingleItemTableWithSilkTouchOrShears(STRANGE_CRYSTAL.get(), MalumItems.STRANGE_CRYSTAL.get()));
             add(take(blocks, LARGE_STRANGE_CRYSTAL).get(), createTallBlockDrop(LARGE_STRANGE_CRYSTAL.get()));

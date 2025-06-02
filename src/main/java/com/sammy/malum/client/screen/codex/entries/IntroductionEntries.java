@@ -69,10 +69,13 @@ public class IntroductionEntries {
                 .addPage(new HeadlineTextItemPage("runewood", "runewood.1", RUNEWOOD_SAPLING.get()))
                 .addPage(new TextPage("runewood.2"))
                 .addPage(new HeadlineTextItemPage("runewood.arcane_charcoal", "runewood.arcane_charcoal.1", ARCANE_CHARCOAL.get()))
-                .addPage(new SmeltingPage(RUNEWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
-                .addPage(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
-                .addPage(new HeadlineTextPage("runewood.runic_sap", "runewood.runic_sap.1"))
+                .addPage(new CyclingPage(
+                        new SmeltingPage(RUNEWOOD_LOG.get(), ARCANE_CHARCOAL.get()),
+                        CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get())
+                ))
+                .addPage(new HeadlineTextItemPage("runewood.runic_sap", "runewood.runic_sap.1", RUNIC_SAP.get()))
                 .addPage(new TextPage("runewood.runic_sap.2"))
+                .addPage(new TextPage("runewood.runic_sap.3"))
                 .addPage(new CraftingPage(new ItemStack(RUNIC_SAPBALL.get()), RUNIC_SAP.get()))
         );
 

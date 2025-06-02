@@ -16,7 +16,7 @@ public class MalumUnchainedTransmutationRecipes {
 
     private static final List<Pair<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>>> SOULWOOD_TRANSMUTATIONS = List.of(
             new Pair<>(RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE),
-            new Pair<>(RUNEWOOD_SAPLING, SOULWOOD_GROWTH),
+            new Pair<>(RUNEWOOD_SAPLING, SOULWOOD_SAPLING),
             new Pair<>(RUNEWOOD_LEAVES, SOULWOOD_LEAVES),
             new Pair<>(STRIPPED_RUNEWOOD_LOG, STRIPPED_SOULWOOD_LOG),
             new Pair<>(RUNEWOOD_LOG, SOULWOOD_LOG),
