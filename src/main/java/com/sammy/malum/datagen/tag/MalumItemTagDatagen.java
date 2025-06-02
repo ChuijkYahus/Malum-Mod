@@ -108,6 +108,10 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addOptional(ResourceLocation.parse("irons_spellbooks:keeper_flamberge"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:spellbreaker"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:amethyst_rapier"))
+                .addOptional(ResourceLocation.parse("irons_spellbooks:pyrium_staff"))
+                .addOptional(ResourceLocation.parse("irons_spellbooks:legionnaire_flamberge"))
+                .addOptional(ResourceLocation.parse("irons_spellbooks:decrepit_scythe"))
+                .addOptional(ResourceLocation.parse("irons_spellbooks:hellrazor"))
                 .addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe")); //TODO: Whenever BiC updates to 1.21, check if this is still valid! -Atobá
 
         tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(SOUL_HUNTER_CLOAK.get(), SOUL_STAINED_STEEL_HELMET.get(), MALIGNANT_STRONGHOLD_HELMET.get());
