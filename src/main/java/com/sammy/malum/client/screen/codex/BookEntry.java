@@ -11,11 +11,12 @@ import net.minecraft.stats.*;
 import java.util.function.BooleanSupplier;
 import java.util.function.UnaryOperator;
 
-import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.BLACK_CRYSTAL;
+import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.*;
 
 public class BookEntry {
 
     public static final BooleanSupplier AFTER_SOME_TIME = () -> Minecraft.getInstance().player != null && (Minecraft.getInstance().player.getName().getString().equals("Dev") || Minecraft.getInstance().player.getStats().getValue(Stats.CUSTOM.get(Stats.PLAY_TIME)) > 14400);
+    public static final BooleanSupplier AFTER_VOID_READER = () -> VoidRevelationHandler.hasSeenTheRevelation(VOID_READER);
     public static final BooleanSupplier AFTER_UMBRAL_CRYSTAL = () -> VoidRevelationHandler.hasSeenTheRevelation(BLACK_CRYSTAL);
 
     public final String identifier;

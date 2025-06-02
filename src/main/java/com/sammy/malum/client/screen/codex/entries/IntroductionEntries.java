@@ -23,8 +23,12 @@ public class IntroductionEntries {
         var soulstoneAndBrillianceReexamination = BookEntry.build("spirit_minerals.reexamination")
                 .addPage(new HeadlineTextPage("spirit_minerals.reexamination", "spirit_minerals.reexamination.1"))
                 .addPage(new TextPage("spirit_minerals.reexamination.2"))
-                .afterUmbralCrystal()
-                .build();
+                .afterUmbralCrystal();
+
+        var cthonicGoldReexamination = BookEntry.build("cthonic_gold.reexamination")
+                .addPage(new HeadlineTextPage("cthonic_gold.reexamination", "cthonic_gold.reexamination.1"))
+                .addPage(new TextPage("cthonic_gold.reexamination.2"))
+                .afterUmbralCrystal();
 
         screen.addEntry("introduction", 0, 0, b -> b
                 .configureWidget(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
@@ -106,11 +110,7 @@ public class IntroductionEntries {
                 .addPage(new TextPage("cthonic_gold.2"))
                 .addPage(new TextPage("cthonic_gold.3"))
                 .addPage(new TextPage("cthonic_gold.4"))
-                .addReference(new EntryReference(UMBRAL_SPIRIT, BookEntry.build("cthonic_gold.reexamination")
-                        .addPage(new HeadlineTextPage("cthonic_gold.reexamination", "cthonic_gold.reexamination.1"))
-                        .addPage(new TextPage("cthonic_gold.reexamination.2"))
-                        .afterUmbralCrystal()
-                ))
+                .addReference(new EntryReference(UMBRAL_SPIRIT, cthonicGoldReexamination))
         );
 
         screen.addEntry("soulstone", -1, 2, b -> b

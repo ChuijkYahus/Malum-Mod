@@ -67,6 +67,11 @@ public class BookEntryBuilder {
         return this;
     }
 
+    public BookEntryBuilder afterVoidReader() {
+        this.entryVisibleChecker = BookEntry.AFTER_VOID_READER;
+        return this;
+    }
+
     public BookEntryBuilder afterUmbralCrystal() {
         this.entryVisibleChecker = BookEntry.AFTER_UMBRAL_CRYSTAL;
         return this;
