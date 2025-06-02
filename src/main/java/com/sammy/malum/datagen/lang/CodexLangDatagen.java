@@ -178,18 +178,21 @@ public class CodexLangDatagen {
                 "Malignant Lead is at the moment my only means of assessing the physical form of an Umbral Crystal - for what else could have caused it to lose precisely half of its arcane weight?",
                 "I have not had success in isolating the microcrystals like I have with Cthonic Gold or the Wicked crystals in the lead, but until I can obtain more, this is my best avenue to research Umbral's structure.");
 
-        addSimpleEntryHeader("spirit_metals.reexamination", "Reexamination: Spirit Metals", "A different principle");
+        addEntryHeader("spirit_metals.reexamination", "Reexamination: Spirit Metals", "A different principle");
+        addHeadline("spirit_metals.reexamination", "Reexamining Spirit Metals");
         addPages("spirit_metals.reexamination",
                 "The inherent structures of the arcana simply don't exist in spirit metals, and yet they interact with the arcane all the same. There might be something analogous, but if so, I hardly have instruments precise enough to measure it. Why is this is different from the raw stones I have investigated, with even Soulstained Steel differing in structure vastly from Soulstone?",
                 "This might explain why Cthonic Gold has arcana fused into its structure, unlike the spirit metals - they might be different phenomena, one a metal 'tuned' to the arcana, another physically alloyed with it. I wonder if I can tune other metals similarly...");
 
-        addSimpleEntryHeader("spirit_stones.reexamination", "Reexamination: Spirit Stones", "Tessellation of crystal structures");
+        addEntryHeader("spirit_stones.reexamination", "Reexamination: Spirit Stones", "Tessellation of crystal structures");
+        addHeadline("spirit_stones.reexamination", "Reexamining Spirit Stones");
         addPages("spirit_stones.reexamination",
                 "It appears that the crystal structures of at least Wicked and Sacred crystals can be tessellated infinitely, as that is exactly what my deconstruction and analysis of samples of Twisted and Tainted Rocks has found them to be. Is it possible that other spirit stones - or rather, tessellations - might exist? Very likely.",
                 "But what would their properties be? Sacred and Wicked create stone which accept or reject magic... so might Aerial and Earthen create stone that either moves or locks magic in place? Redundant for both, with Hallowed Gold... Infernal might be used to accelerate while Aqueous mutates, though, which might be useful.",
                 "I don't think I have the proper context to identify what Arcane, Eldritch, and Umbral might create. I lack the full understanding of what they represent, as destructive testing isn't an option for Umbral as of yet. But, with the proximity of bedrock to the Void... might bedrock's indestructibility be a sign of the Umbral stone?");
 
-        addSimpleEntryHeader("cthonic_gold.reexamination", "Reexamination: Cthonic Gold", "A new principle in old material");
+        addEntryHeader("cthonic_gold.reexamination", "Reexamination: Cthonic Gold", "A new principle in old material");
+        addHeadline("cthonic_gold.reexamination", "Reexamining Cthonic Gold");
         addPages("cthonic_gold.reexamination",
                 "I now know why I could not create Cthonic Gold - I did not understand the principles it was built on. Fusing crystal into matter is not something unique to this material. It may be possible to force crystals to form inside of objects to make similar 'natural' arcane alloys.",
                 "Either I need to find a way to phase the crystal through solid matter, or I need to find a way to cause a similar effect to the Spirit Jar's crystal formation in a medium other than air. Either one might allow me to make Cthonic Gold, and potentially much, much more.");
@@ -199,6 +202,16 @@ public class CodexLangDatagen {
         addPages("spirit_minerals.reexamination",
                 "I now know the arcana have physical properties with meaning. I can use these properties to create a staff, and likely for many more things. But Soulstone and Brilliance... as far as I can tell, for every other base material relevant to the arcana save Runewood I work with, there are either spirit crystals fused within or patterned in the structure.",
                 "The fact that Null Slate is physically identical to Soulstone implies a greater principle. I posit that Soulstone and Brilliance have similar fundamental resonances to the arcana, structures of inherent power at a precision far beyond what I can measure. This implies interaction with the arcane is simply... a quirk of an object's topology? I don't know how I would replicate it myself, but if I can...");
+
+        addEntryHeader("strange_crystal.reexamination", "Reexamination: Strange Crystal", "Striking resemblance");
+        addHeadline("strange_crystal.reexamination", "Reexamining Strange Crystals");
+        addPages("strange_crystal.reexamination",
+                "Mnemosyne. It bears a striking resemblance to the Strange Crystal, though they appear unrelated. I am unsure what that means.");
+
+        addEntryHeader("strange_crystal.revelation", "Revelation: Strange Crystal", "A strange kind of life");
+        addHeadline("strange_crystal.revelation", "Revealing Strange Crystals");
+        addPages("strange_crystal.revelation",
+                "Aha. This crystal... it betrays deeper meaning, but is worthless of itself. It bears the marks of othering found in the Fused Consciousness. It is not a mind, but it is a strange, impossible kind of life. Perhaps the striations are the physical encoding of its life...");
 
         addEntryHeader("void.catalyst_lobber", "Catalyst Lobber", "Progress overtakes");
         addHeadline("void.catalyst_lobber", "Catalyst Lobber");
@@ -884,8 +897,8 @@ public class CodexLangDatagen {
                 scaled(0.8f) +"""
                         An unnatural regeneration imbued onto the body, a desire to grow forever.
                          -Saturation heals you Twice as fast, Thrice as fast when near death
-                         -Increases Healing Received by One Fourth""",
-                "The magics shift your perception of death, each point of damage more significant.\n -Reduces Max Health by One Fourth");
+                         -Increases Healing Received by Four Tenths""",
+                "The magics shift your perception of death, each point of damage more significant.\n -Reduces Max Health by One Fifth");
 
         addSimpleEntryHeader("pact_of_the_parasite", "Pact of The Parasite", "To hide by stolen shields");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PARASITE,
@@ -1370,24 +1383,23 @@ public class CodexLangDatagen {
         addEntryHeader("scarstone", "A Study on Soulwood", "Warped Rock");
         addHeadline("scarstone", "A Study on Scarstone");
         addPages("scarstone",
-                "Initially I sought to contain the growth of Blight as much as possible. Having now spread it quite extensively to create Soulwood, I ended up discovering a sibling to Blight I call Scarstone.");
+                "While observing the spread of Blight (in controlled conditions, of course), I have found that rarely the metaphysical scarring is potent enough to affect even stone - hence, I have named it Scarstone.");
         addHeadline("scarstone.material", "Scarstone Study: Material");
         addPages("scarstone.material",
-                "Scarstone is a strange type of rock that mimics Blight in it's nature. It bears the same scars of arcana as the Undirected Rite dictated, but does not appear to be capable of echoing the rite the same way Blight can.");
+                "Scarstone is a strange kind of rock, similar to Blight, in a way. I have identified granite, obsidian, diorite, and andesite flecks, as well as more mundane stone, with no rhyme or reason to the pattern. It doesn't resonate for the purposes of the Unchained Rite, though.");
         addHeadline("scarstone.creation", "Scarstone Study: Creation");
         addPages("scarstone.creation",
-                "I cannot discern what conditions are required for the creation of Scarstone. Based on my research thus far, around every tenth Blight Propagation creates a Scarstone Deposit. Much like Blight, everything about it seems to be nothing more than a tangled mess of Arcana and Entropy.");
+                "It appears to only crop up randomly, and I have not isolated the conditions required. Roughly every tenth time Blight spreads, the trauma will carve out a Scarstone deposit.");
         addHeadline("scarstone.strange_crystal", "Scarstone Study: Strange Crystal");
         addPages("scarstone.strange_crystal",
-                "Although Scarstone does not mimic the Undirected Rite like Blight does, the echo of the Rite is still imbued within it. But unlike Blight, the potential energy seeks to rise, not spread. Through this rising flow of energy Scarstone forms Strange Crystals upon creation.");
+                "While it doesn't resonate with the Unchained Rite, the stone has a strange... growth? It acts like a plant, despite being a crystal. I do not know what to make of that. Perhaps if I was a biomancer, this might be the discovery of a lifetime.");
         addHeadline("strange_crystal.material", "Strange Crystal Study: Material");
         addPages("strange_crystal.material",
-                "Strange Crystals are an erratic, tough and incredibly chromatic gemstone. Their unique color pattern appears to be a memory of the echo. They generate as tall as two blocks in most cases, however smaller shards of crystal do exist too.");
+                "These Strange Crystals are tough, but oddly flexible. The striation is fascinating, and seems to indicate... something, though I know not what.");
         addHeadline("strange_crystal.purpose", "Strange Crystal Study: Purpose");
         addPages("strange_crystal.purpose",
-                "Further study of the Strange Crystal has yielded no results. It doesn't manipulate Arcana in any way despite it's origin, attempting to use it as a reagent or target of Spirit Infusion results in the crystal shattering, and it is completely unsuitable for any kind of tool.",
-                "Based on the complete lack of anything of note, I cannot attribute any positive trait to Strange Crystals. It is " + italic("just") + " a nice looking crystal, pleasant to look at I suppose.");
-
+                "The material appears to be unreactive to the arcane, making it odder still. I haven't found a use for it, though that might be due to me not being a biologist. The material, as strange as it appears, as strange as Blight can be, is just... ordinary.",
+                "It is quite pleasant to look at, I suppose, and a curiosity. A... plant? That grows with Blight, all on its own, with no basis like Soulwood's origin as Runewood. Fascinating, but ultimately, I have not found a use for it.");
 
         addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
         addPages("unchained_transmutation.intro",

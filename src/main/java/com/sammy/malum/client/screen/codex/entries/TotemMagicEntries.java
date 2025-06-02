@@ -19,6 +19,14 @@ public class TotemMagicEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
+        var strangeCrystalReexamination = BookEntry.build("strange_crystal.reexamination")
+                .addPage(new HeadlineTextPage("strange_crystal.reexamination", "strange_crystal.reexamination.1"))
+                .afterVoidReader();
+
+        var strangeCrystalRevelation = BookEntry.build("strange_crystal.revelation")
+                .addPage(new HeadlineTextPage("strange_crystal.revelation", "strange_crystal.revelation.1"))
+                .afterUmbralCrystal();
+
         screen.addEntry("totem_magic", 0, 14, b -> b
                 .configureWidget(w -> w.setIcon(RUNEWOOD_TOTEM_BASE).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
                 .addPage(new HeadlineTextItemPage("totem_magic", "totem_magic.1", RUNEWOOD_TOTEM_BASE.get()))
@@ -201,6 +209,8 @@ public class TotemMagicEntries {
                 .addPage(new HeadlineTextItemPage("strange_crystal.material", "strange_crystal.material.1", LARGE_STRANGE_CRYSTAL.get()))
                 .addPage(new HeadlineTextPage("strange_crystal.purpose", "strange_crystal.purpose.1"))
                 .addPage(new TextPage("strange_crystal.purpose.2"))
+                .addReference(new EntryReference(MNEMONIC_FRAGMENT.get(), strangeCrystalReexamination))
+                .addReference(new EntryReference(UMBRAL_SPIRIT.get(), strangeCrystalRevelation))
         );
 
         screen.addEntry("unchained_transmutation", 0, 20, b -> b
