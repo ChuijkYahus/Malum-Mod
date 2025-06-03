@@ -122,11 +122,11 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                                         .setDamageData(0, splitDamage, i * 2)
                                         .setPhysicalDamageType(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO)
                                         .setMagicDamageType(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO)
-                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.25f, 2f, 0.7f));
+                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.2f, 1.4f, 0.7f));
                     }
                 }
                 event.setNewDamage(splitDamage);
-                float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 2f);
+                float pitch = RandomHelper.randomBetween(level.getRandom(), 1, 1.2f);
                 SoundHelper.playSound(attacker, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                 MalumParticleEffectTypes.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)
