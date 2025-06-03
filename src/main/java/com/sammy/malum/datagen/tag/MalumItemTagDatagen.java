@@ -120,6 +120,12 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(SOUL_HUNTER_BOOTS.get(), SOUL_STAINED_STEEL_BOOTS.get(), MALIGNANT_STRONGHOLD_BOOTS.get());
 
         tag(Tags.Items.TOOLS).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
+        tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
+                CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
+                SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
+                TYRVING.get(), MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), WEIGHT_OF_WORLDS.get(),
+                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
+        tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(net.minecraft.tags.ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
         tag(net.minecraft.tags.ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get());
         tag(net.minecraft.tags.ItemTags.AXES).add(SOUL_STAINED_STEEL_AXE.get(), WEIGHT_OF_WORLDS.get());
@@ -199,8 +205,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .remove(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
-        tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_INGOT.get());
-        tag(Tags.Items.INGOTS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_INGOT.get(), MALIGNANT_PEWTER_NUGGET.get());
+        tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_NUGGET.get());
+        tag(Tags.Items.INGOTS).add(HALLOWED_GOLD_INGOT.get(), SOUL_STAINED_STEEL_INGOT.get(), MALIGNANT_PEWTER_INGOT.get());
         tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.get(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
 
         tag(Tags.Items.NUGGETS).addOptional(MalumMod.malumPath("copper_nugget"));
