@@ -38,7 +38,7 @@ public class RareEarthSoundType extends ExtendedSoundType {
             float progress = gameMode.destroyProgress;
             float volume = (getVolume() + progress * progress * 4f) / 8f;
             float pitch = getPitch() * (0.5f + 0.15f * progress);
-            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_HIT.get(), SoundSource.BLOCKS, volume, pitch, MalumMod.RANDOM, pos));
+            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(MalumSoundEvents.QUARTZ_ORE_HIT.get(), SoundSource.BLOCKS, volume, pitch, MalumMod.RANDOM, pos));
         }
     }
 }

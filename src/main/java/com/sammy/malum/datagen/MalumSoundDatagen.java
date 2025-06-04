@@ -55,6 +55,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
 
         this.add(MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK, s -> definition(s).with(sounds("curiosities/concentrated_gluttony/drink", 2)));
         this.add(MalumSoundEvents.SPIRIT_MOTE_CREATED, s -> definition(s).with(sounds("curiosities/spirit_mote/created", 3)));
+
         this.add(MalumSoundEvents.TUNING_FORK_TINKER, s -> definition(s).with(sounds("curiosities/augments/tinker", 6)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_APPLY, s -> definition(s).with(sounds("curiosities/augments/augment_insert", 3)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_REMOVE, s -> definition(s).with(sounds("curiosities/augments/augment_remove", 3)));
@@ -67,6 +68,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ARCANE_WHISPERS, s -> definition(s).with(sounds("curiosities/spirit/spirit_idle", 4)));
         this.add(MalumSoundEvents.SPIRIT_PICKUP, s -> definition(s).with(sounds("curiosities/spirit/spirit_pickup", 4)));
         this.add(MalumSoundEvents.SOUL_SHATTER, s -> definition(s).with(sounds("curiosities/soul_shatter", 3)));
+
+        this.add(MalumSoundEvents.BLIGHT_PROPAGATION, s -> definition(s).with(sounds("blocks/blight/blight_propagation", 10)));
+        this.add(MalumSoundEvents.SCARSTONE_PROPAGATION, s -> definition(s).with(sounds("blocks/scarstone/scarstone_propagation", 4)));
 
         this.add(MalumSoundEvents.SOUL_WARD_HIT, s -> definition(s).with(sounds("curiosities/soul_ward/grow", 4)));
         this.add(MalumSoundEvents.SOUL_WARD_GROW, s -> definition(s).with(sounds("curiosities/soul_ward/dmg", 4)));
@@ -110,6 +114,11 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.INVERTED_HEART_IMPACT, s -> definition(s).with(sounds("curiosities/geas/soulwashing_impact", 6)));
         this.add(MalumSoundEvents.WYRD_RECONSTRUCTION, s -> definition(s).with(sounds("curiosities/geas/wyrd_reconstruction", 2)));
         this.add(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
+
+        this.add(MalumSoundEvents.CATALYST_LOBBER_UNLOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
+        this.add(MalumSoundEvents.CATALYST_LOBBER_LOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
+        this.add(MalumSoundEvents.CATALYST_LOBBER_PRIMED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/load", 2)));
+        this.add(MalumSoundEvents.CATALYST_LOBBER_FIRED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/fire", 2)));
 
         this.add(MalumSoundEvents.STAFF_FIRES, s -> definition(s).with(sounds("curiosities/weapons/staff/fire", 2)));
         this.add(MalumSoundEvents.STAFF_POWERS_UP, s -> definition(s).with(sounds("curiosities/weapons/staff/power_up", 2)));
@@ -169,32 +178,92 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.VOID_TRANSMUTATION, s -> definition(s).with(sounds("weeping_well/void_transmutation", 2)));
         this.add(MalumSoundEvents.VOID_EATS_GUNK, s -> definition(s).with(sounds("curiosities/trinkets/starved/nom", 4)));
 
-
-        this.add(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.QUARTZ_CLUSTER_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-
-        this.add(MalumSoundEvents.CATALYST_LOBBER_UNLOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
-        this.add(MalumSoundEvents.CATALYST_LOBBER_LOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
-        this.add(MalumSoundEvents.CATALYST_LOBBER_PRIMED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/load", 2)));
-        this.add(MalumSoundEvents.CATALYST_LOBBER_FIRED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/fire", 2)));
-
         this.add(MalumSoundEvents.THE_DEEP_BECKONS, s -> definition(s).with(sound("suspicious_sound")));
         this.add(MalumSoundEvents.THE_HEAVENS_SIGN, s -> definition(s).with(sound("heavenly_organs")));
 
+        this.add(MalumSoundEvents.SOULSTONE_BREAK, s -> definition(s).with(sounds("blocks/soulstone/break", 4)));
+        this.add(MalumSoundEvents.SOULSTONE_STEP, s -> definition(s).with(sounds("blocks/soulstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.SOULSTONE_PLACE, s -> definition(s).with(sounds("blocks/soulstone/break", 4)));
+        this.add(MalumSoundEvents.SOULSTONE_HIT, s -> definition(s).with(sounds("blocks/soulstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.SOULSTONE_FALL, s -> definition(s).with(sounds("blocks/soulstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_BREAK, s -> definition(s).with(sounds("blocks/soulstone/deepslate/break", 4)));
+        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_STEP, s -> definition(s).with(sounds("blocks/soulstone/deepslate/break", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_PLACE, s -> definition(s).with(sounds("blocks/soulstone/deepslate/place", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_HIT, s -> definition(s).with(sounds("blocks/soulstone/deepslate/place", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_FALL, s -> definition(s).with(sounds("blocks/soulstone/deepslate/place", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_BREAK, s -> definition(s).with(sounds("blocks/blazing_quartz/break", 4)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_PLACE, s -> definition(s).with(sounds("minecraft:block/nether_ore/step", 5)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_STEP, s -> definition(s).with(sounds("blocks/blazing_quartz/break", 4)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_HIT, s -> definition(s).with(sounds("minecraft:block/nether_ore/step", 5)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_FALL, s -> definition(s).with(sounds("minecraft:block/nether_ore/step", 5)));
+
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_FALL, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.QUARTZ_ORE_BREAK, s -> definition(s).with(sounds("blocks/natural_quartz/break", 4)));
+        this.add(MalumSoundEvents.QUARTZ_ORE_STEP, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.QUARTZ_ORE_PLACE, s -> definition(s).with(sounds("blocks/natural_quartz/break", 4)));
+        this.add(MalumSoundEvents.QUARTZ_ORE_HIT, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.QUARTZ_ORE_FALL, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.DEEPSLATE_QUARTZ_ORE_BREAK, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/break", 4)));
+        this.add(MalumSoundEvents.DEEPSLATE_QUARTZ_ORE_STEP, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_QUARTZ_ORE_PLACE, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/break", 4)));
+        this.add(MalumSoundEvents.DEEPSLATE_QUARTZ_ORE_HIT, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_QUARTZ_ORE_FALL, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.BRILLIANCE_ORE_BREAK, s -> definition(s).with(sounds("blocks/natural_quartz/break", 4)));
+        this.add(MalumSoundEvents.BRILLIANCE_ORE_STEP, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BRILLIANCE_ORE_PLACE, s -> definition(s).with(sounds("blocks/natural_quartz/break", 4)));
+        this.add(MalumSoundEvents.BRILLIANCE_ORE_HIT, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BRILLIANCE_ORE_FALL, s -> definition(s).with(sounds("blocks/natural_quartz/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE_BREAK, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/break", 4)));
+        this.add(MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE_STEP, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE_PLACE, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/break", 4)));
+        this.add(MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE_HIT, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE_FALL, s -> definition(s).with(sounds("blocks/natural_quartz/deepslate/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_FALL, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
+        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_FALL, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.CTHONIC_GOLD_BREAK, s -> definition(s).with(sounds("blocks/cthonic_gold/break", 4)));
+        this.add(MalumSoundEvents.CTHONIC_GOLD_PLACE, s -> definition(s).with(sounds("blocks/cthonic_gold/break", 4)));
+
+        this.add(MalumSoundEvents.ETHER_BREAK, s -> definition(s).with(sounds("blocks/ether/break", 4)));
+        this.add(MalumSoundEvents.ETHER_PLACE, s -> definition(s).with(sounds("blocks/ether/break", 4)));
 
         this.add(MalumSoundEvents.RUNEWOOD_BREAK, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
         this.add(MalumSoundEvents.RUNEWOOD_STEP, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
         this.add(MalumSoundEvents.RUNEWOOD_PLACE, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
         this.add(MalumSoundEvents.RUNEWOOD_HIT, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
+        this.add(MalumSoundEvents.RUNEWOOD_FALL, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
 
         this.add(MalumSoundEvents.RUNEWOOD_HANGING_SIGN_BREAK, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/break", 4)));
         this.add(MalumSoundEvents.RUNEWOOD_HANGING_SIGN_STEP, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
         this.add(MalumSoundEvents.RUNEWOOD_HANGING_SIGN_PLACE, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/break", 4)));
         this.add(MalumSoundEvents.RUNEWOOD_HANGING_SIGN_HIT, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
+        this.add(MalumSoundEvents.RUNEWOOD_HANGING_SIGN_FALL, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
 
+        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_BREAK, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
+        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_STEP, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
+        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_PLACE, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
+        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_HIT, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
+        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_FALL, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
 
         this.add(MalumSoundEvents.RUNEWOOD_BUTTON_CLICK_OFF, s -> definition(s).with(sound("blocks/runewood/button/runewood_button")));
         this.add(MalumSoundEvents.RUNEWOOD_BUTTON_CLICK_ON, s -> definition(s).with(sound("blocks/runewood/button/runewood_button")));
@@ -206,17 +275,24 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.RUNEWOOD_DOOR_OPEN, s -> definition(s).with(sounds("blocks/runewood/door/toggle", 3)));
         this.add(MalumSoundEvents.RUNEWOOD_TRAPDOOR_CLOSE, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
         this.add(MalumSoundEvents.RUNEWOOD_TRAPDOOR_OPEN, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
-
+        
         this.add(MalumSoundEvents.SOULWOOD_BREAK, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
         this.add(MalumSoundEvents.SOULWOOD_STEP, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
         this.add(MalumSoundEvents.SOULWOOD_PLACE, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
         this.add(MalumSoundEvents.SOULWOOD_HIT, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
+        this.add(MalumSoundEvents.SOULWOOD_FALL, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
 
         this.add(MalumSoundEvents.SOULWOOD_HANGING_SIGN_BREAK, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/break", 4)));
         this.add(MalumSoundEvents.SOULWOOD_HANGING_SIGN_STEP, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
         this.add(MalumSoundEvents.SOULWOOD_HANGING_SIGN_PLACE, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/break", 4)));
         this.add(MalumSoundEvents.SOULWOOD_HANGING_SIGN_HIT, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
+        this.add(MalumSoundEvents.SOULWOOD_HANGING_SIGN_FALL, s -> definition(s).with(sounds("blocks/runewood/hanging_sign/step", 4)));
 
+        this.add(MalumSoundEvents.SOULWOOD_LEAVES_BREAK, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
+        this.add(MalumSoundEvents.SOULWOOD_LEAVES_STEP, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
+        this.add(MalumSoundEvents.SOULWOOD_LEAVES_PLACE, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
+        this.add(MalumSoundEvents.SOULWOOD_LEAVES_HIT, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
+        this.add(MalumSoundEvents.SOULWOOD_LEAVES_FALL, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
 
         this.add(MalumSoundEvents.SOULWOOD_BUTTON_CLICK_OFF, s -> definition(s).with(sound("blocks/runewood/button/runewood_button")));
         this.add(MalumSoundEvents.SOULWOOD_BUTTON_CLICK_ON, s -> definition(s).with(sound("blocks/runewood/button/runewood_button")));
@@ -229,10 +305,48 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SOULWOOD_TRAPDOOR_CLOSE, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
         this.add(MalumSoundEvents.SOULWOOD_TRAPDOOR_OPEN, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
 
+        this.add(MalumSoundEvents.ARCANE_ROCK_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
+
+        this.add(MalumSoundEvents.SCARSTONE_BREAK, s -> definition(s).with(sounds("blocks/scarstone/break", 6)));
+        this.add(MalumSoundEvents.SCARSTONE_STEP, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
+        this.add(MalumSoundEvents.SCARSTONE_PLACE, s -> definition(s).with(sounds("blocks/scarstone/break", 6)));
+        this.add(MalumSoundEvents.SCARSTONE_HIT, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
+        this.add(MalumSoundEvents.SCARSTONE_FALL, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
+
+        this.add(MalumSoundEvents.STRANGE_CRYSTAL_BREAK, s -> definition(s).with(sounds("blocks/strange_crystal/break", 4)));
+        this.add(MalumSoundEvents.STRANGE_CRYSTAL_STEP, s -> definition(s).with(sounds("blocks/strange_crystal/hit", 4)));
+        this.add(MalumSoundEvents.STRANGE_CRYSTAL_PLACE, s -> definition(s).with(sounds("blocks/strange_crystal/place", 4)));
+        this.add(MalumSoundEvents.STRANGE_CRYSTAL_HIT, s -> definition(s).with(sounds("blocks/strange_crystal/hit", 4)));
+        this.add(MalumSoundEvents.STRANGE_CRYSTAL_FALL, s -> definition(s).with(sounds("blocks/strange_crystal/hit", 4)));
+
+        this.add(MalumSoundEvents.HALLOWED_GOLD_BREAK, s -> definition(s).with(sounds("blocks/hallowed_gold/break", 4)));
+        this.add(MalumSoundEvents.HALLOWED_GOLD_STEP, s -> definition(s).with(sounds("blocks/hallowed_gold/hit", 4)));
+        this.add(MalumSoundEvents.HALLOWED_GOLD_PLACE, s -> definition(s).with(sounds("blocks/hallowed_gold/break", 4)));
+        this.add(MalumSoundEvents.HALLOWED_GOLD_HIT, s -> definition(s).with(sounds("blocks/hallowed_gold/hit", 4)));
+        this.add(MalumSoundEvents.HALLOWED_GOLD_FALL, s -> definition(s).with(sounds("blocks/hallowed_gold/hit", 4)));
+
+        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_BREAK, s -> definition(s).with(sounds("blocks/soul_stained_steel/break", 4)));
+        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_STEP, s -> definition(s).with(sounds("blocks/soul_stained_steel/hit", 4)));
+        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_PLACE, s -> definition(s).with(sounds("blocks/soul_stained_steel/break", 4)));
+        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_HIT, s -> definition(s).with(sounds("blocks/soul_stained_steel/hit", 4)));
+        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_FALL, s -> definition(s).with(sounds("blocks/soul_stained_steel/hit", 4)));
+
         this.add(MalumSoundEvents.SPIRIT_DIODE_BREAK, s -> definition(s).with(sounds("blocks/spirit_diode/break", 4)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_STEP, s -> definition(s).with(sounds("minecraft:block/copper_bulb/step", 6)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_PLACE, s -> definition(s).with(sounds("blocks/spirit_diode/place", 4)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_HIT, s -> definition(s).with(sounds("minecraft:block/copper_bulb/step", 6)));
+        this.add(MalumSoundEvents.SPIRIT_DIODE_FALL, s -> definition(s).with(sounds("minecraft:block/copper_bulb/step", 6)));
+
         this.add(MalumSoundEvents.SPIRIT_DIODE_OPEN, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_open", 4)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_CLOSE, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_close", 4)));
 
@@ -245,78 +359,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
         this.add(MalumSoundEvents.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
 
-        this.add(MalumSoundEvents.ARCANE_ROCK_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
-
-        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6)));
-        this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
-
-        this.add(MalumSoundEvents.SOULSTONE_BREAK, s -> definition(s).with(sounds("blocks/soulstone/break", 4)));
-        this.add(MalumSoundEvents.SOULSTONE_STEP, s -> definition(s).with(sounds("blocks/soulstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.SOULSTONE_PLACE, s -> definition(s).with(sounds("blocks/soulstone/break", 4)));
-        this.add(MalumSoundEvents.SOULSTONE_HIT, s -> definition(s).with(sounds("blocks/soulstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_BREAK, s -> definition(s).with(sounds("blocks/soulstone/deepslate/break", 4)));
-        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_STEP, s -> definition(s).with(sounds("blocks/soulstone/deepslate/break", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_PLACE, s -> definition(s).with(sounds("blocks/soulstone/deepslate/place", 6)));
-        this.add(MalumSoundEvents.DEEPSLATE_SOULSTONE_HIT, s -> definition(s).with(sounds("blocks/soulstone/deepslate/place", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_BREAK, s -> definition(s).with(sounds("blocks/blazing_quartz/break", 4)));
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_ORE_PLACE, s -> definition(s).with(sounds("blocks/blazing_quartz/break", 4)));
-
-
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.BLAZING_QUARTZ_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.BRILLIANCE_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-
-        this.add(MalumSoundEvents.CTHONIC_GOLD_BREAK, s -> definition(s).with(sounds("blocks/cthonic_gold/break", 4)));
-        this.add(MalumSoundEvents.CTHONIC_GOLD_PLACE, s -> definition(s).with(sounds("blocks/cthonic_gold/break", 4)));
-
-
-        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_BREAK, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_STEP, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_PLACE, s -> definition(s).with(sounds("blocks/gemstone/break", 4)));
-        this.add(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK_HIT, s -> definition(s).with(sounds("blocks/gemstone/hit", 4)).with(sounds("minecraft:block/basalt/step", 6)));
-
-        this.add(MalumSoundEvents.HALLOWED_GOLD_BREAK, s -> definition(s).with(sounds("blocks/hallowed_gold/break", 4)));
-        this.add(MalumSoundEvents.HALLOWED_GOLD_STEP, s -> definition(s).with(sounds("blocks/hallowed_gold/hit", 4)));
-        this.add(MalumSoundEvents.HALLOWED_GOLD_PLACE, s -> definition(s).with(sounds("blocks/hallowed_gold/break", 4)));
-        this.add(MalumSoundEvents.HALLOWED_GOLD_HIT, s -> definition(s).with(sounds("blocks/hallowed_gold/hit", 4)));
-
-        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_BREAK, s -> definition(s).with(sounds("blocks/soul_stained_steel/break", 4)));
-        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_STEP, s -> definition(s).with(sounds("blocks/soul_stained_steel/hit", 4)));
-        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_PLACE, s -> definition(s).with(sounds("blocks/soul_stained_steel/break", 4)));
-        this.add(MalumSoundEvents.SOUL_STAINED_STEEL_HIT, s -> definition(s).with(sounds("blocks/soul_stained_steel/hit", 4)));
-
-
         this.add(MalumSoundEvents.MAJOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/blight_motif", 6)));
         this.add(MalumSoundEvents.MINOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/minor_blight_motif", 6)));
-
-        this.add(MalumSoundEvents.ETHER_BREAK, s -> definition(s).with(sounds("blocks/ether/break", 4)));
-        this.add(MalumSoundEvents.ETHER_PLACE, s -> definition(s).with(sounds("blocks/ether/break", 4)));
-
-
-        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_BREAK, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
-        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_STEP, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
-        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_PLACE, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
-        this.add(MalumSoundEvents.RUNEWOOD_LEAVES_HIT, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
-
-        this.add(MalumSoundEvents.SOULWOOD_LEAVES_BREAK, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
-        this.add(MalumSoundEvents.SOULWOOD_LEAVES_STEP, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
-        this.add(MalumSoundEvents.SOULWOOD_LEAVES_PLACE, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/break", 7)));
-        this.add(MalumSoundEvents.SOULWOOD_LEAVES_HIT, s -> definition(s).with(sounds("minecraft:block/azalea_leaves/step", 5)));
 
         this.add(MalumSoundEvents.ARCANE_ELEGY, s -> definition(s).with(sound("arcane_elegy")));
         this.add(MalumSoundEvents.AESTHETICA, s -> definition(s).with(sound("aesthetica")));

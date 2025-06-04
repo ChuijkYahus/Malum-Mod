@@ -42,10 +42,15 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     public static LodestoneWorldgenBuilder generateBlightWithVisuals(WorldGenLevel level, BlockPos pos, boolean allowScarstone, int radius) {
-        var blight = generateBlight(level, pos, allowScarstone, radius);
+        boolean generateScarstone = allowScarstone && level.getRandom().nextFloat() < 0.08f;
+        var blight = generateBlight(level, pos, generateScarstone, radius);
         if (level instanceof ServerLevel realLevel) {
             createBlightVFX(realLevel, pos, blight);
-            level.playSound(null, pos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, 1.8f);
+            level.playSound(null, pos, MalumSoundEvents.BLIGHT_PROPAGATION.get(), SoundSource.BLOCKS, 1f, 1f);
+            if (generateScarstone) {
+                var scarstonePos = blight.getLayer(1).getRandomEntries(1).getFirst().position();
+                level.playSound(null, scarstonePos, MalumSoundEvents.SCARSTONE_PROPAGATION.get(), SoundSource.BLOCKS, 2f, 1f);
+            }
         }
         return blight;
     }
@@ -59,17 +64,19 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 .spawn(level);
     }
 
-    public static LodestoneWorldgenBuilder generateBlight(WorldGenLevel level, BlockPos pos, boolean allowScarstone, int radius) {
+    public record BlightGenerationData(LodestoneWorldgenBuilder builder, BlockPos blightCenter, Optional<BlockPos> scarstoneCenter) {};
+
+    public static LodestoneWorldgenBuilder generateBlight(WorldGenLevel level, BlockPos pos, boolean generateScarstone, int radius) {
         var random = level.getRandom();
 
         var builder = LodestoneWorldgenBuilder.create().addAdditionalPlacement(BlightFeature::cleanupFoliage);
-        if (allowScarstone && level.getRandom().nextFloat() < 0.08f) {
+        if (generateScarstone) {
             int offset = (int) (radius*0.8f);
             int xOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset/2, offset*2) * (random.nextBoolean() ? 1 : -1);
             int zOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset/2, offset*2) * (random.nextBoolean() ? 1 : -1);
             var scarstonePos = pos.offset(xOffset, 0, zOffset);
-            var scarstone = ScarstoneFeature.generateScarstone(level, scarstonePos, (int) (radius*0.7f));
             var extraBlight = generateBlight(level, scarstonePos, false, radius);
+            var scarstone = ScarstoneFeature.generateScarstone(level, scarstonePos, (int) (radius*0.7f));
             builder.merge(extraBlight).merge(scarstone);
         }
         var blightLayer = builder.createLayer();

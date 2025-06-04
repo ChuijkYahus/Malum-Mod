@@ -3,7 +3,6 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.sound.BlightedSoundType;
 import com.sammy.malum.common.sound.QuartzClusterSoundType;
-import com.sammy.malum.common.sound.QuartzSoundType;
 import com.sammy.malum.common.sound.RareEarthSoundType;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.ResourceKey;
@@ -65,6 +64,10 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_WHISPERS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_whispers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_PICKUP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_picked_up")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_SHATTER = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("a_soul_shatters")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_PROPAGATION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_propagates")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_PROPAGATION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_monument_forms")));
+
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_damaged")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_grows")));
@@ -176,47 +179,100 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulstone_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulstone_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulstone_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulstone_fall")));
+    public static final SoundType SOULSTONE = new DeferredSoundType(1.0F, 1.0F, SOULSTONE_BREAK, SOULSTONE_STEP, SOULSTONE_PLACE, SOULSTONE_HIT, SOULSTONE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_SOULSTONE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_soulstone_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_SOULSTONE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_soulstone_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_SOULSTONE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_soulstone_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_SOULSTONE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_soulstone_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_SOULSTONE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_soulstone_fall")));
+    public static final SoundType DEEPSLATE_SOULSTONE = new DeferredSoundType(1.0F, 1.0F, DEEPSLATE_SOULSTONE_BREAK, DEEPSLATE_SOULSTONE_STEP, DEEPSLATE_SOULSTONE_PLACE, DEEPSLATE_SOULSTONE_HIT, DEEPSLATE_SOULSTONE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_ore_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_ore_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_ore_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_ore_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_ore_fall")));
+    public static final SoundType BLAZING_QUARTZ_ORE = new DeferredSoundType(1.0F, 1.0F, BLAZING_QUARTZ_ORE_BREAK, BLAZING_QUARTZ_ORE_STEP, BLAZING_QUARTZ_ORE_PLACE, BLAZING_QUARTZ_ORE_HIT, BLAZING_QUARTZ_ORE_FALL);
+    public static final SoundType BLAZING_QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.5f, BLAZING_QUARTZ_ORE_BREAK, BLAZING_QUARTZ_ORE_STEP, BLAZING_QUARTZ_ORE_PLACE, BLAZING_QUARTZ_ORE_HIT, BLAZING_QUARTZ_ORE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_block_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_block_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_BLOCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_block_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_BLOCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_block_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLAZING_QUARTZ_BLOCK_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blazing_quartz_block_fall")));
+    public static final SoundType BLAZING_QUARTZ_BLOCK = new DeferredSoundType(1.0F, 1.25f, BLAZING_QUARTZ_BLOCK_BREAK, BLAZING_QUARTZ_BLOCK_STEP, BLAZING_QUARTZ_BLOCK_PLACE, BLAZING_QUARTZ_BLOCK_HIT, BLAZING_QUARTZ_BLOCK_FALL);
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_step")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_fall")));
+    public static final SoundType QUARTZ_ORE = new DeferredSoundType(1.0F, 1.2f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
+    public static final SoundType QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.7f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_fall")));
+    public static final SoundType DEEPSLATE_QUARTZ_ORE = new DeferredSoundType(1.0F, 1.2f, DEEPSLATE_QUARTZ_ORE_BREAK, DEEPSLATE_QUARTZ_ORE_STEP, DEEPSLATE_QUARTZ_ORE_PLACE, DEEPSLATE_QUARTZ_ORE_HIT, DEEPSLATE_QUARTZ_ORE_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_fall")));
+    public static final SoundType BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.4f, BRILLIANCE_ORE_BREAK, BRILLIANCE_ORE_STEP, BRILLIANCE_ORE_PLACE, BRILLIANCE_ORE_HIT, BRILLIANCE_ORE_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_fall")));
+    public static final SoundType DEEPSLATE_BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.4f, DEEPSLATE_BRILLIANCE_ORE_BREAK, DEEPSLATE_BRILLIANCE_ORE_STEP, DEEPSLATE_BRILLIANCE_ORE_PLACE, DEEPSLATE_BRILLIANCE_ORE_HIT, DEEPSLATE_BRILLIANCE_ORE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_hit")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_CLUSTER_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_cluster_block_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_CLUSTER_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_cluster_block_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_CLUSTER_BLOCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_cluster_block_step")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_CLUSTER_BLOCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_cluster_block_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_fall")));
+    public static final SoundType BRILLIANCE_BLOCK = new DeferredSoundType(1.0F, 1.4f, BRILLIANCE_BLOCK_BREAK, BRILLIANCE_BLOCK_STEP, BRILLIANCE_BLOCK_PLACE, BRILLIANCE_BLOCK_HIT, BRILLIANCE_BLOCK_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CTHONIC_GOLD_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("cthonic_gold_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CTHONIC_GOLD_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("cthonic_gold_place")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ETHER_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ether_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ETHER_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ether_break")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_CHARCOAL_BLOCK_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_charcoal_block_fall")));
+    public static final SoundType ARCANE_CHARCOAL_BLOCK = new DeferredSoundType(1.0F, 0.9f, ARCANE_CHARCOAL_BLOCK_BREAK, ARCANE_CHARCOAL_BLOCK_STEP, ARCANE_CHARCOAL_BLOCK_PLACE, ARCANE_CHARCOAL_BLOCK_HIT, ARCANE_CHARCOAL_BLOCK_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_fall")));
+    public static final SoundType RUNEWOOD = new DeferredSoundType(1.0F, 1.3F, RUNEWOOD_BREAK, RUNEWOOD_STEP, RUNEWOOD_PLACE, RUNEWOOD_HIT, RUNEWOOD_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_fall")));
+    public static final SoundType RUNEWOOD_LEAVES = new DeferredSoundType(1.0F, 1.1F, RUNEWOOD_LEAVES_BREAK, RUNEWOOD_LEAVES_STEP, RUNEWOOD_LEAVES_PLACE, RUNEWOOD_LEAVES_HIT, RUNEWOOD_LEAVES_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HANGING_SIGN_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hanging_sign_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HANGING_SIGN_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hanging_sign_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HANGING_SIGN_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hanging_sign_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HANGING_SIGN_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hanging_sign_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_HANGING_SIGN_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_hanging_sign_fall")));
+    public static final SoundType RUNEWOOD_HANGING_SIGN = new DeferredSoundType(1.0F, 1.3F, RUNEWOOD_HANGING_SIGN_BREAK, RUNEWOOD_HANGING_SIGN_STEP, RUNEWOOD_HANGING_SIGN_PLACE, RUNEWOOD_HANGING_SIGN_HIT, RUNEWOOD_HANGING_SIGN_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_BUTTON_CLICK_OFF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_button_click_off")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_BUTTON_CLICK_ON = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_button_click_on")));
@@ -233,11 +289,22 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_fall")));
+    public static final SoundType SOULWOOD = new BlightedSoundType(1.0F, 1.1f, SOULWOOD_BREAK, SOULWOOD_STEP, SOULWOOD_PLACE, SOULWOOD_HIT, SOULWOOD_FALL);
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_fall")));
+    public static final SoundType SOULWOOD_LEAVES = new BlightedSoundType(1.0F, 0.9F, SOULWOOD_LEAVES_BREAK, SOULWOOD_LEAVES_STEP, SOULWOOD_LEAVES_PLACE, SOULWOOD_LEAVES_HIT, SOULWOOD_LEAVES_FALL);
+    
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HANGING_SIGN_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hanging_sign_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HANGING_SIGN_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hanging_sign_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HANGING_SIGN_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hanging_sign_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HANGING_SIGN_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hanging_sign_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_HANGING_SIGN_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_hanging_sign_fall")));
+    public static final SoundType SOULWOOD_HANGING_SIGN = new DeferredSoundType(1.0F, 1.1f, SOULWOOD_HANGING_SIGN_BREAK, SOULWOOD_HANGING_SIGN_STEP, SOULWOOD_HANGING_SIGN_PLACE, SOULWOOD_HANGING_SIGN_HIT, SOULWOOD_HANGING_SIGN_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_BUTTON_CLICK_OFF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_button_click_off")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_BUTTON_CLICK_ON = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_button_click_on")));
@@ -249,14 +316,66 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_DOOR_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_door_open")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_TRAPDOOR_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_trapdoor_close")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_TRAPDOOR_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_trapdoor_open")));
+    
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_fall")));
+    public static final SoundType TAINTED_ROCK = new DeferredSoundType(1.0F, 1.1F, ARCANE_ROCK_BREAK, ARCANE_ROCK_STEP, ARCANE_ROCK_PLACE, ARCANE_ROCK_HIT, ARCANE_ROCK_FALL);
+    public static final SoundType TWISTED_ROCK = new DeferredSoundType(1.0F, 0.85F, ARCANE_ROCK_BREAK, ARCANE_ROCK_STEP, ARCANE_ROCK_PLACE, ARCANE_ROCK_HIT, ARCANE_ROCK_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_fall")));
+    public static final SoundType TAINTED_ROCK_BRICKS = new DeferredSoundType(1.0F, 1.1F, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, ARCANE_ROCK_BRICKS_FALL);
+    public static final SoundType TWISTED_ROCK_BRICKS = new DeferredSoundType(1.0F, 0.85F, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, ARCANE_ROCK_BRICKS_FALL);
+
+//    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_break")));
+//    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_place")));
+//    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_step")));
+//    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_hit")));
+//    public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_fall")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_fall")));
+    public static final SoundType SCARSTONE = new DeferredSoundType(1.0F, 1.0F, SCARSTONE_BREAK, SCARSTONE_STEP, SCARSTONE_PLACE, SCARSTONE_HIT, SCARSTONE_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> STRANGE_CRYSTAL_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("strange_crystal_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> STRANGE_CRYSTAL_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("strange_crystal_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> STRANGE_CRYSTAL_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("strange_crystal_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> STRANGE_CRYSTAL_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("strange_crystal_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> STRANGE_CRYSTAL_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("strange_crystal_fall")));
+    public static final SoundType STRANGE_CRYSTAL = new DeferredSoundType(1.0F, 1.0F, STRANGE_CRYSTAL_BREAK, STRANGE_CRYSTAL_STEP, STRANGE_CRYSTAL_PLACE, STRANGE_CRYSTAL_HIT, STRANGE_CRYSTAL_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_fall")));
+    public static final SoundType HALLOWED_GOLD = new DeferredSoundType(1.0F, 1.0F, HALLOWED_GOLD_BREAK, HALLOWED_GOLD_STEP, HALLOWED_GOLD_PLACE, HALLOWED_GOLD_HIT, HALLOWED_GOLD_FALL);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_break")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_place")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_step")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_fall")));
+    public static final SoundType SOUL_STAINED_STEEL = new DeferredSoundType(1.0F, 1.0F, SOUL_STAINED_STEEL_BREAK, SOUL_STAINED_STEEL_STEP, SOUL_STAINED_STEEL_PLACE, SOUL_STAINED_STEEL_HIT, SOUL_STAINED_STEEL_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_hit")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_fall")));
+    public static final SoundType SPIRIT_DIODE = new DeferredSoundType(1.0F, 1.0F, SPIRIT_DIODE_BREAK, SPIRIT_DIODE_STEP, SPIRIT_DIODE_PLACE, SPIRIT_DIODE_HIT, SPIRIT_DIODE_FALL);
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_open")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_close")));
-
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_TICK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_ticks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_LONG_TICK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_ticks_ferociously")));
 
@@ -266,41 +385,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_RELEASE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebreaker_releases"), 8f));
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVEMAKER_PULSE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavemaker_pulses"), 8f));
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_step")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_hit")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_step")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANE_ROCK_BRICKS_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcane_rock_bricks_hit")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_hit")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> HALLOWED_GOLD_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hallowed_gold_step")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_hit")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_STAINED_STEEL_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_stained_steel_step")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_hit")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNEWOOD_LEAVES_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runewood_leaves_step")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_break")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_hit")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOULWOOD_LEAVES_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulwood_leaves_step")));
-
     public static final DeferredHolder<SoundEvent, SoundEvent> MAJOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MINOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts_faintly")));
-
-    public static final DeferredHolder<SoundEvent, SoundEvent> ETHER_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ether_place")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> ETHER_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ether_break")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> THE_DEEP_BECKONS = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("the_deep_beckons"), 32f));
     public static final DeferredHolder<SoundEvent, SoundEvent> THE_HEAVENS_SIGN = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("the_heavens_sing"), 32f));
@@ -311,43 +397,11 @@ public class MalumSoundEvents {
     public static final ResourceKey<JukeboxSong> ARCANE_ELEGY_KEY =  register("arcane_elegy");
     public static final ResourceKey<JukeboxSong> AESTHETICA_KEY =  register("aesthetica");
 
-
-    public static final SoundType SOULSTONE = new DeferredSoundType(1.0F, 1.0F, SOULSTONE_BREAK, SOULSTONE_STEP, SOULSTONE_PLACE, SOULSTONE_HIT, () -> SoundEvents.STONE_FALL);
-    public static final SoundType DEEPSLATE_SOULSTONE = new DeferredSoundType(1.0F, 1.0F, DEEPSLATE_SOULSTONE_BREAK, DEEPSLATE_SOULSTONE_STEP, DEEPSLATE_SOULSTONE_PLACE, DEEPSLATE_SOULSTONE_HIT, () -> SoundEvents.DEEPSLATE_FALL);
-    public static final SoundType BLAZING_QUARTZ_ORE = new DeferredSoundType(1.0F, 1.0F, BLAZING_QUARTZ_ORE_BREAK, () -> SoundEvents.NETHER_ORE_STEP, BLAZING_QUARTZ_ORE_PLACE, () -> SoundEvents.NETHER_ORE_HIT, () -> SoundEvents.NETHER_GOLD_ORE_FALL);
-    public static final SoundType NATURAL_QUARTZ = new QuartzSoundType(1.0F, 0.9f, () -> SoundEvents.STONE_BREAK, () -> SoundEvents.STONE_STEP, () -> SoundEvents.STONE_PLACE, () -> SoundEvents.STONE_HIT, () -> SoundEvents.STONE_FALL);
-    public static final SoundType DEEPSLATE_QUARTZ = new QuartzSoundType(1.0F, 0.9f, () -> SoundEvents.DEEPSLATE_BREAK, () -> SoundEvents.DEEPSLATE_STEP, () -> SoundEvents.DEEPSLATE_PLACE, () -> SoundEvents.DEEPSLATE_HIT, () -> SoundEvents.DEEPSLATE_FALL);
-    public static final SoundType CTHONIC_GOLD = new RareEarthSoundType(1.0F, 1.15f, SOULSTONE_BREAK, SOULSTONE_STEP, SOULSTONE_PLACE, DEEPSLATE_SOULSTONE_HIT, () -> SoundEvents.DEEPSLATE_FALL);
-    public static final SoundType MALIGNANT_LEAD = new RareEarthSoundType(1.0F, 0.7f, () -> SoundEvents.DEEPSLATE_BREAK, () -> SoundEvents.DEEPSLATE_STEP, () -> SoundEvents.DEEPSLATE_PLACE, () -> SoundEvents.DEEPSLATE_HIT, () -> SoundEvents.NETHER_ORE_FALL);
-
-    public static final SoundType BRILLIANCE_BLOCK = new DeferredSoundType(1.0F, 1.4f, BRILLIANCE_BLOCK_BREAK, BRILLIANCE_BLOCK_STEP, BRILLIANCE_BLOCK_PLACE, BRILLIANCE_BLOCK_HIT, () -> SoundEvents.NETHER_GOLD_ORE_FALL);
-    public static final SoundType BLAZING_QUARTZ_BLOCK = new DeferredSoundType(1.0F, 1.25f, BLAZING_QUARTZ_BLOCK_BREAK, BLAZING_QUARTZ_BLOCK_STEP, BLAZING_QUARTZ_BLOCK_PLACE, BLAZING_QUARTZ_BLOCK_HIT, () -> SoundEvents.NETHER_GOLD_ORE_FALL);
-    public static final SoundType BLAZING_QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.5f, BLAZING_QUARTZ_BLOCK_BREAK, BLAZING_QUARTZ_BLOCK_STEP, BLAZING_QUARTZ_BLOCK_PLACE, BLAZING_QUARTZ_BLOCK_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL);
-    public static final SoundType ARCANE_CHARCOAL_BLOCK = new DeferredSoundType(1.0F, 0.9f, ARCANE_CHARCOAL_BLOCK_BREAK, ARCANE_CHARCOAL_BLOCK_STEP, ARCANE_CHARCOAL_BLOCK_PLACE, ARCANE_CHARCOAL_BLOCK_HIT, () -> SoundEvents.NETHER_GOLD_ORE_FALL);
-    public static final SoundType QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.5f, QUARTZ_CLUSTER_BLOCK_BREAK, QUARTZ_CLUSTER_BLOCK_STEP, QUARTZ_CLUSTER_BLOCK_PLACE, QUARTZ_CLUSTER_BLOCK_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL);
-    public static final SoundType HALLOWED_GOLD = new DeferredSoundType(1.0F, 1.0F, HALLOWED_GOLD_BREAK, HALLOWED_GOLD_STEP, HALLOWED_GOLD_PLACE, HALLOWED_GOLD_HIT, () -> SoundEvents.METAL_FALL);
-    public static final SoundType SOUL_STAINED_STEEL = new DeferredSoundType(1.0F, 1.0F, SOUL_STAINED_STEEL_BREAK, SOUL_STAINED_STEEL_STEP, SOUL_STAINED_STEEL_PLACE, SOUL_STAINED_STEEL_HIT, () -> SoundEvents.METAL_FALL);
-    public static final SoundType MALIGNANT_PEWTER = new RareEarthSoundType(1.0F, 0.7f, SOUL_STAINED_STEEL_BREAK, SOUL_STAINED_STEEL_STEP, SOUL_STAINED_STEEL_PLACE, SOUL_STAINED_STEEL_HIT, () -> SoundEvents.METAL_FALL);
-
-    public static final SoundType SPIRIT_DIODE = new DeferredSoundType(1.0F, 1.0F, SPIRIT_DIODE_BREAK, SPIRIT_DIODE_STEP, SPIRIT_DIODE_PLACE, SPIRIT_DIODE_HIT, () -> SoundEvents.COPPER_BULB_FALL);
-
-    public static final SoundType TAINTED_ROCK = new DeferredSoundType(1.0F, 1.1F, ARCANE_ROCK_BREAK, ARCANE_ROCK_STEP, ARCANE_ROCK_PLACE, ARCANE_ROCK_HIT, () -> SoundEvents.BASALT_FALL);
-    public static final SoundType TAINTED_ROCK_BRICKS = new DeferredSoundType(1.0F, 1.1F, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, () -> SoundEvents.BASALT_FALL);
-    public static final SoundType TWISTED_ROCK = new DeferredSoundType(1.0F, 0.85F, ARCANE_ROCK_BREAK, ARCANE_ROCK_STEP, ARCANE_ROCK_PLACE, ARCANE_ROCK_HIT, () -> SoundEvents.BASALT_FALL);
-    public static final SoundType TWISTED_ROCK_BRICKS = new DeferredSoundType(1.0F, 0.85F, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, () -> SoundEvents.BASALT_FALL);
-
-    public static final SoundType RUNEWOOD = new DeferredSoundType(1.0F, 1.3F, RUNEWOOD_BREAK, RUNEWOOD_STEP, RUNEWOOD_PLACE, RUNEWOOD_HIT, () -> SoundEvents.CHERRY_WOOD_FALL);
-    public static final SoundType RUNEWOOD_HANGING_SIGN = new DeferredSoundType(1.0F, 1.3F, RUNEWOOD_HANGING_SIGN_BREAK, RUNEWOOD_HANGING_SIGN_STEP, RUNEWOOD_HANGING_SIGN_PLACE, RUNEWOOD_HANGING_SIGN_HIT, () -> SoundEvents.CHERRY_WOOD_FALL);
-    public static final SoundType RUNEWOOD_LEAVES = new DeferredSoundType(1.0F, 1.1F, RUNEWOOD_LEAVES_BREAK, RUNEWOOD_LEAVES_STEP, RUNEWOOD_LEAVES_PLACE, RUNEWOOD_LEAVES_HIT, () -> SoundEvents.AZALEA_LEAVES_FALL);
-
-    public static final SoundType SOULWOOD = new BlightedSoundType(1.0F, 1.1f, SOULWOOD_BREAK, SOULWOOD_STEP, SOULWOOD_PLACE, SOULWOOD_HIT, () -> SoundEvents.CHERRY_WOOD_FALL);
-    public static final SoundType SOULWOOD_HANGING_SIGN = new DeferredSoundType(1.0F, 1.1f, SOULWOOD_HANGING_SIGN_BREAK, SOULWOOD_HANGING_SIGN_STEP, SOULWOOD_HANGING_SIGN_PLACE, SOULWOOD_HANGING_SIGN_HIT, () -> SoundEvents.CHERRY_WOOD_FALL);
-    public static final SoundType SOULWOOD_LEAVES = new BlightedSoundType(1.0F, 0.9F, SOULWOOD_LEAVES_BREAK, SOULWOOD_LEAVES_STEP, SOULWOOD_LEAVES_PLACE, SOULWOOD_LEAVES_HIT, () -> SoundEvents.AZALEA_LEAVES_FALL);
+    public static final SoundType CTHONIC_GOLD = new RareEarthSoundType(1.0F, 1.15f, SOULSTONE_BREAK, SOULSTONE_STEP, SOULSTONE_PLACE, DEEPSLATE_SOULSTONE_HIT, DEEPSLATE_SOULSTONE_FALL);
+    public static final SoundType MALIGNANT_LEAD = new RareEarthSoundType(1.0F, 0.7f, DEEPSLATE_SOULSTONE_BREAK, DEEPSLATE_SOULSTONE_STEP, DEEPSLATE_SOULSTONE_PLACE, SOULSTONE_HIT, SOULSTONE_FALL);
+    public static final SoundType MALIGNANT_PEWTER = new RareEarthSoundType(1.0F, 0.7f, SOUL_STAINED_STEEL_BREAK, SOUL_STAINED_STEEL_STEP, SOUL_STAINED_STEEL_PLACE, SOUL_STAINED_STEEL_HIT, SOUL_STAINED_STEEL_FALL);
 
     public static final SoundType WEEPING_WELL_BRICKS = new DeferredSoundType(1.0F, 0.6f, ARCANE_ROCK_BRICKS_BREAK, ARCANE_ROCK_BRICKS_STEP, ARCANE_ROCK_BRICKS_PLACE, ARCANE_ROCK_BRICKS_HIT, () -> SoundEvents.BASALT_FALL);
-
-    public static final SoundType SCARSTONE = new BlightedSoundType(1.0F, 1.4F, () -> SoundEvents.NETHERRACK_BREAK, () -> SoundEvents.NETHERRACK_STEP, () -> SoundEvents.NETHERRACK_PLACE, () -> SoundEvents.NETHERRACK_HIT, () -> SoundEvents.NETHERRACK_FALL);
-    public static final SoundType STRANGE_CRYSTAL = new BlightedSoundType(1.0F, 0.8f, () -> SoundEvents.AMETHYST_BLOCK_BREAK, () -> SoundEvents.AMETHYST_BLOCK_STEP, () -> SoundEvents.AMETHYST_BLOCK_PLACE, () -> SoundEvents.AMETHYST_BLOCK_HIT, () -> SoundEvents.AMETHYST_BLOCK_FALL);
 
     public static final SoundType BLIGHTED_FOLIAGE = new BlightedSoundType(1.0F, 1.0F, () -> SoundEvents.NETHER_WART_BREAK, () -> SoundEvents.STONE_STEP, () -> SoundEvents.NETHER_WART_PLANTED, () -> SoundEvents.STONE_HIT, () -> SoundEvents.STONE_FALL);
     public static final SoundType BLIGHTED_EARTH = new BlightedSoundType(1.0F, 1.0F, () -> SoundEvents.NYLIUM_BREAK, () -> SoundEvents.NYLIUM_STEP, () -> SoundEvents.NYLIUM_PLACE, () -> SoundEvents.NYLIUM_HIT, () -> SoundEvents.NYLIUM_FALL);
