@@ -319,7 +319,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
 
         this.add(MalumSoundEvents.SCARSTONE_BREAK, s -> definition(s).with(sounds("blocks/scarstone/break", 6)));
         this.add(MalumSoundEvents.SCARSTONE_STEP, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
-        this.add(MalumSoundEvents.SCARSTONE_PLACE, s -> definition(s).with(sounds("blocks/scarstone/break", 6)));
+        this.add(MalumSoundEvents.SCARSTONE_PLACE, s -> definition(s).with(sounds("blocks/scarstone/place", 6)));
         this.add(MalumSoundEvents.SCARSTONE_HIT, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
         this.add(MalumSoundEvents.SCARSTONE_FALL, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
 

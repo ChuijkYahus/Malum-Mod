@@ -132,7 +132,7 @@ public class MalumBlockLootTables extends LootTableProvider {
         protected LootTable.Builder createTallBlockDrop(Block block) {
             var upperCondition = IS_UPPER_PART.apply(block);
             var lowerCondition = IS_LOWER_PART.apply(block);
-            return createSilkTouchDispatchTable(block, LootItem.lootTableItem(block).when(AllOfCondition.allOf(hasSilkTouch(), AnyOfCondition.anyOf(upperCondition, lowerCondition))));
+            return createSilkTouchDispatchTable(block, LootItem.lootTableItem(block).when(AnyOfCondition.anyOf(upperCondition, lowerCondition)));
         }
 
         protected LootTable.Builder createCthonicGoldOreDrop(Block block) {

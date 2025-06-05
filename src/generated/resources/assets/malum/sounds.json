@@ -1584,12 +1584,12 @@
   },
   "scarstone_place": {
     "sounds": [
-      "malum:blocks/scarstone/break1",
-      "malum:blocks/scarstone/break2",
-      "malum:blocks/scarstone/break3",
-      "malum:blocks/scarstone/break4",
-      "malum:blocks/scarstone/break5",
-      "malum:blocks/scarstone/break6"
+      "malum:blocks/scarstone/place1",
+      "malum:blocks/scarstone/place2",
+      "malum:blocks/scarstone/place3",
+      "malum:blocks/scarstone/place4",
+      "malum:blocks/scarstone/place5",
+      "malum:blocks/scarstone/place6"
     ],
     "subtitle": "malum.subtitle.scarstone_place"
   },
