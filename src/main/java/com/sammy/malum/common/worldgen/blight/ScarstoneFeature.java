@@ -51,11 +51,11 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        List<BlockPos> floraPositions = fetchCoveringPositions(level, pos, radius-2);
-        if (!floraPositions.isEmpty()) {
-            Collections.shuffle(floraPositions);
-            int floraCount = Math.min(random.nextInt(1, radius * 4 + 1), floraPositions.size() - 1);
-            for (BlockPos blockPos : floraPositions) {
+        List<BlockPos> crystalPositions = fetchCoveringPositions(level, pos, radius-1);
+        if (!crystalPositions.isEmpty()) {
+            Collections.shuffle(crystalPositions);
+            int floraCount = Math.min(random.nextInt(radius * 2 + 1, radius * 4 + 1), crystalPositions.size() - 1);
+            for (BlockPos blockPos : crystalPositions) {
                 BlockPos above = blockPos.above();
                 BlockState state = level.getBlockState(above);
                 if (!state.getFluidState().isEmpty()) {
