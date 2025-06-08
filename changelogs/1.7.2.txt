@@ -3,6 +3,7 @@ Added the ability to put Malum Plants into Pots
 Added Scarstone, Strangeroots and Strange Crystals
 - These are rare new world generation features you can create by spreading blight
 Added the missing Soulwoven Banner Pattern for the Wicked Spirit; Sword
+Added new sounds for Brilliance and Natural Quartz Ore
 Updated the charge-up particle effect for the Unwinding Chaos
 Updated Blight Propagation particle effects
 Updated the looks of various Blight Decals
@@ -24,3 +25,4 @@ Fixed Create Recipe Compat Not Working
 Fixed Raw Brilliance and Raw Soulstone becoming Raw Soulstone in Weeping Well Transmutation
 Fixed the Malignant Stronghold Scarf remaining even when the associated entity is killed
 Fixed the Geas Effect book page having misaligned text when using the easy reading book style
+Fixed other stuff too

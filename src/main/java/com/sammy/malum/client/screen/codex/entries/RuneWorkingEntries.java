@@ -70,9 +70,9 @@ public class RuneWorkingEntries {
                 .addPage(RuneworkingPage.fromOutput(RUNE_OF_SCORCHING.get()))
         );
 
-        screen.addEntry("rune_of_aliment_cleansing", -15, 9, b -> b
+        screen.addEntry("rune_of_ailment_cleansing", -15, 9, b -> b
                 .configureWidget(w -> w.setIcon(RUNE_OF_AILMENT_CLEANSING))
-                .addPage(new HeadlineTextPage("rune_of_aliment_cleansing", "rune_of_aliment_cleansing.1"))
+                .addPage(new HeadlineTextPage("rune_of_ailment_cleansing", "rune_of_ailment_cleansing.1"))
                 .addPage(RuneworkingPage.fromOutput(RUNE_OF_AILMENT_CLEANSING.get()))
         );
 
