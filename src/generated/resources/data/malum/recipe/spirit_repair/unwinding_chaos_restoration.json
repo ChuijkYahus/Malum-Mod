@@ -1,0 +1,25 @@
+{
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 0.75,
+  "inputs": [
+    "malum:unwinding_chaos"
+  ],
+  "repairMaterial": {
+    "count": 8,
+    "item": "malum:auric_embers"
+  },
+  "spirits": [
+    {
+      "type": "eldritch",
+      "count": 32
+    },
+    {
+      "type": "infernal",
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
+    }
+  ]
+}

@@ -18,7 +18,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -36,6 +35,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.*;
 
+@SuppressWarnings("deprecation")
 public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements IItemHandlerSupplier {
 
     private static final Vec3 PYLON_ITEM_OFFSET = new Vec3(0.5f, 2.5f, 0.5f);
@@ -52,8 +52,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         IDLE("idle"),
         SEARCHING("searching"),
         CHARGING("active"),
-        REPAIRING("repairing"),
-        COOLDOWN("cooldown");
+        REPAIRING("repairing");
         final String name;
 
         RepairPylonState(String name) {
@@ -71,7 +70,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public SpiritRepairRecipe recipe;
 
     public RepairPylonState state = RepairPylonState.IDLE;
-    public BlockPos repairablePosition;
+    public BlockPos repairTargetPosition;
     public int timer;
 
     public float spiritAmount;
@@ -95,13 +94,13 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
+    protected void saveAdditional(CompoundTag compound, @NotNull HolderLookup.Provider pRegistries) {
         compound.putString("state", state.name);
         if (spiritAmount != 0) {
             compound.putFloat("spiritAmount", spiritAmount);
         }
-        if (repairablePosition != null) {
-            compound.put("targetedBlock", NBTHelper.saveBlockPos(repairablePosition));
+        if (repairTargetPosition != null) {
+            compound.put("targetedBlock", NBTHelper.saveBlockPos(repairTargetPosition));
         }
         if (timer != 0) {
             compound.putInt("timer", timer);
@@ -115,18 +114,14 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         state = compound.contains("state") ? CODEC.byName(compound.getString("state")) : RepairPylonState.IDLE;
         spiritAmount = compound.getFloat("spiritAmount");
         if (compound.contains("targetedBlock")) {
-            repairablePosition = NBTHelper.readBlockPos(compound.getCompound("targetedBlock"));
+            repairTargetPosition = NBTHelper.readBlockPos(compound.getCompound("targetedBlock"));
         }
         timer = compound.getInt("timer");
         inventory.load(pRegistries, compound);
         spiritInventory.load(pRegistries, compound, "spiritInventory");
 
         loadWithLevel(level -> {
-            if (state.equals(RepairPylonState.COOLDOWN)) {
-                return;
-            }
-            updateRecipe();
-            if (recipe != null) {
+            if (updateRecipe() != null) {
                 if (state.equals(RepairPylonState.IDLE)) {
                     setState(RepairPylonState.SEARCHING);
                 }
@@ -171,17 +166,14 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
         if (level.isClientSide) {
             spiritSpin++;
-            if (state.equals(RepairPylonState.COOLDOWN) && timer < 1200) {
-                timer++;
-            }
             IMalumSpecialItemAccessPoint target = null;
-            if (repairablePosition != null && level.getBlockEntity(repairablePosition) instanceof IMalumSpecialItemAccessPoint accessPoint) {
+            if (repairTargetPosition != null && level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint accessPoint) {
                 target = accessPoint;
             }
             RepairPylonParticleEffects.passiveRepairPylonParticles(this, target);
         }
         if (level instanceof ServerLevel serverLevel) {
-            if (!state.equals(RepairPylonState.IDLE) && !state.equals(RepairPylonState.COOLDOWN)) {
+            if (!state.equals(RepairPylonState.IDLE)) {
                 if (recipe == null) {
                     setState(RepairPylonState.IDLE);
                     return;
@@ -196,7 +188,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                 case SEARCHING -> {
                     timer++;
                     if (timer >= 40) {
-                        boolean success = tryRepair();
+                        boolean success = searchForRepairTarget();
                         if (success) {
                             setState(RepairPylonState.CHARGING);
                         } else {
@@ -207,78 +199,71 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                 case CHARGING -> {
                     timer++;
                     if (timer >= 600) {
-                        if (repairablePosition == null) {
+                        if (repairTargetPosition == null) {
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        if (!(level.getBlockEntity(repairablePosition) instanceof IMalumSpecialItemAccessPoint provider) || !tryRepair(provider)) {
+                        if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        prepareRepair(serverLevel, provider);
+                        beginRepair(serverLevel, provider);
                     }
                 }
                 case REPAIRING -> {
                     timer++;
                     if (timer >= 40) {
-                        if (repairablePosition == null) {
+                        if (repairTargetPosition == null) {
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        if (!(level.getBlockEntity(repairablePosition) instanceof IMalumSpecialItemAccessPoint provider) || !tryRepair(provider)) {
+                        if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
                             setState(RepairPylonState.IDLE);
                             return;
                         }
-                        repairItem(serverLevel, provider);
-                    }
-                }
-                case COOLDOWN -> {
-                    timer++;
-                    if (timer >= 1200) {
-                        setState(RepairPylonState.IDLE);
+                        completeRepair(serverLevel, provider);
                     }
                 }
             }
         }
     }
 
-    public boolean tryRepair() {
-        Collection<IMalumSpecialItemAccessPoint> altarProviders = BlockEntityHelper.getBlockEntities(IMalumSpecialItemAccessPoint.class, level, worldPosition, HORIZONTAL_RANGE, VERTICAL_RANGE, HORIZONTAL_RANGE);
-        for (IMalumSpecialItemAccessPoint provider : altarProviders) {
-            boolean success = tryRepair(provider);
+    public boolean searchForRepairTarget() {
+        var pylonProviders = BlockEntityHelper.getBlockEntities(IMalumSpecialItemAccessPoint.class, level, worldPosition, HORIZONTAL_RANGE, VERTICAL_RANGE, HORIZONTAL_RANGE);
+        for (IMalumSpecialItemAccessPoint provider : pylonProviders) {
+            boolean success = isRepairTargetValid(provider);
             if (success) {
-                repairablePosition = provider.getAccessPointBlockPos();
+                repairTargetPosition = provider.getAccessPointBlockPos();
                 return true;
             }
         }
         return false;
     }
 
-    public boolean tryRepair(IMalumSpecialItemAccessPoint provider) {
+    public boolean isRepairTargetValid(IMalumSpecialItemAccessPoint provider) {
         var inventoryForPylon = provider.getSuppliedInventory();
         var repairTarget = inventoryForPylon.getStackInSlot(0);
         if (repairTarget.isRepairable() && !repairTarget.isDamaged()) {
             return false;
         }
-        updateRecipe();
-        return recipe != null && recipe.isValidItemForRepair(repairTarget);
+        return updateRecipe(repairTarget) != null;
     }
 
-
-    public void prepareRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
+    public void beginRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
         MalumParticleEffectTypes.REPAIR_PYLON_PREPARES
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
-                .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
+                .customData(new PylonEffectData(provider.getAccessPointBlockPos()))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
         setState(RepairPylonState.REPAIRING);
     }
 
-    public void repairItem(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
+    public void completeRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
         var suppliedInventory = provider.getSuppliedInventory();
         var repairTarget = suppliedInventory.getStackInSlot(0);
         var repairMaterial = inventory.getStackInSlot(0);
+        repairMaterial.shrink(recipe.repairMaterial.count());
         for (SpiritIngredient spirit : recipe.spirits) {
             for (int i = 0; i < spiritInventory.slotCount; i++) {
                 ItemStack spiritStack = spiritInventory.getStackInSlot(i);
@@ -288,16 +273,15 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                 }
             }
         }
-        repairMaterial.shrink(recipe.repairMaterial.count());
         var result = recipe.getResultItem(repairTarget);
         suppliedInventory.setStackInSlot(0, result);
-        level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
         MalumParticleEffectTypes.REPAIR_PYLON_REPAIRS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
-                .customData(new PylonEffectData(provider.getAccessPointBlockPos(), provider.getSuppliedInventory().getStackInSlot(0)))
+                .customData(new PylonEffectData(provider.getAccessPointBlockPos()))
                 .spawn(level);
-        setState(RepairPylonState.COOLDOWN);
+        level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
+        setState(RepairPylonState.IDLE);
     }
 
     public void setState(RepairPylonState state) {
@@ -306,9 +290,15 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
-    public void updateRecipe() {
-        recipe = LodestoneRecipeType.findRecipe(level, MalumRecipeTypes.SPIRIT_REPAIR.get(),
-                c -> c.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), level));
+    public SpiritRepairRecipe updateRecipe() {
+        return updateRecipe(r -> r.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), level));
+    }
+    public SpiritRepairRecipe updateRecipe(ItemStack repairTarget) {
+        return updateRecipe(r -> r.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), repairTarget));
+    }
+
+    public SpiritRepairRecipe updateRecipe(Predicate<SpiritRepairRecipe> predicate) {
+        return recipe = LodestoneRecipeType.findRecipe(level, MalumRecipeTypes.SPIRIT_REPAIR.get(), predicate);
     }
 
     public Vec3 getItemPos() {
@@ -324,15 +314,6 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
         float distance = 0.75f + (float) Math.sin(((spiritSpin + partialTicks) % 6.28f) / 20f) * 0.025f;
         float height = 2.75f;
-        if (state.equals(RepairPylonState.COOLDOWN)) {
-            int relativeCooldown = timer < 1110 ? Math.min(timer, 90) : 1200-timer;
-            distance += getCooldownOffset(relativeCooldown, Easing.SINE_OUT) * 0.25f;
-            height -= getCooldownOffset(relativeCooldown, Easing.QUARTIC_OUT) * getCooldownOffset(relativeCooldown, Easing.BACK_OUT) * 0.5f;
-        }
         return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, spiritAmount, spiritSpin + partialTicks, 360);
-    }
-
-    public float getCooldownOffset(int relativeCooldown, Easing easing) {
-        return easing.ease(relativeCooldown / 90f, 0, 1, 1);
     }
 }

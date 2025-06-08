@@ -2,17 +2,21 @@
   "type": "malum:spirit_repair",
   "durabilityPercentage": 1.0,
   "inputs": [
-    "malum:fractured_aluminum_impetus"
+    "malum:fractured_uranium_impetus"
   ],
   "repairMaterial": {
     "count": 2,
     "item": "malum:cthonic_gold_fragment"
   },
-  "repairOutputOverride": "malum:aluminum_impetus",
+  "repairOutputOverride": "malum:uranium_impetus",
   "spirits": [
     {
       "type": "aqueous",
-      "count": 16
+      "count": 8
+    },
+    {
+      "type": "infernal",
+      "count": 8
     }
   ]
 }

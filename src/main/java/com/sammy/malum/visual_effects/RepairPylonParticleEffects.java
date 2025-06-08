@@ -39,16 +39,15 @@ public class RepairPylonParticleEffects {
     }
 
     public static void passiveRepairPylonParticles(RepairPylonCoreBlockEntity pylon, @Nullable IMalumSpecialItemAccessPoint holder) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(pylon);
+        var activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
         }
-        Level level = pylon.getLevel();
+        var level = pylon.getLevel();
         var random = level.random;
-        Vec3 itemPos = pylon.getItemPos();
-        LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
-        SpiritRepairRecipe recipe = pylon.recipe;
-        RepairPylonCoreBlockEntity.RepairPylonState state = pylon.state;
+        var itemPos = pylon.getItemPos();
+        var recipe = pylon.recipe;
+        var state = pylon.state;
         if (recipe != null) {
             if (!state.equals(RepairPylonCoreBlockEntity.RepairPylonState.COOLDOWN)) {
                 SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
@@ -61,6 +60,7 @@ public class RepairPylonParticleEffects {
             }
         }
 
+        LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
         int spiritsRendered = 0;
         for (int i = 0; i < spiritInventory.slotCount; i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);

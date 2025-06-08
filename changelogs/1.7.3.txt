@@ -1,0 +1,3 @@
+Added the missing Soul Stained Steel Scythe Arcane Restoration Recipe
+
+Fixed Copper and Iron Impetuses incorrectly having two separate Arcane Restoration Recipes
