@@ -76,6 +76,6 @@ public abstract class ActiveBlightWorldEvent extends WorldEventInstance {
     }
 
     public void createBlight(ServerLevel level, int intensity) {
-        BlightFeature.generateBlightWithVisuals(level, position, false, intensity).place(level);
+        BlightFeature.generateBlight(level, position, false, intensity).place(level);
     }
 }

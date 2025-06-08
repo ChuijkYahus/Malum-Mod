@@ -32,73 +32,53 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:all_of",
+                  "condition": "minecraft:any_of",
                   "terms": [
                     {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "predicates": {
-                          "minecraft:enchantments": [
-                            {
-                              "enchantments": "minecraft:silk_touch",
-                              "levels": {
-                                "min": 1
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    {
-                      "condition": "minecraft:any_of",
+                      "condition": "minecraft:all_of",
                       "terms": [
                         {
-                          "condition": "minecraft:all_of",
-                          "terms": [
-                            {
-                              "block": "malum:large_strange_crystal",
-                              "condition": "minecraft:block_state_property",
-                              "properties": {
-                                "half": "upper"
-                              }
-                            },
-                            {
-                              "condition": "minecraft:location_check",
-                              "offsetY": -1,
-                              "predicate": {
-                                "block": {
-                                  "blocks": "malum:large_strange_crystal",
-                                  "state": {
-                                    "half": "lower"
-                                  }
-                                }
-                              }
-                            }
-                          ]
+                          "block": "malum:large_strange_crystal",
+                          "condition": "minecraft:block_state_property",
+                          "properties": {
+                            "half": "upper"
+                          }
                         },
                         {
-                          "condition": "minecraft:all_of",
-                          "terms": [
-                            {
-                              "block": "malum:large_strange_crystal",
-                              "condition": "minecraft:block_state_property",
-                              "properties": {
+                          "condition": "minecraft:location_check",
+                          "offsetY": -1,
+                          "predicate": {
+                            "block": {
+                              "blocks": "malum:large_strange_crystal",
+                              "state": {
                                 "half": "lower"
                               }
-                            },
-                            {
-                              "condition": "minecraft:location_check",
-                              "offsetY": 1,
-                              "predicate": {
-                                "block": {
-                                  "blocks": "malum:large_strange_crystal",
-                                  "state": {
-                                    "half": "upper"
-                                  }
-                                }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "condition": "minecraft:all_of",
+                      "terms": [
+                        {
+                          "block": "malum:large_strange_crystal",
+                          "condition": "minecraft:block_state_property",
+                          "properties": {
+                            "half": "lower"
+                          }
+                        },
+                        {
+                          "condition": "minecraft:location_check",
+                          "offsetY": 1,
+                          "predicate": {
+                            "block": {
+                              "blocks": "malum:large_strange_crystal",
+                              "state": {
+                                "half": "upper"
                               }
                             }
-                          ]
+                          }
                         }
                       ]
                     }

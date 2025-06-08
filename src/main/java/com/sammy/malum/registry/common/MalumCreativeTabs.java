@@ -24,24 +24,16 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NATURE = CREATIVE_MODE_TABS.register("malum_nature",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_natural_wonders"))
-                    .withTabsBefore(CONTENT.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_scars"))
-                    .icon(() -> MalumItems.RUNEWOOD_SAPLING.get().getDefaultInstance()).build()
-    );
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SCARRED_NATURE = CREATIVE_MODE_TABS.register("malum_scars",
-            () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_scars_of_arcana"))
-                    .withTabsBefore(NATURE.getId())
+                    .withTabsBefore(CONTENT.getId())
                     .withTabsAfter(MalumMod.malumPath("malum_building"))
-                    .icon(() -> MalumItems.SOULWOOD_SAPLING.get().getDefaultInstance()).build()
+                    .icon(() -> MalumItems.RUNEWOOD_SAPLING.get().getDefaultInstance()).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING = CREATIVE_MODE_TABS.register("malum_building",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_arcane_construct"))
-                    .withTabsBefore(SCARRED_NATURE.getId())
+                    .withTabsBefore(NATURE.getId())
                     .withTabsAfter(MalumMod.malumPath("malum_metallurgy"))
                     .icon(() -> MalumItems.TAINTED_ROCK.get().getDefaultInstance()).build()
     );

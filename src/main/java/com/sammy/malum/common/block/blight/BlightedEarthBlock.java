@@ -71,8 +71,6 @@ public class BlightedEarthBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
-        pLevel.playSound(null, pPos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 0.8f, 0.8f);
-        pLevel.playSound(null, pPos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1.2f, 0.8f);
-        BlightFeature.generateBlightWithVisuals(pLevel, pPos, true, 6).place(pLevel);
+        BlightFeature.generateBlight(pLevel, pPos, true, 6).place(pLevel);
     }
 }

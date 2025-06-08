@@ -219,7 +219,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 }));
             }
         }
-        var blight = BlightFeature.generateBlightWithVisuals(level, pos, true, 10);
+        var blight = BlightFeature.generateBlight(level, pos, true, 10);
         builder.merge(blight);
         builder.place(level);
         rootsBuilder.place(level);

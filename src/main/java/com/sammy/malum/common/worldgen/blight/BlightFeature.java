@@ -51,16 +51,18 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 .spawn(level);
     }
 
-    public static void createScarstoneVFX(ServerLevel level, BlockPos sourcePos, LodestoneWorldgenBuilder blight) {
-//        MalumParticleEffectTypes.BLIGHT_PROPAGATION.createEffect(sourcePos)
-//                .customData(new BlightParticleEffect.BlightEffectData(blight.getAffectedArea(0)))
-//                .spawn(level);
-//        MalumParticleEffectTypes.BLIGHT_PLANT_GROWTH.createEffect(sourcePos)
-//                .customData(new BlightParticleEffect.BlightEffectData(blight.getAffectedArea(1)))
-//                .spawn(level);
+    public static void createScarstoneVFX(ServerLevel level, BlockPos sourcePos, LodestoneWorldgenBuilder scarstone) {
+        MalumParticleEffectTypes.SCARSTONE_FORMS.createEffect(sourcePos)
+                .color(MalumSpiritTypes.ARCANE_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT)
+                .customData(new BlightParticleEffect.BlightEffectData(scarstone.getAffectedArea(0)))
+                .spawn(level);
+        MalumParticleEffectTypes.STRANGE_CRYSTAL_FORMS.createEffect(sourcePos)
+                .color(MalumSpiritTypes.ARCANE_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT)
+                .customData(new BlightParticleEffect.BlightEffectData(scarstone.getAffectedArea(1)))
+                .spawn(level);
     }
 
-    public static LodestoneWorldgenBuilder generateBlightWithVisuals(WorldGenLevel level, BlockPos pos, boolean allowScarstone, int radius) {
+    public static LodestoneWorldgenBuilder generateBlight(WorldGenLevel level, BlockPos pos, boolean allowScarstone, int radius) {
         var random = level.getRandom();
         var builder = LodestoneWorldgenBuilder.create();
         if (allowScarstone && random.nextFloat() < 0.1f) {
@@ -73,7 +75,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
             builder.merge(extraBlight).merge(scarstone);
             if (level instanceof ServerLevel realLevel) {
                 createBlightVFX(realLevel, pos, extraBlight);
-                createScarstoneVFX(realLevel, pos, scarstone);
+                createScarstoneVFX(realLevel, scarstonePos, scarstone);
                 level.playSound(null, scarstonePos, MalumSoundEvents.SCARSTONE_PROPAGATION.get(), SoundSource.BLOCKS, 2f, 1f);
             }
         }
@@ -86,7 +88,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         return builder;
     }
 
-    public static LodestoneWorldgenBuilder generateBlight(WorldGenLevel level, BlockPos pos, int radius) {
+    private static LodestoneWorldgenBuilder generateBlight(WorldGenLevel level, BlockPos pos, int radius) {
         var random = level.getRandom();
 
         var builder = LodestoneWorldgenBuilder.create().addAdditionalPlacement(BlightFeature::cleanupFoliage);

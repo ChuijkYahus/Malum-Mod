@@ -1,6 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import net.minecraft.client.*;
@@ -8,6 +9,7 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -19,6 +21,7 @@ import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
 import java.util.function.*;
@@ -27,6 +30,80 @@ import java.util.logging.*;
 import static net.minecraft.util.Mth.nextFloat;
 
 public class BlightParticleEffects {
+
+    public static void strangeCrystalForms(Level level, MalumNetworkedParticleEffectColorData color, BlockPos sourcePos, BlockPos targetPos) {
+        var rand = level.getRandom();
+
+        float xOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+        float yOffset = RandomHelper.randomBetween(rand, 0.1f, 0.2f);
+        float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+        Vec3 center = targetPos.getCenter().add(xOffset, yOffset, zOffset);
+        int distance = targetPos.distManhattan(sourcePos);
+        int lifetime = 40 + 20 * distance;
+        int lifeDelay = 14 * distance;
+        for (int i = 0; i < 16; i++) {
+            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(center, 0.9f, i, 16, level.getGameTime(), 640);
+            MalumSpiritType spiritType = color.getSpirit();
+            for (int j = 0; j < 2; j++) {
+                float acceleration = RandomHelper.randomBetween(rand, 0.001f, 0.005f);
+                final Consumer<LodestoneWorldParticle> behavior = p -> {
+                    if (p.age < 6) {
+                        p.setParticleSpeed(p.getParticleSpeed().add(0, acceleration, 0));
+                    } else {
+                        p.setParticleSpeed(p.getParticleSpeed().scale(0.92f));
+                    }
+                };
+                float scale = (0.4f + j * 0.2f) - distance * 0.05f;
+                float alpha = 0.6f - j * 0.1f;
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, offsetPosition, spiritType);
+                lightSpecs.getBuilder()
+                        .setScaleData(GenericParticleData.create(0f, scale, scale * 0.7f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(alpha * 2, alpha, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
+                        .clearTickActor().addTickActor(behavior)
+                        .setLifetime(lifetime)
+                        .setLifeDelay(lifeDelay + i + j * 6);
+                lightSpecs.getBloomBuilder()
+                        .setScaleData(GenericParticleData.create(0f, scale * 0.6f, scale * 0.3f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(alpha * 0.4f, alpha * 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
+                        .clearTickActor().addTickActor(behavior)
+                        .setLifetime(lifetime)
+                        .setLifeDelay(lifeDelay + i + j * 6);
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
+    public static void scarstoneForms(Level level, MalumNetworkedParticleEffectColorData color, BlockPos sourcePos, BlockPos targetPos) {
+        var rand = level.getRandom();
+        int distance = targetPos.distManhattan(sourcePos);
+        int lifetime = 40 + 20 * distance;
+        int lifeDelay = 4 + 6 * distance;
+        for (int i = 0; i < 6; i++) {
+            if (rand.nextFloat() < 0.75f) {
+                float xOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+                float yOffset = RandomHelper.randomBetween(rand, 0.5f, 0.6f);
+                float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+                Vec3 particlePosition = targetPos.getCenter().add(xOffset, yOffset, zOffset);
+                MalumSpiritType spiritType = color.getSpirit();
+                float scale = (0.6f) - distance * 0.05f;
+                float alpha = 0.4f;
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, particlePosition, spiritType);
+                lightSpecs.getBuilder()
+                        .setScaleData(GenericParticleData.create(0f, scale, scale * 0.7f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(alpha * 2, alpha, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
+                        .setLifetime(lifetime)
+                        .setLifeDelay(lifeDelay + i * 2)
+                        .disableNoClip();
+                lightSpecs.getBloomBuilder()
+                        .setScaleData(GenericParticleData.create(0f, scale * 0.6f, scale * 0.3f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(alpha * 0.4f, alpha * 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
+                        .setLifetime(lifetime)
+                        .setLifeDelay(lifeDelay + i * 2)
+                        .disableNoClip();
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
 
     public static void blightSpreads(Level level, BlockPos sourcePos, BlockPos targetPos) {
         var rand = level.getRandom();

@@ -23,6 +23,8 @@ public class MalumParticleEffectTypes {
     //Blight vfx
     public static final BlightPropagationParticleEffect BLIGHT_PROPAGATION = new BlightPropagationParticleEffect("blight_propagation");
     public static final BlightPlantGrowthParticleEffect BLIGHT_PLANT_GROWTH = new BlightPlantGrowthParticleEffect("blight_plant_growth");
+    public static final ScarstoneParticleEffect SCARSTONE_FORMS = new ScarstoneParticleEffect("scarstone_monument_forms");
+    public static final StrangeCrystalParticleEffect STRANGE_CRYSTAL_FORMS = new StrangeCrystalParticleEffect("strange_crystal_forms");
 
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");

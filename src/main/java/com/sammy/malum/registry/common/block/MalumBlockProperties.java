@@ -282,9 +282,10 @@ public class MalumBlockProperties {
                 .sound(MalumSoundEvents.STRANGE_CRYSTAL)
                 .mapColor(MapColor.COLOR_LIGHT_GREEN)
                 .setCutoutRenderType()
-                .noCollission()
                 .lightLevel(b -> 4)
+                .noCollission()
                 .noOcclusion()
+                .replaceable()
                 .randomTicks();
     }
 

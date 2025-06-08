@@ -209,8 +209,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_hit")));
     public static final DeferredHolder<SoundEvent, SoundEvent> QUARTZ_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("quartz_ore_fall")));
-    public static final SoundType QUARTZ_ORE = new DeferredSoundType(1.0F, 1.2f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
-    public static final SoundType QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.7f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
+    public static final SoundType QUARTZ_ORE = new DeferredSoundType(1.0F, 0.8f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
+    public static final SoundType QUARTZ_CLUSTER = new QuartzClusterSoundType(0.3F, 1.3f, QUARTZ_ORE_BREAK, QUARTZ_ORE_STEP, QUARTZ_ORE_PLACE, QUARTZ_ORE_HIT, QUARTZ_ORE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_QUARTZ_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_quartz_ore_place")));
@@ -224,14 +224,14 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_hit")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_ore_fall")));
-    public static final SoundType BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.4f, BRILLIANCE_ORE_BREAK, BRILLIANCE_ORE_STEP, BRILLIANCE_ORE_PLACE, BRILLIANCE_ORE_HIT, BRILLIANCE_ORE_FALL);
+    public static final SoundType BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.1f, BRILLIANCE_ORE_BREAK, BRILLIANCE_ORE_STEP, BRILLIANCE_ORE_PLACE, BRILLIANCE_ORE_HIT, BRILLIANCE_ORE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_place")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_STEP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_step")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_hit")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DEEPSLATE_BRILLIANCE_ORE_FALL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("deepslate_brilliance_ore_fall")));
-    public static final SoundType DEEPSLATE_BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.4f, DEEPSLATE_BRILLIANCE_ORE_BREAK, DEEPSLATE_BRILLIANCE_ORE_STEP, DEEPSLATE_BRILLIANCE_ORE_PLACE, DEEPSLATE_BRILLIANCE_ORE_HIT, DEEPSLATE_BRILLIANCE_ORE_FALL);
+    public static final SoundType DEEPSLATE_BRILLIANCE_ORE = new DeferredSoundType(1.0F, 1.1f, DEEPSLATE_BRILLIANCE_ORE_BREAK, DEEPSLATE_BRILLIANCE_ORE_STEP, DEEPSLATE_BRILLIANCE_ORE_PLACE, DEEPSLATE_BRILLIANCE_ORE_HIT, DEEPSLATE_BRILLIANCE_ORE_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_BREAK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_break")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRILLIANCE_BLOCK_PLACE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("brilliance_block_place")));

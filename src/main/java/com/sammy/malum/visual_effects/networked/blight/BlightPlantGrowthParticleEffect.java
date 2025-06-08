@@ -18,6 +18,11 @@ public class BlightPlantGrowthParticleEffect extends BlightParticleEffect {
         super(id);
     }
 
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectColorData>> getColorCodec() {
+        return Optional.empty();
+    }
+
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, BlightEffectData extraData) {
