@@ -4,6 +4,8 @@ import com.sammy.malum.common.geas.pact.aqueous.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.CurioVoraciousRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.CurioGruesomeConcentrationRing;
+import com.sammy.malum.core.handlers.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.ItemStack;
@@ -15,6 +17,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
+
+    @Inject(method = "getDamageAfterArmorAbsorb", at = @At("HEAD"), cancellable = true)
+    private void malum$getDamageAfterArmorAbsorb(DamageSource damageSource, float damageAmount, CallbackInfoReturnable<Float> cir) {
+        LivingEntity livingEntity = (LivingEntity) ((Object) (this));
+        var optional = MalumAttributeEventHandler.modifyMagicDamageArmorPiercing(livingEntity, damageSource, damageAmount);
+        optional.ifPresent(cir::setReturnValue);
+    }
 
     @Inject(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"))
     private void malum$eat(Level level, ItemStack food, FoodProperties foodProperties, CallbackInfoReturnable<ItemStack> cir) {

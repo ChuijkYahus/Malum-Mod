@@ -2,10 +2,34 @@ Added the missing Soul Stained Steel Scythe Arcane Restoration Recipe
 Added missing recipes for Repairing Weeping Well Gear using the Repair Pylon
 Added the missing Warp Flux Block
 
-Updated Several Rune Effects
-
 The Sundering Anchor can now only hit a single target up to five times and will return early if it cannot find any other valid target afterwards
 The Sundering Anchor Projectile no longer deals double the intended damage
+
+Updated Several Rune Effects
+Rune of Idle Restoration -> Rune of Vitality
++Passive Healing -> +20% Healing Received
+
+Rune of Culling
++20% Scythe Proficiency -> +Scythes Exploit Wounds
+
+Rune of Reactive Shielding -> Rune of Protection
++Damage Resistance when Struck -> +20% Armor
+
+Rune of Sacrificial Empowerment -> Rune of Farsweeping
++Scythe Kill Chaining -> +Deadlier Scythe Sweeping
+
+Rune of Toughness -> Rune of Indomitability
++20% Armor Toughness -> +100% Knockback Resistance
+
+Updated Some Geas Effects
+Pact of The Liveweaver
+Added Passive Healing Effect no longer present on the rune
+
+Pact of Reciprocation
+Now only applies to Magic Damage as was intended
+
+All Magic Damage in Malum now pierces Half of the Armor Value as opposed to All of It. Magic Damage still does not damage Armor despite this change.
+This can be disabled using a config option
 
 Updated the textures for the Alchemical Calx Block
 Updated the textures for the Catalyst Lobber
@@ -21,3 +45,4 @@ Fixed the Spirit Crucible and Spirit Altar not properly continuing work after be
 Fixed the Ring of the Howling Maelstrom taking effect when hitting an enemy with a rebound scythe when wearing the Necklace of the Narrow Edge only
 Fixed Scarstone dropping even without proper tools
 Fixed Transmutation Tree Pages Displaying Translation Keys instead of Translated Headlines
+Fixed Max Durability still being transfered across gear during Spirit Infusion

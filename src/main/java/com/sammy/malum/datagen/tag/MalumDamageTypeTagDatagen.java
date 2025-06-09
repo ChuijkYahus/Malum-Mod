@@ -2,14 +2,12 @@ package com.sammy.malum.datagen.tag;
 
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.*;
 import net.minecraft.core.HolderLookup.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
-import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.data.*;
 
 import java.util.*;
@@ -35,7 +33,7 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
 
     private final Function<ResourceKey<DamageType>, TagBuilder> MAGIC = type -> {
         final TagBuilder builder = addTag(type);
-        builder.add(IS_MAGIC, SOUL_SHATTER_DAMAGE, BYPASSES_COOLDOWN, AVOIDS_GUARDIAN_THORNS, PANIC_CAUSES);
+        builder.add(IS_MAGIC, BYPASSES_HALF_ARMOR, SOUL_SHATTER_DAMAGE, BYPASSES_COOLDOWN, AVOIDS_GUARDIAN_THORNS, PANIC_CAUSES);
         builder.remove(BYPASSES_SHIELD);
         return builder;
     };

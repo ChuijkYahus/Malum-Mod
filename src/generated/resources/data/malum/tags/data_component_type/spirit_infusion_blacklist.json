@@ -1,6 +1,9 @@
 {
   "values": [
+    "minecraft:max_stack_size",
+    "minecraft:max_damage",
     "minecraft:damage",
-    "minecraft:attribute_modifiers"
+    "minecraft:attribute_modifiers",
+    "minecraft:repair_cost"
   ]
 }

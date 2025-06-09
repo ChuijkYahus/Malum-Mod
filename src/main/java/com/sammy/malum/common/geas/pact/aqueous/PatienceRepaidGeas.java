@@ -39,7 +39,7 @@ public class PatienceRepaidGeas extends GeasEffect {
         }
         float half = event.getAmount() * 0.5f;
         event.setAmount(half);
-        bufferedDamage += half * 1.4f;
+        bufferedDamage += half * 1.2f;
     }
 
     @Override

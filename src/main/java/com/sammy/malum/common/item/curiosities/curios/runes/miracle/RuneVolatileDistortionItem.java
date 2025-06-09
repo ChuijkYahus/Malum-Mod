@@ -26,7 +26,7 @@ public class RuneVolatileDistortionItem extends AbstractRuneCurioItem implements
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (attacker.getRandom().nextFloat() < 0.1f) {
+        if (attacker.getRandom().nextFloat() < 0.15f) {
             event.setNewDamage(event.getNewDamage() * 2);
         }
     }

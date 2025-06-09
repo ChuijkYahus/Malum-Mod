@@ -126,6 +126,14 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_hunter_armor_restoration"));
 
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.MALIGNANT_LEAD.get()), 8)
+                .addItem(MalumItems.CATALYST_LOBBER.get())
+                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .addSpirit(INFERNAL_SPIRIT, 8)
+                .addSpirit(AQUEOUS_SPIRIT, 8)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("catalyst_lobber_restoration"));
+
         new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.MNEMONIC_FRAGMENT.get()), 8)
                 .addItem(MalumItems.MNEMONIC_HEX_STAFF.get())
                 .addSpirit(ELDRITCH_SPIRIT, 8)

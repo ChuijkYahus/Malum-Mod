@@ -911,7 +911,8 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER,
                 """
                         A rare generosity, everything that you are you will share with others.
-                         -Healing also Heals Nearby Beings""",
+                         -Passively Recovers your Health
+                         -Health Recovery is Shared With Nearby Creatures""",
                 "All creatures are deserving of care.\n -Healing Aura targets Everything, Ally and Enemy alike");
 
 
@@ -1017,7 +1018,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.65f) + """
+                scaled(0.7f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
                          -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
@@ -1029,11 +1030,11 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID,
                 scaled(0.8f) + """
                         Split the Impact, Soften the Blow.
-                         -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
+                         -Half of All Incoming Damage is Buffered; Converted to Damage Over Time
                          -Buffered Damage Cannot Kill You""",
                 """
                         Prolonged Pain is Greater Pain.
-                         -Buffered Damage is overall Two Fifths More Potent""");
+                         -Buffered Damage becomes Magic Damage and is overall One Fifth More Potent""");
         
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT,

@@ -29,7 +29,10 @@ public class MalumDataComponentTypeTagDatagen extends IntrinsicHolderTagsProvide
     protected void addTags(HolderLookup.Provider pProvider) {
 
         tag(MalumTags.DataComponentTags.SPIRIT_INFUSION_BLACKLIST)
+                .add(DataComponents.MAX_STACK_SIZE)
+                .add(DataComponents.MAX_DAMAGE)
                 .add(DataComponents.DAMAGE)
-                .add(DataComponents.ATTRIBUTE_MODIFIERS);
+                .add(DataComponents.ATTRIBUTE_MODIFIERS)
+                .add(DataComponents.REPAIR_COST);
     }
 }

@@ -249,7 +249,7 @@ public class MalumLang extends LanguageProvider {
         addCurioEffect("shorten_negative_effect", "Shortens Negative Effects");
         addCurioEffect("burning_damage", "Burning Damage");
 
-        addCurioEffect("scythe_chain", "Stronger Scythe Sweeping");
+        addCurioEffect("scythe_chain", "Deadlier Scythe Sweeping");
         addCurioEffect("silence", "Silences Attackers");
         addCurioEffect("always_sprint", "Sprinting Always Available");
         addCurioEffect("extend_positive_effect", "Extends Positive Effects");
