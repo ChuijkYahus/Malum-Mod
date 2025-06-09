@@ -8,7 +8,7 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "id": "malum:gold_node"
+      "item": "malum:gold_node"
     }
   ],
   "results": [

@@ -1,5 +1,11 @@
 Added the missing Soul Stained Steel Scythe Arcane Restoration Recipe
 Added missing recipes for Repairing Weeping Well Gear using the Repair Pylon
 
+Removed the entire Spirit Ritual system that utilized the Ritual Plinth
+- It was nowhere near the ideal state I now imagine Spirit Rituals to be, and was causing some issues so I figured that since I'll end up replacing it in the future I might as well remove it now.
+
+Actually Fixed Create Compat not Working
 Fixed Repair Pylon not correctly repairing Fractured Impetuses
 Fixed Copper and Iron Impetuses incorrectly having two separate Arcane Restoration Recipes
+Fixed Repair Pylon Causing Network Issues when Repairing Enchanted Items
+Fixed the Spirit Crucible and Spirit Altar not properly continuing work after being loaded from chunk memory

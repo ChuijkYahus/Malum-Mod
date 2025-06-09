@@ -149,6 +149,9 @@ repositories {
         url = uri("https://maven.octo-studios.com/releases")
     }
 
+    maven {
+        url = uri("https://maven.createmod.net")
+    }
 }
 
 dependencies {

@@ -8,7 +8,7 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "id": "malum:fractured_alchemical_impetus"
+      "item": "malum:fractured_alchemical_impetus"
     }
   ],
   "results": [

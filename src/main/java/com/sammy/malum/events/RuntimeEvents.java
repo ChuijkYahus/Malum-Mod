@@ -121,7 +121,6 @@ public class RuntimeEvents {
     public static void registerListeners(AddReloadListenerEvent event) {
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);
-        RitualRecipeReloadListener.register(event);
         MalignantConversionReloadListener.register(event);
     }
 

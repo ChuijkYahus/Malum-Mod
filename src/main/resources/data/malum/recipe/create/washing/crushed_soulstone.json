@@ -8,7 +8,7 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "id": "malum:crushed_soulstone"
+      "item": "malum:crushed_soulstone"
     }
   ],
   "results": [

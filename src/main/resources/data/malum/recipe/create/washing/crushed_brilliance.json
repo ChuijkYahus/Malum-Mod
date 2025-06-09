@@ -8,7 +8,7 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "id": "malum:crushed_brilliance"
+      "item": "malum:crushed_brilliance"
     }
   ],
   "results": [

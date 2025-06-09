@@ -6,7 +6,6 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
@@ -93,10 +92,6 @@ public class ArcanaCodexHelper {
         shaderInstance.setUniformDefaults();
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();
-    }
-
-    public static void renderRitualIcon(MalumRitualType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
-        renderRiteIcon(rite.getIcon(), stack, rite.spirit, corrupted, glowAlpha, x, y, 0);
     }
 
     public static void renderRiteIcon(TotemicRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {

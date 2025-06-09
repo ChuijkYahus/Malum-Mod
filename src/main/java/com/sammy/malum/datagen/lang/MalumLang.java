@@ -8,7 +8,6 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
@@ -231,17 +230,6 @@ public class MalumLang extends LanguageProvider {
 
         add("malum.gui.ritual.type", "Ritual Type: ");
         add("malum.gui.ritual.tier", "Ritual Tier: ");
-
-        for (MalumRitualType ritualType : RitualRegistry.RITUALS) {
-            final String id = ritualType.id.getPath();
-            String name = DataHelper.toTitleCase(id, "_");
-            add("malum.gui.ritual." + id, name);
-        }
-        for (MalumRitualTier ritualTier : MalumRitualTier.TIERS) {
-            final String id = ritualTier.identifier.getPath();
-            String name = DataHelper.toTitleCase(id, "_");
-            add("malum.gui.ritual.tier." + id, name);
-        }
 
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");

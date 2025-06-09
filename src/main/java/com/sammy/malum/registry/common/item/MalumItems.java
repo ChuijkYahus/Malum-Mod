@@ -113,7 +113,6 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", GEAR_PROPERTIES().rarity(UNCOMMON), EncyclopediaArcanaItem::new);
 
-    public static final DeferredHolder<Item, RitualShardItem> RITUAL_SHARD = register("ritual_shard", HIDDEN_PROPERTIES(), RitualShardItem::new);
     public static final DeferredHolder<Item, GeasItem> GEAS = register("geas", HIDDEN_PROPERTIES(), GeasItem::new);
 
     //region spirits
@@ -835,10 +834,6 @@ public class MalumItems {
                     MalumMod.malumPath("pattern"),
                     (stack, level, holder, holderID) -> SoulwovenBannerBlockItem.getBannerPattern(stack));
             ItemProperties.register(
-                    RITUAL_SHARD.get(),
-                    MalumMod.malumPath("tier"),
-                    (stack, level, holder, holderID) -> RitualShardItem.getStateDisplay(stack));
-            ItemProperties.register(
                     CATALYST_LOBBER.get(),
                     MalumMod.malumPath("state"),
                     (stack, level, holder, holderID) -> CatalystLobberItem.getStateDisplay(stack));
@@ -874,14 +869,6 @@ public class MalumItems {
 
             DataHelper.takeAll(items, i -> i.get() instanceof SpiritShardItem).forEach(item ->
                     event.register((s, c) -> ColorHelper.getColor(((SpiritShardItem) item.get()).type.getItemColor()), item.get()));
-
-            event.register((s, c) -> {
-                var data = s.get(MalumDataComponents.RITUAL_DATA);
-                if (data == null) {
-                    return -1;
-                }
-                return ColorHelper.getColor(data.ritualType().spirit.getItemColor());
-            }, RITUAL_SHARD.get());
         }
     }
 }

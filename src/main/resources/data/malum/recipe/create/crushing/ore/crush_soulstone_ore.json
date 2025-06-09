@@ -8,7 +8,7 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "id": "malum:soulstone_ore"
+      "item": "malum:soulstone_ore"
     }
   ],
   "results": [

@@ -8,7 +8,7 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "id": "malum:natural_quartz_ore"
+      "item": "malum:natural_quartz_ore"
     }
   ],
   "results": [

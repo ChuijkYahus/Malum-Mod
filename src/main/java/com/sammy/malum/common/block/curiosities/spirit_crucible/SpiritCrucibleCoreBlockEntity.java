@@ -116,14 +116,14 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         augmentInventory.load(pRegistries, compound, "augmentInventory");
         coreAugmentInventory.load(pRegistries, compound, "coreAugmentInventory");
 
-        if (level != null) {
+        loadWithLevel(level -> {
             if (level.isClientSide) {
                 if (recipe != null) {
                     CrucibleSoundInstance.playSound(this);
                 }
             }
             updateRecipe();
-        }
+        });
         super.loadAdditional(compound, pRegistries);
     }
 

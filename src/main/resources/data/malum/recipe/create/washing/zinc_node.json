@@ -8,7 +8,7 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "id": "malum:zinc_node"
+      "item": "malum:zinc_node"
     }
   ],
   "results": [
