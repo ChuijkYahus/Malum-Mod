@@ -1,3 +1,5 @@
 Added the missing Soul Stained Steel Scythe Arcane Restoration Recipe
+Added missing recipes for Repairing Weeping Well Gear using the Repair Pylon
 
+Fixed Repair Pylon not correctly repairing Fractured Impetuses
 Fixed Copper and Iron Impetuses incorrectly having two separate Arcane Restoration Recipes

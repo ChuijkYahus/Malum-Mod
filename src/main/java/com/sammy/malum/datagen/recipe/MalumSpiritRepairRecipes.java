@@ -126,6 +126,41 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("soul_hunter_armor_restoration"));
 
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.MNEMONIC_FRAGMENT.get()), 8)
+                .addItem(MalumItems.MNEMONIC_HEX_STAFF.get())
+                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .addSpirit(AERIAL_SPIRIT, 8)
+                .addSpirit(AQUEOUS_SPIRIT, 8)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("mnemonic_hex_staff_restoration"));
+
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.VOID_SALTS.get()), 8)
+                .addItem(MalumItems.EROSION_SCEPTER.get())
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("erosion_scepter_restoration"));
+
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.MALIGNANT_PEWTER_PLATING.get()), 2)
+                .addItem(MalumItems.MALIGNANT_STRONGHOLD_HELMET.get())
+                .addItem(MalumItems.MALIGNANT_STRONGHOLD_CHESTPLATE.get())
+                .addItem(MalumItems.MALIGNANT_STRONGHOLD_LEGGINGS.get())
+                .addItem(MalumItems.MALIGNANT_STRONGHOLD_BOOTS.get())
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .addSpirit(EARTHEN_SPIRIT, 16)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("malignant_stronghold_armor_restoration"));
+
+        new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.MALIGNANT_PEWTER_INGOT.get()), 1)
+                .addItem(MalumItems.WEIGHT_OF_WORLDS.get())
+                .addItem(MalumItems.EDGE_OF_DELIVERANCE.get())
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(EARTHEN_SPIRIT, 16)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("malignant_weapon_restoration"));
 
         new SpiritRepairRecipeBuilder(0.75f, Ingredient.of(MalumItems.AURIC_EMBERS.get()), 8)
                 .addItem(MalumItems.UNWINDING_CHAOS.get())

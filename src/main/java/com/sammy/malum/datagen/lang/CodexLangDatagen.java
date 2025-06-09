@@ -1380,7 +1380,7 @@ public class CodexLangDatagen {
         addPages("soulwood.cursed_sap",
                 "The sticky lifeblood of the tree also seems to well up much more often in Soulwood than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
-        addEntryHeader("scarstone", "A Study on Soulwood", "Warped Rock");
+        addEntryHeader("scarstone", "A Study on Scarstone", "Warped Rock");
         addHeadline("scarstone", "A Study on Scarstone");
         addPages("scarstone",
                 "While observing the spread of Blight (in controlled conditions, of course), I have found that rarely the metaphysical scarring is potent enough to affect even stone - hence, I have named it Scarstone.");

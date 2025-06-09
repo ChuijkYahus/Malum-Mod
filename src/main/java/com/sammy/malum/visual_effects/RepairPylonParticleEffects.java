@@ -47,13 +47,12 @@ public class RepairPylonParticleEffects {
         var random = level.random;
         var itemPos = pylon.getItemPos();
         var recipe = pylon.recipe;
-        var state = pylon.state;
+        boolean isCharging = pylon.state.equals(RepairPylonCoreBlockEntity.RepairPylonState.CHARGING);
         if (recipe != null) {
-            if (!state.equals(RepairPylonCoreBlockEntity.RepairPylonState.COOLDOWN)) {
                 SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
                         b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.2f)));
-            }
-            if (state.equals(RepairPylonCoreBlockEntity.RepairPylonState.CHARGING) && holder != null) {
+
+            if (isCharging && holder != null) {
                 Vec3 targetItemPos = holder.getItemPos();
                 SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.5f, 4, b -> b.multiplyLifetime(0.6f).modifyData(b::getScaleData, d -> d.multiplyValue(0.95f)));
                 SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.75f, 5, b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.15f)));
@@ -70,7 +69,7 @@ public class RepairPylonParticleEffects {
                 BlockPos blockPos = pylon.getBlockPos();
                 Vec3 spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                 spiritLightSpecs(level, spiritPosition, activeSpiritType).spawnParticles();
-                if (recipe != null && state.equals(RepairPylonCoreBlockEntity.RepairPylonState.CHARGING)) {
+                if (recipe != null && isCharging) {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, activeSpiritType);
