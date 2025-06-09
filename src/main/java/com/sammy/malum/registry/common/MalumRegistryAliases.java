@@ -13,5 +13,9 @@ public class MalumRegistryAliases {
 
         MalumItems.ITEMS.addAlias(malumPath("rune_of_aliment_cleansing"), malumPath("rune_of_ailment_cleansing"));
 
+        MalumItems.ITEMS.addAlias(malumPath("rune_of_idle_restoration"), malumPath("rune_of_vitality"));
+        MalumItems.ITEMS.addAlias(malumPath("rune_of_reactive_shielding"), malumPath("rune_of_protection"));
+        MalumItems.ITEMS.addAlias(malumPath("rune_of_the_heretic"), malumPath("rune_of_heresy"));
+        MalumItems.ITEMS.addAlias(malumPath("rune_of_toughness"), malumPath("rune_of_indomitability"));
     }
 }

@@ -127,6 +127,7 @@
     "malum:ether_torch",
     "malum:wall_ether_torch",
     "malum:iridescent_ether_torch",
-    "malum:iridescent_wall_ether_torch"
+    "malum:iridescent_wall_ether_torch",
+    "malum:mass_of_blighted_gunk"
   ]
 }

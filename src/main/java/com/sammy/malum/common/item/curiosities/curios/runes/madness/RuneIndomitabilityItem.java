@@ -9,15 +9,15 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public class RuneToughnessItem extends AbstractRuneCurioItem {
+public class RuneIndomitabilityItem extends AbstractRuneCurioItem {
 
-    public RuneToughnessItem(Properties builder) {
+    public RuneIndomitabilityItem(Properties builder) {
         super(builder, MalumSpiritTypes.EARTHEN_SPIRIT);
     }
 
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
-        addAttributeModifier(map, Attributes.ARMOR_TOUGHNESS,
-                new AttributeModifier(MalumMod.malumPath("toughness_rune"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        addAttributeModifier(map, Attributes.KNOCKBACK_RESISTANCE,
+                new AttributeModifier(MalumMod.malumPath("indomitability_rune"), 1f, AttributeModifier.Operation.ADD_VALUE));
     }
 }

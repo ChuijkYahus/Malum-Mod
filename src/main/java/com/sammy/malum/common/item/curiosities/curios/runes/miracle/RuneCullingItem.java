@@ -4,23 +4,36 @@ import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.compability.irons_spellbooks.IronsSpellsCompat;
+import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.event.entity.living.*;
+import team.lodestar.lodestone.handlers.*;
 import top.theillusivec4.curios.api.*;
 
-public class RuneCullingItem extends AbstractRuneCurioItem {
+import java.util.function.*;
+
+public class RuneCullingItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneCullingItem(Properties builder) {
         super(builder, MalumSpiritTypes.WICKED_SPIRIT);
     }
 
     @Override
-    public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
-        var id = MalumMod.malumPath("rune_of_culling");
-        addAttributeModifier(map, MalumAttributes.SCYTHE_PROFICIENCY,
-                new AttributeModifier(id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        IronsSpellsCompat.addSpellPowerToCurio(this, map, id, 0.2f);
+    public void addExtraTooltipLines(Consumer<Component> consumer) {
+        consumer.accept(ComponentHelper.positiveCurioEffect("scythe_execution"));
+    }
+
+    @Override
+    public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (event.getSource().is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+            if (target.getHealth() < target.getMaxHealth() * 0.5f) {
+                event.setNewDamage(event.getNewDamage() * 1.4f);
+            }
+        }
     }
 }

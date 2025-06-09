@@ -50,7 +50,6 @@ public class MalumCreativeTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_geas"))
                     .withTabsBefore(METALLURGY.getId())
-//                    .withTabsAfter(MalumMod.malumPath("malum_ritual_shards"))
                     .withTabsAfter(MalumMod.malumPath("malum_cosmetics"))
                     .displayItems((p, o) -> {
                         int i = 0;
@@ -71,7 +70,6 @@ public class MalumCreativeTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_cosmetics"))
                     .withTabsBefore(GEAS.getId())
-//                    .withTabsBefore(RITUAL_SHARDS.getId())
                     .icon(() -> MalumItems.WEAVERS_WORKBENCH.get().getDefaultInstance()).build()
     );
 }

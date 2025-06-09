@@ -498,7 +498,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> BLOCK_OF_ROTTING_ESSENCE = register("block_of_rotting_essence", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ROTTING_ESSENCE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_GRIM_TALC = register("block_of_grim_talc", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_GRIM_TALC.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ASTRAL_WEAVE.get(), p));
-    //    public static final DeferredHolder<Item, Item> BLOCK_OF_WARP_FLUX = register("block_of_warp_flux", DEFAULT_PROPERTIES(), (p) -> new BlockItem(BlockRegistry.BLOCK_OF_WARP_FLUX.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_WARP_FLUX = register("block_of_warp_flux", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_WARP_FLUX.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_HEX_ASH = register("block_of_hex_ash", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_HEX_ASH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_LIVING_FLESH = register("block_of_living_flesh", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_LIVING_FLESH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ALCHEMICAL_CALX.get(), p));
@@ -720,13 +720,13 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> NECKLACE_OF_THE_WATCHER = register("necklace_of_the_watcher", GEAR_PROPERTIES(), CurioWatcherNecklace::new);
     public static final DeferredHolder<Item, Item> BELT_OF_THE_LIMITLESS = register("belt_of_the_limitless", GEAR_PROPERTIES(), CurioLimitlessBelt::new);
 
-    public static final DeferredHolder<Item, Item> RUNE_OF_IDLE_RESTORATION = register("rune_of_idle_restoration", GEAR_PROPERTIES(), RuneIdleRestorationItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_VITALITY = register("rune_of_vitality", GEAR_PROPERTIES(), RuneVitalityItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_CULLING = register("rune_of_culling", GEAR_PROPERTIES(), RuneCullingItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_REINFORCEMENT = register("rune_of_reinforcement", GEAR_PROPERTIES(), RuneReinforcementItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_VOLATILE_DISTORTION = register("rune_of_volatile_distortion", GEAR_PROPERTIES(), RuneVolatileDistortionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_DEXTERITY = register("rune_of_dexterity", GEAR_PROPERTIES(), RuneDexterityItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_AILMENT_CLEANSING = register("rune_of_ailment_cleansing", GEAR_PROPERTIES(), RuneAilmentCleansingItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_REACTIVE_SHIELDING = register("rune_of_reactive_shielding", GEAR_PROPERTIES(), RuneReactiveShieldingItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_PROTECTION = register("rune_of_protection", GEAR_PROPERTIES(), RuneProtectionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SCORCHING = register("rune_of_scorching", GEAR_PROPERTIES(), RuneScorchingItem::new);
 
     public static final DeferredHolder<Item, Item> RUNE_OF_MOTION = register("rune_of_motion", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AERIAL_RITE, false));
@@ -741,10 +741,10 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_BOLSTERING = register("rune_of_bolstering", GEAR_PROPERTIES(), RuneBolsteringItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SACRIFICIAL_EMPOWERMENT = register("rune_of_sacrificial_empowerment", GEAR_PROPERTIES(), RuneSacrificialEmpowermentItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SPELL_MASTERY = register("rune_of_spell_mastery", GEAR_PROPERTIES(), RuneSpellMasteryItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_HERETIC = register("rune_of_the_heretic", GEAR_PROPERTIES(), RuneHereticItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_HERESY = register("rune_of_heresy", GEAR_PROPERTIES(), RuneHeresyItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_UNNATURAL_STAMINA = register("rune_of_unnatural_stamina", GEAR_PROPERTIES(), RuneUnnaturalStaminaItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_TWINNED_DURATION = register("rune_of_twinned_duration", GEAR_PROPERTIES(), RuneTwinnedDurationItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_TOUGHNESS = register("rune_of_toughness", GEAR_PROPERTIES(), RuneToughnessItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_INDOMITABILITY = register("rune_of_indomitability", GEAR_PROPERTIES(), RuneIndomitabilityItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_IGNEOUS_SOLACE = register("rune_of_igneous_solace", GEAR_PROPERTIES(), RuneIgneousSolaceItem::new);
     //endregion
 

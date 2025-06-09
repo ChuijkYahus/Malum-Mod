@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_reactive_shielding"
+        "recipe": "malum:rune_of_vitality"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_reactive_shielding"
+      "malum:rune_of_vitality"
     ]
   }
 }

@@ -13,6 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
@@ -26,13 +27,16 @@ public class LifeweaverGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("passive_healing"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("healing_aura"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("healing_aura_no_filter"));
     }
+
     @Override
-    public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, Attributes.MAX_HEALTH, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        return modifiers;
+    public void update(EntityTickEvent.Pre event, LivingEntity entity) {
+        if (entity.level().getGameTime() % 40L == 0) {
+            entity.heal(1);
+        }
     }
 
     public static void onHeal(LivingHealEvent event) {

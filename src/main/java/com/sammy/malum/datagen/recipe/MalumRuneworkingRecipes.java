@@ -9,7 +9,7 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 public class MalumRuneworkingRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_IDLE_RESTORATION.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_VITALITY.get(), 1)
                 .setPrimaryInput(MalumItems.TAINTED_ROCK.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.SACRED_SPIRIT, 16)
                 .save(recipeOutput);
@@ -40,7 +40,7 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .setPrimaryInput(MalumItems.TAINTED_ROCK.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_HERETIC.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_HERESY.get(), 1)
                 .setPrimaryInput(MalumItems.NULL_SLATE.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
@@ -63,11 +63,11 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .setSecondaryInput(MalumSpiritTypes.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_REACTIVE_SHIELDING.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_PROTECTION.get(), 1)
                 .setPrimaryInput(MalumItems.TAINTED_ROCK.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_TOUGHNESS.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_INDOMITABILITY.get(), 1)
                 .setPrimaryInput(MalumItems.NULL_SLATE.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);

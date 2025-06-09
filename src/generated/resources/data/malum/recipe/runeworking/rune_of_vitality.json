@@ -6,10 +6,10 @@
   },
   "result": {
     "count": 1,
-    "id": "malum:rune_of_reactive_shielding"
+    "id": "malum:rune_of_vitality"
   },
   "secondaryInput": {
-    "type": "earthen",
+    "type": "sacred",
     "count": 16
   }
 }

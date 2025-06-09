@@ -139,7 +139,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                     if (soundEvent != null) {
                         float pitch = RandomHelper.randomBetween(serverLevel.getRandom(), minPitch, maxPitch);
                         float volume = RandomHelper.randomBetween(serverLevel.getRandom(), minVolume, maxVolume);
-                        SoundHelper.playSound(attacker == null ? target : attacker, soundEvent.value(), volume, pitch);
+                        SoundHelper.playSound(target, soundEvent.value(), volume, pitch);
                     }
                     if (particleEffect != null) {
                         if (particleEffect instanceof MalumNetworkedWeaponParticleEffectType weaponParticleEffect) {

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_idle_restoration"
+        "recipe": "malum:rune_of_heresy"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_idle_restoration"
+      "malum:rune_of_heresy"
     ]
   }
 }

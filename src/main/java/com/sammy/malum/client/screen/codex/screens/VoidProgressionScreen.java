@@ -330,7 +330,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
         );
 
         addEntry("void.runes", 0, 11, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_THE_HERETIC).setStyle(BookWidgetStyle.SOULWOOD))
+                .configureWidget(w -> w.setIcon(RUNE_OF_HERESY).setStyle(BookWidgetStyle.SOULWOOD))
                 .addPage(new HeadlineTextPage("void.runes", "void.runes.1"))
                 .addPage(new EntrySelectorPage(item -> {
                     final String translationKey = "void." + BuiltInRegistries.ITEM.getKey(item).getPath();
@@ -339,8 +339,8 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                                     .addPage(new HeadlineTextPage(translationKey))
                                     .addPage(RuneworkingPage.fromOutput(item)));
                 },
-                        RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(), RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_THE_HERETIC.get(),
-                        RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(), RUNE_OF_TOUGHNESS.get(), RUNE_OF_IGNEOUS_SOLACE.get()))
+                        RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(), RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
+                        RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(), RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get()))
                 .afterUmbralCrystal()
         );
 

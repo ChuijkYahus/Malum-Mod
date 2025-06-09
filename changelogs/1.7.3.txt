@@ -1,5 +1,14 @@
 Added the missing Soul Stained Steel Scythe Arcane Restoration Recipe
 Added missing recipes for Repairing Weeping Well Gear using the Repair Pylon
+Added the missing Warp Flux Block
+
+Updated Several Rune Effects
+
+The Sundering Anchor can now only hit a single target up to five times and will return early if it cannot find any other valid target afterwards
+The Sundering Anchor Projectile no longer deals double the intended damage
+
+Updated the textures for the Alchemical Calx Block
+Updated the textures for the Catalyst Lobber
 
 Removed the entire Spirit Ritual system that utilized the Ritual Plinth
 - It was nowhere near the ideal state I now imagine Spirit Rituals to be, and was causing some issues so I figured that since I'll end up replacing it in the future I might as well remove it now.
@@ -9,3 +18,6 @@ Fixed Repair Pylon not correctly repairing Fractured Impetuses
 Fixed Copper and Iron Impetuses incorrectly having two separate Arcane Restoration Recipes
 Fixed Repair Pylon Causing Network Issues when Repairing Enchanted Items
 Fixed the Spirit Crucible and Spirit Altar not properly continuing work after being loaded from chunk memory
+Fixed the Ring of the Howling Maelstrom taking effect when hitting an enemy with a rebound scythe when wearing the Necklace of the Narrow Edge only
+Fixed Scarstone dropping even without proper tools
+Fixed Transmutation Tree Pages Displaying Translation Keys instead of Translated Headlines

@@ -81,13 +81,15 @@ public class ScytheBoomerangEntity extends AbstractScytheProjectileEntity {
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         if (isNarrow()) {
-            if (returnTimer > 0) {
-                final Entity target = result.getEntity();
-                LocalizedMaelstromEntity maelstrom = new LocalizedMaelstromEntity(level(), target.getX(), target.getY() + target.getBbHeight()*0.75f, target.getZ());
-                maelstrom.setData(getOwner(), damage, magicDamage, 0, 40);
-                maelstrom.setItem(getItem());
-                level().addFreshEntity(maelstrom);
-                returnTimer = 0;
+            if (isMaelstrom()) {
+                if (returnTimer > 0) {
+                    final Entity target = result.getEntity();
+                    LocalizedMaelstromEntity maelstrom = new LocalizedMaelstromEntity(level(), target.getX(), target.getY() + target.getBbHeight() * 0.75f, target.getZ());
+                    maelstrom.setData(getOwner(), damage, magicDamage, 0, 40);
+                    maelstrom.setItem(getItem());
+                    level().addFreshEntity(maelstrom);
+                    returnTimer = 0;
+                }
             }
             if (getOwner() instanceof LivingEntity scytheOwner) {
                 flyBack(scytheOwner);

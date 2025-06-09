@@ -245,9 +245,9 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                         UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get())
                 // Runes
                 .add(RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(),
-                        RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_THE_HERETIC.get(),
+                        RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
                         RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(),
-                        RUNE_OF_TOUGHNESS.get(), RUNE_OF_IGNEOUS_SOLACE.get())
+                        RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get())
                 // Trinkets
                 .add(RING_OF_THE_ENDLESS_WELL.get(), RING_OF_GROWING_FLESH.get(), RING_OF_ECHOING_ARCANA.get(),
                         RING_OF_GRUESOME_CONCENTRATION.get(), NECKLACE_OF_THE_HIDDEN_BLADE.get(),

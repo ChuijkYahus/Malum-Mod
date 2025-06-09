@@ -19,16 +19,6 @@ import java.util.function.*;
 
 public class RuneDexterityItem extends AbstractRuneCurioItem {
 
-    public static final Function<LivingEntity, AttributeModifier> MOVEMENT_SPEED = (living) -> {
-        float value = 0.2f;
-        if (living != null) {
-            final float health = living.getHealth();
-            final float maxHealth = living.getMaxHealth();
-            value = 0.2f * (2 - (health / maxHealth));
-        }
-        return new AttributeModifier(MalumMod.malumPath("rune_of_dexterity"), value, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-    };
-
     public RuneDexterityItem(Properties builder) {
         super(builder, MalumSpiritTypes.AERIAL_SPIRIT);
     }
@@ -40,7 +30,7 @@ public class RuneDexterityItem extends AbstractRuneCurioItem {
 
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
-        addAttributeModifier(map, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED.apply(slotContext.entity()));
+        addAttributeModifier(map, Attributes.MOVEMENT_SPEED, getMovementSpeedBonus(slotContext.entity()));
     }
 
     @Override
@@ -52,5 +42,15 @@ public class RuneDexterityItem extends AbstractRuneCurioItem {
                 attribute.setDirty();
             }
         }
+    }
+
+    public AttributeModifier getMovementSpeedBonus(LivingEntity entity) {
+        float value = 0.2f;
+        if (entity != null) {
+            final float health = entity.getHealth();
+            final float maxHealth = entity.getMaxHealth();
+            value = 0.2f * (2 - (health / maxHealth));
+        }
+        return new AttributeModifier(MalumMod.malumPath("rune_of_dexterity"), value, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }

@@ -2,14 +2,14 @@
   "type": "malum:runeworking",
   "primaryInput": {
     "count": 4,
-    "item": "malum:null_slate"
+    "item": "malum:tainted_rock"
   },
   "result": {
     "count": 1,
-    "id": "malum:rune_of_the_heretic"
+    "id": "malum:rune_of_protection"
   },
   "secondaryInput": {
-    "type": "eldritch",
+    "type": "earthen",
     "count": 16
   }
 }
