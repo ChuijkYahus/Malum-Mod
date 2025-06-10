@@ -8,10 +8,9 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public record PylonEffectData(BlockPos holderPos, ItemStack stack) implements NetworkedParticleEffectExtraData {
+public record PylonEffectData(BlockPos holderPos) implements NetworkedParticleEffectExtraData {
     public static final Codec<PylonEffectData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            BlockPos.CODEC.fieldOf("holderPos").forGetter(data -> data.holderPos),
-            ItemStack.CODEC.fieldOf("stack").forGetter(data -> data.stack)
+            BlockPos.CODEC.fieldOf("holderPos").forGetter(data -> data.holderPos)
     ).apply(instance, PylonEffectData::new));
 
     public static final StreamCodec<ByteBuf, PylonEffectData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);

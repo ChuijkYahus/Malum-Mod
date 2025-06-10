@@ -1,23 +1,29 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
+import com.google.common.collect.*;
+import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.MalumMobEffects;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.EntityHelper;
 import team.lodestar.lodestone.handlers.*;
+import top.theillusivec4.curios.api.*;
 
 import java.util.function.Consumer;
 
 public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
+    private static final ResourceLocation MODIFIER = MalumMod.malumPath("radial_empowerment_rune");
     public RuneSacrificialEmpowermentItem(Properties builder) {
         super(builder, MalumSpiritTypes.WICKED_SPIRIT);
     }
@@ -28,14 +34,26 @@ public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implem
     }
 
     @Override
-    public void outgoingDeathEvent(LivingDeathEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        Holder<MobEffect> sacrificialEmpowerment = MalumMobEffects.SACRIFICIAL_EMPOWERMENT;
-        MobEffectInstance effect = attacker.getEffect(sacrificialEmpowerment);
-        if (effect == null) {
-            attacker.addEffect(new MobEffectInstance(sacrificialEmpowerment, 200, 0, true, true, true));
-        } else {
-            EntityHelper.amplifyEffect(effect, attacker, 1, 3);
-            EntityHelper.extendEffect(effect, attacker, 50, 200);
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        super.onUnequip(slotContext, newStack, stack);
+        LivingEntity entity = slotContext.entity();
+        final AttributeInstance attribute = entity.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
+        if (attribute != null) {
+            attribute.removeModifier(MODIFIER);
+        }
+    }
+
+    @Override
+    public void outgoingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        final DamageSource source = event.getSource();
+        if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE_MELEE) && !source.is(MalumDamageTypes.SCYTHE_SWEEP)) {
+            var attribute = attacker.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
+            if (attribute == null) {
+                return;
+            }
+            float amount = target.getHealth() < target.getMaxHealth() * 0.33f ? 0.5f : 0.25f;
+            attribute.removeModifier(MODIFIER);
+            attribute.addTransientModifier(new AttributeModifier(MODIFIER, amount, AttributeModifier.Operation.ADD_VALUE));
         }
     }
 }

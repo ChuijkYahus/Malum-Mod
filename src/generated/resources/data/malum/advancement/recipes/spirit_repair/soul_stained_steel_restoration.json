@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crucible": {
+    "has_pylon": {
       "conditions": {
         "items": [
           {
-            "items": "malum:spirit_crucible"
+            "items": "malum:repair_pylon"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_crucible"
+      "has_pylon"
     ]
   ],
   "rewards": {

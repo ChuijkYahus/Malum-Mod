@@ -1,0 +1,25 @@
+{
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 0.75,
+  "inputs": [
+    "malum:sundering_anchor"
+  ],
+  "repairMaterial": {
+    "count": 8,
+    "item": "malum:living_flesh"
+  },
+  "spirits": [
+    {
+      "type": "eldritch",
+      "count": 32
+    },
+    {
+      "type": "arcane",
+      "count": 32
+    },
+    {
+      "type": "aqueous",
+      "count": 32
+    }
+  ]
+}

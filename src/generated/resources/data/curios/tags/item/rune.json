@@ -1,12 +1,12 @@
 {
   "values": [
-    "malum:rune_of_idle_restoration",
+    "malum:rune_of_vitality",
     "malum:rune_of_culling",
     "malum:rune_of_reinforcement",
     "malum:rune_of_volatile_distortion",
     "malum:rune_of_dexterity",
     "malum:rune_of_ailment_cleansing",
-    "malum:rune_of_reactive_shielding",
+    "malum:rune_of_protection",
     "malum:rune_of_scorching",
     "malum:rune_of_motion",
     "malum:rune_of_loyalty",
@@ -19,10 +19,10 @@
     "malum:rune_of_bolstering",
     "malum:rune_of_sacrificial_empowerment",
     "malum:rune_of_spell_mastery",
-    "malum:rune_of_the_heretic",
+    "malum:rune_of_heresy",
     "malum:rune_of_unnatural_stamina",
     "malum:rune_of_twinned_duration",
-    "malum:rune_of_toughness",
+    "malum:rune_of_indomitability",
     "malum:rune_of_igneous_solace"
   ]
 }

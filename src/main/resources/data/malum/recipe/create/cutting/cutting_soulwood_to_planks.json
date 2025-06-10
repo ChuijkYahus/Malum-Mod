@@ -8,7 +8,7 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "id": "malum:stripped_soulwood_log"
+      "item": "malum:stripped_soulwood_log"
     }
   ],
   "results": [

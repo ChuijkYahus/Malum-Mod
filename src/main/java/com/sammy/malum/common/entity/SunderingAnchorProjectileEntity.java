@@ -8,6 +8,7 @@ import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
@@ -47,12 +48,17 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     protected float damage;
     protected float magicDamage;
     public int age;
-    public int targetSelectionTimer;
+
+    public int reboundDelay;
     public int bounceCount;
+
+    public boolean isReturning;
     public int returnTimer;
+
     public int slot;
 
-    private List<Entity> hitEntities = new ArrayList<>();
+    private final List<Entity> ignoredTargets = new ArrayList<>();
+    private final Object2IntOpenHashMap<Entity> hitCount = new Object2IntOpenHashMap<>();
     private LivingEntity forcedTarget;
 
     public SunderingAnchorProjectileEntity(Level level) {
@@ -90,17 +96,20 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         if (age != 0) {
             compound.putInt("age", age);
         }
-        if (targetSelectionTimer != 0) {
-            compound.putInt("secondBounceDelay", targetSelectionTimer);
+        if (reboundDelay != 0) {
+            compound.putInt("reboundDelay", reboundDelay);
         }
         if (bounceCount != 0) {
             compound.putInt("bounceCount", bounceCount);
         }
-        if (slot != 0) {
-            compound.putInt("slot", slot);
+        if (isReturning) {
+            compound.putBoolean("isReturning", true);
         }
         if (returnTimer != 0) {
             compound.putInt("returnTimer", returnTimer);
+        }
+        if (slot != 0) {
+            compound.putInt("slot", slot);
         }
     }
 
@@ -110,22 +119,23 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         damage = compound.getFloat("damage");
         magicDamage = compound.getFloat("magicDamage");
         age = compound.getInt("age");
-        targetSelectionTimer = compound.getInt("secondBounceDelay");
+        reboundDelay = compound.getInt("reboundDelay");
         bounceCount = compound.getInt("bounceCount");
-        slot = compound.getInt("slot");
+        isReturning = compound.getBoolean("isReturning");
         returnTimer = compound.getInt("returnTimer");
+        slot = compound.getInt("slot");
     }
 
     @Override
     protected void onHit(HitResult result) {
         super.onHit(result);
-        freeTarget();
+        revalidateTarget();
         bounce();
     }
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
-        if (isReturning()) {
+        if (isReturning) {
             return;
         }
         if (forcedTarget != null && forcedTarget.isAlive()) {
@@ -147,34 +157,8 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         if (level() instanceof ServerLevel level) {
-            if (getOwner() instanceof LivingEntity owner) {
-                Entity target = result.getEntity();
-                hitEntities.add(target);
-                target.invulnerableTime = 0;
-                DamageSource source = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner);
-                boolean success = target.hurt(source, magicDamage);
-                if (success && target instanceof LivingEntity livingEntity) {
-                    int slashCount = 6;
-                    var physicalDamageType = MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
-                    var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
-                    int delay = 8;
-                    float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
-                    SoundHelper.playSound(this, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
-                    applyHatred(livingEntity);
-                    for (int j = 0; j < slashCount; j++) {
-                        int comboDelay = delay + j;
-                        WorldEventHandler.addWorldEvent(level,
-                                new DelayedDamageWorldEvent(target)
-                                        .setAttacker(owner)
-                                        .setDamageData(physicalDamageType, damage/slashCount, magicDamageType, magicDamage/slashCount, comboDelay)
-                                        .setImpactParticleEffect(MalumParticleEffectTypes.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
-                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
-                    }
-
-                    selectNearbyTarget(level);
-                    jumbleMovement(0.8f);
-                }
-            }
+            Entity target = result.getEntity();
+            hitTarget(level, target);
         }
     }
 
@@ -199,7 +183,10 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         if (pTarget instanceof SunderingAnchorProjectileEntity) {
             return false;
         }
-        if (hitEntities.contains(pTarget)) {
+        if (ignoredTargets.contains(pTarget)) {
+            return false;
+        }
+        if (hitCount.getInt(pTarget) >= 5) {
             return false;
         }
         return super.canHitEntity(pTarget);
@@ -222,11 +209,11 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                 onHit(new EntityHitResult(target));
             }
             if (age % 20 == 0) {
-                freeTarget();
-                selectNearbyTarget(level);
+                revalidateTarget();
+                selectNearestTarget(level);
             }
-            if (getOwner() instanceof LivingEntity owner) {
-                if (isReturning()) {
+            if (isReturning) {
+                if (getOwner() instanceof LivingEntity owner) {
                     var ownerPos = owner.position().add(0, owner.getBbHeight() * 0.6f, 0);
                     float velocityLimit = 3f;
                     var motion = getDeltaMovement();
@@ -243,12 +230,14 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                         remove(RemovalReason.DISCARDED);
                     }
                 }
-            }
-            if (!isReturning()) {
-                if (targetSelectionTimer > 0) {
-                    targetSelectionTimer--;
-                    if (targetSelectionTimer == 0) {
-                        selectNearbyTarget(level);
+            } else {
+                if (bounceCount >= 20 || returnTimer > 80) {
+                    returnToOwner();
+                }
+                if (reboundDelay > 0) {
+                    reboundDelay--;
+                    if (reboundDelay == 0) {
+                        selectNearestTarget(level);
                     }
                 }
                 homeIn(level);
@@ -290,10 +279,6 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         this.shoot(f, f1, f2, velocity, innacuracy);
     }
 
-    public boolean isReturning() {
-        return returnTimer > 80 || bounceCount >= 20;
-    }
-
     public void jumbleMovement(float weight) {
         float randomRotationX = (float) (Math.random() * Math.PI * 2);
         float randomRotationY = (float) (Math.random() * Math.PI * 2);
@@ -311,36 +296,21 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         setDeltaMovement(lerp.normalize().scale(motion.length()));
     }
 
-    public void bounce() {
-        bounceCount++;
-        targetSelectionTimer = 3;
-        returnTimer -= 10;
-    }
-
-    public void freeTarget() {
-        if (!hitEntities.isEmpty()) {
-            float chance = 0.8f - hitEntities.size() * 0.1f;
-            if (random.nextFloat() < chance) {
-                hitEntities.remove(hitEntities.get(random.nextInt(hitEntities.size())));
-            }
-        }
-    }
-
-    public void selectNearbyTarget(ServerLevel level) {
+    public void selectNearestTarget(ServerLevel level) {
         Entity owner = getOwner();
         if (owner == null) {
             return;
         }
-        var aabb = getBoundingBox().inflate(30);
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb,
-                target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(level, target));
-        if (!entities.isEmpty()) {
-            if (entities.size() == 1) {
-                forcedTarget = entities.getFirst();
-            }
-            else {
-                forcedTarget = entities.stream().filter(e -> !hitEntities.contains(e)).min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
-            }
+        List<LivingEntity> entities = getTargets(level, target -> hitCount.getInt(target) < 5);
+        if (entities.isEmpty()) {
+            forcedTarget = null;
+            returnToOwner();
+            return;
+        }
+        if (entities.size() == 1) {
+            forcedTarget = entities.getFirst();
+        } else {
+            forcedTarget = entities.stream().filter(e -> !ignoredTargets.contains(e)).min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
         }
         if (forcedTarget != null) {
             var speed = getDeltaMovement().length();
@@ -353,6 +323,38 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         }
     }
 
+    public void hitTarget(ServerLevel level, Entity target) {
+        if (getOwner() instanceof LivingEntity owner) {
+            ignoredTargets.add(target);
+            hitCount.addTo(target, 1);
+            target.invulnerableTime = 0;
+            DamageSource source = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner);
+            float magicDamage = this.magicDamage - 1;
+            boolean success = target.hurt(source, 1);
+            if (success && target instanceof LivingEntity livingEntity) {
+                int slashCount = 5;
+                var physicalDamageType = MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
+                var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
+                int delay = 8;
+                float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
+                SoundHelper.playSound(this, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                applyHatred(livingEntity);
+                for (int j = 0; j < slashCount; j++) {
+                    int comboDelay = delay + j;
+                    WorldEventHandler.addWorldEvent(level,
+                            new DelayedDamageWorldEvent(target)
+                                    .setAttacker(owner)
+                                    .setDamageData(physicalDamageType, damage / slashCount, magicDamageType, magicDamage / slashCount, comboDelay)
+                                    .setImpactParticleEffect(MalumParticleEffectTypes.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
+                                    .setSound(MalumSoundEvents.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
+                }
+
+                selectNearestTarget(level);
+                jumbleMovement(0.8f);
+            }
+        }
+    }
+
     public void homeIn(ServerLevel level) {
         Vec3 motion = getDeltaMovement();
         Entity owner = getOwner();
@@ -362,7 +364,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         Entity nearest;
         boolean demandAccuracy = true;
 
-        if (forcedTarget != null && forcedTarget.isAlive() && !hitEntities.contains(forcedTarget)) {
+        if (forcedTarget != null && forcedTarget.isAlive() && !ignoredTargets.contains(forcedTarget)) {
             nearest = forcedTarget;
             demandAccuracy = false;
         }
@@ -371,9 +373,8 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             demandAccuracy = false;
         }
         else {
-            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(20),
-                    target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && !hitEntities.contains(target) && hasLineOfSight(level, target));
-            nearest = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
+            List<LivingEntity> targets = getTargets(level, target -> !ignoredTargets.contains(target) && hitCount.getInt(target) < 5);
+            nearest = targets.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).orElse(null);
         }
         if (nearest != null) {
             Vec3 nearestPosition = nearest.position().add(0, nearest.getBbHeight() / 2, 0);
@@ -400,6 +401,35 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             final double y = Mth.clampedLerp(motion.y, newMotion.y, factor);
             final double z = Mth.clampedLerp(motion.z, newMotion.z, factor);
             setDeltaMovement(new Vec3(x, y, z).normalize().scale(speed));
+        }
+    }
+
+    public List<LivingEntity> getTargets(ServerLevel level, Predicate<LivingEntity> extraFilter) {
+        Entity owner = getOwner();
+        if (owner == null) {
+            return Collections.emptyList();
+        }
+        var aabb = getBoundingBox().inflate(30);
+        return level.getEntitiesOfClass(LivingEntity.class, aabb,
+                target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(level, target) && extraFilter.test(target));
+    }
+
+    public void returnToOwner() {
+        isReturning = true;
+    }
+
+    public void bounce() {
+        bounceCount++;
+        reboundDelay = 3;
+        returnTimer -= 10;
+    }
+
+    public void revalidateTarget() {
+        if (!ignoredTargets.isEmpty()) {
+            float chance = 0.8f - ignoredTargets.size() * 0.1f;
+            if (random.nextFloat() < chance) {
+                ignoredTargets.remove(ignoredTargets.get(random.nextInt(ignoredTargets.size())));
+            }
         }
     }
 

@@ -19,7 +19,7 @@ public class RuneIgneousSolaceItem extends AbstractRuneCurioItem implements Item
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("burning_damage"));
+        consumer.accept(ComponentHelper.positiveCurioEffect("burning_resistance"));
     }
 
     @Override
@@ -28,5 +28,4 @@ public class RuneIgneousSolaceItem extends AbstractRuneCurioItem implements Item
             event.setNewDamage(event.getNewDamage() * 0.75f);
         }
     }
-
 }

@@ -2,7 +2,6 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.core.systems.ritual.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -45,23 +44,6 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         split.removeFirst();
         String alteredName = String.join("_", split);
         return provider.createGenericModel(item, GENERATED, provider.getItemTexture(alteredName));
-    });
-
-    public static ItemModelSmith RITUAL_SHARD_ITEM = new ItemModelSmith((item, provider) -> {
-        String base = "ritual_shard";
-        var model = provider.createGenericModel(item, GENERATED, provider.getItemTexture(base + "_faded"));
-        for (MalumRitualTier ritualTier : MalumRitualTier.TIERS) {
-            if (ritualTier.equals(MalumRitualTier.FADED)) {
-                continue;
-            }
-            String path = ritualTier.identifier.getPath();
-            ResourceLocation itemTexturePath = provider.getItemTexture(base + "_" + path);
-            provider.getBuilder(BuiltInRegistries.ITEM.getKey(item).getPath()).override()
-                    .predicate(MalumMod.malumPath("tier"), ritualTier.potency)
-                    .model(provider.withExistingParent(provider.getItemName(item) + "_" + path, GENERATED).texture("layer0", itemTexturePath))
-                    .end();
-        }
-        return model;
     });
 
     public static ItemModelSmith SOULWOVEN_POUCH = new ItemModelSmith((item, provider) -> {

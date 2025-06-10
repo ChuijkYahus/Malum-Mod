@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
@@ -64,19 +65,22 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);
         particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
 
-        int sweeping = EnchantmentKeys.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
-        float damage = event.getNewDamage() * (0.66f + sweeping * 0.33f);
-        float radius = 1 + sweeping * 0.25f;
-        level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
-            if (e instanceof LivingEntity sweepTarget) {
-                if (sweepTarget.isAlive() && sweepTarget != target) {
-                    sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
-                    sweepTarget.knockback(0.4F,
-                            Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
-                            (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
+        var sweeping = attacker.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
+        if (sweeping != null) {
+            float sweepingRatio = (float) sweeping.getValue();
+            float damage = event.getNewDamage() * (0.5f + sweepingRatio * 0.33f);
+            float radius = 1 + sweepingRatio * 0.25f;
+            level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
+                if (e instanceof LivingEntity sweepTarget) {
+                    if (sweepTarget.isAlive() && sweepTarget != target) {
+                        sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
+                        sweepTarget.knockback(0.4F,
+                                Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
+                                (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
         return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;

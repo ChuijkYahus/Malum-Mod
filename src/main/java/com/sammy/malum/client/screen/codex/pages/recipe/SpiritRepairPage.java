@@ -48,7 +48,7 @@ public class SpiritRepairPage extends BookPage {
     }
 
     public static SpiritRepairPage fromOutput(Item outputItem) {
-        return new SpiritRepairPage(s -> s.repairOutputOverride.equals(outputItem));
+        return new SpiritRepairPage(s -> s.repairResult.equals(outputItem));
     }
 
     public static SpiritRepairPage fromId(String recipeId) {

@@ -771,21 +771,21 @@ public class CodexLangDatagen {
         addPages("gluttonous_brooch",
                 "Some sacrifices are mental, rather than physical. The Gluttonous Brooch strips away satiation, causing my body to crave food even when it should be full. In exchange for this, my loosened belly has the space to accommodate an additional belt.");
 
-        addSimpleEntryHeader("rune_of_idle_restoration", "Rune of Idle Restoration", "The impulse to mend");
-        addPages("rune_of_idle_restoration",
-                "The Rune of Idle Restoration implores a body to restore itself, passively restoring the user's health at a rate of one half heart every two seconds.");
+        addSimpleEntryHeader("rune_of_vitality", "Rune of Vitality", "The impulse to mend");
+        addPages("rune_of_vitality",
+                "The Rune of Vitality implores a body to restore itself, amplifying all healing received by roughly one fifth.");
         addSimpleEntryHeader("rune_of_culling", "Rune of Culling", "The impulse to break");
         addPages("rune_of_culling",
-                "The Rune of Culling implores a mind to seek ruin, granting the user a bonus to Magic Proficiency which improves magic damage output by roughly two fifths.");
+                "The Rune of Culling implores a mind to seek ruin, granting the user a bonus to Scythe Proficiency against wounded targets. The effect appears to activate with targets at or below half health, and increases the damage dealt by the scythe by about two fifths.");
         addSimpleEntryHeader("rune_of_ailment_cleansing", "Rune of Ailment Cleansing", "The impulse to process");
         addPages("rune_of_ailment_cleansing",
                 "The Rune of Ailment Cleansing implores a body to catalyze and change substance, allowing it to burn through and process negative effects quicker than normal.");
         addSimpleEntryHeader("rune_of_scorching", "Rune of Scorching", "The impulse to burn");
         addPages("rune_of_scorching",
                 "The Rune of Scorching implores a mind to share its light with others regardless of what that will cause, doubling the strength of fire damage originating from the user.");
-        addSimpleEntryHeader("rune_of_reactive_shielding", "Rune of Reactive Shielding", "The impulse to withstand");
-        addPages("rune_of_reactive_shielding",
-                "The Rune of Reactive Shielding implores a body to stand fast, granting an increase to effective Armor and Armor Toughness by one tenth upon taking damage. The strength of this effect scales as the user receives more damage, reaching an increase of three tenths at full power.");
+        addSimpleEntryHeader("rune_of_protection", "Rune of Protection", "The impulse to withstand");
+        addPages("rune_of_protection",
+                "The Rune of Protection implores a body to stand fast, granting the user a bonus to Armor equal to about one fifth.");
         addSimpleEntryHeader("rune_of_dexterity", "Rune of Dexterity", "The impulse to flee");
         addPages("rune_of_dexterity",
                 "The Rune of Dexterity implores a mind to move when cornered, boosting movement speed which can up to double as the user's health pool diminishes.");
@@ -794,7 +794,7 @@ public class CodexLangDatagen {
                 "The Rune of Reinforcement, rather than imploring the body, simply provides pressure to the Arcane quality of its existence, granting their Soul Ward capacity and integrity.");
         addSimpleEntryHeader("rune_of_volatile_distortion", "Rune of Volatile Distortion", "The impulse to putrefy");
         addPages("rune_of_volatile_distortion",
-                "The Rune of Volatile Distortion, rather than imploring the mind, corrupts its actions with random chance, making the user's attacks erratic in damage - anywhere from nine tenths as powerful to twelve tenths. Sometimes, this randomness aligns with weaknesses by chance, doubling the strength of the attack.");
+                "The Rune of Volatile Distortion, rather than imploring the mind, corrupts its actions with random chance, making the user's attacks erratic in damage - sometimes aligning with weaknesses by chance, doubling the strength of the attack.");
 
         addSimpleEntryHeader("void.runes", "Voidish Runecraft", "An altered alphabet");
         addPages("void.runes",
@@ -812,19 +812,19 @@ public class CodexLangDatagen {
                 "The Rune of Twinned Duration inhibits the body in breaking down substances, causing the body to hold on to positive effects for longer.");
         addSimpleEntryHeader("void.rune_of_igneous_solace", "Rune of Igneous Solace", "To fuel what must burn");
         addPages("void.rune_of_igneous_solace",
-                "The Rune of Igneous Solace toughens the user's skin when burning, giving them a partial resistance to damage. It does not, however, do anything about the flames.");
-        addSimpleEntryHeader("void.rune_of_toughness", "Rune of Toughness", "To bear what must break");
-        addPages("void.rune_of_toughness",
-                "The Rune of Toughness reinforces the user's armor, making any armor they already wear more effective and tough.");
+                "The Rune of Igneous Solace toughens the user's skin when burning, giving them a partial resistance to any inbound damage. It does not, however, do anything about the flames.");
+        addSimpleEntryHeader("void.rune_of_indomitability", "Rune of Indomitability", "To bear what must break");
+        addPages("void.rune_of_indomitability",
+                "The Rune of Indomitability reinforces the user's stance, negating any knockback taken.");
         addSimpleEntryHeader("void.rune_of_unnatural_stamina", "Rune of Unnatural Stamina", "To flee what must pursue");
         addPages("void.rune_of_unnatural_stamina",
                 "The Rune of Unnatural Stamina gives its user the speed of hysteria, constantly able to move faster, and even being able to sprint if your hunger would normally prevent you from doing so.");
         addSimpleEntryHeader("void.rune_of_spell_mastery", "Rune of Spell Mastery", "To make what destroys");
         addPages("void.rune_of_spell_mastery",
                 "The Rune of Spell Mastery mirrors the false arcana, allowing me to charge my staves twice as fast.");
-        addSimpleEntryHeader("void.rune_of_the_heretic", "Rune of the Heretic", "To destroy what makes");
-        addPages("void.rune_of_the_heretic",
-                "The Rune of the Heretic decries magic, Silencing foes much like the Erosion Scepter can. This weakens their spirit magic, and the effect can stack up to complete suppression.");
+        addSimpleEntryHeader("void.rune_of_heresy", "Rune of Heresy", "To destroy what makes");
+        addPages("void.rune_of_heresy",
+                "The Rune of Heresy decries magic, Silencing foes much like the Erosion Scepter can. This weakens their spirit magic, and the effect can stack up to complete suppression.");
 
         addSimpleEntryHeader("rune_of_motion", "Rune of Motion", "Uplifting your impulses");
         addPages("rune_of_motion",
@@ -911,7 +911,8 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER,
                 """
                         A rare generosity, everything that you are you will share with others.
-                         -Healing also Heals Nearby Beings""",
+                         -Passively Recovers your Health
+                         -Health Recovery is Shared With Nearby Creatures""",
                 "All creatures are deserving of care.\n -Healing Aura targets Everything, Ally and Enemy alike");
 
 
@@ -1017,7 +1018,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.65f) + """
+                scaled(0.7f) + """
                         Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
                          -Increases Agility, Attack and Mining Speed and Provides Damage Reduction when Underwater
                          -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
@@ -1029,11 +1030,11 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID,
                 scaled(0.8f) + """
                         Split the Impact, Soften the Blow.
-                         -Half of All Incoming Damage is Buffered, Converted to Damage Over Time
+                         -Half of All Incoming Damage is Buffered; Converted to Damage Over Time
                          -Buffered Damage Cannot Kill You""",
                 """
                         Prolonged Pain is Greater Pain.
-                         -Buffered Damage is overall Two Fifths More Potent""");
+                         -Buffered Damage becomes Magic Damage and is overall One Fifth More Potent""");
         
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT,
@@ -1380,7 +1381,7 @@ public class CodexLangDatagen {
         addPages("soulwood.cursed_sap",
                 "The sticky lifeblood of the tree also seems to well up much more often in Soulwood than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
-        addEntryHeader("scarstone", "A Study on Soulwood", "Warped Rock");
+        addEntryHeader("scarstone", "A Study on Scarstone", "Warped Rock");
         addHeadline("scarstone", "A Study on Scarstone");
         addPages("scarstone",
                 "While observing the spread of Blight (in controlled conditions, of course), I have found that rarely the metaphysical scarring is potent enough to affect even stone - hence, I have named it Scarstone.");

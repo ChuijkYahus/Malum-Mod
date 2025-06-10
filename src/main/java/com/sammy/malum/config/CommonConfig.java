@@ -9,7 +9,7 @@ import static com.sammy.malum.MalumMod.MALUM;
 public class CommonConfig extends LodestoneConfig {
 
     public static ConfigValueHolder<Boolean> AWARD_CODEX_ON_KILL = new ConfigValueHolder<>(MALUM, "common/codex", (builder ->
-            builder.comment("If set to true, the first undead enemy a player slays will drop the encyclopedia arcana.")
+            builder.comment("If set to true, one of the first undead enemies a player slays will drop the encyclopedia arcana.")
                     .define("enableCodexDrop", true)));
 
     public static ConfigValueHolder<Boolean> NO_FANCY_SPIRITS = new ConfigValueHolder<>(MALUM, "common/spirit", (builder ->
@@ -27,17 +27,21 @@ public class CommonConfig extends LodestoneConfig {
             builder.comment("Whether entities without spirit jsons will use the default spirit data for their category.")
                     .define("defaultSpiritValues", true)));
 
-    public static ConfigValueHolder<Double> SOUL_WARD_PHYSICAL = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/soul_ward", (builder ->
+    public static ConfigValueHolder<Boolean> MAGIC_DAMAGE_REDUCED_ARMOR_PIERCING = new ConfigValueHolder<>(MALUM, "common/magic_damage", (builder ->
+            builder.comment("If set to true, damage types tagged under malum:bypasses_half_armor will pierce only half of the player's armor stat, as opposed to piercing it entirely. In addition, armor will not take durability damage.")
+                    .define("magicDamageReducedArmorPiercing", true)));
+
+    public static ConfigValueHolder<Double> SOUL_WARD_PHYSICAL = new ConfigValueHolder<>(MALUM, "common/soul_ward", (builder ->
             builder.comment("Multiplier for physical damage taken while soul ward is active.")
                     .defineInRange("soulWardPhysical", 0.7f, 0, 1)));
-    public static ConfigValueHolder<Double> SOUL_WARD_MAGIC = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/soul_ward", (builder ->
+    public static ConfigValueHolder<Double> SOUL_WARD_MAGIC = new ConfigValueHolder<>(MALUM, "common/soul_ward", (builder ->
             builder.comment("Multiplier for magic damage taken while soul ward is active.")
                     .defineInRange("soulWardMagic", 0.1f, 0, 1)));
-    public static ConfigValueHolder<Integer> SOUL_WARD_RATE = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/soul_ward", (builder ->
+    public static ConfigValueHolder<Integer> SOUL_WARD_RATE = new ConfigValueHolder<>(MALUM, "common/soul_ward", (builder ->
             builder.comment("Base time in ticks it takes for one segment of soul ward to recover.")
                     .define("soulWardRate", 100)));
 
-    public static ConfigValueHolder<Integer> STAFF_CHARGE_RATE = new ConfigValueHolder<>(MALUM, "common/spirit/affinity/staff_charge", (builder ->
+    public static ConfigValueHolder<Integer> STAFF_CHARGE_RATE = new ConfigValueHolder<>(MALUM, "common/staff_charge", (builder ->
             builder.comment("Base time in ticks it takes for one segment of a staff charge to recover.")
                     .define("staffChargeRate", 100)));
 

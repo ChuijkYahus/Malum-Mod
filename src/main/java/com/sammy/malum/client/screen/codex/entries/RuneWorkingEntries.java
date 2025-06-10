@@ -46,10 +46,10 @@ public class RuneWorkingEntries {
                 .addPage(SpiritInfusionPage.fromOutput(GLUTTONOUS_BROOCH.get()))
         );
 
-        screen.addEntry("rune_of_idle_restoration", -14, 7, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_IDLE_RESTORATION))
-                .addPage(new HeadlineTextPage("rune_of_idle_restoration", "rune_of_idle_restoration.1"))
-                .addPage(RuneworkingPage.fromOutput(RUNE_OF_IDLE_RESTORATION.get()))
+        screen.addEntry("rune_of_vitality", -14, 7, b -> b
+                .configureWidget(w -> w.setIcon(RUNE_OF_VITALITY))
+                .addPage(new HeadlineTextPage("rune_of_vitality", "rune_of_vitality.1"))
+                .addPage(RuneworkingPage.fromOutput(RUNE_OF_VITALITY.get()))
         );
 
         screen.addEntry("rune_of_culling", -15, 7, b -> b
@@ -76,10 +76,10 @@ public class RuneWorkingEntries {
                 .addPage(RuneworkingPage.fromOutput(RUNE_OF_AILMENT_CLEANSING.get()))
         );
 
-        screen.addEntry("rune_of_reactive_shielding", -16, 9, b -> b
-                .configureWidget(w -> w.setIcon(RUNE_OF_REACTIVE_SHIELDING))
-                .addPage(new HeadlineTextPage("rune_of_reactive_shielding", "rune_of_reactive_shielding.1"))
-                .addPage(RuneworkingPage.fromOutput(RUNE_OF_REACTIVE_SHIELDING.get()))
+        screen.addEntry("rune_of_protection", -16, 9, b -> b
+                .configureWidget(w -> w.setIcon(RUNE_OF_PROTECTION))
+                .addPage(new HeadlineTextPage("rune_of_protection", "rune_of_protection.1"))
+                .addPage(RuneworkingPage.fromOutput(RUNE_OF_PROTECTION.get()))
         );
 
         screen.addEntry("rune_of_reinforcement", -16, 10, b -> b

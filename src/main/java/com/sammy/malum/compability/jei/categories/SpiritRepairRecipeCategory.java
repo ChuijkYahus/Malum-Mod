@@ -82,7 +82,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
                 .map(ItemStack::copy)
                 .peek(s -> s.setDamageValue((int) (s.getMaxDamage() * recipe.durabilityPercentage)))
                 .collect(Collectors.toCollection(ArrayList::new));
-        if (recipe.repairOutputOverride != Items.AIR) {
+        if (recipe.repairResult != Items.AIR) {
             repaired = repaired.stream().map(recipe::getResultItem).toList();
         }
         JEIHelper.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits);

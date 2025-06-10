@@ -133,13 +133,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         spiritInventory.load(pRegistries, compound, "spiritInventory");
         extrasInventory.load(pRegistries, compound, "extrasInventory");
 
-        if (level != null) {
+        loadWithLevel(level -> {
             recalculateRecipes();
             recalibrateAccelerators();
             if (level.isClientSide && isCrafting) {
                 AltarSoundInstance.playSound(this);
             }
-        }
+        });
         super.loadAdditional(compound, pRegistries);
     }
 

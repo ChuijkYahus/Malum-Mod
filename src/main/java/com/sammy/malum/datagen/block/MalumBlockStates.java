@@ -199,12 +199,13 @@ public class MalumBlockStates extends LodestoneBlockStateProvider {
         setTexturePath("storage_blocks/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_SOULSTONE, BLOCK_OF_CTHONIC_GOLD, BLOCK_OF_BRILLIANCE,
-                BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_ASTRAL_WEAVE, BLOCK_OF_HEX_ASH, BLOCK_OF_ALCHEMICAL_CALX,
+                BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_ASTRAL_WEAVE,
+                BLOCK_OF_HEX_ASH, BLOCK_OF_ALCHEMICAL_CALX,
                 MASS_OF_BLIGHTED_GUNK, BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD,
                 BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_ARCANE_CHARCOAL,
                 BLOCK_OF_AURIC_EMBERS, BLOCK_OF_LIVING_FLESH);
-        BlockStateSmithTypes.LOG_BLOCK.act(data, BLOCK_OF_GRIM_TALC);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
 
         setTexturePath("blight/");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLIGHTED_EARTH);

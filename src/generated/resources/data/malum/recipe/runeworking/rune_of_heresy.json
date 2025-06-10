@@ -1,0 +1,15 @@
+{
+  "type": "malum:runeworking",
+  "primaryInput": {
+    "count": 4,
+    "item": "malum:null_slate"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:rune_of_heresy"
+  },
+  "secondaryInput": {
+    "type": "eldritch",
+    "count": 16
+  }
+}

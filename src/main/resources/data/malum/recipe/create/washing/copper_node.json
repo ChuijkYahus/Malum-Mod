@@ -8,7 +8,7 @@
   "type": "create:splashing",
   "ingredients": [
     {
-      "id": "malum:copper_node"
+      "item": "malum:copper_node"
     }
   ],
   "results": [

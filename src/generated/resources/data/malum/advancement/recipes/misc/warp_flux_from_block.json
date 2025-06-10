@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "malum:warp_flux_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warp_flux": {
+      "conditions": {
+        "items": [
+          {
+            "items": "malum:warp_flux"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_warp_flux"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "malum:warp_flux_from_block"
+    ]
+  }
+}

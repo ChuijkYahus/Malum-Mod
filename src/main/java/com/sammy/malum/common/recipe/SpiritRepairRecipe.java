@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.core.systems.recipe.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,7 +25,7 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
             ResourceLocation.CODEC.listOf().optionalFieldOf("inputs", List.of()).forGetter(recipe -> recipe.itemsForRepair.stream().map(BuiltInRegistries.ITEM::getKey).collect(Collectors.toList())),
             SizedIngredient.FLAT_CODEC.fieldOf("repairMaterial").forGetter(recipe -> recipe.repairMaterial),
             SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter(recipe -> recipe.spirits),
-            BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("repairOutputOverride", Items.AIR).forGetter(recipe -> recipe.repairOutputOverride)
+            BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("repairOutputOverride", Items.AIR).forGetter(recipe -> recipe.repairResult)
     ).apply(obj, SpiritRepairRecipe::new));
 
     public static final String NAME = "spirit_repair";
@@ -36,9 +35,9 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
     public final ArrayList<Item> itemsForRepair;
     public final List<SpiritIngredient> spirits;
     public final SizedIngredient repairMaterial;
-    public final Item repairOutputOverride;
+    public final Item repairResult;
 
-    public SpiritRepairRecipe(float durabilityPercentage, String itemIdRegex, String modIdRegex, List<ResourceLocation> itemsForRepair, SizedIngredient repairMaterial, List<SpiritIngredient> spirits, Item repairOutputOverride) {
+    public SpiritRepairRecipe(float durabilityPercentage, String itemIdRegex, String modIdRegex, List<ResourceLocation> itemsForRepair, SizedIngredient repairMaterial, List<SpiritIngredient> spirits, Item repairResult) {
         super(MalumRecipeSerializers.REPAIR_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_REPAIR.get());
         this.durabilityPercentage = durabilityPercentage;
         this.itemIdRegex = itemIdRegex;
@@ -46,8 +45,10 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         this.repairMaterial = repairMaterial;
         this.itemsForRepair = itemsForRepair.stream().map(BuiltInRegistries.ITEM::get).collect(Collectors.toCollection(ArrayList::new));
         this.spirits = spirits;
-        this.repairOutputOverride = repairOutputOverride;
-        addToInputs(this.itemsForRepair, itemIdRegex, modIdRegex);
+        this.repairResult = repairResult;
+        if (repairResult.equals(Items.AIR)) {
+            addToInputs(this.itemsForRepair, itemIdRegex, modIdRegex);
+        }
     }
 
     public boolean isValidItemForRepair(ItemStack input) {
@@ -55,8 +56,8 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
     }
 
     public ItemStack getResultItem(ItemStack input) {
-        if (repairOutputOverride != Items.AIR) {
-            var output = repairOutputOverride.getDefaultInstance();
+        if (!repairResult.equals(Items.AIR)) {
+            var output = repairResult.getDefaultInstance();
             output.applyComponents(input.getComponents());
             return output;
         }
@@ -70,6 +71,10 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         return input.test(repairMaterial, spirits);
     }
 
+    public boolean matches(SpiritBasedRecipeInput input, ItemStack repairTarget) {
+        return input.test(repairMaterial, spirits) && itemsForRepair.stream().anyMatch(i -> i.equals(repairTarget.getItem()));
+    }
+
     @Override
     public final ItemStack getResultItem(HolderLookup.Provider registries) {
         return repairMaterial.getItems()[0];
@@ -79,10 +84,6 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         for (int i = 0; i < BuiltInRegistries.ITEM.size(); i++) {
             Item item = BuiltInRegistries.ITEM.byId(i);
             if (item.isRepairable(item.getDefaultInstance())) {
-                var damagedImpetusVariant = item.builtInRegistryHolder().getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
-                if (damagedImpetusVariant != null) {
-                    continue;
-                }
                 var id = BuiltInRegistries.ITEM.getKey(item);
                 if (id.getPath().matches(itemIdRegex)) {
                     if (!modIdRegex.isEmpty() && !id.getNamespace().matches(modIdRegex)) {

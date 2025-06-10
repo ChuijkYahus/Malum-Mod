@@ -5,7 +5,6 @@ import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.aura.*;
 import com.sammy.malum.common.effect.geas.*;
 import com.sammy.malum.common.effect.gluttony.*;
-import com.sammy.malum.common.effect.rune.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
@@ -31,10 +30,6 @@ public class MalumMobEffects {
     public static final DeferredHolder<MobEffect, MobEffect> AETHERS_CHARM = EFFECTS.register("aethers_charm", CorruptedAerialAura::new);
     public static final DeferredHolder<MobEffect, MobEffect> POSEIDONS_GRASP = EFFECTS.register("poseidons_grasp", AqueousAura::new);
     public static final DeferredHolder<MobEffect, MobEffect> ANGLERS_LURE = EFFECTS.register("anglers_lure", CorruptedAqueousAura::new);
-
-    //Rune
-    public static final DeferredHolder<MobEffect, MobEffect> REACTIVE_SHIELDING = EFFECTS.register("reactive_shielding", ReactiveShieldingEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> SACRIFICIAL_EMPOWERMENT = EFFECTS.register("sacrificial_empowerment", SacrificialEmpowermentEffect::new);
 
     //Geas
     public static final DeferredHolder<MobEffect, MobEffect> ARCANAPHAGE = EFFECTS.register("arcanaphage", ArcanaphageEffect::new);

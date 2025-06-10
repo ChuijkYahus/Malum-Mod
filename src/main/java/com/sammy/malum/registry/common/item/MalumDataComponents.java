@@ -25,9 +25,6 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ArtificeAugmentDataComponent>> ARTIFICE_AUGMENT = register("artifice_augment", builder ->
             builder.persistent(ArtificeAugmentDataComponent.CODEC).networkSynchronized(ArtificeAugmentDataComponent.STREAM_CODEC));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<RitualDataComponent>> RITUAL_DATA = register("ritual_data", builder ->
-            builder.persistent(RitualDataComponent.CODEC).networkSynchronized(RitualDataComponent.STREAM_CODEC));
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GeasDataComponent>> GEAS_EFFECT = register("geas_effect", builder ->
             builder.persistent(GeasDataComponent.CODEC).networkSynchronized(GeasDataComponent.STREAM_CODEC));
 

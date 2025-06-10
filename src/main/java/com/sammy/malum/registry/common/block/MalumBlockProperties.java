@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.block;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
@@ -15,8 +16,18 @@ import java.awt.*;
 import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
+import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;
 
 public class MalumBlockProperties {
+
+    public static LodestoneBlockProperties STORAGE_BLOCK(SoundType soundType, DyeColor mapColor) {
+        return new LodestoneBlockProperties()
+                .strength(2F, 6.0F)
+                .addTags(STORAGE_BLOCKS)
+                .mapColor(mapColor)
+                .sound(soundType);
+    }
+
 
     public static LodestoneBlockProperties POTTED_PLANT() {
         return new LodestoneBlockProperties()
@@ -26,7 +37,6 @@ public class MalumBlockProperties {
                 .noOcclusion()
                 .pushReaction(PushReaction.DESTROY);
     }
-
 
     public static LodestoneBlockProperties SPIRIT_ALTAR() {
         return new LodestoneBlockProperties()
@@ -257,6 +267,7 @@ public class MalumBlockProperties {
                 .sound(MalumSoundEvents.SCARSTONE)
                 .mapColor(MapColor.TERRACOTTA_WHITE)
                 .strength(4f, 3f)
+                .requiresCorrectToolForDrops()
                 .addTag(BLIGHT_PLACEABLE_ON)
                 .needsPickaxe();
     }

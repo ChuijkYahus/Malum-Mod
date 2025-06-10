@@ -1,0 +1,26 @@
+{
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 0.75,
+  "inputs": [
+    "malum:weight_of_worlds",
+    "malum:edge_of_deliverance"
+  ],
+  "repairMaterial": {
+    "count": 1,
+    "item": "malum:malignant_pewter_ingot"
+  },
+  "spirits": [
+    {
+      "type": "eldritch",
+      "count": 16
+    },
+    {
+      "type": "wicked",
+      "count": 16
+    },
+    {
+      "type": "earthen",
+      "count": 16
+    }
+  ]
+}

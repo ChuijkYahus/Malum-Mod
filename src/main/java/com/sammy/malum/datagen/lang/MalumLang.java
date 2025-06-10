@@ -8,7 +8,6 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.ritual.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
@@ -232,17 +231,6 @@ public class MalumLang extends LanguageProvider {
         add("malum.gui.ritual.type", "Ritual Type: ");
         add("malum.gui.ritual.tier", "Ritual Tier: ");
 
-        for (MalumRitualType ritualType : RitualRegistry.RITUALS) {
-            final String id = ritualType.id.getPath();
-            String name = DataHelper.toTitleCase(id, "_");
-            add("malum.gui.ritual." + id, name);
-        }
-        for (MalumRitualTier ritualTier : MalumRitualTier.TIERS) {
-            final String id = ritualTier.identifier.getPath();
-            String name = DataHelper.toTitleCase(id, "_");
-            add("malum.gui.ritual.tier." + id, name);
-        }
-
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
@@ -255,17 +243,18 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.positive", "+%s");
         add("malum.effect.negative", "-%s");
 
-        addCurioEffect("passive_healing", "Passive Healing");
-        addCurioEffect("scythe_chain", "Scythe Kill Chaining");
-        addCurioEffect("erratic_damage", "Erratic Damage Output");
+        addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
-        addCurioEffect("silence", "Silences Attackers");
-        addCurioEffect("extend_positive_effect", "Extends Positive Effects");
-        addCurioEffect("shorten_negative_effect", "Shortens Negative Effects");
-        addCurioEffect("attacked_resistance", "Damage Resistance When Attacked");
         addCurioEffect("low_health_speed", "Speed at Low Health");
-        addCurioEffect("always_sprint", "Sprinting Always Available");
+        addCurioEffect("shorten_negative_effect", "Shortens Negative Effects");
         addCurioEffect("burning_damage", "Burning Damage");
+
+        addCurioEffect("scythe_chain", "Deadlier Scythe Sweeping");
+        addCurioEffect("silence", "Silences Attackers");
+        addCurioEffect("always_sprint", "Sprinting Always Available");
+        addCurioEffect("extend_positive_effect", "Extends Positive Effects");
+        addCurioEffect("burning_resistance", "Damage Resistance When Ablaze");
+
         addCurioEffect("totem_effect", "Grants %s");
 
         addCurioEffect("spirits_heal", "Spirit Collection Replenishes Health");
@@ -302,6 +291,7 @@ public class MalumLang extends LanguageProvider {
 
         addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
         addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
+        addGeasEffect("passive_healing", "Passive Health Recovery");
         addGeasEffect("healing_aura", "Healing is Shared with Nearby Creatures");
         addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
         addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
@@ -472,9 +462,6 @@ public class MalumLang extends LanguageProvider {
         addJEEDEffectDescription(MalumMobEffects.AETHERS_CHARM, "The heavens call for you, increasing jump height and decreasing gravity.");
         addJEEDEffectDescription(MalumMobEffects.POSEIDONS_GRASP, "You reach out for further power, increasing your reach and item pickup distance.");
         addJEEDEffectDescription(MalumMobEffects.ANGLERS_LURE, "Let any fish who meets my gaze learn the true meaning of fear; for I am the harbinger of death. The bane of creatures sub-aqueous, my rod is true and unwavering as I cast into the aquatic abyss. A man, scorned by this uncaring Earth, finds solace in the sea. My only friend, the worm upon my hook. Wriggling, writhing, struggling to surmount the mortal pointlessness that permeates this barren world. I am alone. I am empty. And yet, I fish.");
-
-        addJEEDEffectDescription(MalumMobEffects.REACTIVE_SHIELDING, "A Runic Power bolsters your armor and toughness by a tenth.");
-        addJEEDEffectDescription(MalumMobEffects.SACRIFICIAL_EMPOWERMENT, "A Runic Power reaps extra scythe proficiency for your blade.");
 
         addJEEDEffectDescription(MalumMobEffects.ASCENSION, "Eases your fall and reduces gravity after a successful Scythe Ascenison.");
         addJEEDEffectDescription(MalumMobEffects.GLUTTONY, "You feed on the vulnerable, increasing magic proficiency at the expense of hunger./");

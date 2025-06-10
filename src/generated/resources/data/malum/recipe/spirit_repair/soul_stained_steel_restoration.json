@@ -2,6 +2,7 @@
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
   "inputs": [
+    "malum:soul_stained_steel_scythe",
     "malum:soul_stained_steel_sword",
     "malum:soul_stained_steel_axe",
     "malum:soul_stained_steel_pickaxe",

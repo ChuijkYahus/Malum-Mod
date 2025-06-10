@@ -1,0 +1,15 @@
+{
+  "type": "malum:runeworking",
+  "primaryInput": {
+    "count": 4,
+    "item": "malum:tainted_rock"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:rune_of_vitality"
+  },
+  "secondaryInput": {
+    "type": "sacred",
+    "count": 16
+  }
+}
