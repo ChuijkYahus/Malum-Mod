@@ -14,7 +14,6 @@ import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
@@ -53,15 +52,16 @@ public class SoulHarvestHandler {
         if (data.shouldDropSpirits()) {
             dropSpiritInfusedDrops(target);
             dropEncyclopediaArcana(target, attacker);
-            var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(s -> s.itemAsSoul).orElse(null);
+
+            SpiritSpawner spiritSpawner = spawnSpirits(target).setPreferredCollector(attacker);
+
+            var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(EntitySpiritDropData::getItemAsSoul).orElse(null);
             if (itemAsSoul != null) {
                 var uuid = attacker != null ? attacker.getUUID() : null;
-                target.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(getSpiritDrops(target, attacker, source), uuid));
+                target.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(spiritSpawner.getSpiritDrops(), uuid));
                 return;
             }
-            spawnSpirits(target, attacker, source);
-
-
+            spiritSpawner.spawnSpirits(level);
             if (attacker != null) {
                 attacker.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setMostRecentShatter(level.getGameTime());
             }
@@ -97,95 +97,118 @@ public class SoulHarvestHandler {
                 return;
             }
             data.obtainedEncyclopedia = true;
-            SoulHarvestHandler.spawnItemsAsSpirits(target, attacker, List.of(MalumItems.ENCYCLOPEDIA_ARCANA.get().getDefaultInstance()));
+            spawnSpirits(target)
+                    .setCustomItems(MalumItems.ENCYCLOPEDIA_ARCANA.get())
+                    .setPreferredCollector(attacker)
+                    .spawnSpirits(attacker.level());
         }
     }
 
-    public static void spawnSpirits(LivingEntity target) {
-        spawnSpirits(target, null);
+    public static SpiritSpawner spawnSpirits(Entity target) {
+        return new SpiritSpawner(target);
     }
 
-    public static void spawnSpirits(LivingEntity target, @Nullable LivingEntity attacker) {
-        spawnSpirits(target, attacker, null);
-    }
+    public static class SpiritSpawner {
 
-    public static void spawnSpirits(LivingEntity target, @Nullable LivingEntity attacker, @Nullable DamageSource source) {
-        spawnSpirits(target.level(), attacker, target.position().add(0, target.getBbHeight() / 2f, 0), getSpiritDrops(target, attacker, source));
-    }
-
-    public static void spawnItemsAsSpirits(LivingEntity target, Collection<ItemStack> spirits) {
-        spawnItemsAsSpirits(target.level(), null, spirits);
-    }
-
-    public static void spawnItemsAsSpirits(LivingEntity target, @Nullable LivingEntity attacker, Collection<ItemStack> spirits) {
-        spawnSpirits(target.level(), attacker, target.position().add(0, target.getBbHeight() / 2f, 0), spirits);
-    }
-
-    public static void spawnItemsAsSpirits(Level level, Vec3 position, Collection<ItemStack> spirits) {
-        spawnSpirits(level, null, position, spirits);
-    }
-
-    public static void spawnSpirits(Level level, @Nullable LivingEntity attacker, Vec3 position, Collection<ItemStack> spirits) {
-        boolean noFancySpirits = CommonConfig.NO_FANCY_SPIRITS.getConfigValue();
-        if (attacker == null) {
-            noFancySpirits = CommonConfig.NO_FANCY_SPIRITS_PLAYERLESS.getConfigValue();
-            attacker = level.getNearestPlayer(position.x, position.y, position.z, 8, e -> true);
+        private final Entity target;
+        @Nullable
+        private LivingEntity preferredCollector;
+        private List<ItemStack> customItems = Collections.emptyList();
+        public SpiritSpawner(Entity target) {
+            this.target = target;
         }
-        var random = level.random;
-        for (ItemStack spirit : spirits) {
-            if (spirit.isEmpty()) {
-                continue;
+
+        public SpiritSpawner setPreferredCollector(@Nullable LivingEntity preferredCollector) {
+            this.preferredCollector = preferredCollector;
+            return this;
+        }
+
+        public SpiritSpawner setCustomItems(Item... customItems) {
+            return setCustomItems(Arrays.stream(customItems).map(Item::getDefaultInstance).toList());
+        }
+
+        public SpiritSpawner setCustomItems(ItemStack... customItems) {
+            return setCustomItems(List.of(customItems));
+        }
+
+        public SpiritSpawner setCustomItems(List<ItemStack> customItems) {
+            this.customItems = customItems;
+            return this;
+        }
+
+        public Vec3 getSpawnPosition() {
+            return target.position().add(0, target.getBbHeight() / 2f, 0);
+        }
+
+        public List<ItemStack> getSpiritDrops() {
+            if (!customItems.isEmpty()) {
+                return customItems;
             }
-            for (int j = 0; j < spirit.getCount(); j++) {
-                var stack = ItemHelper.copyWithNewCount(spirit, 1);
-                if (noFancySpirits) {
-                    var itemEntity = new ItemEntity(level, position.x, position.y, position.z, stack);
-                    itemEntity.setDefaultPickUpDelay();
-                    itemEntity.setDeltaMovement(randomBetween(random, -0.1F, 0.1F), randomBetween(random, 0.25f, 0.5f), randomBetween(random, -0.1F, 0.1F));
-                    level.addFreshEntity(itemEntity);
+            if (!(target instanceof LivingEntity living)) {
+                return Collections.emptyList();
+            }
+            Optional<EntitySpiritDropData> optional = EntitySpiritDropData.getSpiritData(living);
+            if (optional.isEmpty()) {
+                return Collections.emptyList();
+            }
+            EntitySpiritDropData data = optional.get();
+            if (preferredCollector == null) {
+                return data.getSpiritStacks();
+            }
+            return applySpiritLootBonuses(data, living, preferredCollector);
+        }
+
+        public void spawnSpirits(Level level) {
+            var position = getSpawnPosition();
+            var spirits = getSpiritDrops();
+            for (ItemStack spirit : spirits) {
+                if (spirit.isEmpty()) {
                     continue;
                 }
-                createSpiritEntity(level, attacker, stack, position);
+                for (int j = 0; j < spirit.getCount(); j++) {
+                    var stack = spirit.copyWithCount(1);
+                    Entity entity = createSpiritEntity(stack, position);
+                    level.addFreshEntity(entity);
+                }
             }
+            float pitch = RandomHelper.randomBetween(level.random, 0.7f, 1.3f);
+            level.playSound(null, position.x, position.y, position.z, MalumSoundEvents.SOUL_SHATTER, SoundSource.PLAYERS, 1.0F, pitch);
         }
-        level.playSound(null, position.x, position.y, position.z, MalumSoundEvents.SOUL_SHATTER, SoundSource.PLAYERS, 1.0F, 0.7f + random.nextFloat() * 0.4f);
-    }
 
-    private static SpiritItemEntity createSpiritEntity(Level level, @Nullable LivingEntity spiritOwner, ItemStack stack, Vec3 position) {
-        var random = level.getRandom();
-        float speed = 0.3f + stack.getCount() * 0.05f;
-        var entity = new SpiritItemEntity(level, spiritOwner == null ? null : spiritOwner.getUUID(), stack,
-                position.x, position.y, position.z,
-                randomBetween(random, -speed, speed), randomBetween(random, 0.05f, 0.06f), randomBetween(random, -speed, speed));
-        level.addFreshEntity(entity);
-        return entity;
-    }
-
-    public static List<ItemStack> getSpiritDrops(LivingEntity target, LivingEntity attacker, @Nullable DamageSource source) {
-        if (attacker == null || source == null) {
-            return EntitySpiritDropData.getSpiritStacks(target);
+        public Entity createSpiritEntity(ItemStack stack, Vec3 position) {
+            var level = target.level();
+            var random = level.getRandom();
+            float speed = RandomHelper.randomBetween(random, 0.2f, 0.4f);
+            float xSpeed = randomBetween(random, -speed, speed);
+            float ySpeed = randomBetween(random, 0.05f, 0.06f);
+            float zSpeed = randomBetween(random, -speed, speed);
+            var velocity = new Vec3(xSpeed, ySpeed, zSpeed);
+            if (CommonConfig.NO_FANCY_SPIRITS.getConfigValue()) {
+                var itemEntity = new ItemEntity(level, position.x, position.y, position.z, stack);
+                itemEntity.setDefaultPickUpDelay();
+                itemEntity.setDeltaMovement(xSpeed * 0.6f, ySpeed * 6f, zSpeed * 0.6f);
+                return itemEntity;
+            }
+            return new SpiritItemEntity(level, preferredCollector, stack, position, velocity);
         }
-        return EntitySpiritDropData.getSpiritData(target).map(data -> applySpiritLootBonuses(EntitySpiritDropData.getSpiritStacks(data), target, attacker)).orElse(Collections.emptyList());
     }
 
-    public static List<ItemStack> applySpiritLootBonuses(List<ItemStack> spirits, LivingEntity target, LivingEntity attacker) {
+    public static List<ItemStack> applySpiritLootBonuses(EntitySpiritDropData data, LivingEntity target, LivingEntity attacker) {
+        List<ItemStack> spirits = new ArrayList<>(data.getSpiritStacks());
         if (spirits.isEmpty()) {
             return spirits;
         }
-        int extra = 0;
-        var spiritSpoils = MalumAttributes.SPIRIT_SPOILS;
-        if (attacker.getAttribute(spiritSpoils) != null) {
-            extra += Mth.ceil(attacker.getAttributeValue(spiritSpoils));
-        }
-        var event = new ModifySpiritSpoilsEvent(target, attacker, extra);
-        var eventResponders = ItemEventHandler.getEventResponders(attacker);
-        eventResponders.forEach(lookup -> lookup.run(IMalumEventResponder.class,
-                (eventResponderItem, stack) -> eventResponderItem.modifySpiritSpoilsEvent(event, attacker)));
+        var random = attacker.getRandom();
+        int bonus = Mth.floor(attacker.getAttributeValue(MalumAttributes.SPIRIT_SPOILS));
+        var event = new ModifySpiritSpoilsEvent(target, attacker, bonus);
+        ItemEventHandler.getEventResponders(attacker)
+                .forEach(lookup -> lookup.run(IMalumEventResponder.class,
+                        (eventResponderItem, stack) -> eventResponderItem.modifySpiritSpoilsEvent(event, attacker)));
         NeoForge.EVENT_BUS.post(event);
-        extra += event.getNewExtraSpirits();
-        for (int i = 0; i < extra; i++) {
-            int random = attacker.getRandom().nextInt(spirits.size());
-            spirits.get(random).grow(1);
+        bonus = event.getNewSpiritBonus();
+        for (int i = 0; i < bonus; i++) {
+            int index = random.nextInt(spirits.size());
+            spirits.get(index).grow(1);
         }
         return spirits;
     }
@@ -204,8 +227,7 @@ public class SoulHarvestHandler {
             if (!stack.isEmpty()) {
                 ItemHelper.spawnItemOnEntity(collector, stack);
             }
-        }
-        else {
+        } else {
             collector.level().addFreshEntity(entity);
         }
     }

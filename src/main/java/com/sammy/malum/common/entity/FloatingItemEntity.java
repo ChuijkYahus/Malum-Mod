@@ -11,17 +11,16 @@ import net.minecraft.world.level.*;
 public abstract class FloatingItemEntity extends FloatingEntity {
 
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.ITEM_STACK);
-    protected static final EntityDataAccessor<String> DATA_SPIRIT = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.STRING);
+    protected static final EntityDataAccessor<String> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.STRING);
 
-    public FloatingItemEntity(EntityType<? extends FloatingEntity> type, Level level) {
+    public FloatingItemEntity(EntityType<? extends FloatingItemEntity> type, Level level) {
         super(type, level);
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT.getIdentifier());
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.getIdentifier());
     }
 
     @Override
@@ -50,14 +49,14 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     }
 
     public MalumSpiritType getSpiritType() {
-        return MalumSpiritTypes.SPIRITS.get(getEntityData().get(DATA_SPIRIT));
+        return MalumSpiritTypes.SPIRITS.get(getEntityData().get(DATA_SPIRIT_GLOW));
+    }
+
+    public void setSpirit(String spiritIdentifier) {
+        this.getEntityData().set(DATA_SPIRIT_GLOW, spiritIdentifier);
     }
 
     public void setSpirit(MalumSpiritType spiritType) {
         setSpirit(spiritType.getIdentifier());
-    }
-
-    public void setSpirit(String spiritIdentifier) {
-        this.getEntityData().set(DATA_SPIRIT, spiritIdentifier);
     }
 }

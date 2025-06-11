@@ -29,7 +29,8 @@ public class CachedSpiritDropsData {
         return spiritDrops;
     }
 
-    public UUID getSpiritOwner() {
-        return spiritOwner;
+    public Optional<UUID> getSpiritOwner() {
+        return Optional.ofNullable(spiritOwner);
     }
+
 }

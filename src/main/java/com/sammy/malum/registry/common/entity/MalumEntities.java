@@ -58,8 +58,8 @@ public class MalumEntities {
             () -> EntityType.Builder.<LocalizedMaelstromEntity>of((e, w) -> new LocalizedMaelstromEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(20)
                     .build(MalumMod.malumPath("scythe_maelstrom").toString()));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivatorEntity>> SPIRIT_COLLECTION_ACTIVATOR = ENTITY_TYPES.register("pneuma_void",
-            () -> EntityType.Builder.<SpiritCollectionActivatorEntity>of((e, w) -> new SpiritCollectionActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
+    public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivatorEntityOld>> SPIRIT_COLLECTION_ACTIVATOR = ENTITY_TYPES.register("pneuma_void",
+            () -> EntityType.Builder.<SpiritCollectionActivatorEntityOld>of((e, w) -> new SpiritCollectionActivatorEntityOld(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
                     .build(MalumMod.malumPath("pneuma_void").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<HiddenBladeDelayedImpactEntity>> HIDDEN_BLADE_DELAYED_IMPACT = ENTITY_TYPES.register("hidden_blade_delayed_impact",

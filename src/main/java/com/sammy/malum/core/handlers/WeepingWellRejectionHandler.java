@@ -109,7 +109,10 @@ public class WeepingWellRejectionHandler {
                 player.hurt(DamageTypeHelper.create(level, MalumDamageTypes.VOID), 4);
             }
             if (!progression.hasBeenRejected) {
-                SoulHarvestHandler.spawnSpirits(level, player, player.position(), List.of(MalumItems.UMBRAL_SPIRIT.get().getDefaultInstance()));
+                SoulHarvestHandler.spawnSpirits(player)
+                        .setCustomItems(MalumItems.ENCYCLOPEDIA_ARCANA.get())
+                        .setPreferredCollector(player)
+                        .spawnSpirits(level);
             }
             PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new VoidRejectionPayload(player.getId()));
             SoundHelper.playSound(player, MalumSoundEvents.VOID_REJECTION.get(), 2f, Mth.nextFloat(player.getRandom(), 0.5f, 0.8f));

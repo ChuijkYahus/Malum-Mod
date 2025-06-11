@@ -6,14 +6,16 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 
-import java.util.*;
+import javax.annotation.*;
 
 public class SpiritItemEntity extends FloatingItemEntity {
 
@@ -24,12 +26,14 @@ public class SpiritItemEntity extends FloatingItemEntity {
         maxAge = 4000;
     }
 
-    public SpiritItemEntity(Level level, UUID ownerUUID, ItemStack stack, double posX, double posY, double posZ, double velX, double velY, double velZ) {
+    public SpiritItemEntity(Level level, @Nullable LivingEntity owner, ItemStack stack, Vec3 position, Vec3 velocity) {
         this(level);
-        setOwner(ownerUUID);
+        if (owner != null) {
+            setDestination(new FloatingItemDestinationData(owner));
+        }
         setItem(stack);
-        setPos(posX, posY, posZ);
-        setDeltaMovement(velX, velY, velZ);
+        setPos(position);
+        setDeltaMovement(velocity);
         maxAge = 800;
         if (stack.getItem() instanceof SpiritShardItem spiritShardItem) {
             setSpirit(spiritShardItem.type);
@@ -42,13 +46,15 @@ public class SpiritItemEntity extends FloatingItemEntity {
     }
 
     @Override
-    public void collect() {
+    public void collect(ServerLevel level) {
         ItemStack stack = getItem();
-        if (stack.getItem() instanceof SpiritShardItem) {
-            SoulHarvestHandler.pickupSpirit(owner, stack);
-        } else {
-            ItemHelper.giveItemToEntity(owner, stack);
-        }
+        getDestination().getEntityCollector(level).ifPresent(collector -> {
+            if (stack.getItem() instanceof SpiritShardItem) {
+                SoulHarvestHandler.pickupSpirit(collector, stack);
+            } else {
+                ItemHelper.giveItemToEntity(collector, stack);
+            }
+        });
         if (random.nextFloat() < 0.6f) {
             SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.1f, 2f));
         }
@@ -58,7 +64,15 @@ public class SpiritItemEntity extends FloatingItemEntity {
     @Override
     public void tick() {
         super.tick();
-        if (!level().isClientSide()) {
+        if (level().isClientSide()) {
+            Vec3 motion = getDeltaMovement();
+            Vec3 norm = motion.normalize().scale(0.05f);
+            var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), getOffsetPosition(), getSpiritType());
+            lightSpecs.getBuilder().setMotion(norm);
+            lightSpecs.getBloomBuilder().setMotion(norm);
+            lightSpecs.spawnParticles();
+        }
+        else {
             if (soundCooldown-- == 0) {
                 if (random.nextFloat() < 0.4f) {
                     SoundHelper.playSound(this, MalumSoundEvents.ARCANE_WHISPERS.get(), 0.3f, Mth.nextFloat(random, 0.8f, 2f));
@@ -66,20 +80,5 @@ public class SpiritItemEntity extends FloatingItemEntity {
                 soundCooldown = 40 + random.nextInt(40);
             }
         }
-    }
-
-    @Override
-    public void spawnParticles(double x, double y, double z) {
-        Vec3 motion = getDeltaMovement();
-        Vec3 norm = motion.normalize().scale(0.05f);
-        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), new Vec3(x, y, z), getSpiritType());
-        lightSpecs.getBuilder().setMotion(norm);
-        lightSpecs.getBloomBuilder().setMotion(norm);
-        lightSpecs.spawnParticles();
-    }
-
-    @Override
-    public float getMotionCoefficient() {
-        return 0.01f;
     }
 }

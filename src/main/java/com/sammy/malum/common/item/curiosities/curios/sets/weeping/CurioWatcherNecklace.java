@@ -39,7 +39,7 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
                 int amount = target instanceof Player ? 2 : 1;
 
                 for (int i = 0; i < amount; i++) {
-                    SpiritCollectionActivatorEntity entity = new SpiritCollectionActivatorEntity(level, attacker.getUUID(),
+                    SpiritCollectionActivatorEntityOld entity = new SpiritCollectionActivatorEntityOld(level, attacker.getUUID(),
                             position.x, position.y, position.z,
                             RandomHelper.randomBetween(random, -speed, speed), RandomHelper.randomBetween(random, 0.05f, 0.06f), RandomHelper.randomBetween(random, -speed, speed));
                     level.addFreshEntity(entity);

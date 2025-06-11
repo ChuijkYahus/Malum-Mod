@@ -45,6 +45,11 @@ public class MetalNodeSmeltingRecipe extends SmeltingRecipe implements INodeCook
     }
 
     @Override
+    public ItemStack assemble(SingleRecipeInput input, HolderLookup.Provider registries) {
+        return getResultItem(registries).copy();
+    }
+
+    @Override
     public ItemStack getOutput() {
         if (outputCache == null) {
             outputCache = NodeCookingSerializer.getStackFromIngredient(rawOutput).copyWithCount(outputCount);

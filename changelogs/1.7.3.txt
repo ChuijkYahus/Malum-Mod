@@ -5,6 +5,8 @@ Added the missing Warp Flux Block
 The Sundering Anchor can now only hit a single target up to five times and will return early if it cannot find any other valid target afterwards
 The Sundering Anchor Projectile no longer deals double the intended damage
 
+Updated Spirit Entity Behavior and Visuals
+
 Updated Several Rune Effects
 Rune of Idle Restoration -> Rune of Vitality
 +Passive Healing -> +20% Healing Received
@@ -46,3 +48,4 @@ Fixed the Ring of the Howling Maelstrom taking effect when hitting an enemy with
 Fixed Scarstone dropping even without proper tools
 Fixed Transmutation Tree Pages Displaying Translation Keys instead of Translated Headlines
 Fixed Max Durability still being transfered across gear during Spirit Infusion
+Fix Modded Metal Node Smelting Recipes not actually working despite JEI showing so

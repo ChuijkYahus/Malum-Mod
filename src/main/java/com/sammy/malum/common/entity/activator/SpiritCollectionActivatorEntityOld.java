@@ -6,6 +6,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -15,20 +16,20 @@ import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
 
-public class SpiritCollectionActivatorEntity extends FloatingEntity {
+public class SpiritCollectionActivatorEntityOld extends FloatingEntity {
 
     public TrailPointBuilder secondaryTrailPointBuilder = TrailPointBuilder.create(4);
     public TrailPointBuilder trinaryTrailPointBuilder = TrailPointBuilder.create(4);
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
-    public SpiritCollectionActivatorEntity(Level level) {
+    public SpiritCollectionActivatorEntityOld(Level level) {
         super(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 
-    public SpiritCollectionActivatorEntity(Level level, UUID ownerUUID, double posX, double posY, double posZ, double velX, double velY, double velZ) {
+    public SpiritCollectionActivatorEntityOld(Level level, UUID ownerUUID, double posX, double posY, double posZ, double velX, double velY, double velZ) {
         this(level);
-        setOwner(ownerUUID);
+        setDestination(new FloatingItemDestinationData(ownerUUID));
         setPos(posX, posY, posZ);
         setDeltaMovement(velX, velY, velZ);
         maxAge = 800;
@@ -41,8 +42,8 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
     }
 
     @Override
-    public void collect() {
-        SoulHarvestHandler.triggerSpiritCollection(owner);
+    public void collect(ServerLevel level) {
+        getDestination().getEntityCollector(level).ifPresent(SoulHarvestHandler::triggerSpiritCollection);
         SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
     }
 
@@ -64,31 +65,28 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
             }
             secondaryTrailPointBuilder.tickTrailPoints();
             trinaryTrailPointBuilder.tickTrailPoints();
+
+            Vec3 motion = getDeltaMovement();
+            Vec3 norm = motion.normalize().scale(0.05f);
+            var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), getOffsetPosition(), MalumSpiritTypes.UMBRAL_SPIRIT);
+            lightSpecs.getBuilder().setMotion(norm);
+            lightSpecs.getBloomBuilder().setMotion(norm);
+            lightSpecs.spawnParticles();
         }
     }
 
     @Override
-    public void spawnParticles(double x, double y, double z) {
-        Vec3 motion = getDeltaMovement();
-        Vec3 norm = motion.normalize().scale(0.05f);
-        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), new Vec3(x, y, z), MalumSpiritTypes.UMBRAL_SPIRIT);
-        lightSpecs.getBuilder().setMotion(norm);
-        lightSpecs.getBloomBuilder().setMotion(norm);
-        lightSpecs.spawnParticles();
+    public int getWindUpDuration() {
+        return 25;
     }
 
     @Override
-    public float getMotionCoefficient() {
-        return 0.04f;
+    public float getMotionEasingRatio(float windUpDelta, float distance) {
+        return super.getMotionEasingRatio(windUpDelta, distance) * 4f;
     }
 
     @Override
     public float getFriction() {
         return 0.9f;
-    }
-
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-
     }
 }
