@@ -3,6 +3,7 @@ package com.sammy.malum.common.recipe.vanilla;
 import com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -34,6 +35,11 @@ public class MetalNodeSmeltingRecipe extends SmeltingRecipe implements INodeSmel
     @Override
     public IngredientWithCount getOutput() {
         return output;
+    }
+
+    @Override
+    public ItemStack assemble(Container pContainer, RegistryAccess pRegistryAccess) {
+        return getResultItem(pRegistryAccess);
     }
 
     @Override

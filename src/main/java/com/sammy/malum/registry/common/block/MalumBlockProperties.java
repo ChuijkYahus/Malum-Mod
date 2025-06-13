@@ -426,9 +426,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties WEEPING_WELL() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_GRAY)
-                .needsPickaxe()
                 .sound(SoundRegistry.WEEPING_WELL_BRICKS)
-                .requiresCorrectToolForDrops()
                 .isRedstoneConductor(Blocks::never)
                 .strength(-1.0F, 3600000.0F);
     }
