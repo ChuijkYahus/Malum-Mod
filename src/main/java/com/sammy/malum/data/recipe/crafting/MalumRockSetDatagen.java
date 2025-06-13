@@ -325,7 +325,7 @@ public class MalumRockSetDatagen {
 
             Item pressurePlate, Item button,
 
-            Item itemStand, Item itemPedestal,
+            Item itemPedestal, Item itemStand,
 
             TagKey<Item> setEncompassingTag, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag, TagKey<Item> wallTag
             ) { }
