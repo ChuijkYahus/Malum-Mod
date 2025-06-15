@@ -21,7 +21,6 @@ public class EntitySpiritDropData {
     protected final MalumSpiritType primaryType;
     protected final int totalSpirits;
     protected final List<SpiritIngredient> spirits;
-    protected final List<ItemStack> spiritStacks;
     @Nullable
     protected final Ingredient itemAsSoul;
 
@@ -29,7 +28,6 @@ public class EntitySpiritDropData {
         this.primaryType = primaryType;
         this.totalSpirits = spirits.stream().mapToInt(SpiritIngredient::getCount).sum();
         this.spirits = spirits;
-        this.spiritStacks = spirits.stream().map(SpiritIngredient::getStack).collect(Collectors.toList());
         this.itemAsSoul = itemAsSoul;
     }
 
@@ -50,7 +48,7 @@ public class EntitySpiritDropData {
     }
 
     public List<ItemStack> getSpiritStacks() {
-        return spiritStacks;
+        return spirits.stream().map(SpiritIngredient::getStack).collect(Collectors.toList());
     }
 
     @Nullable
