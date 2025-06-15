@@ -288,7 +288,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     public void craft(ServerLevel level) {
         ItemStack stack = inventory.getStackInSlot(0);
-        ItemStack outputStack = recipe.getOutput(stack);
+        ItemStack outputStack = recipe.getOutput(level, stack);
         Vec3 itemPos = getItemPos();
         extrasInventory.clear();
         progress -= (int) (progress * 0.2f);

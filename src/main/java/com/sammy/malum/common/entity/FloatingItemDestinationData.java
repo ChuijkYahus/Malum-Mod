@@ -5,6 +5,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
@@ -53,16 +54,19 @@ public class FloatingItemDestinationData {
 
     public boolean isValid(ServerLevel level) {
         return targetLocation.map(
-                uuid -> {
-                    Entity entity = level.getEntity(uuid);
-                    return entity != null && entity.isAlive();
-                },
+                uuid -> getEntityCollector(level).isPresent(),
                 pos -> level.isOutsideBuildHeight(pos) && level.getWorldBorder().isWithinBounds(pos));
     }
 
     public Optional<LivingEntity> getEntityCollector(ServerLevel level) {
         return getTargetLocation().left().map(uuid -> {
             if (level.getEntity(uuid) instanceof LivingEntity entity) {
+                if (entity.isDeadOrDying()) {
+                    return null;
+                }
+                if (entity instanceof Player player && player.isSpectator()) {
+                    return null;
+                }
                 return entity;
             }
             return null;
@@ -82,7 +86,7 @@ public class FloatingItemDestinationData {
     private static Vec3 getEntityPosition(ServerLevel level, UUID uuid) {
         Entity entity = level.getEntity(uuid);
         if (entity != null && entity.isAlive()) {
-            return entity.position().add(0, entity.getBbHeight() / 3, 0);
+            return entity.position().add(0, entity.getBbHeight() / 2f, 0);
         }
         return null;
     }

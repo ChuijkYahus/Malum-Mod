@@ -5,10 +5,14 @@ import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.recipe.*;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import team.lodestar.lodestone.systems.recipe.*;
@@ -48,7 +52,7 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
         return input.test(ingredient, spirits);
     }
 
-    public ItemStack getOutput(ItemStack input) {
+    public ItemStack getOutput(ServerLevel level, ItemStack input) {
         ItemStack outputStack = output.copy();
         if (carryOverComponentData) {
             List<DataComponentType<?>> toCopy = new ArrayList<>();
@@ -64,6 +68,18 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
                 toCopy.add(component.type());
             }
             for (DataComponentType<?> dataComponentType : toCopy) {
+                if (dataComponentType.equals(DataComponents.ENCHANTMENTS)) {
+                    var lookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+                    ItemEnchantments inputEnchantments = input.getAllEnchantments(lookup);
+                    for (Object2IntMap.Entry<Holder<Enchantment>> entry : inputEnchantments.entrySet()) {
+                        Holder<Enchantment> enchantment = entry.getKey();
+                        int enchantmentLevel = entry.getIntValue();
+                        if (outputStack.supportsEnchantment(enchantment)) {
+                            outputStack.enchant(enchantment, enchantmentLevel);
+                        }
+                    }
+                    continue;
+                }
                 outputStack.copyFrom(input, dataComponentType);
             }
         }

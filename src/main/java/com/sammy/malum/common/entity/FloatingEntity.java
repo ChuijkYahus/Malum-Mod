@@ -6,11 +6,9 @@ import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.targeting.*;
-import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
@@ -18,15 +16,18 @@ import java.util.*;
 
 public abstract class FloatingEntity extends Entity {
 
+
     public final TrailPointBuilder trail = TrailPointBuilder.create(10);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
 
     protected FloatingItemDestinationData destination;
 
+    protected float hoverOffset;
+
     protected int age;
     protected int maxAge;
     protected int movementWindUp;
-    protected float hoverOffset;
+    protected int hoverWindUp;
 
     public FloatingEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
@@ -44,33 +45,13 @@ public abstract class FloatingEntity extends Entity {
         return destination;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public int getMaxAge() {
-        return maxAge;
-    }
-
-    public int getMovementWindUp() {
-        return movementWindUp;
-    }
-
-    public float getHoverOffset() {
-        return hoverOffset;
-    }
-
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-
-    }
-
     @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
         destination = FloatingItemDestinationData.load(compound);
         age = compound.getInt("age");
         maxAge = compound.getInt("maxAge");
         movementWindUp = compound.getInt("movementWindUp");
+        hoverWindUp = compound.getInt("hoverWindUp");
     }
 
     @Override
@@ -81,17 +62,16 @@ public abstract class FloatingEntity extends Entity {
         compound.putInt("age", age);
         compound.putInt("maxAge", maxAge);
         compound.putInt("movementWindUp", movementWindUp);
+        compound.putInt("hoverWindUp", hoverWindUp);
     }
 
     @Override
     public void tick() {
-        age++;
         if (age > maxAge) {
             discard();
             return;
         }
         baseTick();
-
         if (level() instanceof ServerLevel level) {
             if (destination != null && destination.isValid(level)) {
                 float distance = (float) destination.getDistance(level, this);
@@ -112,23 +92,36 @@ public abstract class FloatingEntity extends Entity {
                         remove(RemovalReason.DISCARDED);
                     }
                 }
-            }
-            else {
+            } else {
                 if (movementWindUp > 0) {
                     movementWindUp--;
                 }
-                setDeltaMovement(getDeltaMovement().scale(0.97f));
+                if (age >= 40) {
+                    float windUpDuration = getWindUpDuration();
+                    float gravity = 0.004f * (windUpDuration - movementWindUp) / windUpDuration;
+                    setDeltaMovement(getDeltaMovement().subtract(0, gravity, 0).multiply(0.9f, 0.96f, 0.9f));
+                }
                 if (level.getGameTime() % 20L == 0) {
-                    Player player = level.getNearestPlayer(TargetingConditions.forNonCombat().range(20), getX(), getY(), getZ());
-                    if (player != null && player.isAlive()) {
-                        setDestination(new FloatingItemDestinationData(player.getUUID()));
+                    ServerPlayer nearestPlayer = null;
+                    float minimumDistance = 6f;
+                    for (ServerPlayer player : level.players()) {
+                        float distance = player.distanceTo(this);
+                        if (distance < minimumDistance) {
+                            if (player.hasLineOfSight(this)) {
+                                nearestPlayer = player;
+                                minimumDistance = distance;
+                            }
+                        }
+                    }
+                    if (nearestPlayer != null && nearestPlayer.isAlive()) {
+                        setDestination(new FloatingItemDestinationData(nearestPlayer.getUUID()));
                     }
                 }
             }
         }
-        if (level().isClientSide) {
+        else {
             for (int i = 0; i < 2; i++) {
-                float progress = (i+1) * 0.5f;
+                float progress = (i + 1) * 0.5f;
                 Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
                 trail.addTrailPoint(position);
                 longTrail.addTrailPoint(position);
@@ -137,6 +130,25 @@ public abstract class FloatingEntity extends Entity {
             longTrail.tickTrailPoints();
         }
         applyMovement();
+        age++;
+    }
+
+    @Override
+    public void lerpMotion(double x, double y, double z) {
+        this.setDeltaMovement(x, y, z);
+        if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
+            double d0 = Math.sqrt(x * x + z * z);
+            this.setXRot((float) (Mth.atan2(y, d0) * 180.0F / (float) Math.PI));
+            this.setYRot((float) (Mth.atan2(x, z) * 180.0F / (float) Math.PI));
+            this.xRotO = this.getXRot();
+            this.yRotO = this.getYRot();
+            this.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
+        }
+    }
+
+    @Override
+    public boolean isPickable() {
+        return true;
     }
 
     public int getWindUpDuration() {
@@ -171,31 +183,14 @@ public abstract class FloatingEntity extends Entity {
         setPos(d0, d1, d2);
     }
 
-    @Override
-    public void lerpMotion(double x, double y, double z) {
-        this.setDeltaMovement(x, y, z);
-        if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
-            double d0 = Math.sqrt(x * x + z * z);
-            this.setXRot((float)(Mth.atan2(y, d0) * 180.0F / (float)Math.PI));
-            this.setYRot((float)(Mth.atan2(x, z) * 180.0F / (float)Math.PI));
-            this.xRotO = this.getXRot();
-            this.yRotO = this.getYRot();
-            this.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
-        }
-    }
-
-    @Override
-    public boolean isPickable() {
-        return true;
-    }
-
     public Vec3 getOffsetPosition() {
         return position().add(0, getYOffset(0), 0);
     }
 
     public float getYOffset(float partialTicks) {
-        float offsetStrength = Easing.CIRC_IN_OUT.clamped(age*2f/getWindUpDuration(), 0, 1);
-        return Mth.sin(((float) age + partialTicks) / 5.0F + hoverOffset) * offsetStrength * 0.25F + 0.35F;
+        float windUpDuration = getWindUpDuration();
+        float offsetStrength = Easing.CIRC_IN_OUT.clamped((age+partialTicks) / windUpDuration, 0, 1);
+        return Mth.sin(((float) age + partialTicks) / 6.0F + hoverOffset) * (0.5F - (offsetStrength * 0.25F));
     }
 
     public float getRotation(float partialTicks) {
@@ -205,8 +200,8 @@ public abstract class FloatingEntity extends Entity {
     protected void updateRotation() {
         Vec3 vec3 = getDeltaMovement();
         double d0 = vec3.horizontalDistance();
-        setXRot(lerpRotation(xRotO, (float)(Mth.atan2(vec3.y, d0) * 180.0F / (float)Math.PI)));
-        setYRot(lerpRotation(yRotO, (float)(Mth.atan2(vec3.x, vec3.z) * 180.0F / (float)Math.PI)));
+        setXRot(lerpRotation(xRotO, (float) (Mth.atan2(vec3.y, d0) * 180.0F / (float) Math.PI)));
+        setYRot(lerpRotation(yRotO, (float) (Mth.atan2(vec3.x, vec3.z) * 180.0F / (float) Math.PI)));
     }
 
     protected static float lerpRotation(float currentRotation, float targetRotation) {
@@ -219,5 +214,25 @@ public abstract class FloatingEntity extends Entity {
         }
 
         return Mth.lerp(0.2F, currentRotation, targetRotation);
+    }
+
+    public float getHoverOffset() {
+        return hoverOffset;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public int getMovementWindUp() {
+        return movementWindUp;
+    }
+
+    public int getHoverWindUp() {
+        return hoverWindUp;
     }
 }

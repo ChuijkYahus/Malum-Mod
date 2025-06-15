@@ -33,6 +33,10 @@ public class SpiritCollectionActivatorEntityOld extends FloatingEntity {
         setPos(posX, posY, posZ);
         setDeltaMovement(velX, velY, velZ);
         maxAge = 800;
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
     }
 
