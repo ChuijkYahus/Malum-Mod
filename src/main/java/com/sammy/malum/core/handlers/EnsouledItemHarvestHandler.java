@@ -2,8 +2,10 @@ package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
+import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 
@@ -16,7 +18,7 @@ public class EnsouledItemHarvestHandler {
             return;
         }
         var entity = event.getEntity();
-        EntitySpiritDropData.getSpiritData(entity).map(d -> d.itemAsSoul).ifPresent(itemAsSoul -> {
+        EntitySpiritDropData.getSpiritData(entity).map(EntitySpiritDropData::getItemAsSoul).ifPresent(itemAsSoul -> {
             for (ItemEntity item : event.getDrops()) {
                 if (itemAsSoul.test(item.getItem())) {
                     moveSpiritDropsOntoItem(item, entity);
@@ -36,10 +38,13 @@ public class EnsouledItemHarvestHandler {
 
     public static void onItemExpire(ItemExpireEvent event) {
         var item = event.getEntity();
-        var data = item.getData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS);
-        if (!data.getSpiritDrops().isEmpty()) {
-            LivingEntity spiritOwner = data.getSpiritOwner() != null ? item.level().getPlayerByUUID(data.getSpiritOwner()) : null;
-            SoulHarvestHandler.spawnSpirits(item.level(), spiritOwner, item.position().add(0, item.getBbHeight()/2, 0), data.getSpiritDrops());
+        if (item.level() instanceof ServerLevel level) {
+            var data = item.getData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS);
+            if (!data.getSpiritDrops().isEmpty()) {
+                SoulHarvestHandler.spawnSpirits(item)
+                        .setPreferredCollector(data.getSpiritOwner().map(level::getEntity).map(e -> e instanceof LivingEntity entity ? entity : null).orElse(null))
+                        .setCustomItems(data.getSpiritDrops()).spawnSpirits(level);
+            }
         }
     }
 }

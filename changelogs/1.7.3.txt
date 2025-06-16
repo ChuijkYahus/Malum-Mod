@@ -5,6 +5,14 @@ Added the missing Warp Flux Block
 The Sundering Anchor can now only hit a single target up to five times and will return early if it cannot find any other valid target afterwards
 The Sundering Anchor Projectile no longer deals double the intended damage
 
+Big Boner Necklace in the Works
+
+Updated Spirit Entity Behavior and Visuals
+When Spirits are created without the help of a player they will now enter a passive state
+- While in this passive state, spirits will slowly fall towards the ground, becoming an actual item upon collision
+- Passive spirits can still be collected by a player however the range is much shorter and requires line of sight with the player
+- This should hopefully allow for a more innate and automation-friendly behavior
+
 Updated Several Rune Effects
 Rune of Idle Restoration -> Rune of Vitality
 +Passive Healing -> +20% Healing Received
@@ -42,7 +50,9 @@ Fixed Repair Pylon not correctly repairing Fractured Impetuses
 Fixed Copper and Iron Impetuses incorrectly having two separate Arcane Restoration Recipes
 Fixed Repair Pylon Causing Network Issues when Repairing Enchanted Items
 Fixed the Spirit Crucible and Spirit Altar not properly continuing work after being loaded from chunk memory
-Fixed the Ring of the Howling Maelstrom taking effect when hitting an enemy with a rebound scythe when wearing the Necklace of the Narrow Edge only
+Fixed the Ring of the Howling Maelstrom taking effect when hitting an enemy with a rebound scythe when wearing the Necklace of the Narrow Edge even without the ring
 Fixed Scarstone dropping even without proper tools
 Fixed Transmutation Tree Pages Displaying Translation Keys instead of Translated Headlines
 Fixed Max Durability still being transfered across gear during Spirit Infusion
+Fixed Enchantments not carring if the newly created item can actually support them when carrying over the enchantment during Spirit Infusion
+Fix Modded Metal Node Smelting Recipes not actually working despite JEI showing so

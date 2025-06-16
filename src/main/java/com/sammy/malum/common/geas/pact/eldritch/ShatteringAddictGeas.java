@@ -40,7 +40,7 @@ public class ShatteringAddictGeas extends GeasEffect {
         if (attacker.level() instanceof ServerLevel serverLevel) {
             long timeSince = serverLevel.getGameTime() - attacker.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).getMostRecentShatter();
             if (timeSince < 2) {
-                event.addSpirits(1);
+                event.addBonus(1);
             }
         }
     }

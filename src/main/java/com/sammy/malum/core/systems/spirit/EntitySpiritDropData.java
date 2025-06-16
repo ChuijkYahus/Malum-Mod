@@ -18,16 +18,16 @@ public class EntitySpiritDropData {
 
     public static final EntitySpiritDropData EMPTY = new EntitySpiritDropData(MalumSpiritTypes.SACRED_SPIRIT, new ArrayList<>(), null);
 
-    public final MalumSpiritType primaryType;
-    public final int totalSpirits;
-    public final List<SpiritIngredient> dataEntries;
+    protected final MalumSpiritType primaryType;
+    protected final int totalSpirits;
+    protected final List<SpiritIngredient> spirits;
     @Nullable
-    public final Ingredient itemAsSoul;
+    protected final Ingredient itemAsSoul;
 
-    public EntitySpiritDropData(MalumSpiritType primaryType, List<SpiritIngredient> dataEntries, @Nullable Ingredient itemAsSoul) {
+    public EntitySpiritDropData(MalumSpiritType primaryType, List<SpiritIngredient> spirits, @Nullable Ingredient itemAsSoul) {
         this.primaryType = primaryType;
-        this.totalSpirits = dataEntries.stream().mapToInt(SpiritIngredient::getCount).sum();
-        this.dataEntries = dataEntries;
+        this.totalSpirits = spirits.stream().mapToInt(SpiritIngredient::getCount).sum();
+        this.spirits = spirits;
         this.itemAsSoul = itemAsSoul;
     }
 
@@ -35,8 +35,25 @@ public class EntitySpiritDropData {
         return getSpiritData(entity).map(EntitySpiritDropData::getSpiritStacks).orElse(Collections.emptyList());
     }
 
-    public static List<ItemStack> getSpiritStacks(EntitySpiritDropData data) {
-        return data != null ? data.dataEntries.stream().map(SpiritIngredient::getStack).collect(Collectors.toList()) : (Collections.emptyList());
+    public MalumSpiritType getPrimaryType() {
+        return primaryType;
+    }
+
+    public int getTotalSpirits() {
+        return totalSpirits;
+    }
+
+    public List<SpiritIngredient> getSpirits() {
+        return spirits;
+    }
+
+    public List<ItemStack> getSpiritStacks() {
+        return spirits.stream().map(SpiritIngredient::getStack).collect(Collectors.toList());
+    }
+
+    @Nullable
+    public Ingredient getItemAsSoul() {
+        return itemAsSoul;
     }
 
     public static Optional<EntitySpiritDropData> getSpiritData(LivingEntity entity) {
@@ -48,7 +65,7 @@ public class EntitySpiritDropData {
         if (spiritData != null)
             return Optional.of(spiritData);
 
-        if (entity.getMaxHealth() > 60f)
+        if (entity.getMaxHealth() >= 60f)
             return Optional.of(SpiritDataReloadListener.DEFAULT_BOSS_SPIRIT_DATA);
 
         if (!CommonConfig.USE_DEFAULT_SPIRIT_VALUES.getConfigValue())

@@ -6,33 +6,33 @@ import net.neoforged.neoforge.event.entity.living.*;
 public class ModifySpiritSpoilsEvent extends LivingEvent {
 
     private final LivingEntity attacker;
-    private final int extraSpirits;
-    private int newExtraSpirits;
+    private final int spiritBonus;
+    private int newSpiritBonus;
 
-    public ModifySpiritSpoilsEvent(LivingEntity entity, LivingEntity attacker, int spiritsDropped) {
+    public ModifySpiritSpoilsEvent(LivingEntity entity, LivingEntity attacker, int spiritBonus) {
         super(entity);
         this.attacker = attacker;
-        this.extraSpirits = spiritsDropped;
-        this.newExtraSpirits = spiritsDropped;
+        this.spiritBonus = spiritBonus;
+        this.newSpiritBonus = spiritBonus;
     }
 
     public LivingEntity getAttacker() {
         return attacker;
     }
 
-    public int getExtraSpirits() {
-        return extraSpirits;
+    public int getOriginalSpiritBonus() {
+        return spiritBonus;
     }
 
-    public int getNewExtraSpirits() {
-        return newExtraSpirits;
+    public int getNewSpiritBonus() {
+        return newSpiritBonus;
     }
 
-    public void setNewExtraSpirits(int newExtraSpirits) {
-        this.newExtraSpirits = newExtraSpirits;
+    public void setNewSpiritBonus(int newSpiritBonus) {
+        this.newSpiritBonus = newSpiritBonus;
     }
 
-    public void addSpirits(int bonus) {
-        setNewExtraSpirits(getNewExtraSpirits() + bonus);
+    public void addBonus(int bonus) {
+        setNewSpiritBonus(getNewSpiritBonus() + bonus);
     }
 }

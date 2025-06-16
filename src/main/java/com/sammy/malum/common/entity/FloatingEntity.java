@@ -1,10 +1,12 @@
 package com.sammy.malum.common.entity;
 
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -14,177 +16,223 @@ import java.util.*;
 
 public abstract class FloatingEntity extends Entity {
 
+
     public final TrailPointBuilder trail = TrailPointBuilder.create(10);
+    public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
 
-    public int age;
-    public int maxAge;
-    public float windUp;
-    public float hoverOffset;
+    protected FloatingItemDestinationData destination;
 
-    public UUID ownerUUID;
-    public LivingEntity owner;
+    protected float hoverOffset;
 
-    public FloatingEntity(EntityType<? extends FloatingEntity> type, Level level) {
-        super(type, level);
+    protected int age;
+    protected int maxAge;
+    protected int movementWindUp;
+    protected int hoverWindUp;
+
+    public FloatingEntity(EntityType<?> entityType, Level level) {
+        super(entityType, level);
         noPhysics = false;
-        this.hoverOffset = (float) (Math.random() * Math.PI * 2.0D);
+        hoverOffset = (float) (Math.random() * Math.PI * 2.0D);
     }
 
+    public abstract void collect(ServerLevel level);
 
-    public void spawnParticles(double x, double y, double z) {
-
+    public void setDestination(FloatingItemDestinationData destination) {
+        this.destination = destination;
     }
 
-    public Vec3 getDestination() {
-        if (owner != null) {
-            return owner.position().add(0, owner.getBbHeight() / 3, 0);
-        }
-        return null;
-    }
-
-    public abstract void collect();
-
-    public abstract float getMotionCoefficient();
-
-    public float getFriction() {
-        return 0.95f;
-    }
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        compound.putInt("age", age);
-        compound.putInt("maxAge", maxAge);
-        compound.putFloat("windUp", windUp);
-        if (ownerUUID != null) {
-            compound.putUUID("ownerUUID", ownerUUID);
-        }
+    public FloatingItemDestinationData getDestination() {
+        return destination;
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    protected void readAdditionalSaveData(CompoundTag compound) {
+        destination = FloatingItemDestinationData.load(compound);
         age = compound.getInt("age");
         maxAge = compound.getInt("maxAge");
-        windUp = compound.getFloat("windUp");
-        if (compound.contains("ownerUUID")) {
-            setOwner(compound.getUUID("ownerUUID"));
+        movementWindUp = compound.getInt("movementWindUp");
+        hoverWindUp = compound.getInt("hoverWindUp");
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag compound) {
+        if (destination != null) {
+            destination.save(compound);
         }
+        compound.putInt("age", age);
+        compound.putInt("maxAge", maxAge);
+        compound.putInt("movementWindUp", movementWindUp);
+        compound.putInt("hoverWindUp", hoverWindUp);
     }
 
     @Override
     public void tick() {
-        super.tick();
-        baseTick();
-        hoverOffset = getHoverStart(0);
-        age++;
         if (age > maxAge) {
             discard();
+            return;
         }
-        float friction = getFriction();
-        setDeltaMovement(getDeltaMovement().multiply(friction, friction, friction));
-
-        if (isAlive()) {
-            if (owner == null || !owner.isAlive()) {
-                if (level().getGameTime() % 40L == 0) {
-                    Player playerEntity = level().getNearestPlayer(this, 50);
-                    if (playerEntity != null) {
-                        setOwner(playerEntity.getUUID());
+        baseTick();
+        if (level() instanceof ServerLevel level) {
+            if (destination != null && destination.isValid(level)) {
+                float distance = (float) destination.getDistance(level, this);
+                final Optional<Vec3> destination = this.destination.getDestination(level);
+                if (destination.isPresent()) {
+                    float windUpDuration = getWindUpDuration();
+                    var targetPos = destination.get();
+                    if (movementWindUp < windUpDuration) {
+                        movementWindUp++;
+                    }
+                    float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
+                    float velocity = Mth.clamp(delta - 0.25f, 0, 0.75f) * 3f;
+                    Vec3 desiredMotion = targetPos.subtract(position()).normalize().multiply(velocity, velocity, velocity);
+                    float easing = getMotionEasingRatio(delta, distance);
+                    setDeltaMovement(getDeltaMovement().lerp(desiredMotion, easing));
+                    if (distance < 0.4f) {
+                        collect(level);
+                        remove(RemovalReason.DISCARDED);
+                    }
+                }
+            } else {
+                if (movementWindUp > 0) {
+                    movementWindUp--;
+                }
+                if (age >= 40) {
+                    float windUpDuration = getWindUpDuration();
+                    float gravity = 0.004f * (windUpDuration - movementWindUp) / windUpDuration;
+                    setDeltaMovement(getDeltaMovement().subtract(0, gravity, 0).multiply(0.9f, 0.96f, 0.9f));
+                }
+                if (level.getGameTime() % 20L == 0) {
+                    ServerPlayer nearestPlayer = null;
+                    float minimumDistance = 6f;
+                    for (ServerPlayer player : level.players()) {
+                        float distance = player.distanceTo(this);
+                        if (distance < minimumDistance) {
+                            if (player.hasLineOfSight(this)) {
+                                nearestPlayer = player;
+                                minimumDistance = distance;
+                            }
+                        }
+                    }
+                    if (nearestPlayer != null && nearestPlayer.isAlive()) {
+                        setDestination(new FloatingItemDestinationData(nearestPlayer.getUUID()));
                     }
                 }
             }
-
-            final Vec3 destination = getDestination();
-            if (destination != null) {
-                if (windUp < 1) {
-                    windUp += 0.02f;
-                }
-                float velocity = Mth.clamp(windUp-0.25f, 0, 0.75f) * 5f;
-                Vec3 desiredMotion = destination.subtract(position()).normalize().multiply(velocity, velocity, velocity);
-                float easing = getMotionCoefficient();
-                float xMotion = (float) Mth.lerp(easing, getDeltaMovement().x, desiredMotion.x);
-                float yMotion = (float) Mth.lerp(easing, getDeltaMovement().y, desiredMotion.y);
-                float zMotion = (float) Mth.lerp(easing, getDeltaMovement().z, desiredMotion.z);
-                Vec3 resultingMotion = new Vec3(xMotion, yMotion, zMotion);
-                setDeltaMovement(resultingMotion);
-
-                float distance = (float) distanceToSqr(destination);
-                if (distance < 0.4f) {
-                    collect();
-                    remove(RemovalReason.DISCARDED);
-                    return;
-                }
-            }
         }
-
-        this.checkInsideBlocks();
-        Vec3 vec3 = this.getDeltaMovement();
-        double d0 = this.getX() + vec3.x;
-        double d1 = this.getY() + vec3.y;
-        double d2 = this.getZ() + vec3.z;
-        this.updateRotation();
-        this.applyGravity();
-        this.setPos(d0, d1, d2);
-
-        if (level().isClientSide) {
-            spawnParticles(xOld, yOld + getYOffset(0), zOld);
+        else {
             for (int i = 0; i < 2; i++) {
-                float progress = (i+1) * 0.5f;
+                float progress = (i + 1) * 0.5f;
                 Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
                 trail.addTrailPoint(position);
+                longTrail.addTrailPoint(position);
             }
             trail.tickTrailPoints();
+            longTrail.tickTrailPoints();
         }
-
+        applyMovement();
+        age++;
     }
 
     @Override
-    public void lerpMotion(double pX, double pY, double pZ) {
-        this.setDeltaMovement(pX, pY, pZ);
-        this.setOldPosAndRot();
+    public void lerpMotion(double x, double y, double z) {
+        this.setDeltaMovement(x, y, z);
+        if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
+            double d0 = Math.sqrt(x * x + z * z);
+            this.setXRot((float) (Mth.atan2(y, d0) * 180.0F / (float) Math.PI));
+            this.setYRot((float) (Mth.atan2(x, z) * 180.0F / (float) Math.PI));
+            this.xRotO = this.getXRot();
+            this.yRotO = this.getYRot();
+            this.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
+        }
     }
 
-    protected void updateRotation() {
-        Vec3 vec3 = this.getDeltaMovement();
-        double d0 = vec3.horizontalDistance();
-        this.setXRot(lerpRotation(this.xRotO, (float)(Mth.atan2(vec3.y, d0) * 180.0 / 3.1415927410125732)));
-        this.setYRot(lerpRotation(this.yRotO, (float)(Mth.atan2(vec3.x, vec3.z) * 180.0 / 3.1415927410125732)));
+    @Override
+    public boolean isPickable() {
+        return true;
     }
 
-    protected static float lerpRotation(float p_37274_, float p_37275_) {
-        while (p_37275_ - p_37274_ < -180.0F) {
-            p_37274_ -= 360.0F;
+    public int getWindUpDuration() {
+        return 50;
+    }
+
+    public float getMotionEasingRatio(float windUpDelta, float distance) {
+        return 0.005f + windUpDelta * 0.01f + (1 / Math.max(distance, 1) * 0.025f);
+    }
+
+    public float getFriction() {
+        return 0.96f;
+    }
+
+    protected void applyMovement() {
+        checkInsideBlocks();
+        Vec3 vec3 = getDeltaMovement();
+        double d0 = getX() + vec3.x;
+        double d1 = getY() + vec3.y;
+        double d2 = getZ() + vec3.z;
+        updateRotation();
+        float friction = getFriction();
+        if (isInWater()) {
+            for (int i = 0; i < 4; i++) {
+                level().addParticle(ParticleTypes.BUBBLE, d0 - vec3.x * 0.25, d1 - vec3.y * 0.25, d2 - vec3.z * 0.25, vec3.x, vec3.y, vec3.z);
+            }
+            friction *= 0.825f;
         }
 
-        while (p_37275_ - p_37274_ >= 180.0F) {
-            p_37274_ += 360.0F;
-        }
+        setDeltaMovement(vec3.scale(friction));
+        applyGravity();
+        setPos(d0, d1, d2);
+    }
 
-        return Mth.lerp(0.2F, p_37274_, p_37275_);
+    public Vec3 getOffsetPosition() {
+        return position().add(0, getYOffset(0), 0);
     }
 
     public float getYOffset(float partialTicks) {
-        return Mth.sin(((float) age + partialTicks) / 10.0F + getHoverStart(partialTicks)) * 0.1F + 0.35F;
+        float windUpDuration = getWindUpDuration();
+        float offsetStrength = Easing.CIRC_IN_OUT.clamped((age+partialTicks) / windUpDuration, 0, 1);
+        return Mth.sin(((float) age + partialTicks) / 6.0F + hoverOffset) * (0.5F - (offsetStrength * 0.25F));
     }
 
     public float getRotation(float partialTicks) {
-        return ((float) age + partialTicks) / 20.0F + getHoverStart(partialTicks) / 2f;
+        return ((float) age + partialTicks) / 10.0F + hoverOffset;
     }
 
-    public float getHoverStart(float partialTicks) {
-        return hoverOffset + (1 - Easing.SINE_OUT.ease(Math.min(1, (age + partialTicks) / 60f), 0, 1, 1)) * 0.35f;
+    protected void updateRotation() {
+        Vec3 vec3 = getDeltaMovement();
+        double d0 = vec3.horizontalDistance();
+        setXRot(lerpRotation(xRotO, (float) (Mth.atan2(vec3.y, d0) * 180.0F / (float) Math.PI)));
+        setYRot(lerpRotation(yRotO, (float) (Mth.atan2(vec3.x, vec3.z) * 180.0F / (float) Math.PI)));
     }
 
-    public void setOwner(UUID ownerUUID) {
-        this.ownerUUID = ownerUUID;
-        if (level() instanceof ServerLevel serverLevel) {
-            owner = (LivingEntity) serverLevel.getEntity(ownerUUID);
+    protected static float lerpRotation(float currentRotation, float targetRotation) {
+        while (targetRotation - currentRotation < -180.0F) {
+            currentRotation -= 360.0F;
         }
-    }
-    @Override
-    public boolean isNoGravity() {
-        return true;
+
+        while (targetRotation - currentRotation >= 180.0F) {
+            currentRotation += 360.0F;
+        }
+
+        return Mth.lerp(0.2F, currentRotation, targetRotation);
     }
 
-    @Override
-    public boolean fireImmune() {
-        return true;
+    public float getHoverOffset() {
+        return hoverOffset;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public int getMovementWindUp() {
+        return movementWindUp;
+    }
+
+    public int getHoverWindUp() {
+        return hoverWindUp;
     }
 }
