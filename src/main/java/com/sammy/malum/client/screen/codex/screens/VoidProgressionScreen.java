@@ -339,7 +339,7 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
                                     .addPage(new HeadlineTextPage(translationKey))
                                     .addPage(RuneworkingPage.fromOutput(item)));
                 },
-                        RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(), RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
+                        RUNE_OF_BOLSTERING.get(), RUNE_OF_RADIAL_EMPOWERMENT.get(), RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
                         RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(), RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get()))
                 .afterUmbralCrystal()
         );

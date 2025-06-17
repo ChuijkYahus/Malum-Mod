@@ -8,6 +8,7 @@ import com.sammy.malum.compability.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compability.jei.categories.*;
 import com.sammy.malum.compability.jei.recipes.SpiritTransmutationWrapper;
 import com.sammy.malum.core.handlers.hiding.HiddenTagHandler;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import mezz.jei.api.IModPlugin;
@@ -146,7 +147,7 @@ public class JEIHandler implements IModPlugin {
         if (!tagsToHide.isEmpty()) {
             Collection<ItemStack> ingredients = ingredientManager.getAllIngredients(VanillaTypes.ITEM_STACK);
             for (ItemStack stack : ingredients) {
-                if (HiddenTagHandler.isHiddenItem(stack)) {
+                if (HiddenTagHandler.isHiddenItem(stack) && !stack.is(MalumTags.ItemTags.HIDDEN_AS_RESULT_ONLY)) {
                     HIDDEN_ITEMS.add(stack);
                 }
             }

@@ -22,7 +22,7 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .setPrimaryInput(MalumItems.TAINTED_ROCK.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.WICKED_SPIRIT, 16)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_RADIAL_EMPOWERMENT.get(), 1)
                 .setPrimaryInput(MalumItems.NULL_SLATE.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.WICKED_SPIRIT, 16)
                 .save(recipeOutput);

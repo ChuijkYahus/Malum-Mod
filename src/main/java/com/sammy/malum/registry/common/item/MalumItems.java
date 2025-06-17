@@ -46,7 +46,6 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.entity.*;
 import net.minecraft.client.color.item.*;
 import net.minecraft.client.renderer.item.*;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.Dist;
@@ -55,8 +54,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.magic.*;
@@ -72,7 +70,7 @@ import static net.minecraft.world.item.Rarity.*;
 
 @SuppressWarnings("unused")
 public class MalumItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, MALUM);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MALUM);
 
     public static LodestoneItemProperties DEFAULT_PROPERTIES() {
         return new LodestoneItemProperties(MalumCreativeTabs.CONTENT);
@@ -739,7 +737,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_THE_HELLS = register("rune_of_the_hells", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, true, 10));
 
     public static final DeferredHolder<Item, Item> RUNE_OF_BOLSTERING = register("rune_of_bolstering", GEAR_PROPERTIES(), RuneBolsteringItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_SACRIFICIAL_EMPOWERMENT = register("rune_of_sacrificial_empowerment", GEAR_PROPERTIES(), RuneSacrificialEmpowermentItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_RADIAL_EMPOWERMENT = register("rune_of_radial_empowerment", GEAR_PROPERTIES(), RuneRadialEmpowermentItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SPELL_MASTERY = register("rune_of_spell_mastery", GEAR_PROPERTIES(), RuneSpellMasteryItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_HERESY = register("rune_of_heresy", GEAR_PROPERTIES(), RuneHeresyItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_UNNATURAL_STAMINA = register("rune_of_unnatural_stamina", GEAR_PROPERTIES(), RuneUnnaturalStaminaItem::new);

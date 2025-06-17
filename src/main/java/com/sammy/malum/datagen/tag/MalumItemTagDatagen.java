@@ -244,7 +244,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                         MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
                         UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get())
                 // Runes
-                .add(RUNE_OF_BOLSTERING.get(), RUNE_OF_SACRIFICIAL_EMPOWERMENT.get(),
+                .add(RUNE_OF_BOLSTERING.get(), RUNE_OF_RADIAL_EMPOWERMENT.get(),
                         RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
                         RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(),
                         RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get())
@@ -256,6 +256,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .add(STELLAR_MECHANISM.get())
                 // Aesthetica
                 .add(AESTHETICA.get());
+        tag(MalumTags.ItemTags.HIDDEN_AS_RESULT_ONLY).add(SUNDERING_ANCHOR.get());
 
         tag(MalumTags.ItemTags.ARCANE_ELEGY_COMPONENTS).addTag(Tags.Items.MUSIC_DISCS).remove(ARCANE_ELEGY.get(), AESTHETICA.get());
 

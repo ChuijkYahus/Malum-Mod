@@ -62,6 +62,7 @@ public class MalumTags {
         public static final TagKey<Item> HIDDEN_ALWAYS = tag("hidden_items/always");
         public static final TagKey<Item> HIDDEN_UNTIL_VOID = tag("hidden_items/void");
         public static final TagKey<Item> HIDDEN_UNTIL_BLACK_CRYSTAL = tag("hidden_items/black_crystal");
+        public static final TagKey<Item> HIDDEN_AS_RESULT_ONLY = tag("hidden_items/result_only");
 
         public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = tag("arcane_elegy_component");
 

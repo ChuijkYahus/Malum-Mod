@@ -1,30 +1,25 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
-import com.google.common.collect.*;
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.damagesource.*;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.helpers.EntityHelper;
 import team.lodestar.lodestone.handlers.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.function.Consumer;
 
-public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneRadialEmpowermentItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     private static final ResourceLocation MODIFIER = MalumMod.malumPath("radial_empowerment_rune");
-    public RuneSacrificialEmpowermentItem(Properties builder) {
+    public RuneRadialEmpowermentItem(Properties builder) {
         super(builder, MalumSpiritTypes.WICKED_SPIRIT);
     }
 
@@ -51,7 +46,7 @@ public class RuneSacrificialEmpowermentItem extends AbstractRuneCurioItem implem
             if (attribute == null) {
                 return;
             }
-            float amount = target.getHealth() < target.getMaxHealth() * 0.33f ? 0.5f : 0.25f;
+            float amount = target.getHealth() < target.getMaxHealth() * 0.33f ? 0.4f : 0.2f;
             attribute.removeModifier(MODIFIER);
             attribute.addTransientModifier(new AttributeModifier(MODIFIER, amount, AttributeModifier.Operation.ADD_VALUE));
         }

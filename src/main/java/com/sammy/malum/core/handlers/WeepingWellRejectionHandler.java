@@ -95,8 +95,7 @@ public class WeepingWellRejectionHandler {
         var progression = player.getData(MalumAttachmentTypes.PROGRESSION_DATA);
         var level = player.level();
         if (level instanceof ServerLevel serverLevel) {
-            final Optional<VoidConduitBlockEntity> voidConduitBlockEntity = WeepingWellData.checkForWeepingWell(player);
-            voidConduitBlockEntity.ifPresent(weepingWell -> {
+            WeepingWellData.checkForWeepingWell(player).ifPresent(weepingWell -> {
                 BlockPos worldPosition = weepingWell.getBlockPos();
                 MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
                 if (weepingWell.reachedStreakGoal) {
