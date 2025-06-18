@@ -1,21 +1,21 @@
 package com.sammy.malum.core.systems.registry;
 
-import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-
 public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<MalumSpiritType, T> implements SpiritWrapper {
 
     protected SpiritHolder(ResourceKey<MalumSpiritType> key) {
         super(key);
+    }
+
+    public static SpiritHolder<MalumSpiritType> getSpiritType(CompoundTag pTag) {
+        return getSpiritType(pTag.getString("spirit"));
     }
 
     public static SpiritHolder<MalumSpiritType> getSpiritType(String spirit) {
@@ -32,5 +32,9 @@ public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<Malu
     @Override
     public @NotNull MalumSpiritType unwrapSpirit() {
         return get();
+    }
+
+    public MalumSpiritType orElse(@Nullable MalumSpiritType fallback) {
+        return isBound() ? value() : fallback;
     }
 }

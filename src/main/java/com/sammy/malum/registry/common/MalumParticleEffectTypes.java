@@ -2,7 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.attack.*;
-import com.sammy.malum.visual_effects.networked.banner.SoulwovenBannerParticleEffect;
+import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
@@ -105,8 +105,12 @@ public class MalumParticleEffectTypes {
     public static final WeepingWellReactionParticleEffect WEEPING_WELL_REACTS = new WeepingWellReactionParticleEffect("weeping_well_reacts");
 
     //Misc vfx
+
+    //Banner vfx
+    public static final SoulwovenBannerApplyParticleEffect APPLY_SOULWOVEN_BANNER_GLOW = new SoulwovenBannerApplyParticleEffect("apply_soulwoven_banner_glow");
+    public static final SoulwovenBannerRemoveParticleEffect REMOVE_SOULWOVEN_BANNER_GLOW = new SoulwovenBannerRemoveParticleEffect("remove_soulwoven_banner_glow");
+
     public static final SpiritMotePlaceParticleEffect SPIRIT_MOTE_SPARKLES = new SpiritMotePlaceParticleEffect("spirit_mote_sparkles");
-    public static final SoulwovenBannerParticleEffect SOULWOVEN_BANNER_ACTIVATED = new SoulwovenBannerParticleEffect("soulwoven_banner_activated");
     public static final SapCollectionParticleEffect SAP_COLLECTED = new SapCollectionParticleEffect("sap_collected");
 
     public static void init() {

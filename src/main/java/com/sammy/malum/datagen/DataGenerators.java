@@ -37,7 +37,7 @@ public class DataGenerators {
 
         var itemModelsDatagen = new MalumItemModelDatagen(output, helper);
         var blockStateDatagen = new MalumBlockStateDatagen(output, helper, itemModelsDatagen);
-        var langDatagen = new MalumLang(output);
+        var langDatagen = new MalumLangDatagen(output);
         var soundDatagen = new MalumSoundDatagen(output, helper);
 
         var dataMapsDatagen = new MalumDataMaps(output, registryProvider);

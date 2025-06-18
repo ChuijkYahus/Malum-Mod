@@ -398,7 +398,7 @@ public class SoulBindingBrazierParticleEffects {
                     int lifeTime = RandomHelper.randomBetween(random, 80, 100);
                     float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC_SMALL)
+                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC)
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
@@ -456,7 +456,7 @@ public class SoulBindingBrazierParticleEffects {
                     int lifeTime = RandomHelper.randomBetween(random, 60, 80);
                     float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
-                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC_SMALL)
+                    SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC)
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())

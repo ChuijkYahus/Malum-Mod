@@ -60,7 +60,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
                 if (!pPlayer.isCreative()) {
                     pStack.shrink(1);
                 }
-                setSpirit(serverLevel, spirit);
+                setSpirit(serverLevel, shardItem.unwrapSpirit());
                 pPlayer.swing(pHand, true);
             }
             if (pStack.canPerformAction(ItemAbilities.SHEARS_DISARM)) {
@@ -77,7 +77,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (spirit != null) {
-            spirit.save(tag);
+            tag.putString("spirit", spirit.asTag());
         }
         tag.putBoolean("intense", intense);
         patternData.save(tag);
@@ -86,7 +86,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
-        spirit = MalumSpiritType.load(pTag).orElse(null);
+        spirit = SpiritHolder.getSpiritType(pTag).orElse(null);
         intense = pTag.getBoolean("intense");
         patternData = SoulwovenBannerPatternDataComponent.load(pTag);
     }
@@ -100,9 +100,15 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         if (spirit != null) {
-            MalumParticleEffectTypes.SOULWOVEN_BANNER_ACTIVATED
+            MalumParticleEffectTypes.APPLY_SOULWOVEN_BANNER_GLOW
                     .createEffect(worldPosition)
                     .color(spirit)
+                    .spawn(level);
+        }
+        else if (this.spirit != null) {
+            MalumParticleEffectTypes.REMOVE_SOULWOVEN_BANNER_GLOW
+                    .createEffect(worldPosition)
+                    .color(this.spirit)
                     .spawn(level);
         }
         intense = this.spirit == spirit;

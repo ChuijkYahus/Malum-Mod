@@ -96,9 +96,9 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
         if (spirit != null) {
-            spirit.save(tag);
+            tag.putString("spirit", spirit.asTag());
         }
         tag.putInt("state", totemPoleState.ordinal());
         if (chargeProgress != 0) {
@@ -112,18 +112,16 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        spirit = MalumSpiritType.load(tag).orElse(null);
+        spirit = SpiritHolder.getSpiritType(tag).orElse(null);
         totemPoleState = TotemPoleState.values()[tag.getInt("state")];
         chargeProgress = tag.getInt("chargeProgress");
         totemBaseYLevel = tag.getInt("totemBaseYLevel");
+        loadWithLevel(level -> {
+            if (level.getBlockEntity(getBlockPos().mutable().setY(totemBaseYLevel)) instanceof TotemBaseBlockEntity totemBaseBlockEntity) {
+                totemBase = totemBaseBlockEntity;
+            }
+        });
         super.loadAdditional(tag, pRegistries);
-    }
-
-    @Override
-    public void update(@NotNull Level level) {
-        if (level.getBlockEntity(getBlockPos().mutable().setY(totemBaseYLevel)) instanceof TotemBaseBlockEntity totemBaseBlockEntity) {
-            totemBase = totemBaseBlockEntity;
-        }
     }
 
     @Override

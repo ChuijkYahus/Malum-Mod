@@ -71,4 +71,8 @@ public class MalumSpiritType implements SpiritWrapper {
         }
         return itemRarity;
     }
+
+    public String asTag() {
+        return getRegistryName().toString();
+    }
 }

@@ -84,7 +84,7 @@ public class CodexLangDatagen {
     }
 
     private static void add(String key, String value) {
-        MalumLang.lang.add(key, value);
+        MalumLangDatagen.lang.add(key, value);
     }
 
     public static void generateEntries() {

@@ -1,11 +1,8 @@
 package com.sammy.malum.common.entity;
 
-import com.google.gson.*;
-import com.mojang.serialization.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.ServerLevel;
@@ -17,10 +14,8 @@ import net.minecraft.world.phys.Vec3;
 
 public abstract class FloatingItemEntity extends FloatingEntity {
 
-    public static final EntityDataSerializer<MalumSpiritType> SPIRIT_TYPE = EntityDataSerializer.forValueType(MalumSpiritType.STREAM_CODEC);
-
     protected static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.ITEM_STACK);
-    protected static final EntityDataAccessor<MalumSpiritType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, SPIRIT_TYPE);
+    protected static final EntityDataAccessor<String> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.STRING);
 
     public FloatingItemEntity(EntityType<? extends FloatingItemEntity> type, Level level) {
         super(type, level);
@@ -29,7 +24,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.value());
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.getRegistryName().toString());
     }
 
     @Override
@@ -42,7 +37,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
 
         var spirit = getSpiritType();
         if (spirit != null) {
-            spirit.save(pCompound);
+            pCompound.putString("spirit", spirit.getRegistryName().toString());
         }
     }
 
@@ -50,7 +45,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setItem(ItemStack.parse(registryAccess(), pCompound.getCompound("item")).orElse(ItemStack.EMPTY));
-        setSpirit(MalumSpiritType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.value()));
+        setSpirit(pCompound.getString("spirit"));
     }
 
     @Override
@@ -82,10 +77,14 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     }
 
     public MalumSpiritType getSpiritType() {
-        return getEntityData().get(DATA_SPIRIT_GLOW);
+        return SpiritHolder.getSpiritType(getEntityData().get(DATA_SPIRIT_GLOW)).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get());
     }
 
-    public void setSpirit(MalumSpiritType spiritType) {
-        getEntityData().set(DATA_SPIRIT_GLOW, spiritType);
+    public void setSpirit(MalumSpiritType spirit) {
+        setSpirit(spirit.getRegistryName().toString());
+    }
+
+    public void setSpirit(String spirit) {
+        getEntityData().set(DATA_SPIRIT_GLOW, spirit);
     }
 }

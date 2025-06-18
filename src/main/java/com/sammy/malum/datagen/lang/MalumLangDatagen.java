@@ -40,10 +40,10 @@ import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 
-public class MalumLang extends LanguageProvider {
-    public static MalumLang lang;
+public class MalumLangDatagen extends LanguageProvider {
+    public static MalumLangDatagen lang;
 
-    public MalumLang(PackOutput gen) {
+    public MalumLangDatagen(PackOutput gen) {
         super(gen, MalumMod.MALUM, "en_us");
         lang = this;
     }
@@ -95,7 +95,6 @@ public class MalumLang extends LanguageProvider {
             String name = DataHelper.toTitleCase(makeProperEnglish(e.getId().getPath()), "_");
             add("effect.malum." + BuiltInRegistries.MOB_EFFECT.getKey(e.get()).getPath(), name);
         });
-
 
         attributes.forEach(a -> {
             String name = DataHelper.toTitleCase(a.getId().getPath(), "_");

@@ -24,7 +24,7 @@ import static net.minecraft.util.Mth.*;
 public class SpiritLightSpecs {
 
     public static void coolLookingShinyThing(Level level, Vec3 pos, SpiritWrapper spirit) {
-        var centralLightSpecs = spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()));
+        var centralLightSpecs = spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()));
         centralLightSpecs.getBuilder()
                 .multiplyLifetime(0.6f)
                 .modifyColorData(d -> d.multiplyCoefficient(0.5f))
@@ -39,7 +39,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs, modifier);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), colorData, distance, rotatingSpecs, modifier);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
@@ -47,7 +47,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, float distance, int rotatingSpecs) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), colorData, distance, rotatingSpecs);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), colorData, distance, rotatingSpecs);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, ColorParticleData colorData, float distance, int rotatingSpecs) {
@@ -55,7 +55,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, float distance, int rotatingSpecs) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), spirit, distance, rotatingSpecs);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), spirit, distance, rotatingSpecs);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritWrapper spirit, float distance, int rotatingSpecs) {
@@ -63,7 +63,7 @@ public class SpiritLightSpecs {
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
-        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()), spirit, distance, rotatingSpecs, modifier);
+        rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), spirit, distance, rotatingSpecs, modifier);
     }
 
     public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritWrapper spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
@@ -99,11 +99,11 @@ public class SpiritLightSpecs {
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit) {
-        return spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL));
+        return spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleData colorData) {
-        return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL));
+        return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, WorldParticleOptions options) {
