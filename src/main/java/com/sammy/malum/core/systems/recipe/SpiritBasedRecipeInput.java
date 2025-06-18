@@ -3,6 +3,7 @@ package com.sammy.malum.core.systems.recipe;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class SpiritBasedRecipeInput implements RecipeInput {
     }
 
     @Override
-    public ItemStack getItem(int index) {
+    public @NotNull ItemStack getItem(int index) {
         return index < items.size() ? items.get(index) : spirits.get(index - items.size());
     }
 

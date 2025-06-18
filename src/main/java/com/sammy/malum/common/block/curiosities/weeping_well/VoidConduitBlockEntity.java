@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.weeping_well;
 
-import com.sammy.malum.common.packets.CodecUtil;
+import com.sammy.malum.common.payloads.CodecUtil;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;

@@ -4,7 +4,7 @@ import com.sammy.malum.client.SpiritBasedParticleBuilder;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.BlockPos;
@@ -36,7 +36,7 @@ import static net.minecraft.util.Mth.nextFloat;
 
 public class SoulBindingBrazierParticleEffects {
 
-    public static MalumSpiritType getCentralSpiritType(SoulBrazierBlockEntity brazier) {
+    public static SpiritWrapper getCentralSpiritType(SoulBrazierBlockEntity brazier) {
         final LodestoneBlockEntityInventory spiritInventory = brazier.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -48,7 +48,7 @@ public class SoulBindingBrazierParticleEffects {
         if (!(currentItem instanceof SpiritShardItem spiritItem)) {
             return null;
         }
-        return spiritItem.type;
+        return spiritItem;
     }
 
     public static ColorParticleDataBuilder getParticleColor(SoulBrazierBlockEntity brazier) {
@@ -251,7 +251,7 @@ public class SoulBindingBrazierParticleEffects {
     }
 
     public static void passiveBrazierParticles(SoulBrazierBlockEntity brazier) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(brazier);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(brazier);
         if (activeSpiritType == null) {
             return;
         }
@@ -264,14 +264,13 @@ public class SoulBindingBrazierParticleEffects {
         for (int i = 0; i < spiritInventory.slotCount; i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem shard) {
-                var spirit = shard.type;
                 var offset = brazier.getSpiritOffset(spiritsRendered++, 0);
                 var spiritPosition = offset.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                spiritLightSpecs(level, spiritPosition, spirit).spawnParticles();
+                spiritLightSpecs(level, spiritPosition, shard).spawnParticles();
                 if (brazier.isActive()) {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.04f, 0.08f));
                     if (random.nextFloat() < 0.9f) {
-                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, spirit);
+                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
                         sparkParticles.getBuilder()
                                 .setMotion(velocity)
                                 .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.4f));
@@ -279,7 +278,7 @@ public class SoulBindingBrazierParticleEffects {
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.6f) {
-                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, spirit);
+                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, shard);
                         lightSpecs.getBuilder()
                                 .multiplyLifetime(0.8f)
                                 .setMotion(velocity.scale(1.5f))
@@ -391,7 +390,7 @@ public class SoulBindingBrazierParticleEffects {
             if (gameTime % 4 == 0) {
                 float distance = 2.15f;
                 int amount = brazier.spiritInventory.getFilledSlotCount() * 4;
-                MalumNetworkedParticleEffectColorData colorEffectData = MalumNetworkedParticleEffectColorData.fromSpiritIngredients(brazier.recipe.spirits);
+                MalumNetworkedParticleEffectColorData colorEffectData = MalumNetworkedParticleEffectColorData.fromSpirits(brazier.recipe.spirits);
                 Vec3 geasIconPos = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 for (int i = 0; i < amount; i++) {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(pos, distance, i, amount, level.getGameTime(), 3000);
@@ -449,7 +448,7 @@ public class SoulBindingBrazierParticleEffects {
             if (gameTime % 4 == 0) {
                 float distance = 1.2f;
                 int amount = brazier.spiritInventory.getFilledSlotCount() * 2;
-                MalumNetworkedParticleEffectColorData colorEffectData = MalumNetworkedParticleEffectColorData.fromSpiritIngredients(brazier.recipe.spirits);
+                MalumNetworkedParticleEffectColorData colorEffectData = MalumNetworkedParticleEffectColorData.fromSpirits(brazier.recipe.spirits);
                 Vec3 geasIconPos = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 for (int i = 0; i < amount; i++) {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(geasIconPos, distance, i, amount, level.getGameTime(), 600);

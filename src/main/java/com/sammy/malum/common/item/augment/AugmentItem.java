@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.augment;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
@@ -20,22 +20,22 @@ public class AugmentItem extends Item {
             new DecimalFormat("#.##%"), f -> f.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT))
     );
 
-    public final List<MalumSpiritType> spiritTypes;
+    public final List<SpiritWrapper> spiritTypes;
 
 
-    public AugmentItem(Properties pProperties, MalumSpiritType spiritType, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, SpiritWrapper spiritType, ArtificeModifier... modifiers) {
         this(pProperties, spiritType, false, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, List<MalumSpiritType> spiritTypes, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, List<SpiritWrapper> spiritTypes, ArtificeModifier... modifiers) {
         this(pProperties, spiritTypes, false, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, MalumSpiritType spiritType, boolean isCoreAugment, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, SpiritWrapper spiritType, boolean isCoreAugment, ArtificeModifier... modifiers) {
         this(pProperties, List.of(spiritType), isCoreAugment, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, List<MalumSpiritType> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, List<SpiritWrapper> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
         super(pProperties.component(MalumDataComponents.ARTIFICE_AUGMENT, new ArtificeAugmentDataComponent(isCoreAugment, List.of(modifiers))));
         this.spiritTypes = spiritTypes;
     }

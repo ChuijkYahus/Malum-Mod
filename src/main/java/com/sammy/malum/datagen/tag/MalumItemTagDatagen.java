@@ -68,6 +68,9 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 
+
+        tag(ItemTags.BOOKSHELF_BOOKS).add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
+
         tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(net.minecraft.tags.ItemTags.LOGS).addTag(MalumTags.ItemTags.RUNEWOOD_LOGS).addTag(MalumTags.ItemTags.SOULWOOD_LOGS);
         tag(net.minecraft.tags.ItemTags.LOGS_THAT_BURN).addTag(MalumTags.ItemTags.RUNEWOOD_LOGS).addTag(MalumTags.ItemTags.SOULWOOD_LOGS);

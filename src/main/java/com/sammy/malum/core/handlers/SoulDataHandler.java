@@ -3,7 +3,7 @@ package com.sammy.malum.core.handlers;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.staff.*;
-import com.sammy.malum.compability.tetra.*;
+import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;

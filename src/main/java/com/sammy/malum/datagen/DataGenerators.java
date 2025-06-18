@@ -2,7 +2,7 @@ package com.sammy.malum.datagen;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.block.*;
-import com.sammy.malum.datagen.item.MalumItemModels;
+import com.sammy.malum.datagen.item.MalumItemModelDatagen;
 import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
 import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.datagen.recipe.*;
@@ -35,8 +35,8 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, registryDataDatagen);
 
-        var itemModelsDatagen = new MalumItemModels(output, helper);
-        var blockStateDatagen = new MalumBlockStates(output, helper, itemModelsDatagen);
+        var itemModelsDatagen = new MalumItemModelDatagen(output, helper);
+        var blockStateDatagen = new MalumBlockStateDatagen(output, helper, itemModelsDatagen);
         var langDatagen = new MalumLang(output);
         var soundDatagen = new MalumSoundDatagen(output, helper);
 
@@ -45,7 +45,7 @@ public class DataGenerators {
         var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
         var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
         var geasTagDatagen = new MalumGeasTagDatagen(output, provider, helper);
-        var biomeTagDatagen = new MalumBiomeTags(output, registryProvider, helper);
+        var biomeTagDatagen = new MalumBiomeTagDatagen(output, registryProvider, helper);
         var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
         var enchantmentTagDatagen = new MalumEnchantmentTags(output, registryProvider, helper);
         var componentTagDatagen = new MalumDataComponentTypeTagDatagen(output, provider, helper);

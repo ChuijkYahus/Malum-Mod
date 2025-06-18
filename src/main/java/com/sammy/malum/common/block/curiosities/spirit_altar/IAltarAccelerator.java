@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
 
 public interface IAltarAccelerator {
 

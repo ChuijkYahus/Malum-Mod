@@ -2,7 +2,7 @@ package com.sammy.malum.common.effect.gluttony;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.compability.irons_spellbooks.IronsSpellsCompat;
+import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;

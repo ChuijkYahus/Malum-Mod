@@ -12,12 +12,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.*;
 
 public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectType> {
 
     public MalumGeasTagDatagen(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, MalumGeasEffectTypes.GEAS_TYPES_KEY, lookupProvider, geas -> MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getHolder(geas.getId()).orElseThrow().getKey(), MalumMod.MALUM, existingFileHelper);
+        super(output, MalumGeasEffectTypes.GEAS_TYPES_KEY, lookupProvider, geas -> MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getHolder(geas.getRegistryName()).orElseThrow().getKey(), MalumMod.MALUM, existingFileHelper);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
                 .toList();
         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> holder : sorted) {
             var geas = holder.get();
-            geas.getId();
+            geas.getRegistryName();
             var id = holder.getId();
             if (id.getPath().startsWith("oath")) {
                 tag(MalumTags.GeasTags.IS_OATH).add(geas);

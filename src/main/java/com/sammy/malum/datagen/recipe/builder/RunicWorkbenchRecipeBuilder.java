@@ -2,17 +2,18 @@ package com.sammy.malum.datagen.recipe.builder;
 
 import com.sammy.malum.common.recipe.RunicWorkbenchRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RunicWorkbenchRecipe> {
     private ItemStack primaryInput;
-    private SpiritIngredient secondaryInput;
+    private SizedIngredient secondaryInput;
     private final ItemStack output;
 
     public RunicWorkbenchRecipeBuilder(ItemStack output) {
@@ -32,8 +33,11 @@ public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<Runic
         return setPrimaryInput(new ItemStack(primaryInput, primaryInputCount));
     }
 
-    public RunicWorkbenchRecipeBuilder setSecondaryInput(MalumSpiritType type, int amount) {
-        this.secondaryInput = new SpiritIngredient(type, amount);
+    public RunicWorkbenchRecipeBuilder setSecondaryInput(SpiritWrapper type, int amount) {
+        return setSecondaryInput((Item) type.getSpiritShard(), amount);
+    }
+    public RunicWorkbenchRecipeBuilder setSecondaryInput(Item item, int amount) {
+        this.secondaryInput = new SizedIngredient(Ingredient.of(item), amount);
         return this;
     }
 

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.mana_mote;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.*;

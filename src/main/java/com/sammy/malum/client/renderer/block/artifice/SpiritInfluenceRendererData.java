@@ -1,7 +1,7 @@
 package com.sammy.malum.client.renderer.block.artifice;
 
 import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 

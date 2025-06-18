@@ -3,7 +3,7 @@ package com.sammy.malum.common.data.attachment.soul_data;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.*;
-import com.sammy.malum.common.packets.*;
+import com.sammy.malum.common.payloads.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;

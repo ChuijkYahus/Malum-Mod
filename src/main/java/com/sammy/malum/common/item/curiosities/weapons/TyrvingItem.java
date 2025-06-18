@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
@@ -32,7 +33,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     }
 
     @Override
-    public MalumSpiritType getDefiningSpiritType() {
+    public SpiritWrapper getDefiningSpiritType() {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 

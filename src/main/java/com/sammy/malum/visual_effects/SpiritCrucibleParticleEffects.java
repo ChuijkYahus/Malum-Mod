@@ -8,7 +8,7 @@ import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.client.*;
@@ -125,24 +125,23 @@ public class SpiritCrucibleParticleEffects {
             lightSpecs.spawnParticles();
         }
 
-        int spiritsRendered = 0;
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
-            var item = spiritInventory.getStackInSlot(i);
-            if (item.getItem() instanceof SpiritShardItem spiritSplinterItem) {
-                var offset = crucible.getSpiritItemOffset(spiritsRendered++, 0);
-                var spiritType = spiritSplinterItem.type;
-                var blockPos = crucible.getBlockPos();
-                var spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
-                if (recipe != null) {
+        if (recipe != null) {
+            int spiritsRendered = 0;
+            for (int i = 0; i < spiritInventory.slotCount; i++) {
+                var item = spiritInventory.getStackInSlot(i);
+                if (item.getItem() instanceof SpiritShardItem shardItem) {
+                    var offset = crucible.getSpiritItemOffset(spiritsRendered++, 0);
+                    var blockPos = crucible.getBlockPos();
+                    var spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
-                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, spiritType);
+                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shardItem);
                         sparkParticles.getBuilder().setMotion(velocity).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.85f) {
-                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, spiritType);
+                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, shardItem);
                         lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();

@@ -4,7 +4,8 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
@@ -61,16 +62,16 @@ public class FloatingItemEntityRenderer extends EntityRenderer<FloatingItemEntit
         poseStack.popPose();
     }
 
-    public static void renderSpiritGlimmer(PoseStack poseStack, MalumSpiritType spiritType, float partialTicks) {
-        renderSpiritGlimmer(poseStack, spiritType, 1f, partialTicks);
+    public static void renderSpiritGlimmer(PoseStack poseStack, SpiritWrapper spirit, float partialTicks) {
+        renderSpiritGlimmer(poseStack, spirit, 1f, partialTicks);
     }
 
-    public static void renderSpiritGlimmer(PoseStack poseStack, MalumSpiritType spiritType, float scalar, float partialTicks) {
-        renderSpiritGlimmer(poseStack, SpiritBasedWorldVFXBuilder.create(spiritType), spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), scalar, scalar, partialTicks);
+    public static void renderSpiritGlimmer(PoseStack poseStack, SpiritWrapper spirit, float scalar, float partialTicks) {
+        renderSpiritGlimmer(poseStack, SpiritBasedWorldVFXBuilder.create(spirit), spirit.getPrimaryColor(), spirit.getSecondaryColor(), scalar, scalar, partialTicks);
     }
 
-    public static void renderSpiritGlimmer(PoseStack poseStack, MalumSpiritType spiritType, float scaleScalar, float alphaScalar, float partialTicks) {
-        renderSpiritGlimmer(poseStack, SpiritBasedWorldVFXBuilder.create(spiritType), spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
+    public static void renderSpiritGlimmer(PoseStack poseStack, SpiritWrapper spirit, float scaleScalar, float alphaScalar, float partialTicks) {
+        renderSpiritGlimmer(poseStack, SpiritBasedWorldVFXBuilder.create(spirit), spirit.getPrimaryColor(), spirit.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
     }
 
     public static void renderSpiritGlimmer(PoseStack poseStack, Color primaryColor, Color secondaryColor, float partialTicks) {

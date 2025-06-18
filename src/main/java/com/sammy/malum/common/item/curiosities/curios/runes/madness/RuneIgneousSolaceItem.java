@@ -11,7 +11,7 @@ import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.Consumer;
 
-public class RuneIgneousSolaceItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneIgneousSolaceItem extends VoidRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneIgneousSolaceItem(Properties builder) {
         super(builder, MalumSpiritTypes.INFERNAL_SPIRIT);

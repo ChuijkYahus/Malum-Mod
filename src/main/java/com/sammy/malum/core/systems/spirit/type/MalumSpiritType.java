@@ -1,0 +1,79 @@
+package com.sammy.malum.core.systems.spirit.type;
+
+import com.mojang.datafixers.util.*;
+import com.mojang.serialization.*;
+import com.sammy.malum.common.item.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.registry.common.*;
+import io.netty.buffer.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.codec.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.*;
+
+public class MalumSpiritType implements SpiritWrapper {
+
+    public static final Codec<SpiritHolder<MalumSpiritType>> HOLDER_CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.holderByNameCodec()
+            .flatComapMap(c -> (SpiritHolder<MalumSpiritType>)c, DataResult::success);
+
+    public static final Codec<MalumSpiritType> CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.byNameCodec();
+
+    public static StreamCodec<ByteBuf, SpiritHolder<MalumSpiritType>> STREAM_CODEC = ByteBufCodecs.fromCodec(MalumSpiritType.HOLDER_CODEC);
+
+    private final SpiritColorProperties colorProperties;
+    private final DeferredHolder<Item, SpiritShardItem> spiritShard;
+
+    protected Rarity itemRarity;
+
+    public MalumSpiritType(SpiritColorProperties colorProperties, DeferredHolder<Item, SpiritShardItem> spiritShard) {
+        this.colorProperties = colorProperties;
+        this.spiritShard = spiritShard;
+    }
+
+    public void save(CompoundTag tag) {
+        save(tag, "spirit");
+    }
+    public void save(CompoundTag tag, String name) {
+        MalumSpiritType.CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
+    }
+
+    public static MalumSpiritType load(CompoundTag tag) {
+        return load(tag, "spirit");
+    }
+    public static MalumSpiritType load(CompoundTag tag, String name) {
+        return MalumSpiritType.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).getOrThrow();
+    }
+
+    public static MalumSpiritType getSpiritType(String spirit) {
+        return getSpiritType(ResourceLocation.parse(spirit));
+    }
+
+    public static MalumSpiritType getSpiritType(ResourceLocation spirit) {
+        return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getHolder(spirit).orElseThrow().value();
+    }
+
+    @Override
+    public @NotNull MalumSpiritType unwrapSpirit() {
+        return this;
+    }
+
+    public SpiritShardItem getSpiritShard() {
+        return spiritShard.value();
+    }
+
+    public SpiritColorProperties getColorProperties() {
+        return colorProperties;
+    }
+
+    public Rarity getItemRarity() {
+        if (itemRarity == null) {
+            TextColor textColor = getTextColor(false);
+            itemRarity = Rarity.UNCOMMON;
+//            itemRarity = Rarity.create("malum$" + identifier, (style) -> style.withColor(textColor));
+        }
+        return itemRarity;
+    }
+}

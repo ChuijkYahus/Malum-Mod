@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 
@@ -97,7 +97,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (spirit != null) {
-            tag.putString("spirit", spirit.getIdentifier());
+            tag.putString("spirit", spirit.getRegistryName().toString());
         }
         if (!totemPoleState.equals(INACTIVE)) {
             tag.putInt("state", totemPoleState.ordinal());

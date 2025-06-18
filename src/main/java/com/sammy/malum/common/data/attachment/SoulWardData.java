@@ -2,7 +2,7 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.packets.*;
+import com.sammy.malum.common.payloads.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;

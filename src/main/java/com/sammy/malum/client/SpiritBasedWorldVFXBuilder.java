@@ -1,7 +1,8 @@
 package com.sammy.malum.client;
 
 import com.mojang.datafixers.util.Pair;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.core.systems.spirit.UmbralSpiritType;
 import net.minecraft.client.renderer.RenderType;
 import team.lodestar.lodestone.handlers.RenderHandler;
@@ -12,6 +13,10 @@ import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
 
 public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
+
+    public static SpiritBasedWorldVFXBuilder create(SpiritWrapper spirit) {
+        return new SpiritBasedWorldVFXBuilder(spirit.unwrapSpirit());
+    }
 
     public static SpiritBasedWorldVFXBuilder create(MalumSpiritType spiritType) {
         return new SpiritBasedWorldVFXBuilder(spiritType);

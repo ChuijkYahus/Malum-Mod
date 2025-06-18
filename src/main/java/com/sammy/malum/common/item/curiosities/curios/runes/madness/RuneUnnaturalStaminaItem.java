@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Consumer;
 
-public class RuneUnnaturalStaminaItem extends AbstractRuneCurioItem {
+public class RuneUnnaturalStaminaItem extends VoidRuneCurioItem {
 
     public RuneUnnaturalStaminaItem(Properties builder) {
         super(builder, MalumSpiritTypes.AERIAL_SPIRIT);

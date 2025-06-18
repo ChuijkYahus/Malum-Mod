@@ -3,8 +3,7 @@ package com.sammy.malum.visual_effects;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.recipe.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
@@ -23,7 +22,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class RepairPylonParticleEffects {
 
-    public static MalumSpiritType getCentralSpiritType(RepairPylonCoreBlockEntity pylon) {
+    public static SpiritWrapper getCentralSpiritType(RepairPylonCoreBlockEntity pylon) {
         final LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -35,7 +34,7 @@ public class RepairPylonParticleEffects {
         if (!(currentItem instanceof SpiritShardItem spiritItem)) {
             return null;
         }
-        return spiritItem.type;
+        return spiritItem;
     }
 
     public static void passiveRepairPylonParticles(RepairPylonCoreBlockEntity pylon, @Nullable IMalumSpecialItemAccessPoint holder) {
@@ -65,7 +64,7 @@ public class RepairPylonParticleEffects {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem spiritSplinterItem) {
                 Vec3 offset = pylon.getSpiritItemOffset(spiritsRendered++, 0);
-                activeSpiritType = spiritSplinterItem.type;
+                activeSpiritType = spiritSplinterItem;
                 BlockPos blockPos = pylon.getBlockPos();
                 Vec3 spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                 spiritLightSpecs(level, spiritPosition, activeSpiritType).spawnParticles();
@@ -89,7 +88,7 @@ public class RepairPylonParticleEffects {
     }
 
     public static void prepareRepairParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(pylon);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
         }
@@ -171,7 +170,7 @@ public class RepairPylonParticleEffects {
     }
 
     public static void repairItemParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(pylon);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
         }
@@ -179,7 +178,7 @@ public class RepairPylonParticleEffects {
 //        repairItemParticles(level, activeSpiritType, pylon.getItemPos(), colorData);
         repairItemParticles(level, activeSpiritType, holder.getItemPos(), colorData);
     }
-    public static void repairItemParticles(Level level, MalumSpiritType activeSpiritType, Vec3 itemPos, MalumNetworkedParticleEffectColorData colorData) {
+    public static void repairItemParticles(Level level, SpiritWrapper activeSpiritType, Vec3 itemPos, MalumNetworkedParticleEffectColorData colorData) {
         long gameTime = level.getGameTime();
         var random = level.random;
         for (int i = 0; i < 2; i++) {

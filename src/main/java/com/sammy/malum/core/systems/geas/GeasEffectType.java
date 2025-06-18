@@ -2,7 +2,8 @@ package com.sammy.malum.core.systems.geas;
 
 import com.mojang.serialization.*;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
@@ -21,20 +22,21 @@ public class GeasEffectType {
             return MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get();
         }
         return geasEffectType;
-    }, GeasEffectType::getId);
+    }, GeasEffectType::getRegistryName);
 
 
     public final Supplier<GeasEffect> effect;
-    public final List<MalumSpiritType> spiritTypes;
+    public final List<SpiritHolder<MalumSpiritType>> spiritTypes;
 
     private GeasEffect dummyEffectInstance;
     private ItemStack dummyCreativeStack;
 
-    public GeasEffectType(Supplier<GeasEffect> effect, MalumSpiritType... spiritTypes) {
+    @SafeVarargs
+    public GeasEffectType(Supplier<GeasEffect> effect, SpiritHolder<MalumSpiritType>... spiritTypes) {
         this(effect, List.of(spiritTypes));
     }
 
-    public GeasEffectType(Supplier<GeasEffect> effect, List<MalumSpiritType> spiritTypes) {
+    public GeasEffectType(Supplier<GeasEffect> effect, List<SpiritHolder<MalumSpiritType>> spiritTypes) {
         this.effect = effect;
         this.spiritTypes = spiritTypes;
     }
@@ -52,19 +54,19 @@ public class GeasEffectType {
     }
 
     public String getLangKey() {
-        return getId().getNamespace() + ".gui.geas." + getId().getPath();
+        return getRegistryName().getNamespace() + ".gui.geas." + getRegistryName().getPath();
     }
 
-    public ResourceLocation getId() {
+    public ResourceLocation getRegistryName() {
         return MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getKey(this);
     }
 
     public ResourceLocation getIcon() {
-        return getId().withPath(p -> "textures/item/geas/" + p).withSuffix(".png");
+        return getRegistryName().withPath(p -> "textures/item/geas/" + p).withSuffix(".png");
     }
 
     public Holder<GeasEffectType> getHolder() {
-        return MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getHolder(getId()).orElseThrow();
+        return MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.getHolder(getRegistryName()).orElseThrow();
     }
 
     public boolean is(TagKey<GeasEffectType> tag) {

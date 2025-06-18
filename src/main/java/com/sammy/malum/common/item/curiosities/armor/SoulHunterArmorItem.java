@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.compability.irons_spellbooks.IronsSpellsCompat;
+import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

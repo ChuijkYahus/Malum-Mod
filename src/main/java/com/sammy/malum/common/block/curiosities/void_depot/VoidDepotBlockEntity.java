@@ -44,7 +44,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
         if (!textToDisplay.isEmpty()) {
             for (int i = 0; i < textToDisplay.size(); i++) {
                 String text = textToDisplay.get(i);
-                textTag.putString("line_"+i, text);
+                textTag.putString("line_" + i, text);
             }
         }
         compound.put("textDisplay", textTag);
@@ -146,10 +146,10 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
                 List<VoidDepotGoal> newGoals = new ArrayList<>();
                 for (VoidDepotGoal goal : goals) {
                     if (goal instanceof ItemGoal itemGoal) {
-                        newGoals.add(new ItemGoal(itemGoal.index, itemGoal.item, itemGoal.amount*2, itemGoal.deliveredAmount));
+                        newGoals.add(new ItemGoal(itemGoal.index, itemGoal.item, itemGoal.amount * 2, itemGoal.deliveredAmount));
                     }
                     if (goal instanceof ExperienceGoal experienceGoal) {
-                        newGoals.add(new ExperienceGoal(experienceGoal.index, experienceGoal.amount*2, experienceGoal.deliveredAmount));
+                        newGoals.add(new ExperienceGoal(experienceGoal.index, experienceGoal.amount * 2, experienceGoal.deliveredAmount));
                     }
                 }
                 this.goals.clear();
@@ -232,8 +232,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
             nearTimer--;
             if (nearTimer > 0 && textVisibility < 40) {
                 textVisibility++;
-            }
-            else if (textVisibility > 0){
+            } else if (textVisibility > 0) {
                 textVisibility--;
             }
         }
@@ -253,6 +252,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     }
 
     public static final StringRepresentable.EnumCodec<VoidDepotGoal.VoidDepotGoalType> CODEC = StringRepresentable.fromEnum(VoidDepotGoal.VoidDepotGoalType::values);
+
     public static abstract class VoidDepotGoal {
 
         public enum VoidDepotGoalType implements StringRepresentable {
@@ -306,6 +306,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
             return compoundTag;
         }
     }
+
     public static class ExperienceGoal extends VoidDepotGoal {
 
         public ExperienceGoal(String index, int amount, int deliveredAmount) {
@@ -319,6 +320,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
                     compoundTag.getInt("deliveredAmount"));
         }
     }
+
     public static class ItemGoal extends VoidDepotGoal {
         public final Item item;
 

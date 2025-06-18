@@ -79,7 +79,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         super(MalumBlockEntities.SPIRIT_ALTAR.get(), pos, state);
         inventory = MalumBlockEntityInventory.singleStackNotSpirit(this).onContentsChanged(this::recalculateRecipes);
         extrasInventory = MalumBlockEntityInventory.stacksNotSpirits(this, 8);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, MalumSpiritTypes.SPIRITS.size()).onContentsChanged(this::recalculateRecipes);
+        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this).onContentsChanged(this::recalculateRecipes);
     }
 
     @Override
@@ -269,7 +269,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                     level.playSound(null, provider.getAccessPointBlockPos(), MalumSoundEvents.ALTAR_CONSUME.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() * 0.5f);
                     MalumParticleEffectTypes.SPIRIT_ALTAR_EATS_ITEM
                             .createEffect(worldPosition)
-                            .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                            .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                             .customData(new SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData(provider.getAccessPointBlockPos(), providedStack))
                             .spawn(level);
                     extrasInventory.insertItem(inventoryForAltar.extractItem(0, nextIngredient.count(), false));
@@ -298,14 +298,14 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
             for (int i = 0; i < spiritInventory.slotCount; i++) {
                 ItemStack spiritStack = spiritInventory.getStackInSlot(i);
                 if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.getCount());
+                    spiritStack.shrink(spirit.count());
                     break;
                 }
             }
         }
         MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
                 .createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         recalibrateAccelerators();

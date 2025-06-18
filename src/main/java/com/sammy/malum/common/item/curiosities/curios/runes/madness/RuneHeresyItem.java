@@ -17,7 +17,7 @@ import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.Consumer;
 
-public class RuneHeresyItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneHeresyItem extends VoidRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneHeresyItem(Properties builder) {
         super(builder, MalumSpiritTypes.ELDRITCH_SPIRIT);

@@ -1,7 +1,8 @@
 package com.sammy.malum.visual_effects.networked;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.codec.*;
@@ -75,7 +76,7 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
             return this;
         }
 
-        public MalumWeaponParticleEffectBuilder<T> color(MalumSpiritType... spiritTypes) {
+        public final MalumWeaponParticleEffectBuilder<T> color(SpiritWrapper... spiritTypes) {
             return color(new MalumNetworkedParticleEffectColorData(spiritTypes));
         }
 

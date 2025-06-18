@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public class RuneIndomitabilityItem extends AbstractRuneCurioItem {
+public class RuneIndomitabilityItem extends VoidRuneCurioItem {
 
     public RuneIndomitabilityItem(Properties builder) {
         super(builder, MalumSpiritTypes.EARTHEN_SPIRIT);

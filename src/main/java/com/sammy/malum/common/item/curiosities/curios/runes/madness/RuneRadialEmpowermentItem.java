@@ -16,7 +16,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.function.Consumer;
 
-public class RuneRadialEmpowermentItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneRadialEmpowermentItem extends VoidRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     private static final ResourceLocation MODIFIER = MalumMod.malumPath("radial_empowerment_rune");
     public RuneRadialEmpowermentItem(Properties builder) {

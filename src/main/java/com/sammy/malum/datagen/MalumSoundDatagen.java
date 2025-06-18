@@ -44,8 +44,11 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ALCHEMICAL_TRINKET_EQUIP, s -> definition(s).with(sounds("equip_sounds/alchemical/equip_alchemical", 3)));
         this.add(MalumSoundEvents.ROTTEN_TRINKET_EQUIP, s -> definition(s).with(sounds("equip_sounds/rotten/equip_rotten", 3)));
         this.add(MalumSoundEvents.METALLIC_TRINKET_EQUIP, s -> definition(s).with(sounds("equip_sounds/metallic/equip_metallic", 3)));
-        this.add(MalumSoundEvents.RUNE_TRINKET_EQUIP, s -> definition(s).with(sounds("equip_sounds/rune/equip_rune", 3)));
         this.add(MalumSoundEvents.VOID_TRINKET_EQUIP, s -> definition(s).with(sounds("equip_sounds/void/equip_void", 3)));
+
+        this.add(MalumSoundEvents.RUNE_EQUIP, s -> definition(s).with(sounds("equip_sounds/rune/equip_rune_stone", 3)));
+        this.add(MalumSoundEvents.TOTEMIC_RUNE_EQUIP, s -> definition(s).with(sounds("equip_sounds/rune/equip_rune_wood", 3)));
+        this.add(MalumSoundEvents.VOID_RUNE_EQUIP, s -> definition(s).with(sounds("equip_sounds/rune/equip_rune_void", 3)));
 
         this.add(MalumSoundEvents.HUNGRY_BELT_FEEDS, s -> definition(s).with(sounds("curiosities/trinkets/starved/nom", 4)));
         this.add(MalumSoundEvents.VORACIOUS_RING_FEEDS, s -> definition(s).with(sounds("curiosities/trinkets/starved/nom", 4)));

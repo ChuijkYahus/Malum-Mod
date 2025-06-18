@@ -1,28 +1,22 @@
 package com.sammy.malum.client;
 
 import com.mojang.blaze3d.vertex.*;
-import com.sammy.malum.core.systems.spirit.*;
-import net.minecraft.client.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import org.joml.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
-import javax.annotation.Nullable;
 import java.awt.*;
-import java.util.List;
-import java.util.*;
 import java.util.function.*;
-import java.lang.Math;
 
 public class RenderUtils {
 
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, MalumSpiritType spiritType, float effectScalar, float partialTicks) {
-        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritWrapper spirit, float effectScalar, float partialTicks) {
+        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
     }
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, t -> primaryColor, t -> secondaryColor, effectScalar, effectScalar, partialTicks);
@@ -32,9 +26,8 @@ public class RenderUtils {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, effectScalar, partialTicks);
     }
 
-
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, MalumSpiritType spiritType, float scaleScalar, float alphaScalar, float partialTicks) {
-        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritWrapper spirit, float scaleScalar, float alphaScalar, float partialTicks) {
+        renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
     }
 
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {

@@ -1,6 +1,6 @@
 package com.sammy.malum.client;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.*;
@@ -48,8 +48,8 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
         super(options);
     }
 
-    public SpiritBasedParticleBuilder setSpirit(MalumSpiritType spiritType) {
-        this.spiritType = spiritType;
+    public SpiritBasedParticleBuilder setSpirit(SpiritWrapper spirit) {
+        this.spiritType = spirit.unwrapSpirit();
         if (isUmbral()) {
             super.setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT);
         }
@@ -57,7 +57,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     public boolean isUmbral() {
-        return spiritType != null && spiritType.equals(MalumSpiritTypes.UMBRAL_SPIRIT);
+        return spiritType != null && spiritType.matches(MalumSpiritTypes.UMBRAL_SPIRIT);
     }
 
     @Override

@@ -86,12 +86,12 @@ public class AltarCraftingHelper {
 
 	private static List<SizedIngredient> convertSpiritsToIngredients(List<SpiritIngredient> ingredients) {
 		return ingredients.stream()
-			.map(ingredient -> new SizedIngredient(Ingredient.of(ingredient.getItems()), ingredient.getCount()))
+			.map(ingredient -> new SizedIngredient(Ingredient.of(ingredient.getItems()), ingredient.count()))
 			.toList();
 	}
 
 	private static List<ItemStack> convertSpiritsToItems(List<SpiritIngredient> ingredients) {
-		return ingredients.stream().map(SpiritIngredient::getStack).toList();
+		return ingredients.stream().map(SpiritIngredient::asItemStack).toList();
 	}
 
 	/**

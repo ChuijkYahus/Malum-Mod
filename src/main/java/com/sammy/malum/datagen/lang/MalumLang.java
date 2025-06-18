@@ -3,15 +3,17 @@ package com.sammy.malum.datagen.lang;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.compability.create.*;
+import com.sammy.malum.compat.create.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
 import com.sammy.malum.registry.common.enchantment.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.*;
@@ -33,6 +35,7 @@ import java.util.function.Supplier;
 import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
 import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -55,6 +58,7 @@ public class MalumLang extends LanguageProvider {
         var effects = new HashSet<>(EFFECTS.getEntries());
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
+        var spirits = new HashSet<>(SPIRIT_TYPES.getEntries());
 
         add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
@@ -103,9 +107,11 @@ public class MalumLang extends LanguageProvider {
             add("entity.malum." + BuiltInRegistries.ENTITY_TYPE.getKey(e.get()).getPath(), name);
         });
 
-        for (MalumSpiritType spirit : MalumSpiritTypes.SPIRITS.values()) {
-            add(spirit.getSpiritDescription(), DataHelper.toTitleCase(spirit.getIdentifier() + "_spirit", "_"));
-        }
+        spirits.forEach(s -> {
+            MalumSpiritType spirit = s.get();
+            String name = DataHelper.toTitleCase(s.getId().getPath(), "_");
+            add(spirit.getCountedKey(), "%1$s " + name);
+        });
         for (SoulwovenBannerPatternDataComponent pattern : SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS) {
             add(pattern.translationKey(), DataHelper.toTitleCase(pattern.type().getPath(), "_"));
         }
@@ -117,6 +123,16 @@ public class MalumLang extends LanguageProvider {
             var effectType = geas.get();
             add(effectType.getLangKey(), DataHelper.toTitleCase(geas.getId().getPath().toLowerCase(Locale.ROOT), "_"));
         }
+
+        addSpiritFlavour(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
+        addSpiritFlavour(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
+        addSpiritFlavour(MalumSpiritTypes.AQUEOUS_SPIRIT, "Fundamental");
+        addSpiritFlavour(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric");
+        addSpiritFlavour(MalumSpiritTypes.AERIAL_SPIRIT, "Swift");
+        addSpiritFlavour(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable");
+        addSpiritFlavour(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant");
+        addSpiritFlavour(MalumSpiritTypes.EARTHEN_SPIRIT, "Steady");
+        addSpiritFlavour(MalumSpiritTypes.UMBRAL_SPIRIT, "Antithesis");
 
         add("malum.gui.slot", "Slot: ");
 
@@ -136,58 +152,58 @@ public class MalumLang extends LanguageProvider {
         add(GeasItem.CREATIVE, "Creative Item for Debug Purposes.");
         add(GeasItem.CREATIVE_HELP, "Use To Swear/Forswear Geas Effect.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_DEFIANCE.get(), "Rage, rage, against the dying of your might");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PARASITE.get(), "Why work for what others have");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER.get(), "Weave your life into miracles");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_DEFIANCE, "Rage, rage, against the dying of your might");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PARASITE, "Why work for what others have");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER, "Weave your life into miracles");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WARLOCK.get(), "Weave the arcane");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_REAPER.get(), "Swear loyalty to the edge");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BERSERKER.get(), "Your pain, their pain");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WARLOCK, "Weave the arcane");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_REAPER, "Swear loyalty to the edge");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BERSERKER, "Your pain, their pain");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FORTRESS.get(), "Be strong when you are needed");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHIELD.get(), "Always be ready to stand and fight");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RECIPROCATION.get(), "Prove your strength by wielding it");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FORTRESS, "Be strong when you are needed");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHIELD, "Always be ready to stand and fight");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RECIPROCATION, "Prove your strength by wielding it");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT.get(), "Claim what you want, and never stop");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE.get(), "Seek magic in any form");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RUNE_EXPLOITATION.get(), "Gather them all, exhaust every possibility");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT, "Claim what you want, and never stop");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE, "Seek magic in any form");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_RUNE_EXPLOITATION, "Gather them all, exhaust every possibility");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_SELF_CARE.get(), "Eat, lest your body consume itself");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST.get(), "Become what they believe, so long as they believe");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY.get(), "Become the ocean's avatar");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID.get(), "A warped echo");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_SELF_CARE, "Eat, lest your body consume itself");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST, "Become what they believe, so long as they believe");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY, "Become the ocean's avatar");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID, "A warped echo");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT.get(), "Run as the wind");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT.get(), "Step. Form. Ready. Raise. Begin. Draw. Release.");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER.get(), "Dance along the edge of danger");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER.get(), "Move and be moved");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT, "Run as the wind");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT, "Step. Form. Ready. Raise. Begin. Draw. Release.");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER, "Dance along the edge of danger");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER, "Move and be moved");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS.get(), "To be full is to be anchored");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID.get(), "Shed your second skin");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC.get(), "Forswear indulgence, and be healed by rot");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON.get(), "Consume.");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS, "To be full is to be anchored");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID, "Shed your second skin");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER.get(), "Care for the flame");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION.get(), "Set yourself ablaze, figuratively");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC.get(), "Draw power from recklessness");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION.get(), "Witness oblivion and forge yourself anew");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER, "Care for the flame");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
 
-//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS.get(), "Tie your fates as one");
-//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS.get(), "Find your ends together");
+//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_BELOVED_CHAINS, "Tie your fates as one");
+//        addGeasDescription(MalumGeasEffectTypeRegistry.BOND_OF_DEATHS_SEEKERS, "Find your ends together");
 
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE.get(), "Measure twice, cut once");
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND.get(), "Measure carefully, cut later");
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST.get(), "Cut twice, never measure");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE, "Measure twice, cut once");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND, "Measure carefully, cut later");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST, "Cut twice, never measure");
 
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN.get(), "Acknowledge no one, and be acknowledged by none");
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE.get(), "See no evil, feel no evil");
-        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW.get(), "Take the life of your enemies");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN, "Acknowledge no one, and be acknowledged by none");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE, "See no evil, feel no evil");
+        addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW, "Take the life of your enemies");
 
-        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART.get(), "Your heart is the world, and the world beats");
-        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET.get(), "Take it all, let it never stop, more, and more, and more");
+        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART, "Your heart is the world, and the world beats");
+        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET, "Take it all, let it never stop, more, and more, and more");
 
-        addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get(), "Mmmm... Blight... So Tasty..");
+        addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER, "Mmmm... Blight... So Tasty..");
 
 
         add("malum.waveform_artifice.wavecharger", "Redstone Easing Duration");
@@ -397,16 +413,6 @@ public class MalumLang extends LanguageProvider {
         add("malum.effect.wayne_june.9", "You Have Cowered In Your Cowering Denial Long Enough");
         add("malum.effect.wayne_june.10", "Let Us Drag Your Agglutinated Indignities Out Into The Light");
 
-        add("malum.spirit.flavour.sacred", "Innocent");
-        add("malum.spirit.flavour.wicked", "Malicious");
-        add("malum.spirit.flavour.arcane", "Fundamental");
-        add("malum.spirit.flavour.eldritch", "Esoteric");
-        add("malum.spirit.flavour.aerial", "Swift");
-        add("malum.spirit.flavour.aqueous", "Malleable");
-        add("malum.spirit.flavour.infernal", "Radiant");
-        add("malum.spirit.flavour.earthen", "Steady");
-        add("malum.spirit.flavour.umbral", "Antithesis");
-
         add("malum.jei.spirit_infusion", "Spirit Infusion");
         add("malum.jei.spirit_focusing", "Spirit Focusing");
         add("malum.jei.spirit_repair", "Spirit Repair");
@@ -544,8 +550,12 @@ public class MalumLang extends LanguageProvider {
         add(category.getTranslationKey(), DataHelper.toTitleCase(category.name().toLowerCase(), "_"));
     }
 
-    public void addGeasDescription(GeasEffectType effectType, String description) {
-        add(effectType.getLangKey() + ".tooltip", description);
+    public void addGeasDescription(Holder<GeasEffectType> effectType, String description) {
+        add(effectType.value().getDescription(), description);
+    }
+
+    public void addSpiritFlavour(SpiritHolder<MalumSpiritType> spiritType, String flavour) {
+        add(spiritType.value().getFlavourKey(), flavour);
     }
 
     public void addTetraMaterial(String identifier, String name) {

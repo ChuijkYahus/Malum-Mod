@@ -13,7 +13,7 @@ import team.lodestar.lodestone.helpers.EntityHelper;
 
 import java.util.function.Consumer;
 
-public class RuneTwinnedDurationItem extends AbstractRuneCurioItem {
+public class RuneTwinnedDurationItem extends VoidRuneCurioItem {
 
     public RuneTwinnedDurationItem(Properties builder) {
         super(builder, MalumSpiritTypes.AQUEOUS_SPIRIT);

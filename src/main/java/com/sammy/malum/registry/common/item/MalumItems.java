@@ -39,7 +39,7 @@ import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.compability.farmersdelight.*;
+import com.sammy.malum.compat.farmersdelight.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -839,34 +839,26 @@ public class MalumItems {
 
         @SubscribeEvent
         public static void setItemColors(RegisterColorHandlersEvent.Item event) {
-            ItemColors itemColors = event.getItemColors();
-            HashSet<DeferredHolder<Item, ? extends Item>> items = new HashSet<>(ITEMS.getEntries());
+
+            event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpirit().getItemColor()),
+                    SACRED_SPIRIT.get(), WICKED_SPIRIT.get(), ARCANE_SPIRIT.get(), ELDRITCH_SPIRIT.get(),
+                    AQUEOUS_SPIRIT.get(), AERIAL_SPIRIT.get(), EARTHEN_SPIRIT.get(), INFERNAL_SPIRIT.get());
 
             event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMaxColor()),
                     RUNEWOOD_LEAVES.get(), HANGING_RUNEWOOD_LEAVES.get(), AZURE_RUNEWOOD_LEAVES.get(), HANGING_AZURE_RUNEWOOD_LEAVES.get());
             event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMinColor()),
                     SOULWOOD_LEAVES.get(), HANGING_SOULWOOD_LEAVES.get());
 
-            DataHelper.takeAll(items, i -> i.get() instanceof EtherTorchItem || i.get() instanceof EtherBrazierItem).forEach(i -> event.register((s, c) -> {
-                switch (c) {
-                    case 2 -> {
-                        return EtherItem.getSecondaryColor(s);
-                    }
-                    case 1 -> {
-                        return EtherItem.getPrimaryColor(s);
-                    }
-                    default -> {
-                        return -1;
-                    }
-                }
-            }, i.get()));
-            DataHelper.takeAll(items, i -> i.get() instanceof EtherItem).forEach(i -> event.register((s, c) -> {
-                EtherItem etherItem = (EtherItem) s.getItem();
-                return c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s);
-            }, i.get()));
+            event.register((s, c) -> switch (c) {
+                        case 2 -> EtherItem.getSecondaryColor(s);
+                        case 1 -> EtherItem.getPrimaryColor(s);
+                        default -> -1;
+                    },
+                    ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
+                    IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
 
-            DataHelper.takeAll(items, i -> i.get() instanceof SpiritShardItem).forEach(item ->
-                    event.register((s, c) -> ColorHelper.getColor(((SpiritShardItem) item.get()).type.getItemColor()), item.get()));
+            event.register((s, c) -> c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s),
+                    ETHER.get(), IRIDESCENT_ETHER.get());
         }
     }
 }

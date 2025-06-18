@@ -3,7 +3,7 @@ package com.sammy.malum.visual_effects;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.world.level.*;
@@ -62,11 +62,11 @@ public class WeaponParticleEffects {
         }
         return spawnSlashParticle(level, pos, particleType, color.getColor());
     }
-    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, MalumSpiritType spiritType) {
-        if (spiritType == null) {
+    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, SpiritWrapper spirit) {
+        if (spirit == null) {
             return spawnSlashParticle(level, pos, particleType);
         }
-        return spawnSlashParticle(level, pos, SpiritBasedParticleBuilder.createSpirit(particleType.get()).setSpirit(spiritType));
+        return spawnSlashParticle(level, pos, SpiritBasedParticleBuilder.createSpirit(particleType.get()).setSpirit(spirit));
     }
 
     public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, ColorParticleData colorData) {

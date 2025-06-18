@@ -2,7 +2,7 @@ package com.sammy.malum.core.systems.rite;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -26,9 +26,9 @@ public abstract class TotemicRiteType {
     public final TotemicRiteEffect effect;
     public final TotemicRiteEffect corruptedEffect;
 
-    public TotemicRiteType(String identifier, MalumSpiritType... spirits) {
+    public TotemicRiteType(String identifier, SpiritWrapper... spirits) {
         this.identifier = identifier;
-        this.spirits = new ArrayList<>(Arrays.asList(spirits));
+        this.spirits = Arrays.stream(spirits).map(SpiritWrapper::unwrapSpirit).toList();
         this.effect = getNaturalRiteEffect();
         this.corruptedEffect = getCorruptedEffect();
     }

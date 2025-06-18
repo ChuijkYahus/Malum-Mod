@@ -5,7 +5,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -55,7 +55,7 @@ public class SpiritRiteRecipePage extends BookPage {
             final int y = riteStartY - 20 * i;
             MalumSpiritType spiritType = spirits.get(i);
             ResourceLocation spiritTexture = spiritType.getTotemGlowTexture();
-            ItemStack stack = spirits.get(i).getSpiritShard().getDefaultInstance();
+            ItemStack stack = spirits.get(i).getSpiritStack();
             renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupted(), 0.25f, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);

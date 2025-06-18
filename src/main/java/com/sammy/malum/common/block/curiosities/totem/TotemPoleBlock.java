@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEntityBlock<T> {
 
-    public static final SpiritTypeProperty SPIRIT_TYPE = MalumSpiritTypes.SPIRIT_TYPE_PROPERTY;
+    public static final SpiritTypeProperty SPIRIT_TYPE = SpiritTypeProperty.SPIRIT_TYPE;
 
     public final Supplier<? extends Block> logBlock;
     public final boolean isSoulwood;
@@ -41,14 +41,12 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
-        BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (be instanceof TotemPoleBlockEntity pole) {
-            return Math.min(MalumSpiritTypes.getIndexForSpiritType(pole.spirit) + 1, 15);
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity totemPole) {
+            return totemPole.spirit.getAnalogSignal();
         }
         return 0;
     }
-
 
     @Override
     public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader world, BlockPos pos, Player player) {
@@ -63,5 +61,9 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, SPIRIT_TYPE);
+    }
+
+    public static BlockState createTotemPoleState(TotemPoleBlock<?> totemPole, Direction direction, SpiritWrapper spiritType) {
+        return totemPole.defaultBlockState().setValue(HORIZONTAL_FACING, direction).setValue(SPIRIT_TYPE, spiritType.getRegistryName().toString());
     }
 }

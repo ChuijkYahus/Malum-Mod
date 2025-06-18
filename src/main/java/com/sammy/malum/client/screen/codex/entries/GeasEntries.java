@@ -83,14 +83,14 @@ public class GeasEntries {
     }
 
     public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
-        screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
+        screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
                 .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );
     }
     public static void addSoulwoodGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
-        screen.addEntry(geas.value().getId().getPath(), x, y, b -> b
+        screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
                 .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))

@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
@@ -28,7 +28,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class SpiritAltarParticleEffects {
 
-    public static MalumSpiritType getCentralSpiritType(SpiritAltarBlockEntity altar) {
+    public static SpiritWrapper getCentralSpiritType(SpiritAltarBlockEntity altar) {
         final LodestoneBlockEntityInventory spiritInventory = altar.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -40,11 +40,11 @@ public class SpiritAltarParticleEffects {
         if (!(currentItem instanceof SpiritShardItem spiritItem)) {
             return null;
         }
-        return spiritItem.type;
+        return spiritItem;
     }
 
     public static void passiveSpiritAltarParticles(SpiritAltarBlockEntity altar) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(altar);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
@@ -56,7 +56,7 @@ public class SpiritAltarParticleEffects {
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
                 if (accelerator != null) {
-                    accelerator.addParticles(altar, activeSpiritType);
+                    accelerator.addParticles(altar, activeSpiritType.unwrapSpirit());
                 }
             }
             SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
@@ -67,21 +67,20 @@ public class SpiritAltarParticleEffects {
         for (int i = 0; i < spiritInventory.slotCount; i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem shard) {
-                var spirit = shard.type;
                 var offset = altar.getSpiritItemOffset(spiritsRendered++, 0);
                 var blockPos = altar.getBlockPos();
                 var spiritPosition = offset.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                spiritLightSpecs(level, spiritPosition, spirit).spawnParticles();
+                spiritLightSpecs(level, spiritPosition, shard).spawnParticles();
                 if (recipe != null) {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
-                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, spirit);
+                        var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
                         sparkParticles.getBuilder().setMotion(velocity).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.85f) {
-                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, spirit);
+                        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, shard);
                         lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();
@@ -92,7 +91,7 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void eatItemParticles(SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(altar);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
@@ -136,7 +135,7 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void craftItemParticles(SpiritAltarBlockEntity altar, MalumNetworkedParticleEffectColorData colorData) {
-        MalumSpiritType activeSpiritType = getCentralSpiritType(altar);
+        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }

@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -24,16 +24,16 @@ import static net.minecraft.util.Mth.*;
 
 public class SparkParticleEffects {
 
-    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, MalumSpiritType spiritType) {
-        return spiritMotionSparks(level, pos, spiritType, new WorldParticleOptions(MalumParticles.SPARK));
+    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, SpiritWrapper spirit) {
+        return spiritMotionSparks(level, pos, spirit, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleData colorData) {
         return spiritMotionSparks(level, pos, colorData, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
-    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, MalumSpiritType spiritType, WorldParticleOptions options) {
-        return spiritMotionSparks(level, pos, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spiritType));
+    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, SpiritWrapper spirit, WorldParticleOptions options) {
+        return spiritMotionSparks(level, pos, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spirit));
     }
 
     public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleData colorData, WorldParticleOptions options) {

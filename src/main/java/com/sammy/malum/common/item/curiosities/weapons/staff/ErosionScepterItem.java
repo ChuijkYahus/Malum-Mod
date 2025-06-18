@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.weapons.staff;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -48,7 +48,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
 
     @Override
-    public MalumSpiritType getDefiningSpiritType() {
+    public SpiritWrapper getDefiningSpiritType() {
         return MalumSpiritTypes.UMBRAL_SPIRIT;
     }
     @Override

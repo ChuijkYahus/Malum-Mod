@@ -54,7 +54,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
                     poseStack.pushPose();
                     Vector3f offset = blockEntityIn.getSpiritItemOffset(spiritsRendered++, partialTicks).toVector3f();
                     poseStack.translate(offset.x(), offset.y(), offset.z());
-                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.type, partialTicks);
+                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpirit(), partialTicks);
                     poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
                     poseStack.scale(0.5f, 0.5f, 0.5f);
                     itemRenderer.renderStatic(item, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

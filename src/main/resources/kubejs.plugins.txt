@@ -1,0 +1,1 @@
+com.sammy.malum.compat.kubejs.MalumJSPlugin

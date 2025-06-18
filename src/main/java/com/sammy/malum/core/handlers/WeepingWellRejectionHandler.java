@@ -2,10 +2,9 @@ package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
 import com.sammy.malum.client.VoidRevelationHandler;
-import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlockEntity;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.FloatingItemEntity;
-import com.sammy.malum.common.packets.VoidRejectionPayload;
+import com.sammy.malum.common.payloads.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
@@ -24,8 +23,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
-
-import java.util.*;
 
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.BLACK_CRYSTAL;
 

@@ -2,7 +2,8 @@ package com.sammy.malum.common.block.curiosities.banner;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
@@ -50,8 +51,10 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
         if (level instanceof ServerLevel serverLevel) {
             if (pStack.getItem() instanceof SpiritShardItem shardItem) {
-                var spirit = shardItem.type;
-                if ((spirit.equals(this.spirit) && intense) || spirit.equals(MalumSpiritTypes.UMBRAL_SPIRIT)) {
+                if (shardItem.matches(spirit) && intense) {
+                    return super.onUseWithItem(pPlayer, pStack, pHand);
+                }
+                if (shardItem.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
                     return super.onUseWithItem(pPlayer, pStack, pHand);
                 }
                 if (!pPlayer.isCreative()) {
@@ -74,7 +77,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
         if (pTag.contains("spirit")) {
-            spirit = MalumSpiritType.getSpiritType(pTag.getString("spirit"));
+            spirit = MalumSpiritType.load(pTag);
         } else {
             spirit = null;
         }
@@ -86,7 +89,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (spirit != null) {
-            tag.putString("spirit", spirit.getIdentifier());
+            spirit.save(tag);
         }
         tag.putBoolean("intense", intense);
         patternData.save(tag);

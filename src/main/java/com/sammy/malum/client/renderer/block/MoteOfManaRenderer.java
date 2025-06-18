@@ -1,17 +1,14 @@
 package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
-import com.sammy.malum.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
-import static com.sammy.malum.client.RenderUtils.*;
 import static com.sammy.malum.registry.client.MalumRenderTypeTokens.MOTE_OF_MANA;
 
 
