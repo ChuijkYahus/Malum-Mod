@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
@@ -34,7 +35,7 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
             }
             float totemTimer = Mth.clamp((blockEntityIn.radiusVisibility + (blockEntityIn.isActiveOrAssembling() ? 1 : -1) * partialTicks), 0, 40);
             float scalar = Easing.SINE_IN_OUT.ease(STAFF_TRACKER.getDelta(partialTicks), 0, 1) * Easing.SINE_IN_OUT.ease(totemTimer / 40f, 0, 1, 1);
-            MalumSpiritType spiritType = blockEntityIn.cachedRadiusRite.getIdentifyingSpirit();
+            SpiritHolder<MalumSpiritType> spiritType = blockEntityIn.cachedRadiusRite.getIdentifyingSpirit();
             TotemicRiteEffect riteEffect = blockEntityIn.cachedRadiusRite.getRiteEffect(blockEntityIn.isSoulwood);
             BlockPos riteEffectCenter = riteEffect.getRiteEffectCenter(blockEntityIn);
             BlockPos offset = riteEffectCenter.subtract(blockEntityIn.getBlockPos());

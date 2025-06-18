@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 
 public class SoulwoodLogBlock extends MalumLogBLock {
     public SoulwoodLogBlock(Properties properties, Supplier<Block> stripped) {
-        super(properties, stripped, true);
+        super(properties, stripped);
     }
 
     @Nullable

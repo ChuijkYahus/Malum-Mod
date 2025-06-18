@@ -23,11 +23,9 @@ import team.lodestar.lodestone.systems.block.LodestoneLogBlock;
 import java.util.function.Supplier;
 
 public class MalumLogBLock extends LodestoneLogBlock {
-    private final boolean isCorrupt;
 
-    public MalumLogBLock(Properties properties, Supplier<Block> stripped, boolean isCorrupt) {
+    public MalumLogBLock(Properties properties, Supplier<Block> stripped) {
         super(properties, stripped);
-        this.isCorrupt = isCorrupt;
     }
 
     @Override

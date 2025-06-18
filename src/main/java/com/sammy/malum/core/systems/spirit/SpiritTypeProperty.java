@@ -28,7 +28,7 @@ public class SpiritTypeProperty extends Property<String> {
 
     public SpiritTypeProperty(String name, Collection<SpiritHolder<MalumSpiritType>> validSpirits) {
         super(name, String.class);
-        this.values = ImmutableSet.copyOf(validSpirits.stream().map(DeferredHolder::getId).map(ResourceLocation::toString).collect(Collectors.toList()));
+        this.values = ImmutableSet.copyOf(validSpirits.stream().map(DeferredHolder::getId).map(ResourceLocation::getPath).collect(Collectors.toList()));
     }
 
     @Override

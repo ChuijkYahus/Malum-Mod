@@ -1,122 +1,122 @@
 {
   "variants": {
-    "facing=east,spirit_type=aerial": {
+    "facing=east,spirit=aerial": {
       "model": "malum:block/runewood_totem_pole_aerial",
       "y": 90
     },
-    "facing=east,spirit_type=aqueous": {
+    "facing=east,spirit=aqueous": {
       "model": "malum:block/runewood_totem_pole_aqueous",
       "y": 90
     },
-    "facing=east,spirit_type=arcane": {
+    "facing=east,spirit=arcane": {
       "model": "malum:block/runewood_totem_pole_arcane",
       "y": 90
     },
-    "facing=east,spirit_type=earthen": {
+    "facing=east,spirit=earthen": {
       "model": "malum:block/runewood_totem_pole_earthen",
       "y": 90
     },
-    "facing=east,spirit_type=eldritch": {
+    "facing=east,spirit=eldritch": {
       "model": "malum:block/runewood_totem_pole_eldritch",
       "y": 90
     },
-    "facing=east,spirit_type=infernal": {
+    "facing=east,spirit=infernal": {
       "model": "malum:block/runewood_totem_pole_infernal",
       "y": 90
     },
-    "facing=east,spirit_type=sacred": {
+    "facing=east,spirit=sacred": {
       "model": "malum:block/runewood_totem_pole_sacred",
       "y": 90
     },
-    "facing=east,spirit_type=wicked": {
+    "facing=east,spirit=wicked": {
       "model": "malum:block/runewood_totem_pole_wicked",
       "y": 90
     },
-    "facing=north,spirit_type=aerial": {
+    "facing=north,spirit=aerial": {
       "model": "malum:block/runewood_totem_pole_aerial"
     },
-    "facing=north,spirit_type=aqueous": {
+    "facing=north,spirit=aqueous": {
       "model": "malum:block/runewood_totem_pole_aqueous"
     },
-    "facing=north,spirit_type=arcane": {
+    "facing=north,spirit=arcane": {
       "model": "malum:block/runewood_totem_pole_arcane"
     },
-    "facing=north,spirit_type=earthen": {
+    "facing=north,spirit=earthen": {
       "model": "malum:block/runewood_totem_pole_earthen"
     },
-    "facing=north,spirit_type=eldritch": {
+    "facing=north,spirit=eldritch": {
       "model": "malum:block/runewood_totem_pole_eldritch"
     },
-    "facing=north,spirit_type=infernal": {
+    "facing=north,spirit=infernal": {
       "model": "malum:block/runewood_totem_pole_infernal"
     },
-    "facing=north,spirit_type=sacred": {
+    "facing=north,spirit=sacred": {
       "model": "malum:block/runewood_totem_pole_sacred"
     },
-    "facing=north,spirit_type=wicked": {
+    "facing=north,spirit=wicked": {
       "model": "malum:block/runewood_totem_pole_wicked"
     },
-    "facing=south,spirit_type=aerial": {
+    "facing=south,spirit=aerial": {
       "model": "malum:block/runewood_totem_pole_aerial",
       "y": 180
     },
-    "facing=south,spirit_type=aqueous": {
+    "facing=south,spirit=aqueous": {
       "model": "malum:block/runewood_totem_pole_aqueous",
       "y": 180
     },
-    "facing=south,spirit_type=arcane": {
+    "facing=south,spirit=arcane": {
       "model": "malum:block/runewood_totem_pole_arcane",
       "y": 180
     },
-    "facing=south,spirit_type=earthen": {
+    "facing=south,spirit=earthen": {
       "model": "malum:block/runewood_totem_pole_earthen",
       "y": 180
     },
-    "facing=south,spirit_type=eldritch": {
+    "facing=south,spirit=eldritch": {
       "model": "malum:block/runewood_totem_pole_eldritch",
       "y": 180
     },
-    "facing=south,spirit_type=infernal": {
+    "facing=south,spirit=infernal": {
       "model": "malum:block/runewood_totem_pole_infernal",
       "y": 180
     },
-    "facing=south,spirit_type=sacred": {
+    "facing=south,spirit=sacred": {
       "model": "malum:block/runewood_totem_pole_sacred",
       "y": 180
     },
-    "facing=south,spirit_type=wicked": {
+    "facing=south,spirit=wicked": {
       "model": "malum:block/runewood_totem_pole_wicked",
       "y": 180
     },
-    "facing=west,spirit_type=aerial": {
+    "facing=west,spirit=aerial": {
       "model": "malum:block/runewood_totem_pole_aerial",
       "y": 270
     },
-    "facing=west,spirit_type=aqueous": {
+    "facing=west,spirit=aqueous": {
       "model": "malum:block/runewood_totem_pole_aqueous",
       "y": 270
     },
-    "facing=west,spirit_type=arcane": {
+    "facing=west,spirit=arcane": {
       "model": "malum:block/runewood_totem_pole_arcane",
       "y": 270
     },
-    "facing=west,spirit_type=earthen": {
+    "facing=west,spirit=earthen": {
       "model": "malum:block/runewood_totem_pole_earthen",
       "y": 270
     },
-    "facing=west,spirit_type=eldritch": {
+    "facing=west,spirit=eldritch": {
       "model": "malum:block/runewood_totem_pole_eldritch",
       "y": 270
     },
-    "facing=west,spirit_type=infernal": {
+    "facing=west,spirit=infernal": {
       "model": "malum:block/runewood_totem_pole_infernal",
       "y": 270
     },
-    "facing=west,spirit_type=sacred": {
+    "facing=west,spirit=sacred": {
       "model": "malum:block/runewood_totem_pole_sacred",
       "y": 270
     },
-    "facing=west,spirit_type=wicked": {
+    "facing=west,spirit=wicked": {
       "model": "malum:block/runewood_totem_pole_wicked",
       "y": 270
     }

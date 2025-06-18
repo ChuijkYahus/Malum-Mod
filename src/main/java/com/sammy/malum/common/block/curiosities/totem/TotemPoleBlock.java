@@ -64,6 +64,6 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
     }
 
     public static BlockState createTotemPoleState(TotemPoleBlock<?> totemPole, Direction direction, SpiritWrapper spiritType) {
-        return totemPole.defaultBlockState().setValue(HORIZONTAL_FACING, direction).setValue(SPIRIT_TYPE, spiritType.getRegistryName().toString());
+        return totemPole.defaultBlockState().setValue(HORIZONTAL_FACING, direction).setValue(SPIRIT_TYPE, spiritType.getRegistryName().getPath());
     }
 }

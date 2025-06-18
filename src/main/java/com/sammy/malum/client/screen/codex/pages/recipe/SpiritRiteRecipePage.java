@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
@@ -38,10 +39,10 @@ public class SpiritRiteRecipePage extends BookPage {
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        final List<MalumSpiritType> spirits = riteType.spirits;
+        final List<SpiritHolder<MalumSpiritType>> spirits = riteType.spirits;
         final Minecraft minecraft = Minecraft.getInstance();
         var rand = minecraft.level.random;
-        PoseStack poseStack = guiGraphics.pose();
+        var poseStack = guiGraphics.pose();
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 RITE_PARTICLES.tick();
@@ -52,17 +53,17 @@ public class SpiritRiteRecipePage extends BookPage {
         int riteStartX = left + 63;
         int riteStartY = top + 118;
         for (int i = 0; i < spirits.size(); i++) {
-            final int y = riteStartY - 20 * i;
-            MalumSpiritType spiritType = spirits.get(i);
-            ResourceLocation spiritTexture = spiritType.getTotemGlowTexture();
-            ItemStack stack = spirits.get(i).getSpiritStack();
+            int y = riteStartY - 20 * i;
+            var spiritType = spirits.get(i);
+            var spiritTexture = spiritType.getTotemGlowTexture();
+            var stack = spirits.get(i).getSpiritStack();
             renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupted(), 0.25f, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);
             }
             if (ScreenParticleHandler.canSpawnParticles && minecraft.level.getGameTime() % 6L == 0) {
-                final int x = riteStartX + 8;
-                float xOffset = 25;
+                int x = riteStartX + 8;
+                int xOffset = 25;
                 float yMotion = RandomHelper.randomBetween(rand, -0.05f, -0.3f);
                 int lifetime = RandomHelper.randomBetween(rand, 60, 120);
                 ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC_SMALL, RITE_PARTICLES)

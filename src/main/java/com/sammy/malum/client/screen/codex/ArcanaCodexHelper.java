@@ -98,11 +98,11 @@ public class ArcanaCodexHelper {
         renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y) {
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritWrapper spiritType, boolean corrupted, float glowAlpha, float x, float y) {
         renderRiteIcon(texture, stack, spiritType, corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y, int z) {
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritWrapper spiritType, boolean corrupted, float glowAlpha, float x, float y, int z) {
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 11f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 12f : 17f);

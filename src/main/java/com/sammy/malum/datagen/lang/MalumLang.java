@@ -126,7 +126,7 @@ public class MalumLang extends LanguageProvider {
 
         addSpiritFlavour(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
         addSpiritFlavour(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
-        addSpiritFlavour(MalumSpiritTypes.AQUEOUS_SPIRIT, "Fundamental");
+        addSpiritFlavour(MalumSpiritTypes.ARCANE_SPIRIT, "Fundamental");
         addSpiritFlavour(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric");
         addSpiritFlavour(MalumSpiritTypes.AERIAL_SPIRIT, "Swift");
         addSpiritFlavour(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable");

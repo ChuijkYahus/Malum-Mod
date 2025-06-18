@@ -10,7 +10,7 @@ import team.lodestar.lodestone.helpers.*;
 
 public class AscensionEffect extends MobEffect {
     public AscensionEffect() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AERIAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AERIAL_COLORS().primaryColor()));
         addAttributeModifier(Attributes.GRAVITY, MalumMod.malumPath("ascension"), -0.10f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
