@@ -9,7 +9,7 @@
     "id": "malum:rune_of_the_aether"
   },
   "secondaryInput": {
-    "type": "aerial",
-    "count": 32
+    "count": 32,
+    "item": "malum:aerial_spirit"
   }
 }

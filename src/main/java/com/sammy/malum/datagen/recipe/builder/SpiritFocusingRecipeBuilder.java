@@ -3,6 +3,7 @@ package com.sammy.malum.datagen.recipe.builder;
 import com.google.common.collect.Lists;
 import com.sammy.malum.common.recipe.SpiritFocusingRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -37,8 +38,8 @@ public class SpiritFocusingRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         this(time, durabilityCost, Ingredient.of(input.value()), new ItemStack(output, outputCount));
     }
 
-    public SpiritFocusingRecipeBuilder addSpirit(SpiritWrapper type, int count) {
-        spirits.add(new SpiritIngredient(type, count));
+    public SpiritFocusingRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+        spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }
 

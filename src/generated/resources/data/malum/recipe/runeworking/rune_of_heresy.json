@@ -9,7 +9,7 @@
     "id": "malum:rune_of_heresy"
   },
   "secondaryInput": {
-    "type": "eldritch",
-    "count": 16
+    "count": 16,
+    "item": "malum:eldritch_spirit"
   }
 }

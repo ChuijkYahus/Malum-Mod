@@ -10,19 +10,19 @@
   },
   "spirits": [
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 4
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 4
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 4
     },
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 4
     }
   ]

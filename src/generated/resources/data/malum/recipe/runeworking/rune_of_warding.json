@@ -9,7 +9,7 @@
     "id": "malum:rune_of_warding"
   },
   "secondaryInput": {
-    "type": "earthen",
-    "count": 32
+    "count": 32,
+    "item": "malum:earthen_spirit"
   }
 }

@@ -13,15 +13,15 @@
   },
   "spirits": [
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 16
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 16
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 16
     }
   ]

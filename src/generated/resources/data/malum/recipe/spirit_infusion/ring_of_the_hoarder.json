@@ -24,15 +24,15 @@
   },
   "spirits": [
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 32
     },
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 16
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 16
     }
   ]

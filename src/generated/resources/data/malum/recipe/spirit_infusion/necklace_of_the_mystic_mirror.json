@@ -24,7 +24,7 @@
   },
   "spirits": [
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 24
     }
   ]

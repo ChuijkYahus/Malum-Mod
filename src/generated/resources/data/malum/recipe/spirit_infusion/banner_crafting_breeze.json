@@ -16,7 +16,7 @@
   },
   "spirits": [
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 1
     }
   ]

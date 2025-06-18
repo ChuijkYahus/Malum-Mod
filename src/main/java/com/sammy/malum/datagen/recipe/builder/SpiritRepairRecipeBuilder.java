@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.recipe.builder;
 
 import com.sammy.malum.common.recipe.SpiritRepairRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -44,8 +45,8 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
         return this;
     }
 
-    public SpiritRepairRecipeBuilder addSpirit(SpiritWrapper type, int count) {
-        spirits.add(new SpiritIngredient(type, count));
+    public SpiritRepairRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+        spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }
 

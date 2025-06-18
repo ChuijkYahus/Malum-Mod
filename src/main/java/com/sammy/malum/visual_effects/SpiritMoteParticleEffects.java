@@ -29,13 +29,13 @@ public class SpiritMoteParticleEffects {
                 speed.z / d1 * d0 * 0.4F);
     };
 
-    public static void destroy(Level level, BlockPos pPos, BlockState pState, MalumSpiritType spiritType) {
+    public static void destroy(Level level, BlockPos pPos, BlockState pState, SpiritWrapper spirit) {
         if (!pState.isAir()) {
             VoxelShape voxelshape = pState.getShape(level, pPos);
 
             var builder = SpiritBasedParticleBuilder.createSpirit(new LodestoneTerrainParticleOptions(LodestoneParticleTypes.TERRAIN_PARTICLE, pState, pPos))
                     .setRenderType(LodestoneWorldParticleRenderType.TERRAIN_SHEET)
-                    .setSpirit(spiritType)
+                    .setSpirit(spirit)
                     .setGravityStrength(1f)
                     .setFrictionStrength(0.98f)
                     .setTransparencyData(GenericParticleData.create(0.5f, 0).build())

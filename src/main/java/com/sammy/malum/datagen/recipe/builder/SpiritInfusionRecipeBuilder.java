@@ -3,6 +3,7 @@ package com.sammy.malum.datagen.recipe.builder;
 import com.google.common.collect.Lists;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -70,7 +71,7 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         return this;
     }
 
-    public SpiritInfusionRecipeBuilder addSpirit(SpiritWrapper spirit, int count) {
+    public SpiritInfusionRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
         spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }

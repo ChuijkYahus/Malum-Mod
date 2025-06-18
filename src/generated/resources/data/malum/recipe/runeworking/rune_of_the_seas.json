@@ -9,7 +9,7 @@
     "id": "malum:rune_of_the_seas"
   },
   "secondaryInput": {
-    "type": "aqueous",
-    "count": 32
+    "count": 32,
+    "item": "malum:aqueous_spirit"
   }
 }

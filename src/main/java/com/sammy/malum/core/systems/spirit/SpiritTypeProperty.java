@@ -1,10 +1,12 @@
 package com.sammy.malum.core.systems.spirit;
 
 import com.google.common.collect.ImmutableSet;
+import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
@@ -20,6 +22,13 @@ public class SpiritTypeProperty extends Property<String> {
             MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.WICKED_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT,
             MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.AERIAL_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT
     );
+
+    public static SpiritHolder<MalumSpiritType> getSpiritType(BlockState state) {
+        if (state.hasProperty(SPIRIT_TYPE)) {
+            return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
+        }
+        throw new IllegalArgumentException();
+    }
 
     @SafeVarargs
     public SpiritTypeProperty(String name, SpiritHolder<MalumSpiritType>... validSpirits) {

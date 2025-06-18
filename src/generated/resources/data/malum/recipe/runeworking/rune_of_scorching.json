@@ -9,7 +9,7 @@
     "id": "malum:rune_of_scorching"
   },
   "secondaryInput": {
-    "type": "infernal",
-    "count": 16
+    "count": 16,
+    "item": "malum:infernal_spirit"
   }
 }

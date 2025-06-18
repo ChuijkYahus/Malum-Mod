@@ -9,7 +9,7 @@
     "id": "malum:rune_of_twinned_duration"
   },
   "secondaryInput": {
-    "type": "aqueous",
-    "count": 16
+    "count": 16,
+    "item": "malum:aqueous_spirit"
   }
 }

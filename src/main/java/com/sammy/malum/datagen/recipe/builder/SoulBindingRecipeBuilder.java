@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.recipe.*;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
@@ -56,8 +57,8 @@ public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBind
         return this;
     }
 
-    public SoulBindingRecipeBuilder addSpirit(SpiritWrapper type, int count) {
-        spirits.add(new SpiritIngredient(type, count));
+    public SoulBindingRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+        spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }
 

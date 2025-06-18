@@ -28,11 +28,11 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 16
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 16
     }
   ]

@@ -9,7 +9,7 @@
     "id": "malum:rune_of_dexterity"
   },
   "secondaryInput": {
-    "type": "aerial",
-    "count": 16
+    "count": 16,
+    "item": "malum:aerial_spirit"
   }
 }

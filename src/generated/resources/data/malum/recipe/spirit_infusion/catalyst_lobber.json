@@ -24,15 +24,15 @@
   },
   "spirits": [
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 32
     },
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 32
     },
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 32
     }
   ]

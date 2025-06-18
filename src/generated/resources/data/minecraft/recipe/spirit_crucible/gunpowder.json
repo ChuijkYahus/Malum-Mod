@@ -10,7 +10,7 @@
   },
   "spirits": [
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 1
     }
   ],

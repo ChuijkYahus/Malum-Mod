@@ -17,15 +17,15 @@
   },
   "spirits": [
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 16
     },
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 16
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 16
     }
   ]

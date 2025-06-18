@@ -20,11 +20,11 @@
   },
   "spirits": [
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 16
     },
     {
-      "type": "wicked",
+      "type": "malum:wicked",
       "count": 16
     }
   ]

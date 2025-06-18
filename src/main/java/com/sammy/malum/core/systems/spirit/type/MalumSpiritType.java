@@ -9,10 +9,11 @@ import io.netty.buffer.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class MalumSpiritType implements SpiritWrapper {
 
@@ -21,7 +22,7 @@ public class MalumSpiritType implements SpiritWrapper {
 
     public static final Codec<MalumSpiritType> CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.byNameCodec();
 
-    public static StreamCodec<ByteBuf, SpiritHolder<MalumSpiritType>> STREAM_CODEC = ByteBufCodecs.fromCodec(MalumSpiritType.HOLDER_CODEC);
+    public static StreamCodec<ByteBuf, MalumSpiritType> STREAM_CODEC = ByteBufCodecs.fromCodec(MalumSpiritType.CODEC);
 
     private final SpiritColorProperties colorProperties;
     private final DeferredHolder<Item, SpiritShardItem> spiritShard;
@@ -40,19 +41,11 @@ public class MalumSpiritType implements SpiritWrapper {
         MalumSpiritType.CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
     }
 
-    public static MalumSpiritType load(CompoundTag tag) {
+    public static Optional<MalumSpiritType> load(CompoundTag tag) {
         return load(tag, "spirit");
     }
-    public static MalumSpiritType load(CompoundTag tag, String name) {
-        return MalumSpiritType.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).getOrThrow();
-    }
-
-    public static MalumSpiritType getSpiritType(String spirit) {
-        return getSpiritType(ResourceLocation.parse(spirit));
-    }
-
-    public static MalumSpiritType getSpiritType(ResourceLocation spirit) {
-        return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getHolder(spirit).orElseThrow().value();
+    public static Optional<MalumSpiritType> load(CompoundTag tag, String name) {
+        return MalumSpiritType.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
     }
 
     @Override

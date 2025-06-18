@@ -1,0 +1,16 @@
+{
+  "values": {
+    "malum:runewood": {
+      "totemPoleVariant": "malum:runewood_totem_pole"
+    },
+    "malum:runewood_log": {
+      "totemPoleVariant": "malum:runewood_totem_pole"
+    },
+    "malum:soulwood": {
+      "totemPoleVariant": "malum:soulwood_totem_pole"
+    },
+    "malum:soulwood_log": {
+      "totemPoleVariant": "malum:soulwood_totem_pole"
+    }
+  }
+}

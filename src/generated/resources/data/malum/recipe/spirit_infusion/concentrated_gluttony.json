@@ -16,15 +16,15 @@
   },
   "spirits": [
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 2
     },
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 2
     },
     {
-      "type": "wicked",
+      "type": "malum:wicked",
       "count": 2
     }
   ]

@@ -3,10 +3,13 @@ package com.sammy.malum.core.systems.registry;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<MalumSpiritType, T> implements SpiritWrapper {
 
@@ -14,19 +17,12 @@ public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<Malu
         super(key);
     }
 
-    public void save(CompoundTag tag) {
-        save(tag, "spirit");
-    }
-    @SuppressWarnings("unchecked")
-    public void save(CompoundTag tag, String name) {
-        MalumSpiritType.HOLDER_CODEC.encode((SpiritHolder<MalumSpiritType>)this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
+    public static SpiritHolder<MalumSpiritType> getSpiritType(String spirit) {
+        return getSpiritType(ResourceLocation.parse(spirit));
     }
 
-    public static SpiritHolder<MalumSpiritType> load(CompoundTag tag) {
-        return load(tag, "spirit");
-    }
-    public static SpiritHolder<MalumSpiritType> load(CompoundTag tag, String name) {
-        return MalumSpiritType.HOLDER_CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).getOrThrow();
+    public static SpiritHolder<MalumSpiritType> getSpiritType(ResourceLocation spirit) {
+        return new SpiritHolder<>(ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, spirit));
     }
 
     @Override

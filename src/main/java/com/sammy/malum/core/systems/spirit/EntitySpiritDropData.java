@@ -20,14 +20,14 @@ public class EntitySpiritDropData {
 
     public static final EntitySpiritDropData EMPTY = new EntitySpiritDropData(MalumSpiritTypes.SACRED_SPIRIT, new ArrayList<>(), null);
 
-    protected final MalumSpiritType primaryType;
+    protected final SpiritHolder<MalumSpiritType> primaryType;
     protected final int totalSpirits;
     protected final List<SpiritIngredient> spirits;
     @Nullable
     protected final Ingredient itemAsSoul;
 
-    public EntitySpiritDropData(SpiritWrapper primaryType, List<SpiritIngredient> spirits, @Nullable Ingredient itemAsSoul) {
-        this.primaryType = primaryType.unwrapSpirit();
+    public EntitySpiritDropData(SpiritHolder<MalumSpiritType> primaryType, List<SpiritIngredient> spirits, @Nullable Ingredient itemAsSoul) {
+        this.primaryType = primaryType;
         this.totalSpirits = spirits.stream().mapToInt(SpiritIngredient::count).sum();
         this.spirits = spirits;
         this.itemAsSoul = itemAsSoul;
@@ -37,7 +37,7 @@ public class EntitySpiritDropData {
         return getSpiritData(entity).map(EntitySpiritDropData::getSpiritStacks).orElse(Collections.emptyList());
     }
 
-    public MalumSpiritType getPrimaryType() {
+    public SpiritHolder<MalumSpiritType> getPrimaryType() {
         return primaryType;
     }
 
@@ -94,11 +94,11 @@ public class EntitySpiritDropData {
     }
 
     public static class Builder {
-        private final SpiritWrapper primaryType;
+        private final SpiritHolder<MalumSpiritType> primaryType;
         private final List<SpiritIngredient> spirits = new ArrayList<>();
         private Ingredient itemAsSoul = null;
 
-        public Builder(SpiritWrapper primaryType) {
+        public Builder(SpiritHolder<MalumSpiritType> primaryType) {
             this.primaryType = primaryType;
         }
 
@@ -106,7 +106,7 @@ public class EntitySpiritDropData {
             return withSpirit(spiritType, 1);
         }
 
-        public Builder withSpirit(SpiritWrapper spirit, int count) {
+        public Builder withSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
             spirits.add(new SpiritIngredient(spirit, count));
             return this;
         }

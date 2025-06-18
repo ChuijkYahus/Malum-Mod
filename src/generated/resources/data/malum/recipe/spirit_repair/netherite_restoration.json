@@ -19,15 +19,15 @@
   },
   "spirits": [
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 16
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 16
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 16
     }
   ]

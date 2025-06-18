@@ -5,29 +5,24 @@ import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.recipe.*;
-import net.minecraft.core.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
-public record SpiritIngredient(MalumSpiritType spiritType, int count) implements ICustomIngredient, SpiritWrapper {
+public record SpiritIngredient(SpiritHolder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritWrapper {
 
     public static final MapCodec<SpiritIngredient> CODEC = RecordCodecBuilder.mapCodec(
             builder -> builder
                     .group(
-                            MalumSpiritType.CODEC.fieldOf("type").forGetter(SpiritIngredient::spiritType),
+                            MalumSpiritType.HOLDER_CODEC.fieldOf("type").forGetter(SpiritIngredient::spirit),
                             Codec.INT.fieldOf("count").forGetter(SpiritIngredient::count))
                     .apply(builder, SpiritIngredient::new));
 
-    public SpiritIngredient(SpiritWrapper spiritType, int count) {
-        this(spiritType.unwrapSpirit(), count);
-    }
-
     @Override
     public boolean test(ItemStack itemStack) {
-        return itemStack.is(spiritType.getSpiritShard()) && itemStack.getCount() >= count;
+        return itemStack.is(spirit.getSpiritShard()) && itemStack.getCount() >= count;
     }
 
     @Override
@@ -41,7 +36,7 @@ public record SpiritIngredient(MalumSpiritType spiritType, int count) implements
     }
 
     public ItemStack asItemStack() {
-        return spiritType().getSpiritStack(count);
+        return spirit().getSpiritStack(count);
     }
 
     @Override
@@ -51,6 +46,6 @@ public record SpiritIngredient(MalumSpiritType spiritType, int count) implements
 
     @Override
     public @NotNull MalumSpiritType unwrapSpirit() {
-        return spiritType.unwrapSpirit();
+        return spirit.unwrapSpirit();
     }
 }

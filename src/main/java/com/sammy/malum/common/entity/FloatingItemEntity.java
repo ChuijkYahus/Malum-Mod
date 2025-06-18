@@ -17,10 +17,10 @@ import net.minecraft.world.phys.Vec3;
 
 public abstract class FloatingItemEntity extends FloatingEntity {
 
-    public static final EntityDataSerializer<SpiritHolder<MalumSpiritType>> SPIRIT_TYPE = EntityDataSerializer.forValueType(MalumSpiritType.STREAM_CODEC);
+    public static final EntityDataSerializer<MalumSpiritType> SPIRIT_TYPE = EntityDataSerializer.forValueType(MalumSpiritType.STREAM_CODEC);
 
     protected static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.ITEM_STACK);
-    protected static final EntityDataAccessor<SpiritHolder<MalumSpiritType>> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, SPIRIT_TYPE);
+    protected static final EntityDataAccessor<MalumSpiritType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, SPIRIT_TYPE);
 
     public FloatingItemEntity(EntityType<? extends FloatingItemEntity> type, Level level) {
         super(type, level);
@@ -29,24 +29,28 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT);
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.value());
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        ItemStack itemstack = this.getItem();
-        if (!itemstack.isEmpty()) {
-            pCompound.put("item", getItem().save(this.registryAccess()));
+        ItemStack item = getItem();
+        if (!item.isEmpty()) {
+            pCompound.put("item", item.save(this.registryAccess()));
         }
-        MalumSpiritType.HOLDER_CODEC.encode(getSpiritType(), NbtOps.INSTANCE, new CompoundTag()).ifSuccess(s -> pCompound.put("spirit", s));
+
+        var spirit = getSpiritType();
+        if (spirit != null) {
+            spirit.save(pCompound);
+        }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setItem(ItemStack.parse(registryAccess(), pCompound.getCompound("item")).orElse(ItemStack.EMPTY));
-        MalumSpiritType.HOLDER_CODEC.decode(NbtOps.INSTANCE, pCompound.getCompound("spirit")).ifSuccess(s -> setSpirit(s.getFirst()));
+        setSpirit(MalumSpiritType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.value()));
     }
 
     @Override
@@ -77,11 +81,11 @@ public abstract class FloatingItemEntity extends FloatingEntity {
         this.getEntityData().set(DATA_ITEM_STACK, pStack);
     }
 
-    public SpiritHolder<MalumSpiritType> getSpiritType() {
+    public MalumSpiritType getSpiritType() {
         return getEntityData().get(DATA_SPIRIT_GLOW);
     }
 
-    public void setSpirit(SpiritHolder<MalumSpiritType> spiritType) {
+    public void setSpirit(MalumSpiritType spiritType) {
         getEntityData().set(DATA_SPIRIT_GLOW, spiritType);
     }
 }

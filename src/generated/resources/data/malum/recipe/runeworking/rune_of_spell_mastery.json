@@ -9,7 +9,7 @@
     "id": "malum:rune_of_spell_mastery"
   },
   "secondaryInput": {
-    "type": "arcane",
-    "count": 16
+    "count": 16,
+    "item": "malum:arcane_spirit"
   }
 }

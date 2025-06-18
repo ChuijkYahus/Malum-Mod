@@ -16,11 +16,11 @@
   },
   "spirits": [
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 16
     },
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 8
     }
   ]

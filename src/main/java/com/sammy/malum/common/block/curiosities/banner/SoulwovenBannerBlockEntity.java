@@ -74,18 +74,6 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        if (pTag.contains("spirit")) {
-            spirit = MalumSpiritType.load(pTag);
-        } else {
-            spirit = null;
-        }
-        intense = pTag.getBoolean("intense");
-        patternData = SoulwovenBannerPatternDataComponent.load(pTag);
-    }
-
-    @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (spirit != null) {
@@ -93,6 +81,14 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         }
         tag.putBoolean("intense", intense);
         patternData.save(tag);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.loadAdditional(pTag, pRegistries);
+        spirit = MalumSpiritType.load(pTag).orElse(null);
+        intense = pTag.getBoolean("intense");
+        patternData = SoulwovenBannerPatternDataComponent.load(pTag);
     }
 
     @Override

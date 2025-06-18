@@ -10,11 +10,11 @@
   },
   "spirits": [
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 1
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 1
     }
   ]

@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -97,11 +98,9 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (spirit != null) {
-            tag.putString("spirit", spirit.getRegistryName().toString());
+            spirit.save(tag);
         }
-        if (!totemPoleState.equals(INACTIVE)) {
-            tag.putInt("state", totemPoleState.ordinal());
-        }
+        tag.putInt("state", totemPoleState.ordinal());
         if (chargeProgress != 0) {
             tag.putInt("chargeProgress", chargeProgress);
         }
@@ -113,10 +112,8 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        if (tag.contains("spirit")) {
-            spirit = MalumSpiritType.getSpiritType(tag.getString("spirit"));
-        }
-        totemPoleState = tag.contains("state") ? TotemPoleState.values()[tag.getInt("state")] : INACTIVE;
+        spirit = MalumSpiritType.load(tag).orElse(null);
+        totemPoleState = TotemPoleState.values()[tag.getInt("state")];
         chargeProgress = tag.getInt("chargeProgress");
         totemBaseYLevel = tag.getInt("totemBaseYLevel");
         super.loadAdditional(tag, pRegistries);

@@ -19,7 +19,7 @@
 //        }
 //        @Override
 //        public boolean matches(Context cx, KubeRecipe recipe, SpiritIngredient value, ReplacementMatchInfo match) {
-//            return match.match() instanceof SpiritMatch spiritMatch && spiritMatch.matches(cx, value.spiritType().getSpiritShard(), match.exact());
+//            return match.match() instanceof SpiritMatch spiritMatch && spiritMatch.matches(cx, value.spirit().getSpiritShard(), match.exact());
 //        }
 //
 //        @Override
@@ -29,7 +29,7 @@
 //
 //        @Override
 //        public void buildUniqueId(UniqueIdBuilder builder, SpiritIngredient value) {
-//            builder.append(value.spiritType().getRegistryName());
+//            builder.append(value.spirit().getRegistryName());
 //        }
 //    };
 //}

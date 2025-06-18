@@ -5,8 +5,8 @@ import com.mojang.datafixers.util.*;
 import com.mojang.serialization.JsonOps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -83,7 +83,7 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
             } else {
                 MalumMod.LOGGER.info("Added spirit drops for entity with registry name: {}", name);
                 JsonArray array = object.getAsJsonArray("spirits");
-                SPIRIT_DATA.put(resourceLocation, new EntitySpiritDropData(MalumSpiritType.getSpiritType(primaryType), getSpiritDrops(array), getItemAsSoul(object)));
+                SPIRIT_DATA.put(resourceLocation, new EntitySpiritDropData(SpiritHolder.getSpiritType(primaryType), getSpiritDrops(array), getItemAsSoul(object)));
                 HAS_NO_DATA.remove(resourceLocation);
             }
         }
@@ -95,7 +95,7 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
             JsonObject spiritObject = spiritElement.getAsJsonObject();
             String spiritName = spiritObject.getAsJsonPrimitive("spirit").getAsString();
             int count = spiritObject.has("count") ? spiritObject.getAsJsonPrimitive("count").getAsInt() : 1;
-            spiritData.add(new SpiritIngredient(MalumSpiritType.getSpiritType(spiritName), count));
+            spiritData.add(new SpiritIngredient(SpiritHolder.getSpiritType(spiritName), count));
         }
         return spiritData;
     }

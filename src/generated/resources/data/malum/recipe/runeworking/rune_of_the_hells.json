@@ -9,7 +9,7 @@
     "id": "malum:rune_of_the_hells"
   },
   "secondaryInput": {
-    "type": "infernal",
-    "count": 32
+    "count": 32,
+    "item": "malum:infernal_spirit"
   }
 }
