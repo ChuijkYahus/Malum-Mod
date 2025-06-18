@@ -3,19 +3,19 @@
   "primary_type": "infernal",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 4
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 4
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 3
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 5
     }
   ]

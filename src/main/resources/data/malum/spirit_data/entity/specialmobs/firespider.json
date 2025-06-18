@@ -3,11 +3,11 @@
   "primary_type": "aerial",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     }
   ]

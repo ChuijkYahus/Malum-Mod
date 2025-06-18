@@ -3,15 +3,15 @@
   "primary_type": "eldritch",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 6
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 8
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 4
     }
   ]

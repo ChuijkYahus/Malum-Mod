@@ -24,7 +24,7 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if (blockEntityIn.contents != null) {
-            var type = blockEntityIn.contents.spirit();
+            var type = blockEntityIn.contents.unwrapSpirit();
             float time = level.getGameTime() + partialTicks;
             double y = 0.5f + (float) Math.sin((time * 0.05f) % 6.28f) * 0.2f;
             poseStack.pushPose();

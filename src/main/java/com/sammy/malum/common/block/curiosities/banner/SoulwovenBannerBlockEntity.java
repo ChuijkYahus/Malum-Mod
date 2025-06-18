@@ -51,7 +51,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
         if (level instanceof ServerLevel serverLevel) {
             if (pStack.getItem() instanceof SpiritShardItem shardItem) {
-                if (shardItem.matches(spirit) && intense) {
+                if (spirit != null && shardItem.matches(spirit) && intense) {
                     return super.onUseWithItem(pPlayer, pStack, pHand);
                 }
                 if (shardItem.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {

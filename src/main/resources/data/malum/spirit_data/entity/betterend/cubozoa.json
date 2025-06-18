@@ -3,7 +3,7 @@
   "primary_type": "aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     }
   ]

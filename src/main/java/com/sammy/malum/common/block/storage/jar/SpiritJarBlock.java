@@ -81,7 +81,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     @Override
     protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         if (level.getBlockEntity(pos) instanceof SpiritJarBlockEntity jar) {
-            return jar.contents != null ? jar.contents.spirit().getAnalogSignal() : 0;
+            return jar.contents != null ? jar.contents.unwrapSpirit().getAnalogSignal() : 0;
         }
         return 0;
     }

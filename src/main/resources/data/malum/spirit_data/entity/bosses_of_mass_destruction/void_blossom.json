@@ -3,19 +3,19 @@
   "primary_type": "earthen",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 4
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 5
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 2
     }
   ]

@@ -3,11 +3,11 @@
   "primary_type": "sacred",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 3
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 2
     }
   ]

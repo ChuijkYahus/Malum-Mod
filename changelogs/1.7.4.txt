@@ -2,5 +2,6 @@ Added new rune equip sounds
 
 Runic Workbench Recipes now support regular items as a secondary input
 
+
 Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 Fixed the Soulbinding Brazier model having incorrect face culling data

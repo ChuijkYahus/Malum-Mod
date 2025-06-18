@@ -56,7 +56,7 @@ public class MalumSpiritTypes {
 
     public static SpiritColorProperties INFERNAL_COLORS() {
         return SpiritColorProperties.create(new Color(250, 154, 31), new Color(210, 39, 150))
-                .setColorCoefficient(0.9f).setColorEasing(Easing.SINE_IN_OUT).build();
+                .setColorCoefficient(0.9f).setColorEasing(Easing.SINE_IN_OUT).brightenItemColor(2).build();
     }
 
     public static SpiritColorProperties UMBRAL_COLORS() {

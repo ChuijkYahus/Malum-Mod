@@ -10,20 +10,24 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-public record SpiritJarContentsComponent(SpiritHolder<MalumSpiritType> spirit, int count) implements SpiritWrapper {
+public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) implements SpiritWrapper {
     public static Codec<SpiritJarContentsComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            MalumSpiritType.HOLDER_CODEC.fieldOf("spirit").forGetter(SpiritJarContentsComponent::spirit),
+            MalumSpiritType.CODEC.fieldOf("spirit").forGetter(SpiritJarContentsComponent::spirit),
             Codec.INT.fieldOf("count").forGetter(SpiritJarContentsComponent::count)
     ).apply(instance, SpiritJarContentsComponent::new));
 
     public static StreamCodec<ByteBuf, SpiritJarContentsComponent> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritJarContentsComponent.CODEC);
+
+    public SpiritJarContentsComponent(SpiritWrapper spirit, int count) {
+        this(spirit.unwrapSpirit(), count);
+    }
 
     public ItemStack createStack() {
         return createStack(Math.min(count, 64));
     }
 
     public ItemStack createStack(int count) {
-        return spirit.value().getSpiritStack(count);
+        return spirit.getSpiritStack(count);
     }
 
     public SpiritJarContentsComponent add(int added) {
@@ -40,6 +44,6 @@ public record SpiritJarContentsComponent(SpiritHolder<MalumSpiritType> spirit, i
 
     @Override
     public @NotNull MalumSpiritType unwrapSpirit() {
-        return spirit.unwrapSpirit();
+        return spirit;
     }
 }

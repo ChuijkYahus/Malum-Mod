@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.registry;
 
+import com.mojang.serialization.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -8,6 +9,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
 import java.util.function.*;
 
 @SuppressWarnings("unchecked")
@@ -20,6 +22,7 @@ public class DeferredSpiritTypes extends DeferredRegister<MalumSpiritType> {
     public static DeferredSpiritTypes create(String modid) {
         return new DeferredSpiritTypes(modid);
     }
+
     @SuppressWarnings("unchecked")
     @Override
     public <I extends MalumSpiritType> @NotNull SpiritHolder<I> register(@NotNull String name, @NotNull Function<ResourceLocation, ? extends I> func) {

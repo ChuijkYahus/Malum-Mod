@@ -69,7 +69,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
             if (slot == 1) {
                 if (!simulate) {
                     if (contents == null) {
-                        contents = new SpiritJarContentsComponent(shardItem.getSpirit(), stack.getCount());
+                        contents = new SpiritJarContentsComponent(shardItem, stack.getCount());
                     } else if (contents.matches(shardItem)) {
                         contents = contents.add(stack.getCount());
                     }
@@ -201,11 +201,11 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
 
             return inserted;
         }
-        if (stack.getItem() instanceof SpiritShardItem shard) {
-            if (contents == null || contents.matches(shard)) {
+        if (stack.getItem() instanceof SpiritShardItem shardItem) {
+            if (contents == null || contents.matches(shardItem)) {
                 if (contents == null) {
-                    contents = new SpiritJarContentsComponent(shard.getSpirit(), stack.getCount());
-                } else if (contents.matches(shard)) {
+                    contents = new SpiritJarContentsComponent(shardItem, stack.getCount());
+                } else if (contents.matches(shardItem)) {
                     contents = contents.add(stack.getCount());
                 }
                 inserted += stack.getCount();
@@ -249,7 +249,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
     public void tick() {
         if (level.isClientSide) {
             if (contents != null) {
-                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), contents.spirit().value(), 0.4f, 3);
+                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), contents.spirit(), 0.4f, 3);
             }
         }
     }

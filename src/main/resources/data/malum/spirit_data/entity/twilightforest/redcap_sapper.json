@@ -3,7 +3,7 @@
   "primary_type": "earthen",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 2
     }
   ]

@@ -6,6 +6,7 @@ import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
@@ -17,8 +18,7 @@ import java.util.*;
 
 public class MalumSpiritType implements SpiritWrapper {
 
-    public static final Codec<SpiritHolder<MalumSpiritType>> HOLDER_CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.holderByNameCodec()
-            .flatComapMap(c -> (SpiritHolder<MalumSpiritType>)c, DataResult::success);
+    public static final Codec<Holder<MalumSpiritType>> HOLDER_CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.holderByNameCodec();
 
     public static final Codec<MalumSpiritType> CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.byNameCodec();
 
@@ -37,6 +37,7 @@ public class MalumSpiritType implements SpiritWrapper {
     public void save(CompoundTag tag) {
         save(tag, "spirit");
     }
+
     public void save(CompoundTag tag, String name) {
         MalumSpiritType.CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
     }
@@ -44,6 +45,7 @@ public class MalumSpiritType implements SpiritWrapper {
     public static Optional<MalumSpiritType> load(CompoundTag tag) {
         return load(tag, "spirit");
     }
+
     public static Optional<MalumSpiritType> load(CompoundTag tag, String name) {
         return MalumSpiritType.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
     }

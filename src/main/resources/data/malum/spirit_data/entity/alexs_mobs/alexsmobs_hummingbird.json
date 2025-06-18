@@ -3,7 +3,7 @@
   "primary_type": "aerial",
   "spirits": [
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

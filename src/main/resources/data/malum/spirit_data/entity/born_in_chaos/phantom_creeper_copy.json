@@ -3,15 +3,15 @@
   "primary_type": "arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     }
   ]

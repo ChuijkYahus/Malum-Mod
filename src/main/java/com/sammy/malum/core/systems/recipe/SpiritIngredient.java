@@ -5,13 +5,14 @@ import com.mojang.serialization.codecs.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.recipe.*;
+import net.minecraft.core.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
-public record SpiritIngredient(SpiritHolder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritWrapper {
+public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritWrapper {
 
     public static final MapCodec<SpiritIngredient> CODEC = RecordCodecBuilder.mapCodec(
             builder -> builder
@@ -22,7 +23,7 @@ public record SpiritIngredient(SpiritHolder<MalumSpiritType> spirit, int count) 
 
     @Override
     public boolean test(ItemStack itemStack) {
-        return itemStack.is(spirit.getSpiritShard()) && itemStack.getCount() >= count;
+        return itemStack.is(spirit.value().getSpiritShard()) && itemStack.getCount() >= count;
     }
 
     @Override
@@ -36,7 +37,7 @@ public record SpiritIngredient(SpiritHolder<MalumSpiritType> spirit, int count) 
     }
 
     public ItemStack asItemStack() {
-        return spirit().getSpiritStack(count);
+        return spirit().value().getSpiritStack(count);
     }
 
     @Override
@@ -46,6 +47,6 @@ public record SpiritIngredient(SpiritHolder<MalumSpiritType> spirit, int count) 
 
     @Override
     public @NotNull MalumSpiritType unwrapSpirit() {
-        return spirit.unwrapSpirit();
+        return spirit.value().unwrapSpirit();
     }
 }

@@ -1,6 +1,7 @@
 package com.sammy.malum.core.systems.registry;
 
 import com.mojang.datafixers.util.*;
+import com.sammy.malum.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -22,6 +23,9 @@ public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<Malu
     }
 
     public static SpiritHolder<MalumSpiritType> getSpiritType(ResourceLocation spirit) {
+        if (spirit.getNamespace().equals("minecraft")) {
+            spirit = MalumMod.malumPath(spirit.getPath());
+        }
         return new SpiritHolder<>(ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, spirit));
     }
 

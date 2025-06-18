@@ -3,19 +3,19 @@
   "primary_type": "sacred",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 3
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     },
    {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]
