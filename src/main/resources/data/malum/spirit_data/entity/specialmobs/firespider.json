@@ -1,6 +1,6 @@
 {
   "registry_name": "specialmobs:firespider",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
       "spirit": "malum:wicked",

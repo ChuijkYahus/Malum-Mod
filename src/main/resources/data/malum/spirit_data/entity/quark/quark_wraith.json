@@ -1,6 +1,6 @@
 {
   "registry_name": "quark:wraith",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:arcane",

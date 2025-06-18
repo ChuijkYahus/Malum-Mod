@@ -1,6 +1,6 @@
 {
   "registry_name": "graveyard:skeleton_creeper",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:infernal",

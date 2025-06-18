@@ -1,6 +1,6 @@
 {
   "registry_name": "cnb:lilytad",
-  "primary_type": "aqeuous",
+  "primary_type": "malum:aqeuous",
   "spirits": [
     {
       "spirit": "malum:sacred",

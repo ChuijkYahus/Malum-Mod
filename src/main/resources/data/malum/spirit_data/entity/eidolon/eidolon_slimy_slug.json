@@ -1,6 +1,6 @@
 {
   "registry_name": "eidolon:slimy_slug",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:arcane",

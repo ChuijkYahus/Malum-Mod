@@ -1,6 +1,6 @@
 {
   "registry_name": "humancompanions:arbalist",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
       "spirit": "malum:sacred",

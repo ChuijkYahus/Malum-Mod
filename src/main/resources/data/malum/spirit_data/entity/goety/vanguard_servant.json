@@ -1,6 +1,6 @@
 {
   "registry_name": "goety:vanguard_servant",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:arcane",

@@ -1,7 +1,7 @@
 
 {
   "registry_name": "earth:rubro",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
       "spirit": "malum:earthen",

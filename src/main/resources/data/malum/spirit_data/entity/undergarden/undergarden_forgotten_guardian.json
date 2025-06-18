@@ -1,6 +1,6 @@
 {
   "registry_name": "undergarden:forgotten_guardian",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
       "spirit": "malum:earthen",

@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:pumpkin_spirit",
-  "primary_type": "saacred",
+  "primary_type": "malum:saacred",
   "spirits": [
     {
       "spirit": "malum:sacred",

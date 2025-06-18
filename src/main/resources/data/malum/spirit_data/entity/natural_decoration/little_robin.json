@@ -1,6 +1,6 @@
 {
   "registry_name": "natural_decoration:little_robin",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
       "spirit": "malum:aerial",

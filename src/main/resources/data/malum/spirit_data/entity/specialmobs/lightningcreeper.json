@@ -1,6 +1,6 @@
 {
   "registry_name": "specialmobs:lightningcreeper",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
       "spirit": "malum:infernal",

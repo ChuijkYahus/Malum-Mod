@@ -1,6 +1,6 @@
 {
   "registry_name": "aquaculture:brown_shrooma",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:aqueous",

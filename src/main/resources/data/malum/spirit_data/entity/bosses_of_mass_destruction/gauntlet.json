@@ -1,6 +1,6 @@
 {
   "registry_name": "bosses_of_mass_destruction:gauntlet",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
       "spirit": "malum:eldritch",

@@ -1,6 +1,6 @@
 {
   "registry_name": "specialmobs:caramelslime",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:sacred",

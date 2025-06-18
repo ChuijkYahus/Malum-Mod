@@ -1,6 +1,6 @@
 {
   "registry_name": "yungscavebiomes:sand_snapper",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
       "spirit": "malum:wicked",

@@ -1,6 +1,6 @@
 {
   "registry_name": "specialmobs:queenghast",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:eldritch",

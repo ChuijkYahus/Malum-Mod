@@ -1,6 +1,6 @@
 {
     "registry_name": "roots:snow_sprout",
-    "primary_type": "earthen",
+    "primary_type": "malum:earthen",
     "spirits": [
         {
       "spirit": "malum:sacred",

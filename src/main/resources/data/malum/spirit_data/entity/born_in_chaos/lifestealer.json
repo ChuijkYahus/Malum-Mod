@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:lifestealer",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
       "spirit": "malum:arcane",

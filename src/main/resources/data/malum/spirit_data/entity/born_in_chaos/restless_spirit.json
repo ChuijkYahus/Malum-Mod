@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:restless_spirit",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
       "spirit": "malum:arcane",

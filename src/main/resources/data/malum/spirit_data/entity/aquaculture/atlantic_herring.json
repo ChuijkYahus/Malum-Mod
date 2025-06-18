@@ -1,6 +1,6 @@
 {
   "registry_name": "aquaculture:atlantic_herring",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:sacred",

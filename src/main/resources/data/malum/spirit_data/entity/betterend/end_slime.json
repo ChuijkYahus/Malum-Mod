@@ -1,6 +1,6 @@
 {
   "registry_name": "betterend:end_slime",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:eldritch",

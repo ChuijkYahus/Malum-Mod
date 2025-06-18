@@ -1,6 +1,6 @@
 {
   "registry_name": "creeperoverhaul:mushroom_creeper",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
       "spirit": "malum:infernal",

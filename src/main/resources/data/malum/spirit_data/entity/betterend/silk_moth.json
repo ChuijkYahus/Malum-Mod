@@ -1,6 +1,6 @@
 {
   "registry_name": "betterend:silk_moth",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
       "spirit": "malum:aerial",

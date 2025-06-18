@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:decaying_zombie",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
       "spirit": "malum:wicked",

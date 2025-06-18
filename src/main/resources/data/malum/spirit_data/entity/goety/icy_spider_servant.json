@@ -1,6 +1,6 @@
 {
   "registry_name": "goety:icy_spider_servant",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:aerial",

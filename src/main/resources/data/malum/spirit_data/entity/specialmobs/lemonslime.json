@@ -1,6 +1,6 @@
 {
   "registry_name": "specialmobs:lemonslime",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:earthen",

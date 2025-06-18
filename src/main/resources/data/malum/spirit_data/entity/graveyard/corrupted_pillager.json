@@ -1,6 +1,6 @@
 {
   "registry_name": "graveyard:corrupted_pillager",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
       "spirit": "malum:wicked",

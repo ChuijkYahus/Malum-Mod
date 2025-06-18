@@ -1,6 +1,6 @@
 {
   "registry_name": "spectrum:egg_laying_wooly_pig",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
       "spirit": "malum:sacred",

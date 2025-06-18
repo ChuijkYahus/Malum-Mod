@@ -1,6 +1,6 @@
 {
   "registry_name": "kobolds:kobold",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
       "spirit": "malum:earthen",

@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:baby_spider",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
       "spirit": "malum:wicked",

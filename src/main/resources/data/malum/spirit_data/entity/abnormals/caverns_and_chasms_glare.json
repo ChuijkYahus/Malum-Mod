@@ -1,6 +1,6 @@
 {
   "registry_name": "caverns_and_chasms:glare",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
       "spirit": "malum:sacred",

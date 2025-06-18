@@ -1,6 +1,6 @@
 {
   "registry_name": "minecraft:ocelot",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
       "spirit": "malum:sacred",

@@ -1,6 +1,6 @@
 {
   "registry_name": "upgrade_aquatic:nautilus",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:aqueous",

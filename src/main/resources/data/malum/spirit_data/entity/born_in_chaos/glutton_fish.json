@@ -1,6 +1,6 @@
 {
   "registry_name": "born_in_chaos_v1:glutton_fish",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:aqueous",

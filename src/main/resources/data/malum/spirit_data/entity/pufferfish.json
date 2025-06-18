@@ -1,6 +1,6 @@
 {
   "registry_name": "minecraft:pufferfish",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
       "spirit": "malum:wicked",

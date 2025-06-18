@@ -1,6 +1,6 @@
 {
   "registry_name": "undergarden:gwib",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
       "spirit": "malum:wicked",
