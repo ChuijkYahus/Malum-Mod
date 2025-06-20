@@ -3,6 +3,7 @@ package com.sammy.malum.common.worldgen.tree;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
 import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.common.worldgen.blight.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -16,6 +17,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.worldgen.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.*;
 
 import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.*;
@@ -203,7 +208,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             makeLeafBlob(leavesLayer, rand, mutable.move(Direction.DOWN, branchHeight-1));
         }
 
-        for (LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSapBlockCount(rand))) {
+        for (LodestoneWorldgenBuilderEntry entry : getRandomEntries(treeLayer.getOrderedEntries(), getSapBlockCount(rand), rand)) {
             entry.changeState(s -> {
                 if (s.getBlock().equals(MalumBlocks.SOULWOOD_LOG.get())) {
                     return MalumBlocks.EXPOSED_SOULWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
@@ -211,7 +216,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 return s;
             });
         }
-        for (LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSpikeCount(rand))) {
+        for (LodestoneWorldgenBuilderEntry entry : getRandomEntries(treeLayer.getOrderedEntries(), getSpikeCount(rand), rand)) {
             if (entry.position().getY() > pos.getY()+3) {
                 entry.addAdditionalPlacement(((l, e) -> {
                     Direction direction = Direction.from2DDataValue(l.getRandom().nextInt(4));
@@ -227,6 +232,12 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         updateLeaves(level, treeLayer.getAffectedArea());
         return true;
     }
+
+	private static <T> ArrayList<T> getRandomEntries(Collection<T> collection, int amount, RandomSource rand) {
+		return new ArrayList<>(
+			WorldgenHelper.shuffle(collection, rand).subList(0, Math.min(amount, collection.size()))
+		);
+	}
 
     public BlockPos addDownwardsTrunkConnections(WorldGenLevel level, BlockPos pos, Consumer<BlockPos> consumer) {
         var mutable = pos.mutable();

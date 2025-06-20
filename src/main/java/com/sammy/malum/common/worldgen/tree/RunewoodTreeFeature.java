@@ -2,6 +2,7 @@ package com.sammy.malum.common.worldgen.tree;
 
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.tags.*;
@@ -120,8 +121,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         }
         makeLeafBlob(config, filler, mutable.set(pos).move(Direction.UP, trunkHeight-1));
 
-        ArrayList<BlockPos> sapBlockPositions = new ArrayList<>(filler.getLayer(LOGS).keySet());
-        Collections.shuffle(sapBlockPositions);
+        List<BlockPos> sapBlockPositions = WorldgenHelper.shuffle(filler.getLayer(LOGS).keySet(), rand);
         for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
             filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.EXPOSED_RUNEWOOD_LOG.get().defaultBlockState())).build());
         }

@@ -1,5 +1,6 @@
 package com.sammy.malum.common.worldgen.ore;
 
+import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
@@ -149,11 +150,11 @@ public class CthonicGoldOreFeature extends LayeredOreFeature{
 
     public void placeClusters(List<Runnable> clusterPlacements, RandomSource random) {
         if (!clusterPlacements.isEmpty()) {
-            Collections.shuffle(clusterPlacements);
-            int clusterAmount = (clusterPlacements.size() + random.nextInt(4)) / 3;
+            List<Runnable> shuffledClusterPlacements = WorldgenHelper.shuffle(clusterPlacements, random);
+            int clusterAmount = (shuffledClusterPlacements.size() + random.nextInt(4)) / 3;
             if (clusterAmount != 0) {
-                for (int k = 0; k < Math.min(clusterAmount, clusterPlacements.size()); k++) {
-                    clusterPlacements.get(k).run();
+                for (int k = 0; k < Math.min(clusterAmount, shuffledClusterPlacements.size()); k++) {
+                    shuffledClusterPlacements.get(k).run();
                 }
             }
         }
