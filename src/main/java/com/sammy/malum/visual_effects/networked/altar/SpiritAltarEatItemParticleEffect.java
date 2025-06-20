@@ -49,6 +49,6 @@ public class SpiritAltarEatItemParticleEffect extends MalumNetworkedParticleEffe
         if (!(level.getBlockEntity(extraData.holderPos) instanceof IMalumSpecialItemAccessPoint holder)) {
             return;
         }
-        SpiritAltarParticleEffects.eatItemParticles(spiritAltar, holder, colorData, extraData.stack);
+        SpiritAltarParticleEffects.eatItemParticles(level, spiritAltar, holder, colorData, extraData.stack);
     }
 }

@@ -49,7 +49,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     public SpiritBasedParticleBuilder setSpirit(SpiritWrapper spirit) {
-        this.spiritType = spirit.unwrapSpirit();
+        this.spiritType = spirit.getSpirit();
         if (isUmbral()) {
             super.setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT);
         }

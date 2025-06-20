@@ -43,7 +43,7 @@ public class MalumSpiritRiteTypes {
 
     public static TotemicRiteType getRite(List<MalumSpiritType> spirits) {
         for (TotemicRiteType rite : RITES) {
-            if (rite.spirits.equals(spirits)) {
+            if (rite.matches(spirits)) {
                 return rite;
             }
         }

@@ -56,7 +56,7 @@ public class SpiritAltarParticleEffects {
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
                 if (accelerator != null) {
-                    accelerator.addParticles(altar, activeSpiritType.unwrapSpirit());
+                    accelerator.addParticles(altar, activeSpiritType.getSpirit());
                 }
             }
             SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
@@ -90,12 +90,11 @@ public class SpiritAltarParticleEffects {
         }
     }
 
-    public static void eatItemParticles(SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
+    public static void eatItemParticles(Level level, SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
         SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
-        Level level = altar.getLevel();
         long gameTime = level.getGameTime();
         var random = level.random;
         Vec3 altarTargetPos = altar.getItemPos();
@@ -104,9 +103,9 @@ public class SpiritAltarParticleEffects {
             SpiritLightSpecs.coolLookingShinyThing(level, holderTargetPos, activeSpiritType);
         }
         for (int i = 0; i < 16; i++) {
+            int finalI = i;
             MalumSpiritType cyclingSpiritType = colorData.getSpirit();
             Vec3 velocity = altarTargetPos.subtract(holderTargetPos).normalize().scale(0.025f);
-            int finalI = i;
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(holderTargetPos, 0.5f, i, 16, gameTime, 160);
             final Consumer<LodestoneWorldParticle> behavior = p -> {
                 if (level.getGameTime() > gameTime + finalI * 2 && level.getGameTime() < gameTime + (finalI + 4) * 2) {
@@ -114,14 +113,14 @@ public class SpiritAltarParticleEffects {
                 }
             };
             var lightSpecs = spiritLightSpecs(level, offsetPosition, cyclingSpiritType);
-            lightSpecs.getBuilder().act(b -> b
+            lightSpecs.getBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2.5f)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
-            lightSpecs.getBloomBuilder().act(b -> b
+                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+            lightSpecs.getBloomBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2f)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
+                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
 
             var crumbles = ItemCrumbleParticleEffects.spawnItemCrumbs(level, holderTargetPos, stack);
@@ -134,12 +133,11 @@ public class SpiritAltarParticleEffects {
         }
     }
 
-    public static void craftItemParticles(SpiritAltarBlockEntity altar, MalumNetworkedParticleEffectColorData colorData) {
+    public static void craftItemParticles(Level level, SpiritAltarBlockEntity altar, MalumNetworkedParticleEffectColorData colorData) {
         SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
-        Level level = altar.getLevel();
         long gameTime = level.getGameTime();
         var random = level.random;
         BlockPos altarPos = altar.getBlockPos();
@@ -228,21 +226,20 @@ public class SpiritAltarParticleEffects {
                     p.setParticleSpeed(p.getParticleSpeed().add(0, 0.015f, 0));
                 }
             });
-
+            int lifetime = RandomHelper.randomBetween(random, 10, 20) + finalI * 2;
             var lightSpecs = spiritLightSpecs(level, offsetPosition, activeSpiritType);
-            lightSpecs.getBuilder().act(b -> b
+            lightSpecs.getBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
-                    .modifyData(b::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
-                    .multiplyLifetime(1.5f)
-                    .setLifetime(b.getParticleOptions().lifetimeSupplier.get() + finalI * 2));
-            lightSpecs.getBloomBuilder().act(b -> b
+                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
+                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .setLifetime(lifetime);
+            lightSpecs.getBloomBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyData(b::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
-                    .setLifetime((int) (b.getParticleOptions().lifetimeSupplier.get() + finalI * 2.5f)));
+                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .setLifetime(lifetime);
             lightSpecs.spawnParticles();
         }
     }

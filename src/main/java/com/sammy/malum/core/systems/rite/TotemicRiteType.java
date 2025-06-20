@@ -35,9 +35,23 @@ public abstract class TotemicRiteType {
         this.corruptedEffect = getCorruptedEffect();
     }
 
+    public boolean matches(List<? extends SpiritWrapper> totemSpirits) {
+        if (totemSpirits.size() != spirits.size()) {
+            return false;
+        }
+        for (int i = 0; i < totemSpirits.size(); i++) {
+            var spirit = spirits.get(i);
+            var totemSpirit = totemSpirits.get(i);
+            if (!spirit.is(totemSpirit))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     public List<Component> getDescription(boolean corrupted) {
         List<Component> tooltip = new ArrayList<>();
-        var spiritStyleModifier = getIdentifyingSpirit().unwrapSpirit().getItemRarity().getStyleModifier();
+        var spiritStyleModifier = getIdentifyingSpirit().getSpirit().getItemRarity().getStyleModifier();
         var riteEffect = getRiteEffect(corrupted);
         var riteCategory = riteEffect.category;
         tooltip.add(Component.translatable(getLangKey(corrupted)).withStyle(spiritStyleModifier));

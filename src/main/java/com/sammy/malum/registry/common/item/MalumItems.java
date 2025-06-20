@@ -44,7 +44,6 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.entity.*;
-import net.minecraft.client.color.item.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
@@ -61,7 +60,6 @@ import team.lodestar.lodestone.systems.item.tools.magic.*;
 import team.lodestar.lodestone.systems.multiblock.*;
 import top.theillusivec4.curios.api.client.*;
 
-import java.util.*;
 import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
@@ -840,7 +838,7 @@ public class MalumItems {
         @SubscribeEvent
         public static void setItemColors(RegisterColorHandlersEvent.Item event) {
 
-            event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpirit().getItemColor()),
+            event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpiritHolder().getItemColor()),
                     SACRED_SPIRIT.get(), WICKED_SPIRIT.get(), ARCANE_SPIRIT.get(), ELDRITCH_SPIRIT.get(),
                     AQUEOUS_SPIRIT.get(), AERIAL_SPIRIT.get(), EARTHEN_SPIRIT.get(), INFERNAL_SPIRIT.get());
 

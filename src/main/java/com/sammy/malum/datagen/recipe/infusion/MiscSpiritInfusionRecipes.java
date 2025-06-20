@@ -30,9 +30,11 @@ public class MiscSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(), 1, MalumItems.RUNIC_WORKBENCH.get(), 1)
                 .addExtraItem(SizedIngredient.of(MalumTags.ItemTags.RUNEWOOD_PLANKS, 4))
+                .addExtraItem(MalumItems.SOULWOVEN_SILK.get(), 4)
                 .addExtraItem(MalumItems.HALLOWED_GOLD_INGOT.get(), 2)
+                .addSpirit(SACRED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
-                .addSpirit(SACRED_SPIRIT, 8)
                 .save(consumer);
 
         new SpiritInfusionRecipeBuilder(Items.HONEY_BOTTLE, 1, MalumItems.CONCENTRATED_GLUTTONY.get(), 2)

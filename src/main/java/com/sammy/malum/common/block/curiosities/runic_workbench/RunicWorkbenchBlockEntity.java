@@ -2,12 +2,12 @@ package com.sammy.malum.common.block.curiosities.runic_workbench;
 
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.common.recipe.RunicWorkbenchRecipe.*;
-import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
+import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
@@ -15,11 +15,11 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.crafting.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
@@ -48,28 +48,51 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
 
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack heldStack, InteractionHand hand) {
-        var primaryInput = inventory.getStackInSlot(0);
-        if (!primaryInput.isEmpty()) {
-            var recipe = LodestoneRecipeType.getRecipe(player.level(), MalumRecipeTypes.RUNEWORKING.get(), new RunicWorkbenchRecipeInput(primaryInput, heldStack));
-            if (recipe != null) {
-                Vec3 itemPos = getItemPos();
-                if (!level.isClientSide) {
-                    if (!player.isCreative()) {
-                        primaryInput.shrink(recipe.primaryInput.count());
-                        heldStack.shrink(recipe.secondaryInput.count());
-                    }
-                    level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, recipe.output.copy()));
-                    level.playSound(null, worldPosition, MalumSoundEvents.RUNIC_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
-//                    if (heldStack.getItem() instanceof SpiritShardItem spirit) {
-//                        PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, new ChunkPos(getBlockPos()), new BlightTransformItemParticlePacket(List.of(spirit.type.getIdentifier()), itemPos));
-//                    }
-                    BlockStateHelper.updateAndNotifyState(level, worldPosition);
-                }
-                return ItemInteractionResult.SUCCESS;
-            }
+        var inventoryStack = inventory.getStackInSlot(0);
+        if (inventoryStack.isEmpty()) {
+            return super.onUseWithItem(player, heldStack, hand);
         }
-
-
+        var input = new RunicWorkbenchRecipeInput(inventoryStack, heldStack);
+        boolean success = tryCraft(level, input, !player.isCreative());
+        if (success) {
+            return ItemInteractionResult.SUCCESS;
+        }
         return super.onUseWithItem(player, heldStack, hand);
+    }
+
+    //TODO: This should run during hopper interaction and shit
+    public boolean tryCraft(Level level, RunicWorkbenchRecipeInput input, boolean consumeItems) {
+        var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.RUNEWORKING.get(), input);
+        if (recipe == null) {
+            return false;
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            SpiritShardItem spirit = null;
+            if (input.secondaryInput().getItem() instanceof SpiritShardItem shardItem) {
+                spirit = shardItem;
+            }
+            else if (input.primaryInput().getItem() instanceof SpiritShardItem shardItem) {
+                spirit = shardItem;
+            }
+
+            Vec3 itemPos = getItemPos();
+            ItemEntity itemEntity = new ItemEntity(serverLevel, itemPos.x, itemPos.y, itemPos.z, recipe.output.copy());
+            itemEntity.setPickUpDelay(15);
+            serverLevel.addFreshEntity(itemEntity);
+            serverLevel.playSound(null, worldPosition, MalumSoundEvents.RUNIC_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + serverLevel.random.nextFloat() * 0.25f);
+            var effectType = spirit != null ? MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_RUNE : MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM;
+            var particle = effectType.createEffect(worldPosition).customData(new RunicWorkbenchEffectData(input.primaryInput().copy(), input.secondaryInput().copy()));
+            if (spirit != null) {
+                particle.color(spirit);
+            }
+            particle.spawn(serverLevel);
+
+            if (consumeItems) {
+                input.primaryInput().shrink(recipe.primaryInput.count());
+                input.secondaryInput().shrink(recipe.secondaryInput.count());
+            }
+            BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
+        }
+        return true;
     }
 }

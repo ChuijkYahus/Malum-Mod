@@ -5,10 +5,8 @@ import com.sammy.malum.common.data.map.*;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -59,7 +57,7 @@ public class MalumLogBLock extends LodestoneLogBlock {
         if (conversion.totemPoleVariant().value() instanceof TotemPoleBlock<?> totemPoleBlock) {
             level.setBlockAndUpdate(pos, TotemPoleBlock.createTotemPoleState(totemPoleBlock, hit.getDirection(), spirit));
             if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
-                blockEntity.setSpirit(level, spirit.unwrapSpirit());
+                blockEntity.setSpirit(level, spirit.getSpirit());
             }
             if (!player.isCreative()) {
                 stack.shrink(1);

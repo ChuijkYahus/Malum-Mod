@@ -51,7 +51,7 @@ public class MalumSpiritType implements SpiritWrapper {
     }
 
     @Override
-    public @NotNull MalumSpiritType unwrapSpirit() {
+    public @NotNull MalumSpiritType getSpirit() {
         return this;
     }
 

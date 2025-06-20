@@ -78,16 +78,16 @@ public class SoulwovenBannerParticleEffects {
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.05f);
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
                 lightSpecs.getBuilder()
-                        .multiplyLifetime(3f)
+                        .multiplyLifetime(2f)
                         .setMotion(0, -velocity,0)
                         .setLifeDelay(i+j*2)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .setTransparencyData(GenericParticleData.create(0.9f, 0.4f, 0f).build())
                         .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(1.4f)
+                        .multiplyLifetime(1.2f)
                         .setMotion(0, -velocity, 0)
                         .setLifeDelay(i+j*2)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.35f, 0f).build())
                         .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }

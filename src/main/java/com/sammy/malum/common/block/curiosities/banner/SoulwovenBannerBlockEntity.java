@@ -60,7 +60,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
                 if (!pPlayer.isCreative()) {
                     pStack.shrink(1);
                 }
-                setSpirit(serverLevel, shardItem.unwrapSpirit());
+                setSpirit(serverLevel, shardItem.getSpirit());
                 pPlayer.swing(pHand, true);
             }
             if (pStack.canPerformAction(ItemAbilities.SHEARS_DISARM)) {
@@ -96,23 +96,21 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         tag.remove("pattern");
     }
 
-    public void setSpirit(ServerLevel level, @Nullable MalumSpiritType spirit) {
+    public void setSpirit(ServerLevel level, @Nullable MalumSpiritType newSpirit) {
+        intense = spirit == newSpirit;
+        spirit = newSpirit;
+
+        var effectType = newSpirit != null ? MalumParticleEffectTypes.APPLY_SOULWOVEN_BANNER_GLOW : MalumParticleEffectTypes.REMOVE_SOULWOVEN_BANNER_GLOW;
+        var particle = effectType.createEffect(worldPosition);
+        if (newSpirit != null) {
+            particle.color(newSpirit);
+        }
+        else if (spirit != null) {
+            particle.color(spirit);
+        }
+        particle.spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
-        if (spirit != null) {
-            MalumParticleEffectTypes.APPLY_SOULWOVEN_BANNER_GLOW
-                    .createEffect(worldPosition)
-                    .color(spirit)
-                    .spawn(level);
-        }
-        else if (this.spirit != null) {
-            MalumParticleEffectTypes.REMOVE_SOULWOVEN_BANNER_GLOW
-                    .createEffect(worldPosition)
-                    .color(this.spirit)
-                    .spawn(level);
-        }
-        intense = this.spirit == spirit;
-        this.spirit = spirit;
         BlockStateHelper.updateState(level, worldPosition);
     }
 }

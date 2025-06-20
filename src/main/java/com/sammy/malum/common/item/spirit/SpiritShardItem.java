@@ -27,17 +27,17 @@ public class SpiritShardItem extends Item implements ItemParticleSupplier, Spiri
     }
 
     @Override
-    public @NotNull MalumSpiritType unwrapSpirit() {
-        return spirit.unwrapSpirit();
+    public @NotNull MalumSpiritType getSpirit() {
+        return spirit.getSpirit();
     }
 
-    public SpiritHolder<MalumSpiritType> getSpirit() {
+    public SpiritHolder<MalumSpiritType> getSpiritHolder() {
         return spirit;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        SpiritHolder<MalumSpiritType> spirit = getSpirit();
+        SpiritHolder<MalumSpiritType> spirit = getSpiritHolder();
         if (flavorText == null) {
             flavorText = Component.translatable(spirit.getFlavourKey()).withStyle(ChatFormatting.ITALIC).withStyle(spirit.getStyle(true));
         }

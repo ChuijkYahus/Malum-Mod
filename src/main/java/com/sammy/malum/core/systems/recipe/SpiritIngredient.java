@@ -2,7 +2,6 @@ package com.sammy.malum.core.systems.recipe;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.core.*;
@@ -46,7 +45,7 @@ public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implem
     }
 
     @Override
-    public @NotNull MalumSpiritType unwrapSpirit() {
-        return spirit.value().unwrapSpirit();
+    public @NotNull MalumSpiritType getSpirit() {
+        return spirit.value().getSpirit();
     }
 }

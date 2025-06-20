@@ -67,6 +67,9 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
         }
 
         public MalumParticleEffectBuilder<T> color(Item item) {
+            if (item instanceof SpiritWrapper spirit) {
+                return color(spirit);
+            }
             if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
                 return color(new MalumNetworkedParticleEffectColorData(spiritAffiliatedItem.getDefiningSpiritType()));
             }

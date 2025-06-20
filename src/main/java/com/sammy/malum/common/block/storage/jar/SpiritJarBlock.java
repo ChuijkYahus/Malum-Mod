@@ -1,6 +1,5 @@
 package com.sammy.malum.common.block.storage.jar;
 
-import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -81,7 +80,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     @Override
     protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         if (level.getBlockEntity(pos) instanceof SpiritJarBlockEntity jar) {
-            return jar.contents != null ? jar.contents.unwrapSpirit().getAnalogSignal() : 0;
+            return jar.contents != null ? jar.contents.getSpirit().getAnalogSignal() : 0;
         }
         return 0;
     }

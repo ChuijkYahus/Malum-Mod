@@ -324,7 +324,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (!(currentItem instanceof SpiritShardItem spiritItem)) {
             return null;
         }
-        return spiritItem.unwrapSpirit();
+        return spiritItem.getSpirit();
     }
 
     @Override

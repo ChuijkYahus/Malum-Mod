@@ -37,10 +37,9 @@ public class RunicWorkbenchBlock<T extends RunicWorkbenchBlockEntity> extends Lo
 
     public static VoxelShape makeShape(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.25, 0.875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0, 0.5, 0, 1, 0.875, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.25, 0.75, 0.5, 0.75), BooleanOp.OR);
-
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.3125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.625, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.3125, 0.25, 0.75, 0.625, 0.75), BooleanOp.OR);
         return shape;
     }
 }

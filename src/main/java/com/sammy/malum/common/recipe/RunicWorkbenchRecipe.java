@@ -2,7 +2,6 @@ package com.sammy.malum.common.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -34,15 +33,7 @@ public class RunicWorkbenchRecipe extends LodestoneInWorldRecipe<RunicWorkbenchR
         return input.test(primaryInput, secondaryInput);
     }
 
-    public static class RunicWorkbenchRecipeInput implements RecipeInput {
-
-        protected final ItemStack primaryInput;
-        protected final ItemStack secondaryInput;
-
-        public RunicWorkbenchRecipeInput(ItemStack primaryInput, ItemStack secondaryInput) {
-            this.primaryInput = primaryInput;
-            this.secondaryInput = secondaryInput;
-        }
+    public record RunicWorkbenchRecipeInput(ItemStack primaryInput, ItemStack secondaryInput) implements RecipeInput {
 
         public boolean test(SizedIngredient primaryInput, SizedIngredient secondaryInput) {
             return primaryInput.test(this.primaryInput) && secondaryInput.test(this.secondaryInput);

@@ -5,7 +5,6 @@ import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -45,7 +44,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                     poseStack.pushPose();
                     Vector3f offset = blockEntityIn.getSpiritOffset(spiritsRendered++, partialTicks).toVector3f();
                     poseStack.translate(offset.x(), offset.y(), offset.z());
-                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpirit(), partialTicks);
+                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
                     poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
                     poseStack.scale(0.5f, 0.5f, 0.5f);
                     itemRenderer.renderStatic(item, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

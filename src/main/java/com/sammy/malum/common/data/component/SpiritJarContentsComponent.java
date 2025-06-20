@@ -2,10 +2,8 @@ package com.sammy.malum.common.data.component;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import io.netty.buffer.*;
-import net.minecraft.core.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
@@ -19,7 +17,7 @@ public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) impl
     public static StreamCodec<ByteBuf, SpiritJarContentsComponent> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritJarContentsComponent.CODEC);
 
     public SpiritJarContentsComponent(SpiritWrapper spirit, int count) {
-        this(spirit.unwrapSpirit(), count);
+        this(spirit.getSpirit(), count);
     }
 
     public ItemStack createStack() {
@@ -43,7 +41,7 @@ public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) impl
     }
 
     @Override
-    public @NotNull MalumSpiritType unwrapSpirit() {
+    public @NotNull MalumSpiritType getSpirit() {
         return spirit;
     }
 }

@@ -10,6 +10,7 @@ import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
 import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeCloseParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeOpenParticleEffect;
@@ -29,6 +30,10 @@ public class MalumParticleEffectTypes {
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");
     public static final SpiritAltarEatItemParticleEffect SPIRIT_ALTAR_EATS_ITEM = new SpiritAltarEatItemParticleEffect("spirit_altar_eats_item");
+
+    //Runic Workbench
+    public static final RunicWorkbenchCraftRuneParticleEffect RUNIC_WORKBENCH_CRAFTS_RUNE = new RunicWorkbenchCraftRuneParticleEffect("runic_workbench_crafts_rune");
+    public static final RunicWorkbenchCraftSpiritlessItemParticleEffect RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM = new RunicWorkbenchCraftSpiritlessItemParticleEffect("runic_workbench_crafts_spiritless_item");
 
     //Crucible
     public static final SpiritCrucibleCraftParticleEffect SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");

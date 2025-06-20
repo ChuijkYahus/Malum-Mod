@@ -15,10 +15,10 @@ import java.awt.*;
 public interface SpiritWrapper {
 
     @Nonnull
-    MalumSpiritType unwrapSpirit();
+    MalumSpiritType getSpirit();
 
     default boolean matches(SpiritWrapper other) {
-        return unwrapSpirit().equals(other.unwrapSpirit());
+        return getSpirit().equals(other.getSpirit());
     }
 
     default String getFlavourKey() {
@@ -38,15 +38,15 @@ public interface SpiritWrapper {
     }
 
     default ResourceLocation getRegistryName() {
-        return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getKey(unwrapSpirit());
+        return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getKey(getSpirit());
     }
 
     default int getAnalogSignal() {
-        return Math.min(MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getId(unwrapSpirit()) + 1, 15);
+        return Math.min(MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getId(getSpirit()) + 1, 15);
     }
 
     default SpiritShardItem getSpiritShard() {
-        return unwrapSpirit().getSpiritShard();
+        return getSpirit().getSpiritShard();
     }
 
     default ItemStack getSpiritStack() {
@@ -58,19 +58,19 @@ public interface SpiritWrapper {
     }
 
     default float getAlphaMultiplier() {
-        return unwrapSpirit().getColorProperties().alphaMultiplier();
+        return getSpirit().getColorProperties().alphaMultiplier();
     }
 
     default Color getPrimaryColor() {
-        return unwrapSpirit().getColorProperties().primaryColor();
+        return getSpirit().getColorProperties().primaryColor();
     }
 
     default Color getSecondaryColor() {
-        return unwrapSpirit().getColorProperties().secondaryColor();
+        return getSpirit().getColorProperties().secondaryColor();
     }
 
     default Color getItemColor() {
-        return unwrapSpirit().getColorProperties().itemColor();
+        return getSpirit().getColorProperties().itemColor();
     }
 
     default ColorParticleDataBuilder createColorData() {
@@ -78,7 +78,7 @@ public interface SpiritWrapper {
     }
 
     default ColorParticleDataBuilder createColorData(float coefficientMultiplier) {
-        return unwrapSpirit().getColorProperties().createColorData(coefficientMultiplier);
+        return getSpirit().getColorProperties().createColorData(coefficientMultiplier);
     }
 
     default Style getStyle(boolean isTooltip) {

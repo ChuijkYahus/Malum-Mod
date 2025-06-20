@@ -29,8 +29,12 @@ public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<Malu
         return new SpiritHolder<>(ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, spirit));
     }
 
+    public boolean is(SpiritWrapper spirit) {
+        return getSpirit().equals(spirit.getSpirit());
+    }
+
     @Override
-    public @NotNull MalumSpiritType unwrapSpirit() {
+    public @NotNull MalumSpiritType getSpirit() {
         return get();
     }
 
