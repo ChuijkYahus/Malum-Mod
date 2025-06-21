@@ -1,13 +1,13 @@
 {
   "registry_name": "graveyard:reaper",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

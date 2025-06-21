@@ -1,9 +1,9 @@
 {
   "registry_name": "aquaculture:jellyfish",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 1
     }
   ]

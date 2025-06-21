@@ -2,7 +2,6 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -18,7 +17,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Consumer;
 
-public class RuneUnnaturalStaminaItem extends AbstractRuneCurioItem {
+public class RuneUnnaturalStaminaItem extends MadnessRuneCurioItem {
 
     public RuneUnnaturalStaminaItem(Properties builder) {
         super(builder, MalumSpiritTypes.AERIAL_SPIRIT);

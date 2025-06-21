@@ -1,13 +1,13 @@
 {
   "registry_name": "specialmobs:waterspider",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     }
   ]

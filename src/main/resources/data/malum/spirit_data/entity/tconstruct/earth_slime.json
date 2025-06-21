@@ -1,13 +1,13 @@
 {
   "registry_name": "tconstruct:earth_slime",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     }
   ]

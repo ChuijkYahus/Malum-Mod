@@ -1,21 +1,21 @@
 {
   "registry_name": "bosses_of_mass_destruction:lich",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 6
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 5
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 4
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 3
     }
   ]

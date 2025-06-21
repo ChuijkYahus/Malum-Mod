@@ -20,11 +20,11 @@
   },
   "spirits": [
     {
-      "type": "wicked",
+      "type": "malum:wicked",
       "count": 8
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 4
     }
   ]

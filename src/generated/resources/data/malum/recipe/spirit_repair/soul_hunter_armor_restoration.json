@@ -13,11 +13,11 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 8
     },
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 8
     }
   ]

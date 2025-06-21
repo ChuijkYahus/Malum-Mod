@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:anaconda",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     }
   ]

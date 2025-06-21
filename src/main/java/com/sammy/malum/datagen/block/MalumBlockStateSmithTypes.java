@@ -10,7 +10,8 @@ import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.*;
@@ -67,10 +68,9 @@ public class MalumBlockStateSmithTypes {
         ResourceLocation side = provider.getBlockTexture(woodName + "_log");
         ResourceLocation top = provider.getBlockTexture(woodName + "_log_top");
         provider.getVariantBuilder(block).forAllStates(s -> {
-            String type = s.getValue(MalumSpiritTypes.SPIRIT_TYPE_PROPERTY);
-            MalumSpiritType spiritType = MalumSpiritTypes.SPIRITS.get(type);
-            ResourceLocation front = provider.modLoc("block/totem_poles/" + spiritType.getIdentifier() + "_" + woodName + "_cutout");
-            ModelFile pole = provider.models().withExistingParent(name + "_" + spiritType.getIdentifier(), parent)
+            String type = s.getValue(TotemPoleBlock.SPIRIT_TYPE);
+            ResourceLocation front = MalumMod.malumPath("block/totem_poles/" + type + "_" + woodName + "_cutout");
+            ModelFile pole = provider.models().withExistingParent(name + "_" + type, parent)
                     .texture("side", side)
                     .texture("top", top)
                     .texture("front", front);

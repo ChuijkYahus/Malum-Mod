@@ -1,18 +1,13 @@
 package com.sammy.malum.registry.client;
 
-import com.sammy.malum.client.extensions.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
-import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.core.systems.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.extensions.common.*;
 import team.lodestar.lodestone.systems.easing.*;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
@@ -69,7 +64,7 @@ public class MalumBlockColors {
         }, SOULWOOD_LEAVES.get(), HANGING_SOULWOOD_LEAVES.get());
 
         event.register((s, l, p, c) -> {
-            var spiritType = MalumSpiritType.getSpiritType(s.getValue(ManaMoteBlock.SPIRIT_TYPE));
+            var spiritType = SpiritHolder.getSpiritType(s.getValue(ManaMoteBlock.SPIRIT_TYPE));
             var color  = spiritType.getPrimaryColor();
             int red = color.getRed();
             int green = color.getGreen();

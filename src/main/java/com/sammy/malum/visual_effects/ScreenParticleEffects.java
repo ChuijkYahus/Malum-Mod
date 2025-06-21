@@ -1,7 +1,8 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.player.*;
@@ -24,7 +25,7 @@ import static net.minecraft.util.Mth.*;
 
 public class ScreenParticleEffects {
 
-    public static void spawnRuneParticles(ScreenParticleHolder target, MalumSpiritType spiritType) {
+    public static void spawnRuneParticles(ScreenParticleHolder target, SpiritLike spiritType) {
         var rand = Minecraft.getInstance().level.getRandom();
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.SPARKLE, target)
                 .setTransparencyData(GenericParticleData.create(0.03f, 0f).setEasing(Easing.SINE_IN_OUT).build())
@@ -52,7 +53,7 @@ public class ScreenParticleEffects {
     }
 
 
-    public static void spawnSpiritShardScreenParticles(ScreenParticleHolder target, MalumSpiritType spiritType) {
+    public static void spawnSpiritShardScreenParticles(ScreenParticleHolder target, SpiritHolder<MalumSpiritType> spiritType) {
         var rand = Minecraft.getInstance().level.getRandom();
         var color = spiritType.getPrimaryColor();
         var endColor = spiritType.getSecondaryColor();

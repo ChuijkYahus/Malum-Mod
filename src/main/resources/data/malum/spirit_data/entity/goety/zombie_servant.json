@@ -1,13 +1,13 @@
 {
   "registry_name": "goety:zombie_servant",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

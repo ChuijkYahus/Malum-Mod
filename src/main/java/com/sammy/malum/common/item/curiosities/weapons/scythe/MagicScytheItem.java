@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -20,7 +20,7 @@ public class MagicScytheItem extends MalumScytheItem implements ISpiritAffiliate
     }
 
     @Override
-    public MalumSpiritType getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 }

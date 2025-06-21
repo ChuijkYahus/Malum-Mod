@@ -5,7 +5,9 @@ import com.mojang.datafixers.util.*;
 import com.mojang.serialization.JsonOps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -67,22 +69,29 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
             var object = entry.getAsJsonObject();
             var name = object.getAsJsonPrimitive("registry_name").getAsString();
             var resourceLocation = ResourceLocation.tryParse(name);
-            if (resourceLocation != null && !BuiltInRegistries.ENTITY_TYPE.containsKey(resourceLocation)) {
+            if (resourceLocation == null) {
                 continue;
             }
-            if (!object.has("primary_type")) {
-                MalumMod.LOGGER.warn("Entity with registry name: {} lacks a primary spirit type. This is a datapack error.", name);
+            if (!BuiltInRegistries.ENTITY_TYPE.containsKey(resourceLocation)) {
                 continue;
             }
-            var primaryType = object.getAsJsonPrimitive("primary_type").getAsString();
-            if (primaryType.equals("none")) {
+
+            if (object.has("no_spirits") && object.get("no_spirits").getAsBoolean()) {
                 MalumMod.LOGGER.info("Removed spirit drops for entity with registry name: {}", name);
                 SPIRIT_DATA.remove(resourceLocation);
                 HAS_NO_DATA.add(resourceLocation);
-            } else {
+                continue;
+            }
+            var primaryType = object.getAsJsonPrimitive("primary_type").getAsString();
+            if (!primaryType.equals("none")) {
+                var holder = SpiritHolder.getSpiritType(primaryType);
+                if (!holder.isBound()) {
+                    MalumMod.LOGGER.info("No such spirit exists, this is a datapack error: {}", primaryType);
+                    continue;
+                }
                 MalumMod.LOGGER.info("Added spirit drops for entity with registry name: {}", name);
                 JsonArray array = object.getAsJsonArray("spirits");
-                SPIRIT_DATA.put(resourceLocation, new EntitySpiritDropData(MalumSpiritType.getSpiritType(primaryType), getSpiritDrops(array), getItemAsSoul(object)));
+                SPIRIT_DATA.put(resourceLocation, new EntitySpiritDropData(holder, getSpiritDrops(array), getItemAsSoul(object)));
                 HAS_NO_DATA.remove(resourceLocation);
             }
         }
@@ -94,7 +103,7 @@ public class SpiritDataReloadListener extends SimpleJsonResourceReloadListener {
             JsonObject spiritObject = spiritElement.getAsJsonObject();
             String spiritName = spiritObject.getAsJsonPrimitive("spirit").getAsString();
             int count = spiritObject.has("count") ? spiritObject.getAsJsonPrimitive("count").getAsInt() : 1;
-            spiritData.add(new SpiritIngredient(MalumSpiritType.getSpiritType(spiritName), count));
+            spiritData.add(new SpiritIngredient(SpiritHolder.getSpiritType(spiritName), count));
         }
         return spiritData;
     }

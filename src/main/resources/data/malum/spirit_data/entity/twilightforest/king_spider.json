@@ -1,13 +1,13 @@
 {
   "registry_name": "twilightforest:king_spider",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 4
     }
   ]

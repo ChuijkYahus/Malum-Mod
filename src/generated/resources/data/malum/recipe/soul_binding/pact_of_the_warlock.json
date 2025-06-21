@@ -17,11 +17,11 @@
   },
   "spirits": [
     {
-      "type": "wicked",
+      "type": "malum:wicked",
       "count": 16
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 16
     }
   ]

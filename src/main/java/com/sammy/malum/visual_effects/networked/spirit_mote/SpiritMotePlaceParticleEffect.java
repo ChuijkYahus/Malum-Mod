@@ -42,7 +42,7 @@ public class SpiritMotePlaceParticleEffect extends MalumNetworkedParticleEffectT
                     .setLifetime(lifetime)
                     .setRandomOffset(0.6f)
                     .enableNoClip()
-                    .setGravityStrength(1.1f)
+                    .setGravity(1.1f)
                     .addMotion(0, 0.25f + random.nextFloat() * 0.1f, 0)
                     .disableNoClip()
                     .setRandomMotion(0.1f, 0.12f)

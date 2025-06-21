@@ -1,6 +1,5 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
-import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.network.chat.Component;
@@ -11,7 +10,7 @@ import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.Consumer;
 
-public class RuneIgneousSolaceItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneIgneousSolaceItem extends MadnessRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneIgneousSolaceItem(Properties builder) {
         super(builder, MalumSpiritTypes.INFERNAL_SPIRIT);

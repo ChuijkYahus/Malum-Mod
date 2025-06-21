@@ -1,13 +1,13 @@
 {
   "registry_name": "duckling:quackling",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 1
     }
   ]

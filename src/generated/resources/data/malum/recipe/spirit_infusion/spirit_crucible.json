@@ -24,11 +24,11 @@
   },
   "spirits": [
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 8
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 8
     }
   ]

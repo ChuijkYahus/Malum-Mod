@@ -10,19 +10,19 @@
   },
   "spirits": [
     {
-      "type": "wicked",
+      "type": "malum:wicked",
       "count": 16
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 8
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 8
     },
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 4
     }
   ]

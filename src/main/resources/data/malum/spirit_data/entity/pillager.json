@@ -1,9 +1,9 @@
 {
   "registry_name": "minecraft:pillager",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 2
     }
   ]

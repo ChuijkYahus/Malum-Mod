@@ -1,9 +1,9 @@
 {
   "registry_name": "alexsmobs:seagull",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

@@ -1,21 +1,21 @@
 {
   "registry_name": "quark:stoneling",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 3
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 3
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 2
     }
   ],

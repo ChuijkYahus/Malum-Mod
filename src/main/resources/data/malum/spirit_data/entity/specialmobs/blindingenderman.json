@@ -1,13 +1,13 @@
 {
   "registry_name": "specialmobs:blindingenderman",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 2
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

@@ -52,7 +52,7 @@ public class GluttonyParticleEffects {
         var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE), distance, count);
         ring.getBuilder()
                 .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(length))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(gluttonyPotency))
+                .modifyTransparencyData(d -> d.multiplyValue(gluttonyPotency))
                 .setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.SINE_IN).build());
         ring.spawnParticles();
     }
@@ -120,9 +120,9 @@ public class GluttonyParticleEffects {
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                     var renderTarget = j < 2 ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
                     builder
-                            .modifyData(AbstractParticleBuilder::getLengthData, d -> d.bake().multiplyValue(lengthMultiplier))
-                            .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.bake().multiplyValue(alphaMultiplier))
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.bake().multiplyValue(scaleMultiplier))
+                            .modifyData(AbstractParticleBuilder::getLengthData, d -> d.copy().multiplyValue(lengthMultiplier))
+                            .modifyTransparencyData(d -> d.copy().multiplyValue(alphaMultiplier))
+                            .modifyScaleData(d -> d.copy().multiplyValue(scaleMultiplier))
                             .setColorData(ColorParticleData.create(bright, dark).setCoefficient(colorCoefficient).build())
                             .setLifetime((int) (RandomHelper.randomBetween(random, 30, 60) * lifetimeScalar))
                             .setMotion(0, 0.001f, 0)

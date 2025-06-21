@@ -17,7 +17,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.*;
 
-public class RuneDexterityItem extends AbstractRuneCurioItem {
+public class RuneDexterityItem extends MiracleRuneCurioItem {
 
     public RuneDexterityItem(Properties builder) {
         super(builder, MalumSpiritTypes.AERIAL_SPIRIT);

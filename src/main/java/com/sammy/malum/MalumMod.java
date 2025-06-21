@@ -1,10 +1,10 @@
 package com.sammy.malum;
 
-import com.sammy.malum.compability.attributelib.*;
-import com.sammy.malum.compability.create.*;
-import com.sammy.malum.compability.farmersdelight.*;
-import com.sammy.malum.compability.irons_spellbooks.*;
-import com.sammy.malum.compability.tetra.*;
+import com.sammy.malum.compat.attributelib.*;
+import com.sammy.malum.compat.create.*;
+import com.sammy.malum.compat.farmersdelight.*;
+import com.sammy.malum.compat.irons_spellbooks.*;
+import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
@@ -23,6 +23,7 @@ import static com.sammy.malum.registry.common.MalumContainers.*;
 import static com.sammy.malum.registry.common.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.MalumMobEffects.*;
 import static com.sammy.malum.registry.common.MalumSoundEvents.*;
+import static com.sammy.malum.registry.common.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
@@ -76,6 +77,7 @@ public class MalumMod {
         ATTACHMENT_TYPES.register(modEventBus);
         WORLD_EVENT_TYPES.register(modEventBus);
         GEAS_TYPES.register(modEventBus);
+        SPIRIT_TYPES.register(modEventBus);
 
         MalumParticleEffectTypes.init();
     }

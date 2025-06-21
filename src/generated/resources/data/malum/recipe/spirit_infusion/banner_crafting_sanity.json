@@ -16,7 +16,7 @@
   },
   "spirits": [
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 1
     }
   ]

@@ -27,12 +27,10 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.multiblock.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
 import javax.annotation.Nullable;
-import java.util.*;
 import java.util.function.*;
 
 @SuppressWarnings("deprecation")
@@ -252,7 +250,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public void beginRepair(ServerLevel level, IMalumSpecialItemAccessPoint provider) {
         MalumParticleEffectTypes.REPAIR_PYLON_PREPARES
                 .createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .customData(new PylonEffectData(provider.getAccessPointBlockPos()))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_START.get(), SoundSource.BLOCKS, 1.0f, 0.8f);
@@ -268,7 +266,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
             for (int i = 0; i < spiritInventory.slotCount; i++) {
                 ItemStack spiritStack = spiritInventory.getStackInSlot(i);
                 if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.getCount());
+                    spiritStack.shrink(spirit.count());
                     break;
                 }
             }
@@ -277,7 +275,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         suppliedInventory.setStackInSlot(0, result);
         MalumParticleEffectTypes.REPAIR_PYLON_REPAIRS
                 .createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .customData(new PylonEffectData(provider.getAccessPointBlockPos()))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.REPAIR_PYLON_REPAIR_FINISH.get(), SoundSource.BLOCKS, 1.0f, 0.8f);

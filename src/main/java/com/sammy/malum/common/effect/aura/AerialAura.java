@@ -10,7 +10,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class AerialAura extends MobEffect {
     public AerialAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AERIAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AERIAL_COLORS().primaryColor()));
         addAttributeModifier(Attributes.MOVEMENT_SPEED, MalumMod.malumPath("aerial_aura"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 }

@@ -23,7 +23,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     }
 
     public TotemicRuneCurioItem(Properties builder, TotemicRiteType riteType, boolean corrupted, int interval) {
-        super(builder, riteType.getIdentifyingSpirit());
+        super(builder, riteType.getIdentifyingSpirit(), MalumTrinketType.TOTEMIC_RUNE);
         this.interval = interval;
         if (!(riteType.getRiteEffect(corrupted) instanceof PotionRiteEffect potionRiteEffect)) {
             throw new IllegalArgumentException("Supplied rite type must have an aura effect");

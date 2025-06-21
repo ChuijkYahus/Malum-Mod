@@ -1,13 +1,13 @@
 {
   "registry_name": "minecraft:magma_cube",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     }
   ]

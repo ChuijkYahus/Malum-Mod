@@ -9,7 +9,8 @@
     "id": "malum:rune_of_indomitability"
   },
   "secondaryInput": {
-    "type": "earthen",
-    "count": 16
-  }
+    "count": 16,
+    "item": "malum:earthen_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_void_rune"
 }

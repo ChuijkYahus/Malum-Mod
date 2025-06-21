@@ -1,17 +1,17 @@
 {
   "registry_name": "born_in_chaos_v1:phantom_creeper_copy",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     }
   ]

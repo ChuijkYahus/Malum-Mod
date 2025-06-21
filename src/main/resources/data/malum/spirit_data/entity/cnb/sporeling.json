@@ -1,17 +1,17 @@
 {
   "registry_name": "cnb:sporeling",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

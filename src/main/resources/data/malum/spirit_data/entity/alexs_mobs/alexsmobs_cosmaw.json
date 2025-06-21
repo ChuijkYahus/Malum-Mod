@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:cosmaw",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 3
     }
   ]

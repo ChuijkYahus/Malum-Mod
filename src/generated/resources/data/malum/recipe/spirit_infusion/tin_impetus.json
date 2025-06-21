@@ -33,15 +33,15 @@
   },
   "spirits": [
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 8
     },
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 8
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 8
     }
   ]

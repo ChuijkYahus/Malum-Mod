@@ -15,7 +15,7 @@ import team.lodestar.lodestone.helpers.EntityHelper;
 
 import java.util.function.Consumer;
 
-public class RuneAilmentCleansingItem extends AbstractRuneCurioItem {
+public class RuneAilmentCleansingItem extends MiracleRuneCurioItem {
 
     public RuneAilmentCleansingItem(Properties builder) {
         super(builder, MalumSpiritTypes.AQUEOUS_SPIRIT);

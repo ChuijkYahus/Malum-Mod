@@ -1,13 +1,13 @@
 {
   "registry_name": "thermal:blizz",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     }
   ]

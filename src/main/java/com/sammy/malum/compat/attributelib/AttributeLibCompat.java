@@ -1,0 +1,23 @@
+package com.sammy.malum.compat.attributelib;
+
+//import dev.shadowsoffire.attributeslib.client.*;
+import net.neoforged.fml.*;
+
+public class AttributeLibCompat {
+
+    public static boolean LOADED;
+
+    public static void init() {
+        LOADED = ModList.get().isLoaded("attributeslib");
+        if (LOADED) {
+            LoadedOnly.init();
+        }
+    }
+
+    public static class LoadedOnly {
+
+        public static void init() {
+//            ModifierSourceType.register(new MalignantConversionModifierSourceType());
+        }
+    }
+}

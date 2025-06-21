@@ -1,17 +1,17 @@
 {
   "registry_name": "creeperoverhaul:desert_creeper",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

@@ -5,15 +5,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.items.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
@@ -34,6 +36,22 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     @Override
     public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
         handleAttack(pLevel, pPos, pPlayer);
+    }
+
+    public static void attack(PlayerInteractEvent.LeftClickBlock event) {
+        BlockPos pos = event.getPos();
+        Level level = event.getLevel();
+        BlockState state = level.getBlockState(pos);
+        Block block = state.getBlock();
+        if (block instanceof SpiritJarBlock jarBlock) {
+            Player player = event.getEntity();
+            BlockHitResult target = Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
+            if (target.getType() == HitResult.Type.BLOCK && target.getBlockPos().equals(pos) && target.getDirection().getAxis() == Direction.Axis.X) {
+                if (player.isCreative()) {
+                    event.setCanceled(jarBlock.handleAttack(level, pos, player));
+                }
+            }
+        }
     }
 
     public boolean handleAttack(Level pLevel, BlockPos pPos, Player pPlayer) {
@@ -60,12 +78,9 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
-        BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (be instanceof SpiritJarBlockEntity jar) {
-            if (jar.contents == null)
-                return 0;
-            return Math.min(MalumSpiritTypes.getIndexForSpiritType(jar.contents.spirit()) + 1, 15);
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof SpiritJarBlockEntity jar) {
+            return jar.contents != null ? jar.contents.getSpirit().getAnalogSignal() : 0;
         }
         return 0;
     }

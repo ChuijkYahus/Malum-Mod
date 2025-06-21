@@ -21,19 +21,19 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 32
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 32
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 16
     },
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 16
     }
   ]

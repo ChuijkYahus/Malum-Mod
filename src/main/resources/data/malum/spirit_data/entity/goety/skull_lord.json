@@ -1,13 +1,13 @@
 {
   "registry_name": "goety:skull_lord",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 5
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 5
     }
   ]

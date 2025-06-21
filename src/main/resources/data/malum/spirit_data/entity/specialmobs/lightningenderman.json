@@ -1,13 +1,13 @@
 {
   "registry_name": "specialmobs:lightningenderman",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 2
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     }
   ]

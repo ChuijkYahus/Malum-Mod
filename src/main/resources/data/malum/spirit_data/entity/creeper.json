@@ -1,9 +1,9 @@
 {
   "registry_name": "minecraft:creeper",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 3
     }
   ]

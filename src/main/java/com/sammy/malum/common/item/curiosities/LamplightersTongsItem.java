@@ -1,7 +1,10 @@
 package com.sammy.malum.common.item.curiosities;
 
+import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.block.*;
+import io.redspace.ironsspellbooks.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -25,14 +28,13 @@ public class LamplightersTongsItem extends Item {
         if (player == null) {
             return super.useOn(context);
         }
-        var level = player.level();
+        var level = context.getLevel();
         var hand = context.getHand();
         var spiritStack = player.getItemInHand(hand.equals(InteractionHand.MAIN_HAND) ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
         if (!(spiritStack.getItem() instanceof SpiritShardItem spiritShard)) {
             return super.useOn(context);
         }
-        var spiritType = spiritShard.type;
-        var spiritMote = getPlacementState(context, spiritType.getSpiritMoteBlockState());
+        var spiritMote = getPlacementState(context, ManaMoteBlock.createManaMoteState(spiritShard));
         if (spiritMote == null) {
             return super.useOn(context);
         }
@@ -46,7 +48,7 @@ public class LamplightersTongsItem extends Item {
         }
         if (level instanceof ServerLevel serverLevel) {
             MalumParticleEffectTypes.SPIRIT_MOTE_SPARKLES.createEffect(pPos)
-                    .color(spiritType)
+                    .color(spiritShard)
                     .spawn(serverLevel);
         }
         return InteractionResult.SUCCESS;

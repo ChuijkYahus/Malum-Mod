@@ -20,11 +20,11 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 8
     },
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 8
     }
   ]

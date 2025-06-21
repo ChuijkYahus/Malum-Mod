@@ -69,7 +69,7 @@ public class ThrownConcentratedGluttonyRenderer extends EntityRenderer<ThrownCon
          }
          float scale = entity.getVisualEffectScalar();
          var additive = LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
-         var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL, ShaderUniformHandler.LUMITRANSPARENT);
+         var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL).withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
          var builder = VFXBuilders.createWorld().setRenderType(additive);
          for (TrailPointBuilder trail : entity.trails) {
             RenderUtils.renderEntityTrail(poseStack, builder, trail, entity, GLUTTONY_GREEN, GLUTTONY_DARK, scale * 0.5f, scale * 0.5f, partialTicks);

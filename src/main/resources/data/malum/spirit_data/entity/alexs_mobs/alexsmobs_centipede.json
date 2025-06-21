@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:centipede_head",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 2
     }
   ]

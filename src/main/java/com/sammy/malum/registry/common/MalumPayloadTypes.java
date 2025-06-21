@@ -1,10 +1,9 @@
 package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.packets.*;
-import com.sammy.malum.common.packets.particle.rite.*;
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeStateUpdatePayload;
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayload;
+import com.sammy.malum.common.payloads.*;
+import com.sammy.malum.common.payloads.spirit_diode.SpiritDiodeStateUpdatePayload;
+import com.sammy.malum.common.payloads.spirit_diode.SpiritDiodeVisualUpdatePayload;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -30,7 +29,5 @@ public class MalumPayloadTypes {
         MALUM_CHANNEL.playToClient(registrar, "sync_curio_data", SyncCurioDataPayload.class, SyncCurioDataPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "sync_geas_data", SyncGeasDataPayload.class, SyncGeasDataPayload::new);
         MALUM_CHANNEL.playToClient(registrar, "sync_staff_ability_data", SyncStaffAbilityDataPayload.class, SyncStaffAbilityDataPayload::new);
-
-        MALUM_CHANNEL.playToClient(registrar, "blight_transformation_item_particle", BlightTransformItemParticlePacket.class, BlightTransformItemParticlePacket::new);
     }
 }

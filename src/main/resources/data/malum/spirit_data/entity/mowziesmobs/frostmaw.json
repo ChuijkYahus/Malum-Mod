@@ -1,17 +1,17 @@
 {
   "registry_name": "mowziesmobs:frostmaw",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 8
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 8
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 8
     }
   ]

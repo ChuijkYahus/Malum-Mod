@@ -1,9 +1,9 @@
 {
   "registry_name": "graveyard:acolyte",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 2
     }
   ]

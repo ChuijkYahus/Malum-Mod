@@ -1,13 +1,13 @@
 {
   "registry_name": "endergetic:booflo_adolescent",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

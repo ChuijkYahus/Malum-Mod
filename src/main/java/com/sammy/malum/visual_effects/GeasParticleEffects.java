@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
@@ -198,12 +198,12 @@ public class GeasParticleEffects {
                             .multiplyLifetime(0.8f)
                             .setMotion(motion)
                             .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                            .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                     lightSpecs.getBloomBuilder()
                             .multiplyLifetime(0.6f)
                             .setMotion(motion)
                             .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                            .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                     lightSpecs.spawnParticles();
                 }
             }
@@ -225,13 +225,13 @@ public class GeasParticleEffects {
                         .setMotion(motion)
                         .setLifeDelay(j*2)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.8f)
                         .setMotion(motion)
                         .setLifeDelay(j*2)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -254,13 +254,13 @@ public class GeasParticleEffects {
                         .setMotion(motion)
                         .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.6f)
                         .setMotion(motion)
                         .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -280,13 +280,13 @@ public class GeasParticleEffects {
                         .setMotion(0, velocity, 0)
                         .setLifeDelay(delay)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.8f)
                         .setMotion(0, velocity, 0)
                         .setLifeDelay(delay)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -306,7 +306,7 @@ public class GeasParticleEffects {
                 .enableNoClip()
                 .setRandomMotion(0.02f, 0.02f)
                 .repeat(level, pos.x, pos.y, pos.z, 3)
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(0.6f))
+                .modifyScaleData(d -> d.multiplyValue(0.6f))
                 .repeat(level, pos.x, pos.y, pos.z, 2);
 
         long gameTime = level.getGameTime();
@@ -337,7 +337,7 @@ public class GeasParticleEffects {
                     lightSpecs.getBuilder()
                             .multiplyLifetime(lifetimeMultiplier)
                             .enableForcedSpawn()
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                            .modifyScaleData(d -> d.multiplyValue(1.75f))
                             .setMotion(particleDirection);
                     lightSpecs.getBloomBuilder()
                             .multiplyLifetime(lifetimeMultiplier)
@@ -350,7 +350,7 @@ public class GeasParticleEffects {
                             .multiplyLifetime(lifetimeMultiplier)
                             .enableForcedSpawn()
                             .setMotion(particleDirection.scale(1.5f))
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                            .modifyScaleData(d -> d.multiplyValue(1.75f))
                             .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f));
                     sparks.getBloomBuilder()
                             .multiplyLifetime(lifetimeMultiplier)
@@ -380,7 +380,7 @@ public class GeasParticleEffects {
                 .enableNoClip()
                 .setRandomMotion(0.02f, 0.02f)
                 .repeat(level, pos.x, pos.y, pos.z, 3)
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(0.6f))
+                .modifyScaleData(d -> d.multiplyValue(0.6f))
                 .repeat(level, pos.x, pos.y, pos.z, 2);
 
         for (int i = 0; i < 16; i++) {
@@ -401,7 +401,7 @@ public class GeasParticleEffects {
                 lightSpecs.getBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
                         .enableForcedSpawn()
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
                         .setMotion(particleDirection);
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
@@ -414,7 +414,7 @@ public class GeasParticleEffects {
                         .multiplyLifetime(lifetimeMultiplier)
                         .enableForcedSpawn()
                         .setMotion(particleDirection.scale(1.5f))
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
                         .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
                 sparks.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)

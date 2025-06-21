@@ -1,13 +1,13 @@
 {
   "registry_name": "born_in_chaos_v1:decrepit_skeleton",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

@@ -49,7 +49,7 @@ public class EntropicBoltImpactParticleEffect extends BoltImpactParticleEffect {
                 lightSpecs.getBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
                         .enableForcedSpawn()
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
                         .setMotion(direction);
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
@@ -62,7 +62,7 @@ public class EntropicBoltImpactParticleEffect extends BoltImpactParticleEffect {
                         .multiplyLifetime(lifetimeMultiplier)
                         .enableForcedSpawn()
                         .setMotion(direction.scale(1.5f))
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f))
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
                         .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(2f));
                 sparks.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)

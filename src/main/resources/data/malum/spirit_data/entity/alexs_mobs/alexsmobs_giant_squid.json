@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:giant_squid",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 4
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

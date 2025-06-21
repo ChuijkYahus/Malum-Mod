@@ -1,13 +1,13 @@
 {
   "registry_name": "graveyard:ghoul",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

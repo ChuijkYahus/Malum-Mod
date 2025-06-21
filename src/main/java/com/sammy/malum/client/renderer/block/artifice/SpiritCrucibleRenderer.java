@@ -3,9 +3,7 @@ package com.sammy.malum.client.renderer.block.artifice;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.renderer.entity.*;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.SpiritCatalyzerCoreBlockEntity;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
-import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.*;
@@ -54,7 +52,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
                     poseStack.pushPose();
                     Vector3f offset = blockEntityIn.getSpiritItemOffset(spiritsRendered++, partialTicks).toVector3f();
                     poseStack.translate(offset.x(), offset.y(), offset.z());
-                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.type, partialTicks);
+                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
                     poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
                     poseStack.scale(0.5f, 0.5f, 0.5f);
                     itemRenderer.renderStatic(item, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

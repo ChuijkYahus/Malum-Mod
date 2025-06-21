@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -20,8 +20,9 @@ import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
 
+import java.awt.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
@@ -43,7 +44,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                     poseStack.pushPose();
                     Vector3f offset = blockEntityIn.getSpiritOffset(spiritsRendered++, partialTicks).toVector3f();
                     poseStack.translate(offset.x(), offset.y(), offset.z());
-                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.type, partialTicks);
+                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
                     poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
                     poseStack.scale(0.5f, 0.5f, 0.5f);
                     itemRenderer.renderStatic(item, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
@@ -88,8 +89,8 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             float scale = 0.4f * Math.min(1 + progress / 10f, 2);
             var worldVFXBuilder = VFXBuilders.createWorld();
             var cycle = new AtomicInteger();
-            Supplier<MalumSpiritType> colorSupplier = () -> spirits.get(cycle.getAndIncrement() % spirits.size()).getSpiritType();
-            var mainColor = colorSupplier.get().getPrimaryColor();
+            Function<Function<SpiritLike, Color>, Color> colorSupplier = (b) -> b.apply(spirits.get(cycle.getAndIncrement() % spirits.size())); //TODO: this kinda smells...
+            var mainColor = colorSupplier.apply(SpiritLike::getPrimaryColor);
 
             poseStack.pushPose();
             poseStack.translate(offset.x, offset.y, offset.z);
@@ -100,7 +101,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             float distance = scale * 0.08f;
 
             worldVFXBuilder
-                    .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.32f)
+                    .setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.32f)
                     .setRenderType(transparent)
                     .setAlpha(alpha*0.4f)
                     .renderQuad(poseStack, scale);
@@ -111,7 +112,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 double yOffset = (distance * Math.sin(angle));
                 poseStack.translate(xOffset, yOffset, -0.02*i);
                 worldVFXBuilder
-                        .setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.32f)
+                        .setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.32f)
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0.02*i);
             }
@@ -130,7 +131,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 poseStack.translate(xOffset, yOffset, 0);
                 worldVFXBuilder
                         .setAlpha(alpha*0.4f)
-                        .setColor(colorSupplier.get().getSecondaryColor())
+                        .setColor(colorSupplier.apply(SpiritLike::getSecondaryColor))
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0);
             }

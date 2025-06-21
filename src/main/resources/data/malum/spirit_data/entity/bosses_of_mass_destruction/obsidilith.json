@@ -1,21 +1,21 @@
 {
   "registry_name": "bosses_of_mass_destruction:obsidilith",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 3
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 7
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

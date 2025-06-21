@@ -130,7 +130,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
         Vec3 norm = getDeltaMovement().normalize().scale(0.05f);
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, AURIC_COLOR_DATA);
         lightSpecs.getBuilder()
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(3 * scalar))
+                .modifyScaleData(d -> d.multiplyValue(3 * scalar))
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .multiplyLifetime(2.5f)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)

@@ -1,17 +1,17 @@
 {
   "registry_name": "mowziesmobs:umvuthi",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 8
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 4
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 10
     }
   ]

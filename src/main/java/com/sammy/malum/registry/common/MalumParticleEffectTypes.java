@@ -2,7 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.attack.*;
-import com.sammy.malum.visual_effects.networked.banner.SoulwovenBannerParticleEffect;
+import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
@@ -10,6 +10,7 @@ import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
 import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeCloseParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeOpenParticleEffect;
@@ -29,6 +30,10 @@ public class MalumParticleEffectTypes {
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");
     public static final SpiritAltarEatItemParticleEffect SPIRIT_ALTAR_EATS_ITEM = new SpiritAltarEatItemParticleEffect("spirit_altar_eats_item");
+
+    //Runic Workbench
+    public static final RunicWorkbenchCraftRuneParticleEffect RUNIC_WORKBENCH_CRAFTS_RUNE = new RunicWorkbenchCraftRuneParticleEffect("runic_workbench_crafts_rune");
+    public static final RunicWorkbenchCraftSpiritlessItemParticleEffect RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM = new RunicWorkbenchCraftSpiritlessItemParticleEffect("runic_workbench_crafts_spiritless_item");
 
     //Crucible
     public static final SpiritCrucibleCraftParticleEffect SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");
@@ -105,8 +110,12 @@ public class MalumParticleEffectTypes {
     public static final WeepingWellReactionParticleEffect WEEPING_WELL_REACTS = new WeepingWellReactionParticleEffect("weeping_well_reacts");
 
     //Misc vfx
+
+    //Banner vfx
+    public static final SoulwovenBannerApplyParticleEffect APPLY_SOULWOVEN_BANNER_GLOW = new SoulwovenBannerApplyParticleEffect("apply_soulwoven_banner_glow");
+    public static final SoulwovenBannerRemoveParticleEffect REMOVE_SOULWOVEN_BANNER_GLOW = new SoulwovenBannerRemoveParticleEffect("remove_soulwoven_banner_glow");
+
     public static final SpiritMotePlaceParticleEffect SPIRIT_MOTE_SPARKLES = new SpiritMotePlaceParticleEffect("spirit_mote_sparkles");
-    public static final SoulwovenBannerParticleEffect SOULWOVEN_BANNER_ACTIVATED = new SoulwovenBannerParticleEffect("soulwoven_banner_activated");
     public static final SapCollectionParticleEffect SAP_COLLECTED = new SapCollectionParticleEffect("sap_collected");
 
     public static void init() {

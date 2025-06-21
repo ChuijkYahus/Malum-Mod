@@ -1,7 +1,7 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.common.data.attachment.*;
-import com.sammy.malum.common.packets.*;
+import com.sammy.malum.common.payloads.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.tick.*;

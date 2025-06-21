@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects.networked;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.codec.StreamCodec;
@@ -11,9 +11,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.awt.*;
 import java.util.List;
@@ -68,13 +67,16 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
         }
 
         public MalumParticleEffectBuilder<T> color(Item item) {
+            if (item instanceof SpiritLike spirit) {
+                return color(spirit);
+            }
             if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
                 return color(new MalumNetworkedParticleEffectColorData(spiritAffiliatedItem.getDefiningSpiritType()));
             }
             return this;
         }
 
-        public MalumParticleEffectBuilder<T> color(MalumSpiritType... spiritTypes) {
+        public MalumParticleEffectBuilder<T> color(SpiritLike... spiritTypes) {
             return color(new MalumNetworkedParticleEffectColorData(spiritTypes));
         }
 
@@ -104,12 +106,12 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
         }
 
         @Override
-        public MalumParticleEffectBuilder<T> color(ColorParticleData color) {
+        public MalumParticleEffectBuilder<T> color(ColorParticleDataWrapper color) {
             return color(MalumNetworkedParticleEffectColorData.fromColor(color));
         }
 
         @Override
-        public MalumParticleEffectBuilder<T> color(List<ColorParticleData> colors) {
+        public MalumParticleEffectBuilder<T> color(List<? extends ColorParticleDataWrapper> colors) {
             return color(MalumNetworkedParticleEffectColorData.fromColors(colors));
         }
 

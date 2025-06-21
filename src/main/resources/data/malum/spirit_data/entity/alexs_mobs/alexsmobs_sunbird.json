@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:sunbird",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 4
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     }
   ]

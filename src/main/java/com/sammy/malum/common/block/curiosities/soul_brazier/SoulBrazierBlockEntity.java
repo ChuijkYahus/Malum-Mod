@@ -91,7 +91,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public SoulBrazierBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.SOUL_BRAZIER.get(), pos, state);
         inventory = MalumBlockEntityInventory.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, MalumSpiritTypes.SPIRITS.size()).onContentsChanged(this::updateRecipe);
+        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this).onContentsChanged(this::updateRecipe);
     }
 
     @Override
@@ -263,7 +263,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_START.get(), SoundSource.BLOCKS, 2f, 0.9f + level.random.nextFloat() * 0.3f);
 
         MalumParticleEffectTypes.SOULBINDING_BRAZIER_BEGINS.createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, true), 3);
@@ -278,7 +278,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_SACRIFICE.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
 
             MalumParticleEffectTypes.SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE.createEffect(worldPosition)
-                    .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                    .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                     .customData(new SoulBrazierAcceptSacrificeParticleEffect.SoulBrazierEntityEffectData(entity.getId()))
                     .spawn(level);
 
@@ -300,7 +300,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             for (int i = 0; i < spiritInventory.slotCount; i++) {
                 ItemStack spiritStack = spiritInventory.getStackInSlot(i);
                 if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.getCount());
+                    spiritStack.shrink(spirit.count());
                     break;
                 }
             }
@@ -330,7 +330,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             }
         }
         MalumParticleEffectTypes.SOULBINDING_BRAZIER_ENDS.createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);

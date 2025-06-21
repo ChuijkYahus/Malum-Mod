@@ -2,17 +2,12 @@ package com.sammy.malum.common.block.storage;
 
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
-import net.neoforged.neoforge.items.IItemHandler;
-import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 
 public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity implements IMalumSpecialItemAccessPoint {
@@ -44,8 +39,7 @@ public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity i
     public void tick() {
         if (level.isClientSide) {
             if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
-                MalumSpiritType type = item.type;
-                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), type, 0.4f, 2);
+                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.4f, 2);
             }
         }
     }

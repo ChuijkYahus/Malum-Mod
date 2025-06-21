@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.alchemical;
 
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.compability.irons_spellbooks.*;
+import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;

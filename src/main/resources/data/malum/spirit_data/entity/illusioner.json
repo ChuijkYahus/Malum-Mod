@@ -1,13 +1,13 @@
 {
   "registry_name": "minecraft:illusioner",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     }
   ]

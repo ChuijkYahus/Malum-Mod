@@ -1,13 +1,13 @@
 {
   "registry_name": "environmental:reindeer",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

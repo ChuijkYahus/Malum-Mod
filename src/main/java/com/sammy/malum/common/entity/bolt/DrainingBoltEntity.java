@@ -104,18 +104,16 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
                 .multiplyLifetime(1.5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
-        final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
-        final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
         WorldParticleBuilder.create(MalumParticles.SAW)
                 .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
+                .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                .setColorData(SCEPTER_COLOR_DATA)
                 .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 24))
-                .addTickActor(behavior)
-                .setSpinData(spinData)
+                .setColorData(SCEPTER_COLOR_DATA)
+                .setFriction(0.95f)
                 .enableForcedSpawn()
                 .enableNoClip()
                 .spawn(level, position.x, position.y, position.z)

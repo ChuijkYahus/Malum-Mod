@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
-import com.sammy.malum.common.packets.spirit_diode.SpiritDiodeVisualUpdatePayload;
+import com.sammy.malum.common.payloads.spirit_diode.SpiritDiodeVisualUpdatePayload;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

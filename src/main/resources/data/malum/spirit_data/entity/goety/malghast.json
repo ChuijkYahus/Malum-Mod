@@ -1,21 +1,21 @@
 {
   "registry_name": "goety:malghast",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 3
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

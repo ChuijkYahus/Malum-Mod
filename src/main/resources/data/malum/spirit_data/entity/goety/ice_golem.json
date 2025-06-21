@@ -1,13 +1,13 @@
 {
   "registry_name": "goety:ice_golem",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 3
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 3
     }
   ]

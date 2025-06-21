@@ -1,17 +1,17 @@
 {
   "registry_name": "goety:polar_bear_servant",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 1
     }
   ]

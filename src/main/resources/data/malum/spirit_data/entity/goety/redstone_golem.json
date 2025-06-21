@@ -1,13 +1,13 @@
 {
   "registry_name": "goety:redstone_golem",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 4
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 4
     }
   ]

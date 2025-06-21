@@ -10,11 +10,11 @@
   },
   "spirits": [
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 2
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 2
     }
   ],

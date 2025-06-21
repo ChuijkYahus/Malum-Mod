@@ -1,7 +1,7 @@
 package com.sammy.malum.common.effect.gluttony;
 
 import com.sammy.malum.*;
-import com.sammy.malum.compability.irons_spellbooks.*;
+import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.effect.*;

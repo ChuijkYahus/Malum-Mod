@@ -7,6 +7,6 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class CorruptedAqueousAura extends MobEffect {
     public CorruptedAqueousAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AQUEOUS_COLORS().primaryColor()));
     }
 }

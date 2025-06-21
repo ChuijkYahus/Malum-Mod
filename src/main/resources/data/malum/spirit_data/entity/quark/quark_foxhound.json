@@ -1,17 +1,17 @@
 {
   "registry_name": "quark:foxhound",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 2
     }
   ]

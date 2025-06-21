@@ -11,11 +11,11 @@
   "repairOutputOverride": "malum:zinc_impetus",
   "spirits": [
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 8
     },
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 8
     }
   ]

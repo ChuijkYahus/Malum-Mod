@@ -36,7 +36,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
         setDeltaMovement(velocity);
         maxAge = 800;
         if (stack.getItem() instanceof SpiritShardItem spiritShardItem) {
-            setSpirit(spiritShardItem.type);
+            setSpirit(spiritShardItem.getSpirit());
         }
     }
 

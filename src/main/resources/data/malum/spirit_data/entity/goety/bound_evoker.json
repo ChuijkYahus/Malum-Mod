@@ -1,17 +1,17 @@
 {
   "registry_name": "goety:bound_evoker",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 3
     }
   ]

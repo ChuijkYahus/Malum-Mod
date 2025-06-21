@@ -1,9 +1,9 @@
 {
   "registry_name": "twilightforest:death_tome",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     }
   ]

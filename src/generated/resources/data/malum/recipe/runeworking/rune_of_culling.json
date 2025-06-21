@@ -9,7 +9,8 @@
     "id": "malum:rune_of_culling"
   },
   "secondaryInput": {
-    "type": "wicked",
-    "count": 16
-  }
+    "count": 16,
+    "item": "malum:wicked_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_tainted_rune"
 }

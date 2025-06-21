@@ -10,7 +10,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class EarthenAura extends MobEffect {
     public EarthenAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_COLORS().primaryColor()));
         var id = MalumMod.malumPath("earthen_aura");
         addAttributeModifier(Attributes.ARMOR, id, 2f, AttributeModifier.Operation.ADD_VALUE);
         addAttributeModifier(Attributes.ARMOR_TOUGHNESS, id, 1f, AttributeModifier.Operation.ADD_VALUE);

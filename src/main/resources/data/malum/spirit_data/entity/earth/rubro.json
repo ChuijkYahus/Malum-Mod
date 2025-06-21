@@ -1,10 +1,10 @@
 
 {
   "registry_name": "earth:rubro",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 4
     }
   ]

@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:mantis_shrimp",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     }
   ]

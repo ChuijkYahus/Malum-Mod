@@ -1,17 +1,17 @@
 {
   "registry_name": "irons_spellbooks:citadel_keeper",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 2
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 2
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     }
   ]

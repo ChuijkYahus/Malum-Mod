@@ -10,6 +10,9 @@ public class MalumSpiritBlockEntityInventory extends MalumBlockEntityInventory{
     public static MalumBlockEntityInventory singleSpiritStack(LodestoneBlockEntity blockEntity) {
         return new MalumSpiritBlockEntityInventory(blockEntity, 1, 64);
     }
+    public static MalumBlockEntityInventory spiritStacks(LodestoneBlockEntity blockEntity) {
+        return new MalumSpiritBlockEntityInventory(blockEntity, MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.size(), 64);
+    }
     public static MalumBlockEntityInventory spiritStacks(LodestoneBlockEntity blockEntity, int slotCount) {
         return new MalumSpiritBlockEntityInventory(blockEntity, slotCount, 64);
     }

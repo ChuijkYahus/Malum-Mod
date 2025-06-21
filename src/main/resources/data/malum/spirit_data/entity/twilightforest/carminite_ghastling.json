@@ -1,21 +1,21 @@
 {
   "registry_name": "twilightforest:carminite_ghastling",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 1
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 1
     }
   ]

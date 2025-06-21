@@ -66,7 +66,7 @@ public class MalumUnchainedTransmutationRecipes {
         for (var transmutation : SOULWOOD_TRANSMUTATIONS) {
             var input = transmutation.getFirst();
             var output = transmutation.getSecond();
-            var id = output.getId().withPath(s -> "soulwood/" + s).withSuffix("_soulwood_transmutation");
+            var id = output.getId().withPath(p -> "soulwood/" + p).withSuffix("_soulwood_transmutation");
             new UnchainedTransmutationRecipeBuilder(input.get(), output.get())
                     .group("soulwood")
                     .save(recipeOutput, id);

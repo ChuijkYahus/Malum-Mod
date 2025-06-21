@@ -1,9 +1,9 @@
 {
   "registry_name": "progressivebosses:larva",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     }
   ]

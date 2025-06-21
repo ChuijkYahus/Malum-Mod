@@ -2,50 +2,41 @@ package com.sammy.malum.core.systems.recipe;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.recipe.*;
+import net.minecraft.core.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.crafting.*;
+import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
-public class SpiritIngredient implements ICustomIngredient {
+public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritLike {
 
     public static final MapCodec<SpiritIngredient> CODEC = RecordCodecBuilder.mapCodec(
             builder -> builder
                     .group(
-                            MalumSpiritType.CODEC.fieldOf("type").forGetter(SpiritIngredient::getSpiritType),
-                            Codec.INT.fieldOf("count").forGetter(SpiritIngredient::getCount))
+                            MalumSpiritType.HOLDER_CODEC.fieldOf("type").forGetter(SpiritIngredient::spirit),
+                            Codec.INT.fieldOf("count").forGetter(SpiritIngredient::count))
                     .apply(builder, SpiritIngredient::new));
-
-    protected final MalumSpiritType spiritType;
-    protected final int count;
-
-    public SpiritIngredient(MalumSpiritType spiritType, int count) {
-        this.spiritType = spiritType;
-        this.count = count;
-    }
-
-    public MalumSpiritType getSpiritType() {
-        return spiritType;
-    }
-
-    public int getCount() {
-        return count;
-    }
 
     @Override
     public boolean test(ItemStack itemStack) {
-        return spiritType.test(itemStack) && itemStack.getCount() >= count;
+        return itemStack.is(spirit.value().getSpiritShard()) && itemStack.getCount() >= count;
     }
 
     @Override
-    public Stream<ItemStack> getItems() {
-        return Stream.of(getStack());
+    public @NotNull Stream<ItemStack> getItems() {
+        return Stream.of(asItemStack());
     }
 
-    public ItemStack getStack() {
-        return new ItemStack(spiritType.getSpiritShard(), count);
+    @Override
+    public @NotNull IngredientType<?> getType() {
+        return MalumIngredientTypes.SPIRIT.get();
+    }
+
+    public ItemStack asItemStack() {
+        return spirit().value().getSpiritStack(count);
     }
 
     @Override
@@ -54,7 +45,7 @@ public class SpiritIngredient implements ICustomIngredient {
     }
 
     @Override
-    public IngredientType<?> getType() {
-        return MalumIngredientTypes.SPIRIT.get();
+    public @NotNull MalumSpiritType getSpirit() {
+        return spirit.value().getSpirit();
     }
 }

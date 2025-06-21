@@ -1,13 +1,13 @@
 {
   "registry_name": "minecraft:squid",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

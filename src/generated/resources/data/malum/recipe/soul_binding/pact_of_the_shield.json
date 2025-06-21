@@ -13,15 +13,15 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 16
     },
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 16
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 16
     }
   ]

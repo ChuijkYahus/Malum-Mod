@@ -1,13 +1,13 @@
 {
   "registry_name": "minecraft:elder_guardian",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 5
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 3
     }
   ]

@@ -1,17 +1,17 @@
 {
   "registry_name": "minecraft:zombie_horse",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 2
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     }
   ]

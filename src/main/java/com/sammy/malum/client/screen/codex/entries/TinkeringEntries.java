@@ -197,7 +197,7 @@ public class TinkeringEntries {
 
         screen.addEntry("tyrving", -4, 20, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(TYRVING))
-                .addPage(new HeadlineTextPage("tyrving", "tyrving.1"))
+                .addPage(new HeadlineTextItemPage("tyrving", "tyrving.1", TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))
                 .addPage(new TextPage("tyrving.3"))
                 .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))

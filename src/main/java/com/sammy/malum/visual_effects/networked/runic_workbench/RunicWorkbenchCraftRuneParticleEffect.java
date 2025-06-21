@@ -1,0 +1,35 @@
+package com.sammy.malum.visual_effects.networked.runic_workbench;
+
+import com.sammy.malum.common.block.curiosities.runic_workbench.*;
+import com.sammy.malum.common.block.curiosities.spirit_altar.*;
+import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.networked.*;
+import io.netty.buffer.*;
+import net.minecraft.network.codec.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.systems.network.particle.*;
+
+import java.util.*;
+
+public class RunicWorkbenchCraftRuneParticleEffect extends MalumNetworkedParticleEffectType<RunicWorkbenchEffectData> {
+
+    public RunicWorkbenchCraftRuneParticleEffect(String id) {
+        super(id);
+    }
+
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(RunicWorkbenchEffectData.STREAM_CODEC);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, RunicWorkbenchEffectData extraData) {
+        if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof RunicWorkbenchBlockEntity runicWorkbench)) {
+            return;
+        }
+        RunicWorkbenchParticleEffects.craftRuneParticles(level, runicWorkbench, colorData, extraData);
+    }
+}

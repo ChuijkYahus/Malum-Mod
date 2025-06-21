@@ -1,13 +1,13 @@
 {
   "registry_name": "upgrade_aquatic:great_thrasher",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 3
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 3
     }
   ]

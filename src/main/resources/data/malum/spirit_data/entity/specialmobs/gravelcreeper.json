@@ -1,14 +1,14 @@
 {
   "registry_name": "specialmobs:gravelcreeper",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
 
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 2
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     }
   ]

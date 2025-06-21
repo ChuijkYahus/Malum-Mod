@@ -1,21 +1,21 @@
 {
   "registry_name": "irons_spellbooks:dead_king_corpse",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 8
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 4
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 4
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 4
     }
   ]

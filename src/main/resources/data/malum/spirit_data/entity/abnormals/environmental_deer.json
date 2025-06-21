@@ -1,9 +1,9 @@
 {
   "registry_name": "environmental:deer",
-  "primary_type": "sacred",
+  "primary_type": "malum:sacred",
   "spirits": [
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

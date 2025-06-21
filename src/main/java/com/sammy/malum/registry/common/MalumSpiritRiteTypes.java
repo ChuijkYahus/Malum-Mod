@@ -3,7 +3,8 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.common.spiritrite.arcane.*;
 import com.sammy.malum.common.spiritrite.eldritch.*;
 import com.sammy.malum.core.systems.rite.TotemicRiteType;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class MalumSpiritRiteTypes {
 
     public static TotemicRiteType getRite(List<MalumSpiritType> spirits) {
         for (TotemicRiteType rite : RITES) {
-            if (rite.spirits.equals(spirits)) {
+            if (rite.matches(spirits)) {
                 return rite;
             }
         }

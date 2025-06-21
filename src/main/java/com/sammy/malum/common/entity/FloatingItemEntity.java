@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -23,24 +24,28 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.getIdentifier());
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.getRegistryName().toString());
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        ItemStack itemstack = this.getItem();
-        if (!itemstack.isEmpty()) {
-            pCompound.put("item", getItem().save(this.registryAccess()));
+        ItemStack item = getItem();
+        if (!item.isEmpty()) {
+            pCompound.put("item", item.save(this.registryAccess()));
         }
-        pCompound.putString("spiritType", getSpiritType().getIdentifier());
+
+        var spirit = getSpiritType();
+        if (spirit != null) {
+            pCompound.putString("spirit", spirit.getRegistryName().toString());
+        }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setItem(ItemStack.parse(registryAccess(), pCompound.getCompound("item")).orElse(ItemStack.EMPTY));
-        setSpirit(pCompound.getString("spiritType"));
+        setSpirit(pCompound.getString("spirit"));
     }
 
     @Override
@@ -72,14 +77,14 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     }
 
     public MalumSpiritType getSpiritType() {
-        return MalumSpiritTypes.SPIRITS.get(getEntityData().get(DATA_SPIRIT_GLOW));
+        return SpiritHolder.getSpiritType(getEntityData().get(DATA_SPIRIT_GLOW)).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get());
     }
 
-    public void setSpirit(String spiritIdentifier) {
-        this.getEntityData().set(DATA_SPIRIT_GLOW, spiritIdentifier);
+    public void setSpirit(MalumSpiritType spirit) {
+        setSpirit(spirit.getRegistryName().toString());
     }
 
-    public void setSpirit(MalumSpiritType spiritType) {
-        setSpirit(spiritType.getIdentifier());
+    public void setSpirit(String spirit) {
+        getEntityData().set(DATA_SPIRIT_GLOW, spirit);
     }
 }

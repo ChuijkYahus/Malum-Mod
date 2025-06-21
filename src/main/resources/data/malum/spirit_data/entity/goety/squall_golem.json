@@ -1,17 +1,17 @@
 {
   "registry_name": "goety:squall_golem",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 3
     },
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 3
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     }
   ]

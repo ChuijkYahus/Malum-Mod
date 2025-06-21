@@ -1,21 +1,21 @@
 {
   "registry_name": "twilightforest:ur_ghast",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 3
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 3
     },
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 3
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 3
     }
   ]

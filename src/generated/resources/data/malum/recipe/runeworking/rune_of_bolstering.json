@@ -9,7 +9,8 @@
     "id": "malum:rune_of_bolstering"
   },
   "secondaryInput": {
-    "type": "sacred",
-    "count": 16
-  }
+    "count": 16,
+    "item": "malum:sacred_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_void_rune"
 }

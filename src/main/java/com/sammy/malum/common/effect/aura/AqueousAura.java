@@ -13,7 +13,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class AqueousAura extends MobEffect {
     public AqueousAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.AQUEOUS_COLORS().primaryColor()));
         var id = MalumMod.malumPath("aqueous_aura");
         addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);

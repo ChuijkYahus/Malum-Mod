@@ -7,9 +7,10 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.attack.SunderingAnchorSlashParticleEffect;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -39,10 +40,10 @@ import java.util.*;
 
 public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
-    public static final MalumSpiritType[] SPIRITS = new MalumSpiritType[]{MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT};
+    public static final List<SpiritLike> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
 
-    public static MalumSpiritType getSunderingAnchorSpirit() {
-        return SPIRITS[MalumMod.RANDOM.nextInt(SPIRITS.length)];
+    public static SpiritLike getSunderingAnchorSpirit() {
+        return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1));
     }
 
     public SunderingAnchorItem(Tier tier, float magicDamage, LodestoneItemProperties properties) {
@@ -69,7 +70,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     @Override
-    public MalumSpiritType getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return getSunderingAnchorSpirit();
     }
 
@@ -133,7 +134,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                         .forwardOffset(1.5f)
                         .horizontalOffset(0.3f)
                         .upwardOffset(-0.2f)
-                        .color(SPIRITS)
+                        .color(MalumNetworkedParticleEffectColorData.fromSpirits(SPIRITS))
                         .customData(new SunderingAnchorSlashParticleEffect.SunderingAnchorSlashEffectData(slashCount))
                         .randomSlashRotation(random)
                         .spawn(level);

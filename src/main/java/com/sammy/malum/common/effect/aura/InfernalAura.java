@@ -11,7 +11,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class InfernalAura extends MobEffect {
     public InfernalAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.INFERNAL_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
         final ResourceLocation id = MalumMod.malumPath("infernal_aura");
         addAttributeModifier(Attributes.ATTACK_SPEED, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);

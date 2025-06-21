@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public class RuneReinforcementItem extends AbstractRuneCurioItem {
+public class RuneReinforcementItem extends MiracleRuneCurioItem {
 
     public RuneReinforcementItem(Properties builder) {
         super(builder, MalumSpiritTypes.ARCANE_SPIRIT);

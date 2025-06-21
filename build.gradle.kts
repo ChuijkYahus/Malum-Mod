@@ -109,10 +109,6 @@ repositories {
         url = uri("https://dvs1.progwml6.com/files/maven")
     }
     maven {
-        name = "tterrag maven"
-        url = uri("https://maven.tterrag.com/")
-    }
-    maven {
         name = "BlameJared maven"
         url = uri("https://maven.blamejared.com/")
     }
@@ -148,41 +144,54 @@ repositories {
         name = "OctoStudios"
         url = uri("https://maven.octo-studios.com/releases")
     }
-
+    maven {
+        url = uri("https://maven.latvian.dev/releases")
+        content {
+            includeGroup("dev.latvian.mods")
+        }
+    }
     maven {
         url = uri("https://maven.createmod.net")
     }
 }
 
 dependencies {
-    // JEI Dependency
+    // JEI
     compileOnlyApi(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge-api:${project.property("jei_version")}"))
     runtimeOnly(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge:${project.property("jei_version")}"))
 
-    // Curios dependency
+    // Curios
     compileOnlyApi(("top.theillusivec4.curios:curios-neoforge:${property("curios_version")}"))
     runtimeOnly(("top.theillusivec4.curios:curios-neoforge:${property("curios_version")}"))
 
+    // Lodestone
     compileOnlyApi(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
     runtimeOnly(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
 
-    // Tetra Optional Dependency
+    // KubeJS
+    implementation("curse.maven:rhino-416294:6184623")
+    implementation("curse.maven:kubejs-238086:5810100")
 
+    // Tetra Optional Dependency
 //    compileOnly(("curse.maven:tetra-${property("tetra_version")}"))
 //    compileOnly(("se.mickelus.mutil:mutil:${property("mutil_version")}"))
 
+    // Farmer's Delight, Optional
     compileOnly(("curse.maven:farmers-delight-398521:5878217"))
     localRuntime(("curse.maven:farmers-delight-398521:5878217"))
 
+    //Iron's Spells and Spellbooks, Optional
     compileOnly(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
     compileOnly(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
     compileOnly(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
 
+    //Runtime Mods
     localRuntime(("curse.maven:jeed-532286:5693385"))
     localRuntime(("curse.maven:spark-361579:5759671"))
     localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
     localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
 
+    //AttributeFix
     localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
     localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
     localRuntime(("curse.maven:attributefix-280510:5824104"))

@@ -28,15 +28,15 @@
   },
   "spirits": [
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 64
     },
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 32
     },
     {
-      "type": "eldritch",
+      "type": "malum:eldritch",
       "count": 32
     }
   ]

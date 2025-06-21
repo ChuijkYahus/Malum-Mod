@@ -1,17 +1,17 @@
 {
   "registry_name": "kobolds:kobold_enchanter",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     }
   ]

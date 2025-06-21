@@ -1,0 +1,41 @@
+package com.sammy.malum.core.systems.registry;
+
+import com.mojang.serialization.*;
+import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
+import java.util.function.*;
+
+@SuppressWarnings("unchecked")
+public class DeferredSpiritTypes extends DeferredRegister<MalumSpiritType> {
+
+    protected DeferredSpiritTypes(String namespace) {
+        super(MalumSpiritTypes.SPIRIT_TYPES_KEY, namespace);
+    }
+
+    public static DeferredSpiritTypes create(String modid) {
+        return new DeferredSpiritTypes(modid);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <I extends MalumSpiritType> @NotNull SpiritHolder<I> register(@NotNull String name, @NotNull Function<ResourceLocation, ? extends I> func) {
+        return (SpiritHolder<I>) super.register(name, func);
+    }
+
+    @Override
+    public <I extends MalumSpiritType> @NotNull SpiritHolder<I> register(@NotNull String name, @NotNull Supplier<? extends I> sup) {
+        return this.register(name, key -> sup.get());
+    }
+
+    @Override
+    protected <I extends MalumSpiritType> @NotNull SpiritHolder<I> createHolder(@NotNull ResourceKey<? extends Registry<MalumSpiritType>> registryKey, @NotNull ResourceLocation key) {
+        return new SpiritHolder<>(ResourceKey.create(registryKey, key));
+    }
+}

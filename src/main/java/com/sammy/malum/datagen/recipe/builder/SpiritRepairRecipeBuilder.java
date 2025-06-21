@@ -2,7 +2,8 @@ package com.sammy.malum.datagen.recipe.builder;
 
 import com.sammy.malum.common.recipe.SpiritRepairRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -39,13 +40,13 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
         this("", "", durabilityPercentage, new SizedIngredient(repairMaterial, repairMaterialCount));
     }
 
-    public SpiritRepairRecipeBuilder addItem(Item item) {
+    public SpiritRepairRecipeBuilder withValidItem(Item item) {
         inputs.add(item);
         return this;
     }
 
-    public SpiritRepairRecipeBuilder addSpirit(MalumSpiritType type, int count) {
-        spirits.add(new SpiritIngredient(type, count));
+    public SpiritRepairRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+        spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }
 

@@ -17,8 +17,8 @@ public class DrainingBoltEntityRenderer extends AbstractBoltEntityRenderer<Drain
     }
 
     @Override
-    public RenderType getTrailRenderType(boolean isTransparent) {
-        return LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL, ShaderUniformHandler.LUMITRANSPARENT);
+    public LodestoneRenderTypeBuilder getTrailRenderType(boolean isTransparent) {
+        return LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL).withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
     }
 
     @Override

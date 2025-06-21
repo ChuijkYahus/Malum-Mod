@@ -9,7 +9,8 @@
     "id": "malum:rune_of_haste"
   },
   "secondaryInput": {
-    "type": "infernal",
-    "count": 32
-  }
+    "count": 32,
+    "item": "malum:infernal_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_wooden_rune"
 }

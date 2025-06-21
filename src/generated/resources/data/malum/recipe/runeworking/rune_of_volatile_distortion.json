@@ -9,7 +9,8 @@
     "id": "malum:rune_of_volatile_distortion"
   },
   "secondaryInput": {
-    "type": "eldritch",
-    "count": 16
-  }
+    "count": 16,
+    "item": "malum:eldritch_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_tainted_rune"
 }

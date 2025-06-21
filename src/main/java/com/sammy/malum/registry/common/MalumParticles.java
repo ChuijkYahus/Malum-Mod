@@ -12,7 +12,7 @@ public class MalumParticles {
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MalumMod.MALUM);
 
     //Simple Shapes :3
-    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> LIGHT_SPEC_SMALL = PARTICLES.register("light_spec_small", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> LIGHT_SPEC = PARTICLES.register("light_spec", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> STAR = PARTICLES.register("star", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> STRANGE_SMOKE = PARTICLES.register("strange_smoke", LodestoneWorldParticleType::new);
 
@@ -36,15 +36,11 @@ public class MalumParticles {
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> DRAINING_TARGET = PARTICLES.register("draining_target", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> CHAOS_TARGET = PARTICLES.register("chaos_target", LodestoneWorldParticleType::new);
 
-
-
     //Glowing Bits
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_GLOWING_STAR = PARTICLES.register("giant_glowing_star", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RADIAL_DISPLAY = PARTICLES.register("radial_display", LodestoneWorldParticleType::new);
 
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_ARROW = PARTICLES.register("giant_arrow", LodestoneWorldParticleType::new);
-    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RITUAL_CIRCLE = PARTICLES.register("ritual_circle", LodestoneWorldParticleType::new);
-    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RITUAL_CIRCLE_WISP = PARTICLES.register("ritual_circle_wisp", LodestoneWorldParticleType::new);
 
     public static void registerParticleFactory(RegisterParticleProvidersEvent event) {
         for (DeferredHolder<ParticleType<?>, ? extends ParticleType<?>> entry : PARTICLES.getEntries()) {

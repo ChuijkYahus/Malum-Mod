@@ -1,19 +1,14 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.blight.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -21,11 +16,9 @@ import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.awt.*;
 import java.util.function.*;
-import java.util.logging.*;
 
 import static net.minecraft.util.Mth.nextFloat;
 

@@ -2,7 +2,8 @@ package com.sammy.malum.core.systems.rite;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -21,21 +22,36 @@ public abstract class TotemicRiteType {
     public static final String EFFECT = "malum.gui.rite.effect";
     public static final String CORRUPTED_EFFECT = "malum.gui.rite.effect.corrupt";
 
-    public final List<MalumSpiritType> spirits;
+    public final List<SpiritHolder<MalumSpiritType>> spirits;
     public final String identifier;
     public final TotemicRiteEffect effect;
     public final TotemicRiteEffect corruptedEffect;
 
-    public TotemicRiteType(String identifier, MalumSpiritType... spirits) {
+    @SafeVarargs
+    public TotemicRiteType(String identifier, SpiritHolder<MalumSpiritType>... spirits) {
         this.identifier = identifier;
-        this.spirits = new ArrayList<>(Arrays.asList(spirits));
+        this.spirits = List.of(spirits);
         this.effect = getNaturalRiteEffect();
         this.corruptedEffect = getCorruptedEffect();
     }
 
+    public boolean matches(List<? extends SpiritLike> totemSpirits) {
+        if (totemSpirits.size() != spirits.size()) {
+            return false;
+        }
+        for (int i = 0; i < totemSpirits.size(); i++) {
+            var spirit = spirits.get(i);
+            var totemSpirit = totemSpirits.get(i);
+            if (!spirit.is(totemSpirit))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     public List<Component> getDescription(boolean corrupted) {
         List<Component> tooltip = new ArrayList<>();
-        var spiritStyleModifier = getIdentifyingSpirit().getItemRarity().getStyleModifier();
+        var spiritStyleModifier = getIdentifyingSpirit().getSpirit().getItemRarity().getStyleModifier();
         var riteEffect = getRiteEffect(corrupted);
         var riteCategory = riteEffect.category;
         tooltip.add(Component.translatable(getLangKey(corrupted)).withStyle(spiritStyleModifier));
@@ -61,7 +77,7 @@ public abstract class TotemicRiteType {
         return MalumMod.malumPath("textures/vfx/rite/" + identifier.replace("greater_", "").replace("_rite", "") + ".png");
     }
 
-    public MalumSpiritType getIdentifyingSpirit() {
+    public SpiritHolder<MalumSpiritType> getIdentifyingSpirit() {
         return spirits.getLast();
     }
 

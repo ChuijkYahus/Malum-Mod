@@ -54,13 +54,13 @@ public class DrainingBoltImpactParticleEffect extends BoltImpactParticleEffect {
                         .multiplyLifetime(lifetimeMultiplier)
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .enableForcedSpawn()
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                        .modifyScaleData(d -> d.multiplyValue(1.75f))
                         .setMotion(direction);
                 lightSpecs.getBloomBuilder()
                         .disableNoClip()
                         .multiplyLifetime(lifetimeMultiplier)
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                        .modifyScaleData(d -> d.multiplyValue(1.75f))
                         .setMotion(direction);
                 lightSpecs.spawnParticles();
             }
@@ -71,14 +71,14 @@ public class DrainingBoltImpactParticleEffect extends BoltImpactParticleEffect {
                         .multiplyLifetime(lifetimeMultiplier)
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .enableForcedSpawn()
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                        .modifyScaleData(d -> d.multiplyValue(1.75f))
                         .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f))
                         .setMotion(direction.scale(1.5f));
                 sparks.getBloomBuilder()
                         .disableNoClip()
                         .multiplyLifetime(lifetimeMultiplier)
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.75f))
+                        .modifyScaleData(d -> d.multiplyValue(1.75f))
                         .setMotion(direction.scale(1.5f));
                 sparks.spawnParticles();
             }

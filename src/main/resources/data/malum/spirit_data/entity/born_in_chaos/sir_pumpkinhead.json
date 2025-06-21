@@ -1,17 +1,17 @@
 {
   "registry_name": "born_in_chaos_v1:sir_pumpkinhead",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 10
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 4
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 6
     }
   ]

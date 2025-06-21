@@ -1,17 +1,17 @@
 {
   "registry_name": "savage_and_ravage:iceologer",
-  "primary_type": "wicked",
+  "primary_type": "malum:wicked",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 2
     }
   ]

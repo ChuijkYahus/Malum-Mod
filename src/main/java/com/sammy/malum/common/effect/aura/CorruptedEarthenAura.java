@@ -10,7 +10,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class CorruptedEarthenAura extends MobEffect {
     public CorruptedEarthenAura() {
-        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_SPIRIT.getPrimaryColor()));
+        super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_COLORS().primaryColor()));
         addAttributeModifier(Attributes.ATTACK_DAMAGE, MalumMod.malumPath("corrupted_earthen_aura"), 2, AttributeModifier.Operation.ADD_VALUE);
     }
 }

@@ -39,14 +39,12 @@ import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.compability.farmersdelight.*;
+import com.sammy.malum.compat.farmersdelight.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.entity.*;
-import net.minecraft.client.color.item.*;
 import net.minecraft.client.renderer.item.*;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.Dist;
@@ -55,15 +53,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.magic.*;
 import team.lodestar.lodestone.systems.multiblock.*;
 import top.theillusivec4.curios.api.client.*;
 
-import java.util.*;
 import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
@@ -72,7 +68,7 @@ import static net.minecraft.world.item.Rarity.*;
 
 @SuppressWarnings("unused")
 public class MalumItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, MALUM);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MALUM);
 
     public static LodestoneItemProperties DEFAULT_PROPERTIES() {
         return new LodestoneItemProperties(MalumCreativeTabs.CONTENT);
@@ -553,57 +549,57 @@ public class MalumItems {
 
     //region impetus
     public static final DeferredHolder<Item, Item> IRON_IMPETUS = register("iron_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_IRON_IMPETUS = register("fractured_iron_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_IRON_IMPETUS = register("fractured_iron_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> IRON_NODE = register("iron_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> COPPER_IMPETUS = register("copper_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_COPPER_IMPETUS = register("fractured_copper_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_COPPER_IMPETUS = register("fractured_copper_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> COPPER_NODE = register("copper_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> GOLD_IMPETUS = register("gold_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_GOLD_IMPETUS = register("fractured_gold_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_GOLD_IMPETUS = register("fractured_gold_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> GOLD_NODE = register("gold_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> ALUMINUM_IMPETUS = register("aluminum_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ALUMINUM_IMPETUS = register("fractured_aluminum_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_ALUMINUM_IMPETUS = register("fractured_aluminum_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> ALUMINUM_NODE = register("aluminum_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> NICKEL_IMPETUS = register("nickel_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_NICKEL_IMPETUS = register("fractured_nickel_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_NICKEL_IMPETUS = register("fractured_nickel_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> NICKEL_NODE = register("nickel_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> SILVER_IMPETUS = register("silver_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_SILVER_IMPETUS = register("fractured_silver_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_SILVER_IMPETUS = register("fractured_silver_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> SILVER_NODE = register("silver_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> TIN_IMPETUS = register("tin_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_TIN_IMPETUS = register("fractured_tin_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_TIN_IMPETUS = register("fractured_tin_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> TIN_NODE = register("tin_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> ZINC_IMPETUS = register("zinc_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ZINC_IMPETUS = register("fractured_zinc_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_ZINC_IMPETUS = register("fractured_zinc_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> ZINC_NODE = register("zinc_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> OSMIUM_IMPETUS = register("osmium_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_OSMIUM_IMPETUS = register("fractured_osmium_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_OSMIUM_IMPETUS = register("fractured_osmium_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> OSMIUM_NODE = register("osmium_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> LEAD_IMPETUS = register("lead_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_LEAD_IMPETUS = register("fractured_lead_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_LEAD_IMPETUS = register("fractured_lead_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> LEAD_NODE = register("lead_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> URANIUM_IMPETUS = register("uranium_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_URANIUM_IMPETUS = register("fractured_uranium_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_URANIUM_IMPETUS = register("fractured_uranium_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> URANIUM_NODE = register("uranium_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> COBALT_IMPETUS = register("cobalt_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_COBALT_IMPETUS = register("fractured_cobalt_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_COBALT_IMPETUS = register("fractured_cobalt_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> COBALT_NODE = register("cobalt_node", METALLURGIC_NODE_PROPERTIES(), NodeItem::new);
 
     public static final DeferredHolder<Item, Item> ZEPHYR_IMPETUS = register("zephyr_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ZEPHYR_IMPETUS = register("fractured_zephyr_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_ZEPHYR_IMPETUS = register("fractured_zephyr_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> ALCHEMICAL_IMPETUS = register("alchemical_impetus", METALLURGIC_PROPERTIES(), ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", METALLURGIC_PROPERTIES(), CrackedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", METALLURGIC_PROPERTIES(), FracturedImpetusItem::new);
     //endregion
 
     //region ether
@@ -739,7 +735,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_THE_HELLS = register("rune_of_the_hells", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, true, 10));
 
     public static final DeferredHolder<Item, Item> RUNE_OF_BOLSTERING = register("rune_of_bolstering", GEAR_PROPERTIES(), RuneBolsteringItem::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_SACRIFICIAL_EMPOWERMENT = register("rune_of_sacrificial_empowerment", GEAR_PROPERTIES(), RuneSacrificialEmpowermentItem::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_RADIAL_EMPOWERMENT = register("rune_of_radial_empowerment", GEAR_PROPERTIES(), RuneRadialEmpowermentItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SPELL_MASTERY = register("rune_of_spell_mastery", GEAR_PROPERTIES(), RuneSpellMasteryItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_HERESY = register("rune_of_heresy", GEAR_PROPERTIES(), RuneHeresyItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_UNNATURAL_STAMINA = register("rune_of_unnatural_stamina", GEAR_PROPERTIES(), RuneUnnaturalStaminaItem::new);
@@ -841,34 +837,26 @@ public class MalumItems {
 
         @SubscribeEvent
         public static void setItemColors(RegisterColorHandlersEvent.Item event) {
-            ItemColors itemColors = event.getItemColors();
-            HashSet<DeferredHolder<Item, ? extends Item>> items = new HashSet<>(ITEMS.getEntries());
+
+            event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpiritHolder().getItemColor()),
+                    SACRED_SPIRIT.get(), WICKED_SPIRIT.get(), ARCANE_SPIRIT.get(), ELDRITCH_SPIRIT.get(),
+                    AQUEOUS_SPIRIT.get(), AERIAL_SPIRIT.get(), EARTHEN_SPIRIT.get(), INFERNAL_SPIRIT.get());
 
             event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMaxColor()),
                     RUNEWOOD_LEAVES.get(), HANGING_RUNEWOOD_LEAVES.get(), AZURE_RUNEWOOD_LEAVES.get(), HANGING_AZURE_RUNEWOOD_LEAVES.get());
             event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMinColor()),
                     SOULWOOD_LEAVES.get(), HANGING_SOULWOOD_LEAVES.get());
 
-            DataHelper.takeAll(items, i -> i.get() instanceof EtherTorchItem || i.get() instanceof EtherBrazierItem).forEach(i -> event.register((s, c) -> {
-                switch (c) {
-                    case 2 -> {
-                        return EtherItem.getSecondaryColor(s);
-                    }
-                    case 1 -> {
-                        return EtherItem.getPrimaryColor(s);
-                    }
-                    default -> {
-                        return -1;
-                    }
-                }
-            }, i.get()));
-            DataHelper.takeAll(items, i -> i.get() instanceof EtherItem).forEach(i -> event.register((s, c) -> {
-                EtherItem etherItem = (EtherItem) s.getItem();
-                return c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s);
-            }, i.get()));
+            event.register((s, c) -> switch (c) {
+                        case 2 -> EtherItem.getSecondaryColor(s);
+                        case 1 -> EtherItem.getPrimaryColor(s);
+                        default -> -1;
+                    },
+                    ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
+                    IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
 
-            DataHelper.takeAll(items, i -> i.get() instanceof SpiritShardItem).forEach(item ->
-                    event.register((s, c) -> ColorHelper.getColor(((SpiritShardItem) item.get()).type.getItemColor()), item.get()));
+            event.register((s, c) -> c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s),
+                    ETHER.get(), IRIDESCENT_ETHER.get());
         }
     }
 }

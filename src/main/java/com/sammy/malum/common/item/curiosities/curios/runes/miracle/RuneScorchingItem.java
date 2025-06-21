@@ -12,7 +12,7 @@ import team.lodestar.lodestone.handlers.ItemEventHandler;
 
 import java.util.function.Consumer;
 
-public class RuneScorchingItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneScorchingItem extends MiracleRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneScorchingItem(Properties builder) {
         super(builder, MalumSpiritTypes.INFERNAL_SPIRIT);

@@ -1,9 +1,9 @@
 {
   "registry_name": "born_in_chaos_v1:firelight",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     }
   ]

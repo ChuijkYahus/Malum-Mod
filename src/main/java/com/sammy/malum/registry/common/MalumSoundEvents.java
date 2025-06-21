@@ -40,8 +40,11 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ALCHEMICAL_TRINKET_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("alchemical_trinket_equipped")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ROTTEN_TRINKET_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("rotten_trinket_equipped")));
     public static final DeferredHolder<SoundEvent, SoundEvent> METALLIC_TRINKET_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("metallic_trinket_equipped")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNE_TRINKET_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("rune_trinket_equipped")));
     public static final DeferredHolder<SoundEvent, SoundEvent> VOID_TRINKET_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("void_trinket_equipped")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNE_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("rune_equipped")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOTEMIC_RUNE_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_rune_equipped")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOID_RUNE_EQUIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("void_rune_equipped")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> HUNGRY_BELT_FEEDS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hungry_belt_feeds")));
     public static final DeferredHolder<SoundEvent, SoundEvent> VORACIOUS_RING_FEEDS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("voracious_ring_feeds")));
@@ -148,6 +151,10 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_START = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_sequence_initiated")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_FINISH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_sequence_completed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BRAZIER_SACRIFICE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soulbinding_brazier_accepts_offering")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_STONE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_tainted_rune")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_wooden_rune")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_VOID = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_void_rune")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_crafts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEAVERS_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weavers_workbench_weaves")));

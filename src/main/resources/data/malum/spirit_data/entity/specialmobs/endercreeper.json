@@ -1,17 +1,17 @@
 {
   "registry_name": "specialmobs:endercreeper",
-  "primary_type": "eldritch",
+  "primary_type": "malum:eldritch",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 1
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 2
     }
   ]

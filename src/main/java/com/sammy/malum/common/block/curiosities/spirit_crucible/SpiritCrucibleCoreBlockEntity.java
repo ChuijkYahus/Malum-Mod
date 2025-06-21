@@ -10,9 +10,9 @@ import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.artifice.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.packets.CodecUtil;
+import com.sammy.malum.common.payloads.CodecUtil;
 import com.sammy.malum.core.systems.recipe.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
@@ -252,7 +252,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             for (int i = 0; i < spiritInventory.slotCount; i++) {
                 ItemStack spiritStack = spiritInventory.getStackInSlot(i);
                 if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.getCount());
+                    spiritStack.shrink(spirit.count());
                     break;
                 }
             }
@@ -270,7 +270,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         }
 
         MalumParticleEffectTypes.SPIRIT_CRUCIBLE_CRAFTS.createEffect(worldPosition)
-                .color(MalumNetworkedParticleEffectColorData.fromSpiritIngredients(recipe.spirits))
+                .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .spawn(level);
 
         level.playSound(null, worldPosition, MalumSoundEvents.CRUCIBLE_CRAFT.get(), SoundSource.BLOCKS, 1, 0.75f + random.nextFloat() * 0.5f);
@@ -284,7 +284,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (durabilityCost > 0) {
             impetus.hurtAndBreak(durabilityCost, level, null, brokenStack -> {
                 Holder<net.minecraft.world.item.Item> itemHolder = level.registryAccess().registry(Registries.ITEM).orElseThrow().wrapAsHolder(brokenStack.asItem());
-                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
+                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_CONVERSION);
                 if (data != null) {
                     inventory.setStackInSlot(0, data.fracturedImpetus().value().getDefaultInstance());
                 }
@@ -324,7 +324,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (!(currentItem instanceof SpiritShardItem spiritItem)) {
             return null;
         }
-        return spiritItem.type;
+        return spiritItem.getSpirit();
     }
 
     @Override

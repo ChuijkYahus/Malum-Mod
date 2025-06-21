@@ -6,7 +6,7 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
@@ -98,11 +98,11 @@ public class ArcanaCodexHelper {
         renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y) {
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float glowAlpha, float x, float y) {
         renderRiteIcon(texture, stack, spiritType, corrupted, glowAlpha, x, y, 0);
     }
 
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, MalumSpiritType spiritType, boolean corrupted, float glowAlpha, float x, float y, int z) {
+    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float glowAlpha, float x, float y, int z) {
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 11f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 12f : 17f);
@@ -155,21 +155,21 @@ public class ArcanaCodexHelper {
         RenderSystem.defaultBlendFunc();
 
         var cycle = new AtomicInteger();
-        var spiritTypes = type.spiritTypes;
-        Supplier<MalumSpiritType> colorSupplier = () -> spiritTypes.get(cycle.getAndIncrement() % spiritTypes.size());
-        var mainColor = colorSupplier.get().getPrimaryColor();
-        if (spiritTypes.getFirst().equals(MalumSpiritTypes.AQUEOUS_SPIRIT)) {
+        var spirits = type.spiritTypes;
+        Function<Function<SpiritLike, Color>, Color> colorSupplier = (b) -> b.apply(spirits.get(cycle.getAndIncrement() % spirits.size())); //TODO: this kinda smells...
+        var mainColor = colorSupplier.apply(SpiritLike::getPrimaryColor);
+        if (spirits.getFirst().equals(MalumSpiritTypes.AQUEOUS_SPIRIT)) {
             mainColor = ColorHelper.brighter(mainColor, 2);
         }
-        if (spiritTypes.getFirst().equals(MalumSpiritTypes.SACRED_SPIRIT)  || spiritTypes.getFirst().equals(MalumSpiritTypes.WICKED_SPIRIT)) {
+        if (spirits.getFirst().equals(MalumSpiritTypes.SACRED_SPIRIT)  || spirits.getFirst().equals(MalumSpiritTypes.WICKED_SPIRIT)) {
             mainColor = ColorHelper.brighter(mainColor, 1);
         }
 
-        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f).setAlpha(0.6f);
+        builder.setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.24f).setAlpha(0.6f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x - 1, y, 0, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x + 1, y, 1, 0, 0, textureWidth, textureHeight);
-        builder.setColor(colorSupplier.get().getPrimaryColor()).multiplyColor(0.24f);
+        builder.setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.24f);
         renderTexture(location, stack, builder, x, y - 1, 2, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x, y + 0.8f, 3, 0, 0, textureWidth, textureHeight);
 
@@ -182,11 +182,11 @@ public class ArcanaCodexHelper {
         shaderInstance.safeGetUniform("Speed").set(400f);
         renderTexture(location, stack, builder, x + 2, y + 2, 5, 2, 2, 12, 12, textureWidth, textureHeight);
 
-        builder.setColor(colorSupplier.get().getSecondaryColor());
+        builder.setColor(colorSupplier.apply(SpiritLike::getSecondaryColor));
         shaderInstance.safeGetUniform("Speed").set(2000f);
         renderTexture(location, stack, builder, x + 1, y, 6, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x - 1, y, 7, 0, 0, textureWidth, textureHeight);
-        builder.setColor(colorSupplier.get().getSecondaryColor());
+        builder.setColor(colorSupplier.apply(SpiritLike::getSecondaryColor));
         renderTexture(location, stack, builder, x, y + 1, 8, 0, 0, textureWidth, textureHeight);
         renderTexture(location, stack, builder, x, y - 1, 9, 0, 0, textureWidth, textureHeight);
 

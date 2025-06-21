@@ -9,7 +9,8 @@
     "id": "malum:rune_of_the_arena"
   },
   "secondaryInput": {
-    "type": "earthen",
-    "count": 32
-  }
+    "count": 32,
+    "item": "malum:earthen_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_wooden_rune"
 }

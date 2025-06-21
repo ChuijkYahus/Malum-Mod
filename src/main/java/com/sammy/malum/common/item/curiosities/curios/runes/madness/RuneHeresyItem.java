@@ -1,6 +1,5 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
-import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumMobEffects;
 import com.sammy.malum.registry.common.MalumSoundEvents;
@@ -17,7 +16,7 @@ import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.Consumer;
 
-public class RuneHeresyItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneHeresyItem extends MadnessRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneHeresyItem(Properties builder) {
         super(builder, MalumSpiritTypes.ELDRITCH_SPIRIT);

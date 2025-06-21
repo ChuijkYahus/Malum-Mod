@@ -1,13 +1,13 @@
 {
   "registry_name": "tolerable_creepers:creepie",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 1
     },
     {
-      "spirit": "infernal",
+      "spirit": "malum:infernal",
       "count": 1
     }
   ]

@@ -1,13 +1,13 @@
 {
   "registry_name": "minecraft:bee",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 2
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 1
     }
   ]

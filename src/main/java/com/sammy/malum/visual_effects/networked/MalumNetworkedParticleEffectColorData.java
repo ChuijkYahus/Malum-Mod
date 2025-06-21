@@ -2,12 +2,9 @@ package com.sammy.malum.visual_effects.networked;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.recipe.SpiritIngredient;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.world.item.ItemStack;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
@@ -27,15 +24,11 @@ public class MalumNetworkedParticleEffectColorData extends NetworkedParticleEffe
     private final List<MalumSpiritType> spirits;
     public int colorCycleCounter;
 
-    public static MalumNetworkedParticleEffectColorData fromSpiritItems(Collection<ItemStack> spirits) {
-        return new MalumNetworkedParticleEffectColorData(Collections.emptyList(), spirits.stream().map(s -> ((SpiritShardItem)s.getItem()).type).collect(Collectors.toList()));
+    public static MalumNetworkedParticleEffectColorData fromSpirits(Collection<? extends SpiritLike> spirits) {
+        return new MalumNetworkedParticleEffectColorData(Collections.emptyList(), spirits.stream().map(SpiritLike::getSpirit).collect(Collectors.toList()));
     }
 
-    public static MalumNetworkedParticleEffectColorData fromSpiritIngredients(Collection<SpiritIngredient> malumSpiritTypes) {
-        return new MalumNetworkedParticleEffectColorData(Collections.emptyList(), malumSpiritTypes.stream().map(SpiritIngredient::getSpiritType).collect(Collectors.toList()));
-    }
-
-    public static MalumNetworkedParticleEffectColorData fromColors(List<ColorParticleData> colors) {
+    public static MalumNetworkedParticleEffectColorData fromColors(List<? extends ColorParticleDataWrapper> colors) {
         return new MalumNetworkedParticleEffectColorData(colors, Collections.emptyList());
     }
 
@@ -43,16 +36,16 @@ public class MalumNetworkedParticleEffectColorData extends NetworkedParticleEffe
         return fromColors(List.of(color));
     }
 
-    public MalumNetworkedParticleEffectColorData(List<ColorParticleData> colors, List<MalumSpiritType> spirits) {
+    public MalumNetworkedParticleEffectColorData(List<? extends ColorParticleDataWrapper> colors, List<? extends SpiritLike> spirits) {
         super(colors);
-        this.spirits = spirits.isEmpty() ? Collections.emptyList() : spirits;
+        this.spirits = spirits.isEmpty() ? Collections.emptyList() : spirits.stream().map(SpiritLike::getSpirit).toList();
     }
 
-    public MalumNetworkedParticleEffectColorData(ColorParticleData... colors) {
+    public MalumNetworkedParticleEffectColorData(ColorParticleDataWrapper... colors) {
         this(List.of(colors), Collections.emptyList());
     }
 
-    public MalumNetworkedParticleEffectColorData(MalumSpiritType... spirits) {
+    public MalumNetworkedParticleEffectColorData(SpiritLike... spirits) {
         this(Collections.emptyList(), List.of(spirits));
     }
 

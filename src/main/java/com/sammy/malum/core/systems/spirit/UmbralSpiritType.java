@@ -1,8 +1,12 @@
 package com.sammy.malum.core.systems.spirit;
 
 import com.sammy.malum.common.item.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.function.*;
 
@@ -10,17 +14,12 @@ public class UmbralSpiritType extends MalumSpiritType {
 
     public static final int INVERT_COLOR = 0x4D616C6D; // M = chr 4D, a = chr 61, l = chr 6C, m = chr 6D
 
-    public UmbralSpiritType(String identifier, Supplier<SpiritShardItem> spiritShard, SpiritVisualMotif visualMotif) {
-        super(identifier, spiritShard, visualMotif);
+    public UmbralSpiritType(SpiritColorProperties colorProperties, DeferredHolder<Item, SpiritShardItem> spiritShard) {
+        super(colorProperties, spiritShard);
     }
 
     @Override
     public TextColor getTextColor(boolean isTooltip) {
         return TextColor.fromRgb(INVERT_COLOR);
-    }
-
-    @Override
-    public BlockState getSpiritMoteBlockState() {
-        return null;
     }
 }

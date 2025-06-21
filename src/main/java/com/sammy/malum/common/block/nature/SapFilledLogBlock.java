@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 public class SapFilledLogBlock extends RotatedPillarBlock {
     public final Supplier<Block> drained;
     public final Supplier<Item> sap;
-    public final List<ColorParticleData> sapColor;
+    public final List<? extends ColorParticleData> sapColor;
 
     public SapFilledLogBlock(Properties properties, Supplier<Block> drained, Supplier<Item> sap, Color... sapColor) {
         super(properties);

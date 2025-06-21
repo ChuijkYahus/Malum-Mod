@@ -17,11 +17,11 @@
   },
   "spirits": [
     {
-      "type": "sacred",
+      "type": "malum:sacred",
       "count": 16
     },
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 16
     }
   ]

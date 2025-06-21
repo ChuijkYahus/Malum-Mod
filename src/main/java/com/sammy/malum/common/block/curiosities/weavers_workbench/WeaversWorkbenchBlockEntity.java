@@ -2,7 +2,6 @@ package com.sammy.malum.common.block.curiosities.weavers_workbench;
 
 import com.sammy.malum.common.container.WeaversWorkbenchContainer;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.common.packets.particle.rite.BlightTransformItemParticlePacket;
 import com.sammy.malum.registry.common.MalumSoundEvents;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
@@ -55,8 +54,8 @@ public class WeaversWorkbenchBlockEntity extends LodestoneBlockEntity implements
 
     public void onCraft() {
         if (!level.isClientSide) {
-            Vec3 itemPos = getItemPos();
-            PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, new ChunkPos(getBlockPos()), new BlightTransformItemParticlePacket(List.of(ARCANE_SPIRIT.getIdentifier()), itemPos));
+//            Vec3 itemPos = getItemPos();
+//            PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, new ChunkPos(getBlockPos()), new BlightTransformItemParticlePacket(List.of(ARCANE_SPIRIT.getIdentifier()), itemPos));
             level.playSound(null, getBlockPos(), MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.25f);
         }
         itemHandler.getStackInSlot(0).shrink(1);

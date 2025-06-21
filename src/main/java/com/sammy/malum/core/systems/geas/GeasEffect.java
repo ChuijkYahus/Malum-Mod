@@ -50,7 +50,7 @@ public class GeasEffect implements IMalumEventResponder {
     }
 
     public ResourceLocation getModifierId() {
-        return type.getId().withPrefix(type.getId().getPath() + "_");
+        return type.getRegistryName().withPrefix(type.getRegistryName().getPath() + "_");
     }
 
     public final void updateAttributes(LivingEntity entity) {

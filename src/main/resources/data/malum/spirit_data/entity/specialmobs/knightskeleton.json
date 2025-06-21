@@ -1,13 +1,13 @@
 {
   "registry_name": "specialmobs:knightskeleton",
-  "primary_type": "arcane",
+  "primary_type": "malum:arcane",
   "spirits": [
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 2
     },
     {
-      "spirit": "sacred",
+      "spirit": "malum:sacred",
       "count": 2
     }
   ]

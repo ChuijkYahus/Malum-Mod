@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -25,7 +24,7 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         if (blockEntityIn.contents != null) {
-            var type = blockEntityIn.contents.spirit();
+            var type = blockEntityIn.contents.getSpirit();
             float time = level.getGameTime() + partialTicks;
             double y = 0.5f + (float) Math.sin((time * 0.05f) % 6.28f) * 0.2f;
             poseStack.pushPose();
@@ -33,7 +32,7 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
             FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, type, partialTicks);
             poseStack.mulPose(Axis.YP.rotationDegrees((time * 3) % 360));
             poseStack.scale(0.6f, 0.6f, 0.6f);
-            itemRenderer.renderStatic(type.getSpiritShard().getDefaultInstance(), ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
+            itemRenderer.renderStatic(type.getSpiritStack(), ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
             poseStack.popPose();
         }
     }

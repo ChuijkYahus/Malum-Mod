@@ -1,23 +1,17 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
-import com.google.common.collect.*;
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
-import com.sammy.malum.compability.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
-import top.theillusivec4.curios.api.*;
 
 import java.util.function.*;
 
-public class RuneCullingItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneCullingItem extends MiracleRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneCullingItem(Properties builder) {
         super(builder, MalumSpiritTypes.WICKED_SPIRIT);

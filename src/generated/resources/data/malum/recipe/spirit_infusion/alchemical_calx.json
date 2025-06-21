@@ -10,15 +10,15 @@
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 2
     },
     {
-      "type": "earthen",
+      "type": "malum:earthen",
       "count": 2
     },
     {
-      "type": "aqueous",
+      "type": "malum:aqueous",
       "count": 2
     }
   ]

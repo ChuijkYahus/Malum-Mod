@@ -9,7 +9,8 @@
     "id": "malum:rune_of_ailment_cleansing"
   },
   "secondaryInput": {
-    "type": "aqueous",
-    "count": 16
-  }
+    "count": 16,
+    "item": "malum:aqueous_spirit"
+  },
+  "soundType": "malum:runic_workbench_shapes_tainted_rune"
 }

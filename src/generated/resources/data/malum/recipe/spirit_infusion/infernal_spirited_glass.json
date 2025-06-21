@@ -16,7 +16,7 @@
   },
   "spirits": [
     {
-      "type": "infernal",
+      "type": "malum:infernal",
       "count": 2
     }
   ]

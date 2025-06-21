@@ -1,13 +1,13 @@
 {
   "registry_name": "alexsmobs:warped_mosco",
-  "primary_type": "infernal",
+  "primary_type": "malum:infernal",
   "spirits": [
     {
-      "spirit": "eldritch",
+      "spirit": "malum:eldritch",
       "count": 4
     },
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 2
     }
   ]

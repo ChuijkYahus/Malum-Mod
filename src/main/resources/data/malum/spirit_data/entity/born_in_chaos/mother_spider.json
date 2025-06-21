@@ -1,17 +1,17 @@
 {
   "registry_name": "born_in_chaos_v1:mother_spider",
-  "primary_type": "aerial",
+  "primary_type": "malum:aerial",
   "spirits": [
     {
-      "spirit": "wicked",
+      "spirit": "malum:wicked",
       "count": 4
     },
     {
-      "spirit": "aerial",
+      "spirit": "malum:aerial",
       "count": 4
     },
     {
-      "spirit": "arcane",
+      "spirit": "malum:arcane",
       "count": 1
     }
   ]

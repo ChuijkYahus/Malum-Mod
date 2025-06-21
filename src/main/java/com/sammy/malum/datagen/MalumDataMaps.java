@@ -1,13 +1,17 @@
 package com.sammy.malum.datagen;
 
-import com.sammy.malum.common.data.map.ImpetusDataMap;
+import com.sammy.malum.common.data.map.*;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.*;
+import org.jetbrains.annotations.*;
 
 import java.util.concurrent.CompletableFuture;
+
+import static com.sammy.malum.registry.common.MalumDataMaps.*;
 
 public class MalumDataMaps extends DataMapProvider {
 
@@ -16,8 +20,8 @@ public class MalumDataMaps extends DataMapProvider {
     }
 
     @Override
-    protected void gather() {
-        builder(com.sammy.malum.registry.common.MalumDataMaps.FRACTURED_IMPETUS_VARIANT)
+    protected void gather(HolderLookup.@NotNull Provider provider) {
+        builder(FRACTURED_IMPETUS_CONVERSION)
                 .add(MalumItems.ALCHEMICAL_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_ALCHEMICAL_IMPETUS), false)
                 .add(MalumItems.IRON_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_IRON_IMPETUS), false)
                 .add(MalumItems.COPPER_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_COPPER_IMPETUS), false)
@@ -31,6 +35,13 @@ public class MalumDataMaps extends DataMapProvider {
                 .add(MalumItems.OSMIUM_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_OSMIUM_IMPETUS), false)
                 .add(MalumItems.ZINC_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_ZINC_IMPETUS), false)
                 .add(MalumItems.TIN_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_TIN_IMPETUS), false);
+
+        builder(TOTEM_POLE_CONVERSION)
+                .add(MalumBlocks.RUNEWOOD_LOG, new TotemPoleMap(MalumBlocks.RUNEWOOD_TOTEM_POLE), false)
+                .add(MalumBlocks.RUNEWOOD, new TotemPoleMap(MalumBlocks.RUNEWOOD_TOTEM_POLE), false)
+                .add(MalumBlocks.SOULWOOD_LOG, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false)
+                .add(MalumBlocks.SOULWOOD, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false);
+
 
         builder(NeoForgeDataMaps.COMPOSTABLES)
                 .add(MalumItems.RUNEWOOD_SAPLING, new Compostable(0.3f), false)

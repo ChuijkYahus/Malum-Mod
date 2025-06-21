@@ -1,9 +1,9 @@
 {
   "registry_name": "alexsmobs:leafcutter_ant",
-  "primary_type": "earthen",
+  "primary_type": "malum:earthen",
   "spirits": [
     {
-      "spirit": "earthen",
+      "spirit": "malum:earthen",
       "count": 1
     }
   ]

@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -29,15 +29,15 @@ public class SpiritMoteParticleEffects {
                 speed.z / d1 * d0 * 0.4F);
     };
 
-    public static void destroy(Level level, BlockPos pPos, BlockState pState, MalumSpiritType spiritType) {
+    public static void destroy(Level level, BlockPos pPos, BlockState pState, SpiritLike spirit) {
         if (!pState.isAir()) {
             VoxelShape voxelshape = pState.getShape(level, pPos);
 
             var builder = SpiritBasedParticleBuilder.createSpirit(new LodestoneTerrainParticleOptions(LodestoneParticleTypes.TERRAIN_PARTICLE, pState, pPos))
                     .setRenderType(LodestoneWorldParticleRenderType.TERRAIN_SHEET)
-                    .setSpirit(spiritType)
-                    .setGravityStrength(1f)
-                    .setFrictionStrength(0.98f)
+                    .setSpirit(spirit)
+                    .setGravity(1f)
+                    .setFriction(0.98f)
                     .setTransparencyData(GenericParticleData.create(0.5f, 0).build())
                     .setScaleData(GenericParticleData.create(0.0625f).build())
                     .addSpawnActor(SLOWDOWN);

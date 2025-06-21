@@ -1,9 +1,9 @@
 {
   "registry_name": "betterend:cubozoa",
-  "primary_type": "aqueous",
+  "primary_type": "malum:aqueous",
   "spirits": [
     {
-      "spirit": "aqueous",
+      "spirit": "malum:aqueous",
       "count": 2
     }
   ]

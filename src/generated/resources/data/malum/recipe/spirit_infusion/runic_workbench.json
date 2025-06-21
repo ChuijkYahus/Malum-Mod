@@ -6,6 +6,10 @@
       "tag": "malum:runewood_planks"
     },
     {
+      "count": 4,
+      "item": "malum:soulwoven_silk"
+    },
+    {
       "count": 2,
       "item": "malum:hallowed_gold_ingot"
     }
@@ -20,12 +24,16 @@
   },
   "spirits": [
     {
-      "type": "aqueous",
+      "type": "malum:sacred",
       "count": 16
     },
     {
-      "type": "sacred",
-      "count": 8
+      "type": "malum:arcane",
+      "count": 16
+    },
+    {
+      "type": "malum:aqueous",
+      "count": 16
     }
   ]
 }

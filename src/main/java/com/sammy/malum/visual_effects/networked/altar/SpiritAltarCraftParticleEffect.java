@@ -25,6 +25,6 @@ public class SpiritAltarCraftParticleEffect extends MalumNetworkedParticleEffect
         if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof SpiritAltarBlockEntity spiritAltar)) {
             return;
         }
-        SpiritAltarParticleEffects.craftItemParticles(spiritAltar, colorData);
+        SpiritAltarParticleEffects.craftItemParticles(level, spiritAltar, colorData);
     }
 }

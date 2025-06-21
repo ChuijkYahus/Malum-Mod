@@ -5,7 +5,8 @@ import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
-import com.sammy.malum.core.systems.spirit.MalumSpiritType;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.server.level.*;
@@ -33,7 +34,15 @@ import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 
+import java.util.*;
+
 public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
+
+    public static final List<SpiritHolder<MalumSpiritType>> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
+
+    public static MalumSpiritType getUnwindingChaosSpirit() {
+        return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1)).value();
+    }
 
     public static final ColorParticleData AURIC_COLOR_DATA = EthericNitrateEntity.AURIC_COLOR_DATA;
 
@@ -48,9 +57,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     @Override
-    public MalumSpiritType getDefiningSpiritType() {
-        var spirits = new MalumSpiritType[]{MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT};
-        return spirits[MalumMod.RANDOM.nextInt(spirits.length)];
+    public SpiritLike getDefiningSpiritType() {
+        return getUnwindingChaosSpirit();
     }
 
     @Override
@@ -93,7 +101,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                         .forwardOffset(1.4f).upwardOffset(0.3f)
                         .deviation(0.2f)
                         .randomDeviationAngle(random)
-                        .color(stack.getItem())
+                        .color(getUnwindingChaosSpirit())
                         .spawn(serverLevel);
 
             }
@@ -146,7 +154,6 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     @OnlyIn(Dist.CLIENT)
     @Override
     public void spawnChargeParticles(Level pLevel, LivingEntity pLivingEntity, Vec3 pos, ItemStack pStack, float pct) {
-        RandomSource random = pLevel.random;
         final WorldParticleBuilder builder = WorldParticleBuilder.create(MalumParticles.CHAOS_TARGET)
                 .setTransparencyData(GenericParticleData.create(0.7f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))

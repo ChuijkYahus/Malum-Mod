@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -14,7 +14,6 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.util.function.*;

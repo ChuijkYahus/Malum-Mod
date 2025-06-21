@@ -59,18 +59,18 @@ public class WeepingWellParticleEffects {
                 sparkParticles.getBuilder()
                         .addSpawnActor(spawnBehavior)
                         .disableNoClip()
-                        .setGravityStrength(gravityStrength / 2f)
+                        .setGravity(gravityStrength / 2f)
                         .setMotion(xVelocity, yVelocity, zVelocity)
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(2f))
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.5f));
+                        .modifyTransparencyData(d -> d.multiplyValue(2f))
+                        .modifyScaleData(d -> d.multiplyValue(1.5f));
                 sparkParticles.getBloomBuilder()
                         .addSpawnActor(spawnBehavior)
                         .disableNoClip()
-                        .setGravityStrength(gravityStrength / 2f)
+                        .setGravity(gravityStrength / 2f)
                         .setMotion(xVelocity, yVelocity, zVelocity)
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 sparkParticles.spawnParticles();
             }
             if (rand.nextFloat() < 0.85f) {
@@ -81,17 +81,17 @@ public class WeepingWellParticleEffects {
                 lightSpecs.getBuilder()
                         .addSpawnActor(spawnBehavior)
                         .disableNoClip()
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2.5f));
+                        .modifyScaleData(d -> d.multiplyValue(2.5f));
                 lightSpecs.getBloomBuilder()
                         .addSpawnActor(spawnBehavior)
                         .disableNoClip()
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
                         .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 lightSpecs.spawnParticles();
             }
         }
@@ -240,13 +240,13 @@ public class WeepingWellParticleEffects {
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f)));
+                .modifyTransparencyData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
+                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f)));
         lightSpecs.getBloomBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f)));
+                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f)));
         return lightSpecs;
     }
 
@@ -259,18 +259,18 @@ public class WeepingWellParticleEffects {
 
     public static ParticleEffectSpawner weepingWellSpecs(Level level, Vec3 pos, ColorParticleData colorData, LodestoneWorldParticleRenderType renderType) {
         var rand = level.random;
-        var lightSpecs = spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC_SMALL.get()));
+        var lightSpecs = spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()));
         lightSpecs.getBuilder().act(b -> b
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
-                .modifyData(b::getTransparencyData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
-                .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f))));
+                .modifyTransparencyData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
+                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f))));
         lightSpecs.getBloomBuilder().act(b -> b
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
                
-                .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f))));
+                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f))));
         return lightSpecs;
     }
 
