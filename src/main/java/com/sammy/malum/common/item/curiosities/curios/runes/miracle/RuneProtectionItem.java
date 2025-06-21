@@ -16,7 +16,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.function.Consumer;
 
-public class RuneProtectionItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneProtectionItem extends MiracleRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneProtectionItem(Properties builder) {
         super(builder, MalumSpiritTypes.EARTHEN_SPIRIT);

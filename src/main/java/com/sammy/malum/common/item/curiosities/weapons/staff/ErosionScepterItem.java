@@ -48,7 +48,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
 
     @Override
-    public SpiritWrapper getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return MalumSpiritTypes.UMBRAL_SPIRIT;
     }
     @Override

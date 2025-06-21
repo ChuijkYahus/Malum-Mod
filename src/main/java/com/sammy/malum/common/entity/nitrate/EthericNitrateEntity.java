@@ -83,7 +83,6 @@ public class EthericNitrateEntity extends AbstractNitrateEntity {
                     .setLifeDelay(1)
                     .enableNoClip()
                     .enableForcedSpawn()
-                    .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                     .addTickActor(behavior)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .spawn(level(), position().x, position().y, position().z);

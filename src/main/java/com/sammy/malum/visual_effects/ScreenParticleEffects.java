@@ -25,7 +25,7 @@ import static net.minecraft.util.Mth.*;
 
 public class ScreenParticleEffects {
 
-    public static void spawnRuneParticles(ScreenParticleHolder target, SpiritWrapper spiritType) {
+    public static void spawnRuneParticles(ScreenParticleHolder target, SpiritLike spiritType) {
         var rand = Minecraft.getInstance().level.getRandom();
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.SPARKLE, target)
                 .setTransparencyData(GenericParticleData.create(0.03f, 0f).setEasing(Easing.SINE_IN_OUT).build())

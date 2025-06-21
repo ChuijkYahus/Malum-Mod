@@ -1,6 +1,5 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
-import com.sammy.malum.common.item.curiosities.curios.runes.AbstractRuneCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -13,7 +12,7 @@ import team.lodestar.lodestone.helpers.EntityHelper;
 
 import java.util.function.Consumer;
 
-public class RuneTwinnedDurationItem extends VoidRuneCurioItem {
+public class RuneTwinnedDurationItem extends MadnessRuneCurioItem {
 
     public RuneTwinnedDurationItem(Properties builder) {
         super(builder, MalumSpiritTypes.AQUEOUS_SPIRIT);

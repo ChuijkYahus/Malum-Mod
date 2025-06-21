@@ -12,12 +12,12 @@ import team.lodestar.lodestone.systems.particle.data.color.*;
 import javax.annotation.*;
 import java.awt.*;
 
-public interface SpiritWrapper {
+public interface SpiritLike {
 
     @Nonnull
     MalumSpiritType getSpirit();
 
-    default boolean matches(SpiritWrapper other) {
+    default boolean matches(SpiritLike other) {
         return getSpirit().equals(other.getSpirit());
     }
 

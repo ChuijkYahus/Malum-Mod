@@ -12,7 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.awt.*;
 import java.util.List;
@@ -67,7 +67,7 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
         }
 
         public MalumParticleEffectBuilder<T> color(Item item) {
-            if (item instanceof SpiritWrapper spirit) {
+            if (item instanceof SpiritLike spirit) {
                 return color(spirit);
             }
             if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
@@ -76,7 +76,7 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
             return this;
         }
 
-        public MalumParticleEffectBuilder<T> color(SpiritWrapper... spiritTypes) {
+        public MalumParticleEffectBuilder<T> color(SpiritLike... spiritTypes) {
             return color(new MalumNetworkedParticleEffectColorData(spiritTypes));
         }
 
@@ -106,12 +106,12 @@ public abstract class MalumNetworkedParticleEffectType<T extends NetworkedPartic
         }
 
         @Override
-        public MalumParticleEffectBuilder<T> color(ColorParticleData color) {
+        public MalumParticleEffectBuilder<T> color(ColorParticleDataWrapper color) {
             return color(MalumNetworkedParticleEffectColorData.fromColor(color));
         }
 
         @Override
-        public MalumParticleEffectBuilder<T> color(List<ColorParticleData> colors) {
+        public MalumParticleEffectBuilder<T> color(List<? extends ColorParticleDataWrapper> colors) {
             return color(MalumNetworkedParticleEffectColorData.fromColors(colors));
         }
 

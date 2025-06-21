@@ -36,10 +36,10 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
         return true;
     }
 
-    public static BlightFeature.LodestoneWorldgenBuilder generateScarstone(WorldGenLevel level, BlockPos pos, int radius) {
+    public static LodestoneWorldgenBuilder generateScarstone(WorldGenLevel level, BlockPos pos, int radius) {
         var random = level.getRandom();
 
-        var builder = BlightFeature.LodestoneWorldgenBuilder.create().addAdditionalPlacement(BlightFeature::cleanupFoliage);
+        var builder = LodestoneWorldgenBuilder.create().addAdditionalPlacement(BlightFeature::cleanupFoliage);
         var scarstoneLayer = builder.createLayer();
         var floraLayer = builder.createLayer();
 
@@ -72,7 +72,7 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 var entry = floraLayer.add(above, block).setImportant();
                 if (block.equals(MalumBlocks.LARGE_STRANGE_CRYSTAL.get())) {
-                    entry.addAdditionalPlacement((l, e) -> e.place(l, e.position().above(), e.state.setValue(LargeStrangeCrystalBlock.HALF, DoubleBlockHalf.UPPER)));
+                    entry.addAdditionalPlacement((l, e) -> e.place(l, e.position().above(), e.blockState().setValue(LargeStrangeCrystalBlock.HALF, DoubleBlockHalf.UPPER)));
                 }
                 floraCount--;
                 if (floraCount == 0) {

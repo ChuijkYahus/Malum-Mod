@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
-import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
@@ -11,8 +10,6 @@ import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 import team.lodestar.lodestone.helpers.*;
 
@@ -66,7 +63,7 @@ public class SpiritRiteRecipePage extends BookPage {
                 int xOffset = 25;
                 float yMotion = RandomHelper.randomBetween(rand, -0.05f, -0.3f);
                 int lifetime = RandomHelper.randomBetween(rand, 60, 120);
-                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC_SMALL, RITE_PARTICLES)
+                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC, RITE_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.04f, 0.4f, 0f).setEasing(Easing.CUBIC_OUT, Easing.SINE_IN_OUT).build())
                         .setSpinData(SpinParticleData.createRandomDirection(rand, RandomHelper.randomBetween(rand, 0.1f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 0.8f, 2.4f), 0).setEasing(Easing.SINE_IN_OUT).build())

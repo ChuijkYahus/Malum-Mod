@@ -7,7 +7,6 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
@@ -41,9 +40,9 @@ import java.util.*;
 
 public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
-    public static final List<SpiritWrapper> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
+    public static final List<SpiritLike> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
 
-    public static SpiritWrapper getSunderingAnchorSpirit() {
+    public static SpiritLike getSunderingAnchorSpirit() {
         return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1));
     }
 
@@ -71,7 +70,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     @Override
-    public SpiritWrapper getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return getSunderingAnchorSpirit();
     }
 

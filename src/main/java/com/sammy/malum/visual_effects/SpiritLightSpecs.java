@@ -13,28 +13,26 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
-import java.util.*;
 import java.util.function.*;
 
 import static net.minecraft.util.Mth.*;
 
 public class SpiritLightSpecs {
 
-    public static void coolLookingShinyThing(Level level, Vec3 pos, SpiritWrapper spirit) {
+    public static void coolLookingShinyThing(Level level, Vec3 pos, SpiritLike spirit) {
         var centralLightSpecs = spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()));
         centralLightSpecs.getBuilder()
                 .multiplyLifetime(0.6f)
                 .modifyColorData(d -> d.multiplyCoefficient(0.5f))
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(6f))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(3f));
+                .modifyScaleData(d -> d.multiplyValue(6f))
+                .modifyTransparencyData(d -> d.multiplyValue(3f));
         centralLightSpecs.getBloomBuilder()
                 .multiplyLifetime(0.6f)
                 .modifyColorData(d -> d.multiplyCoefficient(0.5f))
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(4f))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(3f));
+                .modifyScaleData(d -> d.multiplyValue(4f))
+                .modifyTransparencyData(d -> d.multiplyValue(3f));
         centralLightSpecs.spawnParticles();
     }
 
@@ -54,19 +52,19 @@ public class SpiritLightSpecs {
         rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, colorData, options), distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, float distance, int rotatingSpecs) {
+    public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritLike spirit, float distance, int rotatingSpecs) {
         rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), spirit, distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritWrapper spirit, float distance, int rotatingSpecs) {
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritLike spirit, float distance, int rotatingSpecs) {
         rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, spirit, options), distance, rotatingSpecs);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+    public static void rotatingLightSpecs(Level level, Vec3 pos, SpiritLike spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
         rotatingLightSpecs(level, pos, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()), spirit, distance, rotatingSpecs, modifier);
     }
 
-    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritWrapper spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
+    public static void rotatingLightSpecs(Level level, Vec3 pos, WorldParticleOptions options, SpiritLike spirit, float distance, int rotatingSpecs, Consumer<WorldParticleBuilder> modifier) {
         rotatingLightSpecs(level, pos, p -> spiritLightSpecs(level, p, spirit, options).act(modifier), distance, rotatingSpecs);
     }
 
@@ -77,28 +75,32 @@ public class SpiritLightSpecs {
                 long offsetGameTime = gameTime + i * 120L;
                 double yOffset = Math.sin((offsetGameTime % 360) / 30f) * 0.1f;
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos.add(0, yOffset, 0), distance, i, rotatingSpecs, gameTime, 160);
-
                 var lightSpecs = particleSpawner.apply(offsetPosition);
-                lightSpecs.getBuilder().multiplyLifetime(2f).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
-                lightSpecs.getBloomBuilder().act(b -> b.multiplyLifetime(1.4f).modifyData(List.of(b::getScaleData, b::getTransparencyData), d -> d.multiplyValue(0.6f)));
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(2f)
+                        .modifyScaleData(d -> d.multiplyValue(1.2f));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(1.4f)
+                        .modifyScaleData(d -> d.multiplyValue(0.6f))
+                        .modifyTransparencyData(d -> d.multiplyValue(0.6f));
                 lightSpecs.spawnParticles();
             }
         }
         var lightSpecs = particleSpawner.apply(pos);
         lightSpecs.getBuilder()
                 .multiplyLifetime(0.5f)
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.7f))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(0.5f));
+                .modifyScaleData(d -> d.multiplyValue(1.7f))
+                .modifyTransparencyData(d -> d.multiplyValue(0.5f));
 
         lightSpecs.getBloomBuilder()
                 .multiplyLifetime(0.5f)
-                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.3f))
-                .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(0.75f));
+                .modifyScaleData(d -> d.multiplyValue(1.3f))
+                .modifyTransparencyData(d -> d.multiplyValue(0.75f));
 
         lightSpecs.spawnParticles();
     }
 
-    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit) {
+    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritLike spirit) {
         return spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
@@ -106,7 +108,7 @@ public class SpiritLightSpecs {
         return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
-    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritWrapper spirit, WorldParticleOptions options) {
+    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, SpiritLike spirit, WorldParticleOptions options) {
         return spiritLightSpecs(level, pos, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spirit));
     }
 
@@ -126,21 +128,21 @@ public class SpiritLightSpecs {
 
     public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, WorldParticleBuilder builder, WorldParticleBuilder bloomBuilder) {
         var rand = level.getRandom();
-        final SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, nextFloat(rand, 0.05f, 0.1f)).randomSpinOffset(rand).build();
-        final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
+        SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, nextFloat(rand, 0.05f, 0.1f)).randomSpinOffset(rand).build();
+        float friction = 0.95f;
         int lifetime = RandomHelper.randomBetween(rand, 10, 20);
-        final WorldParticleBuilder worldParticleBuilder = builder
-                .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())
-                .setSpinData(spinData)
+        WorldParticleBuilder worldParticleBuilder = builder
                 .setScaleData(GenericParticleData.create(0.025f, RandomHelper.randomBetween(rand, 0.2f, 0.3f), 0).build())
+                .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())
+                .multiplyFriction(friction)
+                .setSpinData(spinData)
                 .setLifetime(lifetime)
-                .enableNoClip()
-                .addTickActor(slowDown);
-        final WorldParticleBuilder bloomParticleBuilder = SpiritLightSpecs.spiritBloom(level, bloomBuilder, lifetime).setSpinData(spinData).addTickActor(slowDown);
+                .enableNoClip();
+        final WorldParticleBuilder bloomParticleBuilder = SpiritLightSpecs.spiritBloom(level, bloomBuilder, lifetime).setSpinData(spinData).setFriction(friction);
         return new ParticleEffectSpawner(level, pos, worldParticleBuilder, bloomParticleBuilder);
     }
 
-    public static WorldParticleBuilder spiritBloom(Level level, SpiritWrapper spirit, int lifetime) {
+    public static WorldParticleBuilder spiritBloom(Level level, SpiritLike spirit, int lifetime) {
         return spiritBloom(level, spirit, new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE), lifetime);
     }
 
@@ -148,7 +150,7 @@ public class SpiritLightSpecs {
         return spiritBloom(level, colorData, new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE), lifetime);
     }
 
-    public static WorldParticleBuilder spiritBloom(Level level, SpiritWrapper spirit, WorldParticleOptions options, int lifetime) {
+    public static WorldParticleBuilder spiritBloom(Level level, SpiritLike spirit, WorldParticleOptions options, int lifetime) {
         return spiritBloom(level, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spirit), lifetime);
     }
 
@@ -163,8 +165,8 @@ public class SpiritLightSpecs {
     public static WorldParticleBuilder spiritBloom(Level level, WorldParticleBuilder builder, int lifetime) {
         var rand = level.random;
         return builder
-                .setTransparencyData(GenericParticleData.create(0.35f, 0f).build())
                 .setScaleData(GenericParticleData.create(0.04f, RandomHelper.randomBetween(rand, 0.08f, 0.14f), 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
+                .setTransparencyData(GenericParticleData.create(0.35f, 0f).build())
                 .setLifetime(lifetime)
                 .enableNoClip();
     }

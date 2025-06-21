@@ -7,7 +7,6 @@
     "#malum:minerals",
     "#malum:augments",
     "#malum:metal_nodes",
-    "#malum:soulwoven_banners",
     "#curios:ring",
     "#curios:necklace",
     "#curios:belt",
@@ -17,6 +16,7 @@
     "malum:lamplighters_tongs",
     "malum:catalyst_lobber",
     "malum:encyclopedia_arcana",
-    "malum:encyclopedia_esoterica"
+    "malum:encyclopedia_esoterica",
+    "malum:soulwoven_banner"
   ]
 }

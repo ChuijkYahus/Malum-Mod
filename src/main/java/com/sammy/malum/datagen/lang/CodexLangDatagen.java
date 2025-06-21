@@ -1151,7 +1151,7 @@ public class CodexLangDatagen {
                         -Staff Projectiles Gain Homing Capabilities""",
                 """
                         The Imbued Awareness demands Two-Fold Preparation
-                         -Staff Charge Duration is Doubled""");
+                         -Staff Charge Recovery Rate is Halved""");
 
         addSimpleEntryHeader("oath_of_the_overburdened_mind", "Oath of The Overburdened Mind", "To strike overwhemlingly");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND,

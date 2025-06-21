@@ -47,7 +47,7 @@ public class SunderingAnchorEntityRenderer extends EntityRenderer<SunderingAncho
         float scale = delta * 0.7f;
         float alpha = Mth.clamp(delta * 0.4f, 0, 1);
         var additive = LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
-        var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL, ShaderUniformHandler.LUMITRANSPARENT);
+        var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL).withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
         VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(additive);
         RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, MalumSpiritTypes.EARTHEN_SPIRIT, scale * 1.2f, alpha*0.4f, partialTicks);
         RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, MalumSpiritTypes.EARTHEN_SPIRIT, scale * 2f, alpha, partialTicks);

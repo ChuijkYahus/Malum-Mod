@@ -28,29 +28,32 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
 
     @Override
     public void render(TotemPoleBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        Direction direction = blockEntityIn.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
-        MalumSpiritType spiritType = blockEntityIn.spirit;
+        var spiritType = blockEntityIn.spirit;
         if (spiritType == null) {
             return;
         }
+        var direction = blockEntityIn.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
 
-        Level level = Minecraft.getInstance().level;
-        RenderType renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getTotemGlowTexture()));
+        var level = Minecraft.getInstance().level;
+        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getTotemGlowTexture()));
+        var color = spiritType.getPrimaryColor();
+        float delta = blockEntityIn.chargeProgress / 20f;
+        float alphaBonus = delta * 0.5f;
+        float alpha = delta * 0.2f + alphaBonus;
+        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
+        float distance = 0.2f - ease * 0.2f;
+        float wobbleStrength = 0.1f - ease * 0.075f;
+        Vector3f[] positions = new Vector3f[]{
+                new Vector3f(-0.025f, -0.025f, 1.01f),
+                new Vector3f(1.025f, -0.025f, 1.01f), new Vector3f(1.025f, 1.025f, 1.01f), new Vector3f(-0.025f, 1.025f, 1.01f)};
+
+
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
         poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot()));
         poseStack.translate(-0.5f, -0.5f, -0.5f);
 
-        float pct = blockEntityIn.chargeProgress / 20f;
-        Color color = spiritType.getPrimaryColor();
-        float alphaBonus = pct * 0.5f;
-        float alpha = pct * 0.2f + alphaBonus;
-        float ease = Easing.SINE_OUT.ease(pct, 0, 1, 1);
-        float distance = 0.2f - ease * 0.2f;
-        float wobbleStrength = 0.1f - ease * 0.075f;
-
-        Vector3f[] positions = new Vector3f[]{new Vector3f(-0.025f, -0.025f, 1.01f), new Vector3f(1.025f, -0.025f, 1.01f), new Vector3f(1.025f, 1.025f, 1.01f), new Vector3f(-0.025f, 1.025f, 1.01f)};
 
         float gameTime = level.getGameTime() + partialTicks;
         int time = 160;

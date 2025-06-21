@@ -98,7 +98,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
                 float yTime = ((time + i * 27) % 100f) / 100f;
                 final double xOffset = 92 * xTime;
                 final double yOffset = Math.sin(yTime * 6.28f) * yOffsetScale;
-                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC_SMALL, TRANSMUTATION_PARTICLES)
+                ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC, TRANSMUTATION_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.4f, 0f).build())
                         .setSpinData(SpinParticleData.create(spin).build())
                         .setScaleData(GenericParticleData.create(0, scale, 0).build())

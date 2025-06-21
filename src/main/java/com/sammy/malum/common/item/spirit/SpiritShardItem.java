@@ -17,7 +17,7 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 
 import java.util.List;
 
-public class SpiritShardItem extends Item implements ItemParticleSupplier, SpiritWrapper {
+public class SpiritShardItem extends Item implements ItemParticleSupplier, SpiritLike {
     protected final SpiritHolder<MalumSpiritType> spirit;
     protected Component flavorText;
 

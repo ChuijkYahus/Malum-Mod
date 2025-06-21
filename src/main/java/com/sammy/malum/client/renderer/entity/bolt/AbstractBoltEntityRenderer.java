@@ -30,9 +30,9 @@ public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectil
         this.shadowStrength = 0;
     }
 
-    public RenderType getTrailRenderType(boolean isTransparent) {
+    public LodestoneRenderTypeBuilder getTrailRenderType(boolean isTransparent) {
         return isTransparent ?
-                LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL, ShaderUniformHandler.LUMITRANSPARENT) :
+                LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL).withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT) :
                 LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
     }
 

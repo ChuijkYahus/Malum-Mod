@@ -4,6 +4,7 @@ import com.sammy.malum.common.spiritrite.arcane.*;
 import com.sammy.malum.common.spiritrite.eldritch.*;
 import com.sammy.malum.core.systems.rite.TotemicRiteType;
 import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.util.ArrayList;
 import java.util.List;

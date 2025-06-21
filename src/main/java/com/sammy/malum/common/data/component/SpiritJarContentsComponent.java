@@ -8,7 +8,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) implements SpiritWrapper {
+public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) implements SpiritLike {
     public static Codec<SpiritJarContentsComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             MalumSpiritType.CODEC.fieldOf("spirit").forGetter(SpiritJarContentsComponent::spirit),
             Codec.INT.fieldOf("count").forGetter(SpiritJarContentsComponent::count)
@@ -16,7 +16,7 @@ public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) impl
 
     public static StreamCodec<ByteBuf, SpiritJarContentsComponent> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritJarContentsComponent.CODEC);
 
-    public SpiritJarContentsComponent(SpiritWrapper spirit, int count) {
+    public SpiritJarContentsComponent(SpiritLike spirit, int count) {
         this(spirit.getSpirit(), count);
     }
 

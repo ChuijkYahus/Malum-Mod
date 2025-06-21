@@ -62,7 +62,7 @@ public class WeaponParticleEffects {
         }
         return spawnSlashParticle(level, pos, particleType, color.getColor());
     }
-    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, SpiritWrapper spirit) {
+    public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, SpiritLike spirit) {
         if (spirit == null) {
             return spawnSlashParticle(level, pos, particleType);
         }

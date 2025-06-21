@@ -10,10 +10,10 @@ import static team.lodestar.lodestone.registry.common.particle.LodestoneScreenPa
 @SuppressWarnings("unused")
 public class MalumScreenParticles {
     public static final ScreenParticleType<ScreenParticleOptions> SAW = registerType(new LodestoneScreenParticleType());
-    public static final ScreenParticleType<ScreenParticleOptions> LIGHT_SPEC_SMALL = registerType(new LodestoneScreenParticleType());
+    public static final ScreenParticleType<ScreenParticleOptions> LIGHT_SPEC = registerType(new LodestoneScreenParticleType());
 
     public static void registerParticleFactory(RegisterParticleProvidersEvent event) {//TODO maybe use event?
         registerProvider(SAW, new LodestoneScreenParticleType.Factory(getSpriteSet(MalumMod.malumPath("saw"))));
-        registerProvider(LIGHT_SPEC_SMALL, new LodestoneScreenParticleType.Factory(getSpriteSet(MalumMod.malumPath("light_spec_small"))));
+        registerProvider(LIGHT_SPEC, new LodestoneScreenParticleType.Factory(getSpriteSet(MalumMod.malumPath("light_spec"))));
     }
 }

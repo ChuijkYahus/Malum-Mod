@@ -57,7 +57,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     @Override
-    public SpiritWrapper getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return getUnwindingChaosSpirit();
     }
 

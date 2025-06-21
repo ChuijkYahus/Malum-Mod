@@ -20,22 +20,22 @@ public class AugmentItem extends Item {
             new DecimalFormat("#.##%"), f -> f.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT))
     );
 
-    public final List<SpiritWrapper> spiritTypes;
+    public final List<SpiritLike> spiritTypes;
 
 
-    public AugmentItem(Properties pProperties, SpiritWrapper spiritType, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, SpiritLike spiritType, ArtificeModifier... modifiers) {
         this(pProperties, spiritType, false, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, List<SpiritWrapper> spiritTypes, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, List<SpiritLike> spiritTypes, ArtificeModifier... modifiers) {
         this(pProperties, spiritTypes, false, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, SpiritWrapper spiritType, boolean isCoreAugment, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, SpiritLike spiritType, boolean isCoreAugment, ArtificeModifier... modifiers) {
         this(pProperties, List.of(spiritType), isCoreAugment, modifiers);
     }
 
-    public AugmentItem(Properties pProperties, List<SpiritWrapper> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
+    public AugmentItem(Properties pProperties, List<SpiritLike> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
         super(pProperties.component(MalumDataComponents.ARTIFICE_AUGMENT, new ArtificeAugmentDataComponent(isCoreAugment, List.of(modifiers))));
         this.spiritTypes = spiritTypes;
     }

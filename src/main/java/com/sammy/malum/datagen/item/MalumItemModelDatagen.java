@@ -56,7 +56,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelProvider {
 
         setTexturePath("impetus/");
         MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, items.stream().filter(i -> i.get() instanceof ImpetusItem ||
-                i.get() instanceof CrackedImpetusItem).collect(Collectors.toList())); //TODO: make this cleaner :3
+                i.get() instanceof FracturedImpetusItem).collect(Collectors.toList())); //TODO: make this cleaner :3
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof NodeItem).collect(Collectors.toList()));
 
         setTexturePath("");

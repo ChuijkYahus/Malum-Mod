@@ -11,6 +11,7 @@ import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 
 public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlockEntity> {
@@ -20,10 +21,6 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
 
     @Override
     public void render(VoidConduitBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        renderQuad(blockEntityIn, poseStack, partialTicks);
-    }
-
-    public void renderQuad(VoidConduitBlockEntity voidConduit, PoseStack poseStack, float partialTicks) {
         float height = 0.375f;
         float width = 1.5f;
 
@@ -35,22 +32,23 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
                 .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE))
                 .renderQuad(poseStack, positions, 1f);
-        final long gameTime = voidConduit.getLevel().getGameTime();
+        long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.05f;
 
-        final LodestoneRenderType renderType = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
+        var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
         builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
         for (int i = 0; i < 3; i++) {
             float speed = 1000f + 250f * i;
+            final ShaderUniformHandler uniforms = new ShaderUniformHandler()
+                    .modifyUniform("Speed", speed)
+                    .modifyUniform("Width", 48f)
+                    .modifyUniform("Height", 48f)
+                    .modifyUniform("UVCoordinates", -2f, 4f, -2f, 4f);
             builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor())
-                    .setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
-                        s.safeGetUniform("Speed").set(speed);
-                        s.safeGetUniform("Width").set(48f);
-                        s.safeGetUniform("Height").set(48f);
-                        s.safeGetUniform("UVCoordinates").set(new Vector4f(-2, 4, -2, 4));
-                    }));
+                    .setRenderType(distortion.withUniformHandler(uniforms));
+
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
             builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);

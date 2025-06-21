@@ -11,7 +11,7 @@ import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.*;
 
-public class RuneCullingItem extends AbstractRuneCurioItem implements ItemEventHandler.IEventResponder {
+public class RuneCullingItem extends MiracleRuneCurioItem implements ItemEventHandler.IEventResponder {
 
     public RuneCullingItem(Properties builder) {
         super(builder, MalumSpiritTypes.WICKED_SPIRIT);

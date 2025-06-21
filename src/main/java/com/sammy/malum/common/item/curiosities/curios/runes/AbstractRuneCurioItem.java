@@ -14,10 +14,6 @@ public abstract class AbstractRuneCurioItem extends MalumCurioItem implements Pa
 
     public final SpiritHolder<MalumSpiritType> spirit;
 
-    public AbstractRuneCurioItem(Properties builder, SpiritHolder<MalumSpiritType> spirit) {
-        super(builder, MalumTrinketType.RUNE);
-        this.spirit = spirit;
-    }
     public AbstractRuneCurioItem(Properties builder, SpiritHolder<MalumSpiritType> spirit, MalumTrinketType type) {
         super(builder, type);
         this.spirit = spirit;

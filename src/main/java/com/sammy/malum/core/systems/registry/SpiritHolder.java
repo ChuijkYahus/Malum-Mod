@@ -8,7 +8,7 @@ import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
-public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<MalumSpiritType, T> implements SpiritWrapper {
+public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<MalumSpiritType, T> implements SpiritLike {
 
     protected SpiritHolder(ResourceKey<MalumSpiritType> key) {
         super(key);
@@ -29,7 +29,7 @@ public class SpiritHolder<T extends MalumSpiritType> extends DeferredHolder<Malu
         return new SpiritHolder<>(ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, spirit));
     }
 
-    public boolean is(SpiritWrapper spirit) {
+    public boolean is(SpiritLike spirit) {
         return getSpirit().equals(spirit.getSpirit());
     }
 

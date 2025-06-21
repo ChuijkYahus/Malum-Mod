@@ -37,7 +37,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
     }
 
     @Override
-    public SpiritWrapper getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 

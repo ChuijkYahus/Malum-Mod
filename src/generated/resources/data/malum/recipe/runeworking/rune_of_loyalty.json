@@ -11,5 +11,6 @@
   "secondaryInput": {
     "count": 32,
     "item": "malum:aqueous_spirit"
-  }
+  },
+  "soundType": "malum:runic_workbench_shapes_wooden_rune"
 }

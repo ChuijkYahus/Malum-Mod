@@ -15,7 +15,7 @@ import java.util.function.*;
 public class RenderUtils {
 
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritWrapper spirit, float effectScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
     }
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
@@ -26,7 +26,7 @@ public class RenderUtils {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, effectScalar, partialTicks);
     }
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritWrapper spirit, float scaleScalar, float alphaScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float scaleScalar, float alphaScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
     }
 

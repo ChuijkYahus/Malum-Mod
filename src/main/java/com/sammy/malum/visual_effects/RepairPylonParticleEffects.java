@@ -22,7 +22,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class RepairPylonParticleEffects {
 
-    public static SpiritWrapper getCentralSpiritType(RepairPylonCoreBlockEntity pylon) {
+    public static SpiritLike getCentralSpiritType(RepairPylonCoreBlockEntity pylon) {
         final LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -49,12 +49,12 @@ public class RepairPylonParticleEffects {
         boolean isCharging = pylon.state.equals(RepairPylonCoreBlockEntity.RepairPylonState.CHARGING);
         if (recipe != null) {
                 SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
-                        b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.2f)));
+                        b -> b.multiplyLifetime(1.2f).modifyScaleData(d -> d.multiplyValue(1.2f)));
 
             if (isCharging && holder != null) {
                 Vec3 targetItemPos = holder.getItemPos();
-                SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.5f, 4, b -> b.multiplyLifetime(0.6f).modifyData(b::getScaleData, d -> d.multiplyValue(0.95f)));
-                SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.75f, 5, b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.15f)));
+                SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.5f, 4, b -> b.multiplyLifetime(0.6f).modifyScaleData(d -> d.multiplyValue(0.95f)));
+                SpiritLightSpecs.rotatingLightSpecs(level, targetItemPos, activeSpiritType, 0.75f, 5, b -> b.multiplyLifetime(1.2f).modifyScaleData(d -> d.multiplyValue(1.15f)));
             }
         }
 
@@ -72,13 +72,13 @@ public class RepairPylonParticleEffects {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, activeSpiritType);
-                        sparkParticles.getBuilder().setMotion(velocity).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
+                        sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.85f) {
                         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, activeSpiritType);
-                        lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f));
+                        lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyScaleData(d -> d.multiplyValue(1.6f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();
                     }
@@ -88,7 +88,7 @@ public class RepairPylonParticleEffects {
     }
 
     public static void prepareRepairParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(pylon);
+        SpiritLike activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
         }
@@ -113,12 +113,12 @@ public class RepairPylonParticleEffects {
                             .disableNoClip()
                             .setLifeDelay(j)
                             .multiplyLifetime(0.75f)
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1f));
+                            .modifyScaleData(d -> d.multiplyValue(1f));
                     sparkParticles.getBloomBuilder()
                             .disableNoClip()
                             .setLifeDelay(j)
                             .multiplyLifetime(0.75f)
-                            .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                            .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                     sparkParticles.spawnParticles();
                 }
                 if (random.nextFloat() < 0.85f) {
@@ -126,11 +126,11 @@ public class RepairPylonParticleEffects {
                     lightSpecs.getBuilder()
                             .disableNoClip()
                             .setLifeDelay(j)
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.5f));
+                            .modifyScaleData(d -> d.multiplyValue(1.5f));
                     lightSpecs.getBloomBuilder()
                             .disableNoClip()
                             .setLifeDelay(j)
-                            .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                            .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                     lightSpecs.spawnParticles();
                 }
             }
@@ -145,12 +145,12 @@ public class RepairPylonParticleEffects {
                             .disableNoClip()
                             .setLifeDelay(lifeDelay)
                             .multiplyLifetime(0.75f)
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1f));
+                            .modifyScaleData(d -> d.multiplyValue(1f));
                     sparkParticles.getBloomBuilder()
                             .disableNoClip()
                             .setLifeDelay(lifeDelay)
                             .multiplyLifetime(0.75f)
-                            .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                            .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                     sparkParticles.spawnParticles();
                 }
                 if (random.nextFloat() < 0.85f) {
@@ -158,11 +158,11 @@ public class RepairPylonParticleEffects {
                     lightSpecs.getBuilder()
                             .disableNoClip()
                             .setLifeDelay(lifeDelay)
-                            .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.5f));
+                            .modifyScaleData(d -> d.multiplyValue(1.5f));
                     lightSpecs.getBloomBuilder()
                             .disableNoClip()
                             .setLifeDelay(lifeDelay)
-                            .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                            .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                     lightSpecs.spawnParticles();
                 }
             }
@@ -170,7 +170,7 @@ public class RepairPylonParticleEffects {
     }
 
     public static void repairItemParticles(RepairPylonCoreBlockEntity pylon, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(pylon);
+        SpiritLike activeSpiritType = getCentralSpiritType(pylon);
         if (activeSpiritType == null) {
             return;
         }
@@ -178,7 +178,7 @@ public class RepairPylonParticleEffects {
 //        repairItemParticles(level, activeSpiritType, pylon.getItemPos(), colorData);
         repairItemParticles(level, activeSpiritType, holder.getItemPos(), colorData);
     }
-    public static void repairItemParticles(Level level, SpiritWrapper activeSpiritType, Vec3 itemPos, MalumNetworkedParticleEffectColorData colorData) {
+    public static void repairItemParticles(Level level, SpiritLike activeSpiritType, Vec3 itemPos, MalumNetworkedParticleEffectColorData colorData) {
         long gameTime = level.getGameTime();
         var random = level.random;
         for (int i = 0; i < 2; i++) {
@@ -197,16 +197,16 @@ public class RepairPylonParticleEffects {
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(2)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f));
+                        .modifyScaleData(d -> d.multiplyValue(2f));
                 sparkParticles.getBloomBuilder()
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(2)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 sparkParticles.spawnParticles();
             }
             if (random.nextFloat() < 0.85f) {
@@ -218,16 +218,16 @@ public class RepairPylonParticleEffects {
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(4)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2.5f));
+                        .modifyScaleData(d -> d.multiplyValue(2.5f));
                 lightSpecs.getBloomBuilder()
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(4)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 lightSpecs.spawnParticles();
             }
         }
@@ -241,18 +241,18 @@ public class RepairPylonParticleEffects {
             });
 
             var lightSpecs = spiritLightSpecs(level, offsetPosition, activeSpiritType);
-            lightSpecs.getBuilder().act(b -> b
+            lightSpecs.getBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
-                    .modifyData(b::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .multiplyLifetime(1.5f)
-                    .setLifetime(b.getParticleOptions().lifetimeSupplier.get() + finalI * 2));
+                    .modifyLifetime(l -> l + finalI * 2);
             lightSpecs.getBloomBuilder().act(b -> b
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyData(b::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .setLifetime((int) (b.getParticleOptions().lifetimeSupplier.get() + finalI * 2.5f)));
             lightSpecs.spawnParticles();
         }

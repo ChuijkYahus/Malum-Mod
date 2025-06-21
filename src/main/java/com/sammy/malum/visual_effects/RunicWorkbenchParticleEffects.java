@@ -41,17 +41,18 @@ public class RunicWorkbenchParticleEffects {
             SpiritLightSpecs.coolLookingShinyThing(level, targetPos, spirit);
         }
         for (int i = 0; i < 6; i++) {
+            int lifeDelay = 2 + i;
             var scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.5f, 0.6f) + i * 0.05f, 0.5f)
                     .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
-                    .setCoefficient(RandomHelper.randomBetween(rand, 1f, 1.25f)).build();
+                    .setCoefficient(RandomHelper.randomBetween(rand, 1.5f, 2f)).build();
             var builder = SpiritBasedParticleBuilder.createSpirit(MalumParticles.SQUARE.get())
                     .setSpirit(colorData.getSpirit())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
                     .setTransparencyData(GenericParticleData.create(0.7f, 0f).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                     .setScaleData(scaleData)
-                    .setLifetime(25)
-                    .setLifeDelay(i*2)
+                    .setLifetime(15)
+                    .setLifeDelay(lifeDelay)
                     .enableNoClip();
             if (i % 2 == 0) {
                 builder.act(b -> b.setColorData(b.getColorData().invert().build()));
@@ -59,10 +60,36 @@ public class RunicWorkbenchParticleEffects {
             builder
                     .spawn(level, targetPos.x, targetPos.y, targetPos.z)
                     .setBehavior(BillboardParticleBehavior.INSTANCE)
+                    .setLifetime(8)
+                    .setLifeDelay((int) (lifeDelay * 1.5f))
+                    .modifyScaleData(d -> d.multiplyValue(1.25f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyValue(0.6f))
+                    .spawn(level, targetPos.x, targetPos.y, targetPos.z);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int lifeDelay = 18;
+            var scaleData = GenericParticleData.create(0.2f, RandomHelper.randomBetween(rand, 0.3f, 0.4f) + i * 0.1f, 0.3f)
+                    .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
+                    .setCoefficient(RandomHelper.randomBetween(rand, 1.5f, 2f)).build();
+            var builder = SpiritBasedParticleBuilder.createSpirit(MalumParticles.SQUARE.get())
+                    .setSpirit(colorData.getSpirit())
+                    .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
+                    .setTransparencyData(GenericParticleData.create(0.9f, 0f).setEasing(Easing.EXPO_IN).build())
+                    .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
+                    .setScaleData(scaleData)
                     .setLifetime(15)
-                    .setLifeDelay(i*3)
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.25f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(0.6f))
+                    .setLifeDelay(lifeDelay)
+                    .enableNoClip();
+            if (i % 2 == 0) {
+                builder.act(b -> b.setColorData(b.getColorData().invert().build()));
+            }
+            builder
+                    .spawn(level, targetPos.x, targetPos.y, targetPos.z)
+                    .setBehavior(BillboardParticleBehavior.INSTANCE)
+                    .setLifetime(10)
+                    .modifyScaleData(d -> d.multiplyValue(1.25f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyValue(0.6f))
                     .spawn(level, targetPos.x, targetPos.y, targetPos.z);
         }
 
@@ -70,6 +97,7 @@ public class RunicWorkbenchParticleEffects {
             var spirit = colorData.getSpirit();
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(targetPos, 0.6f, i, 16, gameTime, 160);
             var lightSpecs = spiritLightSpecs(level, offsetPosition, spirit);
+            int lifeDelay = i / 2;
             if (i % 2 == 0) {
                 lightSpecs.getBuilder().act(b -> b.setColorData(b.getColorData().invert().build()));
                 lightSpecs.getBloomBuilder().act(b -> b.setColorData(b.getColorData().invert().build()));
@@ -78,17 +106,17 @@ public class RunicWorkbenchParticleEffects {
             lightSpecs.getBuilder()
                     .setMotion(0, 0.1f, 0)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .setLifetime(10)
-                    .setLifeDelay(4+i/2);
+                    .setLifeDelay(4+ lifeDelay);
             lightSpecs.getBloomBuilder()
                     .setMotion(0, 0.1f, 0)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .setLifetime(10)
-                    .setLifeDelay(4+i/2);
+                    .setLifeDelay(4+ lifeDelay);
             lightSpecs.spawnParticles();
         }
     }
@@ -112,14 +140,14 @@ public class RunicWorkbenchParticleEffects {
 
             lightSpecs.getBuilder()
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .multiplyLifetime(2)
                     .setLifeDelay(i*2);
             lightSpecs.getBloomBuilder()
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .multiplyLifetime(2);
             lightSpecs.spawnParticles();
         }

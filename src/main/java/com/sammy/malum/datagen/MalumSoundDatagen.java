@@ -155,7 +155,10 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.BRAZIER_FINISH, s -> definition(s).with(sounds("brazier/brazier_end", 3)));
         this.add(MalumSoundEvents.BRAZIER_SACRIFICE, s -> definition(s).with(sounds("brazier/brazier_sacrifice", 4)));
 
-        this.add(MalumSoundEvents.RUNIC_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft", 2)));
+        this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_STONE, s -> definition(s).with(sounds("runic_workbench/craft_rune_stone", 3)));
+        this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN, s -> definition(s).with(sounds("runic_workbench/craft_rune_wood", 3)));
+        this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_VOID, s -> definition(s).with(sounds("runic_workbench/craft_rune_void", 3)));
+
         this.add(MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft", 2)));
 
         this.add(MalumSoundEvents.TOTEM_CHARGE, s -> definition(s).with(sounds("totem/totem_charge", 3)));

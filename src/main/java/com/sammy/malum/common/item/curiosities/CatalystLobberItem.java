@@ -70,7 +70,7 @@ public class CatalystLobberItem extends Item {
         SoundEvent sound;
         switch (state) {
             case 0 -> {
-                cooldown = 100;
+                cooldown = 60;
                 state = Math.max(1, stashedState);
                 sound = MalumSoundEvents.CATALYST_LOBBER_UNLOCKED.get();
             }

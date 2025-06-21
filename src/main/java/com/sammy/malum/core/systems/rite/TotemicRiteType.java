@@ -35,7 +35,7 @@ public abstract class TotemicRiteType {
         this.corruptedEffect = getCorruptedEffect();
     }
 
-    public boolean matches(List<? extends SpiritWrapper> totemSpirits) {
+    public boolean matches(List<? extends SpiritLike> totemSpirits) {
         if (totemSpirits.size() != spirits.size()) {
             return false;
         }

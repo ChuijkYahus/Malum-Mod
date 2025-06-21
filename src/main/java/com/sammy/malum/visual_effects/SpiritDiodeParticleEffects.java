@@ -49,7 +49,7 @@ public class SpiritDiodeParticleEffects {
             var square = waveformSquare(level, positionData.getAsVector(), colorData.getColor());
             square.getBuilder()
                     .setSpinData(SpinParticleData.createRandomDirection(random, 2f, 0).setEasing(Easing.EXPO_OUT).build())
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f))
+                    .modifyScaleData(d -> d.multiplyValue(2f))
                     .setLifeDelay(lifeDelay);
             square.spawnParticles();
         }

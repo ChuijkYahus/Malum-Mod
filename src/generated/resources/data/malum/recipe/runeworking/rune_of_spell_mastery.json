@@ -11,5 +11,6 @@
   "secondaryInput": {
     "count": 16,
     "item": "malum:arcane_spirit"
-  }
+  },
+  "soundType": "malum:runic_workbench_shapes_void_rune"
 }

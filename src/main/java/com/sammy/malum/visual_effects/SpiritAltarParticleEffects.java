@@ -28,7 +28,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
 public class SpiritAltarParticleEffects {
 
-    public static SpiritWrapper getCentralSpiritType(SpiritAltarBlockEntity altar) {
+    public static SpiritLike getCentralSpiritType(SpiritAltarBlockEntity altar) {
         final LodestoneBlockEntityInventory spiritInventory = altar.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -44,7 +44,7 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void passiveSpiritAltarParticles(SpiritAltarBlockEntity altar) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
+        SpiritLike activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
@@ -60,7 +60,7 @@ public class SpiritAltarParticleEffects {
                 }
             }
             SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
-                    b -> b.multiplyLifetime(1.2f).modifyData(b::getScaleData, d -> d.multiplyValue(1.2f)));
+                    b -> b.multiplyLifetime(1.2f).modifyScaleData(d -> d.multiplyValue(1.2f)));
         }
 
         int spiritsRendered = 0;
@@ -75,13 +75,13 @@ public class SpiritAltarParticleEffects {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
-                        sparkParticles.getBuilder().setMotion(velocity).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
+                        sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
                     if (random.nextFloat() < 0.85f) {
                         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, spiritPosition, shard);
-                        lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f));
+                        lightSpecs.getBuilder().multiplyLifetime(0.8f).setMotion(velocity.scale(1.5f)).modifyScaleData(d -> d.multiplyValue(1.6f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();
                     }
@@ -91,7 +91,7 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void eatItemParticles(Level level, SpiritAltarBlockEntity altar, IMalumSpecialItemAccessPoint holder, MalumNetworkedParticleEffectColorData colorData, ItemStack stack) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
+        SpiritLike activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
@@ -116,11 +116,11 @@ public class SpiritAltarParticleEffects {
             lightSpecs.getBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2.5f)
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
             lightSpecs.getBloomBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2f)
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
 
             var crumbles = ItemCrumbleParticleEffects.spawnItemCrumbs(level, holderTargetPos, stack);
@@ -134,7 +134,7 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void craftItemParticles(Level level, SpiritAltarBlockEntity altar, MalumNetworkedParticleEffectColorData colorData) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(altar);
+        SpiritLike activeSpiritType = getCentralSpiritType(altar);
         if (activeSpiritType == null) {
             return;
         }
@@ -155,7 +155,7 @@ public class SpiritAltarParticleEffects {
             int lifeDelay = 5 + i * 3;
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, offsetPos, cyclingSpiritType, new WorldParticleOptions(MalumParticles.SHINE));
             lightSpecs.getBuilder()
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f))
+                    .modifyTransparencyData(d -> d.multiplyValue(1.25f))
                     .setSpinData(SpinParticleData.create(0).randomSpinOffset(random).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                     .setScaleData(GenericParticleData.create(0.3f).build())
@@ -163,8 +163,8 @@ public class SpiritAltarParticleEffects {
                     .setLifeDelay(lifeDelay)
                     .disableNoClip();
             lightSpecs.getBloomBuilder()
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(3f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f))
+                    .modifyScaleData(d -> d.multiplyValue(3f))
+                    .modifyTransparencyData(d -> d.multiplyValue(1.25f))
                     .multiplyLifetime(0.85f)
                     .setLifeDelay(lifeDelay)
                     .disableNoClip();
@@ -184,16 +184,16 @@ public class SpiritAltarParticleEffects {
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(1.5f)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f));
+                        .modifyScaleData(d -> d.multiplyValue(2f));
                 sparkParticles.getBloomBuilder()
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(1.5f)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 sparkParticles.spawnParticles();
             }
             if (random.nextFloat() < 0.85f) {
@@ -205,16 +205,16 @@ public class SpiritAltarParticleEffects {
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(2)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2.5f));
+                        .modifyScaleData(d -> d.multiplyValue(2.5f));
                 lightSpecs.getBloomBuilder()
                         .disableNoClip()
                         .setLifeDelay(lifeDelay)
                         .multiplyLifetime(1.5f)
-                        .setGravityStrength(gravityStrength)
+                        .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyValue(1.25f));
+                        .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 lightSpecs.spawnParticles();
             }
         }
@@ -231,14 +231,14 @@ public class SpiritAltarParticleEffects {
             lightSpecs.getBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .setLifetime(lifetime);
             lightSpecs.getBloomBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .setLifetime(lifetime);
             lightSpecs.spawnParticles();
         }
@@ -267,12 +267,12 @@ public class SpiritAltarParticleEffects {
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(2f)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
             lightSpecs.getBloomBuilder().act(b -> b
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(1.5f)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
             lightSpecs.spawnParticles();
         }
     }

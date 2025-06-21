@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CoreAugmentItem extends AugmentItem {
 
-    public CoreAugmentItem(Properties pProperties, List<SpiritWrapper> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
+    public CoreAugmentItem(Properties pProperties, List<SpiritLike> spiritTypes, boolean isCoreAugment, ArtificeModifier... modifiers) {
         super(pProperties, spiritTypes, isCoreAugment, modifiers);
     }
 

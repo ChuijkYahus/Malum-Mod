@@ -13,7 +13,7 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandle
 
 public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
 
-    public static SpiritBasedWorldVFXBuilder create(SpiritWrapper spirit) {
+    public static SpiritBasedWorldVFXBuilder create(SpiritLike spirit) {
         return new SpiritBasedWorldVFXBuilder(spirit.getSpirit());
     }
 
@@ -33,9 +33,9 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
             if (!LodestoneRenderTypes.COPIES.containsKey(Pair.of(spiritType, lodestoneRenderType))) {
                 LodestoneRenderTypes.addRenderTypeModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
             }
-            LodestoneRenderType umbralRenderType = LodestoneRenderTypes.copyAndStore(spiritType, lodestoneRenderType);
+            LodestoneRenderType umbralRenderType = LodestoneRenderTypes.createCachedCopy(spiritType, lodestoneRenderType);
             if (!RenderHandler.UNIFORM_HANDLERS.containsKey(umbralRenderType)) {
-                LodestoneRenderTypes.applyUniformChanges(umbralRenderType, ShaderUniformHandler.LUMITRANSPARENT);
+                LodestoneRenderTypes.addUniformChanges(umbralRenderType, ShaderUniformHandler.LUMITRANSPARENT);
             }
             return super.setRenderType(umbralRenderType);
         }

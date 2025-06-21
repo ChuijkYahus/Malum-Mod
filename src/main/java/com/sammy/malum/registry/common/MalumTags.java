@@ -17,19 +17,22 @@ public class MalumTags {
 
         public static final TagKey<Item> SOUL_SHATTER_CAPABLE_WEAPONS = tag("soul_shatter_capable_weapons");
         public static final TagKey<Item> MAGIC_CAPABLE_WEAPONS = tag("magic_capable_weapon");
+
         public static final TagKey<Item> SCYTHES = tag("scythe");
-        public static final TagKey<Item> STAVES = tag("staff");
         public static final TagKey<Item> SCYTHES_COMMON = commonTag("tools/scythe");
+
+        public static final TagKey<Item> STAVES = tag("staff");
         public static final TagKey<Item> STAVES_COMMON = commonTag("tools/staff");
+
         public static final TagKey<Item> KNIVES = modTag("farmersdelight:tools/knives");
         public static final TagKey<Item> KNIVES_COMMON = commonTag("tools/knife");
 
         public static final TagKey<Item> ANIMATED_ENCHANTABLE = tag("enchantable/animated");
+        public static final TagKey<Item> HAUNTED_ENCHANTABLE = tag("enchantable/haunted");
         public static final TagKey<Item> REBOUND_ENCHANTABLE = tag("enchantable/rebound");
         public static final TagKey<Item> ASCENSION_ENCHANTABLE = tag("enchantable/ascension");
         public static final TagKey<Item> REPLENISHING_ENCHANTABLE = tag("enchantable/replenishing");
         public static final TagKey<Item> CAPACITOR_ENCHANTABLE = tag("enchantable/capacitor");
-        public static final TagKey<Item> HAUNTED_ENCHANTABLE = tag("enchantable/haunted");
         public static final TagKey<Item> SPIRIT_SPOILS_ENCHANTABLE = tag("enchantable/spirit_spoils");
 
         public static final TagKey<Item> SPIRITS = tag("spirits");
@@ -38,12 +41,15 @@ public class MalumTags {
         public static final TagKey<Item> MATERIALS = tag("materials");
         public static final TagKey<Item> MINERALS = tag("minerals");
         public static final TagKey<Item> AUGMENTS = tag("augments");
-        public static final TagKey<Item> IMPETUS = tag("impetus");
-        public static final TagKey<Item> FRACTURED_IMPETUS = tag("fractured_impetus");
-        public static final TagKey<Item> METAL_IMPETUS = tag("metal_impetus");
-        public static final TagKey<Item> FRACTURED_METAL_IMPETUS = tag("fractured_metal_impetus");
         public static final TagKey<Item> METAL_NODES = tag("metal_nodes");
-        public static final TagKey<Item> SOULWOVEN_BANNERS = tag("soulwoven_banners");
+        public static final TagKey<Item> IMPETUS = tag("impetus");
+        public static final TagKey<Item> METAL_IMPETUS = tag("metal_impetus");
+        public static final TagKey<Item> FRACTURED_IMPETUS = tag("fractured_impetus");
+        public static final TagKey<Item> FRACTURED_METAL_IMPETUS = tag("fractured_metal_impetus");
+
+        public static final TagKey<Item> RUNES_STONE = tag("runes/stone");
+        public static final TagKey<Item> RUNES_WOODEN = tag("runes/wooden");
+        public static final TagKey<Item> RUNES_VOID = tag("runes/void");
 
         public static final TagKey<Item> IS_TOTEMIC_TOOL = tag("totemic_tool");
         public static final TagKey<Item> IS_REDSTONE_TOOL = tag("redstone_tool");
@@ -57,6 +63,8 @@ public class MalumTags {
         public static final TagKey<Item> SOULHUNTERS_TREASURE = tag("soulhunters_treasure");
         public static final TagKey<Item> SOULWOVEN_POUCH_AUTOCOLLECT = tag("soulwoven_pouch_autocollect");
 
+        public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = tag("arcane_elegy_component");
+
         public static final TagKey<Item> VOID_SOULSTONE_CONVERSION = tag("void_soulstone_material");
 
         public static final TagKey<Item> HIDDEN_ALWAYS = tag("hidden_items/always");
@@ -64,15 +72,12 @@ public class MalumTags {
         public static final TagKey<Item> HIDDEN_UNTIL_BLACK_CRYSTAL = tag("hidden_items/black_crystal");
         public static final TagKey<Item> HIDDEN_AS_RESULT_ONLY = tag("hidden_items/result_only");
 
-        public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = tag("arcane_elegy_component");
-
-        public static final TagKey<Item> NECKLACE = modTag("curios:necklace");
-        public static final TagKey<Item> RING = modTag("curios:ring");
-        public static final TagKey<Item> BELT = modTag("curios:belt");
-        public static final TagKey<Item> BROOCH = modTag("curios:brooch");
-        public static final TagKey<Item> RUNE = modTag("curios:rune");
-        public static final TagKey<Item> CHARM = modTag("curios:charm");
-        public static final TagKey<Item> GEAS = modTag("curios:geas");
+        public static final TagKey<Item> NECKLACE_CURIO = modTag("curios:necklace");
+        public static final TagKey<Item> RING_CURIO = modTag("curios:ring");
+        public static final TagKey<Item> BELT_CURIO = modTag("curios:belt");
+        public static final TagKey<Item> BROOCH_CURIO = modTag("curios:brooch");
+        public static final TagKey<Item> RUNE_CURIO = modTag("curios:rune");
+        public static final TagKey<Item> CHARM_CURIO = modTag("curios:charm");
 
         public static final TagKey<Item> RUNEWOOD_BOARD_INGREDIENT = tag("runewood_board_ingredient");
         public static final TagKey<Item> RUNEWOOD_LOGS = tag("runewood_logs");

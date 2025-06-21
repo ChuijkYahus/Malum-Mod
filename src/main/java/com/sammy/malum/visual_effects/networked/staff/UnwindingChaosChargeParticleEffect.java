@@ -92,7 +92,7 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                 lightSpecs.getBuilder()
                         .setBehavior(SparkParticleBehavior.sparkBehavior())
                         .setLengthData(GenericParticleData.create(0.2f, 2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 2, 2.5f)))
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 2, 2.5f)))
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
                         .setTransparencyData(transparencyData)
                         .setLifeDelay(lifeDelay)
@@ -104,8 +104,8 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                         .setLifetime(lifetime)
                         .addTickActor(behavior)
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
-                        .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)))
-                        .modifyData(AbstractParticleBuilder::getTransparencyData, d -> d.multiplyCoefficient(1.4f));
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)))
+                        .modifyTransparencyData(d -> d.multiplyCoefficient(1.4f));
                 lightSpecs.spawnParticles();
 
                 lightSpecs = spiritLightSpecs(level, particlePosition, cyclingSpiritType, new WorldParticleOptions(LodestoneParticleTypes.WISP_PARTICLE.get()));

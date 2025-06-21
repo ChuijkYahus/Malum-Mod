@@ -19,6 +19,7 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
 import java.util.List;
@@ -39,10 +40,6 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
 
     @Override
     public void render(VoidDepotBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        renderQuad(blockEntityIn, poseStack, partialTicks);
-    }
-
-    public void renderQuad(VoidDepotBlockEntity voidDepot, PoseStack poseStack, float partialTicks) {
         float height = 0.9375f;
         float width = 0.3125f;
 
@@ -51,23 +48,27 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.01f, 0.5f);
 
-        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER.getTarget()).setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(VOID_VIGNETTE)).renderQuad(poseStack, positions, 1f);
-        final long gameTime = voidDepot.getLevel().getGameTime();
+        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER.getTarget())
+                .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(VOID_VIGNETTE))
+                .renderQuad(poseStack, positions, 1f);
+        final long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.05f;
 
-        final LodestoneRenderType renderType = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
+        var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
         builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
         for (int i = 0; i < 2; i++) {
-            builder.setAlpha(alpha);
             float speed = 1000f + 250f * i;
-            builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor()).setRenderType(LodestoneRenderTypes.applyUniformChanges(LodestoneRenderTypes.copyAndStore(i, renderType), s -> {
-                s.safeGetUniform("Speed").set(speed);
-                s.safeGetUniform("Width").set(16f);
-                s.safeGetUniform("Height").set(16f);
-                s.safeGetUniform("UVCoordinates").set(new Vector4f(-2, 4, -2, 4));
-            }));
+            final ShaderUniformHandler uniforms = new ShaderUniformHandler()
+                    .modifyUniform("Speed", speed)
+                    .modifyUniform("Width", 16f)
+                    .modifyUniform("Height", 16f)
+                    .modifyUniform("UVCoordinates", -2f, 4f, -2f, 4f);
+            builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor())
+                    .setRenderType(distortion.withUniformHandler(uniforms));
+
+            builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
             builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
             alpha -= 0.0125f;
@@ -82,19 +83,19 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         poseStack.popPose();
 
 
-        if (voidDepot.textVisibility > 12) {
+        if (blockEntityIn.textVisibility > 12) {
             final Font font = Minecraft.getInstance().font;
-            float timer = Mth.clamp((voidDepot.textVisibility + (voidDepot.nearTimer > 0 ? 1 : -1) * partialTicks), 0, 40);
+            float timer = Mth.clamp((blockEntityIn.textVisibility + (blockEntityIn.nearTimer > 0 ? 1 : -1) * partialTicks), 0, 40);
             float scalar = Easing.SINE_IN_OUT.ease(timer/40f, 0, 1, 1);
             float scale = 0.016F - (1-scalar)*0.004f;
             final Font.DisplayMode display = Font.DisplayMode.NORMAL;
 
-            List<VoidDepotBlockEntity.VoidDepotGoal> goals = voidDepot.goals;
+            List<VoidDepotBlockEntity.VoidDepotGoal> goals = blockEntityIn.goals;
             List<MutableComponent> components = new ArrayList<>();
-            if (!voidDepot.goals.isEmpty()) {
+            if (!blockEntityIn.goals.isEmpty()) {
                 components = goals.stream().map(g -> Component.literal(g.index + ": <" + g.deliveredAmount + "/" + g.amount + ">")).collect(Collectors.toCollection(ArrayList::new));
             }
-            components.addAll(voidDepot.textToDisplay.stream().map(Component::literal).toList());
+            components.addAll(blockEntityIn.textToDisplay.stream().map(Component::literal).toList());
 
             poseStack.pushPose();
             poseStack.translate(0.5f, 2f, 0.5f);

@@ -10,7 +10,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.HitResult;
@@ -63,7 +62,7 @@ public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEnt
         builder.add(HORIZONTAL_FACING, SPIRIT_TYPE);
     }
 
-    public static BlockState createTotemPoleState(TotemPoleBlock<?> totemPole, Direction direction, SpiritWrapper spiritType) {
+    public static BlockState createTotemPoleState(TotemPoleBlock<?> totemPole, Direction direction, SpiritLike spiritType) {
         return totemPole.defaultBlockState().setValue(HORIZONTAL_FACING, direction).setValue(SPIRIT_TYPE, spiritType.getRegistryName().getPath());
     }
 }

@@ -3,7 +3,6 @@ package com.sammy.malum.core.systems.spirit.type;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class MalumSpiritType implements SpiritWrapper {
+public class MalumSpiritType implements SpiritLike {
 
     public static final Codec<Holder<MalumSpiritType>> HOLDER_CODEC = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.holderByNameCodec();
 
@@ -34,6 +33,19 @@ public class MalumSpiritType implements SpiritWrapper {
         this.spiritShard = spiritShard;
     }
 
+    @Override
+    public @NotNull MalumSpiritType getSpirit() {
+        return this;
+    }
+
+    public SpiritShardItem getSpiritShard() {
+        return spiritShard.value();
+    }
+
+    public SpiritColorProperties getColorProperties() {
+        return colorProperties;
+    }
+
     public void save(CompoundTag tag) {
         save(tag, "spirit");
     }
@@ -48,19 +60,6 @@ public class MalumSpiritType implements SpiritWrapper {
 
     public static Optional<MalumSpiritType> load(CompoundTag tag, String name) {
         return MalumSpiritType.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
-    }
-
-    @Override
-    public @NotNull MalumSpiritType getSpirit() {
-        return this;
-    }
-
-    public SpiritShardItem getSpiritShard() {
-        return spiritShard.value();
-    }
-
-    public SpiritColorProperties getColorProperties() {
-        return colorProperties;
     }
 
     public Rarity getItemRarity() {

@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.function.*;
 
@@ -84,11 +85,11 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         var soulwoodLog = MalumBlocks.SOULWOOD_LOG.get();
         var blightedSoulwoodLog = MalumBlocks.BLIGHTED_SOULWOOD.get();
 
-        var builder = BlightFeature.LodestoneWorldgenBuilder.create();
+        var builder = LodestoneWorldgenBuilder.create();
         var treeLayer = builder.createLayer();
         var blightLayer = builder.createLayer();
         var leavesLayer = builder.createLayer();
-        var rootsBuilder = BlightFeature.LodestoneWorldgenBuilder.create();
+        var rootsBuilder = LodestoneWorldgenBuilder.create();
         var rootsLayer = rootsBuilder.createLayer();
 
         int trunkHeight = getTrunkHeight(rand);
@@ -137,7 +138,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
 
             BlockPos clingingBlightPos = lowestLog.relative(direction);
             if (canPlace(level, clingingBlightPos)) {
-                rootsLayer.add(clingingBlightPos, makeClingingBlight(BlightType.CLINGING_BLIGHT, direction.getOpposite())).addPlacementCondition(BlightFeature.PlacementCondition.CAN_SURVIVE);
+                rootsLayer.add(clingingBlightPos, makeClingingBlight(BlightType.CLINGING_BLIGHT, direction.getOpposite())).addPlacementCondition(PlacementCondition.CAN_SURVIVE);
             }
 
             //Roots
@@ -156,7 +157,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                         mutable.move(k >= 2 ? Direction.UP : Direction.DOWN);
                         continue;
                     }
-                    rootsLayer.add(mutable, roots).addPlacementCondition(BlightFeature.PlacementCondition.CAN_SURVIVE);
+                    rootsLayer.add(mutable, roots).addPlacementCondition(PlacementCondition.CAN_SURVIVE);
                     break;
                 }
             }
@@ -202,7 +203,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             makeLeafBlob(leavesLayer, rand, mutable.move(Direction.DOWN, branchHeight-1));
         }
 
-        for (BlightFeature.LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSapBlockCount(rand))) {
+        for (LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSapBlockCount(rand))) {
             entry.changeState(s -> {
                 if (s.getBlock().equals(MalumBlocks.SOULWOOD_LOG.get())) {
                     return MalumBlocks.EXPOSED_SOULWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
@@ -210,7 +211,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 return s;
             });
         }
-        for (BlightFeature.LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSpikeCount(rand))) {
+        for (LodestoneWorldgenBuilderEntry entry : treeLayer.getRandomEntries(getSpikeCount(rand))) {
             if (entry.position().getY() > pos.getY()+3) {
                 entry.addAdditionalPlacement(((l, e) -> {
                     Direction direction = Direction.from2DDataValue(l.getRandom().nextInt(4));
@@ -238,7 +239,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    public static void makeLeafBlob(BlightFeature.LodestoneWorldgenBuilderLayer layer, RandomSource rand, BlockPos pos) {
+    public static void makeLeafBlob(LodestoneWorldgenBuilderLayer layer, RandomSource rand, BlockPos pos) {
         var mutable = pos.mutable();
         int[] leafSizes = new int[]{1, 2, 3, 3, 3, 2, 1};
         int[] leafColors = new int[]{4, 3, 2, 1, 2, 3, 4};
@@ -257,7 +258,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    public static void makeLeafSlice(BlightFeature.LodestoneWorldgenBuilderLayer leaves, RandomSource rand, BlockPos pos, int leavesSize, int leavesColor) {
+    public static void makeLeafSlice(LodestoneWorldgenBuilderLayer leaves, RandomSource rand, BlockPos pos, int leavesSize, int leavesColor) {
         int offsetColor = leavesColor;
         for (int x = -leavesSize; x <= leavesSize; x++) {
             for (int z = -leavesSize; z <= leavesSize; z++) {
@@ -274,7 +275,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    public static void makeHangingLeaves(BlightFeature.LodestoneWorldgenBuilderLayer leaves, RandomSource rand, BlockPos pos, int leavesSize, int leavesColor) {
+    public static void makeHangingLeaves(LodestoneWorldgenBuilderLayer leaves, RandomSource rand, BlockPos pos, int leavesSize, int leavesColor) {
         int offsetColor = leavesColor;
         for (int x = -leavesSize; x <= leavesSize; x++) {
             for (int z = -leavesSize; z <= leavesSize; z++) {

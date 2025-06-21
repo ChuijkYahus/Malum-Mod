@@ -11,7 +11,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
-public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritWrapper {
+public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritLike {
 
     public static final MapCodec<SpiritIngredient> CODEC = RecordCodecBuilder.mapCodec(
             builder -> builder

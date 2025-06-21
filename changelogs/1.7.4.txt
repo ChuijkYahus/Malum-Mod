@@ -3,7 +3,16 @@ This is a significant internal change that ideally should not affect gameplay wh
 However this does mean that spirit registry names now come with a mod identifier in addition to a name
 Any third party compat will need to be updated accordingly
 
+
+Updated the Runic Workbench
+- Updated the model of the workbench
+- Runeworking has a new Visual Effect
+- Runeworking has new Sounds
+- Runeworking now has a slight delay
+
 Added new rune equip sounds
+
+
 Added new particle effects for Soulwoven Banners being imbued and sheared
 
 

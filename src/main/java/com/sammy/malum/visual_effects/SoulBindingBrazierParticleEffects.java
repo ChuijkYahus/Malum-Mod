@@ -19,7 +19,6 @@ import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
 import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.AbstractParticleBuilder;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
@@ -36,7 +35,7 @@ import static net.minecraft.util.Mth.nextFloat;
 
 public class SoulBindingBrazierParticleEffects {
 
-    public static SpiritWrapper getCentralSpiritType(SoulBrazierBlockEntity brazier) {
+    public static SpiritLike getCentralSpiritType(SoulBrazierBlockEntity brazier) {
         final LodestoneBlockEntityInventory spiritInventory = brazier.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
@@ -251,7 +250,7 @@ public class SoulBindingBrazierParticleEffects {
     }
 
     public static void passiveBrazierParticles(SoulBrazierBlockEntity brazier) {
-        SpiritWrapper activeSpiritType = getCentralSpiritType(brazier);
+        SpiritLike activeSpiritType = getCentralSpiritType(brazier);
         if (activeSpiritType == null) {
             return;
         }
@@ -273,7 +272,7 @@ public class SoulBindingBrazierParticleEffects {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
                         sparkParticles.getBuilder()
                                 .setMotion(velocity)
-                                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.4f));
+                                .modifyScaleData(d -> d.multiplyValue(1.4f));
                         sparkParticles.getBloomBuilder().setMotion(velocity);
                         sparkParticles.spawnParticles();
                     }
@@ -282,7 +281,7 @@ public class SoulBindingBrazierParticleEffects {
                         lightSpecs.getBuilder()
                                 .multiplyLifetime(0.8f)
                                 .setMotion(velocity.scale(1.5f))
-                                .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(1.2f));
+                                .modifyScaleData(d -> d.multiplyValue(1.2f));
                         lightSpecs.getBloomBuilder().setMotion(velocity);
                         lightSpecs.spawnParticles();
                     }

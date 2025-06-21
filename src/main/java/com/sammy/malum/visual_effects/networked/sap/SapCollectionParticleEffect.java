@@ -66,11 +66,11 @@ public class SapCollectionParticleEffect extends MalumNetworkedParticleEffectTyp
             lightSpecs.getBuilder().act(b -> b
                     .addTickActor(acceleration)
                     .setMotion(actualMotion)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
             lightSpecs.getBloomBuilder().act(b -> b
                     .addTickActor(acceleration)
                     .setMotion(actualMotion)
-                    .modifyData(b::getScaleData, d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
             lightSpecs.spawnParticles();
         }
     }

@@ -73,7 +73,7 @@ public class EthericNitrateImpactParticleEffect extends NitrateImpactParticleEff
                     .enableForcedSpawn()
                     .setMotion(motion);
             sparks.getBloomBuilder()
-                    .modifyData(AbstractParticleBuilder::getScaleData, d -> d.multiplyValue(2f))
+                    .modifyScaleData(d -> d.multiplyValue(2f))
                     .multiplyLifetime(lifetimeMultiplier)
                     .addTickActor(sparkBehavior)
                     .setMotion(motion);

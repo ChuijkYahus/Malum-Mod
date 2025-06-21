@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
-public class RuneVitalityItem extends AbstractRuneCurioItem {
+public class RuneVitalityItem extends MiracleRuneCurioItem {
 
     public RuneVitalityItem(Properties builder) {
         super(builder, MalumSpiritTypes.SACRED_SPIRIT);

@@ -33,7 +33,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     }
 
     @Override
-    public SpiritWrapper getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType() {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 

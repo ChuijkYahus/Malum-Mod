@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public class RuneSpellMasteryItem extends VoidRuneCurioItem {
+public class RuneSpellMasteryItem extends MadnessRuneCurioItem {
 
     public RuneSpellMasteryItem(Properties builder) {
         super(builder, MalumSpiritTypes.ARCANE_SPIRIT);

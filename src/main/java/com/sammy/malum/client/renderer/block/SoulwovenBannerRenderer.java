@@ -27,7 +27,7 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         var blockState = blockEntityIn.getBlockState();
         final SoulwovenBannerPatternDataComponent patternData = blockEntityIn.patternData;
         var token = RenderTypeToken.createToken(patternData.texturePath());
-        var banner = LodestoneRenderTypes.CUTOUT_TEXTURE.applyWithModifierAndCache(token, b -> b.setCullState(RenderStateShard.NO_CULL));
+        var banner = LodestoneRenderTypes.CUTOUT_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
         var builder = VFXBuilders.createWorld().setRenderType(banner).setLight(combinedLightIn);
         var pos = blockEntityIn.getBlockPos();
         var spirit = blockEntityIn.spirit;
@@ -56,10 +56,11 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         var vertices = new Vector3f[]{new Vector3f(xEnd, yStart, 0), new Vector3f(xStart, yStart, 0), new Vector3f(xStart, yEnd, 0), new Vector3f(xEnd, yEnd, 0)};
         builder.renderQuad(poseStack, vertices, 1f);
         if (spirit != null) {
-            var spiritGlow = blockEntityIn.intense ?
-                    LodestoneRenderTypes.ADDITIVE_TEXTURE.applyWithModifierAndCache(token, b -> b.setCullState(RenderStateShard.NO_CULL)) :
-                    LodestoneRenderTypes.ADDITIVE_TEXTURE.applyWithModifierAndCache(token, ShaderUniformHandler.LUMITRANSPARENT, b -> b.setCullState(RenderStateShard.NO_CULL));
-            var spiritBuilder = VFXBuilders.createWorld().setRenderType(spiritGlow).setColor(spirit.getPrimaryColor());
+            var glow = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
+            if (!blockEntityIn.intense) {
+                glow.withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
+            }
+            var spiritBuilder = VFXBuilders.createWorld().setRenderType(glow).setColor(spirit.getPrimaryColor());
             for (int i = 1; i < 4; i++) {
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 0.001f * i);

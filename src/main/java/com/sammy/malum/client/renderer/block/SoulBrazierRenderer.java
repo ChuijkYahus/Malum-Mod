@@ -89,8 +89,8 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             float scale = 0.4f * Math.min(1 + progress / 10f, 2);
             var worldVFXBuilder = VFXBuilders.createWorld();
             var cycle = new AtomicInteger();
-            Function<Function<SpiritWrapper, Color>, Color> colorSupplier = (b) -> b.apply(spirits.get(cycle.getAndIncrement() % spirits.size())); //TODO: this kinda smells...
-            var mainColor = colorSupplier.apply(SpiritWrapper::getPrimaryColor);
+            Function<Function<SpiritLike, Color>, Color> colorSupplier = (b) -> b.apply(spirits.get(cycle.getAndIncrement() % spirits.size())); //TODO: this kinda smells...
+            var mainColor = colorSupplier.apply(SpiritLike::getPrimaryColor);
 
             poseStack.pushPose();
             poseStack.translate(offset.x, offset.y, offset.z);
@@ -101,7 +101,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             float distance = scale * 0.08f;
 
             worldVFXBuilder
-                    .setColor(colorSupplier.apply(SpiritWrapper::getPrimaryColor)).multiplyColor(0.32f)
+                    .setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.32f)
                     .setRenderType(transparent)
                     .setAlpha(alpha*0.4f)
                     .renderQuad(poseStack, scale);
@@ -112,7 +112,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 double yOffset = (distance * Math.sin(angle));
                 poseStack.translate(xOffset, yOffset, -0.02*i);
                 worldVFXBuilder
-                        .setColor(colorSupplier.apply(SpiritWrapper::getPrimaryColor)).multiplyColor(0.32f)
+                        .setColor(colorSupplier.apply(SpiritLike::getPrimaryColor)).multiplyColor(0.32f)
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0.02*i);
             }
@@ -131,7 +131,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
                 poseStack.translate(xOffset, yOffset, 0);
                 worldVFXBuilder
                         .setAlpha(alpha*0.4f)
-                        .setColor(colorSupplier.apply(SpiritWrapper::getSecondaryColor))
+                        .setColor(colorSupplier.apply(SpiritLike::getSecondaryColor))
                         .renderQuad(poseStack, scale);
                 poseStack.translate(-xOffset, -yOffset, 0);
             }
