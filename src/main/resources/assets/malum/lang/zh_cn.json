@@ -617,7 +617,7 @@
   "item.malum.rune_of_loyalty": "忠诚符文",
   "item.malum.rune_of_motion": "运动符文",
   "item.malum.rune_of_protection": "防御符文",
-  "item.malum.rune_of_radial_empowerment": "Radial权能符文",
+  "item.malum.rune_of_radial_empowerment": "Radial Empowerment符文",
   "item.malum.rune_of_reinforcement": "灵固符文",
   "item.malum.rune_of_scorching": "灼烈符文",
   "item.malum.rune_of_spell_mastery": "法术精通符文",
@@ -2602,10 +2602,10 @@
   "malum.gui.book.entry.page.headline.void.rune_of_igneous_solace": "火炎慰藉符文",
   "malum.gui.book.entry.page.text.void.rune_of_igneous_solace.1": "火炎慰藉符文会在佩戴者着火时 增韧肌肤，给予一定量对所受各 类伤害的抗性。不过，它并不会 对正在燃烧的火焰做任何事。",
 
-  "malum.gui.book.entry.void.rune_of_sacrificial_empowerment": "献祭权能符文",
+  "malum.gui.book.entry.void.rune_of_sacrificial_empowerment": "Radial Empowerment符文",
   "malum.gui.book.entry.void.rune_of_sacrificial_empowerment.description": "破坏碎裂之物",
-  "malum.gui.book.entry.page.headline.void.rune_of_sacrificial_empowerment": "献祭权能符文",
-  "malum.gui.book.entry.page.text.void.rune_of_sacrificial_empowerment.1": "献祭权能符文以镰刀所夺灵魂为 代价，给予佩戴者力量。一定时 间内，每次击杀都使得手中的武 器愈发强大。",
+  "malum.gui.book.entry.page.headline.void.rune_of_sacrificial_empowerment": "Radial Empowerment符文",
+  "malum.gui.book.entry.page.text.void.rune_of_sacrificial_empowerment.1": "Radial Empowerment符文以镰刀所夺灵魂为 代价，给予佩戴者力量。一定时 间内，每次击杀都使得手中的武 器愈发强大。",
 
   "malum.gui.book.entry.void.rune_of_spell_mastery": "法术精通符文",
   "malum.gui.book.entry.void.rune_of_spell_mastery.description": "创造毁灭之物",
