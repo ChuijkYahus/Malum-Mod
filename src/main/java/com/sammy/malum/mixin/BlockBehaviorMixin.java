@@ -25,8 +25,12 @@ public class BlockBehaviorMixin {
 
     @Inject(method = "onExplosionHit", at = @At(value = "HEAD"))
     private void malum$getBlockDrops$cacheExplosion(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer, CallbackInfo ci) {
+        malum$state = state;
         malum$explosion = explosion;
     }
+
+
+
     @ModifyArg(method = "onExplosionHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getDrops(Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Ljava/util/List;"))
     private LootParams.Builder malum$getBlockDrops(LootParams.Builder builder) {
         if (malum$explosion == null) {

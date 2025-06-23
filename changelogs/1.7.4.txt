@@ -3,20 +3,30 @@ This is a significant internal change that ideally should not affect gameplay wh
 However this does mean that spirit registry names now come with a mod identifier in addition to a name
 Any third party compat will need to be updated accordingly
 
-
-Updated the Runic Workbench
-- Updated the model of the workbench
-- Runeworking has a new Visual Effect
-- Runeworking has new Sounds
-- Runeworking now has a slight delay
-
+Added the Ravenous Pouch
+Updated the Runic Workbench Visuals, Sounds and Model
+Runic Workbench Recipes now support regular items as a secondary input
 Added new rune equip sounds
-
-
 Added new particle effects for Soulwoven Banners being imbued and sheared
 
+Geas Changes:
+Pact of the Flamekeeper -> Pact of the Prospector
+- Renamed Effect; Flamekeeper's Fervor -> Prospector's Greed
+- Trigger Changed; Taking Damage/Mining Blocks -> Collecting Ores
+- Prospector's Greed grants Fortune Chance in place of Attack Speed
+- Taking Damage now Ignites you proportionally to the stack count of Prospector's Greed
+- Added vfx to Ignition Effect
+This Geas was the last one I added before the update and as such it felt a little rushed.
+I think it lacked a clear identity and overlapped very much with the Pact of the Pyromaniac, Fortune Chance was a rather unexplored attribute in Malum and I figured it'd make a great addition here
 
-Runic Workbench Recipes now support regular items as a secondary input
+
+Pact of the Pyromaniac
+- Pyromaniac's Fervor now grants Attack Speed in addition to Mining and Movement Speed
+- Pyromaniac's Fervor lasts longer
+- Explosions always ignite you, not just at high Fervor
+- Doubled Explosion Resistance
+
+
 
 Retextured Malignant Lead
 Retextured the Hallowed Gold Ingot and Nugget

@@ -57,6 +57,15 @@ public class MiscSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 1)
                 .save(consumer, MalumMod.malumPath("splash_of_gluttony_from_concentrated_gluttony"));
 
+
+        new SpiritInfusionRecipeBuilder(MalumItems.SOULWOVEN_POUCH.get(), 1, MalumItems.RAVENOUS_POUCH.get(), 1)
+                .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 12)
+                .addExtraItem(MalumItems.GRIM_TALC.get(), 12)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .addSpirit(SACRED_SPIRIT, 8)
+                .addSpirit(WICKED_SPIRIT, 8)
+                .save(consumer);
+
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 2, MalumItems.LAMPLIGHTERS_TONGS.get(), 1)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)

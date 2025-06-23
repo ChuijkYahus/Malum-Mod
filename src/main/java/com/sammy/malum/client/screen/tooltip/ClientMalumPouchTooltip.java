@@ -1,6 +1,6 @@
 package com.sammy.malum.client.screen.tooltip;
 
-import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.component.pouch.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.client.gui.screens.inventory.tooltip.*;
@@ -9,11 +9,11 @@ import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
 import org.apache.commons.lang3.math.*;
 
-public class ClientSoulwovenPouchTooltip implements ClientTooltipComponent {
+public class ClientMalumPouchTooltip implements ClientTooltipComponent {
     private static final ResourceLocation BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("container/bundle/background");
-    private final SoulwovenPouchContentsComponent contents;
+    private final MalumPouchContentsComponent contents;
 
-    public ClientSoulwovenPouchTooltip(SoulwovenPouchContentsComponent contents) {
+    public ClientMalumPouchTooltip(MalumPouchContentsComponent contents) {
         this.contents = contents;
     }
 
@@ -54,10 +54,10 @@ public class ClientSoulwovenPouchTooltip implements ClientTooltipComponent {
 
     private void renderSlot(int x, int y, int itemIndex, boolean isBundleFull, GuiGraphics guiGraphics, Font font) {
         if (itemIndex >= this.contents.size()) {
-            this.blit(guiGraphics, x, y, isBundleFull ? ClientSoulwovenPouchTooltip.Texture.BLOCKED_SLOT : ClientSoulwovenPouchTooltip.Texture.SLOT);
+            this.blit(guiGraphics, x, y, isBundleFull ? ClientMalumPouchTooltip.Texture.BLOCKED_SLOT : ClientMalumPouchTooltip.Texture.SLOT);
         } else {
             ItemStack itemstack = this.contents.getItemUnsafe(itemIndex);
-            this.blit(guiGraphics, x, y, ClientSoulwovenPouchTooltip.Texture.SLOT);
+            this.blit(guiGraphics, x, y, ClientMalumPouchTooltip.Texture.SLOT);
             guiGraphics.renderItem(itemstack, x + 1, y + 1, itemIndex);
             guiGraphics.renderItemDecorations(font, itemstack, x + 1, y + 1);
             if (itemIndex == 0) {
@@ -66,7 +66,7 @@ public class ClientSoulwovenPouchTooltip implements ClientTooltipComponent {
         }
     }
 
-    private void blit(GuiGraphics guiGraphics, int x, int y, ClientSoulwovenPouchTooltip.Texture texture) {
+    private void blit(GuiGraphics guiGraphics, int x, int y, ClientMalumPouchTooltip.Texture texture) {
         guiGraphics.blitSprite(texture.sprite, x, y, 0, texture.w, texture.h);
     }
 

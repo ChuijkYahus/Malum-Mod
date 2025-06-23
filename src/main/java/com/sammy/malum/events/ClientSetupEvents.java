@@ -1,16 +1,11 @@
 package com.sammy.malum.events;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.extensions.*;
-import com.sammy.malum.client.extensions.SpiritJarClientItemExtensions;
-import com.sammy.malum.client.screen.tooltip.ClientSoulwovenPouchTooltip;
-import com.sammy.malum.common.block.curiosities.mana_mote.ManaMoteBlockClientExtension;
-import com.sammy.malum.common.data.component.SoulwovenPouchContentsComponent;
+import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
+import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.block.MalumBlocks;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -33,7 +28,8 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerTooltipComponentManagers(RegisterClientTooltipComponentFactoriesEvent event) {
-        event.register(SoulwovenPouchContentsComponent.class, ClientSoulwovenPouchTooltip::new);
+        event.register(SoulwovenPouchContentsComponent.class, ClientMalumPouchTooltip::new);
+        event.register(RavenousPouchContentsComponent.class, ClientMalumPouchTooltip::new);
     }
 
     @SubscribeEvent

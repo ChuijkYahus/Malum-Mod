@@ -1,10 +1,8 @@
-package com.sammy.malum.common.item.curiosities;
+package com.sammy.malum.common.item.curiosities.pouch;
 
-import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.common.item.curiosities.weapons.*;
+import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
-
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -22,72 +20,36 @@ import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.player.*;
+import net.neoforged.neoforge.registries.*;
 import org.apache.commons.lang3.math.*;
 import team.lodestar.lodestone.helpers.*;
 
+import javax.annotation.*;
 import java.util.*;
 
-public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
-    private static final int BAR_COLOR = Mth.color(0.4F, 0.4F, 1.0F);
+public abstract class MalumPouchItem extends Item {
+    protected static final int BAR_COLOR = Mth.color(0.4F, 0.4F, 1.0F);
 
-    public SoulwovenPouchItem(net.minecraft.world.item.Item.Properties properties) {
-        super(properties.component(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY));
+    public MalumPouchItem(Properties properties) {
+        super(properties);
     }
+    public abstract MalumPouchContentsComponent getContents(ItemStack stack);
 
-    public static float getFullnessDisplay(ItemStack stack) {
-        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
-        return contents.weight().floatValue();
-    }
+    public abstract MalumPouchContentsComponent emptyContents();
 
-    public static void trySwallowItem(ItemEntityPickupEvent.Pre event) {
-        if (event.canPickup().isFalse()) {
-            return;
-        }
-        final ItemEntity itemEntity = event.getItemEntity();
-        if (itemEntity.hasPickUpDelay()) {
-            return;
-        }
-        final Player player = event.getPlayer();
-        final ItemStack pickedUp = itemEntity.getItem();
-        if (!pickedUp.is(MalumTags.ItemTags.SOULWOVEN_POUCH_AUTOCOLLECT)) {
-            return;
-        }
-        for (NonNullList<ItemStack> playerInventory : player.getInventory().compartments) {
-            for (ItemStack item : playerInventory) {
-                if (item.has(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS)) {
-                    if (player.getCooldowns().isOnCooldown(item.getItem())) {
-                        continue;
-                    }
-                    trySwallowItem(player, item, pickedUp);
-                }
-            }
-        }
-    }
-    public static void trySwallowItem(Player player, ItemStack stack, ItemStack pickedUp) {
-        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
-        if (contents != null) {
-            var mutable = new SoulwovenPouchContentsComponent.Mutable(contents);
-            int i = mutable.tryInsert(pickedUp);
-            if (i > 0) {
-                if (stack.getItem() instanceof SoulwovenPouchItem pouch) {
-                    pouch.playInsertSound(player);
-                }
-            }
-            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
-        }
-    }
+    public abstract void setContents(ItemStack stack, MalumPouchContentsComponent contents);
 
     @Override
     public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
         if (stack.getCount() != 1 || action != ClickAction.SECONDARY) {
             return false;
         } else {
-            var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
+            var contents = getContents(stack);
             if (contents == null) {
                 return false;
             } else {
                 var itemstack = slot.getItem();
-                var mutable = new SoulwovenPouchContentsComponent.Mutable(contents);
+                var mutable = contents.mutable();
                 if (itemstack.isEmpty()) {
                     this.playRemoveOneSound(player);
                     var tryRemove = mutable.removeOne();
@@ -101,8 +63,7 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
                         this.playInsertSound(player);
                     }
                 }
-
-                stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
+                setContents(stack, mutable.immutable());
                 return true;
             }
         }
@@ -114,11 +75,11 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
             return false;
         }
         if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
-            var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
+            var contents = getContents(stack);
             if (contents == null) {
                 return false;
             } else {
-                var mutable = new SoulwovenPouchContentsComponent.Mutable(contents);
+                var mutable = contents.mutable();
                 if (other.isEmpty()) {
                     var removed = mutable.removeOne();
                     if (removed != null) {
@@ -132,7 +93,7 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
                     }
                 }
 
-                stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, mutable.toImmutable());
+                setContents(stack, mutable.immutable());
                 return true;
             }
         } else {
@@ -155,13 +116,19 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+        var contents = getContents(stack);
+        if (contents == null) {
+            return false;
+        }
         return contents.weight().compareTo(Fraction.ZERO) > 0;
     }
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+        var contents = getContents(stack);
+        if (contents == null) {
+            return 1;
+        }
         return Math.min(1 + Mth.mulAndTruncate(contents.weight(), 12), 13);
     }
 
@@ -170,12 +137,19 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
         return BAR_COLOR;
     }
 
-    private static boolean dropContents(ItemStack stack, Player player) {
-        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
-        if (contents != null && !contents.isEmpty()) {
-            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
+    protected final boolean dropContents(ItemStack stack, Player player) {
+        var contents = getContents(stack);
+        if (contents == null) {
+            return false;
+        }
+        return dropContents(stack, contents, player);
+    }
+
+    protected boolean dropContents(ItemStack stack, MalumPouchContentsComponent contents, Player player) {
+        if (!contents.isEmpty()) {
+            setContents(stack, emptyContents());
             if (player instanceof ServerPlayer) {
-                contents.itemsCopy().forEach(item -> player.drop(item, true));
+                contents.getItemsCopy().forEach(item -> player.drop(item, true));
             }
 
             return true;
@@ -187,25 +161,26 @@ public class SoulwovenPouchItem extends net.minecraft.world.item.Item {
     @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
-                ? Optional.ofNullable(stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS))
+                ? Optional.ofNullable(getContents(stack))
                 : Optional.empty();
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, net.minecraft.world.item.Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        var contents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        var contents = getContents(stack);
         if (contents != null) {
-            int i = Mth.mulAndTruncate(contents.weight(), 512);
-            tooltipComponents.add(Component.translatable("item.minecraft.bundle.fullness", i, 512).withStyle(ChatFormatting.GRAY));
+            int max = contents.getStorageSize();
+            int i = Mth.mulAndTruncate(contents.weight(), max);
+            tooltipComponents.add(Component.translatable("item.minecraft.bundle.fullness", i, max).withStyle(ChatFormatting.GRAY));
         }
     }
 
     @Override
     public void onDestroyed(ItemEntity itemEntity) {
-        var contents = itemEntity.getItem().get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
+        var contents = getContents(itemEntity.getItem());
         if (contents != null) {
-            itemEntity.getItem().set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
-            ItemUtils.onContainerDestroyed(itemEntity, contents.itemsCopy());
+            setContents(itemEntity.getItem(), emptyContents());
+            ItemUtils.onContainerDestroyed(itemEntity, contents.getItemsCopy());
         }
     }
 

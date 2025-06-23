@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.augment.*;
+import com.sammy.malum.common.item.curiosities.armor.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
@@ -185,6 +186,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(MalumTags.ItemTags.FRACTURED_IMPETUS, FracturedImpetusItem.class);
         tag(MalumTags.ItemTags.FRACTURED_METAL_IMPETUS, FracturedImpetusItem.class).addTag(MalumTags.ItemTags.FRACTURED_IMPETUS).remove(FRACTURED_ALCHEMICAL_IMPETUS.get(), FRACTURED_ZEPHYR_IMPETUS.get());
 
+        tag(MalumTags.ItemTags.ARMORS, MalumArmorItem.class);
+
         tag(MalumTags.ItemTags.RUNES_STONE, MiracleRuneCurioItem.class);
         tag(MalumTags.ItemTags.RUNES_VOID, MadnessRuneCurioItem.class);
         tag(MalumTags.ItemTags.RUNES_WOODEN, TotemicRuneCurioItem.class);
@@ -199,15 +202,16 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addTags(Tags.Items.ORES, Tags.Items.STORAGE_BLOCKS, Tags.Items.INGOTS, Tags.Items.NUGGETS, Tags.Items.GEMS, Tags.Items.RAW_MATERIALS, ItemTags.COALS, MalumTags.ItemTags.METAL_NODES)
                 .addOptional(ResourceLocation.parse("tetra:geode"));
 
-        tag(MalumTags.ItemTags.SOULHUNTERS_TREASURE)
+        tag(MalumTags.ItemTags.SOULWOVEN_POUCH_EFFICIENT)
                 .addTags(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS, MalumTags.ItemTags.SPIRITS, MalumTags.ItemTags.MOB_DROPS, MalumTags.ItemTags.MATERIALS, MalumTags.ItemTags.MINERALS)
                 .addTags(MalumTags.ItemTags.AUGMENTS, MalumTags.ItemTags.METAL_NODES)
+                .addTag(MalumTags.ItemTags.ARMORS)
                 .addTags(MalumTags.ItemTags.RING_CURIO, MalumTags.ItemTags.NECKLACE_CURIO, MalumTags.ItemTags.BELT_CURIO, MalumTags.ItemTags.BROOCH_CURIO, MalumTags.ItemTags.RUNE_CURIO)
-                .add(TUNING_FORK.get(), LAMPLIGHTERS_TONGS.get(), CATALYST_LOBBER.get())
+                .add(TOTEMIC_STAFF.get(), ARTIFICERS_CLAW.get(), TUNING_FORK.get(), LAMPLIGHTERS_TONGS.get(), CATALYST_LOBBER.get())
                 .add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get())
                 .add(SOULWOVEN_BANNER.get());
         tag(MalumTags.ItemTags.SOULWOVEN_POUCH_AUTOCOLLECT)
-                .addTags(MalumTags.ItemTags.SPIRITS, MalumTags.ItemTags.MOB_DROPS, MalumTags.ItemTags.MINERALS);
+                .addTags(MalumTags.ItemTags.SPIRITS);
 
         tag(MalumTags.ItemTags.ARCANE_ELEGY_COMPONENTS).addTag(Tags.Items.MUSIC_DISCS).remove(ARCANE_ELEGY.get(), AESTHETICA.get());
 

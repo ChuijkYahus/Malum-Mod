@@ -102,6 +102,10 @@ public class ArtificeEntries {
                 .configureWidget(w -> w.setIcon(SOULWOVEN_POUCH))
                 .addPage(new HeadlineTextPage("soulwoven_pouch", "soulwoven_pouch.1"))
                 .addPage(new CraftingPage(SOULWOVEN_POUCH.get(), EMPTY, STRING, EMPTY, EMPTY, SOULWOVEN_SILK.get()))
+                .addReference(new EntryReference(RAVENOUS_POUCH, BookEntry.build("soulwoven_pouch.ravenous_pouch")
+                        .addPage(new HeadlineTextPage("soulwoven_pouch.ravenous_pouch", "soulwoven_pouch.ravenous_pouch.1"))
+                        .addPage(SpiritInfusionPage.fromOutput(RAVENOUS_POUCH.get()))
+                ))
         );
 
         screen.addEntry("soulhunter_armor", 6, 6, b -> b

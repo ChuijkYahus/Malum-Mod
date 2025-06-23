@@ -55,6 +55,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> CONCENTRATED_GLUTTONY_DRINK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("concentrated_gluttony_drink")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_MOTE_CREATED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_mote_created")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> RAVENOUS_POUCH_INSERT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ravenous_pouch_eats")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> TUNING_FORK_TINKER = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("tuning_fork_tinkers")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CRUCIBLE_AUGMENT_APPLY = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("crucible_augment_applied")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CRUCIBLE_AUGMENT_REMOVE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("crucible_augment_removed")));

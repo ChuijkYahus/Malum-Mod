@@ -57,7 +57,7 @@ public class MalumGeasEffectTypes {
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_ASCETIC = GEAS_TYPES.register("pact_of_the_profane_ascetic", () -> new GeasEffectType(ProfaneAsceticGeas::new, EARTHEN_SPIRIT, SACRED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROFANE_GLUTTON = GEAS_TYPES.register("pact_of_the_profane_glutton", () -> new GeasEffectType(ProfaneGluttonGeas::new, EARTHEN_SPIRIT, WICKED_SPIRIT));
 
-    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_FLAMEKEEPER = GEAS_TYPES.register("pact_of_the_flamekeeper", () -> new GeasEffectType(FlameKeeperGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
+    public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PROSPECTOR = GEAS_TYPES.register("pact_of_the_prospector", () -> new GeasEffectType(ProspectorGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_COMBUSTION = GEAS_TYPES.register("pact_of_combustion", () -> new GeasEffectType(CombustionGeas::new, INFERNAL_SPIRIT, WICKED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_THE_PYROMANIAC = GEAS_TYPES.register("pact_of_the_pyromaniac", () -> new GeasEffectType(PyromaniacGeas::new, INFERNAL_SPIRIT, WICKED_SPIRIT));
     public static final DeferredHolder<GeasEffectType, GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));

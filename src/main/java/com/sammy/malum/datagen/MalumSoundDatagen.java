@@ -59,6 +59,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK, s -> definition(s).with(sounds("curiosities/concentrated_gluttony/drink", 2)));
         this.add(MalumSoundEvents.SPIRIT_MOTE_CREATED, s -> definition(s).with(sounds("curiosities/spirit_mote/created", 3)));
 
+        this.add(MalumSoundEvents.RAVENOUS_POUCH_INSERT, s -> definition(s).with(sounds("curiosities/pouch/ravenous/insert", 7)));
+
         this.add(MalumSoundEvents.TUNING_FORK_TINKER, s -> definition(s).with(sounds("curiosities/augments/tinker", 6)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_APPLY, s -> definition(s).with(sounds("curiosities/augments/augment_insert", 3)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_REMOVE, s -> definition(s).with(sounds("curiosities/augments/augment_remove", 3)));

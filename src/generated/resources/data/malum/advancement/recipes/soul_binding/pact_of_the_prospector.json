@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:pact_of_the_flamekeeper"
+        "recipe": "malum:pact_of_the_prospector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:pact_of_the_flamekeeper"
+      "malum:pact_of_the_prospector"
     ]
   }
 }

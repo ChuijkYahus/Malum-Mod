@@ -16,7 +16,7 @@ public class OverburdenedMindGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         addAttributeModifier(modifiers, MalumAttributes.CHARGE_CAPACITY, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(modifiers, MalumAttributes.CHARGE_RECOVERY_RATE, -0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.CHARGE_DURATION, 0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

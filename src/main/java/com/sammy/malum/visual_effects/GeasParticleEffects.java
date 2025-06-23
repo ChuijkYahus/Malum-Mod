@@ -33,94 +33,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
 import static net.minecraft.util.Mth.nextFloat;
 
 public class GeasParticleEffects {
-    public static void wyrdReconstructionRevive(Level level, Entity entity, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
-        double posX = positionData.getPosX();
-        double posY = positionData.getPosY();
-        double posZ = positionData.getPosZ();
-        Vec3 pos = new Vec3(posX, posY, posZ);
-        final Color smokeColor = new Color(45, 15, 15);
-
-        for (int i = 0; i < 12; i++) {
-            Color primaryColor = colorData.getColor().getStartingColor();
-            int lifetime = RandomHelper.randomBetween(random, 20, 40);
-            final boolean isAdditive = i % 2 == 0;
-            final float scale = (2f + i * 0.5f) * (isAdditive ? 1 : 2);
-            final LodestoneWorldParticleRenderType renderType = (isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT).withDepthFade();
-            final float spin = RandomHelper.randomBetween(random, 0.04f, 0.08f);
-            float randomOffset = i * 0.2f;
-            for (int j = 0; j < 2; j++) {
-                var options = new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR);
-                if (j == 1) {
-                    options.setBehavior(DirectionalParticleBehavior.directional());
-                }
-                WorldParticleBuilder.create(options)
-                        .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).build())
-                        .setColorData(ColorParticleData.create(primaryColor, smokeColor).setCoefficient(4f).build())
-                        .setScaleData(GenericParticleData.create(scale / 2f, scale, 0.5f).setCoefficient(1.25f).setEasing(Easing.EXPO_OUT, Easing.EXPO_IN).build())
-                        .setSpinData(SpinParticleData.createRandomDirection(random, spin).build())
-                        .setRenderType(renderType)
-                        .setRandomOffset(randomOffset, 0)
-                        .setMotion(0, 0.001f, 0)
-                        .setLifetime(lifetime)
-                        .enableNoClip()
-                        .repeat(level, posX, posY - 0.3f, posZ, 2);
-            }
-        }
-
-        int sparkCount = 64;
-        float distance = 0.7f;
-        long gameTime = level.getGameTime();
-        Consumer<LodestoneWorldParticle> behavior = p -> {
-            Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
-            if (offset.length() == 0) {
-                offset = new Vec3(0, 0.02f, 0);
-            }
-            float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0) * 2;
-            float lerp = Easing.QUINTIC_IN.ease(delta, 0, 0.3f);
-            float velocity = Easing.CIRC_IN.ease(delta, 0f, 0.3f + offset.length() * 0.6f);
-            final Vec3 speed = p.getParticleSpeed().lerp(offset.normalize().scale(velocity), lerp);
-            p.setParticleSpeed(speed);
-        };
-        for (int i = 0; i < sparkCount; i++) {
-            ColorParticleData color = colorData.getColor();
-            Color primaryColor = color.getStartingColor();
-            Color secondaryColor = color.getEndingColor();
-            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos, distance, i, sparkCount, gameTime, 320);
-            final float motionFactor = RandomHelper.randomBetween(random, 0.06f, 0.12f);
-            int lifetime = RandomHelper.randomBetween(random, 20, 40);
-            Vec3 motion = offsetPosition.subtract(pos).normalize().scale(motionFactor);
-            distance += 0.03f;
-            gameTime += 10;
-            for (int j = 0; j < 12; j++) {
-                boolean isAdditive = j % 2 == 0;
-                Color start = isAdditive ? primaryColor : secondaryColor;
-                Color end = isAdditive ? secondaryColor : smokeColor;
-                float lengthMultiplier = (isAdditive ? 0.5f : 1f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
-                float scaleMultiplier = (isAdditive ? 1.75f : 5.5f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
-                float alphaMultiplier = isAdditive ? 1.5f : 3f;
-                float colorCoefficient = isAdditive ? 1f : 1.75f;
-                var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
-                WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
-                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
-                        .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))
-                        .setScaleData(GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier))
-                        .setTransparencyData(GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier))
-                        .setColorData(ColorParticleData.create(start, end).setCoefficient(colorCoefficient).build())
-                        .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                        .setRenderTarget(renderTarget)
-                        .setRenderType(renderType)
-                        .setLifeDelay(j + i / 2)
-                        .addTickActor(behavior)
-                        .setLifetime(lifetime)
-                        .enableNoClip()
-                        .setMotion(motion)
-                        .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
-            }
-        }
-    }
-
-    public static void healingBeam(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, LifeweaverHealingBeamParticleEffect.LifeweaverHealingBeamEffectData extraData) {
+    public static void lifeWeaverHealingBeam(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, LifeweaverHealingBeamParticleEffect.LifeweaverHealingBeamEffectData extraData) {
         var target = level.getEntity(extraData.targetId());
         var source = level.getEntity(extraData.sourceId());
         if (target != null && source != null) {
@@ -210,84 +123,66 @@ public class GeasParticleEffects {
         }
     }
 
-    public static void patienceRepaid(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
-        var pos = positionData.getAsVector();
-        long gameTime = level.getGameTime();
-        float time = 64;
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 4; j++) {
-                var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.25f-0.05f*j, i, 12, gameTime+j, time);
-                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                float velocity = 0.075f;
-                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
-                lightSpecs.getBuilder()
-                        .multiplyLifetime(0.8f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*2)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
-                lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(0.8f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*2)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
-                lightSpecs.spawnParticles();
-            }
-        }
-    }
 
-    public static void shakenFaith(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+    public static void warlockBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
         var pos = positionData.getAsVector();
-        long gameTime = level.getGameTime();
-        float time = 16;
-        for (int i = 0; i < 12; i++) {
-            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 12, gameTime, time);
-            double timeOffset = (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f;
-            offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
-            for (int j = 0; j < 3; j++) {
-                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
-                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
-                lightSpecs.getBuilder()
-                        .multiplyLifetime(0.6f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*3)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
-                lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(0.6f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*3)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
-                lightSpecs.spawnParticles();
-            }
-        }
-    }
+        var direction = extraData.getDirection();
+        float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
+        float yaw = (float) Math.toRadians(yRot);
+        Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
+        Vec3 up = left.cross(direction);
 
+        float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
+        WorldParticleBuilder.create(MalumParticles.STAR.get())
+                .setTransparencyData(GenericParticleData.create(0.5f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+                .setLifetime(15)
+                .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
+                .setScaleData(GenericParticleData.create(1.25f * scaleMultiplier, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
+                .setColorData(colorData.getColor())
+                .setRandomOffset(0.2f)
+                .enableNoClip()
+                .setRandomMotion(0.02f, 0.02f)
+                .repeat(level, pos.x, pos.y, pos.z, 3)
+                .modifyScaleData(d -> d.multiplyValue(0.6f))
+                .repeat(level, pos.x, pos.y, pos.z, 2);
 
-    public static void combustionBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
-        var pos = positionData.getAsVector();
         for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 2; j++) {
-                var offsetTargetPosition = VecHelper.radialOffset(pos, 1f-j*0.1f, i, 16);
-                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                float velocity = 0.075f;
-                int delay = (int) (j * 2 + i * 0.75f);
+            var color = colorData.getColor();
+            float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
+            float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
+            float distance = -RandomHelper.randomBetween(random, 4f, 6f);
+            float angle = i / 16f * (float) Math.PI * 2f;
+
+            Vec3 particleDirection = direction
+                    .add(left.scale(Math.sin(angle) * spread))
+                    .add(up.scale(Math.cos(angle) * spread))
+                    .normalize().scale(speed);
+            Vec3 spawnPosition = pos.add(particleDirection.scale(distance));
+            float lifetimeMultiplier = 0.7f;
+            if (random.nextFloat() < 0.8f) {
+                var lightSpecs = spiritLightSpecs(level, spawnPosition, color);
                 lightSpecs.getBuilder()
-                        .multiplyLifetime(0.8f)
-                        .setMotion(0, velocity, 0)
-                        .setLifeDelay(delay)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .enableForcedSpawn()
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
+                        .setMotion(particleDirection);
                 lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(0.8f)
-                        .setMotion(0, velocity, 0)
-                        .setLifeDelay(delay)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .setMotion(particleDirection);
                 lightSpecs.spawnParticles();
+            }
+            if (random.nextFloat() < 0.8f) {
+                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color);
+                sparks.getBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .enableForcedSpawn()
+                        .setMotion(particleDirection.scale(1.5f))
+                        .modifyScaleData(d -> d.multiplyValue(1.25f))
+                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
+                sparks.getBloomBuilder()
+                        .multiplyLifetime(lifetimeMultiplier)
+                        .setMotion(particleDirection.scale(1.5f));
+                sparks.spawnParticles();
             }
         }
     }
@@ -361,65 +256,208 @@ public class GeasParticleEffects {
         }
     }
 
-    public static void warlockBlast(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectType.WeaponParticleEffectData extraData) {
+    public static void highPriestShakenFaith(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
-        var direction = extraData.getDirection();
-        float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
-        float yaw = (float) Math.toRadians(yRot);
-        Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
-        Vec3 up = left.cross(direction);
-
-        float scaleMultiplier = (float) (1 + Math.pow(random.nextFloat(), 2) * 0.5f);
-        WorldParticleBuilder.create(MalumParticles.STAR.get())
-                .setTransparencyData(GenericParticleData.create(0.5f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
-                .setLifetime(15)
-                .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build())
-                .setScaleData(GenericParticleData.create(1.25f * scaleMultiplier, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
-                .setColorData(colorData.getColor())
-                .setRandomOffset(0.2f)
-                .enableNoClip()
-                .setRandomMotion(0.02f, 0.02f)
-                .repeat(level, pos.x, pos.y, pos.z, 3)
-                .modifyScaleData(d -> d.multiplyValue(0.6f))
-                .repeat(level, pos.x, pos.y, pos.z, 2);
-
-        for (int i = 0; i < 16; i++) {
-            var color = colorData.getColor();
-            float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
-            float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-            float distance = -RandomHelper.randomBetween(random, 4f, 6f);
-            float angle = i / 16f * (float) Math.PI * 2f;
-
-            Vec3 particleDirection = direction
-                    .add(left.scale(Math.sin(angle) * spread))
-                    .add(up.scale(Math.cos(angle) * spread))
-                    .normalize().scale(speed);
-            Vec3 spawnPosition = pos.add(particleDirection.scale(distance));
-            float lifetimeMultiplier = 0.7f;
-            if (random.nextFloat() < 0.8f) {
-                var lightSpecs = spiritLightSpecs(level, spawnPosition, color);
+        long gameTime = level.getGameTime();
+        float time = 16;
+        for (int i = 0; i < 12; i++) {
+            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 12, gameTime, time);
+            double timeOffset = (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f;
+            offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
+            for (int j = 0; j < 3; j++) {
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
                 lightSpecs.getBuilder()
-                        .multiplyLifetime(lifetimeMultiplier)
-                        .enableForcedSpawn()
-                        .modifyScaleData(d -> d.multiplyValue(1.25f))
-                        .setMotion(particleDirection);
+                        .multiplyLifetime(0.6f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*3)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(lifetimeMultiplier)
-                        .setMotion(particleDirection);
+                        .multiplyLifetime(0.6f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*3)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
-            if (random.nextFloat() < 0.8f) {
-                var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color);
-                sparks.getBuilder()
-                        .multiplyLifetime(lifetimeMultiplier)
-                        .enableForcedSpawn()
-                        .setMotion(particleDirection.scale(1.5f))
-                        .modifyScaleData(d -> d.multiplyValue(1.25f))
-                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
-                sparks.getBloomBuilder()
-                        .multiplyLifetime(lifetimeMultiplier)
-                        .setMotion(particleDirection.scale(1.5f));
-                sparks.spawnParticles();
+        }
+    }
+
+    public static void patienceRepaid(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        long gameTime = level.getGameTime();
+        float time = 64;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.25f-0.05f*j, i, 12, gameTime+j, time);
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = 0.075f;
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
+    public static void combustionBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 2; j++) {
+                var offsetTargetPosition = VecHelper.radialOffset(pos, 1f-j*0.1f, i, 16);
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                float velocity = 0.075f;
+                int delay = (int) (j * 2 + i * 0.75f);
+                lightSpecs.getBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(0, velocity, 0)
+                        .setLifeDelay(delay)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .multiplyLifetime(0.8f)
+                        .setMotion(0, velocity, 0)
+                        .setLifeDelay(delay)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
+    public static void prospectorsGreedBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        var pos = positionData.getAsVector();
+        long gameTime = level.getGameTime();
+        float time = 16;
+        final Consumer<LodestoneWorldParticle> behavior = p -> {
+            p.setParticleSpeed(p.getParticleSpeed().add(0, 0.01f, 0));
+        };
+
+        for (int i = 0; i < 12; i++) {
+            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 12, gameTime, time);
+            double timeOffset = (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f;
+            offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
+            for (int j = 0; j < 9; j++) {
+                var particlePos = offsetTargetPosition.add(0, (j-4) * 0.1f, 0);
+                var lightSpecs = spiritLightSpecs(level, particlePos, colorData.getColor());
+                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
+                var motion = particlePos.subtract(pos).normalize().scale(-velocity);
+                lightSpecs.getBuilder()
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)))
+                        .multiplyLifetime(0.4f)
+                        .addTickActor(behavior)
+                        .setFriction(0.98f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2);
+                lightSpecs.getBloomBuilder()
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)))
+                        .multiplyLifetime(0.4f)
+                        .addTickActor(behavior)
+                        .setFriction(0.98f)
+                        .setMotion(motion)
+                        .setLifeDelay(j*2);
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
+    public static void wyrdReconstructionRevive(Level level, Entity entity, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
+        double posX = positionData.getPosX();
+        double posY = positionData.getPosY();
+        double posZ = positionData.getPosZ();
+        Vec3 pos = new Vec3(posX, posY, posZ);
+        final Color smokeColor = new Color(45, 15, 15);
+
+        for (int i = 0; i < 12; i++) {
+            Color primaryColor = colorData.getColor().getStartingColor();
+            int lifetime = RandomHelper.randomBetween(random, 20, 40);
+            final boolean isAdditive = i % 2 == 0;
+            final float scale = (2f + i * 0.5f) * (isAdditive ? 1 : 2);
+            final LodestoneWorldParticleRenderType renderType = (isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT).withDepthFade();
+            final float spin = RandomHelper.randomBetween(random, 0.04f, 0.08f);
+            float randomOffset = i * 0.2f;
+            for (int j = 0; j < 2; j++) {
+                var options = new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR);
+                if (j == 1) {
+                    options.setBehavior(DirectionalParticleBehavior.directional());
+                }
+                WorldParticleBuilder.create(options)
+                        .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).build())
+                        .setColorData(ColorParticleData.create(primaryColor, smokeColor).setCoefficient(4f).build())
+                        .setScaleData(GenericParticleData.create(scale / 2f, scale, 0.5f).setCoefficient(1.25f).setEasing(Easing.EXPO_OUT, Easing.EXPO_IN).build())
+                        .setSpinData(SpinParticleData.createRandomDirection(random, spin).build())
+                        .setRenderType(renderType)
+                        .setRandomOffset(randomOffset, 0)
+                        .setMotion(0, 0.001f, 0)
+                        .setLifetime(lifetime)
+                        .enableNoClip()
+                        .repeat(level, posX, posY - 0.3f, posZ, 2);
+            }
+        }
+
+        int sparkCount = 64;
+        float distance = 0.7f;
+        long gameTime = level.getGameTime();
+        Consumer<LodestoneWorldParticle> behavior = p -> {
+            Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
+            if (offset.length() == 0) {
+                offset = new Vec3(0, 0.02f, 0);
+            }
+            float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0) * 2;
+            float lerp = Easing.QUINTIC_IN.ease(delta, 0, 0.3f);
+            float velocity = Easing.CIRC_IN.ease(delta, 0f, 0.3f + offset.length() * 0.6f);
+            final Vec3 speed = p.getParticleSpeed().lerp(offset.normalize().scale(velocity), lerp);
+            p.setParticleSpeed(speed);
+        };
+        for (int i = 0; i < sparkCount; i++) {
+            ColorParticleData color = colorData.getColor();
+            Color primaryColor = color.getStartingColor();
+            Color secondaryColor = color.getEndingColor();
+            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos, distance, i, sparkCount, gameTime, 320);
+            final float motionFactor = RandomHelper.randomBetween(random, 0.06f, 0.12f);
+            int lifetime = RandomHelper.randomBetween(random, 20, 40);
+            Vec3 motion = offsetPosition.subtract(pos).normalize().scale(motionFactor);
+            distance += 0.03f;
+            gameTime += 10;
+            for (int j = 0; j < 12; j++) {
+                boolean isAdditive = j % 2 == 0;
+                Color start = isAdditive ? primaryColor : secondaryColor;
+                Color end = isAdditive ? secondaryColor : smokeColor;
+                float lengthMultiplier = (isAdditive ? 0.5f : 1f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
+                float scaleMultiplier = (isAdditive ? 1.75f : 5.5f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
+                float alphaMultiplier = isAdditive ? 1.5f : 3f;
+                float colorCoefficient = isAdditive ? 1f : 1.75f;
+                var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
+                var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
+                WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
+                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
+                        .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))
+                        .setScaleData(GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier))
+                        .setTransparencyData(GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier))
+                        .setColorData(ColorParticleData.create(start, end).setCoefficient(colorCoefficient).build())
+                        .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
+                        .setRenderTarget(renderTarget)
+                        .setRenderType(renderType)
+                        .setLifeDelay(j + i / 2)
+                        .addTickActor(behavior)
+                        .setLifetime(lifetime)
+                        .enableNoClip()
+                        .setMotion(motion)
+                        .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
             }
         }
     }

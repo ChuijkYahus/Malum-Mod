@@ -1199,6 +1199,18 @@
     ],
     "subtitle": "malum.subtitle.quartz_ore_step"
   },
+  "ravenous_pouch_eats": {
+    "sounds": [
+      "malum:curiosities/pouch/ravenous/insert1",
+      "malum:curiosities/pouch/ravenous/insert2",
+      "malum:curiosities/pouch/ravenous/insert3",
+      "malum:curiosities/pouch/ravenous/insert4",
+      "malum:curiosities/pouch/ravenous/insert5",
+      "malum:curiosities/pouch/ravenous/insert6",
+      "malum:curiosities/pouch/ravenous/insert7"
+    ],
+    "subtitle": "malum.subtitle.ravenous_pouch_eats"
+  },
   "reaper_scythe_slashes": {
     "sounds": [
       "malum:curiosities/geas/reaper_impact1",

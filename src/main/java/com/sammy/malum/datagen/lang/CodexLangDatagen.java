@@ -547,7 +547,10 @@ public class CodexLangDatagen {
         addPages("soulwoven_silk.soulwoven_banner", "Soulstuff can glow, as a shattered soul proves. Why not activate that glow within the cloth? I have made banners to test the effect, and used differing reagents and spirits to give a variety of patterns. When imbued, they will glow dimly, or fiercely if given an additional spirit.");
 
         addSimpleEntryHeader("soulwoven_pouch", "Soulwoven Pouch", "A hop, a skip, and a reach outside");
-        addPages("soulwoven_pouch", "Magical reagents and other loot can clutter the inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up loot as it comes. Materials with arcane resonance are additionally rotated slightly out of reality, making them take up less space.");
+        addPages("soulwoven_pouch", "I often find Spirit Arcana cluttering my inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up Arcana when I collect any. It's physical capacity is no more impressive than that of a bundle with the added benefit of magical items being rotated slightly out of reality, taking up less space.");
+
+        addSimpleEntryHeader("soulwoven_pouch.ravenous_pouch", "Ravenous Pouch", "Now make it hungry.");
+        addPages("soulwoven_pouch.ravenous_pouch", "Although significant, Spirit Arcana is not the only clutter that I often come across. After imbuing the pouch with rot, the newly born Ravenous Pouch has grown teeth and greedily hungers for any item it is already familiar with, snapping them up as I collect any. It offers a significant amount of storage for any item, magical or not.");
 
         addSimpleEntryHeader("soulhunter_armor", "Soulhunter Armor", "Shaped like glass");
         addPages("soulhunter_armor",
@@ -1107,8 +1110,8 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
-        addSimpleEntryHeader("pact_of_the_flamekeeper", "Pact of the Flamekeeper", "To kindle the pyre");
-        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER,
+        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To kindle one's fortune");
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
                         Your soul, fueled by heat and flame.
                          -Breaking Blocks or Taking Damage Generates Flamekeeper's Fervor, Increasing Mining and Attack Speed""",
@@ -1160,7 +1163,7 @@ public class CodexLangDatagen {
                         -Doubles Staff Charge Capacity""",
                 """
                         The Imbued Insight demands Careful Consideration
-                         -Staff Charge Recovery Rate is Reduced by Two Fifths""");
+                         -Staff Charge Duration is Increased by One Fourth""");
 
         addSimpleEntryHeader("oath_of_the_overeager_fist", "Oath of The Overeager Fist", "To never hesitate");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_OVEREAGER_FIST,

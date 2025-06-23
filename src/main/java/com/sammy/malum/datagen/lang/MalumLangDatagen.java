@@ -182,7 +182,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_FLAMEKEEPER, "Care for the flame");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Care for the flame");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
@@ -350,16 +350,16 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-        addGeasEffect("mining_buffs", "Breaking Blocks Or Taking Damage Grants Flamekeeper's Fervor");
-        addGeasEffect("flamekeeper", "Flamekeeper's Fervor grants Mining and Attack Speed");
-        addGeasEffect("self_immolation", "High Fervor Briefly Ignites You When Struck");
+        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Greed");
+        addGeasEffect("prospectors_greed", "Prospector's Greed Grants Mining Speed And Fortune Chance");
+        addGeasEffect("greed_combustion", "Prospector's Greed Ignites You When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
-        addGeasEffect("explosion_lover", "Absorbed Explosions Grant Pyromaniac's Fervor");
-        addGeasEffect("pyromaniac", "Pyromaniac's Fervor grants Mining and Movement Speed");
-        addGeasEffect("explosion_resistance", "You Gain Powerful Explosion Resistance");
-        addGeasEffect("explosion_fire", "High Fervor Ignites You Upon Blast Impact");
-        addGeasEffect("scary_fire", "Fire Damage Is Amplified");
+        addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");
+        addGeasEffect("pyromaniacs_fervor", "Pyromaniac's Fervor Increases Mining, Attack and Movement Speed");
+        addGeasEffect("explosion_resistance", "Shields Against Explosions");
+        addGeasEffect("explosion_fire", "Explosions Briefly Ignites You");
+        addGeasEffect("scary_fire", "Fire Damage Is Deadlier");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         addGeasEffect("rotten_healing", "Eating Rotten Foods Heals You");

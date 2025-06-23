@@ -63,8 +63,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
             final ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Width", 16f)
-                    .modifyUniform("Height", 16f)
-                    .modifyUniform("UVCoordinates", -2f, 4f, -2f, 4f);
+                    .modifyUniform("Height", 16f);
             builder.setColor(MalumSpiritTypes.WICKED_SPIRIT.getPrimaryColor())
                     .setRenderType(distortion.withUniformHandler(uniforms));
 

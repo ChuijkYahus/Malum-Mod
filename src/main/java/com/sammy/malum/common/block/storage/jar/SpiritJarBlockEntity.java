@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block.storage.jar;
 
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
@@ -187,10 +188,24 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemH
     public int insertFromStack(ItemStack stack, Player player) {
         int inserted = 0;
 
-        var pouchContents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
+        MalumPouchContentsComponent pouchContents = stack.get(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS);
         if (pouchContents != null && !pouchContents.isEmpty()) {
             ArrayList<ItemStack> remainingSpirits = new ArrayList<>();
-            for (ItemStack item : pouchContents.items()) {
+            for (ItemStack item : pouchContents.getItems()) {
+                inserted += insertFromStack(item, player);
+                if (!item.isEmpty()) {
+                    remainingSpirits.add(item);
+                }
+            }
+            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
+
+            return inserted;
+        }
+        pouchContents = stack.get(MalumDataComponents.RAVENOUS_POUCH_CONTENTS);
+        if (pouchContents != null && !pouchContents.isEmpty()) {
+            ArrayList<ItemStack> remainingSpirits = new ArrayList<>();
+            for (ItemStack item : pouchContents.getItems()) {
                 inserted += insertFromStack(item, player);
                 if (!item.isEmpty()) {
                     remainingSpirits.add(item);

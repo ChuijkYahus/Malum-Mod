@@ -47,6 +47,8 @@ public class MalumTags {
         public static final TagKey<Item> FRACTURED_IMPETUS = tag("fractured_impetus");
         public static final TagKey<Item> FRACTURED_METAL_IMPETUS = tag("fractured_metal_impetus");
 
+        public static final TagKey<Item> ARMORS = tag("armors");
+
         public static final TagKey<Item> RUNES_STONE = tag("runes/stone");
         public static final TagKey<Item> RUNES_WOODEN = tag("runes/wooden");
         public static final TagKey<Item> RUNES_VOID = tag("runes/void");
@@ -60,7 +62,7 @@ public class MalumTags {
 
         public static final TagKey<Item> PROSPECTORS_TREASURE = tag("prospectors_treasure");
 
-        public static final TagKey<Item> SOULHUNTERS_TREASURE = tag("soulhunters_treasure");
+        public static final TagKey<Item> SOULWOVEN_POUCH_EFFICIENT = tag("soulwoven_pouch_efficient");
         public static final TagKey<Item> SOULWOVEN_POUCH_AUTOCOLLECT = tag("soulwoven_pouch_autocollect");
 
         public static final TagKey<Item> ARCANE_ELEGY_COMPONENTS = tag("arcane_elegy_component");

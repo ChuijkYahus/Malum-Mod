@@ -6,8 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -16,6 +15,7 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
+import java.util.*;
 
 public abstract class AbstractNitrateEntity extends ThrowableProjectile {
     protected static final EntityDataAccessor<Boolean> DATA_FADING_AWAY = SynchedEntityData.defineId(AbstractNitrateEntity.class, EntityDataSerializers.BOOLEAN);
@@ -38,6 +38,15 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
 
     public AbstractNitrateEntity(EntityType<? extends AbstractNitrateEntity> type, LivingEntity owner, Level level) {
         super(type, owner, level);
+    }
+
+    public static Optional<LivingEntity> getOwnerFromExplosion(Entity explosionSource) {
+        if (explosionSource instanceof AbstractNitrateEntity nitrateEntity) {
+            if (nitrateEntity.getOwner() instanceof LivingEntity livingOwner) {
+                return Optional.of(livingOwner);
+            }
+        }
+        return Optional.empty();
     }
 
     public void onExplode() {
