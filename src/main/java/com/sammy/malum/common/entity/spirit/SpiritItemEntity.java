@@ -65,11 +65,11 @@ public class SpiritItemEntity extends FloatingItemEntity {
     public void tick() {
         super.tick();
         if (level().isClientSide()) {
-            Vec3 motion = getDeltaMovement();
-            Vec3 norm = motion.normalize().scale(0.05f);
+            Vec3 direction = getDeltaMovement().add(0, getYOffset(0.5f), 0).normalize();
+            Vec3 motion = direction.scale(0.05f);
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), getOffsetPosition(), getSpiritType());
-            lightSpecs.getBuilder().setMotion(norm);
-            lightSpecs.getBloomBuilder().setMotion(norm);
+            lightSpecs.getBuilder().setMotion(motion);
+            lightSpecs.getBloomBuilder().setMotion(motion);
             lightSpecs.spawnParticles();
         }
         else {
