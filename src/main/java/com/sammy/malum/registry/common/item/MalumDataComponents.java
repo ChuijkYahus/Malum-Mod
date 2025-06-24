@@ -32,11 +32,9 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GeasDataComponent>> GEAS_EFFECT = register("geas_effect", builder ->
             builder.persistent(GeasDataComponent.CODEC).networkSynchronized(GeasDataComponent.STREAM_CODEC));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ProspectorMarkData>> PROSPECTOR_MARK = register("prospector_mark", builder ->
-            builder.persistent(ProspectorMarkData.CODEC).networkSynchronized(ProspectorMarkData.STREAM_CODEC));
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> ITEM_SKIN = register("item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> APPLIED_ITEM_SKIN = register("applied_item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));
 

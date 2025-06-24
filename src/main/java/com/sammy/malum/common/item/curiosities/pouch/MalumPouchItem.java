@@ -28,6 +28,7 @@ import javax.annotation.*;
 import java.util.*;
 
 public abstract class MalumPouchItem extends Item {
+
     protected static final int BAR_COLOR = Mth.color(0.4F, 0.4F, 1.0F);
 
     public MalumPouchItem(Properties properties) {

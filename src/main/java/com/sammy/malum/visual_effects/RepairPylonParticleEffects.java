@@ -247,13 +247,14 @@ public class RepairPylonParticleEffects {
                     .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
                     .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
                     .multiplyLifetime(1.5f)
-                    .modifyLifetime(l -> l + finalI * 2);
-            lightSpecs.getBloomBuilder().act(b -> b
+                    .setLifetimeModifier(l -> l + finalI * 2);
+            lightSpecs.getBloomBuilder()
                     .act(behavior)
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
+                    .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
                     .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
-                    .setLifetime((int) (b.getParticleOptions().lifetimeSupplier.get() + finalI * 2.5f)));
+                    .multiplyLifetime(1.5f)
+                    .setLifetimeModifier(l -> (int)(l + finalI * 2.5f));
             lightSpecs.spawnParticles();
         }
     }

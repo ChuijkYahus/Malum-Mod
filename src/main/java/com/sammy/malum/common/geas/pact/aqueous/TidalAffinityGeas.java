@@ -28,9 +28,10 @@ public class TidalAffinityGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         if (isInWater) {
-            float swimSpeed = hasConduitEffect ? 0.4f : 0.2f;
+            float swimSpeed = hasConduitEffect ? 0.8f : 0.4f;
             float attackSpeed = hasConduitEffect ? 0.2f : 0.1f;
             addAttributeModifier(modifiers, NeoForgeMod.SWIM_SPEED, swimSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, Attributes.WATER_MOVEMENT_EFFICIENCY, swimSpeed, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, Attributes.ATTACK_SPEED, attackSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, Attributes.BLOCK_BREAK_SPEED, attackSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, Attributes.SUBMERGED_MINING_SPEED, 4f, AttributeModifier.Operation.ADD_VALUE);
@@ -49,7 +50,7 @@ public class TidalAffinityGeas extends GeasEffect {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("water_agility"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("water_damage_resistance"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("conduit_bonus"));
-//        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
+        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fish_healing"));
     }
 

@@ -77,10 +77,10 @@ public class SpiritLightSpecs {
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos.add(0, yOffset, 0), distance, i, rotatingSpecs, gameTime, 160);
                 var lightSpecs = particleSpawner.apply(offsetPosition);
                 lightSpecs.getBuilder()
-                        .multiplyLifetime(2f)
+                        .setLifetimeModifier(2f)
                         .modifyScaleData(d -> d.multiplyValue(1.2f));
                 lightSpecs.getBloomBuilder()
-                        .multiplyLifetime(1.4f)
+                        .setLifetimeModifier(1.4f)
                         .modifyScaleData(d -> d.multiplyValue(0.6f))
                         .modifyTransparencyData(d -> d.multiplyValue(0.6f));
                 lightSpecs.spawnParticles();

@@ -28,10 +28,12 @@ Pact of the Pyromaniac
 
 
 
+Retextured the Tyrving
 Retextured Malignant Lead
+Retextured the Malignant Pewter Ingot, Nugget and Plating
 Retextured the Hallowed Gold Ingot and Nugget
 Retextured the Soul Stained Steel Ingot, Nugget and Plating
-Retextured the Malignant Pewter Ingot, Nugget and Plating
+Retextured Soul Stained Steel Tools, Weapons, and Armor
 
 Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 Fixed the Soulbinding Brazier model having incorrect face culling data

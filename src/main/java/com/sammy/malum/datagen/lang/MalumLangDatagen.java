@@ -182,7 +182,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Care for the flame");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
@@ -358,7 +358,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");
         addGeasEffect("pyromaniacs_fervor", "Pyromaniac's Fervor Increases Mining, Attack and Movement Speed");
         addGeasEffect("explosion_resistance", "Shields Against Explosions");
-        addGeasEffect("explosion_fire", "Explosions Briefly Ignites You");
+        addGeasEffect("explosion_fire", "Explosions Set You Ablaze");
         addGeasEffect("scary_fire", "Fire Damage Is Deadlier");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
@@ -387,30 +387,34 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("presence_breaker", "Refusal, Detachment, Exile is Forced onto Targets");
         addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
 
-        add("malum.effect.soul_based_damage", "Deals Soul-Rending Damage");
-        add("malum.effect.weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
-        add("malum.effect.weight_of_worlds_kill", "Kills Guarantee a Critical Strike");
-        add("malum.effect.edge_of_deliverance_crit", "Follow-up Strikes Hit Critically");
-        add("malum.effect.edge_of_deliverance_unpowered_attack", "Non-Critical Strikes Deal Reduced Damage");
-        add("malum.effect.hex_bolts", "Charges a Burst of Mnemonic Blades");
-        add("malum.effect.erosive_spread", "Charges a Spread of Eroding Sub-munitions");
-        add("malum.effect.erosive_silence", "Erosion Damage Silences Targets");
-        add("malum.effect.unwinding_chaos_volley", "Charges a Volley of Composite Energy");
-        add("malum.effect.unwinding_chaos_burn", "Burn Damage Recovers Charges");
-        add("malum.effect.sundering_anchor_damage_split", "Damage is Split Between Several Cuts");
-        add("malum.effect.sundering_anchor_hatred", "Each Cut Applies Hatred");
+        addMiscEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
+        addMiscEffect("soulwoven_pouch_storage", "Rotates Magical Items");
+        addMiscEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
+        addMiscEffect("ravenous_pouch_drop", "Retains A Minimum When Emptied");
+        addMiscEffect("soul_based_damage", "Deals Soul-Rending Damage");
+        addMiscEffect("weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
+        addMiscEffect("weight_of_worlds_kill", "Kills Guarantee a Critical Strike");
+        addMiscEffect("edge_of_deliverance_crit", "Follow-up Strikes Hit Critically");
+        addMiscEffect("edge_of_deliverance_unpowered_attack", "Non-Critical Strikes Deal Reduced Damage");
+        addMiscEffect("hex_bolts", "Charges a Burst of Mnemonic Blades");
+        addMiscEffect("erosive_spread", "Charges a Spread of Eroding Sub-munitions");
+        addMiscEffect("erosive_silence", "Erosion Damage Silences Targets");
+        addMiscEffect("unwinding_chaos_volley", "Charges a Volley of Composite Energy");
+        addMiscEffect("unwinding_chaos_burn", "Burn Damage Recovers Charges");
+        addMiscEffect("sundering_anchor_damage_split", "Damage is Split Between Several Cuts");
+        addMiscEffect("sundering_anchor_hatred", "Each Cut Applies Hatred");
 
-        add("malum.effect.wayne_june.0", "The Iron Crown. Enigmatic, and Ubiquitous");
-        add("malum.effect.wayne_june.1", "A Semi-Circle, Radiating Five Points of Power. A Symbol Hidden Deep in the Iconography of Every Ancient Empire");
-        add("malum.effect.wayne_june.2", "The Point of No Return Welcomes You, With Open Arms");
-        add("malum.effect.wayne_june.3", "The Greatest Horror It Would Seem, Is Nothing At All");
-        add("malum.effect.wayne_june.4", "An Ocean of Emptiness, Slowly Swallowing the World");
-        add("malum.effect.wayne_june.5", "A Nebulous Nightmare, an Apocalypse that Only We Can Oppose");
-        add("malum.effect.wayne_june.6", "Stagnant And Sprawling, This Hellish Abyss Extends Beyond Sanity Itself");
-        add("malum.effect.wayne_june.7", "We Travel Through The Incalculable Dimensions Of Human Weakness");
-        add("malum.effect.wayne_june.8", "Success, So Long Pursued, Is Rewarded Only With Creeping Revalation");
-        add("malum.effect.wayne_june.9", "You Have Cowered In Your Cowering Denial Long Enough");
-        add("malum.effect.wayne_june.10", "Let Us Drag Your Agglutinated Indignities Out Into The Light");
+        addMiscEffect("wayne_june.0", "The Iron Crown. Enigmatic, and Ubiquitous");
+        addMiscEffect("wayne_june.1", "A Semi-Circle, Radiating Five Points of Power. A Symbol Hidden Deep in the Iconography of Every Ancient Empire");
+        addMiscEffect("wayne_june.2", "The Point of No Return Welcomes You, With Open Arms");
+        addMiscEffect("wayne_june.3", "The Greatest Horror It Would Seem, Is Nothing At All");
+        addMiscEffect("wayne_june.4", "An Ocean of Emptiness, Slowly Swallowing the World");
+        addMiscEffect("wayne_june.5", "A Nebulous Nightmare, an Apocalypse that Only We Can Oppose");
+        addMiscEffect("wayne_june.6", "Stagnant And Sprawling, This Hellish Abyss Extends Beyond Sanity Itself");
+        addMiscEffect("wayne_june.7", "We Travel Through The Incalculable Dimensions Of Human Weakness");
+        addMiscEffect("wayne_june.8", "Success, So Long Pursued, Is Rewarded Only With Creeping Revalation");
+        addMiscEffect("wayne_june.9", "You Have Cowered In Your Cowering Denial Long Enough");
+        addMiscEffect("wayne_june.10", "Let Us Drag Your Agglutinated Indignities Out Into The Light");
 
         add("malum.jei.spirit_infusion", "Spirit Infusion");
         add("malum.jei.spirit_focusing", "Spirit Focusing");
@@ -446,7 +450,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addDeathMessage(MalumDamageTypes.SCYTHE_MAELSTROM, "%1$s was sliced and diced by %2$s", "%1$s was sliced and diced by %2$s using %3$s");
 
         addDeathMessage(MalumDamageTypes.HIDDEN_BLADE_PHYSICAL_COUNTER, "%1$s was sliced into innumerable pieces by %2$s", "%1$s was sliced into innumerable pieces by %2$s using %3$s");
-        addDeathMessage(MalumDamageTypes.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul sliced into innumerable pieces by %2$s", "%1$s had their soul sliced into innumerable pieces by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.HIDDEN_BLADE_MAGIC_COUNTER, "%1$s had their soul shattered into innumerable pieces by %2$s", "%1$s had their soul shattered into innumerable pieces by %2$s using %3$s");
 
         addDeathMessage(MalumDamageTypes.TYRVING, "%1$s had their soul scarred by %2$s", "%1$s had their soul scarred by %2$s using %3$s");
 
@@ -540,6 +544,11 @@ public class MalumLangDatagen extends LanguageProvider {
     public void addGeasEffect(String identifier, String name) {
         add("malum.effect.geas." + identifier, name);
     }
+
+    public void addMiscEffect(String identifier, String name) {
+        add("malum.effect." + identifier, name);
+    }
+
     public void addRite(TotemicRiteType riteType, String basicName, String corruptName) {
         add(riteType.getLangKey(false), basicName);
         add(riteType.getLangKey(true), corruptName);

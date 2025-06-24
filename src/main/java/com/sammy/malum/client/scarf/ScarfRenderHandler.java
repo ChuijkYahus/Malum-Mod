@@ -76,7 +76,7 @@ public class ScarfRenderHandler {
 
         public ScarfRenderData(RenderTypeToken token, int trailLength) {
             this.token = token;
-            this.points = new TrailPointBuilder(()->trailLength);
+            this.points = new TrailPointBuilder(trailLength);
         }
 
         public boolean isValid(LivingEntity entity) {
@@ -134,7 +134,7 @@ public class ScarfRenderHandler {
             points.run(t -> t.move(movement));
             final List<TrailPoint> list = points.getTrailPoints();
             if (list.size() > 2) {
-                float age = points.trailLength.get();
+                float age = points.getTrailLength();
                 for (int i = 0; i < list.size() - 1; i++) {
                     var currentPoint = list.get(i);
                     var nextPoint = list.get(i + 1);

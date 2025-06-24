@@ -339,37 +339,28 @@ public class GeasParticleEffects {
 
     public static void prospectorsGreedBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
-        long gameTime = level.getGameTime();
-        float time = 16;
-        final Consumer<LodestoneWorldParticle> behavior = p -> {
-            p.setParticleSpeed(p.getParticleSpeed().add(0, 0.01f, 0));
-        };
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 6; j++) {
+                var offsetTargetPosition = VecHelper.radialOffset(pos, 1.4f-j*0.1f, i, 8);
+                float velocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
+                var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
 
-        for (int i = 0; i < 12; i++) {
-            var offsetTargetPosition = VecHelper.rotatingRadialOffset(pos, 1.5f, i, 12, gameTime, time);
-            double timeOffset = (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f;
-            offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
-            for (int j = 0; j < 9; j++) {
-                var particlePos = offsetTargetPosition.add(0, (j-4) * 0.1f, 0);
-                var lightSpecs = spiritLightSpecs(level, particlePos, colorData.getColor());
-                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
-                var motion = particlePos.subtract(pos).normalize().scale(-velocity);
+                var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
+                int delay = (int) (j * 2);
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
                         .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)))
                         .multiplyLifetime(0.4f)
-                        .addTickActor(behavior)
-                        .setFriction(0.98f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*2);
+                        .setLifeDelay(delay)
+                        .setFriction(2f)
+                        .setMotion(motion);
                 lightSpecs.getBloomBuilder()
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
                         .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)))
                         .multiplyLifetime(0.4f)
-                        .addTickActor(behavior)
-                        .setFriction(0.98f)
-                        .setMotion(motion)
-                        .setLifeDelay(j*2);
+                        .setLifeDelay(delay)
+                        .setFriction(2f)
+                        .setMotion(motion);
                 lightSpecs.spawnParticles();
             }
         }

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
 import com.mojang.datafixers.util.*;
-import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -12,10 +12,13 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
+import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -57,9 +60,8 @@ public class ProspectorGeas extends GeasEffect {
 
     public static void pickupItem(ItemEntityPickupEvent.Post event) {
         if (GeasEffectHandler.hasGeasEffect(event.getPlayer(), MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
-            ItemStack stack = event.getItemEntity().getItem();
-            ProspectorMarkData data = stack.get(MalumDataComponents.PROSPECTOR_MARK);
-            if (data != null) {
+            ItemEntity entity = event.getItemEntity();
+            entity.getExistingData(MalumAttachmentTypes.PROSPECTOR_MARK).ifPresent(data -> {
                 if (data.hasProspectorMark()) {
                     var target = event.getPlayer();
                     var effect = MalumMobEffects.PROSPECTORS_GREED;
@@ -67,35 +69,28 @@ public class ProspectorGeas extends GeasEffect {
                     if (instance == null) {
                         target.addEffect(new MobEffectInstance(effect, 200, 0, true, true, true));
                     } else {
-                        EntityHelper.amplifyEffect(instance, target, 1, 5);
+                        EntityHelper.amplifyEffect(instance, target, 1, 4);
                         EntityHelper.extendEffect(instance, target, 100, 1200);
                     }
                 }
-            }
+            });
         }
     }
 
     public static void modifyBlockDrops(BlockDropsEvent event) {
         if (hasProspector(event.getBreaker())) {
-            List<ItemStack> drops = event.getDrops().stream().map(ItemEntity::getItem).toList();
-            modifyBlockDrops(drops);
+            for (ItemEntity drop : event.getDrops()) {
+                markEntity(drop);
+            }
         }
     }
 
-    public static void modifyExplosionDrops(Entity entity, List<Pair<ItemStack, BlockPos>> dropList, Function<BlockPos, BlockState> blockStateGetter) {
-        if (ProspectorGeas.hasProspector(entity)) {
-            HashMap<BlockPos, List<ItemStack>> sortedDrops = new HashMap<>();
-            for (Pair<ItemStack, BlockPos> drop : dropList) {
-                sortedDrops.computeIfAbsent(drop.getSecond(), k -> new ArrayList<>()).add(drop.getFirst());
-            }
-            for (Map.Entry<BlockPos, List<ItemStack>> loot : sortedDrops.entrySet()) {
-                BlockState blockState = blockStateGetter.apply(loot.getKey());
-                if (blockState.is(Tags.Blocks.ORES)) {
-                    List<ItemStack> drops = loot.getValue();
-                    ProspectorGeas.modifyBlockDrops(drops);
-                }
-            }
-        }
+    public static void popResourceAndMarkEntity(Level level, BlockPos pos, ItemStack stack) {
+        double d0 = (double) EntityType.ITEM.getHeight() / 2.0;
+        double d1 = (double) pos.getX() + 0.5 + Mth.nextDouble(level.random, -0.25, 0.25);
+        double d2 = (double) pos.getY() + 0.5 + Mth.nextDouble(level.random, -0.25, 0.25) - d0;
+        double d3 = (double) pos.getZ() + 0.5 + Mth.nextDouble(level.random, -0.25, 0.25);
+        Block.popResource(level, () -> markEntity(new ItemEntity(level, d1, d2, d3, stack)), stack);
     }
 
     public static boolean hasProspector(Entity entity) {
@@ -105,11 +100,8 @@ public class ProspectorGeas extends GeasEffect {
         return false;
     }
 
-     public static void modifyBlockDrops(List<ItemStack> drops) {
-         for (ItemStack drop : drops) {
-             if (drop.is(MalumTags.ItemTags.PROSPECTORS_TREASURE) && !drop.is(Tags.Items.ORES)) {
-                 drop.set(MalumDataComponents.PROSPECTOR_MARK, new ProspectorMarkData(true));
-             }
-         }
-     }
+    public static ItemEntity markEntity(ItemEntity entity) {
+        entity.getData(MalumAttachmentTypes.PROSPECTOR_MARK).enableMark();
+        return entity;
+    }
 }

@@ -16,7 +16,7 @@ public class RuneWorkingEntries {
 
         screen.addEntry("runeworking", -13, 8, b -> b
                 .configureWidget(w -> w.setIcon(RUNIC_WORKBENCH).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
-                .addPage(new HeadlineTextPage("runeworking", "runeworking.1"))
+                .addPage(new HeadlineTextItemPage("runeworking", "runeworking.1", RUNIC_WORKBENCH.get()))
                 .addPage(new TextPage("runeworking.2"))
                 .addPage(new TextPage("runeworking.3"))
                 .addPage(SpiritInfusionPage.fromOutput(RUNIC_WORKBENCH.get()))

@@ -1121,6 +1121,12 @@
     ],
     "subtitle": "malum.subtitle.pedestal_spirit_picked_up"
   },
+  "player_burns_from_greed": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "malum.subtitle.player_burns_from_greed"
+  },
   "player_experiences_combustion_whiplash": {
     "sounds": [
       "random/fizz"
@@ -1544,6 +1550,14 @@
       "malum:blocks/runewood/trapdoor/toggle3"
     ],
     "subtitle": "malum.subtitle.runewood_trapdoor_open"
+  },
+  "runic_workbench_shapes_something": {
+    "sounds": [
+      "malum:runic_workbench/craft_rune_generic1",
+      "malum:runic_workbench/craft_rune_generic2",
+      "malum:runic_workbench/craft_rune_generic3"
+    ],
+    "subtitle": "malum.subtitle.runic_workbench_shapes_something"
   },
   "runic_workbench_shapes_tainted_rune": {
     "sounds": [
@@ -2642,8 +2656,9 @@
   },
   "weavers_workbench_weaves": {
     "sounds": [
-      "malum:runic_workbench/craft1",
-      "malum:runic_workbench/craft2"
+      "malum:runic_workbench/craft_rune_generic1",
+      "malum:runic_workbench/craft_rune_generic2",
+      "malum:runic_workbench/craft_rune_generic3"
     ],
     "subtitle": "malum.subtitle.weavers_workbench_weaves"
   },

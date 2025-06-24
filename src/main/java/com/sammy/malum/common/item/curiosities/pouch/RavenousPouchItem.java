@@ -1,6 +1,7 @@
 package com.sammy.malum.common.item.curiosities.pouch;
 
 import com.sammy.malum.common.data.component.pouch.*;
+import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
@@ -38,6 +39,13 @@ public class RavenousPouchItem extends MalumPouchItem {
     }
 
     @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(ComponentHelper.positivePouchEffect("ravenous_pouch_collection"));
+        tooltipComponents.add(ComponentHelper.positivePouchEffect("ravenous_pouch_drop"));
+    }
+
+    @Override
     public MalumPouchContentsComponent getContents(ItemStack stack) {
         return stack.getOrDefault(MalumDataComponents.RAVENOUS_POUCH_CONTENTS, RavenousPouchContentsComponent.EMPTY);
     }
@@ -59,13 +67,12 @@ public class RavenousPouchItem extends MalumPouchItem {
                 MalumPouchContentsComponent.Mutable mutable = contents.mutable();
                 mutable.clearItems();
                 contents.getItems().forEach(item -> {
-                    int thrownCount = Math.max(item.getCount()-1, 1);
-                    ItemStack thrown = item.copyWithCount(thrownCount);
-                    if (thrownCount > 1) {
-                        ItemStack leftOver = item.copyWithCount(1);
-                        mutable.addItem(leftOver);
+                    ItemStack droppedItem = item.copy();
+                    if (!mutable.containsItem(item.getItem()) && droppedItem.getCount() > 1) {
+                        ItemStack split = droppedItem.split(1);
+                        mutable.addItem(split);
                     }
-                    player.drop(thrown, true);
+                    player.drop(droppedItem, true);
                 });
                 setContents(stack, mutable.immutable());
             }

@@ -32,7 +32,7 @@ public class MalumNetworkedParticleEffectColorData extends NetworkedParticleEffe
         return new MalumNetworkedParticleEffectColorData(colors, Collections.emptyList());
     }
 
-    public static MalumNetworkedParticleEffectColorData fromColor(ColorParticleData color) {
+    public static MalumNetworkedParticleEffectColorData fromColor(ColorParticleDataWrapper color) {
         return fromColors(List.of(color));
     }
 

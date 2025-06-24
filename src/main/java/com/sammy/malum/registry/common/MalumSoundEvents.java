@@ -112,9 +112,10 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> REAPER_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("reaper_scythe_slashes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BERSERKER_WRATH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wrathful_energy_surges")));
     public static final DeferredHolder<SoundEvent, SoundEvent> PATIENT_DROWNING = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_patiently_drowns")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> PROSPECTOR_BURN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_burns_from_greed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> COMBUSTION_WHIPLASH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_experiences_combustion_whiplash")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WYRD_RECONSTRUCTION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wyrd_reconstruction_reconstructs_body")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
     public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_WITHDRAWAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_consumes")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("catalyst_lobber_unlocked")));
@@ -158,7 +159,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_wooden_rune")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_VOID = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_void_rune")));
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_crafts")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> RUNIC_WORKBENCH_SHAPES_RUNE_GENERIC = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("runic_workbench_shapes_something")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> WEAVERS_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weavers_workbench_weaves")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totem_charges")));

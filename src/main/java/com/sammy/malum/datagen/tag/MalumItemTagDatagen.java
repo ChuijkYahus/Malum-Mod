@@ -142,6 +142,11 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(MalumTags.ItemTags.KNIVES_COMMON).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
         tag(MalumTags.ItemTags.KNIVES).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
 
+        tag(ItemTags.HEAD_ARMOR).add(SOUL_HUNTER_CLOAK.get(), SOUL_STAINED_STEEL_HELMET.get(), MALIGNANT_STRONGHOLD_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR).add(SOUL_HUNTER_ROBE.get(), SOUL_STAINED_STEEL_CHESTPLATE.get(), MALIGNANT_STRONGHOLD_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR).add(SOUL_HUNTER_LEGGINGS.get(), SOUL_STAINED_STEEL_LEGGINGS.get(), MALIGNANT_STRONGHOLD_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR).add(SOUL_HUNTER_BOOTS.get(), SOUL_STAINED_STEEL_BOOTS.get(), MALIGNANT_STRONGHOLD_BOOTS.get());
+
         tag(MalumTags.ItemTags.HAUNTED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS);
         tag(MalumTags.ItemTags.ANIMATED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS);
         tag(MalumTags.ItemTags.REBOUND_ENCHANTABLE).addTag(MalumTags.ItemTags.SCYTHES);

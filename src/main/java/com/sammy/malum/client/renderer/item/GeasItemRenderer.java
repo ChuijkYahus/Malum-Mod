@@ -19,7 +19,7 @@ public class GeasItemRenderer extends BlockEntityWithoutLevelRenderer {
 
     @Override
     public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
-        if (ctx.equals(ItemDisplayContext.GUI)) {
+//        if (ctx.equals(ItemDisplayContext.GUI)) {
             if (stack.has(MalumDataComponents.GEAS_EFFECT)) {
                 GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
                     var geas = c.geasEffectType();
@@ -32,6 +32,6 @@ public class GeasItemRenderer extends BlockEntityWithoutLevelRenderer {
                     ArcanaCodexHelper.renderGeasIcon(geas.getIcon(), poseStack, geas, 0, 0);
                 });
             }
-        }
+//        }
     }
 }

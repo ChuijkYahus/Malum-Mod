@@ -1,6 +1,9 @@
 package com.sammy.malum.common.item.curiosities.pouch;
 
 import com.sammy.malum.common.data.component.pouch.*;
+import com.sammy.malum.core.helpers.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
@@ -28,13 +31,20 @@ import java.util.*;
 
 public class SoulwovenPouchItem extends MalumPouchItem {
 
-    public SoulwovenPouchItem(net.minecraft.world.item.Item.Properties properties) {
+    public SoulwovenPouchItem(Item.Properties properties) {
         super(properties.component(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY));
     }
 
     public static float getFullnessDisplay(ItemStack stack) {
         var contents = stack.getOrDefault(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, SoulwovenPouchContentsComponent.EMPTY);
         return contents.weight().floatValue();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(ComponentHelper.positivePouchEffect("soulwoven_pouch_collection"));
+        tooltipComponents.add(ComponentHelper.positivePouchEffect("soulwoven_pouch_storage"));
     }
 
     @Override

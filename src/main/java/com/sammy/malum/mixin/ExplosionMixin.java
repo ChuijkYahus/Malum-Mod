@@ -3,6 +3,7 @@ package com.sammy.malum.mixin;
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.mojang.datafixers.util.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDemolitionistRing;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
 import org.spongepowered.asm.mixin.*;
@@ -34,7 +36,7 @@ public abstract class ExplosionMixin {
     boolean malum$hasHoarderRing;
 
     @Unique
-    HashMap<BlockPos, BlockState> malum$cachedBlockStates;
+    boolean malum$hasProspectorGeas;
 
     @Mutable
     @Shadow
@@ -45,8 +47,6 @@ public abstract class ExplosionMixin {
     @Nullable
     public abstract LivingEntity getIndirectSourceEntity();
 
-    @Shadow @Final @Nullable private Entity source;
-
     @Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/Holder;)V", at = @At(value = "RETURN"))
     private void malum$modifyExplosion(Level level, Entity source, DamageSource damageSource, ExplosionDamageCalculator damageCalculator, double x, double y, double z, float radius, boolean fire, Explosion.BlockInteraction blockInteraction, ParticleOptions smallExplosionParticles, ParticleOptions largeExplosionParticles, Holder explosionSound, CallbackInfo ci) {
         LivingEntity sourceEntity = getIndirectSourceEntity();
@@ -55,29 +55,20 @@ public abstract class ExplosionMixin {
 
     @Inject(method = "finalizeExplosion", at = @At(value = "HEAD"))
     private void malum$CacheHoarderRing(boolean pSpawnParticles, CallbackInfo ci) {
-        malum$hasHoarderRing = CurioHoarderRing.hasHoarderRing(getIndirectSourceEntity());
+        LivingEntity entity = getIndirectSourceEntity();
+        malum$hasHoarderRing = CurioHoarderRing.hasHoarderRing(entity);
+        malum$hasProspectorGeas = ProspectorGeas.hasProspector(entity);
     }
 
-    @ModifyReturnValue(method = "finalizeExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;", ordinal = 0))
-    private BlockState malum$captureBlockState(BlockState state, BlockPos pos) {
-        if (malum$cachedBlockStates == null) {
-            malum$cachedBlockStates = new HashMap<>();
+    //TODO: This shouldn't use a redirect, hopefully it's fine!
+    @Redirect(method = "finalizeExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;popResource(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V"))
+    private void malum$popResource(Level level, BlockPos pos, ItemStack stack) {
+        pos = CurioHoarderRing.getExplosionPos(malum$hasHoarderRing, pos, getIndirectSourceEntity(), stack);
+        if (malum$hasProspectorGeas) {
+            ProspectorGeas.popResourceAndMarkEntity(level, pos, stack);
+        } else {
+            Block.popResource(level, pos, stack);
         }
-        malum$cachedBlockStates.put(pos, state);
-        return state;
-    }
-
-    @ModifyArgs(method = "finalizeExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;popResource(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V"))
-    private void malum$popResource(Args args, @Local(ordinal = 0) List<Pair<ItemStack, BlockPos>> dropList) {
-        BlockPos pos = args.get(1);
-        ItemStack stack = args.get(2);
-
-        if (malum$cachedBlockStates != null) {
-            ProspectorGeas.modifyExplosionDrops(source, dropList, malum$cachedBlockStates::get);
-            malum$cachedBlockStates = null;
-        }
-
-        args.set(1, CurioHoarderRing.getExplosionPos(malum$hasHoarderRing, pos, getIndirectSourceEntity(), stack));
     }
 
     @Inject(method = "getIndirectSourceEntityInternal", at = @At(value = "HEAD"), cancellable = true)

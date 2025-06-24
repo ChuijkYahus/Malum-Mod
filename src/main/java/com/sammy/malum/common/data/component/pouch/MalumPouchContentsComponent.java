@@ -170,6 +170,14 @@ public abstract class MalumPouchContentsComponent implements TooltipComponent {
         public void addItem(ItemStack stack) {
             items.addFirst(stack);
         }
+        public boolean containsItem(ItemLike item) {
+            for (ItemStack stack : items) {
+                if (stack.is(item.asItem())) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         @Nullable
         public ItemStack removeOne() {
