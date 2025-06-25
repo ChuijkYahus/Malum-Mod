@@ -83,6 +83,7 @@ public class HiddenBladeRenderHandler {
                     }
 
                     shaderInstance.setUniformDefaults();
+                    RenderSystem.defaultBlendFunc();
                     RenderSystem.disableBlend();
                     poseStack.popPose();
                 }

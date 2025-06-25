@@ -1113,8 +1113,8 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To kindle one's fortune");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
-                        Your soul, fueled by heat and flame.
-                         -Breaking Blocks or Taking Damage Generates Flamekeeper's Fervor, Increasing Mining and Attack Speed""",
+                        Your soul, filled with fervor and greed.
+                         -Collecting Precious Minerals grants Prospector's Greed, Increasing Mining providing Fortune Chance""",
                 "You cannot deny the flame it's purpose\n -High Fervor Ignites You When Struck");
 
         addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");

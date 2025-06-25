@@ -4,6 +4,9 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.core.systems.spirit.*;
+import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;
@@ -14,6 +17,7 @@ import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
+import java.awt.*;
 import java.lang.Math;
 
 
@@ -28,7 +32,7 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         final SoulwovenBannerPatternDataComponent patternData = blockEntityIn.patternData;
         var token = RenderTypeToken.createToken(patternData.texturePath());
         var banner = LodestoneRenderTypes.CUTOUT_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-        var builder = VFXBuilders.createWorld().setRenderType(banner).setLight(combinedLightIn);
+        var builder = VFXBuilders.createWorld().setRenderType(banner);
         var pos = blockEntityIn.getBlockPos();
         var spirit = blockEntityIn.spirit;
         var type = blockState.getValue(SoulwovenBannerBlock.BANNER_TYPE);
@@ -58,15 +62,17 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         if (spirit != null) {
             var glow = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
             if (!blockEntityIn.intense) {
-                glow.withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
+                glow.withUniformHandler(ShaderUniformHandler::withLumiTransparency);
             }
-            var spiritBuilder = VFXBuilders.createWorld().setRenderType(glow).setColor(spirit.getPrimaryColor());
             for (int i = 1; i < 4; i++) {
+                Color color = spirit.getPrimaryColor();
+                float alpha = 0.9f;
+                var spiritBuilder = VFXBuilders.createWorld().setRenderType(glow).setColor(color);
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 0.001f * i);
-                spiritBuilder.setAlpha(0.9f).renderQuad(poseStack, vertices, 1f);
+                spiritBuilder.setAlpha(alpha).renderQuad(poseStack, vertices);
                 poseStack.translate(0, 0, -0.002f * i);
-                spiritBuilder.setAlpha(0.9f).renderQuad(poseStack, vertices, 1f);
+                spiritBuilder.setAlpha(alpha).renderQuad(poseStack, vertices);
                 poseStack.popPose();
             }
         }

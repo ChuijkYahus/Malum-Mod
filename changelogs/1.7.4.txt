@@ -7,7 +7,14 @@ Added the Ravenous Pouch
 Updated the Runic Workbench Visuals, Sounds and Model
 Runic Workbench Recipes now support regular items as a secondary input
 Added new rune equip sounds
-Added new particle effects for Soulwoven Banners being imbued and sheared
+Added new particle effects for Soulwoven Banners being imbued
+Added new particle effects for Soulwoven Banners being sheared
+
+Updated the Hidden Blade Necklace Damage Calculation
+- Now always deals a minimum of 10 damage
+- Damage bonus scales slightly faster based on incoming damage but is less significant (up to 150% down from 200% at full power)
+This should hopefully enable the trinket to feel complete even without a damage focused setup
+Also, due to a change to magic damage in 1.7.3 it no longer obliterates armor when used on a player! It used to deal 50 durability damage total, it was so awful.
 
 Geas Changes:
 Pact of the Flamekeeper -> Pact of the Prospector
@@ -37,3 +44,4 @@ Retextured Soul Stained Steel Tools, Weapons, and Armor
 
 Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 Fixed the Soulbinding Brazier model having incorrect face culling data
+Fixed a glState leak for the Hidden Blade interface icon renderer
