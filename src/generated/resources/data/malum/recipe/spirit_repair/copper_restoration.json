@@ -1,9 +1,9 @@
 {
   "type": "malum:spirit_repair",
-  "inputs": [
-    "malum:copper_impetus"
-  ],
-  "itemIdRegex": "copper_.+",
+  "regex": {
+    "itemIdRegex": "copper_.+",
+    "modIdRegex": ""
+  },
   "repairMaterial": {
     "count": 2,
     "tag": "c:ingots/copper"
@@ -13,5 +13,8 @@
       "type": "malum:earthen",
       "count": 6
     }
+  ],
+  "validItems": [
+    "malum:copper_impetus"
   ]
 }

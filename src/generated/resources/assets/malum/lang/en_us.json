@@ -2058,7 +2058,7 @@
   "malum.gui.geas.pact_of_the_profane_glutton.tooltip": "Consume.",
   "malum.gui.geas.pact_of_the_prospector": "Pact Of The Prospector",
   "malum.gui.geas.pact_of_the_prospector.cons": "You cannot deny the flame it's purpose\n -High Fervor Ignites You When Struck",
-  "malum.gui.geas.pact_of_the_prospector.pros": "Your soul, fueled by heat and flame.\n -Breaking Blocks or Taking Damage Generates Flamekeeper's Fervor, Increasing Mining and Attack Speed",
+  "malum.gui.geas.pact_of_the_prospector.pros": "Your soul, filled with fervor and greed.\n -Collecting Precious Minerals grants Prospector's Greed, Increasing Mining providing Fortune Chance",
   "malum.gui.geas.pact_of_the_prospector.tooltip": "Burn with greed",
   "malum.gui.geas.pact_of_the_pyromaniac": "Pact Of The Pyromaniac",
   "malum.gui.geas.pact_of_the_pyromaniac.cons": "You can only handle so much pressure.\n -High Fervor Ignites You When Struck By Blast Impact\n -Incoming Fire Damage is Doubled",

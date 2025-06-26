@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "minecraft:golden_carrot"
@@ -10,11 +10,11 @@
       "item": "minecraft:golden_apple"
     }
   ],
-  "geas": "malum:pact_of_defiance",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "malum:living_flesh"
   },
+  "result": "malum:pact_of_defiance",
   "spirits": [
     {
       "type": "malum:sacred",

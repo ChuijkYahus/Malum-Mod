@@ -11,31 +11,31 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
-public class RunicWorkbenchRecipe extends LodestoneInWorldRecipe<RunicWorkbenchRecipe.RunicWorkbenchRecipeInput> {
+public class RuneworkingRecipe extends LodestoneInWorldRecipe<RuneworkingRecipe.RunicWorkbenchRecipeInput> {
 
-    public static final MapCodec<RunicWorkbenchRecipe> CODEC = RecordCodecBuilder.mapCodec(obj -> obj.group(
-            SizedIngredient.FLAT_CODEC.fieldOf("primaryInput").forGetter(recipe -> recipe.primaryInput),
+    public static final MapCodec<RuneworkingRecipe> CODEC = RecordCodecBuilder.mapCodec(obj -> obj.group(
+            SizedIngredient.FLAT_CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
             SizedIngredient.FLAT_CODEC.fieldOf("secondaryInput").forGetter(recipe -> recipe.secondaryInput),
             ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
             SoundEvent.CODEC.fieldOf("soundType").forGetter(recipe -> recipe.soundType)
-    ).apply(obj, RunicWorkbenchRecipe::new));
+    ).apply(obj, RuneworkingRecipe::new));
 
     public static final String NAME = "runeworking";
 
-    public final SizedIngredient primaryInput;
+    public final SizedIngredient input;
     public final SizedIngredient secondaryInput;
     public final Holder<SoundEvent> soundType;
 
-    public RunicWorkbenchRecipe(SizedIngredient primaryInput, SizedIngredient secondaryInput, ItemStack output, Holder<SoundEvent> soundType) {
+    public RuneworkingRecipe(SizedIngredient input, SizedIngredient secondaryInput, ItemStack output, Holder<SoundEvent> soundType) {
         super(MalumRecipeSerializers.RUNEWORKING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.RUNEWORKING.get(), output);
-        this.primaryInput = primaryInput;
+        this.input = input;
         this.secondaryInput = secondaryInput;
         this.soundType = soundType;
     }
 
     @Override
     public boolean matches(RunicWorkbenchRecipeInput input, Level level) {
-        return input.test(primaryInput, secondaryInput);
+        return input.test(this.input, secondaryInput);
     }
 
     public record RunicWorkbenchRecipeInput(ItemStack primaryInput, ItemStack secondaryInput) implements RecipeInput {

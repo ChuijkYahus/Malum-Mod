@@ -36,7 +36,7 @@ public class SpiritFocusingPage extends BookPage {
     }
 
     public static SpiritFocusingPage fromInput(Item inputItem) {
-        return new SpiritFocusingPage(s -> s.ingredient.test(inputItem.getDefaultInstance()));
+        return new SpiritFocusingPage(s -> s.input.test(inputItem.getDefaultInstance()));
     }
 
     public static SpiritFocusingPage fromOutput(Item outputItem) {
@@ -46,7 +46,7 @@ public class SpiritFocusingPage extends BookPage {
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 63, top + 16, mouseX, mouseY, false);
-        renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
+        renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 56, mouseX, mouseY);
         renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {

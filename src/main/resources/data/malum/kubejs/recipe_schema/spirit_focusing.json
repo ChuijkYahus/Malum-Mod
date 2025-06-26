@@ -1,0 +1,31 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "item_stack"
+    },
+    {
+      "name": "spirits",
+      "role": "input",
+      "type": "malum:spirit_ingredient[]"
+    },
+    {
+      "name": "time",
+      "role": "other",
+      "type": "int",
+      "optional": 300
+    },
+    {
+      "name": "durabilityCost",
+      "role": "other",
+      "type": "int",
+      "optional": 1
+    }
+  ]
+}

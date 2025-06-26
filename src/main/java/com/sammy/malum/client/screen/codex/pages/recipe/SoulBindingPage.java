@@ -36,18 +36,18 @@ public class SoulBindingPage extends BookPage {
     }
 
     public String headlineTranslationKey() {
-        return recipe.geas.getLangKey();
+        return recipe.result.getLangKey();
     }
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderHeadline(guiGraphics, Component.translatable(headlineTranslationKey()), left, top);
-        renderItem(screen, guiGraphics, recipe.geas.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
-        renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 87, mouseX, mouseY);
+        renderItem(screen, guiGraphics, recipe.result.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
+        renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 87, mouseX, mouseY);
 
         renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 87, mouseX, mouseY, true);
-        if (!recipe.extraIngredients.isEmpty()) {
-            renderIngredients(screen, guiGraphics, recipe.extraIngredients, ITEM, left + 113, top + 87, mouseX, mouseY, true);
+        if (!recipe.extraInputs.isEmpty()) {
+            renderIngredients(screen, guiGraphics, recipe.extraInputs, ITEM, left + 113, top + 87, mouseX, mouseY, true);
         }
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 60, top + 105, 18, 18)) {
@@ -62,6 +62,6 @@ public class SoulBindingPage extends BookPage {
     }
 
     public static SoulBindingPage fromGeas(Holder<GeasEffectType> geasEffectType) {
-        return new SoulBindingPage(s -> s.geas.equals(geasEffectType.value()));
+        return new SoulBindingPage(s -> s.result.equals(geasEffectType.value()));
     }
 }

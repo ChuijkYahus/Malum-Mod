@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:void_salts"
@@ -10,11 +10,11 @@
       "item": "malum:imitation_flesh"
     }
   ],
-  "geas": "malum:oath_of_unmakers_disdain",
-  "ingredient": {
+  "input": {
     "count": 8,
     "item": "malum:malignant_pewter_plating"
   },
+  "result": "malum:oath_of_unmakers_disdain",
   "spirits": [
     {
       "type": "malum:wicked",

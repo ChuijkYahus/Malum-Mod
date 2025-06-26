@@ -1,0 +1,31 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "flat_sized_ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "item_stack"
+    },
+    {
+      "name": "spirits",
+      "role": "input",
+      "type": "malum:spirit_ingredient[]"
+    },
+    {
+      "name": "extraInputs",
+      "role": "input",
+      "type": "flat_sized_ingredient[]",
+      "optional": []
+    },
+    {
+      "name": "carryOverComponentData",
+      "role": "other",
+      "type": "boolean",
+      "optional": false
+    }
+  ]
+}

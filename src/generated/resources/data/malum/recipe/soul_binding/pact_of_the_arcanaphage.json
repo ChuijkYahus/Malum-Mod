@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:warp_flux"
@@ -10,11 +10,11 @@
       "item": "malum:soul_stained_steel_plating"
     }
   ],
-  "geas": "malum:pact_of_the_arcanaphage",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "malum:raw_soulstone"
   },
+  "result": "malum:pact_of_the_arcanaphage",
   "spirits": [
     {
       "type": "malum:eldritch",

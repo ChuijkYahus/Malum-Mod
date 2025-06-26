@@ -1,0 +1,25 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "registry_element<malum:geas_types>"
+    },
+    {
+      "name": "spirits",
+      "role": "input",
+      "type": "malum:spirit_ingredient[]"
+    },
+    {
+      "name": "extraInputs",
+      "role": "input",
+      "type": "flat_sized_ingredient[]",
+      "optional": []
+    }
+  ]
+}

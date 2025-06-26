@@ -1,10 +1,10 @@
 {
   "type": "malum:spirit_infusion",
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:anomalous_design"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:complete_design"
   },

@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.runic_workbench;
 
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.recipe.RunicWorkbenchRecipe.*;
+import com.sammy.malum.common.recipe.RuneworkingRecipe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
@@ -107,7 +107,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             return false;
         }
         if (level instanceof ServerLevel serverLevel) {
-            int primaryCount = recipe.primaryInput.count();
+            int primaryCount = recipe.input.count();
             int secondaryCount = recipe.secondaryInput.count();
             input = new RunicWorkbenchRecipeInput(
                     primaryInput.copyWithCount(primaryCount),

@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "item": "malum:malignant_lead"
@@ -14,11 +14,11 @@
       "item": "minecraft:netherite_scrap"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 4,
     "tag": "c:ingots/iron"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:malignant_pewter_ingot"
   },

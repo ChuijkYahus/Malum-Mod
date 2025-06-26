@@ -79,7 +79,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
         if (blockEntityIn.isActive()) {
             var recipe = blockEntityIn.recipe;
             var spirits = recipe.spirits;
-            var geas = recipe.geas;
+            var geas = recipe.result;
             var texture = geas.getIcon();
             var additive = LodestoneRenderTypes.ADDITIVE_DISTORTED_TEXTURE.apply(RenderTypeToken.createToken(texture));
             var transparent = LodestoneRenderTypes.TRANSPARENT_DISTORTED_TEXTURE.apply(RenderTypeToken.createToken(texture));

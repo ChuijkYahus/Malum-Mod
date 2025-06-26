@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "malum:tainted_rock"
@@ -14,11 +14,11 @@
       "item": "malum:twisted_rock"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:twisted_rock_item_pedestal"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:spirit_catalyzer"
   },

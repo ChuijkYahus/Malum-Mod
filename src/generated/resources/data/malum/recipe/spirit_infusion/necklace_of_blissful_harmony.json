@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 6,
       "tag": "c:ingots/iron"
@@ -18,11 +18,11 @@
       "item": "minecraft:diamond"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ornate_necklace"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:necklace_of_blissful_harmony"
   },

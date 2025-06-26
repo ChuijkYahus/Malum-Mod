@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "minecraft:blaze_powder"
@@ -10,11 +10,11 @@
       "item": "malum:blazing_quartz"
     }
   ],
-  "geas": "malum:pact_of_combustion",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "minecraft:gunpowder"
   },
+  "result": "malum:pact_of_combustion",
   "spirits": [
     {
       "type": "malum:infernal",

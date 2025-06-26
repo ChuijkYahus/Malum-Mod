@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "malum:soul_stained_steel_ingot"
@@ -15,11 +15,11 @@
       "item": "malum:refined_soulstone"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:crude_scythe"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:soul_stained_steel_scythe"
   },

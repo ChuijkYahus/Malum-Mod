@@ -1,11 +1,11 @@
 package com.sammy.malum.datagen.recipe.builder;
 
-import com.sammy.malum.common.recipe.SpiritRepairRecipe;
+import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.advancements.*;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,34 +14,25 @@ import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import java.util.*;
 
+@SuppressWarnings("deprecation")
 public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritRepairRecipe> {
 
-    public final String itemIdRegex;
-    public final String modIdRegex;
-    public final float durabilityPercentage;
-    public final List<Item> inputs = new ArrayList<>();
-    public final SizedIngredient repairMaterial;
+    public final List<Holder<Item>> validItems = new ArrayList<>();
     public final List<SpiritIngredient> spirits = new ArrayList<>();
-    public Item repairOutputOverride = Items.AIR;
+    public final SizedIngredient repairMaterial;
+    public final float repairEfficiency;
+
+    public SpiritRepairRegexData regex = SpiritRepairRegexData.EMPTY;
+
     public Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
-    public SpiritRepairRecipeBuilder(String itemIdRegex, String modIdRegex, float durabilityPercentage, SizedIngredient repairMaterial) {
-        this.itemIdRegex = itemIdRegex;
-        this.modIdRegex = modIdRegex;
-        this.durabilityPercentage = durabilityPercentage;
+    public SpiritRepairRecipeBuilder(SizedIngredient repairMaterial, float repairEfficiency) {
         this.repairMaterial = repairMaterial;
-    }
-
-    public SpiritRepairRecipeBuilder(String itemIdRegex, float durabilityPercentage, Ingredient repairMaterial, int repairMaterialCount) {
-        this(itemIdRegex, "", durabilityPercentage, new SizedIngredient(repairMaterial, repairMaterialCount));
-    }
-
-    public SpiritRepairRecipeBuilder(float durabilityPercentage, Ingredient repairMaterial, int repairMaterialCount) {
-        this("", "", durabilityPercentage, new SizedIngredient(repairMaterial, repairMaterialCount));
+        this.repairEfficiency = repairEfficiency;
     }
 
     public SpiritRepairRecipeBuilder withValidItem(Item item) {
-        inputs.add(item);
+        validItems.add(item.builtInRegistryHolder());
         return this;
     }
 
@@ -50,8 +41,8 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
         return this;
     }
 
-    public SpiritRepairRecipeBuilder overrideOutput(Item repairOutputOverride) {
-        this.repairOutputOverride = repairOutputOverride;
+    public SpiritRepairRecipeBuilder withRegex(SpiritRepairRegexData regex) {
+        this.regex = regex;
         return this;
     }
 
@@ -67,11 +58,9 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
 
     @Override
     public SpiritRepairRecipe buildRecipe(ResourceLocation resourceLocation) {
-        List<ResourceLocation> inputIds = new ArrayList<>();
-        for (Item input : inputs) {
-            inputIds.add(BuiltInRegistries.ITEM.getKey(input));
-        }
-        return new SpiritRepairRecipe(durabilityPercentage, itemIdRegex, modIdRegex, inputIds, repairMaterial, spirits, repairOutputOverride);
+
+
+        return new SpiritRepairRecipe(validItems, spirits, repairMaterial, repairEfficiency, regex);
     }
 
     @Override

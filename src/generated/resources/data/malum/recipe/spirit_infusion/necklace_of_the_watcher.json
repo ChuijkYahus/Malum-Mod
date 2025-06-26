@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 16,
       "item": "malum:null_slate"
@@ -10,11 +10,11 @@
       "item": "malum:malignant_lead"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:necklace_of_the_mystic_mirror"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:necklace_of_the_watcher"
   },

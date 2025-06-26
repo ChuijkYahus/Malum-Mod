@@ -14,33 +14,30 @@ import java.util.*;
 public class SoulBindingRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipeInput> {
 
     public static final MapCodec<SoulBindingRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
-            SizedIngredient.FLAT_CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
-            GeasEffectType.CODEC.fieldOf("geas").forGetter(recipe -> recipe.geas),
-            SizedIngredient.FLAT_CODEC.listOf().optionalFieldOf("extraIngredients", List.of()).forGetter(recipe -> recipe.extraIngredients),
-            SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter(recipe -> recipe.spirits),
-            Codec.BOOL.optionalFieldOf("carryOverComponentData", false).forGetter(recipe -> recipe.carryOverData)
+            SizedIngredient.FLAT_CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
+            GeasEffectType.CODEC.fieldOf("result").forGetter(recipe -> recipe.result),
+            SizedIngredient.FLAT_CODEC.listOf().optionalFieldOf("extraInputs", List.of()).forGetter(recipe -> recipe.extraInputs),
+            SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter(recipe -> recipe.spirits)
     ).apply(obj, SoulBindingRecipe::new));
 
     public static final String NAME = "soul_binding";
 
-    public final SizedIngredient ingredient;
-    public final GeasEffectType geas;
+    public final SizedIngredient input;
+    public final GeasEffectType result;
 
-    public final List<SizedIngredient> extraIngredients;
+    public final List<SizedIngredient> extraInputs;
     public final List<SpiritIngredient> spirits;
-    public final boolean carryOverData;
 
-    public SoulBindingRecipe(SizedIngredient ingredient, GeasEffectType geas, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverData) {
+    public SoulBindingRecipe(SizedIngredient input, GeasEffectType result, List<SizedIngredient> extraInputs, List<SpiritIngredient> spirits) {
         super(MalumRecipeSerializers.SOUL_BINDING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SOUL_BINDING.get());
-        this.ingredient = ingredient;
-        this.geas = geas;
-        this.extraIngredients = extraIngredients;
+        this.input = input;
+        this.result = result;
+        this.extraInputs = extraInputs;
         this.spirits = spirits;
-        this.carryOverData = carryOverData;
     }
 
     @Override
     public boolean matches(SpiritBasedRecipeInput input, Level level) {
-        return input.test(ingredient, extraIngredients, spirits);
+        return input.test(this.input, extraInputs, spirits);
     }
 }

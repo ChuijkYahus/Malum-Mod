@@ -40,9 +40,9 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
         overlay.draw(guiGraphics);
         int spiritOffset = recipe.spirits.size() > 5 ? (recipe.spirits.size()-5)*10 : 0;
         ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 20, 49+spiritOffset, mouseX, mouseY, false, true);
-        if (!recipe.extraIngredients.isEmpty()) {
-            int itemOffset = recipe.extraIngredients.size() > 5 ? (recipe.extraIngredients.size()-5)*10 : 0;
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.extraIngredients.size(), 104, 49+itemOffset, mouseX, mouseY, true, true);
+        if (!recipe.extraInputs.isEmpty()) {
+            int itemOffset = recipe.extraInputs.size() > 5 ? (recipe.extraInputs.size()-5)*10 : 0;
+            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.extraInputs.size(), 104, 49+itemOffset, mouseX, mouseY, true, true);
         }
     }
 
@@ -75,14 +75,14 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SpiritInfusionRecipe recipe, IFocusGroup focuses) {
         int spiritOffset = recipe.spirits.size() > 5 ? (recipe.spirits.size()-5)*10 : 0;
-        int itemOffset = recipe.extraIngredients.size() > 5 ? (recipe.extraIngredients.size()-5)*10 : 0;
+        int itemOffset = recipe.extraInputs.size() > 5 ? (recipe.extraInputs.size()-5)*10 : 0;
         JEIHelper.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 20, 49+spiritOffset, true, recipe.spirits);
-        JEIHelper.addSizedIngredientsToJei(builder, RecipeIngredientRole.INPUT, 104, 49+itemOffset, true, recipe.extraIngredients);
+        JEIHelper.addSizedIngredientsToJei(builder, RecipeIngredientRole.INPUT, 104, 49+itemOffset, true, recipe.extraInputs);
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
-                .addItemStacks(Arrays.stream(recipe.ingredient.getItems()).toList());
+                .addItemStacks(Arrays.stream(recipe.input.getItems()).toList());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
-                .addItemStack(recipe.output);
+                .addItemStack(recipe.result);
     }
 }

@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "tag": "c:ingots/iron"
@@ -14,11 +14,11 @@
       "item": "malum:malignant_lead"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:lamplighters_tongs"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:catalyst_lobber"
   },

@@ -1,10 +1,10 @@
 {
-  "type": "malum:spirit_transmutation",
+  "type": "malum:unchained_transmutation",
   "group": "mud",
-  "ingredient": {
+  "input": {
     "item": "minecraft:clay"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "minecraft:prismarine"
   }

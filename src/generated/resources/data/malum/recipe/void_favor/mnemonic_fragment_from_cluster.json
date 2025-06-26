@@ -1,9 +1,9 @@
 {
-  "type": "malum:favor_of_the_void",
-  "ingredient": {
+  "type": "malum:void_favor",
+  "input": {
     "item": "malum:raw_brilliance"
   },
-  "output": {
+  "result": {
     "count": 2,
     "id": "malum:mnemonic_fragment"
   }

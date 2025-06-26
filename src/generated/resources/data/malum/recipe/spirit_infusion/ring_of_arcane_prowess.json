@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "malum:raw_brilliance"
@@ -10,11 +10,11 @@
       "item": "malum:alchemical_calx"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:gilded_ring"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:ring_of_arcane_prowess"
   },

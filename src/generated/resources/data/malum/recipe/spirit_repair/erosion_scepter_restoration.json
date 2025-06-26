@@ -1,9 +1,6 @@
 {
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
-  "inputs": [
-    "malum:erosion_scepter"
-  ],
   "repairMaterial": {
     "count": 8,
     "item": "malum:void_salts"
@@ -21,5 +18,8 @@
       "type": "malum:aqueous",
       "count": 16
     }
+  ],
+  "validItems": [
+    "malum:erosion_scepter"
   ]
 }

@@ -1,16 +1,16 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:hallowed_gold_ingot"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 2,
     "item": "malum:runewood_planks"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:runewood_obelisk"
   },

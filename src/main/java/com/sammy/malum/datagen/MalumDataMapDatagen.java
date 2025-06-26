@@ -13,15 +13,15 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.sammy.malum.registry.common.MalumDataMaps.*;
 
-public class MalumDataMaps extends DataMapProvider {
+public class MalumDataMapDatagen extends DataMapProvider {
 
-    protected MalumDataMaps(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    protected MalumDataMapDatagen(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(packOutput, lookupProvider);
     }
 
     @Override
     protected void gather(HolderLookup.@NotNull Provider provider) {
-        builder(FRACTURED_IMPETUS_CONVERSION)
+        builder(FRACTURED_IMPETUS_VARIANT)
                 .add(MalumItems.ALCHEMICAL_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_ALCHEMICAL_IMPETUS), false)
                 .add(MalumItems.IRON_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_IRON_IMPETUS), false)
                 .add(MalumItems.COPPER_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_COPPER_IMPETUS), false)
@@ -35,6 +35,21 @@ public class MalumDataMaps extends DataMapProvider {
                 .add(MalumItems.OSMIUM_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_OSMIUM_IMPETUS), false)
                 .add(MalumItems.ZINC_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_ZINC_IMPETUS), false)
                 .add(MalumItems.TIN_IMPETUS, new ImpetusDataMap(MalumItems.FRACTURED_TIN_IMPETUS), false);
+
+        builder(REPAIRED_IMPETUS_VARIANT)
+                .add(MalumItems.FRACTURED_ALCHEMICAL_IMPETUS, new ImpetusDataMap(MalumItems.ALCHEMICAL_IMPETUS), false)
+                .add(MalumItems.FRACTURED_IRON_IMPETUS, new ImpetusDataMap(MalumItems.IRON_IMPETUS), false)
+                .add(MalumItems.FRACTURED_COPPER_IMPETUS, new ImpetusDataMap(MalumItems.COPPER_IMPETUS), false)
+                .add(MalumItems.FRACTURED_GOLD_IMPETUS, new ImpetusDataMap(MalumItems.GOLD_IMPETUS), false)
+                .add(MalumItems.FRACTURED_LEAD_IMPETUS, new ImpetusDataMap(MalumItems.LEAD_IMPETUS), false)
+                .add(MalumItems.FRACTURED_SILVER_IMPETUS, new ImpetusDataMap(MalumItems.SILVER_IMPETUS), false)
+                .add(MalumItems.FRACTURED_ALUMINUM_IMPETUS, new ImpetusDataMap(MalumItems.ALUMINUM_IMPETUS), false)
+                .add(MalumItems.FRACTURED_NICKEL_IMPETUS, new ImpetusDataMap(MalumItems.NICKEL_IMPETUS), false)
+                .add(MalumItems.FRACTURED_URANIUM_IMPETUS, new ImpetusDataMap(MalumItems.URANIUM_IMPETUS), false)
+                .add(MalumItems.FRACTURED_COBALT_IMPETUS, new ImpetusDataMap(MalumItems.COBALT_IMPETUS), false)
+                .add(MalumItems.FRACTURED_OSMIUM_IMPETUS, new ImpetusDataMap(MalumItems.OSMIUM_IMPETUS), false)
+                .add(MalumItems.FRACTURED_ZINC_IMPETUS, new ImpetusDataMap(MalumItems.ZINC_IMPETUS), false)
+                .add(MalumItems.FRACTURED_TIN_IMPETUS, new ImpetusDataMap(MalumItems.TIN_IMPETUS), false);
 
         builder(TOTEM_POLE_CONVERSION)
                 .add(MalumBlocks.RUNEWOOD_LOG, new TotemPoleMap(MalumBlocks.RUNEWOOD_TOTEM_POLE), false)

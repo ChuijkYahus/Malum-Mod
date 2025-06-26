@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 12,
       "item": "malum:rotting_essence"
@@ -10,11 +10,11 @@
       "item": "malum:grim_talc"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soulwoven_pouch"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:ravenous_pouch"
   },

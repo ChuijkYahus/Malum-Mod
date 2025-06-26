@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:imitation_flesh"
@@ -14,11 +14,11 @@
       "item": "malum:grim_talc"
     }
   ],
-  "geas": "malum:pact_of_the_profane_ascetic",
-  "ingredient": {
+  "input": {
     "count": 16,
     "item": "malum:rotting_essence"
   },
+  "result": "malum:pact_of_the_profane_ascetic",
   "spirits": [
     {
       "type": "malum:earthen",

@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.repair_pylon;
 
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.storage.*;
-import com.sammy.malum.common.recipe.*;
+import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;

@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:runewood_planks"
@@ -10,11 +10,11 @@
       "item": "minecraft:redstone_block"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 2,
     "tag": "c:ingots/copper"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:artificers_claw"
   },

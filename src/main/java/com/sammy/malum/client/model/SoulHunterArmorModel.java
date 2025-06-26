@@ -43,11 +43,6 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
     }
 
     @Override
-    public void renderToBuffer(PoseStack matrixStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int p_350361_) {
-        super.renderToBuffer(matrixStack, vertexConsumer, packedLight, packedOverlay, p_350361_);
-    }
-
-    @Override
     public void copyFromDefault(HumanoidModel model) {
         super.copyFromDefault(model);
         cape.copyFrom(model.body);

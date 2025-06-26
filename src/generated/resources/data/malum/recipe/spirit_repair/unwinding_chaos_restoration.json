@@ -1,9 +1,6 @@
 {
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
-  "inputs": [
-    "malum:unwinding_chaos"
-  ],
   "repairMaterial": {
     "count": 8,
     "item": "malum:auric_embers"
@@ -21,5 +18,8 @@
       "type": "malum:aqueous",
       "count": 32
     }
+  ],
+  "validItems": [
+    "malum:unwinding_chaos"
   ]
 }

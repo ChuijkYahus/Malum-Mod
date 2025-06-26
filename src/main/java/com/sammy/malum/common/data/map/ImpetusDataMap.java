@@ -6,8 +6,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public record ImpetusDataMap(Holder<Item> fracturedImpetus) {
+public record ImpetusDataMap(Holder<Item> otherImpetus) {
     public static final Codec<ImpetusDataMap> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ItemStack.ITEM_NON_AIR_CODEC.fieldOf("fractured_impetus").forGetter(ImpetusDataMap::fracturedImpetus)
+            ItemStack.ITEM_NON_AIR_CODEC.fieldOf("other_impetus").forGetter(ImpetusDataMap::otherImpetus)
     ).apply(instance, ImpetusDataMap::new));
 }

@@ -305,8 +305,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 }
             }
         }
-        List<SizedIngredient> extraIngredients = new ArrayList<>(recipe.extraIngredients);
-        inventory.getStackInSlot(0).shrink(recipe.ingredient.count());
+        List<SizedIngredient> extraIngredients = new ArrayList<>(recipe.extraInputs);
+        inventory.getStackInSlot(0).shrink(recipe.input.count());
         for (SizedIngredient ingredient : extraIngredients) {
             for (int i = 0; i < inventory.slotCount; i++) {
                 ItemStack stack = inventory.getStackInSlot(i);
@@ -320,10 +320,10 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
             boolean success = false;
 
             if (state.equals(BrazierState.BINDING)) {
-                success = GeasEffectHandler.addGeasEffect(target, recipe.geas);
+                success = GeasEffectHandler.addGeasEffect(target, recipe.result);
             }
             else if (state.equals(BrazierState.UNBINDING)) {
-                success = GeasEffectHandler.removeGeasEffect(target, recipe.geas);
+                success = GeasEffectHandler.removeGeasEffect(target, recipe.result);
             }
             if (!success) {
                 target.hurt(DamageTypeHelper.create(level, MalumDamageTypes.KARMIC), target.getMaxHealth() / 2f);

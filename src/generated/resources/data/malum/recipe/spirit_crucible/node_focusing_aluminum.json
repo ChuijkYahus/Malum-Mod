@@ -10,10 +10,10 @@
   ],
   "type": "malum:spirit_focusing",
   "durabilityCost": 2,
-  "ingredient": {
+  "input": {
     "item": "malum:aluminum_impetus"
   },
-  "output": {
+  "result": {
     "count": 3,
     "id": "malum:aluminum_node"
   },

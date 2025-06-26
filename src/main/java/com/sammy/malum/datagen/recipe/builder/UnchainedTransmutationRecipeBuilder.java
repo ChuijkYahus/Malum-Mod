@@ -10,7 +10,7 @@ import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 import javax.annotation.Nullable;
 
-public class UnchainedTransmutationRecipeBuilder implements LodestoneRecipeBuilder<SpiritTransmutationRecipe> {
+public class UnchainedTransmutationRecipeBuilder implements LodestoneRecipeBuilder<UnchainedTransmutationRecipe> {
     private final Ingredient ingredient;
     private final ItemStack output;
 
@@ -36,8 +36,8 @@ public class UnchainedTransmutationRecipeBuilder implements LodestoneRecipeBuild
     }
 
     @Override
-    public SpiritTransmutationRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new SpiritTransmutationRecipe(ingredient, output, group);
+    public UnchainedTransmutationRecipe buildRecipe(ResourceLocation resourceLocation) {
+        return new UnchainedTransmutationRecipe(ingredient, output, group);
     }
 
     public void save(RecipeOutput recipeOutput) {

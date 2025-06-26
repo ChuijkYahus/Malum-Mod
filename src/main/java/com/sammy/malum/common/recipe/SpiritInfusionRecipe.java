@@ -22,38 +22,38 @@ import java.util.*;
 public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipeInput> {
 
     public static final MapCodec<SpiritInfusionRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
-            SizedIngredient.FLAT_CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
-            ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output),
-            SizedIngredient.FLAT_CODEC.listOf().optionalFieldOf("extraIngredients", List.of()).forGetter(recipe -> recipe.extraIngredients),
+            SizedIngredient.FLAT_CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
+            ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result),
             SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter(recipe -> recipe.spirits),
+            SizedIngredient.FLAT_CODEC.listOf().optionalFieldOf("extraInputs", List.of()).forGetter(recipe -> recipe.extraInputs),
             Codec.BOOL.optionalFieldOf("carryOverComponentData", false).forGetter(recipe -> recipe.carryOverComponentData)
     ).apply(obj, SpiritInfusionRecipe::new));
 
     public static final String NAME = "spirit_infusion";
 
-    public final SizedIngredient ingredient;
-    public final ItemStack output;
+    public final SizedIngredient input;
+    public final ItemStack result;
 
-    public final List<SizedIngredient> extraIngredients;
     public final List<SpiritIngredient> spirits;
+    public final List<SizedIngredient> extraInputs;
     public final boolean carryOverComponentData;
 
-    public SpiritInfusionRecipe(SizedIngredient ingredient, ItemStack output, List<SizedIngredient> extraIngredients, List<SpiritIngredient> spirits, boolean carryOverComponentData) {
+    public SpiritInfusionRecipe(SizedIngredient input, ItemStack result, List<SpiritIngredient> spirits, List<SizedIngredient> extraInputs, boolean carryOverComponentData) {
         super(MalumRecipeSerializers.INFUSION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_INFUSION.get());
-        this.ingredient = ingredient;
-        this.output = output;
-        this.extraIngredients = extraIngredients;
+        this.input = input;
+        this.result = result;
         this.spirits = spirits;
+        this.extraInputs = extraInputs;
         this.carryOverComponentData = carryOverComponentData;
     }
 
     @Override
     public boolean matches(SpiritBasedRecipeInput input, Level level) {
-        return input.test(ingredient, spirits);
+        return input.test(this.input, spirits);
     }
 
     public ItemStack getOutput(ServerLevel level, ItemStack input) {
-        ItemStack outputStack = output.copy();
+        ItemStack outputStack = result.copy();
         if (carryOverComponentData) {
             List<DataComponentType<?>> toCopy = new ArrayList<>();
             for (TypedDataComponent<?> component : input.getComponents()) {

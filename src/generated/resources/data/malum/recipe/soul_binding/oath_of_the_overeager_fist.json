@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:void_salts"
@@ -14,11 +14,11 @@
       "item": "minecraft:blaze_powder"
     }
   ],
-  "geas": "malum:oath_of_the_overeager_fist",
-  "ingredient": {
+  "input": {
     "count": 8,
     "item": "malum:mnemonic_fragment"
   },
+  "result": "malum:oath_of_the_overeager_fist",
   "spirits": [
     {
       "type": "malum:arcane",

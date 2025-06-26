@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "malum:soulwoven_silk"
@@ -15,11 +15,11 @@
       "tag": "c:leathers"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "minecraft:leather_leggings"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:soul_hunter_leggings"
   },

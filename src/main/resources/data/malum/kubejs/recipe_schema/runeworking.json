@@ -1,0 +1,25 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "flat_sized_ingredient"
+    },
+    {
+      "name": "secondaryInput",
+      "role": "input",
+      "type": "flat_sized_ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "item_stack"
+    },
+    {
+      "name": "soundType",
+      "role": "other",
+      "type": "registry_element<minecraft:sound_event>",
+      "optional": "malum:runic_workbench_shapes_something"
+    }
+  ]
+}

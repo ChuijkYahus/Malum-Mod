@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:living_flesh"
@@ -10,11 +10,11 @@
       "item": "malum:imitation_flesh"
     }
   ],
-  "geas": "malum:oath_of_the_undiscerned_maw",
-  "ingredient": {
+  "input": {
     "count": 8,
     "item": "malum:malignant_pewter_plating"
   },
+  "result": "malum:oath_of_the_undiscerned_maw",
   "spirits": [
     {
       "type": "malum:sacred",

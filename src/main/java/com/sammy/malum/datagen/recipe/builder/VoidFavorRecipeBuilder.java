@@ -1,6 +1,6 @@
 package com.sammy.malum.datagen.recipe.builder;
 
-import com.sammy.malum.common.recipe.void_favor.FavorOfTheVoidRecipe;
+import com.sammy.malum.common.recipe.VoidFavorRecipe;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
-public class VoidFavorRecipeBuilder implements LodestoneRecipeBuilder<FavorOfTheVoidRecipe> {
+public class VoidFavorRecipeBuilder implements LodestoneRecipeBuilder<VoidFavorRecipe> {
     private final Ingredient input;
 
     private final ItemStack output;
@@ -35,8 +35,8 @@ public class VoidFavorRecipeBuilder implements LodestoneRecipeBuilder<FavorOfThe
     }
 
     @Override
-    public FavorOfTheVoidRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new FavorOfTheVoidRecipe(input, output);
+    public VoidFavorRecipe buildRecipe(ResourceLocation resourceLocation) {
+        return new VoidFavorRecipe(input, output);
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:astral_weave"
@@ -14,11 +14,11 @@
       "item": "minecraft:feather"
     }
   ],
-  "geas": "malum:pact_of_the_cloudskipper",
-  "ingredient": {
+  "input": {
     "count": 16,
     "item": "malum:wind_nucleus"
   },
+  "result": "malum:pact_of_the_cloudskipper",
   "spirits": [
     {
       "type": "malum:aerial",

@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:warp_flux"
@@ -14,11 +14,11 @@
       "item": "malum:soul_stained_steel_plating"
     }
   ],
-  "geas": "malum:pact_of_reciprocation",
-  "ingredient": {
+  "input": {
     "count": 8,
     "item": "malum:imitation_flesh"
   },
+  "result": "malum:pact_of_reciprocation",
   "spirits": [
     {
       "type": "malum:arcane",

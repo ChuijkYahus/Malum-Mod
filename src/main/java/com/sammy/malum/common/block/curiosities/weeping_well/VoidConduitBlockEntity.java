@@ -138,7 +138,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         var sound = MalumSoundEvents.VOID_REJECTION.get();
         var outputStack = stack.copy();
         if (recipe != null) {
-            outputStack = recipe.output.copyWithCount(stack.getCount());
+            outputStack = recipe.result.copyWithCount(stack.getCount());
             sound = MalumSoundEvents.VOID_TRANSMUTATION.get();
         }
         ItemEntity entity = new ItemEntity(level, outputPosition.x, outputPosition.y, outputPosition.z, outputStack);

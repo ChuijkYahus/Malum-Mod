@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:hex_ash"
@@ -10,11 +10,11 @@
       "item": "malum:refined_soulstone"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 4,
     "item": "malum:alchemical_calx"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:impurity_stabilizer"
   },

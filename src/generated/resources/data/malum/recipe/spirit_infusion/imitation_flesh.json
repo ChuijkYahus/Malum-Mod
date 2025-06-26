@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:living_flesh"
@@ -14,11 +14,11 @@
       "item": "malum:rotting_essence"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 4,
     "item": "malum:alchemical_calx"
   },
-  "output": {
+  "result": {
     "count": 4,
     "id": "malum:imitation_flesh"
   },

@@ -1,0 +1,14 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "item_stack"
+    }
+  ]
+}

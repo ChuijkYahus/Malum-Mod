@@ -8,15 +8,15 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
-public class SpiritTransmutationRecipe extends LodestoneInWorldRecipe<SingleRecipeInput> {
+public class UnchainedTransmutationRecipe extends LodestoneInWorldRecipe<SingleRecipeInput> {
 
-    public static final MapCodec<SpiritTransmutationRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
-            Ingredient.CODEC.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
-            ItemStack.CODEC.fieldOf("output").forGetter((recipe) -> recipe.output),
+    public static final MapCodec<UnchainedTransmutationRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
+            Ingredient.CODEC.fieldOf("input").forGetter((recipe) -> recipe.ingredient),
+            ItemStack.CODEC.fieldOf("result").forGetter((recipe) -> recipe.output),
             Codec.STRING.optionalFieldOf("group", "").forGetter((recipe) -> recipe.group)
-    ).apply(obj, SpiritTransmutationRecipe::new));
+    ).apply(obj, UnchainedTransmutationRecipe::new));
 
-    public static final String NAME = "spirit_transmutation";
+    public static final String NAME = "unchained_transmutation";
 
     public final Ingredient ingredient;
 
@@ -24,7 +24,7 @@ public class SpiritTransmutationRecipe extends LodestoneInWorldRecipe<SingleReci
 
     public final String group;
 
-    public SpiritTransmutationRecipe(Ingredient ingredient, ItemStack output, String group) {
+    public UnchainedTransmutationRecipe(Ingredient ingredient, ItemStack output, String group) {
         super(MalumRecipeSerializers.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), output);
         this.ingredient = ingredient;
         this.output = output;

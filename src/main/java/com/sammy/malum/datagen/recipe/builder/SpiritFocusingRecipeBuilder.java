@@ -49,7 +49,7 @@ public class SpiritFocusingRecipeBuilder implements LodestoneRecipeBuilder<Spiri
 
     @Override
     public SpiritFocusingRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new SpiritFocusingRecipe(time, durabilityCost, input, output, spirits);
+        return new SpiritFocusingRecipe(input, output, spirits, time, durabilityCost);
     }
 
     @Override

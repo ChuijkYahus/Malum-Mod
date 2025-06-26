@@ -1,10 +1,10 @@
 {
   "type": "malum:spirit_focusing",
   "durabilityCost": 1,
-  "ingredient": {
+  "input": {
     "item": "malum:zephyr_impetus"
   },
-  "output": {
+  "result": {
     "count": 4,
     "id": "minecraft:wind_charge"
   },

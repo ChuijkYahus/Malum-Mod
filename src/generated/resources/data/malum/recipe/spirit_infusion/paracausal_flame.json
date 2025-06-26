@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "tag": "c:obsidians/crying"
@@ -10,11 +10,11 @@
       "item": "malum:hex_ash"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ether"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:paracausal_flame"
   },

@@ -1,9 +1,6 @@
 {
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
-  "inputs": [
-    "malum:mnemonic_hex_staff"
-  ],
   "repairMaterial": {
     "count": 8,
     "item": "malum:mnemonic_fragment"
@@ -21,5 +18,8 @@
       "type": "malum:aqueous",
       "count": 8
     }
+  ],
+  "validItems": [
+    "malum:mnemonic_hex_staff"
   ]
 }

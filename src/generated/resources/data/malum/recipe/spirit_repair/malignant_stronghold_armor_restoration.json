@@ -1,12 +1,6 @@
 {
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
-  "inputs": [
-    "malum:malignant_stronghold_helmet",
-    "malum:malignant_stronghold_chestplate",
-    "malum:malignant_stronghold_leggings",
-    "malum:malignant_stronghold_boots"
-  ],
   "repairMaterial": {
     "count": 2,
     "item": "malum:malignant_pewter_plating"
@@ -24,5 +18,11 @@
       "type": "malum:earthen",
       "count": 16
     }
+  ],
+  "validItems": [
+    "malum:malignant_stronghold_helmet",
+    "malum:malignant_stronghold_chestplate",
+    "malum:malignant_stronghold_leggings",
+    "malum:malignant_stronghold_boots"
   ]
 }

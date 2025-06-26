@@ -284,9 +284,9 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (durabilityCost > 0) {
             impetus.hurtAndBreak(durabilityCost, level, null, brokenStack -> {
                 Holder<net.minecraft.world.item.Item> itemHolder = level.registryAccess().registry(Registries.ITEM).orElseThrow().wrapAsHolder(brokenStack.asItem());
-                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_CONVERSION);
+                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
                 if (data != null) {
-                    inventory.setStackInSlot(0, data.fracturedImpetus().value().getDefaultInstance());
+                    inventory.setStackInSlot(0, data.otherImpetus().value().getDefaultInstance());
                 }
             });
             if (MendingDiffuserItem.repairImpetus(level, attributes, impetus)) {

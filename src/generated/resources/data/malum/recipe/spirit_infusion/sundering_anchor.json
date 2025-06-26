@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "item": "malum:fused_consciousness"
@@ -19,11 +19,11 @@
       "item": "malum:malignant_pewter_plating"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soul_stained_steel_knife"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:sundering_anchor"
   },
