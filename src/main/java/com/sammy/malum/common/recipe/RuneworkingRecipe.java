@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -17,16 +18,16 @@ public class RuneworkingRecipe extends LodestoneInWorldRecipe<RuneworkingRecipe.
             SizedIngredient.FLAT_CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
             SizedIngredient.FLAT_CODEC.fieldOf("secondaryInput").forGetter(recipe -> recipe.secondaryInput),
             ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
-            SoundEvent.CODEC.fieldOf("soundType").forGetter(recipe -> recipe.soundType)
+            BuiltInRegistries.SOUND_EVENT.byNameCodec().fieldOf("soundType").forGetter(recipe -> recipe.soundType)
     ).apply(obj, RuneworkingRecipe::new));
 
     public static final String NAME = "runeworking";
 
     public final SizedIngredient input;
     public final SizedIngredient secondaryInput;
-    public final Holder<SoundEvent> soundType;
+    public final SoundEvent soundType;
 
-    public RuneworkingRecipe(SizedIngredient input, SizedIngredient secondaryInput, ItemStack output, Holder<SoundEvent> soundType) {
+    public RuneworkingRecipe(SizedIngredient input, SizedIngredient secondaryInput, ItemStack output, SoundEvent soundType) {
         super(MalumRecipeSerializers.RUNEWORKING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.RUNEWORKING.get(), output);
         this.input = input;
         this.secondaryInput = secondaryInput;

@@ -205,18 +205,18 @@ public class ArtificeEntries {
                 .addPage(new TextPage("arcane_restoration.2"))
                 .addPage(SpiritRepairPage.fromId("alchemical_impetus_restoration"))
                 .addPage(new CyclingPage(
-                        SpiritRepairPage.fromOutput(IRON_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(GOLD_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(COPPER_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(LEAD_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(SILVER_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(ALUMINUM_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(NICKEL_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(URANIUM_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(OSMIUM_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(ZINC_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(TIN_IMPETUS.get()),
-                        SpiritRepairPage.fromOutput(COBALT_IMPETUS.get())
+                        SpiritRepairPage.fromOutput(FRACTURED_IRON_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_GOLD_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_COPPER_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_LEAD_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_SILVER_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_ALUMINUM_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_NICKEL_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_URANIUM_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_OSMIUM_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_ZINC_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_TIN_IMPETUS.get()),
+                        SpiritRepairPage.fromOutput(FRACTURED_COBALT_IMPETUS.get())
                 ))
                 .addReference(new EntryReference(IRON_PICKAXE, BookEntry.build("arcane_restoration.tool_repair")
                         .addPage(new HeadlineTextPage("arcane_restoration.tool_repair", "arcane_restoration.tool_repair.1"))

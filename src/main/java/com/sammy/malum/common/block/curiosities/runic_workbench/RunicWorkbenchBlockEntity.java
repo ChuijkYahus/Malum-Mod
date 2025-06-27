@@ -125,7 +125,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             } else if (input.primaryInput().getItem() instanceof SpiritShardItem shardItem) {
                 spirit = shardItem;
             }
-            serverLevel.playSound(null, worldPosition, recipe.soundType.value(), SoundSource.BLOCKS, 1, RandomHelper.randomBetween(serverLevel.random, 0.9f, 1.2f));
+            serverLevel.playSound(null, worldPosition, recipe.soundType, SoundSource.BLOCKS, 1, RandomHelper.randomBetween(serverLevel.random, 0.9f, 1.2f));
             var effectType = spirit != null ? MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_RUNE : MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM;
             var particle = effectType.createEffect(worldPosition).customData(new RunicWorkbenchEffectData(input.primaryInput().copy(), input.secondaryInput().copy()));
             if (spirit != null) {

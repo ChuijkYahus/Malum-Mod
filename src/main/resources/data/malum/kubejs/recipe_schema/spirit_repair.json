@@ -14,8 +14,7 @@
     {
       "name": "repairMaterial",
       "role": "input",
-      "type": "flat_sized_ingredient",
-      "optional": []
+      "type": "flat_sized_ingredient"
     },
     {
       "name": "durabilityPercentage",

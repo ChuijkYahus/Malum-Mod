@@ -58,8 +58,6 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
 
     @Override
     public SpiritRepairRecipe buildRecipe(ResourceLocation resourceLocation) {
-
-
         return new SpiritRepairRecipe(validItems, spirits, repairMaterial, repairEfficiency, regex);
     }
 

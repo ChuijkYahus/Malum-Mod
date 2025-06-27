@@ -16,7 +16,7 @@ import dev.latvian.mods.rhino.type.*;
 public record SpiritRepairRegexDataJSComponent(String name, Codec<SpiritRepairRegexData> codec) implements RecipeComponent<SpiritRepairRegexData> {
 
     public static final RecipeComponent<SpiritRepairRegexData> REGEX_DATA = new SpiritRepairRegexDataJSComponent("malum:repair_regex", SpiritRepairRegexData.CODEC);
-    public static final TypeInfo TYPE_INFO = TypeInfo.of(SpiritIngredient.class);
+    public static final TypeInfo TYPE_INFO = TypeInfo.of(SpiritRepairRegexData.class);
 
     @Override
     public boolean matches(Context cx, KubeRecipe recipe, SpiritRepairRegexData value, ReplacementMatchInfo match) {
@@ -57,11 +57,11 @@ public record SpiritRepairRegexDataJSComponent(String name, Codec<SpiritRepairRe
     }
 
     public static SpiritRepairRegexData read(StringReader reader) throws CommandSyntaxException {
-        reader.skipWhitespace();
-        String modIdRegex = reader.readString();
-        if (modIdRegex.isEmpty()) {
+        if (!reader.canRead()) {
             return SpiritRepairRegexData.EMPTY;
         }
+        reader.skipWhitespace();
+        String modIdRegex = reader.readString();
         reader.skipWhitespace();
         String itemIdRegex = reader.readString();
 

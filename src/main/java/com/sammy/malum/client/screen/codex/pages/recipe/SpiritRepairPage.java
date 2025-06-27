@@ -33,8 +33,8 @@ public class SpiritRepairPage extends BookPage {
     private final List<ItemStack> damagedStacks;
     private final List<ItemStack> repairedStacks;
 
-    public SpiritRepairPage(Level level, Predicate<SpiritRepairRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(level, MalumRecipeTypes.SPIRIT_REPAIR.get(), predicate));
+    public SpiritRepairPage(Predicate<SpiritRepairRecipe> predicate) {
+        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_REPAIR.get(), predicate));
     }
 
     public SpiritRepairPage(SpiritRepairRecipe recipe) {
@@ -50,12 +50,13 @@ public class SpiritRepairPage extends BookPage {
     }
 
     public static SpiritRepairPage fromOutput(Item outputItem) {
-        return new SpiritRepairPage(Minecraft.getInstance().level, recipe -> recipe.isValidItemForRepair(outputItem));
+        return new SpiritRepairPage(recipe -> recipe.isValidItemForRepair(outputItem));
     }
 
     public static SpiritRepairPage fromId(String recipeId) {
         return fromId(MalumMod.malumPath(recipeId));
     }
+
     public static SpiritRepairPage fromId(ResourceLocation recipeId) {
         var level = Minecraft.getInstance().level;
         final ResourceLocation other = recipeId.withPrefix("spirit_repair/");

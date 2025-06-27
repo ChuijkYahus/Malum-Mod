@@ -43,6 +43,7 @@ import team.lodestar.lodestone.systems.recipe.*;
 import javax.annotation.Nullable;
 import java.util.function.*;
 
+@SuppressWarnings("deprecation")
 public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeAcceptor, IMalumSpecialItemAccessPoint, IItemHandlerSupplier {
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
@@ -282,9 +283,8 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             fortuneChance -= 1;
         }
         if (durabilityCost > 0) {
-            impetus.hurtAndBreak(durabilityCost, level, null, brokenStack -> {
-                Holder<net.minecraft.world.item.Item> itemHolder = level.registryAccess().registry(Registries.ITEM).orElseThrow().wrapAsHolder(brokenStack.asItem());
-                ImpetusDataMap data = itemHolder.getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
+            impetus.hurtAndBreak(44444, level, null, brokenStack -> {
+                ImpetusDataMap data = brokenStack.builtInRegistryHolder().getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
                 if (data != null) {
                     inventory.setStackInSlot(0, data.otherImpetus().value().getDefaultInstance());
                 }

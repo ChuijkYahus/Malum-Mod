@@ -21,6 +21,7 @@ public class MalumDataMaps {
 
     public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
         event.register(FRACTURED_IMPETUS_VARIANT);
+        event.register(REPAIRED_IMPETUS_VARIANT);
         event.register(TOTEM_POLE_CONVERSION);
     }
 }

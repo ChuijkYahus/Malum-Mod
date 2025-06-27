@@ -18,7 +18,7 @@ import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
 public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RuneworkingRecipe> {
     private final ItemStack output;
-    private final Holder<SoundEvent> soundType;
+    private final SoundEvent soundType;
 
     private ItemStack primaryInput;
     private SizedIngredient secondaryInput;
@@ -27,7 +27,7 @@ public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<Runew
         this(getRuneSound(output), output, outputCount);
     }
     public RunicWorkbenchRecipeBuilder(Holder<SoundEvent> soundType, ItemLike output, int outputCount) {
-        this.soundType = soundType;
+        this.soundType = soundType.value();
         this.output = new ItemStack(output.asItem(), outputCount);
     }
 
