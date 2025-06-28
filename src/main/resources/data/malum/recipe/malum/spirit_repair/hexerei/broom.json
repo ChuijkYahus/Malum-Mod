@@ -6,26 +6,27 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": ".+broom_brush",
-  "modIdRegex": "hexerei",
-  "durabilityPercentage": 0.5,
-  "inputs": [],
+  "regex": {
+    "itemIdRegex": ".+broom_brush",
+    "modIdRegex": "hexerei"
+  },
+  "durabilityPercentage": 1.0,
   "repairMaterial": {
-    "item": "hexerei:mandrake_root",
-    "count": 4
+    "count": 4,
+    "item": "hexerei:mandrake_root"
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 16
     },
     {
-      "type": "aerial",
+      "type": "malum:aerial",
       "count": 16
     },
     {
-      "type": "eldritch",
-      "count": 2
+      "type": "malum:eldritch",
+      "count": 16
     }
   ]
 }
