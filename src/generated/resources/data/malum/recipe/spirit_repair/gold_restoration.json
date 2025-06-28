@@ -1,8 +1,7 @@
 {
   "type": "malum:spirit_repair",
   "regex": {
-    "itemIdRegex": "golden_.+",
-    "modIdRegex": ""
+    "itemIdRegex": "golden_.+"
   },
   "repairMaterial": {
     "count": 2,

@@ -20,7 +20,7 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
         var has = MalumRecipes.has(MalumItems.REPAIR_PYLON.get());
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(ItemTags.PLANKS, 4), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("wooden_.+"))
+                .withRegex(SpiritRepairRegexData.simple("wooden_.+"))
                 .addSpirit(SACRED_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .withValidItem(Items.BOW)
@@ -29,45 +29,45 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .save(recipeOutput, MalumMod.malumPath("wooden_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Items.FLINT, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("flint_.+"))
+                .withRegex(SpiritRepairRegexData.simple("flint_.+"))
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("flint_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(ItemTags.STONE_TOOL_MATERIALS, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("stone_.+"))
+                .withRegex(SpiritRepairRegexData.simple("stone_.+"))
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("stone_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Tags.Items.INGOTS_COPPER, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("copper_.+"))
+                .withRegex(SpiritRepairRegexData.simple("copper_.+"))
                 .addSpirit(EARTHEN_SPIRIT, 6)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("copper_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Tags.Items.INGOTS_IRON, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("iron_.+"))
+                .withRegex(SpiritRepairRegexData.simple("iron_.+"))
                 .withValidItem(MalumItems.CRUDE_SCYTHE.get())
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("iron_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Tags.Items.INGOTS_GOLD, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("golden_.+"))
+                .withRegex(SpiritRepairRegexData.simple("golden_.+"))
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("gold_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 2), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("diamond_.+"))
+                .withRegex(SpiritRepairRegexData.simple("diamond_.+"))
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("diamond_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 1), 0.5f)
-                .withRegex(SpiritRepairRegexData.any("netherite_.+"))
+                .withRegex(SpiritRepairRegexData.simple("netherite_.+"))
                 .addSpirit(INFERNAL_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(EARTHEN_SPIRIT, 16)

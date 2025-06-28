@@ -3,6 +3,9 @@ This is a significant internal change that ideally should not affect gameplay wh
 However this does mean that spirit registry names now come with a mod identifier in addition to a name
 Any third party compat will need to be updated accordingly
 
+Updated the formats for most recipes added by Malum
+Any third party recipe compat needs to be updated accordingly
+
 Added the Ravenous Pouch
 Updated the Runic Workbench Visuals, Sounds and Model
 Runic Workbench Recipes now support regular items as a secondary input

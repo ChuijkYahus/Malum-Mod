@@ -61,13 +61,17 @@ public record SpiritRepairRegexDataJSComponent(String name, Codec<SpiritRepairRe
             return SpiritRepairRegexData.EMPTY;
         }
         reader.skipWhitespace();
-        String modIdRegex = reader.readString();
-        reader.skipWhitespace();
-        String itemIdRegex = reader.readString();
-
-        if (itemIdRegex.isEmpty()) {
-            itemIdRegex = modIdRegex;
+        String string = reader.readString();
+        if (string.contains(":")) {
+            String[] parts = string.split(":", 2);
+            String modIdRegex = parts[0];
+            String itemIdRegex = parts[1];
+            return new SpiritRepairRegexData(modIdRegex, itemIdRegex, null);
         }
-        return new SpiritRepairRegexData(modIdRegex, itemIdRegex);
+        if (string.startsWith("#")) {
+            String tag = string.substring(1);
+            return SpiritRepairRegexData.tag(tag);
+        }
+        return SpiritRepairRegexData.simple(string);
     }
 }

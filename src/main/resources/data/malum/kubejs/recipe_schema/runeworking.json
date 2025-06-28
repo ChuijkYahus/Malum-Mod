@@ -18,7 +18,7 @@
     {
       "name": "soundType",
       "role": "other",
-      "type": "registry_element<minecraft:sound_event>",
+      "type": "malum:runic_workbench_sound",
       "optional": "malum:runic_workbench_shapes_something"
     }
   ]

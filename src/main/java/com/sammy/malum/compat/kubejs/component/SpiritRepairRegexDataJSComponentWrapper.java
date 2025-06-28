@@ -5,7 +5,7 @@ import dev.latvian.mods.kubejs.typings.*;
 import dev.latvian.mods.kubejs.util.*;
 import dev.latvian.mods.rhino.util.*;
 
-@Info("Spirit Ingredient Builder Methods")
+@Info("Spirit Repair Regex Data Builder Methods")
 public interface SpiritRepairRegexDataJSComponentWrapper {
 
     @HideFromJS
