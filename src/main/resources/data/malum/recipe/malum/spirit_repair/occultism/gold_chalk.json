@@ -6,20 +6,18 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "",
-  "modIdRegex": "",
   "durabilityPercentage": 1,
-  "inputs": [
-    "occultism:chalk_gold"
-  ],
   "repairMaterial": {
-    "tag": "neoforge:dusts/gold",
-    "count": 1
+    "count": 1,
+    "tag": "c:dusts/gold"
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 8
     }
+  ],
+  "inputs": [
+    "occultism:chalk_gold"
   ]
 }

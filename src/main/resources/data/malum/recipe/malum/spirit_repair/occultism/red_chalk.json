@@ -6,20 +6,18 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "",
-  "modIdRegex": "",
   "durabilityPercentage": 1,
-  "inputs": [
-    "occultism:chalk_red"
-  ],
   "repairMaterial": {
-    "item": "occultism:afrit_essence",
-    "count": 1
+    "count": 1,
+    "item": "occultism:afrit_essence"
   },
   "spirits": [
     {
-      "type": "arcane",
-      "count": 16
+      "type": "malum:arcane",
+      "count": 8
     }
+  ],
+  "inputs": [
+    "occultism:chalk_red"
   ]
 }

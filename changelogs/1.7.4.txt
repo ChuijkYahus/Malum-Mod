@@ -6,6 +6,8 @@ Any third party compat will need to be updated accordingly
 Updated the formats for most recipes added by Malum
 Any third party recipe compat needs to be updated accordingly
 
+Added KubeJS compat for all Malum recipes
+
 Added the Ravenous Pouch
 Updated the Runic Workbench Visuals, Sounds and Model
 Runic Workbench Recipes now support regular items as a secondary input

@@ -6,20 +6,18 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "",
-  "modIdRegex": "",
   "durabilityPercentage": 1,
-  "inputs": [
-    "occultism:chalk_purple"
-  ],
   "repairMaterial": {
-    "tag": "neoforge:dusts/obsidian",
-    "count": 2
+    "count": 2,
+    "tag": "c:dusts/obsidian"
   },
   "spirits": [
     {
-      "type": "arcane",
+      "type": "malum:arcane",
       "count": 8
     }
+  ],
+  "inputs": [
+    "occultism:chalk_purple"
   ]
 }
