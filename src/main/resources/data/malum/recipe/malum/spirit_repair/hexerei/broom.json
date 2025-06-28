@@ -6,10 +6,6 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "regex": {
-    "itemIdRegex": ".+broom_brush",
-    "modIdRegex": "hexerei"
-  },
   "durabilityPercentage": 1.0,
   "repairMaterial": {
     "count": 4,
@@ -28,5 +24,9 @@
       "type": "malum:eldritch",
       "count": 16
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": ".+broom_brush",
+    "modIdRegex": "hexerei"
+  }
 }

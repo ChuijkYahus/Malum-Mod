@@ -6,10 +6,6 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "regex": {
-    "itemIdRegex": "witch_.+",
-    "modIdRegex": "hexerei"
-  },
   "durabilityPercentage": 0.5,
   "repairMaterial": {
     "count": 4,
@@ -28,5 +24,9 @@
       "type": "malum:eldritch",
       "count": 8
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": "witch_.+",
+    "modIdRegex": "hexerei"
+  }
 }
