@@ -81,6 +81,6 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
                 .setColor(spiritType.getPrimaryColor())
                 .setRenderType(renderType)
                 .setAlpha(delta)
-                .renderBeam(poseStack.last().pose(), startPos, midPoint, 0.4f, b -> b.setColor(spiritType.getSecondaryColor()).setAlpha(0f));
+                .renderBeam(startPos, midPoint, 0.4f, b -> b.setColor(spiritType.getSecondaryColor()).setAlpha(0f));
     }
 }

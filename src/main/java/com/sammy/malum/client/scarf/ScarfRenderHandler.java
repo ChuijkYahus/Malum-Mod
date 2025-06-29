@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
+import org.joml.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -16,6 +17,7 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
+import java.lang.Math;
 import java.util.*;
 import java.util.List;
 import java.util.function.*;
@@ -142,8 +144,9 @@ public class ScarfRenderHandler {
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
+            Matrix4f last = poseStack.last().pose();
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
-            builder.usePartialTicks(0).renderTrail(poseStack, points,
+            builder.usePartialTicks(0).renderTrail(last, points,
                     f -> Mth.lerp(f, endingScale, scale),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
             );

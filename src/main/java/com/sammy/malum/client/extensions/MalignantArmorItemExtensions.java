@@ -28,7 +28,7 @@ public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
                     RenderTypeToken.createToken(skin.name().withPrefix("textures/vfx/scarf/").withSuffix(".png"))
                     : MalumRenderTypeTokens.SCARF;
             ScarfRenderHandler.addScarfRenderer(entity, (consumer) -> {
-                final boolean noSkin = skin == null;
+                boolean noSkin = skin == null;
                 int scarfCount = noSkin ? 2 : 1;
                 float scale = noSkin ? 0.35f : 0.4f;
                 float endingScale = noSkin ? 0.45f : 1f;
@@ -36,7 +36,7 @@ public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
                 for (int i = 0; i < scarfCount; i++) {
                     var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, ClientConfig.SCARF_LENGTH.getConfigValue())
                             .setPredicate(() -> {
-                                final ItemStack stack = entity.getItemBySlot(armorSlot);
+                                ItemStack stack = entity.getItemBySlot(armorSlot);
                                 return !stack.isEmpty() && stack.is(itemStack.getItem());
                             })
                             .setScale(scale)
