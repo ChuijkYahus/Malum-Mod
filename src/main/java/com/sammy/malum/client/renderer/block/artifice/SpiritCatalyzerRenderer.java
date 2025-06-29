@@ -77,10 +77,11 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
         float distance = 0.35f + Easing.SINE_OUT.ease(delta, 0, 0.35f, 1);
         var midPoint = startPos.add(difference.scale(distance));
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
+        PoseStack.Pose last = poseStack.last();
         SpiritBasedWorldVFXBuilder.create(spiritType)
                 .setColor(spiritType.getPrimaryColor())
                 .setRenderType(renderType)
                 .setAlpha(delta)
-                .renderBeam(startPos, midPoint, 0.4f, b -> b.setColor(spiritType.getSecondaryColor()).setAlpha(0f));
+                .renderBeam(last, startPos, midPoint, 0.4f, b -> b.setColor(spiritType.getSecondaryColor()).setAlpha(0f));
     }
 }

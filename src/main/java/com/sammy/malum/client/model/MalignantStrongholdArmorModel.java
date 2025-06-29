@@ -81,7 +81,7 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
             float z = (float) Math.toRadians(f3 / 2.0F);
             lowerScarf.setRotation(x / 2f, y / 2f, z / 2f);
             middleScarf.setRotation(x, y, z);
-            upperScarf.setRotation(x / 2f, y / 2f, z / 2f);
+            upperScarf.setRotation(x, y, z);
         } else {
             lowerScarf.setRotation(0, 0, 0);
             middleScarf.setRotation(0, 0, 0);
