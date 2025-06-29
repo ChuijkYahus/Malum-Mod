@@ -22,23 +22,23 @@ import team.lodestar.lodestone.systems.model.LodestoneArmorModel;
 public class SoulHunterArmorModel extends LodestoneArmorModel {
     public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("soul_hunter_armor"), "main");
 
-    public ModelPart cape;
-    public ModelPart hood;
+    public RotatedModelPart cape;
+    public RotatedModelPart hood;
 
     public SoulHunterArmorModel(ModelPart root) {
         super(root);
-        this.cape = root.getChild("cape");
-        this.hood = root.getChild("hood");
+        this.cape = RotatedModelPart.of(root.getChild("cape"));
+        this.hood = RotatedModelPart.of(root.getChild("hood"));
     }
 
     @Override
     protected Iterable<ModelPart> bodyParts() {
         if (this.slot == EquipmentSlot.CHEST) {
-            return ImmutableList.of(this.body, this.leftArm, this.rightArm, this.cape, this.hood);
+            return ImmutableList.of(body, leftArm, rightArm, cape.getPart(), hood.getPart());
         } else if (this.slot == EquipmentSlot.LEGS) {
-            return ImmutableList.of(this.leftLegging, this.rightLegging, this.leggings);
+            return ImmutableList.of(leftLegging, rightLegging, leggings);
         } else {
-            return this.slot == EquipmentSlot.FEET ? ImmutableList.of(this.leftFoot, this.rightFoot) : ImmutableList.of();
+            return this.slot == EquipmentSlot.FEET ? ImmutableList.of(leftFoot, rightFoot) : ImmutableList.of();
         }
     }
 
@@ -53,7 +53,7 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
     @Override
     public void setupAnim(LivingEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         float pPartialTicks = Minecraft.getInstance().timer.getGameTimeDeltaTicks();
-        hood.visible = pEntity.getItemBySlot(EquipmentSlot.HEAD).isEmpty();
+        hood.setVisible(pEntity.getItemBySlot(EquipmentSlot.HEAD).isEmpty());
         if (pEntity instanceof AbstractClientPlayer clientPlayer) {
             double d0 = Mth.lerp(pPartialTicks, clientPlayer.xCloakO, clientPlayer.xCloak) - Mth.lerp(pPartialTicks, pEntity.xo, pEntity.getX());
             double d1 = Mth.lerp(pPartialTicks, clientPlayer.yCloakO, clientPlayer.yCloak) - Mth.lerp(pPartialTicks, pEntity.yo, pEntity.getY());
@@ -78,19 +78,11 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
             float x = (float) Math.toRadians(6.0F + f2 / 2.0F + f1);
             float y = (float) Math.toRadians(f3 / 2.0F);
             float z = (float) Math.toRadians(f3 / 2.0F);
-            cape.xRot = x;
-            cape.yRot = y;
-            cape.zRot = z;
-            hood.xRot = x / 3f;
-            hood.yRot = y / 3f;
-            hood.zRot = z / 3f;
+            cape.setRotation(x, y, z);
+            hood.setRotation(x / 3f, y / 3f, z / 3f);
         } else {
-            cape.xRot = 0;
-            cape.yRot = 0;
-            cape.zRot = 0;
-            hood.xRot = 0;
-            hood.yRot = 0;
-            hood.zRot = 0;
+            cape.setRotation(0, 0, 0);
+            hood.setRotation(0, 0, 0);
         }
         super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
     }

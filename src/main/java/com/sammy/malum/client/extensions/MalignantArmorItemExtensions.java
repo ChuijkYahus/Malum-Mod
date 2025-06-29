@@ -27,18 +27,27 @@ public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
             RenderTypeToken scarfToken = skin != null ?
                     RenderTypeToken.createToken(skin.name().withPrefix("textures/vfx/scarf/").withSuffix(".png"))
                     : MalumRenderTypeTokens.SCARF;
-            ScarfRenderHandler.addScarfRenderer(entity,
-                    l -> {
-                        var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, ClientConfig.SCARF_LENGTH.getConfigValue())
-                                .setPredicate(() -> entity.getItemBySlot(armorSlot).is(itemStack.getItem()))
-                                .setScale(0.4f);
-                        if (skin == null) {
-                            data.setPrimaryColor(new Color(183, 45, 69)).setSecondaryColor(new Color(126, 25, 95));
-                        }
-                        return data;
+            ScarfRenderHandler.addScarfRenderer(entity, (consumer) -> {
+                final boolean noSkin = skin == null;
+                int scarfCount = noSkin ? 2 : 1;
+                float scale = noSkin ? 0.35f : 0.4f;
+                float endingScale = noSkin ? 0.45f : 1f;
+                float offset = noSkin ? 0.25f : 0.2f;
+                for (int i = 0; i < scarfCount; i++) {
+                    var data = new ScarfRenderHandler.ScarfRenderData(scarfToken, ClientConfig.SCARF_LENGTH.getConfigValue())
+                            .setPredicate(() -> {
+                                final ItemStack stack = entity.getItemBySlot(armorSlot);
+                                return !stack.isEmpty() && stack.is(itemStack.getItem());
+                            })
+                            .setScale(scale)
+                            .setEndingScale(endingScale)
+                            .setHorizontalOffset(i == 0 ? -offset : offset);
+                    if (noSkin) {
+                        data.setSecondaryColor(new Color(150, 150, 150));
                     }
-            );
-
+                    consumer.accept(data);
+                }
+            });
         }
         return model;
     }
