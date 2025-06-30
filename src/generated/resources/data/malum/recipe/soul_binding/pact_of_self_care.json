@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "minecraft:salmon"
@@ -10,11 +10,11 @@
       "item": "minecraft:nautilus_shell"
     }
   ],
-  "geas": "malum:pact_of_self_care",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "minecraft:prismarine_crystals"
   },
+  "result": "malum:pact_of_self_care",
   "spirits": [
     {
       "type": "malum:aqueous",

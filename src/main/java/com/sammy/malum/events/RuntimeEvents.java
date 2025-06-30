@@ -11,13 +11,13 @@ import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.geas.pact.sacred.*;
 import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
-import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
+import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.listeners.*;
@@ -108,13 +108,13 @@ public class RuntimeEvents {
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
+    public static void onPlayerTick(PlayerTickEvent.Pre event) {
         StaffAbilityHandler.recoverStaffCharges(event);
     }
 
     @SubscribeEvent
-    public static void onBreakBlock(BlockEvent.BreakEvent event) {
-        FlameKeeperGeas.breakBlock(event);
+    public static void modifyBlockDrops(BlockDropsEvent event) {
+        ProspectorGeas.modifyBlockDrops(event);
     }
 
     @SubscribeEvent
@@ -149,8 +149,12 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onPickupItem(ItemEntityPickupEvent.Pre event) {
         SoulwovenPouchItem.trySwallowItem(event);
+        RavenousPouchItem.trySwallowItem(event);
     }
-
+    @SubscribeEvent
+    public static void onPickupItem(ItemEntityPickupEvent.Post event) {
+        ProspectorGeas.pickupItem(event);
+    }
 
     @SubscribeEvent
     public static void onHurt(LivingDamageEvent.Post event) {

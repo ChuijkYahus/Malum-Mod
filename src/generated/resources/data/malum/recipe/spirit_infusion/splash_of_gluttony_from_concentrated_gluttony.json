@@ -1,16 +1,16 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "tag": "c:gunpowders"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:concentrated_gluttony"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:splash_of_gluttony"
   },

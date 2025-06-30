@@ -74,7 +74,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
         JEIHelper.addItemsToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits.stream().map(ICustomIngredient::toVanilla).toList());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
-                .addIngredients(recipe.ingredient);
+                .addIngredients(recipe.input);
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
                 .addItemStack(recipe.output);
     }

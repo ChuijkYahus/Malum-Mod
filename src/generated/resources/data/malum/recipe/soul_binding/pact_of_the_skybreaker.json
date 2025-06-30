@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:astral_weave"
@@ -14,11 +14,11 @@
       "item": "minecraft:phantom_membrane"
     }
   ],
-  "geas": "malum:pact_of_the_skybreaker",
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "minecraft:heavy_core"
   },
+  "result": "malum:pact_of_the_skybreaker",
   "spirits": [
     {
       "type": "malum:aerial",

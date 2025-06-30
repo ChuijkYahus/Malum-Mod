@@ -1,6 +1,6 @@
 package com.sammy.malum.compat.jei.categories;
 
-import com.sammy.malum.common.recipe.void_favor.FavorOfTheVoidRecipe;
+import com.sammy.malum.common.recipe.VoidFavorRecipe;
 import com.sammy.malum.compat.jei.JEIHandler;
 import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
-public class WeepingWellRecipeCategory implements IRecipeCategory<FavorOfTheVoidRecipe> {
+public class WeepingWellRecipeCategory implements IRecipeCategory<VoidFavorRecipe> {
 
     public static final ResourceLocation UID = malumPath("weeping_well");
     private final IDrawable overlay;
@@ -33,12 +33,12 @@ public class WeepingWellRecipeCategory implements IRecipeCategory<FavorOfTheVoid
     }
 
     @Override
-    public void draw(FavorOfTheVoidRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(VoidFavorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
     }
 
     @Override
-    public RecipeType<FavorOfTheVoidRecipe> getRecipeType() {
+    public RecipeType<VoidFavorRecipe> getRecipeType() {
         return JEIHandler.WEEPING_WELL;
     }
 
@@ -64,12 +64,12 @@ public class WeepingWellRecipeCategory implements IRecipeCategory<FavorOfTheVoid
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, FavorOfTheVoidRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, VoidFavorRecipe recipe, IFocusGroup focuses) {
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
-            .addIngredients(recipe.ingredient);
+            .addIngredients(recipe.input);
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
-            .addItemStack(recipe.output);
+            .addItemStack(recipe.result);
         builder.addInvisibleIngredients(RecipeIngredientRole.CATALYST)
             .addItemStack(new ItemStack(MalumItems.VOID_DEPOT.get()));
     }

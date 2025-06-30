@@ -10,14 +10,18 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 public class MalumDataMaps {
 
-    public static final DataMapType<Item, ImpetusDataMap> FRACTURED_IMPETUS_CONVERSION = DataMapType.builder(
-            MalumMod.malumPath("fractured_impetus_conversion"), Registries.ITEM, ImpetusDataMap.CODEC).build();
+    public static final DataMapType<Item, ImpetusDataMap> FRACTURED_IMPETUS_VARIANT = DataMapType.builder(
+            MalumMod.malumPath("fractured_impetus_variant"), Registries.ITEM, ImpetusDataMap.CODEC).build();
+
+    public static final DataMapType<Item, ImpetusDataMap> REPAIRED_IMPETUS_VARIANT = DataMapType.builder(
+            MalumMod.malumPath("repaired_impetus_variant"), Registries.ITEM, ImpetusDataMap.CODEC).build();
 
     public static final DataMapType<Block, TotemPoleMap> TOTEM_POLE_CONVERSION = DataMapType.builder(
             MalumMod.malumPath("totem_pole_conversion"), Registries.BLOCK, TotemPoleMap.CODEC).build();
 
     public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
-        event.register(FRACTURED_IMPETUS_CONVERSION);
+        event.register(FRACTURED_IMPETUS_VARIANT);
+        event.register(REPAIRED_IMPETUS_VARIANT);
         event.register(TOTEM_POLE_CONVERSION);
     }
 }

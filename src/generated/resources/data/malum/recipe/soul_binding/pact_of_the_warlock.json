@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "malum:arcane_charcoal"
@@ -10,11 +10,11 @@
       "item": "malum:hex_ash"
     }
   ],
-  "geas": "malum:pact_of_the_warlock",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "malum:refined_soulstone"
   },
+  "result": "malum:pact_of_the_warlock",
   "spirits": [
     {
       "type": "malum:wicked",

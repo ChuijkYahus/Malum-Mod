@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "item": "minecraft:redstone"
@@ -14,11 +14,11 @@
       "tag": "malum:runewood_planks"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "minecraft:copper_block"
   },
-  "output": {
+  "result": {
     "count": 2,
     "id": "malum:wavebreaker"
   },

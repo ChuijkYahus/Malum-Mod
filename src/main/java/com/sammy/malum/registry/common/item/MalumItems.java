@@ -31,6 +31,7 @@ import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.soulward.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.spirit.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
+import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.staff.*;
@@ -636,6 +637,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> CONCENTRATED_GLUTTONY = register("concentrated_gluttony", DEFAULT_PROPERTIES().food(MalumFoodProperties.CONCENTRATED_GLUTTONY), ConcentratedGluttonyItem::new);
     public static final DeferredHolder<Item, Item> SPLASH_OF_GLUTTONY = register("splash_of_gluttony", DEFAULT_PROPERTIES(), SplashOfGluttonyItem::new);
     public static final DeferredHolder<Item, Item> SOULWOVEN_POUCH = register("soulwoven_pouch", GEAR_PROPERTIES(), SoulwovenPouchItem::new);
+    public static final DeferredHolder<Item, Item> RAVENOUS_POUCH = register("ravenous_pouch", GEAR_PROPERTIES(), RavenousPouchItem::new);
     public static final DeferredHolder<Item, Item> TOTEMIC_STAFF = register("totemic_staff", GEAR_PROPERTIES(), TinkeringToolItem::new);
     public static final DeferredHolder<Item, Item> ARTIFICERS_CLAW = register("artificers_claw", GEAR_PROPERTIES(), TinkeringToolItem::new);
     public static final DeferredHolder<Item, Item> TUNING_FORK = register("tuning_fork", GEAR_PROPERTIES(), TinkeringToolItem::new);
@@ -825,6 +827,10 @@ public class MalumItems {
                     SOULWOVEN_POUCH.get(),
                     MalumMod.malumPath("filled"),
                     (stack, level, holder, holderID) -> SoulwovenPouchItem.getFullnessDisplay(stack));
+            ItemProperties.register(
+                    RAVENOUS_POUCH.get(),
+                    MalumMod.malumPath("filled"),
+                    (stack, level, holder, holderID) -> RavenousPouchItem.getFullnessDisplay(stack));
             ItemProperties.register(
                     SOULWOVEN_BANNER.get(),
                     MalumMod.malumPath("pattern"),

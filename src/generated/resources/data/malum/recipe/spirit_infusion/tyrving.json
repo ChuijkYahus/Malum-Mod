@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 16,
       "item": "malum:twisted_rock"
@@ -15,11 +15,11 @@
       "item": "malum:paracausal_flame"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soul_stained_steel_sword"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:tyrving"
   },

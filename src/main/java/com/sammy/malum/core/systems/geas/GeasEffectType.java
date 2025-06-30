@@ -16,13 +16,8 @@ import java.util.function.*;
 
 public class GeasEffectType {
 
-    public static final Codec<GeasEffectType> CODEC = ResourceLocation.CODEC.xmap(s -> {
-        final GeasEffectType geasEffectType = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.get(s);
-        if (geasEffectType == null) {
-            return MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get();
-        }
-        return geasEffectType;
-    }, GeasEffectType::getRegistryName);
+    public static final Codec<GeasEffectType> CODEC = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.byNameCodec()
+            .xmap(g -> g == null ? MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get() : g, g -> g);
 
 
     public final Supplier<GeasEffect> effect;

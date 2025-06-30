@@ -50,11 +50,6 @@ public class SoulHarvestHandler {
         var source = event.getSource();
         var level = target.level();
         var attacker = source.getEntity() instanceof LivingEntity living ? living : target.getLastHurtByMob();
-        if (attacker == null) {
-            if (source.getDirectEntity() instanceof EthericNitrateEntity nitrate && nitrate.getOwner() instanceof LivingEntity nitrateOwner) {
-                attacker = nitrateOwner;
-            }
-        }
         if (data.shouldDropSpirits()) {
             dropSpiritInfusedDrops(target);
             dropEncyclopediaArcana(target, attacker);

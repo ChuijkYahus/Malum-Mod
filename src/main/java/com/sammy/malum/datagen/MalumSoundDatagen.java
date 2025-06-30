@@ -59,6 +59,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK, s -> definition(s).with(sounds("curiosities/concentrated_gluttony/drink", 2)));
         this.add(MalumSoundEvents.SPIRIT_MOTE_CREATED, s -> definition(s).with(sounds("curiosities/spirit_mote/created", 3)));
 
+        this.add(MalumSoundEvents.RAVENOUS_POUCH_INSERT, s -> definition(s).with(sounds("curiosities/pouch/ravenous/insert", 7)));
+
         this.add(MalumSoundEvents.TUNING_FORK_TINKER, s -> definition(s).with(sounds("curiosities/augments/tinker", 6)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_APPLY, s -> definition(s).with(sounds("curiosities/augments/augment_insert", 3)));
         this.add(MalumSoundEvents.CRUCIBLE_AUGMENT_REMOVE, s -> definition(s).with(sounds("curiosities/augments/augment_remove", 3)));
@@ -113,10 +115,11 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.REAPER_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.BERSERKER_WRATH, s -> definition(s).with(sounds("curiosities/geas/berserker_impact", 4)));
         this.add(MalumSoundEvents.PATIENT_DROWNING, s -> definition(s).with(sounds("minecraft:entity/player/hurt/drown", 4)));
-        this.add(MalumSoundEvents.COMBUSTION_WHIPLASH, s -> definition(s).with(sound("minecraft:random/fizz")));
-        this.add(MalumSoundEvents.INVERTED_HEART_IMPACT, s -> definition(s).with(sounds("curiosities/geas/soulwashing_impact", 6)));
-        this.add(MalumSoundEvents.WYRD_RECONSTRUCTION, s -> definition(s).with(sounds("curiosities/geas/wyrd_reconstruction", 2)));
         this.add(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
+        this.add(MalumSoundEvents.PROSPECTOR_BURN, s -> definition(s).with(sound("minecraft:mob/ghast/fireball4")));
+        this.add(MalumSoundEvents.COMBUSTION_WHIPLASH, s -> definition(s).with(sound("minecraft:random/fizz")));
+        this.add(MalumSoundEvents.WYRD_RECONSTRUCTION, s -> definition(s).with(sounds("curiosities/geas/wyrd_reconstruction", 2)));
+        this.add(MalumSoundEvents.INVERTED_HEART_IMPACT, s -> definition(s).with(sounds("curiosities/geas/soulwashing_impact", 6)));
 
         this.add(MalumSoundEvents.CATALYST_LOBBER_UNLOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
         this.add(MalumSoundEvents.CATALYST_LOBBER_LOCKED, s -> definition(s).with(sounds("curiosities/catalyst_lobber/open", 2)));
@@ -158,8 +161,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_STONE, s -> definition(s).with(sounds("runic_workbench/craft_rune_stone", 3)));
         this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN, s -> definition(s).with(sounds("runic_workbench/craft_rune_wood", 3)));
         this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_VOID, s -> definition(s).with(sounds("runic_workbench/craft_rune_void", 3)));
+        this.add(MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_GENERIC, s -> definition(s).with(sounds("runic_workbench/craft_rune_generic", 3)));
 
-        this.add(MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft", 2)));
+        this.add(MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft_rune_generic", 3)));
 
         this.add(MalumSoundEvents.TOTEM_CHARGE, s -> definition(s).with(sounds("totem/totem_charge", 3)));
         this.add(MalumSoundEvents.TOTEM_ACTIVATED, s -> definition(s).with(sound("totem/totem_activate")));

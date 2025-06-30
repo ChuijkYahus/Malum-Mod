@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.pages.recipe;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
-import com.sammy.malum.common.recipe.SpiritTransmutationRecipe;
+import com.sammy.malum.common.recipe.UnchainedTransmutationRecipe;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -22,9 +22,9 @@ import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderIngred
 public class SpiritTransmutationRecipePage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation");
     private final String headlineTranslationKey;
-    private final List<SpiritTransmutationRecipe> recipes;
+    private final List<UnchainedTransmutationRecipe> recipes;
 
-    public SpiritTransmutationRecipePage(String headlineTranslationKey, Predicate<SpiritTransmutationRecipe> predicate) {
+    public SpiritTransmutationRecipePage(String headlineTranslationKey, Predicate<UnchainedTransmutationRecipe> predicate) {
         super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_page.png"));
         this.headlineTranslationKey = headlineTranslationKey;
         final Level level = Minecraft.getInstance().level;
@@ -34,7 +34,7 @@ public class SpiritTransmutationRecipePage extends BookPage {
             if (recipe != null) {
                 recipes.add(recipe);
                 if (recipe.group != null) {
-                    for (SpiritTransmutationRecipe otherRecipe : LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get())) {
+                    for (UnchainedTransmutationRecipe otherRecipe : LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get())) {
                         if (!recipe.equals(otherRecipe) && recipe.group.equals(otherRecipe.group)) {
                             recipes.add(otherRecipe);
                         }
@@ -68,7 +68,7 @@ public class SpiritTransmutationRecipePage extends BookPage {
         Component component = Component.translatable(headlineTranslationKey());
         renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
 
-        SpiritTransmutationRecipe recipe = recipes.get(getIndex());
+        UnchainedTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
         renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {

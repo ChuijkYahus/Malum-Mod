@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:soulwoven_silk"
@@ -11,11 +11,11 @@
       "item": "malum:malignant_pewter_plating"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soul_stained_steel_helmet"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:malignant_stronghold_helmet"
   },

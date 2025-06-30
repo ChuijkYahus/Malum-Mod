@@ -90,14 +90,15 @@ public class MalumParticleEffectTypes {
     public static final UnwindingChaosChargeParticleEffect UNWINDING_CHAOS_CHARGE = new UnwindingChaosChargeParticleEffect("unwinding_chaos_charge");
 
     //Geas
-    public static final ShakenFaithParticleEffect SHAKEN_FAITH = new ShakenFaithParticleEffect("shaken_faith");
+    public static final LifeweaverHealingBeamParticleEffect HEALING_BEAM = new LifeweaverHealingBeamParticleEffect("healing_beam");
     public static final WarlockSpiritImpactParticleEffect WARLOCK_IMPACT = new WarlockSpiritImpactParticleEffect("spirit_impact");
     public static final BerserkerSpiritImpactParticleEffect BERSERKER_IMPACT = new BerserkerSpiritImpactParticleEffect("berserker_impact");
-    public static final LifeweaverHealingBeamParticleEffect HEALING_BEAM = new LifeweaverHealingBeamParticleEffect("healing_beam");
-    public static final CombustionBurnParticleEffect COMBUSTION_BURN = new CombustionBurnParticleEffect("combustion_burn");
+    public static final HighPriestShakenFaithParticleEffect HIGH_PRIEST_PENANCE = new HighPriestShakenFaithParticleEffect("high_priest_penance");
     public static final PatienceRepaidParticleEffect PATIENCE_REPAID = new PatienceRepaidParticleEffect("patience_repaid");
-    public static final InvertedHeartGeasImpactParticleEffect INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");
+    public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_GREED_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_greed_burn");
+    public static final CombustionBurnParticleEffect COMBUSTION_BURN = new CombustionBurnParticleEffect("combustion_burn");
     public static final WyrdReconstructionReviveParticleEffect WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
+    public static final InvertedHeartGeasImpactParticleEffect INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");
 
     //Gluttony
     public static final ThrownGluttonyParticleEffect THROWN_GLUTTONY_IMPACT = new ThrownGluttonyParticleEffect("splash_of_gluttony");

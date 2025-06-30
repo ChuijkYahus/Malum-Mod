@@ -283,7 +283,7 @@ public class ValueSettingsScreen extends Screen {
         ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(10f);
-        shaderInstance.safeGetUniform("Speed").set(1000f);
+        shaderInstance.safeGetUniform("Speed").set(400f);
         shaderInstance.safeGetUniform("Intensity").set(100f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(-1f, 2f, -1f, 2f));
         Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
@@ -297,7 +297,7 @@ public class ValueSettingsScreen extends Screen {
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         renderDialTexture(graphics, builder, x, y);
         builder.setAlpha(0.2f);
-        shaderInstance.safeGetUniform("Speed").set(2000f);
+        shaderInstance.safeGetUniform("Speed").set(800f);
         renderDialTexture(graphics, builder, x - 1, y);
         renderDialTexture(graphics, builder, x + 1, y);
         renderDialTexture(graphics, builder, x, y - 1);

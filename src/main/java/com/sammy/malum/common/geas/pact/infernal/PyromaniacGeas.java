@@ -26,7 +26,7 @@ public class PyromaniacGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("pyromaniac"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("pyromaniacs_fervor"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_resistance"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("explosion_fire"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("scary_fire"));
@@ -40,7 +40,15 @@ public class PyromaniacGeas extends GeasEffect {
         }
         if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
             float health = target.getHealth();
-            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.25f, 0, health * 0.5f));
+            event.setNewDamage(Mth.clamp(event.getNewDamage() * 0.1f, 0, health * 0.25f));
+            target.igniteForSeconds(3);
+        }
+    }
+
+    @Override
+    public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
+            target.igniteForSeconds(3);
         }
     }
 
@@ -65,10 +73,7 @@ public class PyromaniacGeas extends GeasEffect {
         }
         final MobEffectInstance instance = entity.getEffect(MalumMobEffects.PYROMANIACS_FERVOR);
         if (instance != null) {
-            if (instance.getAmplifier() >= 5) {
-                entity.igniteForSeconds(5);
-            }
-            EntityHelper.extendEffect(instance, entity, 300, 1200);
+            EntityHelper.extendEffect(instance, entity, 300, 1500);
             EntityHelper.amplifyEffect(instance, entity, pyromaniacStacks, 9);
         } else {
             entity.addEffect(new MobEffectInstance(MalumMobEffects.PYROMANIACS_FERVOR, 600, pyromaniacStacks - 1));

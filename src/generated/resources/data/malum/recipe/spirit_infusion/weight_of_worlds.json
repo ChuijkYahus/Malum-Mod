@@ -1,17 +1,17 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:malignant_pewter_ingot"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soul_stained_steel_axe"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:weight_of_worlds"
   },

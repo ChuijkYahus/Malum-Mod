@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:mnemonic_fragment"
@@ -14,11 +14,11 @@
       "item": "minecraft:echo_shard"
     }
   ],
-  "geas": "malum:oath_of_the_overburdened_mind",
-  "ingredient": {
+  "input": {
     "count": 8,
     "item": "malum:mnemonic_fragment"
   },
+  "result": "malum:oath_of_the_overburdened_mind",
   "spirits": [
     {
       "type": "malum:arcane",

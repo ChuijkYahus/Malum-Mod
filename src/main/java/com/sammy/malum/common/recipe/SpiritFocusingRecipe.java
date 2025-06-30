@@ -15,33 +15,33 @@ import java.util.*;
 public class SpiritFocusingRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipeInput> {
 
     public static final MapCodec<SpiritFocusingRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
+            Ingredient.CODEC.fieldOf("input").forGetter((recipe) -> recipe.input),
+            ItemStack.CODEC.fieldOf("result").forGetter((recipe) -> recipe.output),
+            SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter((recipe) -> recipe.spirits),
             Codec.INT.fieldOf("time").forGetter((recipe) -> recipe.time),
-            Codec.INT.fieldOf("durabilityCost").forGetter((recipe) -> recipe.durabilityCost),
-            Ingredient.CODEC.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
-            ItemStack.CODEC.fieldOf("output").forGetter((recipe) -> recipe.output),
-            SpiritIngredient.CODEC.codec().listOf().fieldOf("spirits").forGetter((recipe) -> recipe.spirits)
+            Codec.INT.fieldOf("durabilityCost").forGetter((recipe) -> recipe.durabilityCost)
     ).apply(obj, SpiritFocusingRecipe::new));
 
     public static final String NAME = "spirit_focusing";
 
-    public final int time;
-    public final int durabilityCost;
-
-    public final Ingredient ingredient;
+    public final Ingredient input;
     public final ItemStack output;
     public final List<SpiritIngredient> spirits;
 
-    public SpiritFocusingRecipe(int time, int durabilityCost, Ingredient ingredient, ItemStack output, List<SpiritIngredient> spirits) {
+    public final int time;
+    public final int durabilityCost;
+
+    public SpiritFocusingRecipe(Ingredient input, ItemStack output, List<SpiritIngredient> spirits, int time, int durabilityCost) {
         super(MalumRecipeSerializers.FOCUSING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_FOCUSING.get());
-        this.time = time;
-        this.durabilityCost = durabilityCost;
-        this.ingredient = ingredient;
+        this.input = input;
         this.output = output;
         this.spirits = spirits;
+        this.time = time;
+        this.durabilityCost = durabilityCost;
     }
 
     @Override
     public boolean matches(SpiritBasedRecipeInput input, Level level) {
-        return input.test(new SizedIngredient(ingredient, 1), spirits);
+        return input.test(new SizedIngredient(this.input, 1), spirits);
     }
 }

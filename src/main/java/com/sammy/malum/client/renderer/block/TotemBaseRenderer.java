@@ -70,7 +70,6 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
                             .modifyUniform("Distortion", distortion / 2f)
                     );
 
-
             poseStack.pushPose();
             poseStack.translate(offset.getX() + 0.5f, offset.getY() + 0.5f, offset.getZ() + 0.5f);
             for (int i = 0; i < 2; i++) {
@@ -95,11 +94,11 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
                         .drawCube(poseStack, borderArea);
                 builder
                         .setRenderType(squiggles)
-                        .setColor(secondaryColor, 0.6f * scalar)
+                        .setColor(secondaryColor, 0.8f * scalar)
                         .drawCube(poseStack, squiggleArea);
                 builder
                         .setRenderType(checkerboard)
-                        .setColor(primaryColor, 0.4f * scalar)
+                        .setColor(primaryColor, 0.6f * scalar)
                         .drawCube(poseStack, checkerboardArea);
             }
             poseStack.popPose();

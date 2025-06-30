@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 16,
       "item": "malum:null_slate"
@@ -10,11 +10,11 @@
       "item": "malum:void_salts"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ring_of_desperate_voracity"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:ring_of_gruesome_concentration"
   },

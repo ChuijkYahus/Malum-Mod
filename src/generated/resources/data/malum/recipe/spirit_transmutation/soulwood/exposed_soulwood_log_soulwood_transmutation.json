@@ -1,10 +1,10 @@
 {
-  "type": "malum:spirit_transmutation",
+  "type": "malum:unchained_transmutation",
   "group": "soulwood",
-  "ingredient": {
+  "input": {
     "item": "malum:exposed_runewood_log"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:exposed_soulwood_log"
   }

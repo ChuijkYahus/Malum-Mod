@@ -3,15 +3,17 @@ package com.sammy.malum.client.screen.codex.pages.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.common.recipe.*;
+import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.*;
@@ -38,8 +40,8 @@ public class SpiritRepairPage extends BookPage {
     public SpiritRepairPage(SpiritRepairRecipe recipe) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_repair_page.png"));
         this.recipe = recipe;
-        this.damagedStacks = recipe.itemsForRepair.stream().map(Item::getDefaultInstance).peek(s -> s.setDamageValue(Mth.floor(s.getMaxDamage() * recipe.durabilityPercentage))).collect(Collectors.toList());
-        this.repairedStacks = recipe.itemsForRepair.stream().map(Item::getDefaultInstance).map(recipe::getResultItem).collect(Collectors.toList());
+        this.damagedStacks = recipe.getDamagedItems();
+        this.repairedStacks = recipe.getRepairedItems();
     }
 
     @Override
@@ -48,15 +50,16 @@ public class SpiritRepairPage extends BookPage {
     }
 
     public static SpiritRepairPage fromOutput(Item outputItem) {
-        return new SpiritRepairPage(s -> s.repairResult.equals(outputItem));
+        return new SpiritRepairPage(recipe -> recipe.isValidItemForRepair(outputItem));
     }
 
     public static SpiritRepairPage fromId(String recipeId) {
         return fromId(MalumMod.malumPath(recipeId));
     }
+
     public static SpiritRepairPage fromId(ResourceLocation recipeId) {
         var level = Minecraft.getInstance().level;
-        final ResourceLocation other = recipeId.withPrefix("spirit_repair/");
+        ResourceLocation other = recipeId.withPrefix("spirit_repair/");
         var recipe = LodestoneRecipeType.getRecipeHolders(level, MalumRecipeTypes.SPIRIT_REPAIR.get())
                 .stream()
                 .filter(r -> r.id().equals(other))

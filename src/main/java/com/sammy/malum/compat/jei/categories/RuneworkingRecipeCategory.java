@@ -1,7 +1,7 @@
 package com.sammy.malum.compat.jei.categories;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.recipe.RunicWorkbenchRecipe;
+import com.sammy.malum.common.recipe.RuneworkingRecipe;
 import com.sammy.malum.compat.jei.JEIHandler;
 import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
@@ -24,7 +24,7 @@ import java.util.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
-public class RuneworkingRecipeCategory implements IRecipeCategory<RunicWorkbenchRecipe> {
+public class RuneworkingRecipeCategory implements IRecipeCategory<RuneworkingRecipe> {
 
     public static final ResourceLocation UID = malumPath("runeworking");
     private final IDrawable overlay;
@@ -36,12 +36,12 @@ public class RuneworkingRecipeCategory implements IRecipeCategory<RunicWorkbench
     }
 
     @Override
-    public void draw(RunicWorkbenchRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(RuneworkingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
     }
 
     @Override
-    public RecipeType<RunicWorkbenchRecipe> getRecipeType() {
+    public RecipeType<RuneworkingRecipe> getRecipeType() {
         return JEIHandler.RUNEWORKING;
     }
 
@@ -67,11 +67,11 @@ public class RuneworkingRecipeCategory implements IRecipeCategory<RunicWorkbench
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, RunicWorkbenchRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RuneworkingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 14)
                 .addItemStacks(List.of(recipe.secondaryInput.getItems()));
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
-                .addItemStacks(List.of(recipe.primaryInput.getItems()));
+                .addItemStacks(List.of(recipe.input.getItems()));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
                 .addItemStack(recipe.output);
     }

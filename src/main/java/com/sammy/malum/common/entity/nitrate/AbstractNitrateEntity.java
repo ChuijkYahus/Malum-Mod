@@ -6,24 +6,24 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
+import java.util.*;
 
 public abstract class AbstractNitrateEntity extends ThrowableProjectile {
     protected static final EntityDataAccessor<Boolean> DATA_FADING_AWAY = SynchedEntityData.defineId(AbstractNitrateEntity.class, EntityDataSerializers.BOOLEAN);
     public static final int MAX_AGE = 1200;
     public static final Color SECOND_SMOKE_COLOR = new Color(30, 30, 30);
 
-    public static final float MAIN_TRAIL_LENGTH = 12;
-    public final TrailPointBuilder trailPointBuilder = TrailPointBuilder.create((int) MAIN_TRAIL_LENGTH);
+    public final TrailPointBuilder trailPointBuilder = TrailPointBuilder.create(20);
     public final TrailPointBuilder spinningTrailPointBuilder = TrailPointBuilder.create(6);
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
@@ -38,6 +38,15 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
 
     public AbstractNitrateEntity(EntityType<? extends AbstractNitrateEntity> type, LivingEntity owner, Level level) {
         super(type, owner, level);
+    }
+
+    public static Optional<LivingEntity> getOwnerFromExplosion(Entity explosionSource) {
+        if (explosionSource instanceof AbstractNitrateEntity nitrateEntity) {
+            if (nitrateEntity.getOwner() instanceof LivingEntity livingOwner) {
+                return Optional.of(livingOwner);
+            }
+        }
+        return Optional.empty();
     }
 
     public void onExplode() {
@@ -119,26 +128,18 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
         if (!fadingAway) {
             setDeltaMovement(motion.x * 0.99f, (motion.y-0.015f)*0.99f, motion.z * 0.99f);
         }
+        float randomOffsetScale = age > 5 ? Math.min((age-5) * 0.04f, 0.8f) : 0;
         float radialOffsetScale = fadingAway ? 0f : 0.15f;
-        float randomOffsetScale = age > 5 ? Math.min((age-5) * 0.02f, 0.2f) : 0;
         for (int i = 0; i < 2; i++) {
             float progress = i * 0.5f;
             Vec3 position = getPosition(progress);
-            final Vec3 randomizedPosition = position.add(random.nextFloat() * randomOffsetScale, random.nextFloat() * randomOffsetScale, random.nextFloat() * randomOffsetScale);
-            trailPointBuilder.addTrailPoint(
-                    new TrailPoint(position, i) {
-                @Override
-                public Vec3 getPosition() {
-                    return new Vec3(
-                            Mth.lerp(getAge()/MAIN_TRAIL_LENGTH, position.x, randomizedPosition.x),
-                            Mth.lerp(getAge()/MAIN_TRAIL_LENGTH, position.y, randomizedPosition.y),
-                            Mth.lerp(getAge()/MAIN_TRAIL_LENGTH, position.z, randomizedPosition.z)
-                    );
-                }
-            });
-            spinningTrailPointBuilder.addTrailPoint(
-                    new TrailPoint(
-                            position.add(Math.cos(spinOffset + (age + progress) / 2f) * radialOffsetScale, 0, Math.sin(spinOffset + (age + progress) / 2f) * radialOffsetScale), i));
+            Vec3 randomizedPosition = position.add(
+                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale),
+                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale),
+                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale));
+            Vec3 rotatingPosition = position.add(Math.cos(spinOffset + (age + progress) / 2f) * radialOffsetScale, 0, Math.sin(spinOffset + (age + progress) / 2f) * radialOffsetScale);
+            trailPointBuilder.addTrailPoint(new InterpolatedTrailPoint(position, i, randomizedPosition, (int) (trailPointBuilder.getTrailLength()*1.5f)));
+            spinningTrailPointBuilder.addTrailPoint(new TrailPoint(rotatingPosition, i));
         }
         for (int i = 0; i < ((fadingAway || age > MAX_AGE - 20) ? 2 : 1); i++) {
             trailPointBuilder.tickTrailPoints();

@@ -1,6 +1,6 @@
 {
   "type": "malum:runeworking",
-  "primaryInput": {
+  "input": {
     "count": 4,
     "item": "malum:runewood_planks"
   },

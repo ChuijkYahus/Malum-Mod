@@ -1,10 +1,10 @@
 {
   "type": "malum:spirit_focusing",
   "durabilityCost": 1,
-  "ingredient": {
+  "input": {
     "item": "malum:alchemical_impetus"
   },
-  "output": {
+  "result": {
     "count": 8,
     "id": "minecraft:redstone"
   },

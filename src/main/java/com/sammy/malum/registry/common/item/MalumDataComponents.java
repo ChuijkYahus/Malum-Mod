@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.item;
 import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,9 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulwovenPouchContentsComponent>> SOULWOVEN_POUCH_CONTENTS = register("soulwoven_pouch_data", builder ->
             builder.persistent(SoulwovenPouchContentsComponent.CODEC).networkSynchronized(SoulwovenPouchContentsComponent.STREAM_CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<RavenousPouchContentsComponent>> RAVENOUS_POUCH_CONTENTS = register("ravenous_pouch_data", builder ->
+            builder.persistent(RavenousPouchContentsComponent.CODEC).networkSynchronized(RavenousPouchContentsComponent.STREAM_CODEC));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulwovenBannerPatternDataComponent>> SOULWOVEN_BANNER_PATTERN = register("soulwoven_banner_pattern", builder ->
             builder.persistent(SoulwovenBannerPatternDataComponent.CODEC).networkSynchronized(SoulwovenBannerPatternDataComponent.STREAM_CODEC));
 
@@ -30,6 +34,7 @@ public class MalumDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> ITEM_SKIN = register("item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> APPLIED_ITEM_SKIN = register("applied_item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));
 

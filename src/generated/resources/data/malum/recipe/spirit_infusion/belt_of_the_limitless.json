@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "item": "malum:fused_consciousness"
@@ -18,11 +18,11 @@
       "item": "malum:mnemonic_fragment"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:belt_of_the_magebane"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:belt_of_the_limitless"
   },

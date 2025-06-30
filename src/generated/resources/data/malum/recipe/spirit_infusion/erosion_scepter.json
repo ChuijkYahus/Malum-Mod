@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:malignant_pewter_ingot"
@@ -11,11 +11,11 @@
       "item": "malum:void_salts"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:mnemonic_hex_staff"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:erosion_scepter"
   },

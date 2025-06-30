@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 6,
       "item": "malum:soulwood_planks"
@@ -10,11 +10,11 @@
       "item": "malum:hex_ash"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 4,
     "item": "malum:soulwood_log"
   },
-  "output": {
+  "result": {
     "count": 4,
     "id": "malum:soulwood_totem_base"
   },

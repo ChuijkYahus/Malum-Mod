@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "minecraft:wind_charge"
@@ -18,11 +18,11 @@
       "item": "minecraft:heavy_core"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:alchemical_impetus"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:zephyr_impetus"
   },

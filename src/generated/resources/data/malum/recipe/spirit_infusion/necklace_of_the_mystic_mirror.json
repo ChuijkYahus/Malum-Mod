@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "malum:runewood_planks"
@@ -14,11 +14,11 @@
       "item": "minecraft:ender_eye"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ornate_necklace"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:necklace_of_the_mystic_mirror"
   },

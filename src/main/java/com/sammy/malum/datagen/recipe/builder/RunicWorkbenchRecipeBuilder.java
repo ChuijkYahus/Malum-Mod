@@ -3,7 +3,7 @@ package com.sammy.malum.datagen.recipe.builder;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
-import com.sammy.malum.common.recipe.RunicWorkbenchRecipe;
+import com.sammy.malum.common.recipe.RuneworkingRecipe;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -16,9 +16,9 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
-public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RunicWorkbenchRecipe> {
+public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RuneworkingRecipe> {
     private final ItemStack output;
-    private final Holder<SoundEvent> soundType;
+    private final SoundEvent soundType;
 
     private ItemStack primaryInput;
     private SizedIngredient secondaryInput;
@@ -27,7 +27,7 @@ public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<Runic
         this(getRuneSound(output), output, outputCount);
     }
     public RunicWorkbenchRecipeBuilder(Holder<SoundEvent> soundType, ItemLike output, int outputCount) {
-        this.soundType = soundType;
+        this.soundType = soundType.value();
         this.output = new ItemStack(output.asItem(), outputCount);
     }
 
@@ -66,8 +66,8 @@ public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<Runic
     }
 
     @Override
-    public RunicWorkbenchRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new RunicWorkbenchRecipe(
+    public RuneworkingRecipe buildRecipe(ResourceLocation resourceLocation) {
+        return new RuneworkingRecipe(
                 SizedIngredient.of(primaryInput.getItem(), primaryInput.getCount()),
                 secondaryInput, output, soundType);
     }

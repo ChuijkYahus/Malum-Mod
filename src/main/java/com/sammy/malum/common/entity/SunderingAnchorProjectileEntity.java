@@ -329,7 +329,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             hitCount.addTo(target, 1);
             target.invulnerableTime = 0;
             DamageSource source = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner);
-            float magicDamage = this.magicDamage - 1;
+            float magicDamage = Math.max(this.magicDamage - 1, 0.25f);
             boolean success = target.hurt(source, 1);
             if (success && target instanceof LivingEntity livingEntity) {
                 int slashCount = 5;

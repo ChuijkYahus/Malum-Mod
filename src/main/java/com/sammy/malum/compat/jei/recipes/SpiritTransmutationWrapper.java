@@ -1,8 +1,8 @@
 package com.sammy.malum.compat.jei.recipes;
 
-import com.sammy.malum.common.recipe.SpiritTransmutationRecipe;
+import com.sammy.malum.common.recipe.UnchainedTransmutationRecipe;
 
 import java.util.List;
 
-public record SpiritTransmutationWrapper(List<SpiritTransmutationRecipe> subRecipes) {
+public record SpiritTransmutationWrapper(List<UnchainedTransmutationRecipe> subRecipes) {
 }

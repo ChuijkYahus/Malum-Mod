@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "item": "malum:cthonic_gold"
@@ -18,11 +18,11 @@
       "item": "minecraft:raw_copper"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:gilded_belt"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:belt_of_the_prospector"
   },

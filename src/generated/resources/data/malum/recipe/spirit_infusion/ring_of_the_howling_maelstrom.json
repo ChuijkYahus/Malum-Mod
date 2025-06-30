@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 6,
       "tag": "c:ingots/iron"
@@ -14,11 +14,11 @@
       "item": "minecraft:wind_charge"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ornate_ring"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:ring_of_the_howling_maelstrom"
   },

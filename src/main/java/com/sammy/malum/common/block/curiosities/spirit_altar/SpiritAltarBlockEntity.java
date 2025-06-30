@@ -8,7 +8,6 @@ import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumSoundEvents;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
@@ -247,7 +246,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public boolean consume(ServerLevel level) {
         if (recipe == null) {
             return false;
-        } else if (recipe.extraIngredients.isEmpty())
+        } else if (recipe.extraInputs.isEmpty())
             return true;
 
         List<IMalumSpecialItemAccessPoint> pedestalItems = AltarCraftingHelper.capturePedestals(level, worldPosition);
@@ -292,7 +291,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         Vec3 itemPos = getItemPos();
         extrasInventory.clear();
         progress -= (int) (progress * 0.2f);
-        stack.shrink(recipe.ingredient.count());
+        stack.shrink(recipe.input.count());
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
         for (SpiritIngredient spirit : recipe.spirits) {
             for (int i = 0; i < spiritInventory.slotCount; i++) {

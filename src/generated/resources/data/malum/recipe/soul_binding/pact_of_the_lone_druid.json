@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "minecraft:chain"
@@ -10,11 +10,11 @@
       "item": "minecraft:emerald"
     }
   ],
-  "geas": "malum:pact_of_the_lone_druid",
-  "ingredient": {
+  "input": {
     "count": 12,
     "tag": "minecraft:saplings"
   },
+  "result": "malum:pact_of_the_lone_druid",
   "spirits": [
     {
       "type": "malum:earthen",

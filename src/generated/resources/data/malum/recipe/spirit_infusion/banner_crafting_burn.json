@@ -1,10 +1,10 @@
 {
   "type": "malum:spirit_infusion",
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:soulwoven_banner"
   },
-  "output": {
+  "result": {
     "components": {
       "malum:soulwoven_banner_pattern": {
         "type": "malum:burn",

@@ -57,7 +57,7 @@ public class ProfaneGluttonGeas extends GeasEffect {
                                     .setDamageData(1, 1, 2)
                                     .setPhysicalDamageType(MalumDamageTypes.ROT)
                                     .setMagicDamageType(MalumDamageTypes.ROT)
-                                    .setImpactParticleEffect(MalumParticleEffectTypes.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.EARTHEN_SPIRIT))
+                                    .setImpactParticleEffect(MalumParticleEffectTypes.HIGH_PRIEST_PENANCE, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.EARTHEN_SPIRIT))
                                     .setSound(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, 0.5f, 1.5f, 0.3f));
                 }
                 chance--;

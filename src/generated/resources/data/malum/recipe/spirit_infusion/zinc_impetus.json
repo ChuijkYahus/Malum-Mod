@@ -9,7 +9,7 @@
     }
   ],
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 4,
       "tag": "c:gunpowders"
@@ -23,11 +23,11 @@
       "tag": "c:ingots/zinc"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:alchemical_impetus"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:zinc_impetus"
   },

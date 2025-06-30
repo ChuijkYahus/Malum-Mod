@@ -3,7 +3,7 @@ package com.sammy.malum.compat.jei;
 import com.google.common.collect.Maps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.recipe.*;
-import com.sammy.malum.common.recipe.void_favor.*;
+import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.compat.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compat.jei.categories.*;
 import com.sammy.malum.compat.jei.recipes.SpiritTransmutationWrapper;
@@ -41,8 +41,8 @@ public class JEIHandler implements IModPlugin {
     public static final RecipeType<SpiritTransmutationWrapper> TRANSMUTATION = new RecipeType<>(SpiritTransmutationRecipeCategory.UID, SpiritTransmutationWrapper.class);
     public static final RecipeType<SpiritFocusingRecipe> FOCUSING = new RecipeType<>(SpiritFocusingRecipeCategory.UID, SpiritFocusingRecipe.class);
     public static final RecipeType<SpiritRepairRecipe> SPIRIT_REPAIR = new RecipeType<>(SpiritRepairRecipeCategory.UID, SpiritRepairRecipe.class);
-    public static final RecipeType<FavorOfTheVoidRecipe> WEEPING_WELL = new RecipeType<>(WeepingWellRecipeCategory.UID, FavorOfTheVoidRecipe.class);
-    public static final RecipeType<RunicWorkbenchRecipe> RUNEWORKING = new RecipeType<>(RuneworkingRecipeCategory.UID, RunicWorkbenchRecipe.class);
+    public static final RecipeType<VoidFavorRecipe> WEEPING_WELL = new RecipeType<>(WeepingWellRecipeCategory.UID, VoidFavorRecipe.class);
+    public static final RecipeType<RuneworkingRecipe> RUNEWORKING = new RecipeType<>(RuneworkingRecipeCategory.UID, RuneworkingRecipe.class);
 
     public JEIHandler() {
     }
@@ -70,10 +70,10 @@ public class JEIHandler implements IModPlugin {
         if (level != null) {
             registry.addRecipes(SPIRIT_INFUSION, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get()));
 
-            List<SpiritTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get());
-            List<SpiritTransmutationRecipe> leftovers = Lists.newArrayList();
-            Map<String, List<SpiritTransmutationRecipe>> groups = Maps.newLinkedHashMap();
-            for (SpiritTransmutationRecipe recipe : transmutation) {
+            List<UnchainedTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get());
+            List<UnchainedTransmutationRecipe> leftovers = Lists.newArrayList();
+            Map<String, List<UnchainedTransmutationRecipe>> groups = Maps.newLinkedHashMap();
+            for (UnchainedTransmutationRecipe recipe : transmutation) {
                 if (!recipe.getGroup().isEmpty()) {
                     var group = groups.computeIfAbsent(recipe.getGroup(), k -> Lists.newArrayList());
                     group.add(recipe);
@@ -94,9 +94,9 @@ public class JEIHandler implements IModPlugin {
             registry.addRecipes(FOCUSING, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_FOCUSING.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
             registry.addRecipes(SPIRIT_REPAIR, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_REPAIR.get()).stream()
-                .filter(it -> !it.itemsForRepair.isEmpty()).collect(Collectors.toList()));
+                .filter(it -> !it.validItems.isEmpty()).collect(Collectors.toList()));
             registry.addRecipes(WEEPING_WELL, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.VOID_FAVOR.get()).stream()
-                .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
+                .filter(it -> !it.result.isEmpty()).collect(Collectors.toList()));
             registry.addRecipes(RUNEWORKING, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.RUNEWORKING.get()).stream()
                 .filter(it -> !it.output.isEmpty()).collect(Collectors.toList()));
             if (FarmersDelightCompat.LOADED) {

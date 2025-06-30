@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "item": "malum:hex_ash"
@@ -14,11 +14,11 @@
       "item": "malum:twisted_rock"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "minecraft:furnace"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:spirit_crucible"
   },

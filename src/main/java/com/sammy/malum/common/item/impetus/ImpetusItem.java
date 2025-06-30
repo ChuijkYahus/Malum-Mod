@@ -1,12 +1,9 @@
 package com.sammy.malum.common.item.impetus;
 
-import com.sammy.malum.common.recipe.SpiritRepairRecipe;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-
-import java.util.function.Supplier;
 
 public class ImpetusItem extends Item {
 

@@ -1,8 +1,11 @@
 package com.sammy.malum.compat.jei.categories;
 
 import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
-import com.sammy.malum.common.recipe.SpiritRepairRecipe;
+import com.sammy.malum.common.data.map.*;
+import com.sammy.malum.common.recipe.spirit_repair.SpiritRepairRecipe;
 import com.sammy.malum.compat.jei.*;
+import com.sammy.malum.core.systems.recipe.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -15,6 +18,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -76,25 +80,16 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SpiritRepairRecipe recipe, IFocusGroup focuses) {
-        List<ItemStack> repaired = recipe.itemsForRepair.stream().map(Item::getDefaultInstance).collect(Collectors.toList());
-        List<ItemStack> repairIngredient = Arrays.stream(recipe.repairMaterial.getItems()).toList();
-        List<ItemStack> damaged = repaired.stream()
-                .map(ItemStack::copy)
-                .peek(s -> s.setDamageValue((int) (s.getMaxDamage() * recipe.durabilityPercentage)))
-                .collect(Collectors.toCollection(ArrayList::new));
-        if (recipe.repairResult != Items.AIR) {
-            repaired = repaired.stream().map(recipe::getResultItem).toList();
-        }
         JEIHelper.addCustomIngredientToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits);
 
-        IRecipeSlotBuilder input = builder.addSlot(RecipeIngredientRole.INPUT, 82, 57)
-                .addItemStacks(damaged);
-
         builder.addSlot(RecipeIngredientRole.INPUT, 44, 57)
-                .addItemStacks(repairIngredient);
+                .addItemStacks(Arrays.asList(recipe.repairMaterial.getItems()));
+
+        IRecipeSlotBuilder input = builder.addSlot(RecipeIngredientRole.INPUT, 82, 57)
+                .addItemStacks(recipe.getDamagedItems());
 
         IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
-                .addItemStacks(repaired);
+                .addItemStacks(recipe.getRepairedItems());
 
         builder.createFocusLink(input, output);
     }

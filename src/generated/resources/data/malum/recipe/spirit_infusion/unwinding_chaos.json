@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "item": "malum:fused_consciousness"
@@ -15,11 +15,11 @@
       "item": "malum:malignant_pewter_plating"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:mnemonic_hex_staff"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:unwinding_chaos"
   },

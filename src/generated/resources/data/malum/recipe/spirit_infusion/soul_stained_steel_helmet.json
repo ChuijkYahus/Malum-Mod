@@ -1,7 +1,7 @@
 {
   "type": "malum:spirit_infusion",
   "carryOverComponentData": true,
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 6,
       "item": "malum:soul_stained_steel_plating"
@@ -15,11 +15,11 @@
       "item": "malum:twisted_rock"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "minecraft:iron_helmet"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:soul_stained_steel_helmet"
   },

@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 16,
       "item": "malum:twisted_rock"
@@ -14,11 +14,11 @@
       "item": "malum:soul_stained_steel_plating"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:gilded_belt"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:belt_of_the_magebane"
   },

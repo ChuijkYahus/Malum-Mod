@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.runic_workbench;
 
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.common.recipe.RunicWorkbenchRecipe.*;
+import com.sammy.malum.common.recipe.RuneworkingRecipe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
@@ -107,7 +107,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             return false;
         }
         if (level instanceof ServerLevel serverLevel) {
-            int primaryCount = recipe.primaryInput.count();
+            int primaryCount = recipe.input.count();
             int secondaryCount = recipe.secondaryInput.count();
             input = new RunicWorkbenchRecipeInput(
                     primaryInput.copyWithCount(primaryCount),
@@ -125,7 +125,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             } else if (input.primaryInput().getItem() instanceof SpiritShardItem shardItem) {
                 spirit = shardItem;
             }
-            serverLevel.playSound(null, worldPosition, recipe.soundType.value(), SoundSource.BLOCKS, 1, RandomHelper.randomBetween(serverLevel.random, 0.9f, 1.2f));
+            serverLevel.playSound(null, worldPosition, recipe.soundType, SoundSource.BLOCKS, 1, RandomHelper.randomBetween(serverLevel.random, 0.9f, 1.2f));
             var effectType = spirit != null ? MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_RUNE : MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM;
             var particle = effectType.createEffect(worldPosition).customData(new RunicWorkbenchEffectData(input.primaryInput().copy(), input.secondaryInput().copy()));
             if (spirit != null) {

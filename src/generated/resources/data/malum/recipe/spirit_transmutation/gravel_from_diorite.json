@@ -1,10 +1,10 @@
 {
-  "type": "malum:spirit_transmutation",
+  "type": "malum:unchained_transmutation",
   "group": "snow",
-  "ingredient": {
+  "input": {
     "item": "minecraft:diorite"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "minecraft:gravel"
   }

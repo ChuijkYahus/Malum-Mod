@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 1,
       "tag": "c:storage_blocks/iron"
@@ -10,11 +10,11 @@
       "tag": "c:ingots/iron"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:ornate_necklace"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:necklace_of_the_narrow_edge"
   },

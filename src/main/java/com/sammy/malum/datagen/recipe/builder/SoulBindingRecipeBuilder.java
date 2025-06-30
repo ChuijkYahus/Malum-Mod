@@ -19,19 +19,18 @@ import java.util.*;
 
 public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBindingRecipe> {
     private final SizedIngredient input;
-    private final Holder<GeasEffectType> geas;
+    private final GeasEffectType geas;
 
     private final List<SpiritIngredient> spirits = Lists.newArrayList();
     private final List<SizedIngredient> extraIngredients = Lists.newArrayList();
 
     public SoulBindingRecipeBuilder(Ingredient input, Holder<GeasEffectType> geas) {
-        this.input = new SizedIngredient(input, 1);
-        this.geas = geas;
+        this(new SizedIngredient(input, 1), geas);
     }
 
     public SoulBindingRecipeBuilder(SizedIngredient input, Holder<GeasEffectType> geas) {
         this.input = input;
-        this.geas = geas;
+        this.geas = geas.value();
     }
 
     public SoulBindingRecipeBuilder(Ingredient input, int inputCount, Holder<GeasEffectType> geas) {
@@ -63,12 +62,12 @@ public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBind
     }
 
     public void save(RecipeOutput recipeOutput) {
-        this.save(recipeOutput, geas.value().getRegistryName());
+        this.save(recipeOutput, geas.getRegistryName());
     }
 
     @Override
     public SoulBindingRecipe buildRecipe(ResourceLocation id) {
-        return new SoulBindingRecipe(input, geas.value(), extraIngredients, spirits, false);
+        return new SoulBindingRecipe(input, geas, extraIngredients, spirits);
     }
 
     @Override

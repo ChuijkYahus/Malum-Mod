@@ -44,8 +44,8 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
         }
         if (attacked.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown == 0) {
             float damage = event.getOriginalDamage();
-            int amplifier = Math.min(Mth.floor(damage / 4), 9);
-            attacked.addEffect(new MobEffectInstance(MalumMobEffects.WICKED_INTENT, 80, amplifier));
+            int amplifier = Math.min(Mth.floor(damage / 3), 9);
+            attacked.addEffect(new MobEffectInstance(MalumMobEffects.WICKED_INTENT, 100, amplifier));
             SoundHelper.playSound(attacked, MalumSoundEvents.HIDDEN_BLADE_PRIMED.get(), 1f, RandomHelper.randomBetween(attacked.level().getRandom(), 1.4f, 1.6f));
         }
     }
@@ -76,14 +76,23 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 var direction = attacker.getLookAngle();
                 var damageCenter = attacker.position().add(direction);
                 var attributes = attacker.getAttributes();
-                float multiplier = 1 + (effect.amplifier + 1) * 0.2f;
-                int duration = 25;
-
-                float physicalDamage = (float) (event.getNewDamage() + attributes.getValue(Attributes.ATTACK_DAMAGE)) / duration * multiplier;
-                float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE) / duration) * multiplier;
+                int slashDuration = 25;
+                float baseDamage = 10;
+                float damageBonus = 1 + (effect.amplifier + 1) * 0.15f;
+                float physicalDamage = (float) (event.getNewDamage() + attributes.getValue(Attributes.ATTACK_DAMAGE));
+                float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE));
+                float totalDamage = physicalDamage + magicDamage;
+                float physicalPct = physicalDamage / totalDamage;
+                float magicPct = magicDamage / totalDamage;
+                physicalDamage += baseDamage * physicalPct;
+                physicalDamage *= damageBonus;
+                physicalDamage /= slashDuration;
+                magicDamage += baseDamage * magicPct;
+                magicDamage *= damageBonus;
+                magicDamage /= slashDuration;
 
                 var entity = new HiddenBladeDelayedImpactEntity(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
-                entity.setData(attacker, physicalDamage, magicDamage, duration);
+                entity.setData(attacker, physicalDamage, magicDamage, slashDuration);
                 entity.setItem(scytheWeapon);
                 level.addFreshEntity(entity);
                 PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));

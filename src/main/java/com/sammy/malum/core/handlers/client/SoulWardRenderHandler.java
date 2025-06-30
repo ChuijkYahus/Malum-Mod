@@ -49,7 +49,7 @@ public class SoulWardRenderHandler {
                     float armor = (float) player.getAttribute(Attributes.ARMOR).getValue();
 
                     int left = guiGraphics.guiWidth() / 2 - 91;
-                    int top = guiGraphics.guiHeight() - minecraft.gui.leftHeight - 2;
+                    int top = guiGraphics.guiHeight() - minecraft.gui.leftHeight - 3;
 
                     if (armor == 0) {
                         top += 10;

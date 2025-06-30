@@ -37,11 +37,11 @@ public class SpiritInfusionPage extends BookPage {
     }
 
     public static SpiritInfusionPage fromInput(Item inputItem) {
-        return new SpiritInfusionPage(s -> s.ingredient.test(inputItem.getDefaultInstance()));
+        return new SpiritInfusionPage(s -> s.input.test(inputItem.getDefaultInstance()));
     }
 
     public static SpiritInfusionPage fromOutput(Item outputItem) {
-        return new SpiritInfusionPage(s -> s.output.is(outputItem));
+        return new SpiritInfusionPage(s -> s.result.is(outputItem));
     }
 
     public static SpiritInfusionPage fromId(ResourceLocation recipeId) {
@@ -63,11 +63,11 @@ public class SpiritInfusionPage extends BookPage {
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 75, mouseX, mouseY, true);
-        if (!recipe.extraIngredients.isEmpty()) {
-            renderIngredients(screen, guiGraphics, recipe.extraIngredients, ITEM, left + 113, top + 75, mouseX, mouseY, true);
+        if (!recipe.extraInputs.isEmpty()) {
+            renderIngredients(screen, guiGraphics, recipe.extraInputs, ITEM, left + 113, top + 75, mouseX, mouseY, true);
         }
-        renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
-        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
+        renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 56, mouseX, mouseY);
+        renderItem(screen, guiGraphics, recipe.result, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
                 guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);

@@ -36,6 +36,8 @@ public class EntryScreen extends AbstractMalumScreen {
 
     public final BookObjectHandler<EntryScreen> bookObjectHandler = new BookObjectHandler<>();
 
+    public BookPage displayedPage;
+
     public int grouping;
 
     public EntryScreen(BookEntry openEntry, Consumer<Boolean> onClose) {
@@ -218,9 +220,5 @@ public class EntryScreen extends AbstractMalumScreen {
 
     public int getGuiTop() {
         return (height - bookHeight) / 2;
-    }
-
-    public void renderLater(Runnable runnable) {
-        lateRendering.add(runnable);
     }
 }

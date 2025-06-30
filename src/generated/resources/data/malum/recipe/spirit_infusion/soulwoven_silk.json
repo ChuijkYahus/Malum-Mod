@@ -1,16 +1,16 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 2,
       "tag": "c:strings"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 2,
     "tag": "minecraft:wool"
   },
-  "output": {
+  "result": {
     "count": 4,
     "id": "malum:soulwoven_silk"
   },

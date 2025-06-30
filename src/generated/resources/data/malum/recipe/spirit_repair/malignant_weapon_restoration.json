@@ -1,10 +1,6 @@
 {
   "type": "malum:spirit_repair",
   "durabilityPercentage": 0.75,
-  "inputs": [
-    "malum:weight_of_worlds",
-    "malum:edge_of_deliverance"
-  ],
   "repairMaterial": {
     "count": 1,
     "item": "malum:malignant_pewter_ingot"
@@ -22,5 +18,9 @@
       "type": "malum:earthen",
       "count": 16
     }
+  ],
+  "validItems": [
+    "malum:weight_of_worlds",
+    "malum:edge_of_deliverance"
   ]
 }

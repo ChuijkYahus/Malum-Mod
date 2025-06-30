@@ -1,0 +1,25 @@
+{
+  "keys": [
+    {
+      "name": "input",
+      "role": "input",
+      "type": "flat_sized_ingredient"
+    },
+    {
+      "name": "secondaryInput",
+      "role": "input",
+      "type": "flat_sized_ingredient"
+    },
+    {
+      "name": "result",
+      "role": "output",
+      "type": "item_stack"
+    },
+    {
+      "name": "soundType",
+      "role": "other",
+      "type": "malum:runic_workbench_sound",
+      "optional": "malum:runic_workbench_shapes_something"
+    }
+  ]
+}

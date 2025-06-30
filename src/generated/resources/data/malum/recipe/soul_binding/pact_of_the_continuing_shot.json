@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "item": "minecraft:arrow"
@@ -10,11 +10,11 @@
       "item": "malum:astral_weave"
     }
   ],
-  "geas": "malum:pact_of_the_continuing_shot",
-  "ingredient": {
+  "input": {
     "count": 12,
     "item": "minecraft:feather"
   },
+  "result": "malum:pact_of_the_continuing_shot",
   "spirits": [
     {
       "type": "malum:aerial",

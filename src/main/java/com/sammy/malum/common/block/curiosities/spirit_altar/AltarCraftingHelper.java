@@ -126,7 +126,7 @@ public class AltarCraftingHelper {
 	public static SizedIngredient getNextIngredientToTake(SpiritInfusionRecipe recipe, IItemHandlerModifiable consumedItems) {
 		IItemHandler frozen = frozenCopy(consumedItems);
 
-		return getFirstMissingIngredient(frozen, recipe.extraIngredients);
+		return getFirstMissingIngredient(frozen, recipe.extraInputs);
 	}
 
 	/**
@@ -148,13 +148,13 @@ public class AltarCraftingHelper {
 		if (!recipe.matches(input, null))
 			return null;
 
-		int inputCount = recipe.ingredient.count();
+		int inputCount = recipe.input.count();
 
 		Extraction spiritRanking = simulateExtraction(spiritContainer, convertSpiritsToIngredients(recipe.spirits));
 		if (spiritRanking == null)
 			return null;
 
-		Extraction itemRanking = simulateExtraction(new CombinedInvWrapper(pedestalItems, consumedItems), recipe.extraIngredients);
+		Extraction itemRanking = simulateExtraction(new CombinedInvWrapper(pedestalItems, consumedItems), recipe.extraInputs);
 		if (itemRanking == null)
 			return null;
 

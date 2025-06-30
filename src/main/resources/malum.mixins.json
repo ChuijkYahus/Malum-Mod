@@ -6,6 +6,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "malum.refmap.json",
   "mixins": [
+    "ApplyBonusCountMixin",
     "BlockBehaviorMixin",
     "DyedItemColorMixin",
     "EntityMixin",

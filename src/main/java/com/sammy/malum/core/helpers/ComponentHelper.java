@@ -22,6 +22,14 @@ public class ComponentHelper {
         return Component.translatable("malum.effect.negative", Component.translatable("malum.effect.curio." + name, args)).withStyle(ChatFormatting.RED);
     }
 
+    public static Component positivePouchEffect(String name, Object... args) {
+        return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.BLUE));
+    }
+
+    public static Component negativePouchEffect(String name, Object... args) {
+        return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
+    }
+
     public static Component positiveEffect(String name, Object... args) {
         return Component.literal(" ").append(Component.translatable("malum.effect." + name, args)).withStyle(ChatFormatting.DARK_GREEN);
     }

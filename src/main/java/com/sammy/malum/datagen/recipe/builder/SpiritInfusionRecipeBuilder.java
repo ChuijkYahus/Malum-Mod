@@ -87,7 +87,7 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
 
     @Override
     public SpiritInfusionRecipe buildRecipe(ResourceLocation resourceLocation) {
-        return new SpiritInfusionRecipe(input, output, extraIngredients, spirits, carryOverComponentData);
+        return new SpiritInfusionRecipe(input, output, spirits, extraIngredients, carryOverComponentData);
     }
 
     @Override

@@ -1121,6 +1121,12 @@
     ],
     "subtitle": "malum.subtitle.pedestal_spirit_picked_up"
   },
+  "player_burns_from_greed": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "malum.subtitle.player_burns_from_greed"
+  },
   "player_experiences_combustion_whiplash": {
     "sounds": [
       "random/fizz"
@@ -1198,6 +1204,18 @@
       "block/basalt/step6"
     ],
     "subtitle": "malum.subtitle.quartz_ore_step"
+  },
+  "ravenous_pouch_eats": {
+    "sounds": [
+      "malum:curiosities/pouch/ravenous/insert1",
+      "malum:curiosities/pouch/ravenous/insert2",
+      "malum:curiosities/pouch/ravenous/insert3",
+      "malum:curiosities/pouch/ravenous/insert4",
+      "malum:curiosities/pouch/ravenous/insert5",
+      "malum:curiosities/pouch/ravenous/insert6",
+      "malum:curiosities/pouch/ravenous/insert7"
+    ],
+    "subtitle": "malum.subtitle.ravenous_pouch_eats"
   },
   "reaper_scythe_slashes": {
     "sounds": [
@@ -1532,6 +1550,14 @@
       "malum:blocks/runewood/trapdoor/toggle3"
     ],
     "subtitle": "malum.subtitle.runewood_trapdoor_open"
+  },
+  "runic_workbench_shapes_something": {
+    "sounds": [
+      "malum:runic_workbench/craft_rune_generic1",
+      "malum:runic_workbench/craft_rune_generic2",
+      "malum:runic_workbench/craft_rune_generic3"
+    ],
+    "subtitle": "malum.subtitle.runic_workbench_shapes_something"
   },
   "runic_workbench_shapes_tainted_rune": {
     "sounds": [
@@ -2630,8 +2656,9 @@
   },
   "weavers_workbench_weaves": {
     "sounds": [
-      "malum:runic_workbench/craft1",
-      "malum:runic_workbench/craft2"
+      "malum:runic_workbench/craft_rune_generic1",
+      "malum:runic_workbench/craft_rune_generic2",
+      "malum:runic_workbench/craft_rune_generic3"
     ],
     "subtitle": "malum.subtitle.weavers_workbench_weaves"
   },

@@ -65,7 +65,7 @@ public class HighPriestGeas extends GeasEffect {
                     new DelayedDamageWorldEvent(target)
                             .setDamageData(0, 4, 2)
                             .setMagicDamageType(MalumDamageTypes.KARMIC)
-                            .setImpactParticleEffect(MalumParticleEffectTypes.SHAKEN_FAITH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT))
+                            .setImpactParticleEffect(MalumParticleEffectTypes.HIGH_PRIEST_PENANCE, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT))
                             .setSound(MalumSoundEvents.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
             target.addEffect(new MobEffectInstance(MalumMobEffects.SHAKEN_FAITH, COOLDOWN_DURATION, 0, true, true, true));
             setDirty();

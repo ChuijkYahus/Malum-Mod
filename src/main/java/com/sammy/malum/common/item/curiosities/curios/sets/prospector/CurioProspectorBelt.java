@@ -1,5 +1,6 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
+import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
@@ -15,12 +16,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
 import team.lodestar.lodestone.helpers.CurioHelper;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.*;
 import java.util.function.Consumer;
 
 public class CurioProspectorBelt extends MalumCurioItem {
@@ -31,7 +34,8 @@ public class CurioProspectorBelt extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer, TooltipContext context) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("enchanted_explosions", Enchantment.getFullname(context.registries().holderOrThrow(Enchantments.FORTUNE), 3).copy().withStyle(ChatFormatting.BLUE)));
+        Component fortune = Enchantment.getFullname(context.registries().holderOrThrow(Enchantments.FORTUNE), 3);
+        consumer.accept(ComponentHelper.positiveCurioEffect("enchanted_explosions", fortune.copy().withStyle(ChatFormatting.BLUE)));
         consumer.accept(ComponentHelper.positiveCurioEffect("explosions_spare_valuables"));
     }
 

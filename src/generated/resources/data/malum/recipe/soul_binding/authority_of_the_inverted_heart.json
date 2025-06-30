@@ -1,6 +1,6 @@
 {
   "type": "malum:soul_binding",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 16,
       "item": "malum:malignant_pewter_plating"
@@ -14,11 +14,11 @@
       "item": "malum:mnemonic_fragment"
     }
   ],
-  "geas": "malum:authority_of_the_inverted_heart",
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:fused_consciousness"
   },
+  "result": "malum:authority_of_the_inverted_heart",
   "spirits": [
     {
       "type": "malum:sacred",

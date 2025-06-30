@@ -1,8 +1,5 @@
 {
   "type": "malum:spirit_repair",
-  "inputs": [
-    "minecraft:mace"
-  ],
   "repairMaterial": {
     "count": 8,
     "item": "minecraft:wind_charge"
@@ -16,5 +13,8 @@
       "type": "malum:arcane",
       "count": 16
     }
+  ],
+  "validItems": [
+    "minecraft:mace"
   ]
 }

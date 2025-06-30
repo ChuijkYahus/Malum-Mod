@@ -106,7 +106,7 @@ public class WeepingWellRejectionHandler {
             }
             if (!progression.hasBeenRejected) {
                 SoulHarvestHandler.spawnSpirits(player)
-                        .setCustomItems(MalumItems.ENCYCLOPEDIA_ARCANA.get())
+                        .setCustomItems(MalumItems.UMBRAL_SPIRIT.get())
                         .setPreferredCollector(player)
                         .spawnSpirits(level);
             }

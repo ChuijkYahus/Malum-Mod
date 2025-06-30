@@ -1,10 +1,10 @@
 {
   "type": "malum:spirit_infusion",
-  "ingredient": {
+  "input": {
     "count": 4,
     "item": "minecraft:clay_ball"
   },
-  "output": {
+  "result": {
     "count": 4,
     "id": "malum:alchemical_calx"
   },

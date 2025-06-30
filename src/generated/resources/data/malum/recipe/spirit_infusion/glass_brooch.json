@@ -1,6 +1,6 @@
 {
   "type": "malum:spirit_infusion",
-  "extraIngredients": [
+  "extraInputs": [
     {
       "count": 8,
       "tag": "c:gems/diamond"
@@ -10,11 +10,11 @@
       "item": "malum:astral_weave"
     }
   ],
-  "ingredient": {
+  "input": {
     "count": 1,
     "item": "malum:runic_brooch"
   },
-  "output": {
+  "result": {
     "count": 1,
     "id": "malum:glass_brooch"
   },

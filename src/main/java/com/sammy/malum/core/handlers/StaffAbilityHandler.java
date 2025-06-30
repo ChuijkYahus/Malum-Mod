@@ -9,7 +9,7 @@ import net.neoforged.neoforge.network.*;
 
 public class StaffAbilityHandler {
 
-    public static void recoverStaffCharges(PlayerTickEvent.Post event) {
+    public static void recoverStaffCharges(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
         if (!player.level().isClientSide) {
             final StaffAbilityData data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
