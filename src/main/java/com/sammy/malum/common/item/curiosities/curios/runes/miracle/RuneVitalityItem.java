@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.google.common.collect.*;
 import com.sammy.malum.*;
-import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;

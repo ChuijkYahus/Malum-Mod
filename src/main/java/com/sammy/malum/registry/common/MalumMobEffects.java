@@ -2,9 +2,11 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.effect.*;
-import com.sammy.malum.common.effect.aura.*;
+import com.sammy.malum.common.effect.rite.aura.*;
+import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.geas.*;
 import com.sammy.malum.common.effect.gluttony.*;
+import com.sammy.malum.common.effect.rite.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
@@ -21,15 +23,18 @@ public class MalumMobEffects {
 
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, MalumMod.MALUM);
 
-    //Aura
-    public static final DeferredHolder<MobEffect, MobEffect> GAIAS_BULWARK = EFFECTS.register("gaias_bulwark", EarthenAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> EARTHEN_MIGHT = EFFECTS.register("earthen_might", CorruptedEarthenAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> MINERS_RAGE = EFFECTS.register("miners_rage", InfernalAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> IFRITS_EMBRACE = EFFECTS.register("ifrits_embrace", CorruptedInfernalAura::new);
+    //Rite
+    public static final DeferredHolder<MobEffect, MobEffect> SACRED_NOURISHMENT = EFFECTS.register("sacred_nourishment", SacredNourishment::new);
+    public static final DeferredHolder<MobEffect, MobEffect> WICKED_EMPOWERMENT = EFFECTS.register("wicked_empowerment", WickedEmpowerment::new);
+
     public static final DeferredHolder<MobEffect, MobEffect> ZEPHYRS_COURAGE = EFFECTS.register("zephyrs_courage", AerialAura::new);
     public static final DeferredHolder<MobEffect, MobEffect> AETHERS_CHARM = EFFECTS.register("aethers_charm", CorruptedAerialAura::new);
     public static final DeferredHolder<MobEffect, MobEffect> POSEIDONS_GRASP = EFFECTS.register("poseidons_grasp", AqueousAura::new);
     public static final DeferredHolder<MobEffect, MobEffect> ANGLERS_LURE = EFFECTS.register("anglers_lure", CorruptedAqueousAura::new);
+    public static final DeferredHolder<MobEffect, MobEffect> GAIAS_BULWARK = EFFECTS.register("gaias_bulwark", EarthenAura::new);
+    public static final DeferredHolder<MobEffect, MobEffect> EARTHEN_MIGHT = EFFECTS.register("earthen_might", CorruptedEarthenAura::new);
+    public static final DeferredHolder<MobEffect, MobEffect> MINERS_RAGE = EFFECTS.register("miners_rage", InfernalAura::new);
+    public static final DeferredHolder<MobEffect, MobEffect> IFRITS_EMBRACE = EFFECTS.register("ifrits_embrace", CorruptedInfernalAura::new);
 
     //Geas
     public static final DeferredHolder<MobEffect, MobEffect> ARCANAPHAGE = EFFECTS.register("arcanaphage", ArcanaphageEffect::new);

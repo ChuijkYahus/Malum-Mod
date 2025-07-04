@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;

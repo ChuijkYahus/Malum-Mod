@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;

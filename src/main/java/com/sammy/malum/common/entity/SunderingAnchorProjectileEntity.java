@@ -385,7 +385,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                 return;
             }
             Vec3 newMotion = distance.normalize();
-            final double dot = motion.normalize().dot(distance.normalize());
+            double dot = motion.normalize().dot(distance.normalize());
             if (demandAccuracy && dot < 0.1f) {
                 return;
             }

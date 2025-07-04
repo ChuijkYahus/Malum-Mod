@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen.recipe;
 
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;

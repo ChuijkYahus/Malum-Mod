@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.spiritrite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
@@ -12,21 +13,21 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class InfernalRiteType extends TotemicRiteType {
+public class InfernalRiteType extends SpiritRiteType {
     public InfernalRiteType() {
         super("infernal_rite", ARCANE_SPIRIT, INFERNAL_SPIRIT, INFERNAL_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.MINERS_RAGE);
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new PotionRiteEffectOld(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.MINERS_RAGE);
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new PotionRiteEffect(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.IFRITS_EMBRACE) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new PotionRiteEffectOld(MalumSpiritTypes.AERIAL_SPIRIT, LivingEntity.class, MalumMobEffects.IFRITS_EMBRACE) {
 
             @SuppressWarnings("ConstantConditions")
             @Override

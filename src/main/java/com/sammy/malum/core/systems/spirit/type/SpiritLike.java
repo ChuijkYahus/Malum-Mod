@@ -1,7 +1,7 @@
 package com.sammy.malum.core.systems.spirit.type;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -30,7 +30,7 @@ public interface SpiritLike {
     }
 
     default String getLangKey() {
-        return getRegistryName().getNamespace() + ".gui.spirit." + getRegistryName().getPath();
+        return getRegistryName().getNamespace() + ".gui.spirit." + getName();
     }
 
     default Holder<MalumSpiritType> getHolder() {
@@ -39,6 +39,10 @@ public interface SpiritLike {
 
     default ResourceLocation getRegistryName() {
         return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getKey(getSpirit());
+    }
+
+    default String getName() {
+        return getRegistryName().getPath();
     }
 
     default int getAnalogSignal() {

@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.nature.soulwood;
 import com.sammy.malum.common.block.nature.MalumLogBLock;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumSoundEvents;
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -37,8 +37,8 @@ public class SoulwoodLogBlock extends MalumLogBLock {
     }
 
     @Override
-    public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritLike spirit) {
-        boolean success = super.createTotemPole(level, pos, player, handIn, hit, stack, spirit);
+    public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, Direction direction, ItemStack stack, SpiritLike spirit) {
+        boolean success = super.createTotemPole(level, pos, player, handIn, direction, stack, spirit);
         if (success) {
             level.playSound(null, pos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
         }

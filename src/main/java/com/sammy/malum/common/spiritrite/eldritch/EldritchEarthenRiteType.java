@@ -7,16 +7,16 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class EldritchEarthenRiteType extends TotemicRiteType {
+public class EldritchEarthenRiteType extends SpiritRiteType {
     public EldritchEarthenRiteType() {
         super("greater_earthen_rite", ELDRITCH_SPIRIT, ARCANE_SPIRIT, EARTHEN_SPIRIT, EARTHEN_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT) {
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT) {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getBlocksAhead(totemBase).forEach(p -> {
@@ -35,8 +35,8 @@ public class EldritchEarthenRiteType extends TotemicRiteType {
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT) {
             @SuppressWarnings("ConstantConditions")
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {

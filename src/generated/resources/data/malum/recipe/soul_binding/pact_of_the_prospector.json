@@ -21,7 +21,11 @@
       "count": 16
     },
     {
-      "type": "malum:aerial",
+      "type": "malum:earthen",
+      "count": 16
+    },
+    {
+      "type": "malum:sacred",
       "count": 16
     }
   ]

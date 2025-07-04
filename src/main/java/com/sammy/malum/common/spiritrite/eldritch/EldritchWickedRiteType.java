@@ -1,8 +1,8 @@
 package com.sammy.malum.common.spiritrite.eldritch;
 
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
-import com.sammy.malum.core.systems.rite.TotemicRiteEffect;
-import com.sammy.malum.core.systems.rite.TotemicRiteType;
+import com.sammy.malum.core.systems.rite.OldTotemicRiteEffect;
+import com.sammy.malum.core.systems.rite.SpiritRiteType;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.server.level.*;
@@ -15,16 +15,16 @@ import team.lodestar.lodestone.helpers.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class EldritchWickedRiteType extends TotemicRiteType {
+public class EldritchWickedRiteType extends SpiritRiteType {
     public EldritchWickedRiteType() {
         super("greater_wicked_rite", ELDRITCH_SPIRIT, ARCANE_SPIRIT, WICKED_SPIRIT, WICKED_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Player)).forEach(e -> {
@@ -41,8 +41,8 @@ public class EldritchWickedRiteType extends TotemicRiteType {
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 DamageSource damageSource = DamageTypeHelper.create(level, MalumDamageTypes.VOODOO_PLAYERLESS);

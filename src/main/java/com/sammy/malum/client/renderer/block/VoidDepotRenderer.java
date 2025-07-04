@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.Font;

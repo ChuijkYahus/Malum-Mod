@@ -18,14 +18,14 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     public final Predicate<LivingEntity> entityPredicate;
     private final int interval;
 
-    public TotemicRuneCurioItem(Properties builder, TotemicRiteType riteType, boolean corrupted) {
+    public TotemicRuneCurioItem(Properties builder, SpiritRiteType riteType, boolean corrupted) {
         this(builder, riteType, corrupted, 40);
     }
 
-    public TotemicRuneCurioItem(Properties builder, TotemicRiteType riteType, boolean corrupted, int interval) {
+    public TotemicRuneCurioItem(Properties builder, SpiritRiteType riteType, boolean corrupted, int interval) {
         super(builder, riteType.getIdentifyingSpirit(), MalumTrinketType.TOTEMIC_RUNE);
         this.interval = interval;
-        if (!(riteType.getRiteEffect(corrupted) instanceof PotionRiteEffect potionRiteEffect)) {
+        if (!(riteType.getRiteEffect(corrupted) instanceof PotionRiteEffectOld potionRiteEffect)) {
             throw new IllegalArgumentException("Supplied rite type must have an aura effect");
         }
         mobEffectHolder = potionRiteEffect.mobEffectHolder;

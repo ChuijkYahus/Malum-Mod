@@ -47,8 +47,8 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     public final Block logBlock;
     public final Direction direction;
 
-    public TotemPoleBlockEntity(BlockEntityType<? extends TotemPoleBlockEntity> spirit, BlockPos pos, BlockState state) {
-        super(spirit, pos, state);
+    public TotemPoleBlockEntity(BlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         this.isSoulwood = ((TotemPoleBlock<?>) state.getBlock()).isSoulwood;
         this.logBlock = ((TotemPoleBlock<?>) state.getBlock()).logBlock.get();
         this.direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);

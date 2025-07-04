@@ -13,6 +13,7 @@ import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
 import com.sammy.malum.registry.common.enchantment.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -35,7 +36,7 @@ import java.util.function.Supplier;
 import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
 import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
-import static com.sammy.malum.registry.common.MalumSpiritTypes.SPIRIT_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -139,12 +140,13 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.gui.augment.type.augment", "Augment");
         add("malum.gui.augment.type.core_augment", "Core Augment");
 
-        add(TotemicRiteType.TYPE, "Type: ");
-        add(TotemicRiteType.MEDIUM, "Medium: ");
-        add(TotemicRiteType.RUNEWOOD, "Runewood");
-        add(TotemicRiteType.SOULWOOD, "Soulwood");
-        add(TotemicRiteType.COVERAGE, "Coverage: ");
-        add(TotemicRiteType.EFFECT, "Effect: ");
+        add(SpiritRiteType.TYPE, "Type: %1$s");
+        add(SpiritRiteType.MEDIUM, "Medium: %1$s");
+        add(SpiritRiteType.RUNEWOOD, "Runewood");
+        add(SpiritRiteType.SOULWOOD, "Soulwood");
+        add(SpiritRiteType.COVERAGE, "Coverage: %1$s");
+        add(SpiritRiteType.ANCHOR, "Anchor Dependant");
+        add(SpiritRiteType.EFFECT, "Effect: %1$s");
 
         add(GeasItem.GEAS, "Geas");
         add(GeasItem.SWORN, "When Sworn: ");
@@ -182,8 +184,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
@@ -221,11 +223,11 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.waveform_artifice.guide.0", "Release Right Button To Confirm");
 
 
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.AURA);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT);
+        addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory.AURA);
+        addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT);
+        addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT);
+        addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT);
+        addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT);
 
         addRite(MalumSpiritRiteTypes.SACRED_RITE, "Rite of Healing", "Rite of Nourishment");
         addRite(MalumSpiritRiteTypes.WICKED_RITE, "Rite of Decay", "Rite of Empowerment");
@@ -352,7 +354,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
         addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Greed");
         addGeasEffect("prospectors_greed", "Prospector's Greed Grants Mining Speed And Fortune Chance");
-        addGeasEffect("greed_combustion", "Prospector's Greed Ignites You When Struck");
+        addGeasEffect("greed_combustion", "Prospector's Greed Turns Into Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");
@@ -549,12 +551,12 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect." + identifier, name);
     }
 
-    public void addRite(TotemicRiteType riteType, String basicName, String corruptName) {
+    public void addRite(SpiritRiteType riteType, String basicName, String corruptName) {
         add(riteType.getLangKey(false), basicName);
         add(riteType.getLangKey(true), corruptName);
     }
 
-    public void addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory category) {
+    public void addRiteEffectCategory(OldTotemicRiteEffect.MalumRiteEffectCategory category) {
         add(category.getTranslationKey(), DataHelper.toTitleCase(category.name().toLowerCase(), "_"));
     }
 

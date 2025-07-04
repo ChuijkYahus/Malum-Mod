@@ -3,7 +3,7 @@ package com.sammy.malum.common.geas.pact.aqueous;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -49,6 +49,9 @@ public class SelfCareGeas extends GeasEffect {
         if (GeasEffectHandler.hasGeasEffect(entity, MalumGeasEffectTypes.PACT_OF_SELF_CARE)) {
             if (foodLevel == 0) {
                 return 3;
+            }
+            if (foodLevel < 3) {
+                return 1;
             }
             return entity.getHealth() < entity.getMaxHealth()/4f ? 2 : 1;
         }

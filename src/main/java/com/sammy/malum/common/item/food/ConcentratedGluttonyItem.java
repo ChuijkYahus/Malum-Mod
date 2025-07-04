@@ -5,6 +5,7 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

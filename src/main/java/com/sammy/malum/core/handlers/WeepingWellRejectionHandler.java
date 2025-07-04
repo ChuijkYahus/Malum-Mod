@@ -7,6 +7,7 @@ import com.sammy.malum.common.entity.FloatingItemEntity;
 import com.sammy.malum.common.payloads.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;

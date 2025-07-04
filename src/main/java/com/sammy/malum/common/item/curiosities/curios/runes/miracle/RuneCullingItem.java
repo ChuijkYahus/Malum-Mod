@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
-import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;

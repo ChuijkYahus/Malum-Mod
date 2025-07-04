@@ -4,6 +4,7 @@ import com.sammy.malum.common.entity.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;

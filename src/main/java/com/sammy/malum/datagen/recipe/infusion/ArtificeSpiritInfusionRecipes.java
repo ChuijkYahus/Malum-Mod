@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
 public class ArtificeSpiritInfusionRecipes {
@@ -60,8 +60,8 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(MalumItems.HEX_ASH.get(), 2)
-                .addExtraItem(MalumItems.TAINTED_ROCK.get(), 2)
-                .addExtraItem(MalumItems.TWISTED_ROCK.get(), 2)
+                .addExtraItem(MalumItems.TAINTED_ROCK.get(), 8)
+                .addExtraItem(MalumItems.TWISTED_ROCK.get(), 8)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 4, MalumItems.ALCHEMICAL_IMPETUS.get(), 1)

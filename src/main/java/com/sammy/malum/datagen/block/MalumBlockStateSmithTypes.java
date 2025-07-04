@@ -7,13 +7,14 @@ import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
+import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
+import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -88,6 +89,28 @@ public class MalumBlockStateSmithTypes {
             ResourceLocation model = isVertical ? hanging : mounted;
             return ConfiguredModel.builder().modelFile(provider.models().getExistingFile(model)).rotationY(((int) direction.toYRot()) % 360).build();
         });
+    });
+
+    public static BlockStateSmith<Block> RITE_ANCHOR_BLOCK = new BlockStateSmith<>(Block.class, MalumItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ResourceLocation top = provider.getBlockTexture("rite_anchor_top");
+        ResourceLocation side = provider.getBlockTexture("rite_anchor_side");
+        ResourceLocation bottom = provider.getBlockTexture("rite_anchor_bottom");
+        ModelFile model = provider.models().cubeBottomTop(name, side, bottom, top);
+        provider.getVariantBuilder(block)
+                .forAllStates(state -> {
+                    ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+                    if (state.hasProperty(RiteAnchorBlock.SPIRIT_TYPE)) {
+                        SpiritHolder<MalumSpiritType> spiritType = SpiritTypeProperty.getSpiritType(state);
+                        ResourceLocation spiritTop = top.withSuffix("_" + spiritType.getName());
+                        BlockModelBuilder spiritModel = provider.models().cubeBottomTop(name + "_" + spiritType.getName(), side, bottom, top).texture("particle", spiritTop);
+                        builder.modelFile(spiritModel);
+                    }
+                    else {
+                        builder.modelFile(model);
+                    }
+                    return builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
+                });
     });
 
     public static BlockStateSmith<SpiritDiodeBlock> SPIRIT_DIODE = new BlockStateSmith<>(SpiritDiodeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {

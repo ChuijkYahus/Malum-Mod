@@ -27,9 +27,9 @@ public class SpiritRiteRecipePage extends BookPage {
 
     private static final ScreenParticleHolder RITE_PARTICLES = new ScreenParticleHolder();
 
-    private final TotemicRiteType riteType;
+    private final SpiritRiteType riteType;
 
-    public SpiritRiteRecipePage(TotemicRiteType riteType) {
+    public SpiritRiteRecipePage(SpiritRiteType riteType) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_recipe_page.png"));
         this.riteType = riteType;
     }

@@ -3,6 +3,7 @@ package com.sammy.malum.common.worldgen.blight;
 import com.google.common.collect.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

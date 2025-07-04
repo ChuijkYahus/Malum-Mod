@@ -6,7 +6,7 @@ import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.culling.*;
 import net.minecraft.client.renderer.entity.*;

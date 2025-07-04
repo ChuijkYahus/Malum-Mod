@@ -4,7 +4,7 @@ import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class TotemicSpiritInfusionRecipes {
 

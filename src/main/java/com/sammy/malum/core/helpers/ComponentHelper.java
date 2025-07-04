@@ -30,6 +30,7 @@ public class ComponentHelper {
         return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
     }
 
+
     public static Component positiveEffect(String name, Object... args) {
         return Component.literal(" ").append(Component.translatable("malum.effect." + name, args)).withStyle(ChatFormatting.DARK_GREEN);
     }

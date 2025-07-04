@@ -12,6 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
@@ -22,6 +23,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 
 public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEntityBlock<T> {
 
+    public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final SpiritTypeProperty SPIRIT_TYPE = SpiritTypeProperty.SPIRIT_TYPE;
 
     public final Supplier<? extends Block> logBlock;

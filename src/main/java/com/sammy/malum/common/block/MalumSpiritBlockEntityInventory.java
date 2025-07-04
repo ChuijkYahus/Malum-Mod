@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block;
 
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;

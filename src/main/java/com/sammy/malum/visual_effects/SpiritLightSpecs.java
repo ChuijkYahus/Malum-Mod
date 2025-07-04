@@ -1,6 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
+import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.level.*;
@@ -13,6 +14,7 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
+import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 
 import java.util.function.*;
@@ -20,6 +22,22 @@ import java.util.function.*;
 import static net.minecraft.util.Mth.*;
 
 public class SpiritLightSpecs {
+
+    public static void spiritParticles(SpiritItemEntity spirit) {
+        Vec3 direction = spirit.getDeltaMovement().add(0, spirit.getYOffset(0.5f), 0).normalize();
+        Vec3 motion = direction.scale(0.2f);
+        Consumer<LodestoneWorldParticle> behavior = p -> {
+            Vec3 spiritPosition = spirit.position().add(0, spirit.getYOffset(0.5f), 0);
+            Vec3 toSpirit = spiritPosition.subtract(p.getParticlePosition()).normalize();
+            double length = p.getParticleSpeed().length();
+            float delta = 0.3f + (p.getAge() / (float)p.getLifetime()) * 0.7f;
+            p.setParticleSpeed(p.getParticleSpeed().lerp(toSpirit.scale(length), delta));
+        };
+        var lightSpecs = SpiritLightSpecs.spiritLightSpecs(spirit.level(), spirit.getOffsetPosition(), spirit.getSpiritType());
+        lightSpecs.getBuilder().setMotion(motion).addTickActor(behavior);
+        lightSpecs.getBloomBuilder().setMotion(motion).addTickActor(behavior);
+        lightSpecs.spawnParticles();
+    }
 
     public static void coolLookingShinyThing(Level level, Vec3 pos, SpiritLike spirit) {
         var centralLightSpecs = spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()));

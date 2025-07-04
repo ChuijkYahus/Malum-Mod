@@ -5,7 +5,7 @@ import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.geas.GeasEffect;
 import com.sammy.malum.registry.common.MalumAttributes;
-import com.sammy.malum.registry.common.MalumGeasEffectTypes;
+import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;

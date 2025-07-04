@@ -2,7 +2,7 @@ package com.sammy.malum.core.systems.registry;
 
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;

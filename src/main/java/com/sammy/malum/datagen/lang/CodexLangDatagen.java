@@ -3,7 +3,7 @@ package com.sammy.malum.datagen.lang;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 
 public class CodexLangDatagen {
@@ -33,15 +33,15 @@ public class CodexLangDatagen {
         return "$u" + s + "/$";
     }
 
-    private static void addCorruptedRiteDetails(TotemicRiteType riteType, String riteDescription, String riteHoverDescription) {
+    private static void addCorruptedRiteDetails(SpiritRiteType riteType, String riteDescription, String riteHoverDescription) {
         String id = riteType.identifier;
         add(BookPage.TEXT + ".corrupt_" + id, riteDescription);
-        add(TotemicRiteType.CORRUPTED_EFFECT + "." + id, riteHoverDescription);
+        add(SpiritRiteType.CORRUPTED_EFFECT + "." + id, riteHoverDescription);
     }
-    private static void addRiteDetails(TotemicRiteType riteType, String riteDescription, String riteHoverDescription) {
+    private static void addRiteDetails(SpiritRiteType riteType, String riteDescription, String riteHoverDescription) {
         String id = riteType.identifier;
         add(BookPage.TEXT + "." + id, riteDescription);
-        add(TotemicRiteType.EFFECT + "." + id, riteHoverDescription);
+        add(SpiritRiteType.EFFECT + "." + id, riteHoverDescription);
     }
 
     private static void addGeasDetails(Holder<GeasEffectType> geasEffectType, String geasPositives, String geasNegatives) {
@@ -1110,19 +1110,19 @@ public class CodexLangDatagen {
                          -Desperate Need reduces Armor, Healing Received and Magic Resistance
                          -Occasionally, the Rot contributes to your pain using a Poisonous Lash""");
 
-        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To kindle one's fortune");
-        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
-                """
-                        Your soul, filled with fervor and greed.
-                         -Collecting Precious Minerals grants Prospector's Greed, Increasing Mining providing Fortune Chance""",
-                "You cannot deny the flame it's purpose\n -High Fervor Ignites You When Struck");
-
-        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel one's flame");
+        addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel the flame");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_COMBUSTION,
                 """
                         No force more powerful.
                          -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
+
+        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To kindle one's fortune");
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
+                """
+                        Your wants and needs, imbued with greed.
+                         -Collecting Precious Minerals grants Prospector's Greed, Increasing Mining and providing Fortune Chance""",
+                "Burn with Greed\n -Being Struck while Imbued with Prospector's Greed Ignites and Consumes the Effect\n -High Greed amplifies the effect");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC,

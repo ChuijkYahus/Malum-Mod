@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
 public class MalumSpiritFocusingRecipes implements IConditionBuilder {

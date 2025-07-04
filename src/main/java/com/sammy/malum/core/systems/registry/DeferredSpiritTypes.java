@@ -1,15 +1,12 @@
 package com.sammy.malum.core.systems.registry;
 
-import com.mojang.serialization.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
 import java.util.function.*;
 
 @SuppressWarnings("unchecked")

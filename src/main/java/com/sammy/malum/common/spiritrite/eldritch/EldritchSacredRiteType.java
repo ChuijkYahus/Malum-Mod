@@ -12,16 +12,16 @@ import net.minecraft.world.level.block.state.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class EldritchSacredRiteType extends TotemicRiteType {
+public class EldritchSacredRiteType extends SpiritRiteType {
     public EldritchSacredRiteType() {
         super("greater_sacred_rite", ELDRITCH_SPIRIT, ARCANE_SPIRIT, SACRED_SPIRIT, SACRED_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT) {
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT) {
 
             @Override
             public int getRiteEffectHorizontalRadius() {
@@ -61,8 +61,8 @@ public class EldritchSacredRiteType extends TotemicRiteType {
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
 
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {

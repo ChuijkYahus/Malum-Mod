@@ -18,16 +18,16 @@ import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class ArcaneRiteType extends TotemicRiteType {
+public class ArcaneRiteType extends SpiritRiteType {
     public ArcaneRiteType() {
         super("arcane_rite", ARCANE_SPIRIT, ARCANE_SPIRIT, ARCANE_SPIRIT, ARCANE_SPIRIT, ARCANE_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT) {
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT) {
 
             @SuppressWarnings("ConstantConditions")
             @Override
@@ -41,8 +41,8 @@ public class ArcaneRiteType extends TotemicRiteType {
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT) {
 
             @Override
             public boolean canAffectBlock(TotemBaseBlockEntity totemBase, BlockState state, BlockPos pos) {

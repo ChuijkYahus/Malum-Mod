@@ -2,8 +2,8 @@ package com.sammy.malum.common.item;
 
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;

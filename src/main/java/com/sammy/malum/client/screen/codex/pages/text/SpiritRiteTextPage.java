@@ -12,19 +12,17 @@ import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SpiritRiteTextPage extends BookPage {
 
-    public final TotemicRiteType riteType;
+    public final SpiritRiteType riteType;
     private final Component text;
-    private final boolean isCorrupted;
 
-    public SpiritRiteTextPage(TotemicRiteType riteType, String text) {
+    public SpiritRiteTextPage(SpiritRiteType riteType, String text) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png"));
         this.riteType = riteType;
         this.text = Component.translatable(BookPage.TEXT + "." + text);
-        this.isCorrupted = text.contains("corrupt");
     }
 
     public String headlineTranslationKey() {
-        return riteType.getLangKey(isCorrupted);
+        return riteType.getLangKey();
     }
 
     @Override
@@ -35,9 +33,9 @@ public class SpiritRiteTextPage extends BookPage {
 
         final int riteIconX = left + 63;
         final int riteIconY = top + 38;
-        renderRiteIcon(riteType, guiGraphics.pose(), isCorrupted, 0.4f, riteIconX, riteIconY);
+        renderRiteIcon(riteType, guiGraphics.pose(), riteType.isCorrupted(), 0.4f, riteIconX, riteIconY);
         if (screen.isHovering(mouseX, mouseY, riteIconX, riteIconY, 16, 16)) {
-            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, riteType.getDescription(isCorrupted), mouseX, mouseY));
+            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, riteType.getDetailedDescription(), mouseX, mouseY));
         }
     }
 }

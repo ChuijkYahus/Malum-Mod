@@ -3,7 +3,7 @@ package com.sammy.malum.core.systems.spirit.type;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;

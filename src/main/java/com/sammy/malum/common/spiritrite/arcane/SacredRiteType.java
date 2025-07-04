@@ -1,39 +1,27 @@
 package com.sammy.malum.common.spiritrite.arcane;
 
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
-import com.sammy.malum.core.systems.rite.TotemicRiteEffect;
-import com.sammy.malum.core.systems.rite.TotemicRiteType;
+import com.sammy.malum.common.spiritrite.effect.sacred.*;
+import com.sammy.malum.core.systems.rite.OldTotemicRiteEffect;
+import com.sammy.malum.core.systems.rite.SpiritRiteType;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.goal.EatBlockGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Bee;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.allay.*;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.Blocks;
 
-import java.util.HashMap;
-import java.util.Map;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.ARCANE_SPIRIT;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SACRED_SPIRIT;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.ARCANE_SPIRIT;
-import static com.sammy.malum.registry.common.MalumSpiritTypes.SACRED_SPIRIT;
-import static net.minecraft.world.entity.ai.goal.EatBlockGoal.IS_TALL_GRASS;
-
-public class SacredRiteType extends TotemicRiteType {
+public class SacredRiteType extends SpiritRiteType {
 
     public SacredRiteType() {
         super("sacred_rite", ARCANE_SPIRIT, SACRED_SPIRIT, SACRED_SPIRIT);
     }
 
     @Override
-    public TotemicRiteEffect getNaturalRiteEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
+    public OldTotemicRiteEffect getNaturalRiteEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
                 getNearbyEntities(totemBase, LivingEntity.class, e -> !(e instanceof Monster)).forEach(e -> {
@@ -50,8 +38,8 @@ public class SacredRiteType extends TotemicRiteType {
     }
 
     @Override
-    public TotemicRiteEffect getCorruptedEffect() {
-        return new TotemicRiteEffect(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
+    public OldTotemicRiteEffect getCorruptedEffect() {
+        return new OldTotemicRiteEffect(OldTotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT) {
             @SuppressWarnings("DataFlowIssue")
             @Override
             public void doRiteEffect(TotemBaseBlockEntity totemBase, ServerLevel level) {
@@ -68,78 +56,12 @@ public class SacredRiteType extends TotemicRiteType {
                         }
                     }
                     if (NOURISHMENT_RITE_ACTORS.containsKey(e.getClass())) {
-                        NourishmentRiteActor<? extends Mob> nourishmentRiteActor = NOURISHMENT_RITE_ACTORS.get(e.getClass());
-                        nourishmentRiteActor.tryAct(level, totemBase, e);
+                        NurturingEffectActor<? extends Mob> nurturingEffectActor = NOURISHMENT_RITE_ACTORS.get(e.getClass());
+                        nurturingEffectActor.tryAct(level, totemBase, e);
                     }
                 });
             }
         };
     }
 
-    public static final Map<Class<? extends Mob>, NourishmentRiteActor<?>> NOURISHMENT_RITE_ACTORS = Util.make(new HashMap<>(), m -> {
-        m.put(Sheep.class, new NourishmentRiteActor<>(Sheep.class) {
-            @Override
-            public boolean act(TotemBaseBlockEntity totemBaseBlockEntity, Sheep sheep) {
-                if (sheep.getRandom().nextFloat() < 0.6f) {
-                    BlockPos blockpos = sheep.blockPosition();
-                    final Level level = sheep.level();
-                    if (IS_TALL_GRASS.test(level.getBlockState(blockpos)) || level.getBlockState(blockpos.below()).is(Blocks.GRASS_BLOCK)) {
-                        EatBlockGoal goal = sheep.eatBlockGoal;
-                        goal.start();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        m.put(Bee.class, new NourishmentRiteActor<>(Bee.class) {
-            @Override
-            public boolean act(TotemBaseBlockEntity totemBaseBlockEntity, Bee bee) {
-                Bee.BeePollinateGoal goal = bee.beePollinateGoal;
-                if (goal.canBeeUse()) {
-                    goal.successfulPollinatingTicks += 40;
-                    goal.tick();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        m.put(Chicken.class, new NourishmentRiteActor<>(Chicken.class) {
-            @Override
-            public boolean act(TotemBaseBlockEntity totemBaseBlockEntity, Chicken chicken) {
-                chicken.eggTime -= 80;
-                return true;
-            }
-        });
-
-        m.put(Allay.class, new NourishmentRiteActor<>(Allay.class) {
-            @Override
-            public boolean act(TotemBaseBlockEntity totemBaseBlockEntity, Allay allay) {
-                allay.duplicationCooldown -= 80;
-                return true;
-            }
-        });
-    });
-
-    public static abstract class NourishmentRiteActor<T extends Mob> {
-        public final Class<T> targetClass;
-
-        public NourishmentRiteActor(Class<T> targetClass) {
-            this.targetClass = targetClass;
-        }
-
-        @SuppressWarnings("unchecked")
-        public final void tryAct(ServerLevel level, TotemBaseBlockEntity totemBaseBlockEntity, Mob mob) {
-            if (targetClass.isInstance(mob)) {
-                act(totemBaseBlockEntity, (T) mob);
-                MalumParticleEffectTypes.ENTITY_RITE_EFFECT
-                        .createEffect(mob)
-                        .color(SACRED_SPIRIT)
-                        .spawn(level);
-            }
-        }
-
-        public abstract boolean act(TotemBaseBlockEntity totemBaseBlockEntity, T entity);
-    }
 }

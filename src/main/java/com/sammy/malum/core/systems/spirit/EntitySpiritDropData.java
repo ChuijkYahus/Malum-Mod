@@ -5,7 +5,7 @@ import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;

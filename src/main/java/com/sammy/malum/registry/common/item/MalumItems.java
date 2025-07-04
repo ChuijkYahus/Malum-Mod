@@ -45,6 +45,7 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
@@ -482,6 +483,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNEWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
+
+    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new ItemNameBlockItem(MalumBlocks.EMPTY_RITE_ANCHOR.get(), p));
 
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEBANKER.get(), p));

@@ -1,12 +1,10 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
-import com.mojang.datafixers.util.*;
-import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -19,14 +17,11 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
-import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
 
-import java.util.*;
 import java.util.function.*;
 
 public class ProspectorGeas extends GeasEffect {
@@ -48,12 +43,13 @@ public class ProspectorGeas extends GeasEffect {
         if (!event.getSource().is(DamageTypeTags.IS_FIRE)) {
             var effect = target.getEffect(MalumMobEffects.PROSPECTORS_GREED);
             if (effect != null) {
-                target.igniteForSeconds((effect.amplifier + 1) / 2f);
+                target.igniteForSeconds((effect.amplifier + 1));
                 if (target.level() instanceof ServerLevel level) {
                     MalumParticleEffectTypes.PROSPECTORS_GREED_BURN.createEffect(target)
                             .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
                             .spawn(level);
                 }
+                target.removeEffect(MalumMobEffects.PROSPECTORS_GREED);
             }
         }
     }

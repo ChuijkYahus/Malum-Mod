@@ -8,7 +8,7 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -94,7 +94,7 @@ public class ArcanaCodexHelper {
         RenderSystem.disableBlend();
     }
 
-    public static void renderRiteIcon(TotemicRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
+    public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
         renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), corrupted, glowAlpha, x, y, 0);
     }
 

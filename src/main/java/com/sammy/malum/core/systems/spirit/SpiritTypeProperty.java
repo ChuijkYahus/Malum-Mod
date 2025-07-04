@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -27,7 +27,14 @@ public class SpiritTypeProperty extends Property<String> {
         if (state.hasProperty(SPIRIT_TYPE)) {
             return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("BlockState does not have a SPIRIT_TYPE property.");
+    }
+
+    public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
+        if (state.hasProperty(SPIRIT_TYPE)) {
+            return state.setValue(ManaMoteBlock.SPIRIT_TYPE, spiritType.getName());
+        }
+        throw new IllegalArgumentException("BlockState does not have a SPIRIT_TYPE property.");
     }
 
     @SafeVarargs

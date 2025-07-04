@@ -4,6 +4,7 @@ import com.sammy.malum.MalumMod;
 
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;

@@ -2,7 +2,9 @@ package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
+import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.datagen.item.*;
+import com.sammy.malum.registry.common.block.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
@@ -38,8 +40,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         AbstractBlockStateSmith.StateSmithData data = new AbstractBlockStateSmith.StateSmithData(this, blocks::remove);
 
+        setTexturePath("rite_anchor/");
+        MalumBlockStateSmithTypes.RITE_ANCHOR_BLOCK.act(data, EMPTY_RITE_ANCHOR, RITE_ANCHOR);
+
         setTexturePath("banners/");
-        MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, DataHelper.takeAll(blocks, b -> b.get() instanceof SoulwovenBannerBlock));
+        MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, SOULWOVEN_BANNER);
         setTexturePath("spirited_glass/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 SACRED_SPIRITED_GLASS, WICKED_SPIRITED_GLASS, ARCANE_SPIRITED_GLASS, ELDRITCH_SPIRITED_GLASS,

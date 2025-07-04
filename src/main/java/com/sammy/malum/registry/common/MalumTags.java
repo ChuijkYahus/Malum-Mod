@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -218,19 +219,23 @@ public class MalumTags {
     }
 
     public static class BiomeTags {
-        public static final TagKey<Biome> HAS_SOULSTONE = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_soulstone"));
-        public static final TagKey<Biome> HAS_BRILLIANT = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_brilliant"));
-        public static final TagKey<Biome> HAS_BLAZING_QUARTZ = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_blazing_quartz"));
-        public static final TagKey<Biome> HAS_QUARTZ = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_quartz"));
-        public static final TagKey<Biome> HAS_CTHONIC = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_earths"));
+        public static final TagKey<Biome> HAS_SOULSTONE = tag("has_soulstone");
+        public static final TagKey<Biome> HAS_BRILLIANT = tag("has_brilliant");
+        public static final TagKey<Biome> HAS_BLAZING_QUARTZ = tag("has_blazing_quartz");
+        public static final TagKey<Biome> HAS_QUARTZ = tag("has_quartz");
+        public static final TagKey<Biome> HAS_CTHONIC = tag("has_rare_earths");
 
-        public static final TagKey<Biome> HAS_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_runewood"));
-        public static final TagKey<Biome> HAS_RARE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_runewood"));
-        public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_azure_runewood"));
-        public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_rare_azure_runewood"));
+        public static final TagKey<Biome> HAS_RUNEWOOD = tag("has_runewood");
+        public static final TagKey<Biome> HAS_RARE_RUNEWOOD = tag("has_rare_runewood");
+        public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = tag("has_azure_runewood");
+        public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = tag("has_rare_azure_runewood");
 
 
-        public static final TagKey<Biome> HAS_WEEPING_WELL = TagKey.create(Registries.BIOME, MalumMod.malumPath("has_weeping_well"));
+        public static final TagKey<Biome> HAS_WEEPING_WELL = tag("has_weeping_well");
+
+        public static TagKey<Biome> tag(String path) {
+            return TagKey.create(Registries.BIOME, MalumMod.malumPath(path));
+        }
     }
 
     public static class DataComponentTags {

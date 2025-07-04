@@ -23,6 +23,6 @@ public class ManaMoteBlock extends LodestoneEntityBlock<ManaMoteBlockEntity> {
     }
 
     public static BlockState createManaMoteState(SpiritLike spiritType) {
-        return MalumBlocks.SPIRIT_MOTE.get().defaultBlockState().setValue(SPIRIT_TYPE, spiritType.getRegistryName().getPath());
+        return SpiritTypeProperty.setSpiritType(MalumBlocks.SPIRIT_MOTE.get().defaultBlockState(), spiritType);
     }
 }

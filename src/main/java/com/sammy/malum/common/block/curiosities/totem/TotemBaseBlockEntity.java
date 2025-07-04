@@ -4,6 +4,7 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
@@ -42,20 +43,20 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
     }
 
-    public final boolean isSoulwood;
+    public final boolean isCorrupted;
 
     public TotemRiteState state = TotemRiteState.IDLE;
-    public TotemicRiteType activeRite;
+    public SpiritRiteType activeRite;
     private final List<BlockPos> totemPolePositions = new ArrayList<>();
     private Direction direction;
     public int timer;
 
-    public TotemicRiteType cachedRadiusRite;
+    public SpiritRiteType cachedRadiusRite;
     public int radiusVisibility;
 
     public TotemBaseBlockEntity(BlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.isSoulwood = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
+        this.isCorrupted = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
@@ -96,7 +97,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             switch (state) {
                 case ACTIVE -> {
                     timer++;
-                    if (timer >= activeRite.getRiteEffect(isSoulwood).getRiteEffectTickRate()) {
+                    if (timer >= activeRite.getRiteEffect(isCorrupted).getRiteEffectTickRate()) {
                         activeRite.executeRite(this);
                         timer = 0;
                         BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
@@ -110,14 +111,14 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                             timer = 20;
                             addTotemPole(serverLevel, pole);
                         } else {
-                            TotemicRiteType rite = MalumSpiritRiteTypes.getRite(getSpirits());
+                            SpiritRiteType rite = MalumSpiritRiteTypes.getRite(getSpirits());
                             if (rite == null) {
                                 setState(TotemRiteState.IDLE);
                             } else {
                                 activeRite = rite;
                                 modifyTotemPoles(TotemPoleBlockEntity.TotemPoleState.ACTIVE);
                                 rite.executeRite(this);
-                                if (rite.getRiteEffect(isSoulwood).category.equals(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT)) {
+                                if (rite.getRiteEffect(isCorrupted).category.equals(OldTotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT)) {
                                     setState(TotemRiteState.IDLE);
                                 }
                                 else {
@@ -177,7 +178,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (totemPolePositions.isEmpty()) {
             this.direction = direction;
         }
-        if (pole.isSoulwood == isSoulwood && direction.equals(this.direction)) {
+        if (pole.isSoulwood == isCorrupted && direction.equals(this.direction)) {
             if (pole.spirit != null) {
                 totemPolePositions.add(pole.getBlockPos());
                 pole.riteStarting(level,this, totemPolePositions.size());
@@ -187,7 +188,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public void deactivateOtherRites() {
-        TotemicRiteEffect riteEffect = activeRite.getRiteEffect(isSoulwood);
+        OldTotemicRiteEffect riteEffect = activeRite.getRiteEffect(isCorrupted);
         int horizontalRadius = riteEffect.getRiteEffectHorizontalRadius();
         int verticalRadius = riteEffect.getRiteEffectVerticalRadius();
         Collection<TotemBaseBlockEntity> deactivatedTotems = BlockEntityHelper.getBlockEntities(TotemBaseBlockEntity.class, level, riteEffect.getRiteEffectCenter(this), horizontalRadius, verticalRadius, horizontalRadius);
@@ -211,7 +212,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             if (otherTotem.activeRite == null || !otherTotem.activeRite.equals(activeRite)) {
                 continue;
             }
-            riteEffect = activeRite.getRiteEffect(isSoulwood);
+            riteEffect = activeRite.getRiteEffect(isCorrupted);
             horizontalRadius = riteEffect.getRiteEffectHorizontalRadius();
             verticalRadius = riteEffect.getRiteEffectVerticalRadius();
             if (BlockEntityHelper.getBlockEntities(TotemBaseBlockEntity.class, level, riteEffect.getRiteEffectCenter(otherTotem), horizontalRadius, verticalRadius, horizontalRadius).contains(this)) {

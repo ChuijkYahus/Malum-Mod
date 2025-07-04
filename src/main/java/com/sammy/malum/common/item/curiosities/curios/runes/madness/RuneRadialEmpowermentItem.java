@@ -3,6 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 import com.sammy.malum.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.damagesource.*;

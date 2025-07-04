@@ -4,7 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.EntryScreen;
 import com.sammy.malum.registry.client.MalumScreenParticles;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;

@@ -5,10 +5,9 @@ import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.compat.kubejs.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import dev.latvian.mods.kubejs.recipe.*;
 import dev.latvian.mods.kubejs.recipe.component.*;
 import dev.latvian.mods.kubejs.recipe.match.*;
@@ -22,8 +21,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
-
-import java.util.*;
 
 public record SpiritJSComponent(String name, Codec<SpiritIngredient> codec) implements RecipeComponent<SpiritIngredient> {
 

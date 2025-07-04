@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.RenderUtils;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.nitrate.*;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.Mth;

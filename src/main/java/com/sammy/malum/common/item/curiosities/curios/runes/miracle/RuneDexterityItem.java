@@ -2,9 +2,8 @@ package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;

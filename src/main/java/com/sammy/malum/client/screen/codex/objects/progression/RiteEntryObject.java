@@ -11,7 +11,7 @@ import java.util.*;
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class RiteEntryObject extends ProgressionEntryObject {
-    public final TotemicRiteType riteType;
+    public final SpiritRiteType riteType;
 
     public RiteEntryObject(BookEntry entry, int posX, int posY) {
         super(entry, posX, posY);

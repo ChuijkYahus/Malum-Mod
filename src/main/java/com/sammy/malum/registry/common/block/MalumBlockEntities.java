@@ -8,6 +8,7 @@ import com.sammy.malum.client.renderer.block.redstone.WaveMakerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveChargerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
+import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
@@ -28,6 +29,7 @@ import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -78,7 +80,9 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemPedestalBlockEntity>> ITEM_PEDESTAL = BLOCK_ENTITY_TYPES.register("item_pedestal", () -> BlockEntityType.Builder.of(ItemPedestalBlockEntity::new, getBlocks(ItemPedestalBlock.class)).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemBaseBlockEntity>> TOTEM_BASE = BLOCK_ENTITY_TYPES.register("totem_base", () -> BlockEntityType.Builder.of(TotemBaseBlockEntity::new, getBlocks(TotemBaseBlock.class)).build(null));
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemPoleBlockEntity>> TOTEM_POLE = BLOCK_ENTITY_TYPES.register("totem_pole", () -> BlockEntityType.Builder.of(TotemPoleBlockEntity::new, getBlocks(TotemPoleBlock.class)).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemPoleBlockEntity>> TOTEM_POLE = BLOCK_ENTITY_TYPES.register("totem_pole", () -> BlockEntityType.Builder.of(TotemPoleBlockEntity::new, MalumBlocks.RUNEWOOD_TOTEM_POLE.get(), MalumBlocks.SOULWOOD_TOTEM_POLE.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteAnchorBlockEntity>> RITE_ANCHOR = BLOCK_ENTITY_TYPES.register("rite_anchor", () -> BlockEntityType.Builder.of(RiteAnchorBlockEntity::new, MalumBlocks.EMPTY_RITE_ANCHOR.get(), MalumBlocks.RITE_ANCHOR.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveChargerBlockEntity>> WAVECHARGER = BLOCK_ENTITY_TYPES.register("wavecharger", () -> BlockEntityType.Builder.of(WaveChargerBlockEntity::new, getBlocks(WaveChargerBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveBankerBlockEntity>> WAVEBANKER = BLOCK_ENTITY_TYPES.register("wavebanker", () -> BlockEntityType.Builder.of(WaveBankerBlockEntity::new, getBlocks(WaveBankerBlock.class)).build(null));
@@ -141,6 +145,8 @@ public class MalumBlockEntities {
 
             event.registerBlockEntityRenderer(TOTEM_BASE.get(), TotemBaseRenderer::new);
             event.registerBlockEntityRenderer(TOTEM_POLE.get(), TotemPoleRenderer::new);
+
+            event.registerBlockEntityRenderer(RITE_ANCHOR.get(), RiteAnchorRenderer::new);
 
             event.registerBlockEntityRenderer(WAVECHARGER.get(), WaveChargerRenderer::new);
             event.registerBlockEntityRenderer(WAVEBANKER.get(), WavebankerRenderer::new);
