@@ -6,8 +6,6 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "utherium_.+",
-  "modIdRegex": "undergarden",
   "durabilityPercentage": 0.5,
   "inputs": [],
   "repairMaterial": {
@@ -23,5 +21,9 @@
       "type": "infernal",
       "count": 12
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": "utherium_.+",
+    "modIdRegex": "undergarden"
+  }
 }

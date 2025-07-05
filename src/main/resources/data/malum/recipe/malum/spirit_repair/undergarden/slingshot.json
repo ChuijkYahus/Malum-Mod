@@ -6,12 +6,7 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "",
-  "modIdRegex": "",
   "durabilityPercentage": 0.5,
-  "inputs": [
-    "undergarden:slingshot"
-	],
   "repairMaterial": {
     "item": "undergarden:twistytwig",
     "count": 1
@@ -21,5 +16,8 @@
       "type": "earthen",
       "count": 2
     }
+  ],
+  "validItems": [
+    "undergarden:slingshot"
   ]
 }

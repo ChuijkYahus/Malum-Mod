@@ -6,10 +6,7 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "cloggrum_.+",
-  "modIdRegex": "undergarden",
   "durabilityPercentage": 0.5,
-  "inputs": [],
   "repairMaterial": {
     "item": "undergarden:cloggrum_ingot",
     "count": 2
@@ -19,5 +16,9 @@
       "type": "earthen",
       "count": 12
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": "cloggrum_.+",
+    "modIdRegex": "undergarden"
+  }
 }
