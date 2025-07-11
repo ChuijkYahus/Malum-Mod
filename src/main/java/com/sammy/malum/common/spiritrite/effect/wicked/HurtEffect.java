@@ -23,9 +23,16 @@ public class HurtEffect extends SpiritRiteEntityEffect<LivingEntity> {
     @Override
     public void applyEffect(ServerLevel level, LivingEntity target) {
         DamageSource damageSource = DamageTypeHelper.create(target.level(), MalumDamageTypes.VOODOO_PLAYERLESS);
-        if (target.getHealth() > 2.5f && !target.isInvulnerableTo(damageSource)) {
-            target.hurt(damageSource, 2);
-            createEffect(level, target, WICKED_SPIRIT);
+        target.hurt(damageSource, 2);
+        createEffect(level, target, WICKED_SPIRIT);
+    }
+
+    @Override
+    public boolean canApplyEffect(ServerLevel level, LivingEntity target) {
+        DamageSource damageSource = DamageTypeHelper.create(target.level(), MalumDamageTypes.VOODOO_PLAYERLESS);
+        if (target.getHealth() > 2.5f) {
+            target.isInvulnerableTo(damageSource);
         }
+        return false;
     }
 }

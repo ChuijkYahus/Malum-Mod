@@ -8,42 +8,38 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 
 import java.util.*;
-import java.util.function.*;
 
-public class SpiritRitePotionEffect<T extends LivingEntity> extends SpiritRiteEntityEffect<T> {
-    protected final Class<T> targetClass;
-    protected final Supplier<MobEffectInstance> effectSupplier;
-    protected final List<SpiritHolder<MalumSpiritType>> spirits;
-
+public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends SpiritRiteEntityEffect<T> {
+    protected final Holder<MobEffect> effectType;
+    protected final List<SpiritHolder<SpiritArcanaType>> spirits;
 
     @SafeVarargs
-    public SpiritRitePotionEffect(Class<T> targetClass, Holder<MobEffect> effect, SpiritHolder<MalumSpiritType>... spirits) {
-        this(targetClass, () -> new MobEffectInstance(effect, 3000, 1, true, true), spirits);
-    }
-
-    @SafeVarargs
-    public SpiritRitePotionEffect(Class<T> targetClass, Holder<MobEffect> effect, int duration, int amplifier, SpiritHolder<MalumSpiritType>... spirits) {
-        this(targetClass, () -> new MobEffectInstance(effect, duration, amplifier, true, true), spirits);
-    }
-
-    @SafeVarargs
-    public SpiritRitePotionEffect(Class<T> targetClass, Supplier<MobEffectInstance> effectSupplier, SpiritHolder<MalumSpiritType>... spirits) {
-        this.targetClass = targetClass;
-        this.effectSupplier = effectSupplier;
+    public SpiritRitePotionEffect(Holder<MobEffect> effectType, SpiritHolder<SpiritArcanaType>... spirits) {
+        this.effectType = effectType;
         this.spirits = Arrays.asList(spirits);
     }
 
-    @Override
-    public Class<T> getTargetClass() {
-        return targetClass;
+    @SuppressWarnings("unchecked")
+    public void applyRuneEffect(ServerLevel level, LivingEntity target) {
+        if (getTargetClass().isInstance(target)) {
+            applyEffect(level, (T) target, 600, 0);
+        }
     }
 
     @Override
     public void applyEffect(ServerLevel level, T target) {
-        var instance = effectSupplier.get();
-        if (!target.hasEffect(instance.getEffect())) {
+        applyEffect(level, target, 3000, 1);
+    }
+
+    public void applyEffect(ServerLevel level, T target, int duration, int amplifier) {
+        var instance = new MobEffectInstance(effectType, duration, amplifier, true, true);
+        if (!target.hasEffect(effectType)) {
             createEffect(level, target, spirits);
         }
         target.addEffect(instance);
+    }
+
+    public Holder<MobEffect> getEffect() {
+        return effectType;
     }
 }

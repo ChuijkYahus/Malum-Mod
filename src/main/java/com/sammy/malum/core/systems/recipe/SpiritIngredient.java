@@ -11,12 +11,12 @@ import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
-public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implements ICustomIngredient, SpiritLike {
+public record SpiritIngredient(Holder<SpiritArcanaType> spirit, int count) implements ICustomIngredient, SpiritLike {
 
     public static final MapCodec<SpiritIngredient> CODEC = RecordCodecBuilder.mapCodec(
             builder -> builder
                     .group(
-                            MalumSpiritType.HOLDER_CODEC.fieldOf("type").forGetter(SpiritIngredient::spirit),
+                            SpiritArcanaType.HOLDER_CODEC.fieldOf("type").forGetter(SpiritIngredient::spirit),
                             Codec.INT.fieldOf("count").forGetter(SpiritIngredient::count))
                     .apply(builder, SpiritIngredient::new));
 
@@ -45,7 +45,7 @@ public record SpiritIngredient(Holder<MalumSpiritType> spirit, int count) implem
     }
 
     @Override
-    public @NotNull MalumSpiritType getSpirit() {
+    public @NotNull SpiritArcanaType getSpirit() {
         return spirit.value().getSpirit();
     }
 }

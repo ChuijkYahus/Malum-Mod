@@ -3,6 +3,7 @@ package com.sammy.malum.client.screen.codex.pages.text;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.core.systems.registry.RiteHolder;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -15,9 +16,9 @@ public class SpiritRiteTextPage extends BookPage {
     public final SpiritRiteType riteType;
     private final Component text;
 
-    public SpiritRiteTextPage(SpiritRiteType riteType, String text) {
+    public SpiritRiteTextPage(RiteHolder<SpiritRiteType> riteType, String text) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png"));
-        this.riteType = riteType;
+        this.riteType = riteType.value();
         this.text = Component.translatable(BookPage.TEXT + "." + text);
     }
 

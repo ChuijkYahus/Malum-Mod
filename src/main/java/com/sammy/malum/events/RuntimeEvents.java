@@ -73,15 +73,12 @@ public class RuntimeEvents {
         SoulDataHandler.markAsSpawnerSpawned(event);
     }
 
-    @SubscribeEvent
-    public static void onEntityJump(LivingEvent.LivingJumpEvent event) {
-        CorruptedAerialAura.onEntityJump(event);
-    }
+
 
     @SubscribeEvent
     public static void onEntityFall(LivingFallEvent event) {
         AscensionEffect.onEntityFall(event);
-        CorruptedAerialAura.onEntityFall(event);
+        SkyTetherEffect.onEntityFall(event);
     }
 
     @SubscribeEvent

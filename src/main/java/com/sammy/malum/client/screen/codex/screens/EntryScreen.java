@@ -92,7 +92,7 @@ public class EntryScreen extends AbstractMalumScreen {
             for (int i = openPages; i < openPages + 2; i++) {
                 if (i < openEntry.pages.size()) {
                     BookPage page = openEntry.pages.get(i);
-                    final boolean isRightSide = i % 2 == 1;
+                    boolean isRightSide = i % 2 == 1;
                     int pageLeft = guiLeft + (isRightSide ? 161 : 9);
                     boolean isRepeat = i % 2 != 0 && page.getClass().equals(openEntry.pages.get(i - 1).getClass());
                     page.render(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks, isRepeat);

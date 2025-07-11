@@ -39,9 +39,9 @@ import java.util.*;
 
 public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
 
-    public static final List<SpiritHolder<MalumSpiritType>> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
+    public static final List<SpiritHolder<SpiritArcanaType>> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
 
-    public static MalumSpiritType getUnwindingChaosSpirit() {
+    public static SpiritArcanaType getUnwindingChaosSpirit() {
         return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1)).value();
     }
 

@@ -25,7 +25,7 @@ public class UnchainedTransmutationRecipe extends LodestoneInWorldRecipe<SingleR
     public final String group;
 
     public UnchainedTransmutationRecipe(Ingredient ingredient, ItemStack output, String group) {
-        super(MalumRecipeSerializers.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), output);
+        super(MalumRecipeSerializers.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), output);
         this.ingredient = ingredient;
         this.output = output;
         this.group = group;

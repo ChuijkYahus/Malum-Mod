@@ -2,7 +2,7 @@ package com.sammy.malum.client;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.core.systems.spirit.UmbralSpiritType;
+import com.sammy.malum.core.systems.spirit.UmbralSpiritArcanaType;
 import net.minecraft.client.renderer.RenderType;
 import team.lodestar.lodestone.handlers.RenderHandler;
 import team.lodestar.lodestone.registry.client.*;
@@ -17,19 +17,19 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
         return new SpiritBasedWorldVFXBuilder(spirit.getSpirit());
     }
 
-    public static SpiritBasedWorldVFXBuilder create(MalumSpiritType spiritType) {
+    public static SpiritBasedWorldVFXBuilder create(SpiritArcanaType spiritType) {
         return new SpiritBasedWorldVFXBuilder(spiritType);
     }
 
-    public final MalumSpiritType spiritType;
+    public final SpiritArcanaType spiritType;
 
-    public SpiritBasedWorldVFXBuilder(MalumSpiritType spiritType) {
+    public SpiritBasedWorldVFXBuilder(SpiritArcanaType spiritType) {
         this.spiritType = spiritType;
     }
 
     @Override
     public VFXBuilders.WorldVFXBuilder setRenderType(RenderType renderType) {
-        if (spiritType instanceof UmbralSpiritType && renderType instanceof LodestoneRenderType lodestoneRenderType) {
+        if (spiritType instanceof UmbralSpiritArcanaType && renderType instanceof LodestoneRenderType lodestoneRenderType) {
             if (!LodestoneRenderTypes.COPIES.containsKey(Pair.of(spiritType, lodestoneRenderType))) {
                 LodestoneRenderTypes.addRenderTypeModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
             }

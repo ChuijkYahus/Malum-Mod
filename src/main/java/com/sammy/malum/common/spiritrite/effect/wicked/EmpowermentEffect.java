@@ -17,6 +17,11 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class EmpowermentEffect extends SpiritRitePotionEffect<Monster> {
 
     public EmpowermentEffect() {
-        super(Monster.class, MalumMobEffects.WICKED_EMPOWERMENT, WICKED_SPIRIT);
+        super(MalumMobEffects.WICKED_EMPOWERMENT, WICKED_SPIRIT);
+    }
+
+    @Override
+    public Class<Monster> getTargetClass() {
+        return Monster.class;
     }
 }

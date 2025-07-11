@@ -27,14 +27,14 @@ public class MalumMobEffects {
     public static final DeferredHolder<MobEffect, MobEffect> SACRED_NOURISHMENT = EFFECTS.register("sacred_nourishment", SacredNourishment::new);
     public static final DeferredHolder<MobEffect, MobEffect> WICKED_EMPOWERMENT = EFFECTS.register("wicked_empowerment", WickedEmpowerment::new);
 
-    public static final DeferredHolder<MobEffect, MobEffect> ZEPHYRS_COURAGE = EFFECTS.register("zephyrs_courage", AerialAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> AETHERS_CHARM = EFFECTS.register("aethers_charm", CorruptedAerialAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> POSEIDONS_GRASP = EFFECTS.register("poseidons_grasp", AqueousAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> ANGLERS_LURE = EFFECTS.register("anglers_lure", CorruptedAqueousAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> GAIAS_BULWARK = EFFECTS.register("gaias_bulwark", EarthenAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> EARTHEN_MIGHT = EFFECTS.register("earthen_might", CorruptedEarthenAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> MINERS_RAGE = EFFECTS.register("miners_rage", InfernalAura::new);
-    public static final DeferredHolder<MobEffect, MobEffect> IFRITS_EMBRACE = EFFECTS.register("ifrits_embrace", CorruptedInfernalAura::new);
+    public static final DeferredHolder<MobEffect, MobEffect> HOWLING_GALE = EFFECTS.register("howling_gale", HowlingGaleEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> SKY_TETHER = EFFECTS.register("sky_tether", SkyTetherEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> FLOWING_GRASP = EFFECTS.register("flowing_grasp", FlowingGraspEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> GOOD_TIDES = EFFECTS.register("good_tides", GoodTidesEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> STONE_WARD = EFFECTS.register("stone_ward", StoneWardEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> EARTHEN_MIGHT = EFFECTS.register("earthen_might", EarthenMightEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> BURNING_FERVOR = EFFECTS.register("burning_fervor", BurningFervorEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> FIERY_EMBRACE = EFFECTS.register("fiery_embrace", FieryEmbraceEffect::new);
 
     //Geas
     public static final DeferredHolder<MobEffect, MobEffect> ARCANAPHAGE = EFFECTS.register("arcanaphage", ArcanaphageEffect::new);

@@ -1,7 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem.anchor;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
@@ -26,7 +25,7 @@ import team.lodestar.lodestone.systems.blockentity.*;
 
 public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
 
-    public MalumSpiritType spirit;
+    public SpiritArcanaType spirit;
 
     public int effectStrength = 0;
 
@@ -41,7 +40,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
         if (spirit != null) {
-            tag.putString("spirit", spirit.asTag());
+            spirit.save(tag);
         }
         if (effectStrength != 0) {
             tag.putInt("effectStrength", effectStrength);
@@ -51,7 +50,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        spirit = SpiritHolder.getSpiritType(tag).orElse(null);
+        spirit = SpiritArcanaType.load(tag).orElse(null);
         effectStrength = tag.getInt("effectStrength");
         super.loadAdditional(tag, pRegistries);
     }
@@ -93,7 +92,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
         return super.onUseWithItem(pPlayer, pStack, pHand);
     }
 
-    public void setSpirit(ServerLevel level, MalumSpiritType spirit) {
+    public void setSpirit(ServerLevel level, SpiritArcanaType spirit) {
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.DEEPSLATE_BRICKS_PLACE, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         this.spirit = spirit;

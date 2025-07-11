@@ -24,7 +24,7 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
 
     @Override
     public void render(TotemPoleBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        var spiritType = blockEntityIn.spirit;
+        var spiritType = blockEntityIn.getSpirit();
         if (spiritType == null) {
             return;
         }
@@ -33,7 +33,7 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         var level = Minecraft.getInstance().level;
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getTotemGlowTexture()));
         var color = spiritType.getPrimaryColor();
-        float delta = blockEntityIn.chargeProgress / 20f;
+        float delta = blockEntityIn.getGlowDelta();
         float alpha = delta * 0.7f;
         float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
         float distance = 0.2f - ease * 0.2f;

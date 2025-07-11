@@ -82,38 +82,38 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
 
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_MOTION.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_HOWLING_GALE.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AERIAL_SPIRIT, 32)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_AETHER.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_SKY_TETHER.get(), 1)
                 .setPrimaryInput(MalumItems.SOULWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AERIAL_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_LOYALTY.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_FLOWING_GRASP.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_SEAS.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_GOOD_TIDES.get(), 1)
                 .setPrimaryInput(MalumItems.SOULWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_WARDING.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_STONE_WARD.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.EARTHEN_SPIRIT, 32)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_ARENA.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_OAKEN_MIGHT.get(), 1)
                 .setPrimaryInput(MalumItems.SOULWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.EARTHEN_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_HASTE.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_BURNING_FERVOR.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.INFERNAL_SPIRIT, 32)
                 .save(recipeOutput);
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_HELLS.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_FIERY_EMBRACE.get(), 1)
                 .setPrimaryInput(MalumItems.SOULWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.INFERNAL_SPIRIT, 32)
                 .save(recipeOutput);

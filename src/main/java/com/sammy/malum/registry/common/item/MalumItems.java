@@ -20,9 +20,9 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.armor.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.brooches.*;
-import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
+import com.sammy.malum.common.item.curiosities.curios.runes.totemic.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.alchemical.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
@@ -730,14 +730,14 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_PROTECTION = register("rune_of_protection", GEAR_PROPERTIES(), RuneProtectionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SCORCHING = register("rune_of_scorching", GEAR_PROPERTIES(), RuneScorchingItem::new);
 
-    public static final DeferredHolder<Item, Item> RUNE_OF_MOTION = register("rune_of_motion", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AERIAL_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_LOYALTY = register("rune_of_loyalty", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AQUEOUS_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_WARDING = register("rune_of_warding", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.EARTHEN_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_HASTE = register("rune_of_haste", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_AETHER = register("rune_of_the_aether", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AERIAL_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_SEAS = register("rune_of_the_seas", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AQUEOUS_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_ARENA = register("rune_of_the_arena", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.EARTHEN_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_HELLS = register("rune_of_the_hells", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, true, 10));
+    public static final DeferredHolder<Item, Item> RUNE_OF_THE_HOWLING_GALE = register("rune_of_howling_gale", GEAR_PROPERTIES(), RuneHowlingGale::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_THE_FLOWING_GRASP = register("rune_of_flowing_grasp", GEAR_PROPERTIES(), RuneFlowingGrasp::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_STONE_WARD = register("rune_of_stone_ward", GEAR_PROPERTIES(), RuneStoneWard::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_BURNING_FERVOR = register("rune_of_burning_fervor", GEAR_PROPERTIES(), RuneBurningFervor::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_SKY_TETHER = register("rune_of_sky_tether", GEAR_PROPERTIES(), RuneSkyTether::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_GOOD_TIDES = register("rune_of_good_tides", GEAR_PROPERTIES(), RuneGoodTides::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_OAKEN_MIGHT = register("rune_of_oaken_might", GEAR_PROPERTIES(), RuneOakenMight::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_FIERY_EMBRACE = register("rune_of_fiery_embrace", GEAR_PROPERTIES(), RuneFieryEmbrace::new);
 
     public static final DeferredHolder<Item, Item> RUNE_OF_BOLSTERING = register("rune_of_bolstering", GEAR_PROPERTIES(), RuneBolsteringItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_RADIAL_EMPOWERMENT = register("rune_of_radial_empowerment", GEAR_PROPERTIES(), RuneRadialEmpowermentItem::new);

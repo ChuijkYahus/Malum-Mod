@@ -98,7 +98,7 @@ public class WeaponParticleEffects {
         }
         return spawnSlamParticle(level, pos, particleType, color.getColor());
     }
-    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, MalumSpiritType spiritType) {
+    public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, SpiritArcanaType spiritType) {
         if (spiritType == null) {
             return spawnSlamParticle(level, pos, particleType);
         }

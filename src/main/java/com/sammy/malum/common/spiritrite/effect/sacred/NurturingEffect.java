@@ -47,6 +47,5 @@ public class NurturingEffect extends SpiritRiteEntityEffect<Mob> {
         if (success) {
             createEffect(level, target, ELDRITCH_SPIRIT, SACRED_SPIRIT);
         }
-
     }
 }

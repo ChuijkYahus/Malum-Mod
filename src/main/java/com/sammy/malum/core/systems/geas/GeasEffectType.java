@@ -19,17 +19,17 @@ public class GeasEffectType {
     public static final Codec<GeasEffectType> CODEC = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.byNameCodec();
 
     public final Supplier<GeasEffect> effect;
-    public final List<SpiritHolder<MalumSpiritType>> spiritTypes;
+    public final List<SpiritHolder<SpiritArcanaType>> spiritTypes;
 
     private GeasEffect dummyEffectInstance;
     private ItemStack dummyCreativeStack;
 
     @SafeVarargs
-    public GeasEffectType(Supplier<GeasEffect> effect, SpiritHolder<MalumSpiritType>... spiritTypes) {
+    public GeasEffectType(Supplier<GeasEffect> effect, SpiritHolder<SpiritArcanaType>... spiritTypes) {
         this(effect, List.of(spiritTypes));
     }
 
-    public GeasEffectType(Supplier<GeasEffect> effect, List<SpiritHolder<MalumSpiritType>> spiritTypes) {
+    public GeasEffectType(Supplier<GeasEffect> effect, List<SpiritHolder<SpiritArcanaType>> spiritTypes) {
         this.effect = effect;
         this.spiritTypes = spiritTypes;
     }

@@ -1,15 +1,14 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
+import com.sammy.malum.common.spiritrite.SpiritRiteHelper;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
@@ -21,42 +20,26 @@ import team.lodestar.lodestone.systems.blockentity.*;
 import javax.annotation.*;
 import java.util.*;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
-
 public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
-    public static final StringRepresentable.EnumCodec<TotemRiteState> CODEC = StringRepresentable.fromEnum(TotemRiteState::values);
+    private static final int INTERVAL = 20;
 
-    public enum TotemRiteState implements StringRepresentable {
-        IDLE("idle"),
-        ASSEMBLING("assembling"),
-        ACTIVE("active");
-        final String name;
-
-        TotemRiteState(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getSerializedName() {
-            return name;
-        }
+    public enum TotemBaseState {
+        INACTIVE,
+        ASSEMBLING,
+        ACTIVE;
     }
 
-    public final boolean isCorrupted;
+    public final boolean corrupted;
 
-    public TotemRiteState state = TotemRiteState.IDLE;
-    public SpiritRiteType activeRite;
-    private final List<BlockPos> totemPolePositions = new ArrayList<>();
-    private Direction direction;
-    public int timer;
-
-    public SpiritRiteType cachedRadiusRite;
-    public int radiusVisibility;
+    protected TotemBaseState state = TotemBaseState.INACTIVE;
+    protected SpiritRiteType rite;
+    protected int totemHeight;
+    protected int timer;
 
     public TotemBaseBlockEntity(BlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.isCorrupted = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
+        this.corrupted = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
@@ -65,27 +48,20 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-        compound.putString("state", state.name);
-        if (activeRite != null) {
-            compound.putString("rite", activeRite.identifier);
+        compound.putInt("state", state.ordinal());
+        if (rite != null) {
+            rite.save(compound);
         }
-        if (direction != null) {
-            compound.putString("direction", direction.getName());
-        }
-        compound.putInt("height", totemPolePositions.size());
+        compound.putInt("totemHeight", totemHeight);
         compound.putInt("timer", timer);
         super.saveAdditional(compound, registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        state = compound.contains("state") ? CODEC.byName(compound.getString("state")) : TotemRiteState.IDLE;
-        activeRite = MalumSpiritRiteTypes.getRite(compound.getString("rite"));
-        direction = Direction.byName(compound.getString("direction"));
-        totemPolePositions.clear();
-        for (int i = 1; i <= compound.getInt("height"); i++) {
-            totemPolePositions.add(worldPosition.above(i));
-        }
+        state = TotemBaseState.values()[compound.getInt("state")];
+        rite = SpiritRiteType.load(compound).orElse(null);
+        totemHeight = compound.getInt("totemHeight");
         timer = compound.getInt("timer");
         super.loadAdditional(compound, pRegistries);
     }
@@ -96,72 +72,51 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             switch (state) {
                 case ACTIVE -> {
-                    timer++;
-                    if (timer >= activeRite.getRiteEffect(isCorrupted).getRiteEffectTickRate()) {
-                        activeRite.executeRite(this);
-                        timer = 0;
+                    timer--;
+                    if (timer <= 0) {
+                        timer = rite.getEffect().getEffectInterval();
+                        rite.triggerRiteEffect(serverLevel, this);
                         BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
                     }
                 }
                 case ASSEMBLING -> {
                     timer--;
                     if (timer <= 0) {
-                        BlockPos polePos = worldPosition.above(totemPolePositions.size() + 1);
+                        var polePos = worldPosition.above(totemHeight +1);
                         if (serverLevel.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
-                            timer = 20;
+                            timer = INTERVAL;
                             addTotemPole(serverLevel, pole);
                         } else {
-                            SpiritRiteType rite = MalumSpiritRiteTypes.getRite(getSpirits());
+                            var rite = SpiritRiteHelper.getRite(this);
                             if (rite == null) {
-                                setState(TotemRiteState.IDLE);
-                            } else {
-                                activeRite = rite;
-                                modifyTotemPoles(TotemPoleBlockEntity.TotemPoleState.ACTIVE);
-                                rite.executeRite(this);
-                                if (rite.getRiteEffect(isCorrupted).category.equals(OldTotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT)) {
-                                    setState(TotemRiteState.IDLE);
-                                }
-                                else {
-                                    setState(TotemRiteState.ACTIVE);
-                                    deactivateOtherRites();
-                                }
+                                setState(TotemBaseState.INACTIVE);
+                                return;
                             }
+                            this.rite = rite;
+                            setTotemPoleState(TotemPoleBlockEntity.TotemPoleState.ACTIVE);
+                            setState(TotemBaseState.ACTIVE);
                         }
                     }
                 }
-            }
-        }
-        else {
-            if (state.equals(TotemRiteState.IDLE) && radiusVisibility > 0) {
-                radiusVisibility--;
-                if (radiusVisibility == 0) {
-                    cachedRadiusRite = null;
-                }
-            } else if (state.equals(TotemRiteState.ACTIVE) && radiusVisibility < 40){
-                if (activeRite != null && cachedRadiusRite == null) {
-                    cachedRadiusRite = activeRite;
-                }
-                radiusVisibility++;
             }
         }
     }
 
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack pStack, InteractionHand pHand) {
-        if (state.equals(TotemRiteState.ASSEMBLING)) {
-            return ItemInteractionResult.FAIL;
+        if (state.equals(TotemBaseState.ASSEMBLING)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        if (level.getBlockEntity(worldPosition.above()) instanceof TotemPoleBlockEntity) {
+        if (getFirstTotemPole().isPresent()) {
             if (!level.isClientSide) {
-                if (state.equals(TotemRiteState.ACTIVE)) {
-                    setState(TotemRiteState.IDLE);
+                if (state.equals(TotemBaseState.ACTIVE)) {
+                    setState(TotemBaseState.INACTIVE);
                 } else {
-                    setState(TotemRiteState.ASSEMBLING);
+                    setState(TotemBaseState.ASSEMBLING);
                 }
                 BlockStateHelper.updateState(level, worldPosition);
             }
-            player.swing(InteractionHand.MAIN_HAND, true);
-            return ItemInteractionResult.SUCCESS;
+
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
@@ -169,107 +124,74 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     @Override
     public void onBreak(@Nullable Player player) {
         if (!level.isClientSide) {
-            setState(TotemRiteState.IDLE);
+            setState(TotemBaseState.INACTIVE);
         }
     }
 
+    public TotemBaseState getState() {
+        return state;
+    }
+
+    public SpiritRiteType getRite() {
+        return rite;
+    }
+
+    public int getTotemHeight() {
+        return totemHeight;
+    }
+
+
+
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
-        Direction direction = pole.getBlockState().getValue(HORIZONTAL_FACING);
-        if (totemPolePositions.isEmpty()) {
-            this.direction = direction;
-        }
-        if (pole.isSoulwood == isCorrupted && direction.equals(this.direction)) {
-            if (pole.spirit != null) {
-                totemPolePositions.add(pole.getBlockPos());
-                pole.riteStarting(level,this, totemPolePositions.size());
-            }
-        }
+        totemHeight++;
+        pole.beginCharging(level,this, totemHeight);
         BlockStateHelper.updateState(level, worldPosition);
     }
 
-    public void deactivateOtherRites() {
-        OldTotemicRiteEffect riteEffect = activeRite.getRiteEffect(isCorrupted);
-        int horizontalRadius = riteEffect.getRiteEffectHorizontalRadius();
-        int verticalRadius = riteEffect.getRiteEffectVerticalRadius();
-        Collection<TotemBaseBlockEntity> deactivatedTotems = BlockEntityHelper.getBlockEntities(TotemBaseBlockEntity.class, level, riteEffect.getRiteEffectCenter(this), horizontalRadius, verticalRadius, horizontalRadius);
-        for (TotemBaseBlockEntity deactivatedTotem : deactivatedTotems) {
-            if (deactivatedTotem.equals(this)) {
-                continue;
-            }
-            if (!deactivatedTotem.isActiveOrAssembling()) {
-                continue;
-            }
-            if (deactivatedTotem.activeRite == null || !deactivatedTotem.activeRite.equals(activeRite)) {
-                continue;
-            }
-            deactivatedTotem.setState(TotemRiteState.IDLE);
-        }
-        Collection<TotemBaseBlockEntity> otherTotems = BlockEntityHelper.getBlockEntities(TotemBaseBlockEntity.class, level, worldPosition, 24);
-        for (TotemBaseBlockEntity otherTotem : otherTotems) {
-            if (otherTotem.equals(this)) {
-                continue;
-            }
-            if (otherTotem.activeRite == null || !otherTotem.activeRite.equals(activeRite)) {
-                continue;
-            }
-            riteEffect = activeRite.getRiteEffect(isCorrupted);
-            horizontalRadius = riteEffect.getRiteEffectHorizontalRadius();
-            verticalRadius = riteEffect.getRiteEffectVerticalRadius();
-            if (BlockEntityHelper.getBlockEntities(TotemBaseBlockEntity.class, level, riteEffect.getRiteEffectCenter(otherTotem), horizontalRadius, verticalRadius, horizontalRadius).contains(this)) {
-                otherTotem.setState(TotemRiteState.IDLE);
-            }
-        }
-    }
-
-    public void setState(TotemRiteState state) {
-        if (state.equals(TotemRiteState.ACTIVE)) {
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
-        }
-        if (state.equals(TotemRiteState.IDLE)) {
+    public void setState(TotemBaseState state) {
+        if (state.equals(TotemBaseState.INACTIVE)) {
             if (isActiveOrAssembling()) {
                 level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
             }
-            modifyTotemPoles(TotemPoleBlockEntity.TotemPoleState.INACTIVE);
-            totemPolePositions.clear();
-            activeRite = null;
-            direction = null;
+            setTotemPoleState(TotemPoleBlockEntity.TotemPoleState.INACTIVE);
+            rite = null;
         }
         this.state = state;
         this.timer = 0;
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
-    public void modifyTotemPoles(TotemPoleBlockEntity.TotemPoleState state) {
+    public void setTotemPoleState(TotemPoleBlockEntity.TotemPoleState state) {
         for (TotemPoleBlockEntity totemPole : getTotemPoles()) {
             totemPole.setState(state);
+            BlockStateHelper.updateState(level, totemPole.getBlockPos());
         }
+    }
+
+    public List<SpiritArcanaType> getSpirits() {
+        return getTotemPoles().stream().map(t -> t.spirit).toList();
     }
 
     public List<TotemPoleBlockEntity> getTotemPoles() {
         List<TotemPoleBlockEntity> totemPoles = new ArrayList<>();
-        for (BlockPos totemPolePosition : totemPolePositions) {
-            if (level.getBlockEntity(totemPolePosition) instanceof TotemPoleBlockEntity totemPole) {
+        BlockPos.MutableBlockPos mutable = getBlockPos().mutable();
+        for (int i = 0; i < totemHeight; i++) {
+            mutable.move(Direction.UP);
+            if (level.getBlockEntity(mutable) instanceof TotemPoleBlockEntity totemPole) {
                 totemPoles.add(totemPole);
             }
         }
         return totemPoles;
     }
 
-    public List<MalumSpiritType> getSpirits() {
-        return getTotemPoles().stream().map(t -> t.spirit).toList();
-    }
-
-    public Direction getDirection() {
-        if (direction == null) {
-            final BlockState state = level.getBlockState(worldPosition.above());
-            if (state.getBlock() instanceof TotemPoleBlock) {
-                direction = state.getValue(HORIZONTAL_FACING);
-            }
-        }
-        return direction;
-    }
-
     public boolean isActiveOrAssembling() {
-        return !state.equals(TotemRiteState.IDLE);
+        return !state.equals(TotemBaseState.INACTIVE);
+    }
+
+    public Optional<TotemPoleBlockEntity> getFirstTotemPole() {
+        if (level.getBlockEntity(worldPosition.above()) instanceof TotemPoleBlockEntity totemPole) {
+            return Optional.of(totemPole);
+        }
+        return Optional.empty();
     }
 }

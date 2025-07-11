@@ -147,14 +147,14 @@ public class MaterialSpiritInfusionRecipes {
                 .save(recipeOutput);
     }
 
-    public static void spiritedGlassRecipe(RecipeOutput recipeOutput, SpiritHolder<MalumSpiritType> spirit, Item glass) {
+    public static void spiritedGlassRecipe(RecipeOutput recipeOutput, SpiritHolder<SpiritArcanaType> spirit, Item glass) {
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.GLASS_BLOCKS), 8, glass, 8)
                 .addSpirit(spirit, 2)
                 .addExtraItem(Items.IRON_INGOT, 1)
                 .save(recipeOutput);
     }
 
-    public static void soulwovenBannerRecipe(RecipeOutput recipeOutput, SpiritHolder<MalumSpiritType> spirit, SoulwovenBannerPatternDataComponent pattern) {
+    public static void soulwovenBannerRecipe(RecipeOutput recipeOutput, SpiritHolder<SpiritArcanaType> spirit, SoulwovenBannerPatternDataComponent pattern) {
         new SpiritInfusionRecipeBuilder(MalumItems.SOULWOVEN_BANNER.get(), pattern.getDefaultStack())
                 .addSpirit(spirit, 1)
                 .save(recipeOutput, pattern.getRecipeId());

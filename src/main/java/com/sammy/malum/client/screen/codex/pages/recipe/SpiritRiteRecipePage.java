@@ -29,15 +29,15 @@ public class SpiritRiteRecipePage extends BookPage {
 
     private final SpiritRiteType riteType;
 
-    public SpiritRiteRecipePage(SpiritRiteType riteType) {
+    public SpiritRiteRecipePage(RiteHolder<SpiritRiteType> riteType) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_recipe_page.png"));
-        this.riteType = riteType;
+        this.riteType = riteType.value();
     }
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        final List<SpiritHolder<MalumSpiritType>> spirits = riteType.spirits;
-        final Minecraft minecraft = Minecraft.getInstance();
+        var spirits = riteType.getSpirits();
+        var minecraft = Minecraft.getInstance();
         var rand = minecraft.level.random;
         var poseStack = guiGraphics.pose();
         if (!isRepeat) {

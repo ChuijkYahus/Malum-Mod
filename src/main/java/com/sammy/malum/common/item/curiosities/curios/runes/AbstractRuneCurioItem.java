@@ -12,9 +12,9 @@ import team.lodestar.lodestone.systems.particle.screen.*;
 
 public abstract class AbstractRuneCurioItem extends MalumCurioItem implements ParticleEmitterHandler.ItemParticleSupplier {
 
-    public final SpiritHolder<MalumSpiritType> spirit;
+    public final SpiritHolder<SpiritArcanaType> spirit;
 
-    public AbstractRuneCurioItem(Properties builder, SpiritHolder<MalumSpiritType> spirit, MalumTrinketType type) {
+    public AbstractRuneCurioItem(Properties builder, SpiritHolder<SpiritArcanaType> spirit, MalumTrinketType type) {
         super(builder, type);
         this.spirit = spirit;
     }

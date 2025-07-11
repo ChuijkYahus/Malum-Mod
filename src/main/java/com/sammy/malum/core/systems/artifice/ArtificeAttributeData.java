@@ -179,7 +179,7 @@ public class ArtificeAttributeData {
     }
 
     public List<ArtificeAttributeType> getExistingAttributesForTuning() {
-        return getExistingAttributes(this).stream().filter(d -> d.canBeTuned).toList();
+        return getExistingAttributes(this).stream().filter(ArtificeAttributeType::canBeTuned).toList();
     }
 
     public ArtificeAttributeValue figureOutWeakestAttribute(List<ArtificeAttributeType> tunedValues) {

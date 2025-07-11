@@ -8,9 +8,9 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) implements SpiritLike {
+public record SpiritJarContentsComponent(SpiritArcanaType spirit, int count) implements SpiritLike {
     public static Codec<SpiritJarContentsComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            MalumSpiritType.CODEC.fieldOf("spirit").forGetter(SpiritJarContentsComponent::spirit),
+            SpiritArcanaType.CODEC.fieldOf("spirit").forGetter(SpiritJarContentsComponent::spirit),
             Codec.INT.fieldOf("count").forGetter(SpiritJarContentsComponent::count)
     ).apply(instance, SpiritJarContentsComponent::new));
 
@@ -41,7 +41,7 @@ public record SpiritJarContentsComponent(MalumSpiritType spirit, int count) impl
     }
 
     @Override
-    public @NotNull MalumSpiritType getSpirit() {
+    public @NotNull SpiritArcanaType getSpirit() {
         return spirit;
     }
 }

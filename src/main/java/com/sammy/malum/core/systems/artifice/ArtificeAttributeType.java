@@ -49,22 +49,18 @@ public class ArtificeAttributeType {
     public static final ArtificeAttributeType MISFORTUNE_REVERSAL = create(
             MalumMod.malumPath("misfortune_reversal"), d -> d.misfortuneReversal).noTuning().build();
 
-    public final ResourceLocation id;
-    public final Function<ArtificeAttributeData, ArtificeAttributeValue> valueGetter;
-    public final BiPredicate<ArtificeAttributeData, ArtificeAttributeValue> valueValidator;
-    public final TuningBehavior tuningBehavior;
-    public final String translationKey;
-    public final float defaultValue;
-    public final boolean canBeTuned;
+    protected final ResourceLocation id;
+    protected final Function<ArtificeAttributeData, ArtificeAttributeValue> valueGetter;
+    protected final BiPredicate<ArtificeAttributeData, ArtificeAttributeValue> valueValidator;
+    protected final TuningBehavior tuningBehavior;
+    protected final float defaultValue;
 
     public ArtificeAttributeType(ResourceLocation id, Function<ArtificeAttributeData, ArtificeAttributeValue> valueGetter, BiPredicate<ArtificeAttributeData, ArtificeAttributeValue> valueValidator, @Nullable TuningBehavior tuningBehavior, float defaultValue) {
         this.id = id;
         this.valueGetter = valueGetter;
         this.valueValidator = valueValidator;
-        this.translationKey = id.getNamespace() + ".gui.crucible.attribute." + id.getPath();
         this.tuningBehavior = tuningBehavior;
         this.defaultValue = defaultValue;
-        this.canBeTuned = tuningBehavior != null;
         CRUCIBLE_ATTRIBUTES.add(this);
     }
 
@@ -80,8 +76,24 @@ public class ArtificeAttributeType {
         return valueValidator.test(data, data.getAttributeValue(this));
     }
 
+    public boolean canBeTuned() {
+        return tuningBehavior != null;
+    }
+
+    public ResourceLocation getId() {
+        return id;
+    }
+
+    public TuningBehavior getTuningBehavior() {
+        return tuningBehavior;
+    }
+
+    public float getDefaultValue() {
+        return defaultValue;
+    }
+
     public String getLangKey() {
-        return translationKey;
+        return id.getNamespace() + ".gui.crucible.attribute." + id.getPath();
     }
 
     public static List<ArtificeAttributeType> getExistingAttributes(ArtificeAttributeData data) {

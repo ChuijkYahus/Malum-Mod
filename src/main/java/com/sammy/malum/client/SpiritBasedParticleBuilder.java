@@ -45,7 +45,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Nullable
-    public MalumSpiritType spiritType;
+    public SpiritArcanaType spiritType;
 
     protected SpiritBasedParticleBuilder(WorldParticleOptions options) {
         super(options);

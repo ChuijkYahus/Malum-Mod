@@ -36,7 +36,7 @@ public class BlightParticleEffects {
         int lifeDelay = 14 * distance;
         for (int i = 0; i < 16; i++) {
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(center, 0.9f, i, 16, level.getGameTime(), 640);
-            MalumSpiritType spiritType = color.getSpirit();
+            SpiritArcanaType spiritType = color.getSpirit();
             for (int j = 0; j < 2; j++) {
                 float acceleration = RandomHelper.randomBetween(rand, 0.001f, 0.005f);
                 final Consumer<LodestoneWorldParticle> behavior = p -> {
@@ -77,7 +77,7 @@ public class BlightParticleEffects {
                 float yOffset = RandomHelper.randomBetween(rand, 0.5f, 0.6f);
                 float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
                 Vec3 particlePosition = targetPos.getCenter().add(xOffset, yOffset, zOffset);
-                MalumSpiritType spiritType = color.getSpirit();
+                SpiritArcanaType spiritType = color.getSpirit();
                 float scale = (0.6f) - distance * 0.05f;
                 float alpha = 0.4f;
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, particlePosition, spiritType);

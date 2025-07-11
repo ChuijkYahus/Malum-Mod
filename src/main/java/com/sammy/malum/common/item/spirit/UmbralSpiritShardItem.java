@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.spirit.type.*;
 
 public class UmbralSpiritShardItem extends SpiritShardItem implements IVoidItem {
 
-    public UmbralSpiritShardItem(Properties properties, SpiritHolder<MalumSpiritType> spirit) {
+    public UmbralSpiritShardItem(Properties properties, SpiritHolder<SpiritArcanaType> spirit) {
         super(properties, spirit);
     }
 }

@@ -37,7 +37,7 @@ public class ArtificeAttributeValue {
 
     public float getValue(ArtificeAttributeData accelerationData) {
         float value = this.value * tuningMultiplierCache;
-        if (type.canBeTuned) {
+        if (type.canBeTuned()) {
             float bonus = 1 + accelerationData.chainProcessingBonus;
             if (type.equals(ArtificeAttributeType.CHAIN_FOCUSING_CHANCE) || (type.tuningBehavior.equals(TuningBehavior.INVERSE))) {
                 bonus = 1 - accelerationData.chainProcessingBonus;

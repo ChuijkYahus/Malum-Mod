@@ -36,7 +36,7 @@ public class RunewoodObeliskBlockEntity extends ObeliskCoreBlockEntity implement
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addParticles(SpiritAltarBlockEntity blockEntity, MalumSpiritType activeSpiritType) {
+    public void addParticles(SpiritAltarBlockEntity blockEntity, SpiritArcanaType activeSpiritType) {
         SpiritAltarParticleEffects.runewoodObeliskParticles(this, blockEntity, activeSpiritType);
     }
 

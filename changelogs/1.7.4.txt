@@ -51,3 +51,4 @@ Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune
 Fixed the Soulbinding Brazier model having incorrect face culling data
 Fixed a glState leak for the Hidden Blade interface icon renderer
 Fixed the Weeping Well giving you the Encyclopedia Arcana in place of the Umbral Spirit
+Fixed the Weeping Well crashing when eating an enchanted item

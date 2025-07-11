@@ -5,7 +5,6 @@ import net.minecraft.network.chat.*;
 
 public class ComponentHelper {
 
-
     public static Component positiveGeasEffect(String name, Object... args) {
         return Component.translatable("malum.effect.positive", Component.translatable("malum.effect.geas." + name, args)).withStyle(ChatFormatting.BLUE);
     }

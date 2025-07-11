@@ -18,26 +18,26 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 import java.util.List;
 
 public class SpiritShardItem extends Item implements ItemParticleSupplier, SpiritLike {
-    protected final SpiritHolder<MalumSpiritType> spirit;
+    protected final SpiritHolder<SpiritArcanaType> spirit;
     protected Component flavorText;
 
-    public SpiritShardItem(Properties properties, SpiritHolder<MalumSpiritType> spirit) {
+    public SpiritShardItem(Properties properties, SpiritHolder<SpiritArcanaType> spirit) {
         super(properties);
         this.spirit = spirit;
     }
 
     @Override
-    public @NotNull MalumSpiritType getSpirit() {
+    public @NotNull SpiritArcanaType getSpirit() {
         return spirit.getSpirit();
     }
 
-    public SpiritHolder<MalumSpiritType> getSpiritHolder() {
+    public SpiritHolder<SpiritArcanaType> getSpiritHolder() {
         return spirit;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        SpiritHolder<MalumSpiritType> spirit = getSpiritHolder();
+        SpiritHolder<SpiritArcanaType> spirit = getSpiritHolder();
         if (flavorText == null) {
             flavorText = Component.translatable(spirit.getFlavourKey()).withStyle(ChatFormatting.ITALIC).withStyle(spirit.getStyle(true));
         }

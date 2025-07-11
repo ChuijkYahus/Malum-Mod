@@ -44,7 +44,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
         Level level = Minecraft.getInstance().level;
         if (level != null) {
 
-            var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
+            var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
             while (true) {
                 if (recipe == null) {
                     itemTree.add(Ingredient.of(MalumItems.BLIGHTED_EARTH.get()));
@@ -52,7 +52,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
                 }
                 itemTree.add(recipe.ingredient);
                 ItemStack output = recipe.output;
-                recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get(), new SingleRecipeInput(output));
+                recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), new SingleRecipeInput(output));
             }
         }
     }

@@ -183,7 +183,7 @@ public class SpiritCrucibleParticleEffects {
     }
 
     public static void craftItemParticles(SpiritCrucibleCoreBlockEntity crucible, MalumNetworkedParticleEffectColorData colorData) {
-        MalumSpiritType activeSpiritType = crucible.getActiveSpiritType();
+        SpiritArcanaType activeSpiritType = crucible.getActiveSpiritType();
         if (activeSpiritType == null) {
             return;
         }
@@ -197,7 +197,7 @@ public class SpiritCrucibleParticleEffects {
         }
         for (int i = 0; i < 24; i++) {
             int lifeDelay = i / 8;
-            MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+            SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
             float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
             float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
             float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
@@ -245,7 +245,7 @@ public class SpiritCrucibleParticleEffects {
 
         var smokePos = crucibleItemPos.subtract(0, 0.5f, 0);
         for (int i = 0; i < 8; i++) {
-            MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+            SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
             float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
             float yVelocity = RandomHelper.randomBetween(random, 0.015f, 0.035f);
             float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
@@ -274,7 +274,7 @@ public class SpiritCrucibleParticleEffects {
         }
     }
 
-    public static void activeSpiritCatalyzerParticles(SpiritCatalyzerCoreBlockEntity catalyzer, IArtificeAcceptor target, MalumSpiritType spiritType) {
+    public static void activeSpiritCatalyzerParticles(SpiritCatalyzerCoreBlockEntity catalyzer, IArtificeAcceptor target, SpiritArcanaType spiritType) {
         Level level = catalyzer.getLevel();
         BlockPos catalyzerPos = catalyzer.getBlockPos();
         Vec3 startPos = SpiritCatalyzerCoreBlockEntity.CATALYZER_ITEM_OFFSET.add(catalyzerPos.getX(), catalyzerPos.getY(), catalyzerPos.getZ());

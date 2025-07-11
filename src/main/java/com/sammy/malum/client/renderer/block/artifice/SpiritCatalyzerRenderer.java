@@ -56,7 +56,7 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
         poseStack.pushPose();
         var pos = catalyzer.getBlockPos();
         var offset = SpiritCatalyzerCoreBlockEntity.CATALYZER_ITEM_OFFSET;
-        for (MalumSpiritType spirit : spiritInfluence.keySet()) {
+        for (SpiritArcanaType spirit : spiritInfluence.keySet()) {
             float delta = spiritInfluence.getDelta(spirit);
             if (delta > 0) {
                 poseStack.translate(-pos.getX(), -pos.getY(), -pos.getZ());
@@ -69,7 +69,7 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
         poseStack.popPose();
     }
 
-    private static void renderBeam(SpiritCatalyzerCoreBlockEntity catalyzer, IArtificeAcceptor target, PoseStack poseStack, MalumSpiritType spiritType, float delta) {
+    private static void renderBeam(SpiritCatalyzerCoreBlockEntity catalyzer, IArtificeAcceptor target, PoseStack poseStack, SpiritArcanaType spiritType, float delta) {
         var catalyzerPos = catalyzer.getBlockPos();
         var startPos = SpiritCatalyzerCoreBlockEntity.CATALYZER_ITEM_OFFSET.add(catalyzerPos.getX(), catalyzerPos.getY(), catalyzerPos.getZ());
         var targetPos = target.getVisualAccelerationPoint();

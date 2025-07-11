@@ -23,7 +23,7 @@ public class SpiritTypeProperty extends Property<String> {
             MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.AERIAL_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT
     );
 
-    public static SpiritHolder<MalumSpiritType> getSpiritType(BlockState state) {
+    public static SpiritHolder<SpiritArcanaType> getSpiritType(BlockState state) {
         if (state.hasProperty(SPIRIT_TYPE)) {
             return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
         }
@@ -38,11 +38,11 @@ public class SpiritTypeProperty extends Property<String> {
     }
 
     @SafeVarargs
-    public SpiritTypeProperty(String name, SpiritHolder<MalumSpiritType>... validSpirits) {
+    public SpiritTypeProperty(String name, SpiritHolder<SpiritArcanaType>... validSpirits) {
         this(name, List.of(validSpirits));
     }
 
-    public SpiritTypeProperty(String name, Collection<SpiritHolder<MalumSpiritType>> validSpirits) {
+    public SpiritTypeProperty(String name, Collection<SpiritHolder<SpiritArcanaType>> validSpirits) {
         super(name, String.class);
         this.values = ImmutableSet.copyOf(validSpirits.stream().map(DeferredHolder::getId).map(ResourceLocation::getPath).collect(Collectors.toList()));
     }

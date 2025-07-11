@@ -16,7 +16,6 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
@@ -76,7 +75,7 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
             };
 
             for (int i = 0; i < 16; i++) {
-                MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+                SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
                 float spread = RandomHelper.randomBetween(random, 0.5f, 0.6f);
                 float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
                 float angle = i / 16f * (float) Math.PI * 2f;

@@ -13,7 +13,7 @@ import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -101,7 +101,7 @@ public class MalumBlockStateSmithTypes {
                 .forAllStates(state -> {
                     ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
                     if (state.hasProperty(RiteAnchorBlock.SPIRIT_TYPE)) {
-                        SpiritHolder<MalumSpiritType> spiritType = SpiritTypeProperty.getSpiritType(state);
+                        SpiritHolder<SpiritArcanaType> spiritType = SpiritTypeProperty.getSpiritType(state);
                         ResourceLocation spiritTop = top.withSuffix("_" + spiritType.getName());
                         BlockModelBuilder spiritModel = provider.models().cubeBottomTop(name + "_" + spiritType.getName(), side, bottom, top).texture("particle", spiritTop);
                         builder.modelFile(spiritModel);

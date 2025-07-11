@@ -38,7 +38,7 @@ public class SpiritFocusingRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         this(time, durabilityCost, Ingredient.of(input.value()), new ItemStack(output, outputCount));
     }
 
-    public SpiritFocusingRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+    public SpiritFocusingRecipeBuilder addSpirit(SpiritHolder<SpiritArcanaType> spirit, int count) {
         spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }

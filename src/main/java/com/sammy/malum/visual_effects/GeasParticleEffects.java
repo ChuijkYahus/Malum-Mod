@@ -55,7 +55,7 @@ public class GeasParticleEffects {
                 p.scaleData.overrideValueMultiplier(length / 4f);
             };
             for (int i = 0; i < 4; i++) {
-                MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+                SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
                 float spread = RandomHelper.randomBetween(random, 0.6f, 0.8f);
                 float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
                 float angle = i / 4f * (float) Math.PI * 2f;

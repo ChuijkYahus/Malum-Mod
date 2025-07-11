@@ -76,11 +76,11 @@ public abstract class FloatingItemEntity extends FloatingEntity {
         this.getEntityData().set(DATA_ITEM_STACK, pStack);
     }
 
-    public MalumSpiritType getSpiritType() {
+    public SpiritArcanaType getSpiritType() {
         return SpiritHolder.getSpiritType(getEntityData().get(DATA_SPIRIT_GLOW)).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get());
     }
 
-    public void setSpirit(MalumSpiritType spirit) {
+    public void setSpirit(SpiritArcanaType spirit) {
         setSpirit(spirit.getRegistryName().toString());
     }
 

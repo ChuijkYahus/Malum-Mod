@@ -1,14 +1,14 @@
 package com.sammy.malum.client.renderer.block.artifice;
 
 import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 
 import java.util.HashMap;
 import java.util.WeakHashMap;
 
-public class SpiritInfluenceRendererData extends HashMap<MalumSpiritType, Integer> {
+public class SpiritInfluenceRendererData extends HashMap<SpiritArcanaType, Integer> {
 
     public static final WeakHashMap<IArtificeAcceptor, SpiritInfluenceRendererData> SPIRIT_INFLUENCE = new WeakHashMap<>();
 
@@ -28,7 +28,7 @@ public class SpiritInfluenceRendererData extends HashMap<MalumSpiritType, Intege
         if (activeSpiritType != null) {
             merge(activeSpiritType, 1, (a, b) -> Math.min(a + b, maxValue()));
         }
-        for (MalumSpiritType spiritType : keySet()) {
+        for (SpiritArcanaType spiritType : keySet()) {
             if (spiritType.equals(activeSpiritType)) {
                 continue;
             }
@@ -37,7 +37,7 @@ public class SpiritInfluenceRendererData extends HashMap<MalumSpiritType, Intege
         return this;
     }
 
-    public float getDelta(MalumSpiritType spiritType) {
+    public float getDelta(SpiritArcanaType spiritType) {
         return getOrDefault(spiritType, 0) / (float) maxValue();
     }
 

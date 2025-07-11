@@ -1,21 +1,32 @@
 package com.sammy.malum.core.systems.rite;
 
-import com.google.common.collect.*;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.common.spiritrite.SpiritRiteHelper;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.core.Holder;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.*;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 
 public class SpiritRiteType {
 
+    public static final Codec<Holder<SpiritRiteType>> HOLDER_CODEC = MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.holderByNameCodec();
+
     public static final Codec<SpiritRiteType> CODEC = MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.byNameCodec();
+
+    public static StreamCodec<ByteBuf, SpiritRiteType> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
 
     public static final String TYPE = "malum.gui.rite.type";
     public static final String MEDIUM = "malum.gui.rite.medium";
@@ -25,24 +36,24 @@ public class SpiritRiteType {
     public static final String ANCHOR = "malum.gui.rite.coverage.anchor";
     public static final String EFFECT = "malum.gui.rite.effect";
 
-    protected final List<SpiritHolder<MalumSpiritType>> spirits;
+    protected final List<SpiritHolder<SpiritArcanaType>> spirits;
     protected final boolean isCorrupted;
     protected final SpiritRiteEffect effect;
 
     private List<Component> detailedDescription;
 
-    public SpiritRiteType(SpiritRiteEffect effect, boolean isCorrupted, List<SpiritHolder<MalumSpiritType>> spirits) {
+    public SpiritRiteType(SpiritRiteEffect effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
         this.effect = effect;
         this.isCorrupted = isCorrupted;
         this.spirits = spirits;
     }
 
-    public List<SpiritHolder<MalumSpiritType>> getSpirits() {
+    public List<SpiritHolder<SpiritArcanaType>> getSpirits() {
         return spirits;
     }
 
-    public SpiritHolder<MalumSpiritType> getIdentifyingSpirit() {
-        return spirits.getLast();
+    public SpiritHolder<SpiritArcanaType> getIdentifyingSpirit() {
+        return getSpirits().getLast();
     }
 
     public boolean isCorrupted() {
@@ -53,8 +64,18 @@ public class SpiritRiteType {
         return effect;
     }
 
-    public boolean matches(List<? extends SpiritLike> totemSpirits, TotemBaseBlockEntity totemBase) {
-        if (totemBase.isCorrupted != isCorrupted) {
+    public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
+        if (effect instanceof SpiritRiteBlockEffect blockEffect) {
+
+        }
+        else if (effect instanceof SpiritRiteEntityEffect<?> entityEffect) {
+
+        }
+    }
+
+    public boolean matches(TotemBaseBlockEntity totemBase) {
+        var totemSpirits = totemBase.getSpirits();
+        if (totemBase.corrupted != isCorrupted) {
             return false;
         }
         if (totemSpirits.size() != spirits.size()) {
@@ -74,26 +95,8 @@ public class SpiritRiteType {
         if (detailedDescription != null) {
             return detailedDescription;
         }
-        List<Component> tooltip = new ArrayList<>();
-        var spiritStyleModifier = getIdentifyingSpirit().getSpirit().getItemRarity().getStyleModifier();
-        var riteEffect = getEffect();
-        var riteCategory = riteEffect.getCategory();
-        tooltip.add(Component.translatable(getLangKey()).withStyle(spiritStyleModifier));
-        tooltip.add(Component.empty());
-        tooltip.add(createRiteComponent(TYPE, riteCategory.getTranslationKey()));
-        tooltip.add(createRiteComponent(MEDIUM, getMediumKey()));
-        tooltip.add(createRiteComponent(COVERAGE, riteEffect.getRiteCoverageDescriptor()));
-        tooltip.add(createRiteComponent(EFFECT, EFFECT + "." + getName()));
-        detailedDescription = ImmutableList.copyOf(tooltip);
+        detailedDescription = SpiritRiteHelper.defaultDetailedDescription(this);
         return detailedDescription;
-    }
-
-    public static Component createRiteComponent(String title, String text) {
-        return createRiteComponent(title, Component.translatable(text).withStyle(ChatFormatting.YELLOW));
-    }
-
-    public static Component createRiteComponent(String title, Object... args) {
-        return Component.translatable(title, args).withStyle(ChatFormatting.GOLD);
     }
 
     public ResourceLocation getRegistryName() {
@@ -104,8 +107,8 @@ public class SpiritRiteType {
         return getRegistryName().getNamespace() + ".gui.rite." + getName();
     }
 
-    public String getMediumKey() {
-        return isCorrupted ? SOULWOOD : RUNEWOOD;
+    public String getEffectLangKey() {
+        return EFFECT + "." + getName();
     }
 
     public String getName() {
@@ -114,5 +117,21 @@ public class SpiritRiteType {
 
     public ResourceLocation getIcon() {
         return getRegistryName().withPath(s -> s + "/textures/vfx/rite/").withSuffix(".png");
+    }
+
+    public final void save(CompoundTag tag) {
+        save(tag, "rite");
+    }
+
+    public final void save(CompoundTag tag, String name) {
+        CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
+    }
+
+    public static Optional<SpiritRiteType> load(CompoundTag tag) {
+        return load(tag, "rite");
+    }
+
+    public static Optional<SpiritRiteType> load(CompoundTag tag, String name) {
+        return CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
     }
 }

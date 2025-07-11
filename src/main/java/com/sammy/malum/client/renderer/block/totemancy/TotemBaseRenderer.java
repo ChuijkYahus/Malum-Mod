@@ -31,25 +31,18 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
     @Override
     public void render(TotemBaseBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         if (STAFF_TRACKER.isVisible()) {
-            var riteType = blockEntityIn.cachedRadiusRite;
+            var riteType = blockEntityIn.getRite();
             if (riteType == null) {
                 return;
             }
-            float totemTimer = Mth.clamp((blockEntityIn.radiusVisibility + (blockEntityIn.isActiveOrAssembling() ? 1 : -1) * partialTicks), 0, 40);
-            float scalar = Easing.SINE_IN_OUT.ease(STAFF_TRACKER.getDelta(partialTicks), 0, 1) * Easing.SINE_IN_OUT.ease(totemTimer / 40f, 0, 1, 1);
+            float scalar = Easing.SINE_IN_OUT.ease(STAFF_TRACKER.getDelta(partialTicks), 0, 1);
             var spirit = riteType.getIdentifyingSpirit();
-            var riteEffect = riteType.getRiteEffect(blockEntityIn.isCorrupted);
-            var riteEffectCenter = riteEffect.getRiteEffectCenter(blockEntityIn);
-            var offset = riteEffectCenter.subtract(blockEntityIn.getBlockPos());
-            int width = riteEffect.getRiteEffectHorizontalRadius();
-            if (width > 1) {
-                width = width * 2 + 1;
+            var riteEffect = riteType.getEffect();
+            int size = riteEffect.getEffectRange();
+            if (size > 1) {
+                size = size * 2 + 1;
             }
-            int height = riteEffect.getRiteEffectVerticalRadius();
-            if (height > 1) {
-                height = height * 2 + 1;
-            }
-            float distortion = 6f + (width + height) / 2f;
+            float distortion = 6f + size;
 
             var border = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_BORDER)
                     .withUniformHandler(new ShaderUniformHandler()
@@ -68,19 +61,18 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
                     );
 
             poseStack.pushPose();
-            poseStack.translate(offset.getX() + 0.5f, offset.getY() + 0.5f, offset.getZ() + 0.5f);
+            poseStack.translate(0.5f, 0.5f, 0.5f);
             for (int i = 0; i < 2; i++) {
-                float cubeWidth = i == 0 ? width : -width;
-                float cubeHeight = i == 0 ? height : -height;
+                float cubeSize = i == 0 ? size : -size;
                 var primaryColor = i == 0 ? spirit.getPrimaryColor() : spirit.getSecondaryColor();
                 var secondaryColor = i == 0 ? spirit.getSecondaryColor() : spirit.getPrimaryColor();
-                CubeVertexData borderArea = CubeVertexData.makeCubePositions(cubeWidth, cubeHeight)
+                CubeVertexData borderArea = CubeVertexData.makeCubePositions(cubeSize)
                         .applyWobble(0, 0.5f, 0.01f)
                         .scale(1.1f);
-                CubeVertexData squiggleArea = CubeVertexData.makeCubePositions(cubeWidth, cubeHeight)
+                CubeVertexData squiggleArea = CubeVertexData.makeCubePositions(cubeSize)
                         .applyWobble(0.2f, 0.7f, 0.02f)
                         .scale(1.09f);
-                CubeVertexData checkerboardArea = CubeVertexData.makeCubePositions(cubeWidth, cubeHeight)
+                CubeVertexData checkerboardArea = CubeVertexData.makeCubePositions(cubeSize)
                         .applyWobble(0.5f, 0, 0.03f)
                         .scale(1.08f);
 

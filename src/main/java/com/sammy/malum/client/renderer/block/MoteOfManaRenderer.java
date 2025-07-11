@@ -21,7 +21,7 @@ public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEnti
 
     @Override
     public void render(ManaMoteBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        SpiritHolder<MalumSpiritType> spirit = SpiritTypeProperty.getSpiritType(blockEntityIn.getBlockState());
+        SpiritHolder<SpiritArcanaType> spirit = SpiritTypeProperty.getSpiritType(blockEntityIn.getBlockState());
 
         var builder = SpiritBasedWorldVFXBuilder.create(spirit)
                 .setRenderType(LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MOTE_OF_MANA));

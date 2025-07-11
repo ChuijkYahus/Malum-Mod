@@ -43,7 +43,8 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
             compound.putInt("itemCount", eatenItems.size());
             for (int i = 0; i < eatenItems.size(); i++) {
                 ItemStack stack = eatenItems.get(i);
-                CompoundTag itemTag = (CompoundTag) CodecUtil.encodeNBT(ItemStack.CODEC, stack);
+                CompoundTag itemTag = new CompoundTag();
+                stack.save(registries, itemTag);
                 compound.put("item_" + i, itemTag);
             }
         }
@@ -58,7 +59,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         eatenItems.clear();
         for (int i = 0; i < compound.getInt("itemCount"); i++) {
             CompoundTag itemTag = compound.getCompound("item_" + i);
-            eatenItems.add(CodecUtil.decodeNBT(ItemStack.CODEC, itemTag));
+            ItemStack.parse(pRegistries, itemTag).ifPresent(eatenItems::add);
         }
         progress = compound.getInt("progress");
         streak = compound.getInt("streak");

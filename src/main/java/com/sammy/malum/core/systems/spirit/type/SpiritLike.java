@@ -15,7 +15,7 @@ import java.awt.*;
 public interface SpiritLike {
 
     @Nonnull
-    MalumSpiritType getSpirit();
+    SpiritArcanaType getSpirit();
 
     default boolean matches(SpiritLike other) {
         return getSpirit().equals(other.getSpirit());
@@ -33,7 +33,7 @@ public interface SpiritLike {
         return getRegistryName().getNamespace() + ".gui.spirit." + getName();
     }
 
-    default Holder<MalumSpiritType> getHolder() {
+    default Holder<SpiritArcanaType> getHolder() {
         return MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getHolder(getRegistryName()).orElseThrow();
     }
 

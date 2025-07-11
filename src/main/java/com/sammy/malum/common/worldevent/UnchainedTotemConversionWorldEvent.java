@@ -2,7 +2,7 @@ package com.sammy.malum.common.worldevent;
 
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -42,7 +42,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
         transformedTotemParts++;
     }
 
-    public void placeTotemPole(ServerLevel level, BlockPos pos, MalumSpiritType spiritType) {
+    public void placeTotemPole(ServerLevel level, BlockPos pos, SpiritArcanaType spiritType) {
         BlockState totemPoleState = BlockStateHelper.setBlockStateWithExistingProperties(level, pos, SOULWOOD_TOTEM_POLE.get().defaultBlockState(), 3);
         TotemPoleBlockEntity totemPole = new TotemPoleBlockEntity(pos, totemPoleState);
         totemPole.setLevel(level);

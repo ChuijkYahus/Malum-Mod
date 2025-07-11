@@ -98,8 +98,8 @@ public record SpiritJSComponent(String name, Codec<SpiritIngredient> codec) impl
             spirit = "malum:" + spirit;
         }
         ResourceLocation parse = ResourceLocation.parse(spirit);
-        ResourceKey<MalumSpiritType> key = ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, parse);
-        Holder<MalumSpiritType> spiritHolder = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getHolderOrThrow(key);
+        ResourceKey<SpiritArcanaType> key = ResourceKey.create(MalumSpiritTypes.SPIRIT_TYPES_KEY, parse);
+        Holder<SpiritArcanaType> spiritHolder = MalumSpiritTypes.SPIRIT_TYPES_REGISTRY.getHolderOrThrow(key);
         return new SpiritIngredient(spiritHolder, count);
     }
 

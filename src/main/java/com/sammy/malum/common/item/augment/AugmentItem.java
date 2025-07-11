@@ -48,10 +48,10 @@ public class AugmentItem extends Item {
 
     public static void addAugmentAttributeTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
-        if (!itemStack.has(MalumDataComponents.ARTIFICE_AUGMENT)) {
+        ArtificeAugmentDataComponent augmentData = itemStack.get(MalumDataComponents.ARTIFICE_AUGMENT);
+        if (augmentData == null) {
             return;
         }
-        ArtificeAugmentDataComponent augmentData = itemStack.get(MalumDataComponents.ARTIFICE_AUGMENT);
         List<Component> tooltip = event.getToolTip();
         tooltip.add(Component.empty());
         tooltip.add(Component.translatable("malum.gui.augment.installed").withStyle(ChatFormatting.GOLD));

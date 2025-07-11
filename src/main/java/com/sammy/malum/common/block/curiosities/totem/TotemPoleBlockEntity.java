@@ -1,6 +1,5 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -14,17 +13,13 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
-
-import javax.annotation.*;
 
 import static com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity.TotemPoleState.*;
 
@@ -37,59 +32,70 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         ACTIVE
     }
 
-    public MalumSpiritType spirit;
-    public TotemPoleState totemPoleState = INACTIVE;
-    public TotemBaseBlockEntity totemBase;
-    public int totemBaseYLevel;
-    public int chargeProgress;
+    protected SpiritArcanaType spirit;
+    protected int glow;
 
-    public final boolean isSoulwood;
-    public final Block logBlock;
-    public final Direction direction;
+    protected TotemPoleState state = INACTIVE;
+    protected BlockPos basePos;
 
     public TotemPoleBlockEntity(BlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.isSoulwood = ((TotemPoleBlock<?>) state.getBlock()).isSoulwood;
-        this.logBlock = ((TotemPoleBlock<?>) state.getBlock()).logBlock.get();
-        this.direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
     }
 
     public TotemPoleBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.TOTEM_POLE.get(), pos, state);
     }
 
+    public Block getLogBlock() {
+        return asBlock().getLogBlock();
+    }
+
+    public boolean isSoulwood() {
+        return asBlock().isSoulwood();
+    }
+
+    public TotemPoleBlock<?> asBlock() {
+        return (TotemPoleBlock<?>) getBlockState().getBlock();
+    }
+
+    public SpiritArcanaType getSpirit() {
+        return spirit;
+    }
+
+    public TotemPoleState getState() {
+        return state;
+    }
+
+    public void setState(TotemPoleState state) {
+        this.state = state;
+    }
+
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack held, InteractionHand hand) {
-        boolean success = false;
-        if (held.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL) && !totemPoleState.equals(ACTIVE) && !totemPoleState.equals(CHARGING)) {
-            if (level.isClientSide) {
-                return ItemInteractionResult.SUCCESS;
-            }
-            totemPoleState = totemPoleState.equals(INACTIVE) ? VISUAL_ONLY : INACTIVE;
-            success = true;
-        }
-        else if (held.canPerformAction(ItemAbilities.AXE_STRIP)) {
-            if (level.isClientSide) {
-                return ItemInteractionResult.SUCCESS;
-            }
-            if (spirit != null) {
-                level.setBlockAndUpdate(worldPosition, logBlock.defaultBlockState());
-                success = true;
-                onBreak(player);
-            }
-        }
-        if (success) {
-            if (level instanceof ServerLevel serverLevel && spirit != null) {
+        if (held.canPerformAction(ItemAbilities.AXE_STRIP)) {
+            if (level instanceof ServerLevel serverLevel) {
+                level.setBlockAndUpdate(worldPosition, getLogBlock().defaultBlockState());
+                level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, 0.7f);
                 MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                         .at(worldPosition).color(spirit)
                         .spawn(serverLevel);
             }
-            float pitch = totemPoleState == VISUAL_ONLY ? 1.2f : 0.7f;
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch + Mth.nextFloat(level.random, -0.2f, 0.2f));
-            if (isSoulwood) {
-                level.playSound(null, worldPosition, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+            return ItemInteractionResult.SUCCESS;
+        }
+
+        if (held.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL)) {
+            if (level instanceof ServerLevel serverLevel) {
+                boolean inactive = state.equals(INACTIVE);
+                if (inactive || state.equals(VISUAL_ONLY)) {
+                    state = inactive ? VISUAL_ONLY : INACTIVE;
+                    float pitch = inactive ? 1.2f : 0.7f;
+                    level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch);
+                    BlockStateHelper.updateState(level, worldPosition);
+                    MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
+                            .at(worldPosition).color(spirit)
+                            .spawn(serverLevel);
+                }
             }
-            BlockStateHelper.updateState(level, worldPosition);
             return ItemInteractionResult.SUCCESS;
         }
         return super.onUseWithItem(player, held, hand);
@@ -98,83 +104,64 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
         if (spirit != null) {
-            tag.putString("spirit", spirit.asTag());
+            spirit.save(tag);
         }
-        tag.putInt("state", totemPoleState.ordinal());
-        if (chargeProgress != 0) {
-            tag.putInt("chargeProgress", chargeProgress);
-        }
-        if (totemBaseYLevel != 0) {
-            tag.putInt("totemBaseYLevel", totemBaseYLevel);
-        }
+        tag.putInt("state", state.ordinal());
+        tag.putInt("glow", glow);
         super.saveAdditional(tag, registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        spirit = SpiritHolder.getSpiritType(tag).orElse(null);
-        totemPoleState = TotemPoleState.values()[tag.getInt("state")];
-        chargeProgress = tag.getInt("chargeProgress");
-        totemBaseYLevel = tag.getInt("totemBaseYLevel");
-        loadWithLevel(level -> {
-            if (level.getBlockEntity(getBlockPos().mutable().setY(totemBaseYLevel)) instanceof TotemBaseBlockEntity totemBaseBlockEntity) {
-                totemBase = totemBaseBlockEntity;
-            }
-        });
+        spirit = SpiritArcanaType.load(tag).orElse(null);
+        state = TotemPoleState.values()[tag.getInt("state")];
+        glow = tag.getInt("glow");
         super.loadAdditional(tag, pRegistries);
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (totemPoleState.equals(INACTIVE)) {
-            chargeProgress = chargeProgress > 0 ? chargeProgress - 1 : 0;
+        if (state.equals(INACTIVE)) {
+            if (glow > 0) {
+                glow--;
+            }
         } else {
-            int cap = totemPoleState.equals(CHARGING) ? 10 : 20;
-            chargeProgress = chargeProgress < cap ? chargeProgress + 1 : cap;
+            int cap = state.equals(CHARGING) ? 10 : 20;
+            if (glow < cap) {
+                glow++;
+            }
         }
         if (level.isClientSide) {
-            if (spirit != null && totemPoleState.equals(ACTIVE)) {
+            if (spirit != null && state.equals(ACTIVE)) {
                 TotemParticleEffects.activeTotemPoleParticles(this);
             }
         }
     }
 
-    public void setSpirit(ServerLevel level, MalumSpiritType spirit) {
+    public float getGlowDelta() {
+        return glow / 20f;
+    }
+
+    public void setSpirit(ServerLevel level, SpiritArcanaType spirit) {
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         this.spirit = spirit;
-        this.chargeProgress = 10;
+        this.glow = 10;
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
     }
 
-    public void riteStarting(ServerLevel level, TotemBaseBlockEntity totemBase, int height) {
-        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * height);
-        this.totemBaseYLevel = worldPosition.getY() - height;
-        this.totemBase = totemBase;
-        this.totemPoleState = CHARGING;
-
+    public void beginCharging(ServerLevel level, TotemBaseBlockEntity totemBase, int index) {
+        float pitch = 0.8f + 0.2f * index;
+        this.state = CHARGING;
+        this.basePos = totemBase.getBlockPos();
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * pitch);
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
-    }
-
-    public void setState(TotemPoleState state) {
-        this.totemPoleState = state;
-        BlockStateHelper.updateState(level, worldPosition);
-    }
-
-    @Override
-    public void onBreak(@Nullable Player player) {
-        if (level.isClientSide) {
-            return;
-        }
-        if (level.getBlockEntity(getBlockPos().mutable().setY(totemBaseYLevel)) instanceof TotemBaseBlockEntity base && base.isActiveOrAssembling()) {
-            base.onBreak(player);
-        }
     }
 }
