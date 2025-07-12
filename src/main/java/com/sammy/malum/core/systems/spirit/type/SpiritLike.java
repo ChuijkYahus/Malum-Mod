@@ -5,6 +5,7 @@ import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
@@ -89,12 +90,22 @@ public interface SpiritLike {
         return Style.EMPTY.withColor(getTextColor(isTooltip));
     }
 
-    default TextColor getTextColor(boolean isTooltip) {
-        Color color = isTooltip ? ColorHelper.darker(getPrimaryColor(), 1, 0.75f) : ColorHelper.brighter(getPrimaryColor(), 1, 0.85f);
-        return TextColor.fromRgb(color.getRGB());
+    default Style getStyle(float brightness) {
+        return Style.EMPTY.withColor(getTextColor(brightness));
     }
 
-    default ResourceLocation getTotemGlowTexture() {
-        return getRegistryName().withPath(p -> "textures/vfx/totem_poles/" + p).withSuffix("_glow.png");
+    default TextColor getTextColor(boolean isTooltip) {
+        return getTextColor(isTooltip ? -0.75f : 0.85f);
+    }
+
+    default TextColor getTextColor(float brightness) {
+        Color color = getPrimaryColor();
+        if (brightness < 0) {
+            color = ColorHelper.darker(color, 1, Mth.abs(brightness));
+        }
+        else {
+            color = ColorHelper.brighter(color, 1, brightness);
+        }
+        return TextColor.fromRgb(color.getRGB());
     }
 }

@@ -730,8 +730,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_PROTECTION = register("rune_of_protection", GEAR_PROPERTIES(), RuneProtectionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SCORCHING = register("rune_of_scorching", GEAR_PROPERTIES(), RuneScorchingItem::new);
 
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_HOWLING_GALE = register("rune_of_howling_gale", GEAR_PROPERTIES(), RuneHowlingGale::new);
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_FLOWING_GRASP = register("rune_of_flowing_grasp", GEAR_PROPERTIES(), RuneFlowingGrasp::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_HOWLING_GALE = register("rune_of_howling_gale", GEAR_PROPERTIES(), RuneHowlingGale::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_FLOWING_GRASP = register("rune_of_flowing_grasp", GEAR_PROPERTIES(), RuneFlowingGrasp::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_STONE_WARD = register("rune_of_stone_ward", GEAR_PROPERTIES(), RuneStoneWard::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_BURNING_FERVOR = register("rune_of_burning_fervor", GEAR_PROPERTIES(), RuneBurningFervor::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SKY_TETHER = register("rune_of_sky_tether", GEAR_PROPERTIES(), RuneSkyTether::new);

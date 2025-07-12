@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_the_aether"
+        "recipe": "malum:rune_of_oaken_might"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_the_aether"
+      "malum:rune_of_oaken_might"
     ]
   }
 }

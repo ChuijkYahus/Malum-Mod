@@ -14,7 +14,6 @@ public class SpiritRiteTypeBuilder {
     private boolean isCorrupted = false;
     private SpiritRiteEffect effect;
 
-
     public static SpiritRiteTypeBuilder createMinor(SpiritHolder<SpiritArcanaType> spirit) {
         return new SpiritRiteTypeBuilder(List.of(MalumSpiritTypes.ARCANE_SPIRIT, spirit, spirit));
     }

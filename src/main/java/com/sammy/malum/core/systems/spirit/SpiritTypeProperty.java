@@ -27,14 +27,14 @@ public class SpiritTypeProperty extends Property<String> {
         if (state.hasProperty(SPIRIT_TYPE)) {
             return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
         }
-        throw new IllegalArgumentException("BlockState does not have a SPIRIT_TYPE property.");
+        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }
 
     public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
         if (state.hasProperty(SPIRIT_TYPE)) {
             return state.setValue(ManaMoteBlock.SPIRIT_TYPE, spiritType.getName());
         }
-        throw new IllegalArgumentException("BlockState does not have a SPIRIT_TYPE property.");
+        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }
 
     @SafeVarargs

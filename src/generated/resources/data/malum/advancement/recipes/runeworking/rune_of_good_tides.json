@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_the_hells"
+        "recipe": "malum:rune_of_good_tides"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_the_hells"
+      "malum:rune_of_good_tides"
     ]
   }
 }

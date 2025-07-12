@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_haste"
+        "recipe": "malum:rune_of_sky_tether"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_haste"
+      "malum:rune_of_sky_tether"
     ]
   }
 }

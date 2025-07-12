@@ -1,14 +1,17 @@
 package com.sammy.malum.core.systems.rite;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
+import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.spiritrite.SpiritRiteHelper;
+import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -27,14 +30,6 @@ public class SpiritRiteType {
     public static final Codec<SpiritRiteType> CODEC = MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.byNameCodec();
 
     public static StreamCodec<ByteBuf, SpiritRiteType> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
-
-    public static final String TYPE = "malum.gui.rite.type";
-    public static final String MEDIUM = "malum.gui.rite.medium";
-    public static final String RUNEWOOD = "malum.gui.rite.medium.runewood";
-    public static final String SOULWOOD = "malum.gui.rite.medium.soulwood";
-    public static final String COVERAGE = "malum.gui.rite.coverage";
-    public static final String ANCHOR = "malum.gui.rite.coverage.anchor";
-    public static final String EFFECT = "malum.gui.rite.effect";
 
     protected final List<SpiritHolder<SpiritArcanaType>> spirits;
     protected final boolean isCorrupted;
@@ -92,11 +87,41 @@ public class SpiritRiteType {
     }
 
     public List<Component> getDetailedDescription() {
-        if (detailedDescription != null) {
-            return detailedDescription;
+        if (detailedDescription == null) {
+            ArrayList<Component> tooltip = new ArrayList<>();
+            var color = getIdentifyingSpirit().getStyle(0.9f);
+            var title = Component.translatable(getLangKey()).withStyle(color);
+            var tags = getTags();
+            var effectDetails = getEffectDetails();
+
+            tooltip.add(title);
+            tooltip.add(tags);
+            tooltip.addAll(effectDetails);
+            detailedDescription = ImmutableList.copyOf(tooltip);
         }
-        detailedDescription = SpiritRiteHelper.defaultDetailedDescription(this);
         return detailedDescription;
+    }
+
+    public List<Component> getEffectDetails() {
+        MutableComponent effect = Component.translatable(getEffectLangKey());
+        String text = effect.getString();
+        String[] parts = text.split("\n");
+        return Arrays.stream(parts).map(ComponentHelper::riteEffect).toList();
+    }
+
+    public MutableComponent getTags() {
+        MutableComponent component = Component.empty();
+        List<SpiritRiteEffectTag> tags = new ArrayList<>(getEffect().getTags());
+        tags.add(isCorrupted() ? SpiritRiteEffectTag.SOULWOOD : SpiritRiteEffectTag.RUNEWOOD);
+        Iterator<SpiritRiteEffectTag> iterator = tags.iterator();
+        while (iterator.hasNext()) {
+            SpiritRiteEffectTag tag = iterator.next();
+            component.append(Component.translatable(tag.getLangKey()));
+            if (iterator.hasNext()) {
+                component.append(Component.literal(", "));
+            }
+        }
+        return component.withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_GRAY);
     }
 
     public ResourceLocation getRegistryName() {
@@ -108,7 +133,11 @@ public class SpiritRiteType {
     }
 
     public String getEffectLangKey() {
-        return EFFECT + "." + getName();
+        return getLangKey() + ".effect";
+    }
+
+    public String getCodexEntryLangKey() {
+        return BookPage.TEXT + "." + getName();
     }
 
     public String getName() {
@@ -124,7 +153,7 @@ public class SpiritRiteType {
     }
 
     public final void save(CompoundTag tag, String name) {
-        CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
+        tag.put(name, CODEC.encodeStart(NbtOps.INSTANCE, this).getOrThrow());
     }
 
     public static Optional<SpiritRiteType> load(CompoundTag tag) {
@@ -132,6 +161,6 @@ public class SpiritRiteType {
     }
 
     public static Optional<SpiritRiteType> load(CompoundTag tag, String name) {
-        return CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
+        return CODEC.decode(NbtOps.INSTANCE, tag.get(name)).map(Pair::getFirst).result();
     }
 }

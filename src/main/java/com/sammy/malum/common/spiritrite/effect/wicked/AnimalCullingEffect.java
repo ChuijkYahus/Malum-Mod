@@ -1,5 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.wicked;
 
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEntityEffect;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
@@ -19,7 +20,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class AnimalCullingEffect extends SpiritRiteEntityEffect<Animal> {
 
     public AnimalCullingEffect() {
-        super();
+        super(SpiritRiteEffectTag.TARGET_ANIMAL);
     }
 
     @Override

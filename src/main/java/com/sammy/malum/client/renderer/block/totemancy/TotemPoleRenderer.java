@@ -31,7 +31,7 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         var direction = blockEntityIn.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
 
         var level = Minecraft.getInstance().level;
-        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getTotemGlowTexture()));
+        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getGlowTexture()));
         var color = spiritType.getPrimaryColor();
         float delta = blockEntityIn.getGlowDelta();
         float alpha = delta * 0.7f;
@@ -41,8 +41,6 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         Vector3f[] positions = new Vector3f[]{
                 new Vector3f(-0.025f, -0.025f, 1.01f), new Vector3f(1.025f, -0.025f, 1.01f),
                 new Vector3f(1.025f, 1.025f, 1.01f), new Vector3f(-0.025f, 1.025f, 1.01f)};
-
-
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);

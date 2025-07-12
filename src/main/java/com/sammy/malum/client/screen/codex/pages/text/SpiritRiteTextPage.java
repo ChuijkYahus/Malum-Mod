@@ -13,30 +13,27 @@ import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SpiritRiteTextPage extends BookPage {
 
-    public final SpiritRiteType riteType;
+    public final SpiritRiteType rite;
+    private final Component headline;
     private final Component text;
 
-    public SpiritRiteTextPage(RiteHolder<SpiritRiteType> riteType, String text) {
+    public SpiritRiteTextPage(RiteHolder<SpiritRiteType> riteType) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png"));
-        this.riteType = riteType.value();
-        this.text = Component.translatable(BookPage.TEXT + "." + text);
-    }
-
-    public String headlineTranslationKey() {
-        return riteType.getLangKey();
+        this.rite = riteType.value();
+        this.headline = Component.translatable(rite.getLangKey());
+        this.text = Component.translatable(rite.getCodexEntryLangKey());
     }
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
+        renderHeadline(guiGraphics, headline, left, top);
         renderWrappingText(guiGraphics, text, left + 6, top + 78, 130);
 
         final int riteIconX = left + 63;
         final int riteIconY = top + 38;
-        renderRiteIcon(riteType, guiGraphics.pose(), riteType.isCorrupted(), 0.4f, riteIconX, riteIconY);
+        renderRiteIcon(rite, guiGraphics.pose(), 0.4f, riteIconX, riteIconY);
         if (screen.isHovering(mouseX, mouseY, riteIconX, riteIconY, 16, 16)) {
-            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, riteType.getDetailedDescription(), mouseX, mouseY));
+            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, rite.getDetailedDescription(), mouseX, mouseY));
         }
     }
 }

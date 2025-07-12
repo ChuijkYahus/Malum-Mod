@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_motion"
+        "recipe": "malum:rune_of_howling_gale"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_motion"
+      "malum:rune_of_howling_gale"
     ]
   }
 }

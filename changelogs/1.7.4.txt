@@ -3,6 +3,8 @@ This is a significant internal change that ideally should not affect gameplay wh
 However this does mean that spirit registry names now come with a mod identifier in addition to a name
 Any third party compat will need to be updated accordingly
 
+Spirit Rites are now a Deferred Registry
+
 Updated the formats for most recipes added by Malum
 Any third party recipe compat needs to be updated accordingly
 

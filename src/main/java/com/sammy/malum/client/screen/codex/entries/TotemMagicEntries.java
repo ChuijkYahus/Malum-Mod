@@ -7,7 +7,11 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.core.systems.geas.GeasEffectType;
+import com.sammy.malum.core.systems.registry.RiteHolder;
+import com.sammy.malum.core.systems.rite.SpiritRiteType;
 import com.sammy.malum.registry.common.magic.*;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
 
@@ -49,133 +53,17 @@ public class TotemMagicEntries {
                 ))
         );
 
-        screen.addEntry("sacred_rite", -2, 15, b -> b
+        screen.addEntry("arcane_rites", 0, 16, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_HEALING, "sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_HEALING))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_NURTURING, "greater_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_NURTURING))
-        );
-
-        screen.addEntry("corrupt_sacred_rite", -3, 15, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "corrupt_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_LUST, "corrupt_greater_sacred_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_LUST))
-        );
-
-        screen.addEntry("infernal_rite", -3, 16, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_SMELTING, "greater_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_SMELTING))
-                .addReference(totemicRuneEntry(RUNE_OF_BURNING_FERVOR.get()))
-        );
-
-        screen.addEntry("corrupt_infernal_rite", -4, 16, b -> b
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, "corrupt_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "corrupt_greater_infernal_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_QUICKENING))
-                .addReference(totemicRuneEntry(RUNE_OF_FIERY_EMBRACE.get()))
-        );
-
-        screen.addEntry("earthen_rite", -3, 17, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, "earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_CREATION, "greater_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_CREATION))
-                .addReference(totemicRuneEntry(RUNE_OF_STONE_WARD.get()))
-        );
-
-        screen.addEntry("corrupt_earthen_rite", -4, 17, b -> b
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "corrupt_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, "corrupt_greater_earthen_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION))
-                .addReference(totemicRuneEntry(RUNE_OF_OAKEN_MIGHT.get()))
-        );
-
-        screen.addEntry("wicked_rite", 2, 15, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_HARMING, "wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_HARMING))
-//                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE, "greater_wicked_rite"))
-//                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE))
-        );
-
-        screen.addEntry("corrupt_wicked_rite", 3, 15, b -> b
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, "corrupt_wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_CULLING, "corrupt_greater_wicked_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_CULLING))
-        );
-
-        screen.addEntry("aerial_rite", 3, 16, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, "aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_GRAVITY, "greater_aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_GRAVITY))
-                .addReference(totemicRuneEntry(RUNE_OF_THE_HOWLING_GALE.get()))
-        );
-
-        screen.addEntry("corrupt_aerial_rite", 4, 16, b -> b
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, "corrupt_aerial_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER))
-//                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "corrupt_greater_aerial_rite"))
-//                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE))
-                .addReference(totemicRuneEntry(RUNE_OF_SKY_TETHER.get()))
-        );
-
-        screen.addEntry("aqueous_rite", 3, 17, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_SOAKING, "greater_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_SOAKING))
-                .addReference(totemicRuneEntry(RUNE_OF_THE_FLOWING_GRASP.get()))
-        );
-
-        screen.addEntry("corrupt_aqueous_rite", 4, 17, b -> b
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
-                .setWidgetSupplier(RiteEntryObject::new)
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, "corrupt_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.RITE_OF_SAPPING, "corrupt_greater_aqueous_rite"))
-                .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.RITE_OF_SAPPING))
-                .addReference(totemicRuneEntry(RUNE_OF_GOOD_TIDES.get()))
-        );
-
-        screen.addEntry("arcane_rite", 0, 16, b -> b
-                .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
-                .addPage(new HeadlineTextPage("arcane_rite", "arcane_rite.description.1"))
-                .addPage(new TextPage("arcane_rite.description.2"))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.UNDIRECTED_RITE, "arcane_rite"))
+                .addPage(new HeadlineTextPage("arcane_rites", "arcane_rites.description.1"))
+                .addPage(new TextPage("arcane_rites.description.2"))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.UNDIRECTED_RITE))
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.UNDIRECTED_RITE))
-                .addPage(new TextPage("arcane_rite.description.3"))
-                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.UNCHAINED_RITE, "corrupt_arcane_rite"))
-                .addPage(SpiritTransmutationRecipePage.fromInput("arcane_rite.soulwood", RUNEWOOD_SAPLING.get()))
-                .addPage(new TextPage("arcane_rite.description.4"))
+                .addPage(new TextPage("arcane_rites.description.3"))
+                .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.UNCHAINED_RITE))
+                .addPage(SpiritTransmutationRecipePage.fromOutput("arcane_rites.soulwood", SOULWOOD_SAPLING.get()))
+                .addPage(new TextPage("arcane_rites.description.4"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))
         );
 
@@ -232,12 +120,19 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("unchained_transmutation.deepslate.1"))
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
+
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_HEALING, 2, 15);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, 3, 15);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_NURTURING, 3, 16);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_LUST, 4, 16);
     }
 
-    public static EntryReference totemicRuneEntry(Item item) {
-        String translationKey = BuiltInRegistries.ITEM.getKey(item).getPath();
-        return new EntryReference(item, BookEntry.build(translationKey)
-                .addPage(new HeadlineTextPage(translationKey))
-                .addPage(RuneworkingPage.fromOutput(item)));
+    public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {
+        screen.addEntry(riteType.value().getName(), x, y, b -> b
+                .setWidgetSupplier(RiteEntryObject::new)
+                .configureWidget(w -> w.setStyle(riteType.get().isCorrupted() ? BookWidgetStyle.DARK_TOTEMIC_SOULWOOD : BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
+                .addPage(new SpiritRiteTextPage(riteType))
+                .addPage(new SpiritRiteRecipePage(riteType))
+        );
     }
 }

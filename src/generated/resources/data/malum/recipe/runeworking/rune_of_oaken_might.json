@@ -6,11 +6,11 @@
   },
   "result": {
     "count": 1,
-    "id": "malum:rune_of_the_seas"
+    "id": "malum:rune_of_oaken_might"
   },
   "secondaryInput": {
     "count": 32,
-    "item": "malum:aqueous_spirit"
+    "item": "malum:earthen_spirit"
   },
   "soundType": "malum:runic_workbench_shapes_wooden_rune"
 }

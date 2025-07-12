@@ -9,12 +9,13 @@ import net.minecraft.world.entity.*;
 
 import java.util.*;
 
-public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends SpiritRiteEntityEffect<T> {
+public abstract class SpiritRiteAuraEffect<T extends LivingEntity> extends SpiritRiteEntityEffect<T> {
     protected final Holder<MobEffect> effectType;
     protected final List<SpiritHolder<SpiritArcanaType>> spirits;
 
     @SafeVarargs
-    public SpiritRitePotionEffect(Holder<MobEffect> effectType, SpiritHolder<SpiritArcanaType>... spirits) {
+    public SpiritRiteAuraEffect(Holder<MobEffect> effectType, SpiritHolder<SpiritArcanaType>... spirits) {
+        super(SpiritRiteEffectTag.TARGET_FRIENDLY, SpiritRiteEffectTag.AURA);
         this.effectType = effectType;
         this.spirits = Arrays.asList(spirits);
     }

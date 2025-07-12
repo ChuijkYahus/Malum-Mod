@@ -21,7 +21,7 @@ public class NurturingEffect extends SpiritRiteEntityEffect<Mob> {
     }
 
     public NurturingEffect() {
-        super();
+        super(SpiritRiteEffectTag.TARGET_ANIMAL);
     }
 
     @Override

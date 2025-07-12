@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEntityEffect;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
@@ -38,59 +39,62 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
             float scalar = Easing.SINE_IN_OUT.ease(STAFF_TRACKER.getDelta(partialTicks), 0, 1);
             var spirit = riteType.getIdentifyingSpirit();
             var riteEffect = riteType.getEffect();
-            int size = riteEffect.getEffectRange();
-            if (size > 1) {
-                size = size * 2 + 1;
+            if (riteEffect instanceof SpiritRiteEntityEffect<?> entityEffect) {
+                int size = entityEffect.getEffectRange();
+                if (size > 1) {
+                    size = size * 2 + 1;
+                }
+                float distortion = 6f + size;
+
+
+                var border = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_BORDER)
+                        .withUniformHandler(new ShaderUniformHandler()
+                                .modifyUniform("Speed", 1500f)
+                                .modifyUniform("Distortion", distortion)
+                        );
+                var squiggles = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_SQUIGGLES)
+                        .withUniformHandler(new ShaderUniformHandler()
+                                .modifyUniform("Speed", 2500f)
+                                .modifyUniform("Distortion", distortion * 2f)
+                        );
+                var checkerboard = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_CHECKERBOARD)
+                        .withUniformHandler(new ShaderUniformHandler()
+                                .modifyUniform("Speed", 500f)
+                                .modifyUniform("Distortion", distortion / 2f)
+                        );
+
+                poseStack.pushPose();
+                poseStack.translate(0.5f, 0.5f, 0.5f);
+                for (int i = 0; i < 2; i++) {
+                    float cubeSize = i == 0 ? size : -size;
+                    var primaryColor = i == 0 ? spirit.getPrimaryColor() : spirit.getSecondaryColor();
+                    var secondaryColor = i == 0 ? spirit.getSecondaryColor() : spirit.getPrimaryColor();
+                    CubeVertexData borderArea = CubeVertexData.makeCubePositions(cubeSize)
+                            .applyWobble(0, 0.5f, 0.01f)
+                            .scale(1.1f);
+                    CubeVertexData squiggleArea = CubeVertexData.makeCubePositions(cubeSize)
+                            .applyWobble(0.2f, 0.7f, 0.02f)
+                            .scale(1.09f);
+                    CubeVertexData checkerboardArea = CubeVertexData.makeCubePositions(cubeSize)
+                            .applyWobble(0.5f, 0, 0.03f)
+                            .scale(1.08f);
+
+                    var builder = SpiritBasedWorldVFXBuilder.create(spirit);
+                    builder
+                            .setRenderType(border)
+                            .setColor(primaryColor, 0.95f * scalar)
+                            .drawCube(poseStack, borderArea);
+                    builder
+                            .setRenderType(squiggles)
+                            .setColor(secondaryColor, 0.8f * scalar)
+                            .drawCube(poseStack, squiggleArea);
+                    builder
+                            .setRenderType(checkerboard)
+                            .setColor(primaryColor, 0.6f * scalar)
+                            .drawCube(poseStack, checkerboardArea);
+                }
+                poseStack.popPose();
             }
-            float distortion = 6f + size;
-
-            var border = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_BORDER)
-                    .withUniformHandler(new ShaderUniformHandler()
-                            .modifyUniform("Speed", 1500f)
-                            .modifyUniform("Distortion", distortion)
-                    );
-            var squiggles = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_SQUIGGLES)
-                    .withUniformHandler(new ShaderUniformHandler()
-                            .modifyUniform("Speed", 2500f)
-                            .modifyUniform("Distortion", distortion * 2f)
-                    );
-            var checkerboard = LodestoneRenderTypes.ADDITIVE_DISTORTED_NINE_SLICE_TEXTURE.apply(MalumRenderTypeTokens.AREA_COVERAGE_CHECKERBOARD)
-                    .withUniformHandler(new ShaderUniformHandler()
-                            .modifyUniform("Speed", 500f)
-                            .modifyUniform("Distortion", distortion / 2f)
-                    );
-
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            for (int i = 0; i < 2; i++) {
-                float cubeSize = i == 0 ? size : -size;
-                var primaryColor = i == 0 ? spirit.getPrimaryColor() : spirit.getSecondaryColor();
-                var secondaryColor = i == 0 ? spirit.getSecondaryColor() : spirit.getPrimaryColor();
-                CubeVertexData borderArea = CubeVertexData.makeCubePositions(cubeSize)
-                        .applyWobble(0, 0.5f, 0.01f)
-                        .scale(1.1f);
-                CubeVertexData squiggleArea = CubeVertexData.makeCubePositions(cubeSize)
-                        .applyWobble(0.2f, 0.7f, 0.02f)
-                        .scale(1.09f);
-                CubeVertexData checkerboardArea = CubeVertexData.makeCubePositions(cubeSize)
-                        .applyWobble(0.5f, 0, 0.03f)
-                        .scale(1.08f);
-
-                var builder = SpiritBasedWorldVFXBuilder.create(spirit);
-                builder
-                        .setRenderType(border)
-                        .setColor(primaryColor, 0.95f * scalar)
-                        .drawCube(poseStack, borderArea);
-                builder
-                        .setRenderType(squiggles)
-                        .setColor(secondaryColor, 0.8f * scalar)
-                        .drawCube(poseStack, squiggleArea);
-                builder
-                        .setRenderType(checkerboard)
-                        .setColor(primaryColor, 0.6f * scalar)
-                        .drawCube(poseStack, checkerboardArea);
-            }
-            poseStack.popPose();
         }
     }
 }

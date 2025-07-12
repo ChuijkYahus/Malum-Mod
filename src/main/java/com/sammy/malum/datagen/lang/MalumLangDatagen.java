@@ -9,9 +9,7 @@ import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.rite.category.SpiritRiteAuraCategory;
-import com.sammy.malum.core.systems.rite.category.SpiritRiteEffectCategory;
-import com.sammy.malum.core.systems.rite.category.SpiritRiteLocusCategory;
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
@@ -160,16 +158,15 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.gui.augment.type.augment", "Augment");
         add("malum.gui.augment.type.core_augment", "Core Augment");
 
-        addRiteEffectCategory(SpiritRiteAuraCategory.AURA);
-        addRiteEffectCategory(SpiritRiteLocusCategory.LOCUS);
-
-        add(SpiritRiteType.TYPE, "Type: %1$s");
-        add(SpiritRiteType.MEDIUM, "Medium: %1$s");
-        add(SpiritRiteType.RUNEWOOD, "Runewood");
-        add(SpiritRiteType.SOULWOOD, "Soulwood");
-        add(SpiritRiteType.COVERAGE, "Coverage: %1$s");
-        add(SpiritRiteType.ANCHOR, "Anchor Dependant");
-        add(SpiritRiteType.EFFECT, "Effect: %1$s");
+        addRiteTag(SpiritRiteEffectTag.RUNEWOOD, "Runewood");
+        addRiteTag(SpiritRiteEffectTag.SOULWOOD, "Soulwood");
+        addRiteTag(SpiritRiteEffectTag.AURA, "Aura");
+        addRiteTag(SpiritRiteEffectTag.TARGET_FRIENDLY, "Friendly Target");
+        addRiteTag(SpiritRiteEffectTag.TARGET_ANIMAL, "Animal Target");
+        addRiteTag(SpiritRiteEffectTag.TARGET_ANY, "Any Target");
+        addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Radial Effect");
+        addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Locus Effect");
+        addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Unchained Transmutation");
 
         add(GeasItem.GEAS, "Geas");
         add(GeasItem.SWORN, "When Sworn: ");
@@ -547,16 +544,16 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.geas." + identifier, name);
     }
 
+    public void addRiteEffect(String identifier, String name) {
+        add("malum.effect.rite." + identifier, name);
+    }
+
     public void addMiscEffect(String identifier, String name) {
         add("malum.effect." + identifier, name);
     }
 
-    public void addRiteName(SpiritRiteType riteType, String name) {
-        add(riteType.getLangKey(), name);
-    }
-
-    public void addRiteEffectCategory(SpiritRiteEffectCategory category) {
-        add(category.getTranslationKey(), DataHelper.toTitleCase(category.getName().getPath().toLowerCase(), "_"));
+    public void addRiteTag(SpiritRiteEffectTag tag, String name) {
+        add(tag.getLangKey(), name);
     }
 
     public void addGeasDescription(Holder<GeasEffectType> effectType, String description) {

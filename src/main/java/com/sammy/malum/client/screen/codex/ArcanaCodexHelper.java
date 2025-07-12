@@ -94,8 +94,8 @@ public class ArcanaCodexHelper {
         RenderSystem.disableBlend();
     }
 
-    public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, boolean corrupted, float glowAlpha, float x, float y) {
-        renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), corrupted, glowAlpha, x, y, 0);
+    public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, float glowAlpha, float x, float y) {
+        renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), rite.isCorrupted(), glowAlpha, x, y, 0);
     }
 
     public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float glowAlpha, float x, float y) {

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:item/runes/rune_of_the_hells"
+    "layer0": "malum:item/runes/rune_of_stone_ward"
   }
 }

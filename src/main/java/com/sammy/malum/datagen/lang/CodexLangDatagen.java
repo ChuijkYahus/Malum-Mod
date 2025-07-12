@@ -2,9 +2,11 @@ package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.core.systems.registry.RiteHolder;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
+import team.lodestar.lodestone.helpers.DataHelper;
 
 public class CodexLangDatagen {
 
@@ -33,15 +35,16 @@ public class CodexLangDatagen {
         return "$u" + s + "/$";
     }
 
-    private static void addCorruptedRiteDetails(SpiritRiteType riteType, String riteDescription, String riteHoverDescription) {
-        String id = riteType.identifier;
-        add(BookPage.TEXT + ".corrupt_" + id, riteDescription);
-        add(SpiritRiteType.CORRUPTED_EFFECT + "." + id, riteHoverDescription);
+    private static void addRiteEntry(RiteHolder<SpiritRiteType> holder, String entryDescription, String riteDescription, String effect) {
+        SpiritRiteType rite = holder.value();
+        String name = rite.getName();
+        addEntryHeader(name, DataHelper.toTitleCase(name, "_"), entryDescription);
+        addRiteDetails(holder, riteDescription, effect);
     }
-    private static void addRiteDetails(SpiritRiteType riteType, String riteDescription, String riteHoverDescription) {
-        String id = riteType.identifier;
-        add(BookPage.TEXT + "." + id, riteDescription);
-        add(SpiritRiteType.EFFECT + "." + id, riteHoverDescription);
+    private static void addRiteDetails(RiteHolder<SpiritRiteType> holder, String description, String effect) {
+        SpiritRiteType rite = holder.value();
+        add(rite.getCodexEntryLangKey(), description);
+        add(rite.getEffectLangKey(), effect);
     }
 
     private static void addGeasDetails(Holder<GeasEffectType> geasEffectType, String geasPositives, String geasNegatives) {
@@ -1237,119 +1240,135 @@ public class CodexLangDatagen {
                 "I have created a staff to act as a tuning fork of sorts for the energies of rites. Simply holding it resonates with the flow of arcana through the world, allowing me to visualize the area each totem can affect.",
                 "Interestingly, the staff also allows me to 'tune' a rune into an active state by interacting with it, even if it's not on a totem. This is as far as I can tell purely visual, but if nothing else, it will make good decoration.");
 
-        addSimpleEntryHeader("arcane_rite", "A Rite Unchained", "Creation uncontrolled");
-        addPages("arcane_rite.description",
+        addSimpleEntryHeader("arcane_rites", "A Rite Unchained", "Creation uncontrolled");
+        addPages("arcane_rites.description",
                 "Raw arcana provides the basis for all rites. Without power, nothing would be accomplished. This naturally makes one wonder what effect raw arcana would have as the focus of a rite. The answer is a complex and dangerous one.",
                 "It requires far more to focus than other rites, taking the entire five runes to activate. It's as though I am pushing on some threshold, and need to break through. And in breaking through... momentum is conserved.",
                 "Once complete, the rite brings about erratic change to the totem; what I dub Soulwood bears scars from the violent method of its creation. Those scars warp magic, altering its fundamental nature. Any spirit rite performed with a Soulwood totem will produce a vastly different effect.",
                 "The scars of this process linger, allowing me to make more Soulwood by placing Runewood on the results of the ritual.");
-        addHeadline("arcane_rite.soulwood", "Soulwood Transmutation");
+        addHeadline("arcane_rites.soulwood", "Soulwood Transmutation");
 
-        addRiteDetails(MalumSpiritRiteTypes.ARCANE_RITE,
+        addRiteDetails(MalumSpiritRiteTypes.UNDIRECTED_RITE,
                 "The rite - if you could call something so chaotic that - corrupts and burns through the totem, altering its very base nature, and transmuting the world around it into some indeterminate blighted substance.",
-                "Converts the totem structure into one made up of Soulwood and alters the nearby terrain into a blighted substance.\n- Soulwood totems produce different rite effects.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ARCANE_RITE,
+                "Note: Requires Containment");
+        addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem, corrupting and warping the nearby area. Any nearby block placed atop that blighted substance will be altered.",
-                "Transmutes nearby blocks placed atop blighted gunk.");
+                "Affected Blocks Undergo Unchained Transmutation\nLocus Demands Blight As Conduit");
 
-        addEntryHeader("sacred_rite", "Sacred Rites", "Invigorating the soul");
-        addRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
-                "A simple rite, while active it will slowly mend the wounds of nearby entities.\n Avoids hostiles.",
-                "Recovers one heart of damage every two seconds.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
-                "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",
-                "Periodically ages nearby crops. Coverage matches water coverage.");
-
-        addEntryHeader("corrupt_sacred_rite", "Corrupting the Sacred Rites", "Stimulating the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
-                "A simple rite, while active it will apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "Mending the soul",
+                "A simple rite, while active it will slowly mend the wounds of nearby friendly beings.",
+                "Affected Targets Recover Two Hearts Of Damage");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "Feeding the soul",
+                "A simple rite, while active it will idly recover lost stamina of nearby players, preserving hunger for longer.",
+                "Affected Targets Receive Sacred Nourishment\nSacred Nourishment Slowly Absorbs Exhaustion");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "Growing the soul",
+                "An advanced rite, while active it apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
                 """
-                        Affected animals instantly gain 25 seconds worth of age
-                         - Sheep will feed on grass more frequently
-                         - Bees pollinate faster and more frequently
-                         - Chickens lay eggs more frequently""");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
+                        Affected Targets Are Aged Twenty Five Seconds Worth
+                        Different Species React Differently:
+                         Sheep Will Feed On Grass More Frequently
+                         Chickens Lay Eggs More Frequently
+                         Bees Pollinate Faster And More Frequently
+                         Allays Duplicate Faster""");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_LUST, "Inspiring the soul",
                 "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
-                "Affected animals are fed until there are more than twenty.\n - This limit applies separately for each type of animal within the range of the rite.");
+                "Affected Targets Are Made Comfortable\nEffect Ceases When Given Species Faces Overpopulation");
 
-        addEntryHeader("wicked_rite", "Wicked Rites", "Maligning the soul");
-        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
-                "A simple rite, while active it will slowly bring nearby hostile beings to within an inch of death.",
-                "Deals one heart of non-lethal damage every two seconds.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
-                "An advanced rite, while active nearby beings on the brink of death are dealt a fatal blow to the body and soul.",
-                "Affected entities are dealt a fatal blow, dropping items and spirits on death.\n - Avoids entities with more than two and a half hearts remaining.");
 
-        addEntryHeader("corrupt_wicked_rite", "Corrupting the Wicked Rites", "Endangering the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
-                "Rather than harm, this rite enhances nearby beings, granting protection, force, and speed. Players are unfortunately omitted from this effect. Might have niche applications.",
-                "Grants all nearby non-Player entities resistance, strength, and speed.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
-                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
-                "While there are more than twenty animals within the range of the rite, the excess is removed.\n - This limit applies separately for each type of animal within the range of the rite.");
-
-        addEntryHeader("aerial_rite", "Aerial Rites", "Uplifting the soul");
-        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
-                "Applies Zephyr's Courage, increasing movement speed by two fifths.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
-                "An advanced rite, by twisting the power of the air, blocks before the totem will be made to fall as though they were sand. Nothing Silk Touch cannot grab will be affected, though.",
-                "Causes targeted blocks to fall downwards if there is nothing underneath them.");
-
-        addEntryHeader("corrupt_aerial_rite", "Corrupting the Aerial Rites", "Scattering the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE,
-                "A simple aura rite, while active nearby friendly beings will have their connection to the earth disrupted, lowering their gravity and increasing jump height.",
-                "Applies Aether's Charm, decreasing gravity by three fifths while also providing a substantial benefit to jump height.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
-                "An advanced rite, while active it will slowly ease the stress of time on the mind, offsetting the effects of insomnia for those around it over time.",
-                "Passively reduces the insomnia value of nearby players.\n - Assuming phantoms are just starting to appear, it will take a single totem executing the rite two and two fifths of a minute to fully cleanse insomnia.\n - Naturally, the totem will take longer to fully cleanse insomnia if the player has already been suffering from it for some time.");
-
-        addEntryHeader("earthen_rite", "Earthen Rites", "Grounding the soul");
-        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
-                "A simple aura rite, while active nearby friendly beings will find their bodies are tougher and more resistant to damage.",
-                "Applies Gaia's Bulwark, increasing armor by four and armor toughness by two.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
-                "An advanced rite, while active it will cause blocks before the totem base to be broken.",
-                "Breaks targeted blocks. Unbreakable blocks behave as to be expected.");
-
-        addEntryHeader("corrupt_earthen_rite", "Corrupting the Earthen Rites", "Honing the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
-                "A simple aura rite, while active nearby friendly beings will find their attacks deal more damage.",
-                "Applies Earthen Might, increasing damage dealt by two hearts.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
-                "An advanced rite, while active the earth coalesces, and like lava meeting water, cobblestone is created before the totem base.",
-                "Creates cobblestone in place of empty space.");
-
-        addEntryHeader("infernal_rite", "Infernal Rites", "Igniting the soul");
-        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
-                "A simple aura rite, while active nearby friendly beings will find that their motions are infused with fiery vigor, letting them swing weapons and tools faster.",
-                "Applies Miner's Rage, increasing attack rate and dig speed by two fifths.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
-                "An advanced rite, while active it will cause blocks before the totem base to be smelted.",
-                "Smelts targeted blocks that can be smelted into other blocks.");
-
-        addEntryHeader("corrupt_infernal_rite", "Corrupting the Infernal Rites", "Extinguishing the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
-                "A simple aura rite, while active nearby friendly beings and close fires will have the heat sucked out of them, extinguishing them and healing those who were burned, giving them the survivability of denizens of the nether.",
-                "Extinguishes nearby flames, be it affecting the world or an entity.\n - Extinguished entities receive Ifrit's Embrace, recovering two hearts while being extinguished.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
-                "An advanced rite, instead of generating heat, this rite compresses it, causing nearby furnaces to operate more quickly.",
-                "Speeds up nearby furnaces by one fourth.\n - Fuel consumption rate is unaffected, meaning the rite also improves fuel efficiency.");
-
-        addEntryHeader("aqueous_rite", "Aqueous Rites", "Molding the soul");
-        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
-                "A simple aura rite, while active nearby friendly beings will find that their reach is extended, letting them more easily interact with the world.",
-                "Applies Poseidon's Grasp, increasing block reach by two units of space and increasing item pickup range significantly.");
-        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
-                "An advanced rite, while active, it will vastly increasing the drip speed of dripstone, causing more fluid to be produced.",
-                "Speeds up dripstone fluid production, works on both lava and water.\n - Only the tip of hanging dripstone needs to be within range for the effect to trigger.");
-
-        addEntryHeader("corrupt_aqueous_rite", "Corrupting the Aqueous Rites", "Deforming the soul");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
-                "A simple aura rite, while active nearby friendly beings will find themselves better at fishing.",
-                "Applies Angler's Lure, providing benefits to fishing skills equal to Lure I and Luck of the Sea I.\n - The effects stack with any enchantment already present on a fishing rod.");
-        addCorruptedRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
-                "An advanced rite, while active zombies near this rite will find themselves choking on their own breath, drowning even on land.",
-                "Converts nearby zombies to drowned.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
+//                "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",
+//                "Periodically ages nearby crops. Coverage matches water coverage.");
+//
+//        addEntryHeader("corrupt_sacred_rite", "Corrupting the Sacred Rites", "Stimulating the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
+//                "A simple rite, while active it will apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
+//                """
+//                        Affected animals instantly gain 25 seconds worth of age
+//                         - Sheep will feed on grass more frequently
+//                         - Bees pollinate faster and more frequently
+//                         - Chickens lay eggs more frequently""");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
+//                "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
+//                "Affected animals are fed until there are more than twenty.\n - This limit applies separately for each type of animal within the range of the rite.");
+//
+//        addEntryHeader("wicked_rite", "Wicked Rites", "Maligning the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
+//                "A simple rite, while active it will slowly bring nearby hostile beings to within an inch of death.",
+//                "Deals one heart of non-lethal damage every two seconds.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
+//                "An advanced rite, while active nearby beings on the brink of death are dealt a fatal blow to the body and soul.",
+//                "Affected entities are dealt a fatal blow, dropping items and spirits on death.\n - Avoids entities with more than two and a half hearts remaining.");
+//
+//        addEntryHeader("corrupt_wicked_rite", "Corrupting the Wicked Rites", "Endangering the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
+//                "Rather than harm, this rite enhances nearby beings, granting protection, force, and speed. Players are unfortunately omitted from this effect. Might have niche applications.",
+//                "Grants all nearby non-Player entities resistance, strength, and speed.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
+//                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
+//                "While there are more than twenty animals within the range of the rite, the excess is removed.\n - This limit applies separately for each type of animal within the range of the rite.");
+//
+//        addEntryHeader("aerial_rite", "Aerial Rites", "Uplifting the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
+//                "Applies Zephyr's Courage, increasing movement speed by two fifths.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
+//                "An advanced rite, by twisting the power of the air, blocks before the totem will be made to fall as though they were sand. Nothing Silk Touch cannot grab will be affected, though.",
+//                "Causes targeted blocks to fall downwards if there is nothing underneath them.");
+//
+//        addEntryHeader("corrupt_aerial_rite", "Corrupting the Aerial Rites", "Scattering the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE,
+//                "A simple aura rite, while active nearby friendly beings will have their connection to the earth disrupted, lowering their gravity and increasing jump height.",
+//                "Applies Aether's Charm, decreasing gravity by three fifths while also providing a substantial benefit to jump height.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
+//                "An advanced rite, while active it will slowly ease the stress of time on the mind, offsetting the effects of insomnia for those around it over time.",
+//                "Passively reduces the insomnia value of nearby players.\n - Assuming phantoms are just starting to appear, it will take a single totem executing the rite two and two fifths of a minute to fully cleanse insomnia.\n - Naturally, the totem will take longer to fully cleanse insomnia if the player has already been suffering from it for some time.");
+//
+//        addEntryHeader("earthen_rite", "Earthen Rites", "Grounding the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
+//                "A simple aura rite, while active nearby friendly beings will find their bodies are tougher and more resistant to damage.",
+//                "Applies Gaia's Bulwark, increasing armor by four and armor toughness by two.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
+//                "An advanced rite, while active it will cause blocks before the totem base to be broken.",
+//                "Breaks targeted blocks. Unbreakable blocks behave as to be expected.");
+//
+//        addEntryHeader("corrupt_earthen_rite", "Corrupting the Earthen Rites", "Honing the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
+//                "A simple aura rite, while active nearby friendly beings will find their attacks deal more damage.",
+//                "Applies Earthen Might, increasing damage dealt by two hearts.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
+//                "An advanced rite, while active the earth coalesces, and like lava meeting water, cobblestone is created before the totem base.",
+//                "Creates cobblestone in place of empty space.");
+//
+//        addEntryHeader("infernal_rite", "Infernal Rites", "Igniting the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
+//                "A simple aura rite, while active nearby friendly beings will find that their motions are infused with fiery vigor, letting them swing weapons and tools faster.",
+//                "Applies Miner's Rage, increasing attack rate and dig speed by two fifths.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
+//                "An advanced rite, while active it will cause blocks before the totem base to be smelted.",
+//                "Smelts targeted blocks that can be smelted into other blocks.");
+//
+//        addEntryHeader("corrupt_infernal_rite", "Corrupting the Infernal Rites", "Extinguishing the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
+//                "A simple aura rite, while active nearby friendly beings and close fires will have the heat sucked out of them, extinguishing them and healing those who were burned, giving them the survivability of denizens of the nether.",
+//                "Extinguishes nearby flames, be it affecting the world or an entity.\n - Extinguished entities receive Ifrit's Embrace, recovering two hearts while being extinguished.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
+//                "An advanced rite, instead of generating heat, this rite compresses it, causing nearby furnaces to operate more quickly.",
+//                "Speeds up nearby furnaces by one fourth.\n - Fuel consumption rate is unaffected, meaning the rite also improves fuel efficiency.");
+//
+//        addEntryHeader("aqueous_rite", "Aqueous Rites", "Molding the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
+//                "A simple aura rite, while active nearby friendly beings will find that their reach is extended, letting them more easily interact with the world.",
+//                "Applies Poseidon's Grasp, increasing block reach by two units of space and increasing item pickup range significantly.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
+//                "An advanced rite, while active, it will vastly increasing the drip speed of dripstone, causing more fluid to be produced.",
+//                "Speeds up dripstone fluid production, works on both lava and water.\n - Only the tip of hanging dripstone needs to be within range for the effect to trigger.");
+//
+//        addEntryHeader("corrupt_aqueous_rite", "Corrupting the Aqueous Rites", "Deforming the soul");
+//        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
+//                "A simple aura rite, while active nearby friendly beings will find themselves better at fishing.",
+//                "Applies Angler's Lure, providing benefits to fishing skills equal to Lure I and Luck of the Sea I.\n - The effects stack with any enchantment already present on a fishing rod.");
+//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
+//                "An advanced rite, while active zombies near this rite will find themselves choking on their own breath, drowning even on land.",
+//                "Converts nearby zombies to drowned.");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
         addHeadline("blight.intro", "A Study on Blight");

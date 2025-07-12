@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
+import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -44,6 +45,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     public TotemPoleBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.TOTEM_POLE.get(), pos, state);
+        spirit = SpiritTypeProperty.getSpiritType(state).value();
     }
 
     public Block getLogBlock() {
@@ -143,10 +145,10 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         return glow / 20f;
     }
 
-    public void setSpirit(ServerLevel level, SpiritArcanaType spirit) {
+    public void setSpirit(ServerLevel level, SpiritLike spirit) {
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
-        this.spirit = spirit;
+        this.spirit = spirit.getSpirit();
         this.glow = 10;
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)

@@ -2,11 +2,11 @@
   "type": "malum:runeworking",
   "input": {
     "count": 4,
-    "item": "malum:runewood_planks"
+    "item": "malum:soulwood_planks"
   },
   "result": {
     "count": 1,
-    "id": "malum:rune_of_motion"
+    "id": "malum:rune_of_sky_tether"
   },
   "secondaryInput": {
     "count": 32,

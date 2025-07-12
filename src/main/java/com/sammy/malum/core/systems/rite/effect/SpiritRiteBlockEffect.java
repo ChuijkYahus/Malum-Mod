@@ -1,7 +1,5 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.sammy.malum.core.systems.rite.category.SpiritRiteEffectCategory;
-import com.sammy.malum.core.systems.rite.category.SpiritRiteLocusCategory;
 import com.sammy.malum.core.systems.spirit.type.SpiritLike;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
@@ -17,11 +15,10 @@ import static com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEff
 public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
 
     protected SpiritRiteBlockEffect() {
-        super(SpiritRiteLocusCategory.LOCUS);
+        super(SpiritRiteEffectTag.LOCUS_EFFECT);
     }
 
     public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos);
-
 
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));
@@ -31,14 +28,12 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
         createEffect(level, MalumParticleEffectTypes.BLOCK_RITE_EFFECT, target, spirits);
     }
 
-
     protected void createEffect(ServerLevel level, MalumNetworkedParticleEffectType<?> effect, BlockPos target, SpiritLike... spirits) {
         createEffect(level, effect, target, Arrays.asList(spirits));
     }
 
     protected void createEffect(ServerLevel level, MalumNetworkedParticleEffectType<?> effect, BlockPos target, List<? extends SpiritLike> spirits) {
-        effect
-                .createEffect(target)
+        effect.createEffect(target)
                 .color(fromSpirits(spirits))
                 .spawn(level);
     }

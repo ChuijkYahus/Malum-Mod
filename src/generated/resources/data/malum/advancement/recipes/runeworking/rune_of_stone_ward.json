@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_loyalty"
+        "recipe": "malum:rune_of_stone_ward"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_loyalty"
+      "malum:rune_of_stone_ward"
     ]
   }
 }

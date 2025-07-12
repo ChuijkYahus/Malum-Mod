@@ -9,6 +9,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
@@ -27,6 +28,7 @@ public class SpiritArcanaType implements SpiritLike {
     private final DeferredHolder<Item, SpiritShardItem> spiritShard;
 
     protected Rarity itemRarity;
+    protected ResourceLocation glowTexture;
 
     public SpiritArcanaType(SpiritColorProperties colorProperties, DeferredHolder<Item, SpiritShardItem> spiritShard) {
         this.colorProperties = colorProperties;
@@ -55,12 +57,21 @@ public class SpiritArcanaType implements SpiritLike {
         return itemRarity;
     }
 
+    public ResourceLocation getGlowTexture() {
+        if (glowTexture == null) {
+            glowTexture = getRegistryName()
+                    .withPath(p -> "textures/vfx/totem_poles/" + p)
+                    .withSuffix("_glow.png");
+        }
+        return glowTexture;
+    }
+
     public final void save(CompoundTag tag) {
         save(tag, "spirit");
     }
 
     public final void save(CompoundTag tag, String name) {
-        CODEC.encode(this, NbtOps.INSTANCE, new CompoundTag()).ifSuccess(c -> tag.put(name, c));
+        tag.put(name, CODEC.encodeStart(NbtOps.INSTANCE, this).getOrThrow());
     }
 
     public static Optional<SpiritArcanaType> load(CompoundTag tag) {
@@ -68,6 +79,6 @@ public class SpiritArcanaType implements SpiritLike {
     }
 
     public static Optional<SpiritArcanaType> load(CompoundTag tag, String name) {
-        return CODEC.decode(NbtOps.INSTANCE, tag.getCompound(name)).map(Pair::getFirst).result();
+        return CODEC.decode(NbtOps.INSTANCE, tag.get(name)).map(Pair::getFirst).result();
     }
 }

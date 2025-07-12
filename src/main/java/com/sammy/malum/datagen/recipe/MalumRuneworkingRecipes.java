@@ -82,7 +82,7 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .save(recipeOutput);
 
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_HOWLING_GALE.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_HOWLING_GALE.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AERIAL_SPIRIT, 32)
                 .save(recipeOutput);
@@ -91,7 +91,7 @@ public class MalumRuneworkingRecipes implements IConditionBuilder {
                 .setSecondaryInput(MalumSpiritTypes.AERIAL_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_THE_FLOWING_GRASP.get(), 1)
+        new RunicWorkbenchRecipeBuilder(MalumItems.RUNE_OF_FLOWING_GRASP.get(), 1)
                 .setPrimaryInput(MalumItems.RUNEWOOD_PLANKS.get(), 4)
                 .setSecondaryInput(MalumSpiritTypes.AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);

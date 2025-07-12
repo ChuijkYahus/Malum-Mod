@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.magic;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.common.spiritrite.effect.aerial.BlockGravityRiteEffect;
 import com.sammy.malum.common.spiritrite.effect.aerial.HowlingGaleRiteEffect;
 import com.sammy.malum.common.spiritrite.effect.aerial.SkyTetherRiteEffect;
@@ -24,6 +25,9 @@ import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+import java.util.List;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -34,11 +38,10 @@ public class MalumSpiritRiteTypes {
     public static final Registry<SpiritRiteType> SPIRIT_RITE_REGISTRY = SPIRIT_RITE_TYPES.makeRegistry(builder -> builder.sync(true)
             .defaultKey(MalumMod.malumPath("undirected_rite")));
 
-
     public static final RiteHolder<SpiritRiteType> UNDIRECTED_RITE = SPIRIT_RITE_TYPES.register("undirected_rite", () ->
-            SpiritRiteTypeBuilder.createMinor(ARCANE_SPIRIT).effect(UndirectedRiteEffect::new).build());
+            SpiritRiteTypeBuilder.createSpecial(ARCANE_SPIRIT).effect(UndirectedRiteEffect::new).build());
     public static final RiteHolder<SpiritRiteType> UNCHAINED_RITE = SPIRIT_RITE_TYPES.register("unchained_rite", () ->
-            SpiritRiteTypeBuilder.createMinor(ARCANE_SPIRIT).effect(UnchainedRiteEffect::new).corrupted().build());
+            SpiritRiteTypeBuilder.createSpecial(ARCANE_SPIRIT).effect(UnchainedRiteEffect::new).corrupted().build());
 
     public static final RiteHolder<SpiritRiteType> RITE_OF_HEALING = SPIRIT_RITE_TYPES.register("rite_of_healing", () ->
             SpiritRiteTypeBuilder.createMinor(SACRED_SPIRIT).effect(HealEffect::new).build());
@@ -91,4 +94,14 @@ public class MalumSpiritRiteTypes {
             SpiritRiteTypeBuilder.createMajor(INFERNAL_SPIRIT).effect(BlockSmeltingRiteEffect::new).build());
     public static final RiteHolder<SpiritRiteType> RITE_OF_QUICKENING = SPIRIT_RITE_TYPES.register("rite_of_quickening", () ->
             SpiritRiteTypeBuilder.createMajor(INFERNAL_SPIRIT).effect(FurnaceAccelerationRiteEffect::new).corrupted().build());
+
+    public static SpiritRiteType getRite(TotemBaseBlockEntity totemBase) {
+        List<? extends SpiritRiteType> rites = MalumSpiritRiteTypes.SPIRIT_RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
+        for (SpiritRiteType rite : rites) {
+            if (rite.matches(totemBase)) {
+                return rite;
+            }
+        }
+        return null;
+    }
 }

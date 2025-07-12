@@ -52,7 +52,7 @@ public class SpiritRiteRecipePage extends BookPage {
         for (int i = 0; i < spirits.size(); i++) {
             int y = riteStartY - 20 * i;
             var spiritType = spirits.get(i);
-            var spiritTexture = spiritType.getTotemGlowTexture();
+            var spiritTexture = spiritType.getSpirit().getGlowTexture();
             var stack = spirits.get(i).getSpiritStack();
             renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupted(), 0.25f, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {

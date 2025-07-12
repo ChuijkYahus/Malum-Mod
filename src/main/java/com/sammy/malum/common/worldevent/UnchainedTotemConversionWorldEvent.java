@@ -1,8 +1,9 @@
 package com.sammy.malum.common.worldevent;
 
 import com.sammy.malum.common.block.blight.*;
+import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.helpers.block.*;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_BASE;
 import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_POLE;
@@ -29,27 +29,30 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void createBlight(ServerLevel level, int intensity) {
         super.createBlight(level, intensity);
         if (transformedTotemParts == 0) {
-            BlockState state = BlockStateHelper.setBlockStateWithExistingProperties(level, position, SOULWOOD_TOTEM_BASE.get().defaultBlockState(), 3);
-            placeBlock(level, position, state);
+            placeBlock(level, position, SOULWOOD_TOTEM_BASE.get().defaultBlockState());
             transformedTotemParts++;
             return;
         }
         int offset = transformedTotemParts;
         BlockPos totemPos = position.above(offset);
-        if (level.getBlockEntity(totemPos) instanceof TotemPoleBlockEntity totemPoleTile) {
-            placeTotemPole(level, totemPos, totemPoleTile.spirit);
+        if (level.getBlockEntity(totemPos) instanceof TotemPoleBlockEntity) {
+            BlockState totemPole = level.getBlockState(totemPos);
+            replaceTotemPole(level, totemPos, totemPole);
         }
         transformedTotemParts++;
     }
 
-    public void placeTotemPole(ServerLevel level, BlockPos pos, SpiritArcanaType spiritType) {
-        BlockState totemPoleState = BlockStateHelper.setBlockStateWithExistingProperties(level, pos, SOULWOOD_TOTEM_POLE.get().defaultBlockState(), 3);
-        TotemPoleBlockEntity totemPole = new TotemPoleBlockEntity(pos, totemPoleState);
-        totemPole.setLevel(level);
-        totemPole.setSpirit(level, spiritType);
-        level.setBlockEntity(totemPole);
-        placeBlock(level, pos, totemPoleState);
-        maybePlaceBlightedGunk(level, pos, totemPoleState);
+    public void replaceTotemPole(ServerLevel level, BlockPos pos, BlockState state) {
+        var direction = state.getValue(TotemPoleBlock.HORIZONTAL_FACING);
+        var spirit = state.getValue(TotemPoleBlock.SPIRIT_TYPE);
+        var newState = SOULWOOD_TOTEM_POLE.get().defaultBlockState()
+                .setValue(TotemPoleBlock.HORIZONTAL_FACING, direction)
+                .setValue(TotemPoleBlock.SPIRIT_TYPE, spirit);
+        placeBlock(level, pos, newState);
+        if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
+            blockEntity.setSpirit(level, SpiritTypeProperty.getSpiritType(newState));
+        }
+        maybePlaceBlightedGunk(level, pos, direction);
     }
 
     public void placeBlock(ServerLevel level, BlockPos pos, BlockState state) {
@@ -57,11 +60,12 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
         level.levelEvent(null, 2001, pos, Block.getId(state));
         level.playSound(null, pos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
     }
-    public void maybePlaceBlightedGunk(ServerLevel level, BlockPos pos, BlockState totemPoleState) {
+
+    public void maybePlaceBlightedGunk(ServerLevel level, BlockPos pos, Direction totemDirection) {
         final RandomSource random = level.getRandom();
         if (random.nextFloat() < 0.4f) {
             var direction = Direction.from2DDataValue(random.nextInt(4));
-            if (direction.equals(totemPoleState.getValue(BlockStateProperties.HORIZONTAL_FACING))) {
+            if (direction.equals(totemDirection)) {
                 return;
             }
             var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(CreepingBlightBlock.BLIGHT_TYPE, CreepingBlightBlock.BlightType.SOULWOOD_SPIKE);

@@ -1,7 +1,5 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.sammy.malum.core.systems.rite.category.SpiritRiteAuraCategory;
-import com.sammy.malum.core.systems.rite.category.SpiritRiteEffectCategory;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -10,13 +8,14 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import static com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData.fromSpirits;
 
 public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends SpiritRiteEffect {
 
-    protected SpiritRiteEntityEffect() {
-        super(SpiritRiteAuraCategory.AURA);
+    protected SpiritRiteEntityEffect(SpiritRiteEffectTag... tags) {
+        super(Stream.concat(Stream.of(SpiritRiteEffectTag.RADIAL_EFFECT), Arrays.stream(tags)).toList());
     }
 
     public abstract Class<T> getTargetClass();
@@ -27,8 +26,12 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
         return true;
     }
 
+    public int getEffectRange() {
+        return 8;
+    }
+
     public List<T> findNearbyTargets(ServerLevel level, BlockPos source) {
-        AABB area = new AABB(source).inflate(getCategory().getEffectRange());
+        AABB area = new AABB(source).inflate(getEffectRange());
         return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> canApplyEffect(level, e)));
     }
 

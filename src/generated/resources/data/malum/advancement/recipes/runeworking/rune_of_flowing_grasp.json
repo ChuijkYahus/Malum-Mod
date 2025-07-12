@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:rune_of_warding"
+        "recipe": "malum:rune_of_flowing_grasp"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:rune_of_warding"
+      "malum:rune_of_flowing_grasp"
     ]
   }
 }

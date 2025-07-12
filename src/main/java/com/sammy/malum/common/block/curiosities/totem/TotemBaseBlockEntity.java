@@ -1,10 +1,10 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
-import com.sammy.malum.common.spiritrite.SpiritRiteHelper;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
@@ -74,7 +74,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                 case ACTIVE -> {
                     timer--;
                     if (timer <= 0) {
-                        timer = rite.getEffect().getEffectInterval();
+                        timer = 100;
                         rite.triggerRiteEffect(serverLevel, this);
                         BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
                     }
@@ -87,7 +87,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                             timer = INTERVAL;
                             addTotemPole(serverLevel, pole);
                         } else {
-                            var rite = SpiritRiteHelper.getRite(this);
+                            var rite = MalumSpiritRiteTypes.getRite(this);
                             if (rite == null) {
                                 setState(TotemBaseState.INACTIVE);
                                 return;
