@@ -4,12 +4,14 @@ import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.monster.*;
 
+import java.util.Collections;
+
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class EmpowermentEffect extends SpiritRiteAuraEffect<Monster> {
+public class EmpowermentEffect extends SpiritRitePotionEffect<Monster> {
 
     public EmpowermentEffect() {
-        super(MalumMobEffects.WICKED_EMPOWERMENT, WICKED_SPIRIT);
+        super(Collections.emptyList(), MalumMobEffects.WICKED_EMPOWERMENT, WICKED_SPIRIT);
     }
 
     @Override

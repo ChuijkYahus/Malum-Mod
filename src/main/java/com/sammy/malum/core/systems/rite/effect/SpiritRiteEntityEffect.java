@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
+import com.google.common.collect.ImmutableList;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -15,7 +16,11 @@ import static com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEff
 public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends SpiritRiteEffect {
 
     protected SpiritRiteEntityEffect(SpiritRiteEffectTag... tags) {
-        super(Stream.concat(Stream.of(SpiritRiteEffectTag.RADIAL_EFFECT), Arrays.stream(tags)).toList());
+        this(Arrays.asList(tags));
+    }
+
+    protected SpiritRiteEntityEffect(List<SpiritRiteEffectTag> tags) {
+        super(Stream.concat(Stream.of(SpiritRiteEffectTag.RADIAL_EFFECT), tags.stream()).toList());
     }
 
     public abstract Class<T> getTargetClass();

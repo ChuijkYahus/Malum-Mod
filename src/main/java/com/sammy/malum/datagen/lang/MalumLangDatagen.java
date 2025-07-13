@@ -161,12 +161,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addRiteTag(SpiritRiteEffectTag.RUNEWOOD, "Runewood");
         addRiteTag(SpiritRiteEffectTag.SOULWOOD, "Soulwood");
         addRiteTag(SpiritRiteEffectTag.AURA, "Aura");
-        addRiteTag(SpiritRiteEffectTag.TARGET_FRIENDLY, "Friendly Target");
-        addRiteTag(SpiritRiteEffectTag.TARGET_ANIMAL, "Animal Target");
-        addRiteTag(SpiritRiteEffectTag.TARGET_ANY, "Any Target");
-        addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Radial Effect");
+        addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Area of Effect");
         addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Locus Effect");
-        addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Unchained Transmutation");
+        addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Strange Effect");
 
         add(GeasItem.GEAS, "Geas");
         add(GeasItem.SWORN, "When Sworn: ");

@@ -12,7 +12,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class HurtEffect extends SpiritRiteEntityEffect<LivingEntity> {
 
     public HurtEffect() {
-        super(SpiritRiteEffectTag.TARGET_ANY);
+        super();
     }
 
     @Override

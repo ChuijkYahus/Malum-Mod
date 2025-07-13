@@ -1255,24 +1255,35 @@ public class CodexLangDatagen {
                 "Now already scarred, the power bleeds from the soulwood totem, corrupting and warping the nearby area. Any nearby block placed atop that blighted substance will be altered.",
                 "Affected Blocks Undergo Unchained Transmutation\nLocus Demands Blight As Conduit");
 
-        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "Mending the soul",
-                "A simple rite, while active it will slowly mend the wounds of nearby friendly beings.",
-                "Affected Targets Recover Two Hearts Of Damage");
-        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "Feeding the soul",
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "",
+                "A simple rite, while active it will slowly mend the wounds of nearby beings.",
+                "Affected Creatures Recover Two Hearts Of Damage");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "",
                 "A simple rite, while active it will idly recover lost stamina of nearby players, preserving hunger for longer.",
-                "Affected Targets Receive Sacred Nourishment\nSacred Nourishment Slowly Absorbs Exhaustion");
-        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "Growing the soul",
+                "Affected Players Receive Sacred Nourishment\nSacred Nourishment Slowly Absorbs Exhaustion");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "",
                 "An advanced rite, while active it apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
                 """
-                        Affected Targets Are Aged Twenty Five Seconds Worth
+                        Affected Animals Are Aged Twenty Five Seconds Worth
                         Different Species React Differently:
                          Sheep Will Feed On Grass More Frequently
                          Chickens Lay Eggs More Frequently
                          Bees Pollinate Faster And More Frequently
                          Allays Duplicate Faster""");
-        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_LUST, "Inspiring the soul",
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_LUST, "",
                 "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
-                "Affected Targets Are Made Comfortable\nEffect Ceases When Given Species Faces Overpopulation");
+                "Affected Animals Are Made Vigorous\nEffect Ceases When Given Species Faces Overpopulation");
+
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HARMING, "",
+                "A simple rite, while active it will slowly harm souls of nearby beings.",
+                "Affected Creatures Are Struck With Two Hearts Of Damage");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, "",
+                "A simple rite, while active it will empower the souls of nearby hostiles.",
+                "Affected Hostiles Receive Wicked Empowerment\nWicked Empowerment Strengthens Damage And Health");
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "",
+                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
+                "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");
+
 
 
 //        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,

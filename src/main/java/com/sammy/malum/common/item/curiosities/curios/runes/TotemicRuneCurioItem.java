@@ -4,7 +4,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.registry.RiteHolder;
 import com.sammy.malum.core.systems.registry.SpiritHolder;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteAuraEffect;
+import com.sammy.malum.core.systems.rite.effect.SpiritRitePotionEffect;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
@@ -25,7 +25,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         SpiritRiteType spiritRite = riteType.get();
-        if (spiritRite.getEffect() instanceof SpiritRiteAuraEffect<?> potionEffect) {
+        if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
             Component effectName = potionEffect.getEffect().value().getDisplayName();
             consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", effectName));
         }
@@ -37,7 +37,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
         if (target.level() instanceof ServerLevel level) {
             if (level.getGameTime() % 5L == 0) {
                 SpiritRiteType spiritRite = riteType.get();
-                if (spiritRite.getEffect() instanceof SpiritRiteAuraEffect<?> potionEffect) {
+                if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
                     potionEffect.applyRuneEffect(level, target);
                 }
             }

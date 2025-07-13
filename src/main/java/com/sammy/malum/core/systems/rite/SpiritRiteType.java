@@ -112,7 +112,7 @@ public class SpiritRiteType {
     public MutableComponent getTags() {
         MutableComponent component = Component.empty();
         List<SpiritRiteEffectTag> tags = new ArrayList<>(getEffect().getTags());
-        tags.add(isCorrupted() ? SpiritRiteEffectTag.SOULWOOD : SpiritRiteEffectTag.RUNEWOOD);
+        tags.addFirst(isCorrupted() ? SpiritRiteEffectTag.SOULWOOD : SpiritRiteEffectTag.RUNEWOOD);
         Iterator<SpiritRiteEffectTag> iterator = tags.iterator();
         while (iterator.hasNext()) {
             SpiritRiteEffectTag tag = iterator.next();

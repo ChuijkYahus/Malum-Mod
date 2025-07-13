@@ -1,0 +1,5 @@
+This thing prints Uranium-235, holding the required amount in a closed loop
+
+as of v1 (which is technically v2) the design is incompatible with productivity modules
+Productivity modules are vastly more efficient here, being able to print an entire 41 Uranium-235 for keeps
+I think utilizing robots to create a closed loop could be a good idea
