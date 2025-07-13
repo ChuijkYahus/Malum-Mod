@@ -125,6 +125,11 @@ public class TotemMagicEntries {
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, 3, 16);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_NURTURING, 3, 17);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_LUST, 4, 17);
+
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_HARMING, -2, 16);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, -3, 16);
+//        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -3, 17);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -4, 17);
     }
 
     public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {
