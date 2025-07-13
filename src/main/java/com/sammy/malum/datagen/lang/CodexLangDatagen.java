@@ -1120,12 +1120,12 @@ public class CodexLangDatagen {
                          -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
-        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To kindle one's fortune");
+        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To grow one's fortune");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
-                        Your wants and needs, imbued with greed.
+                        A favor born from flame.
                          -Collecting Precious Minerals grants Prospector's Greed, Increasing Mining and providing Fortune Chance""",
-                "Burn with Greed\n -Being Struck while Imbued with Prospector's Greed Ignites and Consumes the Effect\n -High Greed amplifies the effect");
+                "Burn with Greed\n -Being Struck while Imbued with Prospector's Greed Ignites You and Consumes the Effect");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC,
@@ -1257,10 +1257,10 @@ public class CodexLangDatagen {
 
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "",
                 "A simple rite, while active it will slowly mend the wounds of nearby beings.",
-                "Affected Creatures Recover Two Hearts Of Damage");
+                "Affected Creatures Are Healed For Two Hearts Of Damage");
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "",
                 "A simple rite, while active it will idly recover lost stamina of nearby players, preserving hunger for longer.",
-                "Affected Players Receive Sacred Nourishment\nSacred Nourishment Slowly Absorbs Exhaustion");
+                "Affected Players Receive Sacred Nourishment\n Sacred Nourishment Slowly Absorbs Exhaustion");
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "",
                 "An advanced rite, while active it apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
                 """
@@ -1276,10 +1276,10 @@ public class CodexLangDatagen {
 
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_HARMING, "",
                 "A simple rite, while active it will slowly harm souls of nearby beings.",
-                "Affected Creatures Are Struck With Two Hearts Of Damage");
+                "Affected Creatures Are Struck For Two Hearts Of Damage");
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, "",
                 "A simple rite, while active it will empower the souls of nearby hostiles.",
-                "Affected Hostiles Receive Wicked Empowerment\nWicked Empowerment Strengthens Damage And Health");
+                "Affected Hostiles Receive Wicked Empowerment\n Wicked Empowerment Strengthens Damage And Health");
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "",
                 "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
                 "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");

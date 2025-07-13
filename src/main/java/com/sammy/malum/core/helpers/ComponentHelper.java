@@ -29,8 +29,8 @@ public class ComponentHelper {
         return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
     }
 
-    public static Component riteEffect(String text) {
-        return Component.literal("| ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(ChatFormatting.BLUE));
+    public static Component riteEffect(String text, boolean isCorrupted) {
+        return Component.literal("| ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(isCorrupted ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.BLUE));
     }
 
     public static Component positiveEffect(String name, Object... args) {

@@ -106,7 +106,7 @@ public class SpiritRiteType {
         MutableComponent effect = Component.translatable(getEffectLangKey());
         String text = effect.getString();
         String[] parts = text.split("\n");
-        return Arrays.stream(parts).map(ComponentHelper::riteEffect).toList();
+        return Arrays.stream(parts).map(p -> ComponentHelper.riteEffect(p, isCorrupted())).toList();
     }
 
     public MutableComponent getTags() {
