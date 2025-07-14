@@ -41,9 +41,9 @@ public class ScarfRenderHandler {
     }
     public static void renderScarfData(RenderLevelStageEvent event) {
         float partialTicks = event.getPartialTick().getGameTimeDeltaPartialTick(true);
-        renderScarfData(event.getPoseStack(), event.getCamera(), partialTicks);
+        renderScarfData(event.getPoseStack(), event.getModelViewMatrix(), event.getCamera(), partialTicks);
     }
-    public static void renderScarfData(PoseStack poseStack, Camera camera, float partialTicks) {
+    public static void renderScarfData(PoseStack poseStack, Matrix4f last, Camera camera, float partialTicks) {
         Vec3 cameraPosition = camera.getPosition();
         poseStack.pushPose();
         poseStack.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
@@ -54,7 +54,7 @@ public class ScarfRenderHandler {
                 var position = entity.getPosition(partialTicks);
                 poseStack.pushPose();
                 poseStack.translate(position.x, position.y, position.z);
-                data.render(entity, poseStack, partialTicks);
+                data.render(entity, poseStack, last, partialTicks);
                 poseStack.popPose();
             }
         }
@@ -132,7 +132,7 @@ public class ScarfRenderHandler {
             return this;
         }
 
-        public void render(LivingEntity entity, PoseStack poseStack, float partialTicks) {
+        public void render(LivingEntity entity, PoseStack poseStack, Matrix4f last, float partialTicks) {
             BlockPos blockpos = entity.blockPosition().above(2);
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TEXTURE_FADE.apply(token);
@@ -144,7 +144,6 @@ public class ScarfRenderHandler {
             float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
             float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
             poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
-            Matrix4f last = poseStack.last().pose();
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
             builder.usePartialTicks(0).renderTrail(last, points,
                     f -> Mth.lerp(f, endingScale, scale),
