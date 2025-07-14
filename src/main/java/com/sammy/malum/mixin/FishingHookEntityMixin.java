@@ -22,13 +22,6 @@ public class FishingHookEntityMixin {
     @Shadow
     @Final
     private int lureSpeed;
-    @Unique
-    private Player malum$player;
-
-    @ModifyVariable(method = "<init>(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V", at = @At("RETURN"), index = 1, argsOnly = true)
-    private Player malumFishingStatChangesPlayerGrabberMixin(Player player) {
-        return this.malum$player = player;
-    }
 
     @Inject(method = "<init>(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V", at = @At("RETURN"))
     private void malumModifyFishingLuckStatsMixin(Player player, Level level, int luck, int lureSpeed, CallbackInfo ci) {
