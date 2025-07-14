@@ -21,12 +21,12 @@ import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderIngred
 
 public class SpiritTransmutationRecipePage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation");
-    private final String headlineTranslationKey;
+    private final Component headline;
     private final List<UnchainedTransmutationRecipe> recipes;
 
-    public SpiritTransmutationRecipePage(String headlineTranslationKey, Predicate<UnchainedTransmutationRecipe> predicate) {
+    public SpiritTransmutationRecipePage(String headline, Predicate<UnchainedTransmutationRecipe> predicate) {
         super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_page.png"));
-        this.headlineTranslationKey = headlineTranslationKey;
+        this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
         final Level level = Minecraft.getInstance().level;
         if (level != null) {
             this.recipes = new ArrayList<>();
@@ -46,10 +46,6 @@ public class SpiritTransmutationRecipePage extends BookPage {
         }
     }
 
-    public String headlineTranslationKey() {
-        return "malum.gui.book.entry.page.headline." + headlineTranslationKey;
-    }
-
     public static SpiritTransmutationRecipePage fromInput(String headlineTranslationKey, Item inputItem) {
         return new SpiritTransmutationRecipePage(headlineTranslationKey, s -> s.ingredient.test(inputItem.getDefaultInstance()));
     }
@@ -65,8 +61,7 @@ public class SpiritTransmutationRecipePage extends BookPage {
 
     @Override
     public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
+        renderHeadline(guiGraphics, headline, left, top);
 
         UnchainedTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);

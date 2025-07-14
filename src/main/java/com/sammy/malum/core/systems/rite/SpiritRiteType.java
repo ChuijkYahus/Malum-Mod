@@ -145,7 +145,7 @@ public class SpiritRiteType {
     }
 
     public ResourceLocation getIcon() {
-        return getRegistryName().withPath(s -> s + "/textures/vfx/rite/").withSuffix(".png");
+        return getRegistryName().withPath(s -> "textures/vfx/rite/" + s).withSuffix(".png");
     }
 
     public final void save(CompoundTag tag) {

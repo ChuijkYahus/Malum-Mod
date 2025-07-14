@@ -26,6 +26,6 @@ public class RiteEntryObject extends ProgressionEntryObject {
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
-        renderRiteIcon(riteType, guiGraphics.pose(), 0.4f, getOffsetXPosition() + 8, getOffsetYPosition() + 8);
+        renderRiteIcon(riteType, guiGraphics.pose(), getOffsetXPosition() + 8, getOffsetYPosition() + 8);
     }
 }
