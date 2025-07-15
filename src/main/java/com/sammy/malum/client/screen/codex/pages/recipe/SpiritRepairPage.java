@@ -40,8 +40,8 @@ public class SpiritRepairPage extends BookPage {
     public SpiritRepairPage(SpiritRepairRecipe recipe) {
         super(MalumMod.malumPath("textures/gui/book/pages/spirit_repair_page.png"));
         this.recipe = recipe;
-        this.damagedStacks = recipe.getDamagedItems();
-        this.repairedStacks = recipe.getRepairedItems();
+        this.damagedStacks = recipe != null ? recipe.getDamagedItems() : Collections.emptyList();
+        this.repairedStacks = recipe != null ? recipe.getRepairedItems() : Collections.emptyList();
     }
 
     @Override

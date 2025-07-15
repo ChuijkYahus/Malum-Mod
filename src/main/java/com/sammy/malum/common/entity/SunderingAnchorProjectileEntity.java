@@ -224,8 +224,9 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     if (isAlive() && distanceTo(owner) < 2.5f) {
                         SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
+                            float cooldownScalar = hitCount.isEmpty() ? 0.25f : 1f;
                             TemporarilyDisabledItem.enable(player, slot);
-                            SunderingAnchorItem.applyCooldown(getItem(), player);
+                            SunderingAnchorItem.applyCooldown(getItem(), player, cooldownScalar);
                         }
                         remove(RemovalReason.DISCARDED);
                     }

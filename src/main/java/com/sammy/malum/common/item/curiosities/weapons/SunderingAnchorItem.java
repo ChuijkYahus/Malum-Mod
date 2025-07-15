@@ -144,8 +144,12 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     public static void applyCooldown(ItemStack stack, Player player) {
+        applyCooldown(stack, player, 1);
+    }
+
+    public static void applyCooldown(ItemStack stack, Player player, float scalar) {
         if (!player.isCreative()) {
-            int cooldown = 200;
+            int cooldown = (int) (200 * scalar);
             player.getCooldowns().addCooldown(stack.getItem(), cooldown);
         }
     }

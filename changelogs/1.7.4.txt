@@ -4,11 +4,14 @@ However this does mean that spirit registry names now come with a mod identifier
 Any third party compat will need to be updated accordingly
 
 Spirit Rites are now a Deferred Registry
+This is a significant internal change that ideally should not affect gameplay whatsoever
+Any addon, such as Gaze which adds more totem rites will need to be updated accordingly
 
 Updated the formats for most recipes added by Malum
 Any third party recipe compat needs to be updated accordingly
 
 Added KubeJS compat for all Malum recipes
+Check the wiki for example use cases, if the appropriate code snippets are not there remind me to add them
 
 Added the Ravenous Pouch
 Updated the Runic Workbench Visuals, Sounds and Model
@@ -42,6 +45,8 @@ Pact of the Pyromaniac
 - Explosions always ignite you, not just at high Fervor
 - Doubled Explosion Resistance
 
+The Sundering Anchor now has reduced throw cooldown if it did not hit any enemies
+
 Retextured the Tyrving
 Retextured Malignant Lead
 Retextured the Malignant Pewter Ingot, Nugget and Plating
@@ -54,3 +59,4 @@ Fixed the Soulbinding Brazier model having incorrect face culling data
 Fixed a glState leak for the Hidden Blade interface icon renderer
 Fixed the Weeping Well giving you the Encyclopedia Arcana in place of the Umbral Spirit
 Fixed the Weeping Well crashing when eating an enchanted item
+Fixed the Codex crashing your game when opened while any spirit repair recipe is missing
