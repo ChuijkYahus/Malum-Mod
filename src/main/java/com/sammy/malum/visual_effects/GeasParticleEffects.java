@@ -433,7 +433,7 @@ public class GeasParticleEffects {
                 float alphaMultiplier = isAdditive ? 1.5f : 3f;
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
+                var renderTarget = isAdditive ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
                 WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
                         .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
                         .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))

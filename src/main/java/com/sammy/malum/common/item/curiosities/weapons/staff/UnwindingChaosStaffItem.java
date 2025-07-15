@@ -160,7 +160,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .enableForcedSpawn()
                 .setLifetime(4)
                 .enableNoClip();

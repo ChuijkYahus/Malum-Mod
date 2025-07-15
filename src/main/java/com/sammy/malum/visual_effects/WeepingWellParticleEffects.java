@@ -61,7 +61,7 @@ public class WeepingWellParticleEffects {
                         .disableNoClip()
                         .setGravity(gravityStrength / 2f)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .modifyTransparencyData(d -> d.multiplyValue(2f))
                         .modifyScaleData(d -> d.multiplyValue(1.5f));
                 sparkParticles.getBloomBuilder()
@@ -69,7 +69,7 @@ public class WeepingWellParticleEffects {
                         .disableNoClip()
                         .setGravity(gravityStrength / 2f)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 sparkParticles.spawnParticles();
             }
@@ -83,14 +83,14 @@ public class WeepingWellParticleEffects {
                         .disableNoClip()
                         .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .modifyScaleData(d -> d.multiplyValue(2.5f));
                 lightSpecs.getBloomBuilder()
                         .addSpawnActor(spawnBehavior)
                         .disableNoClip()
                         .setGravity(gravityStrength)
                         .setMotion(xVelocity, yVelocity, zVelocity)
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .modifyTransparencyData(d -> d.multiplyValue(1.25f));
                 lightSpecs.spawnParticles();
             }
@@ -108,7 +108,7 @@ public class WeepingWellParticleEffects {
                     .setRandomOffset(0.6f)
                     .enableNoClip()
                     .setRandomMotion(0.02f, 0.02f)
-                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .repeat(level, posX, posY + 0.25f, posZ, 5);
         }
@@ -139,7 +139,7 @@ public class WeepingWellParticleEffects {
                     .addMotion(0, yMotion, 0)
                     .enableNoClip()
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .surroundVoxelShape(level, blockPos, WELL_SHAPE, 12);
 
 
@@ -157,7 +157,7 @@ public class WeepingWellParticleEffects {
                         .addMotion(0, yMotion, 0)
                         .enableNoClip()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                        .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
             }
 
@@ -174,9 +174,9 @@ public class WeepingWellParticleEffects {
                 for (int i = 0; i < 2; i++) {
                     var lightSpecs = weepingWellSpecs(level, offsetPosition);
                     lightSpecs.getBuilder().addTickActor(behavior);
-                    lightSpecs.getBuilder().setRenderTarget(RenderHandler.LATE_DELAYED_RENDER);
+                    lightSpecs.getBuilder().setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
                     lightSpecs.getBloomBuilder().addTickActor(behavior);
-                    lightSpecs.getBloomBuilder().setRenderTarget(RenderHandler.LATE_DELAYED_RENDER);
+                    lightSpecs.getBloomBuilder().setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
                     lightSpecs.spawnParticles();
                 }
             }
@@ -202,7 +202,7 @@ public class WeepingWellParticleEffects {
                     .addMotion(0, yMotion, 0)
                     .enableNoClip()
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .surroundVoxelShape(level, blockPos, DEPOT_SHAPE, 4);
             if (rand.nextFloat() < 0.2f) {
                 int rotation = rand.nextInt(16);
@@ -217,9 +217,9 @@ public class WeepingWellParticleEffects {
                 for (int i = 0; i < 2; i++) {
                     var lightSpecs = weepingWellSpecs(level, offsetPosition);
                     lightSpecs.getBuilder().addTickActor(behavior);
-                    lightSpecs.getBuilder().setRenderTarget(RenderHandler.LATE_DELAYED_RENDER);
+                    lightSpecs.getBuilder().setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
                     lightSpecs.getBloomBuilder().addTickActor(behavior);
-                    lightSpecs.getBloomBuilder().setRenderTarget(RenderHandler.LATE_DELAYED_RENDER);
+                    lightSpecs.getBloomBuilder().setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
                     lightSpecs.spawnParticles();
                 }
             }
@@ -283,7 +283,7 @@ public class WeepingWellParticleEffects {
         var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setBehavior(DirectionalParticleBehavior.directional())
                 .setTransparencyData(GenericParticleData.create(0.9f, 0.05f, 0f).setEasing(Easing.CUBIC_OUT, Easing.EXPO_IN).build())
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setScaleData(scaleData)
                 .setColorData(colorData)
                 .addTickActor(behavior)

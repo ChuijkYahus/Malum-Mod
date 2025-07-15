@@ -32,8 +32,8 @@ import static com.sammy.malum.registry.client.MalumRenderTypeTokens.VOID_VIGNETT
 
 public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEntity> {
 
-    private static final MultiBufferSource ADDITIVE = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, RenderHandler.LATE_DELAYED_RENDER.getTarget());
-    private static final MultiBufferSource TRANSPARENT = new LodestoneBufferWrapper(LodestoneRenderTypes.TRANSPARENT_TEXT, RenderHandler.DELAYED_RENDER.getTarget());
+    private static final MultiBufferSource ADDITIVE = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.LATE_DEFERRED_RENDER.getTarget());
+    private static final MultiBufferSource TRANSPARENT = new LodestoneBufferWrapper(LodestoneRenderTypes.TRANSPARENT_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
 
     public VoidDepotRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -48,7 +48,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.01f, 0.5f);
 
-        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER.getTarget())
+        builder.replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER.getTarget())
                 .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(VOID_VIGNETTE))
                 .renderQuad(poseStack, positions, 1f);
         final long gameTime = blockEntityIn.getLevel().getGameTime();
@@ -57,7 +57,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         float alpha = 0.05f;
 
         var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
-        builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
+        builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
         for (int i = 0; i < 2; i++) {
             float speed = 1000f + 250f * i;
             final ShaderUniformHandler uniforms = new ShaderUniformHandler()

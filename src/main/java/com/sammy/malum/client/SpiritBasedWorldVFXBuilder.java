@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.core.systems.spirit.UmbralSpiritArcanaType;
 import net.minecraft.client.renderer.RenderType;
-import team.lodestar.lodestone.handlers.RenderHandler;
+import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.StateShards;
@@ -34,9 +34,7 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
                 LodestoneRenderTypes.addRenderTypeModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
             }
             LodestoneRenderType umbralRenderType = LodestoneRenderTypes.createCachedCopy(spiritType, lodestoneRenderType);
-            if (!RenderHandler.UNIFORM_HANDLERS.containsKey(umbralRenderType)) {
-                LodestoneRenderTypes.addUniformChanges(umbralRenderType, ShaderUniformHandler.LUMITRANSPARENT);
-            }
+            LodestoneRenderTypes.addUniformChanges(umbralRenderType, ShaderUniformHandler.LUMITRANSPARENT);
             return super.setRenderType(umbralRenderType);
         }
         return super.setRenderType(renderType);

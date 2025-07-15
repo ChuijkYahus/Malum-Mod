@@ -132,13 +132,13 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, AURIC_COLOR_DATA);
         lightSpecs.getBuilder()
                 .modifyScaleData(d -> d.multiplyValue(3 * scalar))
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(2.5f)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .enableForcedSpawn()
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .setMotion(norm);
@@ -152,7 +152,7 @@ public class EntropicFlameBoltEntity extends AbstractBoltProjectileEntity {
                 .setTransparencyData(GenericParticleData.create(0.5f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(1.2f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(2 + age, 16))
                 .setColorData(AURIC_COLOR_DATA)
                 .addTickActor(behavior)

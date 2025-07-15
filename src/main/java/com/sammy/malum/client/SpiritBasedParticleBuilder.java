@@ -22,6 +22,7 @@ import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 import team.lodestar.lodestone.systems.particle.world.type.*;
+import team.lodestar.lodestone.systems.rendering.buffer.LodestoneRenderLayer;
 
 import javax.annotation.*;
 import java.util.function.*;
@@ -121,7 +122,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Override
-    public SpiritBasedParticleBuilder setRenderTarget(RenderHandler.LodestoneRenderLayer renderLayer) {
+    public SpiritBasedParticleBuilder setRenderTarget(LodestoneRenderLayer renderLayer) {
         return (SpiritBasedParticleBuilder) super.setRenderTarget(renderLayer);
     }
 

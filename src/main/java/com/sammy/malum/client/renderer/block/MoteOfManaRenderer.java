@@ -33,13 +33,13 @@ public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEnti
         poseStack.translate(0.5f, 0.5f, 0.5f);
         builder.setRenderType(LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MOTE_OF_MANA))
                 .setColor(spirit.getPrimaryColor(), 0.9f)
-                .drawCube(poseStack, cubeVertexData);
+                .renderCube(poseStack, cubeVertexData);
         builder.setAlpha(0.5f).setUV(0.0625f, 0.0625f, 1.0625f, 1.0625f)
-                .drawCube(poseStack, cubeVertexData.scale(1.08f));
+                .renderCube(poseStack, cubeVertexData.scale(1.08f));
         builder.setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MOTE_OF_MANA))
                 .setColor(spirit.getSecondaryColor(), 0.4f)
                 .setUV(-0.0625f, -0.0625f, 0.9375f, 0.9375f)
-                .drawCube(poseStack, inverse.scale(0.82f));
+                .renderCube(poseStack, inverse.scale(0.82f));
 
         poseStack.popPose();
     }

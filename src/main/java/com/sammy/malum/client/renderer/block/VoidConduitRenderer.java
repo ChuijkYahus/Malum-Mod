@@ -31,7 +31,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
 
         var vignette = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE);
         var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
-        builder.replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
+        builder.replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setRenderType(vignette)
                 .renderQuad(poseStack, positions, 1f);
         long gameTime = blockEntityIn.getLevel().getGameTime();
@@ -39,7 +39,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.08f;
 
-        builder.replaceBufferSource(RenderHandler.DELAYED_RENDER.getTarget());
+        builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
         for (int i = 0; i < 4; i++) {
             float speed = 1000f + 250f * i;
             final ShaderUniformHandler uniforms = new ShaderUniformHandler()

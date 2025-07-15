@@ -456,11 +456,11 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         var spirit = getSunderingAnchorSpirit();
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position(), spirit);
         lightSpecs.getBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -476,7 +476,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                     .setScaleData(GenericParticleData.create(0.2f * scalar, 0.4f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .setColorData(spirit.createColorData().build())
                     .setLifetime(Math.min(5 + age * 2, 20))
                     .addTickActor(behavior)

@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
-import team.lodestar.lodestone.handlers.RenderHandler;
+import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
@@ -118,7 +118,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
             }
 
             worldVFXBuilder
-                    .replaceBufferSource(RenderHandler.LATE_DELAYED_RENDER)
+                    .replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .setColor(mainColor)
                     .setRenderType(additive)
                     .setAlpha(alpha*0.8f)

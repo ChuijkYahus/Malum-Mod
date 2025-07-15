@@ -64,7 +64,7 @@ public class ThrownConcentratedGluttonyRenderer extends EntityRenderer<ThrownCon
                             bufferIn,
                             entity.level(),
                             entity.getId()
-                    );            this.itemRenderer.renderStatic(entity.getItem(), ItemDisplayContext.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, poseStack, RenderHandler.DELAYED_RENDER.getTarget(), entity.level(), entity.getId());
+                    );            this.itemRenderer.renderStatic(entity.getItem(), ItemDisplayContext.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, poseStack, LodestoneRenderHandler.DEFERRED_RENDER.getTarget(), entity.level(), entity.getId());
             poseStack.popPose();
          }
          float scale = entity.getVisualEffectScalar();

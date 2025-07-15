@@ -83,15 +83,15 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
                     builder
                             .setRenderType(border)
                             .setColor(primaryColor, 0.95f * scalar)
-                            .drawCube(poseStack, borderArea);
+                            .renderCube(poseStack, borderArea);
                     builder
                             .setRenderType(squiggles)
                             .setColor(secondaryColor, 0.8f * scalar)
-                            .drawCube(poseStack, squiggleArea);
+                            .renderCube(poseStack, squiggleArea);
                     builder
                             .setRenderType(checkerboard)
                             .setColor(primaryColor, 0.6f * scalar)
-                            .drawCube(poseStack, checkerboardArea);
+                            .renderCube(poseStack, checkerboardArea);
                 }
                 poseStack.popPose();
             }

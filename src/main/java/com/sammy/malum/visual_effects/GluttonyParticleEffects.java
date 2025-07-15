@@ -118,7 +118,7 @@ public class GluttonyParticleEffects {
                     float lengthMultiplier = (isAdditive ? 0.75f : 1.25f) * RandomHelper.randomBetween(random, 0.8f, 1.2f);;
                     float colorCoefficient = isAdditive ? 1f : 1.75f;
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                    var renderTarget = j < 2 ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
+                    var renderTarget = j < 2 ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
                     builder
                             .modifyData(AbstractParticleBuilder::getLengthData, d -> d.copy().multiplyValue(lengthMultiplier))
                             .modifyTransparencyData(d -> d.copy().multiplyValue(alphaMultiplier))

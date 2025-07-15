@@ -9,6 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
+import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -39,26 +40,20 @@ public class ScarfRenderHandler {
             toRemove.forEach(scarfList::remove);
         }
     }
+
     public static void renderScarfData(RenderLevelStageEvent event) {
         float partialTicks = event.getPartialTick().getGameTimeDeltaPartialTick(true);
-        renderScarfData(event.getPoseStack(), event.getCamera(), partialTicks);
+        renderScarfData(partialTicks);
     }
-    public static void renderScarfData(PoseStack poseStack, Camera camera, float partialTicks) {
-        Vec3 cameraPosition = camera.getPosition();
-        poseStack.pushPose();
-        poseStack.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
+
+    public static void renderScarfData(float partialTicks) {
         for (Map.Entry<LivingEntity, List<ScarfRenderData>> entry : SCARF_DATA.entrySet()) {
             List<ScarfRenderData> scarfList = entry.getValue();
+            LivingEntity entity = entry.getKey();
             for (ScarfRenderData data : scarfList) {
-                LivingEntity entity = entry.getKey();
-                var position = entity.getPosition(partialTicks);
-                poseStack.pushPose();
-                poseStack.translate(position.x, position.y, position.z);
                 data.render(entity, partialTicks);
-                poseStack.popPose();
             }
         }
-        poseStack.popPose();
     }
 
     public static void addScarfRenderer(LivingEntity living, Consumer<Consumer<ScarfRenderData>> consumer) {
