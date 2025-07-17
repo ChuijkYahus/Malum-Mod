@@ -55,12 +55,12 @@ public class StaffAbilityRenderHandler {
                     RenderSystem.depthMask(true);
                     RenderSystem.enableBlend();
                     RenderSystem.defaultBlendFunc();
-                    ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+                    ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
                     shaderInstance.safeGetUniform("YFrequency").set(15f);
                     shaderInstance.safeGetUniform("XFrequency").set(15f);
                     shaderInstance.safeGetUniform("Speed").set(550f);
                     shaderInstance.safeGetUniform("Intensity").set(120f);
-                    var builder = VFXBuilders.createScreen().setShader(() -> shaderInstance);
+                    var builder = VFXBuilders.createScreen().setShader(shaderInstance);
 
                     int size = 13;
                     boolean forceDisplay = staffCharges <= 1;

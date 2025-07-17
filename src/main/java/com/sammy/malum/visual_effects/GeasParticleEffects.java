@@ -178,7 +178,7 @@ public class GeasParticleEffects {
                         .enableForcedSpawn()
                         .setMotion(particleDirection.scale(1.5f))
                         .modifyScaleData(d -> d.multiplyValue(1.25f))
-                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
+                        .modifyLengthData(d -> d.multiplyValue(4f));
                 sparks.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
                         .setMotion(particleDirection.scale(1.5f));
@@ -246,7 +246,7 @@ public class GeasParticleEffects {
                             .enableForcedSpawn()
                             .setMotion(particleDirection.scale(1.5f))
                             .modifyScaleData(d -> d.multiplyValue(1.75f))
-                            .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f));
+                            .modifyLengthData(d -> d.multiplyValue(3f));
                     sparks.getBloomBuilder()
                             .multiplyLifetime(lifetimeMultiplier)
                             .setMotion(particleDirection.scale(1.5f));

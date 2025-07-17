@@ -75,7 +75,7 @@ public class ArcanaCodexHelper {
                 .setShader(GameRenderer::getPositionColorShader)
                 .blit(stack);
 
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) MalumShaders.TOUCH_OF_DARKNESS.getInstance().get();
+        ExtendedShaderInstance shaderInstance = MalumShaders.TOUCH_OF_DARKNESS.getShaderInstance();
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
@@ -103,16 +103,15 @@ public class ArcanaCodexHelper {
     }
 
     public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int z) {
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         float intensity = corrupted ? 20f : 50f;
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 10f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 9f : 18f);
         shaderInstance.safeGetUniform("Speed").set(corrupted ? -1000f : 1500f);
         shaderInstance.safeGetUniform("Intensity").set(intensity);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
         VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstanceSupplier)
+                .setShader(shaderInstance)
                 .setZLevel(z);
 
         RenderSystem.depthMask(false);
@@ -145,15 +144,14 @@ public class ArcanaCodexHelper {
     }
 
     public static void renderGeasIcon(ResourceLocation texture, PoseStack stack, GeasEffectType type, float x, float y, int z) {
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(12f);
         shaderInstance.safeGetUniform("Speed").set(2000f);
         shaderInstance.safeGetUniform("Intensity").set(50f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
         VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstanceSupplier)
+                .setShader(shaderInstance)
                 .setZLevel(z);
 
         RenderSystem.depthMask(false);
@@ -209,19 +207,17 @@ public class ArcanaCodexHelper {
     }
 
     public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int z, int textureWidth, int textureHeight) {
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(12f);
         shaderInstance.safeGetUniform("Speed").set(1000f);
         shaderInstance.safeGetUniform("Intensity").set(50f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
 
         VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstanceSupplier)
+                .setShader(shaderInstance)
                 .setAlpha(0.7f)
-                .setZLevel(z)
-                .setShader(() -> shaderInstance);
+                .setZLevel(z);
 
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         renderTexture(location, stack, builder, x, y, 0, 0, 0, textureWidth, textureHeight);

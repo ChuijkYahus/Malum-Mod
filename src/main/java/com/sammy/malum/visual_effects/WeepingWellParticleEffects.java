@@ -239,7 +239,7 @@ public class WeepingWellParticleEffects {
         lightSpecs.getBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
-                .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
+                .modifyLengthData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
                 .modifyTransparencyData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
                 .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f)));
         lightSpecs.getBloomBuilder()

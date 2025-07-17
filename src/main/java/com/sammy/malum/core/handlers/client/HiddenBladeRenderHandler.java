@@ -56,12 +56,12 @@ public class HiddenBladeRenderHandler {
                     RenderSystem.depthMask(true);
                     RenderSystem.enableBlend();
                     RenderSystem.defaultBlendFunc();
-                    ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+                    ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
                     shaderInstance.safeGetUniform("YFrequency").set(15f);
                     shaderInstance.safeGetUniform("XFrequency").set(15f);
                     shaderInstance.safeGetUniform("Speed").set(550f);
                     shaderInstance.safeGetUniform("Intensity").set(120f);
-                    var builder = VFXBuilders.createScreen().setShader(() -> shaderInstance);
+                    var builder = VFXBuilders.createScreen().setShader(shaderInstance);
 
                     float size = 16;
                     double delta = Mth.clamp((CurioHiddenBladeNecklace.COOLDOWN_DURATION - cooldown) / (float) CurioHiddenBladeNecklace.COOLDOWN_DURATION, 0, 1);

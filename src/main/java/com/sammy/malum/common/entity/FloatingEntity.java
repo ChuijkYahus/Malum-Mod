@@ -122,7 +122,7 @@ public abstract class FloatingEntity extends Entity {
         else {
             for (int i = 0; i < 2; i++) {
                 float progress = (i + 1) * 0.5f;
-                Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
+                Vec3 position = getOffsetPosition(progress);
                 trail.addTrailPoint(position);
                 longTrail.addTrailPoint(position);
             }
@@ -184,7 +184,11 @@ public abstract class FloatingEntity extends Entity {
     }
 
     public Vec3 getOffsetPosition() {
-        return position().add(0, getYOffset(0), 0);
+        return getOffsetPosition(0);
+    }
+
+    public Vec3 getOffsetPosition(float partialTicks) {
+        return getPosition(partialTicks).add(0, getYOffset(0), 0);
     }
 
     public float getYOffset(float partialTicks) {

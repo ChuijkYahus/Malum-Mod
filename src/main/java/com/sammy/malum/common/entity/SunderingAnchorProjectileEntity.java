@@ -416,7 +416,9 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     }
 
     public void returnToOwner() {
-        isReturning = true;
+        if (age > 30) {
+            isReturning = true;
+        }
     }
 
     public void bounce() {

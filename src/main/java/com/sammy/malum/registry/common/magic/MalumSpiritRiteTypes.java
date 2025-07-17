@@ -25,6 +25,7 @@ import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;

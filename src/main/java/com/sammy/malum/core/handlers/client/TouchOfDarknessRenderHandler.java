@@ -34,7 +34,7 @@ public class TouchOfDarknessRenderHandler {
         float zoom = 0.5f + Math.min(0.35f, effectStrength);
         float intensity = 1f + (effectStrength > 0.5f ? (effectStrength - 0.5f) * 2.5f : 0);
 
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) MalumShaders.TOUCH_OF_DARKNESS.getInstance().get();
+        ExtendedShaderInstance shaderInstance = MalumShaders.TOUCH_OF_DARKNESS.getShaderInstance();
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);

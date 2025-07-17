@@ -119,10 +119,10 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
                     .texOffs(89, 29).addBox(-5.5F, -5.222F, -4.8053F, 3.0F, 5.0F, 2.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 0.5F, 0.0F, -0.1309F, 0.0F, 0.0F));
 
             PartDefinition left_guard = helmet.addOrReplaceChild("left_guard", CubeListBuilder.create().texOffs(17, 0).mirror().addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false)
-                    .texOffs(79, 0).mirror().addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.3F)).mirror(false), PartPose.offsetAndRotation(4.5F, -5.5F, -2.6F, 0.0F, 0.0F, -0.2618F));
+                    .texOffs(79, 0).mirror().addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.3F)).mirror(false), PartPose.offsetAndRotation(4.0F, -5.5F, -2.35F, 0.0F, 0.0F, -0.2618F));
 
             PartDefinition right_guard = helmet.addOrReplaceChild("right_guard", CubeListBuilder.create().texOffs(17, 0).addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.0F))
-                    .texOffs(79, 0).addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-4.5F, -5.5F, -2.6F, 0.0F, 0.0F, 0.2618F));
+                    .texOffs(79, 0).addBox(-1.5F, -1.0F, -2.5F, 3.0F, 6.0F, 5.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-4.0F, -5.5F, -2.35F, 0.0F, 0.0F, 0.2618F));
 
             PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(0, 49).addBox(-5.0F, 2.0F, -3.0F, 10.0F, 5.0F, 6.0F, new CubeDeformation(0.025F))
                     .texOffs(0, 60).addBox(-4.5F, 6.5F, -2.5F, 9.0F, 4.0F, 5.0F, new CubeDeformation(0.0F))
