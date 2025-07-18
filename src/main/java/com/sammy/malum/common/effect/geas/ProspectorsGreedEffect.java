@@ -12,12 +12,12 @@ import team.lodestar.lodestone.helpers.*;
 public class ProspectorsGreedEffect extends MobEffect {
     public ProspectorsGreedEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(255, 230, 93));
-        final ResourceLocation id = MalumMod.malumPath("prospectors_greed");
+        final ResourceLocation id = MalumMod.malumPath("prospectors_streak");
         addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, id, 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     public static int addFortune(LivingEntity entity) {
-        var effect = MalumMobEffects.PROSPECTORS_GREED;
+        var effect = MalumMobEffects.PROSPECTORS_STREAK;
         var instance = entity.getEffect(effect);
         if (instance != null) {
             float chance = 0.1f * (instance.getAmplifier() + 1);

@@ -32,41 +32,43 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
 
         var level = Minecraft.getInstance().level;
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getGlowTexture()));
-        var color = spiritType.getPrimaryColor();
         float delta = blockEntityIn.getGlowDelta();
         float alpha = delta * 0.7f;
         float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
-        float distance = 0.2f - ease * 0.2f;
+        float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
         Vector3f[] positions = new Vector3f[]{
-                new Vector3f(-0.025f, -0.025f, 1.01f), new Vector3f(1.025f, -0.025f, 1.01f),
-                new Vector3f(1.025f, 1.025f, 1.01f), new Vector3f(-0.025f, 1.025f, 1.01f)};
+                new Vector3f(-0.5f, 0f, 0.51f), new Vector3f(0.5f, 0f, 0.51f),
+                new Vector3f(0.5f, 1f, 0.51f), new Vector3f(-0.5f, 1f, 0.51f)};
 
         poseStack.pushPose();
-        poseStack.translate(0.5f, 0.5f, 0.5f);
+        poseStack.translate(0.5f, 0, 0.5f);
         poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot()));
-        poseStack.translate(-0.5f, -0.5f, -0.5f);
 
 
         float gameTime = level.getGameTime() + partialTicks;
         int time = 160;
         for (int i = 0; i < 4; i++) {
-            applyWobble(positions, wobbleStrength);
-            double translation = 0;
-            if (distance > 0) {
-                boolean odd = i % 2 == 0;
+            var color = i <= 2 ? spiritType.getPrimaryColor() : spiritType.getSecondaryColor();
+            double offset = 0;
+            if (offsetDistance > 0) {
                 double angle = i / 4f * (Math.PI * 2);
                 angle += ((gameTime % time) / time) * (Math.PI * 2);
-                double offset = (distance * Math.cos(angle));
-                translation = odd ? -offset : offset;
+                offset = (offsetDistance * Math.cos(angle));
+                if (i % 2 == 0) {
+                    offset *= -1;
+                }
             }
-            poseStack.translate(translation, 0, 0);
+
+            poseStack.pushPose();
+            poseStack.translate(offset, 0, 0);
+            applyWobble(positions, wobbleStrength);
             SpiritBasedWorldVFXBuilder.create(spiritType)
                     .setColor(color, alpha)
                     .setRenderType(renderType)
                     .renderQuad(poseStack, positions, 1f);
-            poseStack.translate(-translation, 0, 0);
-            alpha *= (1 - delta * 0.5f);
+            poseStack.popPose();
+            alpha *= (1 - (delta+0.2f) * 0.5f);
         }
         poseStack.popPose();
     }

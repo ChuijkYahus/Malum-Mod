@@ -74,9 +74,6 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
 
     @Override
     public SpiritBasedParticleBuilder setLifetime(Supplier<Integer> lifetimeSupplier) {
-        if (isUmbral()) {
-            return (SpiritBasedParticleBuilder) super.multiplyLifetime(2.5f);
-        }
         return (SpiritBasedParticleBuilder)super.setLifetime(lifetimeSupplier);
     }
 

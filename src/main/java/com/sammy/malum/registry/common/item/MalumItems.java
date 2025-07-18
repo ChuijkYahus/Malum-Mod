@@ -104,6 +104,10 @@ public class MalumItems {
         return new LodestoneItemProperties().stacksTo(1);
     }
 
+    public static LodestoneItemProperties UMBRAL_SPIRIT_PROPERTIES() {
+        return new LodestoneItemProperties().stacksTo(64);
+    }
+
     public static <T extends Item> DeferredHolder<Item, T> register(String name, LodestoneItemProperties properties, Function<LodestoneItemProperties, T> function) {
         LodestoneItemProperties.addToTabSorting(MalumMod.malumPath(name), properties);
         return ITEMS.register(name, () -> function.apply(properties));
@@ -122,7 +126,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
     public static final DeferredHolder<Item, SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
     public static final DeferredHolder<Item, SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
-    public static final DeferredHolder<Item, SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", HIDDEN_PROPERTIES(), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
+    public static final DeferredHolder<Item, SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", UMBRAL_SPIRIT_PROPERTIES(), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
     //endregion
 
     public static final DeferredHolder<Item, Item> ENCYCLOPEDIA_ESOTERICA = register("encyclopedia_esoterica", GEAR_PROPERTIES().rarity(EPIC), EncyclopediaEsotericaItem::new);

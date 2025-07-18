@@ -38,6 +38,8 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
     public boolean fadingAway;
     public int fadingTimer;
 
+    private LivingEntity homingTarget;
+
     public AbstractBoltProjectileEntity(EntityType<? extends AbstractBoltProjectileEntity> pEntityType, Level level) {
         super(pEntityType, level);
         noPhysics = false;
@@ -234,26 +236,40 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         if (spawnDelay > 0 || owner == null || fadingAway) {
             return;
         }
-        List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(25), target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(target));
-        if (!entities.isEmpty()) {
-            LivingEntity nearest = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(this))).get();
-            Vec3 nearestPosition = nearest.position().add(0, nearest.getBbHeight() / 2, 0);
-            Vec3 diff = nearestPosition.subtract(position());
+        if (homingTarget == null || homingTarget.isDeadOrDying()) {
+            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(50),
+                    target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(target));
+            if (entities.isEmpty()) {
+                return;
+            }
+            var angle = getDeltaMovement().normalize();
+            homingTarget = entities.stream().max(Comparator.comparingDouble((e) -> e.position().subtract(position()).normalize().dot(angle))).get();
+        }
+        if (homingTarget != null) {
+            Vec3 targetPosition = homingTarget.position().add(0, homingTarget.getBbHeight() / 2, 0);
+            Vec3 diff = targetPosition.subtract(position());
             double speed = motion.length();
             Vec3 nextPosition = position().add(getDeltaMovement());
-            if (nearest.distanceToSqr(nextPosition) > nearest.distanceToSqr(position())) {
+            if (homingTarget.distanceToSqr(nextPosition) > homingTarget.distanceToSqr(position())) {
+                //By checking if the next position is further away than the current one, we're effectively able to determine if the projectile is moving towards the enemy
+                homingTarget = null;
                 return;
             }
+            float dot = (float) motion.normalize().dot(diff.normalize());
+            if (dot < 0) {
+                homingTarget = null;
+                return;
+            }
+
             Vec3 newMotion = diff.normalize().scale(speed);
-            final double dot = motion.normalize().dot(diff.normalize());
-            if (dot < 0.8f) {
-                return;
-            }
             if (newMotion.length() == 0) {
                 newMotion = newMotion.add(0.01, 0, 0);
             }
-            float angleScalar = Math.max(((Mth.abs((float) (0.5f - dot)) - 0.1f) * 2.5f), 0.1f);
-            float factor = 0.15f * angleScalar;
+
+            //Dot product rises as the angles match up more and more
+            //Homing strength gets closer as the dot product grows
+            float angleScalar = Math.max(dot * 2f, 0.6f);
+            float factor = 0.1f * angleScalar;
             final double x = Mth.clampedLerp(motion.x, newMotion.x, factor);
             final double y = Mth.clampedLerp(motion.y, newMotion.y, factor);
             final double z = Mth.clampedLerp(motion.z, newMotion.z, factor);

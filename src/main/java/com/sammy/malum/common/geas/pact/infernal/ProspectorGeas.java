@@ -33,7 +33,7 @@ public class ProspectorGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("ore_prospecting"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("prospectors_greed"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("prospectors_streak"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("greed_combustion"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
@@ -41,15 +41,15 @@ public class ProspectorGeas extends GeasEffect {
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (!event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            var effect = target.getEffect(MalumMobEffects.PROSPECTORS_GREED);
+            var effect = target.getEffect(MalumMobEffects.PROSPECTORS_STREAK);
             if (effect != null) {
                 target.igniteForSeconds((effect.amplifier + 1));
                 if (target.level() instanceof ServerLevel level) {
-                    MalumParticleEffectTypes.PROSPECTORS_GREED_BURN.createEffect(target)
+                    MalumParticleEffectTypes.PROSPECTORS_STREAK_BURN.createEffect(target)
                             .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
                             .spawn(level);
                 }
-                target.removeEffect(MalumMobEffects.PROSPECTORS_GREED);
+                target.removeEffect(MalumMobEffects.PROSPECTORS_STREAK);
             }
         }
     }
@@ -60,7 +60,7 @@ public class ProspectorGeas extends GeasEffect {
             entity.getExistingData(MalumAttachmentTypes.PROSPECTOR_MARK).ifPresent(data -> {
                 if (data.hasProspectorMark()) {
                     var target = event.getPlayer();
-                    var effect = MalumMobEffects.PROSPECTORS_GREED;
+                    var effect = MalumMobEffects.PROSPECTORS_STREAK;
                     var instance = target.getEffect(effect);
                     if (instance == null) {
                         target.addEffect(new MobEffectInstance(effect, 200, 0, true, true, true));

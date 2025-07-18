@@ -346,9 +346,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Greed");
-        addGeasEffect("prospectors_greed", "Prospector's Greed Grants Mining Speed And Fortune Chance");
-        addGeasEffect("greed_combustion", "Prospector's Greed Turns Into Flames When Struck");
+        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Streak");
+        addGeasEffect("prospectors_streak", "Prospector's Streak Grants Mining Speed And Fortune Chance");
+        addGeasEffect("greed_combustion", "Prospector's Streak Turns Into Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");

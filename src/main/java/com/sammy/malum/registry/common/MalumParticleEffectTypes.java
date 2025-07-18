@@ -96,7 +96,7 @@ public class MalumParticleEffectTypes {
     public static final BerserkerSpiritImpactParticleEffect BERSERKER_IMPACT = new BerserkerSpiritImpactParticleEffect("berserker_impact");
     public static final HighPriestShakenFaithParticleEffect HIGH_PRIEST_PENANCE = new HighPriestShakenFaithParticleEffect("high_priest_penance");
     public static final PatienceRepaidParticleEffect PATIENCE_REPAID = new PatienceRepaidParticleEffect("patience_repaid");
-    public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_GREED_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_greed_burn");
+    public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_STREAK_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_streak_burn");
     public static final CombustionBurnParticleEffect COMBUSTION_BURN = new CombustionBurnParticleEffect("combustion_burn");
     public static final WyrdReconstructionReviveParticleEffect WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
     public static final InvertedHeartGeasImpactParticleEffect INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");

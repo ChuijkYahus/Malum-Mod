@@ -22,18 +22,21 @@ Added new particle effects for Soulwoven Banners being sheared
 
 Updated the Model for Soul Stained Steel Armor
 
+Updated the Model for Malignant Stornghold Armor
+
+
 Updated the Hidden Blade Necklace Damage Calculation
 - Now always deals a minimum of 10 damage
 - Damage bonus scales slightly faster based on incoming damage but is less significant (up to 150% down from 200% at full power)
 This should hopefully enable the trinket to feel complete even without a damage focused setup
 Also, due to a change to magic damage in 1.7.3 it no longer obliterates armor when used on a player! It used to deal 50 durability damage total, it was so awful.
 
-Geas Changes:
+Geas Updates:
 Pact of the Flamekeeper -> Pact of the Prospector
-- Renamed Effect; Flamekeeper's Fervor -> Prospector's Greed
-- Trigger Changed; Taking Damage/Mining Blocks -> Collecting Ores
-- Prospector's Greed grants Fortune Chance in place of Attack Speed
-- Taking Damage now Ignites you proportionally to the stack count of Prospector's Greed
+- Renamed Effect; Flamekeeper's Fervor -> Prospector's Streak
+- Trigger Changed; Taking Damage/Mining Blocks -> Collecting Mined Ores
+- Prospector's Streak grants Fortune Chance in place of Attack Speed
+- Taking Damage now Ignites you proportionally to the stack count of Prospector's Streak
 - Added vfx to Ignition Effect
 This Geas was the last one I added before the update and as such it felt a little rushed.
 I think it lacked a clear identity and overlapped very much with the Pact of the Pyromaniac, Fortune Chance was a rather unexplored attribute in Malum and I figured it'd make a great addition here
@@ -44,6 +47,10 @@ Pact of the Pyromaniac
 - Pyromaniac's Fervor lasts longer
 - Explosions always ignite you, not just at high Fervor
 - Doubled Explosion Resistance
+
+Oath of the Overkeen Eye
+- Improved Homing Effect Consistency
+- Changed downside from reduced Charge Duration to reduced Charge Gain Rate
 
 The Sundering Anchor now has reduced throw cooldown if it did not hit any enemies
 

@@ -34,6 +34,9 @@ public class MalumLogBLock extends LodestoneLogBlock {
             if (hit.getDirection().equals(Direction.UP) || hit.getDirection().equals(Direction.DOWN)) {
                 return ItemInteractionResult.FAIL;
             }
+            if (state.getValue(AXIS).isHorizontal()) {
+                return ItemInteractionResult.FAIL;
+            }
             if (level instanceof ServerLevel serverLevel) {
                 if (createTotemPole(serverLevel, pos, hit.getDirection(), shard)) {
                     if (!player.isCreative()) {
