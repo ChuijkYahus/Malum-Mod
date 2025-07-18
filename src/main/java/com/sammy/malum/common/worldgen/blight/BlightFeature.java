@@ -1,6 +1,7 @@
 package com.sammy.malum.common.worldgen.blight;
 
 import com.google.common.collect.*;
+import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.*;
@@ -106,9 +107,8 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        ArrayList<BlockPos> floraPositions = new ArrayList<>(blightedArea);
-        if (!floraPositions.isEmpty()) {
-            Collections.shuffle(floraPositions);
+        if (!blightedArea.isEmpty()) {
+            List<BlockPos> floraPositions = WorldgenHelper.shuffle(blightedArea, random);
             int floraCount = Math.min(random.nextInt(1, radius * 4 + 1), floraPositions.size() - 1);
             boolean hasSoulwood = false;
             for (BlockPos blockPos : floraPositions) {
@@ -139,9 +139,8 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
-        List<BlockPos> coveringArea = fetchCoveringPositions(level, pos, radius + 3);
+        List<BlockPos> coveringArea = WorldgenHelper.shuffle(fetchCoveringPositions(level, pos, radius + 3), random);
         if (!coveringArea.isEmpty()) {
-            Collections.shuffle(coveringArea);
             int coveringCount = Math.min(random.nextInt(1, 8 + radius * 8 + 1), coveringArea.size() - 1);
             for (BlockPos blockPos : coveringArea) {
                 BlockState state = level.getBlockState(blockPos);

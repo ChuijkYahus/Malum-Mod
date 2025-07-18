@@ -6,10 +6,7 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "froststeel_.+",
-  "modIdRegex": "undergarden",
   "durabilityPercentage": 0.5,
-  "inputs": [],
   "repairMaterial": {
     "item": "undergarden:froststeel_ingot",
     "count": 2
@@ -23,5 +20,9 @@
       "type": "arcane",
       "count": 4
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": "froststeel_.+",
+    "modIdRegex": "undergarden"
+  }
 }

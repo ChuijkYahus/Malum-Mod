@@ -3,12 +3,18 @@ package com.sammy.malum.common.worldgen;
 import com.google.common.collect.*;
 import com.sammy.malum.common.block.nature.*;
 import net.minecraft.core.*;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WorldgenHelper {
+
+    public static <T> List<T> shuffle(Collection<T> collection, RandomSource random) {
+        return collection.stream().sorted((a, b) -> random.nextIntBetweenInclusive(-1, 0)).toList();
+    }
 
     public static void updateLeaves(LevelAccessor pLevel, Collection<BlockPos> logPositions) {
         List<Set<BlockPos>> list = Lists.newArrayList();

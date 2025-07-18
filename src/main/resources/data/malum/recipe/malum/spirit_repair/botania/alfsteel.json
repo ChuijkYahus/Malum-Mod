@@ -6,8 +6,6 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "alfsteel_.+",
-  "modIdRegex": "mythicbotany",
   "durabilityPercentage": 1,
   "inputs": [
   ],
@@ -20,5 +18,9 @@
       "type": "arcane",
       "count": 64
     }
-  ]
+  ],
+  "regex": {
+    "itemIdRegex": "alfsteel_.+",
+    "modIdRegex": "mythicbotany"
+  }
 }
