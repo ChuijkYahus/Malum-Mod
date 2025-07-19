@@ -14,15 +14,15 @@ public class SpiritRiteTypeBuilder {
     private boolean isCorrupted = false;
     private SpiritRiteEffect effect;
 
-    public static SpiritRiteTypeBuilder createMinor(SpiritHolder<SpiritArcanaType> spirit) {
+    public static SpiritRiteTypeBuilder minorTotemRite(SpiritHolder<SpiritArcanaType> spirit) {
         return new SpiritRiteTypeBuilder(List.of(MalumSpiritTypes.ARCANE_SPIRIT, spirit, spirit));
     }
 
-    public static SpiritRiteTypeBuilder createMajor(SpiritHolder<SpiritArcanaType> spirit) {
+    public static SpiritRiteTypeBuilder majorTotemRite(SpiritHolder<SpiritArcanaType> spirit) {
         return new SpiritRiteTypeBuilder(List.of(MalumSpiritTypes.ELDRITCH_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT, spirit, spirit));
     }
 
-    public static SpiritRiteTypeBuilder createSpecial(SpiritHolder<SpiritArcanaType> spirit) {
+    public static SpiritRiteTypeBuilder specialTotemRite(SpiritHolder<SpiritArcanaType> spirit) {
         return new SpiritRiteTypeBuilder(List.of(spirit, spirit, spirit, spirit, spirit));
     }
 
@@ -35,6 +35,7 @@ public class SpiritRiteTypeBuilder {
     public SpiritRiteTypeBuilder(SpiritHolder<SpiritArcanaType>... spirits) {
         this(Arrays.asList(spirits));
     }
+
     public SpiritRiteTypeBuilder(List<SpiritHolder<SpiritArcanaType>> spirits) {
         this.spirits = new ArrayList<>(spirits);
     }

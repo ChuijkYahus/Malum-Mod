@@ -2,6 +2,7 @@ package com.sammy.malum.common.entity;
 
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.MalumEntityDataSerializers;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -15,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 public abstract class FloatingItemEntity extends FloatingEntity {
 
     protected static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.ITEM_STACK);
-    protected static final EntityDataAccessor<String> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, EntityDataSerializers.STRING);
+    protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(FloatingItemEntity.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
     public FloatingItemEntity(EntityType<? extends FloatingItemEntity> type, Level level) {
         super(type, level);
@@ -24,7 +25,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.getRegistryName().toString());
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.get());
     }
 
     @Override
@@ -37,7 +38,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
 
         var spirit = getSpiritType();
         if (spirit != null) {
-            pCompound.putString("spirit", spirit.getRegistryName().toString());
+            spirit.save(pCompound);
         }
     }
 
@@ -45,7 +46,7 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setItem(ItemStack.parse(registryAccess(), pCompound.getCompound("item")).orElse(ItemStack.EMPTY));
-        setSpirit(pCompound.getString("spirit"));
+        setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
     }
 
     @Override
@@ -77,14 +78,10 @@ public abstract class FloatingItemEntity extends FloatingEntity {
     }
 
     public SpiritArcanaType getSpiritType() {
-        return SpiritHolder.getSpiritType(getEntityData().get(DATA_SPIRIT_GLOW)).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get());
+        return getEntityData().get(DATA_SPIRIT_GLOW);
     }
 
     public void setSpirit(SpiritArcanaType spirit) {
-        setSpirit(spirit.getRegistryName().toString());
-    }
-
-    public void setSpirit(String spirit) {
         getEntityData().set(DATA_SPIRIT_GLOW, spirit);
     }
 }

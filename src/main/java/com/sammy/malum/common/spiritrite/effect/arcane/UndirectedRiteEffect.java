@@ -16,7 +16,7 @@ public class UndirectedRiteEffect extends SpiritRiteEffect {
     }
 
     @Override
-    protected void beginRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
+    public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
         WorldEventHandler.addWorldEvent(level,
                 new UnchainedTotemConversionWorldEvent()
                         .setPosition(totemBase.getBlockPos())

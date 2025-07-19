@@ -60,12 +60,7 @@ public class SpiritRiteType {
     }
 
     public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        if (effect instanceof SpiritRiteBlockEffect blockEffect) {
-
-        }
-        else if (effect instanceof SpiritRiteEntityEffect<?> entityEffect) {
-
-        }
+        effect.triggerRiteEffect(level, totemBase);
     }
 
     public boolean matches(TotemBaseBlockEntity totemBase) {

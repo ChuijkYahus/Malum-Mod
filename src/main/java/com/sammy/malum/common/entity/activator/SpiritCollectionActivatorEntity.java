@@ -17,22 +17,22 @@ import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
 
-public class SpiritCollectionActivatorEntityOld extends FloatingEntity {
+public class SpiritCollectionActivatorEntity extends FloatingEntity {
 
-    public TrailPointBuilder secondaryTrailPointBuilder = TrailPointBuilder.create(4);
-    public TrailPointBuilder trinaryTrailPointBuilder = TrailPointBuilder.create(4);
+    public TrailPointBuilder orbitingTrailA = TrailPointBuilder.create(4);
+    public TrailPointBuilder orbitingTrailB = TrailPointBuilder.create(4);
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
-    public SpiritCollectionActivatorEntityOld(Level level) {
+    public SpiritCollectionActivatorEntity(Level level) {
         super(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 
-    public SpiritCollectionActivatorEntityOld(Level level, UUID ownerUUID, double posX, double posY, double posZ, double velX, double velY, double velZ) {
+    public SpiritCollectionActivatorEntity(Level level, UUID ownerUUID, Vec3 position, Vec3 velocity) {
         this(level);
         setDestination(new FloatingItemDestinationData(ownerUUID));
-        setPos(posX, posY, posZ);
-        setDeltaMovement(velX, velY, velZ);
+        setPos(position);
+        setDeltaMovement(velocity);
         maxAge = 800;
     }
 
@@ -63,13 +63,13 @@ public class SpiritCollectionActivatorEntityOld extends FloatingEntity {
                 float scalar = (age + progress) / 6f;
                 double xOffset = Math.cos(spinOffset + scalar) * offsetScale;
                 double zOffset = Math.sin(spinOffset + scalar) * offsetScale;
-                secondaryTrailPointBuilder.addTrailPoint(position.add(xOffset, 0, zOffset));
+                orbitingTrailA.addTrailPoint(position.add(xOffset, 0, zOffset));
                 xOffset = Math.cos(spinOffset + scalar + 3.14f) * offsetScale;
                 zOffset = Math.sin(spinOffset + scalar + 3.14f) * offsetScale;
-                trinaryTrailPointBuilder.addTrailPoint(position.add(xOffset, 0, zOffset));
+                orbitingTrailB.addTrailPoint(position.add(xOffset, 0, zOffset));
             }
-            secondaryTrailPointBuilder.tickTrailPoints();
-            trinaryTrailPointBuilder.tickTrailPoints();
+            orbitingTrailA.tickTrailPoints();
+            orbitingTrailB.tickTrailPoints();
 
             Vec3 motion = getDeltaMovement();
             Vec3 norm = motion.normalize().scale(0.05f);
@@ -86,8 +86,8 @@ public class SpiritCollectionActivatorEntityOld extends FloatingEntity {
     }
 
     @Override
-    public float getMotionEasingRatio(float windUpDelta, float distance) {
-        return super.getMotionEasingRatio(windUpDelta, distance) * 4f;
+    public float getMovementInterpolation(float windUp, float distance) {
+        return super.getMovementInterpolation(windUp, distance) * 4f;
     }
 
     @Override

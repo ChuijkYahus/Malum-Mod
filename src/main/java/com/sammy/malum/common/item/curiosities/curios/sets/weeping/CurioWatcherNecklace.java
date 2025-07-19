@@ -15,6 +15,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
+import java.util.UUID;
 import java.util.function.*;
 
 public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
@@ -32,16 +33,20 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
         if (target.getHealth() >= target.getMaxHealth() * 0.9875f) {
             var data = target.getData(MalumAttachmentTypes.CURIO_DATA);
             if (data.watcherNecklaceCooldown == 0) {
-                float speed = 0.4f;
-                final Level level = attacker.level();
+                var level = attacker.level();
                 var random = level.getRandom();
-                Vec3 position = target.position().add(0, target.getBbHeight() / 2f, 0);
+                var uuid = attacker.getUUID();
+                var position = target.position().add(0, target.getBbHeight() / 2f, 0);
                 int amount = target instanceof Player ? 2 : 1;
+                var velocity = new Vec3(
+                        RandomHelper.randomBetween(random, -0.4f, 0.4f),
+                        RandomHelper.randomBetween(random, 0.1f, 0.2f),
+                        RandomHelper.randomBetween(random, -0.4f, 0.4f)
+                );
+
 
                 for (int i = 0; i < amount; i++) {
-                    SpiritCollectionActivatorEntityOld entity = new SpiritCollectionActivatorEntityOld(level, attacker.getUUID(),
-                            position.x, position.y, position.z,
-                            RandomHelper.randomBetween(random, -speed, speed), RandomHelper.randomBetween(random, 0.05f, 0.06f), RandomHelper.randomBetween(random, -speed, speed));
+                    SpiritCollectionActivatorEntity entity = new SpiritCollectionActivatorEntity(level, uuid, position, velocity);
                     level.addFreshEntity(entity);
                 }
                 data.watcherNecklaceCooldown = 400;

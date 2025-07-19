@@ -25,7 +25,6 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
         this.spirits = Arrays.asList(spirits);
     }
 
-
     @SuppressWarnings("unchecked")
     public void applyRuneEffect(ServerLevel level, LivingEntity target) {
         if (getTargetClass().isInstance(target)) {
