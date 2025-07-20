@@ -21,7 +21,7 @@ public interface IArtificeAcceptor {
         return 4;
     }
 
-    MalumSpiritType getActiveSpiritType();
+    SpiritArcanaType getActiveSpiritType();
 
     Vec3 getVisualAccelerationPoint();
 

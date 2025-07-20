@@ -5,6 +5,7 @@ import com.sammy.malum.common.data.map.*;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.*;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.systems.block.LodestoneLogBlock;
 
 import java.util.function.Supplier;
@@ -27,13 +29,19 @@ public class MalumLogBLock extends LodestoneLogBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (stack.getItem() instanceof SpiritShardItem shard) {
             if (hit.getDirection().equals(Direction.UP) || hit.getDirection().equals(Direction.DOWN)) {
                 return ItemInteractionResult.FAIL;
             }
+            if (state.getValue(AXIS).isHorizontal()) {
+                return ItemInteractionResult.FAIL;
+            }
             if (level instanceof ServerLevel serverLevel) {
-                if (createTotemPole(serverLevel, pos, player, handIn, hit, stack, shard)) {
+                if (createTotemPole(serverLevel, pos, hit.getDirection(), shard)) {
+                    if (!player.isCreative()) {
+                        stack.shrink(1);
+                    }
                     return ItemInteractionResult.SUCCESS;
                 }
             }
@@ -45,7 +53,7 @@ public class MalumLogBLock extends LodestoneLogBlock {
     }
 
     @SuppressWarnings("deprecation")
-    public boolean createTotemPole(ServerLevel level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, ItemStack stack, SpiritLike spirit) {
+    public boolean createTotemPole(ServerLevel level, BlockPos pos, Direction direction, SpiritLike spirit) {
         if (spirit.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return false;
         }
@@ -54,16 +62,13 @@ public class MalumLogBLock extends LodestoneLogBlock {
         if (conversion == null) {
             return false;
         }
-        if (conversion.totemPoleVariant().value() instanceof TotemPoleBlock<?> totemPoleBlock) {
-            level.setBlockAndUpdate(pos, TotemPoleBlock.createTotemPoleState(totemPoleBlock, hit.getDirection(), spirit));
+        Block converted = conversion.totemPoleVariant().value();
+        if (converted instanceof TotemPoleBlock<?> totemPoleBlock) {
+            level.setBlockAndUpdate(pos, TotemPoleBlock.createTotemPoleState(totemPoleBlock, direction, spirit));
             if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
                 blockEntity.setSpirit(level, spirit.getSpirit());
             }
-            if (!player.isCreative()) {
-                stack.shrink(1);
-            }
             level.levelEvent(2001, pos, Block.getId(level.getBlockState(pos)));
-            player.swing(handIn, true);
         }
         return false;
     }

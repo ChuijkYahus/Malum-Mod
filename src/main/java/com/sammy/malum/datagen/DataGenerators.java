@@ -40,7 +40,7 @@ public class DataGenerators {
         var langDatagen = new MalumLangDatagen(output);
         var soundDatagen = new MalumSoundDatagen(output, helper);
 
-        var dataMapsDatagen = new MalumDataMapDatagen(output, registryProvider);
+        var dataMapDatagen = new MalumDataMapDatagen(output, registryProvider);
         var blockLootDatagen = new MalumBlockLootTables(output, registryProvider);
         var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
         var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
@@ -57,7 +57,7 @@ public class DataGenerators {
         generator.addProvider(includeClient, langDatagen);
         generator.addProvider(includeClient, soundDatagen);
 
-        generator.addProvider(includeServer, dataMapsDatagen);
+        generator.addProvider(includeServer, dataMapDatagen);
         generator.addProvider(includeServer, blockLootDatagen);
         generator.addProvider(includeServer, blockTagsDatagen);
         generator.addProvider(includeServer, itemTagDatagen);

@@ -8,6 +8,7 @@ import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.DamageTypeTags;
@@ -38,9 +39,9 @@ import java.util.*;
 
 public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
 
-    public static final List<SpiritHolder<MalumSpiritType>> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
+    public static final List<SpiritHolder<SpiritArcanaType>> SPIRITS = List.of(MalumSpiritTypes.INFERNAL_SPIRIT, MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT);
 
-    public static MalumSpiritType getUnwindingChaosSpirit() {
+    public static SpiritArcanaType getUnwindingChaosSpirit() {
         return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1)).value();
     }
 
@@ -159,7 +160,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .enableForcedSpawn()
                 .setLifetime(4)
                 .enableNoClip();

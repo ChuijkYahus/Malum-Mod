@@ -280,19 +280,17 @@ public class ValueSettingsScreen extends Screen {
     }
 
     public void renderDialTexture(GuiGraphics graphics, int x, int y) {
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getInstance().get();
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(10f);
         shaderInstance.safeGetUniform("Speed").set(400f);
         shaderInstance.safeGetUniform("Intensity").set(100f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(-1f, 2f, -1f, 2f));
-        Supplier<ShaderInstance> shaderInstanceSupplier = () -> shaderInstance;
 
         VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstanceSupplier)
+                .setShader(shaderInstance)
                 .setAlpha(0.9f)
-                .setColor(0.7f, 0.1f, 0.1f)
-                .setShader(() -> shaderInstance);
+                .setColor(0.7f, 0.1f, 0.1f);
 
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         renderDialTexture(graphics, builder, x, y);

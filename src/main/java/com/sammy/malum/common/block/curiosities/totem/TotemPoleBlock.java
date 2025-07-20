@@ -12,26 +12,34 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
 
 import java.util.function.Supplier;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
-
 public class TotemPoleBlock<T extends TotemPoleBlockEntity> extends LodestoneEntityBlock<T> {
 
+    public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final SpiritTypeProperty SPIRIT_TYPE = SpiritTypeProperty.SPIRIT_TYPE;
 
-    public final Supplier<? extends Block> logBlock;
-    public final boolean isSoulwood;
+    protected final Supplier<? extends Block> logBlock;
+    protected final boolean isSoulwood;
 
     public TotemPoleBlock(Properties properties, Supplier<? extends Block> logBlock, boolean isSoulwood) {
         super(properties.lootFrom(logBlock));
         this.logBlock = logBlock;
         this.isSoulwood = isSoulwood;
         this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(SPIRIT_TYPE, "sacred"));
+    }
+
+    public Block getLogBlock() {
+        return logBlock.get();
+    }
+
+    public boolean isSoulwood() {
+        return isSoulwood;
     }
 
     @Override

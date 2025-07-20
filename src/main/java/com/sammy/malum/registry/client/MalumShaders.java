@@ -11,12 +11,12 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = MalumMod.MALUM, bus = EventBusSubscriber.Bus.MOD)
 public class MalumShaders {
-    public static ShaderHolder TOUCH_OF_DARKNESS = new ShaderHolder(MalumMod.malumPath("touch_of_darkness"), DefaultVertexFormat.POSITION_TEX_COLOR, "Speed", "Zoom", "Distortion", "Intensity", "Wibble");
-    public static ShaderHolder WEEPING_WELL_DISTORTION = new ShaderHolder(MalumMod.malumPath("weeping_distortion"), DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP, "Speed", "Distortion", "Width", "Height", "UVCoordinates");
+    public static ShaderHolder TOUCH_OF_DARKNESS = new ShaderHolder(MalumMod.malumPath("touch_of_darkness"), DefaultVertexFormat.POSITION_TEX_COLOR);
+    public static ShaderHolder WEEPING_WELL_DISTORTION = new ShaderHolder(MalumMod.malumPath("weeping_distortion"), DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);
 
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) {
-        LodestoneShaders.registerShader(event, TOUCH_OF_DARKNESS);
-        LodestoneShaders.registerShader(event, WEEPING_WELL_DISTORTION);
+        TOUCH_OF_DARKNESS.register(event);
+        WEEPING_WELL_DISTORTION.register(event);
     }
 }

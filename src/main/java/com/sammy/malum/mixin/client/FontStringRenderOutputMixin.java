@@ -6,7 +6,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import com.mojang.blaze3d.vertex.*;
-import com.sammy.malum.client.renderer.text.*;
 import com.sammy.malum.core.systems.spirit.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;
@@ -41,7 +40,7 @@ public class FontStringRenderOutputMixin {
 
 	@ModifyExpressionValue(method = "accept", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/chat/Style;getColor()Lnet/minecraft/network/chat/TextColor;"))
 	public TextColor enableSubtractiveBlending(TextColor color, @Share("subtractiveEnabled") LocalBooleanRef subtractiveEnabled) {
-		if (color != null && color.getValue() == UmbralSpiritType.INVERT_COLOR) {
+		if (color != null && color.getValue() == UmbralSpiritArcanaType.INVERT_COLOR) {
 			subtractiveEnabled.set(true);
 			return TextColor.fromLegacyFormat(ChatFormatting.WHITE);
 		}

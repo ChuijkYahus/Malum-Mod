@@ -22,7 +22,6 @@ public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity i
         return inventory;
     }
 
-
     @Override
     public Vec3 getItemPos(float partialTicks) {
         final BlockPos blockPos = getBlockPos();

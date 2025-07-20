@@ -2,11 +2,11 @@ package com.sammy.malum.common.block.curiosities.banner;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
@@ -26,7 +26,7 @@ import javax.annotation.*;
 
 public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
 
-    public MalumSpiritType spirit;
+    public SpiritArcanaType spirit;
     public SoulwovenBannerPatternDataComponent patternData;
     public boolean intense;
 
@@ -77,18 +77,18 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (spirit != null) {
-            tag.putString("spirit", spirit.asTag());
+            spirit.save(tag);
         }
         tag.putBoolean("intense", intense);
         patternData.save(tag);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        spirit = SpiritHolder.getSpiritType(pTag).orElse(null);
-        intense = pTag.getBoolean("intense");
-        patternData = SoulwovenBannerPatternDataComponent.load(pTag);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        spirit = SpiritArcanaType.load(tag).orElse(null);
+        intense = tag.getBoolean("intense");
+        patternData = SoulwovenBannerPatternDataComponent.load(tag);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class SoulwovenBannerBlockEntity extends LodestoneBlockEntity {
         tag.remove("pattern");
     }
 
-    public void setSpirit(ServerLevel level, @Nullable MalumSpiritType newSpirit) {
+    public void setSpirit(ServerLevel level, @Nullable SpiritArcanaType newSpirit) {
         var effectType = newSpirit != null ? MalumParticleEffectTypes.APPLY_SOULWOVEN_BANNER_GLOW : MalumParticleEffectTypes.REMOVE_SOULWOVEN_BANNER_GLOW;
         var particle = effectType.createEffect(worldPosition);
         if (newSpirit != null) {

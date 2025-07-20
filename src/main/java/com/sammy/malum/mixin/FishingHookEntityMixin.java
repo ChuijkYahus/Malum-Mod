@@ -1,5 +1,6 @@
 package com.sammy.malum.mixin;
 
+import com.sammy.malum.common.effect.rite.aura.soulwood.GoodTidesEffect;
 import com.sammy.malum.registry.common.MalumMobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -21,20 +22,12 @@ public class FishingHookEntityMixin {
     @Shadow
     @Final
     private int lureSpeed;
-    @Unique
-    private Player malum$player;
-
-    @ModifyVariable(method = "<init>(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V", at = @At("RETURN"), index = 1, argsOnly = true)
-    private Player malumFishingStatChangesPlayerGrabberMixin(Player player) {
-        return this.malum$player = player;
-    }
 
     @Inject(method = "<init>(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V", at = @At("RETURN"))
-    private void malumModifyFishingLuckStatsMixin(Player p_37106_, Level p_37107_, int p_37108_, int p_37109_, CallbackInfo ci) {
-        if (malum$player.hasEffect(MalumMobEffects.ANGLERS_LURE)) {
-            float bonus = (malum$player.getEffect(MalumMobEffects.ANGLERS_LURE).getAmplifier() / 2f);
-            luck += bonus * 2f;
-            lureSpeed += bonus + 0.5f;
-        }
+    private void malumModifyFishingLuckStatsMixin(Player player, Level level, int luck, int lureSpeed, CallbackInfo ci) {
+        FishingHook hook = (FishingHook) ((Object)this);
+        var goodTides = GoodTidesEffect.increaseFishingStats(player);
+        this.luck += goodTides.getFirst();
+        this.lureSpeed = goodTides.getSecond();
     }
 }

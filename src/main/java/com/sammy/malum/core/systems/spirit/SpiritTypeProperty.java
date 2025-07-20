@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -23,19 +23,26 @@ public class SpiritTypeProperty extends Property<String> {
             MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.AERIAL_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT
     );
 
-    public static SpiritHolder<MalumSpiritType> getSpiritType(BlockState state) {
+    public static SpiritHolder<SpiritArcanaType> getSpiritType(BlockState state) {
         if (state.hasProperty(SPIRIT_TYPE)) {
             return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
+    }
+
+    public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
+        if (state.hasProperty(SPIRIT_TYPE)) {
+            return state.setValue(ManaMoteBlock.SPIRIT_TYPE, spiritType.getName());
+        }
+        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }
 
     @SafeVarargs
-    public SpiritTypeProperty(String name, SpiritHolder<MalumSpiritType>... validSpirits) {
+    public SpiritTypeProperty(String name, SpiritHolder<SpiritArcanaType>... validSpirits) {
         this(name, List.of(validSpirits));
     }
 
-    public SpiritTypeProperty(String name, Collection<SpiritHolder<MalumSpiritType>> validSpirits) {
+    public SpiritTypeProperty(String name, Collection<SpiritHolder<SpiritArcanaType>> validSpirits) {
         super(name, String.class);
         this.values = ImmutableSet.copyOf(validSpirits.stream().map(DeferredHolder::getId).map(ResourceLocation::getPath).collect(Collectors.toList()));
     }

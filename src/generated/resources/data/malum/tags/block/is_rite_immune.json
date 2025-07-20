@@ -6,6 +6,8 @@
     "malum:runewood_totem_base",
     "malum:runewood_totem_pole",
     "malum:soulwood_totem_base",
-    "malum:soulwood_totem_pole"
+    "malum:soulwood_totem_pole",
+    "malum:empty_rite_anchor",
+    "malum:rite_anchor"
   ]
 }

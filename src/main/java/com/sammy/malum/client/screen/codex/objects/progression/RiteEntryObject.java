@@ -11,13 +11,13 @@ import java.util.*;
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class RiteEntryObject extends ProgressionEntryObject {
-    public final TotemicRiteType riteType;
+    public final SpiritRiteType riteType;
 
     public RiteEntryObject(BookEntry entry, int posX, int posY) {
         super(entry, posX, posY);
         Optional<SpiritRiteTextPage> page = entry.pages.stream().filter(p -> p instanceof SpiritRiteTextPage).map(p -> ((SpiritRiteTextPage) p)).findAny();
         if (page.isPresent()) {
-            this.riteType = page.get().riteType;
+            this.riteType = page.get().rite;
         } else {
             throw new IllegalArgumentException("Entry " + entry.translationKey() + " lacks a spirit rite page");
         }
@@ -26,10 +26,6 @@ public class RiteEntryObject extends ProgressionEntryObject {
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
-        renderRiteIcon(riteType, guiGraphics.pose(), isCorrupted(), 0.4f, getOffsetXPosition() + 8, getOffsetYPosition() + 8);
-    }
-
-    public boolean isCorrupted() {
-        return entry.identifier.contains("corrupt");
+        renderRiteIcon(riteType, guiGraphics.pose(), getOffsetXPosition() + 8, getOffsetYPosition() + 8);
     }
 }

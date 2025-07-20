@@ -9,10 +9,12 @@ import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.MalumBlocks;
 import com.sammy.malum.registry.common.enchantment.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -35,7 +37,9 @@ import java.util.function.Supplier;
 import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
 import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
-import static com.sammy.malum.registry.common.MalumSpiritTypes.SPIRIT_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes.SPIRIT_RITE_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -59,6 +63,10 @@ public class MalumLangDatagen extends LanguageProvider {
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
         var spirits = new HashSet<>(SPIRIT_TYPES.getEntries());
+        var rites = new HashSet<>(SPIRIT_RITE_TYPES.getEntries());
+        var geasa = new HashSet<>(GEAS_TYPES.getEntries());
+        var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
+        var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
 
         add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
@@ -86,14 +94,16 @@ public class MalumLangDatagen extends LanguageProvider {
         });
 
         sounds.forEach(s -> {
-            String name = correctSoundName(s.getId().getPath()).replaceAll("_", " ");
+            String id = s.getId().getPath();
+            String name = correctSoundName(id).replaceAll("_", " ");
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
-            add("malum.subtitle." + s.getId().getPath(), name);
+            add("malum.subtitle." + id, name);
         });
 
         effects.forEach(e -> {
-            String name = DataHelper.toTitleCase(makeProperEnglish(e.getId().getPath()), "_");
-            add("effect.malum." + BuiltInRegistries.MOB_EFFECT.getKey(e.get()).getPath(), name);
+            String id = e.getId().getPath();
+            String name = DataHelper.toTitleCase(makeProperEnglish(id), "_");
+            add("effect.malum." + id, name);
         });
 
         attributes.forEach(a -> {
@@ -107,21 +117,30 @@ public class MalumLangDatagen extends LanguageProvider {
         });
 
         spirits.forEach(s -> {
-            MalumSpiritType spirit = s.get();
-            String name = DataHelper.toTitleCase(s.getId().getPath(), "_");
+            SpiritArcanaType spirit = s.get();
+            String name = DataHelper.toTitleCase(spirit.getName(), "_");
             add(spirit.getCountedKey(), "%1$s " + name);
+            add(spirit.getLangKey(), name);
         });
-        for (SoulwovenBannerPatternDataComponent pattern : SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS) {
-            add(pattern.translationKey(), DataHelper.toTitleCase(pattern.type().getPath(), "_"));
-        }
-        for (ArtificeAttributeType attribute : ArtificeAttributeType.CRUCIBLE_ATTRIBUTES) {
-            add(attribute.getLangKey(), DataHelper.toTitleCase(attribute.id.getPath().toLowerCase(Locale.ROOT), "_"));
-        }
+        rites.forEach(r -> {
+            SpiritRiteType rite = r.get();
+            String name = DataHelper.toTitleCase(rite.getName(), "_");
+            add(rite.getLangKey(), name);
+        });
+        geasa.forEach(g -> {
+            GeasEffectType effect = g.get();
+            String name = DataHelper.toTitleCase(g.getId().getPath(), "_");
+            add(effect.getLangKey(), name);
+        });
+        soulwovenBanners.forEach(p -> {
+            String name = DataHelper.toTitleCase(p.type().getPath(), "_");
+            add(p.translationKey(), name);
+        });
+        crucibleAttributes.forEach(a -> {
+            String name = DataHelper.toTitleCase(a.getId().getPath(), "_");
+            add(a.getLangKey(), name);
 
-        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geas : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
-            var effectType = geas.get();
-            add(effectType.getLangKey(), DataHelper.toTitleCase(geas.getId().getPath().toLowerCase(Locale.ROOT), "_"));
-        }
+        });
 
         addSpiritFlavour(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
         addSpiritFlavour(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
@@ -139,12 +158,12 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.gui.augment.type.augment", "Augment");
         add("malum.gui.augment.type.core_augment", "Core Augment");
 
-        add(TotemicRiteType.TYPE, "Type: ");
-        add(TotemicRiteType.MEDIUM, "Medium: ");
-        add(TotemicRiteType.RUNEWOOD, "Runewood");
-        add(TotemicRiteType.SOULWOOD, "Soulwood");
-        add(TotemicRiteType.COVERAGE, "Coverage: ");
-        add(TotemicRiteType.EFFECT, "Effect: ");
+        addRiteTag(SpiritRiteEffectTag.RUNEWOOD, "Runewood");
+        addRiteTag(SpiritRiteEffectTag.SOULWOOD, "Soulwood");
+        addRiteTag(SpiritRiteEffectTag.AURA, "Aura");
+        addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Area of Effect");
+        addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Locus Effect");
+        addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Strange Effect");
 
         add(GeasItem.GEAS, "Geas");
         add(GeasItem.SWORN, "When Sworn: ");
@@ -182,8 +201,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
@@ -219,29 +238,6 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.waveform_artifice.guide.2", "Scroll To Fine Tune Value");
         add("malum.waveform_artifice.guide.1", "Use Left Button To Modify Unit Type");
         add("malum.waveform_artifice.guide.0", "Release Right Button To Confirm");
-
-
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.AURA);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.LIVING_ENTITY_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.DIRECTIONAL_BLOCK_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.RADIAL_BLOCK_EFFECT);
-        addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory.ONE_TIME_EFFECT);
-
-        addRite(MalumSpiritRiteTypes.SACRED_RITE, "Rite of Healing", "Rite of Nourishment");
-        addRite(MalumSpiritRiteTypes.WICKED_RITE, "Rite of Decay", "Rite of Empowerment");
-        addRite(MalumSpiritRiteTypes.EARTHEN_RITE, "Rite of Warding", "Rite of the Arena");
-        addRite(MalumSpiritRiteTypes.INFERNAL_RITE, "Rite of Haste", "Rite of the Hells");
-        addRite(MalumSpiritRiteTypes.AERIAL_RITE, "Rite of Motion", "Rite of the Aether");
-        addRite(MalumSpiritRiteTypes.AQUEOUS_RITE, "Rite of Loyalty", "Rite of the Seas");
-
-        addRite(MalumSpiritRiteTypes.ARCANE_RITE, "Undirected Rite", "Unchained Rite");
-
-        addRite(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE, "Rite of Growth", "Rite of Lust");
-        addRite(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE, "Rite of Exorcism", "Rite of Culling");
-        addRite(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE, "Rite of Destruction", "Rite of Shaping");
-        addRite(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE, "Rite of Smelting", "Rite of Quickening");
-        addRite(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE, "Rite of Gravity", "Rite of Unwinding");
-        addRite(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE, "Rite of Sapping", "Rite of Drowning");
 
         add("malum.gui.ritual.type", "Ritual Type: ");
         add("malum.gui.ritual.tier", "Ritual Tier: ");
@@ -350,9 +346,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
         addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Greed");
-        addGeasEffect("prospectors_greed", "Prospector's Greed Grants Mining Speed And Fortune Chance");
-        addGeasEffect("greed_combustion", "Prospector's Greed Ignites You When Struck");
+        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Streak");
+        addGeasEffect("prospectors_streak", "Prospector's Streak Grants Mining Speed And Fortune Chance");
+        addGeasEffect("greed_combustion", "Prospector's Streak Turns Into Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");
@@ -463,14 +459,14 @@ public class MalumLangDatagen extends LanguageProvider {
         addDeathMessage(MalumDamageTypes.INVERTED_HEART_PROPAGATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
         addDeathMessage(MalumDamageTypes.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
-        addJEEDEffectDescription(MalumMobEffects.GAIAS_BULWARK, "An earthen carapace surrounds your body, functioning as extra armor.");
+        addJEEDEffectDescription(MalumMobEffects.STONE_WARD, "An earthen carapace surrounds your body, functioning as extra armor.");
         addJEEDEffectDescription(MalumMobEffects.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");
-        addJEEDEffectDescription(MalumMobEffects.MINERS_RAGE, "Your tools are bolstered with radiance, increasing your mining and attack speed.");
-        addJEEDEffectDescription(MalumMobEffects.IFRITS_EMBRACE, "The warm embrace of fire coats your soul, mending your seared scars.");
-        addJEEDEffectDescription(MalumMobEffects.ZEPHYRS_COURAGE, "The zephyr propels you forward, increasing your movement speed.");
-        addJEEDEffectDescription(MalumMobEffects.AETHERS_CHARM, "The heavens call for you, increasing jump height and decreasing gravity.");
-        addJEEDEffectDescription(MalumMobEffects.POSEIDONS_GRASP, "You reach out for further power, increasing your reach and item pickup distance.");
-        addJEEDEffectDescription(MalumMobEffects.ANGLERS_LURE, "Let any fish who meets my gaze learn the true meaning of fear; for I am the harbinger of death. The bane of creatures sub-aqueous, my rod is true and unwavering as I cast into the aquatic abyss. A man, scorned by this uncaring Earth, finds solace in the sea. My only friend, the worm upon my hook. Wriggling, writhing, struggling to surmount the mortal pointlessness that permeates this barren world. I am alone. I am empty. And yet, I fish.");
+        addJEEDEffectDescription(MalumMobEffects.BURNING_FERVOR, "Your tools are bolstered with radiance, increasing your mining and attack speed.");
+        addJEEDEffectDescription(MalumMobEffects.FIERY_EMBRACE, "The warm embrace of fire coats your soul, mending your seared scars.");
+        addJEEDEffectDescription(MalumMobEffects.HOWLING_GALE, "The zephyr propels you forward, increasing your movement speed.");
+        addJEEDEffectDescription(MalumMobEffects.SKY_TETHER, "The heavens call for you, increasing jump height and decreasing gravity.");
+        addJEEDEffectDescription(MalumMobEffects.FLOWING_GRASP, "You reach out for further power, increasing your reach and item pickup distance.");
+        addJEEDEffectDescription(MalumMobEffects.GOOD_TIDES, "Let any fish who meets my gaze learn the true meaning of fear; for I am the harbinger of death. The bane of creatures sub-aqueous, my rod is true and unwavering as I cast into the aquatic abyss. A man, scorned by this uncaring Earth, finds solace in the sea. My only friend, the worm upon my hook. Wriggling, writhing, struggling to surmount the mortal pointlessness that permeates this barren world. I am alone. I am empty. And yet, I fish.");
 
         addJEEDEffectDescription(MalumMobEffects.ASCENSION, "Eases your fall and reduces gravity after a successful Scythe Ascenison.");
         addJEEDEffectDescription(MalumMobEffects.GLUTTONY, "You feed on the vulnerable, increasing magic proficiency at the expense of hunger./");
@@ -545,24 +541,23 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.geas." + identifier, name);
     }
 
+    public void addRiteEffect(String identifier, String name) {
+        add("malum.effect.rite." + identifier, name);
+    }
+
     public void addMiscEffect(String identifier, String name) {
         add("malum.effect." + identifier, name);
     }
 
-    public void addRite(TotemicRiteType riteType, String basicName, String corruptName) {
-        add(riteType.getLangKey(false), basicName);
-        add(riteType.getLangKey(true), corruptName);
-    }
-
-    public void addRiteEffectCategory(TotemicRiteEffect.MalumRiteEffectCategory category) {
-        add(category.getTranslationKey(), DataHelper.toTitleCase(category.name().toLowerCase(), "_"));
+    public void addRiteTag(SpiritRiteEffectTag tag, String name) {
+        add(tag.getLangKey(), name);
     }
 
     public void addGeasDescription(Holder<GeasEffectType> effectType, String description) {
         add(effectType.value().getDescription(), description);
     }
 
-    public void addSpiritFlavour(SpiritHolder<MalumSpiritType> spiritType, String flavour) {
+    public void addSpiritFlavour(SpiritHolder<SpiritArcanaType> spiritType, String flavour) {
         add(spiritType.value().getFlavourKey(), flavour);
     }
 

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.augment.core;
 
 import com.sammy.malum.core.systems.artifice.*;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;

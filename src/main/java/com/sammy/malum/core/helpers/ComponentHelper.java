@@ -5,7 +5,6 @@ import net.minecraft.network.chat.*;
 
 public class ComponentHelper {
 
-
     public static Component positiveGeasEffect(String name, Object... args) {
         return Component.translatable("malum.effect.positive", Component.translatable("malum.effect.geas." + name, args)).withStyle(ChatFormatting.BLUE);
     }
@@ -28,6 +27,10 @@ public class ComponentHelper {
 
     public static Component negativePouchEffect(String name, Object... args) {
         return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
+    }
+
+    public static Component riteEffect(String text, boolean isCorrupted) {
+        return Component.literal("| ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(isCorrupted ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.BLUE));
     }
 
     public static Component positiveEffect(String name, Object... args) {

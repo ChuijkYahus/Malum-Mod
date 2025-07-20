@@ -16,12 +16,12 @@ public class MalumNetworkedParticleEffectColorData extends NetworkedParticleEffe
 
     public static final Codec<MalumNetworkedParticleEffectColorData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ColorParticleData.CODEC.listOf().fieldOf("colors").forGetter(data -> data.colors),
-            MalumSpiritType.CODEC.listOf().fieldOf("spirits").forGetter(data -> data.spirits)
+            SpiritArcanaType.CODEC.listOf().fieldOf("spirits").forGetter(data -> data.spirits)
     ).apply(instance, MalumNetworkedParticleEffectColorData::new));
 
     public static final StreamCodec<ByteBuf, MalumNetworkedParticleEffectColorData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
 
-    private final List<MalumSpiritType> spirits;
+    private final List<SpiritArcanaType> spirits;
     public int colorCycleCounter;
 
     public static MalumNetworkedParticleEffectColorData fromSpirits(Collection<? extends SpiritLike> spirits) {
@@ -64,7 +64,7 @@ public class MalumNetworkedParticleEffectColorData extends NetworkedParticleEffe
         return colors.get(colorCycleCounter++ % colors.size());
     }
 
-    public MalumSpiritType getSpirit() {
+    public SpiritArcanaType getSpirit() {
         if (!colors.isEmpty()) {
             throw new IllegalArgumentException("Networked Particle Effect expected Spirit Color Data. Raw Color Data was passed instead, which is not supported.");
         }

@@ -56,7 +56,7 @@ public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBind
         return this;
     }
 
-    public SoulBindingRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+    public SoulBindingRecipeBuilder addSpirit(SpiritHolder<SpiritArcanaType> spirit, int count) {
         spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }

@@ -53,7 +53,7 @@ public class ScreenParticleEffects {
     }
 
 
-    public static void spawnSpiritShardScreenParticles(ScreenParticleHolder target, SpiritHolder<MalumSpiritType> spiritType) {
+    public static void spawnSpiritShardScreenParticles(ScreenParticleHolder target, SpiritHolder<SpiritArcanaType> spiritType) {
         var rand = Minecraft.getInstance().level.getRandom();
         var color = spiritType.getPrimaryColor();
         var endColor = spiritType.getSecondaryColor();

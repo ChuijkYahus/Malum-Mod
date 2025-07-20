@@ -2,6 +2,7 @@ package com.sammy.malum.common.worldgen.blight;
 
 import com.google.common.collect.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
+import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -51,9 +52,8 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        List<BlockPos> crystalPositions = fetchCoveringPositions(level, pos, radius-1);
+        List<BlockPos> crystalPositions = WorldgenHelper.shuffle(fetchCoveringPositions(level, pos, radius-1), random);
         if (!crystalPositions.isEmpty()) {
-            Collections.shuffle(crystalPositions);
             int floraCount = Math.min(random.nextInt(radius * 2 + 1, radius * 4 + 1), crystalPositions.size() - 1);
             for (BlockPos blockPos : crystalPositions) {
                 BlockPos above = blockPos.above();

@@ -32,7 +32,7 @@ import static net.minecraft.client.renderer.texture.OverlayTexture.*;
 
 public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCrucibleCoreBlockEntity> {
 
-    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, RenderHandler.DELAYED_RENDER.getTarget());
+    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
 
     public SpiritCrucibleRenderer(BlockEntityRendererProvider.Context context) {
     }

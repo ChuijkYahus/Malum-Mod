@@ -16,7 +16,7 @@ public class MalumRecipeTypes {
     public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<RuneworkingRecipe>> RUNEWORKING = registerRecipeType(RuneworkingRecipe.NAME);
     public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<SoulBindingRecipe>> SOUL_BINDING = registerRecipeType(SoulBindingRecipe.NAME);
     public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<SpiritFocusingRecipe>> SPIRIT_FOCUSING = registerRecipeType(SpiritFocusingRecipe.NAME);
-    public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<UnchainedTransmutationRecipe>> SPIRIT_TRANSMUTATION = registerRecipeType(UnchainedTransmutationRecipe.NAME);
+    public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<UnchainedTransmutationRecipe>> UNCHAINED_TRANSMUTATION = registerRecipeType(UnchainedTransmutationRecipe.NAME);
     public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<SpiritRepairRecipe>> SPIRIT_REPAIR = registerRecipeType(SpiritRepairRecipe.NAME);
     public static final DeferredHolder<RecipeType<?>, LodestoneRecipeType<VoidFavorRecipe>> VOID_FAVOR = registerRecipeType(VoidFavorRecipe.NAME);
 

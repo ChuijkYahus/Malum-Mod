@@ -55,7 +55,8 @@ public class MalumDataMapDatagen extends DataMapProvider {
                 .add(MalumBlocks.RUNEWOOD_LOG, new TotemPoleMap(MalumBlocks.RUNEWOOD_TOTEM_POLE), false)
                 .add(MalumBlocks.RUNEWOOD, new TotemPoleMap(MalumBlocks.RUNEWOOD_TOTEM_POLE), false)
                 .add(MalumBlocks.SOULWOOD_LOG, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false)
-                .add(MalumBlocks.SOULWOOD, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false);
+                .add(MalumBlocks.SOULWOOD, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false)
+                .add(MalumBlocks.RUNEWOOD_TOTEM_POLE, new TotemPoleMap(MalumBlocks.SOULWOOD_TOTEM_POLE), false);
 
 
         builder(NeoForgeDataMaps.COMPOSTABLES)

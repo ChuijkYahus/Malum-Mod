@@ -102,7 +102,7 @@ public class RepairPylonParticleEffects {
             SpiritLightSpecs.coolLookingShinyThing(level, pylonItemPos, activeSpiritType);
         }
         for (int i = 0; i < 4; i++) {
-            MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+            SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
             for (int j = 0; j < 60; j++) {
                 float distance = 0.8f * (1 - j / 90f);
                 long time = gameTime+j*4;
@@ -186,7 +186,7 @@ public class RepairPylonParticleEffects {
         }
         for (int i = 0; i < 24; i++) {
             int lifeDelay = i / 8;
-            MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+            SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
             float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
             float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
             float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);

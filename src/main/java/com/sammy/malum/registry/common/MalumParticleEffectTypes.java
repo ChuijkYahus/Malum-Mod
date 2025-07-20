@@ -48,6 +48,7 @@ public class MalumParticleEffectTypes {
     public static final EntityTotemParticleEffect ENTITY_RITE_EFFECT = new EntityTotemParticleEffect("entity_rite_effect");
     public static final BlockTotemParticleEffect BLOCK_RITE_EFFECT = new BlockTotemParticleEffect("block_rite_effect");
     public static final BlockFallTotemParticleEffect BLOCK_FALL_RITE_EFFECT = new BlockFallTotemParticleEffect("block_fall_rite_effect");
+    public static final BlockInfusionTotemParticleEffect BLOCK_INFUSION_RITE_EFFECT = new BlockInfusionTotemParticleEffect("block_infusion_rite_effect");
     public static final BlockGrowTotemParticleEffect BLOCK_GROW_RITE_EFFECT = new BlockGrowTotemParticleEffect("block_grow_rite_effect");
 
     //Soulbinding Brazier
@@ -95,7 +96,7 @@ public class MalumParticleEffectTypes {
     public static final BerserkerSpiritImpactParticleEffect BERSERKER_IMPACT = new BerserkerSpiritImpactParticleEffect("berserker_impact");
     public static final HighPriestShakenFaithParticleEffect HIGH_PRIEST_PENANCE = new HighPriestShakenFaithParticleEffect("high_priest_penance");
     public static final PatienceRepaidParticleEffect PATIENCE_REPAID = new PatienceRepaidParticleEffect("patience_repaid");
-    public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_GREED_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_greed_burn");
+    public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_STREAK_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_streak_burn");
     public static final CombustionBurnParticleEffect COMBUSTION_BURN = new CombustionBurnParticleEffect("combustion_burn");
     public static final WyrdReconstructionReviveParticleEffect WYRD_RECONSTRUCTION_REVIVE = new WyrdReconstructionReviveParticleEffect("wyrd_reconstruction_revive");
     public static final InvertedHeartGeasImpactParticleEffect INVERTED_HEART_IMPACT = new InvertedHeartGeasImpactParticleEffect("inverted_heart_impact");

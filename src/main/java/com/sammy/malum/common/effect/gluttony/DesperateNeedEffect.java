@@ -16,9 +16,9 @@ public class DesperateNeedEffect extends MobEffect {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(88, 86, 60));
         final ResourceLocation id = MalumMod.malumPath("desperate_need");
         addAttributeModifier(MalumAttributes.SCYTHE_PROFICIENCY, id, 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(MalumAttributes.HEALING_MULTIPLIER, id, -0.04f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(Attributes.ARMOR, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(LodestoneAttributes.MAGIC_RESISTANCE, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.HEALING_MULTIPLIER, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(Attributes.ARMOR, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         IronsSpellsCompat.addDesperateNeedSpellPower(this);
     }
 

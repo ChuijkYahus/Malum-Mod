@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Matrix4f;
-import team.lodestar.lodestone.handlers.RenderHandler;
+import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.easing.Easing;
@@ -35,7 +35,7 @@ import java.awt.*;
 public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> implements BlockEntityRenderer<T> {
 
 
-    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, RenderHandler.DELAYED_RENDER.getTarget());
+    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
 
     protected final RenderTypeToken output;
     protected final String langKey;
@@ -69,8 +69,8 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
                     var token = getTokenForSide(state, direction);
                     var transparent = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(token);
                     var additive = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token);
-                    builder.setAlpha(alpha).setRenderType(transparent).drawCubeSide(poseStack, cubeVertexData, direction);
-                    builder.setAlpha(glowAlpha).setRenderType(additive).drawCubeSide(poseStack, cubeVertexData, direction);
+                    builder.setAlpha(alpha).setRenderType(transparent).renderCubeSide(poseStack, cubeVertexData, direction);
+                    builder.setAlpha(glowAlpha).setRenderType(additive).renderCubeSide(poseStack, cubeVertexData, direction);
                 }
                 poseStack.popPose();
             }

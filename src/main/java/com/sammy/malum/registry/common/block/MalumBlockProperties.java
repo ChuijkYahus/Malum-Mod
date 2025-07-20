@@ -61,17 +61,6 @@ public class MalumBlockProperties {
                 .needsAxe();
     }
 
-    public static LodestoneBlockProperties TAINTED_ROCK_ARTIFICE() {
-        return new LodestoneBlockProperties()
-                .strength(1.75F, 30.0F)
-                .instrument(NoteBlockInstrument.XYLOPHONE)
-                .sound(MalumSoundEvents.TAINTED_ROCK_BRICKS)
-                .mapColor(MapColor.COLOR_GRAY)
-                .requiresCorrectToolForDrops()
-                .setCutoutRenderType()
-                .needsPickaxe()
-                .noOcclusion();
-    }
 
     public static LodestoneBlockProperties SPIRITED_GLASS() {
         return new LodestoneBlockProperties()
@@ -95,6 +84,19 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties TAINTED_ROCK_BRICKS() {
         return TAINTED_ROCK().sound(MalumSoundEvents.TAINTED_ROCK_BRICKS);
+    }
+
+    public static LodestoneBlockProperties TAINTED_ROCK_ARTIFICE() {
+        return TAINTED_ROCK_BRICKS()
+                .strength(2.5f, 30.0F)
+                .setCutoutRenderType()
+                .noOcclusion();
+    }
+
+    public static LodestoneBlockProperties RITE_ANCHOR() {
+        return TAINTED_ROCK_BRICKS()
+                .strength(2F, 30.0F)
+                .addTag(IS_RITE_IMMUNE);
     }
 
     public static LodestoneBlockProperties TWISTED_ROCK() {

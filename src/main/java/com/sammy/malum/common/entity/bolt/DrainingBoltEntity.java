@@ -95,12 +95,12 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, SCEPTER_COLOR_DATA);
         lightSpecs.getBuilder()
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -110,7 +110,7 @@ public class DrainingBoltEntity extends AbstractBoltProjectileEntity {
                 .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 24))
                 .setColorData(SCEPTER_COLOR_DATA)
                 .setFriction(0.95f)

@@ -1,6 +1,6 @@
 package com.sammy.malum.core.systems.artifice;
 
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -44,6 +44,6 @@ public abstract class ArtificeModifierSourceInstance {
 
     public abstract boolean consumesFuel();
 
-    public abstract void addParticles(IArtificeAcceptor target, MalumSpiritType spiritType);
+    public abstract void addParticles(IArtificeAcceptor target, SpiritArcanaType spiritType);
 
 }

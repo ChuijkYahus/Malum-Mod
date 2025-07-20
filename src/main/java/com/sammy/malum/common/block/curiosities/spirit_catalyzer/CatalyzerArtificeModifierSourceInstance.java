@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.spirit_catalyzer;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.artifice.*;
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.visual_effects.SpiritCrucibleParticleEffects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -66,7 +66,7 @@ public class CatalyzerArtificeModifierSourceInstance extends ArtificeModifierSou
     }
 
     @Override
-    public void addParticles(IArtificeAcceptor target, MalumSpiritType spiritType) {
+    public void addParticles(IArtificeAcceptor target, SpiritArcanaType spiritType) {
         if (catalyzer.burnTicks > 0) {
             SpiritCrucibleParticleEffects.activeSpiritCatalyzerParticles(catalyzer, target, spiritType);
         }

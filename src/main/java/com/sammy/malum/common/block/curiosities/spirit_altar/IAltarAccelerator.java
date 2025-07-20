@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
-import com.sammy.malum.core.systems.spirit.type.MalumSpiritType;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 
 public interface IAltarAccelerator {
 
@@ -12,7 +12,7 @@ public interface IAltarAccelerator {
 
     float getAcceleration();
 
-    default void addParticles(SpiritAltarBlockEntity blockEntity, MalumSpiritType activeSpiritType) {
+    default void addParticles(SpiritAltarBlockEntity blockEntity, SpiritArcanaType activeSpiritType) {
 
     }
 

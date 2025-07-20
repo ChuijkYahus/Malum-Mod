@@ -20,6 +20,7 @@ import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -33,6 +34,7 @@ import com.sammy.malum.common.block.storage.stand.*;
 import com.sammy.malum.common.block.the_device.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.valueproviders.*;
@@ -89,6 +91,9 @@ public class MalumBlocks {
 
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.SOULWOOD_LOG, true).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
+
+    public static final DeferredHolder<Block, Block> EMPTY_RITE_ANCHOR = BLOCKS.register("empty_rite_anchor", () -> new EmptyRiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
+    public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR().lootFrom(EMPTY_RITE_ANCHOR)).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
 
     public static final DeferredHolder<Block, Block> WAVECHARGER = BLOCKS.register("wavecharger", () -> new WaveChargerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVECHARGER));
     public static final DeferredHolder<Block, Block> WAVEBANKER = BLOCKS.register("wavebanker", () -> new WaveBankerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEBANKER));

@@ -20,9 +20,9 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.armor.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.brooches.*;
-import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
+import com.sammy.malum.common.item.curiosities.curios.runes.totemic.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.alchemical.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
@@ -45,6 +45,7 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
@@ -103,6 +104,10 @@ public class MalumItems {
         return new LodestoneItemProperties().stacksTo(1);
     }
 
+    public static LodestoneItemProperties UMBRAL_SPIRIT_PROPERTIES() {
+        return new LodestoneItemProperties().stacksTo(64);
+    }
+
     public static <T extends Item> DeferredHolder<Item, T> register(String name, LodestoneItemProperties properties, Function<LodestoneItemProperties, T> function) {
         LodestoneItemProperties.addToTabSorting(MalumMod.malumPath(name), properties);
         return ITEMS.register(name, () -> function.apply(properties));
@@ -121,7 +126,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
     public static final DeferredHolder<Item, SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
     public static final DeferredHolder<Item, SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", DEFAULT_PROPERTIES(), (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
-    public static final DeferredHolder<Item, SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", HIDDEN_PROPERTIES(), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
+    public static final DeferredHolder<Item, SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", UMBRAL_SPIRIT_PROPERTIES(), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
     //endregion
 
     public static final DeferredHolder<Item, Item> ENCYCLOPEDIA_ESOTERICA = register("encyclopedia_esoterica", GEAR_PROPERTIES().rarity(EPIC), EncyclopediaEsotericaItem::new);
@@ -483,6 +488,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
 
+    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new ItemNameBlockItem(MalumBlocks.EMPTY_RITE_ANCHOR.get(), p));
+
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEBANKER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEMAKER = register("wavemaker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEMAKER.get(), p));
@@ -727,14 +734,14 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_PROTECTION = register("rune_of_protection", GEAR_PROPERTIES(), RuneProtectionItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_SCORCHING = register("rune_of_scorching", GEAR_PROPERTIES(), RuneScorchingItem::new);
 
-    public static final DeferredHolder<Item, Item> RUNE_OF_MOTION = register("rune_of_motion", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AERIAL_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_LOYALTY = register("rune_of_loyalty", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AQUEOUS_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_WARDING = register("rune_of_warding", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.EARTHEN_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_HASTE = register("rune_of_haste", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, false));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_AETHER = register("rune_of_the_aether", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AERIAL_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_SEAS = register("rune_of_the_seas", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.AQUEOUS_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_ARENA = register("rune_of_the_arena", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.EARTHEN_RITE, true));
-    public static final DeferredHolder<Item, Item> RUNE_OF_THE_HELLS = register("rune_of_the_hells", GEAR_PROPERTIES(), p -> new TotemicRuneCurioItem(p, MalumSpiritRiteTypes.INFERNAL_RITE, true, 10));
+    public static final DeferredHolder<Item, Item> RUNE_OF_HOWLING_GALE = register("rune_of_howling_gale", GEAR_PROPERTIES(), RuneHowlingGale::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_FLOWING_GRASP = register("rune_of_flowing_grasp", GEAR_PROPERTIES(), RuneFlowingGrasp::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_STONE_WARD = register("rune_of_stone_ward", GEAR_PROPERTIES(), RuneStoneWard::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_BURNING_FERVOR = register("rune_of_burning_fervor", GEAR_PROPERTIES(), RuneBurningFervor::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_SKY_TETHER = register("rune_of_sky_tether", GEAR_PROPERTIES(), RuneSkyTether::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_GOOD_TIDES = register("rune_of_good_tides", GEAR_PROPERTIES(), RuneGoodTides::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_OAKEN_MIGHT = register("rune_of_oaken_might", GEAR_PROPERTIES(), RuneOakenMight::new);
+    public static final DeferredHolder<Item, Item> RUNE_OF_FIERY_EMBRACE = register("rune_of_fiery_embrace", GEAR_PROPERTIES(), RuneFieryEmbrace::new);
 
     public static final DeferredHolder<Item, Item> RUNE_OF_BOLSTERING = register("rune_of_bolstering", GEAR_PROPERTIES(), RuneBolsteringItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_RADIAL_EMPOWERMENT = register("rune_of_radial_empowerment", GEAR_PROPERTIES(), RuneRadialEmpowermentItem::new);

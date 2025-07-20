@@ -15,7 +15,6 @@ import java.util.function.*;
 
 public class RenderUtils {
 
-
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
     }
@@ -37,7 +36,6 @@ public class RenderUtils {
 
     public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
         poseStack.pushPose();
-        Matrix4f last = poseStack.last().pose();
         float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
         float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
         float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
@@ -45,7 +43,7 @@ public class RenderUtils {
         float size = 0.5f * scaleScalar;
         float alpha = 0.9f * alphaScalar;
         builder.setAlpha(alpha)
-                .renderTrail(last, trailPointBuilder, f -> size, f -> builder.setAlpha(alpha * f).setColor(ColorHelper.colorLerp(Easing.SINE_IN, f * 2f, secondaryColor.apply(f), primaryColor.apply(f))));
+                .renderTrail(trailPointBuilder, f -> size, f -> builder.setAlpha(alpha * f).setColor(ColorHelper.colorLerp(Easing.SINE_IN, f * 2f, secondaryColor.apply(f), primaryColor.apply(f))));
         poseStack.translate(trailOffsetX, trailOffsetY, trailOffsetZ);
         poseStack.popPose();
     }

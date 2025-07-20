@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/empty_rite_anchor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/empty_rite_anchor"
+    },
+    "facing=south": {
+      "model": "malum:block/empty_rite_anchor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/empty_rite_anchor",
+      "y": 270
+    }
+  }
+}

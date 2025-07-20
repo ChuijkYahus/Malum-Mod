@@ -27,5 +27,4 @@ public class HeadlineTextPage extends BookPage {
         renderHeadline(guiGraphics, headline, left, top);
         renderWrappingText(guiGraphics, text, left + 6, top + 25, 130);
     }
-
 }

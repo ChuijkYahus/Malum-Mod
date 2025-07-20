@@ -1,9 +1,11 @@
 package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.sammy.malum.common.effect.rite.*;
 import com.sammy.malum.common.geas.pact.aqueous.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.geas.pact.sacred.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import org.spongepowered.asm.mixin.*;
@@ -15,6 +17,7 @@ public class FoodDataMixin {
 
     @Shadow private int tickTimer;
     @Shadow private int foodLevel;
+    @Shadow private float exhaustionLevel;
     @Unique
     private Player malum$player;
 
@@ -40,6 +43,7 @@ public class FoodDataMixin {
         if (malum$CanHeal) {
             tickTimer += DefianceGeas.accelerateNaturalHealing(player);
         }
+        exhaustionLevel = Math.max(0, exhaustionLevel - SacredNourishment.recoverExhaustion(player));
         tickTimer += SelfCareGeas.accelerateHunger(player, foodLevel);
     }
 }

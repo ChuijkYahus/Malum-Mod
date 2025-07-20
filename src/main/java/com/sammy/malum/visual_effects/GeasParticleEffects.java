@@ -55,7 +55,7 @@ public class GeasParticleEffects {
                 p.scaleData.overrideValueMultiplier(length / 4f);
             };
             for (int i = 0; i < 4; i++) {
-                MalumSpiritType cyclingSpiritType = colorData.getSpirit();
+                SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
                 float spread = RandomHelper.randomBetween(random, 0.6f, 0.8f);
                 float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
                 float angle = i / 4f * (float) Math.PI * 2f;
@@ -178,7 +178,7 @@ public class GeasParticleEffects {
                         .enableForcedSpawn()
                         .setMotion(particleDirection.scale(1.5f))
                         .modifyScaleData(d -> d.multiplyValue(1.25f))
-                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(4f));
+                        .modifyLengthData(d -> d.multiplyValue(4f));
                 sparks.getBloomBuilder()
                         .multiplyLifetime(lifetimeMultiplier)
                         .setMotion(particleDirection.scale(1.5f));
@@ -246,7 +246,7 @@ public class GeasParticleEffects {
                             .enableForcedSpawn()
                             .setMotion(particleDirection.scale(1.5f))
                             .modifyScaleData(d -> d.multiplyValue(1.75f))
-                            .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f));
+                            .modifyLengthData(d -> d.multiplyValue(3f));
                     sparks.getBloomBuilder()
                             .multiplyLifetime(lifetimeMultiplier)
                             .setMotion(particleDirection.scale(1.5f));
@@ -433,7 +433,7 @@ public class GeasParticleEffects {
                 float alphaMultiplier = isAdditive ? 1.5f : 3f;
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                var renderTarget = isAdditive ? RenderHandler.LATE_DELAYED_RENDER : RenderHandler.DELAYED_RENDER;
+                var renderTarget = isAdditive ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
                 WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
                         .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
                         .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))

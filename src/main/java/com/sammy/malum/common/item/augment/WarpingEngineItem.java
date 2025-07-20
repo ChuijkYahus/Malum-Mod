@@ -4,6 +4,7 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeData;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;

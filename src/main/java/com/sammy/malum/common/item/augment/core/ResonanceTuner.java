@@ -4,7 +4,7 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeData;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.core.systems.artifice.TuningModifier;
-import com.sammy.malum.registry.common.MalumSpiritTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.util.Mth;
 
 import java.util.List;

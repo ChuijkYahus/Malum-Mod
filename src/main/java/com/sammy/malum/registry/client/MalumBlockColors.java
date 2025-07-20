@@ -16,6 +16,9 @@ public class MalumBlockColors {
 
     public static void setBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register((s, l, p, c) -> {
+            if (l == null) {
+                return -1;
+            }
             BlockEntity blockEntity = l.getBlockEntity(p);
             if (blockEntity instanceof EtherBlockEntity etherBlockEntity) {
                 if (etherBlockEntity.firstColor != null) {

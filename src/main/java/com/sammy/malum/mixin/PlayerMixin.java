@@ -1,6 +1,6 @@
 package com.sammy.malum.mixin;
 
-import com.sammy.malum.common.effect.aura.*;
+import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import net.minecraft.world.damagesource.*;
@@ -16,7 +16,7 @@ public abstract class PlayerMixin {
     @ModifyArg(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getEntities(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;"), index = 1)
     private AABB malum$aiStep(AABB aabb) {
         Player player = (Player) (Object) this;
-        return AqueousAura.growBoundingBox(player, aabb);
+        return FlowingGraspEffect.growBoundingBox(player, aabb);
     }
 
     @ModifyArg(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))

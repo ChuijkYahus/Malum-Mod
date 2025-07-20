@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
@@ -117,7 +118,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.05f))
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .enableForcedSpawn()
                 .setLifeDelay(2)
                 .enableNoClip()

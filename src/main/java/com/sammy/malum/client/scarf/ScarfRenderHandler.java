@@ -9,6 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
+import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -39,26 +40,20 @@ public class ScarfRenderHandler {
             toRemove.forEach(scarfList::remove);
         }
     }
+
     public static void renderScarfData(RenderLevelStageEvent event) {
         float partialTicks = event.getPartialTick().getGameTimeDeltaPartialTick(true);
-        renderScarfData(event.getPoseStack(), event.getCamera(), partialTicks);
+        renderScarfData(partialTicks);
     }
-    public static void renderScarfData(PoseStack poseStack, Camera camera, float partialTicks) {
-        Vec3 cameraPosition = camera.getPosition();
-        poseStack.pushPose();
-        poseStack.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
+
+    public static void renderScarfData(float partialTicks) {
         for (Map.Entry<LivingEntity, List<ScarfRenderData>> entry : SCARF_DATA.entrySet()) {
             List<ScarfRenderData> scarfList = entry.getValue();
+            LivingEntity entity = entry.getKey();
             for (ScarfRenderData data : scarfList) {
-                LivingEntity entity = entry.getKey();
-                var position = entity.getPosition(partialTicks);
-                poseStack.pushPose();
-                poseStack.translate(position.x, position.y, position.z);
-                data.render(entity, poseStack, partialTicks);
-                poseStack.popPose();
+                data.render(entity, partialTicks);
             }
         }
-        poseStack.popPose();
     }
 
     public static void addScarfRenderer(LivingEntity living, Consumer<Consumer<ScarfRenderData>> consumer) {
@@ -132,25 +127,18 @@ public class ScarfRenderHandler {
             return this;
         }
 
-        public void render(LivingEntity entity, PoseStack poseStack, float partialTicks) {
+        public void render(LivingEntity entity, float partialTicks) {
             BlockPos blockpos = entity.blockPosition().above(2);
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TEXTURE_FADE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
             Vec3 scarfStart = getScarfStart(entity, partialTicks);
             points.setOrigin(scarfStart);
-            poseStack.pushPose();
-            float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
-            float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());
-            float trailOffsetZ = (float) Mth.lerp(partialTicks, entity.zOld, entity.getZ());
-            poseStack.translate(-trailOffsetX, -trailOffsetY, -trailOffsetZ);
-            Matrix4f last = poseStack.last().pose();
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
-            builder.usePartialTicks(0).renderTrail(last, points,
+            builder.usePartialTicks(0).renderTrail(points,
                     f -> Mth.lerp(f, endingScale, scale),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
             );
-            poseStack.popPose();
         }
 
         public void tick(LivingEntity entity) {

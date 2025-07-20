@@ -2,11 +2,9 @@ package com.sammy.malum.common.entity;
 
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.systems.easing.*;
@@ -15,7 +13,6 @@ import team.lodestar.lodestone.systems.rendering.trail.*;
 import java.util.*;
 
 public abstract class FloatingEntity extends Entity {
-
 
     public final TrailPointBuilder trail = TrailPointBuilder.create(10);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
@@ -75,7 +72,7 @@ public abstract class FloatingEntity extends Entity {
         if (level() instanceof ServerLevel level) {
             if (destination != null && destination.isValid(level)) {
                 float distance = (float) destination.getDistance(level, this);
-                final Optional<Vec3> destination = this.destination.getDestination(level);
+                Optional<Vec3> destination = this.destination.getDestination(level);
                 if (destination.isPresent()) {
                     float windUpDuration = getWindUpDuration();
                     var targetPos = destination.get();
@@ -84,9 +81,10 @@ public abstract class FloatingEntity extends Entity {
                     }
                     float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
                     float velocity = Mth.clamp(delta - 0.25f, 0, 0.75f) * 3f;
-                    Vec3 desiredMotion = targetPos.subtract(position()).normalize().multiply(velocity, velocity, velocity);
-                    float easing = getMotionEasingRatio(delta, distance);
-                    setDeltaMovement(getDeltaMovement().lerp(desiredMotion, easing));
+                    float motionStrength = getMovementInterpolation(delta, distance);
+                    var targetMovement = targetPos.subtract(position()).normalize().scale(velocity);
+                    var newMovement = getDeltaMovement().lerp(targetMovement, motionStrength);
+                    setDeltaMovement(newMovement);
                     if (distance < 0.4f) {
                         collect(level);
                         remove(RemovalReason.DISCARDED);
@@ -122,7 +120,7 @@ public abstract class FloatingEntity extends Entity {
         else {
             for (int i = 0; i < 2; i++) {
                 float progress = (i + 1) * 0.5f;
-                Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
+                Vec3 position = getOffsetPosition(progress);
                 trail.addTrailPoint(position);
                 longTrail.addTrailPoint(position);
             }
@@ -155,8 +153,10 @@ public abstract class FloatingEntity extends Entity {
         return 50;
     }
 
-    public float getMotionEasingRatio(float windUpDelta, float distance) {
-        return 0.005f + windUpDelta * 0.01f + (1 / Math.max(distance, 1) * 0.025f);
+    public float getMovementInterpolation(float windUp, float distance) {
+        float windUpScalar = windUp * 0.01f;
+        float distanceScalar = (1 / Math.max(distance, 1)) * 0.025f;
+        return windUpScalar + distanceScalar;
     }
 
     public float getFriction() {
@@ -184,7 +184,11 @@ public abstract class FloatingEntity extends Entity {
     }
 
     public Vec3 getOffsetPosition() {
-        return position().add(0, getYOffset(0), 0);
+        return getOffsetPosition(0);
+    }
+
+    public Vec3 getOffsetPosition(float partialTicks) {
+        return getPosition(partialTicks).add(0, getYOffset(0), 0);
     }
 
     public float getYOffset(float partialTicks) {

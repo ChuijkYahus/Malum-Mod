@@ -20,7 +20,6 @@ import com.sammy.malum.registry.common.recipe.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
@@ -313,7 +312,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     @Override
-    public MalumSpiritType getActiveSpiritType() {
+    public SpiritArcanaType getActiveSpiritType() {
         int spiritCount = spiritInventory.getFilledSlotCount();
         net.minecraft.world.item.Item currentItem = spiritInventory.getStackInSlot(0).getItem();
         if (spiritCount > 1) {

@@ -1,47 +1,46 @@
 package com.sammy.malum.common.item.curiosities.curios.runes;
 
-import com.sammy.malum.common.spiritrite.*;
 import com.sammy.malum.core.helpers.*;
+import com.sammy.malum.core.systems.registry.RiteHolder;
+import com.sammy.malum.core.systems.registry.SpiritHolder;
 import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.core.systems.rite.effect.SpiritRitePotionEffect;
+import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
-import net.minecraft.world.entity.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.*;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import top.theillusivec4.curios.api.*;
 
 import java.util.function.*;
 
 public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
 
-    public final DeferredHolder<MobEffect, MobEffect> mobEffectHolder;
-    public final Predicate<LivingEntity> entityPredicate;
-    private final int interval;
+    protected final RiteHolder<SpiritRiteType> riteType;
 
-    public TotemicRuneCurioItem(Properties builder, TotemicRiteType riteType, boolean corrupted) {
-        this(builder, riteType, corrupted, 40);
-    }
-
-    public TotemicRuneCurioItem(Properties builder, TotemicRiteType riteType, boolean corrupted, int interval) {
-        super(builder, riteType.getIdentifyingSpirit(), MalumTrinketType.TOTEMIC_RUNE);
-        this.interval = interval;
-        if (!(riteType.getRiteEffect(corrupted) instanceof PotionRiteEffect potionRiteEffect)) {
-            throw new IllegalArgumentException("Supplied rite type must have an aura effect");
-        }
-        mobEffectHolder = potionRiteEffect.mobEffectHolder;
-        entityPredicate = potionRiteEffect.getEntityPredicate();
+    public TotemicRuneCurioItem(Properties builder, RiteHolder<SpiritRiteType> riteType, SpiritHolder<SpiritArcanaType> spirit) {
+        super(builder, spirit, MalumTrinketType.TOTEMIC_RUNE);
+        this.riteType = riteType;
     }
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", mobEffectHolder.get().getDisplayName()));
+        SpiritRiteType spiritRite = riteType.get();
+        if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
+            Component effectName = potionEffect.getEffect().value().getDisplayName();
+            consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", effectName));
+        }
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        final LivingEntity livingEntity = slotContext.entity();
-        if (!livingEntity.level().isClientSide() && livingEntity.level().getGameTime() % interval == 0 && entityPredicate.test(livingEntity)) {
-            livingEntity.addEffect(new MobEffectInstance(mobEffectHolder, 200, 0, true, true));
+        var target = slotContext.entity();
+        if (target.level() instanceof ServerLevel level) {
+            if (level.getGameTime() % 5L == 0) {
+                SpiritRiteType spiritRite = riteType.get();
+                if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
+                    potionEffect.applyRuneEffect(level, target);
+                }
+            }
         }
         super.curioTick(slotContext, stack);
     }

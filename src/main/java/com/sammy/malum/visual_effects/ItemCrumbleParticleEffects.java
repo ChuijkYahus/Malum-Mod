@@ -31,7 +31,7 @@ public class ItemCrumbleParticleEffects {
         return new ParticleEffectSpawner(level, pos, crumbs);
     }
 
-    public static ParticleEffectSpawner spawnGlowingItemCrumbs(Level level, Vec3 pos, ItemStack stack, MalumSpiritType spiritType) {
+    public static ParticleEffectSpawner spawnGlowingItemCrumbs(Level level, Vec3 pos, ItemStack stack, SpiritArcanaType spiritType) {
         var rand = level.getRandom();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, 0, nextFloat(rand, 0.5f, 0.75f), 0).setCoefficient(0.6f).randomSpinOffset(rand).build();
         final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.925f));

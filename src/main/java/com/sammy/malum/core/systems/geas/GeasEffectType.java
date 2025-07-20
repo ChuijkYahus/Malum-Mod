@@ -4,8 +4,8 @@ import com.mojang.serialization.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -16,22 +16,20 @@ import java.util.function.*;
 
 public class GeasEffectType {
 
-    public static final Codec<GeasEffectType> CODEC = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.byNameCodec()
-            .xmap(g -> g == null ? MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get() : g, g -> g);
-
+    public static final Codec<GeasEffectType> CODEC = MalumGeasEffectTypes.GEAS_TYPES_REGISTRY.byNameCodec();
 
     public final Supplier<GeasEffect> effect;
-    public final List<SpiritHolder<MalumSpiritType>> spiritTypes;
+    public final List<SpiritHolder<SpiritArcanaType>> spiritTypes;
 
     private GeasEffect dummyEffectInstance;
     private ItemStack dummyCreativeStack;
 
     @SafeVarargs
-    public GeasEffectType(Supplier<GeasEffect> effect, SpiritHolder<MalumSpiritType>... spiritTypes) {
+    public GeasEffectType(Supplier<GeasEffect> effect, SpiritHolder<SpiritArcanaType>... spiritTypes) {
         this(effect, List.of(spiritTypes));
     }
 
-    public GeasEffectType(Supplier<GeasEffect> effect, List<SpiritHolder<MalumSpiritType>> spiritTypes) {
+    public GeasEffectType(Supplier<GeasEffect> effect, List<SpiritHolder<SpiritArcanaType>> spiritTypes) {
         this.effect = effect;
         this.spiritTypes = spiritTypes;
     }

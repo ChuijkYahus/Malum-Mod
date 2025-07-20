@@ -5,6 +5,7 @@ import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;

@@ -1,8 +1,8 @@
 package com.sammy.malum.datagen.recipe;
 
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -204,18 +204,18 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SoulBindingRecipeBuilder(Items.GUNPOWDER, 12, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)
-                .addExtraItem(Items.BLAZE_POWDER, 8)
-                .addExtraItem(Items.RAW_GOLD, 4)
-                .addSpirit(MalumSpiritTypes.INFERNAL_SPIRIT, 16)
-                .addSpirit(MalumSpiritTypes.AERIAL_SPIRIT, 16)
-                .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.GUNPOWDER, 12, MalumGeasEffectTypes.PACT_OF_COMBUSTION)
                 .addExtraItem(Items.BLAZE_POWDER, 8)
                 .addExtraItem(MalumItems.BLAZING_QUARTZ.get(), 4)
                 .addSpirit(MalumSpiritTypes.INFERNAL_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.WICKED_SPIRIT, 16)
-                .addSpirit(MalumSpiritTypes.ARCANE_SPIRIT, 16)
+                .save(recipeOutput);
+        new SoulBindingRecipeBuilder(Items.GUNPOWDER, 12, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)
+                .addExtraItem(Items.BLAZE_POWDER, 8)
+                .addExtraItem(Items.RAW_GOLD, 4)
+                .addSpirit(MalumSpiritTypes.INFERNAL_SPIRIT, 16)
+                .addSpirit(MalumSpiritTypes.EARTHEN_SPIRIT, 16)
+                .addSpirit(MalumSpiritTypes.SACRED_SPIRIT, 16)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.BLAZE_POWDER, 16, MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC)
                 .addExtraItem(Items.TNT, 8)

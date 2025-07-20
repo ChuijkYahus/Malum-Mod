@@ -29,7 +29,7 @@ public class SoulwovenPouchContentsComponent extends MalumPouchContentsComponent
 
     @Override
     public int getStorageSize() {
-        return 1024;
+        return 512;
     }
 
     public static class SoulwovenPouchContentsWeightProcessor extends PouchContentsWeightProcessor {
@@ -38,7 +38,7 @@ public class SoulwovenPouchContentsComponent extends MalumPouchContentsComponent
 
         @Override
         public int getWeightModifier(ItemStack stack) {
-            return stack.is(MalumTags.ItemTags.SOULWOVEN_POUCH_EFFICIENT) ? 16 : 1;
+            return stack.is(MalumTags.ItemTags.SOULWOVEN_POUCH_EFFICIENT) ? 8 : 1;
         }
     }
 

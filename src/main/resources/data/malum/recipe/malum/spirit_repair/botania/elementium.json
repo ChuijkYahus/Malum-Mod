@@ -6,13 +6,7 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "elementium_.+",
-  "modIdRegex": "botania",
   "durabilityPercentage": 1,
-  "inputs": [
-    "botania:star_sword",
-    "botania:thunder_sword"
-  ],
   "repairMaterial": {
     "item": "botania:elementium_ingot",
     "count": 1
@@ -22,5 +16,13 @@
       "type": "arcane",
       "count": 24
     }
+  ],
+  "regex": {
+    "itemIdRegex": "elementium_.+",
+    "modIdRegex": "botania"
+  },
+  "validItems": [
+    "botania:elementium_sword",
+    "botania:thunder_sword"
   ]
 }

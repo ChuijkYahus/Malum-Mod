@@ -1,7 +1,7 @@
 package com.sammy.malum.client;
 
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import it.unimi.dsi.fastutil.floats.*;
 import it.unimi.dsi.fastutil.ints.*;
 import net.minecraft.client.particle.*;
@@ -22,6 +22,7 @@ import team.lodestar.lodestone.systems.particle.world.*;
 import team.lodestar.lodestone.systems.particle.world.behaviors.*;
 import team.lodestar.lodestone.systems.particle.world.options.*;
 import team.lodestar.lodestone.systems.particle.world.type.*;
+import team.lodestar.lodestone.systems.rendering.buffer.LodestoneRenderLayer;
 
 import javax.annotation.*;
 import java.util.function.*;
@@ -45,7 +46,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Nullable
-    public MalumSpiritType spiritType;
+    public SpiritArcanaType spiritType;
 
     protected SpiritBasedParticleBuilder(WorldParticleOptions options) {
         super(options);
@@ -73,9 +74,6 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
 
     @Override
     public SpiritBasedParticleBuilder setLifetime(Supplier<Integer> lifetimeSupplier) {
-        if (isUmbral()) {
-            return (SpiritBasedParticleBuilder) super.multiplyLifetime(2.5f);
-        }
         return (SpiritBasedParticleBuilder)super.setLifetime(lifetimeSupplier);
     }
 
@@ -121,7 +119,7 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Override
-    public SpiritBasedParticleBuilder setRenderTarget(RenderHandler.LodestoneRenderLayer renderLayer) {
+    public SpiritBasedParticleBuilder setRenderTarget(LodestoneRenderLayer renderLayer) {
         return (SpiritBasedParticleBuilder) super.setRenderTarget(renderLayer);
     }
 

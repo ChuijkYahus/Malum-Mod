@@ -16,14 +16,16 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.*;
 import org.apache.logging.log4j.*;
 
+import static com.sammy.malum.registry.common.MalumEntityDataSerializers.ENTITY_DATA_SERIALIZERS;
 import static com.sammy.malum.registry.common.MalumParticles.*;
 import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TYPES;
 import static com.sammy.malum.registry.common.MalumAttributes.*;
 import static com.sammy.malum.registry.common.MalumContainers.*;
-import static com.sammy.malum.registry.common.MalumGeasEffectTypes.GEAS_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.MalumMobEffects.*;
 import static com.sammy.malum.registry.common.MalumSoundEvents.*;
-import static com.sammy.malum.registry.common.MalumSpiritTypes.SPIRIT_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes.SPIRIT_RITE_TYPES;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
@@ -74,10 +76,12 @@ public class MalumMod {
         STRUCTURE_TYPES.register(modEventBus);
         STRUCTURE_PIECE_TYPES.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        ENTITY_DATA_SERIALIZERS.register(modEventBus);
         ATTACHMENT_TYPES.register(modEventBus);
         WORLD_EVENT_TYPES.register(modEventBus);
-        GEAS_TYPES.register(modEventBus);
         SPIRIT_TYPES.register(modEventBus);
+        SPIRIT_RITE_TYPES.register(modEventBus);
+        GEAS_TYPES.register(modEventBus);
 
         MalumParticleEffectTypes.init();
     }

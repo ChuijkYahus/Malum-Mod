@@ -10,6 +10,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.attack.SunderingAnchorSlashParticleEffect;
 import net.minecraft.core.*;
@@ -143,8 +144,12 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     public static void applyCooldown(ItemStack stack, Player player) {
+        applyCooldown(stack, player, 1);
+    }
+
+    public static void applyCooldown(ItemStack stack, Player player, float scalar) {
         if (!player.isCreative()) {
-            int cooldown = 200;
+            int cooldown = (int) (200 * scalar);
             player.getCooldowns().addCooldown(stack.getItem(), cooldown);
         }
     }

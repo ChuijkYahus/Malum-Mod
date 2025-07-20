@@ -6,12 +6,7 @@
     }
   ],
   "type": "malum:spirit_repair",
-  "itemIdRegex": "manasteel_.+",
-  "modIdRegex": "botania",
   "durabilityPercentage": 1,
-  "inputs": [
-    "botania:ender_dagger"
-  ],
   "repairMaterial": {
     "item": "botania:manasteel_ingot",
     "count": 2
@@ -21,5 +16,12 @@
       "type": "arcane",
       "count": 16
     }
+  ],
+  "regex": {
+    "itemIdRegex": "manasteel_.+",
+    "modIdRegex": "botania"
+  },
+  "validItems": [
+    "botania:ender_dagger"
   ]
 }

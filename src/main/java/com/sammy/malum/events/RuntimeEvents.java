@@ -2,7 +2,7 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.effect.*;
-import com.sammy.malum.common.effect.aura.*;
+import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.aerial.*;
@@ -73,15 +73,12 @@ public class RuntimeEvents {
         SoulDataHandler.markAsSpawnerSpawned(event);
     }
 
-    @SubscribeEvent
-    public static void onEntityJump(LivingEvent.LivingJumpEvent event) {
-        CorruptedAerialAura.onEntityJump(event);
-    }
+
 
     @SubscribeEvent
     public static void onEntityFall(LivingFallEvent event) {
         AscensionEffect.onEntityFall(event);
-        CorruptedAerialAura.onEntityFall(event);
+        SkyTetherEffect.onEntityFall(event);
     }
 
     @SubscribeEvent

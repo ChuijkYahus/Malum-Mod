@@ -12,7 +12,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.crafting.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class MalumSpiritRepairRecipes implements IConditionBuilder {
 

@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.augment;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeData;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 

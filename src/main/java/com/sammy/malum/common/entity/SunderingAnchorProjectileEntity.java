@@ -224,8 +224,9 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     if (isAlive() && distanceTo(owner) < 2.5f) {
                         SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
+                            float cooldownScalar = hitCount.isEmpty() ? 0.25f : 1f;
                             TemporarilyDisabledItem.enable(player, slot);
-                            SunderingAnchorItem.applyCooldown(getItem(), player);
+                            SunderingAnchorItem.applyCooldown(getItem(), player, cooldownScalar);
                         }
                         remove(RemovalReason.DISCARDED);
                     }
@@ -385,7 +386,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                 return;
             }
             Vec3 newMotion = distance.normalize();
-            final double dot = motion.normalize().dot(distance.normalize());
+            double dot = motion.normalize().dot(distance.normalize());
             if (demandAccuracy && dot < 0.1f) {
                 return;
             }
@@ -415,7 +416,9 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
     }
 
     public void returnToOwner() {
-        isReturning = true;
+        if (age > 30) {
+            isReturning = true;
+        }
     }
 
     public void bounce() {
@@ -456,11 +459,11 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
         var spirit = getSunderingAnchorSpirit();
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position(), spirit);
         lightSpecs.getBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -476,7 +479,7 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
                     .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                     .setScaleData(GenericParticleData.create(0.2f * scalar, 0.4f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                    .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                     .setColorData(spirit.createColorData().build())
                     .setLifetime(Math.min(5 + age * 2, 20))
                     .addTickActor(behavior)

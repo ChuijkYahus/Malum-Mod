@@ -72,7 +72,7 @@ public class DrainingBoltImpactParticleEffect extends BoltImpactParticleEffect {
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .enableForcedSpawn()
                         .modifyScaleData(d -> d.multiplyValue(1.75f))
-                        .modifyData(AbstractParticleBuilder::getLengthData, d -> d.multiplyValue(3f))
+                        .modifyLengthData(d -> d.multiplyValue(3f))
                         .setMotion(direction.scale(1.5f));
                 sparks.getBloomBuilder()
                         .disableNoClip()

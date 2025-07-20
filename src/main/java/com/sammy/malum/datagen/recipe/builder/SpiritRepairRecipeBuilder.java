@@ -8,7 +8,6 @@ import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
 
@@ -36,7 +35,7 @@ public class SpiritRepairRecipeBuilder implements LodestoneRecipeBuilder<SpiritR
         return this;
     }
 
-    public SpiritRepairRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+    public SpiritRepairRecipeBuilder addSpirit(SpiritHolder<SpiritArcanaType> spirit, int count) {
         spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }

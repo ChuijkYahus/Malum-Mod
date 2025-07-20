@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import team.lodestar.lodestone.registry.client.*;
 
-import static com.sammy.malum.registry.common.MalumSpiritTypes.*;
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
-public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<SpiritCollectionActivatorEntityOld> {
+public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<SpiritCollectionActivatorEntity> {
     public final ItemRenderer itemRenderer;
 
     public SpiritCollectionActivatorEntityRenderer(EntityRendererProvider.Context context) {
@@ -24,7 +24,7 @@ public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<Spir
 
 
     @Override
-    public void render(SpiritCollectionActivatorEntityOld entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
+    public void render(SpiritCollectionActivatorEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
         var spiritType = UMBRAL_SPIRIT;
         var secondarySpiritType = ELDRITCH_SPIRIT;
         var additive = LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
@@ -43,19 +43,19 @@ public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<Spir
 
             RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.7f, 1f, partialTicks);
             RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 0.3f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.secondaryTrailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trinaryTrailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailA, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailB, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
             trailBuilder.setRenderType(transparent);
             RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.7f, 1.25f, partialTicks);
             RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.2f, 0.5f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.secondaryTrailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trinaryTrailPointBuilder, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailA, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailB, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
         }
         super.render(entity, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SpiritCollectionActivatorEntityOld entity) {
+    public ResourceLocation getTextureLocation(SpiritCollectionActivatorEntity entity) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 }

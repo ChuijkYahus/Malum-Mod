@@ -70,7 +70,7 @@ public class JEIHandler implements IModPlugin {
         if (level != null) {
             registry.addRecipes(SPIRIT_INFUSION, LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get()));
 
-            List<UnchainedTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_TRANSMUTATION.get());
+            List<UnchainedTransmutationRecipe> transmutation = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get());
             List<UnchainedTransmutationRecipe> leftovers = Lists.newArrayList();
             Map<String, List<UnchainedTransmutationRecipe>> groups = Maps.newLinkedHashMap();
             for (UnchainedTransmutationRecipe recipe : transmutation) {

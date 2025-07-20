@@ -3,6 +3,7 @@ package com.sammy.malum.common.entity.bolt;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.*;
@@ -66,11 +67,11 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
         Vec3 norm = getDeltaMovement().normalize().scale(0.05f);
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, MalumSpiritTypes.WICKED_SPIRIT);
         lightSpecs.getBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.25f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.25f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -82,7 +83,7 @@ public class HexBoltEntity extends AbstractBoltProjectileEntity {
                 .setScaleData(GenericParticleData.create(0.4f * scalar, 0.3f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                .setRenderTarget(RenderHandler.LATE_DELAYED_RENDER)
+                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 30))
                 .addTickActor(behavior)
                 .setSpinData(spinData)

@@ -1,0 +1,97 @@
+package com.sammy.malum.common.entity.activator;
+
+import com.sammy.malum.common.entity.*;
+import com.sammy.malum.core.handlers.*;
+import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.visual_effects.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.rendering.trail.*;
+
+import java.util.*;
+
+public class SpiritCollectionActivatorEntity extends FloatingEntity {
+
+    public TrailPointBuilder orbitingTrailA = TrailPointBuilder.create(4);
+    public TrailPointBuilder orbitingTrailB = TrailPointBuilder.create(4);
+    public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
+
+    public SpiritCollectionActivatorEntity(Level level) {
+        super(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
+        maxAge = 4000;
+    }
+
+    public SpiritCollectionActivatorEntity(Level level, UUID ownerUUID, Vec3 position, Vec3 velocity) {
+        this(level);
+        setDestination(new FloatingItemDestinationData(ownerUUID));
+        setPos(position);
+        setDeltaMovement(velocity);
+        maxAge = 800;
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+
+    }
+
+    @Override
+    public SoundSource getSoundSource() {
+        return SoundSource.NEUTRAL;
+    }
+
+    @Override
+    public void collect(ServerLevel level) {
+        getDestination().getEntityCollector(level).ifPresent(SoulHarvestHandler::triggerSpiritCollection);
+        SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (level().isClientSide) {
+            float offsetScale = 0.1f + random.nextFloat() * 0.2f;
+            for (int i = 0; i < 2; i++) {
+                float progress = (i + 1) * 0.5f;
+                Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
+                float scalar = (age + progress) / 6f;
+                double xOffset = Math.cos(spinOffset + scalar) * offsetScale;
+                double zOffset = Math.sin(spinOffset + scalar) * offsetScale;
+                orbitingTrailA.addTrailPoint(position.add(xOffset, 0, zOffset));
+                xOffset = Math.cos(spinOffset + scalar + 3.14f) * offsetScale;
+                zOffset = Math.sin(spinOffset + scalar + 3.14f) * offsetScale;
+                orbitingTrailB.addTrailPoint(position.add(xOffset, 0, zOffset));
+            }
+            orbitingTrailA.tickTrailPoints();
+            orbitingTrailB.tickTrailPoints();
+
+            Vec3 motion = getDeltaMovement();
+            Vec3 norm = motion.normalize().scale(0.05f);
+            var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), getOffsetPosition(), MalumSpiritTypes.UMBRAL_SPIRIT);
+            lightSpecs.getBuilder().setMotion(norm);
+            lightSpecs.getBloomBuilder().setMotion(norm);
+            lightSpecs.spawnParticles();
+        }
+    }
+
+    @Override
+    public int getWindUpDuration() {
+        return 25;
+    }
+
+    @Override
+    public float getMovementInterpolation(float windUp, float distance) {
+        return super.getMovementInterpolation(windUp, distance) * 4f;
+    }
+
+    @Override
+    public float getFriction() {
+        return 0.9f;
+    }
+}

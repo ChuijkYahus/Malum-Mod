@@ -18,6 +18,7 @@ import com.sammy.malum.core.systems.events.SetupMalumCodexEntriesEvent;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.*;

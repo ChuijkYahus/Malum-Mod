@@ -71,7 +71,7 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         return this;
     }
 
-    public SpiritInfusionRecipeBuilder addSpirit(SpiritHolder<MalumSpiritType> spirit, int count) {
+    public SpiritInfusionRecipeBuilder addSpirit(SpiritHolder<SpiritArcanaType> spirit, int count) {
         spirits.add(new SpiritIngredient(spirit, count));
         return this;
     }
