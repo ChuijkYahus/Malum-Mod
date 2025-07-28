@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
+import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.systems.spirit.type.SpiritLike;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
@@ -16,6 +17,11 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
 
     protected SpiritRiteBlockEffect() {
         super(SpiritRiteEffectTag.LOCUS_EFFECT);
+    }
+
+    @Override
+    public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
+
     }
 
     public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos);

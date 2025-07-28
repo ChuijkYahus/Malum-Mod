@@ -47,9 +47,9 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
             var uuid = target.getUUID();
             var position = totemBase.getBlockPos().getCenter().add(0, totemBase.getTotemHeight(), 0);
             var velocity = new Vec3(
-                    RandomHelper.randomBetween(random, -0.05f, 0.05f),
-                    RandomHelper.randomBetween(random, 0.05f, 0.075f),
-                    RandomHelper.randomBetween(random, -0.05f, 0.05f)
+                    RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1),
+                    RandomHelper.randomBetween(random, 0.1f, 0.2f),
+                    RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
             RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, uuid, position, velocity);
             level.addFreshEntity(entity);
