@@ -160,7 +160,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         float pitch = 0.8f + 0.2f * index;
         this.state = CHARGING;
         this.basePos = totemBase.getBlockPos();
-        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, 0.9f + 0.2f * pitch);
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, pitch);
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);

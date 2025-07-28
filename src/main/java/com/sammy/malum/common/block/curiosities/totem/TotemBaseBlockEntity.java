@@ -140,8 +140,6 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         return totemHeight;
     }
 
-
-
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
         totemHeight++;
         pole.beginCharging(level,this, totemHeight);

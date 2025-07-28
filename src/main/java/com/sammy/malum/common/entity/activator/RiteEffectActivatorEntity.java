@@ -30,6 +30,7 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
 
     public RiteEffectActivatorEntity(Level level) {
         super(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), level);
+        maxAge = 4000;
     }
 
     public RiteEffectActivatorEntity(Level level, UUID targetUUID, Vec3 position, Vec3 velocity) {
@@ -74,31 +75,26 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
     public void tick() {
         super.tick();
         if (level().isClientSide) {
-            Vec3 motion = getDeltaMovement();
-            Vec3 norm = motion.normalize().scale(0.05f);
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), getOffsetPosition(), getSpiritType());
-            lightSpecs.getBuilder().setMotion(norm);
-            lightSpecs.getBloomBuilder().setMotion(norm);
+            lightSpecs.getBuilder().modifyScaleData(d -> d.multiplyValue(1.5f)).multiplyLifetime(2);
+            lightSpecs.getBloomBuilder().multiplyLifetime(2);
             lightSpecs.spawnParticles();
         }
     }
 
     @Override
     public int getWindUpDuration() {
-        return 60;
+        return 40;
     }
 
     @Override
     public float getFriction() {
-        return 0.8f;
+        return 0.9f;
     }
 
     @Override
     public float getMovementInterpolation(float windUp, float distance) {
-        if (distance < 2f) {
-            return 1f;
-        }
-        return 0.05f + windUp * 0.2f;
+        return 0.05f + windUp * 0.3f;
     }
     public SpiritArcanaType getSpiritType() {
         return getEntityData().get(DATA_SPIRIT_GLOW);
