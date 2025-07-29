@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.SoundHelper;
+import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.util.UUID;
@@ -94,8 +95,9 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public float getMovementInterpolation(float windUp, float distance) {
-        return 0.05f + windUp * 0.3f;
+        return 0.02f + Easing.EXPO_IN.ease(windUp, 0, 0.4f);
     }
+
     public SpiritArcanaType getSpiritType() {
         return getEntityData().get(DATA_SPIRIT_GLOW);
     }

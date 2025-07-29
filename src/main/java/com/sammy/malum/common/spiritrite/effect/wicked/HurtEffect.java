@@ -31,7 +31,7 @@ public class HurtEffect extends SpiritRiteEntityEffect<LivingEntity> {
     public boolean canApplyEffect(ServerLevel level, LivingEntity target) {
         DamageSource damageSource = DamageTypeHelper.create(target.level(), MalumDamageTypes.VOODOO_PLAYERLESS);
         if (target.getHealth() > 2.5f) {
-            target.isInvulnerableTo(damageSource);
+            return !target.isInvulnerableTo(damageSource);
         }
         return false;
     }

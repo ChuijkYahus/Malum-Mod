@@ -63,7 +63,9 @@ Retextured Soul Stained Steel Tools, Weapons, and Armor
 
 Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 Fixed the Soulbinding Brazier model having incorrect face culling data
+Fixed Malignant Conversion being capped at 30 armor
 Fixed a glState leak for the Hidden Blade interface icon renderer
 Fixed the Weeping Well giving you the Encyclopedia Arcana in place of the Umbral Spirit
 Fixed the Weeping Well crashing when eating an enchanted item
+Fixed some of the Weeping Well textures being incorrectly mirrored
 Fixed the Codex crashing your game when opened while any spirit repair recipe is missing

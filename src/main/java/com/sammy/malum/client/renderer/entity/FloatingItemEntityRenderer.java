@@ -36,7 +36,7 @@ public class FloatingItemEntityRenderer extends EntityRenderer<FloatingItemEntit
         var trail = LodestoneRenderTypes.ADDITIVE_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
         var longTrail = LodestoneRenderTypes.ADDITIVE_ROUNDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
         var builder = SpiritBasedWorldVFXBuilder.create(spiritType);
-        float effectScalar = Mth.clamp(entity.getAge() / 5f, 0, 1);
+        float effectScalar = entity.getVisualEffectScalar();
 
         RenderUtils.renderEntityTrail(poseStack, builder.setRenderType(trail), entity.trail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), effectScalar, partialTicks);
         RenderUtils.renderEntityTrail(poseStack, builder.setRenderType(longTrail), entity.longTrail, entity, spiritType.getSecondaryColor(), spiritType.getPrimaryColor(), effectScalar*0.6f, effectScalar*0.2f, partialTicks);

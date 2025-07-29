@@ -33,19 +33,19 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         ACTIVE
     }
 
-    protected SpiritArcanaType spirit;
-    protected int glow;
+    protected final SpiritArcanaType spirit;
 
-    protected TotemPoleState state = INACTIVE;
+    protected TotemPoleState state = TotemPoleState.INACTIVE;
     protected BlockPos basePos;
+    protected int glow;
 
     public TotemPoleBlockEntity(BlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        spirit = SpiritTypeProperty.getSpiritType(state).value();
     }
 
     public TotemPoleBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.TOTEM_POLE.get(), pos, state);
-        spirit = SpiritTypeProperty.getSpiritType(state).value();
     }
 
     public Block getLogBlock() {
@@ -76,27 +76,17 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     public ItemInteractionResult onUseWithItem(Player player, ItemStack held, InteractionHand hand) {
         if (held.canPerformAction(ItemAbilities.AXE_STRIP)) {
             if (level instanceof ServerLevel serverLevel) {
-                level.setBlockAndUpdate(worldPosition, getLogBlock().defaultBlockState());
-                level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, 0.7f);
-                MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
-                        .at(worldPosition).color(spirit)
-                        .spawn(serverLevel);
+                strip(serverLevel);
             }
             return ItemInteractionResult.SUCCESS;
         }
 
         if (held.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL)) {
             if (level instanceof ServerLevel serverLevel) {
-                boolean inactive = state.equals(INACTIVE);
-                if (inactive || state.equals(VISUAL_ONLY)) {
-                    state = inactive ? VISUAL_ONLY : INACTIVE;
-                    float pitch = inactive ? 1.2f : 0.7f;
-                    level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch);
-                    BlockStateHelper.updateState(level, worldPosition);
-                    MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
-                            .at(worldPosition).color(spirit)
-                            .spawn(serverLevel);
+                if (state.equals(CHARGING) || state.equals(ACTIVE)) {
+                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 }
+                toggleVisuals(serverLevel);
             }
             return ItemInteractionResult.SUCCESS;
         }
@@ -105,9 +95,6 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider registries) {
-        if (spirit != null) {
-            spirit.save(tag);
-        }
         tag.putInt("state", state.ordinal());
         tag.putInt("glow", glow);
         super.saveAdditional(tag, registries);
@@ -115,7 +102,6 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        spirit = SpiritArcanaType.load(tag).orElse(null);
         state = TotemPoleState.values()[tag.getInt("state")];
         glow = tag.getInt("glow");
         super.loadAdditional(tag, pRegistries);
@@ -145,10 +131,10 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         return glow / 20f;
     }
 
-    public void setSpirit(ServerLevel level, SpiritLike spirit) {
-        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
-        level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
-        this.spirit = spirit.getSpirit();
+    public void brieflyActivate(ServerLevel level) {
+        float pitch = Mth.nextFloat(level.random, 0.9f, 1.1f);
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch);
+        level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, pitch);
         this.glow = 10;
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
@@ -158,12 +144,36 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     public void beginCharging(ServerLevel level, TotemBaseBlockEntity totemBase, int index) {
         float pitch = 0.8f + 0.2f * index;
-        this.state = CHARGING;
+        this.state = TotemPoleState.CHARGING;
         this.basePos = totemBase.getBlockPos();
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CHARGE.get(), SoundSource.BLOCKS, 1, pitch);
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         BlockStateHelper.updateState(level, worldPosition);
+    }
+
+    public void strip(ServerLevel level) {
+        level.setBlockAndUpdate(worldPosition, getLogBlock().defaultBlockState());
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, 0.7f);
+        MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
+                .at(worldPosition)
+                .color(spirit)
+                .spawn(level);
+    }
+
+    public void toggleVisuals(ServerLevel level) {
+        if (state.equals(VISUAL_ONLY)) {
+            state = INACTIVE;
+        } else if (state.equals(INACTIVE)) {
+            state = VISUAL_ONLY;
+        }
+        float pitch = state.equals(INACTIVE) ? 1.2f : 0.7f;
+        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch);
+        BlockStateHelper.updateState(level, worldPosition);
+        MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
+                .at(worldPosition)
+                .color(spirit)
+                .spawn(level);
     }
 }

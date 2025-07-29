@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.*;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
@@ -30,18 +31,14 @@ public class RiteEffectActivatorEntityRenderer extends EntityRenderer<RiteEffect
     @Override
     public void render(RiteEffectActivatorEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
         float effectScalar = entity.getVisualEffectScalar();
-        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
+        var renderType = LodestoneRenderTypes.ADDITIVE_ROUNDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
         var builder = VFXBuilders.createWorld().setRenderType(renderType);
-        var primaryColor = entity.
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, partialTicks);
-        RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, partialTicks);
-        if (entity.age > 1 && !entity.fadingAway) {
-            poseStack.pushPose();
-            float glimmerScale = 3f * Math.min(1f, (entity.age - 2) / 5f);
-            poseStack.scale(glimmerScale, glimmerScale, glimmerScale);
-            renderSpiritGlimmer(poseStack, primaryColor.apply(0f), secondaryColor.apply(0.125f), partialTicks);
-            poseStack.popPose();
-        }
+        var primaryColor = entity.getSpiritType().getPrimaryColor();
+        var secondaryColor = entity.getSpiritType().getSecondaryColor();
+        float scale = 1.2f * effectScalar;
+        float alpha = 0.3f * effectScalar;
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.trail, entity, primaryColor, secondaryColor, scale*0.75f, alpha*2, partialTicks);
+        RenderUtils.renderEntityTrail(poseStack, builder, entity.longTrail, entity, primaryColor, secondaryColor, scale, alpha, partialTicks);
         super.render(entity, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
     }
 

@@ -66,7 +66,7 @@ public class MalumLogBLock extends LodestoneLogBlock {
         if (converted instanceof TotemPoleBlock<?> totemPoleBlock) {
             level.setBlockAndUpdate(pos, TotemPoleBlock.createTotemPoleState(totemPoleBlock, direction, spirit));
             if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
-                blockEntity.setSpirit(level, spirit.getSpirit());
+                blockEntity.brieflyActivate(level);
             }
             level.levelEvent(2001, pos, Block.getId(level.getBlockState(pos)));
         }

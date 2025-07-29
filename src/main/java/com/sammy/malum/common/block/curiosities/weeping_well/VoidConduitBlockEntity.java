@@ -70,7 +70,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public void tick() {
         super.tick();
         if (level instanceof ServerLevel serverLevel) {
-            final long gameTime = serverLevel.getGameTime();
+            long gameTime = serverLevel.getGameTime();
             if (gameTime % 100L == 0) {
                 level.playSound(null, worldPosition, MalumSoundEvents.UNCANNY_VALLEY.get(), SoundSource.HOSTILE, 1f, Mth.nextFloat(level.getRandom(), 0.55f, 1.75f));
             }

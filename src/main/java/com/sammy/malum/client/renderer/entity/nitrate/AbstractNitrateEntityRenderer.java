@@ -32,7 +32,6 @@ public class AbstractNitrateEntityRenderer<T extends AbstractNitrateEntity> exte
         this(context, f -> primaryColor, f -> secondaryColor);
     }
 
-
     @Override
     public void render(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
         float effectScalar = entity.getVisualEffectScalar();
