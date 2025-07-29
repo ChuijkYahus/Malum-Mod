@@ -12,6 +12,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.block.*;
@@ -87,14 +88,14 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                             timer = INTERVAL;
                             addTotemPole(serverLevel, pole);
                         } else {
-                            var rite = MalumSpiritRiteTypes.getRite(this);
+                            var rite = MalumSpiritRiteTypes.getRite(serverLevel, this);
                             if (rite == null) {
-                                setState(TotemBaseState.INACTIVE);
+                                setState(serverLevel, TotemBaseState.INACTIVE);
                                 return;
                             }
                             this.rite = rite;
-                            setTotemPoleState(TotemPoleBlockEntity.TotemPoleState.ACTIVE);
-                            setState(TotemBaseState.ACTIVE);
+                            setTotemPoleState(serverLevel, TotemPoleBlockEntity.TotemPoleState.ACTIVE);
+                            setState(serverLevel, TotemBaseState.ACTIVE);
                         }
                     }
                 }
@@ -108,14 +109,15 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (getFirstTotemPole().isPresent()) {
-            if (!level.isClientSide) {
+            if (level instanceof ServerLevel serverLevel) {
                 if (state.equals(TotemBaseState.ACTIVE)) {
-                    setState(TotemBaseState.INACTIVE);
+                    setState(serverLevel, TotemBaseState.INACTIVE);
                 } else {
-                    setState(TotemBaseState.ASSEMBLING);
+                    setState(serverLevel, TotemBaseState.ASSEMBLING);
                 }
                 BlockStateHelper.updateState(level, worldPosition);
             }
+            return ItemInteractionResult.SUCCESS;
 
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -123,8 +125,8 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public void onBreak(@Nullable Player player) {
-        if (!level.isClientSide) {
-            setState(TotemBaseState.INACTIVE);
+        if (level instanceof ServerLevel serverLevel) {
+            setState(serverLevel, TotemBaseState.INACTIVE);
         }
     }
 
@@ -146,31 +148,33 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         BlockStateHelper.updateState(level, worldPosition);
     }
 
-    public void setState(TotemBaseState state) {
-        if (state.equals(TotemBaseState.INACTIVE)) {
-            if (isActiveOrAssembling()) {
-                level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
-            }
-            setTotemPoleState(TotemPoleBlockEntity.TotemPoleState.INACTIVE);
+    public void setState(ServerLevel level, TotemBaseState newState) {
+        if (newState.equals(TotemBaseState.INACTIVE)) {
+            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
+            setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.INACTIVE);
+            totemHeight = 0;
             rite = null;
         }
-        this.state = state;
+        if (newState.equals(TotemBaseState.ACTIVE)) {
+            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
+        }
+        this.state = newState;
         this.timer = 0;
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }
 
-    public void setTotemPoleState(TotemPoleBlockEntity.TotemPoleState state) {
-        for (TotemPoleBlockEntity totemPole : getTotemPoles()) {
+    public void setTotemPoleState(ServerLevel level, TotemPoleBlockEntity.TotemPoleState state) {
+        for (TotemPoleBlockEntity totemPole : getTotemPoles(level)) {
             totemPole.setState(state);
             BlockStateHelper.updateState(level, totemPole.getBlockPos());
         }
     }
 
-    public List<SpiritArcanaType> getSpirits() {
-        return getTotemPoles().stream().map(t -> t.spirit).toList();
+    public List<SpiritArcanaType> getSpirits(ServerLevel level) {
+        return getTotemPoles(level).stream().map(TotemPoleBlockEntity::getSpirit).toList();
     }
 
-    public List<TotemPoleBlockEntity> getTotemPoles() {
+    public List<TotemPoleBlockEntity> getTotemPoles(ServerLevel level) {
         List<TotemPoleBlockEntity> totemPoles = new ArrayList<>();
         BlockPos.MutableBlockPos mutable = getBlockPos().mutable();
         for (int i = 0; i < totemHeight; i++) {

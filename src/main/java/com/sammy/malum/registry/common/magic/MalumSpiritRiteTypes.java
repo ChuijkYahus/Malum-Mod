@@ -25,6 +25,7 @@ import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
@@ -96,10 +97,10 @@ public class MalumSpiritRiteTypes {
     public static final RiteHolder<SpiritRiteType> RITE_OF_QUICKENING = SPIRIT_RITE_TYPES.register("rite_of_quickening", () ->
             majorTotemRite(INFERNAL_SPIRIT).effect(FurnaceAccelerationRiteEffect::new).corrupted().build());
 
-    public static SpiritRiteType getRite(TotemBaseBlockEntity totemBase) {
+    public static SpiritRiteType getRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
         List<? extends SpiritRiteType> rites = MalumSpiritRiteTypes.SPIRIT_RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
         for (SpiritRiteType rite : rites) {
-            if (rite.matches(totemBase)) {
+            if (rite.matches(level, totemBase)) {
                 return rite;
             }
         }

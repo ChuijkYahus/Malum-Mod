@@ -52,6 +52,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
             RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, uuid, position, velocity);
+            entity.setSpirit(totemBase.getRite().getIdentifyingSpirit().getSpirit());
             level.addFreshEntity(entity);
         }
     }
@@ -73,7 +74,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
         return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> canApplyEffect(level, e)));
     }
 
-        public boolean tryApplyEffect(ServerLevel level, T target) {
+    public boolean tryApplyEffect(ServerLevel level, T target) {
         if (canApplyEffect(level, target)) {
             applyEffect(level, target);
             return true;

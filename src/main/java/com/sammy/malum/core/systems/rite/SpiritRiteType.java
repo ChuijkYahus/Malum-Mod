@@ -63,8 +63,8 @@ public class SpiritRiteType {
         effect.triggerRiteEffect(level, totemBase);
     }
 
-    public boolean matches(TotemBaseBlockEntity totemBase) {
-        var totemSpirits = totemBase.getSpirits();
+    public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {
+        var totemSpirits = totemBase.getSpirits(level);
         if (totemBase.corrupted != isCorrupted) {
             return false;
         }

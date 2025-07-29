@@ -14,7 +14,7 @@ import java.util.*;
 
 public abstract class FloatingEntity extends Entity {
 
-    public final TrailPointBuilder trail = TrailPointBuilder.create(10);
+    public final TrailPointBuilder trail = TrailPointBuilder.create(5);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
 
     protected FloatingItemDestinationData destination;
@@ -40,6 +40,30 @@ public abstract class FloatingEntity extends Entity {
 
     public FloatingItemDestinationData getDestination() {
         return destination;
+    }
+
+    public float getVisualEffectScalar() {
+        return Math.min(age /5f, 1f);
+    }
+
+    public float getHoverOffset() {
+        return hoverOffset;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public int getMovementWindUp() {
+        return movementWindUp;
+    }
+
+    public int getHoverWindUp() {
+        return hoverWindUp;
     }
 
     @Override
@@ -118,12 +142,9 @@ public abstract class FloatingEntity extends Entity {
             }
         }
         else {
-            for (int i = 0; i < 2; i++) {
-                float progress = (i + 1) * 0.5f;
-                Vec3 position = getOffsetPosition(progress);
-                trail.addTrailPoint(position);
-                longTrail.addTrailPoint(position);
-            }
+            Vec3 position = getOffsetPosition(0.5f);
+            trail.addTrailPoint(position);
+            longTrail.addTrailPoint(position);
             trail.tickTrailPoints();
             longTrail.tickTrailPoints();
         }
@@ -218,25 +239,5 @@ public abstract class FloatingEntity extends Entity {
         }
 
         return Mth.lerp(0.2F, currentRotation, targetRotation);
-    }
-
-    public float getHoverOffset() {
-        return hoverOffset;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public int getMaxAge() {
-        return maxAge;
-    }
-
-    public int getMovementWindUp() {
-        return movementWindUp;
-    }
-
-    public int getHoverWindUp() {
-        return hoverWindUp;
     }
 }

@@ -3,7 +3,6 @@ package com.sammy.malum.common.worldevent;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
-import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -50,7 +49,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
                 .setValue(TotemPoleBlock.SPIRIT_TYPE, spirit);
         placeBlock(level, pos, newState);
         if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
-            blockEntity.setSpirit(level, SpiritTypeProperty.getSpiritType(newState));
+            blockEntity.brieflyActivate(level);
         }
         maybePlaceBlightedGunk(level, pos, direction);
     }

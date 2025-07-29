@@ -104,7 +104,7 @@ public class MalumEntities {
             EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateEntityRenderer::new);
             EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateEntityRenderer::new);
 
-            EntityRenderers.register(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), NoopRenderer::new);
+            EntityRenderers.register(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), RiteEffectActivatorEntityRenderer::new);
 
             EntityRenderers.register(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorEntityRenderer::new);
             EntityRenderers.register(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);
