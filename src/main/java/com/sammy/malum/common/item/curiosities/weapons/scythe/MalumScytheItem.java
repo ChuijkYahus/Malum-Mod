@@ -1,5 +1,7 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
+import com.mojang.datafixers.util.*;
+import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.registry.common.*;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.systems.item.*;
 
 public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder {
@@ -65,10 +68,28 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);
         particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
 
+        trySweep(attacker, target, event.getNewDamage());
+
+    }
+    public Holder<SoundEvent> getScytheSound(boolean canSweep) {
+        return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
+    }
+
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (enchantment.equals(Enchantments.SWEEPING_EDGE)) {
+            return true;
+        }
+        return super.supportsEnchantment(stack, enchantment);
+    }
+
+    public static void trySweep(LivingEntity attacker, LivingEntity target, float baseDamage) {
+        var level = attacker.level();
         var sweeping = attacker.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
         if (sweeping != null) {
+            //TODO: Scythes can't get sweeping edge, but they can still benefit from the sweeping here
             float sweepingRatio = (float) sweeping.getValue();
-            float damage = event.getNewDamage() * (0.5f + sweepingRatio * 0.33f);
+            float damage = baseDamage * (0.5f + sweepingRatio * 0.33f);
             float radius = 1 + sweepingRatio * 0.25f;
             level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
                 if (e instanceof LivingEntity sweepTarget) {
@@ -82,16 +103,20 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             });
         }
     }
-    public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
-    }
 
-    @Override
-    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if (enchantment.equals(Enchantments.SWEEPING_EDGE)) {
-            return true;
+    public static ScytheDamage getScytheDamage(DamageSource source, LivingEntity attacker) {
+        float physicalDamage;
+        float magicDamage;
+        boolean isBoomerang = false;
+        if (source.getDirectEntity() instanceof ScytheBoomerangEntity scytheBoomerang) {
+            physicalDamage = scytheBoomerang.damage;
+            magicDamage = scytheBoomerang.magicDamage;
+            isBoomerang = true;
+        } else {
+            physicalDamage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+            magicDamage = (float) (attacker.getAttribute(LodestoneAttributes.MAGIC_DAMAGE).getValue());
         }
-        return super.supportsEnchantment(stack, enchantment);
+        return new ScytheDamage(physicalDamage, magicDamage, isBoomerang);
     }
 
     public static boolean canSweep(LivingEntity attacker) {
@@ -107,5 +132,8 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             return DamageTypeHelper.create(player.level(), MalumDamageTypes.SCYTHE_MELEE, player);
         }
         return source;
+    }
+
+    public record ScytheDamage(float physicalDamage, float magicDamage, boolean isBoomerang) {
     }
 }

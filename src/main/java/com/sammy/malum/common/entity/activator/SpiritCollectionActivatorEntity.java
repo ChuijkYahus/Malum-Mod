@@ -19,8 +19,8 @@ import java.util.*;
 
 public class SpiritCollectionActivatorEntity extends FloatingEntity {
 
-    public TrailPointBuilder orbitingTrailA = TrailPointBuilder.create(4);
-    public TrailPointBuilder orbitingTrailB = TrailPointBuilder.create(4);
+    public final List<TrailPointBuilder> orbitingTrails = new ArrayList<>(List.of(TrailPointBuilder.create(4), TrailPointBuilder.create(4)));
+
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
     public SpiritCollectionActivatorEntity(Level level) {
@@ -57,19 +57,17 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
         super.tick();
         if (level().isClientSide) {
             float offsetScale = 0.1f + random.nextFloat() * 0.2f;
-            for (int i = 0; i < 2; i++) {
-                float progress = (i + 1) * 0.5f;
-                Vec3 position = getPosition(progress).add(0, getYOffset(progress), 0);
-                float scalar = (age + progress) / 6f;
-                double xOffset = Math.cos(spinOffset + scalar) * offsetScale;
-                double zOffset = Math.sin(spinOffset + scalar) * offsetScale;
-                orbitingTrailA.addTrailPoint(position.add(xOffset, 0, zOffset));
-                xOffset = Math.cos(spinOffset + scalar + 3.14f) * offsetScale;
-                zOffset = Math.sin(spinOffset + scalar + 3.14f) * offsetScale;
-                orbitingTrailB.addTrailPoint(position.add(xOffset, 0, zOffset));
+            Vec3 position = getOffsetPosition(0.5f);
+            for (int i = 0; i < orbitingTrails.size(); i++) {
+                var trail = orbitingTrails.get(i);
+                float scalar = age / 6f;
+                float offset = i * 3.14f;
+                float angle = spinOffset + scalar + offset;
+                double xOffset = Math.sin(angle) * offsetScale;
+                double zOffset = Math.cos(angle) * offsetScale;
+                trail.addTrailPoint(position.add(xOffset, 0, zOffset));
+                trail.tickTrailPoints();
             }
-            orbitingTrailA.tickTrailPoints();
-            orbitingTrailB.tickTrailPoints();
 
             Vec3 motion = getDeltaMovement();
             Vec3 norm = motion.normalize().scale(0.05f);

@@ -33,9 +33,10 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b
-                        .setInitialData(600, 2)
-                        .setStackingData(0, 2)
-                        .setLimitData(0, 9));
+                        .setInitialDuration(600)
+                        .setInitialAmplifier(1)
+                        .setAmplifierGain(2)
+                        .setAmplifierLimit(10));
                 livingEntity.playSound(MalumSoundEvents.GRUESOME_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
             }
         }

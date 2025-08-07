@@ -155,6 +155,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(MalumTags.ItemTags.CAPACITOR_ENCHANTABLE).addTag(MalumTags.ItemTags.STAVES);
         tag(MalumTags.ItemTags.SPIRIT_SPOILS_ENCHANTABLE).addTag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS);
 
+
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(MalumTags.ItemTags.SCYTHES, MalumTags.ItemTags.STAVES)
                 .add(CATALYST_LOBBER.get(), SUNDERING_ANCHOR.get());
 

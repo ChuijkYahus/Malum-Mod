@@ -69,37 +69,23 @@ public class GluttonyEffect extends MobEffect {
         }
     }
 
-    public static GluttonyEffectProperties applyGluttony(LivingEntity collector, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
-        var properties = getGluttonyEffectProperties(collector, gluttonyBuilder);
-        var effectType = properties.getEffectType();
-        var effectInstance = collector.getEffect(effectType);
-        if (effectInstance == null) {
-            if (properties.getInitialDuration() <= 0) {
-                return properties;
-            }
-            collector.addEffect(new MobEffectInstance(effectType, properties.getInitialDuration(), properties.getInitialAmplifier(), true, true, true));
-        } else {
-            if (properties.getAmplifierGain() > 0) {
-                EntityHelper.amplifyEffect(effectInstance, collector, properties.getAmplifierGain(), properties.getAmplifierLimit());
-            }
-            if (properties.getDurationGain() > 0) {
-                EntityHelper.extendEffect(effectInstance, collector, properties.getDurationGain(), properties.getDurationLimit());
-            }
-        }
+    public static GluttonyEffectProperties applyGluttony(LivingEntity target, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
+        var properties = getGluttonyEffectProperties(target, gluttonyBuilder);
+        properties.apply(target);
         return properties;
     }
 
-    public static Holder<MobEffect> getGluttonyEffectType(LivingEntity collector) {
-        final GluttonyEffectProperties properties = getGluttonyEffectProperties(collector, b -> {});
+    public static Holder<MobEffect> getGluttonyEffectType(LivingEntity target) {
+        final GluttonyEffectProperties properties = getGluttonyEffectProperties(target, b -> {});
         return properties.effectType;
     }
 
-    public static GluttonyEffectProperties getGluttonyEffectProperties(LivingEntity collector, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
+    public static GluttonyEffectProperties getGluttonyEffectProperties(LivingEntity target, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
         var properties = createGluttony();
         gluttonyBuilder.accept(properties);
-        var event = new ModifyGluttonyPropertiesEvent(collector, properties);
-        ItemEventHandler.getEventResponders(collector).forEach(lookup -> lookup.run(IMalumEventResponder.class,
-                (eventResponderItem, stack) -> eventResponderItem.modifyGluttonyPropertiesEvent(event, collector)));
+        var event = new ModifyGluttonyPropertiesEvent(target, properties);
+        ItemEventHandler.getEventResponders(target).forEach(lookup -> lookup.run(IMalumEventResponder.class,
+                (eventResponderItem, stack) -> eventResponderItem.modifyGluttonyPropertiesEvent(event, target)));
         NeoForge.EVENT_BUS.post(event);
         return event.getProperties();
     }
@@ -108,6 +94,7 @@ public class GluttonyEffect extends MobEffect {
         return new GluttonyEffectProperties();
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static final class GluttonyEffectProperties {
 
         private Holder<MobEffect> effectType = MalumMobEffects.GLUTTONY;
@@ -121,20 +108,67 @@ public class GluttonyEffect extends MobEffect {
         private GluttonyEffectProperties() {
         }
 
+        public void apply(LivingEntity target) {
+            var effectType = getEffectType();
+            var effectInstance = target.getEffect(effectType);
+            if (effectInstance == null) {
+                int initialDuration = getInitialDuration();
+                int initialAmplifier = getInitialAmplifier() - 1;
+                if (initialDuration <= 0) {
+                    return;
+                }
+                target.addEffect(new MobEffectInstance(effectType, initialDuration, initialAmplifier, true, true, true));
+            } else {
+                int amplifierLimit = getAmplifierLimit() - 1;
+                int durationLimit = getDurationLimit();
+                int amplifierGain = getAmplifierGain();
+                int durationGain = getDurationGain();
+                if (amplifierGain > 0) {
+                    EntityHelper.amplifyEffect(effectInstance, target, amplifierGain, amplifierLimit);
+                }
+                if (durationGain > 0) {
+                    EntityHelper.extendEffect(effectInstance, target, durationGain, durationLimit);
+                }
+            }
+        }
+
         public Holder<MobEffect> getEffectType() {
             return effectType;
         }
 
-        public void replaceEffectType(Holder<MobEffect> effectType) {
+        public GluttonyEffectProperties replaceEffectType(Holder<MobEffect> effectType) {
             this.effectType = effectType;
+            return this;
         }
 
-        public int getInitialDuration() {
-            return initialDuration;
+        public GluttonyEffectProperties setInitialDuration(int initialDuration) {
+            this.initialDuration = initialDuration;
+            return this;
         }
 
-        public int getInitialAmplifier() {
-            return initialAmplifier;
+        public GluttonyEffectProperties setInitialAmplifier(int initialAmplifier) {
+            this.initialAmplifier = initialAmplifier;
+            return this;
+        }
+
+        public GluttonyEffectProperties setDurationGain(int durationGain) {
+            this.durationGain = durationGain;
+            return this;
+        }
+
+        public GluttonyEffectProperties setAmplifierGain(int amplifierGain) {
+            this.amplifierGain = amplifierGain;
+            return this;
+        }
+
+        public GluttonyEffectProperties setDurationLimit(int durationLimit) {
+            this.durationLimit = durationLimit;
+            return this;
+        }
+
+        public GluttonyEffectProperties setAmplifierLimit(int amplifierLimit) {
+            this.amplifierLimit = amplifierLimit;
+            return this;
         }
 
         public GluttonyEffectProperties scaleInitialDuration(float scalar) {
@@ -147,20 +181,6 @@ public class GluttonyEffect extends MobEffect {
             return this;
         }
 
-        public GluttonyEffectProperties setInitialData(int initialDuration, int initialAmplifier) {
-            this.initialDuration = initialDuration;
-            this.initialAmplifier = initialAmplifier;
-            return this;
-        }
-
-        public int getDurationGain() {
-            return durationGain;
-        }
-
-        public int getAmplifierGain() {
-            return amplifierGain;
-        }
-
         public GluttonyEffectProperties scaleDurationGain(float scalar) {
             this.durationGain = (int) (durationGain * scalar);
             return this;
@@ -169,20 +189,6 @@ public class GluttonyEffect extends MobEffect {
         public GluttonyEffectProperties scaleAmplifierGain(float scalar) {
             this.amplifierGain = (int) (amplifierGain * scalar);
             return this;
-        }
-
-        public GluttonyEffectProperties setStackingData(int durationGain, int amplifierGain) {
-            this.durationGain = durationGain;
-            this.amplifierGain = amplifierGain;
-            return this;
-        }
-
-        public int getDurationLimit() {
-            return durationLimit;
-        }
-
-        public int getAmplifierLimit() {
-            return amplifierLimit;
         }
 
         public GluttonyEffectProperties scaleDurationLimit(float scalar) {
@@ -195,10 +201,30 @@ public class GluttonyEffect extends MobEffect {
             return this;
         }
 
-        public GluttonyEffectProperties setLimitData(int durationLimit, int amplifierLimit) {
-            this.durationLimit = durationLimit;
-            this.amplifierLimit = amplifierLimit;
-            return this;
+        public int getInitialDuration() {
+            int limit = getDurationLimit();
+            return limit == -1 ? initialDuration : Math.min(initialDuration, limit);
+        }
+
+        public int getInitialAmplifier() {
+            int limit = getAmplifierLimit();
+            return limit == -1 ? initialAmplifier : Math.min(initialAmplifier, limit);
+        }
+
+        public int getDurationGain() {
+            return durationGain;
+        }
+
+        public int getAmplifierGain() {
+            return amplifierGain;
+        }
+
+        public int getDurationLimit() {
+            return durationLimit;
+        }
+
+        public int getAmplifierLimit() {
+            return amplifierLimit;
         }
     }
 }

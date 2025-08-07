@@ -2477,6 +2477,15 @@
     ],
     "subtitle": "malum.subtitle.the_rot_consumes"
   },
+  "the_rot_spreads": {
+    "sounds": [
+      "malum:curiosities/geas/reaper_impact1",
+      "malum:curiosities/geas/reaper_impact2",
+      "malum:curiosities/geas/reaper_impact3",
+      "malum:curiosities/geas/reaper_impact4"
+    ],
+    "subtitle": "malum.subtitle.the_rot_spreads"
+  },
   "the_sound_of_silence": {
     "sounds": [
       "malum:curiosities/motifs/draining_bubbling1",

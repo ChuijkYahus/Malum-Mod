@@ -30,10 +30,13 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
         if (collector.level() instanceof ServerLevel serverLevel) {
+            int duration = Mth.floor(600 * arcaneResonance);
+            int limit = Mth.floor(arcaneResonance * 5);
             GluttonyEffect.applyGluttony(collector, b -> b
-                    .setInitialData(Mth.floor(600 * arcaneResonance), 0)
-                    .setStackingData(0, 1)
-                    .setLimitData(0, Mth.floor(arcaneResonance * 5 - 1)));
+                    .setInitialDuration(duration)
+                    .setAmplifierGain(1)
+                    .setAmplifierLimit(limit));
+
             var random = serverLevel.random;
             SoundHelper.playSound(collector, MalumSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
             SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(random, 0.8f, 1.2f));

@@ -59,7 +59,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
                     }
                 } else {
                     event.setNewDamage(event.getNewDamage() * 0.5f);
-                    if (source.is(MalumTags.DamageTypeTags.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() >= 0.4f) {
+                    if (source.is(MalumTags.DamageTypeTags.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() <= 0.5f) {
                         return;
                     }
                     target.addEffect(new MobEffectInstance(MalumMobEffects.IMMINENT_DELIVERANCE, 60));

@@ -50,7 +50,7 @@ public class ArcanaphageGeas extends GeasEffect {
             collector.addEffect(new MobEffectInstance(effect, 100, 0, true, true, true));
         } else {
             if (collector.getRandom().nextBoolean()) {
-                EntityHelper.amplifyEffect(instance, collector, 1, 25);
+                EntityHelper.amplifyEffect(instance, collector, 1, 24);
             }
             EntityHelper.extendEffect(instance, collector, 40, 600);
         }

@@ -115,6 +115,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.REAPER_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.BERSERKER_WRATH, s -> definition(s).with(sounds("curiosities/geas/berserker_impact", 4)));
         this.add(MalumSoundEvents.PATIENT_DROWNING, s -> definition(s).with(sounds("minecraft:entity/player/hurt/drown", 4)));
+        this.add(MalumSoundEvents.DESPERATE_NEED_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.PROSPECTOR_BURN, s -> definition(s).with(sound("minecraft:mob/ghast/fireball4")));
         this.add(MalumSoundEvents.COMBUSTION_WHIPLASH, s -> definition(s).with(sound("minecraft:random/fizz")));

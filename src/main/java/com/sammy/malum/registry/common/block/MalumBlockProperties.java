@@ -167,8 +167,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a, b, c) -> false)
-                .isViewBlocking((a, b, c) -> false)
+                .isSuffocating(Blocks::never)
+                .isViewBlocking(Blocks::never)
                 .setCutoutRenderType()
                 .sound(MalumSoundEvents.RUNEWOOD_LEAVES)
                 .needsHoe();
@@ -181,8 +181,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a, b, c) -> false)
-                .isViewBlocking((a, b, c) -> false)
+                .isSuffocating(Blocks::never)
+                .isViewBlocking(Blocks::never)
                 .setCutoutRenderType()
                 .sound(MalumSoundEvents.RUNEWOOD_LEAVES)
                 .needsHoe();
@@ -226,8 +226,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a, b, c) -> false)
-                .isViewBlocking((a, b, c) -> false)
+                .isSuffocating(Blocks::never)
+                .isViewBlocking(Blocks::never)
                 .sound(MalumSoundEvents.SOULWOOD_LEAVES);
     }
 
@@ -239,8 +239,8 @@ public class MalumBlockProperties {
                 .randomTicks()
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
-                .isSuffocating((a, b, c) -> false)
-                .isViewBlocking((a, b, c) -> false)
+                .isSuffocating(Blocks::never)
+                .isViewBlocking(Blocks::never)
                 .sound(MalumSoundEvents.SOULWOOD_LEAVES);
     }
 
@@ -260,7 +260,6 @@ public class MalumBlockProperties {
                 .noCollission()
                 .randomTicks()
                 .noOcclusion()
-                .replaceable()
                 .instabreak();
     }
 
@@ -613,7 +612,6 @@ public class MalumBlockProperties {
         return new LodestoneBlockProperties()
                 .strength(-1.0F, 3600000.0F)
                 .sound(MalumSoundEvents.WEEPING_WELL_BRICKS)
-                .isRedstoneConductor((a,b,c) -> false)
                 .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
                 .mapColor(MapColor.COLOR_GRAY)
                 .isValidSpawn(Blocks::never)
@@ -623,10 +621,11 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties PRIMORDIAL_SOUP() {
         return new LodestoneBlockProperties()
                 .strength(-1.0F, 3600000.0F)
+                .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
                 .sound(MalumSoundEvents.BLIGHTED_EARTH)
                 .mapColor(MapColor.TERRACOTTA_BLACK)
                 .pushReaction(PushReaction.BLOCK)
-                .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
+                .isSuffocating(Blocks::never)
                 .setCutoutRenderType();
     }
 }

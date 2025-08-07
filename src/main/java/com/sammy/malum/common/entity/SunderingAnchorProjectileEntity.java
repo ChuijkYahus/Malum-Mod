@@ -16,6 +16,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -411,8 +412,33 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             return Collections.emptyList();
         }
         var aabb = getBoundingBox().inflate(30);
-        return level.getEntitiesOfClass(LivingEntity.class, aabb,
-                target -> target != owner && target.isAlive() && !target.isAlliedTo(owner) && hasLineOfSight(level, target) && extraFilter.test(target));
+        var targets = level.getEntitiesOfClass(LivingEntity.class, aabb,
+                target -> isValidTarget(level, target, owner) && extraFilter.test(target));
+
+        if (!targets.stream().allMatch(t -> t instanceof Player)) {
+            // Unless Players are the only available targets, filter out Players that have the Hatred effect
+            targets.removeIf(t -> t instanceof Player player && !player.hasEffect(MalumMobEffects.HATRED));
+        }
+
+        return targets;
+    }
+
+    public boolean isValidTarget(ServerLevel level, LivingEntity target, Entity owner) {
+        if (target == owner) {
+            return false;
+        }
+        if (target.isDeadOrDying()) {
+            return false;
+        }
+        if (target.isAlliedTo(owner)) {
+            return false;
+        }
+        if (target instanceof TamableAnimal tamableAnimal) {
+            if (tamableAnimal.isTame()) {
+                return false;
+            }
+        }
+        return hasLineOfSight(level, target);
     }
 
     public void returnToOwner() {

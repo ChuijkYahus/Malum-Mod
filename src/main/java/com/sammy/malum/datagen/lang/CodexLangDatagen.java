@@ -5,6 +5,7 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.RiteHolder;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.core.*;
 import team.lodestar.lodestone.helpers.DataHelper;
 

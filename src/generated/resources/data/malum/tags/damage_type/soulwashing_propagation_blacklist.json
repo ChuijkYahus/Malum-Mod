@@ -2,7 +2,7 @@
   "values": [
     "malum:scythe_sweep",
     "minecraft:thorns",
-    "#malum:soulwashing",
+    "#malum:is_soulwashing",
     "#neoforge:is_technical"
   ]
 }

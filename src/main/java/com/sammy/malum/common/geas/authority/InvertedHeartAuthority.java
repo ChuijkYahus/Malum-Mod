@@ -73,8 +73,7 @@ public class InvertedHeartAuthority extends GeasEffect {
         var level = geasHolder.level();
         if (level.getGameTime() % 40L == 0) {
             visibleTargets.clear();
-            double influence = 8f;
-            influence *= entity.getAttributeValue(MalumAttributes.ARCANE_RESONANCE);
+            double influence = 8f * entity.getAttributeValue(MalumAttributes.ARCANE_RESONANCE);
             for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, geasHolder.getBoundingBox().inflate(influence*2, influence, influence*2))) {
                 if (target == geasHolder || target.isSpectator()) {
                     continue;

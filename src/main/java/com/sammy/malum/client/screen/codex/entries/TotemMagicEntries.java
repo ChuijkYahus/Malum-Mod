@@ -7,12 +7,9 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.geas.GeasEffectType;
 import com.sammy.malum.core.systems.registry.RiteHolder;
 import com.sammy.malum.core.systems.rite.SpiritRiteType;
-import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.registry.common.item.MalumItems.*;

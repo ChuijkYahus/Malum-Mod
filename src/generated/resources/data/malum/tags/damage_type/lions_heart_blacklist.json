@@ -1,5 +1,6 @@
 {
   "values": [
-    "#minecraft:bypasses_armor"
+    "#minecraft:is_drowning",
+    "#neoforge:is_technical"
   ]
 }

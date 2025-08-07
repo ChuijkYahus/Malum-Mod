@@ -51,7 +51,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
                     RandomHelper.randomBetween(random, 0.1f, 0.2f),
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
-            RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, uuid, position, velocity);
+            RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, this, uuid, position, velocity);
             entity.setSpirit(totemBase.getRite().getIdentifyingSpirit().getSpirit());
             level.addFreshEntity(entity);
         }
