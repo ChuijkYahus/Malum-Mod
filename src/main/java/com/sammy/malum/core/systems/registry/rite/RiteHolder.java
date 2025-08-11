@@ -1,12 +1,8 @@
-package com.sammy.malum.core.systems.registry;
+package com.sammy.malum.core.systems.registry.rite;
 
-import com.sammy.malum.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.registry.common.magic.rite.*;
-import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 
 public class RiteHolder<T extends SpiritRiteType> extends DeferredHolder<SpiritRiteType, T> {
 

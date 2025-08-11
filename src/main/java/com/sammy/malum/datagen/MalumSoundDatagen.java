@@ -166,10 +166,16 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
 
         this.add(MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft_rune_generic", 3)));
 
+        this.add(MalumSoundEvents.TOTEM_LOOP, s -> definition(s).with(sound("totem/totem_loop")));
         this.add(MalumSoundEvents.TOTEM_CHARGE, s -> definition(s).with(sounds("totem/totem_charge", 3)));
         this.add(MalumSoundEvents.TOTEM_ACTIVATED, s -> definition(s).with(sound("totem/totem_activate")));
         this.add(MalumSoundEvents.TOTEM_CANCELLED, s -> definition(s).with(sound("totem/totem_cancel")));
         this.add(MalumSoundEvents.TOTEM_ENGRAVE, s -> definition(s).with(sounds("totem/totem_engrave", 3)));
+
+        this.add(MalumSoundEvents.SPARK_FORMED, s -> definition(s).with(sounds("totem/spark/spark_create", 3)));
+        this.add(MalumSoundEvents.SPARK_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_hit", 3)));
+        this.add(MalumSoundEvents.SPARK_POTION_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_potion_hit", 3)));
+
         this.add(MalumSoundEvents.TOTEM_AERIAL_MAGIC, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
 
         this.add(MalumSoundEvents.RITUAL_BEGINS, s -> definition(s).with(sound("ritual/ritual_start")));

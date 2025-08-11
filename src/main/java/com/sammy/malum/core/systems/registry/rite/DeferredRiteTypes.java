@@ -1,4 +1,4 @@
-package com.sammy.malum.core.systems.registry;
+package com.sammy.malum.core.systems.registry.rite;
 
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.rite.*;

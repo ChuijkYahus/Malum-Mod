@@ -8,9 +8,11 @@ import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -54,15 +56,27 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
             RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, this, uuid, position, velocity);
             entity.setSpirit(totemBase.getRite().getIdentifyingSpirit().getSpirit());
             level.addFreshEntity(entity);
+            SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
+
         }
     }
 
     public abstract Class<T> getTargetClass();
 
+    public void tryApplyEffect(ServerLevel level, LivingEntity target) {
+        if (getTargetClass().isInstance(target)) {
+            applyEffect(level, getTargetClass().cast(target));
+        }
+    }
+
     public abstract void applyEffect(ServerLevel level, T target);
 
     public boolean canApplyEffect(ServerLevel level, T target) {
         return true;
+    }
+
+    public Holder<SoundEvent> getImpactSound() {
+        return MalumSoundEvents.SPARK_IMPACT;
     }
 
     public int getEffectRange() {
@@ -72,14 +86,6 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
     public List<T> findNearbyTargets(ServerLevel level, BlockPos source) {
         AABB area = new AABB(source).inflate(getEffectRange());
         return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> canApplyEffect(level, e)));
-    }
-
-    public boolean tryApplyEffect(ServerLevel level, T target) {
-        if (canApplyEffect(level, target)) {
-            applyEffect(level, target);
-            return true;
-        }
-        return false;
     }
 
     protected void createEffect(ServerLevel level, T target, SpiritLike... spirits) {

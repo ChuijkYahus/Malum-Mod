@@ -2,7 +2,7 @@ package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.core.systems.registry.RiteHolder;
+import com.sammy.malum.core.systems.registry.rite.RiteHolder;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.magic.rite.*;
@@ -1284,8 +1284,9 @@ public class CodexLangDatagen {
         addRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "",
                 "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
                 "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");
-
-
+        addRiteEntry(MalumSpiritRiteTypes.RITE_OF_RAISING, "",
+                "An advanced rite, while active it will strike vulnerable monsters, dealing a fatal blow to their soul and body.\nThe affected target is then reanimated as a soulless husk, a mindless being that lacks a soul.",
+                "Affected Monsters Are Struck a Fatal Blow\nUpon Death, They Are Then Reanimated As A Soulless Husk\nSoulless Husks, Lacking A Soul, Do Not Drop Spirits");
 
 //        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
 //                "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",

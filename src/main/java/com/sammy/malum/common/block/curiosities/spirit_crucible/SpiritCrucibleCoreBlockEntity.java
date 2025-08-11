@@ -282,7 +282,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
             fortuneChance -= 1;
         }
         if (durabilityCost > 0) {
-            impetus.hurtAndBreak(44444, level, null, brokenStack -> {
+            impetus.hurtAndBreak(durabilityCost, level, null, brokenStack -> {
                 ImpetusDataMap data = brokenStack.builtInRegistryHolder().getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT);
                 if (data != null) {
                     inventory.setStackInSlot(0, data.otherImpetus().value().getDefaultInstance());

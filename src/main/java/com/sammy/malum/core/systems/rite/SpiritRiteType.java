@@ -7,6 +7,7 @@ import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.rite.*;
@@ -33,11 +34,11 @@ public class SpiritRiteType {
 
     protected final List<SpiritHolder<SpiritArcanaType>> spirits;
     protected final boolean isCorrupted;
-    protected final SpiritRiteEffect effect;
+    protected final RiteEffectHolder<? extends SpiritRiteEffect> effect;
 
     private List<Component> detailedDescription;
 
-    public SpiritRiteType(SpiritRiteEffect effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
+    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
         this.effect = effect;
         this.isCorrupted = isCorrupted;
         this.spirits = spirits;
@@ -56,7 +57,7 @@ public class SpiritRiteType {
     }
 
     public SpiritRiteEffect getEffect() {
-        return effect;
+        return effect.get();
     }
 
     public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {

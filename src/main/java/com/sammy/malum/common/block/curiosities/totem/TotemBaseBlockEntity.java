@@ -148,6 +148,9 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public void setState(ServerLevel level, TotemBaseState newState) {
+        if (state.equals(newState)) {
+            return;
+        }
         if (newState.equals(TotemBaseState.INACTIVE)) {
             level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
             setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.INACTIVE);

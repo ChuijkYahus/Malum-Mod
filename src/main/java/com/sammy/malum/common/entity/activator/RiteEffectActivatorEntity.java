@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.SoundHelper;
@@ -55,12 +56,16 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
         if (spirit != null) {
             spirit.save(pCompound);
         }
+        if (effect != null) {
+            effect.save(pCompound);
+        }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
+        effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteEntityEffect.class).orElse(null);
     }
 
     @Override
@@ -70,7 +75,14 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public void collect(ServerLevel level) {
-        SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
+        if (effect != null) {
+            getDestination().getEntityCollector(level)
+                    .ifPresent(target -> {
+                        effect.tryApplyEffect(level, target);
+                        float volume = target instanceof Player ? 0.8f : 0.4f;
+                        SoundHelper.playSound(this, effect.getImpactSound().value(), volume, Mth.nextFloat(random, 0.9f, 1.1f));
+                    });
+        }
     }
 
     @Override

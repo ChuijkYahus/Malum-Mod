@@ -1,6 +1,7 @@
 package com.sammy.malum.core.systems.rite;
 
 import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
@@ -44,11 +45,10 @@ public class SpiritRiteTypeBuilder {
         return this;
     }
 
-    public SpiritRiteType build(Supplier<SpiritRiteEffect> effectSupplier) {
+    public SpiritRiteType build(RiteEffectHolder<? extends SpiritRiteEffect> effect) {
         if (spirits.isEmpty()) {
             throw new IllegalStateException("SpiritRiteType must have at least one spirit.");
         }
-        SpiritRiteEffect effect = effectSupplier.get();
         return new SpiritRiteType(effect, isCorrupted, spirits);
     }
 }

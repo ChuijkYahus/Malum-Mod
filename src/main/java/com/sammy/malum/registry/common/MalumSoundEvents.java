@@ -164,10 +164,16 @@ public class MalumSoundEvents {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WEAVERS_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weavers_workbench_weaves")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_LOOP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totem_hums")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totem_charges")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_ACTIVATED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_rite_activated")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_CANCELLED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_rite_cancelled")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_ENGRAVE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_engraved")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_FORMED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_formed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_effect")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_POTION_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_potion_effect")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_AERIAL_MAGIC = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("aerial_magic_swooshes")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RITUAL_BEGINS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ritual_begins")));
