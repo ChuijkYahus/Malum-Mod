@@ -1,7 +1,8 @@
 package com.sammy.malum.core.systems.rite;
 
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffect;
+import com.sammy.malum.core.systems.registry.rite.*;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
 
@@ -12,7 +13,6 @@ public class SpiritRiteTypeBuilder {
 
     private final List<SpiritHolder<SpiritArcanaType>> spirits;
     private boolean isCorrupted = false;
-    private SpiritRiteEffect effect;
 
     public static SpiritRiteTypeBuilder minorTotemRite(SpiritHolder<SpiritArcanaType> spirit) {
         return new SpiritRiteTypeBuilder(List.of(MalumSpiritTypes.ARCANE_SPIRIT, spirit, spirit));
@@ -40,20 +40,12 @@ public class SpiritRiteTypeBuilder {
         this.spirits = new ArrayList<>(spirits);
     }
 
-    public SpiritRiteTypeBuilder effect(Supplier<SpiritRiteEffect> effect) {
-        this.effect = effect.get();
-        return this;
-    }
-
-    public SpiritRiteTypeBuilder corrupted() {
+    public SpiritRiteTypeBuilder setCorrupted() {
         this.isCorrupted = true;
         return this;
     }
 
-    public SpiritRiteType build() {
-        if (effect == null) {
-            throw new IllegalStateException("SpiritRiteType must have an effect.");
-        }
+    public SpiritRiteType build(RiteEffectHolder<? extends SpiritRiteEffect> effect) {
         if (spirits.isEmpty()) {
             throw new IllegalStateException("SpiritRiteType must have at least one spirit.");
         }

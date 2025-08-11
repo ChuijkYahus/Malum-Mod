@@ -156,6 +156,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     public void strip(ServerLevel level) {
         level.setBlockAndUpdate(worldPosition, getLogBlock().defaultBlockState());
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, 0.7f);
+        level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, 1f);
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition)
                 .color(spirit)

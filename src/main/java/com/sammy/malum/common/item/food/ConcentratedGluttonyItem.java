@@ -30,41 +30,38 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
         var properties = applyConcentratedGluttonyEffect(pEntityLiving, 1f);
         SoundHelper.playSound(pEntityLiving, MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
-            final MobEffectInstance instance = pEntityLiving.getEffect(properties.getEffectType());
-            if (instance != null) {
-                createGluttonyVFX(serverLevel, pEntityLiving, instance.getAmplifier());
+            if (pEntityLiving.hasEffect(properties.getEffectType())) {
+                createGluttonyVFX(serverLevel, pEntityLiving, 0.75f);
             }
         }
         return super.finishUsingItem(pStack, pLevel, pEntityLiving);
     }
 
     public static GluttonyEffect.GluttonyEffectProperties applyConcentratedGluttonyEffect(LivingEntity target, float durationScalar) {
-        return GluttonyEffect.applyGluttony(target, b -> {
+        return GluttonyEffect.applyGluttony(target, builder -> {
             int amplifier = 3;
-            int duration = 20;
+            int duration = 200;
 
             if (CurioHelper.hasCurioEquipped(target, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 amplifier++;
-                duration += 40;
+                duration += 400;
             }
             for (Holder<Item> rottenTrinket : ROTTEN_TRINKETS) {
                 if (CurioHelper.hasCurioEquipped(target, rottenTrinket.value())) {
                     amplifier++;
-                    duration += 10;
+                    duration += 100;
                 }
             }
             for (Holder<GeasEffectType> rottenGea : ROTTEN_GEAS) {
                 if (GeasEffectHandler.hasGeasEffect(target, rottenGea)) {
                     amplifier++;
-                    duration += 40;
+                    duration += 400;
                 }
             }
-            b.setInitialData((int) (duration * 20 * durationScalar), amplifier);
+            builder.setInitialDuration((int) (duration * durationScalar));
+            builder.setInitialAmplifier(amplifier);
+            builder.setAmplifierLimit(10);
         });
-    }
-
-    public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, int amplifier) {
-        createGluttonyVFX(serverLevel, target, 1f + amplifier * 0.05f);
     }
 
     public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, float potency) {

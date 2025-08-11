@@ -29,8 +29,6 @@ public class MalumDamageTypeDatagen {
         register(context, MalumDamageTypes.HIDDEN_BLADE_PHYSICAL_COUNTER);
         register(context, MalumDamageTypes.HIDDEN_BLADE_MAGIC_COUNTER);
 
-        register(context, MalumDamageTypes.UNMAKERS_DISDAIN_COMBO);
-
         register(context, MalumDamageTypes.TYRVING);
 
         register(context, MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO);
@@ -38,6 +36,11 @@ public class MalumDamageTypeDatagen {
 
         register(context, MalumDamageTypes.WARLOCK_SPIRIT_IMPACT);
         register(context, MalumDamageTypes.BERSERKER_SPIRIT_IMPACT);
+
+        register(context, MalumDamageTypes.DESPERATE_NEED_CUT);
+        register(context, MalumDamageTypes.DESPERATE_NEED_WITHDRAWAL);
+
+        register(context, MalumDamageTypes.UNMAKERS_DISDAIN_COMBO);
 
         register(context, MalumDamageTypes.INVERTED_HEART_RETALIATION);
         register(context, MalumDamageTypes.INVERTED_HEART_PROPAGATION);

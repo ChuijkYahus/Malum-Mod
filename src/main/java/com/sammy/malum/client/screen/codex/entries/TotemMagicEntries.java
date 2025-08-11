@@ -7,12 +7,9 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.geas.GeasEffectType;
-import com.sammy.malum.core.systems.registry.RiteHolder;
+import com.sammy.malum.core.systems.registry.rite.RiteHolder;
 import com.sammy.malum.core.systems.rite.SpiritRiteType;
-import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -128,8 +125,8 @@ public class TotemMagicEntries {
 
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_HARMING, -2, 16);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, -3, 16);
-//        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -3, 17);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -4, 17);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -3, 17);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_RAISING, -4, 17);
     }
 
     public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {

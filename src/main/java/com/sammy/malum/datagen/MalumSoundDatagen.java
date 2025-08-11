@@ -115,6 +115,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.REAPER_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.BERSERKER_WRATH, s -> definition(s).with(sounds("curiosities/geas/berserker_impact", 4)));
         this.add(MalumSoundEvents.PATIENT_DROWNING, s -> definition(s).with(sounds("minecraft:entity/player/hurt/drown", 4)));
+        this.add(MalumSoundEvents.DESPERATE_NEED_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.DESPERATE_NEED_WITHDRAWAL, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.PROSPECTOR_BURN, s -> definition(s).with(sound("minecraft:mob/ghast/fireball4")));
         this.add(MalumSoundEvents.COMBUSTION_WHIPLASH, s -> definition(s).with(sound("minecraft:random/fizz")));
@@ -165,10 +166,16 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
 
         this.add(MalumSoundEvents.WEAVERS_WORKBENCH_CRAFT, s -> definition(s).with(sounds("runic_workbench/craft_rune_generic", 3)));
 
+        this.add(MalumSoundEvents.TOTEM_LOOP, s -> definition(s).with(sound("totem/totem_loop")));
         this.add(MalumSoundEvents.TOTEM_CHARGE, s -> definition(s).with(sounds("totem/totem_charge", 3)));
         this.add(MalumSoundEvents.TOTEM_ACTIVATED, s -> definition(s).with(sound("totem/totem_activate")));
         this.add(MalumSoundEvents.TOTEM_CANCELLED, s -> definition(s).with(sound("totem/totem_cancel")));
         this.add(MalumSoundEvents.TOTEM_ENGRAVE, s -> definition(s).with(sounds("totem/totem_engrave", 3)));
+
+        this.add(MalumSoundEvents.SPARK_FORMED, s -> definition(s).with(sounds("totem/spark/spark_create", 3)));
+        this.add(MalumSoundEvents.SPARK_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_hit", 3)));
+        this.add(MalumSoundEvents.SPARK_POTION_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_potion_hit", 3)));
+
         this.add(MalumSoundEvents.TOTEM_AERIAL_MAGIC, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
 
         this.add(MalumSoundEvents.RITUAL_BEGINS, s -> definition(s).with(sound("ritual/ritual_start")));

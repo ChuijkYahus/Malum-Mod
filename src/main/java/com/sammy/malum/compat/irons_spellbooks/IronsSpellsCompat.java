@@ -10,7 +10,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.enchantment.*;
 import io.redspace.ironsspellbooks.api.events.*;
 import io.redspace.ironsspellbooks.api.magic.*;
-import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.api.registry.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -133,37 +133,40 @@ public class IronsSpellsCompat {
         }
 
         public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {
-            attributes.add(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER,
+            attributes.add(AttributeRegistry.SPELL_POWER,
                     new AttributeModifier(MalumMod.malumPath("soul_hunter_armor"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                     group);
         }
 
         public static void addSpellPowerToCurio(MalumCurioItem item, Multimap<Holder<Attribute>, AttributeModifier> map, ResourceLocation id, float amount) {
-            item.addAttributeModifier(map, io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER,
+            item.addAttributeModifier(map, AttributeRegistry.SPELL_POWER,
                     new AttributeModifier(id, amount, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }
 
         public static void addEchoingArcanaSpellCooldown(EchoingArcanaEffect effect) {
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.COOLDOWN_REDUCTION, MalumMod.malumPath("echoing_arcana"), 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+            effect.addAttributeModifier(AttributeRegistry.COOLDOWN_REDUCTION, MalumMod.malumPath("echoing_arcana"), 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         }
 
         public static void addGluttonySpellPower(GluttonyEffect effect) {
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.03f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.03f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
-            effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            var id = MalumMod.malumPath("trial_of_faith");
+            effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addDesperateNeedSpellPower(DesperateNeedEffect effect) {
-            effect.addAttributeModifier(AttributeRegistry.NATURE_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, MalumMod.malumPath("trial_of_faith"), 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            var id = MalumMod.malumPath("desperate_need");
+            effect.addAttributeModifier(AttributeRegistry.NATURE_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.MANA_REGEN, MalumMod.malumPath("silenced"), -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(io.redspace.ironsspellbooks.api.registry.AttributeRegistry.SPELL_POWER, MalumMod.malumPath("silenced"), -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            var id = MalumMod.malumPath("silenced");
+            effect.addAttributeModifier(AttributeRegistry.MANA_REGEN, id, -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.SPELL_POWER, id, -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
     }
 }

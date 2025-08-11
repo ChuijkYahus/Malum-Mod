@@ -22,7 +22,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
 
     protected static final EntityDataAccessor<Boolean> DATA_FADING_AWAY = SynchedEntityData.defineId(ThrownConcentratedGluttony.class, EntityDataSerializers.BOOLEAN);
 
-    public final List<TrailPointBuilder> trails = new ArrayList<>(List.of(TrailPointBuilder.create(4), TrailPointBuilder.create(8), TrailPointBuilder.create(12)));
+    public final List<TrailPointBuilder> orbitingTrails = new ArrayList<>(List.of(TrailPointBuilder.create(4), TrailPointBuilder.create(8), TrailPointBuilder.create(12)));
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
     public int age;
@@ -86,20 +86,19 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
         super.tick();
         boolean fadingAway = isFadingAway();
         if (level().isClientSide) {
-            for (int i = 0; i < 3; i++) {
-                var trailPointBuilder = trails.get(i);
-                float offsetScale = i*0.1f;
+            Vec3 position = getPosition(0.5f);
+            for (int i = 0; i < orbitingTrails.size(); i++) {
+                var trailPointBuilder = orbitingTrails.get(i);
+                float offsetScale = (i+1) * 0.1f;
                 if (fadingAway) {
-                    offsetScale *= 1+fadingTimer/4f;
+                    offsetScale *= 1 + fadingTimer / 4f;
                 }
-                for (int j = 0; j < 2; j++) {
-                    float progress = (j + 1) * 0.5f;
-                    Vec3 position = getPosition(progress);
-                    float scalar = (i*2.35f + age + progress) / 2f;
-                    double xOffset = Math.cos(spinOffset + scalar) * offsetScale;
-                    double zOffset = Math.sin(spinOffset + scalar) * offsetScale;
-                    trailPointBuilder.addTrailPoint(position.add(xOffset, 0, zOffset));
-                }
+                float scalar = age / 2f;
+                float offset = i * 2.35f;
+                float angle = spinOffset + scalar + offset;
+                double xOffset = Math.sin(angle) * offsetScale;
+                double zOffset = Math.cos(angle) * offsetScale;
+                trailPointBuilder.addTrailPoint(position.add(xOffset, 0, zOffset));
                 trailPointBuilder.tickTrailPoints();
             }
         }
@@ -141,7 +140,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
                     if (distance < 6.0D) {
                         float durationScalar = target.equals(impactedEntity) ? 1f : (float) (1f - Math.sqrt(distance) / 4f);
                         ConcentratedGluttonyItem.applyConcentratedGluttonyEffect(target, durationScalar);
-                        ConcentratedGluttonyItem.createGluttonyVFX(level, target, 0.25f);
+                        ConcentratedGluttonyItem.createGluttonyVFX(level, target, 0.75f);
                     }
                 }
             }

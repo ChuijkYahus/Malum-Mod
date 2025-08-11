@@ -44,6 +44,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
         }
         if (attacked.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown == 0) {
             float damage = event.getOriginalDamage();
+            //Every 3 points of damage raises the amplifier by one
             int amplifier = Math.min(Mth.floor(damage / 3), 9);
             attacked.addEffect(new MobEffectInstance(MalumMobEffects.WICKED_INTENT, 100, amplifier));
             SoundHelper.playSound(attacked, MalumSoundEvents.HIDDEN_BLADE_PRIMED.get(), 1f, RandomHelper.randomBetween(attacked.level().getRandom(), 1.4f, 1.6f));
@@ -84,9 +85,17 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 float totalDamage = physicalDamage + magicDamage;
                 float physicalPct = physicalDamage / totalDamage;
                 float magicPct = magicDamage / totalDamage;
+
+                // Physical damage is set to the minimum of the damage dealt or player's attack damage
+                // We then add the base damage bonus, which is potentially split between physical and magic damage based on how much of both the scythe deals
+                // Finally, we amplify the damage by the Wicked Intent's effect amplifier, before dividing it by the amount of hits
+                // TLDR: (Damage Dealt + Base Damage Split Across The Two Damage Types) * Damage Bonus / Slash Duration
+                physicalDamage = Math.min(event.getNewDamage(), physicalDamage);
                 physicalDamage += baseDamage * physicalPct;
                 physicalDamage *= damageBonus;
                 physicalDamage /= slashDuration;
+
+                //Magic damage is calculated similarly, but avoids the first step
                 magicDamage += baseDamage * magicPct;
                 magicDamage *= damageBonus;
                 magicDamage /= slashDuration;

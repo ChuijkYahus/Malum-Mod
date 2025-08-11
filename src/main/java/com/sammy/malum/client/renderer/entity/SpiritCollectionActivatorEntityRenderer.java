@@ -9,6 +9,9 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import team.lodestar.lodestone.registry.client.*;
+import team.lodestar.lodestone.systems.rendering.trail.*;
+
+import java.awt.*;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -41,15 +44,19 @@ public class SpiritCollectionActivatorEntityRenderer extends EntityRenderer<Spir
             FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, spiritType, 2f, 3f, partialTicks);
             poseStack.popPose();
 
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.7f, 1f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 0.3f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailA, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailB, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.9f, 1f, partialTicks);
+            Color primaryColor = spiritType.getPrimaryColor();
+            Color secondaryColor = spiritType.getSecondaryColor();
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, primaryColor, secondaryColor, 0.7f, 1f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, primaryColor, secondaryColor, 0.4f, 0.3f, partialTicks);
+            for (TrailPointBuilder trail : entity.orbitingTrails) {
+                RenderUtils.renderEntityTrail(poseStack, trailBuilder, trail, entity, primaryColor, secondaryColor, 0.9f, 1f, partialTicks);
+            }
             trailBuilder.setRenderType(transparent);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.7f, 1.25f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.2f, 0.5f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailA, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
-            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.orbitingTrailB, entity, spiritType.getPrimaryColor(), spiritType.getSecondaryColor(), 0.4f, 1.25f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.trail, entity, primaryColor, secondaryColor, 0.7f, 1.25f, partialTicks);
+            RenderUtils.renderEntityTrail(poseStack, trailBuilder, entity.longTrail, entity, primaryColor, secondaryColor, 0.2f, 0.5f, partialTicks);
+            for (TrailPointBuilder trail : entity.orbitingTrails) {
+                RenderUtils.renderEntityTrail(poseStack, trailBuilder, trail, entity, primaryColor, secondaryColor, 0.4f, 1.25f, partialTicks);
+            }
         }
         super.render(entity, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
     }

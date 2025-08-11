@@ -115,17 +115,6 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN_BASE = BLOCKS.register("weeping_well_column_base", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
     public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN = BLOCKS.register("weeping_well_column", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
     public static final DeferredHolder<Block, Block> WEEPING_WELL_COLUMN_CAP = BLOCKS.register("weeping_well_column_cap", () -> new WeepingWellDirectionalBlock(MalumBlockProperties.WEEPING_WELL()));
-
-
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT = BLOCKS.register("weeping_well_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_MIRRORED = BLOCKS.register("weeping_well_encasement_mirrored", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_ENCASEMENT_CORNER = BLOCKS.register("weeping_well_encasement_corner", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT = BLOCKS.register("weeping_well_central_encasement", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_ENCASEMENT_SUPPORT = BLOCKS.register("weeping_well_central_encasement_support", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
-
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_CENTRAL_PILLAR = BLOCKS.register("weeping_well_central_pillar", () -> new WeepingWellPillarBlock(MalumBlockProperties.WEEPING_WELL()));
-//    public static final DeferredHolder<Block, Block> WEEPING_WELL_SIDE_PILLAR = BLOCKS.register("weeping_well_side_pillar", () -> new WeepingWellBlock(MalumBlockProperties.WEEPING_WELL()));
     //endregion
 
     //region spirited glass

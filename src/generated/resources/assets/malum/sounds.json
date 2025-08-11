@@ -2120,6 +2120,30 @@
     ],
     "subtitle": "malum.subtitle.soulwood_trapdoor_open"
   },
+  "spark_bestows_effect": {
+    "sounds": [
+      "malum:totem/spark/spark_hit1",
+      "malum:totem/spark/spark_hit2",
+      "malum:totem/spark/spark_hit3"
+    ],
+    "subtitle": "malum.subtitle.spark_bestows_effect"
+  },
+  "spark_bestows_potion_effect": {
+    "sounds": [
+      "malum:totem/spark/spark_potion_hit1",
+      "malum:totem/spark/spark_potion_hit2",
+      "malum:totem/spark/spark_potion_hit3"
+    ],
+    "subtitle": "malum.subtitle.spark_bestows_potion_effect"
+  },
+  "spark_formed": {
+    "sounds": [
+      "malum:totem/spark/spark_create1",
+      "malum:totem/spark/spark_create2",
+      "malum:totem/spark/spark_create3"
+    ],
+    "subtitle": "malum.subtitle.spark_formed"
+  },
   "spell_charge_full": {
     "sounds": [
       "malum:curiosities/spell_charge/charge_full1",
@@ -2477,6 +2501,15 @@
     ],
     "subtitle": "malum.subtitle.the_rot_consumes"
   },
+  "the_rot_spreads": {
+    "sounds": [
+      "malum:curiosities/geas/reaper_impact1",
+      "malum:curiosities/geas/reaper_impact2",
+      "malum:curiosities/geas/reaper_impact3",
+      "malum:curiosities/geas/reaper_impact4"
+    ],
+    "subtitle": "malum.subtitle.the_rot_spreads"
+  },
   "the_sound_of_silence": {
     "sounds": [
       "malum:curiosities/motifs/draining_bubbling1",
@@ -2532,6 +2565,12 @@
       "malum:totem/totem_charge3"
     ],
     "subtitle": "malum.subtitle.totem_charges"
+  },
+  "totem_hums": {
+    "sounds": [
+      "malum:totem/totem_loop"
+    ],
+    "subtitle": "malum.subtitle.totem_hums"
   },
   "totemic_rite_activated": {
     "sounds": [

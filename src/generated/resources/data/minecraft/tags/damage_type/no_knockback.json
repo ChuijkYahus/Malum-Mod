@@ -11,6 +11,8 @@
     "malum:hidden_blade_magic_counter",
     "malum:sundering_anchor_physical_combo",
     "malum:sundering_anchor_magic_combo",
-    "malum:unmakers_disdain_combo"
+    "malum:unmakers_disdain_combo",
+    "malum:desperate_need_cut",
+    "malum:desperate_need_withdrawal"
   ]
 }

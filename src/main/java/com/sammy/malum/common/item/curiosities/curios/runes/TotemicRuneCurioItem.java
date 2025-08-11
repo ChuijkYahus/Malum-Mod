@@ -1,10 +1,10 @@
 package com.sammy.malum.common.item.curiosities.curios.runes;
 
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.registry.RiteHolder;
+import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.registry.SpiritHolder;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.rite.effect.SpiritRitePotionEffect;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
@@ -15,20 +15,17 @@ import java.util.function.*;
 
 public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
 
-    protected final RiteHolder<SpiritRiteType> riteType;
+    protected final RiteEffectHolder<? extends SpiritRitePotionEffect<?>> effect;
 
-    public TotemicRuneCurioItem(Properties builder, RiteHolder<SpiritRiteType> riteType, SpiritHolder<SpiritArcanaType> spirit) {
+    public TotemicRuneCurioItem(Properties builder, RiteEffectHolder<? extends SpiritRitePotionEffect<?>> effect, SpiritHolder<SpiritArcanaType> spirit) {
         super(builder, spirit, MalumTrinketType.TOTEMIC_RUNE);
-        this.riteType = riteType;
+        this.effect = effect;
     }
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        SpiritRiteType spiritRite = riteType.get();
-        if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
-            Component effectName = potionEffect.getEffect().value().getDisplayName();
-            consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", effectName));
-        }
+        Component effectName = effect.value().getEffect().value().getDisplayName();
+        consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", effectName));
     }
 
     @Override
@@ -36,10 +33,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
         var target = slotContext.entity();
         if (target.level() instanceof ServerLevel level) {
             if (level.getGameTime() % 5L == 0) {
-                SpiritRiteType spiritRite = riteType.get();
-                if (spiritRite.getEffect() instanceof SpiritRitePotionEffect<?> potionEffect) {
-                    potionEffect.applyRuneEffect(level, target);
-                }
+                effect.value().applyRuneEffect(level, target);
             }
         }
         super.curioTick(slotContext, stack);

@@ -2,8 +2,8 @@ package com.sammy.malum.common.entity.activator;
 
 import com.sammy.malum.common.entity.FloatingEntity;
 import com.sammy.malum.common.entity.FloatingItemDestinationData;
-import com.sammy.malum.common.entity.FloatingItemEntity;
-import com.sammy.malum.core.handlers.SoulHarvestHandler;
+import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.MalumEntityDataSerializers;
 import com.sammy.malum.registry.common.MalumSoundEvents;
@@ -16,12 +16,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.SoundHelper;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.util.UUID;
 
@@ -29,13 +28,16 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
 
     protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(RiteEffectActivatorEntity.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
+    protected SpiritRiteEntityEffect<?> effect;
+
     public RiteEffectActivatorEntity(Level level) {
         super(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 
-    public RiteEffectActivatorEntity(Level level, UUID targetUUID, Vec3 position, Vec3 velocity) {
+    public RiteEffectActivatorEntity(Level level, SpiritRiteEntityEffect<?> effect, UUID targetUUID, Vec3 position, Vec3 velocity) {
         this(level);
+        this.effect = effect;
         setDestination(new FloatingItemDestinationData(targetUUID));
         setPos(position);
         setDeltaMovement(velocity);
@@ -54,12 +56,16 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
         if (spirit != null) {
             spirit.save(pCompound);
         }
+        if (effect != null) {
+            effect.save(pCompound);
+        }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
+        effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteEntityEffect.class).orElse(null);
     }
 
     @Override
@@ -69,7 +75,14 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public void collect(ServerLevel level) {
-        SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
+        if (effect != null) {
+            getDestination().getEntityCollector(level)
+                    .ifPresent(target -> {
+                        effect.tryApplyEffect(level, target);
+                        float volume = target instanceof Player ? 0.8f : 0.4f;
+                        SoundHelper.playSound(this, effect.getImpactSound().value(), volume, Mth.nextFloat(random, 0.9f, 1.1f));
+                    });
+        }
     }
 
     @Override

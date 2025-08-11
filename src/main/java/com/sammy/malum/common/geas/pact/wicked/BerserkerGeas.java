@@ -28,7 +28,7 @@ public class BerserkerGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        storedDamage = (storedDamage + 2 + event.getAmount()) * 0.8f;
+        storedDamage = (storedDamage + 4 + event.getAmount()) * 0.8f;
     }
 
     @Override
@@ -50,6 +50,7 @@ public class BerserkerGeas extends GeasEffect {
             return;
         }
         if (resetDamageNextTick) {
+            //Damage Reset is delayed by one tick to better function with AOE damage such as sweeping
             storedDamage = 0;
             resetDamageNextTick = false;
         }

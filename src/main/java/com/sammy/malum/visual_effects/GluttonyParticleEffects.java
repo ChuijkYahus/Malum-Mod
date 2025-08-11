@@ -33,7 +33,7 @@ public class GluttonyParticleEffects {
         for (int i = 0; i < 2; i++) {
             int lifetime = RandomHelper.randomBetween(random, 20, 30);
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                    .setTransparencyData(GenericParticleData.create(0.2f, 0.7f, 0).build().multiplyValue(gluttonyPotency))
+                    .setTransparencyData(GenericParticleData.create(0.2f, 0.7f, 0).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, 0.05f).build())
                     .setScaleData(GenericParticleData.create(0.2f, 0.75f, 0f).setCoefficient(1.25f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                     .setLifetime(lifetime)
@@ -44,16 +44,16 @@ public class GluttonyParticleEffects {
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT.withDepthFade())
                     .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
-        float distance = 0.7f;
+        float distance = 0.5f + gluttonyPotency * 0.25f;
         float length = 1.4f * gluttonyPotency;
         float scale = 0.6f * gluttonyPotency;
-        int count = gluttonyPotency < 1f ? 6 : 8;
+        int count = 6;
 
-        var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE), distance, count);
+        var options = new WorldParticleOptions(LodestoneParticleTypes.SPARKLE_PARTICLE).setBehavior(SparkParticleBehavior.sparkBehavior());
+        var ring = gluttonyRing(positionData.getAsVector(), options, distance, count);
         ring.getBuilder()
                 .modifyLengthData(d -> d.multiplyValue(length))
-                .modifyTransparencyData(d -> d.multiplyValue(gluttonyPotency))
-                .setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.SINE_IN).build());
+                .setScaleData(GenericParticleData.create(scale, 0f).setEasing(Easing.EXPO_IN).build());
         ring.spawnParticles();
     }
 
@@ -62,10 +62,11 @@ public class GluttonyParticleEffects {
         var random = level.random;
 
         for (int i = 0; i < 4; i++) {
-            int lifetime = RandomHelper.randomBetween(random, 30, 40);
+            int lifetime = RandomHelper.randomBetween(random, 40, 50);
+            float upwardsOffset = 0.1f + i * 0.05f;
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
                     .setBehavior(DirectionalParticleBehavior.directional())
-                    .setTransparencyData(GenericParticleData.create(0.2f, 0.7f, 0).build())
+                    .setTransparencyData(GenericParticleData.create(0.5f, 0.7f, 0).build())
                     .setColorData(ColorParticleData.create(GLUTTONY_DARK, GLUTTONY_SHADE).setCoefficient(2f).build())
                     .setScaleData(GenericParticleData.create(2f, 0f).setEasing(Easing.EXPO_IN).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, 0.05f).build())
@@ -74,14 +75,14 @@ public class GluttonyParticleEffects {
                     .setMotion(0, 0.001f, 0)
                     .setLifetime(lifetime)
                     .enableNoClip()
-                    .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
+                    .repeat(level, positionData.getPosX(), positionData.getPosY() + upwardsOffset, positionData.getPosZ(), 2);
         }
         var particle = LodestoneParticleTypes.THIN_EXTRUDING_SPARK_PARTICLE;
-        var ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 1.2f, 32);
-        ring.spawnParticles();
-        ring = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 0.4f, 16, 0.5f);
-        ring.getBuilder().modifyLengthData(d -> d.multiplyValue(0.5f));
-        ring.spawnParticles();
+        var farRing = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 1.2f, 32, 1.5f);
+        farRing.spawnParticles();
+        var tallRing = gluttonyRing(positionData.getAsVector(), new WorldParticleOptions(particle), 0.4f, 16, 2f);
+        tallRing.getBuilder().modifyLengthData(d -> d.multiplyValue(1.5f));
+        tallRing.spawnParticles();
     }
 
     public static ParticleEffectSpawner gluttonyRing(Vec3 center, WorldParticleOptions options, float distance, int count) {
@@ -94,7 +95,7 @@ public class GluttonyParticleEffects {
         var builder = WorldParticleBuilder.create(options.setBehaviorIfDefault(SparkParticleBehavior.sparkBehavior().setLengthCenter(1f)))
                 .setLengthData(GenericParticleData.create(0.1f, 0.5f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build())
                 .setScaleData(GenericParticleData.create(0.025f, RandomHelper.randomBetween(random, 0.2f, 0.3f), 0).build())
-                .setTransparencyData(GenericParticleData.create(0.8f, 0f).build());
+                .setTransparencyData(GenericParticleData.create(0.4f, 1f, 0f).setEasing(Easing.EXPO_OUT, Easing.EXPO_IN).build());
         return gluttonyRing(center, builder, distance, count, lifetimeScalar);
     }
 

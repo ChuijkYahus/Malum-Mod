@@ -104,7 +104,7 @@ public class ArcanaCodexHelper {
 
     public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int z) {
         ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-        float intensity = corrupted ? 20f : 50f;
+        float intensity = corrupted ? 30f : 50f;
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 10f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 9f : 18f);
         shaderInstance.safeGetUniform("Speed").set(corrupted ? -1000f : 1500f);

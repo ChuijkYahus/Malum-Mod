@@ -7,6 +7,8 @@ import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.bus.api.IEventBus;
@@ -21,10 +23,8 @@ import static com.sammy.malum.registry.common.MalumParticles.*;
 import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TYPES;
 import static com.sammy.malum.registry.common.MalumAttributes.*;
 import static com.sammy.malum.registry.common.MalumContainers.*;
-import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.MalumMobEffects.*;
 import static com.sammy.malum.registry.common.MalumSoundEvents.*;
-import static com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes.SPIRIT_RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
@@ -80,8 +80,9 @@ public class MalumMod {
         ATTACHMENT_TYPES.register(modEventBus);
         WORLD_EVENT_TYPES.register(modEventBus);
         SPIRIT_TYPES.register(modEventBus);
-        SPIRIT_RITE_TYPES.register(modEventBus);
-        GEAS_TYPES.register(modEventBus);
+        MalumSpiritRiteEffectTypes.EFFECT_TYPES.register(modEventBus);
+        MalumSpiritRiteTypes.RITE_TYPES.register(modEventBus);
+        MalumGeasEffectTypes.GEAS_TYPES.register(modEventBus);
 
         MalumParticleEffectTypes.init();
     }

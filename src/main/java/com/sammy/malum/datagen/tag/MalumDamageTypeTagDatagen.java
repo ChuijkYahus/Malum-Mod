@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.tag;
 
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.HolderLookup.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
@@ -9,6 +10,7 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.neoforged.neoforge.common.data.*;
+import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -77,6 +79,7 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
 
         SCYTHE.apply(HIDDEN_BLADE_PHYSICAL_COUNTER).add(IS_HIDDEN_BLADE, BYPASSES_COOLDOWN, NO_KNOCKBACK);
         MAGIC.apply(HIDDEN_BLADE_MAGIC_COUNTER).add(IS_HIDDEN_BLADE, BYPASSES_COOLDOWN, NO_KNOCKBACK);
+
         MAGIC.apply(TYRVING);
 
         PHYSICAL.apply(SUNDERING_ANCHOR_PHYSICAL_COMBO).add(IS_SUNDERING_ANCHOR_COMBO, NO_KNOCKBACK).remove(BYPASSES_SHIELD);
@@ -87,13 +90,16 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
         MAGIC.apply(WARLOCK_SPIRIT_IMPACT);
         MAGIC.apply(BERSERKER_SPIRIT_IMPACT);
 
+        SCYTHE.apply(DESPERATE_NEED_CUT).add(NO_KNOCKBACK);
+        MAGIC.apply(DESPERATE_NEED_WITHDRAWAL).add(NO_KNOCKBACK);
+
         MAGIC.apply(INVERTED_HEART_RETALIATION).add(IS_INVERTED_HEART);
         MAGIC.apply(INVERTED_HEART_PROPAGATION).add(IS_INVERTED_HEART);
 
         addToTag(INVERTED_HEART_PROPAGATION_BLACKLIST).add(SCYTHE_SWEEP, THORNS).add(IS_INVERTED_HEART, IS_TECHNICAL);
         addToTag(INVERTED_HEART_RETALIATION_BLACKLIST).add(IS_INVERTED_HEART, IS_TECHNICAL);
 
-        addToTag(GLEEFUL_TARGET_BLACKLIST).add(BYPASSES_ARMOR);
+        addToTag(GLEEFUL_TARGET_BLACKLIST).add(IS_DROWNING, IS_TECHNICAL);
     }
 
     public TagBuilder addTag(ResourceKey<DamageType> target) {

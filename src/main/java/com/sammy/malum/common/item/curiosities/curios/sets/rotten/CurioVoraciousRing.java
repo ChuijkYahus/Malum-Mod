@@ -44,8 +44,8 @@ public class CurioVoraciousRing extends MalumCurioItem {
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
                 GluttonyEffect.applyGluttony(livingEntity, b -> b
-                        .setStackingData(300, 0)
-                        .setLimitData(3000, 0));
+                        .setDurationGain(300)
+                        .setDurationLimit(3000));
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }

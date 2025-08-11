@@ -112,11 +112,12 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> REAPER_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("reaper_scythe_slashes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BERSERKER_WRATH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wrathful_energy_surges")));
     public static final DeferredHolder<SoundEvent, SoundEvent> PATIENT_DROWNING = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_patiently_drowns")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_spreads")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_WITHDRAWAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_consumes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> PROSPECTOR_BURN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_burns_from_greed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> COMBUSTION_WHIPLASH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("player_experiences_combustion_whiplash")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WYRD_RECONSTRUCTION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wyrd_reconstruction_reconstructs_body")));
     public static final DeferredHolder<SoundEvent, SoundEvent> INVERTED_HEART_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_inverted_heart_shrieks")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> DESPERATE_NEED_WITHDRAWAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("the_rot_consumes")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("catalyst_lobber_unlocked")));
     public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_LOCKED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("catalyst_lobber_locked")));
@@ -163,10 +164,16 @@ public class MalumSoundEvents {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WEAVERS_WORKBENCH_CRAFT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weavers_workbench_weaves")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_LOOP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totem_hums")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totem_charges")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_ACTIVATED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_rite_activated")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_CANCELLED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_rite_cancelled")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_ENGRAVE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_engraved")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_FORMED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_formed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_effect")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_POTION_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_potion_effect")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_AERIAL_MAGIC = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("aerial_magic_swooshes")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RITUAL_BEGINS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ritual_begins")));

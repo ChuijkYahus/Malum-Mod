@@ -54,8 +54,8 @@ public class ReaperGeas extends GeasEffect {
                     return;
                 }
             }
+            var random = attacker.getRandom();
 
-            boolean canSweep = MalumScytheItem.canSweep(attacker);
             if (source.is(MalumDamageTypes.SCYTHE_COMBO)) {
                 var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
                 var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
@@ -63,61 +63,47 @@ public class ReaperGeas extends GeasEffect {
                         .targets(target)
                         .tiedToTarget()
                         .forwardOffset(-2f)
+                        .upwardOffset(-0.5f)
                         .color(scytheStack.getItem())
-                        .mirroredRandomly(attacker.getRandom());
-                if (canSweep) {
-                    int sweeping = EnchantmentKeys.getEnchantmentLevel(level, Enchantments.SWEEPING_EDGE, stack);
-                    float damage = event.getNewDamage() * (0.66f + sweeping * 0.33f);
-                    float radius = 1.5f + sweeping * 0.25f;
-                    level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
-                        if (e instanceof LivingEntity sweepTarget) {
-                            if (sweepTarget.isAlive() && sweepTarget != target) {
-                                sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
-                                sweepTarget.knockback(0.4F,
-                                        Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
-                                        (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
-                            }
-                        }
-                    });
+                        .mirroredRandomly(random);
+                if (MalumScytheItem.canSweep(attacker)) {
+                    MalumScytheItem.trySweep(attacker, target, event.getNewDamage());
                 }
                 else {
                     particle.verticalSlashRotation();
                 }
+                particle.slashRotation(particle.getSlashRotation() + RandomHelper.randomBetween(random, -0.3f, 0.3f));
                 particle.spawn(level);
                 return;
             }
             if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+                MalumScytheItem.ScytheDamage damage = MalumScytheItem.getScytheDamage(source, attacker);
+                float physicalDamage = damage.physicalDamage();
+                float magicDamage = damage.magicDamage();
+                float damageScalar = 0.1f;
                 float chance = 0.3f;
                 int extraHits = 2;
-                float physicalDamage;
-                float magicDamage;
-                if (source.getDirectEntity() instanceof ScytheBoomerangEntity scytheBoomerang) {
-                    physicalDamage = scytheBoomerang.damage;
-                    magicDamage = scytheBoomerang.magicDamage;
+                if (damage.isBoomerang()) {
                     chance *= 2;
-                } else {
-                    physicalDamage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
-                    magicDamage = (float) (attacker.getAttribute(LodestoneAttributes.MAGIC_DAMAGE).getValue());
                 }
                 float average = (physicalDamage + magicDamage) / 2;
-                physicalDamage *= physicalDamage / average * 0.1f;
-                magicDamage *= magicDamage / average * 0.1f;
-                if (!canSweep) {
+                physicalDamage *= physicalDamage / average * damageScalar;
+                magicDamage *= magicDamage / average * damageScalar;
+                if (MalumScytheItem.isEnhanced(attacker)) {
                     extraHits++;
                     chance += 0.1f;
                 }
-                if (level.getRandom().nextFloat() > chance) {
-                    return;
-                }
-                for (int i = 0; i < extraHits; i++) {
-                    int delay = 4 + i * 3;
-                    WorldEventHandler.addWorldEvent(level,
-                            new DelayedDamageWorldEvent(target)
-                                    .setAttacker(attacker, source.getDirectEntity())
-                                    .setDamageData(physicalDamage, magicDamage, delay)
-                                    .setPhysicalDamageType(MalumDamageTypes.SCYTHE_COMBO)
-                                    .setSound(MalumSoundEvents.REAPER_CUT, 0.9f, 1.1f, 1));
+                if (random.nextFloat() < chance) {
+                    for (int i = 0; i < extraHits; i++) {
+                        int delay = 4 + i * 3;
+                        WorldEventHandler.addWorldEvent(level,
+                                new DelayedDamageWorldEvent(target)
+                                        .setAttacker(attacker, source.getDirectEntity())
+                                        .setDamageData(physicalDamage, magicDamage, delay)
+                                        .setPhysicalDamageType(MalumDamageTypes.SCYTHE_COMBO)
+                                        .setSound(MalumSoundEvents.REAPER_CUT, 0.9f, 1.1f, 1));
 
+                    }
                 }
             }
         }

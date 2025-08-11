@@ -18,7 +18,7 @@ public class PrimordialSoupBlock extends Block {
 
     public PrimordialSoupBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(TOP, true));
+        this.registerDefaultState(defaultBlockState().setValue(TOP, true));
     }
 
     @Override

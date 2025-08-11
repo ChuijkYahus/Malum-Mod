@@ -7,9 +7,10 @@ import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
@@ -25,19 +26,19 @@ import java.util.*;
 
 public class SpiritRiteType {
 
-    public static final Codec<Holder<SpiritRiteType>> HOLDER_CODEC = MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.holderByNameCodec();
+    public static final Codec<Holder<SpiritRiteType>> HOLDER_CODEC = MalumSpiritRiteTypes.RITE_REGISTRY.holderByNameCodec();
 
-    public static final Codec<SpiritRiteType> CODEC = MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.byNameCodec();
+    public static final Codec<SpiritRiteType> CODEC = MalumSpiritRiteTypes.RITE_REGISTRY.byNameCodec();
 
     public static StreamCodec<ByteBuf, SpiritRiteType> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
 
     protected final List<SpiritHolder<SpiritArcanaType>> spirits;
     protected final boolean isCorrupted;
-    protected final SpiritRiteEffect effect;
+    protected final RiteEffectHolder<? extends SpiritRiteEffect> effect;
 
     private List<Component> detailedDescription;
 
-    public SpiritRiteType(SpiritRiteEffect effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
+    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
         this.effect = effect;
         this.isCorrupted = isCorrupted;
         this.spirits = spirits;
@@ -56,11 +57,11 @@ public class SpiritRiteType {
     }
 
     public SpiritRiteEffect getEffect() {
-        return effect;
+        return effect.get();
     }
 
     public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        effect.triggerRiteEffect(level, totemBase);
+        getEffect().triggerRiteEffect(level, totemBase);
     }
 
     public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {
@@ -120,7 +121,7 @@ public class SpiritRiteType {
     }
 
     public ResourceLocation getRegistryName() {
-        return MalumSpiritRiteTypes.SPIRIT_RITE_REGISTRY.getKey(this);
+        return MalumSpiritRiteTypes.RITE_REGISTRY.getKey(this);
     }
 
     public String getLangKey() {

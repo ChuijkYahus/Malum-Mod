@@ -2,8 +2,10 @@ package com.sammy.malum.core.systems.rite.effect;
 
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 
@@ -33,16 +35,28 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
     }
 
     @Override
+    public boolean canApplyEffect(ServerLevel level, T target) {
+        MobEffectInstance effect = target.getEffect(effectType);
+        if (effect != null) {
+            return effect.getDuration() < 200;
+        }
+        return super.canApplyEffect(level, target);
+    }
+
+    @Override
     public void applyEffect(ServerLevel level, T target) {
         applyEffect(level, target, 3000, 1);
     }
 
     public void applyEffect(ServerLevel level, T target, int duration, int amplifier) {
         var instance = new MobEffectInstance(effectType, duration, amplifier, true, true);
-        if (!target.hasEffect(effectType)) {
-            createEffect(level, target, spirits);
-        }
+        createEffect(level, target, spirits);
         target.addEffect(instance);
+    }
+
+    @Override
+    public Holder<SoundEvent> getImpactSound() {
+        return MalumSoundEvents.SPARK_POTION_IMPACT;
     }
 
     public Holder<MobEffect> getEffect() {

@@ -1,7 +1,6 @@
 package com.sammy.malum.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.thrown.*;
 import com.sammy.malum.registry.client.*;
@@ -18,8 +17,6 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
-
-import static com.sammy.malum.MalumMod.*;
 
 public class ThrownConcentratedGluttonyRenderer extends EntityRenderer<ThrownConcentratedGluttony> {
 
@@ -71,11 +68,11 @@ public class ThrownConcentratedGluttonyRenderer extends EntityRenderer<ThrownCon
          var additive = LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
          var transparent = LodestoneRenderTypes.TRANSPARENT_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL).withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT);
          var builder = VFXBuilders.createWorld().setRenderType(additive);
-         for (TrailPointBuilder trail : entity.trails) {
+         for (TrailPointBuilder trail : entity.orbitingTrails) {
             RenderUtils.renderEntityTrail(poseStack, builder, trail, entity, GLUTTONY_GREEN, GLUTTONY_DARK, scale * 0.5f, scale * 0.5f, partialTicks);
          }
          builder.setRenderType(transparent);
-         for (TrailPointBuilder trail : entity.trails) {
+         for (TrailPointBuilder trail : entity.orbitingTrails) {
             RenderUtils.renderEntityTrail(poseStack, builder, trail, entity, GLUTTONY_GREEN, GLUTTONY_SHADE, scale * 0.75f, scale * 2f, partialTicks);
             RenderUtils.renderEntityTrail(poseStack, builder, trail, entity, GLUTTONY_DARK, GLUTTONY_SHADE, scale, scale * 3f, partialTicks);
          }

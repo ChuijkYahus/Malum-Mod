@@ -3,9 +3,8 @@ package com.sammy.malum.client.screen.codex.pages.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -18,8 +17,6 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.screen.*;
-
-import java.util.*;
 
 import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 

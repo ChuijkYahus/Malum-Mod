@@ -208,9 +208,10 @@ public class MalumTags {
         public static final TagKey<DamageType> IS_HIDDEN_BLADE = tag("is_hidden_blade");
         public static final TagKey<DamageType> IS_SUNDERING_ANCHOR_COMBO = tag("is_sundering_anchor_combo");
 
-        public static final TagKey<DamageType> IS_INVERTED_HEART = tag("soulwashing");
-        public static final TagKey<DamageType> INVERTED_HEART_RETALIATION_BLACKLIST = tag("inverted_heart_retaliation_blacklist");
-        public static final TagKey<DamageType> INVERTED_HEART_PROPAGATION_BLACKLIST = tag("inverted_heart_propagation_blacklist");
+        public static final TagKey<DamageType> IS_INVERTED_HEART = tag("is_soulwashing");
+        public static final TagKey<DamageType> INVERTED_HEART_RETALIATION_BLACKLIST = tag("soulwashing_retaliation_blacklist");
+        public static final TagKey<DamageType> INVERTED_HEART_PROPAGATION_BLACKLIST = tag("soulwashing_propagation_blacklist");
+
         public static final TagKey<DamageType> GLEEFUL_TARGET_BLACKLIST = tag("lions_heart_blacklist");
 
         public static TagKey<DamageType> tag(String path) {

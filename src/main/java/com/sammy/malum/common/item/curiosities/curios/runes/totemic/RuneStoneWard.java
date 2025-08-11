@@ -1,11 +1,11 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.totemic;
 
 import com.sammy.malum.common.item.curiosities.curios.runes.TotemicRuneCurioItem;
-import com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes;
+import com.sammy.malum.registry.common.magic.rite.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 
 public class RuneStoneWard extends TotemicRuneCurioItem {
     public RuneStoneWard(Properties builder) {
-        super(builder, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, MalumSpiritTypes.EARTHEN_SPIRIT);
+        super(builder, MalumSpiritRiteEffectTypes.APPLY_STONE_WARD_EFFECT, MalumSpiritTypes.EARTHEN_SPIRIT);
     }
 }

@@ -38,7 +38,7 @@ import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
 import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
-import static com.sammy.malum.registry.common.magic.MalumSpiritRiteTypes.SPIRIT_RITE_TYPES;
+import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
@@ -63,7 +63,7 @@ public class MalumLangDatagen extends LanguageProvider {
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
         var spirits = new HashSet<>(SPIRIT_TYPES.getEntries());
-        var rites = new HashSet<>(SPIRIT_RITE_TYPES.getEntries());
+        var rites = new HashSet<>(RITE_TYPES.getEntries());
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
@@ -363,6 +363,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("no_normal_foods", "You Must Only Eat Rot");
         addGeasEffect("desperate_need", "Gluttony Becomes Desperate Need");
         addGeasEffect("desperate_need_scythe_proficiency", "Desperate Need Substantially Increases Scythe Proficiency");
+        addGeasEffect("poison_slash", "Desperate Need Enables Poisonous Scythe Slashes");
+        addGeasEffect("poison_slash_consumes_desperate_need", "Desperate Need Fades When Attacking");
         addGeasEffect("desperate_need_betrayal", "The Rot Will Consume You");
         addGeasEffect("wyrd_reconstruction", "Death Triggers Resurrection");
         addGeasEffect("wyrd_reconstruction_spirits", "Resurrection Repeatedly Activates Spirit-Collection Effects");

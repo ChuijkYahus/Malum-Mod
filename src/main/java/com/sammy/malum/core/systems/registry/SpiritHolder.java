@@ -38,7 +38,7 @@ public class SpiritHolder<T extends SpiritArcanaType> extends DeferredHolder<Spi
         return get();
     }
 
-    public SpiritArcanaType orElse(@Nullable SpiritArcanaType fallback) {
+    public SpiritArcanaType orElse(SpiritArcanaType fallback) {
         return isBound() ? value() : fallback;
     }
 }

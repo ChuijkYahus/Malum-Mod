@@ -1,8 +1,7 @@
-package com.sammy.malum.core.systems.registry;
+package com.sammy.malum.core.systems.registry.rite;
 
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
@@ -14,7 +13,7 @@ import java.util.function.*;
 public class DeferredRiteTypes extends DeferredRegister<SpiritRiteType> {
 
     protected DeferredRiteTypes(String namespace) {
-        super(MalumSpiritRiteTypes.SPIRIT_RITE_KEY, namespace);
+        super(MalumSpiritRiteTypes.RITE_KEY, namespace);
     }
 
     public static DeferredRiteTypes create(String modid) {
