@@ -51,9 +51,12 @@ public class GleefulTargetAuthority extends GeasEffect {
     }
 
     public static boolean pausePotionEffects(LivingEntity entity, MobEffectInstance instance) {
+        if (instance.getEffect().equals(MalumMobEffects.GLEEFUL_TARGET)) {
+            return false;
+        }
         var gleefulTarget = entity.getEffect(MalumMobEffects.GLEEFUL_TARGET);
-        if (gleefulTarget != null && !instance.getEffect().equals(MalumMobEffects.GLEEFUL_TARGET)) {
-            final MobEffect type = instance.getEffect().value();
+        if (gleefulTarget != null) {
+            MobEffect type = instance.getEffect().value();
             return !type.isInstantenous();
         }
         return false;

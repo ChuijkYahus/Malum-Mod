@@ -27,9 +27,8 @@ public class ProfaneAsceticGeas extends GeasEffect {
     public void modifyGluttonyPropertiesEvent(ModifyGluttonyPropertiesEvent event, LivingEntity collector) {
         event.getProperties()
                 .scaleInitialDuration(2)
-                .scaleInitialAmplifier(2)
-                .scaleDurationGain(2)
                 .scaleDurationLimit(4)
+                .scaleDurationGain(2)
                 .scaleAmplifierLimit(2)
                 .replaceEffectType(MalumMobEffects.TRIAL_OF_FAITH);
     }

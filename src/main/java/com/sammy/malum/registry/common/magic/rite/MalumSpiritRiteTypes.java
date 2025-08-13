@@ -53,7 +53,7 @@ public class MalumSpiritRiteTypes {
             minorTotemRite(AERIAL_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.APPLY_SKY_TETHER_EFFECT));
     public static final RiteHolder<SpiritRiteType> RITE_OF_GRAVITY = RITE_TYPES.register("rite_of_gravity", () ->
             majorTotemRite(AERIAL_SPIRIT).build(MalumSpiritRiteEffectTypes.BLOCK_GRAVITY_EFFECT));
-    public static final RiteHolder<SpiritRiteType> RITE_OF_LIFTING = RITE_TYPES.register("rite_of_lifting", () ->
+    public static final RiteHolder<SpiritRiteType> RITE_OF_ASCENSION = RITE_TYPES.register("rite_of_ascension", () ->
             majorTotemRite(AERIAL_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.BLOCK_SOMETHING_EFFECT));
 
     public static final RiteHolder<SpiritRiteType> RITE_OF_THE_FLOWING_GRASP = RITE_TYPES.register("rite_of_the_flowing_grasp", () ->

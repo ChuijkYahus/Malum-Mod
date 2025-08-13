@@ -25,7 +25,8 @@ public class SkyTetherEffect extends MobEffect {
         LivingEntity entity = event.getEntity();
         MobEffectInstance effectInstance = entity.getEffect(MalumMobEffects.SKY_TETHER);
         if (effectInstance != null) {
-            event.setDistance(event.getDistance() / (6 + effectInstance.getAmplifier()));
+            int offset = 4 + effectInstance.getAmplifier() * 2;
+            event.setDistance(event.getDistance() / offset);
         }
     }
 }

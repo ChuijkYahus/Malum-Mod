@@ -8,6 +8,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 
 import java.util.*;
 
@@ -57,6 +58,11 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
     @Override
     public Holder<SoundEvent> getImpactSound() {
         return MalumSoundEvents.SPARK_POTION_IMPACT;
+    }
+
+    @Override
+    public float getImpactSoundVolume(LivingEntity target) {
+        return target instanceof Player ? 0.8f : 0.4f;
     }
 
     public Holder<MobEffect> getEffect() {
