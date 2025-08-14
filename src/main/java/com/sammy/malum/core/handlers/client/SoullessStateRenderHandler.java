@@ -1,9 +1,13 @@
 package com.sammy.malum.core.handlers.client;
 
+import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import org.jetbrains.annotations.NotNull;
@@ -13,22 +17,38 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.vertexconsumer.*;
+import team.lodestar.lodestone.systems.rendering.vertexconsumer.offset.*;
 
 import java.awt.*;
 
 public class SoullessStateRenderHandler {
 
     private static boolean renderingSoullessCreature = false;
+    private static ResourceLocation entityTexture;
     private static PoseStack poseStack;
 
-    public static void renderSoullessModelPart(ModelPart modelPart, PoseStack.Pose pose, int packedLight, int packedOverlay) {
+    public static void startRenderingSoullessOutline(LivingEntityRenderer<LivingEntity, ?> renderer, LivingEntity entity, PoseStack stack) {
+        entityTexture = renderer.getTextureLocation(entity);
+        poseStack = stack;
+        renderingSoullessCreature = true;
+    }
+
+    public static void endRenderingSoullessOutline(LivingEntity entity) {
+        renderingSoullessCreature = false;
+    }
+
+    public static void renderSoullessModelPart(ModelPart modelPart, PoseStack.Pose pose, VertexConsumer buffer, int packedLight, int packedOverlay) {
         if (renderingSoullessCreature) {
-            var renderType = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
+            AbstractTexture activeTexture = Minecraft.getInstance().getTextureManager().getTexture(entityTexture);
+            int maskTexture = activeTexture.getId();
+            var renderType = MalumRenderTypes.SOULLESS_OUTLINE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(
+                    shader -> shader.setSamplerTexture("Mask", maskTexture)
+            );
+
             var vertexConsumer = LodestoneRenderHandler.DEFERRED_RENDER.getTarget().getBuffer(renderType);
 
-
             for (int i = 0; i < 4; i++) {
-                Color color = new Color(42 + i * 20, 32, 61);
+                Color color = new Color(42 + i * 20, 32, 60, 80);
                 float size = 1f + ((i+1) * 0.01F);
                 float rate = 0.25f + (i * 0.15F);
                 if (i % 2 == 0) {
@@ -65,7 +85,8 @@ public class SoullessStateRenderHandler {
         float uOffset = (gameTime % uInterval) / uInterval;
         float vOffset = (gameTime % vInterval) / vInterval;
         var effectBuffer = new ModifiedVertexConsumer(vertexConsumer);
-        effectBuffer.setOffset(uOffset, vOffset);
+        //TODO: Uv offset should not apply to the mask, which at the moment they do
+//        effectBuffer.setOffset(uOffset, vOffset);
         poseStack.scale(size, size, size);
         modelPart.compile(pose, effectBuffer, packedLight, packedOverlay, ColorHelper.getColor(color));
         poseStack.scale(inverse, inverse, inverse);
@@ -114,22 +135,13 @@ public class SoullessStateRenderHandler {
         }
     }
 
-    public static void startRenderingSoullessOutline(LivingEntity entity, PoseStack stack) {
-        poseStack = stack;
-        renderingSoullessCreature = true;
-    }
-
-    public static void endRenderingSoullessOutline(LivingEntity entity) {
-        renderingSoullessCreature = false;
-    }
-
     // TODO: Uncomment the code here once we use the parallax soulless rendertype
     public static class ModifiedVertexConsumer extends UVOffsetVertexConsumer {
         public Vector3f tangent = new Vector3f();
         public Vector3f bitangent = new Vector3f();
 
-        public ModifiedVertexConsumer(VertexConsumer... consumers) {
-            super(consumers);
+        public ModifiedVertexConsumer(VertexConsumer consumer) {
+            super(consumer);
         }
 
         public void setExtraData(Vector3f tangent, Vector3f bitangent) {
@@ -139,20 +151,17 @@ public class SoullessStateRenderHandler {
 
         @Override
         public void addVertex(float x, float y, float z, int color, float u, float v, int packedOverlay, int packedLight, float normalX, float normalY, float normalZ) {
-            super.addVertex(x, y, z, color, u, v, packedOverlay, packedLight, normalX, normalY, normalZ);
+            this.addVertex(x, y, z);
+            this.setColor(color);
+            this.setUv(u, v);
+            this.setLight(packedLight);
+            this.setNormal(normalX, normalY, normalZ);
+            this.setTangent(tangent.x, tangent.y, tangent.z);
+            this.setBitangent(bitangent.x, bitangent.y, bitangent.z);
         }
 
-        //        @Override
-//        public void addVertex(float x, float y, float z, int color, float u, float v, int packedOverlay, int packedLight, float normalX, float normalY, float normalZ) {
-//            this.addVertex(x, y, z);
-//            this.setUv(u, v);
-//            this.setNormal(normalX, normalY, normalZ);
-//            this.setTangent(tangent.x, tangent.y, tangent.z);
-//            this.setBitangent(bitangent.x, bitangent.y, bitangent.z);
-//        }
-
         public @NotNull VertexConsumer setTangent(float x, float y, float z) {
-            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(this);
+            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(consumer);
             buffer.beginElement(LodestoneVertexFormats.TANGENT).putBytes(
                     normalIntValue(x),
                     normalIntValue(y),
@@ -162,7 +171,7 @@ public class SoullessStateRenderHandler {
         }
 
         public @NotNull VertexConsumer setBitangent(float x, float y, float z) {
-            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(this);
+            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(consumer);
             buffer.beginElement(LodestoneVertexFormats.BITANGENT).putBytes(
                     normalIntValue(x),
                     normalIntValue(y),
@@ -174,16 +183,5 @@ public class SoullessStateRenderHandler {
         private static byte normalIntValue(float value) {
             return (byte)((int)(Mth.clamp(value, -1.0F, 1.0F) * 127.0F) & 0xFF);
         }
-
-//        @Override
-//        public @NotNull VertexConsumer setOverlay(int packedOverlay) {
-//            return this;
-//        }
-//
-//        @Override
-//        public @NotNull VertexConsumer setLight(int packedLight) {
-//            return this;
-//        }
-
     }
 }
