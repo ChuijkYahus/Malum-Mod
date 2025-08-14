@@ -30,7 +30,9 @@
     "client.GlyphRenderTypesMixin",
     "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin",
-    "client.LocalPlayerMixin"
+    "client.LivingEntityRendererMixin",
+    "client.LocalPlayerMixin",
+    "client.ModelPartMixin"
   ],
   "injectors": {
     "defaultRequire": 1
