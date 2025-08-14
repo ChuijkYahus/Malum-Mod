@@ -43,6 +43,10 @@ public class MalumRenderTypes extends RenderStateShard {
             createGenericRenderType("malignant_glow", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                     LodestoneRenderTypes.builder(token, LODESTONE_TEXTURE, ADDITIVE_TRANSPARENCY, NO_CULL)));
 
+    public static final RenderTypeProvider SOULLESS = new RenderTypeProvider((token) ->
+            createGenericRenderType("transparent_tbn_texture", LodestoneVertexFormats.POSITION_TEX_NORMAL_TANGENT_BITANGENT, QUADS,
+                    LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS, CULL, LIGHTMAP, COLOR_WRITE)));
+
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);
     }

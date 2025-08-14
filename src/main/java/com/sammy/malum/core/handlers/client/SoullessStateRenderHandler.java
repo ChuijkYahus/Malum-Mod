@@ -4,11 +4,14 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
+import org.jetbrains.annotations.NotNull;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.vertexconsumer.*;
 
 import java.awt.*;
@@ -61,10 +64,54 @@ public class SoullessStateRenderHandler {
         float vInterval = uInterval * 4;
         float uOffset = (gameTime % uInterval) / uInterval;
         float vOffset = (gameTime % vInterval) / vInterval;
-        var effectBuffer = new UVOffsetVertexConsumer(vertexConsumer).setOffset(uOffset, vOffset);
+        var effectBuffer = new ModifiedVertexConsumer(vertexConsumer);
+        effectBuffer.setOffset(uOffset, vOffset);
         poseStack.scale(size, size, size);
         modelPart.compile(pose, effectBuffer, packedLight, packedOverlay, ColorHelper.getColor(color));
         poseStack.scale(inverse, inverse, inverse);
+    }
+
+    public static void generateTangentBitangent(PoseStack.Pose pose, VertexConsumer buffer, ModelPart.Polygon polygon, Vector3f normal) {
+        if (buffer instanceof ModifiedVertexConsumer vc) {
+            if (polygon.vertices.length >= 3) {
+                ModelPart.Vertex v1 = polygon.vertices[0];
+                ModelPart.Vertex v2 = polygon.vertices[1];
+                ModelPart.Vertex v3 = polygon.vertices[2];
+
+                Vector3f pos1 = v1.pos;
+                Vector3f pos2 = v2.pos;
+                Vector3f pos3 = v3.pos;
+
+                Vector2f uv1 = new Vector2f(v1.u, v1.v);
+                Vector2f uv2 = new Vector2f(v2.u, v2.v);
+                Vector2f uv3 = new Vector2f(v3.u, v3.v);
+
+                Vector3f edge1 = pos2.sub(pos1, new Vector3f());
+                Vector3f edge2 = pos3.sub(pos1, new Vector3f());
+                Vector2f deltaUV1 = uv2.sub(uv1, new Vector2f());
+                Vector2f deltaUV2 = uv3.sub(uv1, new Vector2f());
+
+                float f = 1.0F / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
+                Vector3f tangent = new Vector3f(f);
+                tangent.mul(
+                        deltaUV2.y * edge1.x - deltaUV1.y * edge2.x,
+                        deltaUV2.y * edge1.y - deltaUV1.y * edge2.y,
+                        deltaUV2.y * edge1.z - deltaUV1.y * edge2.z
+                );
+
+                Vector3f bitangent = new Vector3f(f);
+                bitangent.mul(
+                        -deltaUV2.x * edge1.x + deltaUV1.x * edge2.x,
+                        -deltaUV2.x * edge1.y + deltaUV1.x * edge2.y,
+                        -deltaUV2.x * edge1.z + deltaUV1.x * edge2.z
+                );
+
+                vc.setExtraData(
+                        pose.transformNormal(tangent, new Vector3f()),
+                        pose.transformNormal(bitangent, new Vector3f())
+                );
+            }
+        }
     }
 
     public static void startRenderingSoullessOutline(LivingEntity entity, PoseStack stack) {
@@ -74,5 +121,69 @@ public class SoullessStateRenderHandler {
 
     public static void endRenderingSoullessOutline(LivingEntity entity) {
         renderingSoullessCreature = false;
+    }
+
+    // TODO: Uncomment the code here once we use the parallax soulless rendertype
+    public static class ModifiedVertexConsumer extends UVOffsetVertexConsumer {
+        public Vector3f tangent = new Vector3f();
+        public Vector3f bitangent = new Vector3f();
+
+        public ModifiedVertexConsumer(VertexConsumer... consumers) {
+            super(consumers);
+        }
+
+        public void setExtraData(Vector3f tangent, Vector3f bitangent) {
+            this.tangent.set(tangent);
+            this.bitangent.set(bitangent);
+        }
+
+        @Override
+        public void addVertex(float x, float y, float z, int color, float u, float v, int packedOverlay, int packedLight, float normalX, float normalY, float normalZ) {
+            super.addVertex(x, y, z, color, u, v, packedOverlay, packedLight, normalX, normalY, normalZ);
+        }
+
+        //        @Override
+//        public void addVertex(float x, float y, float z, int color, float u, float v, int packedOverlay, int packedLight, float normalX, float normalY, float normalZ) {
+//            this.addVertex(x, y, z);
+//            this.setUv(u, v);
+//            this.setNormal(normalX, normalY, normalZ);
+//            this.setTangent(tangent.x, tangent.y, tangent.z);
+//            this.setBitangent(bitangent.x, bitangent.y, bitangent.z);
+//        }
+
+        public @NotNull VertexConsumer setTangent(float x, float y, float z) {
+            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(this);
+            buffer.beginElement(LodestoneVertexFormats.TANGENT).putBytes(
+                    normalIntValue(x),
+                    normalIntValue(y),
+                    normalIntValue(z)
+            );
+            return this;
+        }
+
+        public @NotNull VertexConsumer setBitangent(float x, float y, float z) {
+            LodestoneBufferBuilder buffer = new LodestoneBufferBuilder(this);
+            buffer.beginElement(LodestoneVertexFormats.BITANGENT).putBytes(
+                    normalIntValue(x),
+                    normalIntValue(y),
+                    normalIntValue(z)
+            );
+            return this;
+        }
+
+        private static byte normalIntValue(float value) {
+            return (byte)((int)(Mth.clamp(value, -1.0F, 1.0F) * 127.0F) & 0xFF);
+        }
+
+//        @Override
+//        public @NotNull VertexConsumer setOverlay(int packedOverlay) {
+//            return this;
+//        }
+//
+//        @Override
+//        public @NotNull VertexConsumer setLight(int packedLight) {
+//            return this;
+//        }
+
     }
 }

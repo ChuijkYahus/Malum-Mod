@@ -13,10 +13,12 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 public class MalumShaders {
     public static ShaderHolder TOUCH_OF_DARKNESS = new ShaderHolder(MalumMod.malumPath("touch_of_darkness"), DefaultVertexFormat.POSITION_TEX_COLOR);
     public static ShaderHolder WEEPING_WELL_DISTORTION = new ShaderHolder(MalumMod.malumPath("weeping_distortion"), DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);
+    public static ShaderHolder SOULLESS = new ShaderHolder(MalumMod.malumPath("soulless"), LodestoneVertexFormats.POSITION_TEX_NORMAL_TANGENT_BITANGENT);
 
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) {
         TOUCH_OF_DARKNESS.register(event);
         WEEPING_WELL_DISTORTION.register(event);
+        //SOULLESS.register(event); // TODO: Actually have a shader resource for this
     }
 }

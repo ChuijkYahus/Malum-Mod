@@ -32,7 +32,8 @@
     "client.ItemInHandRendererMixin",
     "client.LivingEntityRendererMixin",
     "client.LocalPlayerMixin",
-    "client.ModelPartMixin"
+    "client.ModelPartMixin",
+    "client.ModelPartMixin$Cube"
   ],
   "injectors": {
     "defaultRequire": 1
