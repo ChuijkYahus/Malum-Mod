@@ -120,7 +120,7 @@ public class ArcanaCodexHelper {
         var color = spiritType.getPrimaryColor();
         var secondaryColor = spiritType.getPrimaryColor();
 
-        builder.setColor(color).setAlpha(0.6f);
+        builder.setColor(color).setAlpha(0.8f);
         renderTexture(texture, stack, builder, x, y, 0, 0, 0, 16, 16);
 
         builder.setColor(ColorHelper.brighter(color, 4)).setAlpha(0.1f);

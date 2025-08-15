@@ -79,8 +79,7 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
             getDestination().getEntityCollector(level)
                     .ifPresent(target -> {
                         effect.tryApplyEffect(level, target);
-                        float volume = target instanceof Player ? 0.8f : 0.4f;
-                        SoundHelper.playSound(this, effect.getImpactSound().value(), volume, Mth.nextFloat(random, 0.9f, 1.1f));
+                        SoundHelper.playSound(this, effect.getImpactSound().value(), effect.getImpactSoundVolume(target), Mth.nextFloat(random, 0.9f, 1.1f));
                     });
         }
     }

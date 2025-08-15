@@ -462,7 +462,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addDeathMessage(MalumDamageTypes.INVERTED_HEART_RETALIATION, "%1$s was caught in %2$s's karmic flow", "%1$s was caught in %2$s's karmic flow using %3$s");
 
         addJEEDEffectDescription(MalumMobEffects.STONE_WARD, "An earthen carapace surrounds your body, functioning as extra armor.");
-        addJEEDEffectDescription(MalumMobEffects.EARTHEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");
+        addJEEDEffectDescription(MalumMobEffects.OAKEN_MIGHT, "Your fists and tools are reinforced with earth, increasing your strength.");
         addJEEDEffectDescription(MalumMobEffects.BURNING_FERVOR, "Your tools are bolstered with radiance, increasing your mining and attack speed.");
         addJEEDEffectDescription(MalumMobEffects.FIERY_EMBRACE, "The warm embrace of fire coats your soul, mending your seared scars.");
         addJEEDEffectDescription(MalumMobEffects.HOWLING_GALE, "The zephyr propels you forward, increasing your movement speed.");

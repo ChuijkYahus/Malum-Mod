@@ -8,9 +8,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import team.lodestar.lodestone.helpers.ColorHelper;
 
-public class EarthenMightEffect extends MobEffect {
-    public EarthenMightEffect() {
+public class OakenMightEffect extends MobEffect {
+    public OakenMightEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_COLORS().primaryColor()));
-        addAttributeModifier(Attributes.ATTACK_DAMAGE, MalumMod.malumPath("corrupted_earthen_aura"), 2, AttributeModifier.Operation.ADD_VALUE);
     }
 }

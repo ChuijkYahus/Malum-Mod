@@ -188,14 +188,14 @@ public class TinkeringEntries {
                 .addPage(new TextPage("necklace_of_blissful_harmony.2"))
         );
 
-        screen.addEntry("belt_of_the_magebane", -5, 19, b -> b
+        screen.addEntry("belt_of_the_magebane", -8, 20, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(BELT_OF_THE_MAGEBANE))
                 .addPage(new HeadlineTextPage("belt_of_the_magebane", "belt_of_the_magebane.1"))
                 .addPage(new TextPage("belt_of_the_magebane.2"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_MAGEBANE.get()))
         );
 
-        screen.addEntry("tyrving", -4, 20, b -> b
+        screen.addEntry("tyrving", -7, 21, b -> b
                 .configureWidget(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(TYRVING))
                 .addPage(new HeadlineTextItemPage("tyrving", "tyrving.1", TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))

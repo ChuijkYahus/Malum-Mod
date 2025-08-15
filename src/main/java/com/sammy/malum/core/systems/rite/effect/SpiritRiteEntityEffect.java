@@ -79,6 +79,10 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
         return MalumSoundEvents.SPARK_IMPACT;
     }
 
+    public float getImpactSoundVolume(LivingEntity target) {
+        return 0.4f;
+    }
+
     public int getEffectRange() {
         return 8;
     }

@@ -1,6 +1,6 @@
 #version 150
 
-#moj_import <fog.glsl>
+#moj_import <lodestone:common_math.glsl>
 
 uniform sampler2D Sampler0;
 uniform float LumiTransparency;
@@ -63,15 +63,6 @@ float pattern(vec2 uv) {
     return layeredNoise(uv+layeredNoise(uv+layeredNoise(uv)));
 }
 
-vec4 transformColor(vec4 initialColor, float lumiTransparent) {
-    initialColor = lumiTransparent == 1. ? vec4(initialColor.xyz, (0.21 * initialColor.r + 0.71 * initialColor.g + 0.07 * initialColor.b)) : initialColor;
-    return initialColor * vertexColor * ColorModulator;
-}
-
-vec4 applyFog(vec4 initialColor, float fogStart, float fogEnd, vec4 fogColor, float vertexDistance) {
-    return linear_fog(vec4(initialColor.rgb, initialColor.a*linear_fog_fade(vertexDistance, fogStart, fogEnd)), vertexDistance, fogStart, fogEnd, vec4(fogColor.rgb, initialColor.r));
-}
-
 void main() {
     vec2 uv = texCoord0;
     vec2 uCap = vec2(UVCoordinates.x, UVCoordinates.y);
@@ -85,7 +76,9 @@ void main() {
     float n2 = pattern(Distortion*uv + 0.01);
     vec2 distortedUV = uv+vec2(cos(n), cos(n));
     vec2 distortedUV2 = uv-vec2(cos(n2), cos(n2));
-    vec4 noise = texture(Sampler0, distortedUV)+texture(Sampler0, distortedUV2);
-    vec4 color = transformColor(vec4(noise.rgb/2., noise.a), LumiTransparency);
+    vec4 layer1 = texture(Sampler0, distortedUV);
+    vec4 layer2 = texture(Sampler0, distortedUV2);
+    vec4 noise = (layer1 + layer2) * 0.5;
+    vec4 color = transformColor(noise, LumiTransparency, vertexColor, ColorModulator);
     fragColor = applyFog(color, FogStart, FogEnd, FogColor, vertexDistance);
 }

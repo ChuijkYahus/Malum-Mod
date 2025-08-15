@@ -11,7 +11,6 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import static com.mojang.blaze3d.vertex.DefaultVertexFormat.*;
 import static com.mojang.blaze3d.vertex.VertexFormat.Mode.*;
 import static team.lodestar.lodestone.registry.client.LodestoneRenderTypes.createGenericRenderType;
-import static team.lodestar.lodestone.registry.client.LodestoneShaders.LODESTONE_TEXTURE;
 
 public class MalumRenderTypes extends RenderStateShard {
 
@@ -39,9 +38,9 @@ public class MalumRenderTypes extends RenderStateShard {
         createGenericRenderType("subtractive_intense_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                 LodestoneRenderTypes.builder(token, RENDERTYPE_TEXT_INTENSITY_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
 
-    public static final RenderTypeProvider MALIGNANT_GLOW = new RenderTypeProvider((token) ->
-            createGenericRenderType("malignant_glow", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    LodestoneRenderTypes.builder(token, LODESTONE_TEXTURE, ADDITIVE_TRANSPARENCY, NO_CULL)));
+    public static final RenderTypeProvider SOULLESS_OUTLINE = new RenderTypeProvider((token) ->
+            createGenericRenderType("soulless_outline", LodestoneVertexFormats.POSITION_COLOR_TEX_LIGHTMAP_NORMAL_TANGENT_BITANGENT, QUADS,
+                    LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);

@@ -83,6 +83,9 @@ I wasn't too happy with the execution of this geas, I think this change in behav
 It's meant to serve as an aggressive glass cannon type deal, before this change it lacked a visual representation for your growth in strength, which the slashes help combat.
 It also lacked a downside that felt right and unique, incorporating poison into the geas helps with that a lot I think
 
+Pact of the Berserker
+- Buffed Wrath Gain Rate Slightly
+
 Pact of the Pyromaniac
 - 
 
@@ -94,6 +97,7 @@ Authority of the Gleeful Target
 - Can no longer activate from Drowning Damage
 - Can now trigger when taking Armor-Piercing Damage which includes magic, allowing it to better interact with Patience Repaid
 - Can not trigger when taking Drowning Damage specifically
+- No Longer allows effects to Tick, preventing very niche scenarios where Poison or Wither will still damage you
 
 # Textrues
 
