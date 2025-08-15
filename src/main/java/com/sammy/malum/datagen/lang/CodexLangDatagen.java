@@ -1296,10 +1296,10 @@ public class CodexLangDatagen {
 
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, "",
                 "A simple rite, while active it will bless nearby creatures with Howling Gale, increasing movement speed and attack speed.",
-                "Affected Creatures Are Blessed With  Howling Gale, increasing movement speed and attack speed by two fifths.");
+                "Affected Creatures Are Blessed With Howling Gale\nHowling Gale increases movement speed and attack speed by two fifths.");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, "",
                 "A simple rite, while active it will bless nearby creatures with Sky Tether, increasing jump height and reducing gravity with minimal fall damage reduction.",
-                "Affected Creatures Are Blessed With Sky Tether, reducing gravity and increasing jump height by two fifths each. Fall damage is reduced");
+                "Affected Creatures Are Blessed With Sky Tether\nSky Tether reduces gravity and increases jump height by two fifths each.\nFall damage is also moderately dampened");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_GRAVITY, "",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply a gravity effect to them, causing them to fall.",
                 "Creates a Grounded Rite Locus\nLocus Travels Over Blocks, Applying Gravity Effect similar to Sand or Gravel\nCan Only affect Blocks that can be Preserved Using Silktouch");
@@ -1309,10 +1309,10 @@ public class CodexLangDatagen {
 
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "",
                 "A simple rite, while active it will bless nearby creatures with Flowing Grasp, increasing block interaction range and item pickup distance.",
-                "Affected Creatures Are Blessed With  Flowing Grasp, increasing block interaction range and item pickup distance by two fifths");
+                "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, "",
                 "A simple rite, while active it will bless nearby creatures with Good Tides, providing one level worth of benefits granted by Lure and Luck of The Sea.",
-                "Affected Creatures Are Blessed With  Good Tides, increasing Lure and Luck of The Sea by one level each");
+                "Affected Creatures Are Blessed With Good Tides\nGood Tides increases grants effects equivalent to one level of Lure and Luck of The Sea");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SOAKING, "",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
                 "Creates a Grounded Lite Locus\nLocus Travels Over Blocks, Applying A Growth-Inducing Effect\nMost Bonemeal Applicable Blocks Are Affected as if with actual Bonemeal\nWhen Affecting Tilted Soil, the crop above will be affected instead with lesser effect");

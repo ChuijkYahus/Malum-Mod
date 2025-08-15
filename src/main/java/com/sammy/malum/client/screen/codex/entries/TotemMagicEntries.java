@@ -138,25 +138,25 @@ public class TotemMagicEntries {
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -3, 17);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_RAISING, -4, 17);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, RUNE_OF_HOWLING_GALE, -4, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, RUNE_OF_SKY_TETHER, -5, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_GRAVITY, -3, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_ASCENSION, -4, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, RUNE_OF_HOWLING_GALE, -4, 18);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, RUNE_OF_SKY_TETHER, -5, 18);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_GRAVITY, -3, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_ASCENSION, -4, 19);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, RUNE_OF_FLOWING_GRASP, 4, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, RUNE_OF_GOOD_TIDES, 5, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SOAKING, 3, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SAPPING, 4, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, RUNE_OF_FLOWING_GRASP, 4, 18);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, RUNE_OF_GOOD_TIDES, 5, 18);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SOAKING, 3, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SAPPING, 4, 19);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -2, 23);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -3, 23);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -3, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -4, 20);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 2, 23);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 3, 23);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 3, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 4, 20);
     }
 
     public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {

@@ -32,7 +32,7 @@ public class MalumMobEffects {
     public static final DeferredHolder<MobEffect, MobEffect> FLOWING_GRASP = EFFECTS.register("flowing_grasp", FlowingGraspEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> GOOD_TIDES = EFFECTS.register("good_tides", GoodTidesEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> STONE_WARD = EFFECTS.register("stone_ward", StoneWardEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> EARTHEN_MIGHT = EFFECTS.register("earthen_might", EarthenMightEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> OAKEN_MIGHT = EFFECTS.register("oaken_might", OakenMightEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> BURNING_FERVOR = EFFECTS.register("burning_fervor", BurningFervorEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> FIERY_EMBRACE = EFFECTS.register("fiery_embrace", FieryEmbraceEffect::new);
 

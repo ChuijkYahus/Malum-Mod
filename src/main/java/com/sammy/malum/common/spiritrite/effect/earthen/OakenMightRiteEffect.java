@@ -9,7 +9,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.EARTHEN_SPI
 public class OakenMightRiteEffect extends SpiritRitePotionEffect<LivingEntity> {
 
     public OakenMightRiteEffect() {
-        super(MalumMobEffects.EARTHEN_MIGHT, EARTHEN_SPIRIT);
+        super(MalumMobEffects.OAKEN_MIGHT, EARTHEN_SPIRIT);
     }
 
     @Override
