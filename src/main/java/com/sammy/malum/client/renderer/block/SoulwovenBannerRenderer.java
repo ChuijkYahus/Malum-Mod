@@ -63,12 +63,9 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         builder.renderQuad(poseStack, vertices, 1f);
         if (spirit != null) {
             var glow = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-            glow.withUniformHandler(ShaderUniformHandler::withLumiTransparency);
-            var otherGlow = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-            glow.withUniformHandler(ShaderUniformHandler::withLumiTransparency);
-            final LodestoneRenderType renderType = glow.getRenderType();
-            final LodestoneRenderType renderType1 = otherGlow.getRenderType();
-
+            if (!blockEntityIn.intense) {
+                glow.withUniformHandler(ShaderUniformHandler::withLumiTransparency);
+            }
             for (int i = 1; i < 4; i++) {
                 Color color = spirit.getPrimaryColor();
                 float alpha = 0.9f;
