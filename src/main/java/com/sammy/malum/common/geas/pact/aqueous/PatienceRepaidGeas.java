@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
@@ -62,6 +63,7 @@ public class PatienceRepaidGeas extends GeasEffect {
                     float percentage = 1f - delta * 0.8f;
                     float damage = bufferedDamage * percentage;
                     var velocity = entity.getDeltaMovement();
+
                     entity.hurt(DamageTypeHelper.create(entity.level(), MalumDamageTypes.KARMIC), damage);
                     entity.setDeltaMovement(velocity);
                     if (entity instanceof ServerPlayer serverplayer) {

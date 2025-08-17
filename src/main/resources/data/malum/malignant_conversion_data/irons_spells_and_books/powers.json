@@ -7,14 +7,8 @@
     "irons_spellbooks:nature_spell_power", "irons_spellbooks:eldritch_spell_power"
   ],
   "ignore_base_value": "true",
-  "target_attributes": [
-    {
-      "attribute": "minecraft:generic.armor",
-      "ratio": "10"
-    },
-    {
-      "attribute": "minecraft:generic.armor_toughness",
-      "ratio": "5"
-    }
-  ]
+  "target_attribute": {
+    "attribute": "malum:malignant_reinforcement",
+    "ratio": "5.0"
+  }
 }

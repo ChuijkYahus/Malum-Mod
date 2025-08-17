@@ -1,14 +1,8 @@
 {
   "source_attribute": "malum:soul_ward_integrity",
   "ignore_base_value": "true",
-  "target_attributes": [
-    {
-      "attribute": "minecraft:generic.armor_toughness",
-      "ratio": "10.0"
-    },
-    {
-      "attribute": "lodestone:magic_resistance",
-      "ratio": "2.0"
-    }
-  ]
+  "target_attribute": {
+    "attribute": "malum:malignant_reinforcement",
+    "ratio": "2.0"
+  }
 }

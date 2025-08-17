@@ -142,7 +142,7 @@ public class MaterialSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 4, MalumItems.MALIGNANT_PEWTER_INGOT.get(), 1)
                 .addExtraItem(MalumItems.MALIGNANT_LEAD.get(), 1)
                 .addExtraItem(MalumItems.NULL_SLATE.get(), 8)
-                .addExtraItem(Items.NETHERITE_SCRAP, 3)
+                .addExtraItem(Items.NETHERITE_SCRAP, 2)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);

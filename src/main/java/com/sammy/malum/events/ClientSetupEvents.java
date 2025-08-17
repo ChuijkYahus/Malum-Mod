@@ -38,7 +38,6 @@ public class ClientSetupEvents {
                 SoulWardRenderHandler::renderSoulWard);
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("staff_charges"),
                 StaffAbilityRenderHandler::renderStaffCharges);
-
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("hidden_blade_cooldown"),
                 HiddenBladeRenderHandler::renderHiddenBladeCooldown);
 
