@@ -1,8 +1,14 @@
 {
   "source_attribute": "irons_spellbooks:max_mana",
   "ignore_base_value": "true",
-  "target_attribute": {
-    "attribute": "malum:malignant_reinforcement",
-    "ratio": "0.02"
-  }
+  "target_attributes": [
+    {
+      "attribute": "minecraft:generic.armor",
+      "ratio": "0.04"
+    },
+    {
+      "attribute": "malum:malignant_reinforcement",
+      "ratio": "0.02"
+    }
+  ]
 }
