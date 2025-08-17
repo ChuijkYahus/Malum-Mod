@@ -37,7 +37,6 @@ public class WeepingWellData {
         this.primordialGoopTimer = primordialGoopTimer;
     }
 
-
     public void update(LivingEntity living) {
         var level = living.level();
         if (living instanceof Player) {

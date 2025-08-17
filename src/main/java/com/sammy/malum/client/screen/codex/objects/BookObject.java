@@ -50,6 +50,10 @@ public class BookObject<T extends AbstractMalumScreen> {
         return screen.isHovering(mouseX, mouseY, posX + offsetX, posY + offsetY, width, height);
     }
 
+    public boolean isInView(T screen) {
+        return true;
+    }
+
     public int getOffsetXPosition() {
         return (int) (posX + xOffset);
     }

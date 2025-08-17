@@ -41,6 +41,14 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     }
 
     @Override
+    public boolean isInView(AbstractProgressionCodexScreen screen) {
+        return screen.isInView(getOffsetXPosition(), getOffsetYPosition())
+                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition())
+                || screen.isInView(getOffsetXPosition(), getOffsetYPosition() + height)
+                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition() + height);
+    }
+
+    @Override
     public void click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (entry.hasContents()) {
             EntryScreen.openScreen(screen, this);
@@ -52,8 +60,8 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         final PoseStack poseStack = guiGraphics.pose();
         int posX = getOffsetXPosition() - (style.textureWidth() - 32) / 2;
         int posY = getOffsetYPosition() - (style.textureHeight() - 32) / 2;
-        final int centerX = posX + style.textureWidth() / 2;
-        final int centerY = posY + style.textureHeight() / 2;
+        int centerX = posX + style.textureWidth() / 2;
+        int centerY = posY + style.textureHeight() / 2;
         renderTexture(WIDGET_FADE_TEXTURE, poseStack, centerX - 29, centerY - 29, 0, 0, 58, 58);
         renderTexture(style.frameTexture(), poseStack, posX, posY, 0, 0, style.textureWidth(), style.textureHeight());
         renderTexture(style.fillingTexture(), poseStack, posX, posY, 0, 0, style.textureWidth(), style.textureHeight());

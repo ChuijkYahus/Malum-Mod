@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.*;
+import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -78,7 +79,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumScreen
     }
 
     public PlacedBookEntry getEntry(String identifier) {
-        return getEntries().stream().filter(p -> p.identifier.matches(identifier)).findFirst().orElseThrow(()-> new NullPointerException("Encyclopedia Arcana tried initiating a reference to the " + identifier + " entry, which doesn't exist"));
+        return getEntries().stream().filter(p -> p.identifier.matches(identifier)).findFirst().orElseThrow(() -> new NullPointerException("Encyclopedia Arcana tried initiating a reference to the " + identifier + " entry, which doesn't exist"));
     }
 
     @Override

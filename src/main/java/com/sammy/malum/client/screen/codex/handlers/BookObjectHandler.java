@@ -23,13 +23,21 @@ public class BookObjectHandler<T extends AbstractMalumScreen> extends ArrayList<
     public void renderObjects(T screen, GuiGraphics guiGraphics, float left, float top, int mouseX, int mouseY, float partialTicks) {
         for (int i = size() - 1; i >= 0; i--) {
             BookObject<T> object = get(i);
-            if (object.isValid(screen)) {
-                object.isHoveredOver = object.isHovering(screen, left, top, mouseX, mouseY);
-                object.xOffset = left;
-                object.yOffset = top;
-                object.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
+            if (!object.isValid(screen)) {
+                continue;
             }
+            object.xOffset = left;
+            object.yOffset = top;
+            if (!object.isInView(screen)) {
+                continue;
+            }
+            object.isHoveredOver = object.isHovering(screen, left, top, mouseX, mouseY);
+            renderObject(screen, guiGraphics, object, mouseX, mouseY, partialTicks);
         }
+    }
+
+    public void renderObject(T screen, GuiGraphics guiGraphics, BookObject<T> object, int mouseX, int mouseY, float partialTicks) {
+        object.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     public void renderObjectsLate(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {

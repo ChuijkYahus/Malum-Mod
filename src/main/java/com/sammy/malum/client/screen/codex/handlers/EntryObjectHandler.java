@@ -1,8 +1,10 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
 import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import net.minecraft.client.gui.*;
 
 public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCodexScreen> {
     public EntryObjectHandler() {
