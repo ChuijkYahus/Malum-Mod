@@ -27,7 +27,7 @@ package com.sammy.malum.compat.attributelib;
 //                    map.accept(modifier, new ModifierSource.ItemModifierSource(ItemRegistry.MALIGNANT_PEWTER_PLATING.get().getDefaultInstance()));
 //                }
 //            }
-//            for (Pair<Attribute, Double> target : data.targetAttributes()) {
+//            for (Pair<Attribute, Double> target : data.payoutData()) {
 //                var targetAttribute = target.getFirst();
 //                var targetInstance = livingEntity.getAttribute(targetAttribute);
 //                if (targetInstance != null) {

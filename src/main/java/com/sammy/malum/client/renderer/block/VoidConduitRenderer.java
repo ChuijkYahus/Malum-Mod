@@ -3,6 +3,8 @@ package com.sammy.malum.client.renderer.block;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
+import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.*;
@@ -12,6 +14,8 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
+
+import java.awt.*;
 
 
 public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlockEntity> {
@@ -30,7 +34,6 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         poseStack.translate(0.5f, 0.01f, 0.5f);
 
         var vignette = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE);
-        var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE);
         builder.replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setRenderType(vignette)
                 .renderQuad(poseStack, positions, 1f);
@@ -40,22 +43,23 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         float alpha = 0.08f;
 
         builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+
+        Color[] colors = new Color[] {
+                MalumSpiritTypes.ELDRITCH_SPIRIT.getPrimaryColor(),
+                MalumSpiritTypes.WICKED_SPIRIT.getSecondaryColor(),
+                MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor(),
+                MalumSpiritTypes.AERIAL_SPIRIT.getSecondaryColor()
+        };
         for (int i = 0; i < 4; i++) {
             float speed = 1000f + 250f * i;
-            final ShaderUniformHandler uniforms = new ShaderUniformHandler()
+            ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Width", 48f)
                     .modifyUniform("Height", 48f)
                     .modifyUniform("UVCoordinates", -20f, 40f, -20f, 40f);
+            var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
 
-            var color = switch (i) {
-                case 0 -> MalumSpiritTypes.ELDRITCH_SPIRIT.getPrimaryColor();
-                case 1 -> MalumSpiritTypes.WICKED_SPIRIT.getSecondaryColor();
-                case 2 -> MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor();
-                case 3 -> MalumSpiritTypes.AERIAL_SPIRIT.getSecondaryColor();
-                default -> throw new IllegalStateException("Unexpected value: " + i);
-            };
-            builder.setColor(color).setRenderType(distortion.withUniformHandler(uniforms));
+            builder.setColor(colors[i]).setRenderType(distortion);
 
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);

@@ -3,7 +3,6 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.data.attachment.soul_data.*;
-import com.sammy.malum.common.data.component.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -47,7 +46,7 @@ public class MalumAttachmentTypes {
     public static final Supplier<AttachmentType<TouchOfDarknessData>> TOUCH_OF_DARKNESS = ATTACHMENT_TYPES.register(
             "touch_of_darkness", () -> AttachmentType.builder(TouchOfDarknessData::new).serialize(TouchOfDarknessData.CODEC).build());
 
-    public static final Supplier<AttachmentType<MalignantInfluenceData>> MALIGNANT_INFLUENCE = ATTACHMENT_TYPES.register(
-            "malignant_influence", () -> AttachmentType.builder(MalignantInfluenceData::new).serialize(MalignantInfluenceData.CODEC).build());
+    public static final Supplier<AttachmentType<MalignantInfluenceCacheData>> MALIGNANT_INFLUENCE = ATTACHMENT_TYPES.register(
+            "malignant_influence", () -> AttachmentType.builder(MalignantInfluenceCacheData::new).serialize(MalignantInfluenceCacheData.CODEC).build());
 
 }

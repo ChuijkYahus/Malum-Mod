@@ -1,20 +1,6 @@
 {
-  "blend": {
-    "func": "add",
-    "srcrgb": "srcalpha",
-    "dstrgb": "1-srcalpha"
-  },
   "vertex": "lodestone:generic",
   "fragment": "malum:soulless_outline",
-  "attributes": [
-    "Position",
-    "Color",
-    "UV0",
-    "UV2",
-    "Normal",
-    "Tangent",
-    "Bitangent"
-  ],
   "samplers": [
     { "name": "Sampler0" },
     { "name": "Sampler2" },

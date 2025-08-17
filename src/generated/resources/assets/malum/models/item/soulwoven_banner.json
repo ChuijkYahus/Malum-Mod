@@ -72,6 +72,12 @@
       "predicate": {
         "malum:pattern": 12.0
       }
+    },
+    {
+      "model": "malum:item/soulwoven_banner_colorful_world",
+      "predicate": {
+        "malum:pattern": 13.0
+      }
     }
   ],
   "textures": {

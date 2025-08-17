@@ -47,6 +47,7 @@ Malignant Stronghold Armor
 - The Malignant Stronghold Armor now has a new model
 - The Malignant Stronghold Chestplate now comes with two scarves instead of one
 - Pride Scarves retain old functionality
+- No Longer Eats Iron's Spellbooks Magic Resistances
 
 Necklace of the Hidden Blade
 - Now always deals a minimum of 10 damage

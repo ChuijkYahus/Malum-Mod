@@ -517,7 +517,8 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addAttributeLibAttributeDescription(MalumAttributes.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
 
-        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into armor, armor toughness and magic resistance");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into Malignant Reinforcement");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_REINFORCEMENT, "A powerful multipurpose damage resistance attribute gained through Malignant Reinforcement");
 
     }
 

@@ -27,20 +27,20 @@ public class MalumRenderTypes extends RenderStateShard {
     });
 
     public static final RenderTypeProvider WEEPING_WELL_DISTORTED_TEXTURE = new RenderTypeProvider((token) ->
-            createGenericRenderType("weeping_well_distorted_texture", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    LodestoneRenderTypes.builder(token, StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_WELL_DISTORTION, CULL, LIGHTMAP, COLOR_WRITE)));
+            createGenericRenderType(token, "weeping_well_distorted_texture", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
+                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_WELL_DISTORTION, CULL, LIGHTMAP, COLOR_WRITE)));
 
     public static final RenderTypeProvider SUBTRACTIVE_TEXT = new RenderTypeProvider((token) ->
-            createGenericRenderType("subtractive_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    LodestoneRenderTypes.builder(token, RENDERTYPE_TEXT_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
+            createGenericRenderType(token, "subtractive_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
+                    b -> b.setStateShards(RENDERTYPE_TEXT_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
 
     public static final RenderTypeProvider SUBTRACTIVE_INTENSE_TEXT = new RenderTypeProvider((token) ->
-        createGenericRenderType("subtractive_intense_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                LodestoneRenderTypes.builder(token, RENDERTYPE_TEXT_INTENSITY_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
+        createGenericRenderType(token, "subtractive_intense_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
+                b -> b.setStateShards(RENDERTYPE_TEXT_INTENSITY_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
 
     public static final RenderTypeProvider SOULLESS_OUTLINE = new RenderTypeProvider((token) ->
-            createGenericRenderType("soulless_outline", LodestoneVertexFormats.POSITION_COLOR_TEX_LIGHTMAP_NORMAL_TANGENT_BITANGENT, QUADS,
-                    LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
+            createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);

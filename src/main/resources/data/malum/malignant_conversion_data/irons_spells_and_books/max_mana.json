@@ -7,8 +7,8 @@
       "ratio": "0.04"
     },
     {
-      "attribute": "lodestone:magic_resistance",
-      "ratio": "0.04"
+      "attribute": "malum:malignant_reinforcement",
+      "ratio": "0.02"
     }
   ]
 }

@@ -89,7 +89,7 @@ public class ScarfRenderHandler {
         }
 
         public boolean isValid(LivingEntity entity) {
-            return isValid.get() && !entity.isRemoved() && !entity.isDeadOrDying();
+            return !entity.isRemoved() && !entity.isDeadOrDying() && entity.isAddedToLevel() && isValid.get();
         }
 
         public ScarfRenderData setPrimaryColor(Color primaryColor) {

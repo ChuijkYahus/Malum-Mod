@@ -29,10 +29,6 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
     @Override
     public void render(SoulwovenBannerBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         var blockState = blockEntityIn.getBlockState();
-        final SoulwovenBannerPatternDataComponent patternData = blockEntityIn.patternData;
-        var token = RenderTypeToken.createToken(patternData.texturePath());
-        var banner = LodestoneRenderTypes.CUTOUT_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-        var builder = VFXBuilders.createWorld().setRenderType(banner);
         var pos = blockEntityIn.getBlockPos();
         var spirit = blockEntityIn.spirit;
         var type = blockState.getValue(SoulwovenBannerBlock.BANNER_TYPE);
@@ -57,7 +53,13 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
         float xEnd = 1;
         float yStart = -2;
         float yEnd = 0;
+        var patternData = blockEntityIn.patternData;
+        var token = RenderTypeToken.createToken(patternData.texturePath());
+        var banner = LodestoneRenderTypes.CUTOUT_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
         var vertices = new Vector3f[]{new Vector3f(xEnd, yStart, 0), new Vector3f(xStart, yStart, 0), new Vector3f(xStart, yEnd, 0), new Vector3f(xEnd, yEnd, 0)};
+        var builder = VFXBuilders.createWorld()
+                .setRenderType(banner)
+                .setLightLevel(pos);
         builder.renderQuad(poseStack, vertices, 1f);
         if (spirit != null) {
             var glow = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
@@ -67,7 +69,9 @@ public class SoulwovenBannerRenderer implements BlockEntityRenderer<SoulwovenBan
             for (int i = 1; i < 4; i++) {
                 Color color = spirit.getPrimaryColor();
                 float alpha = 0.9f;
-                var spiritBuilder = VFXBuilders.createWorld().setRenderType(glow).setColor(color);
+                var spiritBuilder = VFXBuilders.createWorld()
+                        .setRenderType(glow)
+                        .setColor(color);
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 0.001f * i);
                 spiritBuilder.setAlpha(alpha).renderQuad(poseStack, vertices);

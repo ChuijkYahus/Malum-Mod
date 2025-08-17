@@ -3,11 +3,11 @@
   "ignore_base_value": "true",
   "target_attributes": [
     {
-      "attribute": "minecraft:generic.armor_toughness",
+      "attribute": "minecraft:generic.armor",
       "ratio": "10.0"
     },
     {
-      "attribute": "lodestone:magic_resistance",
+      "attribute": "malum:malignant_reinforcement",
       "ratio": "2.0"
     }
   ]

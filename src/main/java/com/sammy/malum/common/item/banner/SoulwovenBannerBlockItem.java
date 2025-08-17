@@ -32,17 +32,29 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        final ItemStack defaultInstance = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
-        if (event.getParentEntries().contains(defaultInstance)) {
-            for (SoulwovenBannerPatternDataComponent pattern : SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS) {
-                if (pattern.equals(SoulwovenBannerPatternDataComponent.DEFAULT)) {
-                    continue;
-                }
-                final ItemStack copy = pattern.getDefaultStack();
-                if (event.getParentEntries().contains(copy)) {
-                    continue;
-                }
-                event.insertAfter(defaultInstance, copy, PARENT_AND_SEARCH_TABS);
+        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        if (event.getParentEntries().contains(source)) {
+            var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
+            patterns.remove(SoulwovenBannerPatternDataComponent.DEFAULT);
+            patterns.remove(SoulwovenBannerPatternDataComponent.COLORFUL_WORLD);
+            Collections.reverse(patterns);
+
+            tryAddBannerVariant(event, SoulwovenBannerPatternDataComponent.COLORFUL_WORLD, true);
+            for (SoulwovenBannerPatternDataComponent pattern : patterns) {
+                tryAddBannerVariant(event, pattern, false);
+            }
+        }
+    }
+
+    public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
+        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        ItemStack colorfulWorld = pattern.getDefaultStack();
+        if (!event.getParentEntries().contains(colorfulWorld)) {
+            if (before) {
+                event.insertBefore(source, colorfulWorld, PARENT_AND_SEARCH_TABS);
+            }
+            else {
+                event.insertAfter(source, colorfulWorld, PARENT_AND_SEARCH_TABS);
             }
         }
     }

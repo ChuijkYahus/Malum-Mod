@@ -19,23 +19,26 @@ import java.util.*;
 public class SoulWardData {
 
     public static Codec<SoulWardData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.DOUBLE.fieldOf("soulWard").forGetter(sw -> sw.soulWard),
-            Codec.DOUBLE.fieldOf("soulWardProgress").forGetter(sw -> sw.soulWardCooldown)
+            Codec.DOUBLE.fieldOf("soulWard").forGetter(SoulWardData::getSoulWard),
+            Codec.INT.fieldOf("soulWardProgress").forGetter(SoulWardData::getSoulWardCooldown),
+            Codec.FLOAT.fieldOf("appliedCooldownMultiplier").forGetter(SoulWardData::getAppliedCooldownMultiplier)
     ).apply(obj, SoulWardData::new));
 
     public static StreamCodec<ByteBuf, SoulWardData> STREAM_CODEC = ByteBufCodecs.fromCodec(SoulWardData.CODEC);
 
     private double soulWard;
-    private double soulWardCooldown;
+    private int soulWardCooldown;
+    private float appliedCooldownMultiplier = 1f;
 
     private boolean isDirty;
 
     public SoulWardData() {
     }
 
-    public SoulWardData(double soulWard, double soulWardCooldown) {
+    public SoulWardData(double soulWard, int soulWardCooldown, float appliedCooldownMultiplier) {
         this.soulWard = soulWard;
         this.soulWardCooldown = soulWardCooldown;
+        this.appliedCooldownMultiplier = appliedCooldownMultiplier;
     }
 
     public void tickData(LivingEntity living) {
@@ -44,6 +47,7 @@ public class SoulWardData {
             if (getSoulWard() < capacity.getValue()) {
                 if (soulWardCooldown > 0) {
                     soulWardCooldown--;
+                    tryCorrectCooldown(living);
                 }
                 if (soulWardCooldown <= 0) {
                     recoverSoulWard(living, 1);
@@ -76,7 +80,7 @@ public class SoulWardData {
                 }
             }
         }
-        addCooldown(entity, 1);
+        addCooldown(entity, 1f);
     }
 
     public void addSoulWard(double added) {
@@ -92,16 +96,33 @@ public class SoulWardData {
         setDirty(true);
     }
 
+    public void tryCorrectCooldown(LivingEntity living) {
+        double newCooldown = getSoulWardCooldown(living) * appliedCooldownMultiplier;
+        if (soulWardCooldown > newCooldown) {
+            soulWardCooldown = Mth.floor(newCooldown);
+            setDirty(true);
+        }
+    }
+
+    public void addCooldown(LivingEntity living, float multiplier) {
+        double newCooldown = getSoulWardCooldown(living) * multiplier;
+        if (soulWardCooldown < newCooldown) {
+            soulWardCooldown = Mth.floor(newCooldown);
+            appliedCooldownMultiplier = multiplier;
+            setDirty(true);
+        }
+    }
+
     public double getSoulWard() {
         return soulWard;
     }
 
-    public void addCooldown(LivingEntity living, double multiplier) {
-        final double newCooldown = getSoulWardCooldown(living) * multiplier;
-        if (soulWardCooldown < newCooldown) {
-            soulWardCooldown = newCooldown;
-            setDirty(true);
-        }
+    public int getSoulWardCooldown() {
+        return soulWardCooldown;
+    }
+
+    public float getAppliedCooldownMultiplier() {
+        return appliedCooldownMultiplier;
     }
 
     public boolean isDirty() {
@@ -116,11 +137,9 @@ public class SoulWardData {
         return soulWard <= 0;
     }
 
-    public static float getSoulWardCooldown(LivingEntity living) {
-        return getSoulWardCooldown(living.getAttributeValue(MalumAttributes.SOUL_WARD_RECOVERY_RATE));
-    }
-
-    public static float getSoulWardCooldown(double recoverySpeed) {
-        return Mth.floor(CommonConfig.SOUL_WARD_RATE.getConfigValue() / recoverySpeed);
+    public float getSoulWardCooldown(LivingEntity living) {
+        double recoveryRate = living.getAttributeValue(MalumAttributes.SOUL_WARD_RECOVERY_RATE);
+        var cooldownDuration = CommonConfig.SOUL_WARD_RATE.getConfigValue();
+        return Mth.floor(cooldownDuration / recoveryRate);
     }
 }

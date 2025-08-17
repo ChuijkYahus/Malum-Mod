@@ -823,29 +823,31 @@ public class MalumItems {
 
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void addItemProperties(FMLClientSetupEvent event) {
-            ITEMS.getEntries().stream().filter(r -> r.get() instanceof LodestoneArmorItem).forEach(armor -> {
-                ItemProperties.register(
-                        armor.get(),
-                        MalumMod.malumPath("item_skin"),
-                        (stack, level, holder, holderID) -> ItemSkinComponent.getAppliedSkinId(stack));
-            });
+            event.enqueueWork(() -> {
+                ITEMS.getEntries().stream().filter(r -> r.get() instanceof LodestoneArmorItem).forEach(armor -> {
+                    ItemProperties.register(
+                            armor.get(),
+                            MalumMod.malumPath("item_skin"),
+                            (stack, level, holder, holderID) -> ItemSkinComponent.getAppliedSkinId(stack));
+                });
 
-            ItemProperties.register(
-                    SOULWOVEN_POUCH.get(),
-                    MalumMod.malumPath("filled"),
-                    (stack, level, holder, holderID) -> SoulwovenPouchItem.getFullnessDisplay(stack));
-            ItemProperties.register(
-                    RAVENOUS_POUCH.get(),
-                    MalumMod.malumPath("filled"),
-                    (stack, level, holder, holderID) -> RavenousPouchItem.getFullnessDisplay(stack));
-            ItemProperties.register(
-                    SOULWOVEN_BANNER.get(),
-                    MalumMod.malumPath("pattern"),
-                    (stack, level, holder, holderID) -> SoulwovenBannerBlockItem.getBannerPattern(stack));
-            ItemProperties.register(
-                    CATALYST_LOBBER.get(),
-                    MalumMod.malumPath("state"),
-                    (stack, level, holder, holderID) -> CatalystLobberItem.getStateDisplay(stack));
+                ItemProperties.register(
+                        SOULWOVEN_POUCH.get(),
+                        MalumMod.malumPath("filled"),
+                        (stack, level, holder, holderID) -> SoulwovenPouchItem.getFullnessDisplay(stack));
+                ItemProperties.register(
+                        RAVENOUS_POUCH.get(),
+                        MalumMod.malumPath("filled"),
+                        (stack, level, holder, holderID) -> RavenousPouchItem.getFullnessDisplay(stack));
+                ItemProperties.register(
+                        SOULWOVEN_BANNER.get(),
+                        MalumMod.malumPath("pattern"),
+                        (stack, level, holder, holderID) -> SoulwovenBannerBlockItem.getBannerPattern(stack));
+                ItemProperties.register(
+                        CATALYST_LOBBER.get(),
+                        MalumMod.malumPath("state"),
+                        (stack, level, holder, holderID) -> CatalystLobberItem.getStateDisplay(stack));
+            });
         }
 
         @SubscribeEvent

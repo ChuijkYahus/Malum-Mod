@@ -1,16 +1,6 @@
 {
-  "blend": {
-    "func": "add",
-    "srcrgb": "srcalpha",
-    "dstrgb": "1-srcalpha"
-  },
   "vertex": "malum:touch_of_darkness",
   "fragment": "malum:touch_of_darkness",
-  "attributes": [
-    "Position",
-    "UV0",
-    "Color"
-  ],
   "samplers": [
   ],
   "uniforms": [

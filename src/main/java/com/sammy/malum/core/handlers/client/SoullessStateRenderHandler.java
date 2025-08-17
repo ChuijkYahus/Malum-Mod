@@ -38,7 +38,7 @@ public class SoullessStateRenderHandler {
     }
 
     public static void renderSoullessModelPart(ModelPart modelPart, PoseStack.Pose pose, VertexConsumer buffer, int packedLight, int packedOverlay) {
-        if (renderingSoullessCreature) {
+        if (false && renderingSoullessCreature) {
             AbstractTexture activeTexture = Minecraft.getInstance().getTextureManager().getTexture(entityTexture);
             int maskTexture = activeTexture.getId();
             var renderType = MalumRenderTypes.SOULLESS_OUTLINE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(

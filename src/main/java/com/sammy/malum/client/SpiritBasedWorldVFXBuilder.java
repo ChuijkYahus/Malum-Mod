@@ -30,12 +30,8 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
     @Override
     public VFXBuilders.WorldVFXBuilder setRenderType(RenderType renderType) {
         if (spiritType instanceof UmbralSpiritArcanaType && renderType instanceof LodestoneRenderType lodestoneRenderType) {
-            if (!LodestoneRenderTypes.COPIES.containsKey(Pair.of(spiritType, lodestoneRenderType))) {
-                LodestoneRenderTypes.addRenderTypeModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
-            }
-            LodestoneRenderType umbralRenderType = LodestoneRenderTypes.createCachedCopy(spiritType, lodestoneRenderType);
-            LodestoneRenderTypes.addUniformChanges(umbralRenderType, ShaderUniformHandler.LUMITRANSPARENT);
-            return super.setRenderType(umbralRenderType);
+            var umbral = lodestoneRenderType.copy("umbral", ShaderUniformHandler.LUMITRANSPARENT, b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
+            return super.setRenderType(umbral);
         }
         return super.setRenderType(renderType);
     }
