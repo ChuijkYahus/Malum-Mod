@@ -1,18 +1,29 @@
 package com.sammy.malum.common.effect.rite.aura;
 
-import com.sammy.malum.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class StoneWardEffect extends MobEffect {
     public StoneWardEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.EARTHEN_COLORS().primaryColor()));
-        var id = MalumMod.malumPath("earthen_aura");
-        addAttributeModifier(Attributes.ARMOR, id, 2f, AttributeModifier.Operation.ADD_VALUE);
-        addAttributeModifier(Attributes.ARMOR_TOUGHNESS, id, 1f, AttributeModifier.Operation.ADD_VALUE);
+    }
+
+    public static void reduceDamage(LivingDamageEvent.Pre event) {
+        var entity = event.getEntity();
+        var instance = entity.getEffect(MalumMobEffects.STONE_WARD);
+        if (instance == null) {
+            return;
+        }
+        int amplifier = instance.getAmplifier()+1;
+        float armorCoverPercentage = entity.getArmorCoverPercentage();
+        if (armorCoverPercentage == 0) {
+            amplifier *= 2;
+        }
+        float reduction = Math.min(amplifier * 0.1f, 0.5f);
+        event.setNewDamage(event.getNewDamage()*reduction);
     }
 }

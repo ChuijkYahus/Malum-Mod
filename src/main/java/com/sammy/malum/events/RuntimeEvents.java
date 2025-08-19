@@ -2,6 +2,7 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.nitrate.*;
@@ -161,6 +162,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onHurt(LivingDamageEvent.Pre event) {
         SoulWardHandler.shieldPlayer(event);
+        StoneWardEffect.reduceDamage(event);
         MalumAttributeEventHandler.processAttributes(event);
     }
 

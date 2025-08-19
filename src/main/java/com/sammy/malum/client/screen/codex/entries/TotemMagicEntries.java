@@ -61,9 +61,9 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(MalumSpiritRiteTypes.UNDIRECTED_RITE))
         );
 
-        screen.addEntry("unchained_rite", 0, 18, b -> b
+        screen.addEntry("unchained_rite", 0, 19, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_RUNEWOOD))
+                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_TOTEMIC_SOULWOOD))
                 .addPage(new HeadlineTextPage("unchained_rite"))
                 .addPage(new TextPage("unchained_rite.2"))
                 .addPage(new SpiritRiteTextPage(MalumSpiritRiteTypes.UNCHAINED_RITE))
@@ -74,7 +74,7 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("unchained_rite.description.4"))
         );
 
-        screen.addEntry("blight", 1, 19, b -> b
+        screen.addEntry("blight", 1, 20, b -> b
                 .configureWidget(w -> w.setIcon(BLIGHTED_EARTH).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
                 .addPage(new HeadlineTextItemPage("blight.intro", "blight.intro.1", BLIGHTED_EARTH.get()))
                 .addPage(new HeadlineTextPage("blight.composition", "blight.composition.1"))
@@ -83,7 +83,7 @@ public class TotemMagicEntries {
                 .addPage(new HeadlineTextPage("blight.arcane_rite", "blight.arcane_rite.1"))
         );
 
-        screen.addEntry("soulwood", 0, 20, b -> b
+        screen.addEntry("soulwood", 0, 21, b -> b
                 .configureWidget(w -> w.setIcon(SOULWOOD_SAPLING).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
                 .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("soulwood.2"))
@@ -95,7 +95,7 @@ public class TotemMagicEntries {
                 .addPage(new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()))
         );
 
-        screen.addEntry("scarstone", -1, 21, b -> b
+        screen.addEntry("scarstone", -1, 22, b -> b
                 .configureWidget(w -> w.setIcon(SCARSTONE).setStyle(BookWidgetStyle.SMALL_SOULWOOD))
                 .addPage(new HeadlineTextItemPage("scarstone", "scarstone.1", SCARSTONE.get()))
                 .addPage(new HeadlineTextPage("scarstone.material", "scarstone.material.1"))
@@ -108,7 +108,7 @@ public class TotemMagicEntries {
                 .addReference(new EntryReference(UMBRAL_SPIRIT.get(), strangeCrystalRevelation))
         );
 
-        screen.addEntry("unchained_transmutation", 0, 22, b -> b
+        screen.addEntry("unchained_transmutation", 0, 23, b -> b
                 .configureWidget(w -> w.setIcon(SOUL_SAND).setStyle(BookWidgetStyle.SOULWOOD))
                 .addPage(new HeadlineTextPage("unchained_transmutation", "unchained_transmutation.intro.1"))
                 .addPage(new TextPage("unchained_transmutation.intro.2"))
@@ -148,15 +148,15 @@ public class TotemMagicEntries {
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SOAKING, 3, 19);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SAPPING, 4, 19);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -3, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -4, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -3, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -4, 22);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 20);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 3, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 4, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 21);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 3, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 4, 22);
     }
 
     public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {

@@ -632,7 +632,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("warping_engine", "Warping Engine", "Suspension of linear time");
         addPages("warping_engine",
                 "Warp Flux rejects natural law, and its application here is no less concerning. The Warping Engine rejects the sequence of cause and effect, allowing an additional cycle to sometimes be completed almost before it is begun whenever a cycle is completed normally.",
-                "Furthermore, chained activations of the Warping Engine provide a stacking benefit to " + italic("all") + " other attributes. Perhaps predictably, this behavior takes quite a toll on the stability and fuel requirements of the focusing process.");
+                "Furthermore, chained activations of the Warping Engine provide a stacking benefit to " + italic("all") + " other attributes. Perhaps predictably, this behavior creates a significant increase in fuel requirements of the focusing process. Lastly, the influence of the Warping Engine creates a minor amount of strain on the standard tuning process.");
 
         addSimpleEntryHeader("prismatic_focus_lens", "Prismatic Focus Lens", "Stability");
         addPages("prismatic_focus_lens",
@@ -1321,8 +1321,8 @@ public class CodexLangDatagen {
                 "Creates a Grounded Rite Locus\nLocus Travels Over Cauldrons, Accelerating Fluid Accumulation with a Generous Upwards Radius");
 
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, "",
-                "A simple rite, while active it will .",
-                "");
+                "A simple rite, while active it will bless nearby creatures with Stone Ward, providing a damage reduction that grows in power when unarmored.",
+                "Affected Creatures Are Blessed With Stone Ward\nStone Ward reduces damage taken by one fifth\nStone Ward Doubles in power when Unarmored");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "",
                 "A simple rite, while active it will .",
                 "");

@@ -57,7 +57,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        final PoseStack poseStack = guiGraphics.pose();
+        PoseStack poseStack = guiGraphics.pose();
         int posX = getOffsetXPosition() - (style.textureWidth() - 32) / 2;
         int posY = getOffsetYPosition() - (style.textureHeight() - 32) / 2;
         int centerX = posX + style.textureWidth() / 2;

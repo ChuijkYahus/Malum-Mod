@@ -26,17 +26,18 @@ Added the Ravenous Pouch
 - The Ravnous Pouch will snatch up any item that it already stores
 - Offers 8 stacks worth of space, but does not store magical items more efficiently
 
-Tweaked the Soulwoven Pouch
+Soulwoven Pouch
 - Based on Community Feedback, the autocollection of a large amount of goods was rather undesirable as it no longer allowed for a dedicated early game spirit storage option
 - The Soulwoven Pouch now only automatically collects spirits, but still stores most malum content extra effectively
 
-Tweaked the Runic Workbench
+Runic Workbench
 - The Runic Workbench now has a new Model, Sounds, and Visuals for crafting
 - The Recipe is also changed to better reflect it's new look
 - Runic Workbench Recipes can now support regular items with a secondary input
  - Currently this behavior lacks a unique crafting animation, if any modpack dev ends up using this functionality ping me and I'll whip something up
 
-Tweaked Soulwoven Banners
+Soulwoven Banners
+- Added one new Soulwoven Banner Pattern
 - Soulwoven Banners now have a new particle effect for being Imbued with a Spirit
 - Soulwoven Banners now have a new particle effect for being Sheared
 
@@ -48,6 +49,12 @@ Malignant Stronghold Armor
 - The Malignant Stronghold Chestplate now comes with two scarves instead of one
 - Pride Scarves retain old functionality
 - No Longer Eats Iron's Spellbooks Magic Resistances
+
+Malignant Conversion
+- No longer grants Armor Toughness
+- No longer grants Magic Resistance
+- Now grants a new attribute called Malignant Reinforcement
+- Malignant Reinforcement grants a chance to completely resist any incoming damage
 
 Necklace of the Hidden Blade
 - Now always deals a minimum of 10 damage
@@ -110,7 +117,8 @@ Authority of the Gleeful Target
 - Retextured the Malignant Pewter Ingot, Nugget and Plating
 - Retextured Malignant Stronghold Armor
 
-- Retextured the effect icons for: Gluttony, Desperate Need
+- Retextured the effect icons for: Gluttony, Desperate Need, 
+- Added/Updated the effect icons for all rite effects
 
 # Bugfixes
 - Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment

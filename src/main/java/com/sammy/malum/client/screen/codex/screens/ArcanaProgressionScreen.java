@@ -83,7 +83,7 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         TotemMagicEntries.setupEntries(this);
         MiscellaneousKnowledgeEntries.setupEntries(this);
 
-        addEntry("ritual_magic", 0, 24, b -> b
+        addEntry("ritual_magic", 0, 26, b -> b
                 .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
                 .addPage(new HeadlineTextPage("ritual_magic", "ritual_magic.1"))
         );
