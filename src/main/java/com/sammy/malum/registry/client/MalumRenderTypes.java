@@ -2,6 +2,8 @@ package com.sammy.malum.registry.client;
 
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
 import net.minecraft.client.renderer.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
@@ -41,6 +43,14 @@ public class MalumRenderTypes extends RenderStateShard {
     public static final RenderTypeProvider SOULLESS_OUTLINE = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                     b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
+
+    public static final RenderType PARALLEL_WORLD_SKYBOX = RenderType.create("parallel_world_skybox",
+            DefaultVertexFormat.POSITION, TRIANGLES, 256,
+            RenderType.CompositeState.builder()
+                    .setShaderState(MalumShaders.PARALLEL_WORLD_SKYBOX.getShard())
+                    .setCullState(RenderType.CULL)
+                    .setOutputState(ParallelWorldRenderer.getOutputState())
+                    .createCompositeState(false));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);
