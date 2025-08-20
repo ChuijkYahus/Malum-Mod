@@ -38,14 +38,14 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         return this;
     }
 
-    public PlacedBookEntryBuilder configureWidget(Consumer<ProgressionEntryObject> configure) {
+    public PlacedBookEntryBuilder configureEntry(Consumer<ProgressionEntryObject> configure) {
         this.widgetConfig = this.widgetConfig == null ? configure : this.widgetConfig.andThen(configure);
         return this;
     }
 
     public PlacedBookEntryBuilder withEmptyFragmentEntry(BookWidgetStyle style) {
         this.fragmentProperties = b -> b
-            .configureWidget(widget -> widget.setStyle(style))
+            .configureEntry(widget -> widget.setStyle(style))
             .styleTitle(s -> s.withColor(ChatFormatting.GRAY))
             .styleSubtitle(s -> s.withColor(ChatFormatting.DARK_GRAY));
         return this;
@@ -53,7 +53,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
 
     public PlacedBookEntryBuilder withTraceFragmentEntry() {
         this.fragmentProperties = b -> b
-            .configureWidget(widget -> widget.setStyle(BookWidgetStyle.FRAMELESS)) // todo: add cool visual effects for Traces
+            .configureEntry(widget -> widget.setStyle(BookWidgetStyle.FRAMELESS)) // todo: add cool visual effects for Traces
             .disableTooltip();
 
         return this;
@@ -65,8 +65,8 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
     }
 
     // Should only be invoked internally
-    protected PlacedBookEntryBuilder setFragment(boolean fragmentState) {
-        this.isFragment = fragmentState;
+    protected PlacedBookEntryBuilder setFragment() {
+        this.isFragment = true;
         return this;
     }
 
@@ -80,8 +80,8 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
 
         PlacedBookEntryBuilder builder = new PlacedBookEntryBuilder("fragment." + identifier, isVoid, xOffset, yOffset);
         builder
-            .setFragment(true)
-            .configureWidget(widgetConfig)
+            .setFragment()
+            .configureEntry(widgetConfig)
             .setWidgetSupplier(widgetSupplier)
             .setEntryVisibleWhen(() -> !entryVisibleChecker.getAsBoolean())
             .styleTitle(style -> style.withItalic(true))

@@ -15,6 +15,9 @@ public abstract class AbstractMalumCodexScreen extends Screen {
     protected final Holder<SoundEvent> sweetenerSound;
     protected List<Runnable> lateRendering = new ArrayList<>();
 
+    protected boolean isVoidTouched;
+
+
     protected AbstractMalumCodexScreen(Component pTitle, Holder<SoundEvent> sweetenerSound) {
         super(pTitle);
         //Early Instantiation for access in constructor
@@ -61,5 +64,11 @@ public abstract class AbstractMalumCodexScreen extends Screen {
     protected void doLateRendering() {
         lateRendering.forEach(Runnable::run);
         lateRendering.clear();
+    }
+    public void setVoidTouched(boolean isVoidTouched) {
+        this.isVoidTouched = isVoidTouched;
+    }
+    public boolean isVoidTouched() {
+        return isVoidTouched;
     }
 }

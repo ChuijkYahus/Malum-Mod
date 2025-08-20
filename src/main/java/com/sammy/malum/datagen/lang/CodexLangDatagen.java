@@ -1219,7 +1219,6 @@ public class CodexLangDatagen {
                         Your Soul is the World's Soul. Your Heart is the World's Heart. It is Open, Open for all to See, Vulnerable for all to Grasp.
                         -Quadruples Incoming Magic Damage""");
 
-
         addSimpleEntryHeader("authority_of_crushing_melancholy", "Authority of Crushing Melancholy", "To crush one's own spirit");
         addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY,
                 scaled(0.6f) + """

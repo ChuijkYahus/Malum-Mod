@@ -6,15 +6,9 @@ import com.sammy.malum.client.screen.codex.entries.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.common.item.codex.*;
-import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.resources.*;
-import net.neoforged.neoforge.common.*;
-
-import java.util.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -38,7 +32,7 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
     public void setupEntries() {
         addEntry("chronicles_of_the_void", 0, -1, b -> b
                 .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, VoidProgressionScreen.SCREEN, malumPath("textures/gui/book/icons/void_button.png"), 20, 20))
-                .configureWidget(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setHeadlineFormatting(ChatFormatting.LIGHT_PURPLE).setValidityChecker(p -> p.isVoidTouched))
+                .configureEntry(w -> w.setStyle(BookWidgetStyle.DARK_GRAND_RUNEWOOD).setHeadlineFormatting(ChatFormatting.LIGHT_PURPLE).setCondition(AbstractProgressionCodexScreen::isVoidTouched))
         );
 
         IntroductionEntries.setupEntries(this);
@@ -51,26 +45,26 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         MiscellaneousKnowledgeEntries.setupEntries(this);
 
         addEntry("ritual_magic", 0, 26, b -> b
-                .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .configureEntry(w -> w.setIcon(RITUAL_PLINTH).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
                 .addPage(new HeadlineTextPage("ritual_magic", "ritual_magic.1"))
         );
 //        RitualEntries.setupEntries(ENTRIES);
 
         addEntry("mirror_magic", 10, 15, b -> b
-                .configureWidget(w -> w.setIcon(CONVOLUTED_LENS).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .configureEntry(w -> w.setIcon(CONVOLUTED_LENS).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
                 .addPage(new HeadlineTextPage("mirror_magic", "mirror_magic.1"))
                 .addPage(new TextPage("mirror_magic.2"))
         );
 
         addEntry("voodoo_magic", -10, 15, b -> b
-                .configureWidget(w -> w.setIcon(POPPET).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
+                .configureEntry(w -> w.setIcon(POPPET).setStyle(BookWidgetStyle.GILDED_SOULWOOD))
                 .addPage(new HeadlineTextPage("voodoo_magic", "voodoo_magic.1"))
                 .addPage(new TextPage("voodoo_magic.2"))
         );
 
         addEntry("the_device", 0, -10, b -> b
             .setWidgetSupplier(VanishingEntryObject::new)
-            .configureWidget(w -> w.setIcon(THE_DEVICE).setStyle(BookWidgetStyle.WITHERED))
+            .configureEntry(w -> w.setIcon(THE_DEVICE).setStyle(BookWidgetStyle.WITHERED))
             .disableTooltip()
                 .addPage(new HeadlineTextPage("the_device", "the_device"))
             .addPage(new CraftingPage(THE_DEVICE.get(),

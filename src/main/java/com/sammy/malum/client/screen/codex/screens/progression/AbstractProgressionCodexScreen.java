@@ -5,6 +5,7 @@ import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.objects.*;
+import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
@@ -26,7 +27,7 @@ import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 import static org.lwjgl.opengl.GL11C.*;
 
-public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexScreen {
+public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexScreen implements PlacedEntryAcceptor {
 
     public static final ResourceLocation FRAME_TEXTURE = malumPath("textures/gui/book/frame.png");
     public static final ResourceLocation FRAME_FADE_TEXTURE = malumPath("textures/gui/book/frame_fade.png");
@@ -35,7 +36,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     public static final int BOOK_HEIGHT = 250;
     public static final int BOOK_INSIDE_WIDTH = 344;
     public static final int BOOK_INSIDE_HEIGHT = 218;
-    
+
     protected float xOffset;
     protected float yOffset;
     protected float cachedXOffset;
@@ -45,7 +46,6 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     protected int voidFadeoutTimer;
     protected int voidFadeoutCounter;
-    protected boolean isVoidTouched;
 
     public final EntryObjectHandler progressionObjects = new EntryObjectHandler();
     public final List<PlacedBookEntry> entries = new ArrayList<>();
@@ -66,22 +66,18 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         setupObjects();
     }
 
+    @Override
+    public void init() {
+        super.init();
+    }
+
     public abstract void renderBackground(PoseStack poseStack);
 
     public abstract void setupEntries();
 
-    public void addEntry(String identifier, int xOffset, int yOffset) {
-        addEntry(identifier, xOffset, yOffset, b -> {
-        });
-    }
-
-    public void addEntry(String identifier, int xOffset, int yOffset, Consumer<PlacedBookEntryBuilder> modifier) {
-        var builder = PlacedBookEntry.create(identifier, xOffset, yOffset);
-        modifier.accept(builder);
-        if (builder.hasFragment()) {
-            getEntries().add(builder.buildFragment());
-        }
-        getEntries().add(builder.build());
+    @Override
+    public List<PlacedBookEntry> getEntries() {
+        return entries;
     }
 
     @Override
@@ -160,6 +156,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
         progressionObjects.setupEntryObjects(this);
+        faceObject(progressionObjects.get(1));
     }
 
     public void faceObject(BookObject<?> object) {
@@ -204,10 +201,6 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
                 getMinecraft().getWindow().getHeight() - (getInsideTop() + BOOK_INSIDE_HEIGHT) * scale,
                 BOOK_INSIDE_WIDTH * scale,
                 BOOK_INSIDE_HEIGHT * scale);
-    }
-
-    public List<PlacedBookEntry> getEntries() {
-        return entries;
     }
 
     public int getInsideLeft() {

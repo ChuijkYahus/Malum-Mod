@@ -18,9 +18,11 @@ public class ScreenOpenerObject extends IconObject {
     }
 
     @Override
-    public void click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+    public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (!entry.isFragment) {
             destination.openCodexViaTransition();
+            return true;
         }
+        return false;
     }
 }

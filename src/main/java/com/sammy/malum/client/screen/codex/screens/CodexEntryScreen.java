@@ -47,6 +47,9 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
+        if (parentScreen != null) {
+            setVoidTouched(parentScreen.isVoidTouched);
+        }
         int left = -21;
         int right = BOOK_WIDTH - 15;
         entryObjects.add(new ArrowObject(left, 150, false));
@@ -192,7 +195,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public void close(boolean ignoreNextInput) {
         if (parentScreen == null) {
-            ProgressionScreenHolder.openAppropriateCodexScreen();
+            ProgressionScreenHolder.getAppropriateCodexScreen().reopenCodexFromEntryScreen(isVoidTouched, ignoreNextInput);
         }
         else {
             Minecraft.getInstance().setScreen(parentScreen);

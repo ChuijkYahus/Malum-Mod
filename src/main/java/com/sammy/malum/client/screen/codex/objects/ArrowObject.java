@@ -30,13 +30,14 @@ public class ArrowObject extends BookObject<CodexEntryScreen> {
     }
 
     @Override
-    public void click(CodexEntryScreen screen, double mouseX, double mouseY) {
+    public boolean click(CodexEntryScreen screen, double mouseX, double mouseY) {
         if (flipped) {
             screen.nextPage();
         }
         else {
             screen.previousPage(true);
         }
+        return true;
     }
 
     @Override

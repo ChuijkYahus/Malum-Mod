@@ -50,10 +50,12 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     }
 
     @Override
-    public void click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+    public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (entry.hasContents()) {
             CodexEntryScreen.openScreen(entry);
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -128,7 +130,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         return this;
     }
 
-    public ProgressionEntryObject setValidityChecker(Predicate<AbstractProgressionCodexScreen> isValid) {
+    public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
         this.isValid = isValid;
         return this;
     }

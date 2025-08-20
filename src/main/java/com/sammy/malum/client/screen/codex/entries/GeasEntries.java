@@ -20,7 +20,7 @@ public class GeasEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
         screen.addEntry("geas_magic", 0, 10, b -> b
-                .configureWidget(w -> w.setIcon(SOUL_BRAZIER).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(SOUL_BRAZIER).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
                 .addPage(new HeadlineTextPage("geas_magic", "geas_magic.1"))
                 .addPage(new CraftingPage(SOUL_BRAZIER.get(),
                         HALLOWED_GOLD_INGOT.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INGOT.get(),
@@ -84,14 +84,14 @@ public class GeasEntries {
 
     public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_RUNEWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );
     }
     public static void addSoulwoodGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureWidget(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
+                .configureEntry(w -> w.setIcon(geas).setStyle(BookWidgetStyle.DARK_SOULWOOD))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );

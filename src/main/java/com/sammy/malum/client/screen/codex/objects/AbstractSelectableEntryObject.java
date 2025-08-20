@@ -23,7 +23,7 @@ public abstract class AbstractSelectableEntryObject extends BookObject<CodexEntr
     @Override
     public void renderLate(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isHoveredOver && entryReference.entry.hasTooltip()) {
-            final BookEntry entry = entryReference.entry;
+            var entry = entryReference.entry;
             final List<Component> list = Arrays.asList(
                 CodexTextHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
                 CodexTextHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle));
@@ -32,9 +32,11 @@ public abstract class AbstractSelectableEntryObject extends BookObject<CodexEntr
     }
 
     @Override
-    public void click(CodexEntryScreen screen, double mouseX, double mouseY) {
+    public boolean click(CodexEntryScreen screen, double mouseX, double mouseY) {
         if (entryReference.entry.hasContents()) {
             CodexEntryScreen.openScreen(entryReference.entry);
+            return true;
         }
+        return false;
     }
 }

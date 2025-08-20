@@ -38,8 +38,15 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
 
     }
 
-    public void click(T screen, double mouseX, double mouseY) {
+    public boolean tryClick(T screen, double mouseX, double mouseY) {
+        if (isHoveredOver) {
+            return click(screen, mouseX, mouseY);
+        }
+        return false;
+    }
 
+    public boolean click(T screen, double mouseX, double mouseY) {
+        return false;
     }
 
     public void exit(T screen) {

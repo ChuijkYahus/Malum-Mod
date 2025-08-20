@@ -19,18 +19,25 @@ public class ProgressionScreenHolder<T extends AbstractProgressionCodexScreen> e
         this.transitionSound = transitionSound;
     }
 
-    public static void openAppropriateCodexScreen() {
-        var screen = mostRecentScreen != null ? mostRecentScreen : ArcanaProgressionScreen.SCREEN;
-        screen.openCodexViaItem(true);
+    public static ProgressionScreenHolder<?> getAppropriateCodexScreen() {
+        return mostRecentScreen != null ? mostRecentScreen : ArcanaProgressionScreen.SCREEN;
+    }
+
+    public void reopenCodexFromEntryScreen(boolean isVoidTouched, boolean ignoreNextMouseInput) {
+        openCodex(isVoidTouched, ignoreNextMouseInput);
     }
 
     public void openCodexViaItem(boolean isVoidTouched) {
+        openCodex(isVoidTouched, true);
+    }
+
+    public void openCodex(boolean isVoidTouched, boolean ignoreNextMouseInput) {
         var minecraft = Minecraft.getInstance();
         var openScreen = minecraft.screen;
         var screen = getScreen();
         minecraft.setScreen(screen);
-        screen.ignoreNextMouseInput = true;
-        screen.isVoidTouched = isVoidTouched;
+        screen.ignoreNextMouseInput = ignoreNextMouseInput;
+        screen.setVoidTouched(isVoidTouched);
         if (openScreen == null) {
             screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
         }

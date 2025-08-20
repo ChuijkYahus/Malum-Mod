@@ -9,8 +9,7 @@ import java.util.*;
 public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
 
     protected final ArrayList<BookObject<T>> objects = new ArrayList<>();
-
-
+    
     public BookObjectHandler() {
     }
 
@@ -34,15 +33,15 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.remove(object);
     }
 
-
-
-    public void click(T screen, double mouseX, double mouseY) {
+    public boolean click(T screen, double mouseX, double mouseY) {
         for (BookObject<T> object : objects) {
-            if (object.isValid(screen) && object.isHoveredOver) {
-                object.click(screen, mouseX, mouseY);
-                break;
+            if (object.isValid(screen)) {
+                if (object.tryClick(screen, mouseX, mouseY)) {
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     public void renderObjects(T screen, GuiGraphics guiGraphics, float left, float top, int mouseX, int mouseY, float partialTicks) {

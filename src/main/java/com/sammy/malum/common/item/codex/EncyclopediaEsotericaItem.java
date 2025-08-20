@@ -21,7 +21,7 @@ public class EncyclopediaEsotericaItem extends EncyclopediaArcanaItem implements
         player.swing(hand);
         if (level.isClientSide) {
             ItemStack stack = player.getItemInHand(hand);
-            ProgressionScreenHolder.openAppropriateCodexScreen();
+            ProgressionScreenHolder.getAppropriateCodexScreen().openCodexViaItem(true);
             return InteractionResultHolder.success(stack);
         }
         return super.use(level, player, hand);
