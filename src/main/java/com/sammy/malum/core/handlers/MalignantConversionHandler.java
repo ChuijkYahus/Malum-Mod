@@ -9,9 +9,12 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.tick.*;
 
 import java.util.*;
@@ -24,7 +27,17 @@ public class MalignantConversionHandler {
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
-            if (!livingEntity.level().isClientSide) {
+            if (livingEntity.level() instanceof ServerLevel level) {
+                if (livingEntity instanceof Player player && player.isSpectator()) {
+                    return;
+                }
+                else {
+                    //Malignant Conversion isn't that important on non-player entities
+                    //To avoid lag, we only run once every two seconds
+                    if (level.getGameTime() % 40 != 0) {
+                        return;
+                    }
+                }
                 var conversionInstance = livingEntity.getAttribute(MalumAttributes.MALIGNANT_CONVERSION);
                 if (conversionInstance != null) {
                     var data = livingEntity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
@@ -60,12 +73,9 @@ public class MalignantConversionHandler {
         }
         float conversionStrength = (float) malignantConversion.getValue();
         boolean hasMalignantConversion = conversionStrength > 0;
-        var originalModifier = sourceInstance.getModifier(NEGATIVE_MODIFIER_ID);
-        if (originalModifier != null) {
-            //Before any actual logic, we remove any toll applied by malignant conversion
-            //This is done to give us the actual raw value of the attribute, unaffected by the conversion process
-            sourceInstance.removeModifier(originalModifier);
-        }
+        //Before any actual logic, we remove any toll applied by malignant conversion
+        //This is done to give us the actual raw value of the attribute, unaffected by the conversion process
+        removeNegativeModifier(sourceInstance);
         double convertedAmount = sourceInstance.getValue() - (conversionData.ignoreBaseValue() ? sourceInstance.getBaseValue() : 0);
         for (MalignantConversionAttributePayout payout : conversionData.payoutData()) {
             var affectedAttribute = payout.attribute();
@@ -84,8 +94,7 @@ public class MalignantConversionHandler {
         if (hasMalignantConversion) {
             double ratio = conversionData.consumptionRatio();
             double toll = -conversionStrength * ratio;
-            var modifier = new AttributeModifier(NEGATIVE_MODIFIER_ID, toll, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            sourceInstance.addTransientModifier(modifier);
+            addNegativeModifier(sourceInstance, toll);
         }
         cacheData.cacheValue(sourceInstance);
     }
@@ -96,11 +105,33 @@ public class MalignantConversionHandler {
             return false;
         }
         if (data.hasCachedValue(attribute)) {
-            final double stored = data.getCachedValue(attribute);
-            final double real = instance.getValue();
+            var modifier = instance.getModifier(NEGATIVE_MODIFIER_ID);
+            boolean isFullConversion = modifier != null && modifier.amount() <= -1;
+            if (isFullConversion) {
+                //We're trying to detect changes to the attribute, this cannot be done if malignant conversion is fully present, so we remove the modifier in such situation
+                removeNegativeModifier(instance);
+            }
+            double stored = data.getCachedValue(attribute);
+            double real = instance.getValue();
+            if (isFullConversion) {
+                //We reapply the removed modifier after checking for changes
+                instance.addTransientModifier(modifier);
+            }
             return stored != real;
         }
         return false;
+    }
+
+    private static void removeNegativeModifier(AttributeInstance attribute) {
+        var modifier = attribute.getModifier(NEGATIVE_MODIFIER_ID);
+        if (modifier != null) {
+            attribute.removeModifier(modifier);
+        }
+    }
+
+    private static void addNegativeModifier(AttributeInstance attribute, double toll) {
+        var modifier = new AttributeModifier(NEGATIVE_MODIFIER_ID, toll, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        attribute.addTransientModifier(modifier);
     }
 
     private static ResourceLocation createPositiveModifierId(Holder<Attribute> attribute) {

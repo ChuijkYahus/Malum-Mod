@@ -2,7 +2,7 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.*;
-import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
+import com.sammy.malum.client.screen.codex.helper.CodexRenderHelper;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -29,7 +29,7 @@ public class GeasItemRenderer extends BlockEntityWithoutLevelRenderer {
                     poseStack.mulPose(Axis.YN.rotation(3.14f));
                     poseStack.translate(-.5, -.5, -.5);
                     poseStack.scale(0.0625f, 0.0625f, 0.0625f);
-                    ArcanaCodexHelper.renderGeasIcon(geas.getIcon(), poseStack, geas, 0, 0);
+                    CodexRenderHelper.renderGeasIcon(geas.getIcon(), poseStack, geas, 0, 0);
                 });
             }
         }

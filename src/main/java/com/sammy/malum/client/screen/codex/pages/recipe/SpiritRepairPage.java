@@ -1,26 +1,21 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.*;
 import java.util.function.*;
-import java.util.stream.*;
-
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SpiritRepairPage extends BookPage {
 
@@ -70,17 +65,17 @@ public class SpiritRepairPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 59, top + 16, mouseX, mouseY, false);
-        renderItem(screen, guiGraphics, damagedStacks, left + 82, top + 59, mouseX, mouseY);
-        renderIngredient(screen, guiGraphics, recipe.repairMaterial, left + 44, top + 59, mouseX, mouseY);
-        renderItem(screen, guiGraphics, repairedStacks, left + 63, top + 126, mouseX, mouseY);
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 59, top + 16, mouseX, mouseY, false);
+        CodexItemHelper.renderItem(screen, guiGraphics, damagedStacks, left + 82, top + 59, mouseX, mouseY);
+        CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.repairMaterial, left + 44, top + 59, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, repairedStacks, left + 63, top + 126, mouseX, mouseY);
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 43, top + 78, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
             }
             if (screen.isHovering(mouseX, mouseY, left + 82, top + 78, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(DAMAGED, 180), mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(DAMAGED, 180), mouseX, mouseY);
             }
         });
     }

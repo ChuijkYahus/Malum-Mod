@@ -1,12 +1,13 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
 import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.BookWidgetStyle;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.GeasEffectType;
 import net.minecraft.*;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderTexture;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 
 public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexScreen> {
 
@@ -41,19 +42,29 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     }
 
     @Override
-    public void click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+    public boolean isInView(AbstractProgressionCodexScreen screen) {
+        return screen.isInView(getOffsetXPosition(), getOffsetYPosition())
+                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition())
+                || screen.isInView(getOffsetXPosition(), getOffsetYPosition() + height)
+                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition() + height);
+    }
+
+    @Override
+    public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (entry.hasContents()) {
-            EntryScreen.openScreen(screen, this);
+            CodexEntryScreen.openScreen(entry);
+            return true;
         }
+        return false;
     }
 
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        final PoseStack poseStack = guiGraphics.pose();
+        PoseStack poseStack = guiGraphics.pose();
         int posX = getOffsetXPosition() - (style.textureWidth() - 32) / 2;
         int posY = getOffsetYPosition() - (style.textureHeight() - 32) / 2;
-        final int centerX = posX + style.textureWidth() / 2;
-        final int centerY = posY + style.textureHeight() / 2;
+        int centerX = posX + style.textureWidth() / 2;
+        int centerY = posY + style.textureHeight() / 2;
         renderTexture(WIDGET_FADE_TEXTURE, poseStack, centerX - 29, centerY - 29, 0, 0, 58, 58);
         renderTexture(style.frameTexture(), poseStack, posX, posY, 0, 0, style.textureWidth(), style.textureHeight());
         renderTexture(style.fillingTexture(), poseStack, posX, posY, 0, 0, style.textureWidth(), style.textureHeight());
@@ -67,8 +78,8 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         if (isHoveredOver && entry.hasTooltip()) {
             ChatFormatting formatting = getHeadlineStyle(screen);
             List<Component> list = new ArrayList<>(List.of(
-                    ArcanaCodexHelper.convertToComponent(entry.translationKey(), entry.titleStyle).withStyle(formatting),
-                    ArcanaCodexHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
+                    CodexTextHelper.convertToComponent(entry.translationKey(), entry.titleStyle).withStyle(formatting),
+                    CodexTextHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
 
             for (EntryReference reference : entry.references) {
                 if (reference.entry.shouldShow()) {
@@ -119,7 +130,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         return this;
     }
 
-    public ProgressionEntryObject setValidityChecker(Predicate<AbstractProgressionCodexScreen> isValid) {
+    public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
         this.isValid = isValid;
         return this;
     }

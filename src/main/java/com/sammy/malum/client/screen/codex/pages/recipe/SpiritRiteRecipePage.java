@@ -18,7 +18,7 @@ import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.spin.*;
 import team.lodestar.lodestone.systems.particle.screen.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
 public class SpiritRiteRecipePage extends BookPage {
 
@@ -32,7 +32,7 @@ public class SpiritRiteRecipePage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         var spirits = riteType.getSpirits();
         var minecraft = Minecraft.getInstance();
         var rand = minecraft.level.random;
@@ -51,7 +51,8 @@ public class SpiritRiteRecipePage extends BookPage {
             var spiritType = spirits.get(i);
             var spiritTexture = spiritType.getSpirit().getGlowTexture();
             var stack = spirits.get(i).getSpiritStack();
-            renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupted(), riteStartX, y);
+            var isCorrupt = riteType.isCorrupted();
+            renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupt, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);
             }
@@ -67,12 +68,9 @@ public class SpiritRiteRecipePage extends BookPage {
                         .setColorData(spiritType.createColorData().setCoefficient(0.25f).build())
                         .setLifetime(lifetime)
                         .setMotion(0, yMotion)
-                        .spawn(x - xOffset, y+8+4*i)
-                        .spawn(x + xOffset, y+8+4*i);
+                        .spawn(x - xOffset, y + 8 + 4 * i)
+                        .spawn(x + xOffset, y + 8 + 4 * i);
             }
         }
-    }
-    public boolean isCorrupted() {
-        return bookEntry.identifier.contains("corrupt");
     }
 }

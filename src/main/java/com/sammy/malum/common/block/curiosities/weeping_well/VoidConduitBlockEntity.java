@@ -111,7 +111,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public void processItem(ServerLevel serverLevel) {
         var particleEffectType = MalumParticleEffectTypes.WEEPING_WELL_REACTS;
         var stack = eatenItems.getLast();
-        if (stack.getItem().equals(MalumItems.BLIGHTED_GUNK.get())) {
+        if (stack.is(MalumItems.BLIGHTED_GUNK)) {
             eatGunk(stack);
         } else {
             spitOutItem(stack);

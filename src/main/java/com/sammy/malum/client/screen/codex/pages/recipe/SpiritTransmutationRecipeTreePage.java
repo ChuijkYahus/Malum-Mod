@@ -1,8 +1,9 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.client.screen.codex.screens.EntryScreen;
+import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.registry.client.MalumScreenParticles;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -26,8 +27,6 @@ import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class SpiritTransmutationRecipeTreePage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation_tree");
@@ -63,24 +62,24 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderHeadline(guiGraphics, headline, left, top);
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 TRANSMUTATION_PARTICLES.tick();
             }
             ScreenParticleHandler.renderParticles(TRANSMUTATION_PARTICLES);
         }
-        renderIngredient(screen, guiGraphics, itemTree.getFirst(), left + 63, top + 38, mouseX, mouseY);
-        renderIngredient(screen, guiGraphics, itemTree.getLast(), left + 63, top + 142, mouseX, mouseY);
+        CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.getFirst(), left + 63, top + 38, mouseX, mouseY);
+        CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.getLast(), left + 63, top + 142, mouseX, mouseY);
 
         int leftStart = left + 73 - (itemTree.size())*10;
         for (int i = 1; i < itemTree.size()-1; i++) {
-            renderIngredient(screen, guiGraphics, itemTree.get(i), leftStart+i*20, top + 90, mouseX, mouseY);
+            CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.get(i), leftStart+i*20, top + 90, mouseX, mouseY);
         }
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 62, top + 60, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
             }
         });
 

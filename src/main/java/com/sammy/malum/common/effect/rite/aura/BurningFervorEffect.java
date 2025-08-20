@@ -12,7 +12,7 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 public class BurningFervorEffect extends MobEffect {
     public BurningFervorEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
-        final ResourceLocation id = MalumMod.malumPath("infernal_aura");
+        var id = MalumMod.malumPath("infernal_aura");
         addAttributeModifier(Attributes.ATTACK_SPEED, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, id, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }

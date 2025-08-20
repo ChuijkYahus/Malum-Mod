@@ -6,7 +6,7 @@ import net.minecraft.resources.*;
 
 import static com.sammy.malum.MalumMod.*;
 
-public class BookObject<T extends AbstractMalumScreen> {
+public class BookObject<T extends AbstractMalumCodexScreen> {
 
     public static final ResourceLocation WIDGET_FADE_TEXTURE = malumPath("textures/gui/book/widget_fade.png");
 
@@ -38,8 +38,15 @@ public class BookObject<T extends AbstractMalumScreen> {
 
     }
 
-    public void click(T screen, double mouseX, double mouseY) {
+    public boolean tryClick(T screen, double mouseX, double mouseY) {
+        if (isHoveredOver) {
+            return click(screen, mouseX, mouseY);
+        }
+        return false;
+    }
 
+    public boolean click(T screen, double mouseX, double mouseY) {
+        return false;
     }
 
     public void exit(T screen) {
@@ -48,6 +55,10 @@ public class BookObject<T extends AbstractMalumScreen> {
 
     public boolean isHovering(T screen, float offsetX, float offsetY, double mouseX, double mouseY) {
         return screen.isHovering(mouseX, mouseY, posX + offsetX, posY + offsetY, width, height);
+    }
+
+    public boolean isInView(T screen) {
+        return true;
     }
 
     public int getOffsetXPosition() {

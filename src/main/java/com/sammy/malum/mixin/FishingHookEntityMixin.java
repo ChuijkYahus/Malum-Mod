@@ -25,7 +25,6 @@ public class FishingHookEntityMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V", at = @At("RETURN"))
     private void malumModifyFishingLuckStatsMixin(Player player, Level level, int luck, int lureSpeed, CallbackInfo ci) {
-        FishingHook hook = (FishingHook) ((Object)this);
         var goodTides = GoodTidesEffect.increaseFishingStats(player);
         this.luck += goodTides.getFirst();
         this.lureSpeed = goodTides.getSecond();

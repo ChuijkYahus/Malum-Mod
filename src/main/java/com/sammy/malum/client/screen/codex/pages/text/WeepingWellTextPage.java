@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.client.*;
@@ -19,8 +20,6 @@ import team.lodestar.lodestone.systems.particle.render_types.*;
 import team.lodestar.lodestone.systems.particle.screen.*;
 
 import java.awt.*;
-
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class WeepingWellTextPage extends BookPage {
 
@@ -50,19 +49,19 @@ public class WeepingWellTextPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         final ClientLevel level = Minecraft.getInstance().level;
         var rand = level.random;
         Component component = Component.translatable(headlineTranslationKey());
-        renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
-        renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);
+        CodexTextHelper.renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
+        CodexTextHelper.renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 ITEM_PARTICLES.tick();
             }
             ScreenParticleHandler.renderParticles(ITEM_PARTICLES);
         }
-        renderItem(screen, guiGraphics, stack, left + 63, top + 38, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, stack, left + 63, top + 38, mouseX, mouseY);
 
         if (level.getGameTime() % 4L == 0) {
             if (ScreenParticleHandler.canSpawnParticles) {

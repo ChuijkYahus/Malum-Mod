@@ -1,6 +1,7 @@
 package com.sammy.malum.events;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
 import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
@@ -9,9 +10,12 @@ import com.sammy.malum.registry.common.MalumParticles;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderSystem;
+import team.lodestar.lodestone.systems.rendering.renderpass.RenderPassHandler;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientSetupEvents {
@@ -49,5 +53,12 @@ public class ClientSetupEvents {
     public static void registerParticleFactory(RegisterParticleProvidersEvent event) {
         MalumParticles.registerParticleFactory(event);
         MalumScreenParticles.registerParticleFactory(event);
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        LodestoneRenderSystem.wrap(() -> {
+            RenderPassHandler.registerRenderPass(new ParallelWorldRenderer());
+        });
     }
 }

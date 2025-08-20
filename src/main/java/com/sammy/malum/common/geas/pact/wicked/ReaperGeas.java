@@ -39,7 +39,6 @@ public class ReaperGeas extends GeasEffect {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
-    //TODO: This thing is rlly needlessly complicated
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
@@ -53,28 +52,6 @@ public class ReaperGeas extends GeasEffect {
                     }
                     return;
                 }
-            }
-            var random = attacker.getRandom();
-
-            if (source.is(MalumDamageTypes.SCYTHE_COMBO)) {
-                var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
-                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
-                        .originatesFrom(attacker)
-                        .targets(target)
-                        .tiedToTarget()
-                        .forwardOffset(-2f)
-                        .upwardOffset(-0.5f)
-                        .color(scytheStack.getItem())
-                        .mirroredRandomly(random);
-                if (MalumScytheItem.canSweep(attacker)) {
-                    MalumScytheItem.trySweep(attacker, target, event.getNewDamage());
-                }
-                else {
-                    particle.verticalSlashRotation();
-                }
-                particle.slashRotation(particle.getSlashRotation() + RandomHelper.randomBetween(random, -0.3f, 0.3f));
-                particle.spawn(level);
-                return;
             }
             if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
                 MalumScytheItem.ScytheDamage damage = MalumScytheItem.getScytheDamage(source, attacker);
@@ -93,7 +70,7 @@ public class ReaperGeas extends GeasEffect {
                     extraHits++;
                     chance += 0.1f;
                 }
-                if (random.nextFloat() < chance) {
+                if (attacker.getRandom().nextFloat() < chance) {
                     for (int i = 0; i < extraHits; i++) {
                         int delay = 4 + i * 3;
                         WorldEventHandler.addWorldEvent(level,
@@ -102,9 +79,34 @@ public class ReaperGeas extends GeasEffect {
                                         .setDamageData(physicalDamage, magicDamage, delay)
                                         .setPhysicalDamageType(MalumDamageTypes.SCYTHE_COMBO)
                                         .setSound(MalumSoundEvents.REAPER_CUT, 0.9f, 1.1f, 1));
-
                     }
                 }
+            }
+        }
+    }
+
+    @Override
+    public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (attacker.level() instanceof ServerLevel level) {
+            var random = attacker.getRandom();
+            var source = event.getSource();
+            if (source.is(MalumDamageTypes.SCYTHE_COMBO)) {
+                var scytheStack = SoulDataHandler.getScytheWeapon(source, attacker);
+                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
+                        .originatesFrom(attacker)
+                        .targets(target)
+                        .tiedToTarget()
+                        .forwardOffset(-2f)
+                        .upwardOffset(-0.5f)
+                        .color(scytheStack.getItem())
+                        .mirroredRandomly(random);
+                if (MalumScytheItem.canSweep(attacker)) {
+                    MalumScytheItem.trySweep(attacker, target, event.getNewDamage());
+                } else {
+                    particle.verticalSlashRotation();
+                }
+                particle.slashRotation(particle.getSlashRotation() + RandomHelper.randomBetween(random, -0.3f, 0.3f));
+                particle.spawn(level);
             }
         }
     }

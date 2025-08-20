@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 
 import com.sammy.malum.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.data.component.*;
@@ -10,8 +11,6 @@ import net.minecraft.world.item.*;
 import net.neoforged.fml.*;
 
 import java.util.*;
-
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class CraftingPage extends BookPage {
     private final ItemStack outputStack;
@@ -36,7 +35,7 @@ public class CraftingPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
@@ -45,13 +44,13 @@ public class CraftingPage extends BookPage {
                     if (!stack.isEmpty()) {
                         int itemPosX = left + 42 + j * 21;
                         int itemPosY = top + 35 + i * 21;
-                        renderItem(screen, guiGraphics, stack, itemPosX, itemPosY, mouseX, mouseY);
+                        CodexItemHelper.renderItem(screen, guiGraphics, stack, itemPosX, itemPosY, mouseX, mouseY);
                     }
                 }
             }
         }
 
-        renderItem(screen, guiGraphics, outputStack, left + 63, top + 132, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, outputStack, left + 63, top + 132, mouseX, mouseY);
     }
 
     public static CraftingPage shapeless(Item output, Item... inputs) {

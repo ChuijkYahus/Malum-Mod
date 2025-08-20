@@ -66,11 +66,11 @@ public class BookEntry {
         return !tooltipDisabled;
     }
 
-    public static PlacedBookEntryBuilder build(String identifier, int xOffset, int yOffset) {
+    public static PlacedBookEntryBuilder create(String identifier, int xOffset, int yOffset) {
         return new PlacedBookEntryBuilder(identifier, xOffset, yOffset);
     }
 
-    public static BookEntryBuilder build(String identifier) {
+    public static BookEntryBuilder create(String identifier) {
         return new BookEntryBuilder(identifier);
     }
 }

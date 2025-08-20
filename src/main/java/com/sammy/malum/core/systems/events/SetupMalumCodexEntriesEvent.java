@@ -1,6 +1,7 @@
 package com.sammy.malum.core.systems.events;
 
 
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.neoforged.bus.api.*;
 
 /**
@@ -8,7 +9,13 @@ import net.neoforged.bus.api.*;
  * All the relevant book parameters are static, so you may simply edit those.
  */
 public class SetupMalumCodexEntriesEvent extends Event {
-    public SetupMalumCodexEntriesEvent() {
+    protected final AbstractProgressionCodexScreen screen;
+
+    public SetupMalumCodexEntriesEvent(AbstractProgressionCodexScreen screen) {
+        this.screen = screen;
     }
 
+    public AbstractProgressionCodexScreen getScreen() {
+        return screen;
+    }
 }

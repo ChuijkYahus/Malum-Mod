@@ -74,7 +74,9 @@ public class SoulWardHandler {
             NeoForge.EVENT_BUS.post(damageEvent);
 
             var sound = data.getSoulWard() == 0 ? MalumSoundEvents.SOUL_WARD_DEPLETE : MalumSoundEvents.SOUL_WARD_HIT;
-            SoundHelper.playSound(living, sound.get(), 1, Mth.nextFloat(living.getRandom(), 1f, 1.5f));
+            var volume = source.is(MalumDamageTypes.KARMIC) ? 0.4f : 1f; //reduced volume for karmic damage, specifically with the pact of patience repaid in mind
+            float pitch = RandomHelper.randomBetween(living.getRandom(), 1f, 1.5f);
+            SoundHelper.playSound(living, sound.get(), volume, pitch);
             event.setNewDamage((float) (amount - absorbedDamage));
         }
     }

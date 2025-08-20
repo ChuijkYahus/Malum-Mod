@@ -1,11 +1,8 @@
 package com.sammy.malum.compat.jei.categories;
 
-import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
-import com.sammy.malum.common.data.map.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.common.recipe.spirit_repair.SpiritRepairRecipe;
 import com.sammy.malum.compat.jei.*;
-import com.sammy.malum.core.systems.recipe.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -18,18 +15,12 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
@@ -48,7 +39,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
     public void draw(SpiritRepairRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         if (!recipe.spirits.isEmpty()) {
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
+            CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
         }
     }
 

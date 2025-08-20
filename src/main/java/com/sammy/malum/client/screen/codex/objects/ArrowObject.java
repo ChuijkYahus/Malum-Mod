@@ -6,9 +6,9 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderTexture;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 
-public class ArrowObject extends BookObject<EntryScreen> {
+public class ArrowObject extends BookObject<CodexEntryScreen> {
 
     public static final ResourceLocation ARROWS = MalumMod.malumPath("textures/gui/book/entry_elements/arrows.png");
     public static final ResourceLocation ARROWS_LIT_UP = MalumMod.malumPath("textures/gui/book/entry_elements/arrows_active.png");
@@ -21,7 +21,7 @@ public class ArrowObject extends BookObject<EntryScreen> {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         final int arrowX = getOffsetXPosition();
         final int arrowY = getOffsetYPosition();
         ResourceLocation texture = isHoveredOver ? ARROWS_LIT_UP : ARROWS;
@@ -30,17 +30,18 @@ public class ArrowObject extends BookObject<EntryScreen> {
     }
 
     @Override
-    public void click(EntryScreen screen, double mouseX, double mouseY) {
+    public boolean click(CodexEntryScreen screen, double mouseX, double mouseY) {
         if (flipped) {
             screen.nextPage();
         }
         else {
             screen.previousPage(true);
         }
+        return true;
     }
 
     @Override
-    public boolean isValid(EntryScreen screen) {
+    public boolean isValid(CodexEntryScreen screen) {
         return !flipped || (screen.hasNextPage());
     }
 }

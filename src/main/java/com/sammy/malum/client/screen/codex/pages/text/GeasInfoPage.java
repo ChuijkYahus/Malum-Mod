@@ -1,9 +1,8 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
-import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -11,7 +10,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderWrappingText;
+import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderWrappingText;
 
 public class GeasInfoPage extends BookPage {
 
@@ -31,12 +30,12 @@ public class GeasInfoPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         int leftStart = ((left + 14));
         int upperTopStart = ((top + 10));
         int lowerTopStart = ((top + 100));
-        renderWrappingText(guiGraphics, ArcanaCodexHelper.GEAS_POSITIVE_COLOR, pros, leftStart, upperTopStart, 118, prosScale);
-        renderWrappingText(guiGraphics, ArcanaCodexHelper.GEAS_NEGATIVE_COLOR, cons, leftStart, lowerTopStart, 118, consScale);
+        renderWrappingText(guiGraphics, CodexTextHelper.GEAS_POSITIVE_COLOR, pros, leftStart, upperTopStart, 118, prosScale);
+        renderWrappingText(guiGraphics, CodexTextHelper.GEAS_NEGATIVE_COLOR, cons, leftStart, lowerTopStart, 118, consScale);
     }
 
     public Pair<Component, Float> makeText(String text) {

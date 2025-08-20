@@ -3,7 +3,6 @@ package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.client.screen.codex.pages.*;
-import com.sammy.malum.core.systems.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.Item;
@@ -11,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import team.lodestar.lodestone.systems.recipe.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderItem;
+import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderItem;
 
 public class SmeltingPage extends BookPage {
     private final ItemStack inputStack;
@@ -28,7 +27,7 @@ public class SmeltingPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderItem(screen, guiGraphics, inputStack, left + 63, top + 56, mouseX, mouseY);
         renderItem(screen, guiGraphics, outputStack, left + 63, top + 132, mouseX, mouseY);
     }
