@@ -5,7 +5,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
 import net.minecraft.core.*;
@@ -30,7 +30,7 @@ public class GeasEntries {
                 .addPage(new TextPage("geas_magic.3"))
                 .addPage(new TextPage("geas_magic.4"))
                 .addPage(new TextPage("geas_magic.5"))
-                .addReference(new EntryReference(PARACAUSAL_FLAME, BookEntry.build("undoing_geas_bindings")
+                .addReference(new EntryReference(PARACAUSAL_FLAME, BookEntry.create("undoing_geas_bindings")
                         .addPage(new HeadlineTextItemPage("undoing_geas_bindings", "undoing_geas_bindings.1", PARACAUSAL_FLAME.get()))
                         .addPage(new TextPage("undoing_geas_bindings.2"))
                         .addPage(SpiritInfusionPage.fromOutput(PARACAUSAL_FLAME.get()))

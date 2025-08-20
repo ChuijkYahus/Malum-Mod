@@ -6,7 +6,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
@@ -20,12 +20,12 @@ public class IntroductionEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
-        var soulstoneAndBrillianceReexamination = BookEntry.build("spirit_minerals.reexamination")
+        var soulstoneAndBrillianceReexamination = BookEntry.create("spirit_minerals.reexamination")
                 .addPage(new HeadlineTextPage("spirit_minerals.reexamination", "spirit_minerals.reexamination.1"))
                 .addPage(new TextPage("spirit_minerals.reexamination.2"))
                 .afterUmbralCrystal();
 
-        var cthonicGoldReexamination = BookEntry.build("cthonic_gold.reexamination")
+        var cthonicGoldReexamination = BookEntry.create("cthonic_gold.reexamination")
                 .addPage(new HeadlineTextPage("cthonic_gold.reexamination", "cthonic_gold.reexamination.1"))
                 .addPage(new TextPage("cthonic_gold.reexamination.2"))
                 .afterUmbralCrystal();
@@ -38,10 +38,10 @@ public class IntroductionEntries {
                 .addPage(new TextPage("introduction.4"))
                 .addPage(new TextPage("introduction.5"))
                 .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-                        BookEntry.build("a_personal_note")
+                        BookEntry.create("a_personal_note")
                                 .addPage(new HeadlineTextPage("a_personal_note", "a_personal_note.1"))
                                 .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-                                        BookEntry.build("a_personal_note.commendations")
+                                        BookEntry.create("a_personal_note.commendations")
                                                 .addPage(new HeadlineTextPage("a_personal_note.commendations.wiresegal", "a_personal_note.commendations.wiresegal.1"))
                                                 .addPage(new HeadlineTextPage("a_personal_note.commendations.alphalilly", "a_personal_note.commendations.alphalilly.1"))
                                                 .addPage(new HeadlineTextPage("a_personal_note.commendations.pessi_mysterio", "a_personal_note.commendations.pessi_mysterio.1"))
@@ -49,7 +49,7 @@ public class IntroductionEntries {
                                                 .addPage(new HeadlineTextPage("a_personal_note.commendations.coalition_of_magic", "a_personal_note.commendations.coalition_of_magic.1"))
                                 ))
                                 .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-                                        BookEntry.build("a_personal_note.inspirations")
+                                        BookEntry.create("a_personal_note.inspirations")
                                                 .addPage(new HeadlineTextPage("a_personal_note.inspirations.thaumcraft", "a_personal_note.inspirations.thaumcraft.1"))
                                                 .addPage(new HeadlineTextPage("a_personal_note.inspirations.astral_sorcery", "a_personal_note.inspirations.astral_sorcery.1"))
                                                 .addPage(new HeadlineTextPage("a_personal_note.inspirations.mystic_modding", "a_personal_note.inspirations.mystic_modding.1"))
@@ -131,7 +131,7 @@ public class IntroductionEntries {
                 .addPage(CraftingPage.scythePage(MalumItems.CRUDE_SCYTHE.get(), Items.IRON_INGOT, REFINED_SOULSTONE.get()))
                 .addPage(new TextPage("scythes.2"))
                 .addReference(new EntryReference(ENCHANTED_BOOK,
-                        BookEntry.build("scythes.enchanting")
+                        BookEntry.create("scythes.enchanting")
                                 .addPage(new HeadlineTextPage("scythes.enchanting", "scythes.enchanting.1"))
                                 .addPage(new HeadlineTextPage("scythes.enchanting.spirit_plunder", "scythes.enchanting.spirit_plunder.1"))
                                 .addPage(new HeadlineTextPage("scythes.enchanting.haunted", "scythes.enchanting.haunted.1"))
@@ -150,15 +150,15 @@ public class IntroductionEntries {
                 .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
                 .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
                 .addReference(new EntryReference(HEX_ASH.get(),
-                        BookEntry.build("spirit_infusion.hex_ash")
+                        BookEntry.create("spirit_infusion.hex_ash")
                                 .addPage(new HeadlineTextPage("spirit_infusion.hex_ash", "spirit_infusion.hex_ash.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(HEX_ASH.get()))
                 ))
-                .addReference(new EntryReference(LIVING_FLESH.get(), BookEntry.build("spirit_infusion.living_flesh")
+                .addReference(new EntryReference(LIVING_FLESH.get(), BookEntry.create("spirit_infusion.living_flesh")
                         .addPage(new HeadlineTextPage("spirit_infusion.living_flesh", "spirit_infusion.living_flesh.1"))
                         .addPage(SpiritInfusionPage.fromOutput(LIVING_FLESH.get()))
                 ))
-                .addReference(new EntryReference(ALCHEMICAL_CALX.get(), BookEntry.build("spirit_infusion.alchemical_calx")
+                .addReference(new EntryReference(ALCHEMICAL_CALX.get(), BookEntry.create("spirit_infusion.alchemical_calx")
                         .addPage(new HeadlineTextPage("spirit_infusion.alchemical_calx", "spirit_infusion.alchemical_calx.1"))
                         .addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_CALX.get()))
                 ))

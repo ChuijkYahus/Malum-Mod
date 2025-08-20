@@ -1,7 +1,7 @@
 package com.sammy.malum.compat.jei.categories;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.screen.codex.ArcanaCodexHelper;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.common.recipe.SpiritFocusingRecipe;
 import com.sammy.malum.compat.jei.*;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -39,7 +39,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
     public void draw(SpiritFocusingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         if (!recipe.spirits.isEmpty()) {
-            ArcanaCodexHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
+            CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
         }
     }
 

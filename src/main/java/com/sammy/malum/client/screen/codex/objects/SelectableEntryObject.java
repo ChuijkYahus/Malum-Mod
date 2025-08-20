@@ -7,7 +7,7 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
 public class SelectableEntryObject extends AbstractSelectableEntryObject {
 
@@ -18,10 +18,10 @@ public class SelectableEntryObject extends AbstractSelectableEntryObject {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        final int entryX = getOffsetXPosition();
-        final int entryY = getOffsetYPosition();
-        final PoseStack poseStack = guiGraphics.pose();
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        int entryX = getOffsetXPosition();
+        int entryY = getOffsetYPosition();
+        PoseStack poseStack = guiGraphics.pose();
         renderTexture(SOCKET, poseStack, entryX, entryY, 0, 0, 32, 32);
         guiGraphics.renderItem(entryReference.icon, entryX + 8, entryY + 8);
     }

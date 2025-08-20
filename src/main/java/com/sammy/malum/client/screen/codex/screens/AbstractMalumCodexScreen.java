@@ -1,26 +1,25 @@
 package com.sammy.malum.client.screen.codex.screens;
 
-import com.sammy.malum.client.screen.codex.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.screens.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 
 import java.util.*;
 import java.util.function.*;
 
-public abstract class AbstractMalumScreen extends Screen {
+@SuppressWarnings("DataFlowIssue")
+public abstract class AbstractMalumCodexScreen extends Screen {
 
-    protected final Supplier<SoundEvent> sweetenerSound;
-    public List<Runnable> lateRendering = new ArrayList<>();
+    protected final Holder<SoundEvent> sweetenerSound;
+    protected List<Runnable> lateRendering = new ArrayList<>();
 
-    protected AbstractMalumScreen(Component pTitle, Supplier<SoundEvent> sweetenerSound) {
+    protected AbstractMalumCodexScreen(Component pTitle, Holder<SoundEvent> sweetenerSound) {
         super(pTitle);
+        //Early Instantiation for access in constructor
+        this.minecraft = Minecraft.getInstance();
         this.sweetenerSound = sweetenerSound;
-    }
-
-    public boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
-        return ArcanaCodexHelper.isHovering(mouseX, mouseY, posX, posY, width, height);
     }
 
     @Override
@@ -36,22 +35,23 @@ public abstract class AbstractMalumScreen extends Screen {
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
-    public void openScreen(boolean silentMouseInput) {
-        Minecraft.getInstance().setScreen(this);
+
+    public boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
+        return mouseX > posX && mouseX < posX + width && mouseY > posY && mouseY < posY + height;
     }
 
-    public void playPageFlipSound(Supplier<SoundEvent> soundEvent, float pitch) {
+    public void playPageFlipSound(Holder<SoundEvent> soundEvent, float pitch) {
         playSound(soundEvent, 1f, Math.max(1, pitch * 0.8f));
         playSound(sweetenerSound, 1f, pitch);
     }
 
-    public void playSweetenedSound(Supplier<SoundEvent> soundEvent, float sweetenerPitch) {
+    public void playSweetenedSound(Holder<SoundEvent> soundEvent, float sweetenerPitch) {
         playSound(soundEvent, 1f, 1);
         playSound(sweetenerSound, 1f, sweetenerPitch);
     }
 
-    public void playSound(Supplier<SoundEvent> soundEvent, float volume, float pitch) {
-        Minecraft.getInstance().player.playNotifySound(soundEvent.get(), SoundSource.PLAYERS, volume, pitch);
+    public void playSound(Holder<SoundEvent> soundEvent, float volume, float pitch) {
+        minecraft.player.playNotifySound(soundEvent.value(), SoundSource.PLAYERS, volume, pitch);
     }
 
     public void renderLater(Runnable runnable) {

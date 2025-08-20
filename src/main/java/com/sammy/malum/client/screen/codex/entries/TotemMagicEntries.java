@@ -6,10 +6,9 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.registry.rite.RiteHolder;
 import com.sammy.malum.core.systems.rite.SpiritRiteType;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
@@ -24,11 +23,11 @@ public class TotemMagicEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
-        var strangeCrystalReexamination = BookEntry.build("strange_crystal.reexamination")
+        var strangeCrystalReexamination = BookEntry.create("strange_crystal.reexamination")
                 .addPage(new HeadlineTextPage("strange_crystal.reexamination", "strange_crystal.reexamination.1"))
                 .afterVoidReader();
 
-        var strangeCrystalRevelation = BookEntry.build("strange_crystal.revelation")
+        var strangeCrystalRevelation = BookEntry.create("strange_crystal.revelation")
                 .addPage(new HeadlineTextPage("strange_crystal.revelation", "strange_crystal.revelation.1"))
                 .afterUmbralCrystal();
 
@@ -138,25 +137,25 @@ public class TotemMagicEntries {
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CULLING, -3, 17);
         addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_RAISING, -4, 17);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, RUNE_OF_HOWLING_GALE, -4, 18);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, RUNE_OF_SKY_TETHER, -5, 18);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_GRAVITY, -3, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_ASCENSION, -4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, RUNE_OF_HOWLING_GALE, -4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, RUNE_OF_SKY_TETHER, -5, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_GRAVITY, -3, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_ASCENSION, -4, 20);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, RUNE_OF_FLOWING_GRASP, 4, 18);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, RUNE_OF_GOOD_TIDES, 5, 18);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SOAKING, 3, 19);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SAPPING, 4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, RUNE_OF_FLOWING_GRASP, 4, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, RUNE_OF_GOOD_TIDES, 5, 19);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SOAKING, 3, 20);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SAPPING, 4, 20);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -3, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -4, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, RUNE_OF_STONE_WARD, -4, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, RUNE_OF_OAKEN_MIGHT, -5, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_CREATION, -3, 23);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, -4, 23);
 
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 21);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 3, 22);
-        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 4, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, RUNE_OF_BURNING_FERVOR, 4, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, RUNE_OF_FIERY_EMBRACE, 5, 22);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_SMELTING, 3, 23);
+        addRiteEntry(screen, MalumSpiritRiteTypes.RITE_OF_QUICKENING, 4, 23);
     }
 
     public static void addRiteEntry(AbstractProgressionCodexScreen screen, RiteHolder<SpiritRiteType> riteType, int x, int y) {
@@ -182,7 +181,7 @@ public class TotemMagicEntries {
 
     public static EntryReference totemicRuneEntry(Item item) {
         String translationKey = BuiltInRegistries.ITEM.getKey(item).getPath();
-        return new EntryReference(item, BookEntry.build(translationKey)
+        return new EntryReference(item, BookEntry.create(translationKey)
                 .addPage(new HeadlineTextPage(translationKey))
                 .addPage(RuneworkingPage.fromOutput(item)));
     }

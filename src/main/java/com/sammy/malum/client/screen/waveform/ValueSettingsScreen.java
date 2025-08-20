@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.waveform;
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.*;
-import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.common.payloads.spirit_diode.*;
 import com.sammy.malum.registry.common.*;
@@ -12,7 +12,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.*;
-import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
@@ -32,7 +31,7 @@ import java.lang.Math;
 import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderTexture;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 import static net.minecraft.util.FastColor.ARGB32.color;
 
 public class ValueSettingsScreen extends Screen {
@@ -110,13 +109,17 @@ public class ValueSettingsScreen extends Screen {
     @Override
     public void mouseMoved(double mouseX, double mouseY) {
         if (!disableMouse) {
-            if (ArcanaCodexHelper.isHovering(mouseX, mouseY, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE)) {
+            if (isHovering(mouseX, mouseY, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE)) {
                 double offsetX = xDialCenter - mouseX;
                 double offsetY = yDialCenter - mouseY;
                 angle = clampAngle(Mth.ceil(Math.toDegrees(Math.atan2(offsetX, -offsetY)))+180);
             }
         }
         disableMouse = false;
+    }
+
+    public static boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
+        return mouseX > posX && mouseX < posX + width && mouseY > posY && mouseY < posY + height;
     }
 
     @Override
@@ -272,11 +275,11 @@ public class ValueSettingsScreen extends Screen {
     }
 
     public void renderTexture(GuiGraphics graphics, int x, int y, int u, int v, int width, int height) {
-        ArcanaCodexHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, width, height, 32, 32);
+        CodexRenderHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, width, height, 32, 32);
     }
 
     public void renderTexture(GuiGraphics graphics, int x, int y, int u, int v, int xCoverage, int yCoverage, int width, int height) {
-        ArcanaCodexHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, xCoverage, yCoverage, width, height, 32, 32);
+        CodexRenderHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, xCoverage, yCoverage, width, height, 32, 32);
     }
 
     public void renderDialTexture(GuiGraphics graphics, int x, int y) {

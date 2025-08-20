@@ -1,6 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
-import com.sammy.malum.client.screen.codex.screens.AbstractProgressionCodexScreen;
+import com.sammy.malum.client.screen.codex.screens.progression.AbstractProgressionCodexScreen;
 import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.client.Minecraft;
@@ -17,6 +17,6 @@ public class VanishingEntryObject extends ProgressionEntryObject {
     public void exit(AbstractProgressionCodexScreen screen) {
         Player playerEntity = Minecraft.getInstance().player;
         playerEntity.playNotifySound(MalumSoundEvents.THE_DEEP_BECKONS.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-        screen.bookObjectHandler.remove(this);
+        screen.progressionObjects.remove(this);
     }
 }

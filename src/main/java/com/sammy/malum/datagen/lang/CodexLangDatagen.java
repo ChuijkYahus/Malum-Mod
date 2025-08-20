@@ -810,9 +810,9 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("void.rune_of_bolstering", "Rune of Bolstering", "To heal what is whole");
         addPages("void.rune_of_bolstering",
                 "The Rune of Bolstering does not heal like its counterpart. Instead, it forces the body to heal past its limits, granting a small amount of extra health.");
-        addEntryHeader("void.rune_of_sacrificial_empowerment", "Rune of Sacrificial Empowerment", "To break what is broken");
-        addHeadline("void.rune_of_sacrificial_empowerment", "Sacrificial Empowerment");
-        addPages("void.rune_of_sacrificial_empowerment",
+        addEntryHeader("void.rune_of_radial_empowerment", "Rune of Sacrificial Empowerment", "To break what is broken");
+        addHeadline("void.rune_of_radial_empowerment", "Sacrificial Empowerment");
+        addPages("void.rune_of_radial_empowerment",
                 "The Rune of Sacrificial Empowerment grants strength in exchange for the lives taken by a scythe, causing your weapon to grow more potent with each kill for a time.");
         addSimpleEntryHeader("void.rune_of_twinned_duration", "Rune of Twinned Duration", "To suspend what must process");
         addPages("void.rune_of_twinned_duration",

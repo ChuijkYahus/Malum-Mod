@@ -6,13 +6,38 @@ import net.minecraft.client.gui.*;
 
 import java.util.*;
 
-public class BookObjectHandler<T extends AbstractMalumScreen> extends ArrayList<BookObject<T>> {
+public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
+
+    protected final ArrayList<BookObject<T>> objects = new ArrayList<>();
+
 
     public BookObjectHandler() {
     }
 
+    public void add(BookObject<T> object) {
+        objects.add(object);
+    }
+
+    public void addAll(Collection<BookObject<T>> objects) {
+        this.objects.addAll(objects);
+    }
+
+    public BookObject<T> get(int index) {
+        return objects.get(index);
+    }
+
+    public BookObject<T> getFirst() {
+        return objects.getFirst();
+    }
+
+    public void remove(BookObject<T> object) {
+        objects.remove(object);
+    }
+
+
+
     public void click(T screen, double mouseX, double mouseY) {
-        for (BookObject<T> object : this) {
+        for (BookObject<T> object : objects) {
             if (object.isValid(screen) && object.isHoveredOver) {
                 object.click(screen, mouseX, mouseY);
                 break;
@@ -21,8 +46,8 @@ public class BookObjectHandler<T extends AbstractMalumScreen> extends ArrayList<
     }
 
     public void renderObjects(T screen, GuiGraphics guiGraphics, float left, float top, int mouseX, int mouseY, float partialTicks) {
-        for (int i = size() - 1; i >= 0; i--) {
-            BookObject<T> object = get(i);
+        for (int i = objects.size() - 1; i >= 0; i--) {
+            BookObject<T> object = objects.get(i);
             if (!object.isValid(screen)) {
                 continue;
             }
@@ -41,8 +66,8 @@ public class BookObjectHandler<T extends AbstractMalumScreen> extends ArrayList<
     }
 
     public void renderObjectsLate(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        for (int i = size() - 1; i >= 0; i--) {
-            BookObject<T> object = get(i);
+        for (int i = objects.size() - 1; i >= 0; i--) {
+            BookObject<T> object = objects.get(i);
             if (object.isValid(screen)) {
                 object.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
             }

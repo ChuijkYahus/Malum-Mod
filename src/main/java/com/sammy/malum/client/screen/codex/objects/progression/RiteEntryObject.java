@@ -2,13 +2,13 @@ package com.sammy.malum.client.screen.codex.objects.progression;
 
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.client.gui.*;
 
 import java.util.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
 public class RiteEntryObject extends ProgressionEntryObject {
     public final SpiritRiteType riteType;

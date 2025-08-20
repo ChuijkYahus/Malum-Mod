@@ -11,7 +11,7 @@ import java.util.stream.*;
 
 public class EntrySelectorPage extends BookPage {
 
-    public final BookObjectHandler<EntryScreen> bookObjectHandler = new BookObjectHandler<>();
+    public final BookObjectHandler<CodexEntryScreen> bookObjectHandler = new BookObjectHandler<>();
 
     @SafeVarargs
     public <J> EntrySelectorPage(Function<J, EntryReference> mapper, J... objects) {
@@ -38,17 +38,17 @@ public class EntrySelectorPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         bookObjectHandler.renderObjects(screen, guiGraphics, left, top, mouseX, mouseY, partialTicks);
     }
 
     @Override
-    public void renderLate(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void renderLate(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         bookObjectHandler.renderObjectsLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
-    public void click(EntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
+    public void click(CodexEntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
         bookObjectHandler.click(screen, mouseX, mouseY);
     }
 }

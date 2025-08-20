@@ -5,7 +5,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
@@ -17,7 +17,7 @@ public class TinkeringEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
-        var metalReexamination = new EntryReference(UMBRAL_SPIRIT, BookEntry.build("spirit_metals.reexamination")
+        var metalReexamination = new EntryReference(UMBRAL_SPIRIT, BookEntry.create("spirit_metals.reexamination")
                 .addPage(new HeadlineTextPage("spirit_metals.reexamination", "spirit_metals.reexamination.1"))
                 .addPage(new TextPage("spirit_metals.reexamination.2"))
                 .afterUmbralCrystal()
@@ -94,7 +94,7 @@ public class TinkeringEntries {
                 .addPage(CraftingPage.ringPage(GILDED_RING.get(), HALLOWED_GOLD_INGOT.get()))
                 .addPage(new CraftingPage(GILDED_BELT.get(), LEATHER, LEATHER, LEATHER, HALLOWED_GOLD_INGOT.get(), REFINED_SOULSTONE.get(), HALLOWED_GOLD_INGOT.get(), EMPTY, HALLOWED_GOLD_INGOT.get(), EMPTY))
                 .addReference(new EntryReference(RING_OF_ESOTERIC_SPOILS.get(),
-                        BookEntry.build("ring_of_esoteric_spoils")
+                        BookEntry.create("ring_of_esoteric_spoils")
                                 .addPage(new HeadlineTextPage("ring_of_esoteric_spoils", "ring_of_esoteric_spoils.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_ESOTERIC_SPOILS.get()))))
         );
@@ -124,13 +124,13 @@ public class TinkeringEntries {
                 .addPage(new TextPage("belt_of_the_starved.2"))
                 .addReference(new EntryReference(
                         RING_OF_DESPERATE_VORACITY.get(),
-                        BookEntry.build("belt_of_the_starved.ring_of_desperate_voracity")
+                        BookEntry.create("belt_of_the_starved.ring_of_desperate_voracity")
                                 .addPage(new HeadlineTextPage("belt_of_the_starved.ring_of_desperate_voracity", "belt_of_the_starved.ring_of_desperate_voracity.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_DESPERATE_VORACITY.get()))
                 ))
                 .addReference(new EntryReference(
                         CONCENTRATED_GLUTTONY.get(),
-                        BookEntry.build("belt_of_the_starved.concentrated_gluttony")
+                        BookEntry.create("belt_of_the_starved.concentrated_gluttony")
                                 .addPage(new HeadlineTextPage("belt_of_the_starved.concentrated_gluttony", "belt_of_the_starved.concentrated_gluttony.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(CONCENTRATED_GLUTTONY.get()))
                                 .addPage(new TextPage("belt_of_the_starved.concentrated_gluttony.2"))
@@ -147,7 +147,7 @@ public class TinkeringEntries {
                 .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_NARROW_EDGE.get()))
                 .addReference(new EntryReference(
                         RING_OF_THE_RISING_EDGE.get(),
-                        BookEntry.build("necklace_of_the_narrow_edge.ring_of_the_rising_edge")
+                        BookEntry.create("necklace_of_the_narrow_edge.ring_of_the_rising_edge")
                                 .addPage(new HeadlineTextPage("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "necklace_of_the_narrow_edge.ring_of_the_rising_edge.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_RISING_EDGE.get()))
                                 .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_rising_edge.2"))
@@ -155,7 +155,7 @@ public class TinkeringEntries {
                 ))
                 .addReference(new EntryReference(
                         RING_OF_THE_HOWLING_MAELSTROM.get(),
-                        BookEntry.build("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom")
+                        BookEntry.create("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom")
                                 .addPage(new HeadlineTextPage("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_HOWLING_MAELSTROM.get()))
                                 .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom.2"))
@@ -169,13 +169,13 @@ public class TinkeringEntries {
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_PROSPECTOR.get()))
                 .addReference(new EntryReference(
                         RING_OF_THE_HOARDER.get(),
-                        BookEntry.build("belt_of_the_prospector.ring_of_the_hoarder")
+                        BookEntry.create("belt_of_the_prospector.ring_of_the_hoarder")
                                 .addPage(new HeadlineTextPage("belt_of_the_prospector.ring_of_the_hoarder", "belt_of_the_prospector.ring_of_the_hoarder.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_HOARDER.get()))
                 ))
                 .addReference(new EntryReference(
                         RING_OF_THE_DEMOLITIONIST.get(),
-                        BookEntry.build("belt_of_the_prospector.ring_of_the_demolitionist")
+                        BookEntry.create("belt_of_the_prospector.ring_of_the_demolitionist")
                                 .addPage(new HeadlineTextPage("belt_of_the_prospector.ring_of_the_demolitionist", "belt_of_the_prospector.ring_of_the_demolitionist.1"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_DEMOLITIONIST.get()))
                 ))

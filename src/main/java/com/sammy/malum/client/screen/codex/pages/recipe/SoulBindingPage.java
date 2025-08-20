@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.*;
@@ -14,8 +15,7 @@ import team.lodestar.lodestone.systems.recipe.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderHeadline;
+import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
 public class SoulBindingPage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.soulbinding");
@@ -40,18 +40,18 @@ public class SoulBindingPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderHeadline(guiGraphics, Component.translatable(headlineTranslationKey()), left, top);
-        renderItem(screen, guiGraphics, recipe.result.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
-        renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 87, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, recipe.result.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
+        CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 87, mouseX, mouseY);
 
-        renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 87, mouseX, mouseY, true);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 87, mouseX, mouseY, true);
         if (!recipe.extraInputs.isEmpty()) {
-            renderIngredients(screen, guiGraphics, recipe.extraInputs, ITEM, left + 113, top + 87, mouseX, mouseY, true);
+            CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.extraInputs, ITEM, left + 113, top + 87, mouseX, mouseY, true);
         }
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 60, top + 105, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
             }
         });
     }

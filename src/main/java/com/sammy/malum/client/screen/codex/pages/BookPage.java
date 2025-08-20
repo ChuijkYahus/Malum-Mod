@@ -8,7 +8,7 @@ import net.minecraft.resources.*;
 
 import javax.annotation.*;
 
-import static com.sammy.malum.client.screen.codex.screens.EntryScreen.*;
+import static com.sammy.malum.client.screen.codex.screens.CodexEntryScreen.*;
 
 public abstract class BookPage {
 
@@ -19,7 +19,6 @@ public abstract class BookPage {
 
     @Nullable
     protected final ResourceLocation background;
-    protected BookEntry bookEntry;
 
     public BookPage(@Nullable ResourceLocation background) {
         this.background = background;
@@ -29,33 +28,20 @@ public abstract class BookPage {
         return true;
     }
 
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
 
-    public void renderLate(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void renderLate(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
 
-    public void click(EntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
+    public void click(CodexEntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
     }
 
 
-    public void render(Minecraft minecraft, GuiGraphics guiGraphics, EntryScreen screen, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+    public void render(Minecraft minecraft, GuiGraphics guiGraphics, CodexEntryScreen screen, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
 
     public ResourceLocation getBackground(boolean isRightSide) {
         return background;
-    }
-
-    public int getGuiLeft() {
-        return (entryScreen.width - entryScreen.bookWidth) / 2;
-    }
-
-    public int getGuiTop() {
-        return (entryScreen.height - entryScreen.bookHeight) / 2;
-    }
-
-    public BookPage setBookEntry(BookEntry bookEntry) {
-        this.bookEntry = bookEntry;
-        return this;
     }
 }

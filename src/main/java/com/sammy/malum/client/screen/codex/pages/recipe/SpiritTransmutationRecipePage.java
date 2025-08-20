@@ -1,8 +1,9 @@
 package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.client.screen.codex.screens.EntryScreen;
+import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.common.recipe.UnchainedTransmutationRecipe;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.renderIngredient;
+import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderIngredient;
 
 public class SpiritTransmutationRecipePage extends BookPage {
     private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation");
@@ -60,15 +60,15 @@ public class SpiritTransmutationRecipePage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderHeadline(guiGraphics, headline, left, top);
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
 
         UnchainedTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
-        renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left + 62, top + 78, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(BASE, 180), mouseX, mouseY);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
             }
         });
      }

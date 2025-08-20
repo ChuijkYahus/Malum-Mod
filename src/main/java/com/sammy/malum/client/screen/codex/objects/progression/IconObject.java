@@ -1,11 +1,11 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
 public class IconObject extends ProgressionEntryObject {
     public final ResourceLocation textureLocation;

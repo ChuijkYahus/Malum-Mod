@@ -5,7 +5,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
-import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.common.data.component.*;
 import net.minecraft.world.item.*;
 
@@ -17,7 +17,7 @@ public class ArtificeEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
-        var spiritStonesReexamination = BookEntry.build("spirit_stones.reexamination")
+        var spiritStonesReexamination = BookEntry.create("spirit_stones.reexamination")
                 .addPage(new HeadlineTextPage("spirit_stones.reexamination", "spirit_stones.reexamination.1"))
                 .addPage(new TextPage("spirit_stones.reexamination.2"))
                 .addPage(new TextPage("spirit_stones.reexamination.3"))
@@ -68,7 +68,7 @@ public class ArtificeEntries {
                 .addPage(SpiritInfusionPage.fromOutput(WAVEMAKER.get()))
                 .addPage(new HeadlineTextPage("basic_artifice.wavebreaker", "basic_artifice.wavebreaker.1"))
                 .addPage(SpiritInfusionPage.fromOutput(WAVEBREAKER.get()))
-                .addReference(new EntryReference(ARTIFICERS_CLAW, BookEntry.build("basic_artifice.artificers_claw")
+                .addReference(new EntryReference(ARTIFICERS_CLAW, BookEntry.create("basic_artifice.artificers_claw")
                         .addPage(new HeadlineTextPage("basic_artifice.artificers_claw", "basic_artifice.artificers_claw.1"))
                         .addPage(SpiritInfusionPage.fromOutput(ARTIFICERS_CLAW.get()))
                 ))
@@ -103,7 +103,7 @@ public class ArtificeEntries {
                 .configureWidget(w -> w.setIcon(SOULWOVEN_POUCH))
                 .addPage(new HeadlineTextPage("soulwoven_pouch", "soulwoven_pouch.1"))
                 .addPage(new CraftingPage(SOULWOVEN_POUCH.get(), EMPTY, STRING, EMPTY, EMPTY, SOULWOVEN_SILK.get()))
-                .addReference(new EntryReference(RAVENOUS_POUCH, BookEntry.build("soulwoven_pouch.ravenous_pouch")
+                .addReference(new EntryReference(RAVENOUS_POUCH, BookEntry.create("soulwoven_pouch.ravenous_pouch")
                         .addPage(new HeadlineTextPage("soulwoven_pouch.ravenous_pouch", "soulwoven_pouch.ravenous_pouch.1"))
                         .addPage(SpiritInfusionPage.fromOutput(RAVENOUS_POUCH.get()))
                 ))
@@ -219,7 +219,7 @@ public class ArtificeEntries {
                         SpiritRepairPage.fromOutput(FRACTURED_TIN_IMPETUS.get()),
                         SpiritRepairPage.fromOutput(FRACTURED_COBALT_IMPETUS.get())
                 ))
-                .addReference(new EntryReference(IRON_PICKAXE, BookEntry.build("arcane_restoration.tool_repair")
+                .addReference(new EntryReference(IRON_PICKAXE, BookEntry.create("arcane_restoration.tool_repair")
                         .addPage(new HeadlineTextPage("arcane_restoration.tool_repair", "arcane_restoration.tool_repair.1"))
                         .addPage(SpiritRepairPage.fromId("wooden_restoration"))
                         .addPage(SpiritRepairPage.fromId("stone_restoration"))

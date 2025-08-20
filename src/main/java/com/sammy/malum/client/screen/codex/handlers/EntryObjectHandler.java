@@ -1,10 +1,8 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
-import com.sammy.malum.client.screen.codex.screens.*;
-import net.minecraft.client.gui.*;
+import com.sammy.malum.client.screen.codex.screens.progression.*;
 
 public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCodexScreen> {
     public EntryObjectHandler() {
@@ -12,18 +10,19 @@ public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCod
     }
 
     public void setupEntryObjects(AbstractProgressionCodexScreen screen) {
-        clear();
-        int left = screen.getGuiLeft() + screen.bookInsideWidth;
-        int top = screen.getGuiTop() + screen.bookInsideHeight;
+        objects.clear();
+
+        int left = screen.getGuiLeft() + AbstractProgressionCodexScreen.BOOK_INSIDE_WIDTH;
+        int top = screen.getGuiTop() + AbstractProgressionCodexScreen.BOOK_INSIDE_HEIGHT;
         for (PlacedBookEntry entry : screen.getEntries()) {
-            final PlacedBookEntry.BookEntryWidgetPlacementData data = entry.getWidgetData();
-            final ProgressionEntryObject bookObject = data.widgetSupplier().getBookObject(entry, left + data.xOffset(), top - data.yOffset());
+            var data = entry.getWidgetData();
+            var bookObject = data.widgetSupplier().getBookObject(entry, left + data.xOffset(), top - data.yOffset());
             var config = data.widgetConfig();
             if (config != null) {
                 config.accept(bookObject);
             }
             add(bookObject);
         }
-        screen.faceObject(get(1));
+        screen.faceObject(objects.get(1));
     }
 }

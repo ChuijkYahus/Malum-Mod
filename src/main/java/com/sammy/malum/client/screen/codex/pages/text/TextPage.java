@@ -1,11 +1,10 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
-
-import static com.sammy.malum.client.screen.codex.ArcanaCodexHelper.*;
 
 public class TextPage extends BookPage {
     public final Component text;
@@ -16,7 +15,7 @@ public class TextPage extends BookPage {
     }
 
     @Override
-    public void render(EntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderWrappingText(guiGraphics, text, left + 6, top + 5, 130);
+    public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
+        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 5, 130);
     }
 }

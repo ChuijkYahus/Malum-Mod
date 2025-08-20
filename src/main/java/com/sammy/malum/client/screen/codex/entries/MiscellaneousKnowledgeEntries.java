@@ -5,7 +5,7 @@ import com.sammy.malum.client.screen.codex.pages.recipe.SpiritInfusionPage;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextItemPage;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
 import com.sammy.malum.client.screen.codex.pages.text.TextPage;
-import com.sammy.malum.client.screen.codex.screens.ArcanaProgressionScreen;
+import com.sammy.malum.client.screen.codex.screens.progression.ArcanaProgressionScreen;
 
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 
