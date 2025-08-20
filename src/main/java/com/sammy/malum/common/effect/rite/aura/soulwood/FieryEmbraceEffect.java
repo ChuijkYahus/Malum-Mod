@@ -15,13 +15,11 @@ public class FieryEmbraceEffect extends MobEffect {
     public boolean applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
         if (entityLivingBaseIn.isOnFire()) {
             entityLivingBaseIn.extinguishFire();
-            return true;
         }
         if (entityLivingBaseIn.getHealth() < entityLivingBaseIn.getMaxHealth()) {
             entityLivingBaseIn.heal(amplifier + 1);
-            return true;
         }
-        return false;
+        return true;
     }
 
     @Override

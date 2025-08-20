@@ -23,7 +23,7 @@ import java.util.function.*;
 
 public class WyrdReconstructionGeas extends GeasEffect {
 
-    private static final int COOLDOWN_DURATION = 48000;
+    private static final int COOLDOWN_DURATION = 36000;
     private static final int TRIGGERS = 12;
     public int spiritCollectionActivations;
     public int delay;

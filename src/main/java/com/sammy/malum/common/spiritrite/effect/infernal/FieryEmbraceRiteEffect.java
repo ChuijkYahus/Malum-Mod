@@ -19,10 +19,23 @@ public class FieryEmbraceRiteEffect extends SpiritRitePotionEffect<LivingEntity>
     }
 
     @Override
+    public void applyRuneEffect(ServerLevel level, LivingEntity target) {
+        if (!target.isOnFire()) {
+            return;
+        }
+        applyEffect(level, target, 100, 0);
+    }
+
+    @Override
     public boolean canApplyEffect(ServerLevel level, LivingEntity target) {
         if (!target.isOnFire()) {
             return false;
         }
         return super.canApplyEffect(level, target);
+    }
+
+    @Override
+    public void applyEffect(ServerLevel level, LivingEntity target) {
+        applyEffect(level, target, 300, 1);
     }
 }

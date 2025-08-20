@@ -97,6 +97,9 @@ Pact of the Berserker
 Pact of the Pyromaniac
 - 
 
+Pact of Wyrd Reconstruction
+- Cooldown reduced to 30 minutes
+
 Oath of the Overkeen Eye
 - Improved Homing Effect Consistency
 - Changed downside from reduced Charge Duration to reduced Charge Gain Rate
@@ -117,7 +120,7 @@ Authority of the Gleeful Target
 - Retextured the Malignant Pewter Ingot, Nugget and Plating
 - Retextured Malignant Stronghold Armor
 
-- Retextured the effect icons for: Gluttony, Desperate Need, 
+- Retextured the effect icons for: Gluttony, Desperate Need, Grim Certainty
 - Added/Updated the effect icons for all rite effects
 
 # Bugfixes

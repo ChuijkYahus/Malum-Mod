@@ -9,9 +9,11 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.*;
@@ -40,21 +42,35 @@ public class UnmakersDisdainGeas extends GeasEffect {
     }
 
     @Override
-    public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
-        if (event.getLivingEntity().level() instanceof ServerLevel level) {
+    public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
+        if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            var target = event.getLivingEntity();
             if (source.is(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)) {
-                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect().targets(target).originatesFrom(attacker).tiedToTarget();
+                var random = attacker.getRandom();
+                var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
+                        .originatesFrom(attacker)
+                        .targets(target)
+                        .tiedToTarget()
+                        .forwardOffset(-2f)
+                        .upwardOffset(-0.5f)
+                        .randomSlashRotation(random)
+                        .mirroredRandomly(random);
                 if (SoulDataHandler.getScytheWeapon(source, attacker).isEmpty() || !canSweep(attacker)) {
-                    particle.verticalSlashRotation();
+                    particle.horizontalOffset(0.75f).verticalSlashRotation();
                 }
                 particle.spawn(level);
-                return;
             }
+        }
+    }
+
+    @Override
+    public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
+        var target = event.getLivingEntity();
+        if (!target.level().isClientSide) {
+            var source = event.getSource();
             var random = target.getRandom();
             int extraHits = random.nextInt(4, 6);
-            float damage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) / extraHits * 0.5f;
+            float damage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) / extraHits * 0.75f;
             for (int i = 0; i < extraHits; i++) {
                 int delay = 4 + i;
                 WorldEventHandler.addWorldEvent(target.level(),

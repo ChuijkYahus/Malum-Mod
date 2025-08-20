@@ -25,11 +25,15 @@ public class ProgressionScreenHolder<T extends AbstractProgressionCodexScreen> e
     }
 
     public void openCodexViaItem(boolean isVoidTouched) {
+        var minecraft = Minecraft.getInstance();
+        var openScreen = minecraft.screen;
         var screen = getScreen();
-        Minecraft.getInstance().setScreen(screen);
+        minecraft.setScreen(screen);
         screen.ignoreNextMouseInput = true;
         screen.isVoidTouched = isVoidTouched;
-        screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
+        if (openScreen == null) {
+            screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
+        }
     }
 
     public void openCodexViaTransition() {

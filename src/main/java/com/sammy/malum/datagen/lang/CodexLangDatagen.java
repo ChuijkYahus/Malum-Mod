@@ -833,30 +833,31 @@ public class CodexLangDatagen {
         addPages("void.rune_of_heresy",
                 "The Rune of Heresy decries magic, Silencing foes much like the Erosion Scepter can. This weakens their spirit magic, and the effect can stack up to complete suppression.");
 
-        addSimpleEntryHeader("rune_of_motion", "Rune of Motion", "Uplifting your impulses");
-        addPages("rune_of_motion",
-                "The Rune of Motion conveys the Rite of Motion, granting Zephyr's Courage to its wearer at a reduced potency, speeding them up.");
-        addSimpleEntryHeader("rune_of_loyalty", "Rune of Loyalty", "Molding your impulses");
-        addPages("rune_of_loyalty",
-                "The Rune of Loyalty conveys the Rite of Loyalty, granting Poseidon's Grasp to its wearer at a reduced potency, extending their reach.");
-        addSimpleEntryHeader("rune_of_warding", "Rune of Warding", "Grounding your impulses");
-        addPages("rune_of_warding",
-                "The Rune of Warding conveys the Rite of Warding, granting Gaia's Bulwark to its wearer at a reduced potency, effectively granting armor.");
-        addSimpleEntryHeader("rune_of_haste", "Rune of Haste", "Igniting your impulses");
-        addPages("rune_of_haste",
-                "The Rune of Haste conveys the Rite of Haste, granting Miner's Rage to its wearer at a reduced potency, speeding up their swings of weapons and tools.");
-        addSimpleEntryHeader("rune_of_the_aether", "Rune of the Aether", "Scattering your impulses");
-        addPages("rune_of_the_aether",
-                "The Rune of the Aether conveys the Rite of the Aether, granting Aether's Charm to its wearer at a reduced potency, lowering the influence of gravity on them.");
-        addSimpleEntryHeader("rune_of_the_seas", "Rune of the Seas", "Deforming your impulses");
-        addPages("rune_of_the_seas",
-                "The Rune of the Seas conveys the Rite of the Seas, granting Angler's Lure to its wearer at a reduced potency, increasing their skill with fishing.");
-        addSimpleEntryHeader("rune_of_the_arena", "Rune of the Arena", "Honing your impulses");
-        addPages("rune_of_the_arena",
-                "The Rune of the Arena conveys the Rite of the Arena, granting Earthen Might to its wearer at a reduced potency, causing their attacks to do more damage.");
-        addSimpleEntryHeader("rune_of_the_hells", "Rune of the Hells", "Extinguishing your impulses");
-        addPages("rune_of_the_hells",
-                "The Rune of the Hells conveys the Rite of the Hells, granting Ifrit's Embrace to its wearer at a reduced potency when they are on fire, extinguishing and healing them.");
+        addSimpleEntryHeader("rune_of_howling_gale", "Rune of Howling Gale", "Uplifting your impulses");
+        addPages("rune_of_howling_gale",
+                "The Rune of Howling Gale bears the rite effect of its namesake, granting Howling Gale to its wearer at halved potency, increasing movement speed and attack speed.");
+        addSimpleEntryHeader("rune_of_sky_tether", "Rune of Sky Tether", "Molding your impulses");
+        addPages("rune_of_sky_tether",
+                "The Rune of Sky Tether bears the rite effect of its namesake, granting Sky Tether to its wearer at halved potency, increasing jump height and reducing gravity slightly with minimal fall damage reduction.");
+        addSimpleEntryHeader("rune_of_flowing_grasp", "Rune of Flowing Grasp", "Grounding your impulses");
+        addPages("rune_of_flowing_grasp",
+                "The Rune of Flowing Grasp bears the rite effect of its namesake, granting Flowing Grasp to its wearer at halved potency, increasing block interaction range and item pickup distance slightly.");
+        addSimpleEntryHeader("rune_of_good_tides", "Rune of Good Tides", "Igniting your impulses");
+        addPages("rune_of_good_tides",
+                "The Rune of Good Tides bears the rite effect of its namesake, granting Good Tides to its wearer at halved potency, providing one level worth of benefits granted by Lure.");
+        addSimpleEntryHeader("rune_of_stone_ward", "Rune of Stone Ward", "Scattering your impulses");
+        addPages("rune_of_stone_ward",
+                "The Rune of Stone Ward bears the rite effect of its namesake, granting Stone Ward to its wearer at halved potency, providing a slight damage reduction that grows in power when unarmored.");
+        addSimpleEntryHeader("rune_of_oaken_might", "Rune of Oaken Might", "Deforming your impulses");
+        addPages("rune_of_oaken_might",
+                "The Rune of Oaken Might bears the rite effect of its namesake, granting Oaken Might to its wearer at halved potency, .");
+        addSimpleEntryHeader("rune_of_burning_fervor", "Rune of Burning Fervor", "Honing your impulses");
+        addPages("rune_of_burning_fervor",
+                "The Rune of Burning Fervor bears the rite effect of its namesake, granting Burning Fervor to its wearer at halved potency, providing a slight increase to attack speed and mining speed.");
+        addSimpleEntryHeader("rune_of_fiery_embrace", "Rune of Fiery Embrace", "Extinguishing your impulses");
+        addPages("rune_of_fiery_embrace",
+                "The Rune of Fiery Embrace bears the rite effect of its namesake, granting Fiery Embrace to its wearer at halved potency when they are on fire, extinguishing them and providing a passive healing effect.");
+
 
         addSimpleEntryHeader("spirited_glass", "Spirited Glass", "Not suitable for Oculators");
         addPages("spirited_glass",
@@ -1312,7 +1313,7 @@ public class CodexLangDatagen {
                 "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, "",
                 "A simple rite, while active it will bless nearby creatures with Good Tides, providing one level worth of benefits granted by Lure and Luck of The Sea.",
-                "Affected Creatures Are Blessed With Good Tides\nGood Tides increases grants effects equivalent to one level of Lure and Luck of The Sea");
+                "Affected Creatures Are Blessed With Good Tides\nGood Tides grants effects equivalent to one level of Lure and Luck of The Sea");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SOAKING, "",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
                 "Creates a Grounded Lite Locus\nLocus Travels Over Blocks, Applying A Growth-Inducing Effect\nMost Bonemeal Applicable Blocks Are Affected as if with actual Bonemeal\nWhen Affecting Tilted Soil, the crop above will be affected instead with lesser effect");
@@ -1334,112 +1335,17 @@ public class CodexLangDatagen {
                 "");
 
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "",
-                "A simple rite, while active it will .",
-                "");
+                "A simple rite, while active it will bless nearby creatures with Burning Fervor, increasing attack speed and mining speed.",
+                "Affected Creatures Are Blessed With Burning Fervor\nBurning Fervor increases attack speed and mining speed by two fifths");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, "",
-                "A simple rite, while active it will .",
-                "");
+                "A simple rite, while active it will extinguish nearby creatures and then grant the blessing of Fiery Embrace, providing a passive healing effect.",
+                "Affected Creatures are Extinguished and Blessed with Fiery Embrace\nFiery Embrace recovers one heart of damage twice every second\nWill only target creatures that are on fire");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SMELTING, "",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will",
                 "");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will",
                 "");
-
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
-//                "An advanced rite, while active nearby crops planted on soil are filled with vigor and will grow more quickly.",
-//                "Periodically ages nearby crops. Coverage matches water coverage.");
-//
-//        addEntryHeader("corrupt_sacred_rite", "Corrupting the Sacred Rites", "Stimulating the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.SACRED_RITE,
-//                "A simple rite, while active it will apply a spiritually nourishing effect to nearby animals, accelerating growth and certain biological processes.",
-//                """
-//                        Affected animals instantly gain 25 seconds worth of age
-//                         - Sheep will feed on grass more frequently
-//                         - Bees pollinate faster and more frequently
-//                         - Chickens lay eggs more frequently""");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_SACRED_RITE,
-//                "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
-//                "Affected animals are fed until there are more than twenty.\n - This limit applies separately for each type of animal within the range of the rite.");
-//
-//        addEntryHeader("wicked_rite", "Wicked Rites", "Maligning the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
-//                "A simple rite, while active it will slowly bring nearby hostile beings to within an inch of death.",
-//                "Deals one heart of non-lethal damage every two seconds.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
-//                "An advanced rite, while active nearby beings on the brink of death are dealt a fatal blow to the body and soul.",
-//                "Affected entities are dealt a fatal blow, dropping items and spirits on death.\n - Avoids entities with more than two and a half hearts remaining.");
-//
-//        addEntryHeader("corrupt_wicked_rite", "Corrupting the Wicked Rites", "Endangering the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.WICKED_RITE,
-//                "Rather than harm, this rite enhances nearby beings, granting protection, force, and speed. Players are unfortunately omitted from this effect. Might have niche applications.",
-//                "Grants all nearby non-Player entities resistance, strength, and speed.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_WICKED_RITE,
-//                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
-//                "While there are more than twenty animals within the range of the rite, the excess is removed.\n - This limit applies separately for each type of animal within the range of the rite.");
-//
-//        addEntryHeader("aerial_rite", "Aerial Rites", "Uplifting the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE, "A simple aura rite, while active nearby friendly beings will find their movements sped up.",
-//                "Applies Zephyr's Courage, increasing movement speed by two fifths.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
-//                "An advanced rite, by twisting the power of the air, blocks before the totem will be made to fall as though they were sand. Nothing Silk Touch cannot grab will be affected, though.",
-//                "Causes targeted blocks to fall downwards if there is nothing underneath them.");
-//
-//        addEntryHeader("corrupt_aerial_rite", "Corrupting the Aerial Rites", "Scattering the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.AERIAL_RITE,
-//                "A simple aura rite, while active nearby friendly beings will have their connection to the earth disrupted, lowering their gravity and increasing jump height.",
-//                "Applies Aether's Charm, decreasing gravity by three fifths while also providing a substantial benefit to jump height.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AERIAL_RITE,
-//                "An advanced rite, while active it will slowly ease the stress of time on the mind, offsetting the effects of insomnia for those around it over time.",
-//                "Passively reduces the insomnia value of nearby players.\n - Assuming phantoms are just starting to appear, it will take a single totem executing the rite two and two fifths of a minute to fully cleanse insomnia.\n - Naturally, the totem will take longer to fully cleanse insomnia if the player has already been suffering from it for some time.");
-//
-//        addEntryHeader("earthen_rite", "Earthen Rites", "Grounding the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
-//                "A simple aura rite, while active nearby friendly beings will find their bodies are tougher and more resistant to damage.",
-//                "Applies Gaia's Bulwark, increasing armor by four and armor toughness by two.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
-//                "An advanced rite, while active it will cause blocks before the totem base to be broken.",
-//                "Breaks targeted blocks. Unbreakable blocks behave as to be expected.");
-//
-//        addEntryHeader("corrupt_earthen_rite", "Corrupting the Earthen Rites", "Honing the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.EARTHEN_RITE,
-//                "A simple aura rite, while active nearby friendly beings will find their attacks deal more damage.",
-//                "Applies Earthen Might, increasing damage dealt by two hearts.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_EARTHEN_RITE,
-//                "An advanced rite, while active the earth coalesces, and like lava meeting water, cobblestone is created before the totem base.",
-//                "Creates cobblestone in place of empty space.");
-//
-//        addEntryHeader("infernal_rite", "Infernal Rites", "Igniting the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
-//                "A simple aura rite, while active nearby friendly beings will find that their motions are infused with fiery vigor, letting them swing weapons and tools faster.",
-//                "Applies Miner's Rage, increasing attack rate and dig speed by two fifths.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
-//                "An advanced rite, while active it will cause blocks before the totem base to be smelted.",
-//                "Smelts targeted blocks that can be smelted into other blocks.");
-//
-//        addEntryHeader("corrupt_infernal_rite", "Corrupting the Infernal Rites", "Extinguishing the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.INFERNAL_RITE,
-//                "A simple aura rite, while active nearby friendly beings and close fires will have the heat sucked out of them, extinguishing them and healing those who were burned, giving them the survivability of denizens of the nether.",
-//                "Extinguishes nearby flames, be it affecting the world or an entity.\n - Extinguished entities receive Ifrit's Embrace, recovering two hearts while being extinguished.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_INFERNAL_RITE,
-//                "An advanced rite, instead of generating heat, this rite compresses it, causing nearby furnaces to operate more quickly.",
-//                "Speeds up nearby furnaces by one fourth.\n - Fuel consumption rate is unaffected, meaning the rite also improves fuel efficiency.");
-//
-//        addEntryHeader("aqueous_rite", "Aqueous Rites", "Molding the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
-//                "A simple aura rite, while active nearby friendly beings will find that their reach is extended, letting them more easily interact with the world.",
-//                "Applies Poseidon's Grasp, increasing block reach by two units of space and increasing item pickup range significantly.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
-//                "An advanced rite, while active, it will vastly increasing the drip speed of dripstone, causing more fluid to be produced.",
-//                "Speeds up dripstone fluid production, works on both lava and water.\n - Only the tip of hanging dripstone needs to be within range for the effect to trigger.");
-//
-//        addEntryHeader("corrupt_aqueous_rite", "Corrupting the Aqueous Rites", "Deforming the soul");
-//        addRiteDetails(MalumSpiritRiteTypes.AQUEOUS_RITE,
-//                "A simple aura rite, while active nearby friendly beings will find themselves better at fishing.",
-//                "Applies Angler's Lure, providing benefits to fishing skills equal to Lure I and Luck of the Sea I.\n - The effects stack with any enchantment already present on a fishing rod.");
-//        addRiteDetails(MalumSpiritRiteTypes.ELDRITCH_AQUEOUS_RITE,
-//                "An advanced rite, while active zombies near this rite will find themselves choking on their own breath, drowning even on land.",
-//                "Converts nearby zombies to drowned.");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
         addHeadline("blight.intro", "A Study on Blight");

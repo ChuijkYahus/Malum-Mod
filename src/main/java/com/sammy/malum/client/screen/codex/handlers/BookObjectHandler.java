@@ -54,6 +54,7 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
             object.xOffset = left;
             object.yOffset = top;
             if (!object.isInView(screen)) {
+                object.isHoveredOver = false;
                 continue;
             }
             object.isHoveredOver = object.isHovering(screen, left, top, mouseX, mouseY);
