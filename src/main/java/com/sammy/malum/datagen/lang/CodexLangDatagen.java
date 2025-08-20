@@ -1219,6 +1219,20 @@ public class CodexLangDatagen {
                         Your Soul is the World's Soul. Your Heart is the World's Heart. It is Open, Open for all to See, Vulnerable for all to Grasp.
                         -Quadruples Incoming Magic Damage""");
 
+
+        addSimpleEntryHeader("authority_of_crushing_melancholy", "Authority of Crushing Melancholy", "To crush one's own spirit");
+        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY,
+                scaled(0.6f) + """
+                        An Authority, a pact between your Soul and the World Itself.
+                        -All Nearby Magic Is Crushed through Incomprehensibly Strong Gravity.
+                        -By Extension, All Incoming Magic Damage Is Nullified.
+                        -Crushing Effect Extends to Struck Targets, Rapidly Applying Silence.
+                        -When Completely Silenced, Targets are Cursed with Absolute Melancholy, Hindering Movement and Increasing Crushing Damage Taken.""",
+                scaled(0.8f) +"""
+                        Your Presence Defies Arcana Itself. It Crushes your own Potential, this Authority does not belong. It Never Will.
+                        -Quarters Magic Proficiency
+                        -Quarters Physical Damage""");
+
         addSimpleEntryHeader("authority_of_the_gleeful_target", "Authority of the Gleeful Target", "To be the most satisfied existence");
         addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET,
                 scaled(0.55f) + """

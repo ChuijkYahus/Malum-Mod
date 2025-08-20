@@ -165,8 +165,8 @@ public class IronsSpellsCompat {
 
         public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {
             var id = MalumMod.malumPath("silenced");
-            effect.addAttributeModifier(AttributeRegistry.MANA_REGEN, id, -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(AttributeRegistry.SPELL_POWER, id, -0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.MANA_REGEN, id, -0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            effect.addAttributeModifier(AttributeRegistry.SPELL_POWER, id, -0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
     }
 }
