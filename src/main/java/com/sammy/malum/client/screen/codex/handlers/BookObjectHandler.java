@@ -33,6 +33,14 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.remove(object);
     }
 
+    public void tick(T screen, double mouseX, double mouseY) {
+        for (BookObject<T> object : objects) {
+            if (object.isValid(screen)) {
+                object.tick(screen, mouseX, mouseY);
+            }
+        }
+    }
+
     public boolean click(T screen, double mouseX, double mouseY) {
         for (BookObject<T> object : objects) {
             if (object.isValid(screen)) {

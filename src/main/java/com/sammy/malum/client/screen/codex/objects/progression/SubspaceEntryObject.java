@@ -28,6 +28,15 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
     @Override
+    public void tick(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+        if (isActive) {
+            objects.tick(screen, mouseX, mouseY);
+        } else {
+            super.tick(screen, mouseX, mouseY);
+        }
+    }
+
+    @Override
     public void renderLate(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isActive) {
             objects.renderObjects(screen, guiGraphics, xOffset, yOffset, mouseX, mouseY, partialTicks);
