@@ -30,6 +30,10 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
         return true;
     }
 
+    public void tick(T screen, double mouseX, double mouseY) {
+
+    }
+
     public void render(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 
     }
