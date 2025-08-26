@@ -25,8 +25,11 @@ public class IconObject extends ProgressionEntryObject {
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
-        final int x = getOffsetXPosition() + 8 - (style.textureWidth() - 32) / 4;
-        final int y = getOffsetYPosition() + 8 - (style.textureHeight() - 32) / 4;
+        var designType = design.getDesignType();
+        int width = designType.getTextureWidth();
+        int height = designType.getTextureHeight();
+        int x = getOffsetXPosition() + 8 - (width - 32) / 4;
+        int y = getOffsetYPosition() + 8 - (height - 32) / 4;
         renderWavyIcon(textureLocation, guiGraphics.pose(), x, y, 0, textureWidth, textureHeight);
     }
 

@@ -11,6 +11,10 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -31,7 +35,7 @@ public class IntroductionEntries {
                 .afterUmbralCrystal();
 
         screen.addEntry("introduction", 0, 0, b -> b
-                .configureEntry(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("introduction", "introduction.1"))
                 .addPage(new TextPage("introduction.2"))
                 .addPage(new TextPage("introduction.3"))
@@ -62,7 +66,7 @@ public class IntroductionEntries {
 
         screen.addEntry("spirit_crystals", 0, 1, b -> b
                 .setWidgetSupplier((e, x, y) -> new IconObject(e, x, y, malumPath("textures/gui/book/icons/soul_shard.png")))
-                .configureEntry(w -> w.setStyle(BookWidgetStyle.DARK_SMALL_RUNEWOOD))
+                .configureEntry(w -> w.setDesign(SMALL, RUNEWOOD, DARK))
                 .addPage(new HeadlineTextPage("spirit_crystals", "spirit_crystals.1"))
                 .addPage(new TextPage("spirit_crystals.2"))
                 .addPage(new TextPage("spirit_crystals.3"))
@@ -85,18 +89,18 @@ public class IntroductionEntries {
 
 
         screen.addEntry("natural_quartz", 3, 1, b -> b
-                .configureEntry(w -> w.setIcon(NATURAL_QUARTZ).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(NATURAL_QUARTZ).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("natural_quartz", "natural_quartz.1", NATURAL_QUARTZ.get()))
         );
 
         screen.addEntry("blazing_quartz", 4, 2, b -> b
-                .configureEntry(w -> w.setIcon(BLAZING_QUARTZ).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(BLAZING_QUARTZ).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("blazing_quartz", "blazing_quartz.1", BLAZING_QUARTZ.get()))
                 .addPage(CraftingPage.fullPage(BLOCK_OF_BLAZING_QUARTZ.get(), BLAZING_QUARTZ.get()))
         );
 
         screen.addEntry("brilliance", -3, 1, b -> b
-                .configureEntry(w -> w.setIcon(RAW_BRILLIANCE).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(RAW_BRILLIANCE).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("brilliance", "brilliance.1", RAW_BRILLIANCE.get()))
                 .addPage(new TextPage("brilliance.2"))
                 .addPage(CraftingPage.fullPage(BLOCK_OF_BRILLIANCE.get(), RAW_BRILLIANCE.get()))
@@ -105,7 +109,7 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("cthonic_gold", -4, 2, b -> b
-                .configureEntry(w -> w.setIcon(CTHONIC_GOLD).setStyle(BookWidgetStyle.SMALL_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(CTHONIC_GOLD).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("cthonic_gold", "cthonic_gold.1", CTHONIC_GOLD.get()))
                 .addPage(new TextPage("cthonic_gold.2"))
                 .addPage(new TextPage("cthonic_gold.3"))
@@ -142,7 +146,7 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("spirit_infusion", 0, 5, b -> b
-                .configureEntry(w -> w.setIcon(SPIRIT_ALTAR).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("spirit_infusion", "spirit_infusion.1"))
                 .addPage(new CraftingPage(SPIRIT_ALTAR.get(), AIR, REFINED_SOULSTONE.get(), AIR, GOLD_INGOT, RUNEWOOD_PLANKS.get(), GOLD_INGOT, RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get()))
                 .addPage(new TextPage("spirit_infusion.2"))

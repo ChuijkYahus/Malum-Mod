@@ -43,9 +43,9 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         return this;
     }
 
-    public PlacedBookEntryBuilder withEmptyFragmentEntry(BookWidgetStyle style) {
+    public PlacedBookEntryBuilder withEmptyFragmentEntry(WidgetDesignType designType) {
         this.fragmentProperties = b -> b
-            .configureEntry(widget -> widget.setStyle(style))
+            .configureEntry(widget -> widget.setDesign(designType.createDesign(d -> d.withFilling(WidgetDesignType.FillingType.DARK))))
             .styleTitle(s -> s.withColor(ChatFormatting.GRAY))
             .styleSubtitle(s -> s.withColor(ChatFormatting.DARK_GRAY));
         return this;
@@ -53,7 +53,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
 
     public PlacedBookEntryBuilder withTraceFragmentEntry() {
         this.fragmentProperties = b -> b
-            .configureEntry(widget -> widget.setStyle(BookWidgetStyle.FRAMELESS)) // todo: add cool visual effects for Traces
+            .configureEntry(widget -> widget.setDesign(WidgetDesignType.EMPTY.createDesign(null, null))) // todo: add cool visual effects for Traces
             .disableTooltip();
 
         return this;
