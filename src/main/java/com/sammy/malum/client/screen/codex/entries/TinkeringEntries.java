@@ -9,6 +9,11 @@ import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -86,7 +91,7 @@ public class TinkeringEntries {
         );
 
         screen.addEntry("spirit_trinkets", -10, 7, b -> b
-                .configureEntry(w -> w.setIcon(ORNATE_RING).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(ORNATE_RING).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("spirit_trinkets", "spirit_trinkets.1"))
                 .addPage(new TextPage("spirit_trinkets.2"))
                 .addPage(CraftingPage.ringPage(ORNATE_RING.get(), SOUL_STAINED_STEEL_INGOT.get()))
@@ -189,14 +194,14 @@ public class TinkeringEntries {
         );
 
         screen.addEntry("belt_of_the_magebane", -8, 20, b -> b
-                .configureEntry(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(BELT_OF_THE_MAGEBANE))
+                .configureEntry(w -> w.setDesign(DEFAULT, SOULWOOD, PAPER).setIcon(BELT_OF_THE_MAGEBANE))
                 .addPage(new HeadlineTextPage("belt_of_the_magebane", "belt_of_the_magebane.1"))
                 .addPage(new TextPage("belt_of_the_magebane.2"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_MAGEBANE.get()))
         );
 
         screen.addEntry("tyrving", -7, 21, b -> b
-                .configureEntry(w -> w.setStyle(BookWidgetStyle.SOULWOOD).setIcon(TYRVING))
+                .configureEntry(w -> w.setDesign(DEFAULT, SOULWOOD, PAPER).setIcon(TYRVING))
                 .addPage(new HeadlineTextItemPage("tyrving", "tyrving.1", TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))
                 .addPage(new TextPage("tyrving.3"))

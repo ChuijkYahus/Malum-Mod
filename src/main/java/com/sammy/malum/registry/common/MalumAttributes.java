@@ -18,11 +18,11 @@ public class MalumAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(BuiltInRegistries.ATTRIBUTE, MALUM);
 
     public static final DeferredHolder<Attribute, Attribute> SCYTHE_PROFICIENCY = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).setAsBaseAttribute().setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).setAsBaseAttribute().forcePercentageDisplay().setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> SPIRIT_SPOILS = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("spirit_spoils"), 0.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> ARCANE_RESONANCE = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("arcane_resonance"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("arcane_resonance"), 1.0D, 0.0D, 2048.0D).forcePercentageDisplay().setSyncable(true));
 
     public static final DeferredHolder<Attribute, Attribute> HEALING_MULTIPLIER = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("healing_received"), 1.0D, 0.0D, 2048.0D).forcePercentageDisplay().setSyncable(true));

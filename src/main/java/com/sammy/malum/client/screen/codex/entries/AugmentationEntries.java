@@ -6,6 +6,9 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.minecraft.world.item.*;
 
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.GILDED;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class AugmentationEntries {
@@ -14,7 +17,7 @@ public class AugmentationEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
         screen.addEntry("crucible_augmentation", 13, 8, b -> b
-                .configureEntry(w -> w.setIcon(TUNING_FORK).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(TUNING_FORK).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("crucible_augmentation", "crucible_augmentation.1"))
                 .addPage(new TextPage("crucible_augmentation.2"))
                 .addPage(new TextPage("crucible_augmentation.3"))

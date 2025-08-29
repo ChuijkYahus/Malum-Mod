@@ -9,6 +9,9 @@ import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.common.data.component.*;
 import net.minecraft.world.item.*;
 
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.GILDED;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -124,7 +127,7 @@ public class ArtificeEntries {
 
 
         screen.addEntry("spirit_focusing", 10, 7, b -> b
-                .configureEntry(w -> w.setIcon(SPIRIT_CRUCIBLE).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(SPIRIT_CRUCIBLE).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("spirit_focusing", "spirit_focusing.1", SPIRIT_CRUCIBLE.get()))
                 .addPage(new TextPage("spirit_focusing.2"))
                 .addPage(SpiritInfusionPage.fromOutput(SPIRIT_CRUCIBLE.get()))

@@ -7,6 +7,9 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.minecraft.world.item.*;
 
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
+import static com.sammy.malum.client.screen.codex.WidgetDesignType.GILDED;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class RuneWorkingEntries {
@@ -15,7 +18,7 @@ public class RuneWorkingEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
         screen.addEntry("runeworking", -13, 8, b -> b
-                .configureEntry(w -> w.setIcon(RUNIC_WORKBENCH).setStyle(BookWidgetStyle.GILDED_RUNEWOOD))
+                .configureEntry(w -> w.setIcon(RUNIC_WORKBENCH).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("runeworking", "runeworking.1", RUNIC_WORKBENCH.get()))
                 .addPage(new TextPage("runeworking.2"))
                 .addPage(new TextPage("runeworking.3"))
