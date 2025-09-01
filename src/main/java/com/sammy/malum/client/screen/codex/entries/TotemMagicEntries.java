@@ -160,6 +160,7 @@ public class TotemMagicEntries {
 
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
                                            RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorSoulwood) {
+        var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
         int horizontalOffset = y > 0 ? -1 : 1;
@@ -168,11 +169,12 @@ public class TotemMagicEntries {
         addRiteEntry(acceptor, minorSoulwood, x, y - 1);
         addRiteEntry(acceptor, majorSoulwood, x + horizontalOffset, y);
 
-        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor));
+        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor).setAssociatedSpirit(definingSpirit));
     }
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
                                            RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorSoulwood,
                                            Supplier<Item> runewoodRune, Supplier<Item> soulwoodRune) {
+        var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
         int horizontalOffset = y > 0 ? -1 : 1;
@@ -181,7 +183,7 @@ public class TotemMagicEntries {
         addRiteEntry(acceptor, minorSoulwood, soulwoodRune, x, y - 1);
         addRiteEntry(acceptor, majorSoulwood, x + horizontalOffset, y);
 
-        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor));
+        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor).setAssociatedSpirit(definingSpirit));
     }
 
     public static void addRiteEntry(PlacedEntryAcceptor acceptor, RiteHolder<SpiritRiteType> riteType, int x, int y) {

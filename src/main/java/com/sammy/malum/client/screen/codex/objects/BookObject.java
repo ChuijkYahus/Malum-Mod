@@ -15,6 +15,7 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
     public final int width;
     public final int height;
 
+    public boolean isSubspace;
     public boolean isHoveredOver;
     public float xOffset;
     public float yOffset;
@@ -57,8 +58,8 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
 
     }
 
-    public boolean isHovering(T screen, float offsetX, float offsetY, double mouseX, double mouseY) {
-        return screen.isHovering(mouseX, mouseY, posX + offsetX, posY + offsetY, width, height);
+    public boolean isHovering(T screen, double mouseX, double mouseY) {
+        return screen.isHovering(mouseX, mouseY, getOffsetXPosition(), getOffsetYPosition(), width, height);
     }
 
     public boolean isInView(T screen) {

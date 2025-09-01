@@ -75,6 +75,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     public abstract void setupEntries();
 
+
     @Override
     public List<PlacedBookEntry> getEntries() {
         return entries;
@@ -137,6 +138,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     @Override
     public void tick() {
+        progressionObjects.tick(this);
         if (voidFadeoutTimer > 0) {
             voidFadeoutTimer--;
         }

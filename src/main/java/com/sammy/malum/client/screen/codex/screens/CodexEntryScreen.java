@@ -140,6 +140,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     @Override
     public void tick() {
         super.tick();
+        entryObjects.tick(this);
         textJump = Math.max(textJump - 0.1f, 0);
     }
 

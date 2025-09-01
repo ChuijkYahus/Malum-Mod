@@ -1,7 +1,9 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
+import com.mojang.blaze3d.platform.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 
 import java.util.*;
@@ -33,6 +35,15 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.remove(object);
     }
 
+    public void tick(T screen) {
+        var minecraft = Minecraft.getInstance();
+        var mouseHandler = minecraft.mouseHandler;
+        var window = minecraft.getWindow();
+        double x = mouseHandler.xpos() * (double) window.getGuiScaledWidth() / (double) window.getScreenWidth();
+        double y = mouseHandler.ypos() * (double) window.getGuiScaledHeight() / (double) window.getScreenHeight();
+        tick(screen, x, y);
+    }
+
     public void tick(T screen, double mouseX, double mouseY) {
         for (BookObject<T> object : objects) {
             if (object.isValid(screen)) {
@@ -60,11 +71,11 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
             }
             object.xOffset = left;
             object.yOffset = top;
-            if (!object.isInView(screen)) {
+            if (!object.isSubspace && !object.isInView(screen)) {
                 object.isHoveredOver = false;
                 continue;
             }
-            object.isHoveredOver = object.isHovering(screen, left, top, mouseX, mouseY);
+            object.isHoveredOver = object.isHovering(screen, mouseX, mouseY);
             renderObject(screen, guiGraphics, object, mouseX, mouseY, partialTicks);
         }
     }

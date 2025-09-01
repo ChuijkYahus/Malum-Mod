@@ -10,6 +10,8 @@ import java.util.function.*;
 
 public class PlacedBookEntryBuilder extends BookEntryBuilder {
 
+    public static final int SPACING = 40;
+
     protected PlacedBookEntry.WidgetSupplier widgetSupplier = ProgressionEntryObject::new;
     @Nullable
     protected Consumer<ProgressionEntryObject> widgetConfig = null;
@@ -83,7 +85,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
             .setFragment()
             .configureEntry(widgetConfig)
             .setWidgetSupplier(widgetSupplier)
-            .setEntryVisibleWhen(() -> !entryVisibleChecker.getAsBoolean())
+            .setEntryCondition(() -> !condition.getAsBoolean())
             .styleTitle(style -> style.withItalic(true))
             .styleSubtitle(style -> style.withItalic(true));
         fragmentProperties.accept(builder);
@@ -94,7 +96,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
     public PlacedBookEntry build() {
         ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
         ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(references);
-        PlacedBookEntry.BookEntryWidgetPlacementData data = new PlacedBookEntry.BookEntryWidgetPlacementData(xOffset*40, yOffset*40, widgetSupplier, widgetConfig);
-        return new PlacedBookEntry(identifier, isVoid, data, bookPages, entryReferences, entryVisibleChecker, titleStyle, subtitleStyle, tooltipDisabled, isFragment);
+        PlacedBookEntry.BookEntryWidgetPlacementData data = new PlacedBookEntry.BookEntryWidgetPlacementData(xOffset*SPACING, yOffset*SPACING, widgetSupplier, widgetConfig);
+        return new PlacedBookEntry(identifier, isVoid, data, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, tooltipDisabled);
     }
 }

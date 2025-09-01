@@ -104,7 +104,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
             return headlineFormatting;
         }
         //TODO: Un-hardcode This
-        final boolean isVoid = screen instanceof VoidProgressionScreen;
+        boolean isVoid = screen instanceof VoidProgressionScreen;
         ChatFormatting formatting = isVoid ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD;
         if (design.getDesignType().equals(WidgetDesignType.GILDED)) {
             formatting = isVoid ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.YELLOW;
