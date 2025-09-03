@@ -19,7 +19,7 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.add(object);
     }
 
-    public void addAll(Collection<BookObject<T>> objects) {
+    public void addAll(Collection<? extends BookObject<T>> objects) {
         this.objects.addAll(objects);
     }
 

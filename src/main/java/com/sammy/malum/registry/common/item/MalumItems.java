@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.item;
 import com.sammy.malum.*;
 import com.sammy.malum.client.renderer.curio.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
@@ -478,6 +479,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SPIRIT_ALTAR = register("spirit_altar", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SPIRIT_ALTAR.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD_OBELISK = register("runewood_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.RUNEWOOD_OBELISK.get(), p, RunewoodObeliskBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> BRILLIANT_OBELISK = register("brilliant_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.BRILLIANT_OBELISK.get(), p, BrilliantObeliskBlockEntity.STRUCTURE));
+    public static final DeferredHolder<Item, Item> ARCANA_PYLON = register("arcana_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.ARCANA_PYLON.get(), p, ArcanaPylonBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> SPIRIT_JAR = register("spirit_jar", DEFAULT_PROPERTIES(), (p) -> new SpiritJarItem(MalumBlocks.SPIRIT_JAR.get(), p));
     public static final DeferredHolder<Item, Item> RUNIC_WORKBENCH = register("runic_workbench", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNIC_WORKBENCH.get(), p));
     public static final DeferredHolder<Item, Item> SOUL_BRAZIER = register("soulbinding_brazier", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOUL_BRAZIER.get(), p));

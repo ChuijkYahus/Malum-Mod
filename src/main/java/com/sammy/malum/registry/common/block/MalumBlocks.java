@@ -7,6 +7,7 @@ import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlock;
 import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlock;
@@ -76,6 +77,9 @@ public class MalumBlocks {
 
     public static final DeferredHolder<Block, Block> BRILLIANT_OBELISK = BLOCKS.register("brilliant_obelisk", () -> new BrillianceObeliskCoreBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()));
     public static final DeferredHolder<Block, Block> BRILLIANT_OBELISK_COMPONENT = BLOCKS.register("brilliant_obelisk_component", () -> new ObeliskComponentBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().lootFrom(BRILLIANT_OBELISK).noOcclusion(), MalumItems.BRILLIANT_OBELISK));
+
+    public static final DeferredHolder<Block, Block> ARCANA_PYLON = BLOCKS.register("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().noOcclusion()));
+    public static final DeferredHolder<Block, Block> ARCANA_PYLON_COMPONENT = BLOCKS.register("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().lootFrom(ARCANA_PYLON).noOcclusion(), MalumItems.ARCANA_PYLON));
 
     public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE = BLOCKS.register("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CRUCIBLE));
     public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE_COMPONENT = BLOCKS.register("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));

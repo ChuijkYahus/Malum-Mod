@@ -12,6 +12,7 @@ import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlock;
 import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlockEntity;
@@ -69,6 +70,7 @@ public class MalumBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RunewoodObeliskBlockEntity>> RUNEWOOD_OBELISK = BLOCK_ENTITY_TYPES.register("runewood_obelisk", () -> BlockEntityType.Builder.of(RunewoodObeliskBlockEntity::new, MalumBlocks.RUNEWOOD_OBELISK.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BrilliantObeliskBlockEntity>> BRILLIANT_OBELISK = BLOCK_ENTITY_TYPES.register("brilliant_obelisk", () -> BlockEntityType.Builder.of(BrilliantObeliskBlockEntity::new, MalumBlocks.BRILLIANT_OBELISK.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ArcanaPylonBlockEntity>> ARCANA_PYLON = BLOCK_ENTITY_TYPES.register("arcana_pylon", () -> BlockEntityType.Builder.of(ArcanaPylonBlockEntity::new, MalumBlocks.ARCANA_PYLON.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SpiritCrucibleCoreBlockEntity>> SPIRIT_CRUCIBLE = BLOCK_ENTITY_TYPES.register("spirit_crucible", () -> BlockEntityType.Builder.of(SpiritCrucibleCoreBlockEntity::new, MalumBlocks.SPIRIT_CRUCIBLE.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SpiritCatalyzerCoreBlockEntity>> SPIRIT_CATALYZER = BLOCK_ENTITY_TYPES.register("spirit_catalyzer", () -> BlockEntityType.Builder.of(SpiritCatalyzerCoreBlockEntity::new, MalumBlocks.SPIRIT_CATALYZER.get()).build(null));

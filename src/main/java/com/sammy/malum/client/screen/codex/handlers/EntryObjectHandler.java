@@ -22,6 +22,9 @@ public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCod
         //Cherry Picked Values
         int left = 388;
         int top = 60;
+
+        ArrayList<ProgressionEntryObject> objects = new ArrayList<>();
+        ArrayList<SubspaceEntryObject> subspaceObjects = new ArrayList<>();
         for (PlacedBookEntry entry : entries) {
             var data = entry.getWidgetData();
             var bookObject = data.widgetSupplier().getBookObject(entry, left + data.xOffset(), top - data.yOffset());
@@ -29,7 +32,14 @@ public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCod
             if (config != null) {
                 config.accept(bookObject);
             }
-            add(bookObject);
+            if (bookObject instanceof SubspaceEntryObject subspaceObject) {
+                subspaceObjects.add(subspaceObject);
+                continue;
+            }
+            objects.add(bookObject);
         }
+        //Subspace objects come first to enable priority for interaction
+        addAll(subspaceObjects);
+        addAll(objects);
     }
 }

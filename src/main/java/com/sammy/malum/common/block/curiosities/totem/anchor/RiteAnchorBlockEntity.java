@@ -77,7 +77,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
                 if (shard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
                     return ItemInteractionResult.FAIL;
                 }
-                if (spirit != null && shard.matches(spirit)) {
+                if (spirit == null || shard.matches(spirit)) {
                     return ItemInteractionResult.FAIL;
                 }
                 if (level instanceof ServerLevel serverLevel) {
@@ -106,7 +106,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
             return false;
         }
         if (level.getBlockEntity(pos) instanceof RiteAnchorBlockEntity blockEntity) {
-            if (blockEntity.spirit != null && blockEntity.spirit.matches(spirit)) {
+            if (blockEntity.spirit == null || blockEntity.spirit.matches(spirit)) {
                 return false;
             }
         }

@@ -39,7 +39,7 @@ public class TotemMagicEntries {
                 .addPage(new HeadlineTextPage("strange_crystal.revelation", "strange_crystal.revelation.1"))
                 .afterUmbralCrystal();
 
-        screen.addEntry("totem_magic", 0, 15, b -> b
+        screen.addEntry("totem_magic", 0, 13, b -> b
                 .configureEntry(w -> w.setIcon(RUNEWOOD_TOTEM_BASE).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("totem_magic", "totem_magic.1", RUNEWOOD_TOTEM_BASE.get()))
                 .addPage(new TextPage("totem_magic.2"))
@@ -47,7 +47,7 @@ public class TotemMagicEntries {
                 .addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_TOTEM_BASE.get()))
         );
 
-        screen.addEntry("managing_totems", 0, 16, b -> b
+        screen.addEntry("managing_totems", 0, 14, b -> b
                 .configureEntry(w -> w.setIcon(TOTEMIC_STAFF).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("managing_totems", "managing_totems.1", TOTEMIC_STAFF.get()))
                 .addPage(new TextPage("managing_totems.2"))
@@ -59,7 +59,7 @@ public class TotemMagicEntries {
                 ))
         );
 
-        screen.addEntry("undirected_rite", 0, 17, b -> b
+        screen.addEntry("undirected_rite", 0, 15, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureEntry(w -> w.setDesign(TOTEMIC, RUNEWOOD, DARK))
                 .addPage(new HeadlineTextPage("undirected_rite"))
@@ -68,7 +68,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteRecipePage(UNDIRECTED_RITE))
         );
 
-        screen.addEntry("unchained_rite", 0, 19, b -> b
+        screen.addEntry("unchained_rite", 0, 17, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
                 .configureEntry(w -> w.setDesign(TOTEMIC, SOULWOOD, DARK))
                 .addPage(new HeadlineTextPage("unchained_rite"))
@@ -81,7 +81,7 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("unchained_rite.description.4"))
         );
 
-        screen.addEntry("blight", 1, 20, b -> b
+        screen.addEntry("blight", 1, 18, b -> b
                 .configureEntry(w -> w.setIcon(BLIGHTED_EARTH).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("blight.intro", "blight.intro.1", BLIGHTED_EARTH.get()))
                 .addPage(new HeadlineTextPage("blight.composition", "blight.composition.1"))
@@ -90,7 +90,7 @@ public class TotemMagicEntries {
                 .addPage(new HeadlineTextPage("blight.arcane_rite", "blight.arcane_rite.1"))
         );
 
-        screen.addEntry("soulwood", 0, 21, b -> b
+        screen.addEntry("soulwood", 0, 19, b -> b
                 .configureEntry(w -> w.setIcon(SOULWOOD_SAPLING).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("soulwood.2"))
@@ -102,7 +102,7 @@ public class TotemMagicEntries {
                 .addPage(new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()))
         );
 
-        screen.addEntry("scarstone", -1, 22, b -> b
+        screen.addEntry("scarstone", -1, 20, b -> b
                 .configureEntry(w -> w.setIcon(SCARSTONE).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("scarstone", "scarstone.1", SCARSTONE.get()))
                 .addPage(new HeadlineTextPage("scarstone.material", "scarstone.material.1"))
@@ -115,7 +115,7 @@ public class TotemMagicEntries {
                 .addReference(new EntryReference(UMBRAL_SPIRIT.get(), strangeCrystalRevelation))
         );
 
-        screen.addEntry("unchained_transmutation", 0, 23, b -> b
+        screen.addEntry("unchained_transmutation", 0, 21, b -> b
                 .configureEntry(w -> w.setIcon(SOUL_SAND).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("unchained_transmutation", "unchained_transmutation.intro.1"))
                 .addPage(new TextPage("unchained_transmutation.intro.2"))
@@ -135,38 +135,38 @@ public class TotemMagicEntries {
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
 
-        addBundledRiteEntry(screen, "sacred_rites", 1, 16,
+        addBundledRiteEntry(screen, "sacred_rites", 1, 14,
                 RITE_OF_HEALING, RITE_OF_NOURISHMENT, RITE_OF_NURTURING, RITE_OF_LUST);
 
-        addBundledRiteEntry(screen, "wicked_rites", -1, 16,
+        addBundledRiteEntry(screen, "wicked_rites", -1, 14,
                 RITE_OF_HARMING, RITE_OF_EMPOWERMENT, RITE_OF_CULLING, RITE_OF_RAISING);
 
-        addBundledRiteEntry(screen, "aqueous_rites", 2, 17,
+        addBundledRiteEntry(screen, "aqueous_rites", 2, 15,
                 RITE_OF_THE_FLOWING_GRASP, RITE_OF_THE_GOOD_TIDES, RITE_OF_SOAKING, RITE_OF_SAPPING,
                 RUNE_OF_FLOWING_GRASP, RUNE_OF_GOOD_TIDES);
 
-        addBundledRiteEntry(screen, "aerial_rites", -2, 17,
+        addBundledRiteEntry(screen, "aerial_rites", -2, 15,
                 RITE_OF_THE_HOWLING_GALE, RITE_OF_THE_SKY_TETHER, RITE_OF_GRAVITY, RITE_OF_ASCENSION,
                 RUNE_OF_HOWLING_GALE, RUNE_OF_SKY_TETHER);
 
-        addBundledRiteEntry(screen, "earthen_rites", 3, 18,
+        addBundledRiteEntry(screen, "earthen_rites", 3, 16,
                 RITE_OF_THE_STONE_WARD, RITE_OF_THE_OAKEN_MIGHT, RITE_OF_CREATION, RITE_OF_DESTRUCTION,
                 RUNE_OF_STONE_WARD, RUNE_OF_OAKEN_MIGHT);
 
-        addBundledRiteEntry(screen, "infernal_rites", -3, 18,
+        addBundledRiteEntry(screen, "infernal_rites", -3, 16,
                 RITE_OF_THE_BURNING_FERVOR, RITE_OF_THE_FIERY_EMBRACE, RITE_OF_SMELTING, RITE_OF_QUICKENING,
                 RUNE_OF_BURNING_FERVOR, RUNE_OF_FIERY_EMBRACE);
     }
 
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
-                                           RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorSoulwood) {
+                                           RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> majorSoulwood) {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = x > 0 ? 1 : -1;
+        int horizontalOffset = x > 0 ? -1 : 1;
         addRiteEntry(acceptor, minorRunewood, x, y-1);
-        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
         addRiteEntry(acceptor, minorSoulwood, x + horizontalOffset, y);
+        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
         addRiteEntry(acceptor, majorSoulwood, x, y+1);
 
         screen.addEntry(name, x, y, b -> b
@@ -175,15 +175,15 @@ public class TotemMagicEntries {
                 .setAssociatedSpirit(definingSpirit));
     }
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
-                                           RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorSoulwood,
+                                           RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> majorSoulwood,
                                            Supplier<Item> runewoodRune, Supplier<Item> soulwoodRune) {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = x > 0 ? 1 : -1;
+        int horizontalOffset = x > 0 ? -1 : 1;
         addRiteEntry(acceptor, minorRunewood, runewoodRune, x, y-1);
-        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
         addRiteEntry(acceptor, minorSoulwood, soulwoodRune, x + horizontalOffset, y);
+        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
         addRiteEntry(acceptor, majorSoulwood, x, y+1);
 
         screen.addEntry(name, x, y, b -> b
