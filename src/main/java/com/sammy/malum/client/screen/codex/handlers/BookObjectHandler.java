@@ -31,6 +31,10 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         return objects.getFirst();
     }
 
+    public boolean isEmpty() {
+        return objects.isEmpty();
+    }
+
     public void remove(BookObject<T> object) {
         objects.remove(object);
     }

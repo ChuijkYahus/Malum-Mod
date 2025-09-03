@@ -37,11 +37,14 @@ public final class WidgetDesignType {
     public static final WidgetDesignType DEFAULT =
             new WidgetDesignType("default");
 
-    public static final WidgetDesignType TOTEMIC =
-            new WidgetDesignType("totemic");
-
     public static final WidgetDesignType GILDED =
             new WidgetDesignType("gilded");
+
+    public static final WidgetDesignType SUBENTRY =
+            new WidgetDesignType("subentry");
+
+    public static final WidgetDesignType TOTEMIC =
+            new WidgetDesignType("totemic");
 
     public static final WidgetDesignType SMALL =
             new WidgetDesignType("small");

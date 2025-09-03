@@ -284,21 +284,23 @@ public class VoidCodexEntries {
                 .afterUmbralCrystal()
         );
 
-        screen.addEntry("void.runes", 0, 11, b -> b
-                .configureEntry(w -> w.setIcon(RUNE_OF_HERESY)
-                        .setDesign(DEFAULT, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("void.runes", "void.runes.1"))
-                .addPage(new EntrySelectorPage(item -> {
-                    final String translationKey = "void." + BuiltInRegistries.ITEM.getKey(item).getPath();
-                    return new EntryReference(item,
-                            BookEntry.create(translationKey)
-                                    .addPage(new HeadlineTextPage(translationKey))
-                                    .addPage(RuneworkingPage.fromOutput(item)));
-                },
-                        RUNE_OF_BOLSTERING.get(), RUNE_OF_RADIAL_EMPOWERMENT.get(), RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
-                        RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(), RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get()))
-                .afterUmbralCrystal()
-        );
+
+        var voidRunesSubspace = new SubspaceEntryObject.SubspaceWidgetSupplier().setSize(200);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_BOLSTERING, -2, 12);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_RADIAL_EMPOWERMENT, 2, 12);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_SPELL_MASTERY, 0, 10);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_HERESY, 0, 14);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_UNNATURAL_STAMINA, -1, 11);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_TWINNED_DURATION, 1, 13);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_INDOMITABILITY, 1, 11);
+        addVoidRuneEntry(voidRunesSubspace, RUNE_OF_IGNEOUS_SOLACE, -1, 13);
+
+        screen.addEntry("void.runes", 0, 12, b -> b
+                .configureEntry(w -> w.setDesign(SUBENTRY, SOULWOOD, DARK))
+                .setWidgetSupplier(voidRunesSubspace)
+                .setAssociatedSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT)
+                .afterUmbralCrystal());
+
 
 // screen.addEntry("void.anomalous_design", 0, 7, b -> b
 //         .setWidgetConfig(w -> w.setIcon(ANOMALOUS_DESIGN)
@@ -355,6 +357,15 @@ public class VoidCodexEntries {
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
                 .afterUmbralCrystal()
+        );
+    }
+
+    public static void addVoidRuneEntry(PlacedEntryAcceptor acceptor, Holder<Item> rune, int x, int y) {
+        var translationKey = "void." + BuiltInRegistries.ITEM.getKey(rune.value()).getPath();
+        acceptor.addEntry(translationKey, x, y, b -> b
+                .configureEntry(w -> w.setIcon(rune.value()).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .addPage(new HeadlineTextPage(translationKey))
+                .addPage(RuneworkingPage.fromOutput(rune.value()))
         );
     }
 }

@@ -66,10 +66,10 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         var designType = design.getDesignType();
         int width = designType.getTextureWidth();
         int height = designType.getTextureHeight();
-        int posX = getOffsetXPosition() - (width - 32) / 2;
-        int posY = getOffsetYPosition() - (height - 32) / 2;
-        int centerX = posX + width / 2;
-        int centerY = posY + height / 2;
+        int posX = getLeftPos();
+        int posY = getTopPos();
+        int centerX = getCenterX();
+        int centerY = getCenterY();
         renderTexture(WIDGET_FADE_TEXTURE, poseStack, centerX - 29, centerY - 29, 0, 0, 58, 58);
         if (design != null) {
             design.getFrameTexture().ifPresent(texture -> renderTexture(texture, poseStack, posX, posY, 0, 0, width, height));
@@ -97,6 +97,26 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
             }
             guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
+    }
+
+    public int getLeftPos() {
+        var designType = design.getDesignType();
+        int width = designType.getTextureWidth();
+        return getOffsetXPosition() - (width - 32) / 2;
+    }
+
+    public int getTopPos() {
+        var designType = design.getDesignType();
+        int height = designType.getTextureHeight();
+        return getOffsetYPosition() - (height - 32) / 2;
+    }
+
+    public int getCenterX() {
+        return getLeftPos() + width / 2;
+    }
+
+    public int getCenterY() {
+        return getTopPos() + height / 2;
     }
 
     public ChatFormatting getHeadlineStyle(AbstractProgressionCodexScreen screen) {

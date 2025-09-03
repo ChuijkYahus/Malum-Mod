@@ -135,25 +135,25 @@ public class TotemMagicEntries {
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
 
-        addBundledRiteEntry(screen, "sacred_rites", 2, 16,
+        addBundledRiteEntry(screen, "sacred_rites", 1, 16,
                 RITE_OF_HEALING, RITE_OF_NOURISHMENT, RITE_OF_NURTURING, RITE_OF_LUST);
 
-        addBundledRiteEntry(screen, "wicked_rites", -2, 16,
+        addBundledRiteEntry(screen, "wicked_rites", -1, 16,
                 RITE_OF_HARMING, RITE_OF_EMPOWERMENT, RITE_OF_CULLING, RITE_OF_RAISING);
 
-        addBundledRiteEntry(screen, "aqueous_rites", 3, 18,
+        addBundledRiteEntry(screen, "aqueous_rites", 2, 17,
                 RITE_OF_THE_FLOWING_GRASP, RITE_OF_THE_GOOD_TIDES, RITE_OF_SOAKING, RITE_OF_SAPPING,
                 RUNE_OF_FLOWING_GRASP, RUNE_OF_GOOD_TIDES);
 
-        addBundledRiteEntry(screen, "aerial_rites", -3, 18,
+        addBundledRiteEntry(screen, "aerial_rites", -2, 17,
                 RITE_OF_THE_HOWLING_GALE, RITE_OF_THE_SKY_TETHER, RITE_OF_GRAVITY, RITE_OF_ASCENSION,
                 RUNE_OF_HOWLING_GALE, RUNE_OF_SKY_TETHER);
 
-        addBundledRiteEntry(screen, "earthen_rites", 4, 20,
+        addBundledRiteEntry(screen, "earthen_rites", 3, 18,
                 RITE_OF_THE_STONE_WARD, RITE_OF_THE_OAKEN_MIGHT, RITE_OF_CREATION, RITE_OF_DESTRUCTION,
                 RUNE_OF_STONE_WARD, RUNE_OF_OAKEN_MIGHT);
 
-        addBundledRiteEntry(screen, "infernal_rites", -4, 20,
+        addBundledRiteEntry(screen, "infernal_rites", -3, 18,
                 RITE_OF_THE_BURNING_FERVOR, RITE_OF_THE_FIERY_EMBRACE, RITE_OF_SMELTING, RITE_OF_QUICKENING,
                 RUNE_OF_BURNING_FERVOR, RUNE_OF_FIERY_EMBRACE);
     }
@@ -163,13 +163,16 @@ public class TotemMagicEntries {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = y > 0 ? -1 : 1;
-        addRiteEntry(acceptor, minorRunewood, x - horizontalOffset, y);
-        addRiteEntry(acceptor, majorRunewood, x, y + 1);
-        addRiteEntry(acceptor, minorSoulwood, x, y - 1);
-        addRiteEntry(acceptor, majorSoulwood, x + horizontalOffset, y);
+        int horizontalOffset = x > 0 ? 1 : -1;
+        addRiteEntry(acceptor, minorRunewood, x, y-1);
+        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
+        addRiteEntry(acceptor, minorSoulwood, x + horizontalOffset, y);
+        addRiteEntry(acceptor, majorSoulwood, x, y+1);
 
-        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor).setAssociatedSpirit(definingSpirit));
+        screen.addEntry(name, x, y, b -> b
+                .setWidgetSupplier(acceptor)
+                .configureEntry(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
+                .setAssociatedSpirit(definingSpirit));
     }
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
                                            RiteHolder<SpiritRiteType> minorRunewood, RiteHolder<SpiritRiteType> majorRunewood, RiteHolder<SpiritRiteType> minorSoulwood, RiteHolder<SpiritRiteType> majorSoulwood,
@@ -177,13 +180,16 @@ public class TotemMagicEntries {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = y > 0 ? -1 : 1;
-        addRiteEntry(acceptor, minorRunewood, runewoodRune, x - horizontalOffset, y);
-        addRiteEntry(acceptor, majorRunewood, x, y + 1);
-        addRiteEntry(acceptor, minorSoulwood, soulwoodRune, x, y - 1);
-        addRiteEntry(acceptor, majorSoulwood, x + horizontalOffset, y);
+        int horizontalOffset = x > 0 ? 1 : -1;
+        addRiteEntry(acceptor, minorRunewood, runewoodRune, x, y-1);
+        addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
+        addRiteEntry(acceptor, minorSoulwood, soulwoodRune, x + horizontalOffset, y);
+        addRiteEntry(acceptor, majorSoulwood, x, y+1);
 
-        screen.addEntry(name, x, y, b -> b.setWidgetSupplier(acceptor).setAssociatedSpirit(definingSpirit));
+        screen.addEntry(name, x, y, b -> b
+                .setWidgetSupplier(acceptor)
+                .configureEntry(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
+                .setAssociatedSpirit(definingSpirit));
     }
 
     public static void addRiteEntry(PlacedEntryAcceptor acceptor, RiteHolder<SpiritRiteType> riteType, int x, int y) {
