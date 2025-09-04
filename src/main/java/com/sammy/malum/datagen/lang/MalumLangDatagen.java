@@ -161,6 +161,10 @@ public class MalumLangDatagen extends LanguageProvider {
         addRiteTag(SpiritRiteEffectTag.RUNEWOOD, "Runewood");
         addRiteTag(SpiritRiteEffectTag.SOULWOOD, "Soulwood");
         addRiteTag(SpiritRiteEffectTag.AURA, "Aura");
+
+        addRiteTag(SpiritRiteEffectTag.LESSER_RITE, "Lesser Rite");
+        addRiteTag(SpiritRiteEffectTag.GREATER_RITE, "Greater Rite");
+
         addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Area of Effect");
         addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Locus Effect");
         addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Strange Effect");

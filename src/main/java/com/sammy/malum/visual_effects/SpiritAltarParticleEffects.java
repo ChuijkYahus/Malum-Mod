@@ -1,5 +1,6 @@
 package com.sammy.malum.visual_effects;
 
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.storage.*;
@@ -56,7 +57,9 @@ public class SpiritAltarParticleEffects {
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
                 if (accelerator != null) {
-                    accelerator.addParticles(altar, activeSpiritType.getSpirit());
+                    if (accelerator.canAccelerate()) {
+                        accelerator.addParticles(altar, activeSpiritType.getSpirit());
+                    }
                 }
             }
             SpiritLightSpecs.rotatingLightSpecs(level, itemPos, activeSpiritType, 0.5f, 3,
@@ -245,35 +248,69 @@ public class SpiritAltarParticleEffects {
     }
 
     public static void runewoodObeliskParticles(RunewoodObeliskBlockEntity obelisk, SpiritAltarBlockEntity altar, SpiritArcanaType spiritType) {
-        Level level = obelisk.getLevel();
-        BlockPos obeliskPos = obelisk.getBlockPos();
-        Vec3 startPos = obelisk.getParticleOffset().add(obeliskPos.getX(), obeliskPos.getY(), obeliskPos.getZ());
+        var level = obelisk.getLevel();
+        var obeliskPos = obelisk.getBlockPos();
+        var startPos = obelisk.getParticleOffset().add(obeliskPos.getX(), obeliskPos.getY(), obeliskPos.getZ());
         spiritLightSpecs(level, startPos, spiritType).spawnParticles();
         if (level.getGameTime() % 2L == 0) {
             var random = level.random;
             long gameTime = level.getGameTime();
-            BlockPos altarPos = altar.getBlockPos();
-            Vec3 targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
-            Vec3 velocity = targetPos.subtract(startPos).normalize().scale(RandomHelper.randomBetween(random, 0.01f, 0.02f));
-            double yOffset = Math.sin((gameTime % 360) / 30f) * 0.1f;
-            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(startPos.add(0, yOffset, 0), 0.45f, 0, 1, gameTime, 30);
+            var altarPos = altar.getBlockPos();
+            var targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
+            var direction = targetPos.subtract(startPos).normalize();
+            var velocity = direction.scale(RandomHelper.randomBetween(random, 0.01f, 0.02f));
+            double yOffset = Math.sin((gameTime*0.2f) % 6.28f) * 0.1f;
+            var offsetPosition = VecHelper.rotatingRadialOffset(startPos.add(0, yOffset, 0), 0.45f, 0, 1, gameTime, 30);
             Consumer<WorldParticleBuilder> behavior = b -> b.addTickActor(p -> {
                 if (gameTime % 6L == 0) {
                     p.setParticleSpeed(p.getParticleSpeed().scale(1.05f));
                 }
             });
             var lightSpecs = spiritLightSpecs(level, offsetPosition, spiritType);
-            lightSpecs.getBuilder().act(b -> b
+            lightSpecs.getBuilder()
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(2f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
-            lightSpecs.getBloomBuilder().act(b -> b
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+            lightSpecs.getBloomBuilder()
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(1.5f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
+        }
+    }
+
+    public static void arcanaPylonParticles(ArcanaPylonBlockEntity arcanaPylon, SpiritAltarBlockEntity altar, SpiritArcanaType spiritType) {
+        var level = arcanaPylon.getLevel();
+        var startPos = arcanaPylon.getItemPos();
+        spiritLightSpecs(level, startPos, spiritType).spawnParticles();
+        if (level.getGameTime() % 2L == 0) {
+            var random = level.random;
+            long gameTime = level.getGameTime();
+            var altarPos = altar.getBlockPos();
+            var targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
+            var direction = targetPos.subtract(startPos).normalize();
+            var velocity = direction.scale(RandomHelper.randomBetween(random, 0.025f, 0.04f));
+            double yOffset = Math.sin((gameTime*0.4f) % 6.28f) * 0.1f;
+            var offsetPosition = VecHelper.rotatingRadialOffset(startPos.add(0, yOffset, 0), 0.45f, 0, 1, gameTime, 40);
+            Consumer<WorldParticleBuilder> behavior = b -> b.addTickActor(p -> {
+                if (gameTime % 6L == 0) {
+                    p.setParticleSpeed(p.getParticleSpeed().scale(1.1f));
+                }
+            });
+            var sparks = SparkParticleEffects.spiritMotionSparks(level, offsetPosition, spiritType);
+            sparks.getBuilder()
+                    .act(behavior)
+                    .setMotion(velocity)
+                    .multiplyLifetime(3f)
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+            sparks.getBloomBuilder()
+                    .act(behavior)
+                    .setMotion(velocity)
+                    .multiplyLifetime(2.5f)
+                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
+            sparks.spawnParticles();
         }
     }
 }

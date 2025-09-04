@@ -1324,7 +1324,7 @@ public class CodexLangDatagen {
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will... something... I don't know yet",
                 "Creates a Grounded Rite Locus\nLocus Travels Over Blocks, Applying... Some Sort Of Effect... I don't know yet");
 
-        addSimpleEntryHeader("aqueous_rites", "Aqueous Rites", "Totemic Arts of Bounty");
+        addSimpleEntryHeader("aqueous_rites", "Aqueous Rites", "Totemic Arts of Angling");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "To Extend One's Reach",
                 "A simple rite, while active it will bless nearby creatures with Flowing Grasp, increasing block interaction range and item pickup distance.",
                 "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");

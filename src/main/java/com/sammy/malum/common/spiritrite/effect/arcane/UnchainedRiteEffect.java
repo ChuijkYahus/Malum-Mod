@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.arcane;
 
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.core.BlockPos;
@@ -17,7 +17,7 @@ import team.lodestar.lodestone.systems.recipe.LodestoneRecipeType;
 public class UnchainedRiteEffect extends SpiritRiteBlockEffect {
 
     public UnchainedRiteEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override

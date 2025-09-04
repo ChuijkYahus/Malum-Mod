@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common;
 
 import com.sammy.malum.visual_effects.networked.altar.*;
+import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import com.sammy.malum.visual_effects.networked.attack.*;
 import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
@@ -9,7 +10,7 @@ import com.sammy.malum.visual_effects.networked.crucible.*;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
-import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeCloseParticleEffect;
@@ -34,6 +35,9 @@ public class MalumParticleEffectTypes {
     //Runic Workbench
     public static final RunicWorkbenchCraftRuneParticleEffect RUNIC_WORKBENCH_CRAFTS_RUNE = new RunicWorkbenchCraftRuneParticleEffect("runic_workbench_crafts_rune");
     public static final RunicWorkbenchCraftSpiritlessItemParticleEffect RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM = new RunicWorkbenchCraftSpiritlessItemParticleEffect("runic_workbench_crafts_spiritless_item");
+
+    //Arcana Pylon
+    public static final ArcanaPylonEatSpiritParticleEffect ARCANA_PYLON_EATS_SPIRIT = new ArcanaPylonEatSpiritParticleEffect("arcana_pylon_eats_spirit");
 
     //Crucible
     public static final SpiritCrucibleCraftParticleEffect SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");

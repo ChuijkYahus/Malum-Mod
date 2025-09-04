@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.aerial;
 
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumSoundEvents;
 import com.sammy.malum.registry.common.MalumTags;
@@ -23,7 +23,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
 
     public BlockGravityRiteEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override

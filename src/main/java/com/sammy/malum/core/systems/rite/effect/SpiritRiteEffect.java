@@ -31,7 +31,7 @@ public abstract class SpiritRiteEffect implements RegistryCodecBuddy.RegistryCod
         this.tags = ImmutableList.copyOf(tags);
     }
 
-    public abstract void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase);
+    public abstract boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, int totemHeight);
 
     public List<SpiritRiteEffectTag> getTags() {
         return tags;

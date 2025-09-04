@@ -9,11 +9,9 @@ import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.util.*;
-import net.minecraft.world.level.block.state.properties.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.lang.Math;
 
@@ -24,7 +22,7 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
 
     @Override
     public void render(RiteAnchorBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        var spiritType = blockEntityIn.spirit;
+        var spiritType = blockEntityIn.getSpirit();
         if (spiritType == null) {
             return;
         }
@@ -32,7 +30,7 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
 
         var level = Minecraft.getInstance().level;
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MalumRenderTypeTokens.RITE_ANCHOR_GLOW);
-        float delta = blockEntityIn.effectStrength / 20f;
+        float delta = blockEntityIn.getEffectDelta();
         float alpha = 0.6f + delta * 0.4f;
         float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
         float wobbleStrength = ease * 0.02f;

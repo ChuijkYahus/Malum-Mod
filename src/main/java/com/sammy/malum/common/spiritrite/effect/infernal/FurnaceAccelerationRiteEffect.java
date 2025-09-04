@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.infernal;
 
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
@@ -23,7 +23,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.INFERNAL_SP
 public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
 
     public FurnaceAccelerationRiteEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override

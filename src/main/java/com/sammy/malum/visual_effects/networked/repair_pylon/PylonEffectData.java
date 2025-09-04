@@ -1,11 +1,10 @@
-package com.sammy.malum.visual_effects.networked.pylon;
+package com.sammy.malum.visual_effects.networked.repair_pylon;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.world.item.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
 public record PylonEffectData(BlockPos holderPos) implements NetworkedParticleEffectExtraData {

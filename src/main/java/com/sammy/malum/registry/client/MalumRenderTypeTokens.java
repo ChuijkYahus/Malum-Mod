@@ -21,6 +21,9 @@ public class MalumRenderTypeTokens {
 
     public static final RenderTypeToken MOTE_OF_MANA = RenderTypeToken.createToken(MalumMod.malumPath("textures/block/spirit_mote.png"));
 
+    public static final RenderTypeToken PYLON_TOP = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_top.png"));
+    public static final RenderTypeToken PYLON_SIDE = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_side.png"));
+
 
     public static final RenderTypeToken AREA_COVERAGE_BORDER = RenderTypeToken.createToken(malumPath("textures/vfx/area_coverage_border.png"));
     public static final RenderTypeToken AREA_COVERAGE_SQUIGGLES = RenderTypeToken.createToken(malumPath("textures/vfx/area_coverage_squiggles.png"));

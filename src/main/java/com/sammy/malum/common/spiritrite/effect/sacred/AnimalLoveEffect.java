@@ -9,7 +9,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class AnimalLoveEffect extends SpiritRiteEntityEffect<Animal> {
 
     public AnimalLoveEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override

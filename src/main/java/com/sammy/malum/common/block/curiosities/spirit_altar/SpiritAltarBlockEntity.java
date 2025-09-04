@@ -308,6 +308,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         recalibrateAccelerators();
+        accelerators.forEach(a -> a.completeSpiritInfusion(level));
         recalculateRecipes();
         BlockStateHelper.updateAndNotifyState(level, worldPosition);
     }

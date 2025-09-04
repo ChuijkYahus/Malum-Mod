@@ -53,4 +53,10 @@ public class MalumSpiritRiteEffectTypes {
     public static final RiteEffectHolder<FieryEmbraceRiteEffect> APPLY_FIERY_EMBRACE_EFFECT = EFFECT_TYPES.register("apply_fiery_embrace_effect", FieryEmbraceRiteEffect::new);
     public static final RiteEffectHolder<BlockSmeltingRiteEffect> SMELTING_EFFECT = EFFECT_TYPES.register("smelting_effect", BlockSmeltingRiteEffect::new);
     public static final RiteEffectHolder<FurnaceAccelerationRiteEffect> QUICKENING_EFFECT = EFFECT_TYPES.register("quickening_effect", FurnaceAccelerationRiteEffect::new);
+
+    public static final RiteEffectHolder<AerialEmpowermentRiteEffect> EMPOWER_AERIAL_EFFECTS = EFFECT_TYPES.register("empower_aerial_effects_effect", AerialEmpowermentRiteEffect::new);
+    public static final RiteEffectHolder<AqueousEmpowermentRiteEffect> EMPOWER_AQUEOUS_EFFECTS = EFFECT_TYPES.register("empower_aqueous_effects_effect", AqueousEmpowermentRiteEffect::new);
+    public static final RiteEffectHolder<EarthenEmpowermentRiteEffect> EMPOWER_EARTHEN_EFFECTS = EFFECT_TYPES.register("empower_earthen_effects_effect", EarthenEmpowermentRiteEffect::new);
+    public static final RiteEffectHolder<InfernalEmpowermentRiteEffect> EMPOWER_INFERNAL_EFFECTS = EFFECT_TYPES.register("empower_infernal_effects_effect", InfernalEmpowermentRiteEffect::new);
+
 }

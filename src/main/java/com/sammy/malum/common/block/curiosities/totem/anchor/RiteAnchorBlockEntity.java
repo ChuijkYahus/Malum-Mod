@@ -25,9 +25,12 @@ import team.lodestar.lodestone.systems.blockentity.*;
 
 public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
 
-    public SpiritArcanaType spirit;
+    private static final int EFFECT_STRENGTH = 20;
+    private static final int EFFECT_REST = EFFECT_STRENGTH/2;
 
-    public int effectStrength = 0;
+    protected SpiritArcanaType spirit;
+
+    protected int visualEffectStrength = 0;
 
     public RiteAnchorBlockEntity(BlockEntityType<? extends RiteAnchorBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -42,8 +45,8 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
         if (spirit != null) {
             spirit.save(tag);
         }
-        if (effectStrength != 0) {
-            tag.putInt("effectStrength", effectStrength);
+        if (visualEffectStrength != 0) {
+            tag.putInt("effectStrength", visualEffectStrength);
         }
         super.saveAdditional(tag, registries);
     }
@@ -51,7 +54,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
         spirit = SpiritArcanaType.load(tag).orElse(null);
-        effectStrength = tag.getInt("effectStrength");
+        visualEffectStrength = tag.getInt("effectStrength");
         super.loadAdditional(tag, pRegistries);
     }
 
@@ -59,13 +62,13 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
     public void tick() {
         super.tick();
         if (spirit == null) {
-            if (effectStrength > 0) {
-                effectStrength--;
+            if (visualEffectStrength > 0) {
+                visualEffectStrength--;
             }
         }
         else {
-            if (effectStrength > 10) {
-                effectStrength--;
+            if (visualEffectStrength > EFFECT_REST) {
+                visualEffectStrength--;
             }
         }
     }
@@ -92,11 +95,19 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
         return super.onUseWithItem(pPlayer, pStack, pHand);
     }
 
+    public SpiritArcanaType getSpirit() {
+        return spirit;
+    }
+
+    public float getEffectDelta() {
+        return visualEffectStrength / (float) EFFECT_STRENGTH;
+    }
+
     public void setSpirit(ServerLevel level, SpiritArcanaType spirit) {
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         level.playSound(null, worldPosition, SoundEvents.DEEPSLATE_BRICKS_PLACE, SoundSource.BLOCKS, 1, Mth.nextFloat(level.random, 0.9f, 1.1f));
         this.spirit = spirit;
-        this.effectStrength = 20;
+        this.visualEffectStrength = EFFECT_STRENGTH;
         level.levelEvent(2001, worldPosition, Block.getId(level.getBlockState(worldPosition)));
         BlockStateHelper.updateState(level, worldPosition);
     }

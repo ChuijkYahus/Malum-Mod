@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.earthen;
 
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -14,7 +14,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.ELDRITCH_SP
 public class CreateCobblestoneRiteEffect extends SpiritRiteBlockEffect {
 
     public CreateCobblestoneRiteEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override

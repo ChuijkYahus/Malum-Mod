@@ -31,7 +31,7 @@ public class SpiritJarItem extends BlockItem {
             SpiritArcanaType spirit = contents.spirit();
             int count = contents.count();
             tooltipComponents.add(Component.translatable("malum.spirit.description.stored_spirit").withStyle(ChatFormatting.GRAY));
-            tooltipComponents.add(Component.literal(" " + count + " ").append(Component.translatable(spirit.getCountedKey(), count)).withStyle(spirit.getStyle(false)));
+            tooltipComponents.add(Component.translatable(spirit.getCountedKey(), count).withStyle(spirit.getStyle(false)));
         }
     }
 }

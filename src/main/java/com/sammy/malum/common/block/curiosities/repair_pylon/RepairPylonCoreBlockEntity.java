@@ -9,7 +9,7 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;

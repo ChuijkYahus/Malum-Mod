@@ -4,6 +4,8 @@ import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.common.worldevent.UnchainedTotemConversionWorldEvent;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffect;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
+import com.sammy.malum.core.systems.spirit.type.*;
+import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
 import team.lodestar.lodestone.handlers.WorldEventHandler;
 
@@ -12,14 +14,15 @@ import java.util.List;
 public class UndirectedRiteEffect extends SpiritRiteEffect {
 
     public UndirectedRiteEffect() {
-        super(SpiritRiteEffectTag.STRANGE_EFFECT);
+        super(SpiritRiteEffectTag.GREATER_RITE, SpiritRiteEffectTag.STRANGE_EFFECT);
     }
 
     @Override
-    public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, int totemHeight) {
         WorldEventHandler.addWorldEvent(level,
                 new UnchainedTotemConversionWorldEvent()
-                        .setPosition(totemBase.getBlockPos())
+                        .setPosition(pos)
                         .setData(List.of(1, 3, 5, 6, 7, 8), 4, 0));
+        return true;
     }
 }

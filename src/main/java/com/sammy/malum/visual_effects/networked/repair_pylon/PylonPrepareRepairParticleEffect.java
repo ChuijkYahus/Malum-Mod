@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects.networked.pylon;
+package com.sammy.malum.visual_effects.networked.repair_pylon;
 
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
@@ -8,18 +8,14 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
-import team.lodestar.lodestone.systems.network.*;
-import net.minecraft.core.*;
-import net.minecraft.nbt.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
 import java.util.*;
-import java.util.function.*;
 
-public class PylonRepairParticleEffect extends MalumNetworkedParticleEffectType<PylonEffectData> {
+public class PylonPrepareRepairParticleEffect extends MalumNetworkedParticleEffectType<PylonEffectData> {
 
-    public PylonRepairParticleEffect(String id) {
+    public PylonPrepareRepairParticleEffect(String id) {
         super(id);
     }
 
@@ -37,6 +33,6 @@ public class PylonRepairParticleEffect extends MalumNetworkedParticleEffectType<
         if (!(level.getBlockEntity(extraData.holderPos()) instanceof IMalumSpecialItemAccessPoint holder)) {
             return;
         }
-        RepairPylonParticleEffects.repairItemParticles(pylon, holder, colorData);
+        RepairPylonParticleEffects.prepareRepairParticles(pylon, holder, colorData);
     }
 }
