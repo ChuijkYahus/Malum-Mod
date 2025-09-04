@@ -15,6 +15,7 @@ import com.sammy.malum.registry.common.magic.rite.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.altar.*;
+import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
@@ -181,15 +182,16 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     }
 
     public void spendSpiritFuel(ServerLevel level, int fuelPerSpirit) {
-        if (unspentSpiritFuel == 0) {
-            unspentSpiritFuel = fuelPerSpirit;
-            inventory.getStackInSlot(0).shrink(1);
-        }
         if (level instanceof ServerLevel serverLevel) {
             MalumParticleEffectTypes.ARCANA_PYLON_EATS_SPIRIT
                     .createEffect(worldPosition)
                     .color(spirit)
+                    .customData(new ArcanaPylonEffectData(unspentSpiritFuel == 0 ? 1f : 0.5f))
                     .spawn(serverLevel);
+        }
+        if (unspentSpiritFuel == 0) {
+            unspentSpiritFuel = fuelPerSpirit;
+            inventory.getStackInSlot(0).shrink(1);
         }
         unspentSpiritFuel--;
         BlockStateHelper.updateAndNotifyState(level, worldPosition);

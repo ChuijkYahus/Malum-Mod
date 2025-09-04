@@ -203,10 +203,13 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public static void openScreen(BookEntry bookEntry) {
         var minecraft = Minecraft.getInstance();
-        var openScreen = minecraft.screen;
-        var screen = openScreen instanceof CodexEntryScreen openCodexEntryScreen ? new CodexEntryScreen(openCodexEntryScreen, bookEntry) : new CodexEntryScreen(bookEntry);
-        if (openScreen instanceof AbstractMalumCodexScreen codexScreen) {
-            screen.setVoidTouched(codexScreen.isVoidTouched);
+        CodexEntryScreen screen;
+        if (minecraft.screen instanceof CodexEntryScreen openScreen) {
+            screen = new CodexEntryScreen(openScreen, bookEntry);
+            screen.setVoidTouched(openScreen.isVoidTouched);
+        }
+        else {
+            screen = new CodexEntryScreen(bookEntry);
         }
         screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_OPEN, 1.15f);
         minecraft.setScreen(screen);

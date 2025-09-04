@@ -53,16 +53,7 @@ public class SoulHarvestHandler {
         if (data.shouldDropSpirits()) {
             dropSpiritInfusedDrops(target);
             dropEncyclopediaArcana(target, attacker);
-
-            SpiritSpawner spiritSpawner = spawnSpirits(target).setPreferredCollector(attacker);
-
-            var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(EntitySpiritDropData::getItemAsSoul).orElse(null);
-            if (itemAsSoul != null) {
-                var uuid = attacker != null ? attacker.getUUID() : null;
-                target.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(spiritSpawner.getSpiritDrops(), uuid));
-                return;
-            }
-            spiritSpawner.spawnSpirits(level);
+            dropSpirits(target, attacker);
             if (attacker != null) {
                 attacker.getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setMostRecentShatter(level.getGameTime());
             }
@@ -105,6 +96,19 @@ public class SoulHarvestHandler {
         }
     }
 
+    public static void dropSpirits(LivingEntity target, LivingEntity attacker) {
+        var level = target.level();
+        SpiritSpawner spiritSpawner = spawnSpirits(target).setPreferredCollector(attacker);
+
+        var itemAsSoul = EntitySpiritDropData.getSpiritData(target).map(EntitySpiritDropData::getItemAsSoul).orElse(null);
+        if (itemAsSoul != null) {
+            var uuid = attacker != null ? attacker.getUUID() : null;
+            target.setData(MalumAttachmentTypes.CACHED_SPIRIT_DROPS, new CachedSpiritDropsData(spiritSpawner.getSpiritDrops(), uuid));
+            return;
+        }
+        spiritSpawner.spawnSpirits(level);
+    }
+
     public static SpiritSpawner spawnSpirits(Entity target) {
         return new SpiritSpawner(target);
     }
@@ -115,6 +119,7 @@ public class SoulHarvestHandler {
         @Nullable
         private LivingEntity preferredCollector;
         private List<ItemStack> customItems = Collections.emptyList();
+
         public SpiritSpawner(Entity target) {
             this.target = target;
         }
@@ -148,7 +153,7 @@ public class SoulHarvestHandler {
             if (!(target instanceof LivingEntity living)) {
                 return Collections.emptyList();
             }
-            Optional<EntitySpiritDropData> optional = EntitySpiritDropData.getSpiritData(living);
+            var optional = EntitySpiritDropData.getSpiritData(living);
             if (optional.isEmpty()) {
                 return Collections.emptyList();
             }

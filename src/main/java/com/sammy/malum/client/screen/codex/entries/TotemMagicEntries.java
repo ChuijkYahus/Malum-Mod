@@ -9,6 +9,7 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.registry.rite.RiteHolder;
 import com.sammy.malum.core.systems.rite.SpiritRiteType;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -135,13 +136,32 @@ public class TotemMagicEntries {
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
 
+        screen.addEntry("rite_empowerment", 0, 19, b -> b
+                .configureEntry(w -> w.setIcon(ARCANA_PYLON).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .addPage(new HeadlineTextItemPage("rite_empowerment", "rite_empowerment.1", ARCANA_PYLON.get()))
+                .addPage(new TextPage("rite_empowerment.2"))
+                .addPage(new CyclingPage(
+                        new HeadlineTextItemPage("rite_empowerment.elemental", AERIAL_SPIRIT.get()),
+                        new HeadlineTextItemPage("rite_empowerment.elemental", AQUEOUS_SPIRIT.get()),
+                        new HeadlineTextItemPage("rite_empowerment.elemental", EARTHEN_SPIRIT.get()),
+                        new HeadlineTextItemPage("rite_empowerment.elemental", INFERNAL_SPIRIT.get())
+                ))
+                .addPage(SpiritInfusionPage.fromOutput(ARCANA_PYLON.get()))
+                .addReference(new EntryReference(ARCANA_PYLON.get(),
+                        BookEntry.create("rite_empowerment.other_pylon_applications")
+                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.wicked", WICKED_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.arcane", ARCANE_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.eldritch", ELDRITCH_SPIRIT.get()))))
+        );
+
         addBundledRiteEntry(screen, "sacred_rites", 1, 15,
                 RITE_OF_HEALING, RITE_OF_NOURISHMENT, RITE_OF_NURTURING, RITE_OF_LUST);
 
         addBundledRiteEntry(screen, "wicked_rites", -1, 15,
                 RITE_OF_HARMING, RITE_OF_EMPOWERMENT, RITE_OF_CULLING, RITE_OF_RAISING);
 
-        addBundledRiteEntry(screen, "aerial_rites", 3, 15,
+        addBundledRiteEntry(screen, "aerial_rites", 3, 16,
                 RITE_OF_THE_HOWLING_GALE, RITE_OF_THE_SKY_TETHER, RITE_OF_GRAVITY, RITE_OF_ASCENSION,
                 RUNE_OF_HOWLING_GALE, RUNE_OF_SKY_TETHER);
 
@@ -149,7 +169,7 @@ public class TotemMagicEntries {
                 RITE_OF_THE_FLOWING_GRASP, RITE_OF_THE_GOOD_TIDES, RITE_OF_SOAKING, RITE_OF_SAPPING,
                 RUNE_OF_FLOWING_GRASP, RUNE_OF_GOOD_TIDES);
 
-        addBundledRiteEntry(screen, "earthen_rites", -3, 15,
+        addBundledRiteEntry(screen, "earthen_rites", -3, 16,
                 RITE_OF_THE_STONE_WARD, RITE_OF_THE_OAKEN_MIGHT, RITE_OF_CREATION, RITE_OF_DESTRUCTION,
                 RUNE_OF_STONE_WARD, RUNE_OF_OAKEN_MIGHT);
 

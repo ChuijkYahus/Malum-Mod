@@ -51,31 +51,31 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
         addEntry("ritual_magic", 0, 24, b -> b
                 .configureEntry(w -> w.setIcon(RITUAL_PLINTH).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("ritual_magic", "ritual_magic.1"))
+                .addPage(new HeadlineTextPage("ritual_magic"))
         );
 //        RitualEntries.setupEntries(ENTRIES);
 
         addEntry("mirror_magic", 6, 17, b -> b
                 .configureEntry(w -> w.setIcon(CONVOLUTED_LENS).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("mirror_magic", "mirror_magic.1"))
+                .addPage(new HeadlineTextPage("mirror_magic"))
                 .addPage(new TextPage("mirror_magic.2"))
         );
 
         addEntry("voodoo_magic", -6, 17, b -> b
                 .configureEntry(w -> w.setIcon(POPPET).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("voodoo_magic", "voodoo_magic.1"))
+                .addPage(new HeadlineTextPage("voodoo_magic"))
                 .addPage(new TextPage("voodoo_magic.2"))
         );
 
         addEntry("the_device", 0, -10, b -> b
-            .setWidgetSupplier(VanishingEntryObject::new)
-            .configureEntry(w -> w.setIcon(THE_DEVICE).setDesign(DEFAULT, WITHERED, DARK))
-            .disableTooltip()
-                .addPage(new HeadlineTextPage("the_device", "the_device"))
-            .addPage(new CraftingPage(THE_DEVICE.get(),
-                TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get(),
-                TAINTED_ROCK.get(), TWISTED_ROCK.get(), TAINTED_ROCK.get(),
-                TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get()))
+                .setWidgetSupplier(VanishingEntryObject::new)
+                .configureEntry(w -> w.setIcon(THE_DEVICE).setDesign(DEFAULT, WITHERED, DARK))
+                .disableTooltip()
+                .addPage(new HeadlineTextPage("the_device"))
+                .addPage(new CraftingPage(THE_DEVICE.get(),
+                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get(),
+                        TAINTED_ROCK.get(), TWISTED_ROCK.get(), TAINTED_ROCK.get(),
+                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get()))
         );
     }
 }

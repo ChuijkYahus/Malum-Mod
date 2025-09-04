@@ -4,23 +4,33 @@ import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.runic_workbench.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
+import com.sammy.malum.visual_effects.networked.repair_pylon.*;
+import io.netty.buffer.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class ArcanaPylonEatSpiritParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
+import java.util.*;
+
+public class ArcanaPylonEatSpiritParticleEffect extends MalumNetworkedParticleEffectType<ArcanaPylonEffectData> {
 
     public ArcanaPylonEatSpiritParticleEffect(String id) {
         super(id);
     }
 
+    @Override
+    public Optional<StreamCodec<ByteBuf, ? extends NetworkedParticleEffectExtraData>> getExtraCodec() {
+        return Optional.of(ArcanaPylonEffectData.STREAM_CODEC);
+    }
+
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
+    public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, ArcanaPylonEffectData extraData) {
         if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof ArcanaPylonBlockEntity arcanaPylon)) {
             return;
         }
-        ArcanaPylonParticleEffects.eatSpiritParticles(level, arcanaPylon, colorData);
+        ArcanaPylonParticleEffects.eatSpiritParticles(level, arcanaPylon, colorData, extraData);
     }
 }
