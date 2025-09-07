@@ -1,123 +1,29 @@
 {
   "variants": {
-    "facing=east,spirit=aerial": {
-      "model": "malum:block/rite_anchor_aerial",
+    "facing=down": {
+      "model": "malum:block/rite_anchor",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "malum:block/rite_anchor",
+      "x": 90,
       "y": 90
     },
-    "facing=east,spirit=aqueous": {
-      "model": "malum:block/rite_anchor_aqueous",
-      "y": 90
+    "facing=north": {
+      "model": "malum:block/rite_anchor",
+      "x": 90
     },
-    "facing=east,spirit=arcane": {
-      "model": "malum:block/rite_anchor_arcane",
-      "y": 90
-    },
-    "facing=east,spirit=earthen": {
-      "model": "malum:block/rite_anchor_earthen",
-      "y": 90
-    },
-    "facing=east,spirit=eldritch": {
-      "model": "malum:block/rite_anchor_eldritch",
-      "y": 90
-    },
-    "facing=east,spirit=infernal": {
-      "model": "malum:block/rite_anchor_infernal",
-      "y": 90
-    },
-    "facing=east,spirit=sacred": {
-      "model": "malum:block/rite_anchor_sacred",
-      "y": 90
-    },
-    "facing=east,spirit=wicked": {
-      "model": "malum:block/rite_anchor_wicked",
-      "y": 90
-    },
-    "facing=north,spirit=aerial": {
-      "model": "malum:block/rite_anchor_aerial"
-    },
-    "facing=north,spirit=aqueous": {
-      "model": "malum:block/rite_anchor_aqueous"
-    },
-    "facing=north,spirit=arcane": {
-      "model": "malum:block/rite_anchor_arcane"
-    },
-    "facing=north,spirit=earthen": {
-      "model": "malum:block/rite_anchor_earthen"
-    },
-    "facing=north,spirit=eldritch": {
-      "model": "malum:block/rite_anchor_eldritch"
-    },
-    "facing=north,spirit=infernal": {
-      "model": "malum:block/rite_anchor_infernal"
-    },
-    "facing=north,spirit=sacred": {
-      "model": "malum:block/rite_anchor_sacred"
-    },
-    "facing=north,spirit=wicked": {
-      "model": "malum:block/rite_anchor_wicked"
-    },
-    "facing=south,spirit=aerial": {
-      "model": "malum:block/rite_anchor_aerial",
+    "facing=south": {
+      "model": "malum:block/rite_anchor",
+      "x": 90,
       "y": 180
     },
-    "facing=south,spirit=aqueous": {
-      "model": "malum:block/rite_anchor_aqueous",
-      "y": 180
+    "facing=up": {
+      "model": "malum:block/rite_anchor"
     },
-    "facing=south,spirit=arcane": {
-      "model": "malum:block/rite_anchor_arcane",
-      "y": 180
-    },
-    "facing=south,spirit=earthen": {
-      "model": "malum:block/rite_anchor_earthen",
-      "y": 180
-    },
-    "facing=south,spirit=eldritch": {
-      "model": "malum:block/rite_anchor_eldritch",
-      "y": 180
-    },
-    "facing=south,spirit=infernal": {
-      "model": "malum:block/rite_anchor_infernal",
-      "y": 180
-    },
-    "facing=south,spirit=sacred": {
-      "model": "malum:block/rite_anchor_sacred",
-      "y": 180
-    },
-    "facing=south,spirit=wicked": {
-      "model": "malum:block/rite_anchor_wicked",
-      "y": 180
-    },
-    "facing=west,spirit=aerial": {
-      "model": "malum:block/rite_anchor_aerial",
-      "y": 270
-    },
-    "facing=west,spirit=aqueous": {
-      "model": "malum:block/rite_anchor_aqueous",
-      "y": 270
-    },
-    "facing=west,spirit=arcane": {
-      "model": "malum:block/rite_anchor_arcane",
-      "y": 270
-    },
-    "facing=west,spirit=earthen": {
-      "model": "malum:block/rite_anchor_earthen",
-      "y": 270
-    },
-    "facing=west,spirit=eldritch": {
-      "model": "malum:block/rite_anchor_eldritch",
-      "y": 270
-    },
-    "facing=west,spirit=infernal": {
-      "model": "malum:block/rite_anchor_infernal",
-      "y": 270
-    },
-    "facing=west,spirit=sacred": {
-      "model": "malum:block/rite_anchor_sacred",
-      "y": 270
-    },
-    "facing=west,spirit=wicked": {
-      "model": "malum:block/rite_anchor_wicked",
+    "facing=west": {
+      "model": "malum:block/rite_anchor",
+      "x": 90,
       "y": 270
     }
   }

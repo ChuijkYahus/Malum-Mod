@@ -58,9 +58,13 @@ public class MalumEntities {
             () -> EntityType.Builder.<LocalizedMaelstromEntity>of((e, w) -> new LocalizedMaelstromEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(20)
                     .build(MalumMod.malumPath("scythe_maelstrom").toString()));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<RiteEffectActivatorEntity>> RITE_EFFECT_ACTIVATOR = ENTITY_TYPES.register("rite_locus",
-            () -> EntityType.Builder.<RiteEffectActivatorEntity>of((e, w) -> new RiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("rite_locus").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityRiteEffectActivatorEntity>> RITE_ENTITY_EFFECT_ACTIVATOR = ENTITY_TYPES.register("entity_rite_locus",
+            () -> EntityType.Builder.<EntityRiteEffectActivatorEntity>of((e, w) -> new EntityRiteEffectActivatorEntity(w), MobCategory.MISC).sized(0.05f, 0.05f).clientTrackingRange(10)
+                    .build(MalumMod.malumPath("entity_rite_locus").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectActivatorEntity>> RITE_BLOCK_EFFECT_ACTIVATOR = ENTITY_TYPES.register("block_rite_locus",
+            () -> EntityType.Builder.<BlockRiteEffectActivatorEntity>of((e, w) -> new BlockRiteEffectActivatorEntity(w), MobCategory.MISC).sized(0.05f, 0.05f).clientTrackingRange(10)
+                    .build(MalumMod.malumPath("block_rite_locus").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivatorEntity>> SPIRIT_COLLECTION_ACTIVATOR = ENTITY_TYPES.register("pneuma_void",
             () -> EntityType.Builder.<SpiritCollectionActivatorEntity>of((e, w) -> new SpiritCollectionActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
@@ -104,7 +108,8 @@ public class MalumEntities {
             EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateEntityRenderer::new);
             EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateEntityRenderer::new);
 
-            EntityRenderers.register(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), RiteEffectActivatorEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorEntityRenderer::new);
 
             EntityRenderers.register(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorEntityRenderer::new);
             EntityRenderers.register(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);

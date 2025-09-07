@@ -97,18 +97,11 @@ public class MalumBlockStateSmithTypes {
         ResourceLocation side = provider.getBlockTexture("rite_anchor_side");
         ResourceLocation bottom = provider.getBlockTexture("rite_anchor_bottom");
         ModelFile model = provider.models().cubeBottomTop(name, side, bottom, top);
+
         provider.getVariantBuilder(block)
                 .forAllStates(state -> {
                     ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-                    if (state.hasProperty(RiteAnchorBlock.SPIRIT_TYPE)) {
-                        SpiritHolder<SpiritArcanaType> spiritType = SpiritTypeProperty.getSpiritType(state);
-                        ResourceLocation spiritTop = top.withSuffix("_" + spiritType.getName());
-                        BlockModelBuilder spiritModel = provider.models().cubeBottomTop(name + "_" + spiritType.getName(), side, bottom, top).texture("particle", spiritTop);
-                        builder.modelFile(spiritModel);
-                    }
-                    else {
-                        builder.modelFile(model);
-                    }
+                    builder.modelFile(model);
                     return builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
                 });
     });

@@ -29,7 +29,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if (enchantment.equals(Enchantments.BREACH)) {
+        if (enchantment.is(Enchantments.BREACH)) {
             return true;
         }
         return super.supportsEnchantment(stack, enchantment);

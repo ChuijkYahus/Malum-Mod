@@ -1,6 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
@@ -102,9 +103,10 @@ public class TotemParticleEffects {
             int zOffset = Mth.clamp((i-1)%4, 0, 1);
             float xMotion = (i%2) * (i > 1 ? 0.06f : -0.06f);
             float zMotion = ((i + 1) % 2) * (i > 1 ? -0.06f : 0.06f);
+            var spirit = colorData.getSpirit();
             for (int j = 0; j < 2; j++) {
                 Vec3 offsetPosition = new Vec3(position.getX()+xOffset, position.getY()+j, position.getZ()+zOffset);
-                var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
+                var lightSpecs = spiritLightSpecs(level, offsetPosition, spirit);
                 lightSpecs.getBuilder()
                         .multiplyLifetime(2.5f)
                         .setMotion(xMotion, 0, zMotion)

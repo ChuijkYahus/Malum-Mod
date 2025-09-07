@@ -136,23 +136,37 @@ public class TotemMagicEntries {
                 .addPage(new SpiritTransmutationRecipeTreePage("unchained_transmutation.deepslate", DEEPSLATE))
         );
 
-        screen.addEntry("rite_empowerment", 0, 19, b -> b
+        screen.addEntry("aura_empowerment", -3, 19, b -> b
                 .configureEntry(w -> w.setIcon(ARCANA_PYLON).setDesign(DEFAULT, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextItemPage("rite_empowerment", "rite_empowerment.1", ARCANA_PYLON.get()))
-                .addPage(new TextPage("rite_empowerment.2"))
+                .addPage(new HeadlineTextItemPage("aura_empowerment", "aura_empowerment.1", ARCANA_PYLON.get()))
+                .addPage(new TextPage("aura_empowerment.2"))
                 .addPage(new CyclingPage(
-                        new HeadlineTextItemPage("rite_empowerment.elemental", AERIAL_SPIRIT.get()),
-                        new HeadlineTextItemPage("rite_empowerment.elemental", AQUEOUS_SPIRIT.get()),
-                        new HeadlineTextItemPage("rite_empowerment.elemental", EARTHEN_SPIRIT.get()),
-                        new HeadlineTextItemPage("rite_empowerment.elemental", INFERNAL_SPIRIT.get())
+                        new HeadlineTextItemPage("aura_empowerment.elemental", AERIAL_SPIRIT.get()),
+                        new HeadlineTextItemPage("aura_empowerment.elemental", AQUEOUS_SPIRIT.get()),
+                        new HeadlineTextItemPage("aura_empowerment.elemental", EARTHEN_SPIRIT.get()),
+                        new HeadlineTextItemPage("aura_empowerment.elemental", INFERNAL_SPIRIT.get())
                 ))
                 .addPage(SpiritInfusionPage.fromOutput(ARCANA_PYLON.get()))
                 .addReference(new EntryReference(ARCANA_PYLON.get(),
-                        BookEntry.create("rite_empowerment.other_pylon_applications")
-                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))
-                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.wicked", WICKED_SPIRIT.get()))
-                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.arcane", ARCANE_SPIRIT.get()))
-                                .addPage(new HeadlineTextItemPage("rite_empowerment.other_pylon_applications.eldritch", ELDRITCH_SPIRIT.get()))))
+                        BookEntry.create("aura_empowerment.other_pylon_applications")
+                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.wicked", WICKED_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.arcane", ARCANE_SPIRIT.get()))
+                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.eldritch", ELDRITCH_SPIRIT.get()))))
+        );
+
+        screen.addEntry("locus_management", 3, 19, b -> b
+                .configureEntry(w -> w.setIcon(RITE_ANCHOR).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .addPage(new HeadlineTextItemPage("locus_management", "locus_management.1", RITE_ANCHOR.get()))
+                .addPage(SpiritInfusionPage.fromOutput(RITE_ANCHOR.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.sacred", SACRED_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.wicked", WICKED_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.arcane", ARCANE_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.eldritch", ELDRITCH_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.aerial", AERIAL_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.aqueous", AQUEOUS_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.earthen", EARTHEN_SPIRIT.get()))
+                .addPage(new HeadlineTextItemPage("locus_management.infernal", INFERNAL_SPIRIT.get()))
         );
 
         addBundledRiteEntry(screen, "sacred_rites", 1, 15,

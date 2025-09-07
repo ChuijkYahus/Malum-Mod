@@ -1,9 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.google.common.collect.ImmutableList;
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
-import com.sammy.malum.common.entity.activator.RiteEffectActivatorEntity;
-import com.sammy.malum.common.entity.activator.SpiritCollectionActivatorEntity;
+import com.sammy.malum.common.entity.activator.EntityRiteEffectActivatorEntity;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -30,12 +27,13 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, int totemHeight) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
         List<T> nearbyTargets = findNearbyTargets(level, pos);
         if (nearbyTargets.isEmpty()) {
             return false;
         }
         var random = level.getRandom();
+        int totemHeight = parameters.getTotemHeight();
         int counter = 2; //It'd be cool if you could increase the effectiveness of a rite by modifying the spirit rune placement a little
         //Maybe adding an extra arcane spirit to the bottom could increase the range of the rite
         //Adding an extra effect core spirit to the top could increase the amount of entities it can affect at once
@@ -53,7 +51,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
                     RandomHelper.randomBetween(random, 0.1f, 0.2f),
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
-            RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, this, uuid, position, velocity);
+            EntityRiteEffectActivatorEntity entity = new EntityRiteEffectActivatorEntity(level, this, uuid, position, velocity);
             entity.setSpirit(definingSpirit);
             level.addFreshEntity(entity);
             SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));

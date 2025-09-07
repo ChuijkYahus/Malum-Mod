@@ -18,7 +18,7 @@ public class UndirectedRiteEffect extends SpiritRiteEffect {
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, int totemHeight) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
         WorldEventHandler.addWorldEvent(level,
                 new UnchainedTotemConversionWorldEvent()
                         .setPosition(pos)

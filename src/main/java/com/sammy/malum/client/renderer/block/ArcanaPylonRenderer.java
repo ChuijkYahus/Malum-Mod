@@ -3,27 +3,18 @@ package com.sammy.malum.client.renderer.block;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.*;
-import com.sammy.malum.client.renderer.entity.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
-import com.sammy.malum.common.block.curiosities.repair_pylon.*;
-import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.lang.Math;
 
@@ -67,13 +58,14 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
         float wobbleStrength = 0.1f - ease * 0.075f;
         float gameTime = level.getGameTime() + partialTicks;
 
+        poseStack.pushPose();
+        poseStack.translate(0.5f, 0, 0.5f);
         for (int i = 0; i < 5; i++) {
-            float alpha = delta * 0.65f;
-            var token = i == 4 ? MalumRenderTypeTokens.PYLON_TOP : MalumRenderTypeTokens.PYLON_SIDE;
+            float alpha = delta * 0.7f;
+            var token = i == 4 ? MalumRenderTypeTokens.PYLON_GLOW_TOP : MalumRenderTypeTokens.PYLON_GLOW_SIDE;
             var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token);
             var positions = getVertexPositions(i);
             poseStack.pushPose();
-            poseStack.translate(0.5f, 0, 0.5f);
             if (i < 4) {
                 poseStack.mulPose(Axis.YN.rotationDegrees(i * 90));
             }
@@ -103,6 +95,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
             }
             poseStack.popPose();
         }
+        poseStack.popPose();
     }
 
     private static Vector3f @NotNull [] getVertexPositions(int direction) {

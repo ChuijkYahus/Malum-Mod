@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
+import com.sammy.malum.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
@@ -34,6 +35,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     protected TotemBaseState state = TotemBaseState.INACTIVE;
     protected SpiritRiteType rite;
+    protected Direction totemDirection;
     protected int totemHeight;
     protected int timer;
 
@@ -43,7 +45,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
-          this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
+        this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
     }
 
     @Override
@@ -52,6 +54,9 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (rite != null) {
             rite.save(compound);
         }
+        if (totemDirection != null) {
+            compound.putInt("direction", totemDirection.ordinal());
+        }
         compound.putInt("totemHeight", totemHeight);
         compound.putInt("timer", timer);
         super.saveAdditional(compound, registries);
@@ -59,8 +64,13 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     @Override
     protected void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        state = TotemBaseState.values()[compound.getInt("state")];
+        if (compound.contains("state")) {
+            state = TotemBaseState.values()[compound.getInt("state")];
+        }
         rite = SpiritRiteType.load(compound).orElse(null);
+        if (compound.contains("direction")) {
+            totemDirection = Direction.values()[compound.getInt("direction")];
+        }
         totemHeight = compound.getInt("totemHeight");
         timer = compound.getInt("timer");
         super.loadAdditional(compound, pRegistries);
@@ -74,7 +84,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                 case ACTIVE -> {
                     timer--;
                     if (timer <= 0) {
-                        timer = 100;
+                        timer = rite.getEffect().getCooldown();
                         rite.triggerRiteEffect(serverLevel, this);
                         BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
                     }
@@ -139,6 +149,19 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public int getTotemHeight() {
         return totemHeight;
+    }
+
+    public Direction getTotemDirection() {
+        if (totemDirection != null) {
+            return totemDirection;
+        }
+        BlockState above = level.getBlockState(getBlockPos().above());
+        if (above.getBlock() instanceof TotemPoleBlock) {
+            totemDirection = above.getValue(TotemPoleBlock.HORIZONTAL_FACING);
+            return totemDirection;
+        }
+        MalumMod.LOGGER.warn("Totem Base at {} has no totem pole above it, defaulting to north direction", worldPosition);
+        return Direction.NORTH;
     }
 
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {

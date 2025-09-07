@@ -60,6 +60,28 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     }
 
     @Override
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider registryLookup) {
+        inventory.save(registryLookup, compound);
+        if (spirit != null) {
+            spirit.save(compound);
+        }
+        compound.putInt("unspentSpiritFuel", unspentSpiritFuel);
+        compound.putInt("visualEffectStrength", visualEffectStrength);
+        compound.putInt("timer", timer);
+        super.saveAdditional(compound, registryLookup);
+    }
+
+    @Override
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+        inventory.load(registries, compound);
+        spirit = SpiritArcanaType.load(compound).orElse(null);
+        unspentSpiritFuel = compound.getInt("unspentSpiritFuel");
+        visualEffectStrength = compound.getInt("visualEffectStrength");
+        timer = compound.getInt("timer");
+        super.loadAdditional(compound, registries);
+    }
+
+    @Override
     public AltarAcceleratorType getAcceleratorType() {
         return ARCANA_PYLON;
     }
@@ -151,34 +173,15 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
         if (RITE_EMPOWERMENT_EFFECTS.containsKey(holder)) {
             var effectHolder = RITE_EMPOWERMENT_EFFECTS.get(holder);
             if (effectHolder != null) {
+                var params = SpiritRiteEffect.builder()
+                        .setTotemHeight(2)
+                        .build();
                 var effect = effectHolder.get();
-                if (effect.triggerRiteEffect(level, worldPosition, spirit, 2)) {
+                if (effect.triggerRiteEffect(level, worldPosition, spirit, params)) {
                     spendSpiritFuel(level, 4);
                 }
             }
         }
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider registryLookup) {
-        inventory.save(registryLookup, compound);
-        if (spirit != null) {
-            spirit.save(compound);
-        }
-        compound.putInt("unspentSpiritFuel", unspentSpiritFuel);
-        compound.putInt("visualEffectStrength", visualEffectStrength);
-        compound.putInt("timer", timer);
-        super.saveAdditional(compound, registryLookup);
-    }
-
-    @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-        inventory.load(registries, compound);
-        spirit = SpiritArcanaType.load(compound).orElse(null);
-        unspentSpiritFuel = compound.getInt("unspentSpiritFuel");
-        visualEffectStrength = compound.getInt("visualEffectStrength");
-        timer = compound.getInt("timer");
-        super.loadAdditional(compound, registries);
     }
 
     public void spendSpiritFuel(ServerLevel level, int fuelPerSpirit) {

@@ -40,9 +40,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         AbstractBlockStateSmith.StateSmithData data = new AbstractBlockStateSmith.StateSmithData(this, blocks::remove);
 
-        setTexturePath("rite_anchor/");
-        MalumBlockStateSmithTypes.RITE_ANCHOR_BLOCK.act(data, EMPTY_RITE_ANCHOR, RITE_ANCHOR);
-
         setTexturePath("banners/");
         MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, SOULWOVEN_BANNER);
         setTexturePath("spirited_glass/");
@@ -241,6 +238,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, IRIDESCENT_WALL_ETHER_TORCH);
         itemModelProvider.setTexturePath("");
 
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::directionalBlock, this::cubeBottomTop,
+                RITE_ANCHOR);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
                 SPIRIT_ALTAR, SOUL_BRAZIER, RITUAL_PLINTH);

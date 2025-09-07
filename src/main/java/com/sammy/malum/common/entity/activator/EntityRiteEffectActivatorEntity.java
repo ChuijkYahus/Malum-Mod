@@ -2,11 +2,9 @@ package com.sammy.malum.common.entity.activator;
 
 import com.sammy.malum.common.entity.FloatingEntity;
 import com.sammy.malum.common.entity.FloatingItemDestinationData;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.MalumEntityDataSerializers;
-import com.sammy.malum.registry.common.MalumSoundEvents;
 import com.sammy.malum.registry.common.entity.MalumEntities;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
@@ -14,9 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.SoundHelper;
@@ -24,18 +20,18 @@ import team.lodestar.lodestone.systems.easing.*;
 
 import java.util.UUID;
 
-public class RiteEffectActivatorEntity extends FloatingEntity {
+public class EntityRiteEffectActivatorEntity extends FloatingEntity {
 
-    protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(RiteEffectActivatorEntity.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
+    protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(EntityRiteEffectActivatorEntity.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
     protected SpiritRiteEntityEffect<?> effect;
 
-    public RiteEffectActivatorEntity(Level level) {
-        super(MalumEntities.RITE_EFFECT_ACTIVATOR.get(), level);
+    public EntityRiteEffectActivatorEntity(Level level) {
+        super(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 
-    public RiteEffectActivatorEntity(Level level, SpiritRiteEntityEffect<?> effect, UUID targetUUID, Vec3 position, Vec3 velocity) {
+    public EntityRiteEffectActivatorEntity(Level level, SpiritRiteEntityEffect<?> effect, UUID targetUUID, Vec3 position, Vec3 velocity) {
         this(level);
         this.effect = effect;
         setDestination(new FloatingItemDestinationData(targetUUID));
@@ -66,11 +62,6 @@ public class RiteEffectActivatorEntity extends FloatingEntity {
         super.readAdditionalSaveData(pCompound);
         setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
         effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteEntityEffect.class).orElse(null);
-    }
-
-    @Override
-    public SoundSource getSoundSource() {
-        return SoundSource.NEUTRAL;
     }
 
     @Override

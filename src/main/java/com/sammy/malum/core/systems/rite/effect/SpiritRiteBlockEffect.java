@@ -1,12 +1,16 @@
 package com.sammy.malum.core.systems.rite.effect;
 
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
+import net.minecraft.util.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.helpers.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +29,22 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, int totemHeight) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
+        var random = level.getRandom();
+        Direction direction = parameters.getTotemDirection().orElseThrow();
+        BlockRiteEffectActivatorEntity entity = new BlockRiteEffectActivatorEntity(level, this, pos, direction);
+        entity.setSpirit(definingSpirit);
+        level.addFreshEntity(entity);
+        SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
         return true;
     }
 
     public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos);
+
+    @Override
+    public int getCooldown() {
+        return 500;
+    }
 
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));

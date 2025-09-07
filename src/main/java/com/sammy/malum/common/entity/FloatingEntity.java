@@ -12,7 +12,7 @@ import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
 
-public abstract class FloatingEntity extends Entity {
+public abstract class FloatingEntity extends MovingEntity {
 
     public final TrailPointBuilder trail = TrailPointBuilder.create(5);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
@@ -43,7 +43,7 @@ public abstract class FloatingEntity extends Entity {
     }
 
     public float getVisualEffectScalar() {
-        return Math.min(age /5f, 1f);
+        return Math.min(age / 5f, 1f);
     }
 
     public float getHoverOffset() {
@@ -92,7 +92,6 @@ public abstract class FloatingEntity extends Entity {
             discard();
             return;
         }
-        baseTick();
         if (level() instanceof ServerLevel level) {
             if (destination != null && destination.isValid(level)) {
                 float distance = (float) destination.getDistance(level, this);
@@ -140,34 +139,20 @@ public abstract class FloatingEntity extends Entity {
                     }
                 }
             }
-        }
-        else {
+        } else {
             Vec3 position = getOffsetPosition(0.5f);
             trail.addTrailPoint(position);
             longTrail.addTrailPoint(position);
             trail.tickTrailPoints();
             longTrail.tickTrailPoints();
         }
-        applyMovement();
+        super.tick();
         age++;
     }
 
     @Override
-    public void lerpMotion(double x, double y, double z) {
-        this.setDeltaMovement(x, y, z);
-        if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
-            double d0 = Math.sqrt(x * x + z * z);
-            this.setXRot((float) (Mth.atan2(y, d0) * 180.0F / (float) Math.PI));
-            this.setYRot((float) (Mth.atan2(x, z) * 180.0F / (float) Math.PI));
-            this.xRotO = this.getXRot();
-            this.yRotO = this.getYRot();
-            this.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
-        }
-    }
-
-    @Override
-    public boolean isPickable() {
-        return true;
+    public float getFriction() {
+        return 0.96f;
     }
 
     public int getWindUpDuration() {
@@ -180,30 +165,6 @@ public abstract class FloatingEntity extends Entity {
         return windUpScalar + distanceScalar;
     }
 
-    public float getFriction() {
-        return 0.96f;
-    }
-
-    protected void applyMovement() {
-        checkInsideBlocks();
-        Vec3 vec3 = getDeltaMovement();
-        double d0 = getX() + vec3.x;
-        double d1 = getY() + vec3.y;
-        double d2 = getZ() + vec3.z;
-        updateRotation();
-        float friction = getFriction();
-        if (isInWater()) {
-            for (int i = 0; i < 4; i++) {
-                level().addParticle(ParticleTypes.BUBBLE, d0 - vec3.x * 0.25, d1 - vec3.y * 0.25, d2 - vec3.z * 0.25, vec3.x, vec3.y, vec3.z);
-            }
-            friction *= 0.825f;
-        }
-
-        setDeltaMovement(vec3.scale(friction));
-        applyGravity();
-        setPos(d0, d1, d2);
-    }
-
     public Vec3 getOffsetPosition() {
         return getOffsetPosition(0);
     }
@@ -214,30 +175,11 @@ public abstract class FloatingEntity extends Entity {
 
     public float getYOffset(float partialTicks) {
         float windUpDuration = getWindUpDuration();
-        float offsetStrength = Easing.CIRC_IN_OUT.clamped((age+partialTicks) / windUpDuration, 0, 1);
+        float offsetStrength = Easing.CIRC_IN_OUT.clamped((age + partialTicks) / windUpDuration, 0, 1);
         return Mth.sin(((float) age + partialTicks) / 6.0F + hoverOffset) * (0.5F - (offsetStrength * 0.25F));
     }
 
     public float getRotation(float partialTicks) {
         return ((float) age + partialTicks) / 10.0F + hoverOffset;
-    }
-
-    protected void updateRotation() {
-        Vec3 vec3 = getDeltaMovement();
-        double d0 = vec3.horizontalDistance();
-        setXRot(lerpRotation(xRotO, (float) (Mth.atan2(vec3.y, d0) * 180.0F / (float) Math.PI)));
-        setYRot(lerpRotation(yRotO, (float) (Mth.atan2(vec3.x, vec3.z) * 180.0F / (float) Math.PI)));
-    }
-
-    protected static float lerpRotation(float currentRotation, float targetRotation) {
-        while (targetRotation - currentRotation < -180.0F) {
-            currentRotation -= 360.0F;
-        }
-
-        while (targetRotation - currentRotation >= 180.0F) {
-            currentRotation += 360.0F;
-        }
-
-        return Mth.lerp(0.2F, currentRotation, targetRotation);
     }
 }

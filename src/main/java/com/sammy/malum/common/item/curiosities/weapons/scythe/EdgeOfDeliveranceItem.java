@@ -28,7 +28,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if (enchantment.equals(Enchantments.BREACH)) {
+        if (enchantment.is(Enchantments.BREACH)) {
             return true;
         }
         return super.supportsEnchantment(stack, enchantment);

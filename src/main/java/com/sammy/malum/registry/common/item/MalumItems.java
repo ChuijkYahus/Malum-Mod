@@ -135,9 +135,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", HIDDEN_PROPERTIES().rarity(RARE), ArcaneElegyMusicDiscItem::new);
     public static final DeferredHolder<Item, Item> AESTHETICA = register("music_disc_aesthetica", HIDDEN_PROPERTIES().rarity(RARE), AestheticaMusicDiscItem::new);
 
-    //region random stuff
-        public static DeferredHolder<Item, Item> COPPER_NUGGET;
-
     public static final DeferredHolder<Item, Item> COAL_FRAGMENT = register("coal_fragment", new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), (p) -> new LodestoneFuelItem(p, 200));
     public static final DeferredHolder<Item, Item> CHARCOAL_FRAGMENT = register("charcoal_fragment", new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), (p) -> new LodestoneFuelItem(p, 200));
     //endregion
@@ -490,7 +487,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
 
-    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new ItemNameBlockItem(MalumBlocks.EMPTY_RITE_ANCHOR.get(), p));
+    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new ItemNameBlockItem(MalumBlocks.RITE_ANCHOR.get(), p));
 
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEBANKER.get(), p));
