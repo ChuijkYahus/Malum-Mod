@@ -158,7 +158,11 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
         progressionObjects.setupEntryObjects(this);
-        faceObject(progressionObjects.get(1));
+        faceOrigin();
+    }
+
+    public void faceOrigin() {
+        faceObject(progressionObjects.getOriginObject());
     }
 
     public void faceObject(BookObject<?> object) {

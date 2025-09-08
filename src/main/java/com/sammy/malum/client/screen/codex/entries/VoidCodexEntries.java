@@ -36,7 +36,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.the_weeping_well", 0, 1, b -> b
-                .configureEntry(w -> w.setIcon(VOID_DEPOT).setDesign(GILDED, SOULWOOD, PAPER))
+                .configureEntry(w -> w.setIcon(VOID_DEPOT).setDesign(GILDED, SOULWOOD, PAPER).setOrigin())
                 .addPage(new HeadlineTextPage("void.the_weeping_well", "void.the_weeping_well.1"))
                 .addPage(new TextPage("void.the_weeping_well.2"))
                 .addPage(new TextPage("void.the_weeping_well.3"))

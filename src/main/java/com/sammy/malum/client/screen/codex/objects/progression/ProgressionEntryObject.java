@@ -32,6 +32,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     public ChatFormatting headlineFormatting;
     public Predicate<AbstractProgressionCodexScreen> isValid = t -> true;
     public ItemStack iconStack;
+    public boolean isOrigin;
 
     public ProgressionEntryObject(BookEntry entry, int posX, int posY) {
         super(posX, posY, 32, 32);
@@ -165,6 +166,11 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
         this.isValid = isValid;
+        return this;
+    }
+
+    public ProgressionEntryObject setOrigin() {
+        this.isOrigin = true;
         return this;
     }
 }

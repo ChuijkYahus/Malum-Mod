@@ -57,7 +57,8 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
     }
 
     public boolean click(T screen, double mouseX, double mouseY) {
-        for (BookObject<T> object : objects) {
+        var sorted = objects.stream().sorted(Comparator.comparing(o -> o.hasPriority(screen))).toList();
+        for (BookObject<T> object : sorted) {
             if (object.isValid(screen)) {
                 if (object.tryClick(screen, mouseX, mouseY)) {
                     return true;

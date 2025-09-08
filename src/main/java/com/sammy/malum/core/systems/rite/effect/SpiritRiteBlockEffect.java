@@ -41,11 +41,6 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
 
     public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos);
 
-    @Override
-    public int getCooldown() {
-        return 500;
-    }
-
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));
     }

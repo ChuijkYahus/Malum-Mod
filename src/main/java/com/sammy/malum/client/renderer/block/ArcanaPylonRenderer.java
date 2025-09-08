@@ -15,6 +15,7 @@ import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.rendering.cube.*;
 
 import java.lang.Math;
 
@@ -64,7 +65,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
             float alpha = delta * 0.7f;
             var token = i == 4 ? MalumRenderTypeTokens.PYLON_GLOW_TOP : MalumRenderTypeTokens.PYLON_GLOW_SIDE;
             var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token);
-            var positions = getVertexPositions(i);
+            var vertices = getVertexPositions(i);
             poseStack.pushPose();
             if (i < 4) {
                 poseStack.mulPose(Axis.YN.rotationDegrees(i * 90));
@@ -85,11 +86,11 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
 
                 poseStack.pushPose();
                 poseStack.translate(offset, 0, 0);
-                applyWobble(positions, wobbleStrength);
+                CubeVertexData.applyVertexWobble(vertices, j*2f, wobbleStrength);
                 SpiritBasedWorldVFXBuilder.create(spiritType)
                         .setColor(color, alpha)
                         .setRenderType(renderType)
-                        .renderQuad(poseStack, positions, 1f);
+                        .renderQuad(poseStack, vertices, 1f);
                 poseStack.popPose();
                 alpha *= (1 - (delta + 0.2f) * 0.4f);
             }
@@ -111,15 +112,5 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
                     new Vector3f(0.5f, 1.65f, -0.5f), new Vector3f(-0.5f, 1.65f, -0.5f)};
         }
         return positions;
-    }
-
-    public static void applyWobble(Vector3f[] offsets, float strength) {
-        float offset = 0;
-        for (Vector3f vector3f : offsets) {
-            double time = ((Minecraft.getInstance().level.getGameTime() / 40.0F) % Math.PI * 2);
-            float sine = Mth.sin((float) (time + (offset * Math.PI * 2))) * strength;
-            vector3f.add(sine, -sine, 0);
-            offset += 0.25f;
-        }
     }
 }

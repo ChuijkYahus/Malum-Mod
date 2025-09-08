@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem.anchor;
 
+import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 
-public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
+public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
     private static final int WARMUP_DURATION = 20;
 
@@ -110,6 +111,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
         }
     }
 
+    @Override
     public void travel(BlockRiteEffectActivatorEntity entity) {
         if (spirit != null) {
             var level = entity.level();
@@ -118,12 +120,12 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
                 entity.updateDirection(direction);
             }
             if (spirit.matches(MalumSpiritTypes.SACRED_SPIRIT)) {
-                //Recovers Remaining Distance
-                if (entity.tryUpgrade(level)) {
-                    entity.startHealing();
-                }
+                //Recovers Remaining Distance Overtime
+                entity.recoverHealth();
             }
             if (spirit.matches(MalumSpiritTypes.WICKED_SPIRIT)) {
+                //Sacrifices One Stat to Instantly Recover Remaining Distance
+                entity.leechHealth();
             }
             if (spirit.matches(MalumSpiritTypes.ARCANE_SPIRIT)) {
                 //Free Turn
@@ -169,14 +171,15 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity {
             }
         }
         if (pStack.getItem() instanceof SpiritShardItem shard) {
-            if (shard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
             if (spirit != null && shard.matches(spirit)) {
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
             if (level instanceof ServerLevel serverLevel) {
-                setSpirit(serverLevel, pPlayer, shard.getSpirit());
+                final SpiritArcanaType spirit = shard.getSpirit();
+                setSpirit(serverLevel, pPlayer, spirit);
+                if (!pPlayer.isCreative() && !spirit.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
+                    pStack.shrink(1);
+                }
                 BlockStateHelper.updateState(level, worldPosition);
             }
             return ItemInteractionResult.SUCCESS;

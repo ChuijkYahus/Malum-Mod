@@ -139,6 +139,7 @@ public class TotemMagicEntries {
         screen.addEntry("aura_empowerment", -3, 19, b -> b
                 .configureEntry(w -> w.setIcon(ARCANA_PYLON).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("aura_empowerment", "aura_empowerment.1", ARCANA_PYLON.get()))
+                .addPage(SpiritInfusionPage.fromOutput(ARCANA_PYLON.get()))
                 .addPage(new TextPage("aura_empowerment.2"))
                 .addPage(new CyclingPage(
                         new HeadlineTextItemPage("aura_empowerment.elemental", AERIAL_SPIRIT.get()),
@@ -146,7 +147,6 @@ public class TotemMagicEntries {
                         new HeadlineTextItemPage("aura_empowerment.elemental", EARTHEN_SPIRIT.get()),
                         new HeadlineTextItemPage("aura_empowerment.elemental", INFERNAL_SPIRIT.get())
                 ))
-                .addPage(SpiritInfusionPage.fromOutput(ARCANA_PYLON.get()))
                 .addReference(new EntryReference(ARCANA_PYLON.get(),
                         BookEntry.create("aura_empowerment.other_pylon_applications")
                                 .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))

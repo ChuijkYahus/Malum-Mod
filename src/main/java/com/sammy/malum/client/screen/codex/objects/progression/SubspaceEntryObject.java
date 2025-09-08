@@ -62,6 +62,11 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
     @Override
+    public boolean hasPriority(AbstractProgressionCodexScreen screen) {
+        return isActive;
+    }
+
+    @Override
     public void tick(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         int centerX = getCenterX();
         int centerY = getCenterY();

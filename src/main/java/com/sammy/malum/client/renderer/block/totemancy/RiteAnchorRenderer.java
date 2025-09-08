@@ -16,6 +16,7 @@ import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
@@ -120,7 +121,7 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
 
             poseStack.pushPose();
             poseStack.translate(offset, 0, 0);
-            applyWobble(vertices, wobbleStrength);
+            CubeVertexData.applyVertexWobble(vertices, 0, wobbleStrength);
             SpiritBasedWorldVFXBuilder.create(spiritType)
                     .setColor(color, alpha)
                     .setRenderType(renderType)
@@ -140,15 +141,5 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
         return new Vector3f[]{
                 new Vector3f(-0.55f, 0.55f, 0.55f), new Vector3f(0.55f, 0.55f, 0.55f),
                 new Vector3f(0.55f, 0.55f, -0.55f), new Vector3f(-0.55f, 0.55f, -0.55f)};
-    }
-
-    public static void applyWobble(Vector3f[] offsets, float strength) {
-        float offset = 0;
-        for (Vector3f vector3f : offsets) {
-            double time = ((Minecraft.getInstance().level.getGameTime() / 40.0F) % Math.PI * 2);
-            float sine = Mth.sin((float) (time + (offset * Math.PI * 2))) * strength;
-            vector3f.add(sine, -sine, 0);
-            offset += 0.25f;
-        }
     }
 }

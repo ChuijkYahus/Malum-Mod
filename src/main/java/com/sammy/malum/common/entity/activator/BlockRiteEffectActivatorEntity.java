@@ -1,5 +1,6 @@
 package com.sammy.malum.common.entity.activator;
 
+import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.core.systems.rite.effect.*;
@@ -32,18 +33,18 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
     protected int upgradeSlots;
     public final RiteSparkAttributeData speed = new RiteSparkAttributeData(RiteSparkAttributeDataType.SPEED);
     public final RiteSparkAttributeData potency = new RiteSparkAttributeData(RiteSparkAttributeDataType.POTENCY);
-    public final RiteSparkAttributeData distance = new RiteSparkAttributeData(RiteSparkAttributeDataType.MAX_DISTANCE);
     public final RiteSparkAttributeData impact = new RiteSparkAttributeData(RiteSparkAttributeDataType.IMPACT);
-    public final List<RiteSparkAttributeData> attributes = List.of(speed, potency, distance, impact);
+    public final RiteSparkAttributeData distance = new RiteSparkAttributeData(RiteSparkAttributeDataType.MAX_DISTANCE);
+    public final List<RiteSparkAttributeData> attributes = List.of(speed, potency, impact, distance);
 
     protected BlockPos sourcePosition;
     protected BlockPos activationPosition;
     protected Direction movementDirection;
     protected int blockCounter;
     protected int healDuration;
+    protected int healCounter;
     protected int totalBlocksTraveled;
     protected int age;
-
 
     public BlockRiteEffectActivatorEntity(Level level) {
         super(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level);
@@ -55,7 +56,7 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         this.sourcePosition = sourcePosition;
         this.activationPosition = sourcePosition;
         this.movementDirection = movementDirection;
-        this.upgradeSlots = 8;
+        this.upgradeSlots = 4;
         setPos(sourcePosition.getBottomCenter().add(0, 0.05f, 0));
         updateMotion();
     }
@@ -89,6 +90,7 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         }
         pCompound.putInt("blockCounter", blockCounter);
         pCompound.putInt("healDuration", healDuration);
+        pCompound.putInt("healCounter", healCounter);
         pCompound.putInt("blocksTraveled", totalBlocksTraveled);
         pCompound.putInt("age", age);
     }
@@ -107,6 +109,7 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         movementDirection = Direction.values()[pCompound.getInt("movementDirection")];
         blockCounter = pCompound.getInt("blockCounter");
         healDuration = pCompound.getInt("healDuration");
+        healCounter = pCompound.getInt("healCounter");
         totalBlocksTraveled = pCompound.getInt("blocksTraveled");
         age = pCompound.getInt("age");
     }
@@ -115,23 +118,24 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
     public void tick() {
         updateMotion();
         super.tick();
-        if (healDuration > 0) {
-            healDuration--;
-            return;
-        }
-        if (updatePosition()) {
-            if (activationPosition == sourcePosition) {
+        if (level() instanceof ServerLevel serverLevel) {
+            notifyTotem();
+            if (healDuration > 0) {
+                healDuration--;
                 return;
             }
-            var level = level();
-            var affectedPos = activationPosition.below();
-            boolean canTriggerEffect = true;
-            if (level.getBlockEntity(affectedPos) instanceof RiteAnchorBlockEntity anchor) {
-                anchor.travel(this);
-                canTriggerEffect = false;
-            }
-            if (level instanceof ServerLevel serverLevel) {
-                if (blockCounter > distance.getValue()+1) {
+            if (updatePosition()) {
+                if (activationPosition == sourcePosition) {
+                    return;
+                }
+                var level = level();
+                var affectedPos = activationPosition.below();
+                boolean canTriggerEffect = true;
+                if (level.getBlockEntity(affectedPos) instanceof RiteSparkInteractable interactable) {
+                    interactable.travel(this);
+                    canTriggerEffect = false;
+                }
+                if (blockCounter > distance.getValue() + 1) {
                     discard();
                     return;
                 }
@@ -183,10 +187,40 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         return false;
     }
 
-    public void startHealing() {
+    public void recoverHealth() {
         if (blockCounter > 0) {
-            healDuration = Mth.floor((blockCounter * 5) / potency.getValue());
+            healCounter++;
+            if (healCounter > 4) {
+                discard();
+                return;
+            }
+            healDuration = Mth.floor((blockCounter * 4) / potency.getValue());
             blockCounter = 0;
+            updateMotion();
+        }
+    }
+
+    public void leechHealth() {
+        if (blockCounter > 0) {
+            healCounter++;
+            if (healCounter > 4) {
+                discard();
+                return;
+            }
+            blockCounter = 0;
+            for (RiteSparkAttributeData attribute : attributes) {
+                if (attribute.decrease()) {
+                    return;
+                }
+            }
+        }
+    }
+
+    public void notifyTotem() {
+        if (sourcePosition != null) {
+            if (level().getBlockEntity(sourcePosition) instanceof TotemBaseBlockEntity totemBase) {
+                totemBase.receiveSparkUpdate();
+            }
         }
     }
 
@@ -263,14 +297,20 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
             return type.getValue(tier);
         }
 
-        public void increase() {
-            increase(1);
+        public boolean increase() {
+            if (tier < type.maxTier() - 1) {
+                tier++;
+                return true;
+            }
+            return false;
         }
 
-        public void increase(int amount) {
-            if (tier < type.maxTier()-1) {
-                tier = Math.min(tier + amount, type.maxTier()-1);
+        public boolean decrease() {
+            if (tier > 0) {
+                tier--;
+                return true;
             }
+            return false;
         }
 
         public void save(CompoundTag compoundTag) {
@@ -289,10 +329,10 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
 
     public record RiteSparkAttributeDataType(String name, int maxTier, List<Float> valuePerTier) {
 
-        public static RiteSparkAttributeDataType MAX_DISTANCE = new RiteSparkAttributeDataType("max_distance", List.of(8f, 16f, 32f));
         public static RiteSparkAttributeDataType SPEED = new RiteSparkAttributeDataType("speed", List.of(1f, 2f, 4f));
         public static RiteSparkAttributeDataType POTENCY = new RiteSparkAttributeDataType("potency", List.of(1f, 2f, 4f));
         public static RiteSparkAttributeDataType IMPACT = new RiteSparkAttributeDataType("impact", List.of(1f, 2f, 4f));
+        public static RiteSparkAttributeDataType MAX_DISTANCE = new RiteSparkAttributeDataType("max_distance", List.of(8f, 16f, 32f));
 
         public RiteSparkAttributeDataType(String name, List<Float> valuePerTier) {
             this(name, valuePerTier.size(), valuePerTier);

@@ -59,11 +59,11 @@ public class MalumEntities {
                     .build(MalumMod.malumPath("scythe_maelstrom").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityRiteEffectActivatorEntity>> RITE_ENTITY_EFFECT_ACTIVATOR = ENTITY_TYPES.register("entity_rite_locus",
-            () -> EntityType.Builder.<EntityRiteEffectActivatorEntity>of((e, w) -> new EntityRiteEffectActivatorEntity(w), MobCategory.MISC).sized(0.05f, 0.05f).clientTrackingRange(10)
+            () -> EntityType.Builder.<EntityRiteEffectActivatorEntity>of((e, w) -> new EntityRiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(4).updateInterval(1)
                     .build(MalumMod.malumPath("entity_rite_locus").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectActivatorEntity>> RITE_BLOCK_EFFECT_ACTIVATOR = ENTITY_TYPES.register("block_rite_locus",
-            () -> EntityType.Builder.<BlockRiteEffectActivatorEntity>of((e, w) -> new BlockRiteEffectActivatorEntity(w), MobCategory.MISC).sized(0.05f, 0.05f).clientTrackingRange(10)
+            () -> EntityType.Builder.<BlockRiteEffectActivatorEntity>of((e, w) -> new BlockRiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(1).updateInterval(1)
                     .build(MalumMod.malumPath("block_rite_locus").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivatorEntity>> SPIRIT_COLLECTION_ACTIVATOR = ENTITY_TYPES.register("pneuma_void",

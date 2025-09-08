@@ -35,7 +35,7 @@ public class IntroductionEntries {
                 .afterUmbralCrystal();
 
         screen.addEntry("introduction", 0, 0, b -> b
-                .configureEntry(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setDesign(GILDED, RUNEWOOD, PAPER))
+                .configureEntry(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setDesign(GILDED, RUNEWOOD, PAPER).setOrigin())
                 .addPage(new HeadlineTextPage("introduction"))
                 .addPage(new TextPage("introduction.2"))
                 .addPage(new TextPage("introduction.3"))

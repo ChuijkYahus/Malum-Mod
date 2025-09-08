@@ -31,6 +31,10 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
         return true;
     }
 
+    public boolean hasPriority(T screen) {
+        return false;
+    }
+
     public void tick(T screen, double mouseX, double mouseY) {
 
     }

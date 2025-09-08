@@ -38,6 +38,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     protected Direction totemDirection;
     protected int totemHeight;
     protected int timer;
+    protected int timerPause;
 
     public TotemBaseBlockEntity(BlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -59,6 +60,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
         compound.putInt("totemHeight", totemHeight);
         compound.putInt("timer", timer);
+        compound.putInt("timerPause", timerPause);
         super.saveAdditional(compound, registries);
     }
 
@@ -73,6 +75,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
         totemHeight = compound.getInt("totemHeight");
         timer = compound.getInt("timer");
+        timerPause = compound.getInt("timerPause");
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -82,8 +85,14 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             switch (state) {
                 case ACTIVE -> {
-                    timer--;
-                    if (timer <= 0) {
+                    if (timer > 0) {
+                        timer--;
+                    }
+                    if (timerPause > 0) {
+                        timerPause--;
+                        return;
+                    }
+                    if (timer == 0) {
                         timer = rite.getEffect().getCooldown();
                         rite.triggerRiteEffect(serverLevel, this);
                         BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
@@ -137,6 +146,10 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             setState(serverLevel, TotemBaseState.INACTIVE);
         }
+    }
+
+    public void receiveSparkUpdate() {
+        timerPause = 10;
     }
 
     public TotemBaseState getState() {
