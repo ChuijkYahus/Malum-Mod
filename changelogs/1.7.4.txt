@@ -115,6 +115,7 @@ Authority of the Gleeful Target
 - Retextured the Runewood Obelisk
 - Retextured the Brilliant Obelisk
 - Retextured the Tyrving
+- Retextured Mnemonic Fragment
 - Retextured Malignant Lead
 - Retextured the Soul Stained Steel Ingot, Nugget and Plating
 - Retextured Soul Stained Steel Tools, Weapons, and Armor

@@ -1,6 +1,5 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
@@ -9,7 +8,6 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.Arrays;
@@ -39,7 +37,7 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
         return true;
     }
 
-    public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos);
+    public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact);
 
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));

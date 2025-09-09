@@ -36,29 +36,22 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
 
         float delta = blockEntityIn.getGlowDelta();
 
-        var facing = blockEntityIn.getBlockState().getValue(RiteAnchorBlock.FACING);
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
-        if (!facing.equals(Direction.UP)) {
-            if (facing.getAxis().isHorizontal()) {
-                int horizontal = facing.get2DDataValue() * 90;
-                poseStack.mulPose(Axis.YN.rotationDegrees(horizontal));
-                poseStack.mulPose(Axis.XP.rotationDegrees(90));
+        for (int i = 0; i < 4; i++) {
+            int rotation = i * 90;
+            Direction direction = Direction.fromYRot(rotation);
+            if (RiteAnchorBlock.isOccluded(blockEntityIn.getBlockState(), direction)) {
+                continue;
             }
-            else {
-                poseStack.mulPose(Axis.XP.rotationDegrees(180));
-            }
-        }
-        for (int i = 0; i < 5; i++) {
-            var token = i == 4 ? MalumRenderTypeTokens.RITE_ANCHOR_GLOW_TOP : MalumRenderTypeTokens.RITE_ANCHOR_GLOW_SIDE;
-            var vertices = i == 4 ? getTopVertices() : getSideVertices();
+
             poseStack.pushPose();
-            if (i < 4) {
-                poseStack.mulPose(Axis.YN.rotationDegrees(i * 90));
-            }
-            renderFace(poseStack, spiritType, token, vertices, delta, partialTicks);
+            poseStack.mulPose(Axis.YN.rotationDegrees(rotation));
+            renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_SIDE, getSideVertices(), delta, partialTicks);
             poseStack.popPose();
         }
+        renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_TOP, getTopVertices(), delta, partialTicks);
+
         var aimDirection = blockEntityIn.getAimDirection();
         if (aimDirection != null) {
             poseStack.pushPose();
@@ -68,9 +61,6 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
                     vertex.add(0, 0.125f, 0);
                 }
                 int rotation = aimDirection.getData2d();
-                if (facing.equals(Direction.DOWN)) {
-                    rotation = -rotation + 90;
-                }
                 poseStack.mulPose(Axis.YN.rotationDegrees(180 + rotation * 90));
                 renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_POINTER, vertices, delta, partialTicks);
             }

@@ -125,7 +125,7 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
                         .spawn(serverLevel);
                 this.type = type;
                 this.frequency = frequency;
-                BlockStateHelper.updateAndNotifyState(level, getBlockPos());
+                setDirty();
             }
             closeDelay = newValue ? 100 : 0;
         }

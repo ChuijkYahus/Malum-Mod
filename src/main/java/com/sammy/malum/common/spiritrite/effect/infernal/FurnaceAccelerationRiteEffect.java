@@ -1,21 +1,10 @@
 package com.sammy.malum.common.spiritrite.effect.infernal;
 
 import com.sammy.malum.core.systems.rite.effect.*;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import team.lodestar.lodestone.helpers.block.BlockStateHelper;
-import team.lodestar.lodestone.systems.recipe.LodestoneRecipeType;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.ELDRITCH_SPIRIT;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.INFERNAL_SPIRIT;
@@ -27,7 +16,7 @@ public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos) {
+    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
         if (level.getBlockEntity(pos) instanceof AbstractFurnaceBlockEntity furnace) {
             createEffect(level, pos, INFERNAL_SPIRIT, ELDRITCH_SPIRIT);
             quickenFurnace(level, furnace, 20, 20);

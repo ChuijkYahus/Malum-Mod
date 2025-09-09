@@ -15,6 +15,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import team.lodestar.lodestone.helpers.*;
 
 import java.util.List;
 
@@ -27,14 +28,14 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos) {
+    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
         var stateBelow = level.getBlockState(pos.below());
         if (FallingBlock.isFree(stateBelow) || !stateBelow.canOcclude() || stateBelow.is(net.minecraft.tags.BlockTags.SLABS)) {
             if (!state.isAir() && level.getBlockEntity(pos) == null && canSilkTouch(level, pos, state)) {
                 FallingBlockEntity.fall(level, pos, state);
 
                 createEffect(level, MalumParticleEffectTypes.BLOCK_FALL_RITE_EFFECT, pos, AERIAL_SPIRIT);
-                level.playSound(null, pos, MalumSoundEvents.TOTEM_AERIAL_MAGIC.get(), SoundSource.BLOCKS, 0.5f, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
+                level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GRAVITY.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(level.random, 1.75f, 2f));
             }
         }
     }

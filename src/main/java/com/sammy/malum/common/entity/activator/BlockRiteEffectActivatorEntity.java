@@ -1,7 +1,6 @@
 package com.sammy.malum.common.entity.activator;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -135,15 +134,14 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
                     interactable.travel(this);
                     canTriggerEffect = false;
                 }
-                if (blockCounter > distance.getValue() + 1) {
-                    discard();
-                    return;
-                }
                 if (canTriggerEffect) {
-                    if (blockCounter <= distance.getValue()) {
-                        triggerRiteEffect(serverLevel, affectedPos);
+                    if (triggerRiteEffect(serverLevel, affectedPos)) {
+                        if (blockCounter >= distance.getValue()) {
+                            discard();
+                            return;
+                        }
+                        blockCounter++;
                     }
-                    blockCounter++;
                 }
                 totalBlocksTraveled++;
             }
@@ -169,12 +167,13 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         return 1;
     }
 
-    public void triggerRiteEffect(ServerLevel level, BlockPos pos) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
         var state = level.getBlockState(pos);
         if (state.is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
-            return;
+            return false;
         }
-        effect.applyEffect(level, state, pos);
+        effect.applyEffect(level, state, pos, impact.getValue());
+        return true;
     }
 
     public boolean tryUpgrade(Level level) {

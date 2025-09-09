@@ -16,6 +16,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
@@ -38,6 +39,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
 
         public final String name;
         public final int data2d;
+
         AimState(String name, int data2d) {
             this.name = name;
             this.data2d = data2d;
@@ -101,9 +103,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     @Override
-    public void tick() {
-        if (level instanceof ServerLevel serverLevel) {
-        }
+    public void clientTick(Level level) {
         if (spirit != null) {
             if (visualEffectStrength < WARMUP_DURATION) {
                 visualEffectStrength++;
@@ -112,20 +112,21 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     @Override
-    public void travel(BlockRiteEffectActivatorEntity entity) {
+    public void travel(BlockRiteEffectActivatorEntity spark) {
         if (spirit != null) {
-            var level = entity.level();
+            var level = spark.level();
             if (aimDirection.data2d != -1) {
                 Direction direction = Direction.from2DDataValue(aimDirection.data2d);
-                entity.updateDirection(direction);
+                spark.updateDirection(direction);
+                level.updateNeighbourForOutputSignal(getBlockPos(), getBlockState().getBlock());
             }
             if (spirit.matches(MalumSpiritTypes.SACRED_SPIRIT)) {
                 //Recovers Remaining Distance Overtime
-                entity.recoverHealth();
+                spark.recoverHealth();
             }
             if (spirit.matches(MalumSpiritTypes.WICKED_SPIRIT)) {
                 //Sacrifices One Stat to Instantly Recover Remaining Distance
-                entity.leechHealth();
+                spark.leechHealth();
             }
             if (spirit.matches(MalumSpiritTypes.ARCANE_SPIRIT)) {
                 //Free Turn
@@ -135,26 +136,26 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
             }
             if (spirit.matches(MalumSpiritTypes.AERIAL_SPIRIT)) {
                 //Increases Speed
-                if (entity.tryUpgrade(level)) {
-                    entity.speed.increase();
+                if (spark.tryUpgrade(level)) {
+                    spark.speed.increase();
                 }
             }
             if (spirit.matches(MalumSpiritTypes.AQUEOUS_SPIRIT)) {
                 //Increases Potency
-                if (entity.tryUpgrade(level)) {
-                    entity.potency.increase();
+                if (spark.tryUpgrade(level)) {
+                    spark.potency.increase();
                 }
             }
             if (spirit.matches(MalumSpiritTypes.EARTHEN_SPIRIT)) {
                 //Increases Distance
-                if (entity.tryUpgrade(level)) {
-                    entity.distance.increase();
+                if (spark.tryUpgrade(level)) {
+                    spark.distance.increase();
                 }
             }
             if (spirit.matches(MalumSpiritTypes.INFERNAL_SPIRIT)) {
                 //Increases Impact
-                if (entity.tryUpgrade(level)) {
-                    entity.impact.increase();
+                if (spark.tryUpgrade(level)) {
+                    spark.impact.increase();
                 }
             }
         }
@@ -209,23 +210,8 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     public boolean updateAimDirection(ServerLevel level, Player player) {
-        BlockState state = getBlockState();
-        var facing = state.getValue(RiteAnchorBlock.FACING);
-        if (facing.getAxis().isVertical()) {
-            var old = aimDirection;
-            aimDirection = AimState.fromDirection(player.getDirection());
-            return old != aimDirection;
-        }
-        else {
-            if (aimDirection == AimState.PUSH) {
-                aimDirection = AimState.PULL;
-            }
-            else {
-                aimDirection = AimState.PUSH;
-            }
-            return true;
-        }
+        var old = aimDirection;
+        aimDirection = AimState.fromDirection(player.getDirection());
+        return old != aimDirection;
     }
-
-
 }

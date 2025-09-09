@@ -147,7 +147,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
                         visualEffectStrength--;
                         if (visualEffectStrength == 0) {
                             spirit = null;
-                            BlockStateHelper.updateAndNotifyState(level, worldPosition);
+                            setDirty();
                         }
                         return;
                     }
@@ -197,7 +197,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
             inventory.getStackInSlot(0).shrink(1);
         }
         unspentSpiritFuel--;
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public LodestoneBlockEntityInventory getInventory() {

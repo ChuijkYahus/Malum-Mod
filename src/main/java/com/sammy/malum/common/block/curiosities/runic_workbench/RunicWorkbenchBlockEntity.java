@@ -147,6 +147,6 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
         itemEntity.setPickUpDelay(15);
         itemEntity.setDeltaMovement(0, 0.25f, 0);
         level.addFreshEntity(itemEntity);
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 }

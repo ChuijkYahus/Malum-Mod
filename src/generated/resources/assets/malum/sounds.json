@@ -7,17 +7,6 @@
     ],
     "subtitle": "malum.subtitle.a_soul_shatters"
   },
-  "aerial_magic_swooshes": {
-    "sounds": [
-      "mob/phantom/flap1",
-      "mob/phantom/flap2",
-      "mob/phantom/flap3",
-      "mob/phantom/flap4",
-      "mob/phantom/flap5",
-      "mob/phantom/flap6"
-    ],
-    "subtitle": "malum.subtitle.aerial_magic_swooshes"
-  },
   "aesthetica": {
     "sounds": [
       "malum:aesthetica"
@@ -2572,6 +2561,16 @@
     ],
     "subtitle": "malum.subtitle.totem_hums"
   },
+  "totemic_growth": {
+    "sounds": [
+      "item/bonemeal/bonemeal1",
+      "item/bonemeal/bonemeal2",
+      "item/bonemeal/bonemeal3",
+      "item/bonemeal/bonemeal4",
+      "item/bonemeal/bonemeal5"
+    ],
+    "subtitle": "malum.subtitle.totemic_growth"
+  },
   "totemic_rite_activated": {
     "sounds": [
       "malum:totem/totem_activate"
@@ -2591,6 +2590,17 @@
       "malum:equip_sounds/rune/equip_rune_wood3"
     ],
     "subtitle": "malum.subtitle.totemic_rune_equipped"
+  },
+  "totemic_weight": {
+    "sounds": [
+      "mob/phantom/flap1",
+      "mob/phantom/flap2",
+      "mob/phantom/flap3",
+      "mob/phantom/flap4",
+      "mob/phantom/flap5",
+      "mob/phantom/flap6"
+    ],
+    "subtitle": "malum.subtitle.totemic_weight"
   },
   "tuning_fork_tinkers": {
     "sounds": [

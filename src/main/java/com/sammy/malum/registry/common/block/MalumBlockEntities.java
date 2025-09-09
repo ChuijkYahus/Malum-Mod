@@ -31,6 +31,7 @@ import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
+import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -85,6 +86,7 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemPoleBlockEntity>> TOTEM_POLE = BLOCK_ENTITY_TYPES.register("totem_pole", () -> BlockEntityType.Builder.of(TotemPoleBlockEntity::new, MalumBlocks.RUNEWOOD_TOTEM_POLE.get(), MalumBlocks.SOULWOOD_TOTEM_POLE.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteAnchorBlockEntity>> RITE_ANCHOR = BLOCK_ENTITY_TYPES.register("rite_anchor", () -> BlockEntityType.Builder.of(RiteAnchorBlockEntity::new, MalumBlocks.RITE_ANCHOR.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteUnweaverBlockEntity>> RITE_UNWEAVER = BLOCK_ENTITY_TYPES.register("rite_unweaver", () -> BlockEntityType.Builder.of(RiteUnweaverBlockEntity::new, MalumBlocks.RITE_UNWEAVER.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveChargerBlockEntity>> WAVECHARGER = BLOCK_ENTITY_TYPES.register("wavecharger", () -> BlockEntityType.Builder.of(WaveChargerBlockEntity::new, getBlocks(WaveChargerBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveBankerBlockEntity>> WAVEBANKER = BLOCK_ENTITY_TYPES.register("wavebanker", () -> BlockEntityType.Builder.of(WaveBankerBlockEntity::new, getBlocks(WaveBankerBlock.class)).build(null));

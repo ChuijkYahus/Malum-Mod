@@ -285,7 +285,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public void setState(RepairPylonState state) {
         this.state = state;
         this.timer = state.equals(RepairPylonState.SEARCHING) ? 100 : 0;
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public SpiritRepairRecipe updateRecipe() {

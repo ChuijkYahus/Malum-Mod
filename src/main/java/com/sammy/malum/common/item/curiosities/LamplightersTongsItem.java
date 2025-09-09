@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.magic.*;
 import io.redspace.ironsspellbooks.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -32,6 +33,9 @@ public class LamplightersTongsItem extends Item {
         var hand = context.getHand();
         var spiritStack = player.getItemInHand(hand.equals(InteractionHand.MAIN_HAND) ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
         if (!(spiritStack.getItem() instanceof SpiritShardItem spiritShard)) {
+            return super.useOn(context);
+        }
+        if (spiritShard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return super.useOn(context);
         }
         var spiritMote = getPlacementState(context, ManaMoteBlock.createManaMoteState(spiritShard));
