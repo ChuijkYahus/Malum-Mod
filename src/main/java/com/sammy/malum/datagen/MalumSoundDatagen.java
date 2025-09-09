@@ -178,6 +178,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
 
         this.add(MalumSoundEvents.TOTEM_BLOCK_GRAVITY, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
         this.add(MalumSoundEvents.TOTEM_BLOCK_GROW, s -> definition(s).with(sounds("minecraft:item/bonemeal/bonemeal", 5)));
+        this.add(MalumSoundEvents.TOTEM_BLOCK_SAP, s -> definition(s).with(sounds("minecraft:block/pointed_dripstone/drip_water_cauldron", 8)));
 
         this.add(MalumSoundEvents.RITUAL_BEGINS, s -> definition(s).with(sound("ritual/ritual_start")));
         this.add(MalumSoundEvents.RITUAL_ABSORBS_ITEM, s -> definition(s).with(sounds("ritual/ritual_absorb_item", 3)));

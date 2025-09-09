@@ -26,6 +26,7 @@ import team.lodestar.lodestone.systems.blockentity.*;
 public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
     private static final int WARMUP_DURATION = 20;
+    private static final int POWER_FADEOUT_DURATION = 8;
 
     public static final StringRepresentable.EnumCodec<AimState> CODEC = StringRepresentable.fromEnum(AimState::values);
 
@@ -103,8 +104,14 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     @Override
-    public void clientTick(Level level) {
+    public void commonTick(Level level) {
         if (spirit != null) {
+            if (getBlockState().getValue(RiteAnchorBlock.POWERED)) {
+                if (visualEffectStrength > WARMUP_DURATION/4) {
+                    visualEffectStrength--;
+                }
+                return;
+            }
             if (visualEffectStrength < WARMUP_DURATION) {
                 visualEffectStrength++;
             }
@@ -113,6 +120,9 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
 
     @Override
     public void travel(BlockRiteEffectActivatorEntity spark) {
+        if (getBlockState().getValue(RiteAnchorBlock.POWERED)) {
+            return;
+        }
         if (spirit != null) {
             var level = spark.level();
             if (aimDirection.data2d != -1) {

@@ -48,7 +48,7 @@ public class RiteAnchorBlock extends LodestoneEntityBlock<RiteAnchorBlockEntity>
             var property = getDirectionProperty(direction);
             var pos = context.getClickedPos();
             boolean value = Block.shouldRenderFace(state, context.getLevel(), pos, direction, pos.relative(direction));
-            state.setValue(property, !value);
+            state = state.setValue(property, !value);
         }
         return state;
     }
@@ -57,7 +57,7 @@ public class RiteAnchorBlock extends LodestoneEntityBlock<RiteAnchorBlockEntity>
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, level, pos, block, fromPos, isMoving);
         Direction direction = Direction.fromDelta(fromPos.getX() - pos.getX(), fromPos.getY() - pos.getY(), fromPos.getZ() - pos.getZ());
-        if (direction != null) {
+        if (direction != null && direction.getAxis().isHorizontal()) {
             var property = getDirectionProperty(direction);
             boolean value = Block.shouldRenderFace(state, level, pos, direction, pos.relative(direction));
             level.setBlock(pos, state.setValue(property, !value), 2);

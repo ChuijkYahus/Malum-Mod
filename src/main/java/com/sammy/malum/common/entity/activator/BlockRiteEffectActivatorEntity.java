@@ -134,12 +134,15 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
                     interactable.travel(this);
                     canTriggerEffect = false;
                 }
+                else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
+                    canTriggerEffect = false;
+                }
                 if (canTriggerEffect) {
+                    if (blockCounter >= distance.getValue()) {
+                        discard();
+                        return;
+                    }
                     if (triggerRiteEffect(serverLevel, affectedPos)) {
-                        if (blockCounter >= distance.getValue()) {
-                            discard();
-                            return;
-                        }
                         blockCounter++;
                     }
                 }
@@ -169,9 +172,6 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
 
     public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
         var state = level.getBlockState(pos);
-        if (state.is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
-            return false;
-        }
         effect.applyEffect(level, state, pos, impact.getValue());
         return true;
     }
@@ -254,11 +254,6 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
             return true;
         }
         if (i != activationPosition.getX() || j != activationPosition.getY() || k != activationPosition.getZ()) {
-            var above = activationPosition.relative(movementDirection).above();
-            if (!level().getBlockState(above).canBeReplaced()) {
-                discard();
-                return false;
-            }
             activationPosition = centered;
             setPos(centered.getX() + 0.5f, centered.getY() + 0.05f, centered.getZ() + 0.5f);
             return true;

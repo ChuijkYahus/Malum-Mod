@@ -177,11 +177,11 @@ public class TotemParticleEffects {
             int xOffset = Mth.clamp(i%3, 0, 1);
             int zOffset = Mth.clamp((i-1)%4, 0, 1);
             float xMotion = (i%2) * (i > 1 ? 0.06f : -0.06f);
-            float yMotion = -0.12f;
             float zMotion = ((i + 1) % 2) * (i > 1 ? -0.06f : 0.06f);
-            for (int j = 0; j < 12; j++) {
-                int yOffset = j%2 + Mth.floor(j/4f);
-                int lifeDelay = (j / 2) * 4;
+            for (int j = 0; j < 6; j++) {
+                float yMotion = -0.12f + j * -0.01f;
+                float yOffset = 2.5f + j%2 + Mth.floor(j/4f);
+                int lifeDelay = (j / 2) * 6;
                 Vec3 offsetPosition = new Vec3(position.getX()+xOffset, position.getY()+yOffset, position.getZ()+zOffset);
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
                 lightSpecs.getBuilder()

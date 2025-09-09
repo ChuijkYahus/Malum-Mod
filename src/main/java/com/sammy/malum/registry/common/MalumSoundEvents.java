@@ -176,6 +176,7 @@ public class MalumSoundEvents {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_BLOCK_GRAVITY = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_weight")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_BLOCK_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_growth")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_BLOCK_SAP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_sapping")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RITUAL_BEGINS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ritual_begins")));
     public static final DeferredHolder<SoundEvent, SoundEvent> RITUAL_ABSORBS_ITEM = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ritual_absorbs_item")));

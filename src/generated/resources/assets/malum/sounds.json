@@ -2591,6 +2591,19 @@
     ],
     "subtitle": "malum.subtitle.totemic_rune_equipped"
   },
+  "totemic_sapping": {
+    "sounds": [
+      "block/pointed_dripstone/drip_water_cauldron1",
+      "block/pointed_dripstone/drip_water_cauldron2",
+      "block/pointed_dripstone/drip_water_cauldron3",
+      "block/pointed_dripstone/drip_water_cauldron4",
+      "block/pointed_dripstone/drip_water_cauldron5",
+      "block/pointed_dripstone/drip_water_cauldron6",
+      "block/pointed_dripstone/drip_water_cauldron7",
+      "block/pointed_dripstone/drip_water_cauldron8"
+    ],
+    "subtitle": "malum.subtitle.totemic_sapping"
+  },
   "totemic_weight": {
     "sounds": [
       "mob/phantom/flap1",
