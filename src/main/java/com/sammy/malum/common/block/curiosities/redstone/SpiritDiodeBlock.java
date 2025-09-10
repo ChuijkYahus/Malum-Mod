@@ -1,8 +1,10 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
+import net.minecraft.client.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -40,16 +42,16 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
      * Should update blockstates.
      * Return true if further updates are required.
      */
-    public abstract boolean processUpdate(Level level, BlockPos pos, BlockState state, T diode, int signal);
+    public abstract boolean processUpdate(Level level, BlockPos pos, BlockState state, T diode, int cachedSignal, int liveSignal);
 
     /**
      * Should not update blockstates or Block Entity data.
      * Return true if the blockstate or signal output needs to change.
      */
-    public abstract boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, T diode, int newInput);
+    public abstract boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, T diode, int liveSignal);
 
 
-    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, T diode, int newInput) {
+    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, T diode, int cachedSignal, int liveSignal) {
         return Math.max(diode.getAdjustedFrequency(), 1);
     }
 
@@ -57,15 +59,15 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
     @SuppressWarnings("unchecked")
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         if (!level.getBlockTicks().willTickThisTick(pos, this)) {
-            BlockEntity blockentity = level.getBlockEntity(pos);
-            if (blockentity instanceof SpiritDiodeBlockEntity spiritDiode) {
-                Direction direction = state.getValue(FACING);
-                int signal = level.getSignal(pos.relative(direction), direction);
-                if (shouldUpdateWhenNeighborChanged(level, pos, state, (T) spiritDiode, signal)) {
-                    final int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
+            if (level.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity spiritDiode) {
+                var direction = state.getValue(FACING);
+                int liveSignal = level.getSignal(pos.relative(direction), direction);
+                if (shouldUpdateWhenNeighborChanged(level, pos, state, (T) spiritDiode, liveSignal)) {
+                    spiritDiode.cachedInputSignal = liveSignal;
+                    int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, liveSignal, liveSignal);
                     level.scheduleTick(pos, this, delay);
                     if (level instanceof ServerLevel serverLevel) {
-                        spiritDiode.updateAnimation(serverLevel, pos, signal);
+                        spiritDiode.updateAnimation(serverLevel, pos, liveSignal);
                     }
                 }
             }
@@ -75,15 +77,16 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
     @Override
     @SuppressWarnings("unchecked")
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        BlockEntity blockentity = level.getBlockEntity(pos);
-        if (blockentity instanceof SpiritDiodeBlockEntity spiritDiode) {
-            Direction direction = state.getValue(FACING);
-            int signal = level.getSignal(pos.relative(direction), direction);
-            if (processUpdate(level, pos, state, (T) spiritDiode, signal)) {
-                final int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, signal);
+        if (level.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity spiritDiode) {
+            var direction = state.getValue(FACING);
+            int cachedSignal = spiritDiode.cachedInputSignal;
+            int liveSignal = level.getSignal(pos.relative(direction), direction);
+            if (processUpdate(level, pos, state, (T) spiritDiode, cachedSignal, liveSignal)) {
+                int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, cachedSignal, liveSignal);
                 level.scheduleTick(pos, this, delay);
-                spiritDiode.updateAnimation(level, pos, signal);
+                spiritDiode.updateAnimation(level, pos, cachedSignal);
             }
+            spiritDiode.cachedInputSignal = 0;
         }
     }
 
@@ -97,22 +100,12 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
     }
 
     public void notifyNeighborsInFront(Level level, BlockPos pos, BlockState state) {
-        Direction direction = state.getValue(FACING);
-        BlockPos blockpos = pos.relative(direction.getOpposite());
+        var direction = state.getValue(FACING);
         if (!EventHooks.onNeighborNotify(level, pos, level.getBlockState(pos), EnumSet.of(direction.getOpposite()), false).isCanceled()) {
+            var blockpos = pos.relative(direction.getOpposite());
             level.neighborChanged(blockpos, this, pos);
             level.updateNeighborsAtExceptFromFacing(blockpos, this, direction);
         }
-    }
-
-
-    public void emitRedstoneParticles(Level level, BlockPos pos) {
-        Vec3 center = pos.getCenter();
-        float offset = 0.625f;
-        level.addParticle(DustParticleOptions.REDSTONE, center.x + offset, center.y, center.z, 0, 0, 0);
-        level.addParticle(DustParticleOptions.REDSTONE, center.x - offset, center.y, center.z, 0, 0, 0);
-        level.addParticle(DustParticleOptions.REDSTONE, center.x, center.y, center.z + offset, 0, 0, 0);
-        level.addParticle(DustParticleOptions.REDSTONE, center.x, center.y, center.z - offset, 0, 0, 0);
     }
 
     @Override
@@ -146,7 +139,7 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction direction = pContext.getHorizontalDirection();
+        var direction = pContext.getHorizontalDirection();
         if (pContext.getPlayer() == null || !pContext.getPlayer().isCrouching()) {
             direction = direction.getOpposite();
         }

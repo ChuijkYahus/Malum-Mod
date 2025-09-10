@@ -41,6 +41,10 @@ Soulwoven Banners
 - Soulwoven Banners now have a new particle effect for being Imbued with a Spirit
 - Soulwoven Banners now have a new particle effect for being Sheared
 
+Waveform Artifice
+- Polished up the Internal Logic of all the Waveform Diodes
+- Changed the Sound used by the Diodes
+
 Soul Stained Steel Armor
 - The Soul Stained Steel Armor now has a new model
 

@@ -80,41 +80,38 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (level instanceof ServerLevel serverLevel) {
-            switch (state) {
-                case ACTIVE -> {
-                    if (timer > 0) {
-                        timer--;
-                    }
-                    if (timerPause > 0) {
-                        timerPause--;
-                        return;
-                    }
-                    if (timer == 0) {
-                        timer = rite.getEffect().getCooldown();
-                        rite.triggerRiteEffect(serverLevel, this);
-                        BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
-                    }
-                }
-                case ASSEMBLING -> {
+    public void serverTick(ServerLevel level) {
+        switch (state) {
+            case ACTIVE -> {
+                if (timer > 0) {
                     timer--;
-                    if (timer <= 0) {
-                        var polePos = worldPosition.above(totemHeight +1);
-                        if (serverLevel.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
-                            timer = INTERVAL;
-                            addTotemPole(serverLevel, pole);
-                        } else {
-                            var rite = MalumSpiritRiteTypes.getRite(serverLevel, this);
-                            if (rite == null) {
-                                setState(serverLevel, TotemBaseState.INACTIVE);
-                                return;
-                            }
-                            this.rite = rite;
-                            setTotemPoleState(serverLevel, TotemPoleBlockEntity.TotemPoleState.ACTIVE);
-                            setState(serverLevel, TotemBaseState.ACTIVE);
+                }
+                if (timerPause > 0) {
+                    timerPause--;
+                    return;
+                }
+                if (timer == 0) {
+                    timer = rite.getEffect().getCooldown();
+                    rite.triggerRiteEffect(level, this);
+                    notifyObservers();
+                }
+            }
+            case ASSEMBLING -> {
+                timer--;
+                if (timer <= 0) {
+                    var polePos = worldPosition.above(totemHeight + 1);
+                    if (level.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
+                        timer = INTERVAL;
+                        addTotemPole(level, pole);
+                    } else {
+                        var rite = MalumSpiritRiteTypes.getRite(level, this);
+                        if (rite == null) {
+                            setState(level, TotemBaseState.INACTIVE);
+                            return;
                         }
+                        this.rite = rite;
+                        setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.ACTIVE);
+                        setState(level, TotemBaseState.ACTIVE);
                     }
                 }
             }
@@ -204,7 +201,6 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     public void setTotemPoleState(ServerLevel level, TotemPoleBlockEntity.TotemPoleState state) {
         for (TotemPoleBlockEntity totemPole : getTotemPoles(level)) {
             totemPole.setState(state);
-            BlockStateHelper.updateState(level, totemPole.getBlockPos());
         }
     }
 

@@ -372,11 +372,13 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SPIRIT_DIODE_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_tick", 8)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_LONG_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_long_tick", 8)));
 
-        this.add(MalumSoundEvents.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(MalumSoundEvents.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2f)));
+        this.add(MalumSoundEvents.WAVECHARGER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8f)));
+        this.add(MalumSoundEvents.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        this.add(MalumSoundEvents.WAVEBANKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        this.add(MalumSoundEvents.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        this.add(MalumSoundEvents.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        this.add(MalumSoundEvents.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.2f).pitch(1.4)));
 
         this.add(MalumSoundEvents.MAJOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/blight_motif", 6)));
         this.add(MalumSoundEvents.MINOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/minor_blight_motif", 6)));

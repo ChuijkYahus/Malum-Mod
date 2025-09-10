@@ -191,9 +191,9 @@ dependencies {
     localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
     localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
 
-
-    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
+    //FTB Whatever
     localRuntime("curse.maven:architectury-api-419699:5786327")
+    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
 
     //AttributeFix
     localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix

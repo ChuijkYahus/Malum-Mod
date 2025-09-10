@@ -400,10 +400,12 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_LONG_TICK = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spirit_diode_ticks_ferociously")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_CHARGE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavecharger_charges"), 8f));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_RELEASE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavecharger_releases"), 8f));
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_STORE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebanker_stores"), 8f));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_RELEASE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebanker_releases"), 8f));
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_STORE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebreaker_stores"), 8f));
     public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_RELEASE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebreaker_releases"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEMAKER_PULSE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavemaker_pulses"), 8f));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEMAKER_PULSE = register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavemaker_pulses"), 4f));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MAJOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MINOR_BLIGHT_MOTIF = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_reacts_faintly")));

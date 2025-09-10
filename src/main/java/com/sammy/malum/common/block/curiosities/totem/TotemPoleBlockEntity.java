@@ -14,6 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
@@ -70,6 +71,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     public void setState(TotemPoleState state) {
         this.state = state;
+        setDirty();
     }
 
     @Override
@@ -108,8 +110,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void commonTick(Level level) {
         if (state.equals(INACTIVE)) {
             if (glow > 0) {
                 glow--;
@@ -120,10 +121,12 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
                 glow++;
             }
         }
-        if (level.isClientSide) {
-            if (spirit != null && state.equals(ACTIVE)) {
-                TotemParticleEffects.activeTotemPoleParticles(this);
-            }
+    }
+
+    @Override
+    public void clientTick(Level level) {
+        if (spirit != null && state.equals(ACTIVE)) {
+            TotemParticleEffects.activeTotemPoleParticles(this);
         }
     }
 
@@ -139,7 +142,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
-        BlockStateHelper.updateState(level, worldPosition);
+        setDirty();
     }
 
     public void beginCharging(ServerLevel level, TotemBaseBlockEntity totemBase, int index) {
@@ -150,7 +153,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition).color(spirit)
                 .spawn(level);
-        BlockStateHelper.updateState(level, worldPosition);
+        setDirty();
     }
 
     public void strip(ServerLevel level) {
@@ -171,10 +174,10 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         }
         float pitch = state.equals(INACTIVE) ? 1.2f : 0.7f;
         level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, pitch);
-        BlockStateHelper.updateState(level, worldPosition);
         MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
                 .at(worldPosition)
                 .color(spirit)
                 .spawn(level);
+        setDirty();
     }
 }

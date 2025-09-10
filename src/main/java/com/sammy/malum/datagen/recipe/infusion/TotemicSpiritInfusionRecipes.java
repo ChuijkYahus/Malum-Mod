@@ -34,7 +34,6 @@ public class TotemicSpiritInfusionRecipes {
                 .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 8)
                 .addExtraItem(MalumItems.HEX_ASH.get(), 4)
                 .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
-                .addExtraItem(MalumTags.ItemTags.TAINTED_BLOCKS, 2)
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 8)
@@ -56,7 +55,7 @@ public class TotemicSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 4, MalumItems.RITE_UNWEAVER.get(), 4)
                 .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
                 .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
-                .addExtraItem(MalumTags.ItemTags.TAINTED_BLOCKS, 2)
+                .addExtraItem(MalumTags.ItemTags.TWISTED_BLOCKS, 2)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .save(recipeOutput);

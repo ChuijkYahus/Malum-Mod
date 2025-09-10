@@ -2,7 +2,9 @@ package com.sammy.malum.common.block.curiosities.redstone.wavemaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.registry.common.MalumSoundEvents;
+import net.minecraft.client.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.*;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -22,17 +24,16 @@ public class WaveMakerBlock extends SpiritDiodeBlock<WaveMakerBlockEntity> {
     }
 
     @Override
-    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int newInput) {
-        return diode.inverted ? 5 : super.redstoneTicksUntilUpdate(level, pos, state, diode, newInput);
+    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int cachedSignal, int liveSignal) {
+        return diode.inverted ? 8 : super.redstoneTicksUntilUpdate(level, pos, state, diode, cachedSignal, liveSignal);
     }
 
     @Override
-    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int signal) {
-        diode.outputSignal = signal;
+    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int cachedSignal, int liveSignal) {
+        diode.outputSignal = liveSignal;
 
         if (!diode.inverted) {
-            level.playSound(null, pos, MalumSoundEvents.WAVEMAKER_PULSE.get(), SoundSource.BLOCKS, 0.3f, 1.8f);
-            emitRedstoneParticles(level, pos);
+            level.playSound(null, pos, MalumSoundEvents.WAVEMAKER_PULSE.get(), SoundSource.BLOCKS);
         }
         diode.inverted = !diode.inverted;
 
@@ -46,7 +47,7 @@ public class WaveMakerBlock extends SpiritDiodeBlock<WaveMakerBlockEntity> {
     }
 
     @Override
-    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int newInput) {
+    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveMakerBlockEntity diode, int liveSignal) {
         return false;
     }
 }

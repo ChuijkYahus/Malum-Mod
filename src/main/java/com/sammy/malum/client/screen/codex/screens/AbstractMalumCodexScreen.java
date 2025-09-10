@@ -45,12 +45,12 @@ public abstract class AbstractMalumCodexScreen extends Screen {
 
     public void playPageFlipSound(Holder<SoundEvent> soundEvent, float pitch) {
         playSound(soundEvent, 1f, Math.max(1, pitch * 0.8f));
-        playSound(sweetenerSound, 1f, pitch);
+        playSound(sweetenerSound, 0.35f, pitch);
     }
 
     public void playSweetenedSound(Holder<SoundEvent> soundEvent, float sweetenerPitch) {
         playSound(soundEvent, 1f, 1);
-        playSound(sweetenerSound, 1f, sweetenerPitch);
+        playSound(sweetenerSound, 0.65f, sweetenerPitch);
     }
 
     public void playSound(Holder<SoundEvent> soundEvent, float volume, float pitch) {

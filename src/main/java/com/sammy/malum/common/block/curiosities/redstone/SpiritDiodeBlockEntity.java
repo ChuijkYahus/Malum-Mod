@@ -10,17 +10,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
 import team.lodestar.lodestone.helpers.RandomHelper;
-import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
@@ -60,11 +54,12 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
     public TimeIntervalType type = TimeIntervalType.REDSTONE_TICKS;
     public int frequency = 20;
 
+    public int cachedInputSignal;
     public int outputSignal;
-    public int inputSignal;
 
     public int closeDelay;
 
+    //TODO: remove all this
     public long visualStartTime;
     public int visualTransitionDuration;
     public int visualTransitionStart;
@@ -75,39 +70,31 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
-        if (pPlayer.isCrouching()) {
-            if (pStack.is(MalumTags.ItemTags.IS_REDSTONE_TOOL)) {
-                level.setBlock(getBlockPos(), getBlockState().rotate(level, getBlockPos(), Rotation.CLOCKWISE_90), 3);
-                level.playSound(null, getBlockPos(), MalumSoundEvents.SPIRIT_DIODE_TICK.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
-                return ItemInteractionResult.SUCCESS;
-            }
-        }
-        return super.onUseWithItem(pPlayer, pStack, pHand);
-    }
-
-    @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
-        frequency = pTag.getInt("frequency");
         type = TimeIntervalType.valueOf(pTag.getString("type"));
+        frequency = pTag.getInt("frequency");
+
+        cachedInputSignal = pTag.getInt("cachedInputSignal");
+        outputSignal = pTag.getInt("outputSignal");
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putInt("frequency", frequency);
         tag.putString("type", type.name());
+        tag.putInt("frequency", frequency);
+
+        tag.putInt("cachedInputSignal", cachedInputSignal);
+        tag.putInt("outputSignal", outputSignal);
     }
 
     @Override
-    public void tick() {
-        if (level instanceof ServerLevel serverLevel) {
-            if (closeDelay > 0) {
-                closeDelay--;
-                if (closeDelay == 0) {
-                    toggleState(false, type, frequency);
-                }
+    public void serverTick(ServerLevel level) {
+        if (closeDelay > 0) {
+            closeDelay--;
+            if (closeDelay == 0) {
+                toggleState(false, type, frequency);
             }
         }
     }
@@ -146,7 +133,7 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
 
     public void updateVisuals(int outputSignal, int inputSignal, boolean isPowering) {
         this.outputSignal = outputSignal;
-        this.inputSignal = inputSignal;
+        this.cachedInputSignal = inputSignal;
         this.visualStartTime = getLevel().getGameTime();
         this.visualTransitionDuration = getAdjustedFrequency();
         this.visualTransitionStart = isPowering ? 0 : 1;

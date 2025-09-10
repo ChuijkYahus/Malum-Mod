@@ -2686,33 +2686,73 @@
     ],
     "subtitle": "malum.subtitle.warping_engine_reverberates"
   },
+  "wavebanker_releases": {
+    "sounds": [
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "malum.subtitle.wavebanker_releases"
+  },
   "wavebanker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebanker_stores"
   },
   "wavebreaker_releases": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebreaker_releases"
   },
   "wavebreaker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebreaker_stores"
   },
   "wavecharger_charges": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavecharger_charges"
   },
+  "wavecharger_releases": {
+    "sounds": [
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "malum.subtitle.wavecharger_releases"
+  },
   "wavemaker_pulses": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.4,
+        "volume": 0.2
+      }
     ],
     "subtitle": "malum.subtitle.wavemaker_pulses"
   },
