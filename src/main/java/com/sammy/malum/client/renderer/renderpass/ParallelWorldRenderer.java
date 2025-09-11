@@ -104,6 +104,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         float alpha = 0.8f;
         for (int i = 0; i < 3; i++) {
             float speed = 1000f + 750f * i;
+            float scale = (1 - 0.025f * i);
             final ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Width", 16f)
@@ -121,7 +122,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
                     .setRenderType(renderType)
                     .setColor(color*1.25f, color, color)
                     .setAlpha(alpha);
-            var cubeData = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, 0.015f);
+            var cubeData = CubeVertexData.makeCubePositions(-scale).applyWobble(0, 0.5f, 0.015f);
             vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderCube(poseStack, cubeData);
             vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderCube(poseStack, cubeData);
 
