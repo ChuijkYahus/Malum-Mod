@@ -32,6 +32,7 @@
     "client.ItemInHandRendererMixin",
     "client.LivingEntityRendererMixin",
     "client.LocalPlayerMixin",
+    "client.MinecraftMixin",
     "client.ModelPartMixin",
     "client.ModelPartMixin$Cube"
   ],

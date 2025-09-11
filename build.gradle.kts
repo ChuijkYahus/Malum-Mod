@@ -199,6 +199,19 @@ dependencies {
     localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
     localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
     localRuntime(("curse.maven:attributefix-280510:5824104"))
+
+    jarJar(implementation("io.github.spair:imgui-java-app:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}"))
+    additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {
@@ -258,4 +271,10 @@ idea {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+
+private fun DependencyHandlerScope.jarJar(dependencyNotation: Dependency?) {
+    if (dependencyNotation != null) {
+        add("jarJar", dependencyNotation)
+    }
 }
