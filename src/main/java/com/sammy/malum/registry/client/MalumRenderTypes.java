@@ -45,8 +45,8 @@ public class MalumRenderTypes extends RenderStateShard {
                     b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
     public static final RenderTypeProvider WORLD_SKYBOX = new RenderTypeProvider((token) ->
-            createGenericRenderType(token, "world_skybox", POSITION_COLOR, TRIANGLES,
-                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.PARALLEL_WORLD_SKYBOX, ParallelWorldRenderer.getOutputState())));
+            createGenericRenderType(token, "world_skybox", POSITION_COLOR_TEX_LIGHTMAP, TRIANGLES,
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.WEEPING_WELL_DISTORTION, ParallelWorldRenderer.getOutputState())));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);
