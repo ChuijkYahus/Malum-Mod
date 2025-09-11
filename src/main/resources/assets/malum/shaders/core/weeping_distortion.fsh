@@ -76,9 +76,7 @@ void main() {
     float n2 = pattern(Distortion*uv + 0.01);
     vec2 distortedUV = uv+vec2(cos(n), cos(n));
     vec2 distortedUV2 = uv-vec2(cos(n2), cos(n2));
-    vec4 layer1 = texture(Sampler0, distortedUV);
-    vec4 layer2 = texture(Sampler0, distortedUV2);
-    vec4 noise = (layer1 + layer2) * 0.5;
-    vec4 color = transformColor(noise, LumiTransparency, vertexColor, ColorModulator);
+    vec4 noise = texture(Sampler0, distortedUV)+texture(Sampler0, distortedUV2);
+    vec4 color = transformColor(vec4(noise.rgb/2., noise.a), LumiTransparency, vertexColor, ColorModulator);
     fragColor = applyFog(color, FogStart, FogEnd, FogColor, vertexDistance);
 }

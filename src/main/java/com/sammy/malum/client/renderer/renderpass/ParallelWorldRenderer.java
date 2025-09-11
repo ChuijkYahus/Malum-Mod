@@ -20,6 +20,7 @@ import org.joml.Vector3f;
 import team.lodestar.lodestone.helpers.StateShardHelper;
 import team.lodestar.lodestone.helpers.TextureHelper;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.renderpass.BeforeLevelRenderPass;
 import team.lodestar.lodestone.systems.texture.CubeMapTexture;
 
@@ -27,12 +28,9 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
     public static ParallelWorldRenderer INSTANCE;
     private final RenderTarget target = TextureHelper.generateTextureTarget(true);
     private static final RenderStateShard.OutputStateShard outputState = StateShardHelper.createOutputState("parallelWorld", () -> INSTANCE.target.bindWrite(false));
-    private final ResourceLocation skybox = MalumRenderTypeTokens.VOID_NOISE.getTexture();
-    private final AbstractTexture texture = new CubeMapTexture(skybox, true);
 
     public ParallelWorldRenderer() {
         INSTANCE = this;
-        Minecraft.getInstance().getTextureManager().register(skybox, texture);
     }
 
     float[] skyboxVertices = {
@@ -97,30 +95,43 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         poseStack.scale(100, 100, 100);
         Vector3f cameraPosition = camera.getPosition().toVector3f();
         poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
+
+        long gameTime = mc.level.getGameTime();
+        var partialTicks = deltaTracker.getGameTimeDeltaTicks();
+        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
+        float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float color = 0.3f;
         float alpha = 0.8f;
         for (int i = 0; i < 3; i++) {
-            var builder = MalumRenderTypes.WORLD_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE);
+            float speed = 1000f + 750f * i;
+            final ShaderUniformHandler uniforms = new ShaderUniformHandler()
+                    .modifyUniform("Speed", speed)
+                    .modifyUniform("Width", 16f)
+                    .modifyUniform("Height", 16f);
+
+            var builder = MalumRenderTypes.WORLD_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
             if (i == 2) {
                 builder.withModifier(b -> b.setTransparencyState(StateShards.ADDITIVE_TRANSPARENCY));
             }
             var renderType = builder.getRenderType();
             VertexConsumer consumer = bufferSource.getBuffer(renderType);
+
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
-                    .setRenderType(renderType)
                     .setColor(color*1.25f, color, color)
                     .setAlpha(alpha);
             for (int j = 0; j < skyboxVertices.length; j += 3) {
-                vfxBuilder.placeVertex(poseStack, skyboxVertices[j], skyboxVertices[j + 1], skyboxVertices[j + 2]);
+                vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).placeVertex(poseStack, skyboxVertices[j], skyboxVertices[j + 1], skyboxVertices[j + 2]);
+                vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).placeVertex(poseStack, skyboxVertices[j], skyboxVertices[j + 1], skyboxVertices[j + 2]);
             }
             bufferSource.endBatch(renderType);
+            uOffset = -uOffset - 0.2f;
+            vOffset = -vOffset + 0.4f;
             color *= 0.75f;
             alpha /= 2f;
         }
         poseStack.popPose();
 
-        MalumShaders.PARALLEL_WORLD_SKYBOX.getShaderInstance().setSampler("SkyboxSampler", texture.getId());
         matrix4fstack.popMatrix();
         RenderSystem.applyModelViewMatrix();
         Minecraft.getInstance().getMainRenderTarget().bindWrite(true);

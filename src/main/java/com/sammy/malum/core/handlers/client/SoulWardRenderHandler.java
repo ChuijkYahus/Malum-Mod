@@ -39,8 +39,8 @@ public class SoulWardRenderHandler {
     }
 
     public static void renderSoulWard(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-//        var window = Minecraft.getInstance().getWindow();
-//        ParallelWorldRenderer.INSTANCE.getTarget().blitToScreen(window.getWidth(), window.getHeight());
+        var window = Minecraft.getInstance().getWindow();
+        ParallelWorldRenderer.INSTANCE.getTarget().blitToScreen(window.getWidth()/2, window.getHeight()/2);
 
 
         var minecraft = Minecraft.getInstance();
