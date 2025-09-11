@@ -121,7 +121,9 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
                     .setRenderType(renderType)
                     .setColor(color*1.25f, color, color)
                     .setAlpha(alpha);
-            vfxBuilder.renderCube(poseStack, CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, 0.015f));
+            var cubeData = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, 0.015f);
+            vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderCube(poseStack, cubeData);
+            vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderCube(poseStack, cubeData);
 
             bufferSource.endBatch(renderType);
             uOffset = -uOffset - 0.2f;
