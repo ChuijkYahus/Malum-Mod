@@ -7,17 +7,13 @@ in vec4 Color;
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
 
-out vec2 texCoord;
-
-vec3[] colors = vec3[3](
-    vec3(1, 0, 0),
-    vec3(0, 1, 0),
-    vec3(0, 0, 1)
-);
+out vec4 vertexColor;
+out vec2 texCoord0;
 
 void main() {
     vec4 pos = ModelViewMat * vec4(Position, 1.0);
     gl_Position = ProjMat * pos;
 
-    texCoord = UV0;
+    vertexColor = Color;
+    texCoord0 = UV0;
 }
