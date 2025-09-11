@@ -1,28 +1,26 @@
 package com.sammy.malum.client.renderer.renderpass;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.blaze3d.pipeline.TextureTarget;
-import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.sammy.malum.MalumMod;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import com.sammy.malum.registry.client.*;
+import dev.kosmx.playerAnim.core.util.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.texture.AbstractTexture;
-import net.minecraft.resources.ResourceLocation;
-import org.joml.Matrix4f;
-import org.joml.Matrix4fStack;
-import org.joml.Vector3f;
+import net.minecraft.util.*;
+import org.joml.*;
 import team.lodestar.lodestone.helpers.StateShardHelper;
 import team.lodestar.lodestone.helpers.TextureHelper;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.renderpass.BeforeLevelRenderPass;
+
+import java.awt.*;
+import java.lang.Math;
 
 public class ParallelWorldRenderer extends BeforeLevelRenderPass {
     public static ParallelWorldRenderer INSTANCE;
@@ -33,57 +31,18 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         INSTANCE = this;
     }
 
-    float[] skyboxVertices = {
-            -1.0f,  1.0f, -1.0f,
-            -1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-
-            -1.0f, -1.0f,  1.0f,
-            -1.0f, -1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f,  1.0f,
-            -1.0f, -1.0f,  1.0f,
-
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-
-            -1.0f, -1.0f,  1.0f,
-            -1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f,
-            -1.0f, -1.0f,  1.0f,
-
-            -1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            -1.0f,  1.0f,  1.0f,
-            -1.0f,  1.0f, -1.0f,
-
-            -1.0f, -1.0f, -1.0f,
-            -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f
-    };
-
-
     @Override
     public void render(DeltaTracker deltaTracker, Camera camera, GameRenderer gameRenderer, Matrix4f viewMat, Matrix4f projMat) {
-        target.clear(Minecraft.ON_OSX);
         Minecraft mc = Minecraft.getInstance();
-        MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
+        long gameTime = mc.level.getGameTime();
+        var partialTicks = deltaTracker.getGameTimeDeltaTicks();
+        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
+        float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
+        float alpha = 0.95f;
 
+        target.clear(Minecraft.ON_OSX);
+        target.setClearColor(0, 0, 0, 0);
+        MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
         Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
         matrix4fstack.pushMatrix();
         matrix4fstack.mul(viewMat);
@@ -92,51 +51,59 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
         PoseStack poseStack = new PoseStack();
         poseStack.pushPose();
-        poseStack.scale(100, 100, 100);
-        Vector3f cameraPosition = camera.getPosition().toVector3f();
-        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
+        int cubeScale = 10;
+        poseStack.scale(cubeScale, cubeScale, cubeScale);
+//        Vector3f cameraPosition = camera.getPosition().toVector3f();
+//        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
 
-        long gameTime = mc.level.getGameTime();
-        var partialTicks = deltaTracker.getGameTimeDeltaTicks();
-        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
-        float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
-        float color = 0.3f;
-        float alpha = 0.8f;
-        for (int i = 0; i < 3; i++) {
+
+        for (int i = 0; i < 8; i++) {
             float speed = 1000f + 750f * i;
-            float scale = (1 - 0.025f * i);
-            final ShaderUniformHandler uniforms = new ShaderUniformHandler()
-                    .modifyUniform("Speed", speed)
-                    .modifyUniform("Width", 16f)
-                    .modifyUniform("Height", 16f);
+            float distortion = 4f + 2 * i;
+            float scale = (2 - 0.05f * i);
+            float colorDelta = (gameTime + partialTicks) * ((i+1) * 0.01f);
+            float red = Math.abs(0.1f + Mth.sin(colorDelta % 6.28f) * 0.3f);
+            float blue = Math.abs(0.1f + Mth.sin((colorDelta * 2) % 6.28f) * 0.25f);
+            Color color = new Color(red, 0, blue);
 
-            var builder = MalumRenderTypes.WORLD_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
-            if (i == 2) {
-                builder.withModifier(b -> b.setTransparencyState(StateShards.ADDITIVE_TRANSPARENCY));
-            }
+            var uniforms = new ShaderUniformHandler()
+                    .modifyUniform("Speed", speed)
+                    .modifyUniform("Distortion", distortion)
+                    .modifyUniform("Width", 128f)
+                    .modifyUniform("Height", 128f)
+                    .modifyUniform("UVCoordinates", -20f, 40f, -20f, 40f);
+
+            var builder = MalumRenderTypes.WEEPING_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE)
+                    .withModifier(b -> b.setTransparencyState(StateShards.ADDITIVE_TRANSPARENCY))
+                    .withUniformHandler(uniforms);
+
             var renderType = builder.getRenderType();
             VertexConsumer consumer = bufferSource.getBuffer(renderType);
+            poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.4f) % 360));
+            poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
+            poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
 
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
                     .setRenderType(renderType)
-                    .setColor(color*1.25f, color, color)
+                    .setColor(color)
                     .setAlpha(alpha);
             var cubeData = CubeVertexData.makeCubePositions(-scale).applyWobble(0, 0.5f, 0.015f);
             vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderCube(poseStack, cubeData);
             vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderCube(poseStack, cubeData);
 
-            bufferSource.endBatch(renderType);
-            uOffset = -uOffset - 0.2f;
-            vOffset = -vOffset + 0.4f;
-            color *= 0.75f;
-            alpha /= 2f;
+            uOffset = -uOffset * 1.25f - 0.2f;
+            vOffset = -vOffset * 1.25f + 0.4f;
+            alpha -= 0.05f;
         }
+        bufferSource.endBatch();
         poseStack.popPose();
 
         matrix4fstack.popMatrix();
         RenderSystem.applyModelViewMatrix();
+        MalumShaders.SOULLESS_OUTLINE.getShaderInstance().setSampler("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
         Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
+
     }
 
     @Override

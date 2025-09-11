@@ -38,9 +38,7 @@ float noise(vec2 x) {
 float layeredNoise(vec2 uv) {
     float time = Speed*GameTime;
     time = time - (2048. * floor(time/2048.));
-    //    Makes it sharp !!!
-    //        vec2 direction = normalize(vec2(sin(uv.y-time*0.25), cos(uv.x-time*0.25)));
-    vec2 direction = normalize(vec2(sin(time*0.025), cos(time*0.025)));
+    vec2 direction = normalize(vec2(sin(uv.y-time*0.25), cos(uv.x-time*0.25)));
     vec2 offset = 3.*normalize(vec2(time, time)*direction);
 
     vec2 positive = uv+offset;

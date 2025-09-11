@@ -2,11 +2,9 @@ package com.sammy.malum.registry.client;
 
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
 import net.minecraft.client.renderer.*;
 import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
@@ -44,9 +42,9 @@ public class MalumRenderTypes extends RenderStateShard {
             createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                     b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
-    public static final RenderTypeProvider WORLD_SKYBOX = new RenderTypeProvider((token) ->
-            createGenericRenderType(token, "world_skybox", POSITION_TEX_COLOR, QUADS,
-                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.PARALLEL_WORLD_SKYBOX, ParallelWorldRenderer.getOutputState())));
+    public static final RenderTypeProvider WEEPING_SKYBOX = new RenderTypeProvider((token) ->
+            createGenericRenderType(token, "weeping_skybox", POSITION_TEX_COLOR, QUADS,
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);

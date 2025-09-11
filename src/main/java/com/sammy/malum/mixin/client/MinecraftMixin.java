@@ -13,14 +13,14 @@ public class MinecraftMixin {
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/pipeline/RenderTarget;blitToScreen(II)V", shift = At.Shift.AFTER))
     private void renderImGui(boolean pRenderLevel, CallbackInfo ci) {
-        if (FMLLoader.isProduction()) {
+//        if (FMLLoader.isProduction()) {
             MalumImGui.render();
-        }
+//        }
     }
     @Inject(method = "close", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/VirtualScreen;close()V", shift = At.Shift.BEFORE))
     private void destroyImGui(CallbackInfo ci) {
-        if (FMLLoader.isProduction()) {
+//        if (FMLLoader.isProduction()) {
             MalumImGui.destroy();
-        }
+//        }
     }
 }

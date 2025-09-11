@@ -2,9 +2,11 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
+import com.sammy.malum.client.renderer.renderpass.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
@@ -38,17 +40,25 @@ public class SoullessStateRenderHandler {
     }
 
     public static void renderSoullessModelPart(ModelPart modelPart, PoseStack.Pose pose, VertexConsumer buffer, int packedLight, int packedOverlay) {
-        if (false && renderingSoullessCreature) {
+        if (renderingSoullessCreature) {
             AbstractTexture activeTexture = Minecraft.getInstance().getTextureManager().getTexture(entityTexture);
             int maskTexture = activeTexture.getId();
             var renderType = MalumRenderTypes.SOULLESS_OUTLINE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(
-                    shader -> shader.setSamplerTexture("Mask", maskTexture)
+                    shader -> shader
+                            .setSamplerTexture("Mask", maskTexture)
+                            .setSamplerTexture("Skybox", 32)
             );
-
+            final MultiBufferSource.BufferSource renderBuffers = Minecraft.getInstance().renderBuffers().bufferSource();
             var vertexConsumer = LodestoneRenderHandler.DEFERRED_RENDER.getTarget().getBuffer(renderType);
-
+            Minecraft mc = Minecraft.getInstance();
+            long gameTime = mc.level.getGameTime();
+//            var partialTicks = deltaTracker.getGameTimeDeltaTicks();
+            float colorDelta = (gameTime) * 0.01f;
+            float red = Math.abs(Mth.sin(colorDelta % 6.28f) * 0.6f);
+            float blue = Math.abs(Mth.sin((colorDelta * 2) % 6.28f) * 0.5f);
+            Color color = new Color(red, 0.3f, blue);
+            float alpha = 0.95f;
             for (int i = 0; i < 4; i++) {
-                Color color = new Color(42 + i * 20, 32, 60, 80);
                 float size = 1f + ((i+1) * 0.01F);
                 float rate = 0.25f + (i * 0.15F);
                 if (i % 2 == 0) {
@@ -56,6 +66,7 @@ public class SoullessStateRenderHandler {
                 }
                 renderOutline(modelPart, vertexConsumer, pose, color, size, rate, packedLight, packedOverlay);
             }
+            
 
             //            Soul Ward Test
 //            Color bright = new Color(255, 238, 163, 200);
