@@ -19,7 +19,7 @@ public class MalumShaders {
     public static ShaderHolder TOUCH_OF_DARKNESS = SHADERS.register("touch_of_darkness", DefaultVertexFormat.POSITION_TEX_COLOR);
     public static ShaderHolder WEEPING_WELL_DISTORTION = SHADERS.register("weeping_distortion", DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);
     public static ShaderHolder SOULLESS_OUTLINE = SHADERS.register("soulless_outline", POSITION_COLOR_TEX_LIGHTMAP);
-    public static ShaderHolder PARALLEL_WORLD_SKYBOX = SHADERS.register("parallel_world/skybox", DefaultVertexFormat.POSITION_COLOR);
+    public static ShaderHolder PARALLEL_WORLD_SKYBOX = SHADERS.register("parallel_world/skybox", DefaultVertexFormat.POSITION_TEX_COLOR);
 
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) {

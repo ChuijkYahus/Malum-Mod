@@ -21,8 +21,8 @@ import team.lodestar.lodestone.helpers.StateShardHelper;
 import team.lodestar.lodestone.helpers.TextureHelper;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
+import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.renderpass.BeforeLevelRenderPass;
-import team.lodestar.lodestone.systems.texture.CubeMapTexture;
 
 public class ParallelWorldRenderer extends BeforeLevelRenderPass {
     public static ParallelWorldRenderer INSTANCE;
@@ -118,12 +118,11 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
+                    .setRenderType(renderType)
                     .setColor(color*1.25f, color, color)
                     .setAlpha(alpha);
-            for (int j = 0; j < skyboxVertices.length; j += 3) {
-                vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).placeVertex(poseStack, skyboxVertices[j], skyboxVertices[j + 1], skyboxVertices[j + 2]);
-                vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).placeVertex(poseStack, skyboxVertices[j], skyboxVertices[j + 1], skyboxVertices[j + 2]);
-            }
+            vfxBuilder.renderCube(poseStack, CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, 0.015f));
+
             bufferSource.endBatch(renderType);
             uOffset = -uOffset - 0.2f;
             vOffset = -vOffset + 0.4f;
@@ -139,7 +138,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
     @Override
     public boolean shouldRender(DeltaTracker deltaTracker, Camera camera, GameRenderer gameRenderer, Matrix4f matrix4f, Matrix4f matrix4f1) {
-        return false;
+        return true;
     }
 
     @Override
