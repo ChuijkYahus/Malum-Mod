@@ -44,13 +44,9 @@ public class MalumRenderTypes extends RenderStateShard {
             createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                     b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
-    public static final RenderType PARALLEL_WORLD_SKYBOX = RenderType.create("parallel_world_skybox",
-            DefaultVertexFormat.POSITION, TRIANGLES, 256,
-            RenderType.CompositeState.builder()
-                    .setShaderState(MalumShaders.PARALLEL_WORLD_SKYBOX.getShard())
-                    .setCullState(RenderType.CULL)
-                    .setOutputState(ParallelWorldRenderer.getOutputState())
-                    .createCompositeState(false));
+    public static final RenderTypeProvider WORLD_SKYBOX = new RenderTypeProvider((token) ->
+            createGenericRenderType(token, "world_skybox", POSITION_COLOR, TRIANGLES,
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.PARALLEL_WORLD_SKYBOX, ParallelWorldRenderer.getOutputState())));
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);

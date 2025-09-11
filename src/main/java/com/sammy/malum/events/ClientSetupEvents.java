@@ -57,8 +57,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        LodestoneRenderSystem.wrap(() -> {
-            RenderPassHandler.registerRenderPass(new ParallelWorldRenderer());
-        });
+        LodestoneRenderSystem.wrap(() -> RenderPassHandler.registerRenderPass(new ParallelWorldRenderer()));
     }
 }

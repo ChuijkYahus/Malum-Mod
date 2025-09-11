@@ -2,6 +2,7 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
+import com.sammy.malum.client.renderer.renderpass.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -38,6 +39,10 @@ public class SoulWardRenderHandler {
     }
 
     public static void renderSoulWard(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+//        var window = Minecraft.getInstance().getWindow();
+//        ParallelWorldRenderer.INSTANCE.getTarget().blitToScreen(window.getWidth(), window.getHeight());
+
+
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();
         if (!minecraft.options.hideGui) {
