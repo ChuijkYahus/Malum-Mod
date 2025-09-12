@@ -40,8 +40,9 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
         float alpha = 0.95f;
 
+        target.setClearColor(0, 0, 0, 1);
+
         target.clear(Minecraft.ON_OSX);
-        target.setClearColor(0, 0, 0, 0);
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
         Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
         matrix4fstack.pushMatrix();
@@ -51,20 +52,22 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
         PoseStack poseStack = new PoseStack();
         poseStack.pushPose();
-        int cubeScale = 10;
+        int cubeScale = 100;
         poseStack.scale(cubeScale, cubeScale, cubeScale);
 //        Vector3f cameraPosition = camera.getPosition().toVector3f();
 //        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
+        poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.4f) % 360));
+        poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
 
 
         for (int i = 0; i < 8; i++) {
             float speed = 1000f + 750f * i;
             float distortion = 4f + 2 * i;
             float scale = (2 - 0.05f * i);
-            float colorDelta = (gameTime + partialTicks) * ((i+1) * 0.01f);
-            float red = Math.abs(0.1f + Mth.sin(colorDelta % 6.28f) * 0.3f);
-            float blue = Math.abs(0.1f + Mth.sin((colorDelta * 2) % 6.28f) * 0.25f);
-            Color color = new Color(red, 0, blue);
+            float red = 0.4f * (1 - i * 0.1f);
+            float blue = 0.2f * ((i+3) * 0.1f);
+            var color = new Color(red, 0, blue);
 
             var uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
@@ -74,34 +77,30 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
                     .modifyUniform("UVCoordinates", -20f, 40f, -20f, 40f);
 
             var builder = MalumRenderTypes.WEEPING_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE)
-                    .withModifier(b -> b.setTransparencyState(StateShards.ADDITIVE_TRANSPARENCY))
+                    .withModifier(b -> b.setTransparencyState(RenderStateShard.ADDITIVE_TRANSPARENCY))
                     .withUniformHandler(uniforms);
 
             var renderType = builder.getRenderType();
             VertexConsumer consumer = bufferSource.getBuffer(renderType);
-            poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.4f) % 360));
-            poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
-
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
                     .setRenderType(renderType)
                     .setColor(color)
                     .setAlpha(alpha);
             var cubeData = CubeVertexData.makeCubePositions(-scale).applyWobble(0, 0.5f, 0.015f);
+
             vfxBuilder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderCube(poseStack, cubeData);
-            vfxBuilder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderCube(poseStack, cubeData);
+            vfxBuilder.setUV(uOffset * 2, -vOffset * 2, (1 + uOffset) * 2, (1 - vOffset) * 2).renderCube(poseStack, cubeData);
 
             uOffset = -uOffset * 1.25f - 0.2f;
             vOffset = -vOffset * 1.25f + 0.4f;
             alpha -= 0.05f;
+            bufferSource.endBatch(renderType);
         }
-        bufferSource.endBatch();
         poseStack.popPose();
 
         matrix4fstack.popMatrix();
         RenderSystem.applyModelViewMatrix();
-        MalumShaders.SOULLESS_OUTLINE.getShaderInstance().setSampler("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
         Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
 
     }
