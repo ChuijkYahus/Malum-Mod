@@ -40,11 +40,16 @@ public class MalumRenderTypes extends RenderStateShard {
 
     public static final RenderTypeProvider SOULLESS_OUTLINE = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.SOULLESS_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
+                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.SOULLESS_CREATURE_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
     public static final RenderTypeProvider WEEPING_SKYBOX = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "weeping_skybox", POSITION_TEX_COLOR, QUADS,
-                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));
+                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));
+
+    public static final RenderTypeProvider WEEPING_SPYHOLE = new RenderTypeProvider((token) ->
+            createGenericRenderType(token, "weeping_spyhole", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
+                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_SPYHOLE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
+
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
         super(pName, pSetupState, pClearState);

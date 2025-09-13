@@ -41,5 +41,5 @@ vec4 fancySample(sampler2D sampler, vec2 uv, float speed, float distortion, floa
     vec2 distortedUV = uv+vec2(cos(n), cos(n));
     vec2 distortedUV2 = uv-vec2(cos(n2), cos(n2));
     vec4 noise = texture(sampler, distortedUV)+texture(sampler, distortedUV2);
-    return vec4(noise.rgb/2., noise.a);
+    return noise.rgba/2.;
 }

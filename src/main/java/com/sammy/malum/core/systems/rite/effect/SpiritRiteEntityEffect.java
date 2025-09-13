@@ -8,6 +8,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 
@@ -87,7 +88,12 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
 
     public List<T> findNearbyTargets(ServerLevel level, BlockPos source) {
         AABB area = new AABB(source).inflate(getEffectRange());
-        return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> canApplyEffect(level, e)));
+        return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> {
+            if (e instanceof Player player && player.isSpectator()) {
+                return false;
+            }
+            return canApplyEffect(level, e);
+        }));
     }
 
     protected void createEffect(ServerLevel level, T target, SpiritLike... spirits) {

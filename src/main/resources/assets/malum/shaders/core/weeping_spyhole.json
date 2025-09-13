@@ -1,10 +1,9 @@
 {
-  "vertex": "malum:soulless_outline",
-  "fragment": "malum:soulless_outline",
+  "vertex": "malum:weeping_spyhole",
+  "fragment": "malum:weeping_spyhole",
   "samplers": [
     { "name": "Sampler0" },
-    { "name": "Skybox" },
-    { "name": "Mask" }
+    { "name": "Skybox" }
   ],
   "uniforms": [
     { "name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },

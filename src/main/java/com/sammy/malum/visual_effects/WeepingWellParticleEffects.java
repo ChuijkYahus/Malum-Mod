@@ -37,7 +37,7 @@ public class WeepingWellParticleEffects {
 
     public static Color getWeepingWellSmokeColor(RandomSource rand) {
         float colorMultiplier = RandomHelper.randomBetween(rand, 0.6f, 1.2f);
-        return new Color((int) (12 * colorMultiplier), (int) (3 * colorMultiplier), (int) (12 * colorMultiplier));
+        return new Color((int) (4 * colorMultiplier), (int) (3 * colorMultiplier), (int) (6 * colorMultiplier));
     }
 
     public static void spitOutItemParticles(Level level, NetworkedParticleEffectPositionData positionEffectData) {

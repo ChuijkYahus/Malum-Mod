@@ -38,9 +38,8 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         var partialTicks = deltaTracker.getGameTimeDeltaTicks();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
-        float alpha = 0.95f;
 
-        target.setClearColor(0, 0, 0, 1);
+        target.setClearColor(0, 0, 0, 0);
 
         target.clear(Minecraft.ON_OSX);
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
@@ -61,23 +60,24 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
 
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 4; i++) {
             float speed = 1000f + 750f * i;
             float distortion = 4f + 2 * i;
             float scale = (2 - 0.05f * i);
-            float red = 0.4f * (1 - i * 0.1f);
-            float blue = 0.2f * ((i+3) * 0.1f);
-            var color = new Color(red, 0, blue);
+            float red = 0.8f;
+            float green = 0.6f;
+            float blue = 0.7f;
+            float alpha = 0.8f - i * 0.05f;
+            var color = new Color(red, green, blue);
 
             var uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Distortion", distortion)
-                    .modifyUniform("Width", 128f)
-                    .modifyUniform("Height", 128f)
+                    .modifyUniform("Width", 512f)
+                    .modifyUniform("Height", 512f)
                     .modifyUniform("UVCoordinates", -20f, 40f, -20f, 40f);
 
             var builder = MalumRenderTypes.WEEPING_SKYBOX.apply(MalumRenderTypeTokens.VOID_NOISE)
-                    .withModifier(b -> b.setTransparencyState(RenderStateShard.ADDITIVE_TRANSPARENCY))
                     .withUniformHandler(uniforms);
 
             var renderType = builder.getRenderType();
@@ -94,7 +94,6 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
             uOffset = -uOffset * 1.25f - 0.2f;
             vOffset = -vOffset * 1.25f + 0.4f;
-            alpha -= 0.05f;
             bufferSource.endBatch(renderType);
         }
         poseStack.popPose();

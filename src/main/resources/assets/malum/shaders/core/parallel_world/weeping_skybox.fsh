@@ -23,8 +23,8 @@ void main() {
     vec2 uv = texCoord0;
     vec2 uCap = vec2(UVCoordinates.x, UVCoordinates.y);
     vec2 vCap = vec2(UVCoordinates.z, UVCoordinates.w);
-    uv.x = floor(uv.x* Width)/ Width;
-    uv.y = floor(uv.y* Height)/ Height;
+    uv.x = floor(uv.x * Width)/ Width;
+    uv.y = floor(uv.y * Height)/ Height;
     uv.x = clamp(uv.x, uCap.x, uCap.y);
     uv.y = clamp(uv.y, vCap.x, vCap.y);
     vec4 noise = fancySample(Sampler0, uv, Speed, Distortion, GameTime);

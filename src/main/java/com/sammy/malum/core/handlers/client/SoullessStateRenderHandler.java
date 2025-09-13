@@ -42,44 +42,36 @@ public class SoullessStateRenderHandler {
 
     public static void renderSoullessModelPart(ModelPart modelPart, PoseStack.Pose pose, VertexConsumer buffer, int packedLight, int packedOverlay) {
         if (renderingSoullessCreature) {
-            AbstractTexture activeTexture = Minecraft.getInstance().getTextureManager().getTexture(entityTexture);
+            var activeTexture = Minecraft.getInstance().getTextureManager().getTexture(entityTexture);
             int maskTexture = activeTexture.getId();
             var renderType = MalumRenderTypes.SOULLESS_OUTLINE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(
-                    shader -> shader
-                            .modifyUniform("Speed", 2000f)
-                            .modifyUniform("Width", 64f)
-                            .modifyUniform("Height", 64f)
+                    shader -> shader.withLumiTransparency()
+                            .modifyUniform("Speed", 6000f)
+                            .modifyUniform("Width", 512f)
+                            .modifyUniform("Height", 512f)
                             .setSamplerTexture("Mask", maskTexture)
                             .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId())
             );
-            for (int i = 0; i < 4; i++) {
-                float red = 0.6f * (1 - i * 0.2f);
-                float blue = 0.3f * (i * 0.2f);
-                Color color = new Color(red, 0, blue, 1);
-                float size = 1f + ((i+1) * 0.01F);
-                float rate = 0.25f + (i * 0.15F);
-                if (i % 2 == 0) {
-                    rate *= -1;
-                }
-                var vertexConsumer = LodestoneRenderHandler.DEFERRED_RENDER.getTarget().getBuffer(renderType);
-                renderOutline(modelPart, vertexConsumer, pose, color, size, rate, packedLight, packedOverlay);
-            }
+            var color = new Color(0.6f, 0, 0.4f, 0.8f);
+            float rate = 0.25f;
+            var vertexConsumer = LodestoneRenderHandler.DEFERRED_RENDER.getTarget().getBuffer(renderType);
+            renderOutline(modelPart, vertexConsumer, pose, color, rate, packedLight, packedOverlay);
         }
     }
 
-    public static void renderOutline(ModelPart modelPart, VertexConsumer vertexConsumer, PoseStack.Pose pose, Color color, float size, float rate, int packedLight, int packedOverlay) {
+    public static void renderOutline(ModelPart modelPart, VertexConsumer vertexConsumer, PoseStack.Pose pose, Color color, float rate, int packedLight, int packedOverlay) {
         var minecraft = Minecraft.getInstance();
         long timeOffset = modelPart.hashCode() % 1000;
         long gameTime = minecraft.level.getGameTime() + timeOffset;
-        float uInterval = 800 * rate;
+        float uInterval = 3200 * rate;
         float vInterval = uInterval * 4;
         float uOffset = (gameTime % uInterval) / uInterval;
         float vOffset = (gameTime % vInterval) / vInterval;
         var effectBuffer = new ModifiedVertexConsumer(vertexConsumer);
+        float offset = 0.025f;
         //TODO: Uv offset should not apply to the mask, which at the moment they do
 //        effectBuffer.setOffset(uOffset, vOffset);
         poseStack.pushPose();
-        final float offset = 0.02f;
         poseStack.translate(offset, offset, offset);
         modelPart.compile(pose, effectBuffer, packedLight, packedOverlay, ColorHelper.getColor(color));
         poseStack.translate(-offset*2, -offset*2, -offset*2);

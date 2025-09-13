@@ -77,7 +77,7 @@ public class TotemMagicEntries {
                 .addPage(new SpiritRiteTextPage(UNCHAINED_RITE))
                 .addPage(new SpiritRiteRecipePage(UNCHAINED_RITE))
                 .addPage(SpiritTransmutationRecipePage.fromOutput("unchained_rite.soulwood", SOULWOOD_SAPLING.get()))
-                .addPage(new TextPage("unchained_rite.soulwood"))
+                .addPage(new TextPage("unchained_rite.soulwood.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))
                 .addPage(new TextPage("unchained_rite.description.4"))
         );
@@ -110,9 +110,9 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("soulwood.2"))
                 .addPage(new SmeltingPage(SOULWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
                 .addPage(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
-                .addPage(new HeadlineTextPage("soulwood.blight", "soulwood.blight.1"))
-                .addPage(new HeadlineTextPage("soulwood.bonemeal", "soulwood.bonemeal.1"))
-                .addPage(new HeadlineTextPage("soulwood.cursed_sap", "soulwood.cursed_sap.1"))
+                .addPage(new HeadlineTextPage("soulwood.blight"))
+                .addPage(new HeadlineTextPage("soulwood.bonemeal"))
+                .addPage(new HeadlineTextPage("soulwood.cursed_sap"))
                 .addPage(new CraftingPage(new ItemStack(CURSED_SAPBALL.get()), CURSED_SAP.get()))
         );
 

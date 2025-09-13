@@ -1268,8 +1268,8 @@ public class CodexLangDatagen {
         addPages("unchained_rite",
                 "As arcane energy within the totem amassed, lacking direction, it dispersed. Chaotic, but expected given the rune composition. The Undirected Rite brought about erratic change to the totem; what I dub Soulwood bears scars from the violent method of its creation. Those scars warp magic, altering its fundamental nature.",
                 "Any spirit rite performed with a Soulwood totem will produce a vastly different effect. Following this logic, the behavior of the Undirected Rite itself can also be altered by the newly formed soulwood structure...");
-         addHeadline("unchained_rite.soulwood", "Soulwood Transmutation");
-        addPage("unchained_rite.soulwood",
+        addHeadline("unchained_rite.soulwood", "Soulwood Transmutation");
+        addPages("unchained_rite.soulwood",
                 "One of the immediate applications of the Unchained Transmutation I have found thus far is the ability to transform any Runewood block into it's Soulwood equivalent. It works with any wooden block or even the Runewood Sapling itself");
         addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem in the form of a Blight-Bound Rite Locus. When this Locus travels through blight, it will transmute the block above.",
@@ -1324,7 +1324,7 @@ public class CodexLangDatagen {
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply an inverted gravity effect to them, causing them to rise for up to sixteen blocks worth of height.",
                 "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply an Inverse Gravity Effect As Observed In Sand or Gravel\nInverse Gravity Effect Has A Lifting Range Of Sixteen Blocks\nInverse Gravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
 
-        addSimpleEntryHeader("aqueous_rites", "Aqueous Rites", "Totemic Arts of Angling");
+        addSimpleEntryHeader("aqueous_rites", "Aqueous Rites", "Totemic Arts of Flowing");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "To Extend One's Reach",
                 "A simple rite, while active it will bless nearby creatures with Flowing Grasp, increasing block interaction range and item pickup distance.",
                 "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");
@@ -1432,10 +1432,10 @@ public class CodexLangDatagen {
                 "In raw stone, the rite powders the stone, bit by bit. The process is exponential - Raw stone becomes cobblestone, which becomes gravel, which becomes sand. Afterwards, the particles fail to divide into a finer substance, and the backlash creates Blight.");
         addHeadline("unchained_transmutation.basalt", "Heatless Incineration");
         addPages("unchained_transmutation.basalt",
-                "In Basalt, the rite appears to mimic natural stone's pulverization, but through Nether materials instead. Basalt returns to magma, which crumbles apart and cools into fleshy Netherrack, and rots into Soul Sand. The souls react poorly with the rite, and Blight is the result.");
+                "In Basalt, the rite appears to mimic natural stone's pulverization, but through Nether materials instead. Basalt returns to Magma, which crumbles apart and cools into fleshy Netherrack, and rots into Soul Sand. The souls react poorly with the rite, and Blight is the result.");
         addHeadline("unchained_transmutation.mud", "Fluidless Infusion");
         addPages("unchained_transmutation.mud",
-                "In mud, the rite infuses the material with the concept of water. Mud becomes clay, as it does naturally, but then the clay crystallizes into mineral prismarine, which finally gives in to the water, becoming ice. It cannot become more water than frozen water already is, and so becomes Blight.");
+                "In mud, the rite infuses the material with the concept of water. Mud becomes Clay, as it does naturally, but then the Clay crystallizes into mineral Prismarine, which finally gives in to the water, becoming ice. It cannot become more water than frozen water already is, and so becomes Blight.");
         addHeadline("unchained_transmutation.packed_mud", "Orange Stones");
         addPages("unchained_transmutation.packed_mud",
                 "One of a trio of seemingly color-based sequences, Packed Mud seems to fulfill the conditions to become Dripstone, oddly enough. That Dripstone will then degrade into Granite, which will then rejoin other types of stone in their sequence.");
@@ -1445,6 +1445,27 @@ public class CodexLangDatagen {
         addHeadline("unchained_transmutation.deepslate", "Gray Stones");
         addPages("unchained_transmutation.deepslate",
                 "One of a trio of seemingly color-based sequences, Deepslate will - a bit more logically - become Tuff. That Tuff will then degrade into Andesite, which will then rejoin other types of stone in their sequence.");
+
+        addSimpleEntryHeader("aura_empowerment", "Aura Empowerment", "Greater Obelisks");
+        addPages("aura_empowerment",
+                "Created using a combination of Soulwood and Runewood, the Arcana Pylon excels at channeling Spirit Arcana. By supplying it with Spirits, their stored energy can be spent.",
+                "Totems are designed to avoid a constant demand for Spirits. Whenever a Rite activates, an Echo is formed, matching the Totem's Spirit Sequence in effect with little to none strain placed upon it. This works well for a passive effect, but it does limit potency significantly. The Arcana Pylon makes up for that limiting factor, allowing Totem Magic to reach it's full potency.");
+        addHeadline("aura_empowerment.elemental", "Aura Empowerment");
+        addPages("aura_empowerment.elemental", "By utilizing Elemental Arcana, the Pylon becomes a totemic amplifier. It weaves a Rite Locus, which enhances any matching Aura Effect granted by Runes or Totems upon contact. One Spirit is enough for roughly four activations.");
+
+        addSimpleEntryHeader("aura_empowerment.other_pylon_applications", "Other Pylon Applications", "Channeling Fundamental Spirits");
+        addHeadline("aura_empowerment.other_pylon_applications.sacred", "Sacred");
+        addPages("aura_empowerment.other_pylon_applications.sacred", "Sacred");
+
+        addHeadline("aura_empowerment.other_pylon_applications.wicked", "Wicked");
+        addPages("aura_empowerment.other_pylon_applications.wicked", "Wicked");
+
+        addHeadline("aura_empowerment.other_pylon_applications.arcane", "Greater Altar Acceleration");
+        addPages("aura_empowerment.other_pylon_applications.arcane", "By utilizing Raw Arcana, the Pylon takes on a role similar to the Runewood Obelisk. Each Pylon will accelerate speed of a nearby Altar by Fifty Percent, up to Four Pylons. One Spirit is enough for roughly Sixteen Infusion Cycles.");
+
+        addHeadline("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
+        addPages("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
+
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",
@@ -1458,7 +1479,7 @@ public class CodexLangDatagen {
                 "While worn, the belt provides a substantial bonus to soul ward recovery rate, while also improving capacity slightly. Furthermore, the belt will absorb the arcane essence of any instance of magical damage that strikes its bearer, converting that repurposed energy into immediate recovery of soul ward.");
 
         addSimpleEntryHeader("the_device", "The Device.", "microwave to recharge");
-        addPage("the_device", "even works while bended");
+        addPages("the_device", "even works while bended");
 
         addSimpleEntryHeader("a_personal_note", "A Personal Note", "A page from another book");
         addPages("a_personal_note",
