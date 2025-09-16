@@ -139,21 +139,6 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Override
-    public SpiritBasedParticleBuilder enableCull() {
-        return (SpiritBasedParticleBuilder) super.enableCull();
-    }
-
-    @Override
-    public SpiritBasedParticleBuilder disableCull() {
-        return (SpiritBasedParticleBuilder) super.disableCull();
-    }
-
-    @Override
-    public SpiritBasedParticleBuilder setShouldCull(boolean shouldCull) {
-        return (SpiritBasedParticleBuilder) super.setShouldCull(shouldCull);
-    }
-
-    @Override
     public SpiritBasedParticleBuilder setRandomMotion(double maxSpeed) {
         return (SpiritBasedParticleBuilder) super.setRandomMotion(maxSpeed);
     }
@@ -311,16 +296,6 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     @Override
     public SpiritBasedParticleBuilder repeatRandomFace(Level level, BlockPos pos, int n) {
         return (SpiritBasedParticleBuilder) super.repeatRandomFace(level, pos, n);
-    }
-
-    @Override
-    public SpiritBasedParticleBuilder createCircle(Level level, double x, double y, double z, double distance, double currentCount, double totalCount) {
-        return (SpiritBasedParticleBuilder) super.createCircle(level, x, y, z, distance, currentCount, totalCount);
-    }
-
-    @Override
-    public SpiritBasedParticleBuilder repeatCircle(Level level, double x, double y, double z, double distance, int times) {
-        return (SpiritBasedParticleBuilder) super.repeatCircle(level, x, y, z, distance, times);
     }
 
     @Override

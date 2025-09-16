@@ -119,12 +119,11 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     @Override
-    public void travel(BlockRiteEffectActivatorEntity spark) {
+    public void travel(ServerLevel level, BlockRiteEffectActivatorEntity spark) {
         if (getBlockState().getValue(RiteAnchorBlock.POWERED)) {
             return;
         }
         if (spirit != null) {
-            var level = spark.level();
             if (aimDirection.data2d != -1) {
                 Direction direction = Direction.from2DDataValue(aimDirection.data2d);
                 spark.updateDirection(direction);

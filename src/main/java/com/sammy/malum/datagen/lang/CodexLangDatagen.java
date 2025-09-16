@@ -1220,17 +1220,17 @@ public class CodexLangDatagen {
                         -Quadruples Incoming Magic Damage""");
 
         addSimpleEntryHeader("authority_of_crushing_melancholy", "Authority of Crushing Melancholy", "To crush one's own spirit");
-        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY,
-                scaled(0.6f) + """
-                        An Authority, a pact between your Soul and the World Itself.
-                        -All Nearby Magic Is Crushed through Incomprehensibly Strong Gravity.
-                        -By Extension, All Incoming Magic Damage Is Nullified.
-                        -Crushing Effect Extends to Struck Targets, Rapidly Applying Silence.
-                        -When Completely Silenced, Targets are Cursed with Absolute Melancholy, Hindering Movement and Increasing Crushing Damage Taken.""",
-                scaled(0.8f) +"""
-                        Your Presence Defies Arcana Itself. It Crushes your own Potential, this Authority does not belong. It Never Will.
-                        -Quarters Magic Proficiency
-                        -Quarters Physical Damage""");
+//        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY,
+//                scaled(0.6f) + """
+//                        An Authority, a pact between your Soul and the World Itself.
+//                        -All Nearby Magic Is Crushed through Incomprehensibly Strong Gravity.
+//                        -By Extension, All Incoming Magic Damage Is Nullified.
+//                        -Crushing Effect Extends to Struck Targets, Rapidly Applying Silence.
+//                        -When Completely Silenced, Targets are Cursed with Absolute Melancholy, Hindering Movement and Increasing Crushing Damage Taken.""",
+//                scaled(0.8f) +"""
+//                        Your Presence Defies Arcana Itself. It Crushes your own Potential, this Authority does not belong. It Never Will.
+//                        -Quarters Magic Proficiency
+//                        -Quarters Physical Damage""");
 
         addSimpleEntryHeader("authority_of_the_gleeful_target", "Authority of the Gleeful Target", "To be the most satisfied existence");
         addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET,
@@ -1243,11 +1243,17 @@ public class CodexLangDatagen {
                         Your Body is Frozen in Time, an Anomaly upon this World. It does not Age, nor does it not Feel.
                         -Quarters All Incoming Healing""");
 
-        addSimpleEntryHeader("totem_magic", "Totem Magic", "Arcana unleashed");
+        addSimpleEntryHeader("totem_magic", "Totem Magic", "Wonders Upon the World");
         addPages("totem_magic",
                 "Up until now, when performing spirit arcana, I have limited my research to personal enhancement and material production. Now, I affect the world.",
                 "To begin with Totem Magic, I may engrave spirit arcana into Runewood Logs, forming a rune representing the magic. If unwanted, engraved spirits can be stripped off with an axe, but I have uses in mind. With a Runewood Totem Base, and then a specific set of runes in a totem pole placed above my totem base, I can perform a Spirit Rite.",
                 "While each rite does offer a unique function, they follow patterns and categorize easily. Spirit Rites will either affect the souls of nearby creatures, or the arcane structure of the physical world around the totem. Both means of manifesting spirit arcana utilize what's known as a Rite Locus, a spark of directed energy that the Totem effortlessly weaves into existence."
+        );
+        addSimpleEntryHeader("totem_magic.waveform_totemancy", "Waveform Totemancy", "Rite and Left");
+        addPages("totem_magic.waveform_totemancy",
+                "Totems are inherently disorganized, and when grouped, it can be difficult to maintain a consistent order which each totem follows. Following my research into Waveform Artifice, I've devised a solution.",
+                "Normally, Spirit Rites only activate when enough energy is harnessed from the natural flow of arcana present in the world. By utilizing a Waveform Totem Base, this energy will instead be \"Cherished\" until an inbound redstone pulse is supplied. When weaving multiple Rites together, a redstone observer can be used to pinpoint the exact moment a Spirit Rite can be activated.",
+                "The exact timing of the Redstone Pulse required by the Waveform Totem Base can be rather demanding. Rather than a continuous signal being sufficient, it is only the initial redstone impulse that is considered by it's internal circuits."
         );
 
         addSimpleEntryHeader("managing_totems", "Totem Resonance", "Insight into the rites");
@@ -1270,7 +1276,8 @@ public class CodexLangDatagen {
                 "Any spirit rite performed with a Soulwood totem will produce a vastly different effect. Following this logic, the behavior of the Undirected Rite itself can also be altered by the newly formed soulwood structure...");
         addHeadline("unchained_rite.soulwood", "Soulwood Transmutation");
         addPages("unchained_rite.soulwood",
-                "One of the immediate applications of the Unchained Transmutation I have found thus far is the ability to transform any Runewood block into it's Soulwood equivalent. It works with any wooden block or even the Runewood Sapling itself");
+                "One of the immediate applications of the Unchained Transmutation I have found thus far is the ability to transform any Runewood block into it's Soulwood equivalent. It works with any wooden block or even the Runewood Sapling itself",
+                "Naturally, the Soulwood Totem Base can be created by using Soulwood in place of Runewood within the Spirit Infusion process.");
         addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem in the form of a Blight-Bound Rite Locus. When this Locus travels through blight, it will transmute the block above.",
                 "Creates a Grounded Rite Locus\nLocus Travels Through Blight and Affects The Block Above\nAffected Blocks Undergo Unchained Transmutation\nLocus Requires Blight To Survive");
@@ -1343,7 +1350,7 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will bless nearby creatures with Stone Ward, providing a damage reduction that grows in power when unarmored.",
                 "Affected Creatures Are Blessed With Stone Ward\nStone Ward reduces damage taken by one fifth\nStone Ward Doubles in power when Unarmored");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "To Ossify One's Blows",
-                "A simple rite, while active it will .",
+                "A simple rite, while active it will bless nearby creatures with .",
                 "");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
@@ -1422,7 +1429,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
         addPages("unchained_transmutation.intro",
-                "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified three categories; transmutation trees, of sorts.",
+                "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified categories of this effect; transmutation trees, of sorts.",
                 "The effect of applying these scars depends on what material we start with. The pulsing of the Rite will shift any given block forward in the tree, with it degrading into blight given enough time.");
         addHeadline("unchained_transmutation.dirt", "Seedless Growth");
         addPages("unchained_transmutation.dirt",

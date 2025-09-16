@@ -485,10 +485,13 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> REPAIR_PYLON = register("repair_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.REPAIR_PYLON.get(), p, RepairPylonCoreBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNEWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
-    public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
-
     public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new BlockItem(MalumBlocks.RITE_ANCHOR.get(), p));
     public static final DeferredHolder<Item, Item> RITE_UNWEAVER = register("rite_unweaver", DEFAULT_PROPERTIES(), p -> new BlockItem(MalumBlocks.RITE_UNWEAVER.get(), p));
+    public static final DeferredHolder<Item, Item> WAVEFORM_RUNEWOOD_TOTEM_BASE = register("waveform_runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEFORM_RUNEWOOD_TOTEM_BASE.get(), p));
+    public static final DeferredHolder<Item, Item> WAVEFORM_SOULWOOD_TOTEM_BASE = register("waveform_soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEFORM_SOULWOOD_TOTEM_BASE.get(), p));
+
+    public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
+
 
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEBANKER.get(), p));

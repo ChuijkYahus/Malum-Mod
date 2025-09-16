@@ -131,7 +131,7 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
                 var affectedPos = activationPosition.below();
                 boolean canTriggerEffect = true;
                 if (level.getBlockEntity(affectedPos) instanceof RiteSparkInteractable interactable) {
-                    interactable.travel(this);
+                    interactable.travel(serverLevel, this);
                     canTriggerEffect = false;
                 }
                 else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
@@ -172,7 +172,7 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
 
     public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
         var state = level.getBlockState(pos);
-        effect.applyEffect(level, state, pos, impact.getValue());
+        effect.applyEffect(level, this, state, pos, impact.getValue());
         return true;
     }
 

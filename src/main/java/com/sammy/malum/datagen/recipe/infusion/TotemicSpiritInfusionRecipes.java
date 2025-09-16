@@ -4,6 +4,9 @@ import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.neoforged.neoforge.common.crafting.*;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -27,6 +30,32 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addSpirit(EARTHEN_SPIRIT, 2)
                 .addSpirit(INFERNAL_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 4, MalumItems.WAVEFORM_RUNEWOOD_TOTEM_BASE.get(), 4)
+                .addExtraItem(Items.REDSTONE, 8)
+                .addExtraItem(SizedIngredient.of(MalumTags.ItemTags.RUNEWOOD_PLANKS, 6))
+                .addExtraItem(MalumItems.RUNEWOOD_LOG.get(), 4)
+                .addExtraItem(MalumItems.ETHER.get(), 2)
+                .addSpirit(AERIAL_SPIRIT, 2)
+                .addSpirit(AQUEOUS_SPIRIT, 2)
+                .addSpirit(EARTHEN_SPIRIT, 2)
+                .addSpirit(INFERNAL_SPIRIT, 2)
+                .addSpirit(ARCANE_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 4, MalumItems.WAVEFORM_SOULWOOD_TOTEM_BASE.get(), 4)
+                .addExtraItem(Items.REDSTONE, 8)
+                .addExtraItem(SizedIngredient.of(MalumTags.ItemTags.SOULWOOD_PLANKS, 6))
+                .addExtraItem(MalumItems.SOULWOOD_LOG.get(), 4)
+                .addExtraItem(MalumItems.ETHER.get(), 2)
+                .addSpirit(AERIAL_SPIRIT, 2)
+                .addSpirit(AQUEOUS_SPIRIT, 2)
+                .addSpirit(EARTHEN_SPIRIT, 2)
+                .addSpirit(INFERNAL_SPIRIT, 2)
+                .addSpirit(ARCANE_SPIRIT, 2)
                 .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 

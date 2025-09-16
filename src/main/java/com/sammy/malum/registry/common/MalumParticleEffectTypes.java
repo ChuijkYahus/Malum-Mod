@@ -55,6 +55,8 @@ public class MalumParticleEffectTypes {
     public static final BlockInfusionTotemParticleEffect BLOCK_INFUSION_RITE_EFFECT = new BlockInfusionTotemParticleEffect("block_infusion_rite_effect");
     public static final BlockGrowTotemParticleEffect BLOCK_GROW_RITE_EFFECT = new BlockGrowTotemParticleEffect("block_grow_rite_effect");
 
+    public static final RiteUnweaverParticleEffect RITE_UNWEAVER_EFFECT = new RiteUnweaverParticleEffect("rite_unweaver_effect");
+
     //Soulbinding Brazier
     public static final SoulBrazierStartParticleEffect SOULBINDING_BRAZIER_BEGINS = new SoulBrazierStartParticleEffect("brazier_start");
     public static final SoulBrazierAcceptSacrificeParticleEffect SOULBINDING_BRAZIER_ACCEPTS_SACRIFICE = new SoulBrazierAcceptSacrificeParticleEffect("brazier_sacrifice");

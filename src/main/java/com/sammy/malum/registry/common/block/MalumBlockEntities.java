@@ -32,6 +32,7 @@ import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
+import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -82,8 +83,9 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemStandBlockEntity>> ITEM_STAND = BLOCK_ENTITY_TYPES.register("item_stand", () -> BlockEntityType.Builder.of(ItemStandBlockEntity::new, getBlocks(ItemStandBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemPedestalBlockEntity>> ITEM_PEDESTAL = BLOCK_ENTITY_TYPES.register("item_pedestal", () -> BlockEntityType.Builder.of(ItemPedestalBlockEntity::new, getBlocks(ItemPedestalBlock.class)).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemBaseBlockEntity>> TOTEM_BASE = BLOCK_ENTITY_TYPES.register("totem_base", () -> BlockEntityType.Builder.of(TotemBaseBlockEntity::new, getBlocks(TotemBaseBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemPoleBlockEntity>> TOTEM_POLE = BLOCK_ENTITY_TYPES.register("totem_pole", () -> BlockEntityType.Builder.of(TotemPoleBlockEntity::new, MalumBlocks.RUNEWOOD_TOTEM_POLE.get(), MalumBlocks.SOULWOOD_TOTEM_POLE.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TotemBaseBlockEntity>> TOTEM_BASE = BLOCK_ENTITY_TYPES.register("totem_base", () -> BlockEntityType.Builder.of(TotemBaseBlockEntity::new, getBlocks(TotemBaseBlock.class)).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveformTotemBaseBlockEntity>> WAVEFORM_TOTEM_BASE = BLOCK_ENTITY_TYPES.register("waveform_totem_base", () -> BlockEntityType.Builder.of(WaveformTotemBaseBlockEntity::new, getBlocks(WaveformTotemBaseBlock.class)).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteAnchorBlockEntity>> RITE_ANCHOR = BLOCK_ENTITY_TYPES.register("rite_anchor", () -> BlockEntityType.Builder.of(RiteAnchorBlockEntity::new, MalumBlocks.RITE_ANCHOR.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteUnweaverBlockEntity>> RITE_UNWEAVER = BLOCK_ENTITY_TYPES.register("rite_unweaver", () -> BlockEntityType.Builder.of(RiteUnweaverBlockEntity::new, MalumBlocks.RITE_UNWEAVER.get()).build(null));

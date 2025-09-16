@@ -118,7 +118,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         inventory.load(pRegistries, compound);
         spiritInventory.load(pRegistries, compound, "spiritInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
             if (updateRecipe() != null) {
                 if (state.equals(RepairPylonState.IDLE)) {
                     setState(RepairPylonState.SEARCHING);
@@ -127,8 +127,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                     RepairPylonSoundInstance.playSound(this);
                 }
             }
-
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 

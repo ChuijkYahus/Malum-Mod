@@ -42,10 +42,16 @@ public class TotemMagicEntries {
 
         screen.addEntry("totem_magic", 0, 14, b -> b
                 .configureEntry(w -> w.setIcon(RUNEWOOD_TOTEM_BASE).setDesign(GILDED, RUNEWOOD, PAPER))
-                .addPage(new HeadlineTextItemPage("totem_magic", "totem_magic.1", RUNEWOOD_TOTEM_BASE.get()))
+                .addPage(new HeadlineTextItemPage("totem_magic", RUNEWOOD_TOTEM_BASE.get()))
                 .addPage(new TextPage("totem_magic.2"))
                 .addPage(new TextPage("totem_magic.3"))
                 .addPage(SpiritInfusionPage.fromOutput(RUNEWOOD_TOTEM_BASE.get()))
+                .addReference(new EntryReference(WAVEFORM_RUNEWOOD_TOTEM_BASE.get(),
+                        BookEntry.create("totem_magic.waveform_totemancy")
+                                .addPage(new HeadlineTextItemPage("totem_magic.waveform_totemancy", WAVEFORM_RUNEWOOD_TOTEM_BASE.get()))
+                                .addPage(new TextPage("totem_magic.waveform_totemancy.2"))
+                                .addPage(new TextPage("totem_magic.waveform_totemancy.3"))
+                                .addPage(SpiritInfusionPage.fromOutput(WAVEFORM_RUNEWOOD_TOTEM_BASE.get()))))
         );
 
         screen.addEntry("managing_totems", 0, 15, b -> b
@@ -79,7 +85,7 @@ public class TotemMagicEntries {
                 .addPage(SpiritTransmutationRecipePage.fromOutput("unchained_rite.soulwood", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("unchained_rite.soulwood.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))
-                .addPage(new TextPage("unchained_rite.description.4"))
+                .addPage(new TextPage("unchained_rite.soulwood.2"))
         );
 
         screen.addEntry("blight", 1, 18, b -> b
@@ -197,7 +203,7 @@ public class TotemMagicEntries {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = x > 0 ? -1 : 1;
+        int horizontalOffset = x > 0 ? 1 : -1;
         addRiteEntry(acceptor, minorRunewood, x, y-1);
         addRiteEntry(acceptor, minorSoulwood, x + horizontalOffset, y);
         addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);
@@ -214,7 +220,7 @@ public class TotemMagicEntries {
         var definingSpirit = minorRunewood.value().getIdentifyingSpirit();
         var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
 
-        int horizontalOffset = x > 0 ? -1 : 1;
+        int horizontalOffset = x > 0 ? 1 : -1;
         addRiteEntry(acceptor, minorRunewood, runewoodRune, x, y-1);
         addRiteEntry(acceptor, minorSoulwood, soulwoodRune, x + horizontalOffset, y);
         addRiteEntry(acceptor, majorRunewood, x - horizontalOffset, y);

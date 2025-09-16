@@ -92,7 +92,7 @@ public class MalumGeasEffectTypes {
     public static final GeasHolder<GeasEffectType> OATH_OF_THE_UNDISCERNED_MAW = GEAS_TYPES.register("oath_of_the_undiscerned_maw", () -> new GeasEffectType(UndiscernedMawGeas::new, ARCANE_SPIRIT, SACRED_SPIRIT, ELDRITCH_SPIRIT));
 
     public static final GeasHolder<GeasEffectType> AUTHORITY_OF_THE_INVERTED_HEART = GEAS_TYPES.register("authority_of_the_inverted_heart", () -> new GeasEffectType(InvertedHeartAuthority::new, ARCANE_SPIRIT, SACRED_SPIRIT, ELDRITCH_SPIRIT));
-    public static final GeasHolder<GeasEffectType> AUTHORITY_OF_CRUSHING_MELANCHOLY = GEAS_TYPES.register("authority_of_crushing_melancholy", () -> new GeasEffectType(CrushingMelancholyAuthority::new, ARCANE_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
+//    public static final GeasHolder<GeasEffectType> AUTHORITY_OF_CRUSHING_MELANCHOLY = GEAS_TYPES.register("authority_of_crushing_melancholy", () -> new GeasEffectType(CrushingMelancholyAuthority::new, ARCANE_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
     public static final GeasHolder<GeasEffectType> AUTHORITY_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("authority_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetAuthority::new, ARCANE_SPIRIT, AQUEOUS_SPIRIT, ELDRITCH_SPIRIT));
 
     public static final GeasHolder<GeasEffectType> CREED_OF_THE_BLIGHT_EATER = GEAS_TYPES.register("creed_of_the_blight_eater", () -> new GeasEffectType(BlightEaterCreed::new, ELDRITCH_SPIRIT));

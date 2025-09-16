@@ -1,5 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.earthen;
 
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -14,7 +15,7 @@ public class BlockBreakRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         boolean canBreak = !state.isAir() && state.getDestroySpeed(level, pos) != -1;
         if (canBreak) {
             level.destroyBlock(pos, true);

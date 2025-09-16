@@ -147,7 +147,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.WALL_BLOCK.act(data, RUNEWOOD_BOARDS_WALL);
 
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, RUNEWOOD_TOTEM_POLE);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel, RUNEWOOD_TOTEM_BASE);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutWoodBlockModel, CUT_RUNEWOOD_PLANKS);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::woodenItemPedestalModel, RUNEWOOD_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::decoratedItemPedestalModel, GILDED_RUNEWOOD_ITEM_PEDESTAL);
@@ -186,7 +185,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.WALL_BLOCK.act(data, SOULWOOD_BOARDS_WALL);
 
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, SOULWOOD_TOTEM_POLE);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel, SOULWOOD_TOTEM_BASE);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutWoodBlockModel, CUT_SOULWOOD_PLANKS);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::woodenItemPedestalModel, SOULWOOD_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::decoratedItemPedestalModel, ORNATE_SOULWOOD_ITEM_PEDESTAL);
@@ -253,10 +251,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, this::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT, BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT, ARCANA_PYLON, ARCANA_PYLON_COMPONENT, SPIRIT_CRUCIBLE, SPIRIT_CRUCIBLE_COMPONENT, REPAIR_PYLON);
 
-        MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, REPAIR_PYLON_COMPONENT);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel, RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE, WAVEFORM_RUNEWOOD_TOTEM_BASE, WAVEFORM_SOULWOOD_TOTEM_BASE);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::horizontalBlock, this::predefinedModel,
                 SPIRIT_CATALYZER, SPIRIT_CATALYZER_COMPONENT);
+
+        MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, REPAIR_PYLON_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
                 VOID_CONDUIT, VOID_DEPOT);
@@ -373,12 +373,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
     public ModelFile totemBaseModel(Block block) {
         String name = getBlockName(block);
-        String woodName = name.substring(0, 8);
-        ResourceLocation side = getBlockTexture(woodName + "_log");
-        ResourceLocation top = getBlockTexture(woodName + "_log_top");
-        ResourceLocation planks = getBlockTexture(woodName + "_planks");
-        ResourceLocation panel = getBlockTexture(woodName + "_panel");
-        return models().withExistingParent(name, malumPath("block/templates/template_totem_base")).texture("side", side).texture("top", top).texture("planks", planks).texture("panel", panel);
+        ResourceLocation texture = getBlockTexture(name);
+        return models().withExistingParent(name, malumPath("block/templates/template_totem_base")).texture("totem_base", texture);
     }
 
     public ModelFile hangingLeavesModel(Block block) {

@@ -1,5 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.aerial;
 
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumSoundEvents;
@@ -28,7 +29,7 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         var stateBelow = level.getBlockState(pos.below());
         if (FallingBlock.isFree(stateBelow) || !stateBelow.canOcclude() || stateBelow.is(net.minecraft.tags.BlockTags.SLABS)) {
             if (!state.isAir() && level.getBlockEntity(pos) == null && canSilkTouch(level, pos, state)) {

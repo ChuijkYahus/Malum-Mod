@@ -26,9 +26,9 @@ import static net.minecraft.network.chat.Component.translatable;
 public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
 
     public enum TimeIntervalType {
-        REDSTONE_TICKS(0, 2),
-        SECONDS(1, 20),
-        MINUTES(2, 1200);
+        REDSTONE_TICK(0, 2),
+        SECOND(1, 20),
+        MINUTE(2, 1200);
 
         final int id;
         final int timeScale;
@@ -42,16 +42,23 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
             return toString().toLowerCase(Locale.ROOT);
         }
 
-        public Component getText() {
-            return Component.translatable(getLangKey());
+        public Component getText(SpiritDiodeBlockEntity blockEntity) {
+            return getText(blockEntity.frequency > 1);
+        }
+        public Component getText(boolean plural) {
+            var key = plural ? getPluralLangKey() : getLangKey();
+            return Component.translatable(key);
         }
 
         public String getLangKey() {
             return "malum.waveform_artifice." + getName();
         }
+        public String getPluralLangKey() {
+            return getLangKey() + "_plural";
+        }
     }
 
-    public TimeIntervalType type = TimeIntervalType.REDSTONE_TICKS;
+    public TimeIntervalType type = TimeIntervalType.REDSTONE_TICK;
     public int frequency = 20;
 
     public int cachedInputSignal;

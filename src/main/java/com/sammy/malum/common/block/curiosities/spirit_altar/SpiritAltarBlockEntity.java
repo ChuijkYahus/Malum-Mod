@@ -133,13 +133,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         spiritInventory.load(pRegistries, compound, "spiritInventory");
         extrasInventory.load(pRegistries, compound, "extrasInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
             recalculateRecipes();
             recalibrateAccelerators();
             if (level.isClientSide && isCrafting) {
                 AltarSoundInstance.playSound(this);
             }
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -182,17 +182,19 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
             isCrafting = !isCrafting;
             setDirty();
         }
-        if (level.getGameTime() % 20L == 0) {
-            boolean canAccelerate = accelerators.stream().allMatch(IAltarAccelerator::canAccelerate);
-            if (!canAccelerate) {
-                recalibrateAccelerators();
+        if (isCrafting) {
+            if (level.getGameTime() % 20L == 0) {
+                boolean canAccelerate = accelerators.stream().allMatch(IAltarAccelerator::canAccelerate);
+                if (!canAccelerate) {
+                    recalibrateAccelerators();
+                }
             }
-        }
-        int progressCap = (int) (300 / speed);
-        if (progress >= progressCap) {
-            boolean success = consume(level);
-            if (success) {
-                craft(level);
+            int progressCap = (int) (300 / speed);
+            if (progress >= progressCap) {
+                boolean success = consume(level);
+                if (success) {
+                    craft(level);
+                }
             }
         }
     }

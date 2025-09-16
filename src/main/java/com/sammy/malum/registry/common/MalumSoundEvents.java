@@ -173,6 +173,7 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_FORMED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_formed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_effect")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_POTION_IMPACT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_bestows_potion_effect")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPARK_UNWOVEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spark_unwoven")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_BLOCK_GRAVITY = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_weight")));
     public static final DeferredHolder<SoundEvent, SoundEvent> TOTEM_BLOCK_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("totemic_growth")));

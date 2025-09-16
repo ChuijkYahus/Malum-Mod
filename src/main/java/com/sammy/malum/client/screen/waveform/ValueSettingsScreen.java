@@ -45,7 +45,7 @@ public class ValueSettingsScreen extends Screen {
     private static final int BORDER_SIZE = 5;
     private static final int DIAL_SIZE = 64;
 
-    private final BlockPos pos;
+    private final SpiritDiodeBlockEntity diode;
     private final int interfaceWidth;
     private final int interfaceHeight;
 
@@ -60,7 +60,7 @@ public class ValueSettingsScreen extends Screen {
 
     public ValueSettingsScreen(SpiritDiodeBlockEntity diode) {
         super(diode.getTitleComponent());
-        this.pos = diode.getBlockPos();
+        this.diode = diode;
         this.angle = diode.frequency;
         this.timeInterval = diode.type;
         interfaceWidth = 180 + DIAL_SIZE;
@@ -112,7 +112,7 @@ public class ValueSettingsScreen extends Screen {
             if (isHovering(mouseX, mouseY, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE)) {
                 double offsetX = xDialCenter - mouseX;
                 double offsetY = yDialCenter - mouseY;
-                angle = clampAngle(Mth.ceil(Math.toDegrees(Math.atan2(offsetX, -offsetY)))+180);
+                angle = clampAngle(Mth.ceil(Math.toDegrees(Math.atan2(offsetX, -offsetY))) + 180);
             }
         }
         disableMouse = false;
@@ -161,11 +161,11 @@ public class ValueSettingsScreen extends Screen {
         renderDial(guiGraphics, dialLeft, dialTop);
         for (int i = 0; i < 3; i++) {
             var type = SpiritDiodeBlockEntity.TimeIntervalType.values()[i];
-            renderIntervalDisplay(guiGraphics, type.getText(), dialLeft - BORDER_SIZE, dialTop + 13 * i, type.equals(timeInterval), partialTick);
+            renderIntervalDisplay(guiGraphics, type.getText(true), dialLeft - BORDER_SIZE, dialTop + 13 * i, type.equals(timeInterval), partialTick);
         }
         renderBorder(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
         var text = Component.literal("" + (angle));
-        renderText(guiGraphics, text, xDialCenter+0.5f - font.width(text) / 2f, yDialCenter+0.5f - font.lineHeight / 2f, true, partialTick);
+        renderText(guiGraphics, text, xDialCenter + 0.5f - font.width(text) / 2f, yDialCenter + 0.5f - font.lineHeight / 2f, true, partialTick);
     }
 
     @Override
@@ -208,8 +208,7 @@ public class ValueSettingsScreen extends Screen {
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
             if (oldAngle > angle) {
                 newAngle = Mth.floor((angle / 10f)) * 10;
-            }
-            else {
+            } else {
                 newAngle = Mth.ceil((angle / 10f)) * 10;
             }
         }
@@ -220,8 +219,9 @@ public class ValueSettingsScreen extends Screen {
         }
         return newAngle;
     }
+
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(pos, isOpen, timeInterval, angle));
+        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, timeInterval, angle));
     }
 
     public void updateMousePosition(double mouseX, double mouseY) {

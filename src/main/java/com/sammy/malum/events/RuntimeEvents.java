@@ -162,6 +162,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onHurt(LivingDamageEvent.Pre event) {
         SoulWardHandler.shieldPlayer(event);
+        OakenMightEffect.increaseDamage(event);
         StoneWardEffect.reduceDamage(event);
         MalumAttributeEventHandler.processAttributes(event);
     }

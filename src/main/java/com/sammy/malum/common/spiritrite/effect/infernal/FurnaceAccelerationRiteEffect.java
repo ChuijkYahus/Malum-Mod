@@ -1,5 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.infernal;
 
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +17,7 @@ public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         if (level.getBlockEntity(pos) instanceof AbstractFurnaceBlockEntity furnace) {
             createEffect(level, pos, INFERNAL_SPIRIT, ELDRITCH_SPIRIT);
             quickenFurnace(level, furnace, 20, 20);

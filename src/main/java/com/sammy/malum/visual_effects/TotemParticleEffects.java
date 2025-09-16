@@ -1,14 +1,27 @@
 package com.sammy.malum.visual_effects;
 
+import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.registry.common.particle.*;
+import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.network.particle.*;
+import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
+import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.systems.particle.render_types.*;
+import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.systems.rendering.*;
+
+import java.awt.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 
@@ -43,10 +56,11 @@ public class TotemParticleEffects {
         }
     }
 
-    public static void activateTotemPoleParticles(Level level, MalumNetworkedParticleEffectColorData colorData, Vec3 position) {
+    public static void activateTotemPoleParticles(Level level, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectPositionData positionData) {
         long gameTime = level.getGameTime();
         var random = level.random;
-        final float time = 16;
+        float time = 16;
+        var position = positionData.getAsBlockPos().getCenter();
         for (int i = 0; i < 16; i++) {
             float velocity = RandomHelper.randomBetween(random, 0.005f, 0.015f);
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(position, 0.85f, i, 16, gameTime, time);
@@ -65,6 +79,30 @@ public class TotemParticleEffects {
                     .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
                     .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
             lightSpecs.spawnParticles();
+        }
+    }
+
+    public static void triggerRiteUnweaver(Level level, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectPositionData positionData) {
+        long gameTime = level.getGameTime();
+        int count = 8;
+        var position = positionData.getAsBlockPos().getBottomCenter();
+        float distance = 0.45f;
+        var voidColorData = ColorParticleData.create(new Color(12, 14, 52), new Color(6, 8, 12));
+        for (int i = 0; i < count; i++) {
+            var offsetPosition = VecHelper.rotatingRadialOffset(position, distance, i, count, gameTime, 320);
+            for (int j = 0; j < 3; j++) {
+                WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                        .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(SparkParticleBehavior.UP).setLengthCenter(1f))
+                        .setTransparencyData(GenericParticleData.create(0.8f, 0.4f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setLengthData(GenericParticleData.create(0.6f, 0.2f).setEasing(Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.4f, 0f).setEasing(Easing.EXPO_IN).build())
+                        .setColorData(voidColorData)
+                        .setRandomOffset(0.1f)
+                        .setLifetime(15)
+                        .enableNoClip()
+                        .spawn(level, offsetPosition);
+            }
         }
     }
 

@@ -223,22 +223,25 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW, "Take the life of your enemies");
 
         addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART, "Your heart is the world, and the world beats");
-        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY, "Dissociate from the weight of your existence");
+//        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY, "Dissociate from the weight of your existence");
         addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET, "Take it all, let it never stop, more, and more, and more");
 
         addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER, "Mmmm... Blight... So Tasty..");
 
 
-        add("malum.waveform_artifice.wavecharger", "Redstone Easing Duration");
+        add("malum.waveform_artifice.wavecharger", "Redstone Step Duration");
         add("malum.waveform_artifice.wavebanker", "Redstone Pulse Duration");
         add("malum.waveform_artifice.wavemaker", "Redstone Pulse Interval");
         add("malum.waveform_artifice.wavebreaker", "Redstone Pulse Delay");
 
         add("malum.waveform_artifice.value_display", ": %1$s %2$s");
 
-        add("malum.waveform_artifice.redstone_ticks", "Redstone Ticks");
-        add("malum.waveform_artifice.seconds", "Seconds");
-        add("malum.waveform_artifice.minutes", "Minutes");
+        add("malum.waveform_artifice.redstone_tick", "Redstone Tick");
+        add("malum.waveform_artifice.second", "Second");
+        add("malum.waveform_artifice.minute", "Minute");
+        add("malum.waveform_artifice.redstone_tick_plural", "Redstone Ticks");
+        add("malum.waveform_artifice.second_plural", "Seconds");
+        add("malum.waveform_artifice.minute_plural", "Minutes");
 
         add("malum.waveform_artifice.guide.2", "Scroll To Fine Tune Value");
         add("malum.waveform_artifice.guide.1", "Use Left Button To Modify Unit Type");

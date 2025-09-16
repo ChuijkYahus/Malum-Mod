@@ -23,6 +23,7 @@ import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
+import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -92,9 +93,12 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> REPAIR_PYLON_COMPONENT = BLOCKS.register("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_BASE = BLOCKS.register("runewood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.RUNEWOOD_LOG, false).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
-
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
+
+    public static final DeferredHolder<Block, Block> WAVEFORM_RUNEWOOD_TOTEM_BASE = BLOCKS.register("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(MalumBlockProperties.WAVEFORM_DIODE().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(MalumBlockEntities.WAVEFORM_TOTEM_BASE));
+    public static final DeferredHolder<Block, Block> WAVEFORM_SOULWOOD_TOTEM_BASE = BLOCKS.register("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(MalumBlockProperties.WAVEFORM_DIODE().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.WAVEFORM_TOTEM_BASE));
+
+    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.RUNEWOOD_LOG, false).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.SOULWOOD_LOG, true).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
 
     public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));

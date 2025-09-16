@@ -37,7 +37,7 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
         return true;
     }
 
-    public abstract void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact);
+    public abstract void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact);
 
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));

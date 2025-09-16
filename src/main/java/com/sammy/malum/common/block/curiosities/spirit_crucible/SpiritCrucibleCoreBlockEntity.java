@@ -60,6 +60,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     public float spiritSpin;
 
     public float progress;
+    public boolean isCrafting;
 
     public int queuedCracks;
     public int crackTimer;
@@ -117,14 +118,14 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         augmentInventory.load(pRegistries, compound, "augmentInventory");
         coreAugmentInventory.load(pRegistries, compound, "coreAugmentInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
+            updateRecipe();
             if (level.isClientSide) {
                 if (recipe != null) {
                     CrucibleSoundInstance.playSound(this);
                 }
             }
-            updateRecipe();
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -200,7 +201,11 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
                 }
             }
         }
-        if (recipe != null) {
+        if ((!isCrafting && recipe != null) || (isCrafting && recipe == null)) {
+            isCrafting = !isCrafting;
+            setDirty();
+        }
+        if (isCrafting) {
             float speed = attributes.focusingSpeed.getValue(attributes);
             attributes.getInfluenceData(level).ifPresent(d -> {
                 for (ArtificeModifierSourceInstance modifier : d.modifiers()) {

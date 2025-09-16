@@ -1,5 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.aqueous;
 
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.BlockPos;
@@ -20,7 +21,7 @@ public class BlockGrowingRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         var block = state.getBlock();
         if (block instanceof FarmBlock) {
             var abovePos = pos.above();

@@ -82,20 +82,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     @Override
     public void serverTick(ServerLevel level) {
         switch (state) {
-            case ACTIVE -> {
-                if (timer > 0) {
-                    timer--;
-                }
-                if (timerPause > 0) {
-                    timerPause--;
-                    return;
-                }
-                if (timer == 0) {
-                    timer = rite.getEffect().getCooldown();
-                    rite.triggerRiteEffect(level, this);
-                    notifyObservers();
-                }
-            }
+            case ACTIVE -> updateRite(level);
             case ASSEMBLING -> {
                 timer--;
                 if (timer <= 0) {
@@ -174,6 +161,24 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         return Direction.NORTH;
     }
 
+    public void updateRite(ServerLevel level) {
+        if (timer > 0) {
+            timer--;
+        }
+        if (timerPause > 0) {
+            timerPause--;
+            return;
+        }
+        if (timer == 0) {
+            triggerRite(level);
+            notifyObservers();
+        }
+    }
+    public void triggerRite(ServerLevel level) {
+        timer = rite.getEffect().getCooldown();
+        rite.triggerRiteEffect(level, this);
+    }
+
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
         totemHeight++;
         pole.beginCharging(level,this, totemHeight);
@@ -185,13 +190,13 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             return;
         }
         if (newState.equals(TotemBaseState.INACTIVE)) {
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
+            playSound(MalumSoundEvents.TOTEM_CANCELLED.get());
             setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.INACTIVE);
             totemHeight = 0;
             rite = null;
         }
         if (newState.equals(TotemBaseState.ACTIVE)) {
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
+            playSound(MalumSoundEvents.TOTEM_ACTIVATED.get());
         }
         this.state = newState;
         this.timer = 0;
