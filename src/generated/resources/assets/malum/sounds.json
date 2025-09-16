@@ -2125,6 +2125,23 @@
     ],
     "subtitle": "malum.subtitle.spark_bestows_potion_effect"
   },
+  "spark_directed": {
+    "sounds": [
+      {
+        "name": "malum:totem/spark/spark_create1",
+        "pitch": 2.0
+      },
+      {
+        "name": "malum:totem/spark/spark_create2",
+        "pitch": 2.0
+      },
+      {
+        "name": "malum:totem/spark/spark_create3",
+        "pitch": 2.0
+      }
+    ],
+    "subtitle": "malum.subtitle.spark_directed"
+  },
   "spark_formed": {
     "sounds": [
       "malum:totem/spark/spark_create1",

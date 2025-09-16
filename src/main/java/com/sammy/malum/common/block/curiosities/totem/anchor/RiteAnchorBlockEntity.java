@@ -129,6 +129,12 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
                 spark.updateDirection(direction);
                 level.updateNeighbourForOutputSignal(getBlockPos(), getBlockState().getBlock());
             }
+
+            playSound(MalumSoundEvents.SPARK_DIRECTED.get());
+            MalumParticleEffectTypes.RITE_ANCHOR_EFFECT.createEffect(getBlockPos().above())
+                    .color(spirit)
+                    .spawn(level);
+
             if (spirit.matches(MalumSpiritTypes.SACRED_SPIRIT)) {
                 //Recovers Remaining Distance Overtime
                 spark.recoverHealth();

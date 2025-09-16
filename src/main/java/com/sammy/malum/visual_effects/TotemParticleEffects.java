@@ -90,19 +90,42 @@ public class TotemParticleEffects {
         var voidColorData = ColorParticleData.create(new Color(12, 14, 52), new Color(6, 8, 12));
         for (int i = 0; i < count; i++) {
             var offsetPosition = VecHelper.rotatingRadialOffset(position, distance, i, count, gameTime, 320);
-            for (int j = 0; j < 3; j++) {
-                WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
-                        .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                        .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(SparkParticleBehavior.UP).setLengthCenter(1f))
-                        .setTransparencyData(GenericParticleData.create(0.8f, 0.4f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setLengthData(GenericParticleData.create(0.6f, 0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                        .setScaleData(GenericParticleData.create(0.4f, 0f).setEasing(Easing.EXPO_IN).build())
-                        .setColorData(voidColorData)
-                        .setRandomOffset(0.1f)
-                        .setLifetime(15)
-                        .enableNoClip()
-                        .spawn(level, offsetPosition);
-            }
+            WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                    .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(SparkParticleBehavior.UP).setLengthCenter(1f))
+                    .setTransparencyData(GenericParticleData.create(0.8f, 0.4f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                    .setLengthData(GenericParticleData.create(0.6f, 0.2f).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(0.4f, 0f).setEasing(Easing.EXPO_IN).build())
+                    .setColorData(voidColorData)
+                    .setRandomOffset(0.1f)
+                    .setLifetime(15)
+                    .enableNoClip()
+                    .repeat(level, offsetPosition, 3);
+        }
+    }
+
+    public static void triggerRiteAnchor(Level level, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectPositionData positionData) {
+        int count = 8;
+        var position = positionData.getAsBlockPos().getBottomCenter().add(0, 0.25f, 0);
+        for (int i = 0; i < count; i++) {
+            int finalI = i;
+            SpiritBasedParticleBuilder.createSpirit(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                    .setSpirit(colorData.getSpirit())
+                    .setBehavior(DirectionalParticleBehavior.directional())
+                    .setTransparencyData(GenericParticleData.create(0.15f, 0.2f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                    .setLengthData(GenericParticleData.create(0.1f, 0.5f).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(0.3f, 0f).setEasing(Easing.EXPO_IN).build())
+                    .setRandomOffset(0.1f)
+                    .setLifetime(15)
+                    .enableNoClip()
+                    .addTickActor(p -> {
+                        long gameTime = level.getGameTime();
+                        float distance = 0.6f - 0.4f * (p.getAge() / (float)p.getLifetime());
+                        var offsetPosition = VecHelper.rotatingRadialOffset(position, distance, finalI, count, gameTime, 40);
+                        p.setParticlePosition(offsetPosition);
+                        p.setParticleSpeed(position.subtract(offsetPosition).normalize().scale(0.001f));
+                    })
+                    .repeat(level, position, 3);
         }
     }
 

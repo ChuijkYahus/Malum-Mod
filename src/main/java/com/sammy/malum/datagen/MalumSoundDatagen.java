@@ -175,6 +175,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SPARK_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_hit", 3)));
         this.add(MalumSoundEvents.SPARK_POTION_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_potion_hit", 3)));
         this.add(MalumSoundEvents.SPARK_UNWOVEN, s -> definition(s).with(sounds("totem/spark/spark_create", 3, se -> se.pitch(0.5f))));
+        this.add(MalumSoundEvents.SPARK_DIRECTED, s -> definition(s).with(sounds("totem/spark/spark_create", 3, se -> se.pitch(2f))));
 
         this.add(MalumSoundEvents.TOTEM_BLOCK_GRAVITY, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
         this.add(MalumSoundEvents.TOTEM_BLOCK_GROW, s -> definition(s).with(sounds("minecraft:item/bonemeal/bonemeal", 5)));
