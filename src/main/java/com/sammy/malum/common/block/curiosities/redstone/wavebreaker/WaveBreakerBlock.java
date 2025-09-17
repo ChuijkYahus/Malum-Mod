@@ -2,7 +2,9 @@ package com.sammy.malum.common.block.curiosities.redstone.wavebreaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.registry.common.MalumSoundEvents;
+import net.minecraft.client.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.*;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,34 +15,33 @@ public class WaveBreakerBlock extends SpiritDiodeBlock<WaveBreakerBlockEntity> {
     }
 
     @Override
-    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int signal) {
+    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int cachedSignal, int liveSignal) {
         if (diode.outputSignal == diode.pendingSignal) {
-            if (signal != diode.pendingSignal) {
-                diode.pendingSignal = signal;
+            if (cachedSignal != diode.pendingSignal) {
+                diode.pendingSignal = cachedSignal;
                 return true;
             }
 
             return false;
-        } else {
-            diode.outputSignal = diode.pendingSignal;
-            level.playSound(null, pos, diode.pendingSignal == 0 ? MalumSoundEvents.WAVEBREAKER_RELEASE.get() : MalumSoundEvents.WAVECHARGER_CHARGE.get(), SoundSource.BLOCKS, 0.3f, 2f);
-            updateState(level, pos, state, diode);
-            return signal != diode.outputSignal;
         }
-    }
+        diode.outputSignal = diode.pendingSignal;
 
-
-
-    @Override
-    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int newInput) {
-        if (diode.pendingSignal != diode.outputSignal)
-            return super.redstoneTicksUntilUpdate(level, pos, state, diode, newInput);
-        else
-            return 2; // One redstone tick
+        var sound = diode.pendingSignal == 0 ? MalumSoundEvents.WAVEBREAKER_RELEASE.get() : MalumSoundEvents.WAVEBREAKER_STORE.get();
+        level.playSound(null, pos, sound, SoundSource.BLOCKS);
+        updateState(level, pos, state, diode);
+        return cachedSignal != diode.outputSignal;
     }
 
     @Override
-    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int newInput) {
-		return newInput != diode.pendingSignal;
+    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int cachedSignal, int liveSignal) {
+        if (liveSignal == 0) {
+            return 4;
+        }
+        return super.redstoneTicksUntilUpdate(level, pos, state, diode, cachedSignal, liveSignal);
+    }
+
+    @Override
+    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveBreakerBlockEntity diode, int liveSignal) {
+		return liveSignal != diode.pendingSignal;
 	}
 }

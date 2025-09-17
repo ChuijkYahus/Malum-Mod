@@ -4,17 +4,22 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
+import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
-import net.minecraft.world.level.block.state.properties.*;
+import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
+import java.awt.*;
 import java.lang.Math;
 
 public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEntity> {
@@ -24,61 +29,107 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
 
     @Override
     public void render(RiteAnchorBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        var spiritType = blockEntityIn.spirit;
+        var spiritType = blockEntityIn.getSpirit();
         if (spiritType == null) {
             return;
         }
-        var direction = blockEntityIn.getBlockState().getValue(RiteAnchorBlock.HORIZONTAL_FACING);
 
-        var level = Minecraft.getInstance().level;
-        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MalumRenderTypeTokens.RITE_ANCHOR_GLOW);
-        float delta = blockEntityIn.effectStrength / 20f;
-        float alpha = 0.6f + delta * 0.4f;
-        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
-        float wobbleStrength = ease * 0.02f;
-        Vector3f[] positions = new Vector3f[]{
-                new Vector3f(0.5f, 1.01f, -0.5f), new Vector3f(-0.5f, 1.01f, -0.5f), new Vector3f(-0.5f, 1.01f, 0.5f), new Vector3f(0.5f, 1.01f, 0.5f)};
+        float delta = blockEntityIn.getGlowDelta();
 
         poseStack.pushPose();
-        poseStack.translate(0.5f, 0, 0.5f);
-        poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot()));
-
-
-        float gameTime = level.getGameTime() + partialTicks;
-        int time = 160;
+        poseStack.translate(0.5f, 0.5f, 0.5f);
         for (int i = 0; i < 4; i++) {
+            int rotation = i * 90;
+            Direction direction = Direction.fromYRot(rotation);
+            if (RiteAnchorBlock.isOccluded(blockEntityIn.getBlockState(), direction)) {
+                continue;
+            }
+
             poseStack.pushPose();
-            applyWobble(positions, wobbleStrength);
-            var builder = SpiritBasedWorldVFXBuilder.create(spiritType)
-                    .setRenderType(renderType)
-                    .setAlpha(alpha);
-            if (i > 0) {
-                double angle = i / 4f * (Math.PI * 2);
-                angle += ((gameTime % time) / time) * (Math.PI * 2);
-                double x = (i * 0.01f * Math.sin(angle));
-                double z = (i * 0.01f * Math.cos(angle));
-                poseStack.translate(x, 0, z);
-                builder.setColor(spiritType.getSecondaryColor());
+            poseStack.mulPose(Axis.YN.rotationDegrees(rotation));
+            renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_SIDE, getSideVertices(), delta, partialTicks);
+            poseStack.popPose();
+        }
+        renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_TOP, getTopVertices(), delta, partialTicks);
+
+        var aimDirection = blockEntityIn.getAimDirection();
+        if (aimDirection != null) {
+            poseStack.pushPose();
+            if (aimDirection.getData2d() != -1) {
+                var vertices = getTopVertices();
+                for (Vector3f vertex : vertices) {
+                    vertex.add(0, 0.125f, 0);
+                }
+                int rotation = aimDirection.getData2d();
+                poseStack.mulPose(Axis.YN.rotationDegrees(180 + rotation * 90));
+                renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_POINTER, vertices, delta, partialTicks);
             }
             else {
-                builder.setColor(spiritType.getPrimaryColor());
+                for (int i = 0; i < 4; i++) {
+                    var vertices = getSideVertices();
+                    for (Vector3f vertex : vertices) {
+                        vertex.add(0, 0.3125f, 0);
+                    }
+                    poseStack.pushPose();
+                    poseStack.mulPose(Axis.YN.rotationDegrees(i * 90));
+                    if (aimDirection == RiteAnchorBlockEntity.AimState.PULL) {
+                        poseStack.mulPose(Axis.XN.rotationDegrees(180));
+                        for (Vector3f vertex : vertices) {
+                            vertex.add(0, -0.625f, 0);
+                        }
+                    }
+                    renderFace(poseStack, spiritType, MalumRenderTypeTokens.RITE_ANCHOR_GLOW_POINTER_SMALL, vertices, delta, partialTicks);
+                    poseStack.popPose();
+                }
             }
-            builder.renderQuad(poseStack, positions, 1f);
-            alpha *= 0.3f + delta * 0.5f;
             poseStack.popPose();
         }
         poseStack.popPose();
     }
 
-    public static void applyWobble(Vector3f[] offsets, float strength) {
-        float offset = 0;
-        for (Vector3f vector3f : offsets) {
-            double time = ((Minecraft.getInstance().level.getGameTime() / 40.0F) % Math.PI * 2);
-            float angle = (float) (time + (offset * Math.PI * 2));
-            float x = Mth.sin(angle) * strength;
-            float z = Mth.cos(angle) * strength;
-            vector3f.add(x, 0, z);
-            offset += 0.8f;
+    private static void renderFace(PoseStack poseStack, SpiritArcanaType spiritType, RenderTypeToken token, Vector3f[] vertices, float delta, float partialTicks) {
+        var level = Minecraft.getInstance().level;
+        float gameTime = level.getGameTime() + partialTicks;
+        float alpha = delta * 0.7f;
+        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
+        float offsetDistance = 0.2f - ease * 0.2f;
+        float wobbleStrength = 0.1f - ease * 0.075f;
+        int time = 160;
+        float timer = ((gameTime % time) / time);
+        var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(token).withModifier(r -> r.setCullState(RenderStateShard.NO_CULL));
+        for (int j = 0; j < 4; j++) {
+            var color = j <= 1 ? spiritType.getPrimaryColor() : spiritType.getSecondaryColor();
+            double offset = 0;
+            if (offsetDistance > 0) {
+                double angle = j / 4f * (Math.PI * 2);
+                angle += timer * (Math.PI * 2);
+                offset = (offsetDistance * Math.cos(angle));
+                if (j % 2 == 0) {
+                    offset *= -1;
+                }
+            }
+
+            poseStack.pushPose();
+            poseStack.translate(offset, 0, 0);
+            CubeVertexData.applyVertexWobble(vertices, 0, wobbleStrength);
+            SpiritBasedWorldVFXBuilder.create(spiritType)
+                    .setColor(color, alpha)
+                    .setRenderType(renderType)
+                    .renderQuad(poseStack, vertices, 1f);
+            poseStack.popPose();
+            alpha *= (1 - (delta + 0.2f) * 0.4f);
         }
+    }
+
+    private static @NotNull Vector3f[] getSideVertices() {
+            return new Vector3f[]{
+                    new Vector3f(-0.55f, -0.5f, 0.55f), new Vector3f(0.55f, -0.5f, 0.55f),
+                    new Vector3f(0.55f, 0.5f, 0.55f), new Vector3f(-0.55f, 0.5f, 0.55f)};
+    }
+
+    private static @NotNull Vector3f[] getTopVertices() {
+        return new Vector3f[]{
+                new Vector3f(-0.55f, 0.55f, 0.55f), new Vector3f(0.55f, 0.55f, 0.55f),
+                new Vector3f(0.55f, 0.55f, -0.55f), new Vector3f(-0.55f, 0.55f, -0.55f)};
     }
 }

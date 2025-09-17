@@ -4,15 +4,14 @@ import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.entity.player.*;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class NourishingEffect extends SpiritRitePotionEffect<Player> {
 
     public NourishingEffect() {
-        super(Collections.emptyList(), MalumMobEffects.SACRED_NOURISHMENT, SACRED_SPIRIT);
+        super(List.of(SpiritRiteEffectTag.GREATER_RITE), MalumMobEffects.SACRED_NOURISHMENT, SACRED_SPIRIT);
     }
 
     @Override

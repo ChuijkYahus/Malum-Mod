@@ -75,6 +75,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     public abstract void setupEntries();
 
+
     @Override
     public List<PlacedBookEntry> getEntries() {
         return entries;
@@ -137,6 +138,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     @Override
     public void tick() {
+        progressionObjects.tick(this);
         if (voidFadeoutTimer > 0) {
             voidFadeoutTimer--;
         }
@@ -156,7 +158,11 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
         progressionObjects.setupEntryObjects(this);
-        faceObject(progressionObjects.get(1));
+        faceOrigin();
+    }
+
+    public void faceOrigin() {
+        faceObject(progressionObjects.getOriginObject());
     }
 
     public void faceObject(BookObject<?> object) {

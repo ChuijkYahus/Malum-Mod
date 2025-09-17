@@ -9,8 +9,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SoundDefinition;
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
@@ -175,8 +174,12 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SPARK_FORMED, s -> definition(s).with(sounds("totem/spark/spark_create", 3)));
         this.add(MalumSoundEvents.SPARK_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_hit", 3)));
         this.add(MalumSoundEvents.SPARK_POTION_IMPACT, s -> definition(s).with(sounds("totem/spark/spark_potion_hit", 3)));
+        this.add(MalumSoundEvents.SPARK_UNWOVEN, s -> definition(s).with(sounds("totem/spark/spark_create", 3, se -> se.pitch(0.5f))));
+        this.add(MalumSoundEvents.SPARK_DIRECTED, s -> definition(s).with(sounds("totem/spark/spark_create", 3, se -> se.pitch(2f))));
 
-        this.add(MalumSoundEvents.TOTEM_AERIAL_MAGIC, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
+        this.add(MalumSoundEvents.TOTEM_BLOCK_GRAVITY, s -> definition(s).with(sounds("minecraft:mob/phantom/flap", 6)));
+        this.add(MalumSoundEvents.TOTEM_BLOCK_GROW, s -> definition(s).with(sounds("minecraft:item/bonemeal/bonemeal", 5)));
+        this.add(MalumSoundEvents.TOTEM_BLOCK_SAP, s -> definition(s).with(sounds("minecraft:block/pointed_dripstone/drip_water_cauldron", 8)));
 
         this.add(MalumSoundEvents.RITUAL_BEGINS, s -> definition(s).with(sound("ritual/ritual_start")));
         this.add(MalumSoundEvents.RITUAL_ABSORBS_ITEM, s -> definition(s).with(sounds("ritual/ritual_absorb_item", 3)));
@@ -292,7 +295,7 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.RUNEWOOD_DOOR_OPEN, s -> definition(s).with(sounds("blocks/runewood/door/toggle", 3)));
         this.add(MalumSoundEvents.RUNEWOOD_TRAPDOOR_CLOSE, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
         this.add(MalumSoundEvents.RUNEWOOD_TRAPDOOR_OPEN, s -> definition(s).with(sounds("blocks/runewood/trapdoor/toggle", 3)));
-        
+
         this.add(MalumSoundEvents.SOULWOOD_BREAK, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
         this.add(MalumSoundEvents.SOULWOOD_STEP, s -> definition(s).with(sounds("blocks/runewood/hit", 6)));
         this.add(MalumSoundEvents.SOULWOOD_PLACE, s -> definition(s).with(sounds("blocks/runewood/break", 6)));
@@ -370,11 +373,13 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SPIRIT_DIODE_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_tick", 8)));
         this.add(MalumSoundEvents.SPIRIT_DIODE_LONG_TICK, s -> definition(s).with(sounds("blocks/spirit_diode/waveform_long_tick", 8)));
 
-        this.add(MalumSoundEvents.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
-        this.add(MalumSoundEvents.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse")));
+        this.add(MalumSoundEvents.WAVECHARGER_CHARGE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2f)));
+        this.add(MalumSoundEvents.WAVECHARGER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8f)));
+        this.add(MalumSoundEvents.WAVEBANKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        this.add(MalumSoundEvents.WAVEBANKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        this.add(MalumSoundEvents.WAVEBREAKER_STORE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        this.add(MalumSoundEvents.WAVEBREAKER_RELEASE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        this.add(MalumSoundEvents.WAVEMAKER_PULSE, s -> definition(s).with(sound("blocks/spirit_diode/waveform_pulse").volume(0.2f).pitch(1.4)));
 
         this.add(MalumSoundEvents.MAJOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/blight_motif", 6)));
         this.add(MalumSoundEvents.MINOR_BLIGHT_MOTIF, s -> definition(s).with(sounds("blocks/blight/minor_blight_motif", 6)));
@@ -401,6 +406,14 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         for (int i = 0; i < variants; i++) {
             var resourceLocation = name.contains(":") ? ResourceLocation.parse(name + (i + 1)) : malumPath(name + (i + 1));
             sounds[i] = sound(resourceLocation);
+        }
+        return sounds;
+    }
+
+    public SoundDefinition.Sound[] sounds(String name, int variants, Consumer<SoundDefinition.Sound> modifier) {
+        var sounds = sounds(name, variants);
+        for (SoundDefinition.Sound sound : sounds) {
+            modifier.accept(sound);
         }
         return sounds;
     }

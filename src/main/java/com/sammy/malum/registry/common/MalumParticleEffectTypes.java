@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common;
 
 import com.sammy.malum.visual_effects.networked.altar.*;
+import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import com.sammy.malum.visual_effects.networked.attack.*;
 import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
@@ -9,7 +10,7 @@ import com.sammy.malum.visual_effects.networked.crucible.*;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
-import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import com.sammy.malum.visual_effects.networked.spirit_diode.SpiritDiodeCloseParticleEffect;
@@ -35,6 +36,9 @@ public class MalumParticleEffectTypes {
     public static final RunicWorkbenchCraftRuneParticleEffect RUNIC_WORKBENCH_CRAFTS_RUNE = new RunicWorkbenchCraftRuneParticleEffect("runic_workbench_crafts_rune");
     public static final RunicWorkbenchCraftSpiritlessItemParticleEffect RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM = new RunicWorkbenchCraftSpiritlessItemParticleEffect("runic_workbench_crafts_spiritless_item");
 
+    //Arcana Pylon
+    public static final ArcanaPylonEatSpiritParticleEffect ARCANA_PYLON_EATS_SPIRIT = new ArcanaPylonEatSpiritParticleEffect("arcana_pylon_eats_spirit");
+
     //Crucible
     public static final SpiritCrucibleCraftParticleEffect SPIRIT_CRUCIBLE_CRAFTS = new SpiritCrucibleCraftParticleEffect("spirit_crucible_crafts");
     public static final SuspiciousDevicePrimerParticleEffect SUSPICIOUS_DEVICE_PRIMER = new SuspiciousDevicePrimerParticleEffect("suspicious_device_primer");
@@ -50,6 +54,9 @@ public class MalumParticleEffectTypes {
     public static final BlockFallTotemParticleEffect BLOCK_FALL_RITE_EFFECT = new BlockFallTotemParticleEffect("block_fall_rite_effect");
     public static final BlockInfusionTotemParticleEffect BLOCK_INFUSION_RITE_EFFECT = new BlockInfusionTotemParticleEffect("block_infusion_rite_effect");
     public static final BlockGrowTotemParticleEffect BLOCK_GROW_RITE_EFFECT = new BlockGrowTotemParticleEffect("block_grow_rite_effect");
+
+    public static final RiteAnchorParticleEffect RITE_ANCHOR_EFFECT = new RiteAnchorParticleEffect("rite_anchor_effect");
+    public static final RiteUnweaverParticleEffect RITE_UNWEAVER_EFFECT = new RiteUnweaverParticleEffect("rite_unweaver_effect");
 
     //Soulbinding Brazier
     public static final SoulBrazierStartParticleEffect SOULBINDING_BRAZIER_BEGINS = new SoulBrazierStartParticleEffect("brazier_start");

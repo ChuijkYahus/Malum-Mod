@@ -12,6 +12,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -91,10 +92,8 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
     }
 
     @Override
-    public void tick() {
-        if (level.isClientSide) {
-            SpiritCrucibleParticleEffects.passiveSpiritCatalyzerParticles(this);
-        }
+    public void clientTick(Level level) {
+        SpiritCrucibleParticleEffects.passiveSpiritCatalyzerParticles(this);
     }
 
     @Override

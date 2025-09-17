@@ -25,6 +25,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -53,14 +54,15 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public float speed = 1f;
     public int progress;
     public int idleProgress;
-
+    public boolean isCrafting;
     public float warmupTimer;
+
+    public float spiritAmount;
+    public float spiritSpin;
 
     public List<BlockPos> acceleratorPositions = new ArrayList<>();
     public List<IAltarAccelerator> accelerators = new ArrayList<>();
-    public float spiritAmount;
-    public float spiritSpin;
-    public boolean isCrafting;
+
 
     public LodestoneBlockEntityInventory inventory;
     public LodestoneBlockEntityInventory extrasInventory;
@@ -88,11 +90,11 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     @Override
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
+        compound.putFloat("speed", speed);
         compound.putInt("progress", progress);
         compound.putInt("idleProgress", idleProgress);
+        compound.putBoolean("isCrafting", isCrafting);
         compound.putFloat("warmupTimer", warmupTimer);
-        compound.putFloat("speed", speed);
-        compound.putFloat("spiritAmount", spiritAmount);
 
         var acceleratorData = new CompoundTag();
         acceleratorData.putInt("acceleratorAmount", acceleratorPositions.size());
@@ -108,15 +110,14 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
+        speed = compound.getFloat("speed");
         progress = compound.getInt("progress");
         idleProgress = compound.getInt("idleProgress");
+        isCrafting = compound.getBoolean("isCrafting");
         warmupTimer = compound.getFloat("warmupTimer");
-        speed = compound.getFloat("speed");
-        spiritAmount = compound.getFloat("spiritAmount");
 
         acceleratorPositions.clear();
         accelerators.clear();
-
         var acceleratorData = compound.getCompound("acceleratorData");
         int amount = acceleratorData.getInt("acceleratorAmount");
         for (int i = 0; i < amount; i++) {
@@ -132,13 +133,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         spiritInventory.load(pRegistries, compound, "spiritInventory");
         extrasInventory.load(pRegistries, compound, "extrasInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
             recalculateRecipes();
             recalibrateAccelerators();
             if (level.isClientSide && isCrafting) {
                 AltarSoundInstance.playSound(this);
             }
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -166,10 +167,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-
+    public void serverTick(ServerLevel level) {
         var primeItem = inventory.getStackInSlot(0);
         if (!primeItem.isEmpty()) {
             idleProgress++;
@@ -177,52 +175,58 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
             if (idleProgress >= progressCap) {
                 recalculateRecipes();
                 idleProgress = 0;
-                BlockStateHelper.updateAndNotifyState(level, worldPosition);
             }
         }
+        progress = isCrafting ? progress + 1 : progress;
+        if ((!isCrafting && recipe != null) || (isCrafting && recipe == null)) {
+            isCrafting = !isCrafting;
+            setDirty();
+        }
+        if (isCrafting) {
+            if (level.getGameTime() % 20L == 0) {
+                boolean canAccelerate = accelerators.stream().allMatch(IAltarAccelerator::canAccelerate);
+                if (!canAccelerate) {
+                    recalibrateAccelerators();
+                }
+            }
+            int progressCap = (int) (300 / speed);
+            if (progress >= progressCap) {
+                boolean success = consume(level);
+                if (success) {
+                    craft(level);
+                }
+            }
+        }
+    }
 
+    @Override
+    public void clientTick(Level level) {
+        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
+        spiritSpin += 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
+        SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
+    }
+
+    @Override
+    public void commonTick(Level level) {
         if (!possibleRecipes.isEmpty()) {
             warmupTimer++;
-            if (!isCrafting && recipe != null) {
-                isCrafting = true;
-                BlockStateHelper.updateAndNotifyState(level, worldPosition);
-            } else if (isCrafting && recipe == null) {
-                isCrafting = false;
-                BlockStateHelper.updateAndNotifyState(level, worldPosition);
-            }
-            progress = isCrafting ? progress + 1 : progress;
-            if (level instanceof ServerLevel serverLevel) {
-                if (serverLevel.getGameTime() % 20L == 0) {
-                    boolean canAccelerate = accelerators.stream().allMatch(IAltarAccelerator::canAccelerate);
-                    if (!canAccelerate) {
-                        recalibrateAccelerators();
-                    }
-                }
-                int progressCap = (int) (300 / speed);
-                if (progress >= progressCap) {
-                    boolean success = consume(serverLevel);
-                    if (success) {
-                        craft(serverLevel);
-                    }
-                }
-            }
         } else {
             isCrafting = false;
             progress = 0;
             warmupTimer = Mth.clamp(warmupTimer - 1, 0, WARMUP_DURATION);
         }
-        if (level.isClientSide) {
-            spiritSpin += 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
-            SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
-        }
     }
 
     private void recalculateRecipes() {
+        recalculateRecipes(level);
+    }
+
+    private void recalculateRecipes(Level level) {
         boolean hadRecipe = recipe != null;
         inventory.updateInventoryCaches();
         ItemStack stack = inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
-            final Collection<SpiritInfusionRecipe> all = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get());
+            var all = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get());
             Collection<SpiritInfusionRecipe> recipes = all.stream().filter(r -> r.matches(new SpiritBasedRecipeInput(stack, spiritInventory.nonEmptyItemStacks), level)).toList();
             possibleRecipes.clear();
             IItemHandlerModifiable pedestalItems = AltarCraftingHelper.createPedestalInventoryCapture(AltarCraftingHelper.capturePedestals(level, worldPosition));
@@ -260,9 +264,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         SizedIngredient nextIngredient = AltarCraftingHelper.getNextIngredientToTake(recipe, extrasInventory);
         if (nextIngredient != null) {
             for (IMalumSpecialItemAccessPoint provider : pedestalItems) {
-
-                LodestoneBlockEntityInventory inventoryForAltar = provider.getSuppliedInventory();
-                ItemStack providedStack = inventoryForAltar.extractItem(0, nextIngredient.count(), true);
+                var providerInventory = provider.getSuppliedInventory();
+                var providedStack = providerInventory.extractItem(0, nextIngredient.count(), true);
 
                 if (nextIngredient.ingredient().test(providedStack)) {
                     level.playSound(null, provider.getAccessPointBlockPos(), MalumSoundEvents.ALTAR_CONSUME.get(), SoundSource.BLOCKS, 1, 1.1f + level.random.nextFloat() * 0.5f);
@@ -271,8 +274,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                             .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                             .customData(new SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData(provider.getAccessPointBlockPos(), providedStack))
                             .spawn(level);
-                    extrasInventory.insertItem(inventoryForAltar.extractItem(0, nextIngredient.count(), false));
-                    BlockStateHelper.updateAndNotifyState(level, provider.getAccessPointBlockPos());
+                    var extractedStack = providerInventory.extractItem(0, nextIngredient.count(), false);
+                    extrasInventory.insertItem(extractedStack);
                     break;
                 }
             }
@@ -308,8 +311,10 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         recalibrateAccelerators();
+        accelerators.forEach(a -> a.completeSpiritInfusion(level));
         recalculateRecipes();
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        notifyObservers();
+        setDirty();
     }
 
     public void recalibrateAccelerators() {

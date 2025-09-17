@@ -13,8 +13,11 @@ import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import net.minecraft.client.*;
+import net.minecraft.client.player.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.*;
@@ -23,6 +26,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -107,6 +111,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         compound.putString("state", state.name);
         compound.putFloat("warmupTimer", warmupTimer);
         compound.putInt("progress", progress);
+        compound.putBoolean("isReady", isReady);
 
         ListTag list = new ListTag();
         for (UUID uuid : sacrificedTargets) {
@@ -123,6 +128,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
         state = compound.contains("state") ? CODEC.byName(compound.getString("state")) : BrazierState.IDLE;
         warmupTimer = compound.getFloat("warmupTimer");
         progress = compound.getInt("progress");
+        isReady = compound.getBoolean("isReady");
 
         sacrificedTargets.clear();
         for (Tag tag : compound.getList("sacrificedTargets", 11)) {
@@ -170,67 +176,67 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-        extrasAmount = Math.max(1, Mth.lerp(0.1f, extrasAmount, inventory.getFilledSlotCount() - 1));
-
+    public void clientTick(Level level) {
         if (isActive()) {
             progress++;
-            if (level instanceof ServerLevel serverLevel) {
-                if (recipe == null) {
-                    updateRecipe();
-                    if (recipe == null) {
-                        state = BrazierState.IDLE;
-                        BlockStateHelper.updateAndNotifyState(level, worldPosition);
-                        return;
-                    }
-                }
-                if (progress % 20 == 0) {
-                    AABB radius = new AABB(worldPosition).inflate(4);
-                    List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, radius);
-                    for (LivingEntity entity : entities) {
-                        if (entity.hasEffect(MobEffects.WEAKNESS)) {
-                            addSacrifice(serverLevel, entity);
-                        }
-                    }
-                }
-
-                if (progress > SOULBINDING_DURATION) {
-                    List<LivingEntity> targets = new ArrayList<>();
-                    for (UUID uuid : sacrificedTargets) {
-                        if (serverLevel.getEntity(uuid) instanceof LivingEntity entity) {
-                            targets.add(entity);
-                        }
-                    }
-                    completeSoulBinding(serverLevel, targets);
-                }
-            }
-        } else {
-            sacrificedTargets.clear();
-            progress = Math.max(progress-10, 0);
         }
+        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
+        extrasAmount = Math.max(1, Mth.lerp(0.1f, extrasAmount, inventory.getFilledSlotCount() - 1));
+        float extraSpeed = Math.min(progress / 100f, 5) * getSpinUp(Easing.BOUNCE_IN_OUT);
+        float speed = 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.4f + extraSpeed;
+        spiritSpin += speed;
+        extrasSpin -= speed;
+        SoulBindingBrazierParticleEffects.passiveBrazierParticles(this);
+    }
 
-        if (!isReady && recipe != null) {
-            isReady = true;
-            BlockStateHelper.updateAndNotifyState(level, worldPosition);
-        } else if (isReady && recipe == null) {
-            isReady = false;
-            BlockStateHelper.updateAndNotifyState(level, worldPosition);
-        }
-
+    @Override
+    public void commonTick(Level level) {
         if (isReady) {
             warmupTimer++;
         } else {
             warmupTimer = Mth.clamp(warmupTimer - 1, 0, WARMUP_DURATION);
         }
+    }
 
-        if (level.isClientSide) {
-            float extraSpeed = Math.min(progress / 100f, 5) * getSpinUp(Easing.BOUNCE_IN_OUT);
-            float speed = 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.4f + extraSpeed;
-            spiritSpin += speed;
-            extrasSpin -= speed;
-            SoulBindingBrazierParticleEffects.passiveBrazierParticles(this);
+    @Override
+    public void serverTick(ServerLevel level) {
+        if ((!isReady && recipe != null) || (isReady && recipe == null)) {
+            isReady = !isReady;
+            BlockStateHelper.updateState(level, worldPosition);
+            setDirty();
+        }
+        if (isActive()) {
+            progress++;
+            if (recipe == null) {
+                updateRecipe();
+                if (recipe == null) {
+                    state = BrazierState.IDLE;
+                    setDirty();
+                    return;
+                }
+            }
+            if (progress % 20 == 0) {
+                AABB radius = new AABB(worldPosition).inflate(4);
+                List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, radius);
+                for (LivingEntity entity : entities) {
+                    if (entity.hasEffect(MobEffects.WEAKNESS)) {
+                        addSacrifice(level, entity);
+                    }
+                }
+            }
+
+            if (progress > SOULBINDING_DURATION) {
+                List<LivingEntity> targets = new ArrayList<>();
+                for (UUID uuid : sacrificedTargets) {
+                    if (level.getEntity(uuid) instanceof LivingEntity entity) {
+                        targets.add(entity);
+                    }
+                }
+                completeSoulBinding(level, targets);
+            }
+        } else {
+            sacrificedTargets.clear();
+            progress = Math.max(progress - 10, 0);
         }
     }
 
@@ -267,7 +273,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, true), 3);
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public boolean addSacrifice(ServerLevel level, LivingEntity entity) {
@@ -282,7 +288,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                     .customData(new SoulBrazierAcceptSacrificeParticleEffect.SoulBrazierEntityEffectData(entity.getId()))
                     .spawn(level);
 
-            BlockStateHelper.updateAndNotifyState(level, worldPosition);
+            setDirty();
             return true;
         }
         return false;
@@ -334,10 +340,10 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
                 .customData(new SoulBrazierStateEffectData(state))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.BRAZIER_FINISH.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-        state = BrazierState.IDLE;
         level.setBlock(worldPosition, getBlockState().setValue(SoulBrazierBlock.LIT, false), 3);
+        state = BrazierState.IDLE;
         updateRecipe();
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public void updateRecipe() {
@@ -348,7 +354,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     public boolean isActive() {
-        return !isIdle() && recipe != null;
+        return !state.equals(BrazierState.IDLE) && recipe != null;
     }
 
     public boolean isIdle() {

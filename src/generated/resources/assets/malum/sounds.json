@@ -7,17 +7,6 @@
     ],
     "subtitle": "malum.subtitle.a_soul_shatters"
   },
-  "aerial_magic_swooshes": {
-    "sounds": [
-      "mob/phantom/flap1",
-      "mob/phantom/flap2",
-      "mob/phantom/flap3",
-      "mob/phantom/flap4",
-      "mob/phantom/flap5",
-      "mob/phantom/flap6"
-    ],
-    "subtitle": "malum.subtitle.aerial_magic_swooshes"
-  },
   "aesthetica": {
     "sounds": [
       "malum:aesthetica"
@@ -2136,6 +2125,23 @@
     ],
     "subtitle": "malum.subtitle.spark_bestows_potion_effect"
   },
+  "spark_directed": {
+    "sounds": [
+      {
+        "name": "malum:totem/spark/spark_create1",
+        "pitch": 2.0
+      },
+      {
+        "name": "malum:totem/spark/spark_create2",
+        "pitch": 2.0
+      },
+      {
+        "name": "malum:totem/spark/spark_create3",
+        "pitch": 2.0
+      }
+    ],
+    "subtitle": "malum.subtitle.spark_directed"
+  },
   "spark_formed": {
     "sounds": [
       "malum:totem/spark/spark_create1",
@@ -2143,6 +2149,23 @@
       "malum:totem/spark/spark_create3"
     ],
     "subtitle": "malum.subtitle.spark_formed"
+  },
+  "spark_unwoven": {
+    "sounds": [
+      {
+        "name": "malum:totem/spark/spark_create1",
+        "pitch": 0.5
+      },
+      {
+        "name": "malum:totem/spark/spark_create2",
+        "pitch": 0.5
+      },
+      {
+        "name": "malum:totem/spark/spark_create3",
+        "pitch": 0.5
+      }
+    ],
+    "subtitle": "malum.subtitle.spark_unwoven"
   },
   "spell_charge_full": {
     "sounds": [
@@ -2572,6 +2595,16 @@
     ],
     "subtitle": "malum.subtitle.totem_hums"
   },
+  "totemic_growth": {
+    "sounds": [
+      "item/bonemeal/bonemeal1",
+      "item/bonemeal/bonemeal2",
+      "item/bonemeal/bonemeal3",
+      "item/bonemeal/bonemeal4",
+      "item/bonemeal/bonemeal5"
+    ],
+    "subtitle": "malum.subtitle.totemic_growth"
+  },
   "totemic_rite_activated": {
     "sounds": [
       "malum:totem/totem_activate"
@@ -2591,6 +2624,30 @@
       "malum:equip_sounds/rune/equip_rune_wood3"
     ],
     "subtitle": "malum.subtitle.totemic_rune_equipped"
+  },
+  "totemic_sapping": {
+    "sounds": [
+      "block/pointed_dripstone/drip_water_cauldron1",
+      "block/pointed_dripstone/drip_water_cauldron2",
+      "block/pointed_dripstone/drip_water_cauldron3",
+      "block/pointed_dripstone/drip_water_cauldron4",
+      "block/pointed_dripstone/drip_water_cauldron5",
+      "block/pointed_dripstone/drip_water_cauldron6",
+      "block/pointed_dripstone/drip_water_cauldron7",
+      "block/pointed_dripstone/drip_water_cauldron8"
+    ],
+    "subtitle": "malum.subtitle.totemic_sapping"
+  },
+  "totemic_weight": {
+    "sounds": [
+      "mob/phantom/flap1",
+      "mob/phantom/flap2",
+      "mob/phantom/flap3",
+      "mob/phantom/flap4",
+      "mob/phantom/flap5",
+      "mob/phantom/flap6"
+    ],
+    "subtitle": "malum.subtitle.totemic_weight"
   },
   "tuning_fork_tinkers": {
     "sounds": [
@@ -2663,33 +2720,73 @@
     ],
     "subtitle": "malum.subtitle.warping_engine_reverberates"
   },
+  "wavebanker_releases": {
+    "sounds": [
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "malum.subtitle.wavebanker_releases"
+  },
   "wavebanker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebanker_stores"
   },
   "wavebreaker_releases": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebreaker_releases"
   },
   "wavebreaker_stores": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavebreaker_stores"
   },
   "wavecharger_charges": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.2,
+        "volume": 0.3
+      }
     ],
     "subtitle": "malum.subtitle.wavecharger_charges"
   },
+  "wavecharger_releases": {
+    "sounds": [
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "malum.subtitle.wavecharger_releases"
+  },
   "wavemaker_pulses": {
     "sounds": [
-      "malum:blocks/spirit_diode/waveform_pulse"
+      {
+        "name": "malum:blocks/spirit_diode/waveform_pulse",
+        "pitch": 1.4,
+        "volume": 0.2
+      }
     ],
     "subtitle": "malum.subtitle.wavemaker_pulses"
   },

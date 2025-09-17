@@ -40,7 +40,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
     public static GluttonyEffect.GluttonyEffectProperties applyConcentratedGluttonyEffect(LivingEntity target, float durationScalar) {
         return GluttonyEffect.applyGluttony(target, builder -> {
             int amplifier = 3;
-            int duration = 200;
+            int duration = 600;
 
             if (CurioHelper.hasCurioEquipped(target, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
                 amplifier++;

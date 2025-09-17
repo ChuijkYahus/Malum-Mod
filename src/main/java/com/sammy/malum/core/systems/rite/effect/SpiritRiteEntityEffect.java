@@ -1,9 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.google.common.collect.ImmutableList;
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
-import com.sammy.malum.common.entity.activator.RiteEffectActivatorEntity;
-import com.sammy.malum.common.entity.activator.SpiritCollectionActivatorEntity;
+import com.sammy.malum.common.entity.activator.EntityRiteEffectActivatorEntity;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -11,6 +8,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 
@@ -30,12 +28,13 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
     }
 
     @Override
-    public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        List<T> nearbyTargets = findNearbyTargets(level, totemBase.getBlockPos());
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
+        List<T> nearbyTargets = findNearbyTargets(level, pos);
         if (nearbyTargets.isEmpty()) {
-            return;
+            return false;
         }
-        var random = totemBase.getLevel().getRandom();
+        var random = level.getRandom();
+        int totemHeight = parameters.getTotemHeight();
         int counter = 2; //It'd be cool if you could increase the effectiveness of a rite by modifying the spirit rune placement a little
         //Maybe adding an extra arcane spirit to the bottom could increase the range of the rite
         //Adding an extra effect core spirit to the top could increase the amount of entities it can affect at once
@@ -47,18 +46,18 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
         for (int i = 0; i < counter; i++) {
             var target = nearbyTargets.get(i);
             var uuid = target.getUUID();
-            var position = totemBase.getBlockPos().getCenter().add(0, totemBase.getTotemHeight(), 0);
+            var position = pos.getCenter().add(0, totemHeight, 0);
             var velocity = new Vec3(
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1),
                     RandomHelper.randomBetween(random, 0.1f, 0.2f),
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
-            RiteEffectActivatorEntity entity = new RiteEffectActivatorEntity(level, this, uuid, position, velocity);
-            entity.setSpirit(totemBase.getRite().getIdentifyingSpirit().getSpirit());
+            EntityRiteEffectActivatorEntity entity = new EntityRiteEffectActivatorEntity(level, this, uuid, position, velocity);
+            entity.setSpirit(definingSpirit);
             level.addFreshEntity(entity);
             SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
-
         }
+        return true;
     }
 
     public abstract Class<T> getTargetClass();
@@ -89,7 +88,12 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
 
     public List<T> findNearbyTargets(ServerLevel level, BlockPos source) {
         AABB area = new AABB(source).inflate(getEffectRange());
-        return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> canApplyEffect(level, e)));
+        return new ArrayList<>(level.getEntitiesOfClass(getTargetClass(), area, e -> {
+            if (e instanceof Player player && player.isSpectator()) {
+                return false;
+            }
+            return canApplyEffect(level, e);
+        }));
     }
 
     protected void createEffect(ServerLevel level, T target, SpiritLike... spirits) {

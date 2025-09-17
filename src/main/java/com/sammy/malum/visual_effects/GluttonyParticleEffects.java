@@ -104,10 +104,10 @@ public class GluttonyParticleEffects {
     }
 
     public static ParticleEffectSpawner gluttonyRing(Vec3 center, WorldParticleBuilder builder, float distance, int count, float lifetimeScalar) {
-        Level level = Minecraft.getInstance().level;
-        long gameTime = level.getGameTime();
-        var random = level.random;
         return new ParticleEffectSpawner(builder, b -> {
+            Level level = Minecraft.getInstance().level;
+            long gameTime = level.getGameTime();
+            var random = level.random;
             for (int i = 0; i < count; i++) {
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(center, distance, i, count, gameTime, 320);
                 for (int j = 0; j < 3; j++) {
@@ -133,7 +133,6 @@ public class GluttonyParticleEffects {
                             .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
                 }
             }
-
         });
     }
 }

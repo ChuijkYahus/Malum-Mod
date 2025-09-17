@@ -50,7 +50,7 @@ public class ProgressionScreenHolder<T extends AbstractProgressionCodexScreen> e
         screen.ignoreNextMouseInput = false;
         screen.voidFadeoutCounter++;
         screen.voidFadeoutTimer = screen.getVoidFadeoutDuration();
-        screen.faceObject(screen.progressionObjects.getFirst());
+        screen.faceOrigin();
         screen.playSound(transitionSound, 1.25f, 1f);
         mostRecentScreen = this;
     }

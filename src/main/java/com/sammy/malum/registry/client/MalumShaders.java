@@ -6,7 +6,6 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP;
@@ -17,9 +16,12 @@ public class MalumShaders {
     public static LodestoneShaderRegistry SHADERS = new LodestoneShaderRegistry(MalumMod.MALUM);
 
     public static ShaderHolder TOUCH_OF_DARKNESS = SHADERS.register("touch_of_darkness", DefaultVertexFormat.POSITION_TEX_COLOR);
+
     public static ShaderHolder WEEPING_WELL_DISTORTION = SHADERS.register("weeping_distortion", DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);
-    public static ShaderHolder SOULLESS_OUTLINE = SHADERS.register("soulless_outline", POSITION_COLOR_TEX_LIGHTMAP);
-    public static ShaderHolder PARALLEL_WORLD_SKYBOX = SHADERS.register("parallel_world/skybox", DefaultVertexFormat.POSITION);
+    public static ShaderHolder WEEPING_SKYBOX = SHADERS.register("parallel_world/weeping_skybox", DefaultVertexFormat.POSITION_TEX_COLOR);
+    public static ShaderHolder WEEPING_SPYHOLE = SHADERS.register("weeping_spyhole", DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);
+
+    public static ShaderHolder SOULLESS_CREATURE_OUTLINE = SHADERS.register("soulless_creature_outline", POSITION_COLOR_TEX_LIGHTMAP);
 
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) {

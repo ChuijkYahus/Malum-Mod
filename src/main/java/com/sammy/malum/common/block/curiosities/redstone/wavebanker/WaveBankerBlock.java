@@ -2,7 +2,9 @@ package com.sammy.malum.common.block.curiosities.redstone.wavebanker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.registry.common.MalumSoundEvents;
+import net.minecraft.client.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.*;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,29 +15,25 @@ public class WaveBankerBlock extends SpiritDiodeBlock<WaveBankerBlockEntity> {
     }
 
     @Override
-    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int signal) {
+    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int cachedSignal, int liveSignal) {
         int previousSignal = diode.outputSignal;
-        diode.outputSignal = signal;
-
-        if (previousSignal > diode.outputSignal) {
-            level.playSound(null, pos, MalumSoundEvents.WAVEBANKER_STORE.get(), SoundSource.BLOCKS, 0.3f, 1.2f);
-            emitRedstoneParticles(level, pos);
-        }
+        diode.outputSignal = cachedSignal;
+        var sound = previousSignal > diode.outputSignal ? MalumSoundEvents.WAVEBANKER_RELEASE.get() : MalumSoundEvents.WAVEBANKER_STORE.get();
+        level.playSound(null, pos, sound, SoundSource.BLOCKS);
         updateState(level, pos, state, diode);
-
-        return false;
+        return diode.outputSignal > 0 && liveSignal == 0;
     }
 
     @Override
-    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int newInput) {
-        return newInput != diode.outputSignal;
+    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int liveSignal) {
+        return liveSignal != diode.outputSignal;
     }
 
     @Override
-    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int newInput) {
-        if (newInput < diode.outputSignal)
-            return super.redstoneTicksUntilUpdate(level, pos, state, diode, newInput);
-        else
-            return 2; // One redstone tick
+    public int redstoneTicksUntilUpdate(Level level, BlockPos pos, BlockState state, WaveBankerBlockEntity diode, int cachedSignal, int liveSignal) {
+        if (liveSignal >= diode.outputSignal) {
+            return 4;
+        }
+        return super.redstoneTicksUntilUpdate(level, pos, state, diode, cachedSignal, liveSignal);
     }
 }

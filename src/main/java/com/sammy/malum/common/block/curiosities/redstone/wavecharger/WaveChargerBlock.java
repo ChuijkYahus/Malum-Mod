@@ -14,29 +14,25 @@ public class WaveChargerBlock extends SpiritDiodeBlock<WaveChargerBlockEntity> {
     }
 
     @Override
-    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveChargerBlockEntity diode, int signal) {
+    public boolean processUpdate(Level level, BlockPos pos, BlockState state, WaveChargerBlockEntity diode, int cachedSignal, int liveSignal) {
         int startingSignal = diode.outputSignal;
-        if (startingSignal > signal) {
+        if (startingSignal > liveSignal) {
             diode.outputSignal--;
-        } else if (startingSignal < signal) {
+            level.playSound(null, pos, MalumSoundEvents.WAVECHARGER_RELEASE.get(), SoundSource.BLOCKS);
+        } else if (startingSignal < liveSignal) {
             diode.outputSignal++;
+            level.playSound(null, pos, MalumSoundEvents.WAVECHARGER_CHARGE.get(), SoundSource.BLOCKS);
         } else {
             return false;
         }
 
         updateState(level, pos, state, diode);
 
-        if (diode.outputSignal == signal) {
-            level.playSound(null, pos, MalumSoundEvents.WAVECHARGER_CHARGE.get(), SoundSource.BLOCKS, 0.3f, signal == 0 ? 0.9f : 1.5f);
-            emitRedstoneParticles(level, pos);
-            return false;
-        }
-
-        return true;
+        return diode.outputSignal != liveSignal;
     }
 
     @Override
-    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveChargerBlockEntity diode, int newInput) {
-        return newInput != diode.outputSignal;
+    public boolean shouldUpdateWhenNeighborChanged(Level level, BlockPos pos, BlockState state, WaveChargerBlockEntity diode, int liveSignal) {
+        return liveSignal != diode.outputSignal;
     }
 }

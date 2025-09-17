@@ -1,0 +1,6 @@
+{
+  "parent": "malum:block/templates/template_totem_base",
+  "textures": {
+    "totem_base": "malum:block/waveform_runewood_totem_base"
+  }
+}

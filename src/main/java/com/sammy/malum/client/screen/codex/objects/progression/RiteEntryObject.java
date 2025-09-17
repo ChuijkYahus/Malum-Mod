@@ -15,9 +15,9 @@ public class RiteEntryObject extends ProgressionEntryObject {
 
     public RiteEntryObject(BookEntry entry, int posX, int posY) {
         super(entry, posX, posY);
-        Optional<SpiritRiteTextPage> page = entry.pages.stream().filter(p -> p instanceof SpiritRiteTextPage).map(p -> ((SpiritRiteTextPage) p)).findAny();
-        if (page.isPresent()) {
-            this.riteType = page.get().rite;
+        var riteType = getRiteTypeFromEntry(entry);
+        if (riteType.isPresent()) {
+            this.riteType = riteType.get();
         } else {
             throw new IllegalArgumentException("Entry " + entry.translationKey() + " lacks a spirit rite page");
         }
@@ -27,5 +27,9 @@ public class RiteEntryObject extends ProgressionEntryObject {
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
         renderRiteIcon(riteType, guiGraphics.pose(), getOffsetXPosition() + 8, getOffsetYPosition() + 8);
+    }
+
+    public static Optional<SpiritRiteType> getRiteTypeFromEntry(BookEntry entry) {
+        return entry.pages.stream().filter(p -> p instanceof SpiritRiteTextPage).map(p -> ((SpiritRiteTextPage) p).rite).findAny();
     }
 }

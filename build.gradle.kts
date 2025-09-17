@@ -191,14 +191,28 @@ dependencies {
     localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
     localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
 
-
-    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
+    //FTB Whatever
     localRuntime("curse.maven:architectury-api-419699:5786327")
+    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
 
     //AttributeFix
     localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
     localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
     localRuntime(("curse.maven:attributefix-280510:5824104"))
+
+    // Imgui
+    implementation("io.github.spair:imgui-java-app:${property("imgui_version")}")
+    implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+    implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+    implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+    implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+    implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {
@@ -258,4 +272,10 @@ idea {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+
+private fun DependencyHandlerScope.jarJar(dependencyNotation: Dependency?) {
+    if (dependencyNotation != null) {
+        add("jarJar", dependencyNotation)
+    }
 }

@@ -4,8 +4,10 @@ import com.google.common.collect.ImmutableList;
 import com.sammy.malum.client.screen.codex.objects.progression.ProgressionEntryObject;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.pages.EntryReference;
+import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.network.chat.Style;
 
+import javax.annotation.*;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
@@ -15,9 +17,10 @@ public class PlacedBookEntry extends BookEntry {
 
     public PlacedBookEntry(String identifier, boolean isVoid,
                            BookEntryWidgetPlacementData widgetData,
-                           ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> entryReferences, BooleanSupplier validityChecker,
-                           UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean tooltipDisabled, boolean isFragment) {
-        super(identifier, isVoid, bookPages, entryReferences, validityChecker, titleStyle, subtitleStyle, tooltipDisabled, isFragment);
+                           ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> entryReferences, BooleanSupplier condition,
+                           @Nullable SpiritLike associatedSpirit, boolean isFragment,
+                           UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean tooltipDisabled) {
+        super(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, tooltipDisabled);
         this.widgetData = widgetData;
     }
 

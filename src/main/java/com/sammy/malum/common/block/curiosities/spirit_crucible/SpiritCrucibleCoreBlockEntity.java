@@ -28,6 +28,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -59,6 +60,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     public float spiritSpin;
 
     public float progress;
+    public boolean isCrafting;
 
     public int queuedCracks;
     public int crackTimer;
@@ -116,14 +118,14 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         augmentInventory.load(pRegistries, compound, "augmentInventory");
         coreAugmentInventory.load(pRegistries, compound, "coreAugmentInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
+            updateRecipe();
             if (level.isClientSide) {
                 if (recipe != null) {
                     CrucibleSoundInstance.playSound(this);
                 }
             }
-            updateRecipe();
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -184,47 +186,53 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     }
 
     @Override
-    public void tick() {
-        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-        float speed = attributes.focusingSpeed.getValue(attributes);
-        if (level instanceof ServerLevel serverLevel) {
-            if (queuedCracks > 0) {
-                crackTimer++;
-                if (crackTimer % 5 == 0) {
-                    if (crackTimer >= 15) {
-                        crackTimer = 0;
-                    }
-                    float pitch = RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f) * (0.95f + (crackTimer - 8) * 0.015f);
-                    level.playSound(null, worldPosition, MalumSoundEvents.IMPETUS_CRACK.get(), SoundSource.BLOCKS, 0.7f, pitch);
-                    queuedCracks--;
-                    if (queuedCracks == 0) {
-                        crackTimer = 0;
-                    }
+    public void serverTick(ServerLevel level) {
+        if (queuedCracks > 0) {
+            crackTimer++;
+            if (crackTimer % 5 == 0) {
+                if (crackTimer >= 15) {
+                    crackTimer = 0;
+                }
+                float pitch = RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f) * (0.95f + (crackTimer - 8) * 0.015f);
+                level.playSound(null, worldPosition, MalumSoundEvents.IMPETUS_CRACK.get(), SoundSource.BLOCKS, 0.7f, pitch);
+                queuedCracks--;
+                if (queuedCracks == 0) {
+                    crackTimer = 0;
                 }
             }
-            if (recipe != null) {
-                attributes.getInfluenceData(level).ifPresent(d -> {
-                    for (ArtificeModifierSourceInstance modifier : d.modifiers()) {
-                        modifier.tickFocusing(attributes);
-                        if (!modifier.canModifyFocusing(attributes)) {
-                            recalibrateAccelerators(level);
-                        }
+        }
+        if ((!isCrafting && recipe != null) || (isCrafting && recipe == null)) {
+            isCrafting = !isCrafting;
+            setDirty();
+        }
+        if (isCrafting) {
+            float speed = attributes.focusingSpeed.getValue(attributes);
+            attributes.getInfluenceData(level).ifPresent(d -> {
+                for (ArtificeModifierSourceInstance modifier : d.modifiers()) {
+                    modifier.tickFocusing(attributes);
+                    if (!modifier.canModifyFocusing(attributes)) {
+                        recalibrateAccelerators(level);
                     }
-                });
-                progress += speed;
-                if (progress >= recipe.time) {
-                    craft(serverLevel);
                 }
-            } else {
-                if (progress != 0) {
-                    progress = 0;
-                    invalidateModifiers(level);
-                }
+            });
+            progress += speed;
+            if (progress >= recipe.time) {
+                craft(level);
             }
         } else {
-            spiritSpin += 1 + speed * 0.1f;
-            SpiritCrucibleParticleEffects.passiveCrucibleParticles(this);
+            if (progress != 0) {
+                progress = 0;
+                invalidateModifiers(level);
+            }
         }
+    }
+
+    @Override
+    public void clientTick(Level level) {
+        float speed = attributes.focusingSpeed.getValue(attributes);
+        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
+        spiritSpin += 1 + speed * 0.1f;
+        SpiritCrucibleParticleEffects.passiveCrucibleParticles(this);
     }
 
     public void craft(ServerLevel level) {

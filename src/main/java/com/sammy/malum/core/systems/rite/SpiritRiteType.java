@@ -61,7 +61,11 @@ public class SpiritRiteType {
     }
 
     public void triggerRiteEffect(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        getEffect().triggerRiteEffect(level, totemBase);
+        var params = SpiritRiteEffect.builder()
+                .setTotemHeight(totemBase.getTotemHeight())
+                .setTotemDirection(totemBase.getTotemDirection())
+                .build();
+        getEffect().triggerRiteEffect(level, totemBase.getBlockPos(), getIdentifyingSpirit().get(), params);
     }
 
     public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {

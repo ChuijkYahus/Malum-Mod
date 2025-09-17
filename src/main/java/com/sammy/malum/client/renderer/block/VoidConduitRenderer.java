@@ -2,6 +2,8 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
+import com.sammy.malum.client.renderer.renderpass.*;
+import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -9,6 +11,7 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.registry.client.*;
@@ -40,7 +43,6 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
-        float alpha = 0.08f;
 
         builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
 
@@ -52,24 +54,32 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         };
         for (int i = 0; i < 4; i++) {
             float speed = 1000f + 250f * i;
+            float alpha = 0.2f - i * 0.05f;
+
+
             ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
-                    .modifyUniform("Width", 48f)
-                    .modifyUniform("Height", 48f)
-                    .modifyUniform("UVCoordinates", -20f, 40f, -20f, 40f);
-            var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
+                    .modifyUniform("Width", 1024f)
+                    .modifyUniform("Height", 1024f)
+                    .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
+            var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
 
             builder.setColor(colors[i]).setRenderType(distortion);
 
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
             builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
-            alpha -= 0.02f;
             uOffset = -uOffset - 0.2f;
             vOffset = -vOffset + 0.4f;
             poseStack.translate(0, 0.05f, 0);
             poseStack.mulPose(Axis.YP.rotationDegrees(90));
         }
         poseStack.popPose();
+    }
+
+    @Override
+    public AABB getRenderBoundingBox(VoidConduitBlockEntity voidConduit) {
+        var pos = voidConduit.getBlockPos();
+        return new AABB(pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3);
     }
 }

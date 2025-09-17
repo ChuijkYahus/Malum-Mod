@@ -45,7 +45,7 @@ public class ValueSettingsScreen extends Screen {
     private static final int BORDER_SIZE = 5;
     private static final int DIAL_SIZE = 64;
 
-    private final BlockPos pos;
+    private final SpiritDiodeBlockEntity diode;
     private final int interfaceWidth;
     private final int interfaceHeight;
 
@@ -60,7 +60,7 @@ public class ValueSettingsScreen extends Screen {
 
     public ValueSettingsScreen(SpiritDiodeBlockEntity diode) {
         super(diode.getTitleComponent());
-        this.pos = diode.getBlockPos();
+        this.diode = diode;
         this.angle = diode.frequency;
         this.timeInterval = diode.type;
         interfaceWidth = 180 + DIAL_SIZE;
@@ -112,7 +112,7 @@ public class ValueSettingsScreen extends Screen {
             if (isHovering(mouseX, mouseY, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE)) {
                 double offsetX = xDialCenter - mouseX;
                 double offsetY = yDialCenter - mouseY;
-                angle = clampAngle(Mth.ceil(Math.toDegrees(Math.atan2(offsetX, -offsetY)))+180);
+                angle = clampAngle(Mth.ceil(Math.toDegrees(Math.atan2(offsetX, -offsetY))) + 180);
             }
         }
         disableMouse = false;
@@ -158,14 +158,14 @@ public class ValueSettingsScreen extends Screen {
         }
 
         renderBorderBackground(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
-        renderDialTexture(guiGraphics, dialLeft, dialTop);
+        renderDial(guiGraphics, dialLeft, dialTop);
         for (int i = 0; i < 3; i++) {
             var type = SpiritDiodeBlockEntity.TimeIntervalType.values()[i];
-            renderIntervalDisplay(guiGraphics, type.getText(), dialLeft - BORDER_SIZE, dialTop + 13 * i, type.equals(timeInterval), partialTick);
+            renderIntervalDisplay(guiGraphics, type.getText(true), dialLeft - BORDER_SIZE, dialTop + 13 * i, type.equals(timeInterval), partialTick);
         }
         renderBorder(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
         var text = Component.literal("" + (angle));
-        renderText(guiGraphics, text, xDialCenter+0.5f - font.width(text) / 2f, yDialCenter+0.5f - font.lineHeight / 2f, true, partialTick);
+        renderText(guiGraphics, text, xDialCenter + 0.5f - font.width(text) / 2f, yDialCenter + 0.5f - font.lineHeight / 2f, true, partialTick);
     }
 
     @Override
@@ -208,8 +208,7 @@ public class ValueSettingsScreen extends Screen {
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
             if (oldAngle > angle) {
                 newAngle = Mth.floor((angle / 10f)) * 10;
-            }
-            else {
+            } else {
                 newAngle = Mth.ceil((angle / 10f)) * 10;
             }
         }
@@ -220,8 +219,9 @@ public class ValueSettingsScreen extends Screen {
         }
         return newAngle;
     }
+
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(pos, isOpen, timeInterval, angle));
+        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, timeInterval, angle));
     }
 
     public void updateMousePosition(double mouseX, double mouseY) {
@@ -282,7 +282,7 @@ public class ValueSettingsScreen extends Screen {
         CodexRenderHelper.renderTexture(TEXTURE, graphics.pose(), VFX_BUILDER, x, y, u, v, xCoverage, yCoverage, width, height, 32, 32);
     }
 
-    public void renderDialTexture(GuiGraphics graphics, int x, int y) {
+    public void renderDial(GuiGraphics graphics, int x, int y) {
         ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(10f);
@@ -295,6 +295,8 @@ public class ValueSettingsScreen extends Screen {
                 .setAlpha(0.9f)
                 .setColor(0.7f, 0.1f, 0.1f);
 
+        RenderSystem.enableBlend();
+        RenderSystem.enableDepthTest();
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         renderDialTexture(graphics, builder, x, y);
         builder.setAlpha(0.2f);
@@ -305,6 +307,12 @@ public class ValueSettingsScreen extends Screen {
         renderDialTexture(graphics, builder, x, y + 1);
         shaderInstance.setUniformDefaults();
         RenderSystem.defaultBlendFunc();
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableBlend();
+    }
+
+    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
+        builder.setShaderTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE).blit(graphics.pose());
     }
 
     private void renderText(GuiGraphics guiGraphics, Component component, float x, float y, boolean isPowered, float partialTick) {
@@ -355,14 +363,5 @@ public class ValueSettingsScreen extends Screen {
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
             RenderSystem.defaultBlendFunc();
         }
-    }
-
-    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        builder.setShaderTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE)
-                .blit(graphics.pose());
-        RenderSystem.disableDepthTest();
-        RenderSystem.disableBlend();
     }
 }

@@ -7,6 +7,7 @@ import com.sammy.malum.common.block.curiosities.banner.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlock;
 import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlock;
@@ -21,6 +22,8 @@ import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
+import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
+import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
@@ -77,6 +80,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BRILLIANT_OBELISK = BLOCKS.register("brilliant_obelisk", () -> new BrillianceObeliskCoreBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()));
     public static final DeferredHolder<Block, Block> BRILLIANT_OBELISK_COMPONENT = BLOCKS.register("brilliant_obelisk_component", () -> new ObeliskComponentBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().lootFrom(BRILLIANT_OBELISK).noOcclusion(), MalumItems.BRILLIANT_OBELISK));
 
+    public static final DeferredHolder<Block, Block> ARCANA_PYLON = BLOCKS.register("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().noOcclusion()));
+    public static final DeferredHolder<Block, Block> ARCANA_PYLON_COMPONENT = BLOCKS.register("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().lootFrom(ARCANA_PYLON).noOcclusion(), MalumItems.ARCANA_PYLON));
+
     public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE = BLOCKS.register("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CRUCIBLE));
     public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE_COMPONENT = BLOCKS.register("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));
 
@@ -87,13 +93,16 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> REPAIR_PYLON_COMPONENT = BLOCKS.register("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_BASE = BLOCKS.register("runewood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.RUNEWOOD_LOG, false).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
-
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
+
+    public static final DeferredHolder<Block, Block> WAVEFORM_RUNEWOOD_TOTEM_BASE = BLOCKS.register("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(MalumBlockProperties.WAVEFORM_DIODE().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(MalumBlockEntities.WAVEFORM_TOTEM_BASE));
+    public static final DeferredHolder<Block, Block> WAVEFORM_SOULWOOD_TOTEM_BASE = BLOCKS.register("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(MalumBlockProperties.WAVEFORM_DIODE().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.WAVEFORM_TOTEM_BASE));
+
+    public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.RUNEWOOD_LOG, false).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.SOULWOOD_LOG, true).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
 
-    public static final DeferredHolder<Block, Block> EMPTY_RITE_ANCHOR = BLOCKS.register("empty_rite_anchor", () -> new EmptyRiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
-    public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR().lootFrom(EMPTY_RITE_ANCHOR)).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
+    public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
+    public static final DeferredHolder<Block, Block> RITE_UNWEAVER = BLOCKS.register("rite_unweaver", () -> new RiteUnweaverBlock(MalumBlockProperties.RITE_UNWEAVER()).setBlockEntity(MalumBlockEntities.RITE_UNWEAVER));
 
     public static final DeferredHolder<Block, Block> WAVECHARGER = BLOCKS.register("wavecharger", () -> new WaveChargerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVECHARGER));
     public static final DeferredHolder<Block, Block> WAVEBANKER = BLOCKS.register("wavebanker", () -> new WaveBankerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEBANKER));

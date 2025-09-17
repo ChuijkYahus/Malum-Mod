@@ -14,23 +14,31 @@ import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderH
 public class HeadlineTextItemPage extends BookPage {
     private final Component headline;
     private final Component text;
-    private final ItemStack spiritStack;
+    private final ItemStack stack;
 
-    public HeadlineTextItemPage(String headline, String text, ItemStack spiritStack) {
+    public HeadlineTextItemPage(String headline, String text, ItemStack stack) {
         super(MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png"));
         this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
         this.text = Component.translatable(BookPage.TEXT + "." + text);
-        this.spiritStack = spiritStack;
+        this.stack = stack;
     }
 
-    public HeadlineTextItemPage(String headline, String text, Item spirit) {
-        this(headline, text, spirit.getDefaultInstance());
+    public HeadlineTextItemPage(String text, ItemStack stack) {
+        this(text, text + ".1", stack);
+    }
+
+    public HeadlineTextItemPage(String headline, String text, Item item) {
+        this(headline, text, item.getDefaultInstance());
+    }
+
+    public HeadlineTextItemPage(String text, Item item) {
+        this(text, item.getDefaultInstance());
     }
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         renderHeadline(guiGraphics, headline, left, top);
         CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 75, 130);
-        CodexItemHelper.renderItem(screen, guiGraphics, spiritStack, left + 63, top + 38, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, stack, left + 63, top + 38, mouseX, mouseY);
     }
 }

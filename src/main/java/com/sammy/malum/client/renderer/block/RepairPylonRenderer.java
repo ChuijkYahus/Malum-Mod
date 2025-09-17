@@ -20,7 +20,6 @@ import static net.minecraft.client.renderer.texture.OverlayTexture.*;
 
 public class RepairPylonRenderer implements BlockEntityRenderer<RepairPylonCoreBlockEntity> {
 
-
     public RepairPylonRenderer(BlockEntityRendererProvider.Context context) {
     }
 

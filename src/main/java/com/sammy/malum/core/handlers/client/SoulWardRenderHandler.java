@@ -2,6 +2,7 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
+import com.sammy.malum.client.renderer.renderpass.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;

@@ -21,6 +21,6 @@ public class TotemPoleActivatedParticleEffect extends MalumNetworkedParticleEffe
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
-        TotemParticleEffects.activateTotemPoleParticles(level, colorData, positionData.getAsBlockPos().getCenter());
+        TotemParticleEffects.activateTotemPoleParticles(level, colorData, positionData);
     }
 }

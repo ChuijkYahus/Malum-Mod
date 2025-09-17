@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.lang.Math;
@@ -37,9 +38,9 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
         float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
-        Vector3f[] positions = new Vector3f[]{
-                new Vector3f(-0.5f, 0f, 0.51f), new Vector3f(0.5f, 0f, 0.51f),
-                new Vector3f(0.5f, 1f, 0.51f), new Vector3f(-0.5f, 1f, 0.51f)};
+        Vector3f[] vertices = new Vector3f[]{
+                new Vector3f(-0.5125f, 0f, 0.5125f), new Vector3f(0.5125f, 0f, 0.5125f),
+                new Vector3f(0.5125f, 1f, 0.5125f), new Vector3f(-0.5125f, 1f, 0.5125f)};
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0, 0.5f);
@@ -62,24 +63,14 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
 
             poseStack.pushPose();
             poseStack.translate(offset, 0, 0);
-            applyWobble(positions, wobbleStrength);
+            CubeVertexData.applyVertexWobble(vertices, 0, wobbleStrength);
             SpiritBasedWorldVFXBuilder.create(spiritType)
                     .setColor(color, alpha)
                     .setRenderType(renderType)
-                    .renderQuad(poseStack, positions, 1f);
+                    .renderQuad(poseStack, vertices, 1f);
             poseStack.popPose();
             alpha *= (1 - (delta+0.2f) * 0.5f);
         }
         poseStack.popPose();
-    }
-
-    public static void applyWobble(Vector3f[] offsets, float strength) {
-        float offset = 0;
-        for (Vector3f vector3f : offsets) {
-            double time = ((Minecraft.getInstance().level.getGameTime() / 40.0F) % Math.PI * 2);
-            float sine = Mth.sin((float) (time + (offset * Math.PI * 2))) * strength;
-            vector3f.add(sine, -sine, 0);
-            offset += 0.25f;
-        }
     }
 }

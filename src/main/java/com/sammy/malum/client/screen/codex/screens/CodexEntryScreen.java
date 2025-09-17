@@ -47,9 +47,6 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
-        if (parentScreen != null) {
-            setVoidTouched(parentScreen.isVoidTouched);
-        }
         int left = -21;
         int right = BOOK_WIDTH - 15;
         entryObjects.add(new ArrowObject(left, 150, false));
@@ -140,6 +137,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     @Override
     public void tick() {
         super.tick();
+        entryObjects.tick(this);
         textJump = Math.max(textJump - 0.1f, 0);
     }
 
@@ -205,8 +203,14 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public static void openScreen(BookEntry bookEntry) {
         var minecraft = Minecraft.getInstance();
-        var openScreen = minecraft.screen;
-        var screen = openScreen instanceof CodexEntryScreen openCodexEntryScreen ? new CodexEntryScreen(openCodexEntryScreen, bookEntry) : new CodexEntryScreen(bookEntry);
+        CodexEntryScreen screen;
+        if (minecraft.screen instanceof AbstractMalumCodexScreen openScreen) {
+            screen = new CodexEntryScreen(openScreen, bookEntry);
+            screen.setVoidTouched(openScreen.isVoidTouched);
+        }
+        else {
+            screen = new CodexEntryScreen(bookEntry);
+        }
         screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_OPEN, 1.15f);
         minecraft.setScreen(screen);
     }

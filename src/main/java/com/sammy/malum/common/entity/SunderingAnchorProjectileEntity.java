@@ -252,7 +252,8 @@ public class SunderingAnchorProjectileEntity extends ThrowableItemProjectile {
             float yaw = (float) Math.toRadians(yRot);
             Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
             Vec3 up = left.cross(projectileDirection);
-
+            Vec3 newMotion = left.scale(0.1f - random.nextFloat() * 0.2f).add(up.scale(0.1f - random.nextFloat() * 0.2f));
+            setDeltaMovement(getDeltaMovement().lerp(newMotion, 0.2f));
             float offsetScale = Mth.clampedLerp(0.1f, 0.3f, getVisualEffectScalar());
             for (int i = 0; i < 2; i++) {
                 float progress = (i + 1) * 0.5f;

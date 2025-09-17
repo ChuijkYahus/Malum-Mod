@@ -85,7 +85,7 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
             poseStack.translate(0.5f, 1.75f, 0.55f);
             poseStack.mulPose(minecraft.getEntityRenderDispatcher().cameraOrientation());
             poseStack.scale(scale, -scale, -scale);
-            var base = Component.translatable(langKey).append(Component.translatable("malum.waveform_artifice.value_display", blockEntityIn.frequency, blockEntityIn.type.getText()));
+            var base = Component.translatable(langKey).append(Component.translatable("malum.waveform_artifice.value_display", blockEntityIn.frequency, blockEntityIn.type.getText(blockEntityIn)));
             MutableComponent textComponent = base.copy().withStyle(ChatFormatting.RED);
             MutableComponent outlineComponent = base.withStyle(ChatFormatting.DARK_RED);
 

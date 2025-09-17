@@ -14,6 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
@@ -67,33 +68,33 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (level instanceof ServerLevel serverLevel) {
-            long gameTime = serverLevel.getGameTime();
-            if (gameTime % 100L == 0) {
-                level.playSound(null, worldPosition, MalumSoundEvents.UNCANNY_VALLEY.get(), SoundSource.HOSTILE, 1f, Mth.nextFloat(level.getRandom(), 0.55f, 1.75f));
-            }
-            if (gameTime % 20L == 0) {
-                level.playSound(null, worldPosition, MalumSoundEvents.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
-            }
-            if (gameTime % 10L == 0) {
-                acceptItems(serverLevel);
-            }
-            if (!eatenItems.isEmpty()) {
-                progress++;
-                if (progress >= PROCESSING_TIME) {
-                    processItem(serverLevel);
-                }
-                if (eatenItems.isEmpty()) {
-                    progress = 0;
-                }
-            } else if (streak != 0) {
-                streak = 0;
-            }
-        } else {
-            WeepingWellParticleEffects.passiveWeepingWellParticles(this);
+    public void serverTick(ServerLevel level) {
+        long gameTime = level.getGameTime();
+        if (gameTime % 100L == 0) {
+            level.playSound(null, worldPosition, MalumSoundEvents.UNCANNY_VALLEY.get(), SoundSource.HOSTILE, 1f, Mth.nextFloat(level.getRandom(), 0.55f, 1.75f));
         }
+        if (gameTime % 20L == 0) {
+            level.playSound(null, worldPosition, MalumSoundEvents.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
+        }
+        if (gameTime % 10L == 0) {
+            acceptItems(level);
+        }
+        if (!eatenItems.isEmpty()) {
+            progress++;
+            if (progress >= PROCESSING_TIME) {
+                processItem(level);
+            }
+            if (eatenItems.isEmpty()) {
+                progress = 0;
+            }
+        } else if (streak != 0) {
+            streak = 0;
+        }
+    }
+
+    @Override
+    public void clientTick(Level level) {
+        WeepingWellParticleEffects.passiveWeepingWellParticles(this);
     }
 
     public void acceptItems(ServerLevel serverLevel) {

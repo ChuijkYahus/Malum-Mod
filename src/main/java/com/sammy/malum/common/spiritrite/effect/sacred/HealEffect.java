@@ -5,7 +5,6 @@ import com.sammy.malum.registry.common.MalumDamageTypes;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.Monster;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SACRED_SPIRIT;
@@ -13,7 +12,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SACRED_SPIR
 public class HealEffect extends SpiritRiteEntityEffect<LivingEntity> {
 
     public HealEffect() {
-        super();
+        super(SpiritRiteEffectTag.LESSER_RITE);
     }
 
     @Override

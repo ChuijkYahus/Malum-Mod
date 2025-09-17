@@ -13,7 +13,7 @@ import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
 import java.util.function.Supplier;
 
 public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
-    public static final VoxelShape SHAPE = makeShape();
+    private static final VoxelShape SHAPE = makeShape();
 
     public ObeliskCoreBlock(Properties properties, Supplier<BlockEntityType<T>> type) {
         super(properties);
@@ -25,7 +25,7 @@ public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLog
         return SHAPE;
     }
 
-    public static VoxelShape makeShape() {
+    private static VoxelShape makeShape() {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.625, 0, 0.625, 1, 0.3125, 1), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.1875, 0.1875, 0.1875, 0.8125, 1, 0.8125), BooleanOp.OR);

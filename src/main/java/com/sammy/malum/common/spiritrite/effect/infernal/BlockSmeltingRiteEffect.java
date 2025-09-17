@@ -1,7 +1,7 @@
 package com.sammy.malum.common.spiritrite.effect.infernal;
 
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
+import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.core.systems.rite.effect.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.BlockItem;
@@ -9,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.ELDRITCH_SPIRIT;
@@ -18,11 +17,11 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.INFERNAL_SP
 public class BlockSmeltingRiteEffect extends SpiritRiteBlockEffect {
 
     public BlockSmeltingRiteEffect() {
-        super();
+        super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockState state, BlockPos pos) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         var recipeOptional = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(new ItemStack(state.getBlock().asItem(), 1)), level);
         if (recipeOptional.isPresent()) {
             var recipe = recipeOptional.get().value();

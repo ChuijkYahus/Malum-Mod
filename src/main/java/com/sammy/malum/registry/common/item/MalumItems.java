@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.item;
 import com.sammy.malum.*;
 import com.sammy.malum.client.renderer.curio.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
+import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
@@ -133,9 +134,6 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", HIDDEN_PROPERTIES().rarity(RARE), ArcaneElegyMusicDiscItem::new);
     public static final DeferredHolder<Item, Item> AESTHETICA = register("music_disc_aesthetica", HIDDEN_PROPERTIES().rarity(RARE), AestheticaMusicDiscItem::new);
-
-    //region random stuff
-        public static DeferredHolder<Item, Item> COPPER_NUGGET;
 
     public static final DeferredHolder<Item, Item> COAL_FRAGMENT = register("coal_fragment", new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), (p) -> new LodestoneFuelItem(p, 200));
     public static final DeferredHolder<Item, Item> CHARCOAL_FRAGMENT = register("charcoal_fragment", new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), (p) -> new LodestoneFuelItem(p, 200));
@@ -478,6 +476,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SPIRIT_ALTAR = register("spirit_altar", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SPIRIT_ALTAR.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD_OBELISK = register("runewood_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.RUNEWOOD_OBELISK.get(), p, RunewoodObeliskBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> BRILLIANT_OBELISK = register("brilliant_obelisk", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.BRILLIANT_OBELISK.get(), p, BrilliantObeliskBlockEntity.STRUCTURE));
+    public static final DeferredHolder<Item, Item> ARCANA_PYLON = register("arcana_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.ARCANA_PYLON.get(), p, ArcanaPylonBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> SPIRIT_JAR = register("spirit_jar", DEFAULT_PROPERTIES(), (p) -> new SpiritJarItem(MalumBlocks.SPIRIT_JAR.get(), p));
     public static final DeferredHolder<Item, Item> RUNIC_WORKBENCH = register("runic_workbench", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNIC_WORKBENCH.get(), p));
     public static final DeferredHolder<Item, Item> SOUL_BRAZIER = register("soulbinding_brazier", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOUL_BRAZIER.get(), p));
@@ -486,9 +485,13 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> REPAIR_PYLON = register("repair_pylon", DEFAULT_PROPERTIES(), (p) -> new MultiBlockItem(MalumBlocks.REPAIR_PYLON.get(), p, RepairPylonCoreBlockEntity.STRUCTURE));
     public static final DeferredHolder<Item, Item> RUNEWOOD_TOTEM_BASE = register("runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RUNEWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
+    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new BlockItem(MalumBlocks.RITE_ANCHOR.get(), p));
+    public static final DeferredHolder<Item, Item> RITE_UNWEAVER = register("rite_unweaver", DEFAULT_PROPERTIES(), p -> new BlockItem(MalumBlocks.RITE_UNWEAVER.get(), p));
+    public static final DeferredHolder<Item, Item> WAVEFORM_RUNEWOOD_TOTEM_BASE = register("waveform_runewood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEFORM_RUNEWOOD_TOTEM_BASE.get(), p));
+    public static final DeferredHolder<Item, Item> WAVEFORM_SOULWOOD_TOTEM_BASE = register("waveform_soulwood_totem_base", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEFORM_SOULWOOD_TOTEM_BASE.get(), p));
+
     public static final DeferredHolder<Item, Item> RITUAL_PLINTH = register("ritual_plinth", HIDDEN_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.RITUAL_PLINTH.get(), p));
 
-    public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", DEFAULT_PROPERTIES(), p -> new ItemNameBlockItem(MalumBlocks.EMPTY_RITE_ANCHOR.get(), p));
 
     public static final DeferredHolder<Item, Item> WAVECHARGER = register("wavecharger", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVECHARGER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBANKER = register("wavebanker", DEFAULT_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.WAVEBANKER.get(), p));

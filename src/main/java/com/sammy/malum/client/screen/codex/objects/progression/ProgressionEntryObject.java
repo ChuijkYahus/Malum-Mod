@@ -32,6 +32,7 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     public ChatFormatting headlineFormatting;
     public Predicate<AbstractProgressionCodexScreen> isValid = t -> true;
     public ItemStack iconStack;
+    public boolean isOrigin;
 
     public ProgressionEntryObject(BookEntry entry, int posX, int posY) {
         super(posX, posY, 32, 32);
@@ -66,10 +67,10 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         var designType = design.getDesignType();
         int width = designType.getTextureWidth();
         int height = designType.getTextureHeight();
-        int posX = getOffsetXPosition() - (width - 32) / 2;
-        int posY = getOffsetYPosition() - (height - 32) / 2;
-        int centerX = posX + width / 2;
-        int centerY = posY + height / 2;
+        int posX = getLeftPos();
+        int posY = getTopPos();
+        int centerX = getCenterX();
+        int centerY = getCenterY();
         renderTexture(WIDGET_FADE_TEXTURE, poseStack, centerX - 29, centerY - 29, 0, 0, 58, 58);
         if (design != null) {
             design.getFrameTexture().ifPresent(texture -> renderTexture(texture, poseStack, posX, posY, 0, 0, width, height));
@@ -99,12 +100,32 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         }
     }
 
+    public int getLeftPos() {
+        var designType = design.getDesignType();
+        int width = designType.getTextureWidth();
+        return getOffsetXPosition() - (width - 32) / 2;
+    }
+
+    public int getTopPos() {
+        var designType = design.getDesignType();
+        int height = designType.getTextureHeight();
+        return getOffsetYPosition() - (height - 32) / 2;
+    }
+
+    public int getCenterX() {
+        return getLeftPos() + width / 2;
+    }
+
+    public int getCenterY() {
+        return getTopPos() + height / 2;
+    }
+
     public ChatFormatting getHeadlineStyle(AbstractProgressionCodexScreen screen) {
         if (headlineFormatting != null) {
             return headlineFormatting;
         }
         //TODO: Un-hardcode This
-        final boolean isVoid = screen instanceof VoidProgressionScreen;
+        boolean isVoid = screen instanceof VoidProgressionScreen;
         ChatFormatting formatting = isVoid ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD;
         if (design.getDesignType().equals(WidgetDesignType.GILDED)) {
             formatting = isVoid ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.YELLOW;
@@ -145,6 +166,11 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
         this.isValid = isValid;
+        return this;
+    }
+
+    public ProgressionEntryObject setOrigin() {
+        this.isOrigin = true;
         return this;
     }
 }

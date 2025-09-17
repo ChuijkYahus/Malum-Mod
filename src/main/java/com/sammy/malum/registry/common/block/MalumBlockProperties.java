@@ -99,6 +99,12 @@ public class MalumBlockProperties {
                 .addTag(IS_RITE_IMMUNE);
     }
 
+    public static LodestoneBlockProperties RITE_UNWEAVER() {
+        return TWISTED_ROCK_BRICKS()
+                .strength(2F, 30.0F)
+                .addTag(IS_RITE_IMMUNE);
+    }
+
     public static LodestoneBlockProperties TWISTED_ROCK() {
         return new LodestoneBlockProperties()
                 .addTag(MalumTags.BlockTags.TWISTED_ROCK)

@@ -9,7 +9,7 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
-import com.sammy.malum.visual_effects.networked.pylon.*;
+import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -118,7 +118,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         inventory.load(pRegistries, compound);
         spiritInventory.load(pRegistries, compound, "spiritInventory");
 
-        loadWithLevel(level -> {
+        if (level != null) {
             if (updateRecipe() != null) {
                 if (state.equals(RepairPylonState.IDLE)) {
                     setState(RepairPylonState.SEARCHING);
@@ -127,8 +127,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
                     RepairPylonSoundInstance.playSound(this);
                 }
             }
-
-        });
+        }
         super.loadAdditional(compound, pRegistries);
     }
 
@@ -285,7 +284,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public void setState(RepairPylonState state) {
         this.state = state;
         this.timer = state.equals(RepairPylonState.SEARCHING) ? 100 : 0;
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public SpiritRepairRecipe updateRecipe() {

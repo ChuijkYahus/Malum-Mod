@@ -18,7 +18,7 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
 
     @SafeVarargs
     public SpiritRitePotionEffect(Holder<MobEffect> effectType, SpiritHolder<SpiritArcanaType>... spirits) {
-        this(List.of(SpiritRiteEffectTag.AURA), effectType, spirits);
+        this(List.of(SpiritRiteEffectTag.LESSER_RITE, SpiritRiteEffectTag.AURA), effectType, spirits);
     }
 
     @SafeVarargs
@@ -49,7 +49,7 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
         applyEffect(level, target, 3000, 1);
     }
 
-    public void applyEffect(ServerLevel level, T target, int duration, int amplifier) {
+    public final void applyEffect(ServerLevel level, T target, int duration, int amplifier) {
         var instance = new MobEffectInstance(effectType, duration, amplifier, true, true);
         createEffect(level, target, spirits);
         target.addEffect(instance);

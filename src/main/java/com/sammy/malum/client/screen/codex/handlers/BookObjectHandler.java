@@ -1,7 +1,9 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
+import com.mojang.blaze3d.platform.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 
 import java.util.*;
@@ -17,7 +19,7 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.add(object);
     }
 
-    public void addAll(Collection<BookObject<T>> objects) {
+    public void addAll(Collection<? extends BookObject<T>> objects) {
         this.objects.addAll(objects);
     }
 
@@ -29,8 +31,21 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         return objects.getFirst();
     }
 
+    public boolean isEmpty() {
+        return objects.isEmpty();
+    }
+
     public void remove(BookObject<T> object) {
         objects.remove(object);
+    }
+
+    public void tick(T screen) {
+        var minecraft = Minecraft.getInstance();
+        var mouseHandler = minecraft.mouseHandler;
+        var window = minecraft.getWindow();
+        double x = mouseHandler.xpos() * (double) window.getGuiScaledWidth() / (double) window.getScreenWidth();
+        double y = mouseHandler.ypos() * (double) window.getGuiScaledHeight() / (double) window.getScreenHeight();
+        tick(screen, x, y);
     }
 
     public void tick(T screen, double mouseX, double mouseY) {
@@ -42,7 +57,17 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
     }
 
     public boolean click(T screen, double mouseX, double mouseY) {
+        ArrayList<BookObject<T>> sorted = new ArrayList<>();
         for (BookObject<T> object : objects) {
+            if (object.isValid(screen)) {
+                if (object.hasPriority(screen)) {
+                    sorted.addFirst(object);
+                    continue;
+                }
+                sorted.add(object);
+            }
+        }
+        for (BookObject<T> object : sorted) {
             if (object.isValid(screen)) {
                 if (object.tryClick(screen, mouseX, mouseY)) {
                     return true;
@@ -60,11 +85,11 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
             }
             object.xOffset = left;
             object.yOffset = top;
-            if (!object.isInView(screen)) {
+            if (!object.isSubspace && !object.isInView(screen)) {
                 object.isHoveredOver = false;
                 continue;
             }
-            object.isHoveredOver = object.isHovering(screen, left, top, mouseX, mouseY);
+            object.isHoveredOver = object.isHovering(screen, mouseX, mouseY);
             renderObject(screen, guiGraphics, object, mouseX, mouseY, partialTicks);
         }
     }

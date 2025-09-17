@@ -14,12 +14,18 @@ public class MalumRenderTypeTokens {
 
     public static final RenderTypeToken DEBUG_GIZMO = RenderTypeToken.createToken(malumPath("textures/particle/funky_star.png"));
 
-    public static final RenderTypeToken RITE_ANCHOR_GLOW = RenderTypeToken.createToken(malumPath("textures/block/rite_anchor/rite_anchor_glow.png"));
-
     public static final RenderTypeToken DIODE_LOCKED = RenderTypeToken.createToken(malumPath("textures/block/spirit_diode/runewood_frame_locked_overlay.png"));
     public static final RenderTypeToken DIODE_INPUT = RenderTypeToken.createToken(malumPath("textures/block/spirit_diode/runewood_frame_input_overlay.png"));
 
     public static final RenderTypeToken MOTE_OF_MANA = RenderTypeToken.createToken(MalumMod.malumPath("textures/block/spirit_mote.png"));
+
+    public static final RenderTypeToken PYLON_GLOW_TOP = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_glow_top.png"));
+    public static final RenderTypeToken PYLON_GLOW_SIDE = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_glow_side.png"));
+
+    public static final RenderTypeToken RITE_ANCHOR_GLOW_TOP = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/rite_anchor_glow_top.png"));
+    public static final RenderTypeToken RITE_ANCHOR_GLOW_SIDE = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/rite_anchor_glow_side.png"));
+    public static final RenderTypeToken RITE_ANCHOR_GLOW_POINTER = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/rite_anchor_glow_pointer.png"));
+    public static final RenderTypeToken RITE_ANCHOR_GLOW_POINTER_SMALL = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/rite_anchor_glow_pointer_small.png"));
 
 
     public static final RenderTypeToken AREA_COVERAGE_BORDER = RenderTypeToken.createToken(malumPath("textures/vfx/area_coverage_border.png"));

@@ -77,7 +77,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if (enchantment.equals(Enchantments.SWEEPING_EDGE)) {
+        if (enchantment.is(Enchantments.SWEEPING_EDGE)) {
             return true;
         }
         return super.supportsEnchantment(stack, enchantment);

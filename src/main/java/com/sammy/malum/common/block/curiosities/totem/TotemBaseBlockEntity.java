@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
+import com.sammy.malum.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
@@ -34,8 +35,10 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     protected TotemBaseState state = TotemBaseState.INACTIVE;
     protected SpiritRiteType rite;
+    protected Direction totemDirection;
     protected int totemHeight;
     protected int timer;
+    protected int timerPause;
 
     public TotemBaseBlockEntity(BlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -43,7 +46,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
-          this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
+        this(MalumBlockEntities.TOTEM_BASE.get(), pos, state);
     }
 
     @Override
@@ -52,50 +55,50 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (rite != null) {
             rite.save(compound);
         }
+        if (totemDirection != null) {
+            compound.putInt("direction", totemDirection.ordinal());
+        }
         compound.putInt("totemHeight", totemHeight);
         compound.putInt("timer", timer);
+        compound.putInt("timerPause", timerPause);
         super.saveAdditional(compound, registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        state = TotemBaseState.values()[compound.getInt("state")];
+        if (compound.contains("state")) {
+            state = TotemBaseState.values()[compound.getInt("state")];
+        }
         rite = SpiritRiteType.load(compound).orElse(null);
+        if (compound.contains("direction")) {
+            totemDirection = Direction.values()[compound.getInt("direction")];
+        }
         totemHeight = compound.getInt("totemHeight");
         timer = compound.getInt("timer");
+        timerPause = compound.getInt("timerPause");
         super.loadAdditional(compound, pRegistries);
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (level instanceof ServerLevel serverLevel) {
-            switch (state) {
-                case ACTIVE -> {
-                    timer--;
-                    if (timer <= 0) {
-                        timer = 100;
-                        rite.triggerRiteEffect(serverLevel, this);
-                        BlockStateHelper.updateAndNotifyState(serverLevel, worldPosition);
-                    }
-                }
-                case ASSEMBLING -> {
-                    timer--;
-                    if (timer <= 0) {
-                        var polePos = worldPosition.above(totemHeight +1);
-                        if (serverLevel.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
-                            timer = INTERVAL;
-                            addTotemPole(serverLevel, pole);
-                        } else {
-                            var rite = MalumSpiritRiteTypes.getRite(serverLevel, this);
-                            if (rite == null) {
-                                setState(serverLevel, TotemBaseState.INACTIVE);
-                                return;
-                            }
-                            this.rite = rite;
-                            setTotemPoleState(serverLevel, TotemPoleBlockEntity.TotemPoleState.ACTIVE);
-                            setState(serverLevel, TotemBaseState.ACTIVE);
+    public void serverTick(ServerLevel level) {
+        switch (state) {
+            case ACTIVE -> updateRite(level);
+            case ASSEMBLING -> {
+                timer--;
+                if (timer <= 0) {
+                    var polePos = worldPosition.above(totemHeight + 1);
+                    if (level.getBlockEntity(polePos) instanceof TotemPoleBlockEntity pole) {
+                        timer = INTERVAL;
+                        addTotemPole(level, pole);
+                    } else {
+                        var rite = MalumSpiritRiteTypes.getRite(level, this);
+                        if (rite == null) {
+                            setState(level, TotemBaseState.INACTIVE);
+                            return;
                         }
+                        this.rite = rite;
+                        setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.ACTIVE);
+                        setState(level, TotemBaseState.ACTIVE);
                     }
                 }
             }
@@ -129,6 +132,10 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
     }
 
+    public void receiveSparkUpdate() {
+        timerPause = 10;
+    }
+
     public TotemBaseState getState() {
         return state;
     }
@@ -139,6 +146,37 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public int getTotemHeight() {
         return totemHeight;
+    }
+
+    public Direction getTotemDirection() {
+        if (totemDirection != null) {
+            return totemDirection;
+        }
+        BlockState above = level.getBlockState(getBlockPos().above());
+        if (above.getBlock() instanceof TotemPoleBlock) {
+            totemDirection = above.getValue(TotemPoleBlock.HORIZONTAL_FACING);
+            return totemDirection;
+        }
+        MalumMod.LOGGER.warn("Totem Base at {} has no totem pole above it, defaulting to north direction", worldPosition);
+        return Direction.NORTH;
+    }
+
+    public void updateRite(ServerLevel level) {
+        if (timer > 0) {
+            timer--;
+        }
+        if (timerPause > 0) {
+            timerPause--;
+            return;
+        }
+        if (timer == 0) {
+            triggerRite(level);
+            notifyObservers();
+        }
+    }
+    public void triggerRite(ServerLevel level) {
+        timer = rite.getEffect().getCooldown();
+        rite.triggerRiteEffect(level, this);
     }
 
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
@@ -152,13 +190,13 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             return;
         }
         if (newState.equals(TotemBaseState.INACTIVE)) {
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_CANCELLED.get(), SoundSource.BLOCKS, 1, 1f);
+            playSound(MalumSoundEvents.TOTEM_CANCELLED.get());
             setTotemPoleState(level, TotemPoleBlockEntity.TotemPoleState.INACTIVE);
             totemHeight = 0;
             rite = null;
         }
         if (newState.equals(TotemBaseState.ACTIVE)) {
-            level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ACTIVATED.get(), SoundSource.BLOCKS, 1, 1f);
+            playSound(MalumSoundEvents.TOTEM_ACTIVATED.get());
         }
         this.state = newState;
         this.timer = 0;
@@ -168,7 +206,6 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     public void setTotemPoleState(ServerLevel level, TotemPoleBlockEntity.TotemPoleState state) {
         for (TotemPoleBlockEntity totemPole : getTotemPoles(level)) {
             totemPole.setState(state);
-            BlockStateHelper.updateState(level, totemPole.getBlockPos());
         }
     }
 

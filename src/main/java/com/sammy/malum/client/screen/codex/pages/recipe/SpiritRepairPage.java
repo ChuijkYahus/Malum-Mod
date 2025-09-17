@@ -66,16 +66,13 @@ public class SpiritRepairPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 59, top + 16, mouseX, mouseY, false);
-        CodexItemHelper.renderItem(screen, guiGraphics, damagedStacks, left + 82, top + 59, mouseX, mouseY);
-        CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.repairMaterial, left + 44, top + 59, mouseX, mouseY);
-        CodexItemHelper.renderItem(screen, guiGraphics, repairedStacks, left + 63, top + 126, mouseX, mouseY);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 63, top + 16, mouseX, mouseY, false);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, List.of(recipe.repairMaterial), SPIRIT, left + 63, top + 32, mouseX, mouseY, false);
+        CodexItemHelper.renderItem(screen, guiGraphics, damagedStacks, left + 63, top + 56, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, repairedStacks, left + 63, top + 132, mouseX, mouseY);
         screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 43, top + 78, 18, 18)) {
+            if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
                 guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-            if (screen.isHovering(mouseX, mouseY, left + 82, top + 78, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(DAMAGED, 180), mouseX, mouseY);
             }
         });
     }
