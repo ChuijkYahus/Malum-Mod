@@ -152,7 +152,13 @@ repositories {
     }
     maven {
         url = uri("https://maven.createmod.net")
-    }
+    } //Create
+    maven {
+        url = uri("https://mvn.devos.one/snapshots")
+    } //Registrate
+    maven {
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven")
+    } // NeoForge config api port, needed by ponder
 }
 
 dependencies {
@@ -172,18 +178,32 @@ dependencies {
     implementation("curse.maven:rhino-416294:6184623")
     implementation("curse.maven:kubejs-238086:5810100")
 
-    // Tetra Optional Dependency
+    // Tetra, Optional
 //    compileOnly(("curse.maven:tetra-${property("tetra_version")}"))
 //    compileOnly(("se.mickelus.mutil:mutil:${property("mutil_version")}"))
 
+    // Create Optional
+//    compileOnlyApi("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}") {
+//        isTransitive = false
+//    }
+//    localRuntime("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}") {
+//        isTransitive = false
+//    }
+//    compileOnlyApi("net.createmod.ponder:Ponder-NeoForge-${property("minecraft_version")}:${property("ponder_version")}")
+//    localRuntime("net.createmod.ponder:Ponder-NeoForge-${property("minecraft_version")}:${property("ponder_version")}")
+//    compileOnlyApi("dev.engine-room.flywheel:flywheel-neoforge-api-${property("minecraft_version")}:${property("flywheel_version")}")
+//    localRuntime("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_version")}")
+//    compileOnlyApi("com.tterrag.registrate:Registrate:${property("registrate_version")}")
+//    localRuntime("com.tterrag.registrate:Registrate:${property("registrate_version")}")
+
     // Farmer's Delight, Optional
-    compileOnly(("curse.maven:farmers-delight-398521:5878217"))
+    compileOnlyApi(("curse.maven:farmers-delight-398521:5878217"))
     localRuntime(("curse.maven:farmers-delight-398521:5878217"))
 
     //Iron's Spells and Spellbooks, Optional
-    compileOnly(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
-    compileOnly(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
-    compileOnly(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
+    compileOnlyApi(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
+    compileOnlyApi(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
+    compileOnlyApi(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
 
     //Runtime Mods
     localRuntime(("curse.maven:jeed-532286:5693385"))
@@ -201,12 +221,18 @@ dependencies {
     localRuntime(("curse.maven:attributefix-280510:5824104"))
 
     // Imgui
-    implementation("io.github.spair:imgui-java-app:${property("imgui_version")}")
-    implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
-    implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}")
-    implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
-    implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
-    implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-app:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+    compileOnly("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-app:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+    localRuntime("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
     additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
     additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
     additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")

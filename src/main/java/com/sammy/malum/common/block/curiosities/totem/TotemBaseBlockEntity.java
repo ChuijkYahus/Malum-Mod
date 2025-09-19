@@ -174,7 +174,11 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             notifyObservers();
         }
     }
+
     public void triggerRite(ServerLevel level) {
+        if (rite == null) {
+            return;
+        }
         timer = rite.getEffect().getCooldown();
         rite.triggerRiteEffect(level, this);
     }

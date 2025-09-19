@@ -40,10 +40,12 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
     protected BlockPos activationPosition;
     protected Direction movementDirection;
     protected int blockCounter;
-    protected int healDuration;
-    protected int healCounter;
     protected int totalBlocksTraveled;
     protected int age;
+
+    protected int healDuration;
+    protected int healCounter;
+    protected int copyCounter;
 
     public BlockRiteEffectActivatorEntity(Level level) {
         super(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level);
@@ -88,10 +90,12 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
             pCompound.putInt("movementDirection", movementDirection.ordinal());
         }
         pCompound.putInt("blockCounter", blockCounter);
-        pCompound.putInt("healDuration", healDuration);
-        pCompound.putInt("healCounter", healCounter);
         pCompound.putInt("blocksTraveled", totalBlocksTraveled);
         pCompound.putInt("age", age);
+
+        pCompound.putInt("healDuration", healDuration);
+        pCompound.putInt("healCounter", healCounter);
+        pCompound.putInt("copyCounter", copyCounter);
     }
 
     @Override
@@ -104,13 +108,15 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
 
         sourcePosition = NBTHelper.readBlockPos(pCompound.getCompound("sourcePosition"));
         activationPosition = NBTHelper.readBlockPos(pCompound.getCompound("activationPosition"));
-
         movementDirection = Direction.values()[pCompound.getInt("movementDirection")];
+
         blockCounter = pCompound.getInt("blockCounter");
-        healDuration = pCompound.getInt("healDuration");
-        healCounter = pCompound.getInt("healCounter");
         totalBlocksTraveled = pCompound.getInt("blocksTraveled");
         age = pCompound.getInt("age");
+
+        healDuration = pCompound.getInt("healDuration");
+        healCounter = pCompound.getInt("healCounter");
+        copyCounter = pCompound.getInt("copyCounter");
     }
 
     @Override
@@ -176,21 +182,18 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         return true;
     }
 
-    public boolean tryUpgrade(Level level) {
+    public void upgrade(RiteSparkAttributeData target) {
         if (upgradeSlots > 0) {
-            if (!level.isClientSide) {
+            if (target.increase()) {
                 upgradeSlots--;
             }
-            return true;
         }
-        return false;
     }
 
     public void recoverHealth() {
         if (blockCounter > 0) {
             healCounter++;
             if (healCounter > 4) {
-                discard();
                 return;
             }
             healDuration = Mth.floor((blockCounter * 4) / potency.getValue());
@@ -203,7 +206,6 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         if (blockCounter > 0) {
             healCounter++;
             if (healCounter > 4) {
-                discard();
                 return;
             }
             blockCounter = 0;
@@ -213,6 +215,20 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
                 }
             }
         }
+    }
+
+    public void duplicate() {
+        if (copyCounter == -1 || copyCounter >= 4) {
+            return;
+        }
+        //The created copy more so takes over where the spark was moving, rather than the copy being one to split off
+        var doppelganger = new BlockRiteEffectActivatorEntity(level(), effect, activationPosition, movementDirection);
+        var data = new CompoundTag();
+        addAdditionalSaveData(data);
+        doppelganger.readAdditionalSaveData(data);
+        doppelganger.copyCounter++;
+        copyCounter = -1;
+        level().addFreshEntity(doppelganger);
     }
 
     public void notifyTotem() {

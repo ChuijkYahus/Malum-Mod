@@ -1083,14 +1083,14 @@ public class CodexLangDatagen {
                 """
                         To be complete is to be satisfied.
                          -Armor and Armor Toughness is Increased by One Fifth when near Satiation""",
-                "To be satisfied can be a shackling necessity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
+                "To be satisfied is to live in prosperity\n -Armor and Armor Toughness is Decreased by Half when near Starvation");
 
         addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
                 """
                         To be complete is to be unburdened.
                          -Each Empty Armor Slot grants Four Armor and Two Armor Toughness""",
-                "To be unburdened can be a shackling standard\n -Wearing any Armour Hurts You");
+                "To be unburdened is to cull all shackles\n -Wearing any Armour Hurts You");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,
@@ -1128,7 +1128,7 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
                         A favor born from flame.
-                         -Collecting Precious Minerals grants Prospector's Streak, Increasing Mining and providing Fortune Chance""",
+                         -Collecting Precious Minerals grants Prospector's Streak, Increasing Mining Speed and providing Fortune Chance""",
                 "Burn with Greed\n -Being Struck while Imbued with Prospector's Streak Ignites You and Consumes the Effect");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
@@ -1258,7 +1258,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("managing_totems", "Totem Resonance", "Insight into the rites");
         addPages("managing_totems",
-                "Totem rites are both complicated and simple, in their own ways. A simple, bounded effect, but dependent on the flow of arcana - and it can be difficult to discern their range.",
+                "Spirit Rites are both complicated and simple, in their own ways. A simple, bounded effect, but dependent on the flow of arcana - and it can be difficult to discern their range.",
                 "I have created a staff to act as a tuning fork of sorts for the energies of rites. Simply holding it resonates with the flow of arcana through the world, allowing me to visualize the area each totem can affect.",
                 "Interestingly, the staff also allows me to 'tune' a rune into an active state by interacting with it, even if it's not on a totem. This is as far as I can tell purely visual, but if nothing else, it will make good decoration.");
 
@@ -1406,7 +1406,7 @@ public class CodexLangDatagen {
         addPages("soulwood.cursed_sap",
                 "The sticky lifeblood of the tree also seems to well up much more often in Soulwood than in Runewood. The sap's effects are corrupted as well; rather than restoring my vigor, Cursed Sap enhances it, increasing my attack strength and providing damage resistance.");
 
-        addEntryHeader("scarstone", "A Study on Scarstone", "Warped Rock");
+        addEntryHeader("scarstone", "A Study on Scarstone", "Warped rock");
         addHeadline("scarstone", "A Study on Scarstone");
         addPages("scarstone",
                 "While observing the spread of Blight (in controlled conditions, of course), I have found that rarely the metaphysical scarring is potent enough to affect even stone - hence, I have named it Scarstone.");
@@ -1429,7 +1429,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("unchained_transmutation", "Unchained Transmutation", "Volatile reactions");
         addPages("unchained_transmutation.intro",
-                "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified categories of this effect; transmutation trees, of sorts.",
+                "The Unchained Rite's echoes can scar more than simply Runewood. The patterns seem somewhat random, but then, blight is a substance of randomness. Trial and error has identified a myriad of categories of this effect; transmutation trees, of sorts.",
                 "The effect of applying these scars depends on what material we start with. The pulsing of the Rite will shift any given block forward in the tree, with it degrading into blight given enough time.");
         addHeadline("unchained_transmutation.dirt", "Seedless Growth");
         addPages("unchained_transmutation.dirt",
@@ -1453,14 +1453,14 @@ public class CodexLangDatagen {
         addPages("unchained_transmutation.deepslate",
                 "One of a trio of seemingly color-based sequences, Deepslate will - a bit more logically - become Tuff. That Tuff will then degrade into Andesite, which will then rejoin other types of stone in their sequence.");
 
-        addSimpleEntryHeader("aura_empowerment", "Aura Empowerment", "Greater Obelisks");
+        addSimpleEntryHeader("aura_empowerment", "Aura Empowerment", "Greater obelisks");
         addPages("aura_empowerment",
                 "Created using a combination of Soulwood and Runewood, the Arcana Pylon excels at channeling Spirit Arcana. By supplying it with Spirits, their stored energy can be spent.",
                 "Totems are designed to avoid a constant demand for Spirits. Whenever a Rite activates, an Echo is formed, matching the Totem's Spirit Sequence in effect with little to none strain placed upon it. This works well for a passive effect, but it does limit potency significantly. The Arcana Pylon makes up for that limiting factor, allowing Totem Magic to reach it's full potency.");
         addHeadline("aura_empowerment.elemental", "Aura Empowerment");
         addPages("aura_empowerment.elemental", "By utilizing Elemental Arcana, the Pylon becomes a totemic amplifier. It weaves a Rite Locus, which enhances any matching Aura Effect granted by Runes or Totems upon contact. One Spirit is enough for roughly four activations.");
 
-        addSimpleEntryHeader("aura_empowerment.other_pylon_applications", "Other Pylon Applications", "Channeling Fundamental Spirits");
+        addSimpleEntryHeader("aura_empowerment.other_pylon_applications", "Other Pylon Applications", "Channeling fundamental spirits");
         addHeadline("aura_empowerment.other_pylon_applications.sacred", "Sacred");
         addPages("aura_empowerment.other_pylon_applications.sacred", "Sacred");
 
@@ -1473,6 +1473,29 @@ public class CodexLangDatagen {
         addHeadline("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
         addPages("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
 
+        addSimpleEntryHeader("locus_management", "Locus Management", "Through elvish design");
+        addPages("locus_management", "Spirit Rites are all rather uniform - simpler Rites deliver their effect via a Seeking Rite Locus, whereas more complex Rites - those which seek to affect the world and thus have no clear target - utilize a Bound Rite Locus instead.",
+                "When initially woven, the Bound Rite Locus simply wanders in whichever direction the Totem demands. I've measured it's speed at precisely Four Blocks per Second with a Lifespan capable of supporting Eight Activations of it's carried effect.",
+                "Tainted Rock bears a unique adversity to Magic. It disrupts and eventually unravels the Flow of Arcana entirely. Without a carefully constructed form however, the disrupting property is all that demands consideration. When traveling over Tainted Rock, the Bound Rite Locus will not take effect and as such will not progress towards it's eventual end.",
+                "Lastly, as the Rite Locus is not a tangible object, it bears no mass, and as such it is unaffected by gravity and can seamlessly phase through any solid matter.",
+                "The Rite Anchor is an apparatus designed to direct and augment any wandering Rite Locus. By socketing it with Spirit Arcana, a travel vector is defined and begins to influence any passing Locus. The nature of the Arcane Etching utilized for the vector is rather delicate, and as such the Rite Anchor cannot operate when influenced by Redstone.");
+
+        addHeadline("locus_management.sacred", "Sacred");
+        addPages("locus_management.sacred", "Sacred");
+        addHeadline("locus_management.wicked", "Wicked");
+        addPages("locus_management.wicked", "Wicked");
+        addHeadline("locus_management.arcane", "Arcane");
+        addPages("locus_management.arcane", "Arcane");
+        addHeadline("locus_management.eldritch", "Eldritch");
+        addPages("locus_management.eldritch", "Eldritch");
+        addHeadline("locus_management.aerial", "Aerial");
+        addPages("locus_management.aerial", "Aerial");
+        addHeadline("locus_management.aqueous", "Aqueous");
+        addPages("locus_management.aqueous", "Aqueous");
+        addHeadline("locus_management.earthen", "Earthen");
+        addPages("locus_management.earthen", "Earthen");
+        addHeadline("locus_management.infernal", "Infernal");
+        addPages("locus_management.infernal", "Infernal");
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",

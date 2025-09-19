@@ -7,12 +7,14 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.helpers.*;
 
+import java.util.*;
+
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class HurtEffect extends SpiritRiteEntityEffect<LivingEntity> {
 
     public HurtEffect() {
-        super();
+        super(List.of(SpiritRiteEffectTag.LESSER_RITE));
     }
 
     @Override

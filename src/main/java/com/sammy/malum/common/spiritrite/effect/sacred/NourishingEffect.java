@@ -11,7 +11,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class NourishingEffect extends SpiritRitePotionEffect<Player> {
 
     public NourishingEffect() {
-        super(List.of(SpiritRiteEffectTag.GREATER_RITE), MalumMobEffects.SACRED_NOURISHMENT, SACRED_SPIRIT);
+        super(List.of(SpiritRiteEffectTag.LESSER_RITE), MalumMobEffects.SACRED_NOURISHMENT, SACRED_SPIRIT);
     }
 
     @Override

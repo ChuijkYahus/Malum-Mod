@@ -55,7 +55,8 @@ public class MalumParticleEffectTypes {
     public static final BlockInfusionTotemParticleEffect BLOCK_INFUSION_RITE_EFFECT = new BlockInfusionTotemParticleEffect("block_infusion_rite_effect");
     public static final BlockGrowTotemParticleEffect BLOCK_GROW_RITE_EFFECT = new BlockGrowTotemParticleEffect("block_grow_rite_effect");
 
-    public static final RiteAnchorParticleEffect RITE_ANCHOR_EFFECT = new RiteAnchorParticleEffect("rite_anchor_effect");
+    public static final RiteAnchorTriggerParticleEffect RITE_ANCHOR_EFFECT = new RiteAnchorTriggerParticleEffect("rite_anchor_effect");
+    public static final RiteAnchorFailParticleEffect RITE_ANCHOR_FAILURE = new RiteAnchorFailParticleEffect("rite_anchor_failure");
     public static final RiteUnweaverParticleEffect RITE_UNWEAVER_EFFECT = new RiteUnweaverParticleEffect("rite_unweaver_effect");
 
     //Soulbinding Brazier
