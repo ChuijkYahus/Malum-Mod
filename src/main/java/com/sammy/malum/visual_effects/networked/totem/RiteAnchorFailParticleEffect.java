@@ -7,15 +7,15 @@ import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class RiteAnchorParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
+public class RiteAnchorFailParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
-    public RiteAnchorParticleEffect(String id) {
+    public RiteAnchorFailParticleEffect(String id) {
         super(id);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
-        TotemParticleEffects.triggerRiteAnchor(level, colorData, positionData);
+        TotemParticleEffects.triggerRiteAnchorFailure(level, colorData, positionData);
     }
 }

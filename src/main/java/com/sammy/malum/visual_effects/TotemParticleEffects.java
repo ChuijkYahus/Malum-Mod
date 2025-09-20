@@ -129,6 +129,32 @@ public class TotemParticleEffects {
         }
     }
 
+    public static void triggerRiteAnchorFailure(Level level, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectPositionData positionData) {
+        int count = 8;
+        var position = positionData.getAsBlockPos().getBottomCenter().add(0, 0.25f, 0);
+        for (int i = 0; i < count; i++) {
+            int finalI = i;
+            WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
+                    .setBehavior(DirectionalParticleBehavior.directional())
+                    .setTransparencyData(GenericParticleData.create(0.15f, 0.2f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                    .setLengthData(GenericParticleData.create(0.5f, 0.1f).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(0.1f, 0.3f).setEasing(Easing.EXPO_IN).build())
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                    .setColorData(colorData.getColor())
+                    .setRandomOffset(0.1f)
+                    .setLifetime(15)
+                    .enableNoClip()
+                    .addTickActor(p -> {
+                        long gameTime = level.getGameTime();
+                        float distance = 0.6f - 0.4f * (p.getAge() / (float)p.getLifetime());
+                        var offsetPosition = VecHelper.rotatingRadialOffset(position, distance, finalI, count, gameTime, 40);
+                        p.setParticlePosition(offsetPosition);
+                        p.setParticleSpeed(position.subtract(offsetPosition).normalize().scale(0.001f));
+                    })
+                    .repeat(level, position, 3);
+        }
+    }
+
     public static void triggerEntityEffect(Level level, MalumNetworkedParticleEffectColorData colorData, Vec3 position) {
         long gameTime = level.getGameTime();
         var random = level.random;

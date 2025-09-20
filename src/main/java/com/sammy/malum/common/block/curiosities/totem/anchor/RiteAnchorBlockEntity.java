@@ -23,10 +23,24 @@ import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 
+import java.util.*;
+import java.util.function.*;
+
 public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
     private static final int WARMUP_DURATION = 20;
-    private static final int POWER_FADEOUT_DURATION = 8;
+
+    public static final HashMap<Holder<SpiritArcanaType>, Consumer<BlockRiteEffectActivatorEntity>> EFFECTS = new HashMap<>();
+    static {
+        EFFECTS.put(MalumSpiritTypes.SACRED_SPIRIT, BlockRiteEffectActivatorEntity::recoverHealth);
+        EFFECTS.put(MalumSpiritTypes.WICKED_SPIRIT, BlockRiteEffectActivatorEntity::leechHealth);
+        EFFECTS.put(MalumSpiritTypes.ELDRITCH_SPIRIT, BlockRiteEffectActivatorEntity::duplicate);
+
+        EFFECTS.put(MalumSpiritTypes.AERIAL_SPIRIT, e -> e.upgrade(e.speed));
+        EFFECTS.put(MalumSpiritTypes.AQUEOUS_SPIRIT, e -> e.upgrade(e.potency));
+        EFFECTS.put(MalumSpiritTypes.EARTHEN_SPIRIT, e -> e.upgrade(e.distance));
+        EFFECTS.put(MalumSpiritTypes.INFERNAL_SPIRIT, e -> e.upgrade(e.impact));
+    }
 
     public static final StringRepresentable.EnumCodec<AimState> CODEC = StringRepresentable.fromEnum(AimState::values);
 
@@ -124,54 +138,19 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
             return;
         }
         if (spirit != null) {
+            var holder = spirit.getHolder();
+            var effect = EFFECTS.get(holder);
+            if (effect != null) {
+                effect.accept(spark);
+            }
             if (aimDirection.data2d != -1) {
-                Direction direction = Direction.from2DDataValue(aimDirection.data2d);
+                var direction = Direction.from2DDataValue(aimDirection.data2d);
                 spark.updateDirection(direction);
-                level.updateNeighbourForOutputSignal(getBlockPos(), getBlockState().getBlock());
-            }
-
-            playSound(MalumSoundEvents.SPARK_DIRECTED.get());
-            MalumParticleEffectTypes.RITE_ANCHOR_EFFECT.createEffect(getBlockPos().above())
-                    .color(spirit)
-                    .spawn(level);
-
-            if (spirit.matches(MalumSpiritTypes.SACRED_SPIRIT)) {
-                //Recovers Remaining Distance Overtime
-                spark.recoverHealth();
-            }
-            if (spirit.matches(MalumSpiritTypes.WICKED_SPIRIT)) {
-                //Sacrifices One Stat to Instantly Recover Remaining Distance
-                spark.leechHealth();
-            }
-            if (spirit.matches(MalumSpiritTypes.ARCANE_SPIRIT)) {
-                //Free Turn
-            }
-            if (spirit.matches(MalumSpiritTypes.ELDRITCH_SPIRIT)) {
-                //Splits Spark
-            }
-            if (spirit.matches(MalumSpiritTypes.AERIAL_SPIRIT)) {
-                //Increases Speed
-                if (spark.tryUpgrade(level)) {
-                    spark.speed.increase();
-                }
-            }
-            if (spirit.matches(MalumSpiritTypes.AQUEOUS_SPIRIT)) {
-                //Increases Potency
-                if (spark.tryUpgrade(level)) {
-                    spark.potency.increase();
-                }
-            }
-            if (spirit.matches(MalumSpiritTypes.EARTHEN_SPIRIT)) {
-                //Increases Distance
-                if (spark.tryUpgrade(level)) {
-                    spark.distance.increase();
-                }
-            }
-            if (spirit.matches(MalumSpiritTypes.INFERNAL_SPIRIT)) {
-                //Increases Impact
-                if (spark.tryUpgrade(level)) {
-                    spark.impact.increase();
-                }
+                notifyObservers();
+                playSound(MalumSoundEvents.SPARK_DIRECTED.get());
+                MalumParticleEffectTypes.RITE_ANCHOR_EFFECT.createEffect(getBlockPos().above())
+                        .color(spirit)
+                        .spawn(level);
             }
         }
     }

@@ -63,7 +63,9 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
                 var direction = state.getValue(FACING);
                 int liveSignal = level.getSignal(pos.relative(direction), direction);
                 if (shouldUpdateWhenNeighborChanged(level, pos, state, (T) spiritDiode, liveSignal)) {
-                    spiritDiode.cachedInputSignal = liveSignal;
+                    if (spiritDiode.cachedInputSignal == -1) {
+                        spiritDiode.cachedInputSignal = liveSignal;
+                    }
                     int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, liveSignal, liveSignal);
                     level.scheduleTick(pos, this, delay);
                     if (level instanceof ServerLevel serverLevel) {
@@ -80,13 +82,16 @@ public abstract class SpiritDiodeBlock<T extends SpiritDiodeBlockEntity> extends
         if (level.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity spiritDiode) {
             var direction = state.getValue(FACING);
             int cachedSignal = spiritDiode.cachedInputSignal;
+            if (cachedSignal == -1) {
+                cachedSignal = 0;
+            }
             int liveSignal = level.getSignal(pos.relative(direction), direction);
             if (processUpdate(level, pos, state, (T) spiritDiode, cachedSignal, liveSignal)) {
                 int delay = redstoneTicksUntilUpdate(level, pos, state, (T) spiritDiode, cachedSignal, liveSignal);
                 level.scheduleTick(pos, this, delay);
                 spiritDiode.updateAnimation(level, pos, cachedSignal);
             }
-            spiritDiode.cachedInputSignal = 0;
+            spiritDiode.cachedInputSignal = -1;
         }
     }
 

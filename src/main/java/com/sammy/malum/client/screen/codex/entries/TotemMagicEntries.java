@@ -164,6 +164,10 @@ public class TotemMagicEntries {
         screen.addEntry("locus_management", 3, 19, b -> b
                 .configureEntry(w -> w.setIcon(RITE_ANCHOR).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("locus_management", "locus_management.1", RITE_ANCHOR.get()))
+                .addPage(new TextPage("locus_management.2"))
+                .addPage(new TextPage("locus_management.3"))
+                .addPage(new TextPage("locus_management.4"))
+                .addPage(new TextPage("locus_management.5"))
                 .addPage(SpiritInfusionPage.fromOutput(RITE_ANCHOR.get()))
                 .addPage(new HeadlineTextItemPage("locus_management.sacred", SACRED_SPIRIT.get()))
                 .addPage(new HeadlineTextItemPage("locus_management.wicked", WICKED_SPIRIT.get()))

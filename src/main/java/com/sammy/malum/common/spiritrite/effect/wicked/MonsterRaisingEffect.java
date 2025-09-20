@@ -7,12 +7,14 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.monster.*;
 import team.lodestar.lodestone.helpers.*;
 
+import java.util.*;
+
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class MonsterRaisingEffect extends SpiritRiteEntityEffect<Monster> {
 
     public MonsterRaisingEffect() {
-        super();
+        super(List.of(SpiritRiteEffectTag.GREATER_RITE));
     }
 
     @Override

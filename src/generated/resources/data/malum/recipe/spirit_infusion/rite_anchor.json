@@ -28,10 +28,6 @@
   },
   "spirits": [
     {
-      "type": "malum:arcane",
-      "count": 4
-    },
-    {
       "type": "malum:aerial",
       "count": 4
     },
@@ -45,6 +41,10 @@
     },
     {
       "type": "malum:infernal",
+      "count": 4
+    },
+    {
+      "type": "malum:arcane",
       "count": 4
     }
   ]

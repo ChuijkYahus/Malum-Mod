@@ -166,7 +166,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addRiteTag(SpiritRiteEffectTag.GREATER_RITE, "Greater Rite");
 
         addRiteTag(SpiritRiteEffectTag.RADIAL_EFFECT, "Area of Effect");
-        addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Locus Effect");
+        addRiteTag(SpiritRiteEffectTag.LOCUS_EFFECT, "Bound Locus Effect");
         addRiteTag(SpiritRiteEffectTag.STRANGE_EFFECT, "Strange Effect");
 
         add(GeasItem.GEAS, "Geas");

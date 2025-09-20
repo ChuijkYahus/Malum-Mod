@@ -61,7 +61,7 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
     public TimeIntervalType type = TimeIntervalType.REDSTONE_TICK;
     public int frequency = 20;
 
-    public int cachedInputSignal;
+    public int cachedInputSignal = -1;
     public int outputSignal;
 
     public int closeDelay;
