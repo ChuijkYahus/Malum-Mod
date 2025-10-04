@@ -6,17 +6,22 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.*;
 
 public class HeadlineTextPage extends BookPage {
 
-    private final Component headline;
-    private final Component text;
+    protected final Component headline;
+    protected final Component text;
 
     public HeadlineTextPage(String text) {
         this(text, text +".1");
     }
     public HeadlineTextPage(String headline, String text) {
-        super(MalumMod.malumPath("textures/gui/book/pages/headline_page.png"));
+        this(MalumMod.malumPath("textures/gui/book/pages/headline_page.png"), headline, text);
+    }
+
+    public HeadlineTextPage(ResourceLocation texture, String headline, String text) {
+        super(texture);
         this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
         this.text = Component.translatable(BookPage.TEXT + "." + text);
     }

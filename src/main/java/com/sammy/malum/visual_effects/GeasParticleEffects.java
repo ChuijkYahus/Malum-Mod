@@ -46,7 +46,7 @@ public class GeasParticleEffects {
             Vec3 up = left.cross(direction);
 
             final Consumer<LodestoneWorldParticle> behavior = p -> {
-                float partialTick = Minecraft.getInstance().timer.getGameTimeDeltaPartialTick(true);
+                float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
                 var spark = (SparkParticleBehavior) p.behavior;
                 final Vec3 distance = target.getPosition(partialTick).add(0, target.getBbHeight()/2f, 0).subtract(p.getParticlePosition());
                 spark.setForcedDirection(distance.normalize());

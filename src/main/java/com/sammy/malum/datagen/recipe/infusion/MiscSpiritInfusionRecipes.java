@@ -60,7 +60,7 @@ public class MiscSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(MalumItems.SOULWOVEN_POUCH.get(), 1, MalumItems.RAVENOUS_POUCH.get(), 1)
                 .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 12)
-                .addExtraItem(MalumItems.GRIM_TALC.get(), 12)
+                .addExtraItem(MalumItems.GRIM_TALC.get(), 8)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(SACRED_SPIRIT, 8)
                 .addSpirit(WICKED_SPIRIT, 8)

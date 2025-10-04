@@ -29,12 +29,8 @@
     "client.FontStringRenderOutputMixin",
     "client.GlyphRenderTypesMixin",
     "client.ItemInHandLayerMixin",
-    "client.ItemInHandRendererMixin",
-    "client.LivingEntityRendererMixin",
     "client.LocalPlayerMixin",
-    "client.MinecraftMixin",
-    "client.ModelPartMixin",
-    "client.ModelPartMixin$Cube"
+    "client.MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

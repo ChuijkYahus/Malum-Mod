@@ -112,7 +112,7 @@ public class TokenOfGratitudeRenderer implements ICurioRenderer {
 
     public static void renderScarf(AbstractClientPlayer playerEntity, ResourceLocation texture, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.armorCutoutNoCull(texture));
-        float pticks = Minecraft.getInstance().timer.getGameTimeDeltaTicks();
+        float pticks = Minecraft.getInstance().getTimer().getGameTimeDeltaTicks();
         float f = Mth.rotLerp(pticks, playerEntity.yBodyRotO, playerEntity.yBodyRot);
         float f1 = Mth.rotLerp(pticks, playerEntity.yHeadRotO, playerEntity.yHeadRot);
         float netHeadYaw = f1 - f;

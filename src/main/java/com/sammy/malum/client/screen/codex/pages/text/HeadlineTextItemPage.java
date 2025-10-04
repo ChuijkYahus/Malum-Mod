@@ -11,15 +11,11 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
-public class HeadlineTextItemPage extends BookPage {
-    private final Component headline;
-    private final Component text;
+public class HeadlineTextItemPage extends HeadlineTextPage {
     private final ItemStack stack;
 
     public HeadlineTextItemPage(String headline, String text, ItemStack stack) {
-        super(MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png"));
-        this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
-        this.text = Component.translatable(BookPage.TEXT + "." + text);
+        super(MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png"), headline, text);
         this.stack = stack;
     }
 

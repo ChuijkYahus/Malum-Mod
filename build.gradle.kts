@@ -38,10 +38,7 @@ neoForge {
     }
 
     setAccessTransformers(
-        "src/main/resources/META-INF/accesstransformer.cfg",
-        "src/main/resources/META-INF/recipebuilders.cfg",
-        "src/main/resources/META-INF/blockproperties.cfg",
-        "src/main/resources/META-INF/renderstates.cfg"
+        "src/main/resources/META-INF/accesstransformer.cfg"
     )
 
     runs {
@@ -162,6 +159,8 @@ repositories {
 }
 
 dependencies {
+    accessTransformers(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
+
     // JEI
     compileOnlyApi(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge-api:${project.property("jei_version")}"))
     runtimeOnly(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge:${project.property("jei_version")}"))

@@ -15,6 +15,7 @@ public class IconObject extends ProgressionEntryObject {
     public IconObject(BookEntry entry, int posX, int posY, ResourceLocation textureLocation) {
         this(entry, posX, posY, textureLocation, 16, 16);
     }
+
     public IconObject(BookEntry entry, int posX, int posY, ResourceLocation textureLocation, int textureWidth, int textureHeight) {
         super(entry, posX, posY);
         this.textureLocation = textureLocation;
@@ -32,5 +33,4 @@ public class IconObject extends ProgressionEntryObject {
         int y = getOffsetYPosition() + 8 - (height - 32) / 4;
         renderWavyIcon(textureLocation, guiGraphics.pose(), x, y, 0, textureWidth, textureHeight);
     }
-
 }

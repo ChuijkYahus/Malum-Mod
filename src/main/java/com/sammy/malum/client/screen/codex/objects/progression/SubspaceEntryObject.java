@@ -10,7 +10,6 @@ import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.multiplayer.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.joml.*;
@@ -102,7 +101,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         ScreenParticleHandler.renderParticles(entryParticles);
         int posX = getLeftPos();
         int posY = getTopPos();
-        renderGlow(guiGraphics, posX, posY);
+        renderGlow(guiGraphics, posX, posY, entry.associatedSpirit);
         if (riteType != null) {
             renderRiteIcon(riteType, guiGraphics.pose(), getOffsetXPosition() + 8, getOffsetYPosition() + 8);
         }
@@ -234,8 +233,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
 
-    public void renderGlow(GuiGraphics graphics, int x, int y) {
-        var spirit = entry.associatedSpirit;
+    public static void renderGlow(GuiGraphics graphics, int x, int y, SpiritLike spirit) {
         if (spirit == null) {
             return;
         }
@@ -268,7 +266,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         RenderSystem.disableBlend();
     }
 
-    public void renderSubspace(GuiGraphics graphics, int x, int y, int size, float delta) {
+    public static void renderSubspace(GuiGraphics graphics, int x, int y, int size, float delta) {
         ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(10f);
@@ -297,11 +295,11 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         RenderSystem.disableBlend();
     }
 
-    public void renderSubspaceTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int size) {
+    public static void renderSubspaceTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int size) {
         builder.setShaderTexture(SUBSPACE_TEXTURE).setPositionWithWidth(x, y, size, size).blit(graphics.pose());
     }
 
-    public void renderGlowTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
+    public static void renderGlowTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
         builder.setShaderTexture(GLOW_TEXTURE).setPositionWithWidth(x, y, 32, 32).blit(graphics.pose());
     }
 

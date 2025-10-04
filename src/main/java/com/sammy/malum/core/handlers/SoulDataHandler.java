@@ -62,7 +62,7 @@ public class SoulDataHandler {
         }
         if (source.getEntity() instanceof LivingEntity attacker) {
             ItemStack stack = getSoulHunterWeapon(source, attacker);
-            if (stack.is(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS) || TetraCompat.hasSoulStrikeModifier(stack)) {
+            if (stack.is(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON) || TetraCompat.hasSoulStrikeModifier(stack)) {
                 data.setExposed();
             }
         }

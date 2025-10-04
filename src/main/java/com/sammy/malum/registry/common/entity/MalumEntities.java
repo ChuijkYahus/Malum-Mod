@@ -25,18 +25,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.systems.entity.LodestoneBoatEntity;
 
 public class MalumEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MalumMod.MALUM);
-
-    public static final DeferredHolder<EntityType<?>, EntityType<LodestoneBoatEntity>> RUNEWOOD_BOAT = ENTITY_TYPES.register("runewood_boat",
-            () -> EntityType.Builder.<LodestoneBoatEntity>of((t, w) -> new LodestoneBoatEntity(t, w, MalumItems.RUNEWOOD_BOAT, MalumItems.RUNEWOOD_PLANKS), MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("runewood_boat").toString()));
-
-    public static final DeferredHolder<EntityType<?>, EntityType<LodestoneBoatEntity>> SOULWOOD_BOAT = ENTITY_TYPES.register("soulwood_boat",
-            () -> EntityType.Builder.<LodestoneBoatEntity>of((t, w) -> new LodestoneBoatEntity(t, w, MalumItems.SOULWOOD_BOAT, MalumItems.SOULWOOD_PLANKS), MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("soulwood_boat").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT = ENTITY_TYPES.register("natural_spirit",
             () -> EntityType.Builder.<SpiritItemEntity>of((e, w) -> new SpiritItemEntity(w), MobCategory.MISC).sized(0.5F, 0.75F).clientTrackingRange(10)
@@ -98,8 +89,6 @@ public class MalumEntities {
     public static class ClientOnly {
         @SubscribeEvent
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            EntityRenderers.register(MalumEntities.RUNEWOOD_BOAT.get(), (manager) -> new MalumBoatRenderer(manager, "runewood", false));
-            EntityRenderers.register(MalumEntities.SOULWOOD_BOAT.get(), (manager) -> new MalumBoatRenderer(manager, "soulwood", false));
             EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemEntityRenderer::new);
 
             EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangEntityRenderer::new);

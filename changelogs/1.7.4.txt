@@ -36,6 +36,10 @@ Runic Workbench
 - Runic Workbench Recipes can now support regular items with a secondary input
  - Currently this behavior lacks a unique crafting animation, if any modpack dev ends up using this functionality ping me and I'll whip something up
 
+Boats
+- Added Runewood & Soulwood Chest Boats
+- Updated the Item and Entity textures for Runewood & Soulwood Boats
+
 Soulwoven Banners
 - Added one new Soulwoven Banner Pattern
 - Soulwoven Banners now have a new particle effect for being Imbued with a Spirit

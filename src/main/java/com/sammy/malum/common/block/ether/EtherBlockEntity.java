@@ -26,6 +26,7 @@ import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
+import javax.annotation.*;
 import java.awt.*;
 
 public class EtherBlockEntity extends LodestoneBlockEntity {
@@ -51,8 +52,8 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
     @Override
     protected void applyImplicitComponents(BlockEntity.DataComponentInput componentInput) {
         super.applyImplicitComponents(componentInput);
-        firstColor = componentInput.get(DataComponents.DYED_COLOR);
-        secondColor = componentInput.get(MalumDataComponents.SECONDARY_DYED_COLOR);
+        firstColor = componentInput.getOrDefault(DataComponents.DYED_COLOR, firstColor);
+        secondColor = componentInput.getOrDefault(MalumDataComponents.SECONDARY_DYED_COLOR, secondColor);
     }
 
     @Override
@@ -82,11 +83,6 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             }
         }
         super.saveAdditional(tag, registries);
-    }
-
-    @Override
-    public void onPlace(LivingEntity placer, ItemStack stack) {
-        setDirty();
     }
 
     @Override

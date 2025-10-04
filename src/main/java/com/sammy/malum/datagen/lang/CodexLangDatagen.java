@@ -292,7 +292,7 @@ public class CodexLangDatagen {
         addHeadline("void.malignant_stronghold_armor", "The Malignant Stronghold");
         addPages("void.malignant_stronghold_armor",
                 "Malignant Pewter rejects magic, and as such, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent. It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - my soul is unwarded, but I am certainly not.",
-                "In unraveling magic, energy still remains. While worn, the armor will react to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting armor and magic resistance bonuses. The only unique case I've found is magic proficiency, which the metal absorbs half as much.");
+                "In unraveling magic, energy still remains. While worn, the armor will react to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent armor bonus. The only unique case I've found is magic proficiency, which the metal absorbs half as much.");
 
         addSimpleEntryHeader("void.weight_of_worlds", "The Weight of Worlds", "Existential burdens externalized");
         addPages("void.weight_of_worlds",
@@ -1350,8 +1350,8 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will bless nearby creatures with Stone Ward, providing a damage reduction that grows in power when unarmored.",
                 "Affected Creatures Are Blessed With Stone Ward\nStone Ward reduces damage taken by one fifth\nStone Ward Doubles in power when Unarmored");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "To Ossify One's Blows",
-                "A simple rite, while active it will bless nearby creatures with .",
-                "");
+                "A simple rite, while active it will bless nearby creatures with Oaken Might, providing a flat damage increase that grows in powered when empty handed.",
+                "Affected Creatures Are Blessed With Oaken Might\nOaken Might increases damage dealt by one heart worth\nOaken Might Doubles in power when Empty Handed");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
                 "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
@@ -1370,8 +1370,8 @@ public class CodexLangDatagen {
                 "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will imbue them with fire, Smelting them instantaneously as if in a furnace.",
                 "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Smelt Them\nBlocks Are Smelted As If In A Furnace");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "To Hasten Progress",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will",
-                "");
+                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over furnaces of any kind it will accelerate their smelting process greatly.",
+                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Furnaces It Will Accelerate Their Smelting Process\nFuel Consumption Remains Proportional");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
         addHeadline("blight.intro", "A Study on Blight");
@@ -1473,29 +1473,37 @@ public class CodexLangDatagen {
         addHeadline("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
         addPages("aura_empowerment.other_pylon_applications.eldritch", "Eldritch");
 
-        addSimpleEntryHeader("locus_management", "Locus Management", "Through elvish design");
+        addSimpleEntryHeader("locus_management", "Locus Management", "Arcana in motion");
         addPages("locus_management", "Spirit Rites are all rather uniform - simpler Rites deliver their effect via a Seeking Rite Locus, whereas more complex Rites - those which seek to affect the world and thus have no clear target - utilize a Bound Rite Locus instead.",
-                "When initially woven, the Bound Rite Locus simply wanders in whichever direction the Totem demands. I've measured it's speed at precisely Four Blocks per Second with a Lifespan capable of supporting Eight Activations of it's carried effect.",
-                "Tainted Rock bears a unique adversity to Magic. It disrupts and eventually unravels the Flow of Arcana entirely. Without a carefully constructed form however, the disrupting property is all that demands consideration. When traveling over Tainted Rock, the Bound Rite Locus will not take effect and as such will not progress towards it's eventual end.",
+                "When initially woven, the bound rite locus simply wanders in whichever direction the totem demands. I've measured it's speed at precisely four blocks per second with a lifespan capable of supporting eight activations of it's carried effect.",
+                "Tainted Rock bears a unique adversity to magic. It disrupts and eventually unravels the flow of arcana entirely. Without a carefully constructed form however, the disrupting property is all that demands consideration. When traveling over tainted rock, the rite locus will not take effect and as such will not progress towards it's eventual end.",
                 "Lastly, as the Rite Locus is not a tangible object, it bears no mass, and as such it is unaffected by gravity and can seamlessly phase through any solid matter.",
-                "The Rite Anchor is an apparatus designed to direct and augment any wandering Rite Locus. By socketing it with Spirit Arcana, a travel vector is defined and begins to influence any passing Locus. The nature of the Arcane Etching utilized for the vector is rather delicate, and as such the Rite Anchor cannot operate when influenced by Redstone.");
+                "The Rite Anchor is an apparatus designed to direct and augment any wandering rite locus. By socketing it with spirit arcana, a travel vector is defined and begins to influence any passing locus. The nature of the arcane etching utilized for the vector is rather delicate, and as such the rite anchor cannot operate when influenced by redstone.");
 
-        addHeadline("locus_management.sacred", "Sacred");
-        addPages("locus_management.sacred", "Sacred");
-        addHeadline("locus_management.wicked", "Wicked");
-        addPages("locus_management.wicked", "Wicked");
-        addHeadline("locus_management.arcane", "Arcane");
-        addPages("locus_management.arcane", "Arcane");
-        addHeadline("locus_management.eldritch", "Eldritch");
-        addPages("locus_management.eldritch", "Eldritch");
-        addHeadline("locus_management.aerial", "Aerial");
-        addPages("locus_management.aerial", "Aerial");
-        addHeadline("locus_management.aqueous", "Aqueous");
-        addPages("locus_management.aqueous", "Aqueous");
-        addHeadline("locus_management.earthen", "Earthen");
-        addPages("locus_management.earthen", "Earthen");
-        addHeadline("locus_management.infernal", "Infernal");
-        addPages("locus_management.infernal", "Infernal");
+        addHeadline("locus_management.sacred", "Restoring the Locus");
+        addPages("locus_management.sacred", "By imbuing the bound rite locus with Sacred Arcana, it will mend itself over time, restoring lost lifespan and thus allowing it to travel further. This effect can be triggered up to four times per locus.");
+        addHeadline("locus_management.wicked", "Resurrecting the Locus");
+        addPages("locus_management.wicked", "By imbuing the bound rite locus with Wicked Arcana, it will sacrifice the benefits of an already applied elemental boon in order to mend itself within an instant. The same limit imposed onto the sacred effect is applied here.");
+        addHeadline("locus_management.arcane", "Redirecting the Locus");
+        addPages("locus_management.arcane", "By imbuing the bound rite locus with Raw Arcana, it will simply alter it's travel vector with no other effect or cost. Raw Arcana is pure energy without any direction leading to a rather mundane, yet appropriate effect here.");
+        addHeadline("locus_management.eldritch", "Dissociating with the Locus");
+        addPages("locus_management.eldritch", "By imbuing the bound rite locus with Eldritch Arcana, it will dissociate and split into two separate loci. All elemental boons present on the sourced locus carry over. This effect can be triggered up to four times per locus. Copies cannot be copied.");
+        addHeadline("locus_management.aerial", "Speed of the Locus");
+        addPages("locus_management.aerial", "By imbuing the bound rite locus with Aerial Arcana, it will gain the benefit of increased speed, causing it to move through the world faster. This effect can be applied twice per locus, doubling speed each time.");
+        addHeadline("locus_management.aqueous", "Potency of the Locus");
+        addPages("locus_management.aqueous", "By imbuing the bound rite locus with Aqueous Arcana, it will gain the benefit of increased potency, causing it to interact with certain rite anchor etchings more effectively. This effect can be applied twice per locus, doubling potency each time.");
+        addHeadline("locus_management.earthen", "Impact of the Locus");
+        addPages("locus_management.earthen", "By imbuing the bound rite locus with Earthen Arcana, it will gain the benefit of increased impact, causing it to apply a stronger effect with each activation. This effect can be applied twice per locus, doubling impact each time.");
+        addHeadline("locus_management.infernal", "Distance of the Locus");
+        addPages("locus_management.infernal", "By imbuing the bound rite locus with Infernal Arcana, it will gain the benefit of increased distance, causing it to cover more ground before expiring. This effect can be applied twice per locus, doubling distance each time.");
+
+        addHeadline("locus_management.elemental_boons", "Rite Anchor Study: Elemental Boons");
+        addPages("locus_management.elemental_boons", "",
+                "");
+        addHeadline("locus_management.wicked_order", "Rite Anchor Study: Locus Resurrection");
+        addPages("locus_management.wicked_order", "The locus is a primitive arcane construct, my first design of it was nothing more than an effect etched onto a form capable of movement. Self-Preservation ended up being a necessary factor in it's design, nothing like how a living creature would exhibit such a trait- but self-preservation nonetheless.",
+                "When met with the command of Wicked Arcana, the locus is forced into self-sacrifice. It will forgo any elemental boons it has already been imbued with. Being the least significant, Speed is expunged first. Potency falls next, with Impact being culled afterwards. Distance, being the most significant trait of the locus is only sacrificed if no other boon is available.");
+
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");
         addPages("tyrving",

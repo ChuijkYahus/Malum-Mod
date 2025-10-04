@@ -110,6 +110,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SUNDERING_ANCHOR_THROW, s -> definition(s).with(sounds("curiosities/weapons/scythe/throw", 3)));
         this.add(MalumSoundEvents.SUNDERING_ANCHOR_CATCH, s -> definition(s).with(sounds("curiosities/weapons/scythe/catch", 2)));
 
+        this.add(MalumSoundEvents.OAKEN_MIGHT_HIT, s -> definition(s).with(sounds("curiosities/effect/oaken_might", 4)));
+
         this.add(MalumSoundEvents.WARLOCK_BLAST, s -> definition(s).with(sounds("curiosities/geas/warlock_impact", 2)));
         this.add(MalumSoundEvents.REAPER_CUT, s -> definition(s).with(sounds("curiosities/geas/reaper_impact", 4)));
         this.add(MalumSoundEvents.BERSERKER_WRATH, s -> definition(s).with(sounds("curiosities/geas/berserker_impact", 4)));

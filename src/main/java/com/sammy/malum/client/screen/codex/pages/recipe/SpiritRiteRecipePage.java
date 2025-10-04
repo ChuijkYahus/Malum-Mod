@@ -52,7 +52,7 @@ public class SpiritRiteRecipePage extends BookPage {
             var spiritTexture = spiritType.getSpirit().getGlowTexture();
             var stack = spirits.get(i).getSpiritStack();
             var isCorrupt = riteType.isCorrupted();
-            renderRiteIcon(spiritTexture, poseStack, spiritType, isCorrupt, riteStartX, y);
+            renderSpiritIcon(spiritTexture, poseStack, spiritType, isCorrupt, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);
             }

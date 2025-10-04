@@ -92,12 +92,12 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 ETHER.get(), ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
                 IRIDESCENT_ETHER.get(), IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
 
-        tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS)
+        tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(MalumTags.ItemTags.SCYTHES, MalumTags.ItemTags.STAVES)
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get());
 
-        tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS)
+        tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON)
                 .addOptional(ResourceLocation.parse("irons_spellbooks:graybeard_staff"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:artificer_cane"))
                 .addOptional(ResourceLocation.parse("irons_spellbooks:lightning_rod"))
@@ -113,12 +113,12 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addOptional(ResourceLocation.parse("irons_spellbooks:hellrazor"))
                 .addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe")); //TODO: Whenever BiC updates to 1.21, check if this is still valid! -Atobá
 
-        tag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS).add(
+        tag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON).add(
                 CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(),
                 SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get(),
                 MNEMONIC_HEX_STAFF.get(), UNWINDING_CHAOS.get(), EROSION_SCEPTER.get(),
                 TYRVING.get(), SUNDERING_ANCHOR.get());
-        tag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS).addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe"));
+        tag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON).addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe"));
 
         tag(MalumTags.ItemTags.SCYTHES)
                 .add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
@@ -147,13 +147,13 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(ItemTags.LEG_ARMOR).add(SOUL_HUNTER_LEGGINGS.get(), SOUL_STAINED_STEEL_LEGGINGS.get(), MALIGNANT_STRONGHOLD_LEGGINGS.get());
         tag(ItemTags.FOOT_ARMOR).add(SOUL_HUNTER_BOOTS.get(), SOUL_STAINED_STEEL_BOOTS.get(), MALIGNANT_STRONGHOLD_BOOTS.get());
 
-        tag(MalumTags.ItemTags.HAUNTED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS);
-        tag(MalumTags.ItemTags.ANIMATED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPONS);
+        tag(MalumTags.ItemTags.HAUNTED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON);
+        tag(MalumTags.ItemTags.ANIMATED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON);
         tag(MalumTags.ItemTags.REBOUND_ENCHANTABLE).addTag(MalumTags.ItemTags.SCYTHES);
         tag(MalumTags.ItemTags.ASCENSION_ENCHANTABLE).addTag(MalumTags.ItemTags.SCYTHES);
         tag(MalumTags.ItemTags.REPLENISHING_ENCHANTABLE).addTag(MalumTags.ItemTags.STAVES);
         tag(MalumTags.ItemTags.CAPACITOR_ENCHANTABLE).addTag(MalumTags.ItemTags.STAVES);
-        tag(MalumTags.ItemTags.SPIRIT_SPOILS_ENCHANTABLE).addTag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS);
+        tag(MalumTags.ItemTags.SPIRIT_SPOILS_ENCHANTABLE).addTag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON);
 
 
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(MalumTags.ItemTags.SCYTHES, MalumTags.ItemTags.STAVES)
@@ -201,7 +201,9 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(MalumTags.ItemTags.IS_TOTEMIC_TOOL).add(TOTEMIC_STAFF.get());
         tag(MalumTags.ItemTags.IS_REDSTONE_TOOL).add(ARTIFICERS_CLAW.get()).addOptional(ResourceLocation.parse("create:wrench"));
         tag(MalumTags.ItemTags.IS_ARTIFICE_TOOL).add(TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
+        tag(MalumTags.ItemTags.COUNTS_AS_EMPTY_HAND).addOptional(ResourceLocation.parse("mowziesmobs:earthrend_gauntlet"));
 
+        tag(MalumTags.ItemTags.SAPBALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
         tag(MalumTags.ItemTags.GROSS_FOODS).add(ROTTEN_FLESH, ROTTING_ESSENCE.get(), CONCENTRATED_GLUTTONY.get());
 
         tag(MalumTags.ItemTags.PROSPECTORS_TREASURE)
@@ -209,7 +211,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addOptional(ResourceLocation.parse("tetra:geode"));
 
         tag(MalumTags.ItemTags.SOULWOVEN_POUCH_EFFICIENT)
-                .addTags(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPONS, MalumTags.ItemTags.SPIRITS, MalumTags.ItemTags.MOB_DROPS, MalumTags.ItemTags.MATERIALS, MalumTags.ItemTags.MINERALS)
+                .addTags(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON, MalumTags.ItemTags.SPIRITS, MalumTags.ItemTags.MOB_DROPS, MalumTags.ItemTags.MATERIALS, MalumTags.ItemTags.MINERALS)
                 .addTags(MalumTags.ItemTags.AUGMENTS, MalumTags.ItemTags.METAL_NODES)
                 .addTag(MalumTags.ItemTags.ARMORS)
                 .addTags(MalumTags.ItemTags.RING_CURIO, MalumTags.ItemTags.NECKLACE_CURIO, MalumTags.ItemTags.BELT_CURIO, MalumTags.ItemTags.BROOCH_CURIO, MalumTags.ItemTags.RUNE_CURIO)

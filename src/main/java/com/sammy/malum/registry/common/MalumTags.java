@@ -16,8 +16,8 @@ public class MalumTags {
 
     public static class ItemTags {
 
-        public static final TagKey<Item> SOUL_SHATTER_CAPABLE_WEAPONS = tag("soul_shatter_capable_weapons");
-        public static final TagKey<Item> MAGIC_CAPABLE_WEAPONS = tag("magic_capable_weapon");
+        public static final TagKey<Item> SOUL_SHATTER_CAPABLE_WEAPON = tag("soul_shatter_capable_weapon");
+        public static final TagKey<Item> MAGIC_CAPABLE_WEAPON = tag("magic_capable_weapon");
 
         public static final TagKey<Item> SCYTHES = tag("scythe");
         public static final TagKey<Item> SCYTHES_COMMON = commonTag("tools/scythe");
@@ -57,6 +57,8 @@ public class MalumTags {
         public static final TagKey<Item> IS_TOTEMIC_TOOL = tag("totemic_tool");
         public static final TagKey<Item> IS_REDSTONE_TOOL = tag("redstone_tool");
         public static final TagKey<Item> IS_ARTIFICE_TOOL = tag("artifice_tool");
+
+        public static final TagKey<Item> COUNTS_AS_EMPTY_HAND = tag("counts_as_empty_hand");
 
         public static final TagKey<Item> SAPBALLS = tag("sapballs");
         public static final TagKey<Item> GROSS_FOODS = tag("gross_foods");
