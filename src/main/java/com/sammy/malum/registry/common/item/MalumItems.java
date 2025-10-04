@@ -42,10 +42,10 @@ import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.compat.farmersdelight.*;
+import com.sammy.malum.core.enumextension.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.world.food.*;
@@ -341,7 +341,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> GILDED_RUNEWOOD_ITEM_STAND = register("gilded_runewood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.GILDED_RUNEWOOD_ITEM_STAND.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_SIGN = register("runewood_sign", NATURE_PROPERTIES(), (p) -> new SignItem(NATURE_PROPERTIES().stacksTo(16), MalumBlocks.RUNEWOOD_SIGN.get(), MalumBlocks.RUNEWOOD_WALL_SIGN.get()));
-    public static final DeferredHolder<Item, Item> RUNEWOOD_BOAT = register("runewood_boat", NATURE_PROPERTIES(), (p) -> new LodestoneBoatItem(NATURE_PROPERTIES().stacksTo(1), MalumEntities.RUNEWOOD_BOAT));
+    public static final DeferredHolder<Item, Item> RUNEWOOD_BOAT = register("runewood_boat", NATURE_PROPERTIES().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
+    public static final DeferredHolder<Item, Item> RUNEWOOD_CHEST_BOAT = register("runewood_chest_boat", NATURE_PROPERTIES().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
     //endregion
 
     //region scarstone
@@ -434,7 +435,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> ORNATE_SOULWOOD_ITEM_STAND = register("ornate_soulwood_item_stand", NATURE_PROPERTIES(), (p) -> new BlockItem(MalumBlocks.ORNATE_SOULWOOD_ITEM_STAND.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_SIGN = register("soulwood_sign", NATURE_PROPERTIES().stacksTo(16), (p) -> new SignItem(p, MalumBlocks.SOULWOOD_SIGN.get(), MalumBlocks.SOULWOOD_WALL_SIGN.get()));
-    public static final DeferredHolder<Item, Item> SOULWOOD_BOAT = register("soulwood_boat", NATURE_PROPERTIES().stacksTo(1), (p) -> new LodestoneBoatItem(p, MalumEntities.SOULWOOD_BOAT));
+    public static final DeferredHolder<Item, Item> SOULWOOD_BOAT = register("soulwood_boat", NATURE_PROPERTIES().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.SOULWOOD_BOAT_TYPE.getValue(), p));
+    public static final DeferredHolder<Item, Item> SOULWOOD_CHEST_BOAT = register("soulwood_chest_boat", NATURE_PROPERTIES().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.SOULWOOD_BOAT_TYPE.getValue(), p));
     //endregion
 
     //region ores
@@ -813,7 +815,7 @@ public class MalumItems {
 
     //endregion
 
-    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
     public static class ClientOnly {
 
         @SubscribeEvent

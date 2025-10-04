@@ -38,8 +38,8 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
 
         EFFECTS.put(MalumSpiritTypes.AERIAL_SPIRIT, e -> e.upgrade(e.speed));
         EFFECTS.put(MalumSpiritTypes.AQUEOUS_SPIRIT, e -> e.upgrade(e.potency));
-        EFFECTS.put(MalumSpiritTypes.EARTHEN_SPIRIT, e -> e.upgrade(e.distance));
-        EFFECTS.put(MalumSpiritTypes.INFERNAL_SPIRIT, e -> e.upgrade(e.impact));
+        EFFECTS.put(MalumSpiritTypes.EARTHEN_SPIRIT, e -> e.upgrade(e.impact));
+        EFFECTS.put(MalumSpiritTypes.INFERNAL_SPIRIT, e -> e.upgrade(e.distance));
     }
 
     public static final StringRepresentable.EnumCodec<AimState> CODEC = StringRepresentable.fromEnum(AimState::values);

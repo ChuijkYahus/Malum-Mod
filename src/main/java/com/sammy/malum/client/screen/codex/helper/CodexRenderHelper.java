@@ -25,6 +25,8 @@ import java.util.function.*;
 
 public class CodexRenderHelper {
 
+    //TODO: This whole class SUCKS !!!!!!!!!!!!!!!!!!!!!!!!!!
+
     protected static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
 
     public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
@@ -66,51 +68,6 @@ public class CodexRenderHelper {
         shaderInstance.setUniformDefaults();
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();
-    }
-
-    public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, float x, float y) {
-        renderRiteIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), rite.isCorrupted(), x, y, 0);
-    }
-
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y) {
-        renderRiteIcon(texture, stack, spiritType, corrupted, x, y, 0);
-    }
-
-    public static void renderRiteIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int z) {
-        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-        float intensity = corrupted ? 30f : 50f;
-        shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 10f);
-        shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 9f : 18f);
-        shaderInstance.safeGetUniform("Speed").set(corrupted ? -1000f : 1500f);
-        shaderInstance.safeGetUniform("Intensity").set(intensity);
-        shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstance)
-                .setZLevel(z);
-
-        RenderSystem.depthMask(false);
-        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-
-        var color = spiritType.getPrimaryColor();
-        var secondaryColor = spiritType.getPrimaryColor();
-
-        builder.setColor(color).setAlpha(0.8f);
-        renderTexture(texture, stack, builder, x, y, 0, 0, 0, 16, 16);
-
-        builder.setColor(ColorHelper.brighter(color, 4)).setAlpha(0.1f);
-        renderTexture(texture, stack, builder, x + 2, y + 2, 1, 2, 2, 12, 12, 16, 16);
-
-        builder.setAlpha(0.2f);
-        renderTexture(texture, stack, builder, x + 1, y, 2, 0, 0, 16, 16);
-        renderTexture(texture, stack, builder, x - 1, y, 3, 0, 0, 16, 16);
-        builder.setColor(secondaryColor).setAlpha(0.3f);
-        shaderInstance.safeGetUniform("Intensity").set(-intensity);
-        renderTexture(texture, stack, builder, x, y + 1, 4, 0, 0, 16, 16);
-        renderTexture(texture, stack, builder, x, y - 1, 5, 0, 0, 16, 16);
-
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.depthMask(true);
-        shaderInstance.setUniformDefaults();
     }
 
     public static void renderGeasIcon(ResourceLocation location, PoseStack stack, GeasEffectType type, float x, float y) {
@@ -171,13 +128,8 @@ public class CodexRenderHelper {
         shaderInstance.setUniformDefaults();
     }
 
-
-    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y) {
-        renderWavyIcon(location, stack, x, y, 0);
-    }
-
-    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int z) {
-        renderWavyIcon(location, stack, x, y, z, 16, 16);
+    public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int textureWidth, int textureHeight) {
+        renderWavyIcon(location, stack, x, y, 0, textureWidth, textureHeight);
     }
 
     public static void renderWavyIcon(ResourceLocation location, PoseStack stack, float x, float y, int z, int textureWidth, int textureHeight) {
@@ -203,6 +155,60 @@ public class CodexRenderHelper {
         renderTexture(location, stack, builder, x, y + 1, 4, 0, 0, textureWidth, textureHeight);
         shaderInstance.setUniformDefaults();
         RenderSystem.defaultBlendFunc();
+    }
+
+    public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, float x, float y) {
+        renderSpiritIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), rite.isCorrupted(), x, y, 0);
+    }
+
+
+    public static void renderSpiritIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y) {
+        renderSpiritIcon(texture, stack, spiritType, corrupted, x, y, 0);
+    }
+
+    public static void renderSpiritIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int z) {
+        renderSpiritIcon(texture, stack, spiritType, corrupted, x, y, z, 16, 16);
+    }
+
+    public static void renderSpiritIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int textureWidth, int textureHeight) {
+        renderSpiritIcon(texture, stack, spiritType, corrupted, x, y, 0, textureWidth, textureHeight);
+    }
+
+    public static void renderSpiritIcon(ResourceLocation texture, PoseStack stack, SpiritLike spiritType, boolean corrupted, float x, float y, int z, int textureWidth, int textureHeight) {
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
+        float intensity = corrupted ? 30f : 50f;
+        shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 10f);
+        shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 9f : 18f);
+        shaderInstance.safeGetUniform("Speed").set(corrupted ? -1000f : 1500f);
+        shaderInstance.safeGetUniform("Intensity").set(intensity);
+        shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
+        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+                .setShader(shaderInstance)
+                .setZLevel(z);
+
+        RenderSystem.depthMask(false);
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+
+        var color = spiritType.getPrimaryColor();
+        var secondaryColor = spiritType.getPrimaryColor();
+
+        builder.setColor(color).setAlpha(0.8f);
+        renderTexture(texture, stack, builder, x, y, 0, 0, 0, textureWidth, textureHeight);
+
+        builder.setColor(ColorHelper.brighter(color, 4)).setAlpha(0.1f);
+        renderTexture(texture, stack, builder, x + 2, y + 2, 1, 2, 2, 12, 12, 16, 16);
+
+        builder.setAlpha(0.2f);
+        renderTexture(texture, stack, builder, x + 1, y, 2, 0, 0, textureWidth, textureHeight);
+        renderTexture(texture, stack, builder, x - 1, y, 3, 0, 0, textureWidth, textureHeight);
+        builder.setColor(secondaryColor).setAlpha(0.3f);
+        shaderInstance.safeGetUniform("Intensity").set(-intensity);
+        renderTexture(texture, stack, builder, x, y + 1, 4, 0, 0, textureWidth, textureHeight);
+        renderTexture(texture, stack, builder, x, y - 1, 5, 0, 0, textureWidth, textureHeight);
+
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(true);
+        shaderInstance.setUniformDefaults();
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, float x, float y, float u, float v, int width, int height) {

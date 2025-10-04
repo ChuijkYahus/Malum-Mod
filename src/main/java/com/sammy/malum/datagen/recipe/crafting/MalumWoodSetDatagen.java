@@ -45,7 +45,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             MalumItems.RUNEWOOD_ITEM_STAND.get(), MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(),
             MalumItems.GILDED_RUNEWOOD_ITEM_STAND.get(), MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(),
             MalumTags.ItemTags.RUNEWOOD_LOGS, MalumTags.ItemTags.RUNEWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.RUNEWOOD_PLANKS, MalumTags.ItemTags.RUNEWOOD_BOARDS, MalumTags.ItemTags.RUNEWOOD_STAIRS, MalumTags.ItemTags.RUNEWOOD_SLABS,
-            MalumItems.RUNEWOOD_BOAT.get(),
+            MalumItems.RUNEWOOD_BOAT.get(), MalumItems.RUNEWOOD_CHEST_BOAT.get(),
             MalumItems.HALLOWED_GOLD_NUGGET.get()
     );
 
@@ -75,7 +75,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             MalumItems.SOULWOOD_ITEM_STAND.get(), MalumItems.SOULWOOD_ITEM_PEDESTAL.get(),
             MalumItems.ORNATE_SOULWOOD_ITEM_STAND.get(), MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(),
             MalumTags.ItemTags.SOULWOOD_LOGS, MalumTags.ItemTags.SOULWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.SOULWOOD_PLANKS, MalumTags.ItemTags.SOULWOOD_BOARDS, MalumTags.ItemTags.SOULWOOD_STAIRS, MalumTags.ItemTags.SOULWOOD_SLABS,
-            MalumItems.SOULWOOD_BOAT.get(),
+            MalumItems.SOULWOOD_BOAT.get(), MalumItems.SOULWOOD_CHEST_BOAT.get(),
             MalumItems.SOUL_STAINED_STEEL_NUGGET.get()
     );
 
@@ -271,7 +271,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .unlockedBy("has_input", has(input)).save(recipeOutput, recipeID);
     }
 
-    private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<Item> input) {
         shapeless(RecipeCategory.MISC, planks, 4)
                 .requires(input)
                 .group("planks")
@@ -279,7 +279,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedBoards(RecipeOutput recipeOutput, ItemLike output, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedBoards(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, output, 20)
                 .define('#', input)
                 .pattern(" # ")
@@ -289,7 +289,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedPanel(RecipeOutput recipeOutput, ItemLike output, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedPanel(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, output, 9)
                 .define('#', input)
                 .pattern("###")
@@ -309,14 +309,14 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<Item> input) {
         shapeless(RecipeCategory.MISC, button)
                 .requires(input)
                 .unlockedBy("has_input", has(input))
                 .save(recipeOutput);
     }
 
-    private static void shapedDoor(RecipeOutput recipeOutput, ItemLike door, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedDoor(RecipeOutput recipeOutput, ItemLike door, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, door, 3)
                 .define('#', input)
                 .pattern("##")
@@ -326,7 +326,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedFence(RecipeOutput recipeOutput, ItemLike fence, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedFence(RecipeOutput recipeOutput, ItemLike fence, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, fence, 3)
                 .define('#', Tags.Items.RODS_WOODEN)
                 .define('W', input)
@@ -336,7 +336,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedFenceGate(RecipeOutput recipeOutput, ItemLike fenceGate, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedFenceGate(RecipeOutput recipeOutput, ItemLike fenceGate, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, fenceGate)
                 .define('#', Tags.Items.RODS_WOODEN)
                 .define('W', input)
@@ -346,7 +346,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, pressurePlate)
                 .define('#', input)
                 .pattern("##")
@@ -372,7 +372,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedTrapdoor(RecipeOutput recipeOutput, ItemLike trapdoor, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedTrapdoor(RecipeOutput recipeOutput, ItemLike trapdoor, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, trapdoor, 2)
                 .define('#', input)
                 .pattern("###")
@@ -381,7 +381,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedSign(RecipeOutput recipeOutput, ItemLike sign, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedSign(RecipeOutput recipeOutput, ItemLike sign, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, sign, 3)
                 .group("sign")
                 .define('#', input)
@@ -393,7 +393,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedBoat(RecipeOutput recipeOutput, ItemLike boat, TagKey<net.minecraft.world.item.Item> input) {
+    private static void shapedBoat(RecipeOutput recipeOutput, ItemLike boat, TagKey<Item> input) {
         shaped(RecipeCategory.MISC, boat)
                 .define('#', input)
                 .pattern("# #")
@@ -404,45 +404,45 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
     public record MalumDatagenWoodSet(
             String prefix,
 
-            net.minecraft.world.item.Item log, net.minecraft.world.item.Item wood,
-            net.minecraft.world.item.Item strippedLog, net.minecraft.world.item.Item strippedWood,
+            Item log, Item wood,
+            Item strippedLog, Item strippedWood,
 
-            net.minecraft.world.item.Item sapFilledLog, net.minecraft.world.item.Item strippedSapFilledLog,
+            Item sapFilledLog, Item strippedSapFilledLog,
 
-            net.minecraft.world.item.Item boards, net.minecraft.world.item.Item verticalBoards,
-            net.minecraft.world.item.Item boardsSlab, net.minecraft.world.item.Item verticalBoardsSlab,
-            net.minecraft.world.item.Item boardsStairs, net.minecraft.world.item.Item verticalBoardsStairs,
+            Item boards, Item verticalBoards,
+            Item boardsSlab, Item verticalBoardsSlab,
+            Item boardsStairs, Item verticalBoardsStairs,
 
-            net.minecraft.world.item.Item planks, net.minecraft.world.item.Item verticalPlanks, net.minecraft.world.item.Item tiles,
-            net.minecraft.world.item.Item rusticPlanks, net.minecraft.world.item.Item verticalRusticPlanks, net.minecraft.world.item.Item rusticTiles,
-            net.minecraft.world.item.Item planksSlab, net.minecraft.world.item.Item verticalPlanksSlab, net.minecraft.world.item.Item tilesSlab,
-            net.minecraft.world.item.Item rusticPlanksSlab, net.minecraft.world.item.Item verticalRusticPlanksSlab, net.minecraft.world.item.Item rusticTilesSlab,
-            net.minecraft.world.item.Item planksStairs, net.minecraft.world.item.Item verticalPlanksStairs, net.minecraft.world.item.Item tilesStairs,
-            net.minecraft.world.item.Item rusticPlanksStairs, net.minecraft.world.item.Item verticalRusticPlanksStairs, net.minecraft.world.item.Item rusticTilesStairs,
+            Item planks, Item verticalPlanks, Item tiles,
+            Item rusticPlanks, Item verticalRusticPlanks, Item rusticTiles,
+            Item planksSlab, Item verticalPlanksSlab, Item tilesSlab,
+            Item rusticPlanksSlab, Item verticalRusticPlanksSlab, Item rusticTilesSlab,
+            Item planksStairs, Item verticalPlanksStairs, Item tilesStairs,
+            Item rusticPlanksStairs, Item verticalRusticPlanksStairs, Item rusticTilesStairs,
 
-            net.minecraft.world.item.Item panel, net.minecraft.world.item.Item cutPlanks, net.minecraft.world.item.Item beam,
+            Item panel, Item cutPlanks, Item beam,
 
-            net.minecraft.world.item.Item button, net.minecraft.world.item.Item pressurePlate,
+            Item button, Item pressurePlate,
 
-            net.minecraft.world.item.Item door, net.minecraft.world.item.Item boltedDoor,
-            net.minecraft.world.item.Item boardsDoor, net.minecraft.world.item.Item boltedBoardsDoor,
+            Item door, Item boltedDoor,
+            Item boardsDoor, Item boltedBoardsDoor,
 
-            net.minecraft.world.item.Item trapdoor, net.minecraft.world.item.Item boltedTrapdoor,
-            net.minecraft.world.item.Item boardsTrapdoor, net.minecraft.world.item.Item boltedBoardsTrapdoor,
+            Item trapdoor, Item boltedTrapdoor,
+            Item boardsTrapdoor, Item boltedBoardsTrapdoor,
 
-            net.minecraft.world.item.Item fence, net.minecraft.world.item.Item fenceGate,
+            Item fence, Item fenceGate,
 
-            net.minecraft.world.item.Item boardWall,
+            Item boardWall,
 
-            net.minecraft.world.item.Item sign, net.minecraft.world.item.Item hangingSign,
+            Item sign, Item hangingSign,
 
-            net.minecraft.world.item.Item itemStand, net.minecraft.world.item.Item itemPedestal,
-            net.minecraft.world.item.Item decoratedItemStand, net.minecraft.world.item.Item decoratedItemPedestal,
+            Item itemStand, Item itemPedestal,
+            Item decoratedItemStand, Item decoratedItemPedestal,
 
-            TagKey<net.minecraft.world.item.Item> logTag, TagKey<net.minecraft.world.item.Item> boardIngredientTag, TagKey<net.minecraft.world.item.Item> planksTag, TagKey<net.minecraft.world.item.Item> boardsTag, TagKey<net.minecraft.world.item.Item> stairsTag, TagKey<net.minecraft.world.item.Item> slabTag,
+            TagKey<Item> logTag, TagKey<Item> boardIngredientTag, TagKey<Item> planksTag, TagKey<Item> boardsTag, TagKey<Item> stairsTag, TagKey<Item> slabTag,
 
-            net.minecraft.world.item.Item boat,
+            Item boat, Item chestBoat,
 
-            net.minecraft.world.item.Item metalNugget
+            Item metalNugget
     ) { }
 }

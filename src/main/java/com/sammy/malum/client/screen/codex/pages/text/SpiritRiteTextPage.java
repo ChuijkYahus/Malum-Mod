@@ -30,8 +30,8 @@ public class SpiritRiteTextPage extends BookPage {
         CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
         CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 78, 130);
 
-        final int riteIconX = left + 63;
-        final int riteIconY = top + 38;
+        int riteIconX = left + 63;
+        int riteIconY = top + 38;
         renderRiteIcon(rite, guiGraphics.pose(), riteIconX, riteIconY);
         if (screen.isHovering(mouseX, mouseY, riteIconX, riteIconY, 16, 16)) {
             screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, rite.getDetailedDescription(), mouseX, mouseY));

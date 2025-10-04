@@ -83,7 +83,7 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
 
     @Override
     public void spawnEarlyParticles(ScreenParticleHolder target, Level level, float partialTick, ItemStack stack, float x, float y) {
-        ScreenParticleEffects.spawnGeasItemScreenParticles(target, level, 1f, partialTick);
+        ScreenParticleEffects.spawnGeasItemScreenParticles(target, level, partialTick);
     }
 
     @Override

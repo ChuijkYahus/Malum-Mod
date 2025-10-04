@@ -29,15 +29,16 @@ public class HiddenBladeRenderHandler {
                     }
                     fadeOut -= 2;
                     return;
-                } else if (fadeOut < 0) {
+                }
+                if (fadeOut < 0) {
                     fadeOut = 20;
                 }
-                if (fadeOut < 80) {
+                else if (fadeOut < 80) {
                     fadeOut++;
                 }
-            } else {
-                fadeOut = 0;
+                return;
             }
+            fadeOut = 0;
         }
     }
 

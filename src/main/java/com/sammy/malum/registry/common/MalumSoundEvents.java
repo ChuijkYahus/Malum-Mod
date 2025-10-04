@@ -108,6 +108,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_THROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_leaps_out_eagerly")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("sundering_anchor_returns_with_euphoria")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> OAKEN_MIGHT_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("oaken_might_takes_effect")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> WARLOCK_BLAST = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wicked_energy_bursts_forward")));
     public static final DeferredHolder<SoundEvent, SoundEvent> REAPER_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("reaper_scythe_slashes")));
     public static final DeferredHolder<SoundEvent, SoundEvent> BERSERKER_WRATH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("wrathful_energy_surges")));

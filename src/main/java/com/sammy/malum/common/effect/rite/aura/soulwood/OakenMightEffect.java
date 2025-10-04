@@ -1,17 +1,15 @@
 package com.sammy.malum.common.effect.rite.aura.soulwood;
 
-import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.helpers.ColorHelper;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 
 public class OakenMightEffect extends MobEffect {
@@ -29,12 +27,16 @@ public class OakenMightEffect extends MobEffect {
             if (instance == null) {
                 return;
             }
-            int amplifier = instance.getAmplifier() + 1;
-            if (entity.getWeaponItem().isEmpty()) {
-                amplifier *= 2;
+            if (entity instanceof Player player && player.getAttackStrengthScale(0) < 0.9f) {
+                return;
             }
-            float increase = amplifier * 0.75f;
-            event.setNewDamage(event.getNewDamage() + increase);
+            int amplifier = instance.getAmplifier() + 1;
+            final ItemStack weapon = entity.getWeaponItem();
+            if (weapon.isEmpty() || weapon.is(MalumTags.ItemTags.COUNTS_AS_EMPTY_HAND)) {
+                amplifier *= 2;
+                SoundHelper.playSound(entity, MalumSoundEvents.OAKEN_MIGHT_HIT.get(), 1.0f, 0.8f + entity.getRandom().nextFloat() * 0.4f);
+            }
+            event.setNewDamage(event.getNewDamage() + amplifier);
         }
     }
 }

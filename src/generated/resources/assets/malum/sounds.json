@@ -1070,6 +1070,15 @@
     ],
     "subtitle": "malum.subtitle.metallic_trinket_equipped"
   },
+  "oaken_might_takes_effect": {
+    "sounds": [
+      "malum:curiosities/effect/oaken_might1",
+      "malum:curiosities/effect/oaken_might2",
+      "malum:curiosities/effect/oaken_might3",
+      "malum:curiosities/effect/oaken_might4"
+    ],
+    "subtitle": "malum.subtitle.oaken_might_takes_effect"
+  },
   "ornate_trinket_equipped": {
     "sounds": [
       "malum:equip_sounds/ornate/equip_ornate1",
@@ -2127,18 +2136,9 @@
   },
   "spark_directed": {
     "sounds": [
-      {
-        "name": "malum:totem/spark/spark_create1",
-        "pitch": 2.0
-      },
-      {
-        "name": "malum:totem/spark/spark_create2",
-        "pitch": 2.0
-      },
-      {
-        "name": "malum:totem/spark/spark_create3",
-        "pitch": 2.0
-      }
+      "malum:totem/spark/spark_direct1",
+      "malum:totem/spark/spark_direct2",
+      "malum:totem/spark/spark_direct3"
     ],
     "subtitle": "malum.subtitle.spark_directed"
   },

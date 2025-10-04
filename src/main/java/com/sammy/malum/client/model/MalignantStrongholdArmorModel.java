@@ -54,7 +54,7 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
 
     @Override
     public void setupAnim(LivingEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        float pPartialTicks = Minecraft.getInstance().timer.getGameTimeDeltaTicks();
+        float pPartialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaTicks();
         if (pEntity instanceof AbstractClientPlayer clientPlayer) {
             double d0 = Mth.lerp(pPartialTicks, clientPlayer.xCloakO, clientPlayer.xCloak) - Mth.lerp(pPartialTicks, pEntity.xo, pEntity.getX());
             double d1 = Mth.lerp(pPartialTicks, clientPlayer.yCloakO, clientPlayer.yCloak) - Mth.lerp(pPartialTicks, pEntity.yo, pEntity.getY());
