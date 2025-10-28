@@ -90,6 +90,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     @Override
     protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
+        super.saveAdditional(compound, pRegistries);
         compound.putFloat("speed", speed);
         compound.putInt("progress", progress);
         compound.putInt("idleProgress", idleProgress);
