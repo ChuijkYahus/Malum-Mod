@@ -8,6 +8,12 @@ import static com.sammy.malum.MalumMod.MALUM;
 
 public class CommonConfig extends LodestoneConfig {
 
+
+    public static ConfigValueHolder<Boolean> HIDE_RECIPES = new ConfigValueHolder<>(MALUM, "common/progression", (builder ->
+            builder.comment("If set to true, malum will hide some of it's content related to a certain feature. This is the intended way to play the mod.")
+                    .define("hide_recipes", true)));
+
+
     public static ConfigValueHolder<Boolean> AWARD_CODEX_ON_KILL = new ConfigValueHolder<>(MALUM, "common/codex", (builder ->
             builder.comment("If set to true, one of the first undead enemies a player slays will drop the encyclopedia arcana.")
                     .define("enableCodexDrop", true)));

@@ -2,8 +2,8 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.payloads.*;
-import com.sammy.malum.common.payloads.spirit_diode.SpiritDiodeStateUpdatePayload;
-import com.sammy.malum.common.payloads.spirit_diode.SpiritDiodeVisualUpdatePayload;
+import com.sammy.malum.common.payloads.diode.SpiritDiodeStateUpdatePayload;
+import com.sammy.malum.common.payloads.diode.SpiritDiodeVisualUpdatePayload;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;

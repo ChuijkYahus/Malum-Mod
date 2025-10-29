@@ -5,7 +5,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.common.payloads.spirit_diode.*;
+import com.sammy.malum.common.payloads.diode.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.client.*;

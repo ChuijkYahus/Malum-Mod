@@ -1,4 +1,4 @@
-package com.sammy.malum.common.payloads.spirit_diode;
+package com.sammy.malum.common.payloads.diode;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
 import net.minecraft.core.BlockPos;

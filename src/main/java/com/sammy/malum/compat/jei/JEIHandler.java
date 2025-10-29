@@ -7,6 +7,7 @@ import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.compat.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compat.jei.categories.*;
 import com.sammy.malum.compat.jei.recipes.SpiritTransmutationWrapper;
+import com.sammy.malum.config.*;
 import com.sammy.malum.core.handlers.hiding.HiddenTagHandler;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -138,6 +139,9 @@ public class JEIHandler implements IModPlugin {
     }
 
     public void hideItems(IJeiRuntime jeiRuntime, List<TagKey<Item>> tagsToHide) {
+        if (!CommonConfig.HIDE_RECIPES.getConfigValue()) {
+            return;
+        }
         var ingredientManager = jeiRuntime.getIngredientManager();
 
         if (!HIDDEN_ITEMS.isEmpty()) {
