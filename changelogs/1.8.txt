@@ -22,6 +22,11 @@ KubeJS
 
 # New Stuff & Tweaks
 
+Spirit Rites
+- A lot of spirit rites have been completely redone
+- Most notably, rites which affect the world now utilize a Rite Locus system
+- The Rite Locus can be 
+
 Added the Ravenous Pouch
 - The Ravnous Pouch will snatch up any item that it already stores
 - Offers 8 stacks worth of space, but does not store magical items more efficiently

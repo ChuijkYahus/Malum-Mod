@@ -121,7 +121,7 @@ public class GeasSoulData {
                 cachedGeasStacks.add(geas.createDefaultStack());
             }
             if (!entity.level().isClientSide) {
-                PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new SyncGeasDataPayload(entity.getId(), this));
+                entity.syncData(MalumAttachmentTypes.GEAS_SOUL_INFO);
             }
             CuriosApi.getCuriosInventory(entity).ifPresent(h -> h.addPermanentSlotModifier("geas", GEAS_CURIO_SLOT, geasEffectTypes.size(), AttributeModifier.Operation.ADD_VALUE));
             setDirty(false);

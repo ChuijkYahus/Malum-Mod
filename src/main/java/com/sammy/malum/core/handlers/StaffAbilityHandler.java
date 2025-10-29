@@ -12,11 +12,13 @@ public class StaffAbilityHandler {
     public static void recoverStaffCharges(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
         if (!player.level().isClientSide) {
-            final StaffAbilityData data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
-            data.tickData(player);
-            if (data.isDirty()) {
-                PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new SyncStaffAbilityDataPayload(player.getId(), data));
-                data.setDirty(false);
+            if (player.hasData(MalumAttachmentTypes.STAFF_ABILITIES)) {
+                var data = player.getData(MalumAttachmentTypes.STAFF_ABILITIES);
+                data.tickData(player);
+                if (data.isDirty()) {
+                    player.syncData(MalumAttachmentTypes.STAFF_ABILITIES);
+                    data.setDirty(false);
+                }
             }
         }
     }

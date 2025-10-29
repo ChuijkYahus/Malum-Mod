@@ -44,7 +44,7 @@ public class MalumSpiritRiteTypes {
             minorTotemRite(WICKED_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.EMPOWERMENT_EFFECT));
     public static final RiteHolder<SpiritRiteType> RITE_OF_CULLING = RITE_TYPES.register("rite_of_culling", () ->
             majorTotemRite(WICKED_SPIRIT).build(MalumSpiritRiteEffectTypes.CULLING_EFFECT));
-    public static final RiteHolder<SpiritRiteType> RITE_OF_RAISING = RITE_TYPES.register("rite_of_raising", () ->
+    public static final RiteHolder<SpiritRiteType> RITE_OF_RAISING = RITE_TYPES.register("rite_of_rending", () ->
             majorTotemRite(WICKED_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.RAISING_EFFECT));
 
     public static final RiteHolder<SpiritRiteType> RITE_OF_THE_HOWLING_GALE = RITE_TYPES.register("rite_of_the_howling_gale", () ->
@@ -54,7 +54,7 @@ public class MalumSpiritRiteTypes {
     public static final RiteHolder<SpiritRiteType> RITE_OF_GRAVITY = RITE_TYPES.register("rite_of_gravity", () ->
             majorTotemRite(AERIAL_SPIRIT).build(MalumSpiritRiteEffectTypes.BLOCK_GRAVITY_EFFECT));
     public static final RiteHolder<SpiritRiteType> RITE_OF_ASCENSION = RITE_TYPES.register("rite_of_ascension", () ->
-            majorTotemRite(AERIAL_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.BLOCK_SOMETHING_EFFECT));
+            majorTotemRite(AERIAL_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.BLOCK_ASCENSION_EFFECT));
 
     public static final RiteHolder<SpiritRiteType> RITE_OF_THE_FLOWING_GRASP = RITE_TYPES.register("rite_of_the_flowing_grasp", () ->
             minorTotemRite(AQUEOUS_SPIRIT).build(MalumSpiritRiteEffectTypes.APPLY_FLOWING_GRASP_EFFECT));
