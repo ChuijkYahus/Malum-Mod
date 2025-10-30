@@ -34,9 +34,9 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
         super(tier, attackDamage, attackSpeed, properties.mergeAttributes(
                 ItemAttributeModifiers.builder()
                         .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  attackDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.MAGIC_DAMAGE.getId(), magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(MalumAttributes.CHARGE_CAPACITY, new AttributeModifier(MalumAttributes.CHARGE_CAPACITY.getId(), chargeCapacity, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(MalumAttributes.CHARGE_DURATION, new AttributeModifier(MalumAttributes.CHARGE_DURATION.getId(), chargeDuration, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(MalumAttributes.CHARGE_CAPACITY, new AttributeModifier(MalumAttributes.BASE_CHARGE_CAPACITY, chargeCapacity, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(MalumAttributes.CHARGE_DURATION, new AttributeModifier(MalumAttributes.BASE_CHARGE_DURATION, chargeDuration, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
     }
 
