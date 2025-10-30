@@ -9,7 +9,6 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.registry.rite.RiteHolder;
 import com.sammy.malum.core.systems.rite.SpiritRiteType;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +17,6 @@ import java.util.function.*;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
@@ -41,7 +39,7 @@ public class TotemMagicEntries {
                 .afterUmbralCrystal();
 
         screen.addEntry("totem_magic", 0, 14, b -> b
-                .configureEntry(w -> w.setIcon(RUNEWOOD_TOTEM_BASE).setDesign(GILDED, RUNEWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RUNEWOOD_TOTEM_BASE).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("totem_magic", RUNEWOOD_TOTEM_BASE.get()))
                 .addPage(new TextPage("totem_magic.2"))
                 .addPage(new TextPage("totem_magic.3"))
@@ -55,7 +53,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("managing_totems", 0, 15, b -> b
-                .configureEntry(w -> w.setIcon(TOTEMIC_STAFF).setDesign(SMALL, RUNEWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(TOTEMIC_STAFF).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("managing_totems", "managing_totems.1", TOTEMIC_STAFF.get()))
                 .addPage(new TextPage("managing_totems.2"))
                 .addPage(new TextPage("managing_totems.3"))
@@ -68,7 +66,7 @@ public class TotemMagicEntries {
 
         screen.addEntry("undirected_rite", 0, 16, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
-                .configureEntry(w -> w.setDesign(TOTEMIC, RUNEWOOD, DARK))
+                .configureWidget(w -> w.setDesign(TOTEMIC, RUNEWOOD, DARK))
                 .addPage(new HeadlineTextPage("undirected_rite"))
                 .addPage(new TextPage("undirected_rite.2"))
                 .addPage(new SpiritRiteTextPage(UNDIRECTED_RITE))
@@ -77,7 +75,7 @@ public class TotemMagicEntries {
 
         screen.addEntry("unchained_rite", 0, 17, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
-                .configureEntry(w -> w.setDesign(TOTEMIC, SOULWOOD, DARK))
+                .configureWidget(w -> w.setDesign(TOTEMIC, SOULWOOD, DARK))
                 .addPage(new HeadlineTextPage("unchained_rite"))
                 .addPage(new TextPage("unchained_rite.2"))
                 .addPage(new SpiritRiteTextPage(UNCHAINED_RITE))
@@ -89,7 +87,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("blight", 1, 18, b -> b
-                .configureEntry(w -> w.setIcon(BLIGHTED_EARTH).setDesign(SMALL, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(BLIGHTED_EARTH).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("blight.intro", "blight.intro.1", BLIGHTED_EARTH.get()))
                 .addPage(new HeadlineTextPage("blight.composition", "blight.composition.1"))
                 .addPage(new HeadlineTextPage("blight.flora", "blight.flora.1"))
@@ -98,7 +96,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("scarstone", -1, 18, b -> b
-                .configureEntry(w -> w.setIcon(SCARSTONE).setDesign(SMALL, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(SCARSTONE).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("scarstone", "scarstone.1", SCARSTONE.get()))
                 .addPage(new HeadlineTextPage("scarstone.material", "scarstone.material.1"))
                 .addPage(new HeadlineTextPage("scarstone.creation", "scarstone.creation.1"))
@@ -111,7 +109,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("soulwood", 0, 19, b -> b
-                .configureEntry(w -> w.setIcon(SOULWOOD_SAPLING).setDesign(SMALL, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(SOULWOOD_SAPLING).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("soulwood", "soulwood.1", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("soulwood.2"))
                 .addPage(new SmeltingPage(SOULWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
@@ -123,7 +121,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("unchained_transmutation", 0, 20, b -> b
-                .configureEntry(w -> w.setIcon(SOUL_SAND).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(SOUL_SAND).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("unchained_transmutation", "unchained_transmutation.intro.1"))
                 .addPage(new TextPage("unchained_transmutation.intro.2"))
                 .addPage(new TextPage("unchained_transmutation.dirt.1"))
@@ -143,7 +141,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("aura_empowerment", -3, 19, b -> b
-                .configureEntry(w -> w.setIcon(ARCANA_PYLON).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(ARCANA_PYLON).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("aura_empowerment", "aura_empowerment.1", ARCANA_PYLON.get()))
                 .addPage(SpiritInfusionPage.fromOutput(ARCANA_PYLON.get()))
                 .addPage(new TextPage("aura_empowerment.2"))
@@ -162,7 +160,7 @@ public class TotemMagicEntries {
         );
 
         screen.addEntry("locus_management", 3, 19, b -> b
-                .configureEntry(w -> w.setIcon(RITE_ANCHOR).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RITE_ANCHOR).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("locus_management", "locus_management.1", RITE_ANCHOR.get()))
                 .addPage(new TextPage("locus_management.2"))
                 .addPage(new TextPage("locus_management.3"))
@@ -219,7 +217,7 @@ public class TotemMagicEntries {
 
         screen.addEntry(name, x, y, b -> b
                 .setWidgetSupplier(acceptor)
-                .configureEntry(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
+                .configureWidget(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
                 .setAssociatedSpirit(definingSpirit));
     }
     public static void addBundledRiteEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
@@ -236,7 +234,7 @@ public class TotemMagicEntries {
 
         screen.addEntry(name, x, y, b -> b
                 .setWidgetSupplier(acceptor)
-                .configureEntry(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
+                .configureWidget(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
                 .setAssociatedSpirit(definingSpirit));
     }
 
@@ -244,7 +242,7 @@ public class TotemMagicEntries {
         SpiritRiteType rite = riteType.value();
         acceptor.addEntry(rite.getName(), x, y, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
-                .configureEntry(w -> w.setDesign(TOTEMIC, rite.isCorrupted() ? SOULWOOD : RUNEWOOD, DARK))
+                .configureWidget(w -> w.setDesign(TOTEMIC, rite.isCorrupted() ? SOULWOOD : RUNEWOOD, DARK))
                 .addPage(new SpiritRiteTextPage(riteType))
                 .addPage(new SpiritRiteRecipePage(riteType))
         );
@@ -254,7 +252,7 @@ public class TotemMagicEntries {
         SpiritRiteType rite = riteType.value();
         acceptor.addEntry(rite.getName(), x, y, b -> b
                 .setWidgetSupplier(RiteEntryObject::new)
-                .configureEntry(w -> w.setDesign(TOTEMIC, rite.isCorrupted() ? SOULWOOD : RUNEWOOD, DARK))
+                .configureWidget(w -> w.setDesign(TOTEMIC, rite.isCorrupted() ? SOULWOOD : RUNEWOOD, DARK))
                 .addPage(new SpiritRiteTextPage(riteType))
                 .addPage(new SpiritRiteRecipePage(riteType))
                 .addReference(totemicRuneEntry(rune.get()))

@@ -16,6 +16,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.opengl.*;
@@ -64,6 +65,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         setupEntries();
         NeoForge.EVENT_BUS.post(new SetupMalumCodexEntriesEvent(this));
         setupObjects();
+        faceOrigin();
     }
 
     @Override
@@ -92,7 +94,9 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         GL11.glEnable(GL_SCISSOR_TEST);
         constrictEntryRendering();
 
-        progressionObjects.renderObjects(this, guiGraphics, guiLeft + xOffset, guiTop + yOffset, mouseX, mouseY, partialTicks);
+        float objectX = guiLeft + BOOK_INSIDE_WIDTH / 2f + xOffset;
+        float objectY = guiTop + BOOK_INSIDE_HEIGHT / 2f + yOffset;
+        progressionObjects.renderObjects(this, guiGraphics, objectX, objectY, mouseX, mouseY, partialTicks);
         GL11.glDisable(GL_SCISSOR_TEST);
 
         renderTexture(FRAME_FADE_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
@@ -153,12 +157,18 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         return super.isHovering(mouseX, mouseY, posX, posY, width, height);
     }
 
+    public void correctOOBB() {
+        var offsets = clampOffsets(1.2f, 0.15f, 0.8f);
+        if (offsets.x != xOffset || offsets.y != yOffset) {
+            faceOrigin();
+        }
+    }
+
     public void setupObjects() {
         var window = minecraft.getWindow();
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
         progressionObjects.setupEntryObjects(this);
-        faceOrigin();
     }
 
     public void faceOrigin() {
@@ -169,28 +179,35 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         var window = minecraft.getWindow();
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
-        xOffset = -object.posX + BOOK_INSIDE_WIDTH / 2f;
-        yOffset = -object.posY + BOOK_INSIDE_HEIGHT / 2f;
+        xOffset = -object.posX;
+        yOffset = -object.posY;
     }
 
     public void renderBackground(PoseStack poseStack, ResourceLocation texture, float xModifier, float yModifier) {
+        var offsets = clampOffsets(0.8f, 0f, 1f);
+        float xOffset = offsets.x;
+        float yOffset = offsets.y;
         int insideLeft = getInsideLeft();
         int insideTop = getInsideTop();
-        float uOffset = (BOOK_INSIDE_WIDTH / 8f - xOffset * xModifier);
-        float vOffset = (backgroundImageHeight - BOOK_INSIDE_HEIGHT - yOffset * yModifier);
-        if (uOffset <= 0) {
-            uOffset = 0;
-        }
-        if (uOffset > BOOK_INSIDE_WIDTH / 2f) {
-            uOffset = BOOK_INSIDE_WIDTH / 2f;
-        }
-        if (vOffset <= backgroundImageHeight / 2f) {
-            vOffset = backgroundImageHeight / 2f;
-        }
-        if (vOffset > backgroundImageHeight - BOOK_INSIDE_HEIGHT) {
-            vOffset = backgroundImageHeight - BOOK_INSIDE_HEIGHT;
-        }
+        float uOffset = (backgroundImageWidth/12f) - xOffset * xModifier;
+        float vOffset = (backgroundImageHeight - BOOK_INSIDE_HEIGHT) - yOffset * yModifier;
         renderTexture(texture, poseStack, insideLeft, insideTop, uOffset, vOffset, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT, backgroundImageWidth / 2, backgroundImageHeight / 2);
+    }
+
+    public Vec2 clampOffsets(float horizontalClamp, float bottomClamp, float topClamp) {
+        float xOffset = this.xOffset;
+        float xMin = -backgroundImageWidth * horizontalClamp;
+        float xMax = backgroundImageWidth * horizontalClamp;
+        if (xOffset < xMin || xOffset > xMax) {
+            xOffset = Mth.clamp(xOffset, xMin, xMax);
+        }
+        float yOffset = this.yOffset;
+        float yMin = -backgroundImageHeight * bottomClamp;
+        float yMax = backgroundImageHeight * topClamp;
+        if (yOffset < yMin || yOffset > yMax) {
+            yOffset = Mth.clamp(yOffset, yMin, yMax);
+        }
+        return new Vec2(xOffset, yOffset);
     }
 
     public boolean isInView(double x, double y) {

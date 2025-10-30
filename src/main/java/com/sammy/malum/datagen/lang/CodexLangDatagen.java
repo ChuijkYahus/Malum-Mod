@@ -1497,10 +1497,10 @@ public class CodexLangDatagen {
         addHeadline("locus_management.infernal", "Distance of the Locus");
         addPages("locus_management.infernal", "By imbuing the bound rite locus with Infernal Arcana, it will gain the benefit of increased distance, causing it to cover more ground before expiring. This effect can be applied twice per locus, doubling distance each time.");
 
-        addHeadline("locus_management.elemental_boons", "Rite Anchor Study: Elemental Boons");
+        addHeadline("locus_management.elemental_boons", "Rite Study: Elemental Boons");
         addPages("locus_management.elemental_boons", "The locus makes for a rather primitive arcane construct, it does not excel at anything in particular and thus can be rather limiting in what it can accomplish. Through elemental arcana - transmitted through the rite anchor - I've already solved this problem, however it does demand further documentation.",
                 "When a rite locus travels over a rite anchor bearing either an Aerial, Aqueous, Earthen or Infernal etching, it will receive an elemental boon. Within each group, only the first two applications of the boon bear any effect. Furthermore, due to it's simple design, the rite locus can only accept four total boons.");
-        addHeadline("locus_management.wicked_order", "Rite Anchor Study: Locus Resurrection");
+        addHeadline("locus_management.wicked_order", "Rite Study: Locus Resurrection");
         addPages("locus_management.wicked_order", "The locus is a primitive arcane construct, my first design of it was nothing more than an effect etched onto a form capable of movement. Self-Preservation ended up being a necessary factor in it's design, nothing like how a living creature would exhibit such a trait- but self-preservation nonetheless.",
                 "When met with the command of Wicked Arcana, the locus is forced into self-sacrifice. It will forgo any elemental boons it has already been imbued with. Being the least significant, Speed is expunged first. Potency falls next, with Impact being culled afterwards. Distance, being the most significant trait of the locus is only sacrificed if no other boon is available.");
 

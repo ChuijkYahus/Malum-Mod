@@ -27,7 +27,7 @@ public class ArtificeEntries {
                 .afterUmbralCrystal();
 
         screen.addEntry("spirit_stones", 3, 7, b -> b
-                .configureEntry(w -> w.setIcon(TAINTED_ROCK))
+                .configureWidget(w -> w.setIcon(TAINTED_ROCK))
                 .addPage(new HeadlineTextPage("spirit_stones.tainted_rock", "spirit_stones.tainted_rock.1"))
                 .addPage(SpiritInfusionPage.fromOutput(TAINTED_ROCK.get()))
                 .addPage(CraftingPage.itemPedestalPage(TAINTED_ROCK_ITEM_PEDESTAL.get(), TAINTED_ROCK.get(), TAINTED_ROCK_SLAB.get()))
@@ -40,7 +40,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("ether", 4, 8, b -> b
-                .configureEntry(w -> w.setIcon(ETHER))
+                .configureWidget(w -> w.setIcon(ETHER))
                 .addPage(new HeadlineTextPage("ether", "ether.1"))
                 .addPage(SpiritInfusionPage.fromOutput(ETHER.get()))
                 .addPage(new TextPage("ether.2"))
@@ -60,7 +60,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("basic_artifice", 5, 8, b -> b
-                .configureEntry(w -> w.setIcon(WAVEMAKER))
+                .configureWidget(w -> w.setIcon(WAVEMAKER))
                 .addPage(new HeadlineTextPage("basic_artifice", "basic_artifice.1"))
                 .addPage(new TextPage("basic_artifice.2"))
                 .addPage(new HeadlineTextPage("basic_artifice.wavecharger", "basic_artifice.wavecharger.1"))
@@ -78,7 +78,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("soulwoven_silk", 4, 5, b -> b
-                .configureEntry(w -> w.setIcon(SOULWOVEN_SILK))
+                .configureWidget(w -> w.setIcon(SOULWOVEN_SILK))
                 .addPage(new HeadlineTextPage("soulwoven_silk", "soulwoven_silk.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOVEN_SILK.get()))
                 .addPage(new TextPage("soulwoven_silk.soulwoven_banner.1"))
@@ -103,7 +103,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("soulwoven_pouch", 5, 6, b -> b
-                .configureEntry(w -> w.setIcon(SOULWOVEN_POUCH))
+                .configureWidget(w -> w.setIcon(SOULWOVEN_POUCH))
                 .addPage(new HeadlineTextPage("soulwoven_pouch", "soulwoven_pouch.1"))
                 .addPage(new CraftingPage(SOULWOVEN_POUCH.get(), EMPTY, STRING, EMPTY, EMPTY, SOULWOVEN_SILK.get()))
                 .addReference(new EntryReference(RAVENOUS_POUCH, BookEntry.create("soulwoven_pouch.ravenous_pouch")
@@ -113,7 +113,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("soulhunter_armor", 6, 6, b -> b
-                .configureEntry(w -> w.setIcon(SOUL_HUNTER_CLOAK))
+                .configureWidget(w -> w.setIcon(SOUL_HUNTER_CLOAK))
                 .addPage(new HeadlineTextPage("soulhunter_armor", "soulhunter_armor.1"))
                 .addPage(new CyclingPage(
                         SpiritInfusionPage.fromOutput(SOUL_HUNTER_CLOAK.get()),
@@ -127,7 +127,7 @@ public class ArtificeEntries {
 
 
         screen.addEntry("spirit_focusing", 10, 7, b -> b
-                .configureEntry(w -> w.setIcon(SPIRIT_CRUCIBLE).setDesign(GILDED, RUNEWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(SPIRIT_CRUCIBLE).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("spirit_focusing", "spirit_focusing.1", SPIRIT_CRUCIBLE.get()))
                 .addPage(new TextPage("spirit_focusing.2"))
                 .addPage(SpiritInfusionPage.fromOutput(SPIRIT_CRUCIBLE.get()))
@@ -135,7 +135,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("focus_ashes", 9, 6, b -> b
-                .configureEntry(w -> w.setIcon(GUNPOWDER))
+                .configureWidget(w -> w.setIcon(GUNPOWDER))
                 .addPage(new HeadlineTextPage("focus_ashes", "focus_ashes.1"))
                 .addPage(SpiritFocusingPage.fromOutput(GUNPOWDER))
                 .addPage(SpiritFocusingPage.fromOutput(GLOWSTONE_DUST))
@@ -143,7 +143,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("focus_metals", 11, 8, b -> b
-                .configureEntry(w -> w.setIcon(IRON_NODE))
+                .configureWidget(w -> w.setIcon(IRON_NODE))
                 .addPage(new HeadlineTextItemPage("focus_metals", "focus_metals.1", IRON_NODE.get()))
                 .addPage(new TextPage("focus_metals.2"))
                 .addPage(new CyclingPage(
@@ -177,7 +177,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("focus_crystals", 12, 6, b -> b
-                .configureEntry(w -> w.setIcon(QUARTZ))
+                .configureWidget(w -> w.setIcon(QUARTZ))
                 .addPage(new HeadlineTextPage("focus_crystals", "focus_crystals.1"))
                 .addPage(SpiritFocusingPage.fromOutput(QUARTZ))
                 .addPage(SpiritFocusingPage.fromOutput(AMETHYST_SHARD))
@@ -186,7 +186,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("focus_elemental", 14, 5, b -> b
-                .configureEntry(w -> w.setIcon(ZEPHYR_IMPETUS))
+                .configureWidget(w -> w.setIcon(ZEPHYR_IMPETUS))
                 .addPage(new HeadlineTextPage("focus_elemental.zephyr_impetus", "focus_elemental.zephyr_impetus.1"))
                 .addPage(SpiritInfusionPage.fromOutput(ZEPHYR_IMPETUS.get()))
                 .addPage(SpiritFocusingPage.fromOutput(WIND_CHARGE))
@@ -195,7 +195,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("crucible_acceleration", 10, 5, b -> b
-                .configureEntry(w -> w.setIcon(SPIRIT_CATALYZER))
+                .configureWidget(w -> w.setIcon(SPIRIT_CATALYZER))
                 .addPage(new HeadlineTextPage("crucible_acceleration", "crucible_acceleration.1"))
                 .addPage(new TextPage("crucible_acceleration.2"))
                 .addPage(new TextPage("crucible_acceleration.3"))
@@ -203,7 +203,7 @@ public class ArtificeEntries {
         );
 
         screen.addEntry("arcane_restoration", 10, 9, b -> b
-                .configureEntry(w -> w.setIcon(REPAIR_PYLON))
+                .configureWidget(w -> w.setIcon(REPAIR_PYLON))
                 .addPage(new HeadlineTextPage("arcane_restoration", "arcane_restoration.1"))
                 .addPage(SpiritInfusionPage.fromOutput(REPAIR_PYLON.get()))
                 .addPage(new TextPage("arcane_restoration.2"))

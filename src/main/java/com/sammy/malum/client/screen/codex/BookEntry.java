@@ -32,13 +32,13 @@ public class BookEntry {
 
     public final UnaryOperator<Style> titleStyle;
     public final UnaryOperator<Style> subtitleStyle;
-    public final boolean tooltipDisabled;
+    public final boolean hasTooltip;
 
 
     public BookEntry(String identifier, boolean isVoid,
                      ImmutableList<BookPage> pages, ImmutableList<EntryReference> references, BooleanSupplier condition,
                      @Nullable SpiritLike associatedSpirit, boolean isFragment,
-                     UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean tooltipDisabled) {
+                     UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean hasTooltip) {
         this.identifier = identifier;
         this.isVoid = isVoid;
         this.pages = pages;
@@ -48,7 +48,7 @@ public class BookEntry {
         this.isFragment = isFragment;
         this.titleStyle = titleStyle;
         this.subtitleStyle = subtitleStyle;
-        this.tooltipDisabled = tooltipDisabled;
+        this.hasTooltip = hasTooltip;
     }
 
     public String translationKey() {
@@ -68,7 +68,7 @@ public class BookEntry {
     }
 
     public boolean hasTooltip() {
-        return !tooltipDisabled;
+        return hasTooltip;
     }
 
     public static PlacedBookEntryBuilder create(String identifier, int xOffset, int yOffset) {

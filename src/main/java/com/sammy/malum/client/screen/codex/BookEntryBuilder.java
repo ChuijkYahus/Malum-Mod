@@ -20,14 +20,16 @@ public class BookEntryBuilder {
     protected List<BookPage> pages = new ArrayList<>();
     protected List<EntryReference> references = new ArrayList<>();
     protected BooleanSupplier condition = () -> true;
-    protected SpiritLike associatedSpirit = null;
-    protected UnaryOperator<Style> titleStyle = UnaryOperator.identity();
-    protected UnaryOperator<Style> subtitleStyle = (style) -> style.withColor(ChatFormatting.GRAY);
-    protected boolean tooltipDisabled = false;
+    protected SpiritLike associatedSpirit;
+    protected UnaryOperator<Style> titleStyle;
+    protected UnaryOperator<Style> subtitleStyle;
+    protected boolean hasTooltip = true;
 
     protected BookEntryBuilder(String identifier, boolean isVoid) {
         this.identifier = identifier;
         this.isVoid = isVoid;
+        this.titleStyle = (style) -> style.withColor(isVoid ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD);
+        this.subtitleStyle = (style) -> style.withColor(ChatFormatting.GRAY).withItalic(true);
     }
 
     public BookEntryBuilder(String identifier) {
@@ -71,26 +73,26 @@ public class BookEntryBuilder {
         return this;
     }
 
-    public BookEntryBuilder styleTitle(UnaryOperator<Style> styleFunction) {
+    public BookEntryBuilder withTitleStyle(UnaryOperator<Style> styleFunction) {
         final UnaryOperator<Style> existingStyle = titleStyle;
         titleStyle = (style) -> styleFunction.apply(existingStyle.apply(style));
         return this;
     }
 
-    public BookEntryBuilder styleSubtitle(UnaryOperator<Style> styleFunction) {
+    public BookEntryBuilder withSubtitleStyle(UnaryOperator<Style> styleFunction) {
         final UnaryOperator<Style> existingStyle = subtitleStyle;
         subtitleStyle = (style) -> styleFunction.apply(existingStyle.apply(style));
         return this;
     }
 
     public BookEntryBuilder disableTooltip() {
-        this.tooltipDisabled = true;
+        this.hasTooltip = false;
         return this;
     }
 
     public BookEntry build() {
         ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
         ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(references);
-        return new BookEntry(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, false, titleStyle, subtitleStyle, tooltipDisabled);
+        return new BookEntry(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, false, titleStyle, subtitleStyle, hasTooltip);
     }
 }

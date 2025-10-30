@@ -137,6 +137,7 @@ Authority of the Gleeful Target
 - Added/Updated the effect icons for all rite effects
 
 # Bugfixes
+- Fixed the book having a stuck state, I'm not sure how this was caused but now if you are "out of bounds" the book will snap back to it's default position
 - Fixed certain items causing some other unrelated recipes to not appear in JEI whatsoever
 - Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 - Fixed the Soulbinding Brazier model having incorrect face culling data

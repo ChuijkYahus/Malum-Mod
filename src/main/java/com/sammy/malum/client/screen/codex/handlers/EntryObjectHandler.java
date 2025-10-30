@@ -4,6 +4,7 @@ import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
+import net.minecraft.*;
 
 import java.util.*;
 
@@ -22,15 +23,12 @@ public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCod
     public void setupEntryObjects(AbstractProgressionCodexScreen screen, List<PlacedBookEntry> entries) {
         objects.clear();
         entryObjectMap.clear();
-        //Cherry Picked Values
-        int left = 388;
-        int top = 60;
 
         ArrayList<ProgressionEntryObject> objects = new ArrayList<>();
         ArrayList<SubspaceEntryObject> subspaceObjects = new ArrayList<>();
         for (PlacedBookEntry entry : entries) {
             var data = entry.getWidgetData();
-            var bookObject = data.widgetSupplier().getBookObject(entry, left + data.xOffset(), top - data.yOffset());
+            var bookObject = data.widgetSupplier().getBookObject(entry, data.xOffset(), -data.yOffset());
             var config = data.widgetConfig();
             if (config != null) {
                 config.accept(bookObject);

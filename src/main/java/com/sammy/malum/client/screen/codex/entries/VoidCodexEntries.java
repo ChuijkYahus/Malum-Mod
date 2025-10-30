@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.codex.entries;
 
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
@@ -19,7 +18,6 @@ import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.ENCHANTED_BOOK;
@@ -32,11 +30,12 @@ public class VoidCodexEntries {
 
         screen.addEntry("chronicles_of_the_soul", 0, 0, b -> b
                 .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, ArcanaProgressionScreen.SCREEN, malumPath("textures/gui/book/icons/arcana_button.png"), 20, 20))
-                .configureEntry(w -> w.setDesign(GRAND, SOULWOOD, DARK).setHeadlineFormatting(ChatFormatting.YELLOW))
+                .configureWidget(w -> w.setDesign(GRAND, SOULWOOD, DARK))
+                .withTitleStyle(s -> s.withColor(ChatFormatting.YELLOW))
         );
 
         screen.addEntry("void.the_weeping_well", 0, 1, b -> b
-                .configureEntry(w -> w.setIcon(VOID_DEPOT).setDesign(GILDED, SOULWOOD, PAPER).setOrigin())
+                .configureWidget(w -> w.setIcon(VOID_DEPOT).setDesign(GILDED, SOULWOOD, PAPER).setOrigin())
                 .addPage(new HeadlineTextPage("void.the_weeping_well", "void.the_weeping_well.1"))
                 .addPage(new TextPage("void.the_weeping_well.2"))
                 .addPage(new TextPage("void.the_weeping_well.3"))
@@ -47,13 +46,13 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.material_study_soulstone", 0, 2, b -> b
-                .configureEntry(w -> w.setIcon(RAW_SOULSTONE).setDesign(SMALL, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RAW_SOULSTONE).setDesign(SMALL, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_soulstone", "void.material_study_soulstone.1", RAW_SOULSTONE.get()))
                 .addPage(new TextPage("void.material_study_soulstone.2"))
         );
 
         screen.addEntry("void.material_study_null_slate", -2, 3, b -> b
-                .configureEntry(w -> w.setIcon(NULL_SLATE).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(NULL_SLATE).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_null_slate", "void.material_study_null_slate.1", NULL_SLATE.get()))
                 .addPage(new TextPage("void.material_study_null_slate.2"))
                 .addReference(new EntryReference(UMBRAL_SPIRIT,
@@ -65,7 +64,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.material_study_mnemonic_fragment", -3, 4, b -> b
-                .configureEntry(w -> w.setIcon(MNEMONIC_FRAGMENT).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(MNEMONIC_FRAGMENT).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_mnemonic_fragment", "void.material_study_mnemonic_fragment.1", MNEMONIC_FRAGMENT.get()))
                 .addPage(new TextPage("void.material_study_mnemonic_fragment.2"))
                 .addReference(new EntryReference(UMBRAL_SPIRIT,
@@ -76,7 +75,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.material_study_void_salts", 0, 3, b -> b
-                .configureEntry(w -> w.setIcon(VOID_SALTS).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(VOID_SALTS).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_void_salts", "void.material_study_void_salts.1", VOID_SALTS.get()))
                 .addPage(new TextPage("void.material_study_void_salts.2"))
                 .addReference(new EntryReference(UMBRAL_SPIRIT,
@@ -87,7 +86,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.material_study_malignant_lead", 2, 3, b -> b
-                .configureEntry(w -> w.setIcon(MALIGNANT_LEAD).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(MALIGNANT_LEAD).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_malignant_lead", "void.material_study_malignant_lead.1", MALIGNANT_LEAD.get()))
                 .addPage(new TextPage("void.material_study_malignant_lead.2"))
                 .addReference(new EntryReference(UMBRAL_SPIRIT,
@@ -99,7 +98,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.material_study_auric_embers", 3, 4, b -> b
-                .configureEntry(w -> w.setIcon(AURIC_EMBERS).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(AURIC_EMBERS).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.material_study_auric_embers", "void.material_study_auric_embers.1", AURIC_EMBERS.get()))
                 .addPage(new TextPage("void.material_study_auric_embers.2"))
                 .addReference(new EntryReference(UMBRAL_SPIRIT,
@@ -110,7 +109,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.catalyst_lobber", 5, 5, b -> b
-                .configureEntry(w -> w.setIcon(CATALYST_LOBBER).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(CATALYST_LOBBER).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.catalyst_lobber", "void.catalyst_lobber.1", CATALYST_LOBBER.get()))
                 .addPage(new TextPage("void.catalyst_lobber.2"))
                 .addPage(new TextPage("void.catalyst_lobber.3"))
@@ -119,7 +118,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.black_crystal", 0, 5, b -> b
                 .withFragmentEntry(fragment -> fragment.addPage(new WeepingWellTextPage("fragment.void.black_crystal", "fragment.void.black_crystal.1", EMPTY)))
-                .configureEntry(w -> w.setIcon(UMBRAL_SPIRIT).setDesign(GILDED, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(UMBRAL_SPIRIT).setDesign(GILDED, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.black_crystal", "void.black_crystal.1", UMBRAL_SPIRIT.get()))
                 .addPage(new TextPage("void.black_crystal.2"))
                 .addPage(new TextPage("void.black_crystal.3"))
@@ -129,7 +128,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.umbral_arcana", -1, 6, b -> b
                 .withEmptyFragmentEntry(DEFAULT)
-                .configureEntry(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
+                .configureWidget(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
                 .setWidgetSupplier((e, x, y) -> new IconObject(e, x, y, malumPath("textures/gui/book/icons/umbral_shard.png")))
                 .addPage(new HeadlineTextPage("void.umbral_arcana", "void.umbral_arcana.1"))
                 .addPage(new TextPage("void.umbral_arcana.2"))
@@ -141,7 +140,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.inverse_and_hybrid_arcana", 0, 7, b -> b
                 .withEmptyFragmentEntry(SMALL)
-                .configureEntry(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
+                .configureWidget(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
                 .setWidgetSupplier((e, x, y) -> new IconObject(e, x, y, malumPath("textures/gui/book/icons/umbral_shard.png")))
                 .addPage(new HeadlineTextPage("void.inverse_and_hybrid_arcana", "void.inverse_and_hybrid_arcana.1"))
                 .addPage(new TextPage("void.inverse_and_hybrid_arcana.2"))
@@ -151,7 +150,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.material_study_arcana", 1, 8, b -> b
                 .withTraceFragmentEntry()
-                .configureEntry(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
+                .configureWidget(w -> w.setDesign(DEFAULT, SOULWOOD, DARK))
                 .setWidgetSupplier((e, x, y) -> new IconObject(e, x, y, malumPath("textures/gui/book/icons/umbral_shard.png")))
                 .addPage(new HeadlineTextPage("void.material_study_arcana", "void.material_study_arcana.1"))
                 .addPage(new TextPage("void.material_study_arcana.2"))
@@ -161,7 +160,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.staves_as_foci", 0, 9, b -> b
                 .withTraceFragmentEntry()
-                .configureEntry(w -> w.setIcon(MNEMONIC_HEX_STAFF).setDesign(GILDED, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(MNEMONIC_HEX_STAFF).setDesign(GILDED, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.staves_as_foci", "void.staves_as_foci.1"))
                 .addPage(new TextPage("void.staves_as_foci.2"))
                 .addPage(new TextPage("void.staves_as_foci.3"))
@@ -192,35 +191,35 @@ public class VoidCodexEntries {
         // Remaining ring, necklace, and artifact entries
         screen.addEntry("void.ring_of_gruesome_concentration", -3, 9, b -> b
                 .withTraceFragmentEntry()
-                .configureEntry(w -> w.setIcon(RING_OF_GRUESOME_CONCENTRATION).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RING_OF_GRUESOME_CONCENTRATION).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.ring_of_gruesome_concentration", "void.ring_of_gruesome_concentration.1"))
                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_GRUESOME_CONCENTRATION.get()))
                 .afterUmbralCrystal()
         );
 
         screen.addEntry("void.ring_of_growing_flesh", -4, 10, b -> b
-                .configureEntry(w -> w.setIcon(RING_OF_GROWING_FLESH).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RING_OF_GROWING_FLESH).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.ring_of_growing_flesh", "void.ring_of_growing_flesh.1"))
                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_GROWING_FLESH.get()))
                 .afterUmbralCrystal()
         );
 
         screen.addEntry("void.ring_of_echoing_arcana", -5, 10, b -> b
-                .configureEntry(w -> w.setIcon(RING_OF_ECHOING_ARCANA).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(RING_OF_ECHOING_ARCANA).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.ring_of_echoing_arcana", "void.ring_of_echoing_arcana.1"))
                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_ECHOING_ARCANA.get()))
                 .afterUmbralCrystal()
         );
 
         screen.addEntry("void.necklace_of_the_watcher", -3, 11, b -> b
-                .configureEntry(w -> w.setIcon(NECKLACE_OF_THE_WATCHER).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(NECKLACE_OF_THE_WATCHER).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.necklace_of_the_watcher", "void.necklace_of_the_watcher.1"))
                 .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_WATCHER.get()))
                 .afterUmbralCrystal()
         );
 
         screen.addEntry("void.necklace_of_the_hidden_blade", -4, 12, b -> b
-                .configureEntry(w -> w.setIcon(NECKLACE_OF_THE_HIDDEN_BLADE).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(NECKLACE_OF_THE_HIDDEN_BLADE).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.necklace_of_the_hidden_blade", "void.necklace_of_the_hidden_blade.1"))
                 .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_HIDDEN_BLADE.get()))
                 .addPage(new TextPage("void.necklace_of_the_hidden_blade.2"))
@@ -230,7 +229,7 @@ public class VoidCodexEntries {
 
         screen.addEntry("void.malignant_pewter", 3, 9, b -> b
                 .withTraceFragmentEntry()
-                .configureEntry(w -> w.setIcon(MALIGNANT_PEWTER_INGOT).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(MALIGNANT_PEWTER_INGOT).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.malignant_pewter", "void.malignant_pewter.1"))
                 .addPage(SpiritInfusionPage.fromOutput(MALIGNANT_PEWTER_INGOT.get()))
                 .addPage(new TextPage("void.malignant_pewter.2"))
@@ -239,7 +238,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.weight_of_worlds", 4, 10, b -> b
-                .configureEntry(w -> w.setIcon(WEIGHT_OF_WORLDS).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(WEIGHT_OF_WORLDS).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.weight_of_worlds", "void.weight_of_worlds.1"))
                 .addPage(SpiritInfusionPage.fromOutput(WEIGHT_OF_WORLDS.get()))
                 .addPage(new TextPage("void.weight_of_worlds.2"))
@@ -247,7 +246,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.edge_of_deliverance", 5, 10, b -> b
-                .configureEntry(w -> w.setIcon(EDGE_OF_DELIVERANCE).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(EDGE_OF_DELIVERANCE).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.edge_of_deliverance", "void.edge_of_deliverance.1"))
                 .addPage(SpiritInfusionPage.fromOutput(EDGE_OF_DELIVERANCE.get()))
                 .addPage(new TextPage("void.edge_of_deliverance.2"))
@@ -255,7 +254,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.erosion_scepter", 3, 11, b -> b
-                .configureEntry(w -> w.setIcon(EROSION_SCEPTER)
+                .configureWidget(w -> w.setIcon(EROSION_SCEPTER)
                         .setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.erosion_scepter", "void.erosion_scepter.1"))
                 .addPage(SpiritInfusionPage.fromOutput(EROSION_SCEPTER.get()))
@@ -266,7 +265,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.malignant_stronghold_armor", 4, 12, b -> b
-                .configureEntry(w -> w.setIcon(MALIGNANT_STRONGHOLD_HELMET)
+                .configureWidget(w -> w.setIcon(MALIGNANT_STRONGHOLD_HELMET)
                         .setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage("void.malignant_stronghold_armor", "void.malignant_stronghold_armor.1"))
                 .addPage(new TextPage("void.malignant_stronghold_armor.2"))
@@ -296,7 +295,7 @@ public class VoidCodexEntries {
         addVoidRuneEntry(voidRunesSubspace, RUNE_OF_IGNEOUS_SOLACE, -1, 13);
 
         screen.addEntry("void.runes", 0, 12, b -> b
-                .configureEntry(w -> w.setDesign(SUBENTRY, SOULWOOD, DARK))
+                .configureWidget(w -> w.setDesign(SUBENTRY, SOULWOOD, DARK))
                 .setWidgetSupplier(voidRunesSubspace)
                 .setAssociatedSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT)
                 .afterUmbralCrystal());
@@ -310,15 +309,14 @@ public class VoidCodexEntries {
 // );
 
         screen.addEntry("void.fused_consciousness", 0, 15, b -> b
-                .configureEntry(w -> w.setIcon(FUSED_CONSCIOUSNESS)
-                        .setDesign(GILDED, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(FUSED_CONSCIOUSNESS).setDesign(GILDED, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.fused_consciousness", "void.fused_consciousness.1", FUSED_CONSCIOUSNESS.get()))
                 .addPage(SpiritInfusionPage.fromOutput(COMPLETE_DESIGN.get()))
                 .afterUmbralCrystal()
         );
 
         screen.addEntry("void.sundering_anchor", -2, 16, b -> b
-                .configureEntry(w -> w.setIcon(SUNDERING_ANCHOR)
+                .configureWidget(w -> w.setIcon(SUNDERING_ANCHOR)
                         .setDesign(TOTEMIC, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.sundering_anchor", "void.sundering_anchor.1", SUNDERING_ANCHOR.get()))
                 .addPage(new TextPage("void.sundering_anchor.2"))
@@ -328,7 +326,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.unwinding_chaos", 2, 16, b -> b
-                .configureEntry(w -> w.setIcon(UNWINDING_CHAOS)
+                .configureWidget(w -> w.setIcon(UNWINDING_CHAOS)
                         .setDesign(TOTEMIC, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.unwinding_chaos", "void.unwinding_chaos.1", UNWINDING_CHAOS.get()))
                 .addPage(new TextPage("void.unwinding_chaos.2"))
@@ -338,7 +336,7 @@ public class VoidCodexEntries {
         );
 
         screen.addEntry("void.belt_of_the_limitless", -3, 17, b -> b
-                .configureEntry(w -> w.setIcon(BELT_OF_THE_LIMITLESS)
+                .configureWidget(w -> w.setIcon(BELT_OF_THE_LIMITLESS)
                         .setDesign(TOTEMIC, SOULWOOD, PAPER))
                 .addPage(new WeepingWellTextPage("void.belt_of_the_limitless", "void.belt_of_the_limitless.1", BELT_OF_THE_LIMITLESS.get()))
                 .addPage(new TextPage("void.belt_of_the_limitless.2"))
@@ -353,7 +351,7 @@ public class VoidCodexEntries {
 
     public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureEntry(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
+                .configureWidget(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
                 .afterUmbralCrystal()
@@ -363,7 +361,7 @@ public class VoidCodexEntries {
     public static void addVoidRuneEntry(PlacedEntryAcceptor acceptor, Holder<Item> rune, int x, int y) {
         var translationKey = "void." + BuiltInRegistries.ITEM.getKey(rune.value()).getPath();
         acceptor.addEntry(translationKey, x, y, b -> b
-                .configureEntry(w -> w.setIcon(rune.value()).setDesign(DEFAULT, SOULWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(rune.value()).setDesign(DEFAULT, SOULWOOD, PAPER))
                 .addPage(new HeadlineTextPage(translationKey))
                 .addPage(RuneworkingPage.fromOutput(rune.value()))
         );

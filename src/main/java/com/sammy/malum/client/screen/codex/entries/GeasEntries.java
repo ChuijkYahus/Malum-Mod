@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -25,7 +24,7 @@ public class GeasEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
         screen.addEntry("geas_magic", 0, 10, b -> b
-                .configureEntry(w -> w.setIcon(SOUL_BRAZIER).setDesign(GILDED, RUNEWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(SOUL_BRAZIER).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("geas_magic", "geas_magic.1"))
                 .addPage(new CraftingPage(SOUL_BRAZIER.get(),
                         HALLOWED_GOLD_INGOT.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INGOT.get(),
@@ -89,7 +88,7 @@ public class GeasEntries {
 
     public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureEntry(w -> w.setIcon(geas).setDesign(DEFAULT, RUNEWOOD, DARK))
+                .configureWidget(w -> w.setIcon(geas).setDesign(DEFAULT, RUNEWOOD, DARK))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );
@@ -97,7 +96,7 @@ public class GeasEntries {
 
     public static void addSoulwoodGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
         screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureEntry(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
+                .configureWidget(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );

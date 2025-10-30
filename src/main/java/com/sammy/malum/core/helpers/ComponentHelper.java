@@ -22,15 +22,15 @@ public class ComponentHelper {
     }
 
     public static Component positivePouchEffect(String name, Object... args) {
-        return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.BLUE));
+        return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.BLUE));
     }
 
     public static Component negativePouchEffect(String name, Object... args) {
-        return Component.literal("| ").withStyle(ChatFormatting.GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
+        return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
     }
 
     public static Component riteEffect(String text, boolean isCorrupted) {
-        return Component.literal("| ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(isCorrupted ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.BLUE));
+        return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(isCorrupted ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.BLUE));
     }
 
     public static Component positiveEffect(String name, Object... args) {

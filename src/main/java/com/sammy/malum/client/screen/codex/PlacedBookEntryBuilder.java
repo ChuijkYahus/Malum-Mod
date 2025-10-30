@@ -40,22 +40,22 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         return this;
     }
 
-    public PlacedBookEntryBuilder configureEntry(Consumer<ProgressionEntryObject> configure) {
+    public PlacedBookEntryBuilder configureWidget(Consumer<ProgressionEntryObject> configure) {
         this.widgetConfig = this.widgetConfig == null ? configure : this.widgetConfig.andThen(configure);
         return this;
     }
 
     public PlacedBookEntryBuilder withEmptyFragmentEntry(WidgetDesignType designType) {
         this.fragmentProperties = b -> b
-            .configureEntry(widget -> widget.setDesign(designType.createDesign(d -> d.withFilling(WidgetDesignType.FillingType.DARK))))
-            .styleTitle(s -> s.withColor(ChatFormatting.GRAY))
-            .styleSubtitle(s -> s.withColor(ChatFormatting.DARK_GRAY));
+            .configureWidget(widget -> widget.setDesign(designType.createDesign(d -> d.withFilling(WidgetDesignType.FillingType.DARK))))
+            .withTitleStyle(s -> s.withColor(ChatFormatting.GRAY))
+            .withSubtitleStyle(s -> s.withColor(ChatFormatting.DARK_GRAY));
         return this;
     }
 
     public PlacedBookEntryBuilder withTraceFragmentEntry() {
         this.fragmentProperties = b -> b
-            .configureEntry(widget -> widget.setDesign(WidgetDesignType.EMPTY.createDesign(null, null))) // todo: add cool visual effects for Traces
+            .configureWidget(widget -> widget.setDesign(WidgetDesignType.EMPTY.createDesign(null, null))) // todo: add cool visual effects for Traces
             .disableTooltip();
 
         return this;
@@ -80,16 +80,16 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         if (fragmentProperties == null)
             return null;
 
-        PlacedBookEntryBuilder builder = new PlacedBookEntryBuilder("fragment." + identifier, isVoid, xOffset, yOffset);
-        builder
+        PlacedBookEntryBuilder fragment = new PlacedBookEntryBuilder("fragment." + identifier, isVoid, xOffset, yOffset);
+        fragment
             .setFragment()
-            .configureEntry(widgetConfig)
+            .configureWidget(widgetConfig)
             .setWidgetSupplier(widgetSupplier)
             .setEntryCondition(() -> !condition.getAsBoolean())
-            .styleTitle(style -> style.withItalic(true))
-            .styleSubtitle(style -> style.withItalic(true));
-        fragmentProperties.accept(builder);
-        return builder.build();
+            .withTitleStyle(style -> style.withItalic(true))
+            .withSubtitleStyle(style -> style.withItalic(true));
+        fragmentProperties.accept(fragment);
+        return fragment.build();
     }
 
     @Override
@@ -97,6 +97,6 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
         ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(references);
         PlacedBookEntry.BookEntryWidgetPlacementData data = new PlacedBookEntry.BookEntryWidgetPlacementData(xOffset*SPACING, yOffset*SPACING, widgetSupplier, widgetConfig);
-        return new PlacedBookEntry(identifier, isVoid, data, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, tooltipDisabled);
+        return new PlacedBookEntry(identifier, isVoid, data, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
     }
 }
