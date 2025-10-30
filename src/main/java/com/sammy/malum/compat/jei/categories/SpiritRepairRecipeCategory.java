@@ -39,7 +39,7 @@ public class SpiritRepairRecipeCategory implements IRecipeCategory<SpiritRepairR
     public void draw(SpiritRepairRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         if (!recipe.spirits.isEmpty()) {
-            CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, mouseX, mouseY, false, false);
+            CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, false);
         }
     }
 

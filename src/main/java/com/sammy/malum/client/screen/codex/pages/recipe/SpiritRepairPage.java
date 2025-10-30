@@ -19,10 +19,6 @@ import java.util.function.*;
 
 public class SpiritRepairPage extends BookPage {
 
-    public static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.spirit_repair");
-    public static final Component SPIRIT = Component.translatable("malum.gui.book.entry.page.info.spirit_repair.spirit");
-    public static final Component DAMAGED = Component.translatable("malum.gui.book.entry.page.info.spirit_repair.damaged");
-
     private final SpiritRepairRecipe recipe;
 
     private final List<ItemStack> damagedStacks;
@@ -66,14 +62,11 @@ public class SpiritRepairPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 63, top + 16, mouseX, mouseY, false);
-        CodexItemHelper.renderIngredients(screen, guiGraphics, List.of(recipe.repairMaterial), SPIRIT, left + 63, top + 32, mouseX, mouseY, false);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, left + 63, top + 16, mouseX, mouseY, false);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, List.of(recipe.repairMaterial), left + 63, top + 32, mouseX, mouseY, false);
         CodexItemHelper.renderItem(screen, guiGraphics, damagedStacks, left + 63, top + 56, mouseX, mouseY);
         CodexItemHelper.renderItem(screen, guiGraphics, repairedStacks, left + 63, top + 132, mouseX, mouseY);
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "spirit_repair", left + 62, top + 74, mouseX, mouseY);
     }
 }

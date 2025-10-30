@@ -15,7 +15,6 @@ import team.lodestar.lodestone.systems.recipe.*;
 import java.util.function.*;
 
 public class RuneworkingPage extends BookPage {
-    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.runeworking");
 
     private final RuneworkingRecipe recipe;
 
@@ -35,11 +34,8 @@ public class RuneworkingPage extends BookPage {
         CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 56, mouseX, mouseY);
         CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.secondaryInput, left + 63, top + 21, mouseX, mouseY);
         CodexItemHelper.renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "runeworking", left + 62, top + 74, mouseX, mouseY);
     }
 
     @Override

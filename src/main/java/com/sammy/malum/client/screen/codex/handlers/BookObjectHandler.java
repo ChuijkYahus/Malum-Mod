@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
-import com.mojang.blaze3d.platform.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.*;
@@ -72,6 +71,15 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
                 if (object.tryClick(screen, mouseX, mouseY)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean hasVisibleObject(T screen) {
+        for (BookObject<T> object : objects) {
+            if (object.isInView(screen)) {
+                return true;
             }
         }
         return false;

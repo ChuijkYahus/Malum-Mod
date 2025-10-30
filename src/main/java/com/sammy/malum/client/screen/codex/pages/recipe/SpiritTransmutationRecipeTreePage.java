@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiritTransmutationRecipeTreePage extends BookPage {
-    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation_tree");
 
     private static final ScreenParticleHolder TRANSMUTATION_PARTICLES = new ScreenParticleHolder();
 
@@ -77,11 +76,8 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
         for (int i = 1; i < itemTree.size()-1; i++) {
             CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.get(i), leftStart+i*20, top + 90, mouseX, mouseY);
         }
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 60, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "unchained_transmutation_tree", left + 62, top + 60, mouseX, mouseY);
 
         int particlesX = left + 25;
         int particlesY = top + 98;

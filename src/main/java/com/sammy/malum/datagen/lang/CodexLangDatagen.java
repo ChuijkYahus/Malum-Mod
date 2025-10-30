@@ -42,6 +42,7 @@ public class CodexLangDatagen {
         addEntryHeader(name, DataHelper.toTitleCase(name, "_"), entryDescription);
         addRiteDetails(holder, riteDescription, effect);
     }
+
     private static void addRiteDetails(RiteHolder<SpiritRiteType> holder, String description, String effect) {
         SpiritRiteType rite = holder.value();
         add(rite.getCodexEntryLangKey(), description);
@@ -83,9 +84,11 @@ public class CodexLangDatagen {
         add(BookPage.HEADLINE + "." + identifier, tooltip);
     }
 
-    private static void addRecipeDescriptor(String identifier, String tooltip) {
-        add("malum.gui.book.entry.page.info." + identifier, tooltip);
+    private static void addRecipeInfo(String identifier, String recipeName, String recipeDescriptor) {
+        add(BookPage.getRecipeInfoHeadlineKey(identifier), recipeName);
+        add(BookPage.getRecipeInfoKey(identifier), recipeDescriptor);
     }
+
 
     private static void add(String key, String value) {
         MalumLangDatagen.lang.add(key, value);
@@ -95,23 +98,25 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("chronicles_of_the_void", "Chronicles of the Void", "A magecraft of madness");
         addSimpleEntryHeader("chronicles_of_the_soul", "Chronicles of the Soul", "A magecraft of miracles");
 
-        addRecipeDescriptor("spirit_infusion", "Spirit Infusion. \nRequires a Prime Item and Spirit Arcana to be held within The Altar.");
-        addRecipeDescriptor("spirit_infusion.spirit", "Spirit Arcana is to be stored directly within the Spirit Altar.");
-        addRecipeDescriptor("spirit_infusion.item", "Additional Items must be held on nearby Item Pedestals or Stands.");
+        addRecipeInfo("spirit_infusion", "Spirit Infusion",
+                "Socket a prime item and spirit arcana into the spirit altar\nPlace additional items on nearby item holders");
 
-        addRecipeDescriptor("runeworking", "Runeworking. \nRequires a slate for the inscription process. Spirit Arcana must be inserted afterwards.");
+        addRecipeInfo("runeworking", "Runeworking",
+                "Socket a slate into the runic workbench\nUtilize spirit arcana to inscribe runes onto the slate");
 
-        addRecipeDescriptor("soulbinding", "Soul Binding. \nPhysical and Arcane ingredients are to be inserted into the Brazier. \nAn Etheric Blood Offering initiates the process");
+        addRecipeInfo("soulbinding", "Soul Binding",
+                "Socket the prime item, spirit arcana and other items into the spirit altar\nAn etheric offering initiates the process");
 
-        addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms blocks into other blocks via Unchained Rite. Requires Blight as a conduit.");
-        addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation. \nA series of block transformations via Unchained Rite. Requires Blight as a conduit.");
+        addRecipeInfo("unchained_transmutation", "Unchained Transmutation",
+                "Utilizing a rite locus, transform blocks into other blocks via unchained rite\nThe rite locus requires blight as a conduit");
+        addRecipeInfo("unchained_transmutation_tree", "Unchained Transmutation",
+                "Utilizing a rite locus, transform blocks into other blocks via unchained rite\nThe rite locus requires blight as a conduit\nTransmutation follows the shown transmutation tree\nAny entry in the tree can be used as a starting point");
 
-        addRecipeDescriptor("spirit_focusing", "Spirit Focusing. \nRequires a Catalyst and Spirit Arcana to be held within The Crucible. The Catalyst is not consumed, but does get damaged.");
-        addRecipeDescriptor("spirit_focusing.spirit", "Spirit Arcana is to be stored directly within the Spirit Crucible.");
+        addRecipeInfo("spirit_focusing", "Spirit Focusing",
+                "Socket a catalyst and spirit arcana into the crucible\nThe catalyst is partially used up with each focusing cycle");
 
-        addRecipeDescriptor("spirit_repair", "Spirit Repair. \nRequires a Repair Material and Spirit Arcana to be held within The Repair Pylon.");
-        addRecipeDescriptor("spirit_repair.spirit", "Spirit Arcana is to be stored directly within the Repair Pylon.");
-        addRecipeDescriptor("spirit_repair.damaged", "The Damaged Item is to be provided within a nearby Item Pedestal, Stand, or a Spirit Crucible.");
+        addRecipeInfo("spirit_repair", "Spirit Repair",
+                "Socket a repair material and spirit arcana into the repair pylon\nThe damaged item must be placed within a nearby item holder");
 
         addSimpleEntryHeader("void.the_weeping_well", "The Weeping Well", "Gate to the unknown");
         addPages("void.the_weeping_well",

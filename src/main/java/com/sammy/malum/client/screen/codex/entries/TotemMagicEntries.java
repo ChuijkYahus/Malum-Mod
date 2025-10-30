@@ -80,7 +80,7 @@ public class TotemMagicEntries {
                 .addPage(new TextPage("unchained_rite.2"))
                 .addPage(new SpiritRiteTextPage(UNCHAINED_RITE))
                 .addPage(new SpiritRiteRecipePage(UNCHAINED_RITE))
-                .addPage(SpiritTransmutationRecipePage.fromOutput("unchained_rite.soulwood", SOULWOOD_SAPLING.get()))
+                .addPage(UnchainedTransmutationRecipePage.fromOutput("unchained_rite.soulwood", SOULWOOD_SAPLING.get()))
                 .addPage(new TextPage("unchained_rite.soulwood.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SOULWOOD_TOTEM_BASE.get()))
                 .addPage(new TextPage("unchained_rite.soulwood.2"))
@@ -153,10 +153,11 @@ public class TotemMagicEntries {
                 ))
                 .addReference(new EntryReference(ARCANA_PYLON.get(),
                         BookEntry.create("aura_empowerment.other_pylon_applications")
-                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))
-                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.wicked", WICKED_SPIRIT.get()))
+//                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.sacred", SACRED_SPIRIT.get()))
+//                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.wicked", WICKED_SPIRIT.get()))
                                 .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.arcane", ARCANE_SPIRIT.get()))
-                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.eldritch", ELDRITCH_SPIRIT.get()))))
+//                                .addPage(new HeadlineTextItemPage("aura_empowerment.other_pylon_applications.eldritch", ELDRITCH_SPIRIT.get()))))
+                        ))
         );
 
         screen.addEntry("locus_management", 3, 19, b -> b

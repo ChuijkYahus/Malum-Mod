@@ -5,12 +5,10 @@ import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.*;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -62,20 +60,20 @@ public class CodexItemHelper {
         }
     }
 
-    public static void renderIngredients(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, List<?> ingredients, Component hoverComponent, int left, int top, int mouseX, int mouseY, boolean vertical) {
+    public static void renderIngredients(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, List<?> ingredients, int left, int top, int mouseX, int mouseY, boolean vertical) {
         final List<List<ItemStack>> stackBundles =
                 Stream.of(
                         ingredients.stream().filter(o -> o instanceof ICustomIngredient).map(o -> ((ICustomIngredient) o).getItems().toList()),
                         ingredients.stream().filter(o -> o instanceof SizedIngredient).map(o -> Arrays.stream(((SizedIngredient) o).getItems()).toList()),
                         ingredients.stream().filter(o -> o instanceof Ingredient).map(o -> Arrays.stream(((Ingredient) o).getItems()).toList())
                 ).flatMap(s -> s).toList();
-        renderItemList(screen, guiGraphics, stackBundles, hoverComponent, left, top, mouseX, mouseY, vertical);
+        renderItemList(screen, guiGraphics, stackBundles, left, top, mouseX, mouseY, vertical);
     }
 
-    public static void renderItemList(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, List<List<ItemStack>> items, Component hoverComponent, int left, int top, int mouseX, int mouseY, boolean isVertical) {
+    public static void renderItemList(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, List<List<ItemStack>> items, int left, int top, int mouseX, int mouseY, boolean isVertical) {
         int slots = items.size();
         int startingOffset = 9 * (slots - 1);
-        screen.renderLater(renderItemFrames(guiGraphics, hoverComponent, slots, left, top, mouseX, mouseY, items.getFirst().getFirst().getItem() instanceof SpiritShardItem, isVertical));
+        renderItemFrames(guiGraphics, slots, left, top, isVertical);
         if (isVertical) {
             top -= startingOffset;
         } else {
@@ -90,11 +88,7 @@ public class CodexItemHelper {
         }
     }
 
-    public static void renderItemFrames(GuiGraphics guiGraphics, int slots, int left, int top, double mouseX, double mouseY, boolean isSpirits, boolean isVertical) {
-        renderItemFrames(guiGraphics, null, slots, left, top, mouseX, mouseY, isSpirits, isVertical);
-    }
-
-    public static Runnable renderItemFrames(GuiGraphics guiGraphics, @Nullable Component hoverComponent, int slots, int left, int top, double mouseX, double mouseY, boolean isSpirits, boolean isVertical) {
+    public static void renderItemFrames(GuiGraphics guiGraphics, int slots, int left, int top, boolean isVertical) {
         var poseStack = guiGraphics.pose();
         int startingOffset = 9 * (slots - 1);
         if (isVertical) {
@@ -120,13 +114,5 @@ public class CodexItemHelper {
             CodexRenderHelper.renderTexture(CodexEntryScreen.ITEM_SOCKET, poseStack, left - 3, top - 3, 0, 0, 2, 22, 64, 64);
             CodexRenderHelper.renderTexture(CodexEntryScreen.ITEM_SOCKET, poseStack, left - 1 + 18 * (slots), top - 3, 20, 0, 2, 22, 64, 64);
         }
-
-        return () -> {
-            if (hoverComponent != null) {
-//                if (isHovering(mouseX, mouseY, crownLeft + 3, plaqueTop + 2, 10, 11)) {
-//                    guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, wrapComponent(hoverComponent, 180), (int) mouseX, (int) mouseY);
-//                }
-            }
-        };
     }
 }

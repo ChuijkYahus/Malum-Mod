@@ -53,9 +53,9 @@ public class CodexTextHelper {
 
     public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
         Font font = Minecraft.getInstance().font;
-        final List<String> lines = wrapText(text, (int) (width / scaleMultiplier));
-        for (int i = 0; i < lines.size(); i++) {
-            String currentLine = lines.get(i);
+        var wrapped = wrapText(text, (int) (width / scaleMultiplier));
+        for (int i = 0; i < wrapped.size(); i++) {
+            String currentLine = wrapped.get(i);
             float textX = x;
             float textY = y;
             if (scaleMultiplier != 1) {
@@ -255,16 +255,17 @@ public class CodexTextHelper {
         return raw;
     }
 
-    public static List<Component> wrapComponent(String text, int width) {
-        return wrapText(text, width).stream().map(Component::literal).map(Component.class::cast).toList();
+    public static List<Component> wrapComponent(Component source, MutableComponent header, int width) {
+        var wrapped = wrapText(source, width).stream().map(Component::literal).toList();
+        var result = new ArrayList<Component>();
+        for (MutableComponent mutableComponent : wrapped) {
+            result.add(header.copy().append(mutableComponent.setStyle(source.getStyle())));
+        }
+        return result;
     }
 
-    public static List<Component> wrapComponent(Component component, int width) {
-        return wrapText(component, width).stream().map(Component::literal).map(Component.class::cast).toList();
-    }
-
-    public static List<String> wrapText(String text, int width) {
-        return wrapText(Component.translatable(text), width);
+    public static List<Component> wrapComponent(Component source, int width) {
+        return wrapText(source, width).stream().map(Component::literal).peek(component -> component.setStyle(source.getStyle())).map(Component.class::cast).toList();
     }
 
     public static List<String> wrapText(Component component, int width) {

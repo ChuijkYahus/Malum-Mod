@@ -5,7 +5,6 @@ import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.objects.*;
-import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.*;
 import org.lwjgl.opengl.*;
 
 import java.util.*;
-import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
@@ -158,7 +156,10 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public void correctOOBB() {
-        var offsets = clampOffsets(1.2f, 0.15f, 0.8f);
+        if (progressionObjects.hasVisibleObject(this)) {
+            return;
+        }
+        var offsets = clampOffsets(1.05f, 0.15f, 0.8f);
         if (offsets.x != xOffset || offsets.y != yOffset) {
             faceOrigin();
         }

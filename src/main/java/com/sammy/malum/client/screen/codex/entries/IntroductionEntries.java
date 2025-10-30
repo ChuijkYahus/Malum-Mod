@@ -36,7 +36,7 @@ public class IntroductionEntries {
 
         screen.addEntry("introduction", 0, 0, b -> b
                 .configureWidget(w -> w.setIcon(ENCYCLOPEDIA_ARCANA).setDesign(GILDED, RUNEWOOD, PAPER).setOrigin())
-                .addPage(new HeadlineTextPage("introduction"))
+                .addPage(new HeadlineTextItemPage("introduction", ENCYCLOPEDIA_ARCANA.get()))
                 .addPage(new TextPage("introduction.2"))
                 .addPage(new TextPage("introduction.3"))
                 .addPage(new TextPage("introduction.4"))

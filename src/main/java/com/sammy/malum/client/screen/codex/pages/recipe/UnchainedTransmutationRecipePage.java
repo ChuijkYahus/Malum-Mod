@@ -19,12 +19,11 @@ import java.util.function.Predicate;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderIngredient;
 
-public class SpiritTransmutationRecipePage extends BookPage {
-    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.unchained_transmutation");
+public class UnchainedTransmutationRecipePage extends BookPage {
     private final Component headline;
     private final List<UnchainedTransmutationRecipe> recipes;
 
-    public SpiritTransmutationRecipePage(String headline, Predicate<UnchainedTransmutationRecipe> predicate) {
+    public UnchainedTransmutationRecipePage(String headline, Predicate<UnchainedTransmutationRecipe> predicate) {
         super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_page.png"));
         this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
         final Level level = Minecraft.getInstance().level;
@@ -46,12 +45,12 @@ public class SpiritTransmutationRecipePage extends BookPage {
         }
     }
 
-    public static SpiritTransmutationRecipePage fromInput(String headlineTranslationKey, Item inputItem) {
-        return new SpiritTransmutationRecipePage(headlineTranslationKey, s -> s.ingredient.test(inputItem.getDefaultInstance()));
+    public static UnchainedTransmutationRecipePage fromInput(String headlineTranslationKey, Item inputItem) {
+        return new UnchainedTransmutationRecipePage(headlineTranslationKey, s -> s.ingredient.test(inputItem.getDefaultInstance()));
     }
 
-    public static SpiritTransmutationRecipePage fromOutput(String headlineTranslationKey, Item outputItem) {
-        return new SpiritTransmutationRecipePage(headlineTranslationKey, s -> s.output.is(outputItem));
+    public static UnchainedTransmutationRecipePage fromOutput(String headlineTranslationKey, Item outputItem) {
+        return new UnchainedTransmutationRecipePage(headlineTranslationKey, s -> s.output.is(outputItem));
     }
 
     @Override
@@ -66,11 +65,8 @@ public class SpiritTransmutationRecipePage extends BookPage {
         UnchainedTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.ingredient, left + 63, top + 56, mouseX, mouseY);
         CodexItemHelper.renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 78, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "unchained_transmutation", left + 62, top + 78, mouseX, mouseY);
      }
 
     public int getIndex() {
