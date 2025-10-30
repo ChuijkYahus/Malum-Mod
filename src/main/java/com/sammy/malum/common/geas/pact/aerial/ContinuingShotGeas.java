@@ -33,7 +33,7 @@ public class ContinuingShotGeas extends GeasEffect {
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         final Entity projectile = event.getSource().getDirectEntity();
-        if (projectile instanceof AbstractArrow || projectile instanceof AbstractBoltProjectileEntity) {
+        if ((projectile instanceof AbstractArrow arrow && arrow.isCritArrow()) || projectile instanceof AbstractBoltProjectileEntity) {
             applyEffect(attacker, true);
         }
     }

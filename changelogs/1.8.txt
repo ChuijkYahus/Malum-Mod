@@ -133,7 +133,7 @@ Authority of the Gleeful Target
 - Retextured the Malignant Pewter Ingot, Nugget and Plating
 - Retextured Malignant Stronghold Armor
 
-- Retextured the effect icons for: Ascension, Gluttony, Desperate Need, Grim Certainty
+- Retextured the effect icons for: Ascension, Gluttony, Desperate Need, Flawed Aim, True Shot, Grim Certainty
 - Added/Updated the effect icons for all rite effects
 
 # Bugfixes
