@@ -159,7 +159,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         if (progressionObjects.hasVisibleObject(this)) {
             return;
         }
-        var offsets = clampOffsets(1.05f, 0.15f, 0.8f);
+        var offsets = clampOffsets(1f, 0.1f, 0.8f);
         if (offsets.x != xOffset || offsets.y != yOffset) {
             faceOrigin();
         }

@@ -271,6 +271,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .add(STELLAR_MECHANISM.get())
                 // Aesthetica
                 .add(AESTHETICA.get());
+
         tag(MalumTags.ItemTags.HIDDEN_AS_RESULT_ONLY).add(WEIGHT_OF_WORLDS.get(), EDGE_OF_DELIVERANCE.get(), SUNDERING_ANCHOR.get());
 
         for (DeferredHolder<net.minecraft.world.item.Item, ? extends net.minecraft.world.item.Item> i : items) {
