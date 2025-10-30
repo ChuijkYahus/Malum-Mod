@@ -107,9 +107,6 @@ It also lacked a downside that felt right and unique, incorporating poison into 
 Pact of the Berserker
 - Buffed Wrath Gain Rate Slightly
 
-Pact of the Pyromaniac
-- 
-
 Pact of Wyrd Reconstruction
 - Cooldown reduced to 30 minutes
 
@@ -136,10 +133,11 @@ Authority of the Gleeful Target
 - Retextured the Malignant Pewter Ingot, Nugget and Plating
 - Retextured Malignant Stronghold Armor
 
-- Retextured the effect icons for: Gluttony, Desperate Need, Grim Certainty
+- Retextured the effect icons for: Ascension, Gluttony, Desperate Need, Grim Certainty
 - Added/Updated the effect icons for all rite effects
 
 # Bugfixes
+- Fixed certain items causing some other unrelated recipes to not appear in JEI whatsoever
 - Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
 - Fixed the Soulbinding Brazier model having incorrect face culling data
 - Fixed Soulwood Saplings being replaceable

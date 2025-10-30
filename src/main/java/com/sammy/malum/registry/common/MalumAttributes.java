@@ -13,12 +13,12 @@ import team.lodestar.lodestone.systems.attribute.*;
 import static com.sammy.malum.MalumMod.MALUM;
 import static team.lodestar.lodestone.registry.common.LodestoneAttributes.registerAttribute;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber()
 public class MalumAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(BuiltInRegistries.ATTRIBUTE, MALUM);
 
     public static final DeferredHolder<Attribute, Attribute> SCYTHE_PROFICIENCY = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).setAsBaseAttribute().forcePercentageDisplay().setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).forcePercentageDisplay().setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> SPIRIT_SPOILS = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("spirit_spoils"), 0.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> ARCANE_RESONANCE = registerAttribute(ATTRIBUTES,

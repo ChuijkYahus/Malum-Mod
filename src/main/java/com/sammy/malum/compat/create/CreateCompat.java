@@ -26,7 +26,7 @@ public class CreateCompat {
     public static class AbsentOnly {
 
         public static void init() {
-            MalumItems.register("copper_nugget", new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), Item::new);
+            MalumItems.register("copper_nugget", ()->new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), Item::new);
         }
     }
 }

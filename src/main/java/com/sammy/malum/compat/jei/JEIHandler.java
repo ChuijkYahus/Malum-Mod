@@ -151,7 +151,7 @@ public class JEIHandler implements IModPlugin {
         if (!tagsToHide.isEmpty()) {
             Collection<ItemStack> ingredients = ingredientManager.getAllIngredients(VanillaTypes.ITEM_STACK);
             for (ItemStack stack : ingredients) {
-                if (HiddenTagHandler.isHiddenItem(stack) && !stack.is(MalumTags.ItemTags.HIDDEN_AS_RESULT_ONLY)) {
+                if (HiddenTagHandler.isHiddenItem(stack)) {
                     HIDDEN_ITEMS.add(stack);
                 }
             }
