@@ -1,5 +1,6 @@
 package com.sammy.malum.common.entity;
 
+import com.sammy.malum.registry.common.entity.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -7,9 +8,7 @@ import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -59,8 +58,8 @@ public class AscendingBlockEntity extends Entity {
             SynchedEntityData.defineId(AscendingBlockEntity.class, EntityDataSerializers.BLOCK_POS);
 
 
-    public AscendingBlockEntity(EntityType<? extends FallingBlockEntity> entityType, Level level) {
-        super(entityType, level);
+    public AscendingBlockEntity(Level level) {
+        super(MalumEntities.ASCENDING_BLOCK.get(), level);
         this.blockState = Blocks.SAND.defaultBlockState();
         this.dropItem = true;
         this.fallDamageMax = 40;
@@ -68,7 +67,7 @@ public class AscendingBlockEntity extends Entity {
     }
 
     private AscendingBlockEntity(Level level, double x, double y, double z, BlockState state, float lifetime) {
-        this(EntityType.FALLING_BLOCK, level);
+        this(level);
         this.maxRiseTicks = lifetime;
         this.blockState = state;
         this.blocksBuilding = true;

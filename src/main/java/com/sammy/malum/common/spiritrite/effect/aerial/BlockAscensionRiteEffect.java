@@ -21,6 +21,7 @@ import team.lodestar.lodestone.helpers.RandomHelper;
 
 import java.util.List;
 
+import static com.sammy.malum.common.spiritrite.effect.aerial.BlockGravityRiteEffect.canSilkTouch;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.AERIAL_SPIRIT;
 
 public class BlockAscensionRiteEffect extends SpiritRiteBlockEffect {
@@ -29,60 +30,19 @@ public class BlockAscensionRiteEffect extends SpiritRiteBlockEffect {
         super(SpiritRiteEffectTag.GREATER_RITE);
     }
 
-    //could probably just extend blockgravityrite and override the apply effect
     @Override
     public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         BlockPos posAbove = pos.above();
         BlockState stateAbove = level.getBlockState(posAbove);
 
-        // Check that the space above is open
         if (FallingBlock.isFree(stateAbove) || !stateAbove.canOcclude() || stateAbove.is(net.minecraft.tags.BlockTags.SLABS)) {
             if (!state.isAir() && level.getBlockEntity(pos) == null && canSilkTouch(level, pos, state)) {
-                // Spawn your custom AscendingBlockEntity (rises instead of falling)
                 AscendingBlockEntity.rise(level, pos, state, 50 * impact); // 200 ticks = 10 seconds × impact factor
 
-                // Particles & sound like BlockGravityRiteEffect
-                createEffect(level, MalumParticleEffectTypes.BLOCK_FALL_RITE_EFFECT, pos, AERIAL_SPIRIT);
+                createEffect(level, MalumParticleEffectTypes.BLOCK_RITE_EFFECT, pos, AERIAL_SPIRIT);
                 level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GRAVITY.get(), SoundSource.BLOCKS, 0.5f,
                         RandomHelper.randomBetween(level.random, 1.75f, 2f));
             }
-        }
-    }
-
-    private static final List<Item> TOOLS = List.of(
-            Items.NETHERITE_PICKAXE,
-            Items.NETHERITE_AXE,
-            Items.NETHERITE_SHOVEL,
-            Items.NETHERITE_HOE
-    );
-
-    protected static boolean canSilkTouch(ServerLevel level, BlockPos pos, BlockState state) {
-        if (state.is(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST)) {
-            return true;
-        }
-        ItemStack harvestToolStack = getToolForState(state);
-        if (harvestToolStack.isEmpty()) {
-            return false;
-        }
-
-        // Apply silk touch and simulate drops
-        harvestToolStack.enchant(level.registryAccess().holderOrThrow(Enchantments.SILK_TOUCH), 1);
-        List<ItemStack> drops = Block.getDrops(state, level, pos, null, null, harvestToolStack);
-        Item blockItem = state.getBlock().asItem();
-        return drops.stream().anyMatch(s -> s.getItem() == blockItem);
-    }
-
-    private static ItemStack getToolForState(BlockState state) {
-        if (!state.requiresCorrectToolForDrops()) {
-            return new ItemStack(Items.NETHERITE_PICKAXE);
-        } else {
-            for (Item item : TOOLS) {
-                ItemStack stack = new ItemStack(item);
-                if (stack.isCorrectToolForDrops(state)) {
-                    return stack;
-                }
-            }
-            return ItemStack.EMPTY;
         }
     }
 }

@@ -14,7 +14,6 @@ import com.sammy.malum.common.entity.nitrate.VividNitrateEntity;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import com.sammy.malum.common.entity.thrown.*;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -28,6 +27,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class MalumEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MalumMod.MALUM);
+
+
+    public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlockEntity>> ASCENDING_BLOCK = ENTITY_TYPES.register("ascending_block",
+            () -> EntityType.Builder.<AscendingBlockEntity>of((e, w) -> new AscendingBlockEntity(w), MobCategory.MISC).sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(20)
+                    .build(MalumMod.malumPath("ascending_block").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT = ENTITY_TYPES.register("natural_spirit",
             () -> EntityType.Builder.<SpiritItemEntity>of((e, w) -> new SpiritItemEntity(w), MobCategory.MISC).sized(0.5F, 0.75F).clientTrackingRange(10)
@@ -89,6 +93,7 @@ public class MalumEntities {
     public static class ClientOnly {
         @SubscribeEvent
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
             EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemEntityRenderer::new);
 
             EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangEntityRenderer::new);
