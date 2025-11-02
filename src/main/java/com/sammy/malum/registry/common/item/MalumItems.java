@@ -682,8 +682,8 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> TYRVING = register("tyrving", MalumItems::GEAR_PROPERTIES, (p) -> new TyrvingItem(MalumItemTiers.TYRVING, 0, -0.3f, p));
 
-    public static final DeferredHolder<Item, Item> MNEMONIC_HEX_STAFF = register("mnemonic_hex_staff", MalumItems::GEAR_PROPERTIES, (p) -> new HexStaffItem(HEX_STAFF, 5, 20, 2, p));
-    public static final DeferredHolder<Item, Item> EROSION_SCEPTER = register("erosion_scepter", MalumItems::GEAR_PROPERTIES, (p) -> new ErosionScepterItem(MALIGNANT_ALLOY, 5, 10, 1, p));
+    public static final DeferredHolder<Item, Item> MNEMONIC_HEX_STAFF = register("mnemonic_hex_staff", MalumItems::GEAR_PROPERTIES, (p) -> new HexStaffItem(HEX_STAFF, 5, 1, 2, p));
+    public static final DeferredHolder<Item, Item> EROSION_SCEPTER = register("erosion_scepter", MalumItems::GEAR_PROPERTIES, (p) -> new ErosionScepterItem(MALIGNANT_ALLOY, 5, 0.5f, 1, p));
 
     public static final DeferredHolder<Item, Item> WEIGHT_OF_WORLDS = register("weight_of_worlds", MalumItems::GEAR_PROPERTIES, (p) -> new WeightOfWorldsItem(MalumItemTiers.MALIGNANT_ALLOY, 1, -0.2f, p));
     public static final DeferredHolder<Item, Item> EDGE_OF_DELIVERANCE = register("edge_of_deliverance", MalumItems::GEAR_PROPERTIES, (p) -> new EdgeOfDeliveranceItem(MalumItemTiers.MALIGNANT_ALLOY, 2, -0.1f, p));
@@ -693,7 +693,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> MALIGNANT_STRONGHOLD_LEGGINGS = register("malignant_stronghold_leggings", MalumItems::GEAR_PROPERTIES, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.LEGGINGS, p));
     public static final DeferredHolder<Item, Item> MALIGNANT_STRONGHOLD_BOOTS = register("malignant_stronghold_boots", MalumItems::GEAR_PROPERTIES, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.BOOTS, p));
 
-    public static final DeferredHolder<Item, Item> UNWINDING_CHAOS = register("unwinding_chaos", () -> GEAR_PROPERTIES().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 30, 3, p));
+    public static final DeferredHolder<Item, Item> UNWINDING_CHAOS = register("unwinding_chaos", () -> GEAR_PROPERTIES().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
     public static final DeferredHolder<Item, Item> SUNDERING_ANCHOR = register("sundering_anchor", () -> GEAR_PROPERTIES().rarity(EPIC), (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
 
     public static final DeferredHolder<Item, Item> GILDED_RING = register("gilded_ring", MalumItems::GEAR_PROPERTIES, CurioGildedRing::new);

@@ -1,0 +1,14 @@
+[
+  {
+    "attribute": "malum:charge_duration",
+    "texture": "wayward_attributes:icon/duration"
+  },
+  {
+    "attribute": "malum:charge_capacity",
+    "texture": "wayward_attributes:icon/quantity"
+  },
+  {
+    "attribute": "malum:charge_recovery_rate",
+    "texture": "wayward_attributes:icon/ward"
+  }
+]

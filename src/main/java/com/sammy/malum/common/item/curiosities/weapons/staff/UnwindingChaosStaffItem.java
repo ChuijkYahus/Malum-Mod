@@ -47,8 +47,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     public static final ColorParticleData AURIC_COLOR_DATA = EthericNitrateEntity.AURIC_COLOR_DATA;
 
-    public UnwindingChaosStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
-        super(tier, magicDamage, chargeDuration, chargeCapacity, properties);
+    public UnwindingChaosStaffItem(Tier tier, float magicDamage, float chargeRate, int chargeCapacity, LodestoneItemProperties properties) {
+        super(tier, magicDamage, chargeRate, chargeCapacity, properties);
     }
 
     @Override

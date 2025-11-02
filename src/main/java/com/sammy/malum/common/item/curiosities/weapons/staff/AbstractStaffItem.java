@@ -27,16 +27,16 @@ import team.lodestar.lodestone.systems.item.*;
 
 public abstract class AbstractStaffItem extends LodestoneCombatItem implements IMalumEventResponder {
 
-    public AbstractStaffItem(Tier tier, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
-        this(tier, 1f, -3f, magicDamage, chargeDuration, chargeCapacity, properties);
+    public AbstractStaffItem(Tier tier, float magicDamage, float chargeRate, int chargeCapacity, LodestoneItemProperties properties) {
+        this(tier, 1f, -3f, magicDamage, chargeRate, chargeCapacity, properties);
     }
-    public AbstractStaffItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, float chargeDuration, int chargeCapacity, LodestoneItemProperties properties) {
+    public AbstractStaffItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, float chargeRate, int chargeCapacity, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties.mergeAttributes(
                 ItemAttributeModifiers.builder()
                         .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  attackDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .add(MalumAttributes.CHARGE_CAPACITY, new AttributeModifier(MalumAttributes.BASE_CHARGE_CAPACITY, chargeCapacity, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(MalumAttributes.CHARGE_DURATION, new AttributeModifier(MalumAttributes.BASE_CHARGE_DURATION, chargeDuration, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(MalumAttributes.CHARGE_DURATION, new AttributeModifier(MalumAttributes.BASE_CHARGE_DURATION, chargeRate, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
     }
 
@@ -67,7 +67,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        float duration = (float) pPlayer.getAttributes().getValue(MalumAttributes.CHARGE_DURATION);
+        float duration = (float) pPlayer.getAttributes().getValue(MalumAttributes.CHARGE_DURATION) * 20;
         if (!pPlayer.getAbilities().instabuild) {
             var data = pPlayer.getData(MalumAttachmentTypes.STAFF_ABILITIES);
             if (!data.canUseStaff(pPlayer)) {
@@ -86,11 +86,12 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         int useDuration = getUseDuration(pStack, pLivingEntity);
-        float duration = (float) pLivingEntity.getAttributes().getValue(MalumAttributes.CHARGE_DURATION);
+        float duration = (float) pLivingEntity.getAttributes().getValue(MalumAttributes.CHARGE_DURATION) * 20;
         if (duration <= 0) {
             pLivingEntity.releaseUsingItem();
             return;
         }
+
         float delta = Math.min(duration, useDuration - pRemainingUseDuration) / duration;
         final InteractionHand hand = pLivingEntity.getUsedItemHand();
         if (pLevel.isClientSide) {
@@ -123,9 +124,9 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
 
     @Override
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
-        float chargeDuration = (float) pLivingEntity.getAttributes().getValue(MalumAttributes.CHARGE_DURATION);
-        float chargePercentage = Math.min(chargeDuration, getUseDuration(pStack, pLivingEntity) - pTimeCharged) / chargeDuration;
-        int projectileCount = getProjectileCount(pLevel, pLivingEntity, chargePercentage);
+        float duration = (float) pLivingEntity.getAttributes().getValue(MalumAttributes.CHARGE_DURATION) * 20;
+        float delta = Math.min(duration, getUseDuration(pStack, pLivingEntity) - pTimeCharged) / duration;
+        int projectileCount = getProjectileCount(pLevel, pLivingEntity, delta);
         if (projectileCount > 0) {
             if (pLevel instanceof ServerLevel serverLevel) {
                 shoot(pStack, serverLevel, pLivingEntity, projectileCount);

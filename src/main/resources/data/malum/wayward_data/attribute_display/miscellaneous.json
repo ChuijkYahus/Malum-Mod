@@ -1,0 +1,18 @@
+[
+  {
+    "attribute": "malum:scythe_proficiency",
+    "texture": "wayward_attributes:icon/scythe"
+  },
+  {
+    "attribute": "malum:spirit_spoils",
+    "texture": "wayward_attributes:icon/luck"
+  },
+  {
+    "attribute": "malum:arcane_resonance",
+    "texture": "wayward_attributes:icon/sigil"
+  },
+  {
+    "attribute": "malum:healing_received",
+    "texture": "wayward_attributes:icon/heart"
+  }
+]
