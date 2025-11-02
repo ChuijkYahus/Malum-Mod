@@ -1,0 +1,18 @@
+[
+  {
+    "attribute": "malum:soul_ward_integrity",
+    "texture": "wayward_attributes:icon/ward"
+  },
+  {
+    "attribute": "malum:soul_ward_recovery_rate",
+    "texture": "wayward_attributes:icon/ward"
+  },
+  {
+    "attribute": "malum:soul_ward_recovery_multiplier",
+    "texture": "wayward_attributes:icon/ward"
+  },
+  {
+    "attribute": "malum:soul_ward_capacity",
+    "texture": "wayward_attributes:icon/ward"
+  }
+]

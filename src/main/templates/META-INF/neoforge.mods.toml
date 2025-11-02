@@ -41,13 +41,13 @@ side="BOTH"
 modId = "lodestone"
 type="required"
 versionRange = "${lodestone_version_range}"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "curios"
 type="required"
 versionRange = "[9,)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]

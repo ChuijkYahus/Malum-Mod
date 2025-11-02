@@ -66,7 +66,8 @@ neoForge {
                 "--mod", project.property("mod_id").toString(),
                 "--all",
                 "--output", file("src/generated/resources/").absolutePath,
-                "--existing", file("src/main/resources/").absolutePath
+                "--existing", file("src/main/resources/").absolutePath,
+                "--existing-mod", "lodestone"
             )
         }
 
@@ -173,6 +174,9 @@ dependencies {
     compileOnlyApi(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
     runtimeOnly(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
 
+    compileOnlyApi(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
+    runtimeOnly(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
+
     // KubeJS
     implementation("curse.maven:rhino-416294:6184623")
     implementation("curse.maven:kubejs-238086:5810100")
@@ -203,6 +207,9 @@ dependencies {
     compileOnlyApi(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
     compileOnlyApi(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
     compileOnlyApi(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
+//    localRuntime(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
+//    localRuntime(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
+//    localRuntime(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
 
     //Runtime Mods
     localRuntime(("curse.maven:jeed-532286:5693385"))

@@ -22,7 +22,7 @@ public class MalumAttachmentTypes {
 
     public static final Supplier<AttachmentType<GeasSoulData>> GEAS_SOUL_INFO = ATTACHMENT_TYPES.register(
             "geas_soul_info", () -> AttachmentType.builder(GeasSoulData::new)
-                    .serialize(GeasSoulData.CODEC).copyOnDeath().build());
+                    .serialize(GeasSoulData.CODEC).sync(GeasSoulData.STREAM_CODEC).copyOnDeath().build());
 
     public static final Supplier<AttachmentType<ProspectorMarkData>> PROSPECTOR_MARK = ATTACHMENT_TYPES.register(
             "prospector_mark", () -> AttachmentType.builder(ProspectorMarkData::new)

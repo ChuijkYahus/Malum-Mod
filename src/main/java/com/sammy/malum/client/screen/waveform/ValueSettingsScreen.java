@@ -312,7 +312,7 @@ public class ValueSettingsScreen extends Screen {
     }
 
     public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
-        builder.setShaderTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE).blit(graphics.pose());
+        builder.setTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE).blit(graphics.pose());
     }
 
     private void renderText(GuiGraphics guiGraphics, Component component, float x, float y, boolean isPowered, float partialTick) {

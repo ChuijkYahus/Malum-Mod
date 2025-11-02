@@ -296,11 +296,11 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
     public static void renderSubspaceTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int size) {
-        builder.setShaderTexture(SUBSPACE_TEXTURE).setPositionWithWidth(x, y, size, size).blit(graphics.pose());
+        builder.setTexture(SUBSPACE_TEXTURE).setPositionWithWidth(x, y, size, size).blit(graphics.pose());
     }
 
     public static void renderGlowTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
-        builder.setShaderTexture(GLOW_TEXTURE).setPositionWithWidth(x, y, 32, 32).blit(graphics.pose());
+        builder.setTexture(GLOW_TEXTURE).setPositionWithWidth(x, y, 32, 32).blit(graphics.pose());
     }
 
     public static class SubspaceWidgetSupplier implements PlacedBookEntry.WidgetSupplier, PlacedEntryAcceptor {
