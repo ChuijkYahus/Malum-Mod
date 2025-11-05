@@ -7,12 +7,10 @@ import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.datagen.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.resources.*;
@@ -29,17 +27,13 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
-import team.lodestar.lodestone.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.magic.*;
-import team.lodestar.wayward_attributes.tweaks.*;
 
 import java.util.*;
 import java.util.stream.*;
 
-import static team.lodestar.lodestone.registry.common.LodestoneAttributes.BASE_MAGIC_DAMAGE;
 import static team.lodestar.lodestone.systems.enchanting.LodestoneEnchantmentEffectActivator.createEffectActivator;
 
 public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpiritAffiliatedItem, ISpellweavingTool {
@@ -115,7 +109,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
             var mutable = event.getPos().mutable();
             int startingIndex = 16;
             int travelTokens = startingIndex;
-            Set<BlockPos> previousLayer = Sets.newHashSet();
+            Set<BlockPos> exploredBlocks = Sets.newHashSet();
             Set<BlockPos> currentLayer = Sets.newHashSet();
             Set<BlockPos> nextLayer = Sets.newHashSet();
             currentLayer.add(mutable.immutable());
@@ -123,12 +117,18 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 for (BlockPos markedPos : currentLayer) {
                     for (Direction direction : directionOrder) {
                         mutable.setWithOffset(markedPos, direction);
-                        if (!previousLayer.contains(mutable) && !nextLayer.contains(mutable)) {
-                            var markedState = level.getBlockState(mutable);
-                            if (matches(state, markedState)) {
-                                var immutable = mutable.immutable();
-                                previousLayer.add(markedPos);
-                                nextLayer.add(immutable);
+                        propagate(level, markedPos, exploredBlocks, mutable, nextLayer, state);
+                    }
+                    if (nextLayer.isEmpty()) {
+                        for (int x = -1; x <= 1; x++) {
+                            for (int y = -1; y <= 1; y++) {
+                                for (int z = -1; z <= 1; z++) {
+                                    if (x == 0 && y == 0 && z == 0) {
+                                        continue;
+                                    }
+                                    mutable.set(markedPos).move(x, y, z);
+                                    propagate(level, markedPos, exploredBlocks, mutable, nextLayer, state);
+                                }
                             }
                         }
                     }
@@ -158,8 +158,10 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
 
             boolean disallowBeneath = pos.getY() >= player.getY() && primaryDirection.getAxis().isHorizontal() && isNearest;
 
-            for (int i = 0; i < 5; i++) {
-                int index = isNearest ? startingIndex-i : travelTokens+i;
+            int distance = spawnedLoci+1;
+            for (int i = 0; i < distance*2; i++) {
+                int offset = i % distance;
+                int index = isNearest ? startingIndex-offset : travelTokens+1+offset;
                 var blocks = nearbyBlocks.get(index);
                 if (!blocks.isEmpty()) {
                     var randomized = new ArrayList<>(blocks);
@@ -170,21 +172,44 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                         if (spawnedLoci <= 0) {
                             return;
                         }
-                        float velocity = 0.35f;
-                        var velocityVector = new Vec3(
-                                RandomHelper.randomBetween(random, -velocity, velocity),
-                                RandomHelper.randomBetween(random, -velocity, velocity),
-                                RandomHelper.randomBetween(random, -velocity, velocity)
-                        );
-                        var breaker = new SpellweaverToolEffectActivatorEntity(level, tool, player.getUUID(), lociSpeed, markedPos, pos.getCenter(), velocityVector);
-                        breaker.setSpirit(spirit.getSpirit());
-                        breaker.addBackupPositions(backup);
-                        level.addFreshEntity(breaker);
+                        spawnBreaker(level, markedPos, random, tool, player, lociSpeed, pos, spirit, backup);
                         spawnedLoci--;
+                    }
+                }
+                if (i == distance) {
+                    if (disallowBeneath) {
+                        disallowBeneath = false;
+                    }
+                    else {
+                        return;
                     }
                 }
             }
         }
+    }
+
+    private static void propagate(ServerLevel level, BlockPos markedPos, Set<BlockPos> exploredBlocks, BlockPos.MutableBlockPos mutable, Set<BlockPos> nextLayer, BlockState state) {
+        if (!exploredBlocks.contains(mutable) && !nextLayer.contains(mutable)) {
+            var markedState = level.getBlockState(mutable);
+            if (matches(state, markedState)) {
+                var immutable = mutable.immutable();
+                exploredBlocks.add(markedPos);
+                nextLayer.add(immutable);
+            }
+        }
+    }
+
+    private static void spawnBreaker(ServerLevel level, BlockPos markedPos, RandomSource random, ItemStack tool, Player player, float lociSpeed, BlockPos pos, SpiritLike spirit, List<BlockPos> backup) {
+        float velocity = 0.35f;
+        var velocityVector = new Vec3(
+                RandomHelper.randomBetween(random, -velocity, velocity),
+                RandomHelper.randomBetween(random, -velocity, velocity),
+                RandomHelper.randomBetween(random, -velocity, velocity)
+        );
+        var breaker = new SpellweaverToolEffectActivatorEntity(level, tool, player.getUUID(), lociSpeed, markedPos, pos.getCenter(), velocityVector);
+        breaker.setSpirit(spirit.getSpirit());
+        breaker.addBackupPositions(backup);
+        level.addFreshEntity(breaker);
     }
 
     public static boolean toggleState(Player player, InteractionHand usedHand) {
@@ -227,7 +252,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
     }
 
     public static float getLociSpeed(ServerLevel level, ItemStack stack, Player player) {
-        return 1 + createEffectActivator(ModEnchantmentComponents.LOCUS_SPEED.get(), level)
+        return 0.5f + createEffectActivator(ModEnchantmentComponents.LOCUS_SPEED.get(), level)
                 .setItemContext(stack)
                 .countValue(stack, player);
     }

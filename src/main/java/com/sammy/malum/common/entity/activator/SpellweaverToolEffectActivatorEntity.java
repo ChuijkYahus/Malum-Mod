@@ -162,7 +162,12 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
             Block.dropResources(state, level, pos, blockentity, this, tool);
             destination = new FloatingItemDestinationData(owner);
             carriedExperience = EnchantmentHelper.processBlockExperience(level, tool, state.getExpDrop(level, pos, blockentity, this, tool));
-            movementWindUp = 0;
+            if (speed < 1) {
+                movementWindUp = 0;
+            }
+            else {
+                movementWindUp = Mth.ceil(movementWindUp / speed);
+            }
         }).ifLeft(uuid -> {
             var entity = level.getEntity(uuid);
             var position = entity != null ? entity.position().add(0, entity.getBbHeight() / 2f, 0) : getOffsetPosition();
@@ -207,11 +212,11 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
             float windUpDuration = getWindUpDuration();
             float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
             var length = getDeltaMovement().length();
-            var offset = 0.25f * (1 - delta);
+            var disharmony = 0.25f * (1 - delta) / Math.max(speed, 0.1f);
             var addedOffset = new Vec3(
-                    RandomHelper.randomBetween(random, -offset, offset),
-                    RandomHelper.randomBetween(random, -offset, offset),
-                    RandomHelper.randomBetween(random, -offset, offset)
+                    RandomHelper.randomBetween(random, -disharmony, disharmony),
+                    RandomHelper.randomBetween(random, -disharmony, disharmony),
+                    RandomHelper.randomBetween(random, -disharmony, disharmony)
             );
             var newMovement = getDeltaMovement().add(addedOffset).normalize().scale(length);
             setDeltaMovement(newMovement);
@@ -227,7 +232,7 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public int getWindUpDuration() {
-        return Mth.floor(30 - speed * 5);
+        return Mth.clamp(Mth.floor(40 - speed * 10), 10, 40);
     }
 
     @Override
@@ -237,7 +242,7 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public float getMovementSpeed(float windUp, float distance) {
-        return (0.4f + Easing.EXPO_OUT.ease(windUp, 0, 1.6f)) * speed;
+        return (0.4f + Easing.EXPO_OUT.ease(windUp, 0, 1.6f + speed * 0.4f));
     }
 
     @Override
