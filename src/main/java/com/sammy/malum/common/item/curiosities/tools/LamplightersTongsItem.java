@@ -1,11 +1,9 @@
-package com.sammy.malum.common.item.curiosities;
+package com.sammy.malum.common.item.curiosities.tools;
 
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.*;
-import io.redspace.ironsspellbooks.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;

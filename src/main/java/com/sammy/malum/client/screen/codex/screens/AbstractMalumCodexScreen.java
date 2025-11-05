@@ -17,7 +17,6 @@ public abstract class AbstractMalumCodexScreen extends Screen {
 
     protected boolean isVoidTouched;
 
-
     protected AbstractMalumCodexScreen(Component pTitle, Holder<SoundEvent> sweetenerSound) {
         super(pTitle);
         //Early Instantiation for access in constructor

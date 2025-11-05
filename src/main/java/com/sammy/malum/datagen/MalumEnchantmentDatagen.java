@@ -69,6 +69,23 @@ public class MalumEnchantmentDatagen {
                 .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(EnchantmentKeys.REBOUND)))
         );
 
+        register(context, EnchantmentKeys.WEAVERS_PROPAGATION, enchantment(
+                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.WEAVERS_PROPAGATION_ENCHANTABLE), 1, 4,
+                        Enchantment.dynamicCost(10, 10),
+                        Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
+                .withEffect(ModEnchantmentComponents.LOCUS_COUNT.get(),
+                        new AddValue(LevelBasedValue.perLevel(1f)))
+                .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(EnchantmentKeys.WEAVERS_HASTE)))
+        );
+        register(context, EnchantmentKeys.WEAVERS_HASTE, enchantment(
+                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.WEAVERS_HASTE_ENCHANTABLE), 1, 4,
+                        Enchantment.dynamicCost(10, 10),
+                        Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
+                .withEffect(ModEnchantmentComponents.LOCUS_SPEED.get(),
+                        new AddValue(LevelBasedValue.perLevel(0.5f)))
+                .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(EnchantmentKeys.WEAVERS_PROPAGATION)))
+        );
+
         register(context, EnchantmentKeys.REPLENISHING, enchantment(
                 Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.REPLENISHING_ENCHANTABLE), 1, 2,
                         Enchantment.dynamicCost(10, 10),
@@ -95,7 +112,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.SPIRIT_PLUNDER, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.SPIRIT_SPOILS_ENCHANTABLE), 1, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.SPIRIT_PLUNDER_ENCHANTABLE), 1, 2,
                         Enchantment.dynamicCost(20, 10),
                         Enchantment.dynamicCost(30, 10), 5, EquipmentSlotGroup.MAINHAND))
 

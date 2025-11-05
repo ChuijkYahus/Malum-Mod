@@ -88,6 +88,17 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         return model;
     });
 
+    public static ItemModelSmith SPELLWEAVING_TOOL = new ItemModelSmith((item, provider) -> {
+        String base = provider.getItemName(item);
+        var model = provider.createGenericModel(item, HANDHELD, provider.getItemTexture(base));
+        var primed = base + "_primed";
+        provider.getBuilder(BuiltInRegistries.ITEM.getKey(item).getPath()).override()
+                .predicate(MalumMod.malumPath("primed"), 1)
+                .model(provider.withExistingParent(primed, HANDHELD).texture("layer0", provider.getItemTexture(primed)))
+                .end();
+        return model;
+    });
+
     public static ItemModelSmith UMBRAL_SPIRIT_ITEM = new ItemModelSmith((item, provider) -> provider.createGenericModel(item, GENERATED, provider.getItemTexture("umbral_spirit_shard")));
 
     public static ItemModelSmith SPIRIT_ITEM = new ItemModelSmith((item, provider) -> provider.createGenericModel(item, GENERATED, provider.getItemTexture("spirit_shard")));

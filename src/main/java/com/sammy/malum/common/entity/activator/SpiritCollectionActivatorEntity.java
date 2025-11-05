@@ -84,8 +84,8 @@ public class SpiritCollectionActivatorEntity extends FloatingEntity {
     }
 
     @Override
-    public float getMovementInterpolation(float windUp, float distance) {
-        return super.getMovementInterpolation(windUp, distance) * 4f;
+    public float getMovementEasing(float windUp, float distance) {
+        return super.getMovementEasing(windUp, distance) * 4f;
     }
 
     @Override

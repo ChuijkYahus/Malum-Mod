@@ -104,8 +104,8 @@ public class CodexLangDatagen {
         addRecipeInfo("runeworking", "Runeworking",
                 "Socket a slate into the runic workbench\nUtilize spirit arcana to inscribe runes onto the slate");
 
-        addRecipeInfo("soulbinding", "Soul Binding",
-                "Socket the prime item, spirit arcana and other items into the spirit altar\nAn etheric offering initiates the process");
+        addRecipeInfo("soul_binding", "Soul Binding",
+                "Socket the prime item, spirit arcana and other items into the soulbinding brazier\nAn etheric offering initiates the process");
 
         addRecipeInfo("unchained_transmutation", "Unchained Transmutation",
                 "Utilizing a rite locus, transform blocks into other blocks via unchained rite\nThe rite locus requires blight as a conduit");
@@ -905,6 +905,12 @@ public class CodexLangDatagen {
                 "Ah, a pact that binds forever is a heavy thing. Geasa are potent, yes, and can achieve powerful effects, but their downsides are constant companions. These pacts can be forsworn on the Brazier, allowing you to decide what price you are willing to pay.",
                 "To forswear a geas, assemble it on the Brazier as you did initially, but use the Paracausal Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
+
+        addSimpleEntryHeader("pacts_of_an_uneven_conscience", "Pact of an Uneven Conscience", "To demand clarity in a chaotic world");
+        addSimpleEntryHeader("pacts_of_an_inward_soul", "Pacts of an Inward Soul", "To reshape the fundamental aspects");
+        addSimpleEntryHeader("pacts_of_an_unbound_wayfarer", "Pact of an Unbound Wayfarer", "To soar through storms and tides");
+        addSimpleEntryHeader("pacts_of_an_igneous_shaper", "Pacts of an Igneous Shaper", "To bind the primordial mantle");
+
         addSimpleEntryHeader("pact_of_defiance", "Pact of Defiance", "To accept no limit");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_DEFIANCE,
                 scaled(0.8f) +"""
@@ -1508,6 +1514,21 @@ public class CodexLangDatagen {
         addHeadline("locus_management.wicked_order", "Rite Study: Locus Resurrection");
         addPages("locus_management.wicked_order", "The locus is a primitive arcane construct, my first design of it was nothing more than an effect etched onto a form capable of movement. Self-Preservation ended up being a necessary factor in it's design, nothing like how a living creature would exhibit such a trait- but self-preservation nonetheless.",
                 "When met with the command of Wicked Arcana, the locus is forced into self-sacrifice. It will forgo any elemental boons it has already been imbued with. Being the least significant, Speed is expunged first. Potency falls next, with Impact being culled afterwards. Distance, being the most significant trait of the locus is only sacrificed if no other boon is available.");
+
+
+        addSimpleEntryHeader("spellweaving_pickaxe", "Spellweaving Pickaxe", "To harvest from stone");
+        addPages("spellweaving_pickaxe",
+                "A tool, a brother, the Spellweaving Pickaxe is a complex design forged using cthonic gold and imbued with earthen arcana. When the tool is primed - a simple adjustment of resonance - any block broken will sprout several primitive loci tasked with seeking out and breaking nearby blocks matching the original. Up to four loci are sprouted each time.");
+        addSimpleEntryHeader("spellweaving_axe", "Spellweaving Axe", "To harvest from nature");
+        addPages("spellweaving_axe",
+                "A tool, a sister, the Spellweaving Axe is a complex design forged using cthonic gold and imbued with aqueous arcana. When the tool is primed - a simple adjustment of resonance - any block broken will sprout several primitive loci tasked with seeking out and breaking far-out blocks matching the original. Up to four loci are sprouted each time.");
+        addSimpleEntryHeader("spellweaving_tools.enchanting", "Enchanting the Spellwoven", "Augmenting the loci");
+        addHeadline("spellweaving_tools.enchanting.weavers_propagation", "Weaver's Propagation");
+        addPages("spellweaving_tools.enchanting.weavers_propagation",
+                "By imbuing the woven loci with eldritch arcana, they fester and multiply. By harnessing this property through an enchantment, each activation of the tool's effect will spawn an additional loci per enchantment level. Incompatible with Weaver's Haste");
+        addHeadline("spellweaving_tools.enchanting.weavers_haste", "Weaver's Haste");
+        addPages("spellweaving_tools.enchanting.weavers_haste",
+                "By imbuing the woven loci with aerial arcana, they hasten and accelerate. By harnessing this property through an enchantment, each locus sprouted through the tool's effect will move at a significantly increased rate. Incompatible with Weaver's Propagation");
 
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");

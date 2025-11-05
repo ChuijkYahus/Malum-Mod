@@ -5,11 +5,11 @@
   },
   {
     "attribute": "malum:soul_ward_recovery_rate",
-    "texture": "wayward_attributes:icon/ward"
+    "texture": "wayward_attributes:icon/duration"
   },
   {
     "attribute": "malum:soul_ward_recovery_multiplier",
-    "texture": "wayward_attributes:icon/ward"
+    "texture": "wayward_attributes:icon/arrow_up"
   },
   {
     "attribute": "malum:soul_ward_capacity",

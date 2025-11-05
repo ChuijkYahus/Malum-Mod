@@ -9,6 +9,6 @@
   },
   {
     "attribute": "malum:charge_recovery_rate",
-    "texture": "wayward_attributes:icon/ward"
+    "texture": "wayward_attributes:icon/speed"
   }
 ]

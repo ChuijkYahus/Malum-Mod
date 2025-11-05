@@ -11,6 +11,7 @@ import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.*;
@@ -95,7 +96,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(MalumTags.ItemTags.SCYTHES, MalumTags.ItemTags.STAVES)
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
-                .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get());
+                .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
+                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
 
         tag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON)
                 .addOptional(ResourceLocation.parse("irons_spellbooks:graybeard_staff"))
@@ -135,8 +137,8 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
-        tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get());
-        tag(ItemTags.AXES).add(SOUL_STAINED_STEEL_AXE.get(), WEIGHT_OF_WORLDS.get());
+        tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());
+        tag(ItemTags.AXES).add(SOUL_STAINED_STEEL_AXE.get(), SPELLWEAVING_AXE.get(), WEIGHT_OF_WORLDS.get());
         tag(ItemTags.SHOVELS).add(SOUL_STAINED_STEEL_SHOVEL.get());
         tag(ItemTags.HOES).add(SOUL_STAINED_STEEL_HOE.get());
         tag(MalumTags.ItemTags.KNIVES_COMMON).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
@@ -149,11 +151,16 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
 
         tag(MalumTags.ItemTags.HAUNTED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON);
         tag(MalumTags.ItemTags.ANIMATED_ENCHANTABLE).addTag(MalumTags.ItemTags.MAGIC_CAPABLE_WEAPON);
+        tag(MalumTags.ItemTags.SPIRIT_PLUNDER_ENCHANTABLE).addTag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON);
+
         tag(MalumTags.ItemTags.REBOUND_ENCHANTABLE).addTag(MalumTags.ItemTags.SCYTHES);
         tag(MalumTags.ItemTags.ASCENSION_ENCHANTABLE).addTag(MalumTags.ItemTags.SCYTHES);
+
+        tag(MalumTags.ItemTags.WEAVERS_PROPAGATION_ENCHANTABLE).add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+        tag(MalumTags.ItemTags.WEAVERS_HASTE_ENCHANTABLE).add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+
         tag(MalumTags.ItemTags.REPLENISHING_ENCHANTABLE).addTag(MalumTags.ItemTags.STAVES);
         tag(MalumTags.ItemTags.CAPACITOR_ENCHANTABLE).addTag(MalumTags.ItemTags.STAVES);
-        tag(MalumTags.ItemTags.SPIRIT_SPOILS_ENCHANTABLE).addTag(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON);
 
 
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(MalumTags.ItemTags.SCYTHES, MalumTags.ItemTags.STAVES)

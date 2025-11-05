@@ -33,6 +33,8 @@ import com.sammy.malum.common.item.curiosities.curios.sets.soulward.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.spirit.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
+import com.sammy.malum.common.item.curiosities.tools.*;
+import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.staff.*;
@@ -696,6 +698,9 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> UNWINDING_CHAOS = register("unwinding_chaos", () -> GEAR_PROPERTIES().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
     public static final DeferredHolder<Item, Item> SUNDERING_ANCHOR = register("sundering_anchor", () -> GEAR_PROPERTIES().rarity(EPIC), (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
 
+    public static final DeferredHolder<Item, Item> SPELLWEAVING_PICKAXE = register("spellweaving_pickaxe", MalumItems::GEAR_PROPERTIES, (p) -> new SpellweavingPickaxeItem(SPELLWEAVING_TOOLS, -3, 0, 4, p));
+    public static final DeferredHolder<Item, Item> SPELLWEAVING_AXE = register("spellweaving_axe", MalumItems::GEAR_PROPERTIES, (p) -> new SpellweavingAxeItem(SPELLWEAVING_TOOLS, -4, 0, 6, p));
+
     public static final DeferredHolder<Item, Item> GILDED_RING = register("gilded_ring", MalumItems::GEAR_PROPERTIES, CurioGildedRing::new);
     public static final DeferredHolder<Item, Item> GILDED_BELT = register("gilded_belt", MalumItems::GEAR_PROPERTIES, CurioGildedBelt::new);
     public static final DeferredHolder<Item, Item> ORNATE_RING = register("ornate_ring", MalumItems::GEAR_PROPERTIES, CurioOrnateRing::new);
@@ -854,6 +859,14 @@ public class MalumItems {
                         CATALYST_LOBBER.get(),
                         MalumMod.malumPath("state"),
                         (stack, level, holder, holderID) -> CatalystLobberItem.getStateDisplay(stack));
+                ItemProperties.register(
+                        SPELLWEAVING_PICKAXE.get(),
+                        MalumMod.malumPath("primed"),
+                        (stack, level, holder, holderID) -> SpellweavingPickaxeItem.getStateDisplay(stack));
+                ItemProperties.register(
+                        SPELLWEAVING_AXE.get(),
+                        MalumMod.malumPath("primed"),
+                        (stack, level, holder, holderID) -> SpellweavingPickaxeItem.getStateDisplay(stack));
             });
         }
 

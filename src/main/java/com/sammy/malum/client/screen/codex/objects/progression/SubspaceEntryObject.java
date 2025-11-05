@@ -2,12 +2,16 @@ package com.sammy.malum.client.screen.codex.objects.progression;
 
 import com.google.common.collect.*;
 import com.mojang.blaze3d.systems.*;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
+import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -29,15 +33,19 @@ import javax.annotation.*;
 import java.lang.Math;
 import java.util.*;
 import java.util.List;
+import java.util.stream.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
-import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderRiteIcon;
+import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 import static org.lwjgl.opengl.GL11C.GL_SCISSOR_TEST;
 
 public class SubspaceEntryObject extends ProgressionEntryObject {
 
     private static final ResourceLocation SUBSPACE_TEXTURE = malumPath("textures/gui/book/subspace_container.png");
     private static final ResourceLocation GLOW_TEXTURE = malumPath("textures/gui/book/subentry_glow.png");
+    private static final ResourceLocation ICON_LEFT_TEXTURE = malumPath("textures/gui/book/subentry_icon_left.png");
+    private static final ResourceLocation ICON_RIGHT_TEXTURE = malumPath("textures/gui/book/subentry_icon_right.png");
+
     private static final int WARMUP_TIME = 16;
 
     protected final ScreenParticleHolder entryParticles = new ScreenParticleHolder();
@@ -80,6 +88,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
             int yDiff = centerY - (int) mouseY;
             double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
             if (distance > (double) subspaceSize / 2 + 16) {
+                screen.playSweetenedSound(MalumSoundEvents.ARCANA_SUBENTRY_CLOSE, 0.75f);
                 isActive = false;
             }
 
@@ -102,8 +111,32 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         int posX = getLeftPos();
         int posY = getTopPos();
         renderGlow(guiGraphics, posX, posY, entry.associatedSpirit);
+        var pose = guiGraphics.pose();
         if (riteType != null) {
-            renderRiteIcon(riteType, guiGraphics.pose(), getOffsetXPosition() + 8, getOffsetYPosition() + 8);
+            renderRiteIcon(riteType, pose, getOffsetXPosition() + 8, getOffsetYPosition() + 8);
+        }
+        else {
+            Set<SpiritLike> spirits = entries.stream().map(e -> e.associatedSpirit).filter(Objects::nonNull).collect(Collectors.toSet());
+            for (int i = 0; i < 2; i++) {
+                var texture = i == 0 ? ICON_LEFT_TEXTURE : ICON_RIGHT_TEXTURE;
+                var spirit = spirits.stream().findFirst().orElse(entry.associatedSpirit);
+                if (spirit == null) {
+                    continue;
+                }
+                RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+                CodexRenderHelper.renderSpiritIcon(texture, pose, spirit, false, getOffsetXPosition(), getOffsetYPosition(), 0, 32, 32);
+                for (int j = 0; j < 4; j++) {
+                    float angle = (j / 4f) * 6.28f + ((Minecraft.getInstance().level.getGameTime() + partialTicks) * 0.05f) % 6.28f;
+                    float offsetScale = 2.5f;
+                    float offsetX = getOffsetXPosition() + (Mth.sin(angle) * offsetScale);
+                    float offsetY = getOffsetYPosition() + (Mth.cos(angle) * offsetScale);
+                    RenderSystem.setShaderColor(1f, 1f, 1f, 0.15f);
+                    CodexRenderHelper.renderSpiritIcon(texture, pose, spirit, j%2==0, offsetX, offsetY, 0, 32, 32);
+                    RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+                }
+                spirits.remove(spirit);
+            }
+
         }
     }
 
@@ -128,6 +161,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
             int x = getOffsetXPosition() + width / 2 - offset;
             int y = getOffsetYPosition() + height / 2 - offset;
             int margin = 6;
+            pose.pushPose();
             pose.translate(0, 0, 500);
             renderSubspace(guiGraphics, x - margin, y - margin, size + margin * 2, delta);
 
@@ -144,7 +178,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
             if (isActive) {
                 objects.renderObjectsLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
             }
-            pose.translate(0, 0, -500);
+            pose.popPose();
         } else {
             super.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
         }
@@ -165,6 +199,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     @Override
     public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (!isActive) {
+            screen.playSweetenedSound(MalumSoundEvents.ARCANA_SUBENTRY_OPEN, 1.25f);
             isActive = true;
             return true;
         }
@@ -233,7 +268,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
 
-    public static void renderGlow(GuiGraphics graphics, int x, int y, SpiritLike spirit) {
+    public static void renderGlow(GuiGraphics graphics, int x, int y, @Nullable SpiritLike spirit) {
         if (spirit == null) {
             return;
         }

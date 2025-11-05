@@ -1,4 +1,4 @@
-package com.sammy.malum.common.item.curiosities;
+package com.sammy.malum.common.item.curiosities.tools;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
@@ -29,6 +29,7 @@ public class CatalystLobberItem extends Item {
         }
         return data.state();
     }
+
     @Override
     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
         return repairCandidate.getItem().equals(MalumItems.MALIGNANT_LEAD.get()) || super.isValidRepairItem(stack, repairCandidate);
@@ -42,11 +43,7 @@ public class CatalystLobberItem extends Item {
             if (state != 0) {
                 int timer = data.timer();
                 int stashedState = data.stashedState();
-                if (!pIsSelected) {
-                    timer++;
-                } else if (timer > 0) {
-                    timer = 0;
-                }
+                timer = pIsSelected ? 0 : timer + 1;
                 if (timer >= 100) {
                     timer = 0;
                     stashedState = state;

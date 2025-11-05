@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "malum:item/spellweaving_axe_primed",
+      "predicate": {
+        "malum:primed": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "malum:item/spellweaving_axe"
+  }
+}

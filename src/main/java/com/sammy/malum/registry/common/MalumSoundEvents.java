@@ -24,6 +24,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_opened")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_closed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_PAGE_FLIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_page_flipped")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_subentry_opened")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_subentry_closed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SWEETENER_NORMAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_sweetener_normal")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SWEETENER_EVIL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_sweetener_evil")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_TRANSITION_NORMAL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_transition_normal")));
@@ -98,6 +100,9 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> HIDDEN_BLADE_PRIMED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hidden_blade_primed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> HIDDEN_BLADE_DISRUPTED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hidden_blade_disrupted")));
     public static final DeferredHolder<SoundEvent, SoundEvent> HIDDEN_BLADE_UNLEASHED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("hidden_blade_unleashed")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPELLWEAVING_TOOL_PRIME = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spellweaving_tool_primed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPELLWEAVING_TOOL_DAMPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spellweaving_tool_dampened")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TYRVING_SLASH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("tyrving_slashes_twice")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEIGHT_OF_WORLDS_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weight_of_worlds_cuts")));

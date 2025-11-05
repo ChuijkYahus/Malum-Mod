@@ -14,5 +14,13 @@
   {
     "attribute": "malum:healing_received",
     "texture": "wayward_attributes:icon/heart"
+  },
+  {
+    "attribute": "malum:malignant_conversion",
+    "texture": "wayward_attributes:icon/barrier"
+  },
+  {
+    "attribute": "malum:malignant_reinforcement",
+    "texture": "wayward_attributes:icon/shield"
   }
 ]

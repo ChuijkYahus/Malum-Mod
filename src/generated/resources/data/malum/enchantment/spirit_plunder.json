@@ -29,6 +29,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#malum:enchantable/spirit_spoils",
+  "supported_items": "#malum:enchantable/spirit_plunder",
   "weight": 1
 }

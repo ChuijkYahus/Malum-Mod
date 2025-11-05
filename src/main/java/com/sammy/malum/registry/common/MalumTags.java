@@ -30,11 +30,17 @@ public class MalumTags {
 
         public static final TagKey<Item> ANIMATED_ENCHANTABLE = tag("enchantable/animated");
         public static final TagKey<Item> HAUNTED_ENCHANTABLE = tag("enchantable/haunted");
+        public static final TagKey<Item> SPIRIT_PLUNDER_ENCHANTABLE = tag("enchantable/spirit_plunder");
+
         public static final TagKey<Item> REBOUND_ENCHANTABLE = tag("enchantable/rebound");
         public static final TagKey<Item> ASCENSION_ENCHANTABLE = tag("enchantable/ascension");
+
+        public static final TagKey<Item> WEAVERS_PROPAGATION_ENCHANTABLE = tag("enchantable/weavers_propagation");
+        public static final TagKey<Item> WEAVERS_HASTE_ENCHANTABLE = tag("enchantable/weavers_haste");
+
         public static final TagKey<Item> REPLENISHING_ENCHANTABLE = tag("enchantable/replenishing");
         public static final TagKey<Item> CAPACITOR_ENCHANTABLE = tag("enchantable/capacitor");
-        public static final TagKey<Item> SPIRIT_SPOILS_ENCHANTABLE = tag("enchantable/spirit_spoils");
+
 
         public static final TagKey<Item> SPIRITS = tag("spirits");
         public static final TagKey<Item> ASPECTED_SPIRITS = tag("aspected_spirits");

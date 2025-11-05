@@ -53,7 +53,6 @@ public class MalumAttributes {
 
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_CONVERSION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_conversion"), 0D, 0.0D, 1.0D).forcePercentageDisplay().setSyncable(true));
-
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_REINFORCEMENT = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_reinforcement"), 0D, 0.0D, 2048.0D).setSyncable(true));
 

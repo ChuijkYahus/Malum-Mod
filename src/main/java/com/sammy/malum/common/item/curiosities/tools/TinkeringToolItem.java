@@ -1,4 +1,4 @@
-package com.sammy.malum.common.item.curiosities;
+package com.sammy.malum.common.item.curiosities.tools;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;

@@ -66,6 +66,22 @@
     ],
     "subtitle": "malum.subtitle.arcana_page_flipped"
   },
+  "arcana_subentry_closed": {
+    "sounds": [
+      "malum:codex/book_subentry_close1",
+      "malum:codex/book_subentry_close2",
+      "malum:codex/book_subentry_close3"
+    ],
+    "subtitle": "malum.subtitle.arcana_subentry_closed"
+  },
+  "arcana_subentry_opened": {
+    "sounds": [
+      "malum:codex/book_subentry_open1",
+      "malum:codex/book_subentry_open2",
+      "malum:codex/book_subentry_open3"
+    ],
+    "subtitle": "malum.subtitle.arcana_subentry_opened"
+  },
   "arcana_sweetener_evil": {
     "sounds": [
       "malum:codex/book_swtnr_evil1",
@@ -2184,6 +2200,20 @@
       "malum:curiosities/spell_charge/charge4"
     ],
     "subtitle": "malum.subtitle.spell_charge_grow"
+  },
+  "spellweaving_tool_dampened": {
+    "sounds": [
+      "malum:curiosities/spellweaving/dampen_tool1",
+      "malum:curiosities/spellweaving/dampen_tool2"
+    ],
+    "subtitle": "malum.subtitle.spellweaving_tool_dampened"
+  },
+  "spellweaving_tool_primed": {
+    "sounds": [
+      "malum:curiosities/spellweaving/prime_tool1",
+      "malum:curiosities/spellweaving/prime_tool2"
+    ],
+    "subtitle": "malum.subtitle.spellweaving_tool_primed"
   },
   "spirit_altar_absorbs_item": {
     "sounds": [

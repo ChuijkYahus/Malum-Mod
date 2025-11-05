@@ -55,7 +55,7 @@ public class FloatingItemDestinationData {
     public boolean isValid(ServerLevel level) {
         return targetLocation.map(
                 uuid -> getEntityCollector(level).isPresent(),
-                pos -> level.isOutsideBuildHeight(pos) && level.getWorldBorder().isWithinBounds(pos));
+                pos -> !level.isOutsideBuildHeight(pos) && level.getWorldBorder().isWithinBounds(pos));
     }
 
     public Optional<LivingEntity> getEntityCollector(ServerLevel level) {

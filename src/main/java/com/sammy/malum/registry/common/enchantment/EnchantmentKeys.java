@@ -17,6 +17,9 @@ public class EnchantmentKeys {
     public static final ResourceKey<Enchantment> REBOUND = register("rebound");
     public static final ResourceKey<Enchantment> ASCENSION = register("ascension");
 
+    public static final ResourceKey<Enchantment> WEAVERS_PROPAGATION = register("weavers_propagation");
+    public static final ResourceKey<Enchantment> WEAVERS_HASTE = register("weavers_haste");
+
     public static final ResourceKey<Enchantment> REPLENISHING = register("replenishing");
     public static final ResourceKey<Enchantment> CAPACITOR = register("capacitor");
 

@@ -22,6 +22,25 @@ public class GearSpiritInfusionRecipes {
                 .carryOverComponentData()
                 .save(recipeOutput);
 
+        new SpiritInfusionRecipeBuilder(MalumItems.SOUL_STAINED_STEEL_PICKAXE.get(), 1, MalumItems.SPELLWEAVING_PICKAXE.get(), 1)
+                .addSpirit(EARTHEN_SPIRIT, 32)
+                .addSpirit(ARCANE_SPIRIT, 32)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
+                .addExtraItem(MalumItems.IRON_NODE.get(), 4)
+                .addExtraItem(MalumItems.CTHONIC_GOLD.get(), 2)
+                .carryOverComponentData()
+                .save(recipeOutput);
+        new SpiritInfusionRecipeBuilder(MalumItems.SOUL_STAINED_STEEL_AXE.get(), 1, MalumItems.SPELLWEAVING_AXE.get(), 1)
+                .addSpirit(AQUEOUS_SPIRIT, 32)
+                .addSpirit(ARCANE_SPIRIT, 32)
+                .addSpirit(ELDRITCH_SPIRIT, 16)
+                .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
+                .addExtraItem(MalumItems.IRON_NODE.get(), 4)
+                .addExtraItem(MalumItems.CTHONIC_GOLD.get(), 2)
+                .carryOverComponentData()
+                .save(recipeOutput);
+
         new SpiritInfusionRecipeBuilder(MalumItems.SOUL_STAINED_STEEL_AXE.get(), 1, MalumItems.WEIGHT_OF_WORLDS.get(), 1)
                 .addExtraItem(MalumItems.MALIGNANT_PEWTER_INGOT.get(), 2)
                 .addSpirit(EARTHEN_SPIRIT, 32)

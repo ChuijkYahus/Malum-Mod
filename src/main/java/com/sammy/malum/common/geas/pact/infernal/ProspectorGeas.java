@@ -1,5 +1,6 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -74,7 +75,12 @@ public class ProspectorGeas extends GeasEffect {
     }
 
     public static void modifyBlockDrops(BlockDropsEvent event) {
-        if (hasProspector(event.getBreaker())) {
+        var breaker = event.getBreaker();
+        if (breaker instanceof SpellweaverToolEffectActivatorEntity entity) {
+            var level = event.getLevel();
+            breaker = level.getEntity(entity.getOwner());
+        }
+        if (hasProspector(breaker)) {
             for (ItemEntity drop : event.getDrops()) {
                 markEntity(drop);
             }

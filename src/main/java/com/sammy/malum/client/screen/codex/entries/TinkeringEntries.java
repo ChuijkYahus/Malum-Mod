@@ -6,6 +6,7 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.MalumMod.*;
@@ -20,6 +21,10 @@ public class TinkeringEntries {
 
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
+        var spellweavingEnchanting = BookEntry.create("spellweaving_tools.enchanting")
+                .addPage(new HeadlineTextPage("spellweaving_tools.enchanting.weavers_propagation"))
+                .addPage(new HeadlineTextPage("spellweaving_tools.enchanting.weavers_haste"));
+
 
         var metalReexamination = new EntryReference(UMBRAL_SPIRIT, BookEntry.create("spirit_metals.reexamination")
                 .addPage(new HeadlineTextPage("spirit_metals.reexamination", "spirit_metals.reexamination.1"))
@@ -192,14 +197,28 @@ public class TinkeringEntries {
                 .addPage(new TextPage("necklace_of_blissful_harmony.2"))
         );
 
-        screen.addEntry("belt_of_the_magebane", -2, 20, b -> b
+        screen.addEntry("spellweaving_pickaxe", -3, 12, b -> b
+                .configureWidget(w -> w.setIcon(SPELLWEAVING_PICKAXE))
+                .addPage(new HeadlineTextPage("spellweaving_pickaxe", "spellweaving_pickaxe.1"))
+                .addPage(SpiritInfusionPage.fromOutput(SPELLWEAVING_PICKAXE.get()))
+                .addReference(new EntryReference(ENCHANTED_BOOK, spellweavingEnchanting))
+        );
+
+        screen.addEntry("spellweaving_axe", 3, 12, b -> b
+                .configureWidget(w -> w.setIcon(SPELLWEAVING_AXE))
+                .addPage(new HeadlineTextPage("spellweaving_axe", "spellweaving_axe.1"))
+                .addPage(SpiritInfusionPage.fromOutput(SPELLWEAVING_AXE.get()))
+                .addReference(new EntryReference(ENCHANTED_BOOK, spellweavingEnchanting))
+        );
+
+        screen.addEntry("belt_of_the_magebane", -2, 18, b -> b
                 .configureWidget(w -> w.setDesign(DEFAULT, SOULWOOD, PAPER).setIcon(BELT_OF_THE_MAGEBANE))
                 .addPage(new HeadlineTextPage("belt_of_the_magebane", "belt_of_the_magebane.1"))
                 .addPage(new TextPage("belt_of_the_magebane.2"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_MAGEBANE.get()))
         );
 
-        screen.addEntry("tyrving", -2, 21, b -> b
+        screen.addEntry("tyrving", -2, 19, b -> b
                 .configureWidget(w -> w.setDesign(DEFAULT, SOULWOOD, PAPER).setIcon(TYRVING))
                 .addPage(new HeadlineTextItemPage("tyrving", "tyrving.1", TYRVING.get()))
                 .addPage(new TextPage("tyrving.2"))

@@ -58,7 +58,7 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
         return drops.stream().anyMatch(s -> s.getItem() == blockItem);
     }
 
-    private static ItemStack getToolForState(BlockState state) {
+    public static ItemStack getToolForState(BlockState state) {
         if (!state.requiresCorrectToolForDrops()) {
             return new ItemStack(Items.NETHERITE_PICKAXE);
         } else {
