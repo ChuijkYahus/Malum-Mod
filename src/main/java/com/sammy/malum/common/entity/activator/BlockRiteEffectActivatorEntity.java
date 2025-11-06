@@ -176,6 +176,11 @@ public class BlockRiteEffectActivatorEntity extends MovingEntity {
         return 1;
     }
 
+    @Override
+    public boolean isPickable() {
+        return false;
+    }
+
     public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
         var state = level.getBlockState(pos);
         effect.applyEffect(level, this, state, pos, impact.getValue());

@@ -1,0 +1,151 @@
+# Technical Changes
+
+Spirit Types
+- Spirit Types are now a Deferred Registry
+- This is a significant internal change that ideally should not affect gameplay whatsoever
+- However this does mean that spirit registry names now come with a mod identifier in addition to a name
+- Any third party compat will need to be updated accordingly
+
+Spirit Rites
+- Spirit Rites are now a Deferred Registry
+- This is a significant internal change that ideally should not affect gameplay whatsoever
+- Any addon, such as Gaze which adds more totem rites will need to be updated accordingly
+
+Recipes
+- Updated the formats for most recipes added by Malum
+- Any third party recipe compat needs to be updated accordingly
+
+KubeJS
+- Added KubeJS compat for all Malum recipes
+- Check the wiki for example use cases, if the appropriate code snippets are not there remind me to add them
+- The Runic Workbench Recipes are still a little weird with KubeJS, this is an issue on their side from what I understand
+
+# New Stuff & Tweaks
+
+Spirit Rites
+- A lot of spirit rites have been completely redone
+- Most notably, rites which affect the world now utilize a Rite Locus system
+- The Rite Locus can be 
+
+Added the Ravenous Pouch
+- The Ravnous Pouch will snatch up any item that it already stores
+- Offers 8 stacks worth of space, but does not store magical items more efficiently
+
+Soulwoven Pouch
+- Based on Community Feedback, the autocollection of a large amount of goods was rather undesirable as it no longer allowed for a dedicated early game spirit storage option
+- The Soulwoven Pouch now only automatically collects spirits, but still stores most malum content extra effectively
+
+Runic Workbench
+- The Runic Workbench now has a new Model, Sounds, and Visuals for crafting
+- The Recipe is also changed to better reflect it's new look
+- Runic Workbench Recipes can now support regular items with a secondary input
+ - Currently this behavior lacks a unique crafting animation, if any modpack dev ends up using this functionality ping me and I'll whip something up
+
+Boats
+- Added Runewood & Soulwood Chest Boats
+- Updated the Item and Entity textures for Runewood & Soulwood Boats
+
+Soulwoven Banners
+- Added one new Soulwoven Banner Pattern
+- Soulwoven Banners now have a new particle effect for being Imbued with a Spirit
+- Soulwoven Banners now have a new particle effect for being Sheared
+
+Waveform Artifice
+- Polished up the Internal Logic of all the Waveform Diodes
+- Changed the Sound used by the Diodes
+
+Soul Stained Steel Armor
+- The Soul Stained Steel Armor now has a new model
+
+Malignant Stronghold Armor
+- The Malignant Stronghold Armor now has a new model
+- The Malignant Stronghold Chestplate now comes with two scarves instead of one
+- Pride Scarves retain old functionality
+- No Longer Eats Iron's Spellbooks Magic Resistances
+
+Malignant Conversion
+- No longer grants Armor Toughness
+- No longer grants Magic Resistance
+- Now grants a new attribute called Malignant Reinforcement
+- Malignant Reinforcement grants a chance to completely resist any incoming damage
+
+Necklace of the Hidden Blade
+- Now always deals a minimum of 10 damage
+- Damage Bonus based on damage taken scales slightly faster, for each heart and a half it will add 15% damage, this used to be 20% but with a higher health requirement
+- No Longer Damages Armor
+- This should hopefully enable the trinket to feel more rewarding on it's own while still allowing for some crazy strength
+
+Sundering Anchor
+- The Sundering Anchor now has reduced throw cooldown if it did not hit any enemies
+- The Sundering Anchor Projectile will no longer target Tamed Animals
+- The Sundering Anchor Projectile will not target Players that do not already have the Hatred effect applied, unless Players are the only available target
+
+Pact of the Prospector
+- Originally Pact of the Flamekeeper
+- Updated Behavior
+- Now Grants stacks of Prospector's Steak when Collecting Resources from Mined Ores
+- Prospector's Steak grants Fortune Change and Mining Speed
+- Taking Damage Removes Prospector's Streak and Ignites You
+- Added VFX to Ignition Effect
+
+This Geas was the last one I added before the update and as such it felt a little rushed.
+I think it lacked a clear identity, Fortune Chance was a rather unexplored attribute in Malum and I figured it'd make a great addition here
+It's name matches the Belt of the Prospector 
+
+Pact of the Profane Glutton
+- Updated Behavior
+- Gluttony becomes Desperate Need
+- Desperate Need is consumed when attacking with a scythe to trigger a Poisonous Slash
+- Poisonous Slashes apply Poison proportional to the amount of Desperate Need stacks
+- Taking Poison Damage Spreads the Poison to you
+- Taking Hunger Damage Poisons You
+
+I wasn't too happy with the execution of this geas, I think this change in behavior really helps it
+It's meant to serve as an aggressive glass cannon type deal, before this change it lacked a visual representation for your growth in strength, which the slashes help combat.
+It also lacked a downside that felt right and unique, incorporating poison into the geas helps with that a lot I think
+
+Pact of the Berserker
+- Buffed Wrath Gain Rate Slightly
+
+Pact of Wyrd Reconstruction
+- Cooldown reduced to 30 minutes
+
+Oath of the Overkeen Eye
+- Improved Homing Effect Consistency
+- Changed downside from reduced Charge Duration to reduced Charge Gain Rate
+
+Authority of the Gleeful Target
+- Can no longer activate from Drowning Damage
+- Can now trigger when taking Armor-Piercing Damage which includes magic, allowing it to better interact with Patience Repaid
+- Can not trigger when taking Drowning Damage specifically
+- No Longer allows effects to Tick, preventing very niche scenarios where Poison or Wither will still damage you
+
+# Textrues
+
+- Retextured the Runewood Obelisk
+- Retextured the Brilliant Obelisk
+- Retextured the Tyrving
+- Retextured Mnemonic Fragment
+- Retextured Malignant Lead
+- Retextured the Soul Stained Steel Ingot, Nugget and Plating
+- Retextured Soul Stained Steel Tools, Weapons, and Armor
+- Retextured the Hallowed Gold Ingot and Nugget
+- Retextured the Malignant Pewter Ingot, Nugget and Plating
+- Retextured Malignant Stronghold Armor
+
+- Retextured the effect icons for: Ascension, Gluttony, Desperate Need, Flawed Aim, True Shot, Grim Certainty
+- Added/Updated the effect icons for all rite effects
+
+# Bugfixes
+- Fixed the book having a stuck state, I'm not sure how this was caused but now if you are "out of bounds" the book will snap back to it's default position
+- Fixed certain items causing some other unrelated recipes to not appear in JEI whatsoever
+- Fixed the Rune of Radial Empowerment/Rune of Farsweeping still being called Rune of Sacrificial Empowerment
+- Fixed the Soulbinding Brazier model having incorrect face culling data
+- Fixed Soulwood Saplings being replaceable
+- Fixed Malignant Conversion being capped at 30 armor
+- Fixed a glState leak for the Hidden Blade interface icon renderer
+- Fixed the Weeping Well giving you the Encyclopedia Arcana in place of the Umbral Spirit
+- Fixed the Weeping Well crashing when eating an enchanted item
+- Fixed the Weeping Well hurting you while inside of it, as opposed to only when you're rejected
+- Fixed some of the Weeping Well textures being incorrectly mirrored
+- Fixed the Codex crashing your game when opened while any spirit repair recipe is missing

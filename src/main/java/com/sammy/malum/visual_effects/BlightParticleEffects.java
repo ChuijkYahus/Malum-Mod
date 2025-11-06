@@ -52,13 +52,13 @@ public class BlightParticleEffects {
                 lightSpecs.getBuilder()
                         .setScaleData(GenericParticleData.create(0f, scale, scale * 0.7f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
                         .setTransparencyData(GenericParticleData.create(alpha * 2, alpha, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
-                        .clearTickActor().addTickActor(behavior)
+                        .addTickActor(behavior)
                         .setLifetime(lifetime)
                         .setLifeDelay(lifeDelay + i + j * 6);
                 lightSpecs.getBloomBuilder()
                         .setScaleData(GenericParticleData.create(0f, scale * 0.6f, scale * 0.3f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN_OUT).build())
                         .setTransparencyData(GenericParticleData.create(alpha * 0.4f, alpha * 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_IN).build())
-                        .clearTickActor().addTickActor(behavior)
+                        .addTickActor(behavior)
                         .setLifetime(lifetime)
                         .setLifeDelay(lifeDelay + i + j * 6);
                 lightSpecs.spawnParticles();

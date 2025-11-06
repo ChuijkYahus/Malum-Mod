@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
-import com.mojang.blaze3d.platform.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.*;
@@ -77,6 +76,15 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         return false;
     }
 
+    public boolean hasVisibleObject(T screen) {
+        for (BookObject<T> object : objects) {
+            if (object.isInView(screen)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void renderObjects(T screen, GuiGraphics guiGraphics, float left, float top, int mouseX, int mouseY, float partialTicks) {
         for (int i = objects.size() - 1; i >= 0; i--) {
             BookObject<T> object = objects.get(i);
@@ -99,8 +107,20 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
     }
 
     public void renderObjectsLate(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        boolean priorityOnly = false;
+        for (BookObject<T> object : objects) {
+            if (object.isValid(screen)) {
+                if (object.hasPriority(screen)) {
+                    priorityOnly = true;
+                    break;
+                }
+            }
+        }
         for (int i = objects.size() - 1; i >= 0; i--) {
             BookObject<T> object = objects.get(i);
+            if (priorityOnly && !object.hasPriority(screen)) {
+                continue;
+            }
             if (object.isValid(screen)) {
                 object.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
             }

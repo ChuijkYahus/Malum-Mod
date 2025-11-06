@@ -66,7 +66,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                         SoundHelper.playSound(attacker, MalumSoundEvents.HIDDEN_BLADE_DISRUPTED.get(), 1f, RandomHelper.randomBetween(random, 0.7f, 0.8f));
                     }
                     data.hiddenBladeNecklaceCooldown = (int) (COOLDOWN_DURATION * 1.5);
-                    PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
+                    attacker.syncData(MalumAttachmentTypes.CURIO_DATA);
                     return;
                 }
                 var effect = attacker.getEffect(MalumMobEffects.WICKED_INTENT);
@@ -104,7 +104,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 entity.setData(attacker, physicalDamage, magicDamage, slashDuration);
                 entity.setItem(scytheWeapon);
                 level.addFreshEntity(entity);
-                PacketDistributor.sendToPlayersTrackingEntityAndSelf(attacker, new SyncCurioDataPayload(attacker.getId(), data));
+                attacker.syncData(MalumAttachmentTypes.CURIO_DATA);
                 if (!effect.isInfiniteDuration()) {
                     data.hiddenBladeNecklaceCooldown = COOLDOWN_DURATION;
                     attacker.removeEffect(effect.getEffect());

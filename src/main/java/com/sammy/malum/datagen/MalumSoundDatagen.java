@@ -27,6 +27,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ARCANA_ENTRY_OPEN, s -> definition(s).with(sounds("codex/book_entry_open", 4)));
         this.add(MalumSoundEvents.ARCANA_ENTRY_CLOSE, s -> definition(s).with(sounds("codex/book_entry_close", 4)));
         this.add(MalumSoundEvents.ARCANA_PAGE_FLIP, s -> definition(s).with(sounds("codex/book_page_turn", 4)));
+        this.add(MalumSoundEvents.ARCANA_SUBENTRY_OPEN, s -> definition(s).with(sounds("codex/book_subentry_open", 3)));
+        this.add(MalumSoundEvents.ARCANA_SUBENTRY_CLOSE, s -> definition(s).with(sounds("codex/book_subentry_close", 3)));
         this.add(MalumSoundEvents.ARCANA_SWEETENER_NORMAL, s -> definition(s).with(sounds("codex/book_swtnr_normal", 8)));
         this.add(MalumSoundEvents.ARCANA_SWEETENER_EVIL, s -> definition(s).with(sounds("codex/book_swtnr_evil", 8)));
         this.add(MalumSoundEvents.ARCANA_TRANSITION_NORMAL, s -> definition(s).with(sounds("codex/book_transition_normal", 2)));
@@ -100,6 +102,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.HIDDEN_BLADE_PRIMED, s -> definition(s).with(sound("curiosities/trinkets/hidden_blade/charge")));
         this.add(MalumSoundEvents.HIDDEN_BLADE_DISRUPTED, s -> definition(s).with(sound("curiosities/trinkets/hidden_blade/charge")));
         this.add(MalumSoundEvents.HIDDEN_BLADE_UNLEASHED, s -> definition(s).with(sounds("curiosities/trinkets/hidden_blade/flurry", 2)));
+
+        this.add(MalumSoundEvents.SPELLWEAVING_TOOL_PRIME, s -> definition(s).with(sounds("curiosities/spellweaving/prime_tool", 2)));
+        this.add(MalumSoundEvents.SPELLWEAVING_TOOL_DAMPEN, s -> definition(s).with(sounds("curiosities/spellweaving/dampen_tool", 2)));
 
         this.add(MalumSoundEvents.TYRVING_SLASH, s -> definition(s).with(sounds("curiosities/weapons/tyrving/hit", 5)));
         this.add(MalumSoundEvents.WEIGHT_OF_WORLDS_CUT, s -> definition(s).with(sounds("curiosities/weapons/scythe/sweep", 7)));

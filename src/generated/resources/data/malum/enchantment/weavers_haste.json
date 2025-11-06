@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.malum.weavers_haste"
+  },
+  "effects": {
+    "malum:locus_speed": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.5,
+            "per_level_above_first": 0.5
+          }
+        }
+      }
+    ]
+  },
+  "exclusive_set": "malum:weavers_propagation",
+  "max_cost": {
+    "base": 20,
+    "per_level_above_first": 10
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#malum:enchantable/weavers_haste",
+  "weight": 1
+}

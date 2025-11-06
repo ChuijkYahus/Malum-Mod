@@ -8,7 +8,7 @@ import com.sammy.malum.visual_effects.networked.staff.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
@@ -183,7 +183,6 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
         if (spawnDelay > 0) {
             spawnDelay--;
             if (spawnDelay == 0 && !level().isClientSide) {
-                spawnDelay = -1;
                 playSound(MalumSoundEvents.STAFF_FIRES.get(), 1f, Mth.nextFloat(random, 0.9F, 1.5F));
             }
             return;
@@ -228,6 +227,17 @@ public abstract class AbstractBoltProjectileEntity extends ThrowableItemProjecti
     @Override
     public SoundSource getSoundSource() {
         return getOwner() != null ? getOwner().getSoundSource() : SoundSource.PLAYERS;
+    }
+
+    @Override
+    public void playSound(SoundEvent sound, float volume, float pitch) {
+        if (getOwner() != null) {
+            if (position().distanceTo(getOwner().position()) < 2f) {
+                SoundHelper.playSound(getOwner(), sound, volume, pitch);
+                return;
+            }
+        }
+        super.playSound(sound, volume, pitch);
     }
 
     public void homeIn() {

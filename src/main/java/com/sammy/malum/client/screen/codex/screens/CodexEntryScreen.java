@@ -57,7 +57,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
             int counter = 0;
             for (EntryReference reference : references) {
                 if (reference.entry.shouldShow()) {
-                    entryObjects.add(new LinkedEntryObject(right, 15 + counter * 30, true, reference));
+                    entryObjects.add(new ReferencedEntryObject(right, 15 + counter * 30, true, reference));
                     counter++;
                 }
             }

@@ -1,6 +1,7 @@
 package com.sammy.malum.core.handlers.hiding;
 
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.config.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.tags.TagKey;
@@ -33,6 +34,9 @@ public class HiddenTagHandler {
 	}
 
 	public static void hideItems(Collection<ItemStack> items) {
+		if (!CommonConfig.HIDE_RECIPES.getConfigValue()) {
+			return;
+		}
 		items.removeIf(HiddenTagHandler::isHiddenItem);
 	}
 

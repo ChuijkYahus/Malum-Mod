@@ -37,7 +37,7 @@ public class MalumSpiritRiteEffectTypes {
     public static final RiteEffectHolder<HowlingGaleRiteEffect> APPLY_HOWLING_GALE_EFFECT = EFFECT_TYPES.register("apply_howling_gale_effect", HowlingGaleRiteEffect::new);
     public static final RiteEffectHolder<SkyTetherRiteEffect> APPLY_SKY_TETHER_EFFECT = EFFECT_TYPES.register("apply_sky_tether_effect", SkyTetherRiteEffect::new);
     public static final RiteEffectHolder<BlockGravityRiteEffect> BLOCK_GRAVITY_EFFECT = EFFECT_TYPES.register("block_gravity_effect", BlockGravityRiteEffect::new);
-    public static final RiteEffectHolder<BlockGravityRiteEffect> BLOCK_SOMETHING_EFFECT = EFFECT_TYPES.register("block_something_effect", BlockGravityRiteEffect::new);
+    public static final RiteEffectHolder<BlockAscensionRiteEffect> BLOCK_ASCENSION_EFFECT = EFFECT_TYPES.register("block_ascension_effect", BlockAscensionRiteEffect::new);
 
     public static final RiteEffectHolder<FlowingGraspRiteEffect> APPLY_FLOWING_GRASP_EFFECT = EFFECT_TYPES.register("apply_flowing_grasp_effect", FlowingGraspRiteEffect::new);
     public static final RiteEffectHolder<GoodTidesRiteEffect> THE_GOOD_TIDES_EFFECT = EFFECT_TYPES.register("apply_good_tides_effect", GoodTidesRiteEffect::new);

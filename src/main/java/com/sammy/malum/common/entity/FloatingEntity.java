@@ -1,6 +1,5 @@
 package com.sammy.malum.common.entity;
 
-import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
@@ -34,6 +33,10 @@ public abstract class FloatingEntity extends MovingEntity {
 
     public abstract void collect(ServerLevel level);
 
+    public boolean shouldVanishAfterCollection(ServerLevel level) {
+        return true;
+    }
+
     public void setDestination(FloatingItemDestinationData destination) {
         this.destination = destination;
     }
@@ -44,26 +47,6 @@ public abstract class FloatingEntity extends MovingEntity {
 
     public float getVisualEffectScalar() {
         return Math.min(age / 5f, 1f);
-    }
-
-    public float getHoverOffset() {
-        return hoverOffset;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public int getMaxAge() {
-        return maxAge;
-    }
-
-    public int getMovementWindUp() {
-        return movementWindUp;
-    }
-
-    public int getHoverWindUp() {
-        return hoverWindUp;
     }
 
     @Override
@@ -103,14 +86,17 @@ public abstract class FloatingEntity extends MovingEntity {
                         movementWindUp++;
                     }
                     float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
-                    float velocity = Mth.clamp(delta - 0.25f, 0, 0.75f) * 3f;
-                    float motionStrength = getMovementInterpolation(delta, distance);
+                    float velocity = Mth.clamp(delta - 0.25f, 0, 0.75f) * getMovementSpeed(delta, distance);
+                    float easing = getMovementEasing(delta, distance);
                     var targetMovement = targetPos.subtract(position()).normalize().scale(velocity);
-                    var newMovement = getDeltaMovement().lerp(targetMovement, motionStrength);
+                    var newMovement = getDeltaMovement().lerp(targetMovement, easing);
                     setDeltaMovement(newMovement);
                     if (distance < 0.4f) {
+                        var shouldVanish = shouldVanishAfterCollection(level);
                         collect(level);
-                        remove(RemovalReason.DISCARDED);
+                        if (shouldVanish) {
+                            remove(RemovalReason.DISCARDED);
+                        }
                     }
                 }
             } else {
@@ -159,7 +145,11 @@ public abstract class FloatingEntity extends MovingEntity {
         return 50;
     }
 
-    public float getMovementInterpolation(float windUp, float distance) {
+    public float getMovementSpeed(float windUp, float distance) {
+        return 3f;
+    }
+
+    public float getMovementEasing(float windUp, float distance) {
         float windUpScalar = windUp * 0.01f;
         float distanceScalar = (1 / Math.max(distance, 1)) * 0.025f;
         return windUpScalar + distanceScalar;

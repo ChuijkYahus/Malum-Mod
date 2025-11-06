@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.entries;
 
-import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
@@ -17,7 +16,7 @@ public class AugmentationEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
         screen.addEntry("crucible_augmentation", 13, 8, b -> b
-                .configureEntry(w -> w.setIcon(TUNING_FORK).setDesign(GILDED, RUNEWOOD, PAPER))
+                .configureWidget(w -> w.setIcon(TUNING_FORK).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("crucible_augmentation", "crucible_augmentation.1"))
                 .addPage(new TextPage("crucible_augmentation.2"))
                 .addPage(new TextPage("crucible_augmentation.3"))
@@ -25,73 +24,73 @@ public class AugmentationEntries {
         );
 
         screen.addEntry("sympathy_drive", 13, 10, b -> b
-                .configureEntry(w -> w.setIcon(SYMPATHY_DRIVE))
+                .configureWidget(w -> w.setIcon(SYMPATHY_DRIVE))
                 .addPage(new HeadlineTextPage("sympathy_drive", "sympathy_drive.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SYMPATHY_DRIVE.get()))
         );
 
         screen.addEntry("caustic_catalyst", 12, 11, b -> b
-                .configureEntry(w -> w.setIcon(CAUSTIC_CATALYST))
+                .configureWidget(w -> w.setIcon(CAUSTIC_CATALYST))
                 .addPage(new HeadlineTextPage("caustic_catalyst", "caustic_catalyst.1"))
                 .addPage(SpiritInfusionPage.fromOutput(CAUSTIC_CATALYST.get()))
         );
 
         screen.addEntry("resonance_tuner", 14, 11, b -> b
-                .configureEntry(w -> w.setIcon(RESONANCE_TUNER))
+                .configureWidget(w -> w.setIcon(RESONANCE_TUNER))
                 .addPage(new HeadlineTextPage("resonance_tuner", "resonance_tuner.1"))
                 .addPage(SpiritInfusionPage.fromOutput(RESONANCE_TUNER.get()))
         );
 
         screen.addEntry("suspicious_device", 13, 12, b -> b
-                .configureEntry(w -> w.setIcon(SUSPICIOUS_DEVICE))
+                .configureWidget(w -> w.setIcon(SUSPICIOUS_DEVICE))
                 .addPage(new HeadlineTextPage("suspicious_device", "suspicious_device.1"))
         );
 
 
         screen.addEntry("mending_diffuser", 14, 7, b -> b
-                .configureEntry(w -> w.setIcon(MENDING_DIFFUSER))
+                .configureWidget(w -> w.setIcon(MENDING_DIFFUSER))
                 .addPage(new HeadlineTextPage("mending_diffuser", "mending_diffuser.1"))
                 .addPage(SpiritInfusionPage.fromOutput(MENDING_DIFFUSER.get()))
         );
 
         screen.addEntry("impurity_stabilizer", 15, 7, b -> b
-                .configureEntry(w -> w.setIcon(IMPURITY_STABILIZER))
+                .configureWidget(w -> w.setIcon(IMPURITY_STABILIZER))
                 .addPage(new HeadlineTextPage("impurity_stabilizer", "impurity_stabilizer.1"))
                 .addPage(SpiritInfusionPage.fromOutput(IMPURITY_STABILIZER.get()))
         );
 
         screen.addEntry("accelerating_inlay", 16, 8, b -> b
-                .configureEntry(w -> w.setIcon(ACCELERATING_INLAY))
+                .configureWidget(w -> w.setIcon(ACCELERATING_INLAY))
                 .addPage(new HeadlineTextPage("accelerating_inlay", "accelerating_inlay.1"))
                 .addPage(SpiritInfusionPage.fromOutput(ACCELERATING_INLAY.get()))
         );
 
         screen.addEntry("blazing_diode", 15, 8, b -> b
-                .configureEntry(w -> w.setIcon(BLAZING_DIODE))
+                .configureWidget(w -> w.setIcon(BLAZING_DIODE))
                 .addPage(new HeadlineTextPage("blazing_diode", "blazing_diode.1"))
                 .addPage(SpiritInfusionPage.fromOutput(BLAZING_DIODE.get()))
         );
 
         screen.addEntry("prismatic_focus_lens", 15, 9, b -> b
-                .configureEntry(w -> w.setIcon(PRISMATIC_FOCUS_LENS))
+                .configureWidget(w -> w.setIcon(PRISMATIC_FOCUS_LENS))
                 .addPage(new HeadlineTextPage("prismatic_focus_lens", "prismatic_focus_lens.1"))
                 .addPage(SpiritInfusionPage.fromOutput(PRISMATIC_FOCUS_LENS.get()))
         );
 
         screen.addEntry("intricate_assembly", 16, 9, b -> b
-                .configureEntry(w -> w.setIcon(INTRICATE_ASSEMBLY))
+                .configureWidget(w -> w.setIcon(INTRICATE_ASSEMBLY))
                 .addPage(new HeadlineTextPage("intricate_assembly", "intricate_assembly.1"))
                 .addPage(SpiritInfusionPage.fromOutput(INTRICATE_ASSEMBLY.get()))
         );
 
         screen.addEntry("shielding_apparatus", 16, 10, b -> b
-                .configureEntry(w -> w.setIcon(SHIELDING_APPARATUS))
+                .configureWidget(w -> w.setIcon(SHIELDING_APPARATUS))
                 .addPage(new HeadlineTextPage("shielding_apparatus", "shielding_apparatus.1"))
                 .addPage(SpiritInfusionPage.fromOutput(SHIELDING_APPARATUS.get()))
         );
 
         screen.addEntry("warping_engine", 17, 10, b -> b
-                .configureEntry(w -> w.setIcon(WARPING_ENGINE))
+                .configureWidget(w -> w.setIcon(WARPING_ENGINE))
                 .addPage(new HeadlineTextPage("warping_engine", "warping_engine.1"))
                 .addPage(SpiritInfusionPage.fromOutput(WARPING_ENGINE.get()))
                 .addPage(new TextPage("warping_engine.2"))

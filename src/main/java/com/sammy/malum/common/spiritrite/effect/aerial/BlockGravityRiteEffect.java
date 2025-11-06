@@ -44,7 +44,7 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
     private static final List<Item> TOOLS = List.of(Items.NETHERITE_PICKAXE, Items.NETHERITE_AXE, Items.NETHERITE_SHOVEL, Items.NETHERITE_HOE);
     // From Botania, modified slightly
 
-    private static boolean canSilkTouch(ServerLevel level, BlockPos pos, BlockState state) {
+    protected static boolean canSilkTouch(ServerLevel level, BlockPos pos, BlockState state) {
         if (state.is(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST)) {
             return true;
         }
@@ -58,7 +58,7 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
         return drops.stream().anyMatch(s -> s.getItem() == blockItem);
     }
 
-    private static ItemStack getToolForState(BlockState state) {
+    public static ItemStack getToolForState(BlockState state) {
         if (!state.requiresCorrectToolForDrops()) {
             return new ItemStack(Items.NETHERITE_PICKAXE);
         } else {

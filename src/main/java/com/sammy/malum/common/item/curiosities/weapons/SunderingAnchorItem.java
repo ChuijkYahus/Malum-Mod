@@ -52,7 +52,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                 .component(DataComponents.TOOL, createToolProperties(tier, MalumTags.BlockTags.MINEABLE_WITH_KNIFE))
                 .mergeAttributes(
                         ItemAttributeModifiers.builder()
-                                .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.MAGIC_DAMAGE.getId(), magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                                .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                                 .build()));
     }
 

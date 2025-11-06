@@ -39,10 +39,10 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
     public void draw(SpiritInfusionRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
         int spiritOffset = recipe.spirits.size() > 5 ? (recipe.spirits.size()-5)*10 : 0;
-        CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 20, 49+spiritOffset, mouseX, mouseY, false, true);
+        CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 20, 49+spiritOffset, true);
         if (!recipe.extraInputs.isEmpty()) {
             int itemOffset = recipe.extraInputs.size() > 5 ? (recipe.extraInputs.size()-5)*10 : 0;
-            CodexItemHelper.renderItemFrames(guiGraphics, recipe.extraInputs.size(), 104, 49+itemOffset, mouseX, mouseY, true, true);
+            CodexItemHelper.renderItemFrames(guiGraphics, recipe.extraInputs.size(), 104, 49+itemOffset, true);
         }
     }
 

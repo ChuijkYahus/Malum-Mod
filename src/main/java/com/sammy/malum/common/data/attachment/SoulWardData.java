@@ -59,7 +59,7 @@ public class SoulWardData {
         }
         if (isDirty()) {
             if (!living.level().isClientSide) {
-                PacketDistributor.sendToPlayersTrackingEntityAndSelf(living, new SyncSoulWardDataPayload(living.getId(), this));
+                living.syncData(MalumAttachmentTypes.SOUL_WARD);
             }
             setDirty(false);
         }

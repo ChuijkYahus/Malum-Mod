@@ -1,9 +1,8 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.helper.*;
-import com.sammy.malum.client.screen.codex.objects.BookObject;
+import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
@@ -13,7 +12,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -25,23 +23,13 @@ import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.P
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 
-public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexScreen> {
+public class ProgressionEntryObject extends AbstractSelectableEntryObject<AbstractProgressionCodexScreen> {
 
-    public final BookEntry entry;
     public WidgetDesign design = WidgetDesignType.DEFAULT.createDesign(RUNEWOOD, PAPER);
-    public ChatFormatting headlineFormatting;
-    public Predicate<AbstractProgressionCodexScreen> isValid = t -> true;
-    public ItemStack iconStack;
     public boolean isOrigin;
 
     public ProgressionEntryObject(BookEntry entry, int posX, int posY) {
-        super(posX, posY, 32, 32);
-        this.entry = entry;
-    }
-
-    @Override
-    public boolean isValid(AbstractProgressionCodexScreen screen) {
-        return isValid.test(screen) && entry.shouldShow();
+        super(entry, posX, posY, 32, 32);
     }
 
     @Override
@@ -50,15 +38,6 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
                 || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition())
                 || screen.isInView(getOffsetXPosition(), getOffsetYPosition() + height)
                 || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition() + height);
-    }
-
-    @Override
-    public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
-        if (entry.hasContents()) {
-            CodexEntryScreen.openScreen(entry);
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -82,22 +61,17 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
     }
 
     @Override
-    public void renderLate(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        if (isHoveredOver && entry.hasTooltip()) {
-            ChatFormatting formatting = getHeadlineStyle(screen);
-            List<Component> list = new ArrayList<>(List.of(
-                    CodexTextHelper.convertToComponent(entry.translationKey(), entry.titleStyle).withStyle(formatting),
-                    CodexTextHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
-
-            for (EntryReference reference : entry.references) {
-                if (reference.entry.shouldShow()) {
-                    MutableComponent slash = Component.literal(" -").withStyle(reference.entry.subtitleStyle);
-                    MutableComponent text = slash.append(Component.translatable(reference.entry.translationKey()));
-                    list.add(text.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY)));
-                }
+    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
+        var tooltip = super.gatherTooltip(screen);
+        for (EntryReference reference : entry.references) {
+            if (reference.entry.shouldShow()) {
+                var slash = Component.literal("┇ ");
+                var text = Component.translatable(reference.entry.translationKey());
+                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
+                tooltip.add(1, component);
             }
-            guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
+        return tooltip;
     }
 
     public int getLeftPos() {
@@ -120,34 +94,29 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
         return getTopPos() + height / 2;
     }
 
-    public ChatFormatting getHeadlineStyle(AbstractProgressionCodexScreen screen) {
-        if (headlineFormatting != null) {
-            return headlineFormatting;
-        }
-        //TODO: Un-hardcode This
-        boolean isVoid = screen instanceof VoidProgressionScreen;
-        ChatFormatting formatting = isVoid ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD;
-        if (design.getDesignType().equals(WidgetDesignType.GILDED)) {
-            formatting = isVoid ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.YELLOW;
-        }
-        return formatting;
-    }
-
+    @Override
     public ProgressionEntryObject setIcon(Supplier<? extends Item> item) {
-        return setIcon(item.get());
+        return (ProgressionEntryObject) super.setIcon(item);
     }
 
+    @Override
     public ProgressionEntryObject setIcon(Item item) {
-        return setIcon(item.getDefaultInstance());
+        return (ProgressionEntryObject) super.setIcon(item);
     }
 
+    @Override
     public ProgressionEntryObject setIcon(Holder<GeasEffectType> geas) {
-        return setIcon(geas.value().createDefaultStack());
+        return (ProgressionEntryObject) super.setIcon(geas);
     }
 
+    @Override
     public ProgressionEntryObject setIcon(ItemStack itemStack) {
-        iconStack = itemStack;
-        return this;
+        return (ProgressionEntryObject) super.setIcon(itemStack);
+    }
+
+    @Override
+    public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
+        return (ProgressionEntryObject) super.setCondition(isValid);
     }
 
     public ProgressionEntryObject setDesign(WidgetDesignType design, WidgetDesignType.FrameType frame, WidgetDesignType.FillingType filling) {
@@ -156,16 +125,6 @@ public class ProgressionEntryObject extends BookObject<AbstractProgressionCodexS
 
     public ProgressionEntryObject setDesign(WidgetDesign design) {
         this.design = design;
-        return this;
-    }
-
-    public ProgressionEntryObject setHeadlineFormatting(ChatFormatting formatting) {
-        this.headlineFormatting = formatting;
-        return this;
-    }
-
-    public ProgressionEntryObject setCondition(Predicate<AbstractProgressionCodexScreen> isValid) {
-        this.isValid = isValid;
         return this;
     }
 

@@ -192,13 +192,10 @@ public class CodexRenderHelper {
         var color = spiritType.getPrimaryColor();
         var secondaryColor = spiritType.getPrimaryColor();
 
-        builder.setColor(color).setAlpha(0.8f);
+        builder.setColor(color).setAlpha(0.95f);
         renderTexture(texture, stack, builder, x, y, 0, 0, 0, textureWidth, textureHeight);
 
-        builder.setColor(ColorHelper.brighter(color, 4)).setAlpha(0.1f);
-        renderTexture(texture, stack, builder, x + 2, y + 2, 1, 2, 2, 12, 12, 16, 16);
-
-        builder.setAlpha(0.2f);
+        builder.setAlpha(0.3f);
         renderTexture(texture, stack, builder, x + 1, y, 2, 0, 0, textureWidth, textureHeight);
         renderTexture(texture, stack, builder, x - 1, y, 3, 0, 0, textureWidth, textureHeight);
         builder.setColor(secondaryColor).setAlpha(0.3f);
@@ -236,7 +233,7 @@ public class CodexRenderHelper {
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
-        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, width, height, canvasWidth, canvasHeight);
+        renderTexture(poseStack, builder.setTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, width, height, canvasWidth, canvasHeight);
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
@@ -244,7 +241,7 @@ public class CodexRenderHelper {
     }
 
     public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
-        renderTexture(poseStack, builder.setShaderTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, textureWidth, textureHeight, canvasWidth, canvasHeight);
+        renderTexture(poseStack, builder.setTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, textureWidth, textureHeight, canvasWidth, canvasHeight);
     }
 
     private static void renderTexture(PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {

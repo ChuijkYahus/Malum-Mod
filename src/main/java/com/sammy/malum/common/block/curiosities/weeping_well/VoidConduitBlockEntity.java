@@ -76,7 +76,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         if (gameTime % 20L == 0) {
             level.playSound(null, worldPosition, MalumSoundEvents.VOID_HEARTBEAT.get(), SoundSource.HOSTILE, 1.5f, Mth.nextFloat(level.getRandom(), 0.95f, 1.15f));
         }
-        if (gameTime % 10L == 0) {
+        if (gameTime % 5L == 0) {
             acceptItems(level);
         }
         if (!eatenItems.isEmpty()) {

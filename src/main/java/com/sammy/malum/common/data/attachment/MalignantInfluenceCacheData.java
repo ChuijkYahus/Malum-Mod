@@ -11,7 +11,7 @@ public class MalignantInfluenceCacheData {
     public static Codec<MalignantInfluenceCacheData> CODEC = Codec.unit(MalignantInfluenceCacheData::new);
 
     protected final HashMap<Holder<Attribute>, Double> cachedAttributeValues = new HashMap<>();
-    protected boolean skipConversion;
+    protected int reinforcementDebt;
 
     public MalignantInfluenceCacheData() {
     }
@@ -30,5 +30,19 @@ public class MalignantInfluenceCacheData {
 
     public boolean canPerformConversion(AttributeInstance malignantConversion) {
         return true;
+    }
+
+    public int getReinforcementDebt() {
+        return reinforcementDebt;
+    }
+
+    public void incrementReinforcementDebt() {
+        reinforcementDebt++;
+    }
+
+    public void reduceReinforcementDebt() {
+        if (reinforcementDebt > 0) {
+            reinforcementDebt--;
+        }
     }
 }

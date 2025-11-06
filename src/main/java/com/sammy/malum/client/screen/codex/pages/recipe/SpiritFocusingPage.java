@@ -17,9 +17,6 @@ import java.util.function.Predicate;
 public class SpiritFocusingPage extends BookPage {
     private final SpiritFocusingRecipe recipe;
 
-    public static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.spirit_focusing");
-    public static final Component SPIRIT = Component.translatable("malum.gui.book.entry.page.info.spirit_focusing.spirit");
-
     public SpiritFocusingPage(Predicate<SpiritFocusingRecipe> predicate) {
         this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_FOCUSING.get(), predicate));
     }
@@ -44,13 +41,10 @@ public class SpiritFocusingPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 63, top + 16, mouseX, mouseY, false);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, left + 63, top + 16, mouseX, mouseY, false);
         CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 56, mouseX, mouseY);
         CodexItemHelper.renderItem(screen, guiGraphics, recipe.output, left + 63, top + 132, mouseX, mouseY);
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 62, top + 74, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "spirit_focusing", left + 62, top + 74, mouseX, mouseY);
     }
 }

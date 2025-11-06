@@ -1,5 +1,8 @@
 package com.sammy.malum.client.screen.codex;
 
+import com.sammy.malum.client.screen.codex.pages.*;
+import net.minecraft.*;
+
 import java.util.*;
 import java.util.function.*;
 
@@ -16,7 +19,9 @@ public interface PlacedEntryAcceptor {
         if (builder.hasFragment()) {
             getEntries().add(builder.buildFragment());
         }
-        getEntries().add(builder.build());
+        final PlacedBookEntry build = builder.build();
+
+        getEntries().add(build);
     }
 
     Collection<PlacedBookEntry> getEntries();

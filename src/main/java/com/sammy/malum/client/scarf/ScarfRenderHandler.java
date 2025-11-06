@@ -132,7 +132,7 @@ public class ScarfRenderHandler {
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TEXTURE_FADE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
-            Vec3 scarfStart = getScarfStart(entity, partialTicks);
+            var scarfStart = getScarfStart(entity, partialTicks);
             points.setOrigin(scarfStart);
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
             builder.usePartialTicks(0).renderTrail(points,
@@ -152,9 +152,11 @@ public class ScarfRenderHandler {
                     var currentPoint = list.get(i);
                     var nextPoint = list.get(i + 1);
                     float delta = Mth.clamp(currentPoint.getAge() / age * 4, 0, 1);
-                    float lerpX = (float) Mth.lerp(delta, currentPoint.getPosition().x, nextPoint.getPosition().x);
-                    float lerpY = (float) Mth.lerp(delta, currentPoint.getPosition().y, nextPoint.getPosition().y);
-                    float lerpZ = (float) Mth.lerp(delta, currentPoint.getPosition().z, nextPoint.getPosition().z);
+                    var currentPos = currentPoint.getPosition();
+                    var nextPos = nextPoint.getPosition();
+                    float lerpX = (float) Mth.lerp(delta, currentPos.x, nextPos.x);
+                    float lerpY = (float) Mth.lerp(delta, currentPos.y, nextPos.y);
+                    float lerpZ = (float) Mth.lerp(delta, currentPos.z, nextPos.z);
                     currentPoint.setPosition(new Vec3(lerpX, lerpY, lerpZ));
                 }
             }

@@ -18,9 +18,6 @@ import java.util.function.*;
 import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
 public class SoulBindingPage extends BookPage {
-    private static final Component BASE = Component.translatable("malum.gui.book.entry.page.info.soulbinding");
-    private static final Component SPIRIT = Component.translatable("malum.gui.book.entry.page.info.soulbinding.spirit");
-    private static final Component ITEM = Component.translatable("malum.gui.book.entry.page.info.soulbinding.item");
 
     private final SoulBindingRecipe recipe;
 
@@ -45,15 +42,12 @@ public class SoulBindingPage extends BookPage {
         CodexItemHelper.renderItem(screen, guiGraphics, recipe.result.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
         CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 87, mouseX, mouseY);
 
-        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, SPIRIT, left + 13, top + 87, mouseX, mouseY, true);
+        CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, left + 13, top + 87, mouseX, mouseY, true);
         if (!recipe.extraInputs.isEmpty()) {
-            CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.extraInputs, ITEM, left + 113, top + 87, mouseX, mouseY, true);
+            CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.extraInputs, left + 113, top + 87, mouseX, mouseY, true);
         }
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left + 60, top + 105, 18, 18)) {
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, CodexTextHelper.wrapComponent(BASE, 180), mouseX, mouseY);
-            }
-        });
+
+        renderRecipeInfo(guiGraphics, screen, "soul_binding", left + 62, top + 105, mouseX, mouseY);
     }
 
     @Override

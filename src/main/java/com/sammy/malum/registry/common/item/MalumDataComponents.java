@@ -41,6 +41,9 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CatalystFlingerStateComponent>> CATALYST_LOBBER_STATE = register("catalyst_flinger_state", builder ->
             builder.persistent(CatalystFlingerStateComponent.CODEC).networkSynchronized(CatalystFlingerStateComponent.STREAM_CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SpellweavingToolStateComponent>> SPELLWEAVING_TOOL_STATE = register("spellweaving_tool_state", builder ->
+            builder.persistent(SpellweavingToolStateComponent.CODEC).networkSynchronized(SpellweavingToolStateComponent.STREAM_CODEC));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SpiritJarContentsComponent>> SPIRIT_JAR_CONTENTS = register("spirit_jar_contents", builder ->
             builder.persistent(SpiritJarContentsComponent.CODEC).networkSynchronized(SpiritJarContentsComponent.STREAM_CODEC));
 

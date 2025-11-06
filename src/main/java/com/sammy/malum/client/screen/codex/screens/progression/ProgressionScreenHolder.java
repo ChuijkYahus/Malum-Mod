@@ -42,6 +42,7 @@ public class ProgressionScreenHolder<T extends AbstractProgressionCodexScreen> e
             screen.playSweetenedSound(MalumSoundEvents.ARCANA_CODEX_OPEN, 1.25f);
         }
         mostRecentScreen = this;
+        screen.correctOOBB();
     }
 
     public void openCodexViaTransition() {

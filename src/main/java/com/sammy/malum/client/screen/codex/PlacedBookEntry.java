@@ -19,8 +19,8 @@ public class PlacedBookEntry extends BookEntry {
                            BookEntryWidgetPlacementData widgetData,
                            ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> entryReferences, BooleanSupplier condition,
                            @Nullable SpiritLike associatedSpirit, boolean isFragment,
-                           UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean tooltipDisabled) {
-        super(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, tooltipDisabled);
+                           UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean hasTooltip) {
+        super(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
         this.widgetData = widgetData;
     }
 
@@ -32,8 +32,6 @@ public class PlacedBookEntry extends BookEntry {
         ProgressionEntryObject getBookObject(BookEntry entry, int x, int y);
     }
 
-    public record BookEntryWidgetPlacementData(int xOffset, int yOffset,
-                                               WidgetSupplier widgetSupplier,
-                                               Consumer<ProgressionEntryObject> widgetConfig) {
+    public record BookEntryWidgetPlacementData(int xOffset, int yOffset, WidgetSupplier widgetSupplier, Consumer<ProgressionEntryObject> widgetConfig) {
     }
 }

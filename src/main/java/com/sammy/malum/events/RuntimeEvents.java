@@ -5,6 +5,7 @@ import com.sammy.malum.common.effect.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
+import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.aerial.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
@@ -19,6 +20,7 @@ import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
+import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.listeners.*;
@@ -39,7 +41,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber()
 public class RuntimeEvents {
 
     @SubscribeEvent
@@ -73,7 +75,6 @@ public class RuntimeEvents {
     public static void onEntityJoin(MobSpawnEvent.PositionCheck event) {
         SoulDataHandler.markAsSpawnerSpawned(event);
     }
-
 
 
     @SubscribeEvent
@@ -115,8 +116,19 @@ public class RuntimeEvents {
         ProspectorGeas.modifyBlockDrops(event);
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void modifyBlockDropsLate(BlockDropsEvent event) {
+        SpellweaverToolEffectActivatorEntity.redirectDrops(event);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void breakBlock(BlockEvent.BreakEvent event) {
+        SpellweavingPickaxeItem.triggerSpellweavingEffect(event);
+    }
+
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
+        SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);
         MalignantConversionReloadListener.register(event);
@@ -149,6 +161,7 @@ public class RuntimeEvents {
         SoulwovenPouchItem.trySwallowItem(event);
         RavenousPouchItem.trySwallowItem(event);
     }
+
     @SubscribeEvent
     public static void onPickupItem(ItemEntityPickupEvent.Post event) {
         ProspectorGeas.pickupItem(event);
@@ -157,6 +170,11 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onHurt(LivingDamageEvent.Post event) {
         SoulDataHandler.exposeSoul(event);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onHurtHighPriority(LivingDamageEvent.Pre event) {
+        MalignantConversionHandler.absorbDamage(event);
     }
 
     @SubscribeEvent

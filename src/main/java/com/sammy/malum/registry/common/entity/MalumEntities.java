@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common.entity;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.renderer.entity.*;
+import com.sammy.malum.client.renderer.entity.activator.*;
 import com.sammy.malum.client.renderer.entity.bolt.*;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
@@ -14,7 +15,6 @@ import com.sammy.malum.common.entity.nitrate.VividNitrateEntity;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import com.sammy.malum.common.entity.thrown.*;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -28,6 +28,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class MalumEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MalumMod.MALUM);
+
+
+    public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlockEntity>> ASCENDING_BLOCK = ENTITY_TYPES.register("ascending_block",
+            () -> EntityType.Builder.<AscendingBlockEntity>of((e, w) -> new AscendingBlockEntity(w), MobCategory.MISC).sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(20)
+                    .build(MalumMod.malumPath("ascending_block").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT = ENTITY_TYPES.register("natural_spirit",
             () -> EntityType.Builder.<SpiritItemEntity>of((e, w) -> new SpiritItemEntity(w), MobCategory.MISC).sized(0.5F, 0.75F).clientTrackingRange(10)
@@ -48,6 +53,10 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<LocalizedMaelstromEntity>> SCYTHE_MAELSTROM = ENTITY_TYPES.register("scythe_maelstrom",
             () -> EntityType.Builder.<LocalizedMaelstromEntity>of((e, w) -> new LocalizedMaelstromEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(20)
                     .build(MalumMod.malumPath("scythe_maelstrom").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<SpellweaverToolEffectActivatorEntity>> SPELLWEAVER_TOOL_EFFECT_ACTIVATOR = ENTITY_TYPES.register("spellweavers_locus",
+            () -> EntityType.Builder.<SpellweaverToolEffectActivatorEntity>of((e, w) -> new SpellweaverToolEffectActivatorEntity(w), MobCategory.MISC).sized(0.25f, 0.25f).clientTrackingRange(4).updateInterval(1)
+                    .build(MalumMod.malumPath("spellweavers_locus").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityRiteEffectActivatorEntity>> RITE_ENTITY_EFFECT_ACTIVATOR = ENTITY_TYPES.register("seeking_rite_locus",
             () -> EntityType.Builder.<EntityRiteEffectActivatorEntity>of((e, w) -> new EntityRiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(4).updateInterval(1)
@@ -89,6 +98,7 @@ public class MalumEntities {
     public static class ClientOnly {
         @SubscribeEvent
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
             EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemEntityRenderer::new);
 
             EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangEntityRenderer::new);
@@ -97,6 +107,7 @@ public class MalumEntities {
             EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateEntityRenderer::new);
             EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateEntityRenderer::new);
 
+            EntityRenderers.register(MalumEntities.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), SpellweaverToolEffectActivatorEntityRenderer::new);
             EntityRenderers.register(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorEntityRenderer::new);
             EntityRenderers.register(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorEntityRenderer::new);
 

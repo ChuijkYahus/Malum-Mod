@@ -1,12 +1,15 @@
 package com.sammy.malum.client.screen.codex.entries;
 
 import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.core.systems.registry.rite.*;
+import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
 import net.minecraft.core.*;
 import net.minecraft.world.item.Item;
@@ -14,7 +17,6 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
@@ -24,8 +26,8 @@ public class GeasEntries {
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
-        screen.addEntry("geas_magic", 0, 10, b -> b
-                .configureEntry(w -> w.setIcon(SOUL_BRAZIER).setDesign(GILDED, RUNEWOOD, PAPER))
+        screen.addEntry("geas_magic", 0, 9, b -> b
+                .configureWidget(w -> w.setIcon(SOUL_BRAZIER).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("geas_magic", "geas_magic.1"))
                 .addPage(new CraftingPage(SOUL_BRAZIER.get(),
                         HALLOWED_GOLD_INGOT.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INGOT.get(),
@@ -41,30 +43,33 @@ public class GeasEntries {
                         .addPage(SpiritInfusionPage.fromOutput(PARACAUSAL_FLAME.get()))
                 ))
         );
+        addBundledGeasEntry(screen, "pacts_of_an_uneven_conscience", 2, 10,
+                MalumGeasEffectTypes.PACT_OF_DEFIANCE,
+                MalumGeasEffectTypes.PACT_OF_THE_PARASITE,
+                MalumGeasEffectTypes.PACT_OF_THE_WARLOCK,
+                MalumGeasEffectTypes.PACT_OF_THE_REAPER
+        );
 
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_DEFIANCE, 2, 11);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_PARASITE, 3, 12);
+        addBundledGeasEntry(screen, "pacts_of_an_inward_soul", -2, 10,
+                MalumGeasEffectTypes.PACT_OF_THE_FORTRESS,
+                MalumGeasEffectTypes.PACT_OF_THE_SHIELD,
+                MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT,
+                MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE
+        );
 
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_WARLOCK, 1, 11);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_REAPER, 2, 12);
+        addBundledGeasEntry(screen, "pacts_of_an_unbound_wayfarer", 4, 11,
+                MalumGeasEffectTypes.PACT_OF_SELF_CARE,
+                MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST,
+                MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT,
+                MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT
+        );
 
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_FORTRESS, -1, 11);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_SHIELD, -2, 12);
-
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_SHATTERING_ADDICT, -2, 11);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE, -3, 12);
-
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_SELF_CARE, 4, 13);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST, 5, 14);
-
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT, 5, 13);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT, 6, 14);
-
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS, -5, 13);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID, -6, 14);
-
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_COMBUSTION, -4, 13);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, -5, 14);
+        addBundledGeasEntry(screen, "pacts_of_an_igneous_shaper", -4, 11,
+                MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS,
+                MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
+                MalumGeasEffectTypes.PACT_OF_COMBUSTION,
+                MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR
+        );
 
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_LIFEWEAVER, 15, 14);
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_BERSERKER, 14, 15);
@@ -83,21 +88,38 @@ public class GeasEntries {
 
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, -14, 18);
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, -16, 17);
-
-
     }
 
-    public static void addGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
-        screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureEntry(w -> w.setIcon(geas).setDesign(DEFAULT, RUNEWOOD, DARK))
+    @SafeVarargs
+    public static void addBundledGeasEntry(AbstractProgressionCodexScreen screen, String name, int x, int y,
+                                           Holder<GeasEffectType>... geasa) {
+        var definingSpirit = geasa[0].value().spiritTypes.getFirst();
+        var acceptor = new SubspaceEntryObject.SubspaceWidgetSupplier();
+
+        int horizontalOffset = x > 0 ? 1 : -1;
+        addGeasEntry(acceptor, geasa[0], x-horizontalOffset, y);
+        addGeasEntry(acceptor, geasa[1], x, y+1);
+        addGeasEntry(acceptor, geasa[2], x, y-1);
+        addGeasEntry(acceptor, geasa[3], x+horizontalOffset, y);
+
+        screen.addEntry(name, x, y, b -> b
+                .setWidgetSupplier(acceptor)
+                .configureWidget(w -> w.setDesign(SUBENTRY, RUNEWOOD, DARK))
+                .setAssociatedSpirit(definingSpirit));
+    }
+
+    public static void addGeasEntry(PlacedEntryAcceptor acceptor, Holder<GeasEffectType> geas, int x, int y) {
+        acceptor.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
+                .configureWidget(w -> w.setIcon(geas).setDesign(DEFAULT, RUNEWOOD, DARK))
+                .setAssociatedSpirit(geas.value().getIdentifyingSpirit())
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );
     }
 
-    public static void addSoulwoodGeasEntry(AbstractProgressionCodexScreen screen, Holder<GeasEffectType> geas, int x, int y) {
-        screen.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
-                .configureEntry(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
+    public static void addSoulwoodGeasEntry(PlacedEntryAcceptor acceptor, Holder<GeasEffectType> geas, int x, int y) {
+        acceptor.addEntry(geas.value().getRegistryName().getPath(), x, y, b -> b
+                .configureWidget(w -> w.setIcon(geas).setDesign(DEFAULT, SOULWOOD, DARK))
                 .addPage(SoulBindingPage.fromGeas(geas))
                 .addPage(new GeasInfoPage(geas))
         );

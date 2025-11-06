@@ -42,6 +42,7 @@ public class CodexLangDatagen {
         addEntryHeader(name, DataHelper.toTitleCase(name, "_"), entryDescription);
         addRiteDetails(holder, riteDescription, effect);
     }
+
     private static void addRiteDetails(RiteHolder<SpiritRiteType> holder, String description, String effect) {
         SpiritRiteType rite = holder.value();
         add(rite.getCodexEntryLangKey(), description);
@@ -83,9 +84,11 @@ public class CodexLangDatagen {
         add(BookPage.HEADLINE + "." + identifier, tooltip);
     }
 
-    private static void addRecipeDescriptor(String identifier, String tooltip) {
-        add("malum.gui.book.entry.page.info." + identifier, tooltip);
+    private static void addRecipeInfo(String identifier, String recipeName, String recipeDescriptor) {
+        add(BookPage.getRecipeInfoHeadlineKey(identifier), recipeName);
+        add(BookPage.getRecipeInfoKey(identifier), recipeDescriptor);
     }
+
 
     private static void add(String key, String value) {
         MalumLangDatagen.lang.add(key, value);
@@ -95,23 +98,25 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("chronicles_of_the_void", "Chronicles of the Void", "A magecraft of madness");
         addSimpleEntryHeader("chronicles_of_the_soul", "Chronicles of the Soul", "A magecraft of miracles");
 
-        addRecipeDescriptor("spirit_infusion", "Spirit Infusion. \nRequires a Prime Item and Spirit Arcana to be held within The Altar.");
-        addRecipeDescriptor("spirit_infusion.spirit", "Spirit Arcana is to be stored directly within the Spirit Altar.");
-        addRecipeDescriptor("spirit_infusion.item", "Additional Items must be held on nearby Item Pedestals or Stands.");
+        addRecipeInfo("spirit_infusion", "Spirit Infusion",
+                "Socket a prime item and spirit arcana into the spirit altar\nPlace additional items on nearby item holders");
 
-        addRecipeDescriptor("runeworking", "Runeworking. \nRequires a slate for the inscription process. Spirit Arcana must be inserted afterwards.");
+        addRecipeInfo("runeworking", "Runeworking",
+                "Socket a slate into the runic workbench\nUtilize spirit arcana to inscribe runes onto the slate");
 
-        addRecipeDescriptor("soulbinding", "Soul Binding. \nPhysical and Arcane ingredients are to be inserted into the Brazier. \nAn Etheric Blood Offering initiates the process");
+        addRecipeInfo("soul_binding", "Soul Binding",
+                "Socket the prime item, spirit arcana and other items into the soulbinding brazier\nAn etheric offering initiates the process");
 
-        addRecipeDescriptor("unchained_transmutation", "Unchained Transmutation. \nTransforms blocks into other blocks via Unchained Rite. Requires Blight as a conduit.");
-        addRecipeDescriptor("unchained_transmutation_tree", "Unchained Transmutation. \nA series of block transformations via Unchained Rite. Requires Blight as a conduit.");
+        addRecipeInfo("unchained_transmutation", "Unchained Transmutation",
+                "Utilizing a rite locus, transform blocks into other blocks via unchained rite\nThe rite locus requires blight as a conduit");
+        addRecipeInfo("unchained_transmutation_tree", "Unchained Transmutation",
+                "Utilizing a rite locus, transform blocks into other blocks via unchained rite\nThe rite locus requires blight as a conduit\nTransmutation follows the shown transmutation tree\nAny entry in the tree can be used as a starting point");
 
-        addRecipeDescriptor("spirit_focusing", "Spirit Focusing. \nRequires a Catalyst and Spirit Arcana to be held within The Crucible. The Catalyst is not consumed, but does get damaged.");
-        addRecipeDescriptor("spirit_focusing.spirit", "Spirit Arcana is to be stored directly within the Spirit Crucible.");
+        addRecipeInfo("spirit_focusing", "Spirit Focusing",
+                "Socket a catalyst and spirit arcana into the crucible\nThe catalyst is partially used up with each focusing cycle");
 
-        addRecipeDescriptor("spirit_repair", "Spirit Repair. \nRequires a Repair Material and Spirit Arcana to be held within The Repair Pylon.");
-        addRecipeDescriptor("spirit_repair.spirit", "Spirit Arcana is to be stored directly within the Repair Pylon.");
-        addRecipeDescriptor("spirit_repair.damaged", "The Damaged Item is to be provided within a nearby Item Pedestal, Stand, or a Spirit Crucible.");
+        addRecipeInfo("spirit_repair", "Spirit Repair",
+                "Socket a repair material and spirit arcana into the repair pylon\nThe damaged item must be placed within a nearby item holder");
 
         addSimpleEntryHeader("void.the_weeping_well", "The Weeping Well", "Gate to the unknown");
         addPages("void.the_weeping_well",
@@ -900,6 +905,12 @@ public class CodexLangDatagen {
                 "Ah, a pact that binds forever is a heavy thing. Geasa are potent, yes, and can achieve powerful effects, but their downsides are constant companions. These pacts can be forsworn on the Brazier, allowing you to decide what price you are willing to pay.",
                 "To forswear a geas, assemble it on the Brazier as you did initially, but use the Paracausal Flame to kindle the Brazier instead. This will burn the contract " + italic("away") + " instead of inscribe it. The rest of the process works the same, including Weakness.");
 
+
+        addSimpleEntryHeader("pacts_of_an_uneven_conscience", "Pact of an Uneven Conscience", "To demand clarity in a chaotic world");
+        addSimpleEntryHeader("pacts_of_an_inward_soul", "Pacts of an Inward Soul", "To reshape the fundamental aspects");
+        addSimpleEntryHeader("pacts_of_an_unbound_wayfarer", "Pact of an Unbound Wayfarer", "To soar through storms and tides");
+        addSimpleEntryHeader("pacts_of_an_igneous_shaper", "Pacts of an Igneous Shaper", "To bind the primordial mantle");
+
         addSimpleEntryHeader("pact_of_defiance", "Pact of Defiance", "To accept no limit");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_DEFIANCE,
                 scaled(0.8f) +"""
@@ -1312,9 +1323,9 @@ public class CodexLangDatagen {
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "To Cull The Herd",
                 "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
                 "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_RAISING, "To Raise The Dead",
-                "An advanced rite, while active it will strike vulnerable monsters, dealing a fatal blow to their soul and body.\nThe affected target is then reanimated as a soulless husk, a mindless being that lacks a soul.",
-                "Affected Monsters Are Struck a Fatal Blow\nUpon Death, They Are Then Reanimated As A Soulless Husk\nSoulless Husks, Lacking A Soul, Do Not Drop Spirits");
+        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_RAISING, "To Seal One's Fate",
+                "An advanced rite, while active it will strike vulnerable monsters, dealing a fatal blow to their soul and body.", //\nThe affected target is then reanimated as a soulless husk, a mindless being that lacks a soul.",
+                "Affected Monsters Are Struck a Fatal Blow");//\nUpon Death, They Are Then Reanimated As A Soulless Husk\nSoulless Husks, Lacking A Soul, Do Not Drop Spirits");
 
 
         addSimpleEntryHeader("aerial_rites", "Aerial Rites", "Totemic Arts of Soaring");
@@ -1487,7 +1498,7 @@ public class CodexLangDatagen {
         addHeadline("locus_management.arcane", "Redirecting the Locus");
         addPages("locus_management.arcane", "By imbuing the bound rite locus with Raw Arcana, it will simply alter it's travel vector with no other effect or cost. Raw Arcana is pure energy without any direction leading to a rather mundane, yet appropriate effect here.");
         addHeadline("locus_management.eldritch", "Dissociating with the Locus");
-        addPages("locus_management.eldritch", "By imbuing the bound rite locus with Eldritch Arcana, it will dissociate and split into two separate loci. All elemental boons present on the sourced locus carry over. This effect can be triggered up to four times per locus. Copies cannot be copied.");
+        addPages("locus_management.eldritch", "By imbuing the bound rite locus with Eldritch Arcana, it will dissociate and split into two separate, functionally identical loci. This effect can be triggered up to four times per locus. Copies are monochrome and cannot cannot be copied.");
         addHeadline("locus_management.aerial", "Speed of the Locus");
         addPages("locus_management.aerial", "By imbuing the bound rite locus with Aerial Arcana, it will gain the benefit of increased speed, causing it to move through the world faster. This effect can be applied twice per locus, doubling speed each time.");
         addHeadline("locus_management.aqueous", "Potency of the Locus");
@@ -1497,12 +1508,27 @@ public class CodexLangDatagen {
         addHeadline("locus_management.infernal", "Distance of the Locus");
         addPages("locus_management.infernal", "By imbuing the bound rite locus with Infernal Arcana, it will gain the benefit of increased distance, causing it to cover more ground before expiring. This effect can be applied twice per locus, doubling distance each time.");
 
-        addHeadline("locus_management.elemental_boons", "Rite Anchor Study: Elemental Boons");
-        addPages("locus_management.elemental_boons", "",
-                "");
-        addHeadline("locus_management.wicked_order", "Rite Anchor Study: Locus Resurrection");
+        addHeadline("locus_management.elemental_boons", "Rite Study: Elemental Boons");
+        addPages("locus_management.elemental_boons", "The locus makes for a rather primitive arcane construct, it does not excel at anything in particular and thus can be rather limiting in what it can accomplish. Through elemental arcana - transmitted through the rite anchor - I've already solved this problem, however it does demand further documentation.",
+                "When a rite locus travels over a rite anchor bearing either an Aerial, Aqueous, Earthen or Infernal etching, it will receive an elemental boon. Within each group, only the first two applications of the boon bear any effect. Furthermore, due to it's simple design, the rite locus can only accept four total boons.");
+        addHeadline("locus_management.wicked_order", "Rite Study: Locus Resurrection");
         addPages("locus_management.wicked_order", "The locus is a primitive arcane construct, my first design of it was nothing more than an effect etched onto a form capable of movement. Self-Preservation ended up being a necessary factor in it's design, nothing like how a living creature would exhibit such a trait- but self-preservation nonetheless.",
                 "When met with the command of Wicked Arcana, the locus is forced into self-sacrifice. It will forgo any elemental boons it has already been imbued with. Being the least significant, Speed is expunged first. Potency falls next, with Impact being culled afterwards. Distance, being the most significant trait of the locus is only sacrificed if no other boon is available.");
+
+
+        addSimpleEntryHeader("spellweaving_pickaxe", "Spellweaving Pickaxe", "To harvest from stone");
+        addPages("spellweaving_pickaxe",
+                "A tool, a brother, the Spellweaving Pickaxe is a complex design forged using cthonic gold and imbued with earthen arcana. When the tool is primed - a simple adjustment of resonance - any block broken will sprout several primitive loci tasked with seeking out and breaking nearby blocks matching the original. Up to four loci are sprouted each time.");
+        addSimpleEntryHeader("spellweaving_axe", "Spellweaving Axe", "To harvest from nature");
+        addPages("spellweaving_axe",
+                "A tool, a sister, the Spellweaving Axe is a complex design forged using cthonic gold and imbued with aqueous arcana. When the tool is primed - a simple adjustment of resonance - any block broken will sprout several primitive loci tasked with seeking out and breaking far-out blocks matching the original. Up to four loci are sprouted each time.");
+        addSimpleEntryHeader("spellweaving_tools.enchanting", "Enchanting the Spellwoven", "Augmenting the loci");
+        addHeadline("spellweaving_tools.enchanting.weavers_propagation", "Weaver's Propagation");
+        addPages("spellweaving_tools.enchanting.weavers_propagation",
+                "By imbuing the woven loci with eldritch arcana, they fester and multiply. By harnessing this property through an enchantment, each activation of the tool's effect will spawn an additional loci per enchantment level. Incompatible with Weaver's Haste");
+        addHeadline("spellweaving_tools.enchanting.weavers_haste", "Weaver's Haste");
+        addPages("spellweaving_tools.enchanting.weavers_haste",
+                "By imbuing the woven loci with aerial arcana, they hasten and accelerate. By harnessing this property through an enchantment, each locus sprouted through the tool's effect will move at a significantly increased rate. Incompatible with Weaver's Propagation");
 
 
         addSimpleEntryHeader("tyrving", "Tyrving", "Ancient relic");

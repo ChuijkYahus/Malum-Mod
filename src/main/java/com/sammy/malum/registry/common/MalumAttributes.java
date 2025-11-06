@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -13,12 +14,16 @@ import team.lodestar.lodestone.systems.attribute.*;
 import static com.sammy.malum.MalumMod.MALUM;
 import static team.lodestar.lodestone.registry.common.LodestoneAttributes.registerAttribute;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber()
 public class MalumAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(BuiltInRegistries.ATTRIBUTE, MALUM);
 
+    public static final ResourceLocation BASE_CHARGE_DURATION = MalumMod.malumPath("base_charge_duration");
+    public static final ResourceLocation BASE_CHARGE_CAPACITY = MalumMod.malumPath("base_charge_capacity");
+
+
     public static final DeferredHolder<Attribute, Attribute> SCYTHE_PROFICIENCY = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).setAsBaseAttribute().forcePercentageDisplay().setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("scythe_proficiency"), 1.0D, 0.0D, 2048.0D).forcePercentageDisplay().setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> SPIRIT_SPOILS = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("spirit_spoils"), 0.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> ARCANE_RESONANCE = registerAttribute(ATTRIBUTES,
@@ -37,9 +42,9 @@ public class MalumAttributes {
             LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_capacity"), 0D, 0.0D, 2048.0D).setSyncable(true));
 
     public static final DeferredHolder<Attribute, Attribute> CHARGE_DURATION = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_duration"), 0D, 0.0D, 2048.0D).setAsBaseAttribute().setSentiment(Attribute.Sentiment.NEGATIVE).setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_duration"), 0D, 0.0D, 2048.0D).setAsBaseAttribute(BASE_CHARGE_DURATION).setSentiment(Attribute.Sentiment.NEGATIVE).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> CHARGE_CAPACITY = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_capacity"), 0D, 0.0D, 2048.0D).setAsBaseAttribute().setSyncable(true));
+            LodestoneRangedAttribute.create(MalumMod.malumPath("charge_capacity"), 0D, 0.0D, 2048.0D).setAsBaseAttribute(BASE_CHARGE_CAPACITY).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> CHARGE_RECOVERY_RATE = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("charge_recovery_rate"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
 
@@ -48,7 +53,6 @@ public class MalumAttributes {
 
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_CONVERSION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_conversion"), 0D, 0.0D, 1.0D).forcePercentageDisplay().setSyncable(true));
-
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_REINFORCEMENT = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_reinforcement"), 0D, 0.0D, 2048.0D).setSyncable(true));
 

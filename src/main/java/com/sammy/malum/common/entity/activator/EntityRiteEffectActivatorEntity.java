@@ -97,8 +97,13 @@ public class EntityRiteEffectActivatorEntity extends FloatingEntity {
     }
 
     @Override
-    public float getMovementInterpolation(float windUp, float distance) {
+    public float getMovementEasing(float windUp, float distance) {
         return 0.02f + Easing.EXPO_IN.ease(windUp, 0, 0.4f);
+    }
+
+    @Override
+    public boolean isPickable() {
+        return false;
     }
 
     public SpiritArcanaType getSpiritType() {

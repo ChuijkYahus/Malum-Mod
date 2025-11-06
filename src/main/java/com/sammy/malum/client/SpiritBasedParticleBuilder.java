@@ -224,8 +224,8 @@ public class SpiritBasedParticleBuilder extends WorldParticleBuilder {
     }
 
     @Override
-    public SpiritBasedParticleBuilder clearTickActor() {
-        return (SpiritBasedParticleBuilder) super.clearTickActor();
+    public SpiritBasedParticleBuilder clearTickActors() {
+        return (SpiritBasedParticleBuilder) super.clearTickActors();
     }
 
     @Override

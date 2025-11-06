@@ -505,6 +505,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addEnchantmentNameAndDescription(EnchantmentKeys.REBOUND, "Allows the Scythe to be thrown when used.");
         addEnchantmentNameAndDescription(EnchantmentKeys.ASCENSION, "Enables the Scythe to propel the player upwards, damaging nearby enemies when used.");
 
+        addEnchantmentNameAndDescription(EnchantmentKeys.WEAVERS_PROPAGATION, "Weaver's Propagation", "Summons additional spell loci when breaking a block with the tool.");
+        addEnchantmentNameAndDescription(EnchantmentKeys.WEAVERS_HASTE, "Weaver's Haste", "Accelerates any spawned spell loci by the tool.");
+
         addEnchantmentNameAndDescription(EnchantmentKeys.REPLENISHING, "Restores Spell Charges when dealing melee damage with the staff.");
         addEnchantmentNameAndDescription(EnchantmentKeys.CAPACITOR, "Adds additional Spell Charges for use with the staff");
 
@@ -595,9 +598,13 @@ public class MalumLangDatagen extends LanguageProvider {
     }
 
     public void addEnchantmentNameAndDescription(ResourceKey<Enchantment> enchantment, String desc) {
-        var name = enchantment.location().getPath();
-        var key = "enchantment.malum." + name;
-        add(key, DataHelper.toTitleCase(name, "_"));
+        var id = enchantment.location().getPath();
+        addEnchantmentNameAndDescription(enchantment, DataHelper.toTitleCase(id, "_"), desc);
+    }
+    public void addEnchantmentNameAndDescription(ResourceKey<Enchantment> enchantment, String name, String desc) {
+        var id = enchantment.location().getPath();
+        var key = "enchantment.malum." + id;
+        add(key, name);
         add(key + ".desc", desc);
     }
 
