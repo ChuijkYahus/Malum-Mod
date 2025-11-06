@@ -51,7 +51,9 @@ public abstract class SpiritRitePotionEffect<T extends LivingEntity> extends Spi
 
     public final void applyEffect(ServerLevel level, T target, int duration, int amplifier) {
         var instance = new MobEffectInstance(effectType, duration, amplifier, true, true);
-        createEffect(level, target, spirits);
+        if (canApplyEffect(level, target)) {
+            createEffect(level, target, spirits);
+        }
         target.addEffect(instance);
     }
 

@@ -25,9 +25,18 @@ KubeJS
 Spirit Rites
 - A lot of spirit rites have been completely redone
 - Most notably, rites which affect the world now utilize a Rite Locus system
-- The Rite Locus can be 
+- The Rite Locus can be modified via Rite Anchors
 
-Added the Ravenous Pouch
+Rite Anchors
+- Imbue with a spirit to define a travel vector
+- Any Rite Locus that wanders onto the Rite Anchor follows suite
+- Different spirits empower the Rite Locus in different ways
+
+Rite Unwaver
+- Kills the rite locus if any is found!
+
+Ravenous Pouch
+- Added the Ravenous Pouch
 - The Ravnous Pouch will snatch up any item that it already stores
 - Offers 8 stacks worth of space, but does not store magical items more efficiently
 

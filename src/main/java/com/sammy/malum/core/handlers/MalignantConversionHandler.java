@@ -14,6 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 
@@ -24,19 +25,24 @@ public class MalignantConversionHandler {
     public static final ResourceLocation NEGATIVE_MODIFIER_ID = MalumMod.malumPath("malignant_conversion_tally");
     public static final Function<Holder<Attribute>, ResourceLocation> POSITIVE_MODIFIER_IDS = Util.memoize(MalignantConversionHandler::createPositiveModifierId);
 
-    public static void absorbDamage(LivingDamageEvent.Pre event) {
+    public static void absorbDamage(LivingIncomingDamageEvent event) {
         var entity = event.getEntity();
         if (entity.level() instanceof ServerLevel level) {
             var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
             int debt = data.getReinforcementDebt();
             double reinforcement = entity.getAttributeValue(MalumAttributes.MALIGNANT_REINFORCEMENT);
-            int limit = 5 + Mth.floor(reinforcement * 2);
-            if (debt < limit) {
-                float delta = (limit - debt) / (float) limit;
-                float chance = 0.5f * delta;
-                if (level.getRandom().nextFloat() < chance) {
-                    data.incrementReinforcementDebt();
-                    event.setNewDamage(0);
+            if (reinforcement > 0) {
+                int limit = 5 + Mth.floor(reinforcement * 2);
+                if (debt < limit) {
+                    float delta = (limit - debt) / (float) limit;
+                    float chance = 0.5f * delta;
+                    if (level.getRandom().nextFloat() < chance) {
+                        data.incrementReinforcementDebt();
+                        var container = event.getContainer();
+                        container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks()*2);
+
+                        event.setCanceled(true);
+                    }
                 }
             }
         }

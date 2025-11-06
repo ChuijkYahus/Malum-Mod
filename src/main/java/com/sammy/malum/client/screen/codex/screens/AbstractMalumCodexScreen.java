@@ -13,7 +13,10 @@ import java.util.function.*;
 public abstract class AbstractMalumCodexScreen extends Screen {
 
     protected final Holder<SoundEvent> sweetenerSound;
+
     protected List<Runnable> lateRendering = new ArrayList<>();
+    protected List<Runnable> lateRenderingCapture = new ArrayList<>();
+    protected boolean isCapturingLateRendering = false;
 
     protected boolean isVoidTouched;
 
@@ -56,14 +59,30 @@ public abstract class AbstractMalumCodexScreen extends Screen {
         minecraft.player.playNotifySound(soundEvent.value(), SoundSource.PLAYERS, volume, pitch);
     }
 
+    public boolean captureLateRendering() {
+        lateRenderingCapture = new ArrayList<>();
+        isCapturingLateRendering = true;
+        return false;
+    }
+
     public void renderLater(Runnable runnable) {
+        if (isCapturingLateRendering) {
+            lateRenderingCapture.add(runnable);
+            return;
+        }
         lateRendering.add(runnable);
     }
 
-    protected void doLateRendering() {
+    public void doLateRendering() {
+        if (isCapturingLateRendering) {
+            lateRendering.addAll(lateRenderingCapture);
+            lateRenderingCapture.clear();
+            isCapturingLateRendering = false;
+        }
         lateRendering.forEach(Runnable::run);
         lateRendering.clear();
     }
+
     public void setVoidTouched(boolean isVoidTouched) {
         this.isVoidTouched = isVoidTouched;
     }

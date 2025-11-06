@@ -22,6 +22,10 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         this.objects.addAll(objects);
     }
 
+    public ArrayList<BookObject<T>> getObjects() {
+        return objects;
+    }
+
     public BookObject<T> get(int index) {
         return objects.get(index);
     }

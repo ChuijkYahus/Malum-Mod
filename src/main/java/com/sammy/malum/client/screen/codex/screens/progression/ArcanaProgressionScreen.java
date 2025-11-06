@@ -9,6 +9,8 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.resources.*;
 
+import java.awt.*;
+
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
@@ -21,10 +23,16 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
     public static final ResourceLocation BACKGROUND_TEXTURE = malumPath("textures/gui/book/background.png");
 
+    public static final Color OUTLINE_COLOR = new Color(25, 235, 255);
     public static final ProgressionScreenHolder<ArcanaProgressionScreen> SCREEN = new ProgressionScreenHolder<>(ArcanaProgressionScreen::new, MalumSoundEvents.ARCANA_TRANSITION_NORMAL);
 
     protected ArcanaProgressionScreen() {
         super(MalumSoundEvents.ARCANA_SWEETENER_NORMAL, 1024, 2560);
+    }
+
+    @Override
+    public Color getOutlineColor() {
+        return OUTLINE_COLOR;
     }
 
     @Override
