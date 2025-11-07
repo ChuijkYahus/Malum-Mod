@@ -1,19 +1,30 @@
 package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import io.netty.buffer.*;
 import net.minecraft.core.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.world.entity.ai.attributes.*;
 
 import java.util.*;
 
-public class MalignantInfluenceCacheData {
+public class MalignantInfluenceData {
 
-    public static Codec<MalignantInfluenceCacheData> CODEC = Codec.unit(MalignantInfluenceCacheData::new);
+    public static Codec<MalignantInfluenceData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
+            Codec.INT.fieldOf("debt").forGetter(MalignantInfluenceData::getReinforcementDebt)
+    ).apply(obj, MalignantInfluenceData::new));
+
+    public static StreamCodec<ByteBuf, MalignantInfluenceData> STREAM_CODEC = ByteBufCodecs.fromCodec(MalignantInfluenceData.CODEC);
 
     protected final HashMap<Holder<Attribute>, Double> cachedAttributeValues = new HashMap<>();
     protected int reinforcementDebt;
 
-    public MalignantInfluenceCacheData() {
+    public MalignantInfluenceData() {
+    }
+
+    public MalignantInfluenceData(int reinforcementDebt) {
+        this.reinforcementDebt = reinforcementDebt;
     }
 
     public void cacheValue(AttributeInstance attribute) {

@@ -312,13 +312,13 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
     public static void renderSubspace(GuiGraphics graphics, int x, int y, int size, float delta) {
-        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.MANUAL_NINE_SLICE.getShaderInstance();
         shaderInstance.safeGetUniform("YFrequency").set(10f);
         shaderInstance.safeGetUniform("XFrequency").set(10f);
         shaderInstance.safeGetUniform("Speed").set(400f);
         shaderInstance.safeGetUniform("Intensity").set(100f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(-1f, 2f, -1f, 2f));
-//        shaderInstance.safeGetUniform("Size").set(64f);
+        shaderInstance.safeGetUniform("Size").set(3f,3f);
 
         VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)

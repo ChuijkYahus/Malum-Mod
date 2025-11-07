@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import team.lodestar.lodestone.registry.common.*;
 
 import java.util.List;
 
@@ -22,9 +23,8 @@ public class MalignantStrongholdArmorItem extends MalumArmorItem {
         var group = EquipmentSlotGroup.bySlot(getEquipmentSlot());
         var resourcelocation = MalumMod.malumPath("malignant_stronghold_armor." + type.getName());
         ItemAttributeModifiers.Builder attributes = ItemAttributeModifiers.builder();
-        attributes.add(MalumAttributes.MALIGNANT_CONVERSION,
-                new AttributeModifier(resourcelocation, 0.25f, AttributeModifier.Operation.ADD_VALUE),
-                group);
+        attributes.add(LodestoneAttributes.MAGIC_RESISTANCE, new AttributeModifier(resourcelocation, 0.25f, AttributeModifier.Operation.ADD_VALUE), group);
+        attributes.add(MalumAttributes.MALIGNANT_CONVERSION, new AttributeModifier(resourcelocation, 0.25f, AttributeModifier.Operation.ADD_VALUE), group);
         return attributes.build().modifiers();
     }
 

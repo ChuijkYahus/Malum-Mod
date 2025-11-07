@@ -22,6 +22,14 @@ KubeJS
 
 # New Stuff & Tweaks
 
+The Book
+- Added tweening to the motion of the background and book objects
+- Added a neat hover effect for when you place your mouse atop an entry
+- Updated the fade that appears around the outline of the frame
+- The outline now properly renders atop item models
+- The background is now slightly darker, creating better contrast
+- Lots of smaller improvements that would take a while to note in preparation for a much more significant batch of improvements
+
 Spirit Rites
 - A lot of spirit rites have been completely redone
 - Most notably, rites which affect the world now utilize a Rite Locus system
@@ -71,12 +79,15 @@ Malignant Stronghold Armor
 - The Malignant Stronghold Chestplate now comes with two scarves instead of one
 - Pride Scarves retain old functionality
 - No Longer Eats Iron's Spellbooks Magic Resistances
+- Each piece now grants 25% Magic Resistance
 
 Malignant Conversion
 - No longer grants Armor Toughness
 - No longer grants Magic Resistance
 - Now grants a new attribute called Malignant Reinforcement
-- Malignant Reinforcement grants a chance to completely resist any incoming damage
+- Malignant Reinforcement now functions similarly to Soul Ward
+- Instead of absorbing a portion of damage, Malignant Reinforcement will completely nullify it
+- Chance and Limit increases as the armor absorbs more and more magic
 
 Necklace of the Hidden Blade
 - Now always deals a minimum of 10 damage

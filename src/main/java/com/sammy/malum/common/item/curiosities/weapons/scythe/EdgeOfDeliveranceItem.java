@@ -50,7 +50,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
                 if (target.hasEffect(effect)) {
                     if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
                         var particle = MalumParticleEffectTypes.EDGE_OF_DELIVERANCE_CRIT.createEffect()
-                                .originatesFrom(attacker).targets(target).tiedToTarget().forwardOffset(-0.8f).upwardOffset(-0.4f);
+                                .originatesFrom(attacker).targets(target).tiedToTarget().forwardOffset(-1.8f).upwardOffset(-0.4f);
                         if (!canSweep(attacker)) {
                             particle.verticalSlashRotation();
                         }

@@ -56,8 +56,8 @@ public class MalumAttachmentTypes {
             "touch_of_darkness", () -> AttachmentType.builder(TouchOfDarknessData::new)
                     .serialize(TouchOfDarknessData.CODEC).build());
 
-    public static final Supplier<AttachmentType<MalignantInfluenceCacheData>> MALIGNANT_INFLUENCE = ATTACHMENT_TYPES.register(
-            "malignant_influence", () -> AttachmentType.builder(MalignantInfluenceCacheData::new)
-                    .serialize(MalignantInfluenceCacheData.CODEC).build());
+    public static final Supplier<AttachmentType<MalignantInfluenceData>> MALIGNANT_INFLUENCE = ATTACHMENT_TYPES.register(
+            "malignant_influence", () -> AttachmentType.builder(() -> new MalignantInfluenceData())
+                    .serialize(MalignantInfluenceData.CODEC).sync(MalignantInfluenceData.STREAM_CODEC).build());
 
 }
