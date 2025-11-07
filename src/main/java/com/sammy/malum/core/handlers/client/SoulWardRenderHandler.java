@@ -29,6 +29,7 @@ public class SoulWardRenderHandler {
     public static ResourceLocation DISSOLVEMENT = MalumMod.malumPath("textures/gui/hud/soul_ward_dissolvement.png");
 
     public static int glow;
+    public static int fadeout;
 
     public static float soulWard;
 
@@ -40,9 +41,16 @@ public class SoulWardRenderHandler {
                 if (glow < 40) {
                     glow++;
                 }
+                else if (fadeout < 80) {
+                    fadeout++;
+                }
             } else {
+                if (fadeout > 0) {
+                    fadeout = 0;
+                    glow = 20;
+                }
                 if (glow > 0) {
-                    glow = 0;
+                    glow--;
                 }
             }
             soulWard = Mth.lerp(0.2f, soulWard, (float) data.getSoulWard());
@@ -59,6 +67,7 @@ public class SoulWardRenderHandler {
                 if (soulWard > 0 && capacity > 0) {
                     float delta = (float) (soulWard / capacity);
                     float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
+                    float alpha = fadeout / 80f;
                     int left = guiGraphics.guiWidth() / 2;
                     int top = guiGraphics.guiHeight() - 47;
 
@@ -67,17 +76,16 @@ public class SoulWardRenderHandler {
                     RenderSystem.enableBlend();
                     RenderSystem.defaultBlendFunc();
                     var distorted = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-                    distorted.safeGetUniform("YFrequency").set(16f);
+                    distorted.safeGetUniform("YFrequency").set(24f);
                     distorted.safeGetUniform("XFrequency").set(16f);
-                    distorted.safeGetUniform("Speed").set(500f);
-                    distorted.safeGetUniform("Intensity").set(60f);
-                    distorted.safeGetUniform("LumiTransparency").set(0f);
+                    distorted.safeGetUniform("Speed").set(1000f);
+                    distorted.safeGetUniform("Intensity").set(80f);
                     distorted.safeGetUniform("Width").set(64f);
                     distorted.safeGetUniform("Height").set(64f);
 
                     var builder = VFXBuilders.createScreen().setShader(distorted);
                     builder.setPositionWithWidth(left - 16, top - 16, 32, 32);
-                    builder.setAlpha(1.0f).setTexture(EMPTY).blit(poseStack);
+                    builder.setAlpha(alpha).setTexture(EMPTY).blit(poseStack);
 
                     var hud = MalumShaders.SOUL_WARD_HUD.getShaderInstance();
                     RenderSystem.setShaderTexture(1, DISSOLVEMENT);
@@ -91,12 +99,12 @@ public class SoulWardRenderHandler {
 
                     builder.setShader(hud).setTexture(SOUL_WARD).blit(poseStack);
                     RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-                    builder.setAlpha(0.15f).blit(poseStack);
+                    builder.setAlpha(0.2f * alpha).blit(poseStack);
                     if (glow > 0 && glow < 40) {
                         float time = minecraft.level.getGameTime() + deltaTracker.getGameTimeDeltaPartialTick(true);
-                        float alpha = (20 - Math.abs(20 - glow)) / 20f;
+                        float glowAlpha = (20 - Math.abs(20 - glow)) / 20f;
                         int angle = Mth.floor((time * 20) % 360);
-                        float range = Easing.SINE_IN_OUT.ease(alpha, 0, 320f);
+                        float range = Easing.SINE_IN_OUT.ease(glowAlpha, 0, 320f);
                         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
                         light.safeGetUniform("YFrequency").set(24f);
                         light.safeGetUniform("XFrequency").set(16f);
