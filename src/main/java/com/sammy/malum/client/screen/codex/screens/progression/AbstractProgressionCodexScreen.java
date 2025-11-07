@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.screens.progression;
 
+import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
@@ -10,8 +11,10 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -19,8 +22,13 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.opengl.*;
+import team.lodestar.lodestone.registry.client.*;
+import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.shader.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
@@ -35,6 +43,16 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     public static final int BOOK_HEIGHT = 250;
     public static final int BOOK_INSIDE_WIDTH = 344;
     public static final int BOOK_INSIDE_HEIGHT = 218;
+
+    protected float oldBackgroundXOffset;
+    protected float oldBackgroundYOffset;
+    protected float backgroundXOffset;
+    protected float backgroundYOffset;
+
+    protected float oldObjectXOffset;
+    protected float oldObjectYOffset;
+    protected float objectXOffset;
+    protected float objectYOffset;
 
     protected float xOffset;
     protected float yOffset;
@@ -75,7 +93,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     public abstract void setupEntries();
 
-
+    public abstract Color getOutlineColor();
     @Override
     public List<PlacedBookEntry> getEntries() {
         return entries;
@@ -92,17 +110,21 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         GL11.glEnable(GL_SCISSOR_TEST);
         constrictEntryRendering();
 
-        float objectX = guiLeft + BOOK_INSIDE_WIDTH / 2f + xOffset;
-        float objectY = guiTop + BOOK_INSIDE_HEIGHT / 2f + yOffset;
+        float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
+        var x = Mth.lerp(delta, oldObjectXOffset, objectXOffset);
+        var y = Mth.lerp(delta, oldObjectYOffset, objectYOffset);
+        float objectX = guiLeft + BOOK_INSIDE_WIDTH / 2f + x;
+        float objectY = guiTop + BOOK_INSIDE_HEIGHT / 2f + y;
         progressionObjects.renderObjects(this, guiGraphics, objectX, objectY, mouseX, mouseY, partialTicks);
         GL11.glDisable(GL_SCISSOR_TEST);
 
-        renderTexture(FRAME_FADE_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
         if (voidFadeoutTimer > 0) {
             CodexRenderHelper.renderTransitionFade(this, poseStack);
         }
+        renderFade(poseStack);
         renderTexture(FRAME_TEXTURE, poseStack, guiLeft, guiTop, 400, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
         progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+        doLateRendering();
     }
 
     @Override
@@ -144,6 +166,15 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         if (voidFadeoutTimer > 0) {
             voidFadeoutTimer--;
         }
+        oldBackgroundXOffset = backgroundXOffset;
+        oldBackgroundYOffset = backgroundYOffset;
+        backgroundXOffset += (xOffset - backgroundXOffset) * 0.6f;
+        backgroundYOffset += (yOffset - backgroundYOffset) * 0.6f;
+
+        oldObjectXOffset = objectXOffset;
+        oldObjectYOffset = objectYOffset;
+        objectXOffset += (xOffset - objectXOffset) * 0.75f;
+        objectYOffset += (yOffset - objectYOffset) * 0.75f;
         super.tick();
     }
 
@@ -159,7 +190,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         if (progressionObjects.hasVisibleObject(this)) {
             return;
         }
-        var offsets = clampOffsets(1f, 0.1f, 0.8f);
+        var offsets = clampOffsets(xOffset, yOffset, 1f, 0.1f, 0.8f);
         if (offsets.x != xOffset || offsets.y != yOffset) {
             faceOrigin();
         }
@@ -182,27 +213,59 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         this.height = window.getGuiScaledHeight();
         xOffset = -object.posX;
         yOffset = -object.posY;
+        backgroundXOffset = xOffset;
+        backgroundYOffset = yOffset;
     }
 
     public void renderBackground(PoseStack poseStack, ResourceLocation texture, float xModifier, float yModifier) {
-        var offsets = clampOffsets(0.8f, 0f, 1f);
+        float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
+        var x = Mth.lerp(delta, oldBackgroundXOffset, backgroundXOffset);
+        var y = Mth.lerp(delta, oldBackgroundYOffset, backgroundYOffset);
+        var offsets = clampOffsets(x, y, 0.8f, 0f, 1f);
         float xOffset = offsets.x;
         float yOffset = offsets.y;
         int insideLeft = getInsideLeft();
         int insideTop = getInsideTop();
-        float uOffset = (backgroundImageWidth/12f) - xOffset * xModifier;
+        float uOffset = (backgroundImageWidth / 12f) - xOffset * xModifier;
         float vOffset = (backgroundImageHeight - BOOK_INSIDE_HEIGHT) - yOffset * yModifier;
-        renderTexture(texture, poseStack, insideLeft, insideTop, uOffset, vOffset, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT, backgroundImageWidth / 2, backgroundImageHeight / 2);
+        VFXBuilders.createScreen().setTexture(texture)
+                .setShader(GameRenderer::getPositionTexColorShader)
+                .setPositionWithWidth(insideLeft, insideTop, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT)
+                .setUVWithWidth(uOffset, vOffset, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT, backgroundImageWidth / 2f, backgroundImageHeight / 2f)
+                .setZLevel(-100)
+                .multiplyColor(0.75f)
+                .blit(poseStack);
     }
 
-    public Vec2 clampOffsets(float horizontalClamp, float bottomClamp, float topClamp) {
-        float xOffset = this.xOffset;
+    public void renderFade(PoseStack poseStack) {
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
+        shaderInstance.safeGetUniform("YFrequency").set(32f);
+        shaderInstance.safeGetUniform("XFrequency").set(16f);
+        shaderInstance.safeGetUniform("Speed").set(1000f);
+        shaderInstance.safeGetUniform("Intensity").set(120f);
+        int insideLeft = getInsideLeft();
+        int insideTop = getInsideTop();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        VFXBuilders.createScreen().setTexture(FRAME_FADE_TEXTURE)
+                .setShader(shaderInstance)
+                .setPositionWithWidth(insideLeft, insideTop, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT)
+                .setZLevel(400)
+                .blit(poseStack);
+        shaderInstance.setUniformDefaults();
+        RenderSystem.disableBlend();
+    }
+
+
+    public Vec2 clampOffsets(float x, float y, float horizontalClamp, float bottomClamp, float topClamp) {
+        float xOffset = x;
         float xMin = -backgroundImageWidth * horizontalClamp;
         float xMax = backgroundImageWidth * horizontalClamp;
         if (xOffset < xMin || xOffset > xMax) {
             xOffset = Mth.clamp(xOffset, xMin, xMax);
         }
-        float yOffset = this.yOffset;
+        float yOffset = y;
         float yMin = -backgroundImageHeight * bottomClamp;
         float yMax = backgroundImageHeight * topClamp;
         if (yOffset < yMin || yOffset > yMax) {

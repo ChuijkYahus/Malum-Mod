@@ -23,6 +23,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_CODEX_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_codex_closed")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_opened")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_closed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_HOVER = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_hovered")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_ENTRY_UNHOVER = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_entry_unhovered")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_PAGE_FLIP = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_page_flipped")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_OPEN = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_subentry_opened")));
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_CLOSE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("arcana_subentry_closed")));

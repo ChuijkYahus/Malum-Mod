@@ -7,6 +7,7 @@ import com.mojang.math.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.helper.*;
+import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -108,8 +109,8 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
         ScreenParticleHandler.renderParticles(entryParticles);
-        int posX = getLeftPos();
-        int posY = getTopPos();
+        int posX = getOffsetXPosition();
+        int posY = getOffsetYPosition();
         renderGlow(guiGraphics, posX, posY, entry.associatedSpirit);
         var pose = guiGraphics.pose();
         if (riteType != null) {
@@ -173,11 +174,13 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
                     size * scale);
 
             ScreenParticleHandler.renderParticles(subspaceParticles);
+            screen.captureLateRendering();
             objects.renderObjects(screen, guiGraphics, xOffset, yOffset, mouseX, mouseY, partialTicks);
             GL11.glDisable(GL_SCISSOR_TEST);
             if (isActive) {
                 objects.renderObjectsLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
             }
+            screen.doLateRendering();
             pose.popPose();
         } else {
             super.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
@@ -198,6 +201,13 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
 
     @Override
     public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+        for (BookObject<AbstractProgressionCodexScreen> object : screen.progressionObjects.getObjects()) {
+            if (object instanceof SubspaceEntryObject otherSubspace) {
+                if (otherSubspace != this && otherSubspace.isActive) {
+                    return false;
+                }
+            }
+        }
         if (!isActive) {
             screen.playSweetenedSound(MalumSoundEvents.ARCANA_SUBENTRY_OPEN, 1.25f);
             isActive = true;

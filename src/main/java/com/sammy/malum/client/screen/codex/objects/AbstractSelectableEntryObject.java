@@ -43,8 +43,10 @@ public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodex
     @Override
     public void renderLate(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         if (isHoveredOver && entry.hasTooltip()) {
-            var tooltip = gatherTooltip(screen);
-            guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY);
+            screen.renderLater(() -> {
+                var tooltip = gatherTooltip(screen);
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY);
+            });
         }
     }
 

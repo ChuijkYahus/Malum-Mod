@@ -154,7 +154,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
             float lociSpeed = getLociSpeed(level, tool, player);
 
             int finalTravelTokens = travelTokens;
-            var backup = IntStream.range(0, 5).map(i -> finalTravelTokens + i).mapToObj(nearbyBlocks::get).flatMap(Collection::stream).toList();
+            var backup = IntStream.range(0, startingIndex/2).map(i -> finalTravelTokens + i).mapToObj(nearbyBlocks::get).flatMap(Collection::stream).toList();
 
             boolean disallowBeneath = pos.getY() >= player.getY() && primaryDirection.getAxis().isHorizontal() && isNearest;
 

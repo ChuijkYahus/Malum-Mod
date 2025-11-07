@@ -1,5 +1,6 @@
 package com.sammy.malum.core.helpers;
 
+import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 
@@ -29,8 +30,9 @@ public class ComponentHelper {
         return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.translatable("malum.effect." + name, args).withStyle(ChatFormatting.RED));
     }
 
-    public static Component riteEffect(String text, boolean isCorrupted) {
-        return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(isCorrupted ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.BLUE));
+    public static Component riteEffect(String text, SpiritRiteType rite) {
+        var color = rite.getIdentifyingSpirit().getStyle(0.6f);
+        return Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY).append(Component.literal(text).withStyle(color));
     }
 
     public static Component positiveEffect(String name, Object... args) {

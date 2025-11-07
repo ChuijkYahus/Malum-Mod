@@ -1139,8 +1139,8 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
                         A favor born from flame.
-                         -Collecting Precious Minerals grants Prospector's Streak, Increasing Mining Speed and providing Fortune Chance""",
-                "Burn with Greed\n -Being Struck while Imbued with Prospector's Streak Ignites You and Consumes the Effect");
+                         -Collecting Precious Minerals generates Prospector's Streak, increasing Mining Speed Fortune Chance""",
+                "Burn with Greed\n -Being Struck when imbued with Prospector's Streak engulfs you in flames");
 
         addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC,

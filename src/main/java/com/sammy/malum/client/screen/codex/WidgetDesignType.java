@@ -1,5 +1,8 @@
 package com.sammy.malum.client.screen.codex;
 
+import com.sammy.malum.*;
+import net.minecraft.resources.*;
+
 import javax.annotation.*;
 import java.util.function.Consumer;
 
@@ -50,51 +53,31 @@ public final class WidgetDesignType {
             new WidgetDesignType("small");
 
     public static final WidgetDesignType GRAND =
-            new WidgetDesignType("grand", 40, 40);
+            new WidgetDesignType("grand");
 
     public static final WidgetDesignType EMPTY =
             new WidgetDesignType("empty");
 
     private final String id;
-    private final int textureWidth;
-    private final int textureHeight;
-    private final int itemXOffset;
-    private final int itemYOffset;
+    private final ResourceLocation glow;
+    private final ResourceLocation outline;
 
     private WidgetDesignType(String id) {
-        this(id, 32, 32, 8, 8);
-    }
-
-    private WidgetDesignType(String id, int textureWidth, int textureHeight) {
-        this(id, textureWidth, textureHeight, 8, 8);
-    }
-
-    private WidgetDesignType(String id, int textureWidth, int textureHeight, int itemXOffset, int itemYOffset) {
         this.id = id;
-        this.textureWidth = textureWidth;
-        this.textureHeight = textureHeight;
-        this.itemXOffset = itemXOffset;
-        this.itemYOffset = itemYOffset;
+        this.glow = MalumMod.malumPath("textures/gui/book/widgets/outline/glow_" + id + ".png");
+        this.outline = MalumMod.malumPath("textures/gui/book/widgets/outline/outline_" + id + ".png");
     }
 
     public String getId() {
         return id;
     }
 
-    public int getTextureWidth() {
-        return textureWidth;
+    public ResourceLocation getGlowTexture() {
+        return glow;
     }
 
-    public int getTextureHeight() {
-        return textureHeight;
-    }
-
-    public int getItemXOffset() {
-        return itemXOffset;
-    }
-
-    public int getItemYOffset() {
-        return itemYOffset;
+    public ResourceLocation getOutlineTexture() {
+        return outline;
     }
 
     public WidgetDesign createDesign(@Nullable FrameType frame, @Nullable FillingType filling) {
