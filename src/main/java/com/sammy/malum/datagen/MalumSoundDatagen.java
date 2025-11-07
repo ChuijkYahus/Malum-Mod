@@ -26,6 +26,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ARCANA_CODEX_CLOSE, s -> definition(s).with(sounds("codex/book_close", 4)));
         this.add(MalumSoundEvents.ARCANA_ENTRY_OPEN, s -> definition(s).with(sounds("codex/book_entry_open", 4)));
         this.add(MalumSoundEvents.ARCANA_ENTRY_CLOSE, s -> definition(s).with(sounds("codex/book_entry_close", 4)));
+        this.add(MalumSoundEvents.ARCANA_ENTRY_HOVER, s -> definition(s).with(sounds("codex/book_hover", 4)));
+        this.add(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, s -> definition(s).with(sounds("codex/book_unhover", 4)));
         this.add(MalumSoundEvents.ARCANA_PAGE_FLIP, s -> definition(s).with(sounds("codex/book_page_turn", 4)));
         this.add(MalumSoundEvents.ARCANA_SUBENTRY_OPEN, s -> definition(s).with(sounds("codex/book_subentry_open", 3)));
         this.add(MalumSoundEvents.ARCANA_SUBENTRY_CLOSE, s -> definition(s).with(sounds("codex/book_subentry_close", 3)));

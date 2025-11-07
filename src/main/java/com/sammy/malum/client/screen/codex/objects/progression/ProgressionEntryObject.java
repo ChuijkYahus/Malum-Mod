@@ -8,6 +8,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.GeasEffectType;
 import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import it.unimi.dsi.fastutil.ints.*;
 import net.minecraft.*;
@@ -58,10 +59,16 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
             if (outlineVisibility < 20) {
                 outlineVisibility += 2;
             }
+            if (outlineVisibility == 12) {
+                screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.5f, 1f);
+            }
         }
         else {
             if (outlineVisibility > 0) {
                 outlineVisibility--;
+            }
+            if (outlineVisibility == 8) {
+                screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.25f, 0.75f);
             }
         }
         super.tick(screen, mouseX, mouseY);

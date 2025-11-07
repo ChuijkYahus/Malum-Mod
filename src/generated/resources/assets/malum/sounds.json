@@ -48,6 +48,15 @@
     ],
     "subtitle": "malum.subtitle.arcana_entry_closed"
   },
+  "arcana_entry_hovered": {
+    "sounds": [
+      "malum:codex/book_hover1",
+      "malum:codex/book_hover2",
+      "malum:codex/book_hover3",
+      "malum:codex/book_hover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_entry_hovered"
+  },
   "arcana_entry_opened": {
     "sounds": [
       "malum:codex/book_entry_open1",
@@ -56,6 +65,15 @@
       "malum:codex/book_entry_open4"
     ],
     "subtitle": "malum.subtitle.arcana_entry_opened"
+  },
+  "arcana_entry_unhovered": {
+    "sounds": [
+      "malum:codex/book_unhover1",
+      "malum:codex/book_unhover2",
+      "malum:codex/book_unhover3",
+      "malum:codex/book_unhover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_entry_unhovered"
   },
   "arcana_page_flipped": {
     "sounds": [

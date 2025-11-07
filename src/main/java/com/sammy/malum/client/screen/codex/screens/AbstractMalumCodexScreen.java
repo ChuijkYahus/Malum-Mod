@@ -51,8 +51,12 @@ public abstract class AbstractMalumCodexScreen extends Screen {
     }
 
     public void playSweetenedSound(Holder<SoundEvent> soundEvent, float sweetenerPitch) {
+        playSweetenedSound(soundEvent, 1f, sweetenerPitch);
+    }
+
+    public void playSweetenedSound(Holder<SoundEvent> soundEvent, float sweetenerVolume, float sweetenerPitch) {
         playSound(soundEvent, 1f, 1);
-        playSound(sweetenerSound, 0.65f, sweetenerPitch);
+        playSound(sweetenerSound, sweetenerVolume, sweetenerPitch);
     }
 
     public void playSound(Holder<SoundEvent> soundEvent, float volume, float pitch) {
