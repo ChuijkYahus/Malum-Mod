@@ -30,15 +30,13 @@ public class MalignantConversionHandler {
             var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
             int debt = data.getReinforcementDebt();
             int limit = getReinforcementLimit(entity);
-            if (limit > 0) {
-                if (debt < limit) {
-                    if (event.getOriginalAmount() >= 2f) {
-                        data.incrementReinforcementDebt();
-                        var container = event.getContainer();
-                        container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks() * 2);
-                        entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                        event.setCanceled(true);
-                    }
+            if (limit > 0 && debt < limit) {
+                if (event.getOriginalAmount() >= 2f) {
+                    data.incrementReinforcementDebt();
+                    var container = event.getContainer();
+                    container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks() * 2);
+                    entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+                    event.setCanceled(true);
                 }
             }
         }
@@ -119,7 +117,7 @@ public class MalignantConversionHandler {
                 double bonus = convertedAmount * conversionStrength * payoutRatio;
                 if (bonus > 0) {
                     var modifier = new AttributeModifier(id, bonus, AttributeModifier.Operation.ADD_VALUE);
-                    affectedInstance.addTransientModifier(modifier);
+                    affectedInstance.addPermanentModifier(modifier);
                 }
             }
         }

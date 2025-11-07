@@ -17,7 +17,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = MalumMod.MALUM, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MalumMod.MALUM)
 public class DataGenerators {
 
     @SubscribeEvent
