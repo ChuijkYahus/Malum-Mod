@@ -34,26 +34,33 @@ public class SoulWardRenderHandler {
     public static float soulWard;
 
     public static void tick(ClientTickEvent event) {
-        final LocalPlayer player = Minecraft.getInstance().player;
+        var player = Minecraft.getInstance().player;
         if (player != null) {
             var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
-            if (data.getSoulWard() >= player.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY)) {
+            double capacity = player.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY);
+            double currentSoulWard = data.getSoulWard();
+            if (currentSoulWard >= capacity) {
                 if (glow < 40) {
                     glow++;
                 }
-                else if (fadeout < 80) {
-                    fadeout++;
-                }
             } else {
-                if (fadeout > 0) {
-                    fadeout = 0;
-                    glow = 20;
-                }
                 if (glow > 0) {
                     glow--;
                 }
             }
-            soulWard = Mth.lerp(0.2f, soulWard, (float) data.getSoulWard());
+            if (soulWard - currentSoulWard > 0.02f) {
+                glow = 10;
+            }
+            soulWard = Mth.lerp(0.2f, soulWard, (float) currentSoulWard);
+            if (currentSoulWard > 0 && currentSoulWard < capacity) {
+                if (fadeout > 0) {
+                    fadeout = Math.max(0, fadeout - 10);
+                }
+            } else {
+                if (fadeout < 80) {
+                    fadeout++;
+                }
+            }
         }
     }
 
@@ -67,7 +74,7 @@ public class SoulWardRenderHandler {
                 if (soulWard > 0 && capacity > 0) {
                     float delta = (float) (soulWard / capacity);
                     float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
-                    float alpha = fadeout / 80f;
+                    float alpha = (1 - fadeout / 80f) * 0.75f;
                     int left = guiGraphics.guiWidth() / 2;
                     int top = guiGraphics.guiHeight() - 47;
 
@@ -116,7 +123,9 @@ public class SoulWardRenderHandler {
                         light.safeGetUniform("LightAngleRange").set(range);
                         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
                         builder.setShader(light).setAlpha(alpha);
-                        builder.setTexture(SOUL_WARD).blit(poseStack);
+                        if (soulWard >= capacity) {
+                            builder.setTexture(SOUL_WARD).blit(poseStack);
+                        }
                         builder.setTexture(GLOW).blit(poseStack);
                         light.setUniformDefaults();
                     }
