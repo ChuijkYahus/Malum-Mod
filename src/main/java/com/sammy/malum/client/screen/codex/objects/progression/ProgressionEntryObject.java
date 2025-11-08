@@ -56,19 +56,19 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
     public void tick(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         oldOutlineVisibility = outlineVisibility;
         if (isHoveredOver) {
-            if (outlineVisibility < 20) {
-                outlineVisibility += 2;
+            if (outlineVisibility == 6) {
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.4f, 1f);
             }
-            if (outlineVisibility == 12) {
-                screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.5f, 1f);
+            if (outlineVisibility < 20) {
+                outlineVisibility = Math.min(outlineVisibility + 2, 20);
             }
         }
         else {
+            if (outlineVisibility == 15) {
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.2f, 0.75f);
+            }
             if (outlineVisibility > 0) {
                 outlineVisibility--;
-            }
-            if (outlineVisibility == 8) {
-                screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.25f, 0.75f);
             }
         }
         super.tick(screen, mouseX, mouseY);
@@ -130,7 +130,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
                 .setPositionWithWidth(posX, posY, 64, 64)
                 .setShader(light);
         float offset = hashCode() % 3600;
-        float time = minecraft.level.getGameTime() + delta + offset;
+        float time = (minecraft.level.getGameTime() + delta) * 0.4f + offset;
         for (int i = 0; i < 8; i++) {
             int angle = (int) ((time * 2 + i * 90) % 720);
             float glowAlpha = 1 - Mth.abs(1 - (angle / 180f));

@@ -135,7 +135,7 @@ public class ScarfRenderHandler {
             var scarfStart = getScarfStart(entity, partialTicks);
             points.setOrigin(scarfStart);
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
-            builder.usePartialTicks(0).renderTrail(points,
+            builder.usePartialTicks(partialTicks).renderTrail(points,
                     f -> Mth.lerp(f, endingScale, scale),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
             );

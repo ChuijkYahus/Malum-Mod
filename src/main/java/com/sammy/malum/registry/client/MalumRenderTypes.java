@@ -38,10 +38,6 @@ public class MalumRenderTypes extends RenderStateShard {
         createGenericRenderType(token, "subtractive_intense_text", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
                 b -> b.setStateShards(RENDERTYPE_TEXT_INTENSITY_SEE_THROUGH_SHADER, SUBTRACTIVE_TEXT_TRANSPARENCY, COLOR_WRITE, LIGHTMAP)));
 
-    public static final RenderTypeProvider SOULLESS_OUTLINE = new RenderTypeProvider((token) ->
-            createGenericRenderType(token, "soulless_outline", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.SOULLESS_CREATURE_OUTLINE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
-
     public static final RenderTypeProvider WEEPING_SKYBOX = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "weeping_skybox", POSITION_TEX_COLOR, QUADS,
                     b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));

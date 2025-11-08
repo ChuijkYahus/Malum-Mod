@@ -246,7 +246,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(MalumItems.MNEMONIC_FRAGMENT.get(), 8, MalumGeasEffectTypes.OATH_OF_THE_OVERBURDENED_MIND)
-                .addExtraItem(MalumItems.MNEMONIC_FRAGMENT.get(), 8)
+                .addExtraItem(MalumItems.AURIC_EMBERS.get(), 8)
                 .addExtraItem(MalumItems.IMITATION_HEART.get(), 4)
                 .addExtraItem(Items.ECHO_SHARD, 4)
                 .addSpirit(MalumSpiritTypes.ARCANE_SPIRIT, 32)

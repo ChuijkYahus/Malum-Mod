@@ -381,7 +381,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Gradually Diminish All Healing");
         addGeasEffect("malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
-        addGeasEffect("malignant_crit_health_condition", "Prevents Malignant Deliverance When Wounded");
+        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Alongside Malignant Reinforcement");
         addGeasEffect("malignant_crit_reinforcement", "Malignant Deliverance Reinforces Armor");
         addGeasEffect("malignant_crit_reduced_damage", "Reduces Malignant Deliverance Damage");
         addGeasEffect("staff_homing", "Staff Projectiles Home In on Targets");

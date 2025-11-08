@@ -4,11 +4,11 @@
   "target_attributes": [
     {
       "attribute": "minecraft:generic.armor",
-      "ratio": "10.0"
+      "ratio": "5.0"
     },
     {
       "attribute": "malum:malignant_reinforcement",
-      "ratio": "2.0"
+      "ratio": "2.5"
     }
   ]
 }

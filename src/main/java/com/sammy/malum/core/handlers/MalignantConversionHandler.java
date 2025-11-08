@@ -14,7 +14,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 
@@ -27,35 +26,36 @@ public class MalignantConversionHandler {
 
     public static void absorbDamage(LivingIncomingDamageEvent event) {
         var entity = event.getEntity();
-        if (entity.level() instanceof ServerLevel level) {
+        if (entity.level() instanceof ServerLevel) {
             var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
             int debt = data.getReinforcementDebt();
-            double reinforcement = entity.getAttributeValue(MalumAttributes.MALIGNANT_REINFORCEMENT);
-            if (reinforcement > 0) {
-                int limit = 5 + Mth.floor(reinforcement * 2);
-                if (debt < limit) {
-                    float delta = (limit - debt) / (float) limit;
-                    float chance = 0.5f * delta;
-                    if (level.getRandom().nextFloat() < chance) {
-                        data.incrementReinforcementDebt();
-                        var container = event.getContainer();
-                        container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks()*2);
-
-                        event.setCanceled(true);
-                    }
+            int limit = getReinforcementLimit(entity);
+            if (limit > 0 && debt < limit) {
+                if (event.getOriginalAmount() >= 2f) {
+                    data.incrementReinforcementDebt();
+                    var container = event.getContainer();
+                    container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks() * 2);
+                    entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+                    event.setCanceled(true);
                 }
             }
         }
+    }
+
+    public static int getReinforcementLimit(LivingEntity entity) {
+        double reinforcement = entity.getAttributeValue(MalumAttributes.MALIGNANT_REINFORCEMENT);
+        return Mth.floor(reinforcement * 2f);
     }
 
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             if (livingEntity.level() instanceof ServerLevel level) {
-                if (level.getGameTime() % 100 == 0) {
+                if (level.getGameTime() % 400 == 0) {
                     if (livingEntity.hasData(MalumAttachmentTypes.MALIGNANT_INFLUENCE)) {
                         var data = livingEntity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
                         data.reduceReinforcementDebt();
+                        livingEntity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
                     }
                 }
                 if (livingEntity instanceof Player player && player.isSpectator()) {
@@ -77,7 +77,7 @@ public class MalignantConversionHandler {
         }
     }
 
-    private static void runConversionLogic(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceCacheData data) {
+    private static void runConversionLogic(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceData data) {
         var malignantConversionAttribute = malignantConversion.getAttribute();
         if (!data.canPerformConversion(malignantConversion)) {
             return;
@@ -95,7 +95,7 @@ public class MalignantConversionHandler {
         data.cacheValue(malignantConversion);
     }
 
-    private static void tryConvertAttribute(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceCacheData cacheData, MalignantConversionData conversionData) {
+    private static void tryConvertAttribute(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceData cacheData, MalignantConversionData conversionData) {
         var sourceAttribute = conversionData.sourceAttribute();
         var sourceInstance = livingEntity.getAttribute(sourceAttribute);
         if (sourceInstance == null) {
@@ -117,7 +117,7 @@ public class MalignantConversionHandler {
                 double bonus = convertedAmount * conversionStrength * payoutRatio;
                 if (bonus > 0) {
                     var modifier = new AttributeModifier(id, bonus, AttributeModifier.Operation.ADD_VALUE);
-                    affectedInstance.addTransientModifier(modifier);
+                    affectedInstance.addPermanentModifier(modifier);
                 }
             }
         }
@@ -129,7 +129,7 @@ public class MalignantConversionHandler {
         cacheData.cacheValue(sourceInstance);
     }
 
-    private static boolean checkForChanges(MalignantInfluenceCacheData data, LivingEntity livingEntity, Holder<Attribute> attribute) {
+    private static boolean checkForChanges(MalignantInfluenceData data, LivingEntity livingEntity, Holder<Attribute> attribute) {
         var instance = livingEntity.getAttribute(attribute);
         if (instance == null) {
             return false;

@@ -38,6 +38,8 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("malignant_reinforcement"),
+                MalignantReinforcementRenderHandler::renderMalignantReinforcement);
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("soul_ward"),
                 SoulWardRenderHandler::renderSoulWard);
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("staff_charges"),

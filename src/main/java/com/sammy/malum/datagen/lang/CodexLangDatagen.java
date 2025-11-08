@@ -294,10 +294,18 @@ public class CodexLangDatagen {
                 "The metal itself is quite tough and takes a keen edge, but wearing an antimagic material would have its issues... and its uses. I have plans for a set of armor fashioned of it, which should prove quite potent, to harness these.");
 
         addEntryHeader("void.malignant_stronghold_armor", "Malignant Stronghold Armor", "The defense of the inevitable");
-        addHeadline("void.malignant_stronghold_armor", "The Malignant Stronghold");
+        addHeadline("void.malignant_stronghold_armor", "Malignant Stronghold Armor");
         addPages("void.malignant_stronghold_armor",
                 "Malignant Pewter rejects magic, and as such, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent. It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - my soul is unwarded, but I am certainly not.",
-                "In unraveling magic, energy still remains. While worn, the armor will react to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent armor bonus. The only unique case I've found is magic proficiency, which the metal absorbs half as much.");
+                "The first observable effect is a significant increase in resistance to most forms of magic damage. When added up, the armor set is capable of reducing incoming magic damage to roughly half of it's usual impact. Notably so, this added resistance is not a ward in the usual sense. Magic bends and flows outwards, away from the armor, rather than being dampened or reduced in some other way.",
+                "The armor doesn't influence just inbound magic however. The wearer's own arcana is affected all the same, and in unraveling magic, energy still remains. The armor reacts to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent defensive effect I dub Malignant Reinforcement.");
+
+        addHeadline("void.malignant_stronghold_armor.malignant_reinforcement", "Understanding Malignant Reinforcement");
+        addPages("void.malignant_stronghold_armor.malignant_reinforcement",
+                "Malignant Reinforcement is a powerful defensive effect not too dissimilar from Soul Ward. Instead of dampening the physical and arcane however, it is nullified completely. When appropriate, all incoming damage is absorbed by the armor. The recharge duration however is significantly longer compared to Soul Ward.");
+        addHeadline("void.malignant_stronghold_armor.malignant_conversion", "Understanding Malignant Conversion");
+        addPages("void.malignant_stronghold_armor.malignant_conversion",
+                "Malignant Conversion is a rather complex effect. It absorbs magical attributes that would be applied to my soul, and instead converts them into armor and a stock of Malignant Reinforcement charges. The exact conversion rate is different for each type of attribute and thus difficult to gather a precise measurement.");
 
         addSimpleEntryHeader("void.weight_of_worlds", "The Weight of Worlds", "Existential burdens externalized");
         addPages("void.weight_of_worlds",
@@ -1206,10 +1214,11 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN,
                 """
                         An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Trigger Several Consecutive Slashes""",
+                        -Malignant Critical Strikes Trigger Several Consecutive Slashes
+                        -Malignant Reinforcement Grants Increased Slash Count and Damage""",
                 """
-                        Born from the Malignant Metal, Deliverance develops quite the Demand
-                        -Malignant Critical Strikes require a Health Threshold to be met""");
+                        Born from the Malignant Reinforcement, the Oath saps it's strength
+                        -Reduces the Innate Effect of Malignant Reinforcement""");
 
         addSimpleEntryHeader("oath_of_unsighted_resistance", "Oath of Unsighted Resistance", "To wade into slaughter");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE,
