@@ -57,11 +57,11 @@ public class SoulWardData {
                 setSoulWard(capacity.getValue());
             }
         }
-        if (isDirty()) {
+        if (isDirty) {
             if (!living.level().isClientSide) {
                 living.syncData(MalumAttachmentTypes.SOUL_WARD);
             }
-            setDirty(false);
+            isDirty = false;
         }
     }
 
@@ -93,14 +93,14 @@ public class SoulWardData {
 
     public void setSoulWard(double soulWard) {
         this.soulWard = Math.max(soulWard, 0);
-        setDirty(true);
+        setDirty();
     }
 
     public void tryCorrectCooldown(LivingEntity living) {
         double newCooldown = getSoulWardCooldown(living) * appliedCooldownMultiplier;
         if (soulWardCooldown > newCooldown) {
             soulWardCooldown = Mth.floor(newCooldown);
-            setDirty(true);
+            setDirty();
         }
     }
 
@@ -109,7 +109,7 @@ public class SoulWardData {
         if (soulWardCooldown < newCooldown) {
             soulWardCooldown = Mth.floor(newCooldown);
             appliedCooldownMultiplier = multiplier;
-            setDirty(true);
+            setDirty();
         }
     }
 
@@ -125,16 +125,12 @@ public class SoulWardData {
         return appliedCooldownMultiplier;
     }
 
-    public boolean isDirty() {
-        return isDirty;
-    }
-
-    public void setDirty(boolean dirty) {
-        isDirty = dirty;
-    }
-
     public boolean isDepleted() {
         return soulWard <= 0;
+    }
+
+    public void setDirty() {
+        isDirty = true;
     }
 
     public float getSoulWardCooldown(LivingEntity living) {

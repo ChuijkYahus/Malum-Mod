@@ -1,5 +1,6 @@
 package com.sammy.malum.common.geas.oath.deliverance;
 
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -21,21 +22,17 @@ public class UnsightedResistanceGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("malignant_crit_reinforcement"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("malignant_crit_aegis_rerouting"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("malignant_crit_reduced_damage"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
     @Override
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
-        event.setNewDamage(event.getNewDamage() * 0.8f);
-        var shielding = MalumMobEffects.UNSIGHTED_RESISTANCE;
-        var instance = attacker.getEffect(shielding);
-        if (instance == null) {
-            attacker.addEffect(new MobEffectInstance(shielding, 100, 0, true, true, true));
-        } else {
-            EntityHelper.amplifyEffect(instance, attacker, 1, 9);
-            EntityHelper.extendEffect(instance, attacker, 40, 400);
+        var data = attacker.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        if (data.getAegisDebt() > 0) {
+            event.setNewDamage(event.getNewDamage() * 0.5f);
+            data.reduceReinforcementDebt();
         }
     }
 }

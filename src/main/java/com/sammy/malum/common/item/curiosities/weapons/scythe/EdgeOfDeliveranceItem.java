@@ -18,6 +18,7 @@ import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.systems.item.*;
 
 public class EdgeOfDeliveranceItem extends MalumScytheItem {
@@ -44,6 +45,9 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         super.outgoingDamageEvent(event, attacker, target, stack);
         if (attacker.level() instanceof ServerLevel level) {
+            if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
+                return;
+            }
             var source = event.getSource();
             if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 var effect = MalumMobEffects.IMMINENT_DELIVERANCE;

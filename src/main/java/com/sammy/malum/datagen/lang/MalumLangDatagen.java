@@ -381,9 +381,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Gradually Diminish All Healing");
         addGeasEffect("malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
-        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Alongside Malignant Reinforcement");
-        addGeasEffect("malignant_crit_reinforcement", "Malignant Deliverance Reinforces Armor");
-        addGeasEffect("malignant_crit_reduced_damage", "Reduces Malignant Deliverance Damage");
+        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Alongside The Malignant Aegis");
+        addGeasEffect("malignant_crit_aegis_rerouting", "Malignant Deliverance Empowers Malignant Aegis Capacity");
+        addGeasEffect("malignant_crit_reduced_damage", "Weakens Malignant Deliverance During Empowerment Process");
         addGeasEffect("staff_homing", "Staff Projectiles Home In on Targets");
         addGeasEffect("staff_autofire", "Staff Charges Automatically Fire");
         addGeasEffect("inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");
@@ -528,8 +528,8 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addAttributeLibAttributeDescription(MalumAttributes.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
 
-        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into Malignant Reinforcement");
-        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_REINFORCEMENT, "A powerful multipurpose damage resistance attribute gained through Malignant Reinforcement");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into Malignant Aegis");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_AEGIS_CAPACITY, "A powerful multipurpose damage resistance attribute gained through Malignant Aegis");
 
     }
 

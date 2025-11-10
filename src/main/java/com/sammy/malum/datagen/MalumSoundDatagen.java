@@ -85,6 +85,8 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SOUL_WARD_CHARGE, s -> definition(s).with(sounds("curiosities/soul_ward/full", 2)));
         this.add(MalumSoundEvents.SOUL_WARD_DEPLETE, s -> definition(s).with(sounds("curiosities/soul_ward/break", 2)));
 
+        this.add(MalumSoundEvents.MALIGNANT_AEGIS_HIT, s -> definition(s).with(sounds("curiosities/malignant_aegis/block", 4)));
+
         this.add(MalumSoundEvents.SPELL_CHARGE_GROW, s -> definition(s).with(sounds("curiosities/spell_charge/charge", 4)));
         this.add(MalumSoundEvents.SPELL_CHARGE_FULL, s -> definition(s).with(sounds("curiosities/spell_charge/charge_full", 4)));
 

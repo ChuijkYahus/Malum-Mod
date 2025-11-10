@@ -1080,6 +1080,15 @@
     ],
     "subtitle": "malum.subtitle.legalize_nuclear_bombs"
   },
+  "malignancy_nullifies_damage": {
+    "sounds": [
+      "malum:curiosities/malignant_aegis/block1",
+      "malum:curiosities/malignant_aegis/block2",
+      "malum:curiosities/malignant_aegis/block3",
+      "malum:curiosities/malignant_aegis/block4"
+    ],
+    "subtitle": "malum.subtitle.malignancy_nullifies_damage"
+  },
   "malignant_deliverance_strikes_again": {
     "sounds": [
       "malum:curiosities/motifs/malignant_crit1",

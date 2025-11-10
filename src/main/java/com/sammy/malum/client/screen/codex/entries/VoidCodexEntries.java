@@ -276,7 +276,7 @@ public class VoidCodexEntries {
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_LEGGINGS.get()),
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_BOOTS.get())
                 ))
-                .addPage(new HeadlineTextPage("void.malignant_stronghold_armor.malignant_reinforcement"))
+                .addPage(new HeadlineTextPage("void.malignant_stronghold_armor.malignant_aegis"))
                 .addPage(new HeadlineTextPage("void.malignant_stronghold_armor.malignant_conversion"))
                 .afterUmbralCrystal()
         );

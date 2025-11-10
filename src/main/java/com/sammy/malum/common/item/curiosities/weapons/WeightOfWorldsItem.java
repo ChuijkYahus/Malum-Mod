@@ -16,6 +16,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
+import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.*;
 
@@ -48,8 +49,10 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-
         if (attacker.level() instanceof ServerLevel level) {
+            if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
+                return;
+            }
             var source = event.getSource();
             if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;

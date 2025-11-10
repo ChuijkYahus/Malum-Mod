@@ -83,6 +83,8 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_charged")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_DEPLETE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_depleted")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_AEGIS_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignancy_nullifies_damage")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_grow")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_FULL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_full")));
 

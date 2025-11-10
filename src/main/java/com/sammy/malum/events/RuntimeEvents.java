@@ -48,7 +48,6 @@ public class RuntimeEvents {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         CurioTokenOfGratitude.giveItem(event);
         SoulDataHandler.syncData(event);
-        SoulWardHandler.syncSoulWard(event);
         GeasEffectHandler.syncGeas(event);
         TetraCompat.entityJoin(event);
     }

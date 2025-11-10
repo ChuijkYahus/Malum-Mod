@@ -30,7 +30,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, MalumAttributes.MALIGNANT_REINFORCEMENT, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.MALIGNANT_AEGIS_CAPACITY, -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
     @Override
@@ -75,7 +75,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
         var target = event.getLivingEntity();
         if (!target.level().isClientSide) {
-            float reinforcement = (float) attacker.getAttributeValue(MalumAttributes.MALIGNANT_REINFORCEMENT) / 0.75f;
+            float reinforcement = (float) attacker.getAttributeValue(MalumAttributes.MALIGNANT_AEGIS_CAPACITY) / 0.75f;
             var source = event.getSource();
             var random = target.getRandom();
             int extraHits = random.nextInt(4, 6) + Mth.floor(reinforcement / 4);

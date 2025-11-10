@@ -44,7 +44,6 @@ public class MalumMobEffects {
     public static final DeferredHolder<MobEffect, MobEffect> PROSPECTORS_STREAK = EFFECTS.register("prospectors_streak", ProspectorsGreedEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> PYROMANIACS_FERVOR = EFFECTS.register("pyromaniacs_fervor", PyromaniacsFervorEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> WYRD_EXHAUSTION = EFFECTS.register("wyrd_exhaustion", WyrdExhaustionEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> UNSIGHTED_RESISTANCE = EFFECTS.register("unsighted_resistance", UnsightedResistanceEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> GLEEFUL_TARGET = EFFECTS.register("gleeful_target", GleefulTargetEffect::new);
 
     //Trinket

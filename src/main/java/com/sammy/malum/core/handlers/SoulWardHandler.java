@@ -17,16 +17,6 @@ import static team.lodestar.lodestone.handlers.ItemEventHandler.*;
 
 public class SoulWardHandler {
 
-    public static void syncSoulWard(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof LivingEntity living) {
-            var level = living.level();
-            if (!level.isClientSide) {
-                var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
-                data.setDirty(true);
-            }
-        }
-    }
-
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();

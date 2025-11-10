@@ -298,14 +298,14 @@ public class CodexLangDatagen {
         addPages("void.malignant_stronghold_armor",
                 "Malignant Pewter rejects magic, and as such, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent. It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - my soul is unwarded, but I am certainly not.",
                 "The first observable effect is a significant increase in resistance to most forms of magic damage. When added up, the armor set is capable of reducing incoming magic damage to roughly half of it's usual impact. Notably so, this added resistance is not a ward in the usual sense. Magic bends and flows outwards, away from the armor, rather than being dampened or reduced in some other way.",
-                "The armor doesn't influence just inbound magic however. The wearer's own arcana is affected all the same, and in unraveling magic, energy still remains. The armor reacts to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent defensive effect I dub Malignant Reinforcement.");
+                "The armor doesn't influence just inbound magic however. The wearer's own arcana is affected all the same, and in unraveling magic, energy still remains. The armor reacts to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent defensive effect I dub Malignant Aegis.");
 
-        addHeadline("void.malignant_stronghold_armor.malignant_reinforcement", "Understanding Malignant Reinforcement");
-        addPages("void.malignant_stronghold_armor.malignant_reinforcement",
-                "Malignant Reinforcement is a powerful defensive effect not too dissimilar from Soul Ward. Instead of dampening the physical and arcane however, it is nullified completely. When appropriate, all incoming damage is absorbed by the armor. The recharge duration however is significantly longer compared to Soul Ward.");
+        addHeadline("void.malignant_stronghold_armor.malignant_aegis", "Understanding Malignant Aegis");
+        addPages("void.malignant_stronghold_armor.malignant_aegis",
+                "Malignant Aegis is a powerful defensive effect not too dissimilar from Soul Ward. Instead of dampening the physical and arcane however, it is nullified completely. When appropriate, all incoming damage is absorbed by the armor. The recharge duration however is significantly longer compared to Soul Ward.");
         addHeadline("void.malignant_stronghold_armor.malignant_conversion", "Understanding Malignant Conversion");
         addPages("void.malignant_stronghold_armor.malignant_conversion",
-                "Malignant Conversion is a rather complex effect. It absorbs magical attributes that would be applied to my soul, and instead converts them into armor and a stock of Malignant Reinforcement charges. The exact conversion rate is different for each type of attribute and thus difficult to gather a precise measurement.");
+                "Malignant Conversion is a rather complex effect. It absorbs magical attributes that would be inscribed onto my soul, causing them to be converted them into armor and a stock of Malignant Aegis charges. The exact conversion rate is different for each type of attribute and thus difficult to gather a precise measurement.");
 
         addSimpleEntryHeader("void.weight_of_worlds", "The Weight of Worlds", "Existential burdens externalized");
         addPages("void.weight_of_worlds",
@@ -1203,41 +1203,41 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("oath_of_the_undiscerned_maw", "Oath of The Undiscerned Maw", "To devour all");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_THE_UNDISCERNED_MAW,
                 scaled(0.8f) + """
-                        An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Devour the Life Essence of Afflicted Creatures
-                        -Devoured Essence Heals You based on the Damage Dealt""",
+                        An etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes devour the life essence of afflicted creatures
+                        -Devoured essence heals you based on the damage dealt""",
                 """
-                        Born from the Malignant Metal, Devoured Essence seeks to Undo
-                        -Overuse of the Healing Effect gradually diminishes All Healing""");
+                        Born from malignancy, devoured essence carries a will to undo
+                        -Overuse of the healing effect gradually diminishes all incoming healing""");
 
         addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "To lord above");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN,
                 """
-                        An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Trigger Several Consecutive Slashes
-                        -Malignant Reinforcement Grants Increased Slash Count and Damage""",
+                        An etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes trigger repeatedly slash targets
+                        -Added slashes grow in power and quantity through Malignant Conversion""",
                 """
-                        Born from the Malignant Reinforcement, the Oath saps it's strength
-                        -Reduces the Innate Effect of Malignant Reinforcement""");
+                        In symbiosis with the Malignant Aegis, the Oath saps it's strength
+                        -Reduces the capacity of the Malignant Aegis""");
 
         addSimpleEntryHeader("oath_of_unsighted_resistance", "Oath of Unsighted Resistance", "To wade into slaughter");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNSIGHTED_RESISTANCE,
                 """
-                        An Etching imbued onto Malignant Deliverance
-                        -Malignant Critical Strikes Amplify Existing Armor and Armor Toughness""",
+                        An etching imbued onto Malignant Deliverance
+                        -Malignant Critical Strikes recharge the Malignant Aegis""",
                 scaled(0.8f) +"""
-                        Born from the Malignant Metal, This layer of defense is only possible through Equivalent Exchange
-                        -Reduces Malignant Critical Strike Damage by Two Fifths""");
+                        The Oath's boon dulls the impact of Malignant Strikes
+                        -Reduces Malignant Critical Strike Damage when recharging the Malignant Aegis""");
 
         addSimpleEntryHeader("authority_of_the_inverted_heart", "Authority of the Inverted Heart", "To tie all hearts as one");
         addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_INVERTED_HEART,
                 scaled(0.7f) + """
                         An Authority, a pact between your Soul and the World itself.
-                        -Your Soul Exposes Itself to the World Around You. When Witnessed by another Soul it will Bind You Together
-                        -Bound Targets will Receive Any Damage you Take or Deal""",
+                        -Your soul exposes itself to the world around you. When witnessed by another soul, a binding forms between yours and theirs.
+                        -Bound targets will receive any damage you take or deal""",
                 scaled(0.8f) +"""
-                        Your Soul is the World's Soul. Your Heart is the World's Heart. It is Open, Open for all to See, Vulnerable for all to Grasp.
-                        -Quadruples Incoming Magic Damage""");
+                        Your soul is the world's soul. Your heart is the world's heart. It is open, open for all to see, vulnerable for all to grasp.
+                        -Quadruples incoming magic damage""");
 
         addSimpleEntryHeader("authority_of_crushing_melancholy", "Authority of Crushing Melancholy", "To crush one's own spirit");
 //        addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY,
@@ -1256,12 +1256,12 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET,
                 scaled(0.55f) + """
                         An Authority, a pact between your Soul and the World itself.
-                        -Your Body is Wrapped in a Sleeping Stasis. Whenever Struck, the Stasis is Activated
-                        -While in Stasis, all Potion Effects are Paused and Cannot Ever Expire.
-                        -Effects such as Regeneration or Poison That Demand The Forward Movement of Time Cease Function, However Any Benefits Unbothered By The Stasis Will Remain""",
+                        -Your body is wrapped in a sleeping stasis. Whenever struck, the stasis is activated
+                        -While in stasis, all potion effects are paused and cannot ever expire.
+                        -Effects such as Regeneration or Poison that demand the forward movement of time cease function, while benefits that are unbothered by the stasis remain""",
                 scaled(0.8f) +"""
-                        Your Body is Frozen in Time, an Anomaly upon this World. It does not Age, nor does it not Feel.
-                        -Quarters All Incoming Healing""");
+                        Your body is frozen in time, an anomaly, disconnected from this world. It does not age, nor does it not feel.
+                        -Quarters all incoming healing""");
 
         addSimpleEntryHeader("totem_magic", "Totem Magic", "Wonders Upon the World");
         addPages("totem_magic",
