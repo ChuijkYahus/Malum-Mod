@@ -19,7 +19,7 @@ public class SilencedEffect extends MobEffect {
         addAttributeModifier(MalumAttributes.SOUL_WARD_INTEGRITY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(MalumAttributes.SOUL_WARD_CAPACITY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_RATE, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_GAIN, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
         addAttributeModifier(MalumAttributes.ARCANE_RESONANCE, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         IronsSpellsCompat.addSilencedNegativeAttributeModifiers(this);

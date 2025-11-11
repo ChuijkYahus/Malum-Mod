@@ -2,10 +2,9 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
+import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.config.*;
-import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -18,7 +17,7 @@ import team.lodestar.lodestone.systems.rendering.*;
 
 import java.lang.Math;
 
-public class MalignantReinforcementRenderHandler {
+public class MalignantAegisRenderHandler {
 
     public static ResourceLocation REINFORCEMENT = MalumMod.malumPath("textures/gui/hud/malignant_aegis.png");
     public static ResourceLocation GLOW = MalumMod.malumPath("textures/gui/hud/malignant_aegis_glow.png");
@@ -33,42 +32,42 @@ public class MalignantReinforcementRenderHandler {
     public static void tick(ClientTickEvent event) {
         var player = Minecraft.getInstance().player;
         if (player != null) {
-            var data = player.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-            double capacity = MalignantConversionHandler.getAegisLimit(player);
-            double currentDebt = data.getAegisDebt();
-            double currentReinforcement = capacity - currentDebt;
-            if (currentReinforcement >= capacity) {
-                if (glow < 80) {
-                    glow++;
+            MalignantInfluenceData.getMalignantAegisData(player).ifPresent(data -> {
+                double capacity = MalignantInfluenceData.getMalignantAegisCapacity(player);
+                double currentReinforcement = data.getMalignantAegis();
+                if (currentReinforcement >= capacity) {
+                    if (glow < 80) {
+                        glow++;
+                    }
+                } else {
+                    if (glow > 0) {
+                        glow--;
+                    }
                 }
-            } else {
-                if (glow > 0) {
-                    glow--;
+                if (displayedReinforcement - currentReinforcement > 0.01f) {
+                    glow = 40;
                 }
-            }
-            if (displayedReinforcement - currentReinforcement > 0.02f) {
-                glow = 40;
-            }
-            displayedReinforcement = Mth.lerp(0.2f, displayedReinforcement, (float) currentReinforcement);
-            if (currentReinforcement > 0 && currentReinforcement < capacity) {
-                if (fadeout > 0) {
-                    fadeout = Math.max(0, fadeout - 10);
+                displayedReinforcement = Mth.lerp(0.2f, displayedReinforcement, (float) currentReinforcement);
+                if (currentReinforcement > 0 && currentReinforcement < capacity) {
+                    if (fadeout > 0) {
+                        fadeout = Math.max(0, fadeout - 10);
+                    }
+                } else {
+                    if (fadeout < 80) {
+                        fadeout++;
+                    }
                 }
-            } else {
-                if (fadeout < 80) {
-                    fadeout++;
-                }
-            }
+            });
         }
     }
 
-    public static void renderMalignantReinforcement(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public static void renderMalignantAegis(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();
         if (!minecraft.options.hideGui) {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
-                double capacity = MalignantConversionHandler.getAegisLimit(player);
+                double capacity = MalignantInfluenceData.getMalignantAegisCapacity(player);
                 if (displayedReinforcement > 0 && capacity > 0) {
                     float delta = (float) (displayedReinforcement / capacity);
                     float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
@@ -88,7 +87,7 @@ public class MalignantReinforcementRenderHandler {
                     distorted.safeGetUniform("Width").set(64f);
                     distorted.safeGetUniform("Height").set(64f);
 
-                    var builder = VFXBuilders.createScreen().setShader(distorted);
+                    var builder = VFXBuilders.createScreen().setZLevel(100).setShader(distorted);
                     builder.setPositionWithWidth(left - 16, top - 16, 32, 32);
                     builder.setAlpha(alpha).setTexture(EMPTY).blit(poseStack);
 

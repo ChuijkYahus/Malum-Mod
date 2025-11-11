@@ -35,11 +35,14 @@ public class SoulWardHandler {
         if (event.getNewDamage() <= 0) {
             return;
         }
+        var source = event.getSource();
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
+            return;
+        }
 
         var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
         data.addCooldown(living, 4f);
         if (!data.isDepleted()) {
-            var source = event.getSource();
             float amount = event.getNewDamage();
             double magicDamageAbsorption = 1 - CommonConfig.SOUL_WARD_MAGIC.getConfigValue();
             double physicalDamageAbsorption = 1 - CommonConfig.SOUL_WARD_PHYSICAL.getConfigValue();

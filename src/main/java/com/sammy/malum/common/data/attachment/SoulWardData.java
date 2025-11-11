@@ -2,7 +2,6 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.payloads.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import io.netty.buffer.*;
@@ -11,7 +10,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
@@ -42,9 +40,9 @@ public class SoulWardData {
     }
 
     public void tickData(LivingEntity living) {
-        var capacity = living.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
-        if (capacity != null) {
-            if (getSoulWard() < capacity.getValue()) {
+        var attribute = living.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
+        if (attribute != null) {
+            if (getSoulWard() < attribute.getValue()) {
                 if (soulWardCooldown > 0) {
                     soulWardCooldown--;
                     tryCorrectCooldown(living);
@@ -53,8 +51,8 @@ public class SoulWardData {
                     recoverSoulWard(living, 1);
                 }
             }
-            if (getSoulWard() > capacity.getValue()) {
-                setSoulWard(capacity.getValue());
+            if (getSoulWard() > attribute.getValue()) {
+                setSoulWard(attribute.getValue());
             }
         }
         if (isDirty) {
@@ -67,15 +65,15 @@ public class SoulWardData {
 
     @SuppressWarnings("DataFlowIssue")
     public void recoverSoulWard(LivingEntity entity, double amount) {
-        var capacity = entity.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
-        if (getSoulWard() < capacity.getValue()) {
-            var multiplier = Optional.ofNullable(entity.getAttribute(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER)).map(AttributeInstance::getValue).orElse(1.0);
+        var attribute = entity.getAttribute(MalumAttributes.SOUL_WARD_CAPACITY);
+        if (getSoulWard() < attribute.getValue()) {
+            var multiplier = Optional.ofNullable(entity.getAttribute(MalumAttributes.SOUL_WARD_RECOVERY_GAIN)).map(AttributeInstance::getValue).orElse(1.0);
             var previousSoulward = soulWard;
             addSoulWard(amount * multiplier);
             if (soulWard > previousSoulward) {
                 if (!(entity instanceof Player player) || !player.isCreative()) {
-                    var sound = soulWard >= capacity.getValue() ? MalumSoundEvents.SOUL_WARD_CHARGE : MalumSoundEvents.SOUL_WARD_GROW;
-                    double pitchOffset = (soulWard / capacity.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
+                    var sound = soulWard >= attribute.getValue() ? MalumSoundEvents.SOUL_WARD_FULLY_CHARGED : MalumSoundEvents.SOUL_WARD_GROW;
+                    double pitchOffset = (soulWard / attribute.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
                     SoundHelper.playSound(entity, sound.get(), 0.25f, (float) (1f + pitchOffset));
                 }
             }
@@ -93,23 +91,27 @@ public class SoulWardData {
 
     public void setSoulWard(double soulWard) {
         this.soulWard = Math.max(soulWard, 0);
-        setDirty();
+        isDirty = true;
     }
 
-    public void tryCorrectCooldown(LivingEntity living) {
-        double newCooldown = getSoulWardCooldown(living) * appliedCooldownMultiplier;
+    /**
+     * Attempts to correct the cooldown if the recovery rate has changed.
+     * Mainly meant to curb any infinite-cooldown-duration states that can be achieved through Malignant Conversion or the Pact of Reciprocation
+     */
+    public void tryCorrectCooldown(LivingEntity entity) {
+        double newCooldown = getSoulWardCooldown(entity) * appliedCooldownMultiplier;
         if (soulWardCooldown > newCooldown) {
             soulWardCooldown = Mth.floor(newCooldown);
-            setDirty();
+            isDirty = true;
         }
     }
 
-    public void addCooldown(LivingEntity living, float multiplier) {
-        double newCooldown = getSoulWardCooldown(living) * multiplier;
+    public void addCooldown(LivingEntity entity, float multiplier) {
+        double newCooldown = getSoulWardCooldown(entity) * multiplier;
         if (soulWardCooldown < newCooldown) {
             soulWardCooldown = Mth.floor(newCooldown);
             appliedCooldownMultiplier = multiplier;
-            setDirty();
+            isDirty = true;
         }
     }
 
@@ -129,12 +131,8 @@ public class SoulWardData {
         return soulWard <= 0;
     }
 
-    public void setDirty() {
-        isDirty = true;
-    }
-
-    public float getSoulWardCooldown(LivingEntity living) {
-        double recoveryRate = living.getAttributeValue(MalumAttributes.SOUL_WARD_RECOVERY_RATE);
+    public float getSoulWardCooldown(LivingEntity entity) {
+        double recoveryRate = entity.getAttributeValue(MalumAttributes.SOUL_WARD_RECOVERY_RATE);
         var cooldownDuration = CommonConfig.SOUL_WARD_RATE.getConfigValue();
         return Mth.floor(cooldownDuration / recoveryRate);
     }

@@ -36,8 +36,8 @@ public class MalumAttributes {
             LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_integrity"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> SOUL_WARD_RECOVERY_RATE = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_recovery_rate"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
-    public static final DeferredHolder<Attribute, Attribute> SOUL_WARD_RECOVERY_MULTIPLIER = registerAttribute(ATTRIBUTES,
-            LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_recovery_multiplier"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> SOUL_WARD_RECOVERY_GAIN = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_recovery_gain"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> SOUL_WARD_CAPACITY = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("soul_ward_capacity"), 0D, 0.0D, 2048.0D).setSyncable(true));
 
@@ -53,6 +53,10 @@ public class MalumAttributes {
 
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_CONVERSION = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_conversion"), 0D, 0.0D, 1.0D).forcePercentageDisplay().setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> MALIGNANT_AEGIS_RECOVERY_RATE = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_aegis_recovery_rate"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> MALIGNANT_AEGIS_RECOVERY_GAIN = registerAttribute(ATTRIBUTES,
+            LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_aegis_recovery_gain"), 1.0D, 0.0D, 2048.0D).setSyncable(true));
     public static final DeferredHolder<Attribute, Attribute> MALIGNANT_AEGIS_CAPACITY = registerAttribute(ATTRIBUTES,
             LodestoneRangedAttribute.create(MalumMod.malumPath("malignant_aegis_capacity"), 0D, 0.0D, 2048.0D).setSyncable(true));
 

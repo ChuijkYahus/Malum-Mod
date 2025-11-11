@@ -46,7 +46,7 @@ public class WaveformConfigurationHandler {
 
         interactionTime++;
         if (interactionTime == 5) {
-            minecraft.setScreen(new ValueSettingsScreen(spiritDiode));
+            minecraft.setScreen(new RadialValueConfigurationScreen(spiritDiode));
             resetInteraction();
         }
     }

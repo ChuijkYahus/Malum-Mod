@@ -42,7 +42,7 @@ public class ReciprocationGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_CAPACITY, 12, AttributeModifier.Operation.ADD_VALUE);
-        addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_GAIN, 1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_RATE, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }

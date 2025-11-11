@@ -7,10 +7,8 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
@@ -30,9 +28,9 @@ public class UnsightedResistanceGeas extends GeasEffect {
     @Override
     public void finalizedMalignantCritEvent(MalignantCritEvent.Post event, LivingEntity attacker) {
         var data = attacker.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-        if (data.getAegisDebt() > 0) {
+        if (data.getMalignantAegis() < MalignantInfluenceData.getMalignantAegisCapacity(attacker)) {
             event.setNewDamage(event.getNewDamage() * 0.5f);
-            data.reduceReinforcementDebt();
+            data.recoverAegis(attacker, 1);
         }
     }
 }

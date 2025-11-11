@@ -41,7 +41,7 @@ public class ClientSetupEvents {
         event.registerAbove(VanillaGuiLayers.AIR_LEVEL, MalumMod.malumPath("soul_ward"),
                 SoulWardRenderHandler::renderSoulWard);
         event.registerAbove(VanillaGuiLayers.AIR_LEVEL, MalumMod.malumPath("malignant_aegis"),
-                MalignantReinforcementRenderHandler::renderMalignantReinforcement);
+                MalignantAegisRenderHandler::renderMalignantAegis);
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("staff_charges"),
                 StaffAbilityRenderHandler::renderStaffCharges);
         event.registerAbove(VanillaGuiLayers.EXPERIENCE_LEVEL, MalumMod.malumPath("hidden_blade_cooldown"),

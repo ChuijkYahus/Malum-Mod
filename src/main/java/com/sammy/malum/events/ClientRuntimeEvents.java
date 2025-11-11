@@ -35,7 +35,7 @@ public class ClientRuntimeEvents {
         HeldItemTracker.tickTrackers();
         ScarfRenderHandler.tickScarfData(event);
         HiddenBladeRenderHandler.tick(event);
-        MalignantReinforcementRenderHandler.tick(event);
+        MalignantAegisRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
         StaffAbilityRenderHandler.tick(event);
         WaveformConfigurationHandler.tick(event);

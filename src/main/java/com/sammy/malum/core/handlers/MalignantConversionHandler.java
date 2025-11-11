@@ -10,7 +10,6 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
@@ -25,55 +24,55 @@ public class MalignantConversionHandler {
     public static final ResourceLocation NEGATIVE_MODIFIER_ID = MalumMod.malumPath("malignant_conversion_tally");
     public static final Function<Holder<Attribute>, ResourceLocation> POSITIVE_MODIFIER_IDS = Util.memoize(MalignantConversionHandler::createPositiveModifierId);
 
-    public static void absorbDamage(LivingIncomingDamageEvent event) {
+    public static void shieldPlayer(LivingIncomingDamageEvent event) {
         var entity = event.getEntity();
-        if (entity.level() instanceof ServerLevel) {
-            var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-            int debt = data.getAegisDebt();
-            int limit = getAegisLimit(entity);
-            if (limit > 0 && debt < limit) {
-                if (event.getOriginalAmount() >= 2f) {
-                    data.incrementReinforcementDebt();
-                    var container = event.getContainer();
-                    int invulnerabilityTicks = Math.min(container.getPostAttackInvulnerabilityTicks() * 2, 40);
-                    container.setPostAttackInvulnerabilityTicks(invulnerabilityTicks);
-                    entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                    SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 1f, 1f);
-                    event.setCanceled(true);
-                }
-            }
+        if (entity.level().isClientSide()) {
+            return;
         }
+        var source = event.getSource();
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
+            return;
+        }
+        var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        int aegis = data.getMalignantAegis();
+        if (aegis <= 0) {
+            return;
+        }
+        if (!(event.getOriginalAmount() >= 2f)) {
+            return;
+        }
+        data.reduceAegis(1);
+        var container = event.getContainer();
+        int invulnerabilityTicks = Math.min(container.getPostAttackInvulnerabilityTicks() * 2, 40);
+        container.setPostAttackInvulnerabilityTicks(invulnerabilityTicks);
+        entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 1f, 1f);
+        if (data.getMalignantAegis() == 0) {
+            SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE.get(), 2f, 1f);
+        }
+        event.setCanceled(true);
     }
-
-    public static int getAegisLimit(LivingEntity entity) {
-        double aegis = entity.getAttributeValue(MalumAttributes.MALIGNANT_AEGIS_CAPACITY);
-        return Mth.floor(aegis);
-    }
-
 
     public static void entityTick(EntityTickEvent.Pre event) {
-        if (event.getEntity() instanceof LivingEntity living) {
-            if (living.level() instanceof ServerLevel level) {
-                if (living.hasData(MalumAttachmentTypes.MALIGNANT_INFLUENCE) || living.getAttributeValue(MalumAttributes.MALIGNANT_AEGIS_CAPACITY) > 0) {
-                    var data = living.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                    data.tickData(living);
-                }
-                var data = living.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                data.tickData(living);
-                if (living instanceof Player player) {
-                    if (player.isSpectator()) {
-                        return;
-                    }
-                } else {
-                    //Malignant Conversion isn't that important on non-player entities
-                    //To avoid lag, we only run once every two seconds
-                    if (level.getGameTime() % 40 != 0) {
-                        return;
-                    }
-                }
-                runConversionLogic(living);
+        if (!(event.getEntity() instanceof LivingEntity living)) {
+            return;
+        }
+        if (!(living.level() instanceof ServerLevel level)) {
+            return;
+        }
+        MalignantInfluenceData.getMalignantAegisData(living).ifPresent(data -> data.tickData(living));
+        if (living instanceof Player player) {
+            if (player.isSpectator()) {
+                return;
+            }
+        } else {
+            //Malignant Conversion isn't that important on non-player entities
+            //To avoid lag, we only run once every two seconds
+            if (level.getGameTime() % 40 != 0) {
+                return;
             }
         }
+        runConversionLogic(living);
     }
 
     private static void runConversionLogic(LivingEntity target) {

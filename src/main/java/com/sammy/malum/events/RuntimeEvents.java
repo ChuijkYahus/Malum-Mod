@@ -173,7 +173,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onIncomingDamage(LivingIncomingDamageEvent event) {
-        MalignantConversionHandler.absorbDamage(event);
+        MalignantConversionHandler.shieldPlayer(event);
     }
 
     @SubscribeEvent

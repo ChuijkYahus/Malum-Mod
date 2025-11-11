@@ -41,8 +41,12 @@ public class CommonConfig extends LodestoneConfig {
             builder.comment("Multiplier for magic damage taken while soul ward is active.")
                     .defineInRange("soulWardMagic", 0.1f, 0, 1)));
     public static ConfigValueHolder<Integer> SOUL_WARD_RATE = new ConfigValueHolder<>(MALUM, "common/soul_ward", (builder ->
-            builder.comment("Base time in ticks it takes for one segment of soul ward to recover.")
+            builder.comment("Base time in ticks it takes for one point of soul ward to recover.")
                     .define("soulWardRate", 100)));
+
+    public static ConfigValueHolder<Integer> MALIGNANT_AEGIS_RATE = new ConfigValueHolder<>(MALUM, "common/malignant_aegis", (builder ->
+            builder.comment("Base time in ticks it takes for one point of malignant aegis to recover.")
+                    .define("malignantAegisRate", 200)));
 
     public static ConfigValueHolder<Integer> STAFF_CHARGE_RATE = new ConfigValueHolder<>(MALUM, "common/staff_charge", (builder ->
             builder.comment("Base time in ticks it takes for one segment of a staff charge to recover.")
@@ -55,8 +59,6 @@ public class CommonConfig extends LodestoneConfig {
     public static ConfigValueHolder<Boolean> IRONS_SPELLBOOKS_NON_PLAYER_SPIRIT_DAMAGE = new ConfigValueHolder<>(MALUM, "common/compat/irons_spellbooks", (builder ->
             builder.comment("Should Iron's Spellbooks' magic damage when dealt by non-players count as Soul Damage")
                     .define("ironsSpellbooksNonPlayerSpiritDrops", true)));
-
-
 
     public CommonConfig(ModConfigSpec.Builder builder) {
         super(MALUM, "common", builder);

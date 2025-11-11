@@ -27,6 +27,7 @@ public class SoulWardRenderHandler {
     public static int glow;
     public static int fadeout;
 
+    public static double oldSoulWard;
     public static float displayedSoulWard;
 
     public static void tick(ClientTickEvent event) {
@@ -44,9 +45,10 @@ public class SoulWardRenderHandler {
                     glow--;
                 }
             }
-            if (displayedSoulWard - currentSoulWard > 0.02f) {
-                glow = 10;
+            if (oldSoulWard != currentSoulWard) {
+                glow = 15;
             }
+            oldSoulWard = currentSoulWard;
             displayedSoulWard = Mth.lerp(0.2f, displayedSoulWard, (float) currentSoulWard);
             if (currentSoulWard > 0 && currentSoulWard < capacity) {
                 if (fadeout > 0) {

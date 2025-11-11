@@ -296,16 +296,11 @@ public class CodexLangDatagen {
         addEntryHeader("void.malignant_stronghold_armor", "Malignant Stronghold Armor", "The defense of the inevitable");
         addHeadline("void.malignant_stronghold_armor", "Malignant Stronghold Armor");
         addPages("void.malignant_stronghold_armor",
-                "Malignant Pewter rejects magic, and as such, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent. It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - my soul is unwarded, but I am certainly not.",
-                "The first observable effect is a significant increase in resistance to most forms of magic damage. When added up, the armor set is capable of reducing incoming magic damage to roughly half of it's usual impact. Notably so, this added resistance is not a ward in the usual sense. Magic bends and flows outwards, away from the armor, rather than being dampened or reduced in some other way.",
-                "The armor doesn't influence just inbound magic however. The wearer's own arcana is affected all the same, and in unraveling magic, energy still remains. The armor reacts to that energy, growing stronger alongside it. Any strictly defensive or offensive magical attribute to be inscribed upon my soul is instead absorbed by the metal, granting a potent defensive effect I dub Malignant Aegis.");
-
-        addHeadline("void.malignant_stronghold_armor.malignant_aegis", "Understanding Malignant Aegis");
-        addPages("void.malignant_stronghold_armor.malignant_aegis",
-                "Malignant Aegis is a powerful defensive effect not too dissimilar from Soul Ward. Instead of dampening the physical and arcane however, it is nullified completely. When appropriate, all incoming damage is absorbed by the armor. The recharge duration however is significantly longer compared to Soul Ward.");
-        addHeadline("void.malignant_stronghold_armor.malignant_conversion", "Understanding Malignant Conversion");
-        addPages("void.malignant_stronghold_armor.malignant_conversion",
-                "Malignant Conversion is a rather complex effect. It absorbs magical attributes that would be inscribed onto my soul, causing them to be converted them into armor and a stock of Malignant Aegis charges. The exact conversion rate is different for each type of attribute and thus difficult to gather a precise measurement.");
+                "Malignant Pewter rejects magic, thus, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent.",
+                "It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - although my soul is unwarded, the metal disfigures the flow of arcana. It bends and flows outwards, any harm coming my way becomes disorganized, only half of it's intended impact reaching my soul when the full Stronghold Armor is equipped.",
+                "The armor doesn't influence just inbound magic however. The wearer's own arcane etchings of various sorts are also affected. Their trajectory towards the soul is intercepted - stolen and processed - and in the unraveling of arcana, energy still remains. The armor reacts to that energy, growing stronger alongside it.",
+                "Two terms are necessary here. Firstly, the armour's magic absorption process shall be named Malignant Conversion. It is the interception of the flow of arcana towards the soul and the absorption of the resulting energy. Continuing, the armour weaves it's stolen power, giving it a new form and purpose. The resulting effect shall be named Malignant Aegis",
+                "Malignant Aegis functions as a powerful barrier capable of outright nullifying most forms of inbound harm. As the armor absorbs more and more magic, the Aegis will grow in capacity and potentially recharge rate and gain depending on the attributes absorbed. This, by far, is the strongest property of the Malignant Stronghold Armor");
 
         addSimpleEntryHeader("void.weight_of_worlds", "The Weight of Worlds", "Existential burdens externalized");
         addPages("void.weight_of_worlds",
@@ -1212,7 +1207,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("oath_of_unmakers_disdain", "Oath of Unmakers Disdain", "To lord above");
         addGeasDetails(MalumGeasEffectTypes.OATH_OF_UNMAKERS_DISDAIN,
-                """
+                scaled(0.75f) + """
                         An etching imbued onto Malignant Deliverance
                         -Malignant Critical Strikes trigger repeatedly slash targets
                         -Added slashes grow in power and quantity through Malignant Conversion""",
