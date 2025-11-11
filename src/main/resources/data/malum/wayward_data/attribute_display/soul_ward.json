@@ -8,7 +8,7 @@
     "texture": "wayward_attributes:icon/duration"
   },
   {
-    "attribute": "malum:soul_ward_recovery_multiplier",
+    "attribute": "malum:soul_ward_recovery_gain",
     "texture": "wayward_attributes:icon/arrow_up"
   },
   {

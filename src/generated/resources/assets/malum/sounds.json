@@ -1080,6 +1080,31 @@
     ],
     "subtitle": "malum.subtitle.legalize_nuclear_bombs"
   },
+  "malignant_aegis_charge_completed": {
+    "sounds": [
+      "malum:curiosities/malignant_aegis/full1",
+      "malum:curiosities/malignant_aegis/full2"
+    ],
+    "subtitle": "malum.subtitle.malignant_aegis_charge_completed"
+  },
+  "malignant_aegis_grows": {
+    "sounds": [
+      "malum:curiosities/malignant_aegis/grow1",
+      "malum:curiosities/malignant_aegis/grow2",
+      "malum:curiosities/malignant_aegis/grow3",
+      "malum:curiosities/malignant_aegis/grow4"
+    ],
+    "subtitle": "malum.subtitle.malignant_aegis_grows"
+  },
+  "malignant_aegis_nullifies_damage": {
+    "sounds": [
+      "malum:curiosities/malignant_aegis/block1",
+      "malum:curiosities/malignant_aegis/block2",
+      "malum:curiosities/malignant_aegis/block3",
+      "malum:curiosities/malignant_aegis/block4"
+    ],
+    "subtitle": "malum.subtitle.malignant_aegis_nullifies_damage"
+  },
   "malignant_deliverance_strikes_again": {
     "sounds": [
       "malum:curiosities/motifs/malignant_crit1",
@@ -1095,6 +1120,14 @@
       "malum:curiosities/motifs/malignant_crit3"
     ],
     "subtitle": "malum.subtitle.malignant_deliverance_triggers"
+  },
+  "malignant_disintegrates": {
+    "sounds": [
+      "malum:curiosities/malignant_aegis/break1",
+      "malum:curiosities/malignant_aegis/break2",
+      "malum:curiosities/malignant_aegis/break3"
+    ],
+    "subtitle": "malum.subtitle.malignant_disintegrates"
   },
   "metallic_trinket_equipped": {
     "sounds": [
@@ -1800,35 +1833,35 @@
     ],
     "subtitle": "malum.subtitle.soul_stained_steel_step"
   },
-  "soul_ward_charged": {
+  "soul_ward_absorbs_damage": {
+    "sounds": [
+      "malum:curiosities/soul_ward/block1",
+      "malum:curiosities/soul_ward/block2",
+      "malum:curiosities/soul_ward/block3",
+      "malum:curiosities/soul_ward/block4"
+    ],
+    "subtitle": "malum.subtitle.soul_ward_absorbs_damage"
+  },
+  "soul_ward_charge_completed": {
     "sounds": [
       "malum:curiosities/soul_ward/full1",
       "malum:curiosities/soul_ward/full2"
     ],
-    "subtitle": "malum.subtitle.soul_ward_charged"
+    "subtitle": "malum.subtitle.soul_ward_charge_completed"
   },
-  "soul_ward_damaged": {
+  "soul_ward_disintegrates": {
+    "sounds": [
+      "malum:curiosities/soul_ward/break1",
+      "malum:curiosities/soul_ward/break2"
+    ],
+    "subtitle": "malum.subtitle.soul_ward_disintegrates"
+  },
+  "soul_ward_grows": {
     "sounds": [
       "malum:curiosities/soul_ward/grow1",
       "malum:curiosities/soul_ward/grow2",
       "malum:curiosities/soul_ward/grow3",
       "malum:curiosities/soul_ward/grow4"
-    ],
-    "subtitle": "malum.subtitle.soul_ward_damaged"
-  },
-  "soul_ward_depleted": {
-    "sounds": [
-      "malum:curiosities/soul_ward/break1",
-      "malum:curiosities/soul_ward/break2"
-    ],
-    "subtitle": "malum.subtitle.soul_ward_depleted"
-  },
-  "soul_ward_grows": {
-    "sounds": [
-      "malum:curiosities/soul_ward/dmg1",
-      "malum:curiosities/soul_ward/dmg2",
-      "malum:curiosities/soul_ward/dmg3",
-      "malum:curiosities/soul_ward/dmg4"
     ],
     "subtitle": "malum.subtitle.soul_ward_grows"
   },

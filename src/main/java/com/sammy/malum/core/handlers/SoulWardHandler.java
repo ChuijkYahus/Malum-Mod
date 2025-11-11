@@ -17,16 +17,6 @@ import static team.lodestar.lodestone.handlers.ItemEventHandler.*;
 
 public class SoulWardHandler {
 
-    public static void syncSoulWard(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof LivingEntity living) {
-            var level = living.level();
-            if (!level.isClientSide) {
-                var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
-                data.setDirty(true);
-            }
-        }
-    }
-
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
@@ -45,11 +35,14 @@ public class SoulWardHandler {
         if (event.getNewDamage() <= 0) {
             return;
         }
+        var source = event.getSource();
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
+            return;
+        }
 
         var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
         data.addCooldown(living, 4f);
         if (!data.isDepleted()) {
-            var source = event.getSource();
             float amount = event.getNewDamage();
             double magicDamageAbsorption = 1 - CommonConfig.SOUL_WARD_MAGIC.getConfigValue();
             double physicalDamageAbsorption = 1 - CommonConfig.SOUL_WARD_PHYSICAL.getConfigValue();

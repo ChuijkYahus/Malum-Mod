@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.player.*;
 
-@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class ClientRuntimeEvents {
 
     @SubscribeEvent
@@ -34,8 +34,8 @@ public class ClientRuntimeEvents {
     public static void clientTickEvent(ClientTickEvent.Pre event) {
         HeldItemTracker.tickTrackers();
         ScarfRenderHandler.tickScarfData(event);
-
         HiddenBladeRenderHandler.tick(event);
+        MalignantAegisRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
         StaffAbilityRenderHandler.tick(event);
         WaveformConfigurationHandler.tick(event);

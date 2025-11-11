@@ -205,6 +205,8 @@ public class MalumTags {
     public static class DamageTypeTags {
 
         public static final TagKey<DamageType> BYPASSES_HALF_ARMOR = tag("bypasses_half_armor");
+        public static final TagKey<DamageType> BYPASSES_SOUL_WARD = tag("bypasses_soul_ward");
+        public static final TagKey<DamageType> BYPASSES_MALIGNANT_AEGIS = tag("bypasses_malignant_aegis");
 
         public static final TagKey<DamageType> SOUL_SHATTER_DAMAGE = tag("can_soul_shatter");
 

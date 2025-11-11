@@ -1,0 +1,18 @@
+{
+  "source_attribute": "malum:soul_ward_recovery_gain",
+  "ignore_base_value": "true",
+  "target_attributes": [
+    {
+      "attribute": "minecraft:generic.armor",
+      "ratio": "5.0"
+    },
+    {
+      "attribute": "malum:malignant_aegis_capacity",
+      "ratio": "2.5"
+    },
+    {
+      "attribute": "malum:malignant_aegis_recovery_gain",
+      "ratio": "1.0"
+    }
+  ]
+}

@@ -10,12 +10,12 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
@@ -24,80 +24,83 @@ public class MalignantConversionHandler {
     public static final ResourceLocation NEGATIVE_MODIFIER_ID = MalumMod.malumPath("malignant_conversion_tally");
     public static final Function<Holder<Attribute>, ResourceLocation> POSITIVE_MODIFIER_IDS = Util.memoize(MalignantConversionHandler::createPositiveModifierId);
 
-    public static void absorbDamage(LivingIncomingDamageEvent event) {
+    public static void shieldPlayer(LivingIncomingDamageEvent event) {
         var entity = event.getEntity();
-        if (entity.level() instanceof ServerLevel) {
-            var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-            int debt = data.getReinforcementDebt();
-            int limit = getReinforcementLimit(entity);
-            if (limit > 0 && debt < limit) {
-                if (event.getOriginalAmount() >= 2f) {
-                    data.incrementReinforcementDebt();
-                    var container = event.getContainer();
-                    container.setPostAttackInvulnerabilityTicks(container.getPostAttackInvulnerabilityTicks() * 2);
-                    entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
-
-    public static int getReinforcementLimit(LivingEntity entity) {
-        double reinforcement = entity.getAttributeValue(MalumAttributes.MALIGNANT_REINFORCEMENT);
-        return Mth.floor(reinforcement * 2f);
-    }
-
-
-    public static void entityTick(EntityTickEvent.Pre event) {
-        if (event.getEntity() instanceof LivingEntity livingEntity) {
-            if (livingEntity.level() instanceof ServerLevel level) {
-                if (level.getGameTime() % 400 == 0) {
-                    if (livingEntity.hasData(MalumAttachmentTypes.MALIGNANT_INFLUENCE)) {
-                        var data = livingEntity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                        data.reduceReinforcementDebt();
-                        livingEntity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                    }
-                }
-                if (livingEntity instanceof Player player && player.isSpectator()) {
-                    return;
-                }
-                else {
-                    //Malignant Conversion isn't that important on non-player entities
-                    //To avoid lag, we only run once every two seconds
-                    if (level.getGameTime() % 40 != 0) {
-                        return;
-                    }
-                }
-                var conversionInstance = livingEntity.getAttribute(MalumAttributes.MALIGNANT_CONVERSION);
-                if (conversionInstance != null) {
-                    var data = livingEntity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-                    runConversionLogic(livingEntity, conversionInstance, data);
-                }
-            }
-        }
-    }
-
-    private static void runConversionLogic(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceData data) {
-        var malignantConversionAttribute = malignantConversion.getAttribute();
-        if (!data.canPerformConversion(malignantConversion)) {
+        if (entity.level().isClientSide()) {
             return;
         }
+        var source = event.getSource();
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
+            return;
+        }
+        var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        int aegis = data.getMalignantAegis();
+        if (aegis <= 0) {
+            return;
+        }
+        if (!(event.getOriginalAmount() >= 2f)) {
+            return;
+        }
+        data.reduceAegis(1);
+        var container = event.getContainer();
+        int invulnerabilityTicks = Math.min(container.getPostAttackInvulnerabilityTicks() * 2, 40);
+        container.setPostAttackInvulnerabilityTicks(invulnerabilityTicks);
+        entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 1f, 1f);
+        if (data.getMalignantAegis() == 0) {
+            SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE.get(), 2f, 1f);
+        }
+        event.setCanceled(true);
+    }
+
+    public static void entityTick(EntityTickEvent.Pre event) {
+        if (!(event.getEntity() instanceof LivingEntity living)) {
+            return;
+        }
+        if (!(living.level() instanceof ServerLevel level)) {
+            return;
+        }
+        MalignantInfluenceData.getMalignantAegisData(living).ifPresent(data -> data.tickData(living));
+        if (living instanceof Player player) {
+            if (player.isSpectator()) {
+                return;
+            }
+        } else {
+            //Malignant Conversion isn't that important on non-player entities
+            //To avoid lag, we only run once every two seconds
+            if (level.getGameTime() % 40 != 0) {
+                return;
+            }
+        }
+        runConversionLogic(living);
+    }
+
+    private static void runConversionLogic(LivingEntity target) {
+        var conversion = target.getAttribute(MalumAttributes.MALIGNANT_CONVERSION);
+        if (conversion == null) {
+            return;
+        }
+        if (!target.hasData(MalumAttachmentTypes.MALIGNANT_INFLUENCE) && !(conversion.getValue() > 0)) {
+            return;
+        }
+        var data = target.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
+        var malignantConversionAttribute = conversion.getAttribute();
         var conversions = MalignantConversionReloadListener.CONVERSION_DATA.values();
-        boolean forcedUpdate = checkForChanges(data, livingEntity, malignantConversionAttribute);
+        boolean forcedUpdate = checkForChanges(data, target, malignantConversionAttribute);
         for (MalignantConversionData conversionData : conversions) {
             // This for loop checks for any attribute that can be converted through malignant conversion
             // If the attribute is present on the entity and has changed since this code last ran, we will attempt to convert it
-            // If the malignant conversion attribute changed itself, we will update all attributes regardless of if they themselves changed
-            if (forcedUpdate || checkForChanges(data, livingEntity, conversionData.sourceAttribute())) {
-                tryConvertAttribute(livingEntity, malignantConversion, data, conversionData);
+            // If the malignant conversion attribute changed itself, via forcedUpdate, we will update all attributes regardless of if they themselves changed
+            if (forcedUpdate || checkForChanges(data, target, conversionData.sourceAttribute())) {
+                tryConvertAttribute(target, conversion, data, conversionData);
             }
         }
-        data.cacheValue(malignantConversion);
+        data.cacheValue(conversion);
     }
 
-    private static void tryConvertAttribute(LivingEntity livingEntity, AttributeInstance malignantConversion, MalignantInfluenceData cacheData, MalignantConversionData conversionData) {
+    private static void tryConvertAttribute(LivingEntity target, AttributeInstance malignantConversion, MalignantInfluenceData cacheData, MalignantConversionData conversionData) {
         var sourceAttribute = conversionData.sourceAttribute();
-        var sourceInstance = livingEntity.getAttribute(sourceAttribute);
+        var sourceInstance = target.getAttribute(sourceAttribute);
         if (sourceInstance == null) {
             return;
         }
@@ -109,7 +112,7 @@ public class MalignantConversionHandler {
         double convertedAmount = sourceInstance.getValue() - (conversionData.ignoreBaseValue() ? sourceInstance.getBaseValue() : 0);
         for (MalignantConversionAttributePayout payout : conversionData.payoutData()) {
             var affectedAttribute = payout.attribute();
-            var affectedInstance = livingEntity.getAttribute(affectedAttribute);
+            var affectedInstance = target.getAttribute(affectedAttribute);
             double payoutRatio = payout.ratio();
             if (affectedInstance != null) {
                 var id = POSITIVE_MODIFIER_IDS.apply(sourceAttribute);

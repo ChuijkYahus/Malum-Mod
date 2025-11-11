@@ -2,26 +2,22 @@ package com.sammy.malum.core.handlers.client;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
+import com.sammy.malum.config.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.player.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.client.event.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.lang.Math;
 
 public class SoulWardRenderHandler {
-
-    public static ResourceLocation BUBBLE = MalumMod.malumPath("textures/gui/hud/display_bubble.png");
 
     public static ResourceLocation SOUL_WARD = MalumMod.malumPath("textures/gui/hud/soul_ward.png");
     public static ResourceLocation GLOW = MalumMod.malumPath("textures/gui/hud/soul_ward_glow.png");
@@ -31,7 +27,8 @@ public class SoulWardRenderHandler {
     public static int glow;
     public static int fadeout;
 
-    public static float soulWard;
+    public static double oldSoulWard;
+    public static float displayedSoulWard;
 
     public static void tick(ClientTickEvent event) {
         var player = Minecraft.getInstance().player;
@@ -48,10 +45,11 @@ public class SoulWardRenderHandler {
                     glow--;
                 }
             }
-            if (soulWard - currentSoulWard > 0.02f) {
-                glow = 10;
+            if (oldSoulWard != currentSoulWard) {
+                glow = 15;
             }
-            soulWard = Mth.lerp(0.2f, soulWard, (float) currentSoulWard);
+            oldSoulWard = currentSoulWard;
+            displayedSoulWard = Mth.lerp(0.2f, displayedSoulWard, (float) currentSoulWard);
             if (currentSoulWard > 0 && currentSoulWard < capacity) {
                 if (fadeout > 0) {
                     fadeout = Math.max(0, fadeout - 10);
@@ -71,12 +69,12 @@ public class SoulWardRenderHandler {
             var player = minecraft.player;
             if (!player.isCreative() && !player.isSpectator()) {
                 double capacity = player.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY);
-                if (soulWard > 0 && capacity > 0) {
-                    float delta = (float) (soulWard / capacity);
+                if (displayedSoulWard > 0 && capacity > 0) {
+                    float delta = (float) (displayedSoulWard / capacity);
                     float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
                     float alpha = (1 - fadeout / 80f) * 0.75f;
-                    int left = guiGraphics.guiWidth() / 2;
-                    int top = guiGraphics.guiHeight() - 47;
+                    int left = guiGraphics.guiWidth() / 2 - ClientConfig.UI_SHIELD_X_OFFSET.getConfigValue();
+                    int top = guiGraphics.guiHeight() - ClientConfig.UI_SHIELD_Y_OFFSET.getConfigValue();
 
                     poseStack.pushPose();
                     RenderSystem.depthMask(true);
@@ -123,7 +121,7 @@ public class SoulWardRenderHandler {
                         light.safeGetUniform("LightAngleRange").set(range);
                         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
                         builder.setShader(light).setAlpha(alpha);
-                        if (soulWard >= capacity) {
+                        if (displayedSoulWard >= capacity) {
                             builder.setTexture(SOUL_WARD).blit(poseStack);
                         }
                         builder.setTexture(GLOW).blit(poseStack);
@@ -137,9 +135,5 @@ public class SoulWardRenderHandler {
                 }
             }
         }
-    }
-
-    public static ResourceLocation getSoulWardTexture() {
-        return MalumMod.malumPath("textures/gui/hud/soul_ward.png");
     }
 }

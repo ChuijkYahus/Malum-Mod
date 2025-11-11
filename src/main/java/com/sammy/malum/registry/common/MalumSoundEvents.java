@@ -78,10 +78,15 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_PROPAGATION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_monument_forms")));
 
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_damaged")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_absorbs_damage")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_grows")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_CHARGE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_charged")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_DEPLETE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_depleted")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_FULLY_CHARGED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_charge_completed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_DEPLETE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_disintegrates")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_AEGIS_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_aegis_nullifies_damage")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_AEGIS_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_aegis_grows")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_AEGIS_FULLY_CHARGED = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_aegis_charge_completed")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_AEGIS_DEPLETE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("malignant_disintegrates")));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_grow")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELL_CHARGE_FULL = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spell_charge_full")));

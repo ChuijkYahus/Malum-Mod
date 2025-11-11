@@ -84,9 +84,9 @@ Malignant Stronghold Armor
 Malignant Conversion
 - No longer grants Armor Toughness
 - No longer grants Magic Resistance
-- Now grants a new attribute called Malignant Reinforcement
-- Malignant Reinforcement now functions similarly to Soul Ward
-- Instead of absorbing a portion of damage, Malignant Reinforcement will completely nullify it
+- Now grants a new attribute called Malignant Aegis
+- Malignant Aegis now functions similarly to Soul Ward
+- Instead of absorbing a portion of damage, Malignant Aegis will completely nullify it
 - Chance and Limit increases as the armor absorbs more and more magic
 
 Necklace of the Hidden Blade

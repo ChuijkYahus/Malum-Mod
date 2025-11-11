@@ -17,7 +17,7 @@ public class ArcanaphageEffect extends MobEffect {
 
         addAttributeModifier(MalumAttributes.SOUL_WARD_INTEGRITY, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_GAIN, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
         addAttributeModifier(MalumAttributes.CHARGE_DURATION, id, -0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(MalumAttributes.CHARGE_RECOVERY_RATE, id, 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);

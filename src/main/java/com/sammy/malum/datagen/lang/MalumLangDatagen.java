@@ -381,9 +381,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
         addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Gradually Diminish All Healing");
         addGeasEffect("malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
-        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Alongside Malignant Reinforcement");
-        addGeasEffect("malignant_crit_reinforcement", "Malignant Deliverance Reinforces Armor");
-        addGeasEffect("malignant_crit_reduced_damage", "Reduces Malignant Deliverance Damage");
+        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Through Malignant Conversion");
+        addGeasEffect("malignant_crit_aegis_rerouting", "Malignant Deliverance Recharges Malignant Aegis");
+        addGeasEffect("malignant_crit_reduced_damage", "Recharge Reduces Malignant Deliverance Damage");
         addGeasEffect("staff_homing", "Staff Projectiles Home In on Targets");
         addGeasEffect("staff_autofire", "Staff Charges Automatically Fire");
         addGeasEffect("inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");
@@ -519,7 +519,7 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
         addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");
-        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_MULTIPLIER, "A percentile increase the amount of Soul Ward recovered");
+        addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_GAIN, "A percentile increase the amount of Soul Ward recovered");
         addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_CAPACITY, "The capacity for Soul Ward");
 
         addAttributeLibAttributeDescription(MalumAttributes.CHARGE_DURATION, "The duration for charging a staff");
@@ -528,8 +528,8 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addAttributeLibAttributeDescription(MalumAttributes.GEAS_LIMIT, "The limit for active Geas Bindings that can be sworn at once");
 
-        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into Malignant Reinforcement");
-        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_REINFORCEMENT, "A powerful multipurpose damage resistance attribute gained through Malignant Reinforcement");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_CONVERSION, "A percentile conversion rate in which certain magical attributes are converted into Malignant Aegis");
+        addAttributeLibAttributeDescription(MalumAttributes.MALIGNANT_AEGIS_CAPACITY, "A powerful multipurpose damage resistance attribute gained through Malignant Aegis");
 
     }
 

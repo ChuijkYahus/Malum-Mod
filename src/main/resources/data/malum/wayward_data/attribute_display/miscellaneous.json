@@ -20,7 +20,7 @@
     "texture": "wayward_attributes:icon/barrier"
   },
   {
-    "attribute": "malum:malignant_reinforcement",
+    "attribute": "malum:malignant_aegis_capacity",
     "texture": "wayward_attributes:icon/shield"
   }
 ]

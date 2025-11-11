@@ -267,17 +267,17 @@ public class VoidCodexEntries {
         screen.addEntry("void.malignant_stronghold_armor", 4, 12, b -> b
                 .configureWidget(w -> w.setIcon(MALIGNANT_STRONGHOLD_HELMET)
                         .setDesign(DEFAULT, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("void.malignant_stronghold_armor"))
+                .addPage(new HeadlineTextItemPage("void.malignant_stronghold_armor", MALIGNANT_STRONGHOLD_CHESTPLATE.get()))
                 .addPage(new TextPage("void.malignant_stronghold_armor.2"))
                 .addPage(new TextPage("void.malignant_stronghold_armor.3"))
+                .addPage(new TextPage("void.malignant_stronghold_armor.4"))
+                .addPage(new TextPage("void.malignant_stronghold_armor.5"))
                 .addPage(new CyclingPage(
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_HELMET.get()),
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_CHESTPLATE.get()),
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_LEGGINGS.get()),
                         SpiritInfusionPage.fromOutput(MALIGNANT_STRONGHOLD_BOOTS.get())
                 ))
-                .addPage(new HeadlineTextPage("void.malignant_stronghold_armor.malignant_reinforcement"))
-                .addPage(new HeadlineTextPage("void.malignant_stronghold_armor.malignant_conversion"))
                 .afterUmbralCrystal()
         );
 

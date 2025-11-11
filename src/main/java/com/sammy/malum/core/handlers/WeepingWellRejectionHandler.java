@@ -40,7 +40,7 @@ public class WeepingWellRejectionHandler {
             }
             data.setGoopStatus();
         }
-        if (entity instanceof FloatingItemEntity || entity instanceof ItemEntity) {
+        if (entity instanceof FloatingItemEntity) {
             return;
         }
         entity.setDeltaMovement(entity.getDeltaMovement().scale(0.6f));
