@@ -141,6 +141,11 @@ public abstract class FloatingEntity extends MovingEntity {
         return 0.96f;
     }
 
+    @Override
+    public boolean isPickable() {
+        return false;
+    }
+
     public int getWindUpDuration() {
         return 50;
     }

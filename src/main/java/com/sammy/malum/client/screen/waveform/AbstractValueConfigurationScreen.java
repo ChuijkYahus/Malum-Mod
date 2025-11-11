@@ -22,7 +22,7 @@ import static com.sammy.malum.MalumMod.*;
 
 public abstract class AbstractValueConfigurationScreen extends Screen {
 
-    protected static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
+    protected static final Function<GuiGraphics, LodestoneBufferWrapper> TEXT_WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
 
     protected static final ResourceLocation WIDGETS = malumPath("textures/gui/waveform_artifice/waveform_widgets.png");
     protected static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial.png");
@@ -234,7 +234,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
             int dim = base & 0xFFFFFF | (alpha / 3) << 24;
             int dimmer = base & 0xFFFFFF | (alpha / 6) << 24;
 
-            var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+            var buffer = TEXT_WRAPPER_FUNCTION.apply(guiGraphics);
             var pose = guiGraphics.pose().last().pose();
             RenderSystem.enableBlend();
 

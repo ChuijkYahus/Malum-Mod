@@ -24,8 +24,6 @@ import static net.minecraft.util.FastColor.ARGB32.color;
 
 public class RadialValueConfigurationScreen extends AbstractValueConfigurationScreen {
 
-    private static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
-
     private static final int DIAL_SIZE = 64;
 
     private final SpiritDiodeBlockEntity diode;
