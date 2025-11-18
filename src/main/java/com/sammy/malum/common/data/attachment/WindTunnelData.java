@@ -104,6 +104,9 @@ public class WindTunnelData {
         if (entity instanceof ServerPlayer && activeTime % 4 == 0) {
             entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
         }
+        if (entity instanceof Player player) {
+            player.resetFallDistance();
+        }
     }
 
     public boolean addInfluence(GustIgniterBlockEntity igniter) {

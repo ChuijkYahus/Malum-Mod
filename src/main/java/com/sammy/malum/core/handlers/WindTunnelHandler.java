@@ -99,6 +99,7 @@ public class WindTunnelHandler {
         }
         igniter.windArea = getWindArea(igniter, tunnelPositions, windDirection);
         igniter.windDirection = windDirection;
+        igniter.setDirty();
         return true;
     }
 

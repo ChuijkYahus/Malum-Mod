@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
+import java.util.*;
 import java.util.function.*;
 
 public class MalignantConversionHandler {
@@ -30,15 +31,19 @@ public class MalignantConversionHandler {
             return;
         }
         var source = event.getSource();
-        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
-            return;
-        }
-        var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-        int aegis = data.getMalignantAegis();
-        if (aegis <= 0) {
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_MALIGNANT_AEGIS)) {
             return;
         }
         if (!(event.getOriginalAmount() >= 2f)) {
+            return;
+        }
+        var optional = MalignantInfluenceData.getMalignantAegisData(entity);
+        if (optional.isEmpty()) {
+            return;
+        }
+        var data = optional.get();
+        int aegis = data.getMalignantAegis();
+        if (aegis <= 0) {
             return;
         }
         data.reduceAegis(1);

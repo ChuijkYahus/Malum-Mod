@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.registry.client.*;
+import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;
@@ -40,6 +41,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         var facing = state.getValue(WindTunnelBlock.FACING);
         int tunnelLength = tunnel.getTunnelLength();
         float intensity = tunnelLength/MAX_STRENGTH;
+        float rate = 1+intensity;
         boolean isInward = tunnel.isModified();
 
 
@@ -70,7 +72,6 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         renderBorder(poseStack, up, down, left, right);
 
         poseStack.translate(0f, 0.5f, 0);
-        float time = (tunnel.getLevel().getGameTime() + partialTicks) * (1+intensity);
 
         float xStart = -0.4f;
         float xEnd = 0.4f;
@@ -101,13 +102,14 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 continue;
             }
             Direction direction = Direction.from2DDataValue(i);
+            float offsetDirection = (isInward ? -1f : 1f);
             for (int j = 0; j < 2; j++) {
                 boolean isTunnel = j == 0;
                 var renderType = isTunnel ? windTunnel : windFlow;
                 float interval = isTunnel ? 60 : 15;
                 float horizontalInterval = interval * 4;
-                float uOffset = (time % horizontalInterval) / horizontalInterval * (isInward ? -1f : 1f);
-                float vOffset = (time % interval) / interval * (isInward ? -1f : 1f);
+                float uOffset = getOffset(horizontalInterval, rate, partialTicks) * offsetDirection;
+                float vOffset = getOffset(interval, rate, partialTicks) * offsetDirection;
                 float alpha = isTunnel ? 0.35f : 0.9f;
                 float u0 = (isInward ? 1f : 0f) + uOffset;
                 float u1 = u0 + 1f;
@@ -121,6 +123,11 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
             }
         }
         poseStack.popPose();
+    }
+
+    private float getOffset(float interval, float rate, float partialTicks) {
+        float time = (Minecraft.getInstance().level.getGameTime() % interval + partialTicks);
+        return time * rate / interval;
     }
 
     private void renderBorder(PoseStack poseStack, boolean up, boolean down, boolean left, boolean right) {
