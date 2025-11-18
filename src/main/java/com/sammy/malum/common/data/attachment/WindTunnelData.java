@@ -55,7 +55,7 @@ public class WindTunnelData {
             if (!WindTunnelBlock.isActive(level.getBlockState(source))) {
                 continue;
             }
-            if (!area.contains(position)) {
+            if (!area.intersects(entity.getBoundingBox())) {
                 continue;
             }
             if (!WindTunnelHandler.isInArea(entity, area, direction, igniter.windTunnels)) {

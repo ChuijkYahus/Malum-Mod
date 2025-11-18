@@ -119,13 +119,13 @@ public class WindTunnelBlockEntity extends AbstractGustGizmoBlockEntity {
         var next = new BlockPos.MutableBlockPos();
         int limiter = 0;
         while (limiter < igniterStrength) {
-            limiter++;
             mutable.set(getBlockPos()).move(direction, limiter);
             next.set(mutable).move(direction);
             boolean canRender = Block.shouldRenderFace(getBlockState(), level, mutable, direction, next);
             if (!canRender) {
                 break;
             }
+            limiter++;
         }
         return limiter;
     }
