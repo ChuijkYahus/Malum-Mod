@@ -125,7 +125,7 @@ public class MalumBlockStateSmithTypes {
         ResourceLocation openTop = provider.getBlockTexture(name + "_open");
         ResourceLocation side = provider.getBlockTexture(name + "_side");
         ResourceLocation openSide = provider.getBlockTexture(name + "_side_open");
-        ResourceLocation bottom = provider.getBlockTexture("runewood_frame_bottom");
+        ResourceLocation bottom = provider.getBlockTexture(name + "_bottom");
         BlockModelBuilder model = provider.models().cubeBottomTop(name, side, bottom, top).texture("particle", top);
         BlockModelBuilder openModel = provider.models().cubeBottomTop(name + "_open", openSide, bottom, openTop).texture("particle", top);
         provider.getVariantBuilder(block).forAllStates(s -> {

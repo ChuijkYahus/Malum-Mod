@@ -235,13 +235,13 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.waveform_artifice.wavebreaker", "Redstone Pulse Delay");
 
         add("malum.waveform_artifice.gust_igniter", "Gust Strength");
-        add("malum.waveform_artifice.gust_tunnel", "Tunnel Length");
+        add("malum.waveform_artifice.wind_tunnel", "Tunnel Length");
 
         add("malum.waveform_artifice.gust_igniter.default", "Rising Gust");
         add("malum.waveform_artifice.gust_igniter.alt", "Lifting Gust");
 
-        add("malum.waveform_artifice.gust_tunnel.default", "Outward Flow");
-        add("malum.waveform_artifice.gust_tunnel.alt", "Inward Flow");
+        add("malum.waveform_artifice.wind_tunnel.default", "Outward Flow");
+        add("malum.waveform_artifice.wind_tunnel.alt", "Inward Flow");
 
         add("malum.waveform_artifice.value_display", ": %1$s %2$s");
 

@@ -38,8 +38,15 @@ public class WindTunnelBlock extends AbstractGustGizmoBlock<WindTunnelBlockEntit
         if (state == null) {
             return null;
         }
+        var level = context.getLevel();
+        var pos = context.getClickedPos();
+        var direction = context.getClickedFace().getOpposite();
+        if (level.getBlockEntity(pos.relative(direction)) instanceof WindTunnelBlockEntity tunnel) {
+            state = state.setValue(FACING, tunnel.getBlockState().getValue(FACING));
+        }
         return updateOcclusion(context.getLevel(), state, context.getClickedPos());
     }
+
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
