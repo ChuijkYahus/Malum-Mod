@@ -40,8 +40,6 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         var state = tunnel.getBlockState();
         var facing = state.getValue(WindTunnelBlock.FACING);
         int tunnelLength = tunnel.getTunnelLength();
-        float intensity = tunnelLength/MAX_STRENGTH;
-        float rate = 1+intensity;
         boolean isInward = tunnel.isModified();
 
 
@@ -108,8 +106,8 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 var renderType = isTunnel ? windTunnel : windFlow;
                 float interval = isTunnel ? 60 : 15;
                 float horizontalInterval = interval * 4;
-                float uOffset = getOffset(horizontalInterval, rate, partialTicks) * offsetDirection;
-                float vOffset = getOffset(interval, rate, partialTicks) * offsetDirection;
+                float uOffset = getOffset(tunnel, horizontalInterval, partialTicks) * offsetDirection;
+                float vOffset = getOffset(tunnel, interval, partialTicks) * offsetDirection;
                 float alpha = isTunnel ? 0.35f : 0.9f;
                 float u0 = (isInward ? 1f : 0f) + uOffset;
                 float u1 = u0 + 1f;
@@ -125,9 +123,12 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         poseStack.popPose();
     }
 
-    private float getOffset(float interval, float rate, float partialTicks) {
-        float time = (Minecraft.getInstance().level.getGameTime() % interval + partialTicks);
-        return time * rate / interval;
+    private float getOffset(WindTunnelBlockEntity tunnel, float interval, float partialTicks) {
+        int tunnelLength = tunnel.getTunnelLength();
+        float intensity = tunnelLength/MAX_STRENGTH;
+        float rate = 1+intensity;
+        double time = Minecraft.getInstance().level.getGameTime() + partialTicks;
+        return (float) ((time * rate / interval) % interval);
     }
 
     private void renderBorder(PoseStack poseStack, boolean up, boolean down, boolean left, boolean right) {

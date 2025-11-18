@@ -42,8 +42,8 @@ public class GustIgniterBlock extends AbstractGustGizmoBlock<GustIgniterBlockEnt
                 if (flag) {
                     level.scheduleTick(pos, this, 4);
                 } else {
-                    level.setBlock(pos, state.cycle(POWERED), 2);
                     activate(level, pos, true);
+                    level.setBlock(pos, state.cycle(POWERED), 2);
                 }
             }
             if (flag) {

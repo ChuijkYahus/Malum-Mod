@@ -77,6 +77,24 @@ public class ArtificeEntries {
                 ))
         );
 
+        screen.addEntry("gustweaving", 6, 9, b -> b
+                .configureWidget(w -> w.setIcon(GUST_IGNITER))
+                .addPage(new HeadlineTextPage("gustweaving", "gustweaving.1"))
+                .addPage(new TextPage("gustweaving.2"))
+                .addPage(new HeadlineTextPage("basic_artifice.wavecharger", "basic_artifice.wavecharger.1"))
+                .addPage(SpiritInfusionPage.fromOutput(WAVECHARGER.get()))
+                .addPage(new HeadlineTextPage("basic_artifice.wavebanker", "basic_artifice.wavebanker.1"))
+                .addPage(SpiritInfusionPage.fromOutput(WAVEBANKER.get()))
+                .addPage(new HeadlineTextPage("basic_artifice.wavemaker", "basic_artifice.wavemaker.1"))
+                .addPage(SpiritInfusionPage.fromOutput(WAVEMAKER.get()))
+                .addPage(new HeadlineTextPage("basic_artifice.wavebreaker", "basic_artifice.wavebreaker.1"))
+                .addPage(SpiritInfusionPage.fromOutput(WAVEBREAKER.get()))
+                .addReference(new EntryReference(ARTIFICERS_CLAW, BookEntry.create("basic_artifice.artificers_claw")
+                        .addPage(new HeadlineTextPage("basic_artifice.artificers_claw", "basic_artifice.artificers_claw.1"))
+                        .addPage(SpiritInfusionPage.fromOutput(ARTIFICERS_CLAW.get()))
+                ))
+        );
+
         screen.addEntry("soulwoven_silk", 4, 5, b -> b
                 .configureWidget(w -> w.setIcon(SOULWOVEN_SILK))
                 .addPage(new HeadlineTextPage("soulwoven_silk", "soulwoven_silk.1"))
