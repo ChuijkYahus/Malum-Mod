@@ -6,6 +6,7 @@ import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
@@ -179,10 +180,13 @@ public class WindTunnelHandler {
             visited.add(startPos);
         }
 
+        var directionsToCheck = new ArrayList<>(List.of(Direction.values()));
+        directionsToCheck.remove(facing);
+        directionsToCheck.remove(facing.getOpposite());
         var mutable = startPos.mutable();
         while (!queue.isEmpty()) {
             var pos = queue.poll();
-            for (Direction direction : Direction.values()) {
+            for (Direction direction : directionsToCheck) {
                 mutable.set(pos).move(direction);
                 if (!visited.contains(mutable) && level.getBlockEntity(mutable) instanceof WindTunnelBlockEntity nextTunnel) {
                     if (nextTunnel.isRemoved()) {
