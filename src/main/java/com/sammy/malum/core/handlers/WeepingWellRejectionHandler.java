@@ -49,19 +49,26 @@ public class WeepingWellRejectionHandler {
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             var level = livingEntity.level();
-            var data = livingEntity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
-            data.update(livingEntity);
-            var gravity = livingEntity.getAttribute(Attributes.GRAVITY);
-            if (gravity != null) {
-                if (gravity.getModifier(GRAVITY_MODIFIER_ID) != null) {
-                    gravity.removeModifier(GRAVITY_MODIFIER_ID);
-                }
-                if (data.isInRejectedState) {
-                    gravity.addTransientModifier(getEntityGravityAttributeModifier(livingEntity));
+            if (livingEntity.hasData(MalumAttachmentTypes.WEEPING_WELL_INFO)) {
+                var data = livingEntity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
+                data.update(livingEntity);
+                updateGravity(livingEntity);
+                if (data.isInGoop()) {
+                    handleRejectionState(level, livingEntity);
                 }
             }
-            if (data.isInGoop()) {
-                handleRejectionState(level, livingEntity);
+        }
+    }
+
+    public static void updateGravity(LivingEntity entity) {
+        var gravity = entity.getAttribute(Attributes.GRAVITY);
+        if (gravity != null) {
+            var data = entity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
+            if (gravity.hasModifier(GRAVITY_MODIFIER_ID)) {
+                gravity.removeModifier(GRAVITY_MODIFIER_ID);
+            }
+            if (data.isInRejectedState) {
+                gravity.addTransientModifier(getEntityGravityAttributeModifier(entity));
             }
         }
     }

@@ -4,16 +4,13 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
-import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
-import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -122,12 +119,30 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
+    public static BlockStateSmith<AbstractGustGizmoBlock> GUST_TECH_BLOCK = new BlockStateSmith<>(AbstractGustGizmoBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        ResourceLocation top = provider.getBlockTexture(name);
+        ResourceLocation openTop = provider.getBlockTexture(name + "_open");
+        ResourceLocation side = provider.getBlockTexture(name + "_side");
+        ResourceLocation openSide = provider.getBlockTexture(name + "_side_open");
+        ResourceLocation bottom = provider.getBlockTexture("runewood_frame_bottom");
+        BlockModelBuilder model = provider.models().cubeBottomTop(name, side, bottom, top).texture("particle", top);
+        BlockModelBuilder openModel = provider.models().cubeBottomTop(name + "_open", openSide, bottom, openTop).texture("particle", top);
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            var direction = s.getValue(AbstractGustGizmoBlock.FACING);
+            var isOpen = s.getValue(AbstractGustGizmoBlock.OPEN) || !s.getValue(AbstractGustGizmoBlock.POWERED);
+            return ConfiguredModel.builder().modelFile(isOpen ? openModel : model)
+                    .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                    .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
+                    .build();
+        });
+    });
+
     public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         ModelFile model = provider.models().getExistingFile(malumPath("block/repair_pylon_component_middle"));
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/repair_pylon_component_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(RepairPylonComponentBlock.TOP) ? topModel : model).build());
     });
-
 
     public static BlockStateSmith<WeepingWellBlock> WEEPING_WELL_BLOCK = new BlockStateSmith<>(WeepingWellBlock.class, MalumItemModelSmithTypes.WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);

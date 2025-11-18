@@ -1,6 +1,6 @@
 {
   "vertex": "lodestone:screen/screen_generic",
-  "fragment": "malum:hud_soul_ward",
+  "fragment": "malum:dissolving_hud_element",
   "samplers": [
     { "name": "Sampler0" },
     { "name": "Sampler1" }

@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.geas.*;
@@ -65,6 +66,7 @@ public class MalumMobEffects {
 
     //Misc
     public static final DeferredHolder<MobEffect, MobEffect> ASCENSION = EFFECTS.register("ascension", AscensionEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> LIFTED = EFFECTS.register("lifted", LiftedEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> HATRED = EFFECTS.register("hatred", HatredEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> REJECTED = EFFECTS.register("rejected", RejectedEffect::new);
 

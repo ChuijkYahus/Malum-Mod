@@ -1,21 +1,26 @@
 package com.sammy.malum.client.screen.waveform;
 
+import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
+import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.*;
 
+import java.text.*;
 import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
@@ -24,8 +29,9 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
 
     protected static final Function<GuiGraphics, LodestoneBufferWrapper> TEXT_WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
 
+    protected static final DecimalFormat FORMAT = new DecimalFormat("0.##");
+
     protected static final ResourceLocation WIDGETS = malumPath("textures/gui/waveform_artifice/waveform_widgets.png");
-    protected static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial.png");
 
     protected static final int FADE_SIZE = 6;
     protected static final int BORDER_SIZE = 5;
@@ -35,7 +41,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
     protected final int interfaceWidth;
     protected final int interfaceHeight;
 
-    protected int guiLeft, guiTop, xCenter, yCenter, dialLeft, dialTop, xDialCenter, yDialCenter;
+    protected int guiLeft, guiTop, xCenter, yCenter, dialLeft, dialRight, dialTop, dialBottom, xDialCenter, yDialCenter;
 
     protected boolean disableMouse;
 
@@ -49,7 +55,17 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         this.interfaceHeight = interfaceHeight;
     }
 
+    public static Component getTitleComponent(LodestoneBlockEntity blockEntity) {
+        return getTitleComponent(blockEntity.getBlockState().getBlock());
+    }
+    public static Component getTitleComponent(Block block) {
+        var id = BuiltInRegistries.BLOCK.getKey(block);
+        return Component.translatable("malum.waveform_artifice." + id.getPath());
+    }
+
     protected abstract void notifyServer(boolean isOpen);
+
+    public abstract void updateMousePosition(double mouseX, double mouseY);
 
     protected abstract boolean hasChanged();
 
@@ -60,11 +76,17 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         xCenter = guiLeft + screenWidth / 2;
         yCenter = guiTop + screenHeight / 2;
         dialLeft = xCenter - interfaceWidth / 2;
+        dialRight = xCenter + interfaceWidth / 2;
         dialTop = guiTop + 20;
+        dialBottom = dialTop + interfaceHeight;
 
         xDialCenter = dialLeft + interfaceWidth / 2;
         yDialCenter = dialTop + interfaceHeight / 2;
         notifyServer(true);
+        Window window = minecraft.getWindow();
+        double x = minecraft.mouseHandler.xpos() * window.getGuiScaledWidth() / window.getScreenWidth();
+        double y = minecraft.mouseHandler.ypos() * window.getGuiScaledHeight() / window.getScreenHeight();
+        updateMousePosition(x, y);
     }
 
     @SuppressWarnings("DataFlowIssue")

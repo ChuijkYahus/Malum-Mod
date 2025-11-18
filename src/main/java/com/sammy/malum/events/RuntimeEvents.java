@@ -1,7 +1,7 @@
 package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
-import com.sammy.malum.common.effect.*;
+import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
@@ -79,6 +79,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onEntityFall(LivingFallEvent event) {
         AscensionEffect.onEntityFall(event);
+        LiftedEffect.onEntityFall(event);
         SkyTetherEffect.onEntityFall(event);
     }
 
@@ -95,6 +96,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onLivingTick(EntityTickEvent.Pre event) {
+        WindTunnelHandler.entityTick(event);
         GeasEffectHandler.entityTick(event);
         SoulDataHandler.entityTick(event);
         SoulWardHandler.entityTick(event);

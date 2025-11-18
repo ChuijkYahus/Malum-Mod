@@ -8,14 +8,12 @@ import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
-import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP;
-
 @EventBusSubscriber(value = Dist.CLIENT, modid = MalumMod.MALUM)
 public class MalumShaders {
 
     public static LodestoneShaderRegistry SHADERS = new LodestoneShaderRegistry(MalumMod.MALUM);
 
-    public static ShaderHolder SOUL_WARD_HUD = SHADERS.register("hud_soul_ward", DefaultVertexFormat.POSITION_TEX_COLOR);
+    public static ShaderHolder DISSOLVING_HUD_ELEMENT = SHADERS.register("dissolving_hud_element", DefaultVertexFormat.POSITION_TEX_COLOR);
     public static ShaderHolder TOUCH_OF_DARKNESS = SHADERS.register("touch_of_darkness", DefaultVertexFormat.POSITION_TEX_COLOR);
 
     public static ShaderHolder WEEPING_WELL_DISTORTION = SHADERS.register("weeping_distortion", DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP);

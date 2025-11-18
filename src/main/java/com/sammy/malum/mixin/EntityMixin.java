@@ -1,6 +1,8 @@
 package com.sammy.malum.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
+import com.sammy.malum.core.handlers.*;
 import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -15,5 +17,10 @@ public class EntityMixin {
         if (entity instanceof LivingEntity livingEntity) {
             CombustionGeas.extinguish(livingEntity);
         }
+    }
+
+    @WrapOperation(method = "applyGravity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getGravity()D"))
+    private double malum$applyGravity(Entity entity, Operation<Double> original) {
+        return WindTunnelHandler.modifyEntityGravity(entity, original.call(entity));
     }
 }

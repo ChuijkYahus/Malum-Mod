@@ -21,6 +21,9 @@ public class SoulWardHandler {
         if (event.getEntity() instanceof LivingEntity living) {
             var level = living.level();
             if (!level.isClientSide) {
+                if (living.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY) == 0 && !living.hasData(MalumAttachmentTypes.SOUL_WARD)) {
+                    return;
+                }
                 var data = living.getData(MalumAttachmentTypes.SOUL_WARD);
                 data.tickData(living);
             }

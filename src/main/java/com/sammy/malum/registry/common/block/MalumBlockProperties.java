@@ -499,12 +499,23 @@ public class MalumBlockProperties {
         return new LodestoneBlockProperties()
                 .addTag(MalumTags.BlockTags.CREATE_WRENCH_PICKUP)
                 .mapColor(COPPER_BLOCK.defaultMapColor())
-                .strength(3.0F, 6.0F)
+                .strength(3.0F, 32.0F)
                 .sound(MalumSoundEvents.SPIRIT_DIODE)
                 .requiresCorrectToolForDrops()
                 .isRedstoneConductor(Blocks::never)
                 .needsPickaxe()
                 .needsAxe();
+    }
+
+    public static LodestoneBlockProperties GUST_TECH() {
+        return new LodestoneBlockProperties()
+                .addTag(MalumTags.BlockTags.CREATE_WRENCH_PICKUP)
+                .mapColor(COPPER_BLOCK.defaultMapColor())
+                .strength(4.0F, 32.0F)
+                .sound(MalumSoundEvents.SPIRIT_DIODE)
+                .requiresCorrectToolForDrops()
+                .isRedstoneConductor(Blocks::never)
+                .needsPickaxe();
     }
 
     public static LodestoneBlockProperties MANA_MOTE_BLOCK() {

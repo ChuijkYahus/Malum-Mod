@@ -10,6 +10,8 @@ import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
@@ -95,6 +97,10 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveMakerBlockEntity>> WAVEMAKER = BLOCK_ENTITY_TYPES.register("wavemaker", () -> BlockEntityType.Builder.of(WaveMakerBlockEntity::new, getBlocks(WaveMakerBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveBreakerBlockEntity>> WAVEBREAKER = BLOCK_ENTITY_TYPES.register("wavebreaker", () -> BlockEntityType.Builder.of(WaveBreakerBlockEntity::new, getBlocks(WaveBreakerBlock.class)).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> BlockEntityType.Builder.of(GustIgniterBlockEntity::new, MalumBlocks.GUST_IGNITER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> BlockEntityType.Builder.of(WindTunnelBlockEntity::new, MalumBlocks.WIND_TUNNEL.get()).build(null));
+
+
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RitualPlinthBlockEntity>> RITUAL_PLINTH = BLOCK_ENTITY_TYPES.register("ritual_plinth", () -> BlockEntityType.Builder.of(RitualPlinthBlockEntity::new, MalumBlocks.RITUAL_PLINTH.get()).build(null));
 
 
@@ -133,7 +139,7 @@ public class MalumBlockEntities {
         return matchingBlocks.toArray(new Block[0]);
     }
 
-    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
     public static class ClientOnly {
         @SubscribeEvent
         public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
@@ -159,6 +165,8 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(WAVEBANKER.get(), WavebankerRenderer::new);
             event.registerBlockEntityRenderer(WAVEMAKER.get(), WaveMakerRenderer::new);
             event.registerBlockEntityRenderer(WAVEBREAKER.get(), WaveBreakerRenderer::new);
+
+            event.registerBlockEntityRenderer(WIND_TUNNEL.get(), WindTunnelRenderer::new);
 
             event.registerBlockEntityRenderer(RITUAL_PLINTH.get(), RitualPlinthRenderer::new);
 

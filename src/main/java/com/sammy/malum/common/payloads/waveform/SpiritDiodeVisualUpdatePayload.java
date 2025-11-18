@@ -1,4 +1,4 @@
-package com.sammy.malum.common.payloads.diode;
+package com.sammy.malum.common.payloads.waveform;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -9,6 +9,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import team.lodestar.lodestone.systems.network.OneSidedPayloadData;
 
+//TODO: This sucks!!!
 public class SpiritDiodeVisualUpdatePayload extends OneSidedPayloadData {
     private final BlockPos pos;
     private final int outputSignal;

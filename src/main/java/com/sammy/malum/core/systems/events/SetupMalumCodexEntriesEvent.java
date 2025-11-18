@@ -1,6 +1,7 @@
 package com.sammy.malum.core.systems.events;
 
 
+import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import net.neoforged.bus.api.*;
 

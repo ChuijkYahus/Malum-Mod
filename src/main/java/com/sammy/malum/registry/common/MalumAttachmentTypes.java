@@ -48,6 +48,10 @@ public class MalumAttachmentTypes {
             "staff_abilities", () -> AttachmentType.builder(StaffAbilityData::new)
                     .serialize(StaffAbilityData.CODEC).sync(StaffAbilityData.STREAM_CODEC).build());
 
+    public static final Supplier<AttachmentType<WindTunnelData>> WIND_TUNNEL_INFO = ATTACHMENT_TYPES.register(
+            "wind_tunnel_info", () -> AttachmentType.builder(WindTunnelData::new)
+                    .serialize(WindTunnelData.CODEC).sync(WindTunnelData.STREAM_CODEC).build());
+
     public static final Supplier<AttachmentType<WeepingWellData>> WEEPING_WELL_INFO = ATTACHMENT_TYPES.register(
             "weeping_well_info", () -> AttachmentType.builder(WeepingWellData::new)
                     .serialize(WeepingWellData.CODEC).build());
@@ -57,7 +61,7 @@ public class MalumAttachmentTypes {
                     .serialize(TouchOfDarknessData.CODEC).build());
 
     public static final Supplier<AttachmentType<MalignantInfluenceData>> MALIGNANT_INFLUENCE = ATTACHMENT_TYPES.register(
-            "malignant_influence", () -> AttachmentType.builder(() -> new MalignantInfluenceData())
+            "malignant_influence", () -> AttachmentType.builder(MalignantInfluenceData::new)
                     .serialize(MalignantInfluenceData.CODEC).sync(MalignantInfluenceData.STREAM_CODEC).build());
 
 }

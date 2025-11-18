@@ -1,10 +1,12 @@
 package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.registry.common.*;
 
 import net.minecraft.client.*;
+import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
@@ -35,7 +37,11 @@ public class WaveformConfigurationHandler {
             resetInteraction();
             return;
         }
-        if (!(minecraft.level.getBlockEntity(blockPos) instanceof SpiritDiodeBlockEntity spiritDiode)) {
+        if (!(minecraft.level.getBlockEntity(blockPos) instanceof OpenStateBlockEntity entity)) {
+            resetInteraction();
+            return;
+        }
+        if (!entity.canTinker()) {
             resetInteraction();
             return;
         }
@@ -46,10 +52,20 @@ public class WaveformConfigurationHandler {
 
         interactionTime++;
         if (interactionTime == 5) {
-            minecraft.setScreen(new RadialValueConfigurationScreen(spiritDiode));
+            Screen screen = null;
+            if (entity instanceof AbstractGustGizmoBlockEntity gustGizmo) {
+                if (gustGizmo.getTinkeredBlock() instanceof GustIgniterBlockEntity igniter) {
+                    screen = new GustGizmoConfigurationScreen(igniter, igniter != gustGizmo);
+                }
+            }
+            else if (entity instanceof SpiritDiodeBlockEntity spiritDiode) {
+                screen = new DiodeValueConfigurationScreen(spiritDiode);
+            }
+            minecraft.setScreen(screen);
             resetInteraction();
         }
     }
+
     public static void onBlockActivated(PlayerInteractEvent.RightClickBlock event) {
         Level world = event.getLevel();
         BlockPos pos = event.getPos();
@@ -62,7 +78,7 @@ public class WaveformConfigurationHandler {
         if (!canInteract(player)) {
             return;
         }
-        if (!(world.getBlockEntity(pos) instanceof SpiritDiodeBlockEntity diode)) {
+        if (!(world.getBlockEntity(pos) instanceof OpenStateBlockEntity)) {
             return;
         }
         if (interactionPos != null) {

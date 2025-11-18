@@ -1,16 +1,12 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.block.curiosities.banner.*;
-import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.datagen.item.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.datagen.*;
 import team.lodestar.lodestone.systems.datagen.providers.*;
 import team.lodestar.lodestone.systems.datagen.statesmith.*;
@@ -223,8 +219,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, STRANGEROOT);
         MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_STRANGEROOT);
 
-        setTexturePath("spirit_diode/");
+        setTexturePath("waveform_artifice/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
+        MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
 
         setTexturePath("");
         itemModelProvider.setTexturePath("ether/");

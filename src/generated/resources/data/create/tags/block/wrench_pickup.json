@@ -5,6 +5,8 @@
     "malum:wavecharger",
     "malum:wavebanker",
     "malum:wavemaker",
-    "malum:wavebreaker"
+    "malum:wavebreaker",
+    "malum:gust_igniter",
+    "malum:wind_tunnel"
   ]
 }

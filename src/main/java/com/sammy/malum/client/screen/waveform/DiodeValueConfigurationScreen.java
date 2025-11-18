@@ -1,14 +1,13 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.common.payloads.diode.*;
-import net.minecraft.*;
+import com.sammy.malum.common.payloads.waveform.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.neoforge.network.*;
 import org.lwjgl.opengl.*;
@@ -17,21 +16,23 @@ import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.lang.Math;
-import java.util.function.*;
 
+import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 import static net.minecraft.util.FastColor.ARGB32.color;
 
-public class RadialValueConfigurationScreen extends AbstractValueConfigurationScreen {
+public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScreen {
 
     private static final int DIAL_SIZE = 64;
+
+    protected static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial.png");
 
     private final SpiritDiodeBlockEntity diode;
     private SpiritDiodeBlockEntity.TimeIntervalType timeInterval;
     private int oldAngle, angle;
 
-    public RadialValueConfigurationScreen(SpiritDiodeBlockEntity diode) {
-        super(diode.getTitleComponent(), 180+DIAL_SIZE, 60+DIAL_SIZE, DIAL_SIZE, DIAL_SIZE);
+    public DiodeValueConfigurationScreen(SpiritDiodeBlockEntity diode) {
+        super(getTitleComponent(diode), 180+DIAL_SIZE, 60+DIAL_SIZE, DIAL_SIZE, DIAL_SIZE);
         this.diode = diode;
         this.angle = diode.frequency;
         this.timeInterval = diode.type;
@@ -39,7 +40,18 @@ public class RadialValueConfigurationScreen extends AbstractValueConfigurationSc
 
     @Override
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, timeInterval, angle));
+        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, new SpiritDiodeBlockEntity.SpiritDiodeInfo(timeInterval, angle)));
+    }
+
+    @Override
+    public void updateMousePosition(double mouseX, double mouseY) {
+//        double offsetX = xDialCenter - mouseX;
+//        double offsetY = yDialCenter - mouseY;
+        double distance = DIAL_SIZE * 0.45f;//Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+        double rad = Math.toRadians(-angle + 180);
+        double newMouseX = xDialCenter + Math.sin(rad) * distance;
+        double newMouseY = yDialCenter + Math.cos(rad) * distance;
+        setCursor(newMouseX, newMouseY);
     }
 
     @Override
@@ -49,15 +61,6 @@ public class RadialValueConfigurationScreen extends AbstractValueConfigurationSc
             return true;
         }
         return false;
-    }
-
-    @Override
-    protected void init() {
-        super.init();
-        Window window = minecraft.getWindow();
-        double x = minecraft.mouseHandler.xpos() * window.getGuiScaledWidth() / window.getScreenWidth();
-        double y = minecraft.mouseHandler.ypos() * window.getGuiScaledHeight() / window.getScreenHeight();
-        updateMousePosition(x, y);
     }
 
     @Override
@@ -121,16 +124,6 @@ public class RadialValueConfigurationScreen extends AbstractValueConfigurationSc
             newAngle += 360;
         }
         return newAngle;
-    }
-
-    public void updateMousePosition(double mouseX, double mouseY) {
-//        double offsetX = xDialCenter - mouseX;
-//        double offsetY = yDialCenter - mouseY;
-        double distance = DIAL_SIZE * 0.45f;//Math.sqrt(offsetX * offsetX + offsetY * offsetY);
-        double rad = Math.toRadians(-angle + 180);
-        double newMouseX = xDialCenter + Math.sin(rad) * distance;
-        double newMouseY = yDialCenter + Math.cos(rad) * distance;
-        setCursor(newMouseX, newMouseY);
     }
 
     public void renderDial(GuiGraphics graphics, int x, int y) {

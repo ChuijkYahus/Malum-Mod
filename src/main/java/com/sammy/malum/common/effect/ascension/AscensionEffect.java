@@ -1,4 +1,4 @@
-package com.sammy.malum.common.effect;
+package com.sammy.malum.common.effect.ascension;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
@@ -20,6 +20,7 @@ public class AscensionEffect extends MobEffect {
         MobEffectInstance effectInstance = entity.getEffect(MalumMobEffects.ASCENSION);
         if (effectInstance != null) {
             event.setDistance(event.getDistance() / (6 + effectInstance.getAmplifier()));
+            entity.removeEffect(MalumMobEffects.ASCENSION);
         }
     }
 }

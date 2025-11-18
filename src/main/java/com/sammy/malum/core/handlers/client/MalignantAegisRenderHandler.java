@@ -91,7 +91,7 @@ public class MalignantAegisRenderHandler {
                     builder.setPositionWithWidth(left - 16, top - 16, 32, 32);
                     builder.setAlpha(alpha).setTexture(EMPTY).blit(poseStack);
 
-                    var hud = MalumShaders.SOUL_WARD_HUD.getShaderInstance();
+                    var hud = MalumShaders.DISSOLVING_HUD_ELEMENT.getShaderInstance();
                     RenderSystem.setShaderTexture(1, DISSOLVEMENT);
                     hud.safeGetUniform("YFrequency").set(24f);
                     hud.safeGetUniform("XFrequency").set(16f);

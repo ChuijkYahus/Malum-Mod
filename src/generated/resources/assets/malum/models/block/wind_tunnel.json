@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "malum:block/waveform_artifice/runewood_frame_bottom",
+    "particle": "malum:block/waveform_artifice/wind_tunnel",
+    "side": "malum:block/waveform_artifice/wind_tunnel_side",
+    "top": "malum:block/waveform_artifice/wind_tunnel"
+  }
+}
