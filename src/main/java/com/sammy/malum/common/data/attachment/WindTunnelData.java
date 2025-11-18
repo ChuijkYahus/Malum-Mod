@@ -11,6 +11,7 @@ import net.minecraft.core.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 
 import java.util.*;
@@ -49,6 +50,11 @@ public class WindTunnelData {
             if (source == null || area == null || direction == null) {
                 continue;
             }
+            if (entity instanceof Player player) {
+                if (player.onGround() && player.isCrouching()) {
+                    continue;
+                }
+            }
             if (!(level.getBlockEntity(source) instanceof GustIgniterBlockEntity igniter)) {
                 continue;
             }
@@ -82,7 +88,7 @@ public class WindTunnelData {
                         isZ ? position.z : center.z
                 );
                 var toCenter = center.subtract(position);
-                var centerVelocity = toCenter.normalize().scale(toCenter.length() * 0.1f * data.strength);
+                var centerVelocity = toCenter.normalize().scale(toCenter.length() * 0.2f * data.strength);
                 movement = movement.add(centerVelocity);
             }
             movement = movement.multiply(xFriction, yFriction, zFriction);
