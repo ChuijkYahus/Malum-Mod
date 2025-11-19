@@ -2266,6 +2266,33 @@
     ],
     "subtitle": "malum.subtitle.spellweaving_tool_primed"
   },
+  "spellwoven_sprite_harvests": {
+    "sounds": [
+      "malum:curiosities/spellweaving/spell_mine1",
+      "malum:curiosities/spellweaving/spell_mine2",
+      "malum:curiosities/spellweaving/spell_mine3",
+      "malum:curiosities/spellweaving/spell_mine4"
+    ],
+    "subtitle": "malum.subtitle.spellwoven_sprite_harvests"
+  },
+  "spellwoven_sprite_returns": {
+    "sounds": [
+      "malum:curiosities/spellweaving/spell_vanish1",
+      "malum:curiosities/spellweaving/spell_vanish2",
+      "malum:curiosities/spellweaving/spell_vanish3",
+      "malum:curiosities/spellweaving/spell_vanish4"
+    ],
+    "subtitle": "malum.subtitle.spellwoven_sprite_returns"
+  },
+  "spellwoven_sprite_spawns": {
+    "sounds": [
+      "malum:curiosities/spellweaving/spell_spawn1",
+      "malum:curiosities/spellweaving/spell_spawn2",
+      "malum:curiosities/spellweaving/spell_spawn3",
+      "malum:curiosities/spellweaving/spell_spawn4"
+    ],
+    "subtitle": "malum.subtitle.spellwoven_sprite_spawns"
+  },
   "spirit_altar_absorbs_item": {
     "sounds": [
       "malum:altar/altar_consume1",

@@ -12,6 +12,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.level.*;
+import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.*;
 
@@ -145,6 +147,11 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
 
     @Override
     public void collect(ServerLevel level) {
+        var sound = destination.getTargetLocation().map(
+                u -> MalumSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
+                b -> MalumSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
+        );
+        SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {
             var state = level.getBlockState(pos);
             if (state.isEmpty()) {

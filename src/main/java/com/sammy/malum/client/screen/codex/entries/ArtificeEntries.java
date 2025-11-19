@@ -77,6 +77,16 @@ public class ArtificeEntries {
                 ))
         );
 
+        screen.addEntry("windweaving", 6, 9, b -> b
+                .configureWidget(w -> w.setIcon(GUST_IGNITER))
+                .addPage(new HeadlineTextPage("windweaving"))
+                .addPage(new TextPage("windweaving.2"))
+                .addPage(new HeadlineTextPage("windweaving.gust_igniter"))
+                .addPage(SpiritInfusionPage.fromOutput(GUST_IGNITER.get()))
+                .addPage(new HeadlineTextPage("windweaving.wind_tunnel"))
+                .addPage(SpiritInfusionPage.fromOutput(WIND_TUNNEL.get()))
+        );
+
         screen.addEntry("soulwoven_silk", 4, 5, b -> b
                 .configureWidget(w -> w.setIcon(SOULWOVEN_SILK))
                 .addPage(new HeadlineTextPage("soulwoven_silk", "soulwoven_silk.1"))

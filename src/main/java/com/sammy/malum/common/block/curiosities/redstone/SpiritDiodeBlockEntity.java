@@ -1,39 +1,56 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
-import com.sammy.malum.common.payloads.diode.SpiritDiodeVisualUpdatePayload;
-import com.sammy.malum.registry.common.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import com.sammy.malum.common.data.attachment.*;
+import com.sammy.malum.common.payloads.waveform.SpiritDiodeVisualUpdatePayload;
+import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.*;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
+import net.minecraft.util.*;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
-import team.lodestar.lodestone.helpers.RandomHelper;
-import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
-import team.lodestar.lodestone.systems.particle.data.color.*;
 
-import java.awt.*;
 import java.util.*;
 
 import static net.minecraft.network.chat.Component.translatable;
 
-public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
+public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
 
-    public enum TimeIntervalType {
-        REDSTONE_TICK(0, 2),
-        SECOND(1, 20),
-        MINUTE(2, 1200);
+    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements InboundInfo<SpiritDiodeBlockEntity> {
+        public static final Codec<SpiritDiodeInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                TimeIntervalType.CODEC.fieldOf("type").forGetter(SpiritDiodeInfo::type),
+                Codec.INT.fieldOf("frequency").forGetter(SpiritDiodeInfo::frequency)
+        ).apply(instance, SpiritDiodeInfo::new));
 
+        public static StreamCodec<ByteBuf, SpiritDiodeInfo> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritDiodeInfo.CODEC);
+
+        @Override
+        public void sync(SpiritDiodeBlockEntity entity) {
+            entity.type = type;
+            entity.frequency = frequency;
+        }
+    }
+
+    public enum TimeIntervalType implements StringRepresentable {
+        REDSTONE_TICK("redstone_tick", 0, 2),
+        SECOND("second", 1, 20),
+        MINUTE("minute", 2, 1200);
+
+        public static final StringRepresentable.EnumCodec<TimeIntervalType> CODEC = StringRepresentable.fromEnum(TimeIntervalType::values);
+
+        final String name;
         final int id;
         final int timeScale;
 
-        TimeIntervalType(int id, int timeScale) {
+        TimeIntervalType(String name, int id, int timeScale) {
+            this.name = name;
             this.id = id;
             this.timeScale = timeScale;
         }
@@ -45,6 +62,7 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
         public Component getText(SpiritDiodeBlockEntity blockEntity) {
             return getText(blockEntity.frequency > 1);
         }
+
         public Component getText(boolean plural) {
             var key = plural ? getPluralLangKey() : getLangKey();
             return Component.translatable(key);
@@ -53,8 +71,14 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
         public String getLangKey() {
             return "malum.waveform_artifice." + getName();
         }
+
         public String getPluralLangKey() {
             return getLangKey() + "_plural";
+        }
+
+        @Override
+        public String getSerializedName() {
+            return name;
         }
     }
 
@@ -64,8 +88,6 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
     public int cachedInputSignal = -1;
     public int outputSignal;
 
-    public int closeDelay;
-
     //TODO: remove all this
     public long visualStartTime;
     public int visualTransitionDuration;
@@ -74,6 +96,11 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
 
     public SpiritDiodeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+    }
+
+    @Override
+    public SpiritDiodeInfo resetState() {
+        return new SpiritDiodeInfo(type, frequency);
     }
 
     @Override
@@ -94,40 +121,6 @@ public class SpiritDiodeBlockEntity extends LodestoneBlockEntity {
 
         tag.putInt("cachedInputSignal", cachedInputSignal);
         tag.putInt("outputSignal", outputSignal);
-    }
-
-    @Override
-    public void serverTick(ServerLevel level) {
-        if (closeDelay > 0) {
-            closeDelay--;
-            if (closeDelay == 0) {
-                toggleState(false, type, frequency);
-            }
-        }
-    }
-
-    public void toggleState(boolean newValue, TimeIntervalType type, int frequency) {
-        if (level instanceof ServerLevel serverLevel) {
-            boolean value = getBlockState().getValue(SpiritDiodeBlock.OPEN);
-            if (value != newValue) {
-                level.setBlock(getBlockPos(), getBlockState().setValue(SpiritDiodeBlock.OPEN, !value), 3);
-                level.playSound(null, getBlockPos(), value ? MalumSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumSoundEvents.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
-                var particleEffect = value ? MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE : MalumParticleEffectTypes.SPIRIT_DIODE_OPEN;
-                particleEffect.createEffect()
-                        .at(worldPosition.getCenter().add(0, value ? 0 : 0.5f, 0))
-                        .color(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build())
-                        .spawn(serverLevel);
-                this.type = type;
-                this.frequency = frequency;
-                setDirty();
-            }
-            closeDelay = newValue ? 100 : 0;
-        }
-    }
-
-    public Component getTitleComponent() {
-        var id = BuiltInRegistries.BLOCK.getKey(getBlockState().getBlock());
-        return Component.translatable("malum.waveform_artifice." + id.getPath());
     }
 
     public int getAdjustedFrequency() {

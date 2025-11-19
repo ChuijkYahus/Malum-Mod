@@ -158,6 +158,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
 
             boolean disallowBeneath = pos.getY() >= player.getY() && primaryDirection.getAxis().isHorizontal() && isNearest;
 
+            boolean playSound = false;
             int distance = spawnedLoci+1;
             for (int i = 0; i < distance*2; i++) {
                 int offset = i % distance;
@@ -170,9 +171,10 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                             continue;
                         }
                         if (spawnedLoci <= 0) {
-                            return;
+                            break;
                         }
                         spawnBreaker(level, markedPos, random, tool, player, lociSpeed, pos, spirit, backup);
+                        playSound = true;
                         spawnedLoci--;
                     }
                 }
@@ -181,9 +183,12 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                         disallowBeneath = false;
                     }
                     else {
-                        return;
+                        break;
                     }
                 }
+            }
+            if (playSound) {
+                SoundHelper.playSound(player, MalumSoundEvents.SPELLWOVEN_SPRITE_SPAWN.get(), 1f, 1f);
             }
         }
     }

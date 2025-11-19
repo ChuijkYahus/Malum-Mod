@@ -14,11 +14,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 
+import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
 public class WindNucleusItem extends Item {
-    private static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
+    public static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
             true, false, Optional.of(3f), BuiltInRegistries.BLOCK.getTag(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
     );
 
@@ -28,7 +29,7 @@ public class WindNucleusItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        final float radius = 1.5f;
+        float radius = 1.5f;
         float addedMotion = 2f;
         Vec3 pos = player.getEyePosition().add(player.getLookAngle().scale(3f));
         level.explode(
@@ -58,7 +59,7 @@ public class WindNucleusItem extends Item {
         return InteractionResultHolder.success(itemstack);
     }
 
-    public List<Entity> getExplosionAffectedEntities(Level level, Player player, Vec3 pos, float radius) {
+    public static List<Entity> getExplosionAffectedEntities(Level level, @Nullable Player player, Vec3 pos, float radius) {
         float f2 = radius * 2.0F;
         int k1 = Mth.floor(pos.x - (double)f2 - 1.0);
         int l1 = Mth.floor(pos.x + (double)f2 + 1.0);

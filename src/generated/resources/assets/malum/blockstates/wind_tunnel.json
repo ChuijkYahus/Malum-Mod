@@ -1,0 +1,1668 @@
+{
+  "variants": {
+    "down=false,facing=down,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=down,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=false,facing=east,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=east,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=north,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=false,facing=south,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=south,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=false,facing=up,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=false,facing=up,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=up,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=false,facing=west,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=false,facing=west,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=down,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=down,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 180
+    },
+    "down=true,facing=east,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=east,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=north,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90
+    },
+    "down=true,facing=south,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=south,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 180
+    },
+    "down=true,facing=up,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel"
+    },
+    "down=true,facing=up,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=up,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open"
+    },
+    "down=true,facing=west,left=false,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=false,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=false,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=false,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=false,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=false,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=false,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=true,right=false,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=true,right=false,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=true,right=true,up=false": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    },
+    "down=true,facing=west,left=true,open=true,powered=true,right=true,up=true": {
+      "model": "malum:block/wind_tunnel_open",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

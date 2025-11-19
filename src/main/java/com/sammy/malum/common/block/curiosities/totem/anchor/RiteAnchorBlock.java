@@ -83,8 +83,6 @@ public class RiteAnchorBlock extends LodestoneEntityBlock<RiteAnchorBlockEntity>
         }
     }
 
-
-
     public BooleanProperty getDirectionProperty(Direction direction) {
         return switch (direction) {
             case NORTH -> NORTH;

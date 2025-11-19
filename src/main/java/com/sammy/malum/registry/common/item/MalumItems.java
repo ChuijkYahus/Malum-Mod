@@ -505,6 +505,9 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> WAVEMAKER = register("wavemaker", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WAVEMAKER.get(), p));
     public static final DeferredHolder<Item, Item> WAVEBREAKER = register("wavebreaker", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WAVEBREAKER.get(), p));
 
+    public static final DeferredHolder<Item, Item> GUST_IGNITER = register("gust_igniter", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.GUST_IGNITER.get(), p));
+    public static final DeferredHolder<Item, Item> WIND_TUNNEL = register("wind_tunnel", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WIND_TUNNEL.get(), p));
+
     public static final DeferredHolder<Item, Item> WEAVERS_WORKBENCH = register("weavers_workbench", MalumItems::COSMETIC_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WEAVERS_WORKBENCH.get(), p));
     //endregion
 

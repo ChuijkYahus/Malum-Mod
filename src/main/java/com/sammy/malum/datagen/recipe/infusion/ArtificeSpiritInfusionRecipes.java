@@ -55,6 +55,19 @@ public class ArtificeSpiritInfusionRecipes {
                 .addExtraItem(Items.REDSTONE_BLOCK, 1)
                 .save(recipeOutput);
 
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.GUST_IGNITER.get(), 2)
+                .addSpirit(AERIAL_SPIRIT, 8)
+                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(Items.WIND_CHARGE, 2)
+                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WIND_TUNNEL.get(), 4)
+                .addSpirit(AERIAL_SPIRIT, 8)
+                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 2)
+                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(Items.FURNACE, 1, MalumItems.SPIRIT_CRUCIBLE.get(), 1)
                 .addSpirit(INFERNAL_SPIRIT, 8)

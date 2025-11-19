@@ -4,6 +4,8 @@ import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
@@ -108,6 +110,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> WAVEBANKER = BLOCKS.register("wavebanker", () -> new WaveBankerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEBANKER));
     public static final DeferredHolder<Block, Block> WAVEMAKER = BLOCKS.register("wavemaker", () -> new WaveMakerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEMAKER));
     public static final DeferredHolder<Block, Block> WAVEBREAKER = BLOCKS.register("wavebreaker", () -> new WaveBreakerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEBREAKER));
+
+    public static final DeferredHolder<Block, Block> GUST_IGNITER = BLOCKS.register("gust_igniter", () -> new GustIgniterBlock(MalumBlockProperties.GUST_TECH()).setBlockEntity(MalumBlockEntities.GUST_IGNITER));
+    public static final DeferredHolder<Block, Block> WIND_TUNNEL = BLOCKS.register("wind_tunnel", () -> new WindTunnelBlock(MalumBlockProperties.GUST_TECH()).setBlockEntity(MalumBlockEntities.WIND_TUNNEL));
 
     public static final DeferredHolder<Block, Block> SPIRIT_MOTE = BLOCKS.register("spirit_mote", () -> new ManaMoteBlock(MalumBlockProperties.MANA_MOTE_BLOCK()).setBlockEntity(MalumBlockEntities.MANA_MOTE));
 

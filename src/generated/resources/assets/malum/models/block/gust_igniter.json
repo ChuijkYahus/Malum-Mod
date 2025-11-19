@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "malum:block/waveform_artifice/gust_igniter_bottom",
+    "particle": "malum:block/waveform_artifice/gust_igniter",
+    "side": "malum:block/waveform_artifice/gust_igniter_side",
+    "top": "malum:block/waveform_artifice/gust_igniter"
+  }
+}

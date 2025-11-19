@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
+import java.util.*;
 import java.util.function.*;
 
 public class MalignantConversionHandler {
@@ -30,15 +31,19 @@ public class MalignantConversionHandler {
             return;
         }
         var source = event.getSource();
-        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
-            return;
-        }
-        var data = entity.getData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-        int aegis = data.getMalignantAegis();
-        if (aegis <= 0) {
+        if (source.is(MalumTags.DamageTypeTags.BYPASSES_MALIGNANT_AEGIS)) {
             return;
         }
         if (!(event.getOriginalAmount() >= 2f)) {
+            return;
+        }
+        var optional = MalignantInfluenceData.getMalignantAegisData(entity);
+        if (optional.isEmpty()) {
+            return;
+        }
+        var data = optional.get();
+        int aegis = data.getMalignantAegis();
+        if (aegis <= 0) {
             return;
         }
         data.reduceAegis(1);
@@ -46,9 +51,9 @@ public class MalignantConversionHandler {
         int invulnerabilityTicks = Math.min(container.getPostAttackInvulnerabilityTicks() * 2, 40);
         container.setPostAttackInvulnerabilityTicks(invulnerabilityTicks);
         entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-        SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 1f, 1f);
+        SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 0.25f, 1f);
         if (data.getMalignantAegis() == 0) {
-            SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE.get(), 2f, 1f);
+            SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE.get(), 1f, 1f);
         }
         event.setCanceled(true);
     }
