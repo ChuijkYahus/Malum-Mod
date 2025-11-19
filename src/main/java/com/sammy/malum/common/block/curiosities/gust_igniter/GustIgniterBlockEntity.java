@@ -185,7 +185,7 @@ public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
         var pos = getBlockPos();
         var facing = state.getValue(GustIgniterBlock.FACING);
         boolean isGlider = modified;
-        float radius = 0.5f;
+        float radius = 1.75f;
         float delta = strength / MAX_STRENGTH;
         float force = (isGlider ? 0.2f : 0.4f) + delta * 0.4f;
         var appliedEffect = isGlider ? MalumMobEffects.LIFTED : MalumMobEffects.ASCENSION;
@@ -210,18 +210,22 @@ public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
         );
 
         for (Entity entity : explosionAffectedEntities) {
-            var cachedVelocity = velocityCache.get(entity);
+            var velocity = entity.getDeltaMovement();
             double appliedForce = force;
-            if (cachedVelocity.length() < 0.1f) {
+            if (velocity.length() < 0.1f) {
                 appliedForce *= 1.5f;
             }
-            if (cachedVelocity.y < 0) {
-                appliedForce += Math.abs(cachedVelocity.y);
+            if (velocity.y < 0) {
+                appliedForce += Math.abs(velocity.y);
             }
 
             var direction = new Vec3(facing.getStepX(), facing.getStepY(), facing.getStepZ());
+            var multiplier = new Vec3(0.25f, 0.25f, 0.25f).multiply(Math.abs(direction.x*4),Math.abs(direction.y*4),Math.abs(direction.z*4));
+
             var addedVelocity = direction.scale(appliedForce);
-            entity.setDeltaMovement(cachedVelocity.add(addedVelocity));
+            var result = velocity.add(addedVelocity).multiply(multiplier);
+            double limit = Math.min(result.length(), appliedForce) * 2;
+            entity.setDeltaMovement(result.normalize().scale(limit));
             if (entity instanceof LivingEntity livingEntity) {
                 livingEntity.addEffect(new MobEffectInstance(appliedEffect, effectDuration, effectAmplifier));
             }

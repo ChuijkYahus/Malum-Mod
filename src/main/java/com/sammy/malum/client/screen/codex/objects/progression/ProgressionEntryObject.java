@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
+import com.google.common.collect.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
@@ -112,6 +113,22 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         }
     }
 
+    @Override
+    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
+        var tooltip = super.gatherTooltip(screen);
+        ImmutableList<EntryReference> references = entry.references;
+        for (int i = references.size()-1; i >=0; i--) {
+            EntryReference reference = references.get(i);
+            if (reference.entry.shouldShow()) {
+                var slash = Component.literal("┇ ");
+                var text = Component.translatable(reference.entry.translationKey());
+                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
+                tooltip.add(1, component);
+            }
+        }
+        return tooltip;
+    }
+
     public void renderOutline(PoseStack poseStack, float distortionIntensity, float intensity, Function<WidgetDesignType, ResourceLocation> texture, Int2ObjectFunction<Color> colorSupplier) {
         int posX = getOffsetXPosition() - 16;
         int posY = getOffsetYPosition() - 16;
@@ -160,20 +177,6 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
                 MalumSpiritTypes.INFERNAL_SPIRIT.get()
         };
         return spirits[index].getPrimaryColor();
-    }
-
-    @Override
-    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
-        var tooltip = super.gatherTooltip(screen);
-        for (EntryReference reference : entry.references) {
-            if (reference.entry.shouldShow()) {
-                var slash = Component.literal("┇ ");
-                var text = Component.translatable(reference.entry.translationKey());
-                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
-                tooltip.add(1, component);
-            }
-        }
-        return tooltip;
     }
 
     public int getCenterX() {

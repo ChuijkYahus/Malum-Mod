@@ -556,14 +556,14 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("windweaving", "Wind-Weaving", "Forming air currents");
         addPages("windweaving",
-                "When looking for traces of Arcana around the world, Aerial bears the most significant presence. All weather phenomena appear to carry faint traces of it, not in the form of a spirit per-say but rather- an exhausted memory of it's influence upon the world. ",
-                "These memories of wind rest everywhere, they are spent- but not entirely obsolete. When imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by utilizing Wind Charges and Nuclei");
+                "When looking for traces of Arcana around the world, Aerial bears the most significant presence. All weather phenomena appear to carry faint traces of it, not in the form of a spirit per-say, but rather an exhausted memory of it's influence upon the world. That influence is wrought, but with a little effort can be reclaimed.",
+                "These memories of wind rest everywhere, idle and exhausted. And yet, when imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by extrapolating it's already complete application in Wind Charges and Wind Nuclei");
         addHeadline("windweaving.gust_igniter", "Gust Igniter");
         addPages("windweaving.gust_igniter",
-                "Wind Charges carry a memory of motion. Inherently chaotic, it is released on impact. The Gust Igniter mimics the influence of this flow at no cost. When powered with redstone, the device will weave a gust of wind capable of applying outwards propulsion to anything found nearby. The effect's intensity and form can be configured with the Artificer's Claw.");
+                "Wind Charges carry a memory of scattering. Inherently chaotic, it is released on impact. When powered by redstone, the Gust Igniter mimics a wind-burst capable of applying outwards propulsion to anything found nearby. The effect's intensity and exact form can be configured with the Artificer's Claw.");
         addHeadline("windweaving.wind_tunnel", "Wind Tunnel");
         addPages("windweaving.wind_tunnel",
-                "Wind Nuclei are another form of encapsulated wind, more powerful and innately directed. When powered by a connected Gust Igniter, Wind Tunnels will continuously weave a rising column of flowing wind capable of transporting most objects and creatures. The effect's distance and pull direction can be configured with the Artificer's Claw.");
+                "Wind Nuclei are an encapsulated burst of wind, powerful and innately directed. When powered by a connected Gust Igniter, Wind Tunnels will continuously weave a rising column of flowing wind capable of transporting most objects and creatures. The effect's distance and direction can be configured with the Artificer's Claw.");
 
         addSimpleEntryHeader("soulwoven_silk", "Soulwoven Silk", "To weave the ephemeral");
         addPages("soulwoven_silk", "Soulwoven Silk is a light, yet sturdy material imbued with soulstuff. Like a body, it naturally insulates against arcane energies. While other materials do the same, cloth is far easier to work with in designing than stone.");
@@ -1095,9 +1095,10 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "To rise above all");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER,
-                """
+                scaled(0.8f) + """
                         Gravity; The greatest force to leverage against.
-                         -Wind Gusts Provide Greater Propulsion and Grant Reduced Gravity""",
+                         -Wind Gusts Provide Greater Propulsion and Grant Ascension
+                         -Ascension State Grants Greater Aerial Manoeuvrability""",
                 """
                         That which you rely on shall eventually crush you.
                          -Fall Damage Taken is Doubled""");
