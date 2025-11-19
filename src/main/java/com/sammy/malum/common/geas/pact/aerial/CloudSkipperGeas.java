@@ -67,7 +67,7 @@ public class CloudSkipperGeas extends GeasEffect {
                 }
                 event.setKnockbackVelocity(knockbackVelocity.multiply(horizontalScalar, verticalScalar, horizontalScalar));
                 if (entity instanceof Player player) {
-                    player.addEffect(new MobEffectInstance(MalumMobEffects.ASCENSION, 100, 1));
+                    player.addEffect(new MobEffectInstance(MalumMobEffects.ASCENSION, 200, 3));
                     cloudSkipper.streak++;
                     cloudSkipper.setDirty();
                 }

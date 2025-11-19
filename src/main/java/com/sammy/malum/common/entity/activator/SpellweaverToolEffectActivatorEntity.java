@@ -151,7 +151,7 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
                 u -> MalumSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
                 b -> MalumSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
         );
-        SoundHelper.playSound(this, sound.get(), 0.25f, 2f);
+        SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {
             var state = level.getBlockState(pos);
             if (state.isEmpty()) {
