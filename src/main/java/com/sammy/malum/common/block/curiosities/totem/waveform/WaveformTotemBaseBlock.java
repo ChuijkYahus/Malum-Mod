@@ -33,7 +33,9 @@ public class WaveformTotemBaseBlock<T extends WaveformTotemBaseBlockEntity> exte
                 } else {
                     level.setBlock(pos, state.cycle(POWERED), 2);
                     if (level.getBlockEntity(pos) instanceof WaveformTotemBaseBlockEntity totemBase) {
-                        totemBase.triggerRite(serverLevel);
+                        if (totemBase.canTriggerRite()) {
+                            totemBase.triggerRite(serverLevel);
+                        }
                     }
                 }
             }

@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
@@ -89,7 +90,7 @@ public class ScarfRenderHandler {
         }
 
         public boolean isValid(LivingEntity entity) {
-            return !entity.isRemoved() && !entity.isDeadOrDying() && entity.isAddedToLevel() && isValid.get();
+            return entity.isAlive() && !entity.isRemoved() && !entity.isDeadOrDying() && entity.isAddedToLevel() && isValid.get();
         }
 
         public ScarfRenderData setPrimaryColor(Color primaryColor) {

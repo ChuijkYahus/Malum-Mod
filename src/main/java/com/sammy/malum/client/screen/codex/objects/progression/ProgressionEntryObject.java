@@ -58,7 +58,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         oldOutlineVisibility = outlineVisibility;
         if (isHoveredOver) {
             if (outlineVisibility == 6) {
-                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.4f, 1f);
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.2f, 1f);
             }
             if (outlineVisibility < 20) {
                 outlineVisibility = Math.min(outlineVisibility + 2, 20);
@@ -66,7 +66,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         }
         else {
             if (outlineVisibility == 15) {
-                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.2f, 0.75f);
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.1f, 0.75f);
             }
             if (outlineVisibility > 0) {
                 outlineVisibility--;
