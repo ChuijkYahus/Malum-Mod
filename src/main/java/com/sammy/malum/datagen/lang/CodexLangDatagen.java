@@ -298,7 +298,7 @@ public class CodexLangDatagen {
         addPages("void.malignant_stronghold_armor",
                 "Malignant Pewter rejects magic, thus, wearing it might seem an odd choice for a mage. And yet, it is " + italic("because") + " I am a mage that the Stronghold Armor I have made is so potent.",
                 "It stands as an inverse to the Soulstained Steel armor beneath the Pewter plating - although my soul is unwarded, the metal disfigures the flow of arcana. It bends and flows outwards, any harm coming my way becomes disorganized, only half of it's intended impact reaching my soul when the full Stronghold Armor is equipped.",
-                "The armor doesn't strength just inbound magic however. The wearer's own arcane etchings of various sorts are also affected. Their trajectory towards the soul is intercepted - stolen and processed - and in the unraveling of arcana, energy still remains. The armor reacts to that energy, growing stronger alongside it.",
+                "The armor doesn't influence just inbound magic however. The wearer's own arcane etchings of various sorts are also affected. Their trajectory towards the soul is intercepted - stolen and processed - and in the unraveling of arcana, energy still remains. The armor reacts to that energy, growing stronger alongside it.",
                 "Two terms are necessary here. Firstly, the armour's magic absorption process shall be named Malignant Conversion. It is the interception of the flow of arcana towards the soul and the absorption of the resulting energy. Continuing, the armour weaves it's stolen power, giving it a new form and purpose. The resulting effect shall be named Malignant Aegis",
                 "Malignant Aegis functions as a powerful barrier capable of outright nullifying most forms of inbound harm. As the armor absorbs more and more magic, the Aegis will grow in capacity and potentially recharge rate and gain depending on the attributes absorbed. This, by far, is the strongest property of the Malignant Stronghold Armor");
 
@@ -372,7 +372,7 @@ public class CodexLangDatagen {
                 "I seem to have stumbled upon something peculiar: a form of magic so far undocumented. I could hardly call myself a magus if I refused the opportunity to study it. In this codex, the Encyclopedia Arcana, I write my research into this power, hoping to document everything about it.",
                 "The energies this thaumaturgical discipline manipulates seem to be rooted in the soul. More accurately, they are the energies of the soul, the inclinations and impulses that make up each one of us.",
                 "So far, what I have described is basic. But I have found a way to separate, and then condense, the impulse of a soul into a physical form I call a spirit crystal. This forms the basis of my research.",
-                "The natures of the soul I condense strength the crystal's properties. Each soul is slightly different, and that can result in changes to the crystals formed. I believe these spirit crystals to be just the breakthrough I need.");
+                "The natures of the soul I condense influence the crystal's properties. Each soul is slightly different, and that can result in changes to the crystals formed. I believe these spirit crystals to be just the breakthrough I need.");
 
         addSimpleEntryHeader("spirit_crystals", "Spirit Crystals", "Matter and magic");
         addPages("spirit_crystals",
@@ -556,14 +556,14 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("windweaving", "Wind-Weaving", "Forming air currents");
         addPages("windweaving",
-                "When looking for traces of Arcana around the world, Aerial bears the most significant presence. All weather phenomena appear to carry faint traces of it, not in the form of a spirit per-say but rather- an exhausted memory of it's influence upon the world. ",
-                "These memories of wind rest everywhere, they are spent- but not entirely obsolete. When imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by utilizing Wind Charges and Nuclei");
+                "When looking for traces of Arcana around the world, Aerial bears the most significant presence. All weather phenomena appear to carry faint traces of it, not in the form of a spirit per-say, but rather an exhausted memory of it's influence upon the world. That influence is spent, but with a little effort can be made real again.",
+                "These memories of wind rest everywhere, idle and exhausted. And yet, when imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by extrapolating it's already complete application in Wind Charges and Wind Nuclei");
         addHeadline("windweaving.gust_igniter", "Gust Igniter");
         addPages("windweaving.gust_igniter",
-                "Wind Charges carry a memory of motion. Inherently chaotic, it is released on impact. The Gust Igniter mimics the influence of this flow at no cost. When powered with redstone, the device will weave a gust of wind capable of applying outwards propulsion to anything found nearby. The effect's intensity and form can be configured with the Artificer's Claw.");
+                "Wind Charges carry a memory of scattering. Inherently chaotic, it is released on impact. When powered by redstone, the Gust Igniter mimics a wind-burst capable of applying outwards propulsion to anything found nearby. The effect's intensity and exact form can be configured with the Artificer's Claw.");
         addHeadline("windweaving.wind_tunnel", "Wind Tunnel");
         addPages("windweaving.wind_tunnel",
-                "Wind Nuclei are another form of encapsulated wind, more powerful and innately directed. When powered by a connected Gust Igniter, Wind Tunnels will continuously weave a rising column of flowing wind capable of transporting most objects and creatures. The effect's distance and pull direction can be configured with the Artificer's Claw.");
+                "Wind Nuclei are an encapsulated burst of wind, powerful and innately directed. When powered by a connected Gust Igniter, Wind Tunnels will continuously weave a rising column of flowing wind capable of transporting most objects and creatures. The effect's distance and direction can be configured with the Artificer's Claw.");
 
         addSimpleEntryHeader("soulwoven_silk", "Soulwoven Silk", "To weave the ephemeral");
         addPages("soulwoven_silk", "Soulwoven Silk is a light, yet sturdy material imbued with soulstuff. Like a body, it naturally insulates against arcane energies. While other materials do the same, cloth is far easier to work with in designing than stone.");
@@ -642,7 +642,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("impurity_stabilizer", "Impurity Stabilizer", "Potency from weakness");
         addPages("impurity_stabilizer",
-                "The wicked spirit is drawn to the weak, seeking to cull. The Impurity Stabilizer subverts that property, providing a powerful percentage tuning bonus to the weakest crucible attribute besides fuel usage rate and instability. This secondary strength does create a bit of strain on the standard tuning process however.");
+                "The wicked spirit is drawn to the weak, seeking to cull. The Impurity Stabilizer subverts that property, providing a powerful percentage tuning bonus to the weakest crucible attribute besides fuel usage rate and instability. This secondary influence does create a bit of strain on the standard tuning process however.");
 
         addSimpleEntryHeader("shielding_apparatus", "Shielding Apparatus", "A bulwark against the storm");
         addPages("shielding_apparatus",
@@ -651,7 +651,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("warping_engine", "Warping Engine", "Suspension of linear time");
         addPages("warping_engine",
                 "Warp Flux rejects natural law, and its application here is no less concerning. The Warping Engine rejects the sequence of cause and effect, allowing an additional cycle to sometimes be completed almost before it is begun whenever a cycle is completed normally.",
-                "Furthermore, chained activations of the Warping Engine provide a stacking benefit to " + italic("all") + " other attributes. Perhaps predictably, this behavior creates a significant increase in fuel requirements of the focusing process. Lastly, the strength of the Warping Engine creates a minor amount of strain on the standard tuning process.");
+                "Furthermore, chained activations of the Warping Engine provide a stacking benefit to " + italic("all") + " other attributes. Perhaps predictably, this behavior creates a significant increase in fuel requirements of the focusing process. Lastly, the influence of the Warping Engine creates a minor amount of strain on the standard tuning process.");
 
         addSimpleEntryHeader("prismatic_focus_lens", "Prismatic Focus Lens", "Stability");
         addPages("prismatic_focus_lens",
@@ -744,7 +744,7 @@ public class CodexLangDatagen {
         addHeadline("necklace_of_blissful_harmony", "Necklace of Blissful Harmony");
         addPages("necklace_of_blissful_harmony",
                 "To focus on my magics I more often than not need peace and clarity. As such, I have devised a tool to redirect attention around me. While worn, this accessory will hide my presence from nearby adversaries, decreasing their likelihood of taking interest in me.",
-                "Upon further studies, it would appear that the effects of my newly forged trinket are " + italic("especially") + " potent when exerting their strength over any soul bearing a Wicked spirit.");
+                "Upon further studies, it would appear that the effects of my newly forged trinket are " + italic("especially") + " potent when exerting their influence over any soul bearing a Wicked spirit.");
 
         addEntryHeader("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror", "As without, so within");
         addHeadline("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror");
@@ -1095,9 +1095,10 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "To rise above all");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER,
-                """
+                scaled(0.8f) + """
                         Gravity; The greatest force to leverage against.
-                         -Wind Gusts Provide Greater Propulsion and Grant Reduced Gravity""",
+                         -Wind Gusts Provide Greater Propulsion and Grant Ascension
+                         -Ascension State Grants Greater Aerial Manoeuvrability""",
                 """
                         That which you rely on shall eventually crush you.
                          -Fall Damage Taken is Doubled""");
@@ -1504,7 +1505,7 @@ public class CodexLangDatagen {
                 "When initially woven, the bound rite locus simply wanders in whichever direction the totem demands. I've measured it's speed at precisely four blocks per second with a lifespan capable of supporting eight activations of it's carried effect.",
                 "Tainted Rock bears a unique adversity to magic. It disrupts and eventually unravels the flow of arcana entirely. Without a carefully constructed form however, the disrupting property is all that demands consideration. When traveling over tainted rock, the rite locus will not take effect and as such will not progress towards it's eventual end.",
                 "Lastly, as the Rite Locus is not a tangible object, it bears no mass, and as such it is unaffected by gravity and can seamlessly phase through any solid matter.",
-                "The Rite Anchor is an apparatus designed to direct and augment any wandering rite locus. By socketing it with spirit arcana, a travel vector is defined and begins to strength any passing locus. The nature of the arcane etching utilized for the vector is rather delicate, and as such the rite anchor cannot operate when influenced by redstone.");
+                "The Rite Anchor is an apparatus designed to direct and augment any wandering rite locus. By socketing it with spirit arcana, a travel vector is defined and begins to influence any passing locus. The nature of the arcane etching utilized for the vector is rather delicate, and as such the rite anchor cannot operate when influenced by redstone.");
 
         addHeadline("locus_management.sacred", "Restoring the Locus");
         addPages("locus_management.sacred", "By imbuing the bound rite locus with Sacred Arcana, it will mend itself over time, restoring lost lifespan and thus allowing it to travel further. This effect can be triggered up to four times per locus.");

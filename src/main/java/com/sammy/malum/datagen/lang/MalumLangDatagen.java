@@ -360,8 +360,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
         addGeasEffect("outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
         addGeasEffect("more_knockback", "Doubles Incoming Knockback");
-        addGeasEffect("rocket_jumping", "Wind Charges Provide Greater Propulsion");
-        addGeasEffect("wind_charge_exhaustion", "Continuous Activations Weigh You Down");
+        addGeasEffect("rocket_jumping", "Wind Gusts Provide Greater Propulsion");
+        addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
         addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Streak");
         addGeasEffect("prospectors_streak", "Prospector's Streak Grants Mining Speed And Fortune Chance");

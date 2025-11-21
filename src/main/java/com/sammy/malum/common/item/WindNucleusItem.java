@@ -46,7 +46,7 @@ public class WindNucleusItem extends Item {
                 ParticleTypes.GUST,
                 SoundEvents.WIND_CHARGE_BURST
         );
-        final List<Entity> explosionAffectedEntities = getExplosionAffectedEntities(level, player, pos, radius);
+        var explosionAffectedEntities = getExplosionAffectedEntities(level, player, pos, radius);
 
         for (Entity entity : explosionAffectedEntities) {
             final Vec3 movement = entity.getDeltaMovement();

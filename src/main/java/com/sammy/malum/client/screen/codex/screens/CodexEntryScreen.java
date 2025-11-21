@@ -160,7 +160,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
             nextPage();
             return true;
         } else if (minecraft.options.keyLeft.matches(keyCode, scanCode)) {
-            previousPage(false);
+            previousPage(true);
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
@@ -196,7 +196,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
             ProgressionScreenHolder.getAppropriateCodexScreen().reopenCodexFromEntryScreen(isVoidTouched, ignoreNextInput);
         }
         else {
-            Minecraft.getInstance().setScreen(parentScreen);
+            ProgressionScreenHolder.openCodex(parentScreen, isVoidTouched, ignoreNextInput);
         }
         playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_CLOSE, 0.85f);
     }

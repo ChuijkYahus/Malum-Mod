@@ -125,16 +125,16 @@ public class MalignantConversionHandler {
                 double bonus = convertedAmount * conversionStrength * payoutRatio;
                 if (bonus > 0) {
                     var modifier = new AttributeModifier(id, bonus, AttributeModifier.Operation.ADD_VALUE);
-                    affectedInstance.addPermanentModifier(modifier);
+                    affectedInstance.addTransientModifier(modifier);
                 }
             }
         }
+        cacheData.cacheValue(sourceInstance);
         if (hasMalignantConversion) {
             double ratio = conversionData.consumptionRatio();
             double toll = -conversionStrength * ratio;
             addNegativeModifier(sourceInstance, toll);
         }
-        cacheData.cacheValue(sourceInstance);
     }
 
     private static boolean checkForChanges(MalignantInfluenceData data, LivingEntity livingEntity, Holder<Attribute> attribute) {
@@ -157,7 +157,7 @@ public class MalignantConversionHandler {
             }
             return stored != real;
         }
-        return false;
+        return true;
     }
 
     private static void removeNegativeModifier(AttributeInstance attribute) {

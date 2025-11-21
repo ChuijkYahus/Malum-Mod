@@ -169,10 +169,14 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             timerPause--;
             return;
         }
-        if (timer == 0) {
+        if (canTriggerRite()) {
             triggerRite(level);
             notifyObservers();
         }
+    }
+
+    public boolean canTriggerRite() {
+        return timer == 0;
     }
 
     public void triggerRite(ServerLevel level) {

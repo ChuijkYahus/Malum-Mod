@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
+import com.google.common.collect.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
@@ -57,7 +58,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         oldOutlineVisibility = outlineVisibility;
         if (isHoveredOver) {
             if (outlineVisibility == 6) {
-                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.4f, 1f);
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_HOVER, 0.2f, 1f);
             }
             if (outlineVisibility < 20) {
                 outlineVisibility = Math.min(outlineVisibility + 2, 20);
@@ -65,7 +66,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         }
         else {
             if (outlineVisibility == 15) {
-                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.2f, 0.75f);
+                screen.playSound(MalumSoundEvents.ARCANA_ENTRY_UNHOVER, 0.1f, 0.75f);
             }
             if (outlineVisibility > 0) {
                 outlineVisibility--;
@@ -110,6 +111,22 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         if (iconStack != null) {
             guiGraphics.renderItem(iconStack, centerX-8, centerY-8);
         }
+    }
+
+    @Override
+    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
+        var tooltip = super.gatherTooltip(screen);
+        ImmutableList<EntryReference> references = entry.references;
+        for (int i = references.size()-1; i >=0; i--) {
+            EntryReference reference = references.get(i);
+            if (reference.entry.shouldShow()) {
+                var slash = Component.literal("┇ ");
+                var text = Component.translatable(reference.entry.translationKey());
+                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
+                tooltip.add(1, component);
+            }
+        }
+        return tooltip;
     }
 
     public void renderOutline(PoseStack poseStack, float distortionIntensity, float intensity, Function<WidgetDesignType, ResourceLocation> texture, Int2ObjectFunction<Color> colorSupplier) {
@@ -160,20 +177,6 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
                 MalumSpiritTypes.INFERNAL_SPIRIT.get()
         };
         return spirits[index].getPrimaryColor();
-    }
-
-    @Override
-    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
-        var tooltip = super.gatherTooltip(screen);
-        for (EntryReference reference : entry.references) {
-            if (reference.entry.shouldShow()) {
-                var slash = Component.literal("┇ ");
-                var text = Component.translatable(reference.entry.translationKey());
-                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
-                tooltip.add(1, component);
-            }
-        }
-        return tooltip;
     }
 
     public int getCenterX() {

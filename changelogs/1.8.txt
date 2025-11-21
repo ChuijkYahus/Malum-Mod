@@ -52,6 +52,10 @@ Soulwoven Pouch
 - Based on Community Feedback, the autocollection of a large amount of goods was rather undesirable as it no longer allowed for a dedicated early game spirit storage option
 - The Soulwoven Pouch now only automatically collects spirits, but still stores most malum content extra effectively
 
+Gust Igniter & Wind Tunnel
+- Added the Gust Igniter and Wind Tunnels
+- These can be used to add some comfortable manoeuvrability options to your base
+
 Runic Workbench
 - The Runic Workbench now has a new Model, Sounds, and Visuals for crafting
 - The Recipe is also changed to better reflect it's new look
@@ -85,9 +89,9 @@ Malignant Conversion
 - No longer grants Armor Toughness
 - No longer grants Magic Resistance
 - Now grants a new attribute called Malignant Aegis
-- Malignant Aegis now functions similarly to Soul Ward
+- Malignant Aegis functions similarly to Soul Ward
 - Instead of absorbing a portion of damage, Malignant Aegis will completely nullify it
-- Chance and Limit increases as the armor absorbs more and more magic
+- Capacity increases as the armor absorbs more and more magic
 
 Necklace of the Hidden Blade
 - Now always deals a minimum of 10 damage
@@ -133,6 +137,15 @@ Pact of Wyrd Reconstruction
 Oath of the Overkeen Eye
 - Improved Homing Effect Consistency
 - Changed downside from reduced Charge Duration to reduced Charge Gain Rate
+
+Oath of Unmakers Disdain
+- Slash Count and Damage now increases through Malignant Conversion
+- Downside replaced with a decrease to Malignant Aegis Capacity
+
+Oath of Unsighted Resistance
+- No longer increases armor when triggering Malignant Deliverance
+- Now recharges Malignant Aegis when triggering Malignant Deliverance
+- Damage is reduced only when recharging
 
 Authority of the Gleeful Target
 - Can no longer activate from Drowning Damage

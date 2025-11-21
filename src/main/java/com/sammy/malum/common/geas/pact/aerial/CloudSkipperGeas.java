@@ -15,7 +15,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
@@ -25,17 +24,15 @@ import java.util.function.*;
 
 public class CloudSkipperGeas extends GeasEffect {
 
-    protected static final int FALLOFF_DURATION = 60;
-    protected static final int STAMINA_FALLOFF_START = 5;
-    protected int cooldown;
-    public int streak;
+    protected static final float WARMUP_DURATION = 40;
+    protected int ascensionTime;
 
     public CloudSkipperGeas() {
         super(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER.get());
     }
 
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
-        final Explosion explosion = event.getExplosion();
+        var explosion = event.getExplosion();
 
         List<LivingEntity> entities = new ArrayList<>();
         if (event.getAffectedEntity() instanceof LivingEntity livingEntity) {
@@ -54,7 +51,7 @@ public class CloudSkipperGeas extends GeasEffect {
                 break;
             }
         }
-        if (instance instanceof CloudSkipperGeas cloudSkipper) {
+        if (instance instanceof CloudSkipperGeas) {
             var entity = event.getAffectedEntity();
             if (!explosion.damageCalculator.shouldDamageEntity(explosion, entity)) {
                 float minimumUpwardsVelocity = 0.5f;
@@ -68,8 +65,6 @@ public class CloudSkipperGeas extends GeasEffect {
                 event.setKnockbackVelocity(knockbackVelocity.multiply(horizontalScalar, verticalScalar, horizontalScalar));
                 if (entity instanceof Player player) {
                     player.addEffect(new MobEffectInstance(MalumMobEffects.ASCENSION, 200, 3));
-                    cloudSkipper.streak++;
-                    cloudSkipper.setDirty();
                 }
             }
         }
@@ -81,14 +76,28 @@ public class CloudSkipperGeas extends GeasEffect {
 
     @Override
     public void update(EntityTickEvent.Pre event, LivingEntity entity) {
-        if (streak == 0) {
+        if (entity.onGround() || entity.isInWater() || entity.isInLava()) {
+            if (ascensionTime > 0) {
+                ascensionTime--;
+            }
             return;
         }
-        cooldown++;
-        if (cooldown == FALLOFF_DURATION) {
-            streak = Math.max(Mth.floor(streak-2), 0);
-            cooldown = 0;
-            setDirty();
+        if (entity.hasEffect(MalumMobEffects.ASCENSION) || entity.hasEffect(MalumMobEffects.LIFTED)) {
+            if (entity instanceof Player player && player.level().isClientSide) {
+                var velocity = player.getDeltaMovement();
+                var angle = player.getLookAngle();
+                if (angle.y > -0.6f && angle.y < 0.6f) {
+                    float delta = (float) Math.clamp(velocity.y * 2f, 0, 1);
+                    if (delta > 0) {
+                        float target = (float) (0.2f + player.getAttributeValue(Attributes.MOVEMENT_SPEED)) * 0.45f;
+                        var added = angle.scale(target).multiply(delta, 0.5f, delta);
+                        player.setDeltaMovement(velocity.add(added).multiply(0.95f, 1f, 0.95f));
+                    }
+                }
+            }
+            if (ascensionTime < WARMUP_DURATION) {
+                ascensionTime++;
+            }
         }
     }
 
@@ -102,16 +111,17 @@ public class CloudSkipperGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("rocket_jumping"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("wind_charge_exhaustion"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("wind_gliding"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("weak_legs"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        if (streak >= STAMINA_FALLOFF_START) {
-            float modifier = 0.06f * (streak - STAMINA_FALLOFF_START);
-            addAttributeModifier(modifiers, Attributes.GRAVITY, modifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        float delta = Math.min(ascensionTime, WARMUP_DURATION)/WARMUP_DURATION;
+        if (delta > 0) {
+            float modifier = 0.75f * delta;
+            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, modifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }
