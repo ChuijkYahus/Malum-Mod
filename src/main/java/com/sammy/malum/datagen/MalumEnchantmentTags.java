@@ -21,11 +21,20 @@ public class MalumEnchantmentTags extends EnchantmentTagsProvider {
         tag(EnchantmentTags.NON_TREASURE).add(
                 EnchantmentKeys.HAUNTED, EnchantmentKeys.ANIMATED,
                 EnchantmentKeys.ASCENSION, EnchantmentKeys.REBOUND,
+                EnchantmentKeys.WEAVERS_PROPAGATION, EnchantmentKeys.WEAVERS_HASTE,
                 EnchantmentKeys.REPLENISHING, EnchantmentKeys.CAPACITOR,
                 EnchantmentKeys.SPIRIT_PLUNDER);
         tag(EnchantmentTags.IN_ENCHANTING_TABLE).add(
                 EnchantmentKeys.HAUNTED, EnchantmentKeys.ANIMATED,
                 EnchantmentKeys.ASCENSION, EnchantmentKeys.REBOUND,
+                EnchantmentKeys.WEAVERS_PROPAGATION, EnchantmentKeys.WEAVERS_HASTE,
+                EnchantmentKeys.REPLENISHING, EnchantmentKeys.CAPACITOR,
+                EnchantmentKeys.SPIRIT_PLUNDER);
+
+        tag(EnchantmentTags.ON_RANDOM_LOOT).remove(
+                EnchantmentKeys.HAUNTED, EnchantmentKeys.ANIMATED,
+                EnchantmentKeys.ASCENSION, EnchantmentKeys.REBOUND,
+                EnchantmentKeys.WEAVERS_PROPAGATION, EnchantmentKeys.WEAVERS_HASTE,
                 EnchantmentKeys.REPLENISHING, EnchantmentKeys.CAPACITOR,
                 EnchantmentKeys.SPIRIT_PLUNDER);
     }

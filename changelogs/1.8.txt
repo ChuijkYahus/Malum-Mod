@@ -56,6 +56,9 @@ Gust Igniter & Wind Tunnel
 - Added the Gust Igniter and Wind Tunnels
 - These can be used to add some comfortable manoeuvrability options to your base
 
+Spellweaving Tools
+- Added Spellweaving Tools capable of breaking multiple blocks at once
+
 Runic Workbench
 - The Runic Workbench now has a new Model, Sounds, and Visuals for crafting
 - The Recipe is also changed to better reflect it's new look
@@ -134,6 +137,12 @@ Pact of the Berserker
 Pact of Wyrd Reconstruction
 - Cooldown reduced to 30 minutes
 
+Pact of the Cloudskipper
+- No longer increases gravity with consecutive wind charge uses
+- Rebalanced wind gust effectiveness bonus slightly
+- Now enhances Ascension in general, regardless of source
+- Enhanced Ascension increases horizontal manouverability based on upwards velocity
+
 Oath of the Overkeen Eye
 - Improved Homing Effect Consistency
 - Changed downside from reduced Charge Duration to reduced Charge Gain Rate
@@ -154,7 +163,6 @@ Authority of the Gleeful Target
 - No Longer allows effects to Tick, preventing very niche scenarios where Poison or Wither will still damage you
 
 # Textrues
-
 - Retextured the Runewood Obelisk
 - Retextured the Brilliant Obelisk
 - Retextured the Tyrving
@@ -182,3 +190,4 @@ Authority of the Gleeful Target
 - Fixed the Weeping Well hurting you while inside of it, as opposed to only when you're rejected
 - Fixed some of the Weeping Well textures being incorrectly mirrored
 - Fixed the Codex crashing your game when opened while any spirit repair recipe is missing
+- Fixed Scythe & Staff Enchantments appearing as world loot

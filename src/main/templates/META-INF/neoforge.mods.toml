@@ -9,6 +9,7 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
 enumExtensions="META-INF/enumextensions.json"
+logoFile="${mod_id}.png"
 
 [[accessTransformers]]
 file = "META-INF/accesstransformer.cfg"

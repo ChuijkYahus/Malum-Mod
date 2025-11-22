@@ -25,6 +25,11 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
     }
 
     @Override
+    public boolean shouldRenderOffScreen(WindTunnelBlockEntity blockEntity) {
+        return true;
+    }
+
+    @Override
     public @NotNull AABB getRenderBoundingBox(WindTunnelBlockEntity tunnel) {
         var pos = tunnel.getBlockPos();
         var facing = tunnel.getBlockState().getValue(WindTunnelBlock.FACING);

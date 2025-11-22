@@ -557,7 +557,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("windweaving", "Wind-Weaving", "Forming air currents");
         addPages("windweaving",
                 "When looking for traces of Arcana around the world, Aerial bears the most significant presence. All weather phenomena appear to carry faint traces of it, not in the form of a spirit per-say, but rather an exhausted memory of it's influence upon the world. That influence is spent, but with a little effort can be made real again.",
-                "These memories of wind rest everywhere, idle and exhausted. And yet, when imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by extrapolating it's already complete application in Wind Charges and Wind Nuclei");
+                "These memories of wind rest everywhere, idle and exhausted. And yet, when imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by extrapolating it's already complete application in Wind Charges and Wind Nuclei.");
         addHeadline("windweaving.gust_igniter", "Gust Igniter");
         addPages("windweaving.gust_igniter",
                 "Wind Charges carry a memory of scattering. Inherently chaotic, it is released on impact. When powered by redstone, the Gust Igniter mimics a wind-burst capable of applying outwards propulsion to anything found nearby. The effect's intensity and exact form can be configured with the Artificer's Claw.");
