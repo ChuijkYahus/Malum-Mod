@@ -4,9 +4,12 @@ import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
+import com.sammy.malum.*;
+import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
 import dev.latvian.mods.kubejs.recipe.*;
 import dev.latvian.mods.kubejs.recipe.component.*;
+import dev.latvian.mods.kubejs.recipe.filter.*;
 import dev.latvian.mods.kubejs.recipe.match.*;
 import dev.latvian.mods.kubejs.util.*;
 import dev.latvian.mods.rhino.*;
@@ -16,33 +19,40 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 
-public record SoundEventHolderJSComponent(String name, Codec<Holder<SoundEvent>> codec) implements RecipeComponent<Holder<SoundEvent>> {
+public record SoundEventHolderJSComponent(RecipeComponentType<?> type) implements RecipeComponent<Holder<SoundEvent>> {
 
-    //TODO: This should just be a built-in component in KubeJS, but using the existing one just parses a SoundEvent instead
-    public static final RecipeComponent<Holder<SoundEvent>> SOUND_HOLDER = new SoundEventHolderJSComponent("malum:runic_workbench_sound", BuiltInRegistries.SOUND_EVENT.holderByNameCodec());
-    public static final TypeInfo TYPE_INFO = TypeInfo.of(Holder.class).withParams(TypeInfo.of(SoundEvent.class));
+    //TODO: This should just be a built-in component in KubeJS, but using the existing one just parses a SoundEvent instead not a Holder<SoundEvent>
+    public static final RecipeComponentType<Holder<SoundEvent>> SOUND_HOLDER = RecipeComponentType.unit(
+            MalumMod.malumPath("runic_workbench_sound"),
+            SoundEventHolderJSComponent::new
+    );
 
     @Override
-    public boolean matches(Context cx, KubeRecipe recipe, Holder<SoundEvent> value, ReplacementMatchInfo match) {
-        return false;
+    public RecipeComponentType<?> type() {
+        return SOUND_HOLDER;
+    }
+
+    @Override
+    public Codec<Holder<SoundEvent>> codec() {
+        return SoundEvent.CODEC;
     }
 
     @Override
     public TypeInfo typeInfo() {
-        return TYPE_INFO;
+        return TypeInfo.of(SoundEvents.NOTE_BLOCK_XYLOPHONE.getClass());
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return type().id().getPath();
     }
 
     @Override
-    public Holder<SoundEvent> wrap(Context cx, KubeRecipe recipe, Object from) {
+    public Holder<SoundEvent> wrap(RecipeScriptContext cx, Object from) {
         if (from instanceof JsonObject json) {
-            return this.codec.decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
+            return codec().decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
         }
-        return fromObject(RegistryAccessContainer.of(cx), from);
+        return fromObject(RegistryAccessContainer.of(cx.cx()), from);
     }
 
     public static Holder<SoundEvent> fromObject(RegistryAccessContainer registries, Object from) {

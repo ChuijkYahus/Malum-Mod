@@ -13,7 +13,10 @@
     {
       "name": "spirits",
       "role": "input",
-      "type": "malum:spirit_ingredient[]"
+      "type": {
+        "type": "list",
+        "component": "malum:spirit_ingredient"
+      }
     },
     {
       "name": "time",

@@ -5,8 +5,10 @@ import com.sammy.malum.core.systems.artifice.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.visual_effects.SpiritCrucibleParticleEffects;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.block.BlockStateHelper;
 
 import java.util.function.Consumer;
@@ -52,10 +54,21 @@ public class CatalyzerArtificeModifierSourceInstance extends ArtificeModifierSou
             return true;
         }
         ItemStack stack = catalyzer.inventory.getStackInSlot(0);
-        if (!stack.isEmpty() && stack.getBurnTime(RecipeType.SMELTING) > 0) {
-            stack.shrink(1);
-            catalyzer.burnTicks = stack.getBurnTime(RecipeType.SMELTING) / 2f;
-            BlockStateHelper.updateAndNotifyState(catalyzer.getLevel(), catalyzer.getBlockPos());
+        int burnTime = stack.getBurnTime(RecipeType.SMELTING);
+        if (!stack.isEmpty()) {
+            if (burnTime > 0) {
+                catalyzer.burnTicks = burnTime / 2f;
+                var level = catalyzer.getLevel();
+                if (stack.hasCraftingRemainingItem()) {
+                    var remainder = stack.getCraftingRemainingItem();
+                    var catalyzerPos = catalyzer.getBlockPos();
+                    var spawnPos = SpiritCatalyzerCoreBlockEntity.CATALYZER_ITEM_OFFSET.add(catalyzerPos.getX(), catalyzerPos.getY(), catalyzerPos.getZ());
+                    var entity = new ItemEntity(level, spawnPos.x, spawnPos.y, spawnPos.z, remainder);
+                    level.addFreshEntity(entity);
+                }
+                stack.shrink(1);
+                BlockStateHelper.updateAndNotifyState(level, catalyzer.getBlockPos());
+            }
         }
         return catalyzer.burnTicks > 0;
     }

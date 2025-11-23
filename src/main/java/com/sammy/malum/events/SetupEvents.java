@@ -12,7 +12,7 @@ import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import top.theillusivec4.curios.api.extensions.*;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber()
 public class SetupEvents {
 
     @SubscribeEvent

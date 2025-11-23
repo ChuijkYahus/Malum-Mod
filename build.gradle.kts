@@ -98,65 +98,74 @@ repositories {
     }
     mavenLocal()
     mavenCentral()
-    maven {
-        name = "Curios maven"
-        url = uri("https://maven.theillusivec4.top/")
-    }
-    maven {
-        name = "JEI maven"
-        url = uri("https://dvs1.progwml6.com/files/maven")
-    }
-    maven {
+    maven { //Lodestone
         name = "BlameJared maven"
         url = uri("https://maven.blamejared.com/")
     }
-    maven {
-        name = "KosmX's maven"
-        url = uri("https://maven.kosmx.dev/")
+    maven { //Curios
+        name = "Curios maven"
+        url = uri("https://maven.theillusivec4.top/")
     }
-    maven {
+    maven { //JEI
+        name = "JEI maven"
+        url = uri("https://dvs1.progwml6.com/files/maven")
+    }
+
+    maven { //Curse Maven, Generic
         name = "Curse Maven"
         url = uri("https://cursemaven.com")
         content {
             includeGroup("curse.maven")
         }
     }
-    maven {
+    maven { //ParchmentMC Maven, Generic
+        name = "ParchmentMC"
+        url = uri("https://maven.parchmentmc.org")
+        content {
+            includeGroup("org.parchmentmc.data")
+        }
+    }
+    maven { //Mod Maven, Generic
+        name = "ModMaven"
+        url = uri("https://modmaven.dev")
+    }
+
+    maven { //KubeJS
+        url = uri("https://maven.latvian.dev/releases")
+        content {
+            includeGroup("dev.latvian.mods")
+            includeGroup("dev.latvian.apps")
+        }
+    }
+    maven { //KubeJS Dependencies
+        name = "jitpack"
+        url = uri("https://jitpack.io")
+        content {
+            includeGroup("io.github")
+            includeGroup("com.github.rtyley")
+        }
+    }
+
+    maven { //GeckoLib, Needed for Iron's Spellbooks
         url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
         content {
             includeGroup("software.bernie.geckolib")
         }
     }
-    maven {
-        name = "ModMaven"
-        url = uri("https://modmaven.dev")
+    maven { //Player Animation Lib, Needed for Iron's Spellbooks
+        name = "KosmX's maven"
+        url = uri("https://maven.kosmx.dev/")
     }
-    maven {
-        name = "jitpack"
-        url = uri("https://jitpack.io")
-        content {
-            includeGroup("io.github")
-        }
-    }
-    maven {
-        name = "OctoStudios"
-        url = uri("https://maven.octo-studios.com/releases")
-    }
-    maven {
-        url = uri("https://maven.latvian.dev/releases")
-        content {
-            includeGroup("dev.latvian.mods")
-        }
-    }
-    maven {
+
+    maven { //Create
         url = uri("https://maven.createmod.net")
-    } //Create
-    maven {
+    }
+    maven { //Registrate
         url = uri("https://mvn.devos.one/snapshots")
-    } //Registrate
-    maven {
+    }
+    maven { // NeoForge config api port, needed by ponder
         url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven")
-    } // NeoForge config api port, needed by ponder
+    }
 }
 
 dependencies {
@@ -178,8 +187,7 @@ dependencies {
     runtimeOnly(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
 
     // KubeJS
-    implementation("curse.maven:rhino-416294:6184623")
-    implementation("curse.maven:kubejs-238086:5810100")
+    implementation("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
 
     // Tetra, Optional
 //    compileOnly(("curse.maven:tetra-${property("tetra_version")}"))

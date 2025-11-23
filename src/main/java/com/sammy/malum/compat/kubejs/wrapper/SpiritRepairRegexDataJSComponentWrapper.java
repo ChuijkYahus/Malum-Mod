@@ -1,6 +1,7 @@
-package com.sammy.malum.compat.kubejs.component;
+package com.sammy.malum.compat.kubejs.wrapper;
 
 import com.sammy.malum.common.recipe.spirit_repair.*;
+import com.sammy.malum.compat.kubejs.component.*;
 import dev.latvian.mods.kubejs.typings.*;
 import dev.latvian.mods.kubejs.util.*;
 import dev.latvian.mods.rhino.util.*;

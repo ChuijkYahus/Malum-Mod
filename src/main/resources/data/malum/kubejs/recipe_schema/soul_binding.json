@@ -3,22 +3,31 @@
     {
       "name": "input",
       "role": "input",
-      "type": "ingredient"
+      "type": "flat_sized_ingredient"
     },
     {
       "name": "result",
       "role": "output",
-      "type": "registry_element<malum:geas_types>"
+      "type": {
+        "type": "kubejs:registry_element",
+        "registry": "malum:geas_types"
+      }
     },
     {
       "name": "spirits",
       "role": "input",
-      "type": "malum:spirit_ingredient[]"
+      "type": {
+        "type": "list",
+        "component": "malum:spirit_ingredient"
+      }
     },
     {
       "name": "extraInputs",
       "role": "input",
-      "type": "flat_sized_ingredient[]",
+      "type": {
+        "type": "list",
+        "component": "flat_sized_ingredient"
+      },
       "optional": []
     }
   ]

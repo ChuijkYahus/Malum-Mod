@@ -6,6 +6,8 @@ import com.sammy.malum.common.block.curiosities.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.visual_effects.networked.*;
+import com.sammy.malum.visual_effects.networked.wind_gust.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.codec.*;
@@ -14,7 +16,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class WindTunnelData {
 
@@ -101,8 +105,17 @@ public class WindTunnelData {
             return;
         }
         activeTime++;
-        if (entity instanceof ServerPlayer && activeTime % 4 == 0) {
-            entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
+        if (level instanceof ServerLevel serverLevel) {
+            boolean isPlayer = entity instanceof Player;
+            int interval = isPlayer ? 4 : 20;
+            if (activeTime % interval == 0) {
+                MalumParticleEffectTypes.WIND_TRAIL
+                        .createEffect(entity)
+                        .customData(new WindTrailParticleEffect.WindTrailParticleEffectData(entity.getId(), 2, interval*2))
+                        .color(new Color(224, 230, 255))
+                        .spawn(serverLevel);
+                entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
+            }
         }
         if (entity instanceof Player player) {
             player.resetFallDistance();

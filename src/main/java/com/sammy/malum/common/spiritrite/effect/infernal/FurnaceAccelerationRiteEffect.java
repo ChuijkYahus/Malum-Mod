@@ -4,6 +4,7 @@ import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -20,20 +21,24 @@ public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
     public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
         if (level.getBlockEntity(pos) instanceof AbstractFurnaceBlockEntity furnace) {
             createEffect(level, pos, INFERNAL_SPIRIT, ELDRITCH_SPIRIT);
-            quickenFurnace(level, furnace, 20, 20);
+            int progress = Mth.floor(20*impact);
+            quickenFurnace(level, furnace, progress, progress);
         }
     }
 
     public void quickenFurnace(ServerLevel level, AbstractFurnaceBlockEntity furnace, int removedLitTime, int addedCookingProgress) {
+        if (!furnace.isLit()) {
+            return;
+        }
         int maxCookingTime = furnace.cookingTotalTime - 1;
         int excessLitTime = 0;
         int excessCookingProgress = 0;
 
         furnace.litTime -= removedLitTime;
         furnace.cookingProgress += addedCookingProgress;
-        if (furnace.litTime < 0) {
+        if (furnace.litTime < 1) {
             int excess = Math.abs(furnace.litTime);
-            furnace.litTime = 0;
+            furnace.litTime = 1;
             excessLitTime = excess;
         }
         if (furnace.cookingProgress > maxCookingTime) {
@@ -41,12 +46,8 @@ public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
             furnace.cookingProgress = maxCookingTime;
             excessCookingProgress = excess;
         }
-        if (excessLitTime != 0 || excessCookingProgress != 0) {
-            int cachedLitTime = furnace.litTime;
-            int cachedCookingProgress = furnace.cookingProgress;
+        if (excessLitTime > 0 || excessCookingProgress > 0) {
             AbstractFurnaceBlockEntity.serverTick(level, furnace.getBlockPos(), furnace.getBlockState(), furnace);
-            furnace.litTime = cachedLitTime;
-            furnace.cookingProgress = cachedCookingProgress;
             quickenFurnace(level, furnace, excessLitTime, excessCookingProgress);
             //Recursion to update the furnace with the excess values after a successful smelt
         }

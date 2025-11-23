@@ -4,41 +4,46 @@ import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
+import com.sammy.malum.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
-import com.sammy.malum.core.systems.recipe.*;
 import dev.latvian.mods.kubejs.recipe.*;
 import dev.latvian.mods.kubejs.recipe.component.*;
-import dev.latvian.mods.kubejs.recipe.match.*;
 import dev.latvian.mods.kubejs.util.*;
-import dev.latvian.mods.rhino.*;
 import dev.latvian.mods.rhino.type.*;
 
-public record SpiritRepairRegexDataJSComponent(String name, Codec<SpiritRepairRegexData> codec) implements RecipeComponent<SpiritRepairRegexData> {
+public record SpiritRepairRegexDataJSComponent(RecipeComponentType<?> type) implements RecipeComponent<SpiritRepairRegexData> {
 
-    public static final RecipeComponent<SpiritRepairRegexData> REGEX_DATA = new SpiritRepairRegexDataJSComponent("malum:repair_regex", SpiritRepairRegexData.CODEC);
-    public static final TypeInfo TYPE_INFO = TypeInfo.of(SpiritRepairRegexData.class);
+    public static final RecipeComponentType<SpiritRepairRegexData> REPAIR_REGEX = RecipeComponentType.unit(
+            MalumMod.malumPath("repair_regex"),
+            SpiritRepairRegexDataJSComponent::new
+    );
 
     @Override
-    public boolean matches(Context cx, KubeRecipe recipe, SpiritRepairRegexData value, ReplacementMatchInfo match) {
-        return false;
+    public RecipeComponentType<?> type() {
+        return REPAIR_REGEX;
+    }
+
+    @Override
+    public Codec<SpiritRepairRegexData> codec() {
+        return SpiritRepairRegexData.CODEC;
     }
 
     @Override
     public TypeInfo typeInfo() {
-        return TYPE_INFO;
+        return TypeInfo.of(SpiritRepairRegexData.class);
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return type().id().getPath();
     }
 
     @Override
-    public SpiritRepairRegexData wrap(Context cx, KubeRecipe recipe, Object from) {
+    public SpiritRepairRegexData wrap(RecipeScriptContext cx, Object from) {
         if (from instanceof JsonObject json) {
-            return this.codec.decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
+            return codec().decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
         }
-        return fromObject(RegistryAccessContainer.of(cx), from);
+        return fromObject(RegistryAccessContainer.of(cx.cx()), from);
     }
 
     public static SpiritRepairRegexData fromObject(RegistryAccessContainer registries, Object from) {

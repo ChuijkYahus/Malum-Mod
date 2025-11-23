@@ -1,0 +1,4 @@
+# Bugfixes
+- Fixed Rite of Hastening crashing the game in certain situations
+- Fixed Spirit Catalyzers not working properly when fed just one item at a time
+- Fixed Spirit Catalyzers not properly returning the crafting remainder items with, for example, Lava Buckets

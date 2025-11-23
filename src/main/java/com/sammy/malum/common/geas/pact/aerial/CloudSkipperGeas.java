@@ -113,7 +113,6 @@ public class CloudSkipperGeas extends GeasEffect {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("rocket_jumping"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("wind_gliding"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("weak_legs"));
-        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
     @Override

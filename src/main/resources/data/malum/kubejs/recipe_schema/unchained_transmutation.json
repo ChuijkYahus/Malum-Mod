@@ -13,8 +13,7 @@
     {
       "name": "group",
       "role": "other",
-      "type": "string",
-      "optional": ""
+      "type": "optional_string"
     }
   ]
 }

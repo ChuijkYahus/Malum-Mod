@@ -3,13 +3,22 @@
     {
       "name": "validItems",
       "role": "input",
-      "type": "registry_element<minecraft:item>[]",
+      "type": {
+        "type": "list",
+        "component": {
+          "type": "kubejs:registry_element",
+          "registry": "minecraft:item"
+        }
+      },
       "optional": []
     },
     {
       "name": "spirits",
       "role": "input",
-      "type": "malum:spirit_ingredient[]"
+      "type": {
+        "type": "list",
+        "component": "malum:spirit_ingredient"
+      }
     },
     {
       "name": "repairMaterial",

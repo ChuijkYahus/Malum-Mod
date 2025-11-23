@@ -4,12 +4,14 @@ import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
+import com.sammy.malum.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
 import dev.latvian.mods.kubejs.recipe.*;
 import dev.latvian.mods.kubejs.recipe.component.*;
+import dev.latvian.mods.kubejs.recipe.filter.*;
 import dev.latvian.mods.kubejs.recipe.match.*;
 import dev.latvian.mods.kubejs.util.*;
 import dev.latvian.mods.rhino.*;
@@ -22,32 +24,40 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
 
-public record SpiritJSComponent(String name, Codec<SpiritIngredient> codec) implements RecipeComponent<SpiritIngredient> {
+public record SpiritJSComponent(RecipeComponentType<?> type) implements RecipeComponent<SpiritIngredient> {
 
-    public static final RecipeComponent<SpiritIngredient> SPIRIT_INGREDIENT = new SpiritJSComponent("malum:spirit_ingredient", SpiritIngredient.CODEC.codec());
-    public static final TypeInfo TYPE_INFO = TypeInfo.of(SpiritIngredient.class);
+    public static final Codec<SpiritIngredient> CODEC = SpiritIngredient.CODEC.codec();
+    public static final RecipeComponentType<SpiritIngredient> SPIRIT_INGREDIENT = RecipeComponentType.unit(
+            MalumMod.malumPath("spirit_ingredient"),
+            SpiritJSComponent::new
+    );
 
     @Override
-    public boolean matches(Context cx, KubeRecipe recipe, SpiritIngredient value, ReplacementMatchInfo match) {
-        return false;
+    public RecipeComponentType<?> type() {
+        return SPIRIT_INGREDIENT;
+    }
+
+    @Override
+    public Codec<SpiritIngredient> codec() {
+        return CODEC;
     }
 
     @Override
     public TypeInfo typeInfo() {
-        return TYPE_INFO;
+        return TypeInfo.of(SpiritIngredient.class);
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return type().id().getPath();
     }
 
     @Override
-    public SpiritIngredient wrap(Context cx, KubeRecipe recipe, Object from) {
+    public SpiritIngredient wrap(RecipeScriptContext cx, Object from) {
         if (from instanceof JsonObject json) {
-            return this.codec.decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
+            return codec().decode(JsonOps.INSTANCE, json).result().orElseThrow().getFirst();
         }
-        return fromObject(RegistryAccessContainer.of(cx), from);
+        return fromObject(RegistryAccessContainer.of(cx.cx()), from);
     }
 
     public static SpiritIngredient fromObject(RegistryAccessContainer registries, Object from) {
@@ -76,7 +86,6 @@ public record SpiritJSComponent(String name, Codec<SpiritIngredient> codec) impl
                 throw new IllegalArgumentException("Failed to read SpiritIngredient from string: " + from, exception);
             }
         }
-
         throw new IllegalArgumentException("Can't create SpiritIngredient from object: " + from);
     }
 

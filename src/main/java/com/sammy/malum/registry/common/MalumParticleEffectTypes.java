@@ -19,6 +19,7 @@ import com.sammy.malum.visual_effects.networked.spirit_mote.*;
 import com.sammy.malum.visual_effects.networked.staff.*;
 import com.sammy.malum.visual_effects.networked.totem.*;
 import com.sammy.malum.visual_effects.networked.weeping_well.*;
+import com.sammy.malum.visual_effects.networked.wind_gust.*;
 
 public class MalumParticleEffectTypes {
 
@@ -46,6 +47,9 @@ public class MalumParticleEffectTypes {
     //Repair Pylon
     public static final PylonPrepareRepairParticleEffect REPAIR_PYLON_PREPARES = new PylonPrepareRepairParticleEffect("repair_pylon_prepare");
     public static final PylonRepairParticleEffect REPAIR_PYLON_REPAIRS = new PylonRepairParticleEffect("repair_pylon_repairs");
+
+    //Wind Effects
+    public static final WindTrailParticleEffect WIND_TRAIL = new WindTrailParticleEffect("wind_trail");
 
     //Totem Effects
     public static final TotemPoleActivatedParticleEffect TOTEM_POLE_ACTIVATED = new TotemPoleActivatedParticleEffect("totem_pole_activated");
