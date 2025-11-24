@@ -2778,6 +2778,51 @@
     ],
     "subtitle": "malum.subtitle.tyrving_slashes_twice"
   },
+  "varnished_terracotta_bricks_break": {
+    "sounds": [
+      "malum:blocks/terracotta/break1",
+      "malum:blocks/terracotta/break2",
+      "malum:blocks/terracotta/break3",
+      "malum:blocks/terracotta/break4"
+    ],
+    "subtitle": "malum.subtitle.varnished_terracotta_bricks_break"
+  },
+  "varnished_terracotta_bricks_fall": {
+    "sounds": [
+      "malum:blocks/terracotta/step1",
+      "malum:blocks/terracotta/step2",
+      "malum:blocks/terracotta/step3",
+      "malum:blocks/terracotta/step4"
+    ],
+    "subtitle": "malum.subtitle.varnished_terracotta_bricks_fall"
+  },
+  "varnished_terracotta_bricks_hit": {
+    "sounds": [
+      "malum:blocks/terracotta/step1",
+      "malum:blocks/terracotta/step2",
+      "malum:blocks/terracotta/step3",
+      "malum:blocks/terracotta/step4"
+    ],
+    "subtitle": "malum.subtitle.varnished_terracotta_bricks_hit"
+  },
+  "varnished_terracotta_bricks_place": {
+    "sounds": [
+      "malum:blocks/terracotta/break1",
+      "malum:blocks/terracotta/break2",
+      "malum:blocks/terracotta/break3",
+      "malum:blocks/terracotta/break4"
+    ],
+    "subtitle": "malum.subtitle.varnished_terracotta_bricks_place"
+  },
+  "varnished_terracotta_bricks_step": {
+    "sounds": [
+      "malum:blocks/terracotta/step1",
+      "malum:blocks/terracotta/step2",
+      "malum:blocks/terracotta/step3",
+      "malum:blocks/terracotta/step4"
+    ],
+    "subtitle": "malum.subtitle.varnished_terracotta_bricks_step"
+  },
   "void_eats_gunk": {
     "sounds": [
       "malum:curiosities/trinkets/starved/nom1",

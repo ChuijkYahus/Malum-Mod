@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.common.block.curiosities.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.payloads.waveform.*;
+import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
@@ -15,6 +16,7 @@ import net.neoforged.neoforge.network.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
@@ -26,10 +28,12 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
     private static final int DIAL_HEIGHT = 64;
 
     protected static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_artifice/gust_gizmo_configuration_dial.png");
+    protected static final ResourceLocation DIAL_OVERLAY = malumPath("textures/gui/waveform_artifice/gust_gizmo_configuration_dial_overlay.png");
 
     private final GustIgniterBlockEntity gustIgniter;
     private final boolean isTunnel;
 
+    private float displayedStrength;
     private int oldStrength, strength;
     private boolean modified;
 
@@ -120,6 +124,20 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
         renderText(guiGraphics, text, xDialCenter + 0.5f - font.width(text) / 2f, yDialCenter + 0.5f - font.lineHeight / 2f, true, partialTick);
     }
 
+    @Override
+    public void tick() {
+        displayedStrength = Mth.lerp(0.1f, displayedStrength, strength);
+        super.tick();
+    }
+
+    public void renderDial(GuiGraphics graphics, int x, int y) {
+        renderDial(graphics, DIAL_TEXTURE, x, y);
+        float delta = displayedStrength / WindTunnelHandler.MAX_STRENGTH;
+        float range = Easing.QUAD_IN.ease(delta, 90f, 270f);
+        float alpha = Easing.EXPO_IN_OUT.ease(delta, 0.25f, 1f);
+        renderDialOverlay(graphics, DIAL_TEXTURE, x, y, 0, range, alpha);
+    }
+
     public int clampStrength(int strength) {
         int newStrength = strength;
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
@@ -130,7 +148,7 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
             }
         }
         int min = 1;
-        int max = 32;
+        int max = Mth.floor(WindTunnelHandler.MAX_STRENGTH);
         return Mth.clamp(newStrength, min, max);
     }
 
@@ -139,37 +157,5 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
             return Component.translatable(contents.getKey() + "." + (isModified ? "alt" : "default"));
         }
         throw new IllegalArgumentException();
-    }
-
-    public void renderDial(GuiGraphics graphics, int x, int y) {
-        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-        shaderInstance.safeGetUniform("YFrequency").set(10f);
-        shaderInstance.safeGetUniform("XFrequency").set(10f);
-        shaderInstance.safeGetUniform("Speed").set(400f);
-        shaderInstance.safeGetUniform("Intensity").set(100f);
-
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstance)
-                .setAlpha(0.9f)
-                .setColor(0.7f, 0.1f, 0.1f);
-
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-        renderDialTexture(graphics, builder, x, y);
-        builder.setAlpha(0.2f);
-        shaderInstance.safeGetUniform("Speed").set(800f);
-        renderDialTexture(graphics, builder, x - 1, y);
-        renderDialTexture(graphics, builder, x + 1, y);
-        renderDialTexture(graphics, builder, x, y - 1);
-        renderDialTexture(graphics, builder, x, y + 1);
-        shaderInstance.setUniformDefaults();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.disableDepthTest();
-        RenderSystem.disableBlend();
-    }
-
-    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
-        builder.setTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_WIDTH, DIAL_HEIGHT).blit(graphics.pose());
     }
 }

@@ -212,6 +212,7 @@ public class MalumTags {
 
         public static final TagKey<DamageType> IS_SCYTHE = tag("is_scythe");
         public static final TagKey<DamageType> IS_SCYTHE_MELEE = tag("is_scythe_melee");
+        public static final TagKey<DamageType> TRIGGERS_SCYTHE_COMBO = tag("triggers_scythe_combo");
 
         public static final TagKey<DamageType> IS_NITRATE = tag("is_nitrate");
 

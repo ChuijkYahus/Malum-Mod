@@ -1,3 +1,14 @@
+# KubeJS
+- Updated KubeJS Compat to support a not super outdated version
+
+# Tweaks
+- Added wind trail particles for wind tunnels
+- Added a purple glint to the Waveform Configuration Screen that scales with the chosen value
+- Runewood & Soulwood logs are no longer tagged with logs_that_burn
+
+# Textures
+- Updated the textures for Living Flesh, Alchemical Calx, Grim Talc
+
 # Bugfixes
 - Fixed Rite of Hastening crashing the game in certain situations
 - Fixed Spirit Catalyzers not working properly when fed just one item at a time

@@ -17,7 +17,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderSystem;
 import team.lodestar.lodestone.systems.rendering.renderpass.RenderPassHandler;
 
-@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class ClientSetupEvents {
 
     @SubscribeEvent

@@ -35,6 +35,6 @@ public class RunicWorkbenchCraftSpiritlessItemParticleEffect extends MalumNetwor
         if (!(level.getBlockEntity(positionData.getAsBlockPos()) instanceof RunicWorkbenchBlockEntity runicWorkbench)) {
             return;
         }
-        RunicWorkbenchParticleEffects.craftItemParticles(level, runicWorkbench, colorData, extraData);
+        RunicWorkbenchParticleEffects.craftItemParticles(level, runicWorkbench, extraData);
     }
 }

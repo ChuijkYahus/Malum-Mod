@@ -20,7 +20,7 @@ public class WindTrailParticleEffect extends MalumNetworkedParticleEffectType<Wi
         public static final Codec<WindTrailParticleEffectData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.INT.fieldOf("target").forGetter(WindTrailParticleEffectData::target),
                 Codec.INT.fieldOf("delay").forGetter(WindTrailParticleEffectData::delay),
-                Codec.INT.fieldOf("duration").forGetter(WindTrailParticleEffectData::delay)
+                Codec.INT.fieldOf("duration").forGetter(WindTrailParticleEffectData::duration)
         ).apply(instance, WindTrailParticleEffectData::new));
 
         public static final StreamCodec<ByteBuf, WindTrailParticleEffectData> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);

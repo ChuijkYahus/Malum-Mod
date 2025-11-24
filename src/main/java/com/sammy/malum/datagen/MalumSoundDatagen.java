@@ -354,6 +354,12 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
         this.add(MalumSoundEvents.ARCANE_ROCK_BRICKS_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6)).with(sounds("minecraft:block/basalt/step", 6)));
 
+        this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/terracotta/break", 4)));
+        this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_STEP, s -> definition(s).with(sounds("blocks/terracotta/step", 4)));
+        this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_PLACE, s -> definition(s).with(sounds("blocks/terracotta/break", 4)));
+        this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_HIT, s -> definition(s).with(sounds("blocks/terracotta/step", 4)));
+        this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_FALL, s -> definition(s).with(sounds("blocks/terracotta/step", 4)));
+
         this.add(MalumSoundEvents.SCARSTONE_BREAK, s -> definition(s).with(sounds("blocks/scarstone/break", 6)));
         this.add(MalumSoundEvents.SCARSTONE_STEP, s -> definition(s).with(sounds("blocks/scarstone/hit", 6)));
         this.add(MalumSoundEvents.SCARSTONE_PLACE, s -> definition(s).with(sounds("blocks/scarstone/place", 6)));
