@@ -104,22 +104,25 @@ public class WindTunnelData {
             entity.removeData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
             return;
         }
-        activeTime++;
         if (level instanceof ServerLevel serverLevel) {
             boolean isPlayer = entity instanceof Player;
             int interval = isPlayer ? 4 : 20;
             if (activeTime % interval == 0) {
                 MalumParticleEffectTypes.WIND_TRAIL
                         .createEffect(entity)
-                        .customData(new WindTrailParticleEffect.WindTrailParticleEffectData(entity.getId(), 2, interval*2))
+                        .customData(new WindTrailParticleEffect.WindTrailParticleEffectData(entity.getId(), 2, 4))
                         .color(new Color(224, 230, 255))
                         .spawn(serverLevel);
                 entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
+            }
+            if (!isPlayer) {
+                entity.hurtMarked = true;
             }
         }
         if (entity instanceof Player player) {
             player.resetFallDistance();
         }
+        activeTime++;
     }
 
     public boolean addInfluence(GustIgniterBlockEntity igniter) {

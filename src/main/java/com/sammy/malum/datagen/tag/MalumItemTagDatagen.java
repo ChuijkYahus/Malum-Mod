@@ -77,7 +77,6 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
 
         tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(ItemTags.LOGS).addTag(MalumTags.ItemTags.RUNEWOOD_LOGS).addTag(MalumTags.ItemTags.SOULWOOD_LOGS);
-        tag(ItemTags.LOGS_THAT_BURN).addTag(MalumTags.ItemTags.RUNEWOOD_LOGS).addTag(MalumTags.ItemTags.SOULWOOD_LOGS);
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
         tag(Tags.Items.ORES_QUARTZ).add(NATURAL_QUARTZ_ORE.get(), DEEPSLATE_QUARTZ_ORE.get());

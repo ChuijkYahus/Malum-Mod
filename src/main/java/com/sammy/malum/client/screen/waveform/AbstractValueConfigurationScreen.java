@@ -15,10 +15,12 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
+import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.text.*;
 import java.util.function.*;
@@ -286,5 +288,67 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
                     buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
             RenderSystem.defaultBlendFunc();
         }
+    }
+
+    public void renderDial(GuiGraphics graphics, ResourceLocation texture, int x, int y) {
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
+        shaderInstance.safeGetUniform("YFrequency").set(10f);
+        shaderInstance.safeGetUniform("XFrequency").set(10f);
+        shaderInstance.safeGetUniform("Speed").set(400f);
+        shaderInstance.safeGetUniform("Intensity").set(100f);
+
+        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+                .setShader(shaderInstance)
+                .setAlpha(0.9f)
+                .setColor(0.7f, 0.1f, 0.1f);
+
+        RenderSystem.enableBlend();
+        RenderSystem.enableDepthTest();
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        renderDialTexture(graphics, builder, texture, x, y);
+        builder.setAlpha(0.2f);
+        shaderInstance.safeGetUniform("Speed").set(800f);
+        renderDialTexture(graphics, builder, texture, x - 1, y);
+        renderDialTexture(graphics, builder, texture, x + 1, y);
+        renderDialTexture(graphics, builder, texture, x, y - 1);
+        renderDialTexture(graphics, builder, texture, x, y + 1);
+        shaderInstance.setUniformDefaults();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableBlend();
+    }
+
+    public void renderDialOverlay(GuiGraphics graphics, ResourceLocation texture, int x, int y, int angle, float range, float alpha) {
+        ExtendedShaderInstance shaderInstance = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
+        shaderInstance.safeGetUniform("YFrequency").set(10f);
+        shaderInstance.safeGetUniform("XFrequency").set(10f);
+        shaderInstance.safeGetUniform("Speed").set(400f);
+        shaderInstance.safeGetUniform("Intensity").set(100f);
+        shaderInstance.safeGetUniform("Angle").set(angle);
+        shaderInstance.safeGetUniform("LightAngleRange").set(range);
+
+        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+                .setShader(shaderInstance)
+                .setAlpha(0.95f * alpha)
+                .setColor(0.5f, 0.2f, 0.7f);
+
+        RenderSystem.enableBlend();
+        RenderSystem.enableDepthTest();
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        renderDialTexture(graphics, builder, texture, x, y);
+        builder.setAlpha(0.6f * alpha);
+        shaderInstance.safeGetUniform("Speed").set(800f);
+        renderDialTexture(graphics, builder, texture, x - 1, y);
+        renderDialTexture(graphics, builder, texture, x + 1, y);
+        renderDialTexture(graphics, builder, texture, x, y - 1);
+        renderDialTexture(graphics, builder, texture, x, y + 1);
+        shaderInstance.setUniformDefaults();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableDepthTest();
+        RenderSystem.disableBlend();
+    }
+
+    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, ResourceLocation texture, int x, int y) {
+        builder.setTexture(texture).setPositionWithWidth(x, y, interfaceWidth, interfaceHeight).blit(graphics.pose());
     }
 }

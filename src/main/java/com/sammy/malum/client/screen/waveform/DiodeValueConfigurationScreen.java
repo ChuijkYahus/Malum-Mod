@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.common.payloads.waveform.*;
 import net.minecraft.client.*;
@@ -10,10 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.neoforge.network.*;
-import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.shader.*;
+import team.lodestar.lodestone.systems.easing.*;
 
 import java.lang.Math;
 
@@ -26,9 +22,11 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
     private static final int DIAL_SIZE = 64;
 
     protected static final ResourceLocation DIAL_TEXTURE = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial.png");
+    protected static final ResourceLocation DIAL_OVERLAY = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial_overlay.png");
 
     private final SpiritDiodeBlockEntity diode;
     private SpiritDiodeBlockEntity.TimeIntervalType timeInterval;
+    private float displayedAngle, displayedDelta;
     private int oldAngle, angle;
 
     public DiodeValueConfigurationScreen(SpiritDiodeBlockEntity diode) {
@@ -109,6 +107,22 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
         renderText(guiGraphics, text, xDialCenter + 0.5f - font.width(text) / 2f, yDialCenter + 0.5f - font.lineHeight / 2f, true, partialTick);
     }
 
+    @Override
+    public void tick() {
+        displayedAngle = Mth.rotLerp(0.2f, displayedAngle, angle);
+        displayedDelta = Mth.lerp(0.1f, displayedDelta, angle);
+        super.tick();
+    }
+
+    public void renderDial(GuiGraphics graphics, int x, int y) {
+        renderDial(graphics, DIAL_TEXTURE, x, y);
+        int angle = Mth.floor(displayedAngle);
+        float delta = displayedDelta / 360f;
+        float range = Easing.SINE_IN_OUT.ease(delta, 40f, 90f);
+        float alpha = Easing.EXPO_IN_OUT.ease(delta, 0.25f, 1f);
+        renderDialOverlay(graphics, DIAL_TEXTURE, x, y, angle, range, alpha);
+    }
+
     public int clampAngle(int angle) {
         int newAngle = angle;
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 340) || InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 344)) {
@@ -124,37 +138,5 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
             newAngle += 360;
         }
         return newAngle;
-    }
-
-    public void renderDial(GuiGraphics graphics, int x, int y) {
-        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-        shaderInstance.safeGetUniform("YFrequency").set(10f);
-        shaderInstance.safeGetUniform("XFrequency").set(10f);
-        shaderInstance.safeGetUniform("Speed").set(400f);
-        shaderInstance.safeGetUniform("Intensity").set(100f);
-
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
-                .setShader(shaderInstance)
-                .setAlpha(0.9f)
-                .setColor(0.7f, 0.1f, 0.1f);
-
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-        renderDialTexture(graphics, builder, x, y);
-        builder.setAlpha(0.2f);
-        shaderInstance.safeGetUniform("Speed").set(800f);
-        renderDialTexture(graphics, builder, x - 1, y);
-        renderDialTexture(graphics, builder, x + 1, y);
-        renderDialTexture(graphics, builder, x, y - 1);
-        renderDialTexture(graphics, builder, x, y + 1);
-        shaderInstance.setUniformDefaults();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.disableDepthTest();
-        RenderSystem.disableBlend();
-    }
-
-    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
-        builder.setTexture(DIAL_TEXTURE).setPositionWithWidth(x, y, DIAL_SIZE, DIAL_SIZE).blit(graphics.pose());
     }
 }

@@ -151,12 +151,22 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> ELDRITCH_SPIRITED_GLASS = register("eldritch_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ELDRITCH_SPIRITED_GLASS.get(), p));
     public static final DeferredHolder<Item, Item> AERIAL_SPIRITED_GLASS = register("aerial_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AERIAL_SPIRITED_GLASS.get(), p));
     public static final DeferredHolder<Item, Item> AQUEOUS_SPIRITED_GLASS = register("aqueous_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AQUEOUS_SPIRITED_GLASS.get(), p));
-    public static final DeferredHolder<Item, Item> INFERNAL_SPIRITED_GLASS = register("infernal_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.INFERNAL_SPIRITED_GLASS.get(), p));
     public static final DeferredHolder<Item, Item> EARTHEN_SPIRITED_GLASS = register("earthen_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EARTHEN_SPIRITED_GLASS.get(), p));
+    public static final DeferredHolder<Item, Item> INFERNAL_SPIRITED_GLASS = register("infernal_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.INFERNAL_SPIRITED_GLASS.get(), p));
+    //endregion
+
+    //region Varnished Terracotta
+    public static final DeferredHolder<Item, Item> SACRED_VARNISHED_TERRACOTTA = register("sacred_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SACRED_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> WICKED_VARNISHED_TERRACOTTA = register("wicked_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WICKED_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> ARCANE_VARNISHED_TERRACOTTA = register("arcane_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ARCANE_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> ELDRITCH_VARNISHED_TERRACOTTA = register("eldritch_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ELDRITCH_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> AERIAL_VARNISHED_TERRACOTTA = register("aerial_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AERIAL_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> AQUEOUS_VARNISHED_TERRACOTTA = register("aqueous_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AQUEOUS_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> EARTHEN_VARNISHED_TERRACOTTA = register("earthen_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EARTHEN_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> INFERNAL_VARNISHED_TERRACOTTA = register("infernal_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.INFERNAL_VARNISHED_TERRACOTTA.get(), p));
+    //endregion
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_BANNER = register("soulwoven_banner", MalumItems::BUILDING_PROPERTIES, SoulwovenBannerBlockItem::new);
-
-    //endregion
 
     //region tainted rock
     public static final DeferredHolder<Item, Item> TAINTED_ROCK = register("tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK.get(), p));

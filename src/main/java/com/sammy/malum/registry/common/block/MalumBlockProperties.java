@@ -121,6 +121,17 @@ public class MalumBlockProperties {
         return TWISTED_ROCK().sound(MalumSoundEvents.TWISTED_ROCK_BRICKS);
     }
 
+    public static LodestoneBlockProperties VARNISHED_TERRACOTTA(DyeColor color) {
+        return new LodestoneBlockProperties()
+                .sound(MalumSoundEvents.VARNISHED_TERRACOTTA)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .pushReaction(PushReaction.PUSH_ONLY)
+                .requiresCorrectToolForDrops()
+                .mapColor(color)
+                .strength(1.4F)
+                .needsPickaxe();
+    }
+
     public static final Color RUNEWOOD_LEAVES_YELLOW = new Color(251, 193, 76);
     public static final Color RUNEWOOD_LEAVES_ORANGE = new Color(217, 110, 23);
     public static final Color AZURE_RUNEWOOD_LEAVES_CYAN = new Color(176, 234, 255);
@@ -133,6 +144,10 @@ public class MalumBlockProperties {
                 .mapColor(MapColor.TERRACOTTA_BROWN)
                 .sound(MalumSoundEvents.RUNEWOOD)
                 .needsAxe();
+    }
+
+    public static LodestoneBlockProperties RUNEWOOD_LOGS() {
+        return RUNEWOOD().addTags(LOGS, OVERWORLD_NATURAL_LOGS, RUNEWOOD_LOGS);
     }
 
     public static LodestoneBlockProperties RUNEWOOD_PLANKS() {
@@ -203,6 +218,9 @@ public class MalumBlockProperties {
                 .strength(1.75F, 4.0F)
                 .instrument(NoteBlockInstrument.BASS)
                 .needsAxe();
+    }
+    public static LodestoneBlockProperties SOULWOOD_LOGS() {
+        return SOULWOOD().addTags(LOGS, SOULWOOD_LOGS);
     }
 
     public static LodestoneBlockProperties SOULWOOD_PLANKS() {

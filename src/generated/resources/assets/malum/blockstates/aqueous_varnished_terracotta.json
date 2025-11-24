@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/aqueous_varnished_terracotta",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/aqueous_varnished_terracotta"
+    },
+    "facing=south": {
+      "model": "malum:block/aqueous_varnished_terracotta",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/aqueous_varnished_terracotta",
+      "y": 270
+    }
+  }
+}

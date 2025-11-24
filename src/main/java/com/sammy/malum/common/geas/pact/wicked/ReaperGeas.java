@@ -44,16 +44,16 @@ public class ReaperGeas extends GeasEffect {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
             var heldItem = attacker.getMainHandItem();
-            if (!heldItem.isEmpty()) {
-                if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDamageTypes.TYRVING)) {
+            if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDamageTypes.TYRVING)) {
+                if (!heldItem.isEmpty()) {
                     event.setNewDamage(event.getNewDamage() * 0.1f);
                     if (heldItem.isDamageableItem()) {
                         heldItem.hurtAndBreak(10, attacker, MAINHAND);
                     }
-                    return;
                 }
+                return;
             }
-            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+            if (source.is(MalumTags.DamageTypeTags.TRIGGERS_SCYTHE_COMBO)) {
                 MalumScytheItem.ScytheDamage damage = MalumScytheItem.getScytheDamage(source, attacker);
                 float physicalDamage = damage.physicalDamage();
                 float magicDamage = damage.magicDamage();

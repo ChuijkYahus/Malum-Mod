@@ -8,6 +8,7 @@ import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import net.minecraft.core.*;
@@ -121,17 +122,33 @@ public class RunicWorkbenchParticleEffects {
         }
     }
 
-    public static void craftItemParticles(Level level, RunicWorkbenchBlockEntity workbench, MalumNetworkedParticleEffectColorData colorData, RunicWorkbenchEffectData extraData) {
+    public static void craftItemParticles(Level level, RunicWorkbenchBlockEntity workbench, RunicWorkbenchEffectData extraData) {
+        var colorData = new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.ARCANE_SPIRIT);
         long gameTime = level.getGameTime();
         Vec3 targetPos = workbench.getItemPos();
 
         for (int i = 0; i < 2; i++) {
             var spirit = colorData.getSpirit();
-            SpiritLightSpecs.coolLookingShinyThing(level, targetPos, spirit);
+            var lightSpecs = spiritLightSpecs(level, targetPos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC.get()));
+            lightSpecs.getBuilder()
+                    .multiplyLifetime(0.6f)
+                    .modifyColorData(d -> d.multiplyCoefficient(0.5f))
+                    .modifyScaleData(d -> d.multiplyValue(6f))
+                    .modifyTransparencyData(d -> d.multiplyValue(3f))
+                    .setLifeDelay(20);
+            lightSpecs.getBloomBuilder()
+                    .multiplyLifetime(0.6f)
+                    .modifyColorData(d -> d.multiplyCoefficient(0.5f))
+                    .modifyScaleData(d -> d.multiplyValue(4f))
+                    .modifyTransparencyData(d -> d.multiplyValue(3f))
+                    .setLifeDelay(20);
+            lightSpecs.spawnParticles();
         }
-        for (int i = 0; i < 64; i++) {
+        for (int i = 0; i < 32; i++) {
             var spirit = colorData.getSpirit();
-            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(targetPos, 0.6f, i, 8, gameTime, 160);
+            float delta = i / 32f;
+            int lifeDelay = Mth.floor(delta*20);
+            Vec3 offsetPosition = VecHelper.rotatingRadialOffset(targetPos, Mth.lerp(delta, 0.7f, 0.35f), i, 16, gameTime, 160);
             var lightSpecs = spiritLightSpecs(level, offsetPosition, spirit);
             if (i % 2 == 0) {
                 lightSpecs.getBuilder().act(b -> b.setColorData(b.getColorData().invert().build()));
@@ -142,13 +159,12 @@ public class RunicWorkbenchParticleEffects {
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
                     .modifyScaleData(d -> d.multiplyValue(2f).multiplyCoefficient(0.9f))
                     .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
-                    .multiplyLifetime(2)
-                    .setLifeDelay(i*2);
+                    .setLifeDelay(lifeDelay);
             lightSpecs.getBloomBuilder()
                     .modifyColorData(d -> d.multiplyCoefficient(0.35f))
-                    .modifyScaleData(d -> d.multiplyValue(1.6f).multiplyCoefficient(0.9f))
-                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.9f))
-                    .multiplyLifetime(2);
+                    .modifyScaleData(d -> d.multiplyValue(1.2f).multiplyCoefficient(0.9f))
+                    .modifyTransparencyData(d -> d.multiplyCoefficient(0.4f))
+                    .setLifeDelay(lifeDelay);
             lightSpecs.spawnParticles();
         }
     }
