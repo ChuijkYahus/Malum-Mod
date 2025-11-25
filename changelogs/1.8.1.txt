@@ -1,6 +1,9 @@
 # KubeJS
 - Updated KubeJS Compat to support a not super outdated version
 
+# Varnished Terracotta
+- Added Varnished Terracotta, formed through Spirit Infusion
+
 # Tweaks
 - Added wind trail particles for wind tunnels
 - Added a purple glint to the Waveform Configuration Screen that scales with the chosen value
@@ -13,3 +16,4 @@
 - Fixed Rite of Hastening crashing the game in certain situations
 - Fixed Spirit Catalyzers not working properly when fed just one item at a time
 - Fixed Spirit Catalyzers not properly returning the crafting remainder items with, for example, Lava Buckets
+- Fixed whatever was going on with the pact of the reaper

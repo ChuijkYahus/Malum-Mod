@@ -13,7 +13,7 @@ public class MiscellaneousKnowledgeEntries {
 
     public static void setupEntries(ArcanaProgressionScreen screen) {
         screen.addEntry("spirited_glass", -8, 10, b -> b
-                .configureWidget(w -> w.setIcon(WICKED_SPIRITED_GLASS))
+                .configureWidget(w -> w.setIcon(ARCANE_SPIRITED_GLASS))
                 .addPage(new HeadlineTextPage("spirited_glass", "spirited_glass.1"))
                 .addPage(new CyclingPage(
                         SpiritInfusionPage.fromOutput(SACRED_SPIRITED_GLASS.get()),
@@ -22,12 +22,26 @@ public class MiscellaneousKnowledgeEntries {
                         SpiritInfusionPage.fromOutput(ELDRITCH_SPIRITED_GLASS.get()),
                         SpiritInfusionPage.fromOutput(AERIAL_SPIRITED_GLASS.get()),
                         SpiritInfusionPage.fromOutput(AQUEOUS_SPIRITED_GLASS.get()),
-                        SpiritInfusionPage.fromOutput(INFERNAL_SPIRITED_GLASS.get()),
-                        SpiritInfusionPage.fromOutput(EARTHEN_SPIRITED_GLASS.get())
+                        SpiritInfusionPage.fromOutput(EARTHEN_SPIRITED_GLASS.get()),
+                        SpiritInfusionPage.fromOutput(INFERNAL_SPIRITED_GLASS.get())
+                ))
+        );
+        screen.addEntry("varnished_terracotta", -7, 11, b -> b
+                .configureWidget(w -> w.setIcon(ELDRITCH_VARNISHED_TERRACOTTA))
+                .addPage(new HeadlineTextPage("varnished_terracotta", "varnished_terracotta.1"))
+                .addPage(new CyclingPage(
+                        SpiritInfusionPage.fromOutput(SACRED_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(WICKED_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(ARCANE_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(ELDRITCH_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(AERIAL_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(AQUEOUS_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(EARTHEN_VARNISHED_TERRACOTTA.get()),
+                        SpiritInfusionPage.fromOutput(INFERNAL_VARNISHED_TERRACOTTA.get())
                 ))
         );
 
-        screen.addEntry("mote_making", 8, 10    , b -> b
+        screen.addEntry("mote_making", 8, 10, b -> b
                 .configureWidget(w -> w.setIcon(LAMPLIGHTERS_TONGS))
                 .addPage(new HeadlineTextItemPage("mote_making", "mote_making.1", LAMPLIGHTERS_TONGS.get()))
                 .addPage(new TextPage("mote_making.2"))
