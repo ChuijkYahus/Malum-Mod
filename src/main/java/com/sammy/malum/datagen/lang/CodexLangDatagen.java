@@ -552,7 +552,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("basic_artifice.artificers_claw", "Artificer's Claw", "Despite the name, not sharp");
         addPages("basic_artifice.artificers_claw",
-                "I have also developed a tool to tweak the timing of these diodes. By using it to move parts of the copper matrix, you can lengthen or shorten the delays involved in a diode, with a single redstone tick being the lower limit.");
+                "I have also developed a tool to tweak the timing of these diodes. By using it to move parts of the copper matrix via a prolonged application of the tool, you can lengthen or shorten the delays involved in a diode, with a single redstone tick being the lower limit.");
 
         addSimpleEntryHeader("windweaving", "Wind-Weaving", "Forming air currents");
         addPages("windweaving",
@@ -881,6 +881,10 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("spirited_glass", "Spirited Glass", "Not suitable for Oculators");
         addPages("spirited_glass",
                 "I have designed a simple but aesthetically pleasing glass which is tinted by the arcana, framed in iron. The particles of the glass are 'aligned' by the power placed within - which means Raw and Eldritch, having no direction, are somewhat chaotic. They do still look interesting, though.");
+
+        addSimpleEntryHeader("varnished_terracotta", "Varnished Terracotta", "Pretty patterns");
+        addPages("varnished_terracotta",
+                "In forming glazed terracotta, beautiful patterns can easily be formed through the careful use of a furnace's heat. By fusing terracotta with alchemical calx and then with arcana, a similar result can be achieved. Just as with glass, the resulting patterns are quite pretty.");
 
         addSimpleEntryHeader("mote_making", "Mote Making", "Worship the cube");
         addPages("mote_making",
@@ -1267,7 +1271,7 @@ public class CodexLangDatagen {
                         -While in stasis, all potion effects are paused and cannot ever expire.
                         -Effects such as Regeneration or Poison that demand the forward movement of time cease function, while benefits that are unbothered by the stasis remain""",
                 scaled(0.8f) +"""
-                        Your body is frozen in time, an anomaly, disconnected from this world. It does not age, nor does it not feel.
+                        Your body is frozen in time, an anomaly, disconnected from this world. It does not age, nor does it feel.
                         -Quarters all incoming healing""");
 
         addSimpleEntryHeader("totem_magic", "Totem Magic", "Wonders Upon the World");

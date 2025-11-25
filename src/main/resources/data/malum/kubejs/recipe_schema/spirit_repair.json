@@ -9,8 +9,7 @@
           "type": "kubejs:registry_element",
           "registry": "minecraft:item"
         }
-      },
-      "optional": []
+      }
     },
     {
       "name": "spirits",

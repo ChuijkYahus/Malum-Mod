@@ -15,7 +15,9 @@
       "role": "input",
       "type": {
         "type": "list",
-        "component": "malum:spirit_ingredient"
+        "component": "malum:spirit_ingredient",
+        "min": 1,
+        "max": 4
       }
     },
     {

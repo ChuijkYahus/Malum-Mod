@@ -8,8 +8,14 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
+import team.lodestar.lodestone.systems.rendering.rendeertype.*;
+
+import java.awt.*;
+import java.util.*;
 
 import static com.sammy.malum.registry.client.MalumRenderTypeTokens.MOTE_OF_MANA;
 
@@ -21,25 +27,38 @@ public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEnti
 
     @Override
     public void render(ManaMoteBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        SpiritHolder<SpiritArcanaType> spirit = SpiritTypeProperty.getSpiritType(blockEntityIn.getBlockState());
+        var state = blockEntityIn.getBlockState();
+        SpiritHolder<SpiritArcanaType> spirit = SpiritTypeProperty.getSpiritType(state);
 
-        var builder = SpiritBasedWorldVFXBuilder.create(spirit)
-                .setRenderType(LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MOTE_OF_MANA));
+        var additive = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MOTE_OF_MANA);
+        var transparent = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MOTE_OF_MANA);
+        var builder = SpiritBasedWorldVFXBuilder.create(spirit);
 
-        CubeVertexData cubeVertexData = CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, 0.015f);
-        CubeVertexData inverse = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, 0.015f);
+        var primaryColor = spirit.getPrimaryColor();
+        var secondaryColor = spirit.getSecondaryColor();
+
+        float wobble = 1f;
+        var directions = new ArrayList<Direction>();
+        var invertedDirections = new ArrayList<Direction>();
+        for (Direction direction : Direction.values()) {
+            if (!ManaMoteBlock.isOccluded(state, direction)) {
+                directions.add(direction.getOpposite());
+                invertedDirections.add(direction);
+                wobble -= 0.2f;
+            }
+        }
+        var cube = CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, wobble * 0.02f);
+        var inverse = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, wobble * 0.02f);
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
-        builder.setRenderType(LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MOTE_OF_MANA))
-                .setColor(spirit.getPrimaryColor(), 0.9f)
-                .renderCube(poseStack, cubeVertexData);
-        builder.setAlpha(0.5f).setUV(0.0625f, 0.0625f, 1.0625f, 1.0625f)
-                .renderCube(poseStack, cubeVertexData.scale(1.08f));
-        builder.setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MOTE_OF_MANA))
-                .setColor(spirit.getSecondaryColor(), 0.4f)
-                .setUV(-0.0625f, -0.0625f, 0.9375f, 0.9375f)
-                .renderCube(poseStack, inverse.scale(0.82f));
+
+        builder.setRenderType(transparent).setColor(primaryColor, 0.9f)
+                .renderCubeSides(poseStack, cube, directions);
+        builder.setRenderType(additive).setAlpha(0.25f)
+                .renderCubeSides(poseStack, cube.scale(1.05f), directions);
+        builder.setColor(secondaryColor, 0.4f)
+                .renderCubeSides(poseStack, inverse.scale(0.95f), invertedDirections);
 
         poseStack.popPose();
     }

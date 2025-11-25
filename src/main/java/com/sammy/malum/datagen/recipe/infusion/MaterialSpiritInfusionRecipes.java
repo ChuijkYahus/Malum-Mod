@@ -26,6 +26,15 @@ public class MaterialSpiritInfusionRecipes {
         spiritedGlassRecipe(recipeOutput, EARTHEN_SPIRIT, MalumItems.EARTHEN_SPIRITED_GLASS.get());
         spiritedGlassRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_SPIRITED_GLASS.get());
 
+        varnishedTerracottaRecipe(recipeOutput, SACRED_SPIRIT, MalumItems.SACRED_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, WICKED_SPIRIT, MalumItems.WICKED_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, ARCANE_SPIRIT, MalumItems.ARCANE_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, ELDRITCH_SPIRIT, MalumItems.ELDRITCH_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, AERIAL_SPIRIT, MalumItems.AERIAL_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, AQUEOUS_SPIRIT, MalumItems.AQUEOUS_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, EARTHEN_SPIRIT, MalumItems.EARTHEN_VARNISHED_TERRACOTTA.get());
+        varnishedTerracottaRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_VARNISHED_TERRACOTTA.get());
+
         soulwovenBannerRecipe(recipeOutput, SoulwovenBannerPatternDataComponent.SACRED, SACRED_SPIRIT);
         soulwovenBannerRecipe(recipeOutput, SoulwovenBannerPatternDataComponent.WICKED, WICKED_SPIRIT);
         soulwovenBannerRecipe(recipeOutput, SoulwovenBannerPatternDataComponent.ARCANE, ARCANE_SPIRIT);
@@ -99,8 +108,9 @@ public class MaterialSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ETHER.get(), 1, MalumItems.PARACAUSAL_FLAME.get(), 1)
-                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 4))
                 .addExtraItem(MalumItems.HEX_ASH.get(), 8)
+                .addExtraItem(MalumItems.WARP_FLUX.get(), 4)
+                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 2))
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
@@ -152,6 +162,13 @@ public class MaterialSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.GLASS_BLOCKS), 8, glass, 8)
                 .addSpirit(spirit, 2)
                 .addExtraItem(Items.IRON_INGOT, 1)
+                .save(recipeOutput);
+    }
+
+    public static void varnishedTerracottaRecipe(RecipeOutput recipeOutput, SpiritHolder<SpiritArcanaType> spirit, Item terracotta) {
+        new SpiritInfusionRecipeBuilder(Items.TERRACOTTA, 8, terracotta, 8)
+                .addSpirit(spirit, 2)
+                .addExtraItem(MalumItems.ALCHEMICAL_CALX.get(), 1)
                 .save(recipeOutput);
     }
 

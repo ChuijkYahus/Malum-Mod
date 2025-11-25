@@ -1,9 +1,13 @@
 # KubeJS
 - Updated KubeJS Compat to support a not super outdated version
 
+# Varnished Terracotta
+- Added Varnished Terracotta, formed through Spirit Infusion
+
 # Tweaks
 - Added wind trail particles for wind tunnels
 - Added a purple glint to the Waveform Configuration Screen that scales with the chosen value
+- Improved the visuals of Spirit Motes and adjusted how they look when several are placed connected to one another
 - Runewood & Soulwood logs are no longer tagged with logs_that_burn
 
 # Textures
@@ -13,3 +17,5 @@
 - Fixed Rite of Hastening crashing the game in certain situations
 - Fixed Spirit Catalyzers not working properly when fed just one item at a time
 - Fixed Spirit Catalyzers not properly returning the crafting remainder items with, for example, Lava Buckets
+- Fixed Lamplighter's Tongs being able to replace any block in certain situations
+- Fixed whatever was going on with the pact of the reaper

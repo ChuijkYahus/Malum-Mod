@@ -15,7 +15,9 @@
       "role": "input",
       "type": {
         "type": "list",
-        "component": "malum:spirit_ingredient"
+        "component": "malum:spirit_ingredient",
+        "min": 1,
+        "max": 9
       }
     },
     {
@@ -23,9 +25,9 @@
       "role": "input",
       "type": {
         "type": "list",
-        "component": "flat_sized_ingredient"
-      },
-      "optional": []
+        "component": "flat_sized_ingredient",
+        "min": 0
+      }
     },
     {
       "name": "carryOverComponentData",
