@@ -2,12 +2,16 @@
   "type": "malum:spirit_infusion",
   "extraInputs": [
     {
-      "count": 4,
-      "tag": "c:obsidians/crying"
-    },
-    {
       "count": 8,
       "item": "malum:hex_ash"
+    },
+    {
+      "count": 4,
+      "item": "malum:warp_flux"
+    },
+    {
+      "count": 2,
+      "tag": "c:obsidians/crying"
     }
   ],
   "input": {

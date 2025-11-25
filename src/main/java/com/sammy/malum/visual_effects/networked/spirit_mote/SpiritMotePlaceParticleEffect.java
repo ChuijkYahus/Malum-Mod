@@ -1,5 +1,7 @@
 package com.sammy.malum.visual_effects.networked.spirit_mote;
 
+import com.sammy.malum.registry.common.*;
+import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.core.BlockPos;
@@ -7,7 +9,9 @@ import net.minecraft.util.Mth;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
@@ -19,6 +23,9 @@ import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
 import java.util.function.Supplier;
 
+import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
+import static net.minecraft.util.Mth.nextFloat;
+
 public class SpiritMotePlaceParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 
     public SpiritMotePlaceParticleEffect(String id) {
@@ -28,40 +35,43 @@ public class SpiritMotePlaceParticleEffect extends MalumNetworkedParticleEffectT
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, NetworkedParticleEffectExtraData extraData) {
-        //TODO: this effect is ancient, needs a rewrite
-        BlockPos pos = positionData.getAsBlockPos();
-        for (int i = 0; i < 6; i++) {
-            int spinDirection = (random.nextBoolean() ? 1 : -1);
-            int spinOffset = random.nextInt(360);
-            int lifetime = (int) (20 * Mth.nextFloat(random, 0.9f, 1.8f));
-            WorldParticleBuilder.create(LodestoneParticleTypes.TWINKLE_PARTICLE)
-                    .setTransparencyData(GenericParticleData.create(0.4f, 0.8f, 0).build())
-                    .setSpinData(SpinParticleData.create(0.7f * spinDirection, 0).setSpinOffset(spinOffset).setSpinOffset(1.25f).setEasing(Easing.CUBIC_IN).build())
-                    .setScaleData(GenericParticleData.create(0.075f, 0.15f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.EXPO_IN_OUT).build())
-                    .setColorData(colorData.getSpirit().createColorData().setCoefficient(Mth.nextFloat(random, 0.6f, 1.1f)).build())
-                    .setLifetime(lifetime)
-                    .setRandomOffset(0.6f)
-                    .enableNoClip()
-                    .setGravity(1.1f)
-                    .addMotion(0, 0.25f + random.nextFloat() * 0.1f, 0)
-                    .disableNoClip()
-                    .setRandomMotion(0.1f, 0.12f)
-                    .surroundBlock(level, pos);
+        var position = positionData.getAsBlockPos();
+        var center = position.getCenter();
+        for (int i = 0; i < 4; i++) {
+            int xOffset = Mth.clamp(i%3, 0, 1);
+            int zOffset = Mth.clamp((i-1)%4, 0, 1);
+            float xMotion = (i%2) * (i > 1 ? 0.06f : -0.06f);
+            float zMotion = ((i + 1) % 2) * (i > 1 ? -0.06f : 0.06f);
+            var spirit = colorData.getSpirit();
+            for (int j = 0; j < 20; j++) {
+                int delay = j * 2;
+                int upwards = j % 2;
+                var offsetPosition = new Vec3(position.getX() + xOffset, position.getY() + upwards, position.getZ() + zOffset);
+                var lightSpecs = spiritLightSpecs(level, offsetPosition, spirit);
+                lightSpecs.getBuilder()
+                        .setLifeDelay(delay)
+                        .multiplyLifetime(2.5f)
+                        .setMotion(xMotion, 0, zMotion)
+                        .setTransparencyData(GenericParticleData.create(0.4f, 0.8f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                lightSpecs.getBloomBuilder()
+                        .setLifeDelay(delay)
+                        .multiplyLifetime(1.5f)
+                        .setMotion(xMotion, 0, zMotion)
+                        .setTransparencyData(GenericParticleData.create(0.1f, 0.35f, 0f).build())
+                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                lightSpecs.spawnParticles();
+            }
         }
-        for (int i = 0; i < 8; i++) {
-            int spinDirection = (random.nextBoolean() ? 1 : -1);
-            int spinOffset = random.nextInt(360);
-            int lifetime = (int) (30 * Mth.nextFloat(random, 0.9f, 1.8f));
-            WorldParticleBuilder.create(LodestoneParticleTypes.SMOKE_PARTICLE)
-                    .setTransparencyData(GenericParticleData.create(0.12f, 0.06f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN).build())
-                    .setSpinData(SpinParticleData.create((0.125f + random.nextFloat() * 0.075f) * spinDirection).setSpinOffset(spinOffset).build())
-                    .setScaleData(GenericParticleData.create(0.85f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).setCoefficient(0.8f).build())
-                    .setColorData(colorData.getSpirit().createColorData().setCoefficient(0.6f).build())
-                    .setLifetime(lifetime)
-                    .setRandomOffset(0.4f)
-                    .enableNoClip()
-                    .setRandomMotion(0.01f, 0.01f)
-                    .repeatSurroundBlock(level, pos, 2);
-        }
+        final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).randomSpinOffset(random).build();
+        WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR.get())
+                .setTransparencyData(GenericParticleData.create(0.9f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
+                .setLifetime(25)
+                .setSpinData(spinData)
+                .setScaleData(GenericParticleData.create(4f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
+                .setColorData(colorData.getColor())
+                .setRandomOffset(0.2f)
+                .enableNoClip()
+                .repeat(level, center, 3);
     }
 }

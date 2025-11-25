@@ -51,8 +51,9 @@ public class ManaMoteBlock extends LodestoneEntityBlock<ManaMoteBlockEntity> {
         for (Direction direction : Direction.values()) {
             var property = getDirectionProperty(direction);
             var pos = context.getClickedPos();
-            boolean value = Block.shouldRenderFace(state, context.getLevel(), pos, direction, pos.relative(direction));
-            state = state.setValue(property, !value);
+            var relative = pos.relative(direction);
+            boolean value = context.getLevel().getBlockState(relative).getBlock() instanceof ManaMoteBlock;
+            state = state.setValue(property, value);
         }
         return state;
     }
@@ -63,16 +64,16 @@ public class ManaMoteBlock extends LodestoneEntityBlock<ManaMoteBlockEntity> {
         Direction direction = Direction.fromDelta(fromPos.getX() - pos.getX(), fromPos.getY() - pos.getY(), fromPos.getZ() - pos.getZ());
         if (direction != null) {
             var property = getDirectionProperty(direction);
-            boolean value = Block.shouldRenderFace(state, level, pos, direction, pos.relative(direction));
-            level.setBlock(pos, state.setValue(property, !value), 2);
+            boolean value = level.getBlockState(fromPos).getBlock() instanceof ManaMoteBlock;
+            level.setBlock(pos, state.setValue(property, value), 2);
         }
     }
 
-    public static BlockState createManaMoteState(SpiritLike spiritType) {
-        return SpiritTypeProperty.setSpiritType(MalumBlocks.SPIRIT_MOTE.get().defaultBlockState(), spiritType);
+    public static BlockState createManaMoteState(BlockState state, SpiritLike spiritType) {
+        return SpiritTypeProperty.setSpiritType(state, spiritType);
     }
 
-    public static BooleanProperty getDirectionProperty(Direction direction) {
+    public BooleanProperty getDirectionProperty(Direction direction) {
         return switch (direction) {
             case UP -> UP;
             case DOWN -> DOWN;

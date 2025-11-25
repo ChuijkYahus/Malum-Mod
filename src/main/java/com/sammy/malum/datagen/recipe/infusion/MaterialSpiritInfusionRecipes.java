@@ -108,8 +108,9 @@ public class MaterialSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ETHER.get(), 1, MalumItems.PARACAUSAL_FLAME.get(), 1)
-                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 4))
                 .addExtraItem(MalumItems.HEX_ASH.get(), 8)
+                .addExtraItem(MalumItems.WARP_FLUX.get(), 4)
+                .addExtraItem(SizedIngredient.of(Tags.Items.OBSIDIANS_CRYING, 2))
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);

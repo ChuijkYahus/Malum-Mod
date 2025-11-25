@@ -3,6 +3,7 @@ package com.sammy.malum.common.item.curiosities.tools;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -23,6 +24,9 @@ public class LamplightersTongsItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
         var context = new BlockPlaceContext(pContext);
+        if (!context.canPlace()) {
+            return super.useOn(context);
+        }
         var player = context.getPlayer();
         if (player == null) {
             return super.useOn(context);
@@ -36,10 +40,11 @@ public class LamplightersTongsItem extends Item {
         if (spiritShard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return super.useOn(context);
         }
-        var spiritMote = getPlacementState(context, ManaMoteBlock.createManaMoteState(spiritShard));
-        if (spiritMote == null) {
+        var state = MalumBlocks.SPIRIT_MOTE.get().getStateForPlacement(context);
+        if (state == null || !canPlace(context, state)) {
             return super.useOn(context);
         }
+        var spiritMote = ManaMoteBlock.createManaMoteState(state, spiritShard);
         var pPos = context.getClickedPos();
         SoundType soundtype = spiritMote.getSoundType(level, pPos, player);
         level.setBlock(pPos, spiritMote, 3);
@@ -54,10 +59,6 @@ public class LamplightersTongsItem extends Item {
                     .spawn(serverLevel);
         }
         return InteractionResult.SUCCESS;
-    }
-
-    protected BlockState getPlacementState(BlockPlaceContext pContext, BlockState state) {
-        return state != null && this.canPlace(pContext, state) ? state : null;
     }
 
     protected boolean canPlace(BlockPlaceContext pContext, BlockState pState) {

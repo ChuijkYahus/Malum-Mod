@@ -34,26 +34,31 @@ public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEnti
         var transparent = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MOTE_OF_MANA);
         var builder = SpiritBasedWorldVFXBuilder.create(spirit);
 
-        var cube = CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, 0.015f);
-        var inverse = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, 0.015f);
         var primaryColor = spirit.getPrimaryColor();
         var secondaryColor = spirit.getSecondaryColor();
 
+        float wobble = 1f;
         var directions = new ArrayList<Direction>();
+        var invertedDirections = new ArrayList<Direction>();
         for (Direction direction : Direction.values()) {
             if (!ManaMoteBlock.isOccluded(state, direction)) {
-                directions.add(direction);
+                directions.add(direction.getOpposite());
+                invertedDirections.add(direction);
+                wobble -= 0.2f;
             }
         }
+        var cube = CubeVertexData.makeCubePositions(1f).applyWobble(0, 0.5f, wobble * 0.02f);
+        var inverse = CubeVertexData.makeCubePositions(-1f).applyWobble(0, 0.5f, wobble * 0.02f);
+
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
 
         builder.setRenderType(transparent).setColor(primaryColor, 0.9f)
-                .renderCubeSides(poseStack, cube);
+                .renderCubeSides(poseStack, cube, directions);
         builder.setRenderType(additive).setAlpha(0.25f)
-                .renderCubeSides(poseStack, cube.scale(1.05f));
+                .renderCubeSides(poseStack, cube.scale(1.05f), directions);
         builder.setColor(secondaryColor, 0.4f)
-                .renderCubeSides(poseStack, inverse.scale(0.95f));
+                .renderCubeSides(poseStack, inverse.scale(0.95f), invertedDirections);
 
         poseStack.popPose();
     }
