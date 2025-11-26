@@ -59,7 +59,7 @@ public class WeepingWellTextPage extends BookPage {
             if (ScreenParticleHandler.canSpawnParticles) {
                 ITEM_PARTICLES.tick();
             }
-            ScreenParticleHandler.renderParticles(ITEM_PARTICLES);
+            ITEM_PARTICLES.render();
         }
         CodexItemHelper.renderItem(screen, guiGraphics, stack, left + 63, top + 38, mouseX, mouseY);
 

@@ -41,7 +41,7 @@ public class SpiritRiteRecipePage extends BookPage {
             if (ScreenParticleHandler.canSpawnParticles) {
                 RITE_PARTICLES.tick();
             }
-            ScreenParticleHandler.renderParticles(RITE_PARTICLES);
+            RITE_PARTICLES.render();
         }
 
         int riteStartX = left + 63;
