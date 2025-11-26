@@ -129,6 +129,10 @@ repositories {
         name = "ModMaven"
         url = uri("https://modmaven.dev")
     }
+    maven { //Modrinth Maven, Generic
+        name = "Modrinth maven"
+        url = uri("https://api.modrinth.com/maven")
+    }
 
     maven { //KubeJS
         url = uri("https://maven.latvian.dev/releases")
