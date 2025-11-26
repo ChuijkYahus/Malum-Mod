@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.handlers;
 
+import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.*;
@@ -107,7 +108,11 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
     }
 
     public void renderObject(T screen, GuiGraphics guiGraphics, BookObject<T> object, int mouseX, int mouseY, float partialTicks) {
+        var poseStack = guiGraphics.pose();
+        poseStack.pushPose();
+        object.applyTransforms(screen, poseStack, mouseX, mouseY, partialTicks);
         object.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
+        poseStack.popPose();
     }
 
     public void renderObjectsLate(T screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {

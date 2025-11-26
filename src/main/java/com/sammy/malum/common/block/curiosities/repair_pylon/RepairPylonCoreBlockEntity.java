@@ -18,6 +18,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -46,7 +47,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
 
     public static final StringRepresentable.EnumCodec<RepairPylonState> CODEC = StringRepresentable.fromEnum(RepairPylonState::values);
 
-    public enum RepairPylonState implements StringRepresentable{
+    public enum RepairPylonState implements StringRepresentable {
         IDLE("idle"),
         SEARCHING("searching"),
         CHARGING("active"),
@@ -158,68 +159,71 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void commonTick(Level level) {
         spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-        if (level.isClientSide) {
-            spiritSpin++;
-            IMalumSpecialItemAccessPoint target = null;
-            if (repairTargetPosition != null && level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint accessPoint) {
-                target = accessPoint;
-            }
-            RepairPylonParticleEffects.passiveRepairPylonParticles(this, target);
+    }
+
+    @Override
+    public void clientTick(Level level) {
+        spiritSpin++;
+        IMalumSpecialItemAccessPoint target = null;
+        if (repairTargetPosition != null && level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint accessPoint) {
+            target = accessPoint;
         }
-        if (level instanceof ServerLevel serverLevel) {
-            if (!state.equals(RepairPylonState.IDLE)) {
-                if (recipe == null) {
-                    setState(RepairPylonState.IDLE);
-                    return;
+        RepairPylonParticleEffects.passiveRepairPylonParticles(this, target);
+    }
+
+    @Override
+    public void serverTick(ServerLevel level) {
+        if (!state.equals(RepairPylonState.IDLE)) {
+            if (recipe == null) {
+                setState(RepairPylonState.IDLE);
+                return;
+            }
+        }
+        switch (state) {
+            case IDLE -> {
+                if (recipe != null) {
+                    setState(RepairPylonState.SEARCHING);
                 }
             }
-            switch (state) {
-                case IDLE -> {
-                    if (recipe != null) {
-                        setState(RepairPylonState.SEARCHING);
+            case SEARCHING -> {
+                timer++;
+                if (timer >= 40) {
+                    boolean success = searchForRepairTarget();
+                    if (success) {
+                        setState(RepairPylonState.CHARGING);
+                    } else {
+                        timer = 0;
                     }
                 }
-                case SEARCHING -> {
-                    timer++;
-                    if (timer >= 40) {
-                        boolean success = searchForRepairTarget();
-                        if (success) {
-                            setState(RepairPylonState.CHARGING);
-                        } else {
-                            timer = 0;
-                        }
+            }
+            case CHARGING -> {
+                timer++;
+                if (timer >= 600) {
+                    if (repairTargetPosition == null) {
+                        setState(RepairPylonState.IDLE);
+                        return;
                     }
+                    if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
+                        setState(RepairPylonState.IDLE);
+                        return;
+                    }
+                    beginRepair(level, provider);
                 }
-                case CHARGING -> {
-                    timer++;
-                    if (timer >= 600) {
-                        if (repairTargetPosition == null) {
-                            setState(RepairPylonState.IDLE);
-                            return;
-                        }
-                        if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
-                            setState(RepairPylonState.IDLE);
-                            return;
-                        }
-                        beginRepair(serverLevel, provider);
+            }
+            case REPAIRING -> {
+                timer++;
+                if (timer >= 40) {
+                    if (repairTargetPosition == null) {
+                        setState(RepairPylonState.IDLE);
+                        return;
                     }
-                }
-                case REPAIRING -> {
-                    timer++;
-                    if (timer >= 40) {
-                        if (repairTargetPosition == null) {
-                            setState(RepairPylonState.IDLE);
-                            return;
-                        }
-                        if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
-                            setState(RepairPylonState.IDLE);
-                            return;
-                        }
-                        completeRepair(serverLevel, provider);
+                    if (!(level.getBlockEntity(repairTargetPosition) instanceof IMalumSpecialItemAccessPoint provider) || !isRepairTargetValid(provider)) {
+                        setState(RepairPylonState.IDLE);
+                        return;
                     }
+                    completeRepair(level, provider);
                 }
             }
         }
@@ -290,6 +294,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     public SpiritRepairRecipe updateRecipe() {
         return updateRecipe(r -> r.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), level));
     }
+
     public SpiritRepairRecipe updateRecipe(ItemStack repairTarget) {
         return updateRecipe(r -> r.matches(new SpiritBasedRecipeInput(inventory.getStackInSlot(0), spiritInventory.nonEmptyItemStacks), repairTarget));
     }
