@@ -23,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
+import team.lodestar.lodestone.systems.easing.*;
 import team.lodestar.lodestone.systems.rendering.*;
 
 import java.awt.*;
@@ -73,6 +74,17 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
             }
         }
         super.tick(screen, mouseX, mouseY);
+    }
+
+    @Override
+    public void applyTransforms(AbstractProgressionCodexScreen screen, PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        var minecraft = screen.getMinecraft();
+        float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
+        float effectStrength = Mth.lerp(delta, oldOutlineVisibility, outlineVisibility) / 20f;
+        if (effectStrength > 0) {
+            float offset = Easing.CIRC_OUT.ease(effectStrength, 0, 2);
+            poseStack.translate(0, -offset, 0);
+        }
     }
 
     @Override

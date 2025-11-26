@@ -129,6 +129,10 @@ repositories {
         name = "ModMaven"
         url = uri("https://modmaven.dev")
     }
+    maven { //Modrinth Maven, Generic
+        name = "Modrinth maven"
+        url = uri("https://api.modrinth.com/maven")
+    }
 
     maven { //KubeJS
         url = uri("https://maven.latvian.dev/releases")
@@ -187,7 +191,8 @@ dependencies {
     runtimeOnly(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
 
     // KubeJS
-    implementation("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
+    compileOnlyApi("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
+    runtimeOnly("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
 
     // Tetra, Optional
 //    compileOnly(("curse.maven:tetra-${property("tetra_version")}"))

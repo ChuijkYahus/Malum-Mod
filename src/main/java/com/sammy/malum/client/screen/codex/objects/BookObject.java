@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects;
 
+import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -36,6 +37,10 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
     }
 
     public void tick(T screen, double mouseX, double mouseY) {
+
+    }
+
+    public void applyTransforms(T screen, PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
 
     }
 

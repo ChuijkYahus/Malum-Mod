@@ -44,6 +44,8 @@ public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEnti
             if (!ManaMoteBlock.isOccluded(state, direction)) {
                 directions.add(direction.getOpposite());
                 invertedDirections.add(direction);
+            }
+            else {
                 wobble -= 0.2f;
             }
         }

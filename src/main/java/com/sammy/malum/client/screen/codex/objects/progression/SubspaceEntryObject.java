@@ -108,7 +108,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     @Override
     public void render(AbstractProgressionCodexScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(screen, guiGraphics, mouseX, mouseY, partialTicks);
-        ScreenParticleHandler.renderParticles(entryParticles);
+        entryParticles.render(guiGraphics);
         int posX = getOffsetXPosition();
         int posY = getOffsetYPosition();
         renderGlow(guiGraphics, posX, posY, entry.associatedSpirit);
@@ -173,7 +173,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
                     size * scale,
                     size * scale);
 
-            ScreenParticleHandler.renderParticles(subspaceParticles);
+            subspaceParticles.render();
             screen.captureLateRendering();
             objects.renderObjects(screen, guiGraphics, xOffset, yOffset, mouseX, mouseY, partialTicks);
             GL11.glDisable(GL_SCISSOR_TEST);

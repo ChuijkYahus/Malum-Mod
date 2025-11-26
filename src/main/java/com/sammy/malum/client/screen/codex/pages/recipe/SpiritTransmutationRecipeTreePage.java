@@ -67,7 +67,7 @@ public class SpiritTransmutationRecipeTreePage extends BookPage {
             if (ScreenParticleHandler.canSpawnParticles) {
                 TRANSMUTATION_PARTICLES.tick();
             }
-            ScreenParticleHandler.renderParticles(TRANSMUTATION_PARTICLES);
+            TRANSMUTATION_PARTICLES.render();
         }
         CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.getFirst(), left + 63, top + 38, mouseX, mouseY);
         CodexItemHelper.renderIngredient(screen, guiGraphics, itemTree.getLast(), left + 63, top + 142, mouseX, mouseY);

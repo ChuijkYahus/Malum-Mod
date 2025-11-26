@@ -1311,7 +1311,7 @@ public class CodexLangDatagen {
                 "Naturally, the Soulwood Totem Base can be created by using Soulwood in place of Runewood within the Spirit Infusion process.");
         addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
                 "Now already scarred, the power bleeds from the soulwood totem in the form of a Blight-Bound Rite Locus. When this Locus travels through blight, it will transmute the block above.",
-                "Creates a Grounded Rite Locus\nLocus Travels Through Blight and Affects The Block Above\nAffected Blocks Undergo Unchained Transmutation\nLocus Requires Blight To Survive");
+                "Creates a Bound Rite Locus\nLocus Travels Through Blight and Affects The Block Above\nAffected Blocks Undergo Unchained Transmutation\nLocus Requires Blight To Survive");
 
         addSimpleEntryHeader("sacred_rites", "Sacred Rites", "Totemic Arts of Mending");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "To Mend Open Wounds",
@@ -1356,11 +1356,11 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will bless nearby creatures with Sky Tether, increasing jump height and reducing gravity with minimal fall damage reduction.",
                 "Affected Creatures Are Blessed With Sky Tether\nSky Tether reduces gravity and increases jump height by two fifths each.\nFall damage is also moderately dampened");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_GRAVITY, "To Imbue With Weight",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply a gravity effect to them, causing them to fall.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply a Gravity Effect As Observed In Sand or Gravel\nGravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a gravity effect to them, causing them to fall.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply a Gravity Effect As Observed In Sand or Gravel\nGravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_ASCENSION, "To Invert The Law",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply an inverted gravity effect to them, causing them to rise for up to sixteen blocks worth of height.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply an Inverse Gravity Effect As Observed In Sand or Gravel\nInverse Gravity Effect Has A Lifting Range Of Sixteen Blocks\nInverse Gravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply an inverted gravity effect to them, causing them to rise for up to sixteen blocks worth of height.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply an Inverse Gravity Effect As Observed In Sand or Gravel\nInverse Gravity Effect Has A Lifting Range Of Sixteen Blocks\nInverse Gravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
 
         addSimpleEntryHeader("aqueous_rites", "Aqueous Rites", "Totemic Arts of Flowing");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "To Extend One's Reach",
@@ -1370,11 +1370,11 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will bless nearby creatures with Good Tides, providing one level worth of benefits granted by Lure and Luck of The Sea.",
                 "Affected Creatures Are Blessed With Good Tides\nGood Tides grants effects equivalent to one level of Lure and Luck of The Sea");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SOAKING, "To Enable Nature's Growth",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Plants, It Will Apply a Growth-Inducing Effect\nCrops Receive An Instantaneous Time Accelerating Effect\nOther Bonemeal Applicable Plants Are Grown As If With Actual Bonemeal\nWhen Passing Over Tilted Soil, The Crop Above Will Be Affected Instead");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Plants, It Will Apply a Growth-Inducing Effect\nCrops Receive An Instantaneous Time Accelerating Effect\nOther Bonemeal Applicable Plants Are Grown As If With Actual Bonemeal\nWhen Passing Over Tilted Soil, The Crop Above Will Be Affected Instead");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SAPPING, "To Gather From Earth",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over cauldrons it will greatly accelerate the process of fluid accumulation from any pointed dripstone found above.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Cauldrons, It Will Accelerate Fluid Accumulation From Any Pointed Dripstone Found Above");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over cauldrons it will greatly accelerate the process of fluid accumulation from any pointed dripstone found above.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Cauldrons, It Will Accelerate Fluid Accumulation From Any Pointed Dripstone Found Above");
 
         addSimpleEntryHeader("earthen_rites", "Earthen Rites", "Totemic Arts of Forming");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, "To Harden One's Flesh",
@@ -1384,11 +1384,11 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will bless nearby creatures with Oaken Might, providing a flat damage increase that grows in powered when empty handed.",
                 "Affected Creatures Are Blessed With Oaken Might\nOaken Might increases damage dealt by one heart worth\nOaken Might Doubles in power when Empty Handed");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, "To Unmake What Was",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will it will attempt to break them",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Break Them\nBlocks Are Broken Regardless Of Any Mining Gear Requirements Unless Strictly Impossible");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will it will attempt to break them",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Break Them\nBlocks Are Broken Regardless Of Any Mining Gear Requirements Unless Strictly Impossible");
 
         addSimpleEntryHeader("infernal_rites", "Infernal Rites", "Totemic Arts of Scorching");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "To Ignite One's Spirit",
@@ -1398,11 +1398,11 @@ public class CodexLangDatagen {
                 "A simple rite, while active it will extinguish nearby creatures and then grant the blessing of Fiery Embrace, providing a passive healing effect.",
                 "Affected Creatures are Extinguished and Blessed with Fiery Embrace\nFiery Embrace recovers one heart of damage twice every second\nWill only target creatures that are on fire");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SMELTING, "To Refine What Is Raw",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over blocks it will imbue them with fire, Smelting them instantaneously as if in a furnace.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Smelt Them\nBlocks Are Smelted As If In A Furnace");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will imbue them with fire, Smelting them instantaneously as if in a furnace.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Smelt Them\nBlocks Are Smelted As If In A Furnace");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "To Hasten Progress",
-                "An advanced rite, while active it will weave a Grounded Rite Locus. When this Locus travels over furnaces of any kind it will accelerate their smelting process greatly.",
-                "Creates a Grounded Rite Locus\nWhen The Locus Travels Over Furnaces It Will Accelerate Their Smelting Process\nFuel Consumption Remains Proportional");
+                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over furnaces of any kind it will accelerate their smelting process greatly.",
+                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Furnaces It Will Accelerate Their Smelting Process\nFuel Consumption Remains Proportional");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
         addHeadline("blight.intro", "A Study on Blight");

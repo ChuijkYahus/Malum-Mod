@@ -11,11 +11,13 @@
 - Runewood & Soulwood logs are no longer tagged with logs_that_burn
 
 # Textures
-- Updated the textures for Living Flesh, Alchemical Calx, Grim Talc
+- Updated the textures for Living Flesh, Alchemical Calx, Grim Talc, Rotting Essence and Warp Flux
+- Updated the Soulstone Block texture
 
 # Bugfixes
 - Fixed Rite of Hastening crashing the game in certain situations
 - Fixed Spirit Catalyzers not working properly when fed just one item at a time
 - Fixed Spirit Catalyzers not properly returning the crafting remainder items with, for example, Lava Buckets
 - Fixed Lamplighter's Tongs being able to replace any block in certain situations
+- Fixed Spirit Repair not working
 - Fixed whatever was going on with the pact of the reaper

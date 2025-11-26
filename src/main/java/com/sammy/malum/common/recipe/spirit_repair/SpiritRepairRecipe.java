@@ -92,7 +92,7 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
     }
 
     public boolean matches(SpiritBasedRecipeInput input, ItemStack repairTarget) {
-        return input.test(repairMaterial, spirits) && validItems.stream().anyMatch(i -> i.equals(repairTarget.getItem()));
+        return input.test(repairMaterial, spirits) && validItems.stream().anyMatch(repairTarget::is);
     }
 
     @Override
