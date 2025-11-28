@@ -192,8 +192,7 @@ public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
         int effectDuration = isGlider ? 100 : 40;
         int effectAmplifier = isGlider ? 2 : 4;
         var explosionPos = pos.relative(facing).getCenter();
-        var explosionAffectedEntities = WindNucleusItem.getExplosionAffectedEntities(level, null, explosionPos, radius);
-        var velocityCache = explosionAffectedEntities.stream().collect(Collectors.toMap(e -> e, Entity::getDeltaMovement));
+        var affectedEntities = WindNucleusItem.getExplosionAffectedEntities(level, null, explosionPos, radius);
         level.explode(
                 null,
                 null,
@@ -209,7 +208,7 @@ public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
                 SoundEvents.WIND_CHARGE_BURST
         );
 
-        for (Entity entity : explosionAffectedEntities) {
+        for (Entity entity : affectedEntities) {
             var velocity = entity.getDeltaMovement();
             double appliedForce = force;
             if (velocity.length() < 0.1f) {

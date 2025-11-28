@@ -8,8 +8,6 @@ import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.core.systems.registry.rite.*;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
 import net.minecraft.core.*;
 import net.minecraft.world.item.Item;
@@ -87,7 +85,7 @@ public class GeasEntries {
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, -15, 16);
 
         addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, -14, 18);
-        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, -16, 17);
+        addGeasEntry(screen, MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER, -16, 17);
     }
 
     @SafeVarargs

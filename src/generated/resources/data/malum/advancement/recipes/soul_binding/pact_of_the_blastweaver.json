@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:pact_of_the_pyromaniac"
+        "recipe": "malum:pact_of_the_blastweaver"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:pact_of_the_pyromaniac"
+      "malum:pact_of_the_blastweaver"
     ]
   }
 }

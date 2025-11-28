@@ -1,6 +1,5 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
-import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -12,6 +11,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -34,56 +34,57 @@ public class ProspectorGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("ore_prospecting"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("prospectors_streak"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_fortune"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_healing"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("greed_combustion"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (!event.getSource().is(DamageTypeTags.IS_FIRE)) {
-            var effect = target.getEffect(MalumMobEffects.PROSPECTORS_STREAK);
+        var source = event.getSource();
+        if (!source.is(DamageTypeTags.IS_FIRE) && !source.is(DamageTypeTags.IS_EXPLOSION)) {
+            var effect = target.getEffect(MalumMobEffects.AVARICE);
             if (effect != null) {
-                target.igniteForSeconds((effect.amplifier + 1));
                 if (target.level() instanceof ServerLevel level) {
+                    target.igniteForSeconds((effect.amplifier + 1) * 0.5f);
                     MalumParticleEffectTypes.PROSPECTORS_STREAK_BURN.createEffect(target)
                             .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
                             .spawn(level);
                 }
-                target.removeEffect(MalumMobEffects.PROSPECTORS_STREAK);
+                target.removeEffect(MalumMobEffects.AVARICE);
             }
         }
     }
 
     public static void pickupItem(ItemEntityPickupEvent.Post event) {
-        if (GeasEffectHandler.hasGeasEffect(event.getPlayer(), MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
-            ItemEntity entity = event.getItemEntity();
-            entity.getExistingData(MalumAttachmentTypes.PROSPECTOR_MARK).ifPresent(data -> {
-                if (data.hasProspectorMark()) {
-                    var target = event.getPlayer();
-                    var effect = MalumMobEffects.PROSPECTORS_STREAK;
-                    var instance = target.getEffect(effect);
-                    if (instance == null) {
-                        target.addEffect(new MobEffectInstance(effect, 200, 0, true, true, true));
-                    } else {
-                        EntityHelper.amplifyEffect(instance, target, 1, 4);
-                        EntityHelper.extendEffect(instance, target, 100, 1200);
-                    }
-                }
-            });
-        }
+        ItemEntity entity = event.getItemEntity();
+        entity.getExistingData(MalumAttachmentTypes.AVARICE_MARK).ifPresent(data -> {
+            if (data.hasProspectorMark()) {
+                applyAvarice(event.getPlayer());
+            }
+        });
     }
 
     public static void modifyBlockDrops(BlockDropsEvent event) {
-        var breaker = event.getBreaker();
-        if (breaker instanceof SpellweaverToolEffectActivatorEntity entity) {
-            var level = event.getLevel();
-            breaker = level.getEntity(entity.getOwner());
-        }
-        if (hasProspector(breaker)) {
+        if (hasProspector(event.getBreaker())) {
             for (ItemEntity drop : event.getDrops()) {
                 markEntity(drop);
             }
+        }
+    }
+
+    public static void applyAvarice(LivingEntity target) {
+        var effect = MalumMobEffects.AVARICE;
+        var instance = target.getEffect(effect);
+        if (instance == null) {
+            target.addEffect(new MobEffectInstance(effect, 200, 0, true, true, true));
+        } else {
+            EntityHelper.amplifyEffect(instance, target, 1, 9);
+            EntityHelper.extendEffect(instance, target, 100, 1200);
+        }
+        if (GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
+            target.heal(2);
         }
     }
 
@@ -103,7 +104,8 @@ public class ProspectorGeas extends GeasEffect {
     }
 
     public static ItemEntity markEntity(ItemEntity entity) {
-        entity.getData(MalumAttachmentTypes.PROSPECTOR_MARK).enableMark();
+        entity.getData(MalumAttachmentTypes.AVARICE_MARK).enableMark();
+        entity.syncData(MalumAttachmentTypes.AVARICE_MARK);
         return entity;
     }
 }

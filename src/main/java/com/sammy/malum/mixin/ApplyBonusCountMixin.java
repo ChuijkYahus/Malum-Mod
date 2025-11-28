@@ -29,7 +29,7 @@ public class ApplyBonusCountMixin {
                                          LootContext lootContext) {
         if (enchantment.is(Enchantments.FORTUNE)) {
             if (lootContext.getParamOrNull(LootContextParams.THIS_ENTITY) instanceof LivingEntity entity) {
-                return enchantmentLevel + ProspectorsGreedEffect.addFortune(entity);
+                return enchantmentLevel + AvariceEffect.addFortune(entity);
             }
         }
         return enchantmentLevel;

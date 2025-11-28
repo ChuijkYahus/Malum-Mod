@@ -51,6 +51,7 @@ public abstract class ExplosionMixin {
     private void malum$modifyExplosion(Level level, Entity source, DamageSource damageSource, ExplosionDamageCalculator damageCalculator, double x, double y, double z, float radius, boolean fire, Explosion.BlockInteraction blockInteraction, ParticleOptions smallExplosionParticles, ParticleOptions largeExplosionParticles, Holder explosionSound, CallbackInfo ci) {
         LivingEntity sourceEntity = getIndirectSourceEntity();
         this.radius = CurioDemolitionistRing.increaseExplosionRadius(sourceEntity, radius);
+        this.radius = BlastweaverGeas.increaseExplosionRadius(sourceEntity, radius);
     }
 
     @Inject(method = "finalizeExplosion", at = @At(value = "HEAD"))

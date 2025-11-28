@@ -1119,8 +1119,9 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
                 """
                         To be complete is to be unburdened.
-                         -Each Empty Armor Slot grants Four Armor and Two Armor Toughness""",
-                "To be unburdened is to cull all shackles\n -Wearing any Armour Hurts You");
+                         -Each empty armour slot grants four Armor and two Armor Toughness
+                         -Each empty armour slot increases Healing Received by One Fifth""",
+                "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,
@@ -1158,19 +1159,21 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
                         A favor born from flame.
-                         -Collecting Precious Minerals generates Prospector's Streak, increasing Mining Speed Fortune Chance""",
-                "Burn with Greed\n -Being Struck when imbued with Prospector's Streak engulfs you in flames");
+                         -Collecting Precious Minerals grants Avarice
+                         -Avarice gradually improves Fortune Chance
+                         -Avarice additionally recovers one heart of lost health when applied""",
+                "Burn with Greed\n -Being Struck when imbued with Avarice engulfs you in flames");
 
-        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To spread the fire");
-        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC,
-                scaled(0.8f) +"""
-                        Recklessness and Haste, fueled by Kinetic Impact.
-                         -Blowing Yourself Up Generates Pyromaniac's Fervor, Increasing Movement and Mining Speed
-                         -Grants Damage Resistance Against Explosions""",
+        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To prosper from ruin");
+        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER,
+                scaled(0.7f) +"""
+                        Greed and Haste, fueled by Kinetic Impact.
+                         -Explosions are greatly empowered and grant Avarice upon detonation
+                         -Avarice gradually improves Fortune Chance
+                         -Avarice provides additional benefits to Movement Speed, Attack Speed and Mining Speed, up to a Fifty Percent increase""",
                 """
-                        You can only handle so much pressure.
-                         -High Fervor Ignites You When Struck By Blast Impact
-                         -Incoming Fire Damage is Doubled""");
+                        Your greed exposes you to your own man-made ruin.
+                         -Avarice increases incoming explosive damage""");
 
         addSimpleEntryHeader("pact_of_wyrd_reconstruction", "Pact of Wyrd Reconstruction", "To survive one's fate");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION,

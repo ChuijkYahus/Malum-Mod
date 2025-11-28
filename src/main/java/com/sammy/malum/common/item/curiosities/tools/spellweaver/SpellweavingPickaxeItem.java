@@ -165,8 +165,8 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 int index = isNearest ? startingIndex-offset : travelTokens+1+offset;
                 var blocks = nearbyBlocks.get(index);
                 if (!blocks.isEmpty()) {
-                    var randomized = new ArrayList<>(blocks);
-                    for (BlockPos markedPos : randomized) {
+                    var toRemove = new ArrayList<BlockPos>();
+                    for (BlockPos markedPos : blocks) {
                         if (disallowBeneath && markedPos.getY() < player.getY()) {
                             continue;
                         }
@@ -174,9 +174,12 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                             break;
                         }
                         spawnBreaker(level, markedPos, random, tool, player, lociSpeed, pos, spirit, backup);
+                        toRemove.add(markedPos);
                         playSound = true;
                         spawnedLoci--;
                     }
+                    blocks.removeAll(toRemove);
+                    toRemove.clear();
                 }
                 if (i == distance) {
                     if (disallowBeneath) {

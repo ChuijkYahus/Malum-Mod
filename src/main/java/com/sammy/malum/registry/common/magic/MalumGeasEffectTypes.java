@@ -17,7 +17,6 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.neoforged.neoforge.registries.*;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -60,7 +59,7 @@ public class MalumGeasEffectTypes {
 
     public static final GeasHolder<GeasEffectType> PACT_OF_COMBUSTION = GEAS_TYPES.register("pact_of_combustion", () -> new GeasEffectType(CombustionGeas::new, INFERNAL_SPIRIT, WICKED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_PROSPECTOR = GEAS_TYPES.register("pact_of_the_prospector", () -> new GeasEffectType(ProspectorGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
-    public static final GeasHolder<GeasEffectType> PACT_OF_THE_PYROMANIAC = GEAS_TYPES.register("pact_of_the_pyromaniac", () -> new GeasEffectType(PyromaniacGeas::new, INFERNAL_SPIRIT, WICKED_SPIRIT));
+    public static final GeasHolder<GeasEffectType> PACT_OF_THE_BLASTWEAVER = GEAS_TYPES.register("pact_of_the_blastweaver", () -> new GeasEffectType(BlastweaverGeas::new, INFERNAL_SPIRIT, WICKED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_WYRD_RECONSTRUCTION = GEAS_TYPES.register("pact_of_wyrd_reconstruction", () -> new GeasEffectType(WyrdReconstructionGeas::new, INFERNAL_SPIRIT, SACRED_SPIRIT));
 
 

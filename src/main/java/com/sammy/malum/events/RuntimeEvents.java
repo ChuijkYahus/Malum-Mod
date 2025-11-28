@@ -222,7 +222,7 @@ public class RuntimeEvents {
     public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
         CurioProspectorBelt.processExplosion(event);
         NitrateExplosion.processExplosion(event);
-        PyromaniacGeas.processExplosion(event);
+        BlastweaverGeas.processExplosion(event);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

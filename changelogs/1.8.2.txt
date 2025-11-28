@@ -1,0 +1,28 @@
+# Tweaks
+- The healing rite now only triggers if the healing would actually have an effect, bless thy ears
+- Spellwoven Sprites now break blocks as if the player did it, this fires the BlockDropsEvent with the breaker being listed as the player, hopefully allowing for better compatibility with any loot modifying effects
+
+# Geas Changes
+
+Pact of the Lone Druid
+- Now also increases Healing Received
+
+Pact of the Prospector
+- Prospector's Streak is now called Avarice
+- Avarice now stacks up to 10, up from 5
+- Avarice (Steak) now heals when applied
+- Avarice no longer increases mining speed
+
+Pact of the Pyromaniac
+- Now Called Pact of the Blastweaver
+- Pyromaniac's Fervor is now consolidated into Avarice
+- Avarice grants the same benefits as with the Pact of the Prospector
+- Avarice additionally increases mining, attack and movement speed
+- Avarice increases incoming explosion damage
+- No longer causes explosions to ignite you, or others
+
+# Textures
+- Updated various geas textures
+
+# Bugfixes
+- Fixed some ordering issues with Wind Tunnels

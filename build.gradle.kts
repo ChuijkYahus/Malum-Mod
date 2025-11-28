@@ -187,6 +187,7 @@ dependencies {
     compileOnlyApi(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
     runtimeOnly(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
 
+    // Wayward Attributes
     compileOnlyApi(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
     runtimeOnly(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
 

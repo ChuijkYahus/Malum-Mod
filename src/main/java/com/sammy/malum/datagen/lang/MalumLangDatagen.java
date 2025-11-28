@@ -207,7 +207,7 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PYROMANIAC, "Draw power from recklessness");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
 
@@ -297,7 +297,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addCurioEffect("eat_rotten", "Rotten Foods are Tastier");
         addCurioEffect("growing_gluttony", "Eating Rotten Foods Extends Gluttony");
         addCurioEffect("explosion_drops_collected", "Automatic Collection of Explosion Drops");
-        addCurioEffect("bigger_explosions", "Improves Explosions");
+        addCurioEffect("bigger_explosions", "Enhances Explosions");
         addCurioEffect("no_sweep", "Disables Scythe Sweeping");
         addCurioEffect("enhanced_maneuvers", "Augments Rebound and Ascension");
         addCurioEffect("ascension_launch", "Ascension Launches Targets Upwards");
@@ -341,7 +341,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
         addGeasEffect("no_armor_armor", "The Absence of Equipped Armour Becomes Armor");
-        addGeasEffect("no_armor", "Equipped Armour Damages You");
+        addGeasEffect("no_armor_healing", "The Absence of Equipped Armour Enhances Healing");
+        addGeasEffect("no_armor", "Equipped Armour Shackles You");
         addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
         addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
         addGeasEffect("fragile_reach_damage", "The High Priest's Rule Grips You Tightly");
@@ -363,16 +364,16 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Gusts Provide Greater Propulsion");
         addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-        addGeasEffect("ore_prospecting", "Ore Collection Generates Prospector's Streak");
-        addGeasEffect("prospectors_streak", "Prospector's Streak Grants Mining Speed And Fortune Chance");
-        addGeasEffect("greed_combustion", "Prospector's Streak Turns Into Flames When Struck");
+        addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");
+        addGeasEffect("avarice_fortune", "Avarice Increases Fortune Chance");
+        addGeasEffect("avarice_healing", "Avarice Recovers Lost Health");
+        addGeasEffect("avarice_combustion", "Avarice Engulfs You In Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
-        addGeasEffect("explosion_lover", "Explosion Damage Generates Pyromaniac's Fervor");
-        addGeasEffect("pyromaniacs_fervor", "Pyromaniac's Fervor Increases Mining, Attack and Movement Speed");
-        addGeasEffect("explosion_resistance", "Shields Against Explosions");
-        addGeasEffect("explosion_fire", "Explosions Set You Ablaze");
-        addGeasEffect("scary_fire", "Fire Damage Is Deadlier");
+        addGeasEffect("vastly_bigger_explosions", "Greatly Enhances Explosions");
+        addGeasEffect("explosion_lover", "Nearby Explosions Grant Avarice");
+        addGeasEffect("avarice_fervor", "Avarice Hastens You");
+        addGeasEffect("avarice_vulnerability", "Avarice Increases Explosive Damage Taken");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         addGeasEffect("rotten_healing", "Eating Rotten Foods Heals You");

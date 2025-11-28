@@ -29,6 +29,10 @@ public class LoneDruidGeas extends GeasEffect {
         if (bonus > 0) {
             addAttributeModifier(modifiers, Attributes.ARMOR, 4*bonus, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, Attributes.ARMOR_TOUGHNESS, 2*bonus, AttributeModifier.Operation.ADD_VALUE);
+            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.2f*bonus, AttributeModifier.Operation.ADD_VALUE);
+        }
+        else {
+            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, -0.5f, AttributeModifier.Operation.ADD_VALUE);
         }
         return modifiers;
     }
@@ -36,6 +40,7 @@ public class LoneDruidGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("no_armor_armor"));
+        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("no_armor_healing"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("no_armor"));
     }
 

@@ -36,6 +36,7 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
 
     protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(SpellweaverToolEffectActivatorEntity.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
+    public static SpellweaverToolEffectActivatorEntity BREAKER_ENTITY;
     protected ItemStack tool = ItemStack.EMPTY;
     protected UUID owner;
     protected float speed;
@@ -129,15 +130,9 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
         carriedExperience = pCompound.getInt("carriedExperience");
 
     }
-
-    @Override
-    public boolean isPickable() {
-        return false;
-    }
-
     @Override
     public boolean mayInteract(Level level, BlockPos pos) {
-        return super.mayInteract(level, pos);
+        return false;
     }
 
     @Override
@@ -158,17 +153,24 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
                 discard();
                 return;
             }
-            ItemStack harvestToolStack = BlockGravityRiteEffect.getToolForState(state);
+            var harvestToolStack = BlockGravityRiteEffect.getToolForState(state);
             if (harvestToolStack.isEmpty()) {
                 discard();
                 return;
             }
+            var breaker = level.getEntity(owner);
+            if (breaker == null) {
+                discard();
+                return;
+            }
+            BREAKER_ENTITY = this;
             var blockentity = state.hasBlockEntity() ? level.getBlockEntity(pos) : null;
             level.levelEvent(2001, pos, Block.getId(level.getBlockState(pos)));
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-            Block.dropResources(state, level, pos, blockentity, this, tool);
+            Block.dropResources(state, level, pos, blockentity, breaker, tool);
             destination = new FloatingItemDestinationData(owner);
-            carriedExperience = EnchantmentHelper.processBlockExperience(level, tool, state.getExpDrop(level, pos, blockentity, this, tool));
+            carriedExperience = EnchantmentHelper.processBlockExperience(level, tool, state.getExpDrop(level, pos, blockentity, breaker, tool));
+            BREAKER_ENTITY = null;
             if (speed < 1) {
                 movementWindUp = 0;
             }
@@ -189,8 +191,8 @@ public class SpellweaverToolEffectActivatorEntity extends FloatingEntity {
     }
 
     public static void redirectDrops(BlockDropsEvent event) {
-        if (event.getBreaker() instanceof SpellweaverToolEffectActivatorEntity breaker) {
-            breaker.carriedItems.addAll(event.getDrops());
+        if (BREAKER_ENTITY != null) {
+            BREAKER_ENTITY.carriedItems.addAll(event.getDrops());
             event.setCanceled(true);
         }
     }
