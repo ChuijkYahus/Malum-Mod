@@ -18,8 +18,8 @@ import java.util.*;
 public class MalignantInfluenceData {
 
     public static Codec<MalignantInfluenceData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.INT.fieldOf("malignantAegis").forGetter(MalignantInfluenceData::getMalignantAegis),
-            Codec.INT.fieldOf("aegisCooldown").forGetter(MalignantInfluenceData::getMalignantAegis)
+            Codec.INT.optionalFieldOf("malignantAegis", 0).forGetter(MalignantInfluenceData::getMalignantAegis),
+            Codec.INT.optionalFieldOf("aegisCooldown", 0).forGetter(MalignantInfluenceData::getMalignantAegis)
     ).apply(obj, MalignantInfluenceData::new));
 
     public static StreamCodec<ByteBuf, MalignantInfluenceData> STREAM_CODEC = ByteBufCodecs.fromCodec(MalignantInfluenceData.CODEC);

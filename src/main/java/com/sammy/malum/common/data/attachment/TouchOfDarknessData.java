@@ -9,9 +9,9 @@ public class TouchOfDarknessData {
     public static final float MAX_TOUCH_OF_DARKNESS = 100f;
 
     public static final Codec<TouchOfDarknessData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.INT.fieldOf("expectedTouchOfDarkness").forGetter(h -> h.expectedTouchOfDarkness),
-            Codec.INT.fieldOf("touchOfDarknessFalloffDelay").forGetter(h -> h.touchOfDarknessFalloffDelay),
-            Codec.FLOAT.fieldOf("touchOfDarkness").forGetter(h -> h.touchOfDarkness)
+            Codec.INT.optionalFieldOf("expectedTouchOfDarkness", 0).forGetter(h -> h.expectedTouchOfDarkness),
+            Codec.INT.optionalFieldOf("touchOfDarknessFalloffDelay", 0).forGetter(h -> h.touchOfDarknessFalloffDelay),
+            Codec.FLOAT.optionalFieldOf("touchOfDarkness", 0f).forGetter(h -> h.touchOfDarkness)
     ).apply(obj, TouchOfDarknessData::new));
 
     public int expectedTouchOfDarkness;

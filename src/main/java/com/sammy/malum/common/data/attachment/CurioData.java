@@ -9,8 +9,8 @@ import net.minecraft.network.codec.*;
 public class CurioData {
 
     public static Codec<CurioData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.INT.fieldOf("watcherNecklaceCooldown").forGetter(c -> c.watcherNecklaceCooldown),
-            Codec.INT.fieldOf("hiddenBladeNecklaceCooldown").forGetter(c -> c.hiddenBladeNecklaceCooldown)
+            Codec.INT.optionalFieldOf("watcherNecklaceCooldown", 0).forGetter(c -> c.watcherNecklaceCooldown),
+            Codec.INT.optionalFieldOf("hiddenBladeNecklaceCooldown", 0).forGetter(c -> c.hiddenBladeNecklaceCooldown)
     ).apply(obj, CurioData::new));
 
     public static StreamCodec<ByteBuf, CurioData> STREAM_CODEC = ByteBufCodecs.fromCodec(CurioData.CODEC);
