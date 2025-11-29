@@ -8,7 +8,7 @@ import net.minecraft.network.codec.*;
 public class AvariceMarkData {
 
     public static Codec<AvariceMarkData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.BOOL.fieldOf("hasProspectorMark").forGetter(AvariceMarkData::hasProspectorMark)
+            Codec.BOOL.optionalFieldOf("hasProspectorMark", false).forGetter(AvariceMarkData::hasProspectorMark)
     ).apply(obj, AvariceMarkData::new));
 
     public static StreamCodec<ByteBuf, AvariceMarkData> STREAM_CODEC = ByteBufCodecs.fromCodec(AvariceMarkData.CODEC);

@@ -23,8 +23,8 @@ import java.util.List;
 public class WindTunnelData {
 
     public static Codec<WindTunnelData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            WindTunnelMotionData.CODEC.listOf().fieldOf("strength").forGetter(WindTunnelData::getInfluence),
-            Codec.INT.fieldOf("activeTime").forGetter(WindTunnelData::getActiveTime)
+            WindTunnelMotionData.CODEC.listOf().optionalFieldOf("strength", Collections.emptyList()).forGetter(WindTunnelData::getInfluence),
+            Codec.INT.optionalFieldOf("activeTime", 0).forGetter(WindTunnelData::getActiveTime)
     ).apply(obj, WindTunnelData::new));
 
     public static StreamCodec<ByteBuf, WindTunnelData> STREAM_CODEC = ByteBufCodecs.fromCodec(WindTunnelData.CODEC);

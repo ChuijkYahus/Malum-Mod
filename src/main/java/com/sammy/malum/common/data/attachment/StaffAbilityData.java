@@ -14,8 +14,8 @@ import team.lodestar.lodestone.helpers.SoundHelper;
 public class StaffAbilityData {
 
     public static Codec<StaffAbilityData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.INT.fieldOf("staffCharge").forGetter(c -> c.staffChargeDebt),
-            Codec.FLOAT.fieldOf("staffChargeProgress").forGetter(c -> c.staffChargeDebtCooldown)
+            Codec.INT.optionalFieldOf("staffCharge", 0).forGetter(c -> c.staffChargeDebt),
+            Codec.FLOAT.optionalFieldOf("staffChargeProgress", 0f).forGetter(c -> c.staffChargeDebtCooldown)
     ).apply(obj, StaffAbilityData::new));
 
     public static StreamCodec<ByteBuf, StaffAbilityData> STREAM_CODEC = ByteBufCodecs.fromCodec(StaffAbilityData.CODEC);

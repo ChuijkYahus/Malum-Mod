@@ -14,10 +14,10 @@ public class WeepingWellData {
     public static final float MAX_REJECTION = 60;
 
     public static final Codec<WeepingWellData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.BOOL.fieldOf("isNearWeepingWell").forGetter(h -> h.isNearWeepingWell),
-            Codec.BOOL.fieldOf("isInRejectedState").forGetter(h -> h.isInRejectedState),
-            Codec.INT.fieldOf("voidRejection").forGetter(h -> h.voidRejection),
-            Codec.INT.fieldOf("primordialGoopTimer").forGetter(h -> h.primordialGoopTimer)
+            Codec.BOOL.optionalFieldOf("isNearWeepingWell", false).forGetter(h -> h.isNearWeepingWell),
+            Codec.BOOL.optionalFieldOf("isInRejectedState", false).forGetter(h -> h.isInRejectedState),
+            Codec.INT.optionalFieldOf("voidRejection", 0).forGetter(h -> h.voidRejection),
+            Codec.INT.optionalFieldOf("primordialGoopTimer", 0).forGetter(h -> h.primordialGoopTimer)
     ).apply(obj, WeepingWellData::new));
 
     public boolean isNearWeepingWell;

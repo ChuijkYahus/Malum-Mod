@@ -17,9 +17,9 @@ import java.util.*;
 public class SoulWardData {
 
     public static Codec<SoulWardData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.DOUBLE.fieldOf("soulWard").forGetter(SoulWardData::getSoulWard),
-            Codec.INT.fieldOf("soulWardProgress").forGetter(SoulWardData::getSoulWardCooldown),
-            Codec.FLOAT.fieldOf("appliedCooldownMultiplier").forGetter(SoulWardData::getAppliedCooldownMultiplier)
+            Codec.DOUBLE.optionalFieldOf("soulWard", 0d).forGetter(SoulWardData::getSoulWard),
+            Codec.INT.optionalFieldOf("soulWardProgress", 0).forGetter(SoulWardData::getSoulWardCooldown),
+            Codec.FLOAT.optionalFieldOf("appliedCooldownMultiplier", 1f).forGetter(SoulWardData::getAppliedCooldownMultiplier)
     ).apply(obj, SoulWardData::new));
 
     public static StreamCodec<ByteBuf, SoulWardData> STREAM_CODEC = ByteBufCodecs.fromCodec(SoulWardData.CODEC);
