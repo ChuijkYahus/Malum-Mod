@@ -26,10 +26,4 @@ public class FortressGeas extends GeasEffect {
         addAttributeModifier(modifiers, MalumAttributes.SOUL_WARD_RECOVERY_RATE, -0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
-
-    @Override
-    public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(ComponentHelper.effectKeyword("soul_ward"));
-    }
 }

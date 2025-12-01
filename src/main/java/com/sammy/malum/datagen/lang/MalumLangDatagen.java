@@ -4,6 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compat.create.*;
+import com.sammy.malum.core.handlers.KeywordTooltipHandler;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
@@ -271,10 +272,10 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.positive", "+%s");
         add("malum.effect.negative", "-%s");
 
-        addEffectKeyword("avarice", "Avarice; Gradually Increases Fortune");
-        addEffectKeyword("gluttony", "Gluttony; Increases Magic Damage, But Drains Hunger");
-        addEffectKeyword("soul_ward", "Soul Ward; Absorbs Damage, Recharges Over Time");
-        addEffectKeyword("arcane_resonance", "Arcane Resonance; Improves Spirit-Collection Effects");
+        addEffectKeyword(KeywordTooltipHandler.AVARICE, "Avarice; Gradually Increases Fortune");
+        addEffectKeyword(KeywordTooltipHandler.GLUTTONY, "Gluttony; Increases Magic Damage, But Drains Hunger");
+        addEffectKeyword(KeywordTooltipHandler.SOUL_WARD, "Soul Ward; Absorbs Damage, Recharges Over Time");
+        addEffectKeyword(KeywordTooltipHandler.ARCANE_RESONANCE, "Arcane Resonance; Improves Spirit-Collection Effects");
 
         addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
@@ -560,8 +561,8 @@ public class MalumLangDatagen extends LanguageProvider {
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
-    public void addEffectKeyword(String identifier, String name) {
-        add("malum.effect.keyword." + identifier, name);
+    public void addEffectKeyword(KeywordTooltipHandler.TooltipKeyword keyword, String name) {
+        add(keyword.getLangKey(), name);
     }
     public void addCurioEffect(String identifier, String name) {
         add("malum.effect.curio." + identifier, name);

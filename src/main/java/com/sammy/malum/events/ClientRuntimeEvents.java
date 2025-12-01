@@ -3,6 +3,7 @@ package com.sammy.malum.events;
 import com.sammy.malum.client.scarf.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.augment.*;
+import com.sammy.malum.core.handlers.KeywordTooltipHandler;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
 import net.neoforged.api.distmarker.Dist;
@@ -42,9 +43,14 @@ public class ClientRuntimeEvents {
     }
 
     @SubscribeEvent
-    public static void itemTooltipEvent(ItemTooltipEvent event) {
+    public static void renderItemTooltip(ItemTooltipEvent event) {
         GeasItem.addGeasTooltip(event);
         AugmentItem.addAugmentAttributeTooltip(event);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void renderItemTooltipLate(ItemTooltipEvent event) {
+        KeywordTooltipHandler.addKeywords(event);
     }
 
     @SubscribeEvent

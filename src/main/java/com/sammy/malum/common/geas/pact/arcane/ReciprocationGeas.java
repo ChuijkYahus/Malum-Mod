@@ -37,7 +37,6 @@ public class ReciprocationGeas extends GeasEffect {
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("soul_ward_on_hit"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(ComponentHelper.effectKeyword("soul_ward"));
     }
 
     @Override

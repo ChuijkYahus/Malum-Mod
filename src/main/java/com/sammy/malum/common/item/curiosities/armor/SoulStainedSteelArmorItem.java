@@ -37,11 +37,6 @@ public class SoulStainedSteelArmorItem extends MalumArmorItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(ComponentHelper.effectKeyword("soul_ward"));
-    }
-
-    @Override
     public ResourceLocation getArmorTexture() {
         return MalumMod.malumPath("textures/armor/soul_stained_steel.png");
     }
