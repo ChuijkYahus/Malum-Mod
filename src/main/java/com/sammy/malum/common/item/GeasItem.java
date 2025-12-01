@@ -73,9 +73,9 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
         if (stack.has(MalumDataComponents.GEAS_EFFECT)) {
             GeasEffectHandler.getStoredGeasEffect(stack).ifPresent(c -> {
                 var component = tooltipComponents.getFirst().copy()
-                        .append(": [")
+                        .append(Component.literal(" <").withStyle(ChatFormatting.DARK_GRAY))
                         .append(Component.translatable(c.geasEffectType().getLangKey()).withStyle(ChatFormatting.GOLD))
-                        .append("]");
+                        .append(Component.literal(">").withStyle(ChatFormatting.DARK_GRAY));
                 tooltipComponents.set(0, component);
             });
         }
@@ -105,9 +105,9 @@ public class GeasItem extends Item implements ParticleEmitterHandler.ItemParticl
                     Component.translatable("malum.gui.slot").withStyle(ChatFormatting.GOLD).append(Component.translatable(GEAS).withStyle(ChatFormatting.YELLOW)));
             if (c.isCreative() && !itemStack.equals(geas.getDummyCreativeStack())) {
                 tooltipConsumer.accept(
-                        Component.translatable(CREATIVE).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+                        Component.translatable(CREATIVE).withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
                 tooltipConsumer.accept(
-                        Component.translatable(CREATIVE_HELP).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+                        Component.translatable(CREATIVE_HELP).withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
             }
             tooltipConsumer.accept(
                     Component.empty());

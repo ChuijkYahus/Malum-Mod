@@ -26,7 +26,7 @@ public class MalumAttachmentTypes {
 
     public static final Supplier<AttachmentType<AvariceMarkData>> AVARICE_MARK = ATTACHMENT_TYPES.register(
             "avarice_mark", () -> AttachmentType.builder(AvariceMarkData::new)
-                    .serialize(AvariceMarkData.CODEC).sync(AvariceMarkData.STREAM_CODEC).copyOnDeath().build());
+                    .serialize(AvariceMarkData.CODEC).sync(AvariceMarkData.STREAM_CODEC).build());
 
     public static final Supplier<AttachmentType<CachedSpiritDropsData>> CACHED_SPIRIT_DROPS = ATTACHMENT_TYPES.register(
             "cached_spirit_drops", () -> AttachmentType.builder(CachedSpiritDropsData::new)

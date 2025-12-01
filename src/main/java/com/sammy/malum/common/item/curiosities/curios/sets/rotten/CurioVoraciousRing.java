@@ -27,6 +27,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         consumer.accept(ComponentHelper.positiveCurioEffect("eat_rotten"));
         consumer.accept(ComponentHelper.positiveCurioEffect("growing_gluttony"));
+        consumer.accept(ComponentHelper.effectKeyword("gluttony"));
     }
 
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {

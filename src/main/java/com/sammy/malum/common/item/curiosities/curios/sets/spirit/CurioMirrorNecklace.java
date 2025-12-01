@@ -4,11 +4,16 @@ import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
+import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
+import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
+
+import java.util.function.Consumer;
 
 public class CurioMirrorNecklace extends MalumCurioItem implements IMalumEventResponder {
     public CurioMirrorNecklace(Properties builder) {
@@ -19,5 +24,11 @@ public class CurioMirrorNecklace extends MalumCurioItem implements IMalumEventRe
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
         addAttributeModifier(map, MalumAttributes.ARCANE_RESONANCE,
                 new AttributeModifier(MalumMod.malumPath("mirror_necklace"), 1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+    }
+
+
+    @Override
+    public void addExtraTooltipLines(Consumer<Component> consumer) {
+        consumer.accept(ComponentHelper.effectKeyword("arcane_resonance"));
     }
 }

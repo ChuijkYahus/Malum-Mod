@@ -56,6 +56,9 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
 
     @Override
     public void tick(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+        if (design.getDesignType().equals(WidgetDesignType.EMPTY)) {
+            return;
+        }
         oldOutlineVisibility = outlineVisibility;
         if (isHoveredOver) {
             if (outlineVisibility == 6) {
@@ -73,14 +76,11 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
                 outlineVisibility--;
             }
         }
-        super.tick(screen, mouseX, mouseY);
     }
 
     @Override
     public void applyTransforms(AbstractProgressionCodexScreen screen, PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        var minecraft = screen.getMinecraft();
-        float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
-        float effectStrength = Mth.lerp(delta, oldOutlineVisibility, outlineVisibility) / 20f;
+        float effectStrength = Mth.lerp(partialTicks, oldOutlineVisibility, outlineVisibility) / 20f;
         if (effectStrength > 0) {
             float offset = Easing.CIRC_OUT.ease(effectStrength, 0, 2);
             poseStack.translate(0, -offset, 0);

@@ -59,7 +59,7 @@ public class WindNucleusItem extends Item {
         return InteractionResultHolder.success(itemstack);
     }
 
-    public static List<Entity> getExplosionAffectedEntities(Level level, @Nullable Player player, Vec3 pos, float radius) {
+    public static List<Entity> getExplosionAffectedEntities(Level level, @Nullable Entity ignored, Vec3 pos, float radius) {
         float f2 = radius * 2.0F;
         int k1 = Mth.floor(pos.x - (double)f2 - 1.0);
         int l1 = Mth.floor(pos.x + (double)f2 + 1.0);
@@ -67,6 +67,6 @@ public class WindNucleusItem extends Item {
         int i1 = Mth.floor(pos.y + (double)f2 + 1.0);
         int j2 = Mth.floor(pos.z - (double)f2 - 1.0);
         int j1 = Mth.floor(pos.z + (double)f2 + 1.0);
-        return level.getEntities(player, new AABB(k1, i2, j2, l1, i1, j1));
+        return level.getEntities(ignored, new AABB(k1, i2, j2, l1, i1, j1));
     }
 }

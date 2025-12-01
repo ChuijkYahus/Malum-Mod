@@ -1,6 +1,7 @@
 package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
+import com.sammy.malum.common.data.attachment.AvariceMarkData;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
@@ -96,15 +97,16 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onLivingTick(EntityTickEvent.Pre event) {
-        WindTunnelHandler.entityTick(event);
-        GeasEffectHandler.entityTick(event);
+        AvariceMarkData.entityTick(event);
         SoulDataHandler.entityTick(event);
         SoulWardHandler.entityTick(event);
+        WindTunnelHandler.entityTick(event);
+        GeasEffectHandler.entityTick(event);
+        CurioWatcherNecklace.entityTick(event);
+        TouchOfDarknessHandler.entityTick(event);
+        CurioHiddenBladeNecklace.entityTick(event);
         MalignantConversionHandler.entityTick(event);
         WeepingWellRejectionHandler.entityTick(event);
-        TouchOfDarknessHandler.entityTick(event);
-        CurioWatcherNecklace.entityTick(event);
-        CurioHiddenBladeNecklace.entityTick(event);
     }
 
     @SubscribeEvent
@@ -114,7 +116,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void modifyBlockDrops(BlockDropsEvent event) {
-        ProspectorGeas.modifyBlockDrops(event);
+        AvariceMarkData.applyAvariceMark(event);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -165,7 +167,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onPickupItem(ItemEntityPickupEvent.Post event) {
-        ProspectorGeas.pickupItem(event);
+        AvariceMarkData.pickupItem(event);
     }
 
     @SubscribeEvent
@@ -220,7 +222,6 @@ public class RuntimeEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onExplosionDetonate(ExplosionEvent.Detonate event) {
-        CurioProspectorBelt.processExplosion(event);
         NitrateExplosion.processExplosion(event);
         BlastweaverGeas.processExplosion(event);
     }

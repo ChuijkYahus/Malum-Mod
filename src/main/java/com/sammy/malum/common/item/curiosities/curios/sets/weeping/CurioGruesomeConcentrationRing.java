@@ -24,6 +24,7 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         consumer.accept(ComponentHelper.positiveCurioEffect("rotten_gluttony"));
+        consumer.accept(ComponentHelper.effectKeyword("gluttony"));
     }
 
     public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
