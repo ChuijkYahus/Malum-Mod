@@ -1,7 +1,9 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.*;
+import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.registry.common.MalumAttributes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -32,6 +34,11 @@ public class SoulStainedSteelArmorItem extends MalumArmorItem {
                         new AttributeModifier(resourcelocation, 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                         group)
         );
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(ComponentHelper.effectKeyword("soul_ward"));
     }
 
     @Override

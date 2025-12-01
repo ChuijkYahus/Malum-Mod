@@ -1050,35 +1050,35 @@ public class CodexLangDatagen {
                          -Increases Block Reach by One Fifth and Entity Reach by One Tenth""",
                 scaled(0.8f) + """
                         Your over-encroaching grip is a harmful one.
-                         -Reach Effect enters Cooldown State when Struck by a Target
-                         -When Reach Effect is Lost, you are Struck with Aqueous Arcana""");
+                         -Reach Effect faces cooldown upon taking damage from an enemy
+                         -Cooldown state reduces Movement Speed""");
 
         addSimpleEntryHeader("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY,
                 scaled(0.7f) + """
-                        Confine yourself to the Sea, Memorize the Conduit's Choral Pull.
-                         -Increases Agility, Attack Speed, Mining Speed and Damage Resistance when Underwater
-                         -Conduit Power Amplifies Listed Effects and Idly Recovers Health""",
+                        Confine yourself to the ocean, memorize the conduit's choral pull.
+                         -Increases Agility, Attack Speed, Mining Speed and Damage Resistance while submerged
+                         -Conduit Power amplifies listed effects and passively recovers health""",
                 """
                         The chains of the ocean grip your heart tightly.
-                         -You Cannot Heal Outside of Water""");
+                         -You cannot heal outside of water""");
 
         addSimpleEntryHeader("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID,
                 scaled(0.8f) + """
-                        Split the Impact, Soften the Blow.
-                         -Half of All Incoming Damage is Buffered; Converted to Damage Over Time
-                         -Buffered Damage Cannot Kill You""",
+                        Split the impact, soften the blow.
+                         -Half of all incoming damage is buffered; converted into damage over time
+                         -Buffered Damage cannot kill you""",
                 """
-                        Prolonged Pain is Greater Pain.
-                         -Buffered Damage becomes Magic Damage and is overall One Fifth More Potent""");
+                        Prolonged pain is greater pain.
+                         -Buffered Damage is applied as Magic Damage and is overall One Fifth stronger""");
         
         addSimpleEntryHeader("pact_of_the_windswept", "Pact of The Windswept", "To be one with the wind");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT,
                 """
-                        Move with the Wind.
-                         -Continuously Sprinting builds up Movement Speed""",
-                "Be Moved by the Wind\n -Ceasing Sprinting rapidly decreases bonus\n -High Momentum amplifies received knockback");
+                        Move with the wind.
+                         -Continuously sprinting builds up movement Speed""",
+                "Be moved by the wind\n -Ceasing sprinting rapidly decreases bonus\n -High momentum amplifies received knockback");
 
         addSimpleEntryHeader("pact_of_the_continuing_shot", "Pact of The Continuing Shot", "To be the arrow");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT,
@@ -1117,10 +1117,10 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
-                """
+                scaled(0.7f) + """
                         To be complete is to be unburdened.
                          -Each empty armour slot grants four Armor and two Armor Toughness
-                         -Each empty armour slot increases Healing Received by One Fifth""",
+                         -Each empty armour slot increases Healing Received by One Fourth""",
                 "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
@@ -1164,9 +1164,9 @@ public class CodexLangDatagen {
                          -Avarice additionally recovers one heart of lost health when applied""",
                 "Burn with Greed\n -Being Struck when imbued with Avarice engulfs you in flames");
 
-        addSimpleEntryHeader("pact_of_the_pyromaniac", "Pact of The Pyromaniac", "To prosper from ruin");
+        addSimpleEntryHeader("pact_of_the_blastweaver", "Pact of the Blastweaver", "To reap from ruin");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER,
-                scaled(0.7f) +"""
+                scaled(0.6f) +"""
                         Greed and Haste, fueled by Kinetic Impact.
                          -Explosions are greatly empowered and grant Avarice upon detonation
                          -Avarice gradually improves Fortune Chance

@@ -9,6 +9,8 @@ import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -23,53 +25,50 @@ public class HighPriestGeas extends GeasEffect {
 
     private static final int COOLDOWN_DURATION = 600;
 
-    public boolean hasEffect = false;
+    public boolean isActive = false;
+
     public HighPriestGeas() {
         super(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST.get());
     }
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        if (!hasEffect) {
-            addAttributeModifier(modifiers, Attributes.ENTITY_INTERACTION_RANGE, 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-            addAttributeModifier(modifiers, Attributes.BLOCK_INTERACTION_RANGE, 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        if (isActive) {
+            addAttributeModifier(modifiers, Attributes.ENTITY_INTERACTION_RANGE, 0.5f, AttributeModifier.Operation.ADD_VALUE);
+            addAttributeModifier(modifiers, Attributes.BLOCK_INTERACTION_RANGE, 2f, AttributeModifier.Operation.ADD_VALUE);
         }
         return modifiers;
     }
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-//        super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("bonus_reach"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fragile_reach"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fragile_reach_damage"));
+        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("fragile_reach_slowdown"));
     }
 
     @Override
     public void update(EntityTickEvent.Pre event, LivingEntity entity) {
-        if (entity.level().getGameTime() % 5L == 0) {
-            var hadEffect = hasEffect;
-            hasEffect = entity.hasEffect(MalumMobEffects.SHAKEN_FAITH);
-            if (hadEffect != hasEffect) {
-                setDirty();
-            }
+        boolean hasEffect = entity.hasEffect(MalumMobEffects.SHAKEN_FAITH);
+        if (isActive == hasEffect) {
+            isActive = !isActive;
+            setDirty();
         }
     }
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().getDirectEntity() != null && event.getSource().getEntity() != null) {
-            if (hasEffect) {
-                return;
+        if (target.level() instanceof ServerLevel level) {
+            var source = event.getSource();
+            if (source.getDirectEntity() != null && source.getEntity() != null) {
+                if (!isActive) {
+                    return;
+                }
             }
-            WorldEventHandler.addWorldEvent(target.level(),
-                    new DelayedDamageWorldEvent(target)
-                            .setDamageData(0, 4, 2)
-                            .setMagicDamageType(MalumDamageTypes.KARMIC)
-                            .setImpactParticleEffect(MalumParticleEffectTypes.HIGH_PRIEST_PENANCE, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT))
-                            .setSound(MalumSoundEvents.SCYTHE_SWEEP, 0.5f, 1.5f, 0.3f));
+            MalumParticleEffectTypes.HIGH_PRIEST_PENANCE.createEffect(target)
+                    .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
+                    .spawn(level);
             target.addEffect(new MobEffectInstance(MalumMobEffects.SHAKEN_FAITH, COOLDOWN_DURATION, 0, true, true, true));
-            setDirty();
         }
     }
 }

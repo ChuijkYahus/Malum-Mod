@@ -205,8 +205,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "To ignite and watch");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Engulf yourself with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
@@ -271,6 +271,11 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.positive", "+%s");
         add("malum.effect.negative", "-%s");
 
+        addEffectKeyword("avarice", "Avarice; Gradually Increases Fortune");
+        addEffectKeyword("gluttony", "Gluttony; Increases Magic Damage, But Drains Hunger");
+        addEffectKeyword("soul_ward", "Soul Ward; Absorbs Damage, Recharges Over Time");
+        addEffectKeyword("arcane_resonance", "Arcane Resonance; Improves Spirit-Collection Effects");
+
         addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
         addCurioEffect("low_health_speed", "Speed at Low Health");
@@ -314,12 +319,12 @@ public class MalumLangDatagen extends LanguageProvider {
         addCurioEffect("soul_ward_complete_absorption", "Soul Ward Absorbs All Damage");
         addCurioEffect("soul_ward_escalating_integrity", "Soul Ward Gains Integrity When Nearing Disintegration");
         addCurioEffect("spirits_gluttony", "Spirit Collection Generates Gluttony");
-        addCurioEffect("enchanted_explosions", "Explosions are Enchanted with %s");
-        addCurioEffect("explosions_spare_valuables", "Protects Valuable Items from Explosions");
+        addCurioEffect("enchanted_explosions", "Explosions Are Enchanted With %s");
+        addCurioEffect("ore_prospecting", "Collecting Precious Minerals Sometimes Grants Avarice");
 
         addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
         addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
-        addGeasEffect("passive_healing", "Passive Health Recovery");
+        addGeasEffect("passive_healing", "Passively Recover Health");
         addGeasEffect("healing_aura", "Healing is Shared with Nearby Creatures");
         addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
         addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
@@ -340,15 +345,14 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("faster_starving", "Starvation Occurs Faster");
         addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
-        addGeasEffect("no_armor_armor", "The Absence of Equipped Armour Becomes Armor");
-        addGeasEffect("no_armor_healing", "The Absence of Equipped Armour Enhances Healing");
+        addGeasEffect("no_armor_druid_armor", "The Absence of Equipped Armour Grants Armor And Enhances Healing");
         addGeasEffect("no_armor", "Equipped Armour Shackles You");
         addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
         addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
-        addGeasEffect("fragile_reach_damage", "The High Priest's Rule Grips You Tightly");
+        addGeasEffect("fragile_reach_slowdown", "Cooldown State Reduces Movement Speed");
         addGeasEffect("water_agility", "You Move and Swing Faster In Water");
         addGeasEffect("water_damage_resistance", "You Take Reduced Damage in Water");
-        addGeasEffect("conduit_bonus", "Conduit Power Heals You And Amplifies Damage Reduction");
+        addGeasEffect("conduit_bonus", "Conduit Power Recovers Health And Amplifies Listed Effects");
         addGeasEffect("fish_healing", "You Cannot Heal Outside Of Water");
         addGeasEffect("buffered_damage", "Half Of Incoming Damage Is Buffered");
         addGeasEffect("buffered_damage_non_lethal", "Buffered Damage Is Applied Overtime And Cannot Kill You");
@@ -361,18 +365,17 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
         addGeasEffect("outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
         addGeasEffect("more_knockback", "Doubles Incoming Knockback");
-        addGeasEffect("rocket_jumping", "Wind Gusts Provide Greater Propulsion");
+        addGeasEffect("rocket_jumping", "Wind Gusts Are Enhanced And Grant Ascension");
         addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
         addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");
-        addGeasEffect("avarice_fortune", "Avarice Increases Fortune Chance");
-        addGeasEffect("avarice_healing", "Avarice Recovers Lost Health");
+        addGeasEffect("avarice_healing", "Attaining Avarice Recovers Health");
         addGeasEffect("avarice_combustion", "Avarice Engulfs You In Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("vastly_bigger_explosions", "Greatly Enhances Explosions");
-        addGeasEffect("explosion_lover", "Nearby Explosions Grant Avarice");
-        addGeasEffect("avarice_fervor", "Avarice Hastens You");
+        addGeasEffect("explosion_lover", "Explosions Grant Avarice");
+        addGeasEffect("avarice_explosions", "Avarice Further Enhances Explosions And Grants Fortune Chance");
         addGeasEffect("avarice_vulnerability", "Avarice Increases Explosive Damage Taken");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
         addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
@@ -557,6 +560,9 @@ public class MalumLangDatagen extends LanguageProvider {
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
+    public void addEffectKeyword(String identifier, String name) {
+        add("malum.effect.keyword." + identifier, name);
+    }
     public void addCurioEffect(String identifier, String name) {
         add("malum.effect.curio." + identifier, name);
     }

@@ -29,9 +29,9 @@ public class MalumCurioItem extends AbstractMalumCurioItem implements ICurioItem
 
     @Override
     public List<Component> getAttributesTooltip(List<Component> tooltips, TooltipContext context, ItemStack stack) {
-        final List<Component> attributesTooltip = super.getAttributesTooltip(tooltips, context, stack);
+        var attributesTooltip = super.getAttributesTooltip(tooltips, context, stack);
 
-        final List<Component> extraTooltipLines = new ArrayList<>();
+        var extraTooltipLines = new ArrayList<Component>();
         addExtraTooltipLines(extraTooltipLines::add, context);
 
         if (!extraTooltipLines.isEmpty()) {

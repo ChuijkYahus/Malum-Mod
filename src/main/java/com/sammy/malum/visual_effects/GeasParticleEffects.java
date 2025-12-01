@@ -1,13 +1,21 @@
 package com.sammy.malum.visual_effects;
 
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import net.minecraft.client.*;
+import net.minecraft.client.renderer.entity.ItemEntityRenderer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.handlers.*;
@@ -30,9 +38,10 @@ import java.awt.*;
 import java.util.function.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.spiritLightSpecs;
-import static net.minecraft.util.Mth.nextFloat;
+import static net.minecraft.util.Mth.*;
 
 public class GeasParticleEffects {
+
     public static void lifeWeaverHealingBeam(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, LifeweaverHealingBeamParticleEffect.LifeweaverHealingBeamEffectData extraData) {
         var target = level.getEntity(extraData.targetId());
         var source = level.getEntity(extraData.sourceId());
@@ -337,6 +346,40 @@ public class GeasParticleEffects {
         }
     }
 
+    public static void avariceItemParticles(Level level, Entity entity) {
+        if (level.getGameTime() % 8L == 0) {
+            var center = entity.position().add(0, entity.getBbHeight() / 2f, 0);
+            if (entity instanceof ItemEntity item) {
+                //Copied from ItemEntityRenderer
+                var itemstack = item.getItem();
+                var itemRenderer = Minecraft.getInstance().getItemRenderer();
+                var bakedmodel = itemRenderer.getModel(itemstack, entity.level(), null, entity.getId());
+                boolean shouldBob = net.neoforged.neoforge.client.extensions.common.IClientItemExtensions.of(itemstack).shouldBobAsEntity(itemstack);
+                float f1 = shouldBob ? Mth.sin(((float)item.getAge()) / 10.0F + item.bobOffs) * 0.1F + 0.1F : 0;
+                float f2 = bakedmodel.getTransforms().getTransform(ItemDisplayContext.GROUND).scale.y();
+                center = center.add(0, f1 + 0.25f * f2, 0);
+            }
+            float width = entity.getBbWidth()*2f;
+            for (int i = 0; i < 2; i++) {
+                var angle = i + (level.getGameTime() % 80f) / 80f;
+                int delay = RandomHelper.randomBetween(MalumMod.RANDOM, 0, 4);
+                var offsetCenter = VecHelper.radialOffset(center, width, angle, 2);
+                var lightSpecs = spiritLightSpecs(level, offsetCenter, MalumSpiritTypes.INFERNAL_SPIRIT);
+                lightSpecs.getBuilder()
+                        .setLifeDelay(delay)
+                        .setRandomMotion(0.01f)
+                        .multiplyLifetime(2.5f)
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build());
+                lightSpecs.getBloomBuilder()
+                        .setLifeDelay(delay)
+                        .setRandomMotion(0.01f)
+                        .multiplyLifetime(1.5f)
+                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build());
+                lightSpecs.spawnParticles();
+            }
+        }
+    }
+
     public static void prospectorsGreedBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
         for (int i = 0; i < 16; i++) {
@@ -346,7 +389,7 @@ public class GeasParticleEffects {
                 var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
 
                 var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                int delay = (int) (j * 2);
+                int delay = j * 2;
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
                         .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)))

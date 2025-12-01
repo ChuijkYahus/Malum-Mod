@@ -121,7 +121,7 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> ENCYCLOPEDIA_ARCANA = register("encyclopedia_arcana", () -> MalumItems.GEAR_PROPERTIES().rarity(UNCOMMON), EncyclopediaArcanaItem::new);
 
-    public static final DeferredHolder<Item, GeasItem> GEAS = register("geas", MalumItems::HIDDEN_PROPERTIES, GeasItem::new);
+    public static final DeferredHolder<Item, GeasItem> GEAS = register("geas", () -> MalumItems.HIDDEN_PROPERTIES().rarity(RARE), GeasItem::new);
 
     //region spirits
     public static final DeferredHolder<Item, SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", MalumItems::DEFAULT_PROPERTIES, (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));

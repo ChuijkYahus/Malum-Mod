@@ -24,7 +24,7 @@ public class CurioHoarderRing extends MalumCurioItem {
     }
 
     public static boolean hasHoarderRing(LivingEntity entity) {
-        return entity != null && CurioHelper.hasCurioEquipped(entity, MalumItems.RING_OF_THE_HOARDER.get());
+        return CurioHelper.hasCurioEquipped(entity, MalumItems.RING_OF_THE_HOARDER.get());
     }
 
     public static BlockPos getExplosionPos(boolean hasTheRing, BlockPos originalPos, LivingEntity entity, ItemStack droppedItem) {

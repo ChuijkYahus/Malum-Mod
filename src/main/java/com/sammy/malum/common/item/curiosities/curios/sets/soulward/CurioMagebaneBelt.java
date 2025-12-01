@@ -29,6 +29,7 @@ public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResp
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         consumer.accept(ComponentHelper.positiveCurioEffect("soul_ward_magic_resilience"));
         consumer.accept(ComponentHelper.negativeCurioEffect("soul_ward_long_shatter_cooldown"));
+        consumer.accept(ComponentHelper.effectKeyword("soul_ward"));
     }
 
     @Override
