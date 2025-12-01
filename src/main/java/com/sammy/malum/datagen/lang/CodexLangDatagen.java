@@ -1117,10 +1117,10 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("pact_of_the_lone_druid", "Pact of The Lone Druid", "To shun the shaped");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
-                """
+                scaled(0.7f) + """
                         To be complete is to be unburdened.
                          -Each empty armour slot grants four Armor and two Armor Toughness
-                         -Each empty armour slot increases Healing Received by One Fifth""",
+                         -Each empty armour slot increases Healing Received by One Fourth""",
                 "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");

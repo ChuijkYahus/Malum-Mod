@@ -205,8 +205,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "Set yourself ablaze, figuratively");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Burn with greed");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "To ignite and watch");
+        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Engulf yourself with greed");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
@@ -345,8 +345,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("faster_starving", "Starvation Occurs Faster");
         addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
-        addGeasEffect("no_armor_armor", "The Absence of Equipped Armour Becomes Armor");
-        addGeasEffect("no_armor_healing", "The Absence of Equipped Armour Enhances Healing");
+        addGeasEffect("no_armor_druid_armor", "The Absence of Equipped Armour Grants Armor And Enhances Healing");
         addGeasEffect("no_armor", "Equipped Armour Shackles You");
         addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
         addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
@@ -366,7 +365,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
         addGeasEffect("outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
         addGeasEffect("more_knockback", "Doubles Incoming Knockback");
-        addGeasEffect("rocket_jumping", "Wind Gusts Provide Greater Propulsion");
+        addGeasEffect("rocket_jumping", "Wind Gusts Are Enhanced And Grant Ascension");
         addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
         addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");

@@ -33,6 +33,7 @@ Pact of the Pyromaniac
 
 # Textures
 - Updated various geas textures
+- Updated some Brilliance textures
 
 # Bugfixes
-- Fixed some ordering issues with Wind Tunnels
+- Fixed some render ordering issues with Wind Tunnels

@@ -123,10 +123,10 @@ public class AvariceMarkData {
         var effect = MalumMobEffects.AVARICE;
         var instance = target.getEffect(effect);
         if (instance == null) {
-            target.addEffect(new MobEffectInstance(effect, 200, amount-1, true, true, true));
+            target.addEffect(new MobEffectInstance(effect, 400, amount-1, true, true, true));
         } else {
             EntityHelper.amplifyEffect(instance, target, amount, 9);
-            EntityHelper.extendEffect(instance, target, 100, 1200);
+            EntityHelper.extendEffect(instance, target, 400, 2400);
         }
         if (GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
             target.heal(amount*2);

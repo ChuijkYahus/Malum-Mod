@@ -389,7 +389,7 @@ public class GeasParticleEffects {
                 var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
 
                 var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                int delay = (int) (j * 2);
+                int delay = j * 2;
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
                         .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)))
