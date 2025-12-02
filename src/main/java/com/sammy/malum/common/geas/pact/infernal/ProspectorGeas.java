@@ -26,7 +26,6 @@ public class ProspectorGeas extends GeasEffect {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("ore_prospecting"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_healing"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("avarice_combustion"));
-        tooltipAcceptor.accept(ComponentHelper.effectKeyword("avarice"));
     }
 
     @Override

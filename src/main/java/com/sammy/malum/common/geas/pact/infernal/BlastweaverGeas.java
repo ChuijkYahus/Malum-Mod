@@ -39,7 +39,6 @@ public class BlastweaverGeas extends GeasEffect {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_explosions"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("avarice_vulnerability"));
-        tooltipAcceptor.accept(ComponentHelper.effectKeyword("avarice"));
     }
 
     @Override

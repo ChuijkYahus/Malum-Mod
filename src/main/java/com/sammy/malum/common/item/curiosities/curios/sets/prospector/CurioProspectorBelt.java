@@ -31,7 +31,6 @@ public class CurioProspectorBelt extends MalumCurioItem {
         var fortune = Enchantment.getFullname(context.registries().holderOrThrow(Enchantments.FORTUNE), 3);
         consumer.accept(ComponentHelper.positiveCurioEffect("enchanted_explosions", fortune.copy().withStyle(ChatFormatting.BLUE)));
         consumer.accept(ComponentHelper.positiveCurioEffect("ore_prospecting"));
-        consumer.accept(ComponentHelper.effectKeyword("avarice"));
     }
 
     public static LootParams.Builder applyFortune(Entity source, LootParams.Builder builder) {

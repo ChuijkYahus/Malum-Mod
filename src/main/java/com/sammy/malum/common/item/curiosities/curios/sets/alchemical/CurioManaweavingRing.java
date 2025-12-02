@@ -23,7 +23,6 @@ public class CurioManaweavingRing extends MalumCurioItem implements IMalumEventR
         if (IronsSpellsCompat.LOADED) {
             consumer.accept(ComponentHelper.positiveCurioEffect("spirits_weave_mana_irons_spellbooks"));
         }
-        consumer.accept(ComponentHelper.effectKeyword("soul_ward"));
     }
 
     @Override

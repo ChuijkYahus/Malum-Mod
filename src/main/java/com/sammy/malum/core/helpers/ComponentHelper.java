@@ -1,13 +1,14 @@
 package com.sammy.malum.core.helpers;
 
+import com.sammy.malum.core.handlers.KeywordTooltipHandler;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 
 public class ComponentHelper {
 
-    public static Component effectKeyword(String name, Object... args) {
-        return Component.literal(" ").withStyle(ChatFormatting.DARK_GRAY).append(Component.translatable("malum.effect.keyword." + name, args).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+    public static Component effectKeyword(KeywordTooltipHandler.TooltipKeyword keyword, Object... args) {
+        return Component.literal(" ").withStyle(ChatFormatting.DARK_GRAY).append(Component.translatable(keyword.getLangKey(), args).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
 
     public static Component positiveGeasEffect(String name, Object... args) {

@@ -732,7 +732,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("belt_of_the_prospector", "Belt of the Prospector", "Treasures of the earth");
         addPages("belt_of_the_prospector",
-                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. This belt prevents explosions " + italic("directly") + " caused by me from harming valuable items on the ground, and causes those explosions to break blocks as though I were using a Fortune III tool.");
+                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. By unearthing said treasures, this belt will temporarily enable a benefit similar to Fortune. Additionally, explosions " + italic("directly") + " caused by me will break blocks as if using Fortune III, plus the bonus.");
         addSimpleEntryHeader("belt_of_the_prospector.ring_of_the_hoarder", "Ring of the Hoarder", "Directly into my veins");
         addPages("belt_of_the_prospector.ring_of_the_hoarder",
                 "Explosions are chaotic, and messy, inherently. This is hardly a problem, when I want to cause such rampant destruction to collect resources, but collecting the items is a burden. This ring entangles the explosion with my soul, causing the debris and loot to appear at my location.");
