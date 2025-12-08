@@ -77,6 +77,9 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BLIGHT_PROPAGATION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("blight_propagates")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SCARSTONE_PROPAGATION = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("scarstone_monument_forms")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> AVARICE_COLLECT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("avarice_collected")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> AVARICE_FORTUNE = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("avarice_grants_fortune")));
+
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_HIT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_absorbs_damage")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_WARD_GROW = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("soul_ward_grows")));

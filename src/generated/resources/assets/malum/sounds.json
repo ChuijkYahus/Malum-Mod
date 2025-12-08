@@ -364,6 +364,24 @@
     ],
     "subtitle": "malum.subtitle.arcane_whispers"
   },
+  "avarice_collected": {
+    "sounds": [
+      "malum:curiosities/avarice/collect1",
+      "malum:curiosities/avarice/collect2",
+      "malum:curiosities/avarice/collect3",
+      "malum:curiosities/avarice/collect4"
+    ],
+    "subtitle": "malum.subtitle.avarice_collected"
+  },
+  "avarice_grants_fortune": {
+    "sounds": [
+      "malum:curiosities/avarice/fortune1",
+      "malum:curiosities/avarice/fortune2",
+      "malum:curiosities/avarice/fortune3",
+      "malum:curiosities/avarice/fortune4"
+    ],
+    "subtitle": "malum.subtitle.avarice_grants_fortune"
+  },
   "blazing_quartz_block_break": {
     "sounds": [
       "malum:blocks/gemstone/break1",

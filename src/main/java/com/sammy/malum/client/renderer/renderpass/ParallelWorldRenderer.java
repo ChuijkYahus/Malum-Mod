@@ -1,14 +1,18 @@
 package com.sammy.malum.client.renderer.renderpass;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
+import com.sammy.malum.config.ClientConfig;
 import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.MalumAttachmentTypes;
 import dev.kosmx.playerAnim.core.util.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
 import org.joml.*;
@@ -24,7 +28,7 @@ import java.lang.Math;
 
 public class ParallelWorldRenderer extends BeforeLevelRenderPass {
     public static ParallelWorldRenderer INSTANCE;
-    private final RenderTarget target = TextureHelper.generateTextureTarget(true);
+    private final RenderTarget target = new TextureTarget(Minecraft.getInstance().getWindow().getWidth()/2, Minecraft.getInstance().getWindow().getHeight()/2, true, Minecraft.ON_OSX);
     private static final RenderStateShard.OutputStateShard outputState = StateShardHelper.createOutputState("parallelWorld", () -> INSTANCE.target.bindWrite(false));
 
     public ParallelWorldRenderer() {
@@ -106,7 +110,17 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
     @Override
     public boolean shouldRender(DeltaTracker deltaTracker, Camera camera, GameRenderer gameRenderer, Matrix4f matrix4f, Matrix4f matrix4f1) {
-        return true;
+        if (!ClientConfig.PARALLEL_WORLD.getConfigValue()) {
+            return false;
+        }
+        var player = Minecraft.getInstance().player;
+        if (player == null) {
+            return false;
+        }
+        if (player.hasData(MalumAttachmentTypes.WEEPING_WELL_INFO)) {
+            return player.getData(MalumAttachmentTypes.WEEPING_WELL_INFO).isNearWeepingWell;
+        }
+        return false;
     }
 
     @Override

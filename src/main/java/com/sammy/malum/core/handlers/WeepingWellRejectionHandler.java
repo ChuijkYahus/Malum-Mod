@@ -47,14 +47,14 @@ public class WeepingWellRejectionHandler {
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
-        if (event.getEntity() instanceof LivingEntity livingEntity) {
-            var level = livingEntity.level();
-            if (livingEntity.hasData(MalumAttachmentTypes.WEEPING_WELL_INFO)) {
-                var data = livingEntity.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
-                data.update(livingEntity);
-                updateGravity(livingEntity);
+        if (event.getEntity() instanceof LivingEntity living) {
+            var level = living.level();
+            if (living.hasData(MalumAttachmentTypes.WEEPING_WELL_INFO) || living instanceof Player) {
+                var data = living.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
+                data.update(living);
+                updateGravity(living);
                 if (data.isInGoop()) {
-                    handleRejectionState(level, livingEntity);
+                    handleRejectionState(level, living);
                 }
             }
         }

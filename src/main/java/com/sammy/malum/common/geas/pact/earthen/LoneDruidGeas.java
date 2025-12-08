@@ -27,7 +27,7 @@ public class LoneDruidGeas extends GeasEffect {
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         float bonus = (1 - coverPercentage)*4;
         if (bonus > 0) {
-            addAttributeModifier(modifiers, Attributes.ARMOR, 4*bonus, AttributeModifier.Operation.ADD_VALUE);
+            addAttributeModifier(modifiers, Attributes.ARMOR, 5*bonus, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, Attributes.ARMOR_TOUGHNESS, 2*bonus, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.25f*bonus, AttributeModifier.Operation.ADD_VALUE);
         }

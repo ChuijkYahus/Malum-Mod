@@ -174,7 +174,9 @@ public class TinkeringEntries {
 
         screen.addEntry("belt_of_the_prospector", -9, 6, b -> b
                 .configureWidget(w -> w.setIcon(BELT_OF_THE_PROSPECTOR))
-                .addPage(new HeadlineTextPage("belt_of_the_prospector", "belt_of_the_prospector.1"))
+                .addPage(new HeadlineTextItemPage("belt_of_the_prospector", BELT_OF_THE_PROSPECTOR.get()))
+                .addPage(new HeadlineTextPage("belt_of_the_prospector.avarice"))
+                .addPage(new TextPage("belt_of_the_prospector.2"))
                 .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_PROSPECTOR.get()))
                 .addReference(new EntryReference(
                         RING_OF_THE_HOARDER.get(),

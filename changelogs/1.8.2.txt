@@ -1,6 +1,7 @@
 # Tweaks
 - The healing rite now only triggers if the healing would actually have an effect, bless thy ears
 - Spellwoven Sprites now break blocks as if the player did it, this fires the BlockDropsEvent with the breaker being listed as the player, hopefully allowing for better compatibility with any loot modifying effects
+- Updated and exposed to the config the transparency of the malignant scarf in first person
 
 # Curio Changes
 
@@ -8,6 +9,8 @@ Belt of the Prospector
 - Grants a 50% chance to gain Avarice when collecting valuables
 - Avarice increases fortune chance by 10%, up to 100%
 - No longer shields valuables from explosions
+  - This behavior will be moved to a different system
+- Entry updated accordingly
 
 # Geas Changes
 
@@ -36,4 +39,5 @@ Pact of the Pyromaniac
 - Updated some Brilliance textures
 
 # Bugfixes
+- Fixed some substantial lag that appears due to the new weeping well renderer on some machines
 - Fixed some render ordering issues with Wind Tunnels

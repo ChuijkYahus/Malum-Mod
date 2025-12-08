@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import com.sammy.malum.visual_effects.networked.attack.*;
+import com.sammy.malum.visual_effects.networked.avarice.AvariceFortuneParticleEffect;
 import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.brazier.*;
@@ -116,6 +117,9 @@ public class MalumParticleEffectTypes {
     //Gluttony
     public static final ThrownGluttonyParticleEffect THROWN_GLUTTONY_IMPACT = new ThrownGluttonyParticleEffect("splash_of_gluttony");
     public static final AbsorbGluttonyParticleEffect GLUTTONY_ABSORB = new AbsorbGluttonyParticleEffect("gluttony_absorbed");
+
+    //Avarice
+    public static final AvariceFortuneParticleEffect AVARICE_FORTUNE_EFFECT = new AvariceFortuneParticleEffect("avarice_fortune");
 
     //Nitrate
     public static final EthericNitrateImpactParticleEffect ETHERIC_NITRATE_IMPACT = new EthericNitrateImpactParticleEffect("etheric_nitrate_impact");

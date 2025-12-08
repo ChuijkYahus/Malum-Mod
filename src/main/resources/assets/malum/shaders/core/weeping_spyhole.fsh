@@ -22,7 +22,6 @@ uniform float Height;
 in float vertexDistance;
 in vec4 vertexColor;
 in vec2 texCoord0;
-in vec3 normal;
 
 out vec4 fragColor;
 

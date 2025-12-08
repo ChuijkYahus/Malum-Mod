@@ -1,6 +1,7 @@
 package com.sammy.malum.client.scarf;
 
 import com.mojang.blaze3d.vertex.*;
+import com.sammy.malum.config.ClientConfig;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
@@ -129,21 +130,24 @@ public class ScarfRenderHandler {
         }
 
         public void render(LivingEntity entity, float partialTicks) {
-            BlockPos blockpos = entity.blockPosition().above(2);
             var minecraft = Minecraft.getInstance();
+            float alpha = this.alpha;
+            if (entity.equals(minecraft.cameraEntity)) {
+                if (minecraft.options.getCameraType().isFirstPerson()) {
+                    alpha *= ClientConfig.SCARF_OPACITY.getConfigValue();
+                }
+            }
+            if (alpha <= 0) {
+                return;
+            }
+            var blockpos = entity.blockPosition().above(2);
             int light = entity.level().hasChunkAt(blockpos) ? LevelRenderer.getLightColor(entity.level(), blockpos) : 0;
             var renderType = LodestoneRenderTypes.TEXTURE_FADE.apply(token);
             var builder = VFXBuilders.createWorld().setRenderType(renderType).setLight(light).setAlpha(alpha);
             var scarfStart = getScarfStart(entity, partialTicks);
-            float alpha = 1f;
-            if (entity.equals(minecraft.cameraEntity)) {
-                if (minecraft.options.getCameraType().isFirstPerson()) {
-                    alpha = 0.75f;
-                }
-            }
             points.setOrigin(scarfStart);
             //TODO: actually giving it the partial tick makes it jitter when the player is stationary, but not doing so makes it jitter when the player is moving... for whatever reason
-            builder.setAlpha(alpha).usePartialTicks(0).renderTrail(points,
+            builder.usePartialTicks(0).renderTrail(points,
                     f -> Mth.lerp(f, endingScale, scale),
                     f -> builder.setColor(ColorHelper.colorLerp(Easing.LINEAR, Mth.floor(f * 4) / 4f, secondaryColor, primaryColor))
             );
