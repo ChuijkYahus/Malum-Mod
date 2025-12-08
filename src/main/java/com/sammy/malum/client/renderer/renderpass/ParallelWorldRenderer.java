@@ -7,10 +7,12 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.config.ClientConfig;
 import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.MalumAttachmentTypes;
 import dev.kosmx.playerAnim.core.util.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
 import org.joml.*;
@@ -108,12 +110,22 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
     @Override
     public boolean shouldRender(DeltaTracker deltaTracker, Camera camera, GameRenderer gameRenderer, Matrix4f matrix4f, Matrix4f matrix4f1) {
-        return ClientConfig.PARALLEL_WORLD.getConfigValue();
+        if (!ClientConfig.PARALLEL_WORLD.getConfigValue()) {
+            return false;
+        }
+        var player = Minecraft.getInstance().player;
+        if (player == null) {
+            return false;
+        }
+        if (player.hasData(MalumAttachmentTypes.WEEPING_WELL_INFO)) {
+            return player.getData(MalumAttachmentTypes.WEEPING_WELL_INFO).isNearWeepingWell;
+        }
+        return false;
     }
 
     @Override
     public void resize(int width, int height) {
-        target.resize(width/2, height/2, Minecraft.ON_OSX);
+        target.resize(width, height, Minecraft.ON_OSX);
     }
 
     public RenderTarget getTarget() {

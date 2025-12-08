@@ -2233,7 +2233,7 @@
   "malum.gui.geas.pact_of_the_lifeweaver.tooltip": "Weave your life into miracles",
   "malum.gui.geas.pact_of_the_lone_druid": "Pact Of The Lone Druid",
   "malum.gui.geas.pact_of_the_lone_druid.cons": "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul",
-  "malum.gui.geas.pact_of_the_lone_druid.pros": "$m0.7/$To be complete is to be unburdened.\n -Each empty armour slot grants four Armor and two Armor Toughness\n -Each empty armour slot increases Healing Received by One Fourth",
+  "malum.gui.geas.pact_of_the_lone_druid.pros": "$m0.7/$To be complete is to be unburdened.\n -Each empty armour slot grants five points of Armor and two points of Armor Toughness\n -Each empty armour slot increases Healing Received by One Fourth",
   "malum.gui.geas.pact_of_the_lone_druid.tooltip": "Shed your second skin",
   "malum.gui.geas.pact_of_the_parasite": "Pact Of The Parasite",
   "malum.gui.geas.pact_of_the_parasite.cons": "Your fragility is still very much real.\n -Reduces Healing Received by Four Tenths",
