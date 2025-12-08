@@ -5,6 +5,7 @@ import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
+import com.sammy.malum.config.ClientConfig;
 import com.sammy.malum.registry.client.*;
 import dev.kosmx.playerAnim.core.util.*;
 import net.minecraft.client.Camera;
@@ -107,7 +108,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
     @Override
     public boolean shouldRender(DeltaTracker deltaTracker, Camera camera, GameRenderer gameRenderer, Matrix4f matrix4f, Matrix4f matrix4f1) {
-        return true;
+        return ClientConfig.PARALLEL_WORLD.getConfigValue();
     }
 
     @Override

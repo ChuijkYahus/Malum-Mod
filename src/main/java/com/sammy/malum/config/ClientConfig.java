@@ -29,6 +29,10 @@ public class ClientConfig extends LodestoneConfig {
             builder.comment("How long should the Malignant Stronghold Scarf be? This value will affect all rendered scarves, not just the one worn by the local player.")
                     .define("scarfLength", 30)));
 
+    public static ConfigValueHolder<Boolean> PARALLEL_WORLD = new ConfigValueHolder<>(MALUM, "client/renderpass", (builder ->
+            builder.comment("Enable or disable the parallel world renderer, DISABLE TO FIX FPS ISSUES.")
+                    .define("renderParallelWorld", false)));
+
     public ClientConfig(ModConfigSpec.Builder builder) {
         super(MALUM, "client", builder);
     }
