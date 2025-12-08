@@ -7,8 +7,10 @@ import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioProsp
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.registry.common.MalumAttachmentTypes;
 import com.sammy.malum.registry.common.MalumMobEffects;
+import com.sammy.malum.registry.common.MalumSoundEvents;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
+import com.sammy.malum.visual_effects.AvariceParticleEffects;
 import com.sammy.malum.visual_effects.GeasParticleEffects;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
@@ -26,13 +28,12 @@ import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import team.lodestar.lodestone.helpers.EntityHelper;
-
-import java.util.function.Function;
+import team.lodestar.lodestone.helpers.SoundHelper;
 
 public class AvariceMarkData {
 
     public static Codec<AvariceMarkData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            Codec.BOOL.optionalFieldOf("hasProspectorMark", false).forGetter(AvariceMarkData::hasProspectorMark),
+            Codec.BOOL.optionalFieldOf("hasProspectorMark", false).forGetter(AvariceMarkData::hasAvariceMark),
             Codec.INT.optionalFieldOf("carriedAvarice", 0).forGetter(AvariceMarkData::getCarriedAvarice)
     ).apply(obj, AvariceMarkData::new));
 
@@ -47,7 +48,7 @@ public class AvariceMarkData {
     public AvariceMarkData() {
     }
 
-    public boolean hasProspectorMark() {
+    public boolean hasAvariceMark() {
         return hasAvariceMark;
     }
 
@@ -80,7 +81,7 @@ public class AvariceMarkData {
 
     public void tickData(Entity entity) {
         if (entity.level().isClientSide) {
-            GeasParticleEffects.avariceItemParticles(entity.level(), entity);
+            AvariceParticleEffects.avariceItemParticles(entity.level(), entity);
         }
     }
 
@@ -97,8 +98,8 @@ public class AvariceMarkData {
     public static void pickupItem(ItemEntityPickupEvent.Post event) {
         ItemEntity entity = event.getItemEntity();
         entity.getExistingData(MalumAttachmentTypes.AVARICE_MARK).ifPresent(data -> {
-            if (data.hasProspectorMark()) {
-                applyAvarice(event.getPlayer(), data.carriedAvarice);
+            if (data.hasAvariceMark()) {
+                applyAvarice(event.getPlayer(), data.carriedAvarice*event.getOriginalStack().getCount());
             }
         });
     }
@@ -122,14 +123,17 @@ public class AvariceMarkData {
     public static void applyAvarice(LivingEntity target, int amount) {
         var effect = MalumMobEffects.AVARICE;
         var instance = target.getEffect(effect);
+        float volume = 1f;
         if (instance == null) {
             target.addEffect(new MobEffectInstance(effect, 400, amount-1, true, true, true));
         } else {
             EntityHelper.amplifyEffect(instance, target, amount, 9);
             EntityHelper.extendEffect(instance, target, 400, 2400);
+            volume -= Math.min(instance.getAmplifier()*0.05f, 0.5f);
         }
         if (GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
             target.heal(amount*2);
         }
+        SoundHelper.playSound(target, MalumSoundEvents.AVARICE_COLLECT.get(), volume, 0.8f + target.getRandom().nextFloat() * 0.4f);
     }
 }

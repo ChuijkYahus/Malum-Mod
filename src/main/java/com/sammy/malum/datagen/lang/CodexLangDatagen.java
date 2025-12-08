@@ -732,7 +732,12 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("belt_of_the_prospector", "Belt of the Prospector", "Treasures of the earth");
         addPages("belt_of_the_prospector",
-                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. By unearthing said treasures, this belt will temporarily enable a benefit similar to Fortune. Additionally, explosions " + italic("directly") + " caused by me will break blocks as if using Fortune III, plus the bonus.");
+                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. Through enchanting - specifically through Fortune - I've been able to better suit my tools for extracting multitudes of resource at a time. Within this entry I will detail how Spirit Arcana can be utilized in a similar manner.",
+                "When Avarice is successfully channeled through a tool with a submaximal Fortune enchantment, the applied bonus will be raised as if Fortune was at it's maximum level. Similarly, The Belt of the Prospector will bless any explosions " + italic("I") + " create with Fortune III, plus the bonus from Avarice.");
+        addHeadline("belt_of_the_prospector.avarice", "Avarice");
+        addPages("belt_of_the_prospector.avarice",
+                "While wearing the Belt of the Prospector, any valuable resources I extract will carry an imbued intent, an overflowing Avarice. Upon collection of such intent, the carried Avarice is temporarily inscribed onto my soul. Each amplitude of Avarice enables an added One Tenth chance for an additional level of Fortune when breaking blocks.");
+
         addSimpleEntryHeader("belt_of_the_prospector.ring_of_the_hoarder", "Ring of the Hoarder", "Directly into my veins");
         addPages("belt_of_the_prospector.ring_of_the_hoarder",
                 "Explosions are chaotic, and messy, inherently. This is hardly a problem, when I want to cause such rampant destruction to collect resources, but collecting the items is a burden. This ring entangles the explosion with my soul, causing the debris and loot to appear at my location.");
@@ -1119,7 +1124,7 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID,
                 scaled(0.7f) + """
                         To be complete is to be unburdened.
-                         -Each empty armour slot grants four Armor and two Armor Toughness
+                         -Each empty armour slot grants five points of Armor and two points of Armor Toughness
                          -Each empty armour slot increases Healing Received by One Fourth""",
                 "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul");
 
@@ -1169,8 +1174,8 @@ public class CodexLangDatagen {
                 scaled(0.6f) +"""
                         Greed and Haste, fueled by Kinetic Impact.
                          -Explosions are greatly empowered and grant Avarice upon detonation
-                         -Avarice gradually improves Fortune Chance
-                         -Avarice provides additional benefits to Movement Speed, Attack Speed and Mining Speed, up to a Fifty Percent increase""",
+                         -Avarice improves Fortune Chance
+                         -Avarice additionally further empowers explosions""",
                 """
                         Your greed exposes you to your own man-made ruin.
                          -Avarice increases incoming explosive damage""");

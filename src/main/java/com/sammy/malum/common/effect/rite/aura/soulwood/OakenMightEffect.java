@@ -31,7 +31,7 @@ public class OakenMightEffect extends MobEffect {
                 return;
             }
             int amplifier = instance.getAmplifier() + 1;
-            final ItemStack weapon = entity.getWeaponItem();
+            var weapon = entity.getWeaponItem();
             if (weapon.isEmpty() || weapon.is(MalumTags.ItemTags.COUNTS_AS_EMPTY_HAND)) {
                 amplifier *= 2;
                 SoundHelper.playSound(entity, MalumSoundEvents.OAKEN_MIGHT_HIT.get(), 1.0f, 0.8f + entity.getRandom().nextFloat() * 0.4f);

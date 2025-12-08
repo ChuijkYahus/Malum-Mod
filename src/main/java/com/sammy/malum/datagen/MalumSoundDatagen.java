@@ -80,6 +80,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.BLIGHT_PROPAGATION, s -> definition(s).with(sounds("blocks/blight/blight_propagation", 10)));
         this.add(MalumSoundEvents.SCARSTONE_PROPAGATION, s -> definition(s).with(sounds("blocks/scarstone/scarstone_propagation", 4)));
 
+        this.add(MalumSoundEvents.AVARICE_COLLECT, s -> definition(s).with(sounds("curiosities/avarice/collect", 4)));
+        this.add(MalumSoundEvents.AVARICE_FORTUNE, s -> definition(s).with(sounds("curiosities/avarice/fortune", 4)));
+
         this.add(MalumSoundEvents.SOUL_WARD_HIT, s -> definition(s).with(sounds("curiosities/soul_ward/block", 4)));
         this.add(MalumSoundEvents.SOUL_WARD_GROW, s -> definition(s).with(sounds("curiosities/soul_ward/grow", 4)));
         this.add(MalumSoundEvents.SOUL_WARD_FULLY_CHARGED, s -> definition(s).with(sounds("curiosities/soul_ward/full", 2)));

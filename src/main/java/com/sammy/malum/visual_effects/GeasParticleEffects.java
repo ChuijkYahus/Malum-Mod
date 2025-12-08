@@ -346,40 +346,6 @@ public class GeasParticleEffects {
         }
     }
 
-    public static void avariceItemParticles(Level level, Entity entity) {
-        if (level.getGameTime() % 8L == 0) {
-            var center = entity.position().add(0, entity.getBbHeight() / 2f, 0);
-            if (entity instanceof ItemEntity item) {
-                //Copied from ItemEntityRenderer
-                var itemstack = item.getItem();
-                var itemRenderer = Minecraft.getInstance().getItemRenderer();
-                var bakedmodel = itemRenderer.getModel(itemstack, entity.level(), null, entity.getId());
-                boolean shouldBob = net.neoforged.neoforge.client.extensions.common.IClientItemExtensions.of(itemstack).shouldBobAsEntity(itemstack);
-                float f1 = shouldBob ? Mth.sin(((float)item.getAge()) / 10.0F + item.bobOffs) * 0.1F + 0.1F : 0;
-                float f2 = bakedmodel.getTransforms().getTransform(ItemDisplayContext.GROUND).scale.y();
-                center = center.add(0, f1 + 0.25f * f2, 0);
-            }
-            float width = entity.getBbWidth()*2f;
-            for (int i = 0; i < 2; i++) {
-                var angle = i + (level.getGameTime() % 80f) / 80f;
-                int delay = RandomHelper.randomBetween(MalumMod.RANDOM, 0, 4);
-                var offsetCenter = VecHelper.radialOffset(center, width, angle, 2);
-                var lightSpecs = spiritLightSpecs(level, offsetCenter, MalumSpiritTypes.INFERNAL_SPIRIT);
-                lightSpecs.getBuilder()
-                        .setLifeDelay(delay)
-                        .setRandomMotion(0.01f)
-                        .multiplyLifetime(2.5f)
-                        .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build());
-                lightSpecs.getBloomBuilder()
-                        .setLifeDelay(delay)
-                        .setRandomMotion(0.01f)
-                        .multiplyLifetime(1.5f)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build());
-                lightSpecs.spawnParticles();
-            }
-        }
-    }
-
     public static void prospectorsGreedBurn(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData) {
         var pos = positionData.getAsVector();
         for (int i = 0; i < 16; i++) {
