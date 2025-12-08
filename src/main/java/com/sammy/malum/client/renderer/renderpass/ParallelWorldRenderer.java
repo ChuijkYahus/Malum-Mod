@@ -111,7 +111,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
     @Override
     public void resize(int width, int height) {
-        target.resize(width, height, Minecraft.ON_OSX);
+        target.resize(width/2, height/2, Minecraft.ON_OSX);
     }
 
     public RenderTarget getTarget() {
