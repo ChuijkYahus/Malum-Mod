@@ -1,6 +1,7 @@
 package com.sammy.malum.client.renderer.renderpass;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
@@ -24,7 +25,7 @@ import java.lang.Math;
 
 public class ParallelWorldRenderer extends BeforeLevelRenderPass {
     public static ParallelWorldRenderer INSTANCE;
-    private final RenderTarget target = TextureHelper.generateTextureTarget(true);
+    private final RenderTarget target = new TextureTarget(Minecraft.getInstance().getWindow().getWidth()/2, Minecraft.getInstance().getWindow().getHeight()/2, true, Minecraft.ON_OSX);
     private static final RenderStateShard.OutputStateShard outputState = StateShardHelper.createOutputState("parallelWorld", () -> INSTANCE.target.bindWrite(false));
 
     public ParallelWorldRenderer() {
