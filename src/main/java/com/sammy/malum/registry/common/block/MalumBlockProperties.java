@@ -61,11 +61,14 @@ public class MalumBlockProperties {
                 .needsAxe();
     }
 
-
     public static LodestoneBlockProperties SPIRITED_GLASS() {
         return new LodestoneBlockProperties()
                 .setRenderType(() -> RenderType::translucent)
                 .instrument(NoteBlockInstrument.HAT)
+                .isRedstoneConductor(Blocks::never)
+                .isViewBlocking(Blocks::never)
+                .isSuffocating(Blocks::never)
+                .isValidSpawn(Blocks::never)
                 .sound(SoundType.GLASS)
                 .strength(0.3F)
                 .needsPickaxe()

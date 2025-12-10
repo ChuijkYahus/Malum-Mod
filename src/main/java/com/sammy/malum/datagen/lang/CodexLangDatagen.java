@@ -886,6 +886,9 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("spirited_glass", "Spirited Glass", "Not suitable for Oculators");
         addPages("spirited_glass",
                 "I have designed a simple but aesthetically pleasing glass which is tinted by the arcana, framed in iron. The particles of the glass are 'aligned' by the power placed within - which means Raw and Eldritch, having no direction, are somewhat chaotic. They do still look interesting, though.");
+        addSimpleEntryHeader("spirited_glass.null", "Approximating The Ninth Arcana", "A Counterfeit Nothing");
+        addPages("spirited_glass.null",
+                "My set of spirited glass was designed with " + italic("Eight") + " types of Arcana in mind... a proper completion to the series is impossible with just my singular crystal. Formed from Null Slate, a counterfeit entry will have to suffice. Due to it's composition, Null Spirited Glass behaves similarly to Tinted Glass in all aspects.");
 
         addSimpleEntryHeader("varnished_terracotta", "Varnished Terracotta", "Pretty patterns");
         addPages("varnished_terracotta",
@@ -1126,7 +1129,11 @@ public class CodexLangDatagen {
                         To be complete is to be unburdened.
                          -Each empty armour slot grants five points of Armor and two points of Armor Toughness
                          -Each empty armour slot increases Healing Received by One Fourth""",
-                "To be unburdened is to cull all shackles\n -Wearing any armour shackles you, damaging your soul");
+                scaled(0.65f) + """
+                        To be unburdened is to cull all shackles.
+                         -Wearing any armour shackles you, each additional armor piece worsens the effect
+                         -Attack and Movement Speed is reduced by One Twentieth per equipped armor piece.
+                         -While wounded, these shackles grow thorns and harm your very soul.""");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,

@@ -1,0 +1,20 @@
+# Spirited Glass
+- Updated the textures and opacity of Spirited Glass
+- Added Null Spirited Glass
+- Spirited Glass can no longer suffocate, conduct redstone, and some other stuff too - essentially just matching glass in various misc. behaviours
+
+# Varnished Terracotta
+- Added Null Varnished Terracotta
+
+# Geas Changes
+
+# Pact of the Lone Druid
+- Downside is now gradual, worsening with each equipped armor piece
+- Each equipped armor piece reduces movement and attack speed by 5%
+- Damaging effect only kicks in when beneath half health
+
+# Scythes
+- Scythes can now get Fire Aspect
+
+# Bugfixes
+- Fixed the Belt of the Prospector Entry being way too long, I forgot to run datagen...

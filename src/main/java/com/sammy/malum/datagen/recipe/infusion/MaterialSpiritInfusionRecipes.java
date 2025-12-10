@@ -5,6 +5,7 @@ import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -25,6 +26,12 @@ public class MaterialSpiritInfusionRecipes {
         spiritedGlassRecipe(recipeOutput, AQUEOUS_SPIRIT, MalumItems.AQUEOUS_SPIRITED_GLASS.get());
         spiritedGlassRecipe(recipeOutput, EARTHEN_SPIRIT, MalumItems.EARTHEN_SPIRITED_GLASS.get());
         spiritedGlassRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_SPIRITED_GLASS.get());
+        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.GLASS_BLOCKS), 8, MalumItems.NULL_SPIRITED_GLASS.get(), 8)
+                .addSpirit(ARCANE_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .addExtraItem(Items.IRON_INGOT, 1)
+                .addExtraItem(MalumItems.NULL_SLATE.get(), 1)
+                .save(recipeOutput);
 
         varnishedTerracottaRecipe(recipeOutput, SACRED_SPIRIT, MalumItems.SACRED_VARNISHED_TERRACOTTA.get());
         varnishedTerracottaRecipe(recipeOutput, WICKED_SPIRIT, MalumItems.WICKED_VARNISHED_TERRACOTTA.get());

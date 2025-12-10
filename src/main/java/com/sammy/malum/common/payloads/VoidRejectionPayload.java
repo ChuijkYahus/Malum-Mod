@@ -3,6 +3,7 @@ package com.sammy.malum.common.payloads;
 import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.api.distmarker.Dist;
@@ -17,7 +18,7 @@ public class VoidRejectionPayload extends OneSidedPayloadData {
         this.entityId = entityId;
     }
 
-    public VoidRejectionPayload(FriendlyByteBuf byteBuf) {
+    public VoidRejectionPayload(RegistryFriendlyByteBuf byteBuf) {
         this.entityId = byteBuf.readInt();
     }
 
@@ -31,7 +32,7 @@ public class VoidRejectionPayload extends OneSidedPayloadData {
     }
 
     @Override
-    public void serialize(FriendlyByteBuf buf) {
+    public void serialize(RegistryFriendlyByteBuf buf) {
         buf.writeInt(entityId);
     }
 }

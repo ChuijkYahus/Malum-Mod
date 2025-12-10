@@ -107,7 +107,7 @@ public class MalumParticleEffectTypes {
     public static final LifeweaverHealingBeamParticleEffect HEALING_BEAM = new LifeweaverHealingBeamParticleEffect("healing_beam");
     public static final WarlockSpiritImpactParticleEffect WARLOCK_IMPACT = new WarlockSpiritImpactParticleEffect("spirit_impact");
     public static final BerserkerSpiritImpactParticleEffect BERSERKER_IMPACT = new BerserkerSpiritImpactParticleEffect("berserker_impact");
-    public static final HighPriestShakenFaithParticleEffect HIGH_PRIEST_PENANCE = new HighPriestShakenFaithParticleEffect("high_priest_penance");
+    public static final HighPriestPenanceParticleEffect HIGH_PRIEST_PENANCE = new HighPriestPenanceParticleEffect("high_priest_penance");
     public static final PatienceRepaidParticleEffect PATIENCE_REPAID = new PatienceRepaidParticleEffect("patience_repaid");
     public static final ProspectorsGreedBurnParticleEffect PROSPECTORS_STREAK_BURN = new ProspectorsGreedBurnParticleEffect("prospectors_streak_burn");
     public static final CombustionBurnParticleEffect COMBUSTION_BURN = new CombustionBurnParticleEffect("combustion_burn");

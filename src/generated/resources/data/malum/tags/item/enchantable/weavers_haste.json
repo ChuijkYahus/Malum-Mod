@@ -1,6 +1,5 @@
 {
   "values": [
-    "malum:spellweaving_pickaxe",
-    "malum:spellweaving_axe"
+    "#malum:enchantable/spellweaving"
   ]
 }

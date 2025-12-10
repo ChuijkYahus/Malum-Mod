@@ -6,8 +6,10 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
@@ -32,7 +34,9 @@ public class LoneDruidGeas extends GeasEffect {
             addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.25f*bonus, AttributeModifier.Operation.ADD_VALUE);
         }
         else {
-            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, -0.5f, AttributeModifier.Operation.ADD_VALUE);
+            float debuff = coverPercentage*0.2f;
+            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, -debuff, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, Attributes.ATTACK_SPEED, -debuff, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }
@@ -45,17 +49,26 @@ public class LoneDruidGeas extends GeasEffect {
 
     @Override
     public void update(EntityTickEvent.Pre event, LivingEntity entity) {
-        if (entity.level().getGameTime() % 40L == 0) {
+        if (entity.level() instanceof ServerLevel level) {
             float oldCoverPercentage = coverPercentage;
             coverPercentage = entity.getArmorCoverPercentage();
-            if (coverPercentage > 0) {
-                WorldEventHandler.addWorldEvent(entity.level(),
-                        new DelayedDamageWorldEvent(entity)
-                                .setDamageData(0, 2, 4)
-                                .setMagicDamageType(MalumDamageTypes.KARMIC));
-            }
             if (oldCoverPercentage != coverPercentage) {
                 setDirty();
+            }
+            if (entity.getHealth() <= entity.getMaxHealth() / 2f) {
+                if (coverPercentage > 0) {
+                    long interval = (long) (100 - coverPercentage * 80f);
+                    if (entity.level().getGameTime() % interval == 0) {
+                        WorldEventHandler.addWorldEvent(entity.level(),
+                                new DelayedDamageWorldEvent(entity)
+                                        .setDamageData(0, 2, 4)
+                                        .setMagicDamageType(MalumDamageTypes.KARMIC));
+
+                        MalumParticleEffectTypes.HIGH_PRIEST_PENANCE.createEffect(entity)
+                                .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
+                                .spawn(level);
+                    }
+                }
             }
         }
     }

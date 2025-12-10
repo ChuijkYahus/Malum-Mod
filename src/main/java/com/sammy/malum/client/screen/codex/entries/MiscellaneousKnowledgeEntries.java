@@ -1,6 +1,8 @@
 package com.sammy.malum.client.screen.codex.entries;
 
+import com.sammy.malum.client.screen.codex.BookEntry;
 import com.sammy.malum.client.screen.codex.pages.CyclingPage;
+import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.pages.recipe.SpiritInfusionPage;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextItemPage;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
@@ -25,6 +27,11 @@ public class MiscellaneousKnowledgeEntries {
                         SpiritInfusionPage.fromOutput(EARTHEN_SPIRITED_GLASS.get()),
                         SpiritInfusionPage.fromOutput(INFERNAL_SPIRITED_GLASS.get())
                 ))
+                .addReference(new EntryReference(NULL_SPIRITED_GLASS, BookEntry.create("spirited_glass.null")
+                        .addPage(new HeadlineTextPage("spirited_glass.null"))
+                        .addPage(SpiritInfusionPage.fromOutput(NULL_SPIRITED_GLASS.get()))
+                        .afterUmbralCrystal())
+                )
         );
         screen.addEntry("varnished_terracotta", -7, 11, b -> b
                 .configureWidget(w -> w.setIcon(ELDRITCH_VARNISHED_TERRACOTTA))

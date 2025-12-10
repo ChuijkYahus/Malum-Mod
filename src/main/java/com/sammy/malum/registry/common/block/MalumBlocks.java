@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common.block;
 
-import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.block.curiosities.banner.*;
@@ -30,6 +29,9 @@ import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
+import com.sammy.malum.common.block.decor.NullGlassBlock;
+import com.sammy.malum.common.block.decor.SpiritedGlassBlock;
+import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.block.nature.soulwood.*;
@@ -140,6 +142,8 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> AQUEOUS_SPIRITED_GLASS = BLOCKS.register("aqueous_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
     public static final DeferredHolder<Block, Block> EARTHEN_SPIRITED_GLASS = BLOCKS.register("earthen_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
     public static final DeferredHolder<Block, Block> INFERNAL_SPIRITED_GLASS = BLOCKS.register("infernal_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
+    public static final DeferredHolder<Block, Block> NULL_SPIRITED_GLASS = BLOCKS.register("null_spirited_glass", () -> new NullGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
+
     //endregion
 
     //region varnished terracotta
