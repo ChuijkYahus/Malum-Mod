@@ -1901,7 +1901,7 @@
   "malum.gui.book.entry.page.headline.spirited_glass": "融魂玻璃",
   "malum.gui.book.entry.page.text.spirited_glass.1": "我设计了一套简单而美观的玻 璃，由奥术能量染色，再镶入铁 制的框架。融入其中的力量“规 整”了组成玻璃的粒子；而原始 和邪术奥术能量没有倾向，它们 和产物都带有混沌的意味。但不 管怎么说，这些玻璃看上去都很 有意思。",
   "malum.gui.book.entry.spirited_glass.null": "仿制第九种奥能",
-  "malum.gui.book.entry.spirited_glass.null.description": "仿造的无",
+  "malum.gui.book.entry.spirited_glass.null.description": "仿造的空无",
   "malum.gui.book.entry.page.headline.spirited_glass.null": "仿制第九种奥能",
   "malum.gui.book.entry.page.text.spirited_glass.null.1": "我设计融魂玻璃时只参照了$i八/$种 奥术能量……补完所有奥能是不 可能的，我手头仅有一枚第九种 奥能的晶体。若是用到虚无板石， 就应该能制成合格的仿造品。而 受其构成影响，虚无融魂玻璃在 所有方面上都与遮光玻璃类似。",
 
@@ -2609,7 +2609,7 @@
   "malum.gui.book.entry.page.text.void.material_study_soulstone.2": "这是否意味着灵魂石本身类似金 属？或许吧。但这肯定能解释它 为何能轻松调谐铁。这当然也代 表着，灵魂石本身以某种方式与 井的真实存在相连。也许井是现 实中充斥着灵魂的区域？还是一 种收纳灵魂的方式？这两种说法 都不太站得住脚，但我目前还无 法直接推倒这些理论，不管看上 去有多站不住脚。",
 
   "malum.gui.book.entry.void.material_study_null_slate": "材料研究：精炼灵魂石",
-  "malum.gui.book.entry.void.material_study_null_slate.description": "空白的板石，也许即是前身",
+  "malum.gui.book.entry.void.material_study_null_slate.description": "空白的板石，也许是某物的前身",
   "malum.gui.book.entry.page.headline.void.material_study_null_slate": "研究：虚无板石",
   "malum.gui.book.entry.page.text.void.material_study_null_slate.1": "穿过哭泣之井后，灵魂石变成了 我称为“虚无板石”的物质。虽 然物理性质与灵魂石相似，但它 貌似缺失了灵魂……它与奥术能 量交互的方式，却仍与灵魂石无 二。",
   "malum.gui.book.entry.page.text.void.material_study_null_slate.2": "也许这就是灵魂石获得灵魂能量 前的状态？我无法确定它与灵魂 交互的模式，也同样无法像制造 魂染钢那样，转移这一性质。我 仅有的理论就是，完全缺失奥术 能量，乃至一丝一毫都不存在的 状态，不知怎的，具有其独特的 奥术能量。这种能量又会是什么？",
