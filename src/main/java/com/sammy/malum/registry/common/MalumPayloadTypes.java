@@ -13,7 +13,7 @@ import team.lodestar.lodestone.registry.common.LodestoneNetworkPayloads;
 @EventBusSubscriber(modid = MalumMod.MALUM)
 public class MalumPayloadTypes {
 
-    public static LodestoneNetworkPayloads.PayloadRegistryHelper MALUM_CHANNEL = new LodestoneNetworkPayloads.PayloadRegistryHelper(MalumMod.MALUM);
+    public static LodestoneNetworkPayloads.LodestonePayloadRegistryHelper MALUM_CHANNEL = new LodestoneNetworkPayloads.LodestonePayloadRegistryHelper(MalumMod.MALUM);
 
     @SubscribeEvent
     public static void registerNetworkStuff(RegisterPayloadHandlersEvent event) {

@@ -3,6 +3,7 @@ package com.sammy.malum.common.payloads.waveform;
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -23,7 +24,7 @@ public class SpiritDiodeVisualUpdatePayload extends OneSidedPayloadData {
         this.isPowering = isPowering;
     }
 
-    public SpiritDiodeVisualUpdatePayload(FriendlyByteBuf buf) {
+    public SpiritDiodeVisualUpdatePayload(RegistryFriendlyByteBuf buf) {
         this.pos = BlockPos.STREAM_CODEC.decode(buf);
         this.outputSignal = buf.readInt();
         this.inputSignal = buf.readInt();
@@ -40,7 +41,7 @@ public class SpiritDiodeVisualUpdatePayload extends OneSidedPayloadData {
     }
 
     @Override
-    public void serialize(FriendlyByteBuf friendlyByteBuf) {
+    public void serialize(RegistryFriendlyByteBuf friendlyByteBuf) {
         BlockPos.STREAM_CODEC.encode(friendlyByteBuf, pos);
         friendlyByteBuf.writeInt(this.outputSignal);
         friendlyByteBuf.writeInt(this.inputSignal);

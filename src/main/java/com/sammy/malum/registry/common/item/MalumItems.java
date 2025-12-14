@@ -153,6 +153,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> AQUEOUS_SPIRITED_GLASS = register("aqueous_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AQUEOUS_SPIRITED_GLASS.get(), p));
     public static final DeferredHolder<Item, Item> EARTHEN_SPIRITED_GLASS = register("earthen_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EARTHEN_SPIRITED_GLASS.get(), p));
     public static final DeferredHolder<Item, Item> INFERNAL_SPIRITED_GLASS = register("infernal_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.INFERNAL_SPIRITED_GLASS.get(), p));
+    public static final DeferredHolder<Item, Item> NULL_SPIRITED_GLASS = register("null_spirited_glass", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.NULL_SPIRITED_GLASS.get(), p));
     //endregion
 
     //region Varnished Terracotta

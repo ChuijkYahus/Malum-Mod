@@ -63,6 +63,13 @@ public class CurioTokenOfGratitude extends MalumCurioItem implements ItemEventHa
         }
     }
 
+    //Just to make sure honestly.
+    @NotNull
+    @Override
+    public ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, int lootingLevel, boolean recentlyHit, ItemStack stack) {
+        return ALWAYS_KEEP;
+    }
+
     @NotNull
     @Override
     public ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, boolean recentlyHit, ItemStack stack) {

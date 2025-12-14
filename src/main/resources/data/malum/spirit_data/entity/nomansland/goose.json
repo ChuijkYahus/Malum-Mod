@@ -1,0 +1,10 @@
+{
+  "registry_name": "nomansland:goose",
+  "primary_type": "malum:wicked",
+  "spirits": [
+    {
+      "spirit": "malum:wicked",
+      "count": 4
+    }
+  ]
+}

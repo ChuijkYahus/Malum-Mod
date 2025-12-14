@@ -23,7 +23,7 @@ public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlock
         this.info = info;
     }
 
-    public OpenBlockEntityStateUpdatePayload(FriendlyByteBuf buf) {
+    public OpenBlockEntityStateUpdatePayload(RegistryFriendlyByteBuf buf) {
         this.pos = BlockPos.STREAM_CODEC.decode(buf);
         this.isOpen = buf.readBoolean();
         this.info = getInfoCodec().decode(buf);
@@ -41,7 +41,7 @@ public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlock
     }
 
     @Override
-    public void serialize(FriendlyByteBuf buf) {
+    public void serialize(RegistryFriendlyByteBuf buf) {
         BlockPos.STREAM_CODEC.encode(buf, pos);
         buf.writeBoolean(this.isOpen);
         getInfoCodec().encode(buf, info);

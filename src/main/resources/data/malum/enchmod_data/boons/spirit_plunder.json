@@ -1,0 +1,8 @@
+{
+  "enchantment" : "malum:spirit_plunder",
+  "suitableItems": {
+    "tag": "malum:enchantable/spirit_plunder"
+  },
+  "levelRequirements" : [1, 5, 9],
+  "boonOnly" : true
+}

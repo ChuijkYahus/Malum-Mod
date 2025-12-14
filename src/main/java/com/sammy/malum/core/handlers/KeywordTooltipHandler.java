@@ -11,6 +11,7 @@ import java.util.List;
 
 public class KeywordTooltipHandler {
 
+    //Addon makers please add your mod ids here pretty please :3333
     public static List<String> ALLOWED_MODS = new ArrayList<>(List.of(MalumMod.MALUM));
     public static List<TooltipKeyword> KEYWORDS = new ArrayList<>();
 

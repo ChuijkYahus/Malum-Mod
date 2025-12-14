@@ -71,13 +71,14 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         trySweep(attacker, target, event.getNewDamage());
 
     }
+
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
         return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
     }
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if (enchantment.is(Enchantments.SWEEPING_EDGE)) {
+        if (enchantment.is(Enchantments.SWEEPING_EDGE) || enchantment.is(Enchantments.LOOTING)) {
             return true;
         }
         return super.supportsEnchantment(stack, enchantment);

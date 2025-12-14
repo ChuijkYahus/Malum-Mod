@@ -13,7 +13,7 @@ public class GustGizmoStateUpdatePayload extends OpenBlockEntityStateUpdatePaylo
         super(pos, isOpen, info);
     }
 
-    public GustGizmoStateUpdatePayload(FriendlyByteBuf buf) {
+    public GustGizmoStateUpdatePayload(RegistryFriendlyByteBuf buf) {
         super(buf);
     }
 

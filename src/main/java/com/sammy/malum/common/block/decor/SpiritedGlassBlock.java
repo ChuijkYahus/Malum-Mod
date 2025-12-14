@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block;
+package com.sammy.malum.common.block.decor;
 
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.*;
@@ -9,6 +9,7 @@ public class SpiritedGlassBlock extends TransparentBlock {
         super(p_53640_);
     }
 
+    @Override
     public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
         return pAdjacentBlockState.getBlock() instanceof SpiritedGlassBlock || super.skipRendering(pState, pAdjacentBlockState, pSide);
     }

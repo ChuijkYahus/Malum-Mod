@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -17,7 +18,7 @@ public class SpiritDiodeStateUpdatePayload extends OpenBlockEntityStateUpdatePay
         super(pos, isOpen, info);
     }
 
-    public SpiritDiodeStateUpdatePayload(FriendlyByteBuf buf) {
+    public SpiritDiodeStateUpdatePayload(RegistryFriendlyByteBuf buf) {
         super(buf);
     }
 

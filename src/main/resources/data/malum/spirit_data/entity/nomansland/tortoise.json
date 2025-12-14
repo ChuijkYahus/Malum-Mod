@@ -1,0 +1,14 @@
+{
+  "registry_name": "nomansland:tortoise",
+  "primary_type": "malum:earthen",
+  "spirits": [
+    {
+      "spirit": "malum:earthen",
+      "count": 2
+    },
+    {
+      "spirit": "malum:sacred",
+      "count": 2
+    }
+  ]
+}

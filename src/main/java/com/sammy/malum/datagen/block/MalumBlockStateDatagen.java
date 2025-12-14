@@ -41,7 +41,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         setTexturePath("spirited_glass/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 SACRED_SPIRITED_GLASS, WICKED_SPIRITED_GLASS, ARCANE_SPIRITED_GLASS, ELDRITCH_SPIRITED_GLASS,
-                AERIAL_SPIRITED_GLASS, AQUEOUS_SPIRITED_GLASS, EARTHEN_SPIRITED_GLASS, INFERNAL_SPIRITED_GLASS);
+                AERIAL_SPIRITED_GLASS, AQUEOUS_SPIRITED_GLASS, EARTHEN_SPIRITED_GLASS, INFERNAL_SPIRITED_GLASS,
+                NULL_SPIRITED_GLASS);
 
         setTexturePath("terracotta/");
         BlockStateSmithTypes.HORIZONTAL_BLOCK.act(data,
