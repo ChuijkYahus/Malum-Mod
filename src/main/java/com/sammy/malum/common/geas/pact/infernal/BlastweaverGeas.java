@@ -43,7 +43,7 @@ public class BlastweaverGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
+        if (attacker != null && event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
             var effect = attacker.getEffect(MalumMobEffects.AVARICE);
             if (effect != null) {
                 float modifier = 1 + (effect.getAmplifier() + 1) * 0.2f;
