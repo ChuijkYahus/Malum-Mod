@@ -178,7 +178,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(SPIRITS).addTag(ASPECTED_SPIRITS).add(UMBRAL_SPIRIT.get());
         tag(MOB_DROPS).add(
                 ROTTING_ESSENCE.get(), GRIM_TALC.get(), ASTRAL_WEAVE.get(), WARP_FLUX.get(),
-                ROTTEN_FLESH, SPIDER_EYE, BONE, GUNPOWDER, STRING, SLIME_BALL,
+                ROTTEN_FLESH, SPIDER_EYE, BONE, ARROW, GUNPOWDER, STRING, SLIME_BALL,
                 MAGMA_CREAM, BLAZE_ROD, BREEZE_ROD,
                 LEATHER, RABBIT_HIDE, FEATHER, INK_SAC);
         tag(MATERIALS).add(

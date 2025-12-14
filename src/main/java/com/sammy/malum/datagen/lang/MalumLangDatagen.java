@@ -347,7 +347,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
         addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
         addGeasEffect("no_armor_druid_armor", "The Absence of Equipped Armour Grants Armor And Enhances Healing");
-        addGeasEffect("no_armor", "Equipped Armour Shackles You");
+        addGeasEffect("no_armor", "Equipped Armour Shackles You When Vulnerable");
         addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
         addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
         addGeasEffect("fragile_reach_slowdown", "Cooldown State Reduces Movement Speed");

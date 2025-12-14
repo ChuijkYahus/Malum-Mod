@@ -1131,9 +1131,7 @@ public class CodexLangDatagen {
                          -Each empty armour slot increases Healing Received by One Fourth""",
                 scaled(0.65f) + """
                         To be unburdened is to cull all shackles.
-                         -Wearing any armour shackles you, each additional armor piece worsens the effect
-                         -Attack and Movement Speed is reduced by One Twentieth per equipped armor piece.
-                         -While wounded, these shackles grow thorns and harm your very soul.""");
+                         -While wounded, the shackles of your armor grow thorns and harm your very soul.""");
 
         addSimpleEntryHeader("pact_of_the_profane_ascetic", "Pact of The Profane Ascetic", "To seek beauty in dross");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,

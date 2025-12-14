@@ -86,9 +86,9 @@ public class RavenousPouchItem extends MalumPouchItem {
     public void playInsertSound(Entity entity) {
         //Side Agnostic Implementation
         if (!entity.level().isClientSide) {
-            SoundHelper.playSound(entity, MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.8f, 0.8f + entity.level().getRandom().nextFloat() * 0.4F);
+            SoundHelper.playSound(entity, MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.4f, 0.8f + entity.level().getRandom().nextFloat() * 0.4F);
         }
-        entity.playSound(MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+        entity.playSound(MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.4F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
     }
 
     public static void trySwallowItem(ItemEntityPickupEvent.Pre event) {

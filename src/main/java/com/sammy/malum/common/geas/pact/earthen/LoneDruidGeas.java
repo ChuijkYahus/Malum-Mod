@@ -33,11 +33,6 @@ public class LoneDruidGeas extends GeasEffect {
             addAttributeModifier(modifiers, Attributes.ARMOR_TOUGHNESS, 2*bonus, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.25f*bonus, AttributeModifier.Operation.ADD_VALUE);
         }
-        else {
-            float debuff = coverPercentage*0.2f;
-            addAttributeModifier(modifiers, Attributes.MOVEMENT_SPEED, -debuff, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            addAttributeModifier(modifiers, Attributes.ATTACK_SPEED, -debuff, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        }
         return modifiers;
     }
 

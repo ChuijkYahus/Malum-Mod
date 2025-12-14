@@ -9,12 +9,11 @@
 # Geas Changes
 
 # Pact of the Lone Druid
-- Downside is now gradual, worsening with each equipped armor piece
-- Each equipped armor piece reduces movement and attack speed by 5%
-- Damaging effect only kicks in when beneath half health
+- Damaging effect only kicks in when beneath half health, but grows stronger with each equipped armor piece
+- This change is meant to allow you to wear *some* armor, without getting totally screwed over
 
 # Scythes
-- Scythes can now get Fire Aspect
+- Scythes can now get Fire Aspect and Looting
 
 # Bugfixes
 - Fixed the Belt of the Prospector Entry being way too long, I forgot to run datagen...
