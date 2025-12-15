@@ -44,7 +44,7 @@ public class SoulHarvestHandler {
             return;
         }
         var data = target.getData(MalumAttachmentTypes.LIVING_SOUL_INFO);
-        if (data.isSoulless() || (CommonConfig.SOULLESS_SPAWNERS.getConfigValue() && data.isSpawnerSpawned())) {
+        if ((CommonConfig.SOULLESS_SPAWNERS.getConfigValue() && data.isSpawnerSpawned())) {
             return;
         }
         var source = event.getSource();

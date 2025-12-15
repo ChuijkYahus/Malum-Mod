@@ -5,25 +5,17 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.common.block.curiosities.soul_brazier.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.core.Direction;
-import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import team.lodestar.lodestone.systems.network.*;
-import net.minecraft.nbt.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.Optional;
-import java.util.UUID;
-import java.util.function.*;
 
 public class SoulBrazierAcceptSacrificeParticleEffect extends MalumNetworkedParticleEffectType<SoulBrazierAcceptSacrificeParticleEffect.SoulBrazierEntityEffectData> {
 
