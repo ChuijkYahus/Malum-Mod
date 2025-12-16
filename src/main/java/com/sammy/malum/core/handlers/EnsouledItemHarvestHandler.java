@@ -18,6 +18,14 @@ public class EnsouledItemHarvestHandler {
             return;
         }
         var entity = event.getEntity();
+
+        if (!entity.hasData(MalumAttachmentTypes.LIVING_SOUL_INFO)) {
+            return;
+        }
+        var data = entity.getData(MalumAttachmentTypes.LIVING_SOUL_INFO);
+        if (!data.shouldDropSpirits()) {
+            return;
+        }
         EntitySpiritDropData.getSpiritData(entity).map(EntitySpiritDropData::getItemAsSoul).ifPresent(itemAsSoul -> {
             for (ItemEntity item : event.getDrops()) {
                 if (itemAsSoul.test(item.getItem())) {
