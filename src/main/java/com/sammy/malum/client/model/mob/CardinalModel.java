@@ -79,12 +79,19 @@ public class CardinalModel extends HumanoidModel<CardinalCultist> {
 		float armClamp = 1.4F;
 		float legClamp = 0.2F;
 		head.xRot = Mth.clamp(head.xRot, -headClamp, headClamp);
-		head.y = -19.0F;
+		head.y = -17.0F;
 		head.z = -3.5F;
 
+
+		body.xRot = 0.0F;
+		body.y = 2.0F;
+		body.z = -0.0F;
+
 		rightArm.xRot *= 0.7F;
+		rightArm.setPos(-10.0F, -10.0F, 0.0F);
 		rightArm.xRot = Mth.clamp(rightArm.xRot, -armClamp, armClamp);
 		leftArm.xRot *= 0.7F;
+		leftArm.setPos(10.0F, -10.0F, 0.0F);
 		leftArm.xRot = Mth.clamp(leftArm.xRot, -armClamp, armClamp);
 
 		rightLeg.xRot *= 0.7F;

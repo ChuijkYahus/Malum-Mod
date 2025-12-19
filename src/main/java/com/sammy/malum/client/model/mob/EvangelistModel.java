@@ -126,14 +126,18 @@ public class EvangelistModel extends HumanoidModel<EvangelistCultist> {
 		float armClamp = 0.8F;
 		float legClamp = 0.1F;
 		head.xRot = Mth.clamp(head.xRot, -headClamp, headClamp);
-		head.y = -13.0F;
+		head.y = -18.0F;
 		head.z = 0.0F;
 
+		body.xRot = 0.0F;
+		body.y = -5.0F;
+		body.z = -0.0F;
+
 		rightArm.xRot *= 0.5F;
-		rightArm.setPos(-5.0F, -12.0F, 0.0F);
+		rightArm.setPos(-5.0F, -17.0F, 0.0F);
 		rightArm.xRot = Mth.clamp(rightArm.xRot, -armClamp, armClamp);
 		leftArm.xRot *= 0.5F;
-		leftArm.setPos(5.0F, -12.0F, 0.0F);
+		leftArm.setPos(5.0F, -17.0F, 0.0F);
 		leftArm.xRot = Mth.clamp(leftArm.xRot, -armClamp, armClamp);
 
 		rightLeg.setPos(-2f, 0, 0);

@@ -159,13 +159,12 @@ public class MalumEntities {
         T create(Level level);
     }
 
-    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
     public static class ClientOnly {
-        @SubscribeEvent
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             EntityRenderers.register(MalumEntities.ALTAR.get(), AltarRenderer::new);
             EntityRenderers.register(MalumEntities.CARDINAL.get(), CardinalRenderer::new);
             EntityRenderers.register(MalumEntities.EVANGELIST.get(), EvangelistRenderer::new);
+
             EntityRenderers.register(MalumEntities.CULTIST_BOLT.get(), CultistBoltRenderer::new);
             EntityRenderers.register(MalumEntities.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
 

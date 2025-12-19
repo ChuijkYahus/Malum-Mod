@@ -7,6 +7,7 @@ import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.MalumParticles;
+import com.sammy.malum.registry.common.entity.MalumEntities;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -23,6 +24,16 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void setBlockColors(RegisterColorHandlersEvent.Block event) {
         MalumBlockColors.setBlockColors(event);
+    }
+
+    @SubscribeEvent
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        MalumModels.registerLayerDefinitions(event);
+    }
+
+    @SubscribeEvent
+    public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        MalumEntities.ClientOnly.bindEntityRenderers(event);
     }
 
     @SubscribeEvent

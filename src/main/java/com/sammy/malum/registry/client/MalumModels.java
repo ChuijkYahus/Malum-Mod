@@ -21,9 +21,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
 
-@EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
 public class MalumModels {
-
 
     public static SoulHunterArmorModel SOUL_HUNTER_ARMOR;
     public static AncientSoulHunterArmorModel ANCIENT_SOUL_HUNTER_ARMOR;
@@ -50,7 +48,6 @@ public class MalumModels {
     public static HeadOverlayModel HEAD_OVERLAY_MODEL;
     public static ScarfModel SCARF;
 
-    @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
         event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);

@@ -186,10 +186,12 @@ public class AltarCultist extends Monster implements Enemy {
 
     @Override
     public void tick() {
-        updateSquish();
-        updateHeadTilt();
-        updateMeleeState();
-        updateRetreatState();
+        if (!isNoAi()) {
+            updateSquish();
+            updateHeadTilt();
+            updateMeleeState();
+            updateRetreatState();
+        }
         super.tick();
     }
 
