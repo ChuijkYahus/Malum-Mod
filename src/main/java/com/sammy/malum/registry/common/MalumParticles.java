@@ -24,6 +24,11 @@ public class MalumParticles {
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SHINE = PARTICLES.register("shine", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SPARK = PARTICLES.register("spark", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> MOTION_LINES = PARTICLES.register("motion_lines", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> CULTIST_SIGIL = PARTICLES.register("cultist_sigil", LodestoneWorldParticleType::new);
+
+    //Projectile Shapes
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SMALL_ARROW = PARTICLES.register("small_arrow", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_ARROW = PARTICLES.register("giant_arrow", LodestoneWorldParticleType::new);
 
     //Weapon Effects
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SLASH = PARTICLES.register("slash", LodestoneWorldParticleType::new);
@@ -40,8 +45,6 @@ public class MalumParticles {
     //Glowing Bits
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_GLOWING_STAR = PARTICLES.register("giant_glowing_star", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> RADIAL_DISPLAY = PARTICLES.register("radial_display", LodestoneWorldParticleType::new);
-
-    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> GIANT_ARROW = PARTICLES.register("giant_arrow", LodestoneWorldParticleType::new);
 
     public static void registerParticleFactory(RegisterParticleProvidersEvent event) {
         for (DeferredHolder<ParticleType<?>, ? extends ParticleType<?>> entry : PARTICLES.getEntries()) {

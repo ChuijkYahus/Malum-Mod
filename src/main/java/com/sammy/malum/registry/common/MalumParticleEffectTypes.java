@@ -8,6 +8,8 @@ import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
+import com.sammy.malum.visual_effects.networked.cultist.AltarBlessTargetParticleEffect;
+import com.sammy.malum.visual_effects.networked.cultist.AltarWeaveProjectileParticleEffect;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
@@ -29,6 +31,11 @@ public class MalumParticleEffectTypes {
     public static final BlightPlantGrowthParticleEffect BLIGHT_PLANT_GROWTH = new BlightPlantGrowthParticleEffect("blight_plant_growth");
     public static final ScarstoneParticleEffect SCARSTONE_FORMS = new ScarstoneParticleEffect("scarstone_monument_forms");
     public static final StrangeCrystalParticleEffect STRANGE_CRYSTAL_FORMS = new StrangeCrystalParticleEffect("strange_crystal_forms");
+
+    //Cultist vfx
+    public static final AltarWeaveProjectileParticleEffect ALTAR_WEAVES_PROJECTILE = new AltarWeaveProjectileParticleEffect("altar_weaves_projectile");
+    public static final AltarBlessTargetParticleEffect ALTAR_BESTOWS_BLESSING = new AltarBlessTargetParticleEffect("altar_bestows_blessing");
+
 
     //Spirit Altar
     public static final SpiritAltarCraftParticleEffect SPIRIT_ALTAR_CRAFTS = new SpiritAltarCraftParticleEffect("spirit_altar_crafts");

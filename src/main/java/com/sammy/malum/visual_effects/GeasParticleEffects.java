@@ -441,7 +441,6 @@ public class GeasParticleEffects {
                         .setScaleData(GenericParticleData.create(0.025f, 0.25f, 0.6f).build().multiplyValue(scaleMultiplier))
                         .setTransparencyData(GenericParticleData.create(0.8f, 0f).build().multiplyValue(alphaMultiplier))
                         .setColorData(ColorParticleData.create(start, end).setCoefficient(colorCoefficient).build())
-                        .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                         .setRenderTarget(renderTarget)
                         .setRenderType(renderType)
                         .setLifeDelay(j + i / 2)

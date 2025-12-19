@@ -13,7 +13,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-public class AscendingBlockRenderer extends EntityRenderer<AscendingBlockEntity> {
+public class AscendingBlockRenderer extends EntityRenderer<AscendingBlock> {
     private final BlockRenderDispatcher dispatcher;
 
     public AscendingBlockRenderer(EntityRendererProvider.Context context) {
@@ -22,7 +22,7 @@ public class AscendingBlockRenderer extends EntityRenderer<AscendingBlockEntity>
         this.dispatcher = context.getBlockRenderDispatcher();
     }
 
-    public void render(AscendingBlockEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(AscendingBlock entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         BlockState blockstate = entity.getBlockState();
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = entity.level();
@@ -57,7 +57,7 @@ public class AscendingBlockRenderer extends EntityRenderer<AscendingBlockEntity>
     /**
      * Returns the location of an entity's texture.
      */
-    public ResourceLocation getTextureLocation(AscendingBlockEntity entity) {
+    public ResourceLocation getTextureLocation(AscendingBlock entity) {
         return TextureAtlas.LOCATION_BLOCKS;
     }
 }

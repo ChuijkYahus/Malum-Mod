@@ -64,7 +64,6 @@ public class SpiritDiodeParticleEffects {
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
         var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setTransparencyData(GenericParticleData.create(0.7f, 0f).setEasing(Easing.SINE_IN_OUT).build())
-                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setScaleData(scaleData)
                 .setColorData(colorData)
                 .setLifetime(15)

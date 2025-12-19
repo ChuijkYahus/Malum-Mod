@@ -214,7 +214,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 RandomHelper.randomBetween(random, -velocity, velocity),
                 RandomHelper.randomBetween(random, -velocity, velocity)
         );
-        var breaker = new SpellweaverToolEffectActivatorEntity(level, tool, player.getUUID(), lociSpeed, markedPos, pos.getCenter(), velocityVector);
+        var breaker = new SpellweaverToolEffectActivator(level, tool, player.getUUID(), lociSpeed, markedPos, pos.getCenter(), velocityVector);
         breaker.setSpirit(spirit.getSpirit());
         breaker.addBackupPositions(backup);
         level.addFreshEntity(breaker);
@@ -254,14 +254,14 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
 
     public static int getSpawnedLoci(ServerLevel level, ItemStack stack, Player player) {
         float spawnedLoci = 4 + createEffectActivator(ModEnchantmentComponents.LOCUS_COUNT.get(), level)
-                .setItemContext(stack)
+                .setItemContext()
                 .countValue(stack, player);
         return Mth.floor(spawnedLoci);
     }
 
     public static float getLociSpeed(ServerLevel level, ItemStack stack, Player player) {
         return 0.5f + createEffectActivator(ModEnchantmentComponents.LOCUS_SPEED.get(), level)
-                .setItemContext(stack)
+                .setItemContext()
                 .countValue(stack, player);
     }
 

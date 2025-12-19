@@ -28,7 +28,7 @@ public class SparkParticleEffects {
         return spiritMotionSparks(level, pos, spirit, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
-    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleData colorData) {
+    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleDataWrapper colorData) {
         return spiritMotionSparks(level, pos, colorData, new WorldParticleOptions(MalumParticles.SPARK));
     }
 
@@ -36,7 +36,7 @@ public class SparkParticleEffects {
         return spiritMotionSparks(level, pos, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spirit));
     }
 
-    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleData colorData, WorldParticleOptions options) {
+    public static ParticleEffectSpawner spiritMotionSparks(Level level, Vec3 pos, ColorParticleDataWrapper colorData, WorldParticleOptions options) {
         return spiritMotionSparks(level, pos, options, o -> WorldParticleBuilder.create(o).setColorData(colorData));
     }
 
@@ -54,7 +54,6 @@ public class SparkParticleEffects {
         final WorldParticleBuilder sparkParticleBuilder = builder
                 .setLengthData(GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                 .setScaleData(GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.2f, 0.3f), 0).build())
-                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())
                 .addTickActor(slowDown)
                 .setLifetime(lifetime)

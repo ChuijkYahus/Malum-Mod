@@ -1,0 +1,366 @@
+package com.sammy.malum.common.entity.activator;
+
+import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.common.entity.*;
+import com.sammy.malum.core.systems.rite.effect.*;
+import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.visual_effects.*;
+import net.minecraft.core.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.rendering.trail.*;
+
+import java.util.*;
+
+public class BlockRiteEffectActivator extends MovingEntity {
+
+    public final TrailPointBuilder trail = TrailPointBuilder.create(6);
+    public final TrailPointBuilder longTrail = TrailPointBuilder.create(20);
+
+    protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(BlockRiteEffectActivator.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
+
+    protected SpiritRiteBlockEffect effect;
+
+    protected int upgradeSlots;
+    public final RiteSparkAttributeData speed = new RiteSparkAttributeData(RiteSparkAttributeDataType.SPEED);
+    public final RiteSparkAttributeData potency = new RiteSparkAttributeData(RiteSparkAttributeDataType.POTENCY);
+    public final RiteSparkAttributeData impact = new RiteSparkAttributeData(RiteSparkAttributeDataType.IMPACT);
+    public final RiteSparkAttributeData distance = new RiteSparkAttributeData(RiteSparkAttributeDataType.MAX_DISTANCE);
+    public final List<RiteSparkAttributeData> attributes = List.of(speed, potency, impact, distance);
+
+    protected BlockPos sourcePosition;
+    protected BlockPos activationPosition;
+    protected Direction movementDirection;
+    protected int blockCounter;
+    protected int totalBlocksTraveled;
+    protected int age;
+
+    protected int healDuration;
+    protected int healCounter;
+    protected int copyCounter;
+
+    public BlockRiteEffectActivator(Level level) {
+        super(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level);
+    }
+
+    public BlockRiteEffectActivator(Level level, SpiritRiteBlockEffect effect, BlockPos sourcePosition, Direction movementDirection) {
+        this(level);
+        this.effect = effect;
+        this.sourcePosition = sourcePosition;
+        this.activationPosition = sourcePosition;
+        this.movementDirection = movementDirection;
+        this.upgradeSlots = 4;
+        setPos(sourcePosition.getBottomCenter().add(0, 0.05f, 0));
+        updateMotion();
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(DATA_SPIRIT_GLOW, MalumSpiritTypes.ARCANE_SPIRIT.get());
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        var spirit = getSpiritType();
+        if (spirit != null) {
+            spirit.save(pCompound);
+        }
+        if (effect != null) {
+            effect.save(pCompound);
+        }
+
+        pCompound.putInt("upgradeSlots", upgradeSlots);
+        attributes.forEach(a -> a.save(pCompound));
+
+        if (sourcePosition != null) {
+            pCompound.put("sourcePosition", NBTHelper.saveBlockPos(sourcePosition));
+        }
+        if (activationPosition != null) {
+            pCompound.put("activationPosition", NBTHelper.saveBlockPos(activationPosition));
+        }
+        if (movementDirection != null) {
+            pCompound.putInt("movementDirection", movementDirection.ordinal());
+        }
+        pCompound.putInt("blockCounter", blockCounter);
+        pCompound.putInt("blocksTraveled", totalBlocksTraveled);
+        pCompound.putInt("age", age);
+
+        pCompound.putInt("healDuration", healDuration);
+        pCompound.putInt("healCounter", healCounter);
+        pCompound.putInt("copyCounter", copyCounter);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
+        effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteBlockEffect.class).orElse(null);
+
+        upgradeSlots = pCompound.getInt("upgradeSlots");
+        attributes.forEach(a -> a.load(pCompound));
+
+        sourcePosition = NBTHelper.readBlockPos(pCompound.getCompound("sourcePosition"));
+        activationPosition = NBTHelper.readBlockPos(pCompound.getCompound("activationPosition"));
+        movementDirection = Direction.values()[pCompound.getInt("movementDirection")];
+
+        blockCounter = pCompound.getInt("blockCounter");
+        totalBlocksTraveled = pCompound.getInt("blocksTraveled");
+        age = pCompound.getInt("age");
+
+        healDuration = pCompound.getInt("healDuration");
+        healCounter = pCompound.getInt("healCounter");
+        copyCounter = pCompound.getInt("copyCounter");
+    }
+
+    @Override
+    public void tick() {
+        updateMotion();
+        super.tick();
+        if (level() instanceof ServerLevel serverLevel) {
+            notifyTotem();
+            if (healDuration > 0) {
+                healDuration--;
+                return;
+            }
+            if (updatePosition()) {
+                if (activationPosition == sourcePosition) {
+                    return;
+                }
+                var level = level();
+                var affectedPos = activationPosition.below();
+                boolean canTriggerEffect = true;
+                if (level.getBlockEntity(affectedPos) instanceof RiteSparkInteractable interactable) {
+                    interactable.travel(serverLevel, this);
+                    canTriggerEffect = false;
+                }
+                else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
+                    canTriggerEffect = false;
+                }
+                if (canTriggerEffect) {
+                    if (blockCounter >= distance.getValue()) {
+                        discard();
+                        return;
+                    }
+                    if (triggerRiteEffect(serverLevel, affectedPos)) {
+                        blockCounter++;
+                    }
+                }
+                totalBlocksTraveled++;
+            }
+        }
+        if (level().isClientSide) {
+            Vec3 position = getPosition(0.5f);
+            trail.addTrailPoint(position);
+            longTrail.addTrailPoint(position);
+            trail.tickTrailPoints();
+            longTrail.tickTrailPoints();
+            if (level().getGameTime() % 3 == 0L) {
+                var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level(), position(), getSpiritType());
+                lightSpecs.getBuilder().modifyScaleData(d -> d.multiplyValue(1.5f)).multiplyLifetime(2);
+                lightSpecs.getBloomBuilder().multiplyLifetime(2);
+                lightSpecs.spawnParticles();
+            }
+        }
+        age++;
+    }
+
+    @Override
+    public float getFriction() {
+        return 1;
+    }
+
+    @Override
+    public boolean isPickable() {
+        return false;
+    }
+
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
+        var state = level.getBlockState(pos);
+        effect.applyEffect(level, this, state, pos, impact.getValue());
+        return true;
+    }
+
+    public void upgrade(RiteSparkAttributeData target) {
+        if (upgradeSlots > 0) {
+            if (target.increase()) {
+                upgradeSlots--;
+            }
+        }
+    }
+
+    public void recoverHealth() {
+        if (blockCounter > 0) {
+            healCounter++;
+            if (healCounter > 4) {
+                return;
+            }
+            healDuration = Mth.floor((blockCounter * 4) / potency.getValue());
+            blockCounter = 0;
+            updateMotion();
+        }
+    }
+
+    public void leechHealth() {
+        if (blockCounter > 0) {
+            healCounter++;
+            if (healCounter > 4) {
+                return;
+            }
+            blockCounter = 0;
+            for (RiteSparkAttributeData attribute : attributes) {
+                if (attribute.decrease()) {
+                    return;
+                }
+            }
+        }
+    }
+
+    public void duplicate() {
+        if (copyCounter == -1 || copyCounter >= 4) {
+            return;
+        }
+        //The created copy more so takes over where the spark was moving, rather than the copy being one to split off
+        var doppelganger = new BlockRiteEffectActivator(level(), effect, activationPosition, movementDirection);
+        var data = new CompoundTag();
+        addAdditionalSaveData(data);
+        doppelganger.readAdditionalSaveData(data);
+        doppelganger.copyCounter++;
+        copyCounter = -1;
+        level().addFreshEntity(doppelganger);
+    }
+
+    public void notifyTotem() {
+        if (sourcePosition != null) {
+            if (level().getBlockEntity(sourcePosition) instanceof TotemBaseBlockEntity totemBase) {
+                totemBase.receiveSparkUpdate();
+            }
+        }
+    }
+
+    public void updateDirection(Direction direction) {
+        this.movementDirection = direction;
+        updateMotion();
+    }
+
+    public void updateMotion() {
+        if (movementDirection != null) {
+            float rate = 0.2f * speed.getValue();
+            if (healDuration > 0) {
+                setDeltaMovement(Vec3.ZERO);
+                return;
+            }
+            setDeltaMovement(new Vec3(movementDirection.getStepX() * rate, movementDirection.getStepY(), movementDirection.getStepZ() * rate));
+        }
+    }
+
+    public boolean updatePosition() {
+        if (movementDirection == null) {
+            return false;
+        }
+        float xOffset = movementDirection.getStepX() * 0.5f;
+        float zOffset = movementDirection.getStepZ() * 0.5f;
+        int i = Mth.floor(getX() - xOffset);
+        int j = Mth.floor(getY());
+        int k = Mth.floor(getZ() - zOffset);
+        var centered = new BlockPos(i, j, k);
+        if (activationPosition == null) {
+            activationPosition = centered;
+            return true;
+        }
+        if (i != activationPosition.getX() || j != activationPosition.getY() || k != activationPosition.getZ()) {
+            activationPosition = centered;
+            setPos(centered.getX() + 0.5f, centered.getY() + 0.05f, centered.getZ() + 0.5f);
+            return true;
+        }
+        return false;
+    }
+
+    public float getVisualEffectScalar() {
+        return Math.min(age / 10f, 1f);
+    }
+
+    public SpiritArcanaType getSpiritType() {
+        return getEntityData().get(DATA_SPIRIT_GLOW);
+    }
+
+    public void setSpirit(SpiritArcanaType spirit) {
+        getEntityData().set(DATA_SPIRIT_GLOW, spirit);
+    }
+
+    public static class RiteSparkAttributeData {
+
+        protected final RiteSparkAttributeDataType type;
+        protected int tier;
+
+        public RiteSparkAttributeData(RiteSparkAttributeDataType type, int tier) {
+            this.type = type;
+            this.tier = tier;
+        }
+
+        public RiteSparkAttributeData(RiteSparkAttributeDataType type) {
+            this(type, 0);
+        }
+
+        public float getValue() {
+            return type.getValue(tier);
+        }
+
+        public boolean increase() {
+            if (tier < type.maxTier() - 1) {
+                tier++;
+                return true;
+            }
+            return false;
+        }
+
+        public boolean decrease() {
+            if (tier > 0) {
+                tier--;
+                return true;
+            }
+            return false;
+        }
+
+        public void save(CompoundTag compoundTag) {
+            CompoundTag tag = new CompoundTag();
+            tag.putInt("tier", tier);
+            compoundTag.put(type.name, tag);
+        }
+
+        public void load(CompoundTag compoundTag) {
+            if (compoundTag.contains(type.name)) {
+                CompoundTag tag = compoundTag.getCompound(type.name);
+                this.tier = tag.getInt("tier");
+            }
+        }
+    }
+
+    public record RiteSparkAttributeDataType(String name, int maxTier, List<Float> valuePerTier) {
+
+        public static RiteSparkAttributeDataType SPEED = new RiteSparkAttributeDataType("speed", List.of(1f, 2f, 4f));
+        public static RiteSparkAttributeDataType POTENCY = new RiteSparkAttributeDataType("potency", List.of(1f, 2f, 4f));
+        public static RiteSparkAttributeDataType IMPACT = new RiteSparkAttributeDataType("impact", List.of(1f, 2f, 4f));
+        public static RiteSparkAttributeDataType MAX_DISTANCE = new RiteSparkAttributeDataType("max_distance", List.of(8f, 16f, 32f));
+
+        public RiteSparkAttributeDataType(String name, List<Float> valuePerTier) {
+            this(name, valuePerTier.size(), valuePerTier);
+        }
+
+        public float getValue(int tier) {
+            if (tier < 0) {
+                return valuePerTier.getFirst() / (Mth.abs(tier)+1);
+            }
+            if (tier >= maxTier) {
+                return 0;
+            }
+            return valuePerTier.get(tier);
+        }
+    }
+}

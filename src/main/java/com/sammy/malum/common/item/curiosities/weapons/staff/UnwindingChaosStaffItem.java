@@ -45,7 +45,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         return SPIRITS.get(MalumMod.RANDOM.nextInt(SPIRITS.size()-1)).value();
     }
 
-    public static final ColorParticleData AURIC_COLOR_DATA = EthericNitrateEntity.AURIC_COLOR_DATA;
+    public static final ColorParticleData AURIC_COLOR_DATA = EthericNitrate.AURIC_COLOR_DATA;
 
     public UnwindingChaosStaffItem(Tier tier, float magicDamage, float chargeRate, int chargeCapacity, LodestoneItemProperties properties) {
         super(tier, magicDamage, chargeRate, chargeCapacity, properties);
@@ -129,17 +129,14 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         float pitchOffset = count > 4 ? 2f + (2f - ceil * 1.5f) : 0.5f;
         float velocity = 3f;
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
-        Vec3 pos = getProjectileSpawnPos(player, hand, 0.5f, 0.5f);
-        EntropicFlameBoltEntity entity = new EntropicFlameBoltEntity(level, pos.x, pos.y, pos.z);
-        entity.setData(player, magicDamage, spawnDelay);
-        entity.setItem(stack);
-        entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -pitchOffset, velocity, 0f);
-        Vec3 projectileDirection = entity.getDeltaMovement();
-        float yRot = ((float) (Mth.atan2(projectileDirection.x, projectileDirection.z) * (double) (180F / (float) Math.PI)));
+        var projectile = fireProjectile(player, hand, EntropicFlameBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
+        var direction = projectile.getDeltaMovement();
+        float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
         float yaw = (float) Math.toRadians(yRot);
-        Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
-        entity.setDeltaMovement(entity.getDeltaMovement().add(left.scale(spread)));
-        level.addFreshEntity(entity);
+        var left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
+        var adjusted = projectile.getDeltaMovement().add(left.scale(spread));
+        projectile.setDeltaMovement(adjusted);
+        level.addFreshEntity(projectile);
     }
 
     public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {

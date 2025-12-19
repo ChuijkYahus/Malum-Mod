@@ -21,7 +21,7 @@ public class BlockGrowingRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         var block = state.getBlock();
         if (block instanceof FarmBlock) {
             var abovePos = pos.above();

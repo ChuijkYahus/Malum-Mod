@@ -4,11 +4,13 @@ import com.sammy.malum.common.item.banner.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.entity.MalumEntities;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import top.theillusivec4.curios.api.extensions.*;
 
@@ -38,5 +40,10 @@ public class SetupEvents {
     @SubscribeEvent
     public static void registerDataMaps(RegisterDataMapTypesEvent event) {
         MalumDataMaps.registerDataMapTypes(event);
+    }
+
+    @SubscribeEvent
+    public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
+        MalumEntities.registerEntityAttributes(event);
     }
 }

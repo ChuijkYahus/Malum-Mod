@@ -1,12 +1,12 @@
 {
   "textures": [
-    "malum:spark_0",
-    "malum:spark_1",
-    "malum:spark_2",
-    "malum:spark_3",
-    "malum:spark_4",
-    "malum:spark_5",
-    "malum:spark_6",
-    "malum:spark_7"
+    "malum:spark/spark_0",
+    "malum:spark/spark_1",
+    "malum:spark/spark_2",
+    "malum:spark/spark_3",
+    "malum:spark/spark_4",
+    "malum:spark/spark_5",
+    "malum:spark/spark_6",
+    "malum:spark/spark_7"
   ]
 }

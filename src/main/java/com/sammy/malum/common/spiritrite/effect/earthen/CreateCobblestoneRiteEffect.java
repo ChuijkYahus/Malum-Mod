@@ -17,7 +17,7 @@ public class CreateCobblestoneRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         boolean canPlace = state.isAir() || state.canBeReplaced();
         if (canPlace) {
             BlockState cobblestone = Blocks.COBBLESTONE.defaultBlockState();

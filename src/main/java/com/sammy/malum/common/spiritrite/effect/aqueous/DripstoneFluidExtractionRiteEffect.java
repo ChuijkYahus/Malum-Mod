@@ -22,7 +22,7 @@ public class DripstoneFluidExtractionRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         if (state.is(BlockTags.CAULDRONS)) {
             var mutable = pos.mutable();
             boolean foundDripstone = false;

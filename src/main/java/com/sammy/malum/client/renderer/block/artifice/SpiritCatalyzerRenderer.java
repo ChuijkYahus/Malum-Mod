@@ -62,7 +62,7 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
                 poseStack.translate(-pos.getX(), -pos.getY(), -pos.getZ());
                 renderBeam(catalyzer, target, poseStack, spirit, delta);
                 poseStack.translate(pos.getX() + offset.x, pos.getY() + offset.y, pos.getZ() + offset.z);
-                FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, spirit, delta, partialTicks);
+                FloatingItemRenderer.renderSpiritGlimmer(poseStack, spirit, delta, partialTicks);
                 poseStack.translate(-offset.x, -offset.y, -offset.z);
             }
         }

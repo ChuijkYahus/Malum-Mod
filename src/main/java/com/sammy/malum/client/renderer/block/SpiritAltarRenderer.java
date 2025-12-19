@@ -2,7 +2,7 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
+import com.sammy.malum.client.renderer.entity.FloatingItemRenderer;
 import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import net.minecraft.client.Minecraft;
@@ -37,7 +37,7 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
                     poseStack.pushPose();
                     Vector3f offset = blockEntityIn.getSpiritItemOffset(spiritsRendered++, partialTicks).toVector3f();
                     poseStack.translate(offset.x(), offset.y(), offset.z());
-                    FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
+                    FloatingItemRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
                     poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
                     poseStack.scale(0.5f, 0.5f, 0.5f);
                     itemRenderer.renderStatic(item, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

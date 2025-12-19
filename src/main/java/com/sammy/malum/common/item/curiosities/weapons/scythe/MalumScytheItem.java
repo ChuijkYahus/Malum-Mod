@@ -1,6 +1,5 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
-import com.mojang.datafixers.util.*;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.enchantment.*;
@@ -109,7 +108,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         float physicalDamage;
         float magicDamage;
         boolean isBoomerang = false;
-        if (source.getDirectEntity() instanceof ScytheBoomerangEntity scytheBoomerang) {
+        if (source.getDirectEntity() instanceof ScytheBoomerang scytheBoomerang) {
             physicalDamage = scytheBoomerang.damage;
             magicDamage = scytheBoomerang.magicDamage;
             isBoomerang = true;

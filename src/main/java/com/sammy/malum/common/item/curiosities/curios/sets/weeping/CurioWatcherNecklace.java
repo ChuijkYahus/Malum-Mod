@@ -9,13 +9,11 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
-import java.util.UUID;
 import java.util.function.*;
 
 public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
@@ -46,7 +44,7 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
 
 
                 for (int i = 0; i < amount; i++) {
-                    SpiritCollectionActivatorEntity entity = new SpiritCollectionActivatorEntity(level, uuid, position, velocity);
+                    SpiritCollectionActivator entity = new SpiritCollectionActivator(level, uuid, position, velocity);
                     level.addFreshEntity(entity);
                 }
                 data.watcherNecklaceCooldown = 400;

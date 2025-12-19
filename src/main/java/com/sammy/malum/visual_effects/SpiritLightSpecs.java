@@ -23,7 +23,7 @@ import static net.minecraft.util.Mth.*;
 
 public class SpiritLightSpecs {
 
-    public static void spiritParticles(SpiritItemEntity spirit) {
+    public static void spiritParticles(SpiritItem spirit) {
         Vec3 direction = spirit.getDeltaMovement().add(0, spirit.getYOffset(0.5f), 0).normalize();
         Vec3 motion = direction.scale(0.2f);
         Consumer<LodestoneWorldParticle> behavior = p -> {
@@ -122,7 +122,7 @@ public class SpiritLightSpecs {
         return spiritLightSpecs(level, pos, spirit, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
-    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleData colorData) {
+    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleDataWrapper colorData) {
         return spiritLightSpecs(level, pos, colorData, new WorldParticleOptions(MalumParticles.LIGHT_SPEC));
     }
 
@@ -130,7 +130,7 @@ public class SpiritLightSpecs {
         return spiritLightSpecs(level, pos, options, o -> SpiritBasedParticleBuilder.createSpirit(o).setSpirit(spirit));
     }
 
-    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleData colorData, WorldParticleOptions options) {
+    public static ParticleEffectSpawner spiritLightSpecs(Level level, Vec3 pos, ColorParticleDataWrapper colorData, WorldParticleOptions options) {
         return spiritLightSpecs(level, pos, options, o -> WorldParticleBuilder.create(o).setColorData(colorData));
     }
 
