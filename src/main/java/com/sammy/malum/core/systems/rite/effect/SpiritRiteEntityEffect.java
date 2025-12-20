@@ -1,6 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.sammy.malum.common.entity.activator.EntityRiteEffectActivatorEntity;
+import com.sammy.malum.common.entity.activator.EntityRiteEffectActivator;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -52,7 +52,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
                     RandomHelper.randomBetween(random, 0.1f, 0.2f),
                     RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
-            EntityRiteEffectActivatorEntity entity = new EntityRiteEffectActivatorEntity(level, this, uuid, position, velocity);
+            EntityRiteEffectActivator entity = new EntityRiteEffectActivator(level, this, uuid, position, velocity);
             entity.setSpirit(definingSpirit);
             level.addFreshEntity(entity);
             SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));

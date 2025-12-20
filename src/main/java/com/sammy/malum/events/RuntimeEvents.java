@@ -17,7 +17,6 @@ import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
@@ -121,7 +120,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void modifyBlockDropsLate(BlockDropsEvent event) {
-        SpellweaverToolEffectActivatorEntity.redirectDrops(event);
+        SpellweaverToolEffectActivator.redirectDrops(event);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

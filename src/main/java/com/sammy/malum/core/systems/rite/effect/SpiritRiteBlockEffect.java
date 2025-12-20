@@ -30,14 +30,14 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
     public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
         var random = level.getRandom();
         Direction direction = parameters.getTotemDirection().orElseThrow();
-        BlockRiteEffectActivatorEntity entity = new BlockRiteEffectActivatorEntity(level, this, pos, direction);
+        BlockRiteEffectActivator entity = new BlockRiteEffectActivator(level, this, pos, direction);
         entity.setSpirit(definingSpirit);
         level.addFreshEntity(entity);
         SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
         return true;
     }
 
-    public abstract void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact);
+    public abstract void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact);
 
     protected void createEffect(ServerLevel level, BlockPos target, SpiritLike... spirits) {
         createEffect(level, target, Arrays.asList(spirits));

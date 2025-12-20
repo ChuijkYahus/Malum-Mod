@@ -74,12 +74,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
         int spawnDelay = count * 3;
         float velocity = 3f + 0.5f * count;
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
-        Vec3 pos = getProjectileSpawnPos(player, hand, 0.5f, 0.5f);
-        HexBoltEntity entity = new HexBoltEntity(level, pos.x, pos.y, pos.z);
-        entity.setData(player, magicDamage, spawnDelay);
-        entity.setItem(stack);
-
-        entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -pitchOffset, velocity, 0F);
-        level.addFreshEntity(entity);
+        var projectile = fireProjectile(player, hand, HexBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
+        level.addFreshEntity(projectile);
     }
 }

@@ -30,11 +30,11 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
 
     private static final int WARMUP_DURATION = 20;
 
-    public static final HashMap<Holder<SpiritArcanaType>, Consumer<BlockRiteEffectActivatorEntity>> EFFECTS = new HashMap<>();
+    public static final HashMap<Holder<SpiritArcanaType>, Consumer<BlockRiteEffectActivator>> EFFECTS = new HashMap<>();
     static {
-        EFFECTS.put(MalumSpiritTypes.SACRED_SPIRIT, BlockRiteEffectActivatorEntity::recoverHealth);
-        EFFECTS.put(MalumSpiritTypes.WICKED_SPIRIT, BlockRiteEffectActivatorEntity::leechHealth);
-        EFFECTS.put(MalumSpiritTypes.ELDRITCH_SPIRIT, BlockRiteEffectActivatorEntity::duplicate);
+        EFFECTS.put(MalumSpiritTypes.SACRED_SPIRIT, BlockRiteEffectActivator::recoverHealth);
+        EFFECTS.put(MalumSpiritTypes.WICKED_SPIRIT, BlockRiteEffectActivator::leechHealth);
+        EFFECTS.put(MalumSpiritTypes.ELDRITCH_SPIRIT, BlockRiteEffectActivator::duplicate);
 
         EFFECTS.put(MalumSpiritTypes.AERIAL_SPIRIT, e -> e.upgrade(e.speed));
         EFFECTS.put(MalumSpiritTypes.AQUEOUS_SPIRIT, e -> e.upgrade(e.potency));
@@ -133,7 +133,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     }
 
     @Override
-    public void travel(ServerLevel level, BlockRiteEffectActivatorEntity spark) {
+    public void travel(ServerLevel level, BlockRiteEffectActivator spark) {
         if (getBlockState().getValue(RiteAnchorBlock.POWERED)) {
             return;
         }

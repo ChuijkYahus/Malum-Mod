@@ -1,0 +1,18 @@
+{
+  "registry_name": "malum:evangelist",
+  "primary_type": "malum:eldritch",
+  "spirits": [
+    {
+      "spirit": "malum:eldritch",
+      "count": 2
+    },
+    {
+      "spirit": "malum:earthen",
+      "count": 2
+    },
+    {
+      "spirit": "malum:aqueous",
+      "count": 2
+    }
+  ]
+}

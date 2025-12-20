@@ -33,7 +33,7 @@ public class ContinuingShotGeas extends GeasEffect {
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         final Entity projectile = event.getSource().getDirectEntity();
-        if ((projectile instanceof AbstractArrow arrow && arrow.isCritArrow()) || projectile instanceof AbstractBoltProjectileEntity) {
+        if ((projectile instanceof AbstractArrow arrow && arrow.isCritArrow()) || projectile instanceof AbstractBoltProjectile) {
             applyEffect(attacker, true);
         }
     }
@@ -42,7 +42,7 @@ public class ContinuingShotGeas extends GeasEffect {
         if (projectile.level().isClientSide) {
             return;
         }
-        if (projectile instanceof AbstractArrow || projectile instanceof AbstractBoltProjectileEntity) {
+        if (projectile instanceof AbstractArrow || projectile instanceof AbstractBoltProjectile) {
             if (projectile.getOwner() instanceof LivingEntity owner) {
                 if (GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT)) {
                     applyEffect(owner, false);

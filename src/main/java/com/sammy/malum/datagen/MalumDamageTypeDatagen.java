@@ -8,6 +8,8 @@ import net.minecraft.world.damagesource.*;
 public class MalumDamageTypeDatagen {
 
     public static void bootstrap(BootstrapContext<DamageType> context) {
+        register(context, MalumDamageTypes.CULTIST_MAGIC);
+
         register(context, MalumDamageTypes.VOODOO);
         register(context, MalumDamageTypes.VOODOO_PLAYERLESS);
 

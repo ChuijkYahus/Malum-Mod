@@ -2,7 +2,6 @@ package com.sammy.malum.core.handlers;
 
 import com.mojang.serialization.*;
 import com.sammy.malum.common.data.attachment.*;
-import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.config.*;
@@ -195,7 +194,7 @@ public class SoulHarvestHandler {
                 itemEntity.setDeltaMovement(xSpeed * 0.6f, ySpeed * 6f, zSpeed * 0.6f);
                 return itemEntity;
             }
-            return new SpiritItemEntity(level, preferredCollector, stack, position, velocity);
+            return new SpiritItem(level, preferredCollector, stack, position, velocity);
         }
     }
 

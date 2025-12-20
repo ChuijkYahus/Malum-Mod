@@ -14,7 +14,7 @@ import team.lodestar.lodestone.systems.rendering.*;
 import java.awt.*;
 import java.util.function.*;
 
-import static com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer.*;
+import static com.sammy.malum.client.renderer.entity.FloatingItemRenderer.*;
 
 public class AbstractNitrateEntityRenderer<T extends AbstractNitrateEntity> extends EntityRenderer<T> {
     public final Function<Float, Color> primaryColor;

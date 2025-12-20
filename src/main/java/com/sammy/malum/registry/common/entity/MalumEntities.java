@@ -4,123 +4,193 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.renderer.entity.*;
 import com.sammy.malum.client.renderer.entity.activator.*;
 import com.sammy.malum.client.renderer.entity.bolt.*;
+import com.sammy.malum.client.renderer.entity.cultist.CultistBlessingRenderer;
+import com.sammy.malum.client.renderer.entity.cultist.CultistBoltRenderer;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
+import com.sammy.malum.client.renderer.mob.cultist.AltarRenderer;
+import com.sammy.malum.client.renderer.mob.cultist.CardinalRenderer;
+import com.sammy.malum.client.renderer.mob.cultist.EvangelistRenderer;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.bolt.*;
+import com.sammy.malum.common.entity.cultist.CultistBlessingProjectile;
+import com.sammy.malum.common.entity.cultist.CultistBoltProjectile;
+import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
+import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
 import com.sammy.malum.common.entity.hidden_blade.*;
-import com.sammy.malum.common.entity.nitrate.EthericNitrateEntity;
-import com.sammy.malum.common.entity.nitrate.VividNitrateEntity;
+import com.sammy.malum.common.entity.cultist.altar.AltarCultist;
+import com.sammy.malum.common.entity.nitrate.EthericNitrate;
+import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
-import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
+import com.sammy.malum.common.entity.spirit.SpiritItem;
 import com.sammy.malum.common.entity.thrown.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Consumer;
 
 public class MalumEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MalumMod.MALUM);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<AltarCultist>> ALTAR = register(
+            "altar", AltarCultist::new, MobCategory.MONSTER, b -> b
+                    .sized(0.9F, 1.25F)
+                    .eyeHeight(1.1F)
+                    .passengerAttachments(1.1F)
+                    .ridingOffset(-0.2F)
+                    .clientTrackingRange(8)
+    );
 
-    public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlockEntity>> ASCENDING_BLOCK = ENTITY_TYPES.register("ascending_block",
-            () -> EntityType.Builder.<AscendingBlockEntity>of((e, w) -> new AscendingBlockEntity(w), MobCategory.MISC).sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(20)
-                    .build(MalumMod.malumPath("ascending_block").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<CardinalCultist>> CARDINAL = register(
+            "cardinal", CardinalCultist::new, MobCategory.MONSTER, b -> b
+                    .sized(1.5F, 2.6F)
+                    .eyeHeight(3.1F)
+                    .passengerAttachments(2.8f)
+                    .clientTrackingRange(8)
+    );
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT = ENTITY_TYPES.register("natural_spirit",
-            () -> EntityType.Builder.<SpiritItemEntity>of((e, w) -> new SpiritItemEntity(w), MobCategory.MISC).sized(0.5F, 0.75F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("natural_spirit").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<EvangelistCultist>> EVANGELIST = register(
+            "evangelist", EvangelistCultist::new, MobCategory.MONSTER, b -> b
+                    .sized(0.9F, 2.9F)
+                    .eyeHeight(3.1F)
+                    .passengerAttachments(2.8f)
+                    .clientTrackingRange(8)
+    );
 
-    public static final DeferredHolder<EntityType<?>, EntityType<EthericNitrateEntity>> ETHERIC_NITRATE = ENTITY_TYPES.register("etheric_nitrate",
-            () -> EntityType.Builder.<EthericNitrateEntity>of((e, w) -> new EthericNitrateEntity(w), MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(20)
-                    .build(MalumMod.malumPath("etheric_nitrate").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<CultistBoltProjectile>> CULTIST_BOLT =
+            register("cultist_bolt", CultistBoltProjectile::new, 1F, 1F, 10);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<VividNitrateEntity>> VIVID_NITRATE = ENTITY_TYPES.register("vivid_nitrate",
-            () -> EntityType.Builder.<VividNitrateEntity>of((e, w) -> new VividNitrateEntity(w), MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(20)
-                    .build(MalumMod.malumPath("vivid_nitrate").toString()));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<ScytheBoomerangEntity>> SCYTHE_BOOMERANG = ENTITY_TYPES.register("scythe_boomerang",
-            () -> EntityType.Builder.<ScytheBoomerangEntity>of((e, w) -> new ScytheBoomerangEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(20)
-                    .build(MalumMod.malumPath("scythe_boomerang").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<CultistBlessingProjectile>> CULTIST_BLESSING =
+            register("cultist_blessing", CultistBlessingProjectile::new, 1F, 1F, 10);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<LocalizedMaelstromEntity>> SCYTHE_MAELSTROM = ENTITY_TYPES.register("scythe_maelstrom",
-            () -> EntityType.Builder.<LocalizedMaelstromEntity>of((e, w) -> new LocalizedMaelstromEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(20)
-                    .build(MalumMod.malumPath("scythe_maelstrom").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK =
+            register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpellweaverToolEffectActivatorEntity>> SPELLWEAVER_TOOL_EFFECT_ACTIVATOR = ENTITY_TYPES.register("spellweavers_locus",
-            () -> EntityType.Builder.<SpellweaverToolEffectActivatorEntity>of((e, w) -> new SpellweaverToolEffectActivatorEntity(w), MobCategory.MISC).sized(0.25f, 0.25f).clientTrackingRange(4).updateInterval(1)
-                    .build(MalumMod.malumPath("spellweavers_locus").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItem>> NATURAL_SPIRIT =
+            register("natural_spirit", SpiritItem::new, 0.5F, 0.75F, 10);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<EntityRiteEffectActivatorEntity>> RITE_ENTITY_EFFECT_ACTIVATOR = ENTITY_TYPES.register("seeking_rite_locus",
-            () -> EntityType.Builder.<EntityRiteEffectActivatorEntity>of((e, w) -> new EntityRiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(4).updateInterval(1)
-                    .build(MalumMod.malumPath("seeking_rite_locus").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<EthericNitrate>> ETHERIC_NITRATE =
+            register("etheric_nitrate", EthericNitrate::new, 0.5F, 0.5F, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectActivatorEntity>> RITE_BLOCK_EFFECT_ACTIVATOR = ENTITY_TYPES.register("bound_rite_locus",
-            () -> EntityType.Builder.<BlockRiteEffectActivatorEntity>of((e, w) -> new BlockRiteEffectActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(1).updateInterval(1)
-                    .build(MalumMod.malumPath("bound_rite_locus").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<VividNitrate>> VIVID_NITRATE =
+            register("vivid_nitrate", VividNitrate::new, 0.5F, 0.5F, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivatorEntity>> SPIRIT_COLLECTION_ACTIVATOR = ENTITY_TYPES.register("pneuma_void",
-            () -> EntityType.Builder.<SpiritCollectionActivatorEntity>of((e, w) -> new SpiritCollectionActivatorEntity(w), MobCategory.MISC).sized(1f, 1f).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("pneuma_void").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<ScytheBoomerang>> SCYTHE_BOOMERANG =
+            register("scythe_boomerang", ScytheBoomerang::new, 2f, 2f, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<HiddenBladeDelayedImpactEntity>> HIDDEN_BLADE_DELAYED_IMPACT = ENTITY_TYPES.register("hidden_blade_delayed_impact",
-            () -> EntityType.Builder.<HiddenBladeDelayedImpactEntity>of((e, w) -> new HiddenBladeDelayedImpactEntity(w), MobCategory.MISC).sized(8F, 8F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("hidden_blade_delayed_impact").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<LocalizedMaelstrom>> SCYTHE_MAELSTROM =
+            register("scythe_maelstrom", LocalizedMaelstrom::new, 2f, 2f, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<ThrownConcentratedGluttony>> THROWN_GLUTTONY = ENTITY_TYPES.register("thrown_gluttony",
-            () -> EntityType.Builder.<ThrownConcentratedGluttony>of((e, w) -> new ThrownConcentratedGluttony(w), MobCategory.MISC).sized(0.25f, 0.25f).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("thrown_gluttony").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<SpellweaverToolEffectActivator>> SPELLWEAVER_TOOL_EFFECT_ACTIVATOR =
+            register("spellweavers_locus", SpellweaverToolEffectActivator::new, 0.25f, 0.25f, 4, 1);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<HexBoltEntity>> HEX_BOLT = ENTITY_TYPES.register("hex_bolt",
-            () -> EntityType.Builder.<HexBoltEntity>of((e, w) -> new HexBoltEntity(w), MobCategory.MISC).sized(1.25F, 1.25F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("hex_bolt").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityRiteEffectActivator>> RITE_ENTITY_EFFECT_ACTIVATOR =
+            register("seeking_rite_locus", EntityRiteEffectActivator::new, 1f, 1f, 4, 1);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<DrainingBoltEntity>> DRAINING_BOLT = ENTITY_TYPES.register("draining_bolt",
-            () -> EntityType.Builder.<DrainingBoltEntity>of((e, w) -> new DrainingBoltEntity(w), MobCategory.MISC).sized(1.5F, 1.5f).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("draining_bolt").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectActivator>> RITE_BLOCK_EFFECT_ACTIVATOR =
+            register("bound_rite_locus", BlockRiteEffectActivator::new, 1f, 1f, 1, 1);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<EntropicFlameBoltEntity>> ENTROPIC_FLAME_BOLT = ENTITY_TYPES.register("entropic_flame_bolt",
-            () -> EntityType.Builder.<EntropicFlameBoltEntity>of((e, w) -> new EntropicFlameBoltEntity(w), MobCategory.MISC).sized(3F, 3F).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("entropic_flame_bolt").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivator>> SPIRIT_COLLECTION_ACTIVATOR =
+            register("pneuma_void", SpiritCollectionActivator::new, 1f, 1f, 10);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectileEntity>> SUNDERING_ANCHOR = ENTITY_TYPES.register("sundering_anchor",
-            () -> EntityType.Builder.<SunderingAnchorProjectileEntity>of((e, w) -> new SunderingAnchorProjectileEntity(w), MobCategory.MISC).sized(2f, 2f).clientTrackingRange(10)
-                    .build(MalumMod.malumPath("sundering_anchor").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<HiddenBladeDelayedImpact>> HIDDEN_BLADE_DELAYED_IMPACT =
+            register("hidden_blade_delayed_impact", HiddenBladeDelayedImpact::new, 8F, 8F, 10);
 
-    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrownConcentratedGluttony>> THROWN_GLUTTONY =
+            register("thrown_gluttony", ThrownConcentratedGluttony::new, 0.25f, 0.25f, 10);
+
+    public static final DeferredHolder<EntityType<?>, EntityType<HexBolt>> HEX_BOLT =
+            register("hex_bolt", HexBolt::new, 1.5F, 1.5F, 10);
+
+    public static final DeferredHolder<EntityType<?>, EntityType<DrainingBolt>> DRAINING_BOLT =
+            register("draining_bolt", DrainingBolt::new, 1.5F, 1.5F, 10);
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntropicFlameBolt>> ENTROPIC_FLAME_BOLT =
+            register("entropic_flame_bolt", EntropicFlameBolt::new, 3F, 3F, 10);
+
+    public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectile>> SUNDERING_ANCHOR =
+            register("sundering_anchor", SunderingAnchorProjectile::new, 2f, 2f, 10);
+
+    private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(
+            String name, MalumEntityFactory<T> factory, float width, float height, int trackingRange) {
+        return register(name, factory, width, height, trackingRange, 3);
+    }
+
+    private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(
+            String name, MalumEntityFactory<T> factory, float width, float height, int trackingRange, int updateInterval) {
+
+        return register(name, factory, MobCategory.MISC, b -> b
+                .sized(width, height)
+                .clientTrackingRange(trackingRange)
+                .updateInterval(updateInterval)
+        );
+    }
+
+    private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(
+            String name, MalumEntityFactory<T> factory, MobCategory category, Consumer<EntityType.Builder<T>> builder) {
+        EntityType.EntityFactory<T> entityFactory = (e, level) -> factory.create(level);
+        return ENTITY_TYPES.register(name, () -> {
+            EntityType.Builder<T> b = EntityType.Builder.of(entityFactory, category);
+            builder.accept(b);
+            return b.build(MalumMod.malumPath(name).toString());
+        });
+    }
+
+    public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(ALTAR.get(), AltarCultist.createAttributes().build());
+        event.put(CARDINAL.get(), CardinalCultist.createAttributes().build());
+        event.put(EVANGELIST.get(), EvangelistCultist.createAttributes().build());
+    }
+
+    public interface MalumEntityFactory<T extends Entity> {
+        T create(Level level);
+    }
+
     public static class ClientOnly {
-        @SubscribeEvent
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
-            EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.ALTAR.get(), AltarRenderer::new);
+            EntityRenderers.register(MalumEntities.CARDINAL.get(), CardinalRenderer::new);
+            EntityRenderers.register(MalumEntities.EVANGELIST.get(), EvangelistRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.CULTIST_BOLT.get(), CultistBoltRenderer::new);
+            EntityRenderers.register(MalumEntities.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
+
+            EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
+            EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);
+
+            EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);
             EntityRenderers.register(MalumEntities.SCYTHE_MAELSTROM.get(), NoopRenderer::new);
 
-            EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateEntityRenderer::new);
-            EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateRenderer::new);
+            EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), SpellweaverToolEffectActivatorEntityRenderer::new);
-            EntityRenderers.register(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorEntityRenderer::new);
-            EntityRenderers.register(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), SpellweaverToolEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorRenderer::new);
             EntityRenderers.register(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);
 
             EntityRenderers.register(MalumEntities.THROWN_GLUTTONY.get(), ThrownConcentratedGluttonyRenderer::new);
 
-            EntityRenderers.register(MalumEntities.HEX_BOLT.get(), HexBoltEntityRenderer::new);
-            EntityRenderers.register(MalumEntities.DRAINING_BOLT.get(), DrainingBoltEntityRenderer::new);
-            EntityRenderers.register(MalumEntities.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.HEX_BOLT.get(), HexBoltRenderer::new);
+            EntityRenderers.register(MalumEntities.DRAINING_BOLT.get(), DrainingBoltRenderer::new);
+            EntityRenderers.register(MalumEntities.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SUNDERING_ANCHOR.get(), SunderingAnchorEntityRenderer::new);
+            EntityRenderers.register(MalumEntities.SUNDERING_ANCHOR.get(), SunderingAnchorRenderer::new);
 
         }
     }

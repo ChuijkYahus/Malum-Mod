@@ -18,7 +18,7 @@ public class FurnaceAccelerationRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         if (level.getBlockEntity(pos) instanceof AbstractFurnaceBlockEntity furnace) {
             createEffect(level, pos, INFERNAL_SPIRIT, ELDRITCH_SPIRIT);
             int progress = Mth.floor(20*impact);

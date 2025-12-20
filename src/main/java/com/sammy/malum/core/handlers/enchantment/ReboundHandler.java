@@ -1,6 +1,6 @@
 package com.sammy.malum.core.handlers.enchantment;
 
-import com.sammy.malum.common.entity.scythe.ScytheBoomerangEntity;
+import com.sammy.malum.common.entity.scythe.ScytheBoomerang;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.registry.common.*;
@@ -35,7 +35,7 @@ public class ReboundHandler {
                 baseDamage *= 1.3f;
                 magicDamage *= 1.3f;
             }
-            var entity = new ScytheBoomerangEntity(level, position.x, position.y, position.z);
+            var entity = new ScytheBoomerang(level, position.x, position.y, position.z);
 
             entity.setData(player, baseDamage, magicDamage, slot, 8);
             entity.setItem(scythe);
@@ -50,7 +50,7 @@ public class ReboundHandler {
         player.awardStat(Stats.ITEM_USED.get(scythe.getItem()));
     }
 
-    public static void pickupScythe(ScytheBoomerangEntity entity, ItemStack stack, ServerPlayer player) {
+    public static void pickupScythe(ScytheBoomerang entity, ItemStack stack, ServerPlayer player) {
         if (!player.isCreative()) {
             int enchantmentLevel = EnchantmentKeys.getEnchantmentLevel(player.level(), EnchantmentKeys.REBOUND, stack);
             int cooldown = 120 - 35 * (enchantmentLevel - 1);

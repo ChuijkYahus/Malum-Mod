@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.function.Supplier;
 
 public enum MalumItemTiers implements Tier{
+    ARCHAIC_SLATE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 500, 4.5f, 3.5f, 4, MalumItems.CTHONIC_GOLD_FRAGMENT),
     SOUL_STAINED_STEEL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1250, 7.5f, 2.5f, 16, MalumItems.SOUL_STAINED_STEEL_INGOT),
     SPELLWEAVING_TOOLS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1500, 5f, 3f, 24, MalumItems.CTHONIC_GOLD),
     MALIGNANT_ALLOY(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2500, 8f, 4f, 24, MalumItems.MALIGNANT_PEWTER_INGOT),

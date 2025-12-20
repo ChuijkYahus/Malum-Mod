@@ -91,7 +91,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             float physicalDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
             Vec3 pos = getProjectileSpawnPos(player, usedHand, 0.5f, 0.5f);
-            SunderingAnchorProjectileEntity entity = new SunderingAnchorProjectileEntity(level, pos.x, pos.y, pos.z);
+            SunderingAnchorProjectile entity = new SunderingAnchorProjectile(level, pos.x, pos.y, pos.z);
             entity.setData(player, physicalDamage, magicDamage, slot);
             entity.setItem(stack);
 

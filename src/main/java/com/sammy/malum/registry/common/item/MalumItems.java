@@ -83,6 +83,14 @@ public class MalumItems {
         return DEFAULT_PROPERTIES().stacksTo(1);
     }
 
+    public static LodestoneItemProperties ARCHAIC_PROPERTIES() {
+        return new LodestoneItemProperties(MalumCreativeTabs.ARCHAIC_SECT);
+    }
+
+    public static LodestoneItemProperties ARCHAIC_GEAR_PROPERTIES() {
+        return DEFAULT_PROPERTIES().stacksTo(1);
+    }
+
     public static LodestoneItemProperties BUILDING_PROPERTIES() {
         return new LodestoneItemProperties(MalumCreativeTabs.BUILDING);
     }
@@ -646,6 +654,10 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> TWISTED_IRIDESCENT_ETHER_BRAZIER = register("twisted_iridescent_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), p, true));
     //endregion
 
+    //region archaic sect stuff
+
+    public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::ARCHAIC_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
+
     //region autmgnets
     public static final DeferredHolder<Item, Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItems::DEFAULT_PROPERTIES, MendingDiffuserItem::new);
     public static final DeferredHolder<Item, Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItems::DEFAULT_PROPERTIES, ImpurityStabilizer::new);
@@ -674,7 +686,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> TUNING_FORK = register("tuning_fork", MalumItems::GEAR_PROPERTIES, TinkeringToolItem::new);
     public static final DeferredHolder<Item, Item> LAMPLIGHTERS_TONGS = register("lamplighters_tongs", MalumItems::GEAR_PROPERTIES, LamplightersTongsItem::new);
 
-    public static final DeferredHolder<Item, Item> CATALYST_LOBBER = register("catalyst_lobber", MalumItems::GEAR_PROPERTIES, (p) -> new CatalystLobberItem(p.durability(500), EthericNitrateEntity::new));
+    public static final DeferredHolder<Item, Item> CATALYST_LOBBER = register("catalyst_lobber", MalumItems::GEAR_PROPERTIES, (p) -> new CatalystLobberItem(p.durability(500), EthericNitrate::new));
 
     public static final DeferredHolder<Item, Item> CRUDE_SCYTHE = register("crude_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, p.durability(500)));
     public static final DeferredHolder<Item, Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.1f, 4, p));

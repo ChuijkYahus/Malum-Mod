@@ -2,7 +2,7 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.sammy.malum.client.renderer.entity.FloatingItemEntityRenderer;
+import com.sammy.malum.client.renderer.entity.FloatingItemRenderer;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,7 +29,7 @@ public class SpiritJarRenderer implements BlockEntityRenderer<SpiritJarBlockEnti
             double y = 0.5f + (float) Math.sin((time * 0.05f) % 6.28f) * 0.2f;
             poseStack.pushPose();
             poseStack.translate(0.5f, y, 0.5f);
-            FloatingItemEntityRenderer.renderSpiritGlimmer(poseStack, type, partialTicks);
+            FloatingItemRenderer.renderSpiritGlimmer(poseStack, type, partialTicks);
             poseStack.mulPose(Axis.YP.rotationDegrees((time * 3) % 360));
             poseStack.scale(0.6f, 0.6f, 0.6f);
             itemRenderer.renderStatic(type.getSpiritStack(), ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);

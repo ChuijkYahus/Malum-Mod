@@ -4,5 +4,5 @@ import com.sammy.malum.common.entity.activator.*;
 import net.minecraft.server.level.*;
 
 public interface RiteSparkInteractable {
-    void travel(ServerLevel level, BlockRiteEffectActivatorEntity spark);
+    void travel(ServerLevel level, BlockRiteEffectActivator spark);
 }

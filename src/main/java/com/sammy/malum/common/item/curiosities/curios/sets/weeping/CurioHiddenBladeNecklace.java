@@ -3,7 +3,6 @@ package com.sammy.malum.common.item.curiosities.curios.sets.weeping;
 import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.common.payloads.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
@@ -17,7 +16,6 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
 
@@ -100,7 +98,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 magicDamage *= damageBonus;
                 magicDamage /= slashDuration;
 
-                var entity = new HiddenBladeDelayedImpactEntity(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
+                var entity = new HiddenBladeDelayedImpact(level, damageCenter.x, damageCenter.y - 3f + attacker.getBbHeight() / 2f, damageCenter.z);
                 entity.setData(attacker, physicalDamage, magicDamage, slashDuration);
                 entity.setItem(scytheWeapon);
                 level.addFreshEntity(entity);

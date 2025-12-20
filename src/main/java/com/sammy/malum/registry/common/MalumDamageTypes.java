@@ -7,6 +7,8 @@ import net.minecraft.world.damagesource.DamageType;
 
 public class MalumDamageTypes {
 
+    public static final ResourceKey<DamageType> CULTIST_MAGIC = createDamageType("cultist_magic");
+
     public static final ResourceKey<DamageType> VOODOO = createDamageType("voodoo");
     public static final ResourceKey<DamageType> VOODOO_PLAYERLESS = createDamageType("voodoo_playerless");
 

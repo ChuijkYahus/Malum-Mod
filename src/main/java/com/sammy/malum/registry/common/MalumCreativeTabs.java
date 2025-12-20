@@ -31,6 +31,14 @@ public class MalumCreativeTabs {
                     .icon(() -> MalumItems.RUNEWOOD_SAPLING.get().getDefaultInstance()).build()
     );
 
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ARCHAIC_SECT = CREATIVE_MODE_TABS.register("malum_archaic_sect",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_archaic_sect"))
+                    .withTabsAfter(MalumMod.malumPath("malum_building"))
+                    .withTabsBefore(NATURE.getId())
+                    .icon(() -> MalumItems.SHAPED_SLAB.get().getDefaultInstance()).build()
+    );
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING = CREATIVE_MODE_TABS.register("malum_building",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_arcane_construct"))

@@ -24,7 +24,7 @@ public class UnchainedRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         if (!state.is(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST)) {
             entity.discard();
             return;

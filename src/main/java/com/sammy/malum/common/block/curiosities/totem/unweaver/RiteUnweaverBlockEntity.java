@@ -9,11 +9,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-
-import java.awt.*;
-
-import static com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData.fromSpirits;
 
 public class RiteUnweaverBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
@@ -26,7 +21,7 @@ public class RiteUnweaverBlockEntity extends LodestoneBlockEntity implements Rit
     }
 
     @Override
-    public void travel(ServerLevel level, BlockRiteEffectActivatorEntity spark) {
+    public void travel(ServerLevel level, BlockRiteEffectActivator spark) {
         spark.discard();
         playSound(MalumSoundEvents.SPARK_UNWOVEN.get());
         MalumParticleEffectTypes.RITE_UNWEAVER_EFFECT.createEffect(getBlockPos().above())

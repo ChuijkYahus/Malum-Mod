@@ -36,7 +36,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
 
     public static final Color MALIGNANT_PURPLE = new Color(68, 11, 61);
     public static final Color MALIGNANT_BLACK = new Color(12, 4, 11);
-    public static final ColorParticleData SCEPTER_COLOR_DATA = ColorParticleData.create(MALIGNANT_PURPLE, MALIGNANT_BLACK).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(1.2f).build();
+    public static final ColorParticleData SCEPTER_COLOR_DATA = ColorParticleData.create(MALIGNANT_PURPLE, MALIGNANT_BLACK).setEasing(Easing.BOUNCE_IN_OUT).setCoefficient(1.2f).build().lock();
 
     public ErosionScepterItem(Tier tier, float magicDamage, float chargeRate, int chargeCapacity, LodestoneItemProperties properties) {
         super(tier, magicDamage, chargeRate, chargeCapacity, properties);
@@ -54,7 +54,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (!(event.getSource().getDirectEntity() instanceof AbstractBoltProjectileEntity) && event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+        if (!(event.getSource().getDirectEntity() instanceof AbstractBoltProjectile) && event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
             var silenced = MalumMobEffects.SILENCED;
             var effect = target.getEffect(silenced);
             if (effect == null) {
@@ -81,28 +81,18 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
         float pitchOffset = count * 1.5f;
         float velocity = 4f;
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE) * 0.3f;
-        Vec3 pos = getProjectileSpawnPos(player, hand, 0.5f, 0.5f);
         for (int i = 0; i < 4; i++) {
             float xSpread = RandomHelper.randomBetween(level.random, -0.125f, 0.125f);
             float ySpread = RandomHelper.randomBetween(level.random, -0.025f, 0.025f);
-            DrainingBoltEntity entity = new DrainingBoltEntity(level, pos.x, pos.y, pos.z);
-            if (i > 1) {
-                entity.setSilent(true);
-            }
-            entity.setData(player, magicDamage, spawnDelay);
-            entity.setItem(stack);
-
-            entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -pitchOffset, velocity, 0F);
-
-            Vec3 projectileDirection = entity.getDeltaMovement();
-            float yRot = ((float) (Mth.atan2(projectileDirection.x, projectileDirection.z) * (double) (180F / (float) Math.PI)));
+            var projectile = fireProjectile(player, hand, DrainingBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
+            var direction = projectile.getDeltaMovement();
+            float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
             float yaw = (float) Math.toRadians(yRot);
-            Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
-            Vec3 up = left.cross(projectileDirection);
-            entity.setDeltaMovement(entity.getDeltaMovement().add(left.scale(xSpread)).add(up.scale(ySpread)));
-
-
-            level.addFreshEntity(entity);
+            var left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
+            var up = left.cross(direction);
+            var adjusted = projectile.getDeltaMovement().add(left.scale(xSpread)).add(up.scale(ySpread));
+            projectile.setDeltaMovement(adjusted);
+            level.addFreshEntity(projectile);
         }
     }
 

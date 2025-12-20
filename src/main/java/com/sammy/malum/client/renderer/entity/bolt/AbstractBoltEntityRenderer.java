@@ -5,6 +5,7 @@ import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
@@ -16,9 +17,7 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
 
-import static com.sammy.malum.MalumMod.*;
-
-public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectileEntity> extends EntityRenderer<T> {
+public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectile> extends EntityRenderer<T> {
     public final Color primaryColor;
     public final Color secondaryColor;
 
@@ -55,6 +54,12 @@ public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectil
 
     public float getScaleMultiplier() {
         return 1.4f;
+    }
+
+
+    @Override
+    public boolean shouldRender(T entity, Frustum camera, double camX, double camY, double camZ) {
+        return true;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.sammy.malum.common.item.curiosities.weapons.staff;
 
+import com.sammy.malum.common.entity.bolt.AbstractStaffBoltProjectile;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.handlers.enchantment.*;
@@ -174,5 +175,20 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
         int angle = hand == InteractionHand.MAIN_HAND ? 225 : 90;
         double radians = Math.toRadians(angle - player.yHeadRot);
         return player.position().add(player.getLookAngle().scale(distance)).add(spread * Math.sin(radians), player.getBbHeight() * 0.9f, spread * Math.cos(radians));
+    }
+
+    public <T extends AbstractStaffBoltProjectile> T fireProjectile(LivingEntity owner, InteractionHand hand, BoltFactory<T> factory, float velocity, float pitchOffset, float magicDamage, int spawnDelay) {
+        var level = owner.level();
+        var pos = getProjectileSpawnPos(owner, hand, 0.5f, 0.5f);
+        var entity = factory.makeBolt(level);
+        entity.setPos(pos);
+        boolean isHoming = GeasEffectHandler.hasGeasEffect(owner, MalumGeasEffectTypes.OATH_OF_THE_OVERKEEN_EYE);
+        entity.shootFromStaff(owner, owner.getXRot(), owner.getYRot(), -pitchOffset, velocity, 0F);
+        entity.setData(owner, magicDamage, spawnDelay, isHoming);
+        return entity;
+    }
+
+    public interface BoltFactory<T> {
+        T makeBolt(Level level);
     }
 }

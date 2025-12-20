@@ -15,7 +15,7 @@ public class BlockBreakRiteEffect extends SpiritRiteBlockEffect {
     }
 
     @Override
-    public void applyEffect(ServerLevel level, BlockRiteEffectActivatorEntity entity, BlockState state, BlockPos pos, float impact) {
+    public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
         boolean canBreak = !state.isAir() && state.getDestroySpeed(level, pos) != -1;
         if (canBreak) {
             level.destroyBlock(pos, true);

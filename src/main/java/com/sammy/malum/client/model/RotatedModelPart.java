@@ -39,7 +39,12 @@ public class RotatedModelPart {
     public void setVisible(boolean visible) {
         part.visible = visible;
     }
+
     public void copyFrom(ModelPart other) {
         part.copyFrom(other);
+    }
+
+    public ModelPart getChild(String name) {
+        return part.getChild(name);
     }
 }

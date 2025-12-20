@@ -13,12 +13,14 @@ import com.sammy.malum.client.model.cosmetic.risky.CommandoArmorModel;
 import com.sammy.malum.client.model.cosmetic.risky.ExecutionerArmorModel;
 import com.sammy.malum.client.model.cosmetic.ultrakill.UltrakillMachineArmorModel;
 
+import com.sammy.malum.client.model.mob.AltarModel;
+import com.sammy.malum.client.model.mob.CardinalModel;
+import com.sammy.malum.client.model.mob.EvangelistModel;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
 
-@EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class MalumModels {
 
     public static SoulHunterArmorModel SOUL_HUNTER_ARMOR;
@@ -46,8 +48,12 @@ public class MalumModels {
     public static HeadOverlayModel HEAD_OVERLAY_MODEL;
     public static ScarfModel SCARF;
 
-    @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
+        event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);
+        event.registerLayerDefinition(EvangelistModel.LAYER, EvangelistModel::createBodyLayer);
+
+
         event.registerLayerDefinition(SoulHunterArmorModel.LAYER, SoulHunterArmorModel::createBodyLayer);
         event.registerLayerDefinition(SoulStainedSteelArmorModel.LAYER, SoulStainedSteelArmorModel::createBodyLayer);
         event.registerLayerDefinition(MalignantStrongholdArmorModel.LAYER, MalignantStrongholdArmorModel::createBodyLayer);
