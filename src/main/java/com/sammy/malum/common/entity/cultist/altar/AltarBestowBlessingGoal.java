@@ -1,14 +1,10 @@
 package com.sammy.malum.common.entity.cultist.altar;
 
-import com.sammy.malum.common.entity.cultist.ICultist;
+import com.sammy.malum.common.entity.cultist.IAltarBlessingRecipient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.level.Level;
-import team.lodestar.lodestone.helpers.RandomHelper;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -45,7 +41,7 @@ public class AltarBestowBlessingGoal extends Goal {
                 if (entity.equals(altar)) {
                     continue;
                 }
-                if (entity instanceof ICultist cultist) {
+                if (entity instanceof IAltarBlessingRecipient cultist) {
                     if (cultist.canReceiveAltarBuff()) {
                         if (altar.distanceTo(entity) <= chargeRadiusSqr) {
                             targetedCultist = entity;
@@ -56,7 +52,7 @@ public class AltarBestowBlessingGoal extends Goal {
             }
 
         }
-        else if (!targetedCultist.isAlive() || (targetedCultist instanceof ICultist cultist && !cultist.canReceiveAltarBuff())) {
+        else if (!targetedCultist.isAlive() || (targetedCultist instanceof IAltarBlessingRecipient cultist && !cultist.canReceiveAltarBuff())) {
             targetedCultist = null;
         }
         return targetedCultist != null;
@@ -64,7 +60,7 @@ public class AltarBestowBlessingGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return (targetedCultist != null && targetedCultist.isAlive() && targetedCultist instanceof ICultist cultist && cultist.canReceiveAltarBuff()) || this.canUse();
+        return (targetedCultist != null && targetedCultist.isAlive() && targetedCultist instanceof IAltarBlessingRecipient cultist && cultist.canReceiveAltarBuff()) || this.canUse();
     }
 
     @Override

@@ -33,6 +33,7 @@ public class CultistBoltProjectile extends AbstractBoltProjectile {
 
     public static final Color CULTIST_RED = new Color(214, 44, 50);
     public static final Color CULTIST_CRIMSON = new Color(102, 25, 28);
+    public static final Color CULTIST_DARK = new Color(48, 11, 13);
 
     public CultistBoltProjectile(Level level) {
         super(MalumEntities.CULTIST_BOLT.get(), level);

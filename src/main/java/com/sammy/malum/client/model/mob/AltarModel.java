@@ -3,7 +3,7 @@ package com.sammy.malum.client.model.mob;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.model.RotatedModelPart;
+import com.sammy.malum.client.model.CachedModelPart;
 import com.sammy.malum.common.entity.cultist.altar.AltarCultist;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -23,33 +23,33 @@ public class AltarModel extends EntityModel<AltarCultist> {
 	private final ModelPart body;
 	private final ModelPart legs;
 
-	private final RotatedModelPart candles;
-	private final RotatedModelPart smallCandle;
-	private final RotatedModelPart medium_candle;
-	private final RotatedModelPart big_candle;
+	private final CachedModelPart candles;
+	private final CachedModelPart smallCandle;
+	private final CachedModelPart medium_candle;
+	private final CachedModelPart big_candle;
 
-	private final RotatedModelPart fleshHeart;
+	private final CachedModelPart fleshHeart;
 
-	private final RotatedModelPart hindLeftLeg;
-	private final RotatedModelPart hindRightLeg;
-	private final RotatedModelPart leftLeg;
-	private final RotatedModelPart rightLeg;
+	private final CachedModelPart hindLeftLeg;
+	private final CachedModelPart hindRightLeg;
+	private final CachedModelPart leftLeg;
+	private final CachedModelPart rightLeg;
 
 	public AltarModel(ModelPart root) {
 		head = root.getChild("head");
 		body = root.getChild("body");
 		legs = root.getChild("legs");
-		candles = RotatedModelPart.of(head.getChild("candles"));
-		smallCandle = RotatedModelPart.of(candles.getChild("small_candle"));
-		medium_candle = RotatedModelPart.of(candles.getChild("medium_candle"));
-		big_candle = RotatedModelPart.of(candles.getChild("big_candle"));
+		candles = CachedModelPart.of(head.getChild("candles"));
+		smallCandle = CachedModelPart.of(candles.getChild("small_candle"));
+		medium_candle = CachedModelPart.of(candles.getChild("medium_candle"));
+		big_candle = CachedModelPart.of(candles.getChild("big_candle"));
 
-		fleshHeart = RotatedModelPart.of(body.getChild("flesh_heart"));
+		fleshHeart = CachedModelPart.of(body.getChild("flesh_heart"));
 
-		hindLeftLeg = RotatedModelPart.of(legs.getChild("hind_left_leg"));
-		hindRightLeg = RotatedModelPart.of(legs.getChild("hind_right_leg"));
-		leftLeg = RotatedModelPart.of(legs.getChild("left_leg"));
-		rightLeg = RotatedModelPart.of(legs.getChild("right_leg"));
+		hindLeftLeg = CachedModelPart.of(legs.getChild("hind_left_leg"));
+		hindRightLeg = CachedModelPart.of(legs.getChild("hind_right_leg"));
+		leftLeg = CachedModelPart.of(legs.getChild("left_leg"));
+		rightLeg = CachedModelPart.of(legs.getChild("right_leg"));
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -136,17 +136,17 @@ public class AltarModel extends EntityModel<AltarCultist> {
 		float bodyZ = (Mth.cos(limbSwing * 1.2f + 0.0F) * 0.3F) * limbSwingAmount;
 
 		body.setRotation(bodyX, 0, bodyZ);
-		candles.setRotation(0, altar.getCandleRotation(), 0);
+		candles.applyRotation(0, altar.getCandleRotation(), 0);
 
 		float hindLeft = (Mth.sin(limbSwing * 1.2f + 0.0F) * 0.6F) * limbSwingAmount;
 		float hindRight = (Mth.sin(limbSwing * 1.2f + 0.785f) * 0.6F) * limbSwingAmount;
 		float left = (Mth.sin(limbSwing * 1.2f + 1.57f) * 0.6F) * limbSwingAmount;
 		float right = (Mth.sin(limbSwing * 1.2f + 2.355f) * 0.6F) * limbSwingAmount;
 
-		hindLeftLeg.setRotation(0, left, left);
-		hindRightLeg.setRotation(0, left, left);
-		leftLeg.setRotation(left, 0, left);
-		rightLeg.setRotation(left, 0, left);
+		hindLeftLeg.applyRotation(0, left, left);
+		hindRightLeg.applyRotation(0, left, left);
+		leftLeg.applyRotation(left, 0, left);
+		rightLeg.applyRotation(left, 0, left);
 	}
 
 	@Override

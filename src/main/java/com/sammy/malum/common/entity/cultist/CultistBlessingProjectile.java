@@ -16,7 +16,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
@@ -72,7 +71,7 @@ public class CultistBlessingProjectile extends AbstractBoltProjectile {
 
     @Override
     public boolean canHomeIn(LivingEntity target) {
-        return target instanceof ICultist;
+        return target instanceof IAltarBlessingRecipient;
     }
 
     @Override
@@ -86,12 +85,12 @@ public class CultistBlessingProjectile extends AbstractBoltProjectile {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         if (level() instanceof ServerLevel serverLevel) {
-            if (fadingAway || spawnDelay > 0) {
+            if (isFadingAway() || isAwaitingSpawn()) {
                 return;
             }
             if (getOwner() instanceof AltarCultist altar) {
                 var target = result.getEntity();
-                if (target instanceof LivingEntity living && target instanceof ICultist cultist) {
+                if (target instanceof LivingEntity living && target instanceof IAltarBlessingRecipient cultist) {
                     cultist.receiveAltarBuff();
                     playImpactSound();
                     spawnEffect(serverLevel, 0.5f);

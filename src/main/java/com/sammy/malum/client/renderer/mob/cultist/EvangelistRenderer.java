@@ -25,7 +25,7 @@ public class EvangelistRenderer extends MobRenderer<EvangelistCultist, Evangelis
 
     @Override
     protected void scale(EvangelistCultist evangelist, PoseStack poseStack, float partialTicks) {
-        float scale = evangelist.getEvangelistScaleMultiplier();
+        float scale = evangelist.getCultistScaleMultiplier();
         poseStack.scale(scale, scale, scale);
     }
 

@@ -16,14 +16,14 @@ import java.util.EnumSet;
 public class AltarRetreatGoal extends Goal {
 
     protected final AltarCultist altar;
-    private final double speedModifier;
+    protected final double speedModifier;
+    protected final float retreatRadiusSqr;
+    protected final PathNavigation pathNav;
 
     @Nullable
     protected LivingEntity avoidedTarget;
-    protected final float retreatRadiusSqr;
     @Nullable
     protected Path path;
-    protected final PathNavigation pathNav;
 
     public AltarRetreatGoal(AltarCultist altar, double speedModifier, float retreatRadius) {
         this.altar = altar;
@@ -48,17 +48,16 @@ public class AltarRetreatGoal extends Goal {
         }
         if (avoidedTarget == null) {
             return false;
-        } else {
-            Vec3 vec3 = DefaultRandomPos.getPosAway(altar, 8, 4, avoidedTarget.position());
-            if (vec3 == null) {
-                return false;
-            } else if (avoidedTarget.distanceToSqr(vec3.x, vec3.y, vec3.z) < avoidedTarget.distanceToSqr(altar)) {
-                return false;
-            } else {
-                path = pathNav.createPath(vec3.x, vec3.y, vec3.z, 0);
-                return path != null;
-            }
         }
+        Vec3 escapePos = DefaultRandomPos.getPosAway(altar, 8, 4, avoidedTarget.position());
+        if (escapePos == null) {
+            return false;
+        }
+        if (avoidedTarget.distanceToSqr(escapePos.x, escapePos.y, escapePos.z) < avoidedTarget.distanceToSqr(altar)) {
+            return false;
+        }
+        path = pathNav.createPath(escapePos.x, escapePos.y, escapePos.z, 0);
+        return path != null;
     }
 
     @Override

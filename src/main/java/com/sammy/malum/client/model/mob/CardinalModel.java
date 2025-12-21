@@ -4,17 +4,17 @@ package com.sammy.malum.client.model.mob;// Made with Blockbench 5.0.5
 
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.model.mob.animation.CardinalAnimations;
 import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
-import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
+import team.lodestar.lodestone.systems.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class CardinalModel extends HumanoidModel<CardinalCultist> {
+public class CardinalModel extends HierarchicalHumanoidModel<CardinalCultist> {
 
 	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("cardinal"), "main");
 
@@ -73,33 +73,47 @@ public class CardinalModel extends HumanoidModel<CardinalCultist> {
 	}
 
 	@Override
-	public void setupAnim(CardinalCultist entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		float headClamp = 0.08f;
-		float armClamp = 1.4F;
+	public void setupAnim(CardinalCultist cardinal, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		var utils = MalumAnimationUtils.create(this, cardinal, limbSwing, limbSwingAmount);
+
+		float headYClamp = 0.7f;
+		float headXClamp = 0.08f;
+		float armClamp = 4.4F;
 		float legClamp = 0.2F;
-		head.xRot = Mth.clamp(head.xRot, -headClamp, headClamp);
-		head.y = -17.0F;
-		head.z = -3.5F;
+
+		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
+		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
+
+		float rightArmRotation = utils.getRightArmRotation(d -> d
+				.setRate(0.4f).setAmount(1.2f).setEasing(Easing.CUBIC_IN).addClamp(armClamp));
+		float leftArmRotation = utils.getLeftArmRotation(d -> d
+				.setRate(0.3f).setAmount(1.4f).setEasing(Easing.BOUNCE_OUT).addClamp(armClamp));
+
+		float rightLegRotation = utils.getRightLegRotation(d -> d
+				.setRate(0.7f).setAmount(0.9f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
+		float leftLegRotation = utils.getLeftLegRotation(d -> d
+				.setRate(0.7f).setAmount(0.9f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
+
+		utils.reset(this);
 
 
-		body.xRot = 0.0F;
-		body.y = 2.0F;
-		body.z = -0.0F;
+		head.yRot = headYRot;
+		head.xRot = headXRot;
 
-		rightArm.xRot *= 0.7F;
-		rightArm.setPos(-10.0F, -10.0F, 0.0F);
-		rightArm.xRot = Mth.clamp(rightArm.xRot, -armClamp, armClamp);
-		leftArm.xRot *= 0.7F;
-		leftArm.setPos(10.0F, -10.0F, 0.0F);
-		leftArm.xRot = Mth.clamp(leftArm.xRot, -armClamp, armClamp);
+		rightArm.xRot = rightArmRotation;
+		leftArm.xRot = leftArmRotation;
 
-		rightLeg.xRot *= 0.7F;
-		rightLeg.xRot = Mth.clamp(rightLeg.xRot, -legClamp, legClamp);
-		leftLeg.xRot *= 0.7F;
-		leftLeg.xRot = Mth.clamp(leftLeg.xRot, -legClamp, legClamp);
+		rightLeg.xRot = rightLegRotation;
+		leftLeg.xRot = leftLegRotation;
 
+		if (riding) {
+			utils.applyRidingRotations(this);
+		}
+		utils.applyGenericArmAnimations(ageInTicks);
+		animate(cardinal.lobAnimationState, CardinalAnimations.LOB_CHARGE, ageInTicks);
+		animate(cardinal.quickFireAnimationState, CardinalAnimations.QUICK_FIRE, ageInTicks);
+		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATE, ageInTicks);
 	}
-
-
 }

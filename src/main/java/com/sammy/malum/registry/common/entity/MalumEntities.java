@@ -6,6 +6,7 @@ import com.sammy.malum.client.renderer.entity.activator.*;
 import com.sammy.malum.client.renderer.entity.bolt.*;
 import com.sammy.malum.client.renderer.entity.cultist.CultistBlessingRenderer;
 import com.sammy.malum.client.renderer.entity.cultist.CultistBoltRenderer;
+import com.sammy.malum.client.renderer.entity.cultist.EntropyChargeRenderer;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
 import com.sammy.malum.client.renderer.mob.cultist.AltarRenderer;
@@ -16,6 +17,7 @@ import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.cultist.CultistBlessingProjectile;
 import com.sammy.malum.common.entity.cultist.CultistBoltProjectile;
+import com.sammy.malum.common.entity.cultist.EntropyChargeProjectile;
 import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
 import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
 import com.sammy.malum.common.entity.hidden_blade.*;
@@ -23,7 +25,7 @@ import com.sammy.malum.common.entity.cultist.altar.AltarCultist;
 import com.sammy.malum.common.entity.nitrate.EthericNitrate;
 import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
-import com.sammy.malum.common.entity.spirit.SpiritItem;
+import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import com.sammy.malum.common.entity.thrown.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -31,9 +33,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -72,6 +71,9 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<CultistBoltProjectile>> CULTIST_BOLT =
             register("cultist_bolt", CultistBoltProjectile::new, 1F, 1F, 10);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<EntropyChargeProjectile>> ENTROPY_CHARGE =
+            register("entropy_charge", EntropyChargeProjectile::new, 0.5F, 0.5F, 10);
+
 
     public static final DeferredHolder<EntityType<?>, EntityType<CultistBlessingProjectile>> CULTIST_BLESSING =
             register("cultist_blessing", CultistBlessingProjectile::new, 1F, 1F, 10);
@@ -79,8 +81,8 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK =
             register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItem>> NATURAL_SPIRIT =
-            register("natural_spirit", SpiritItem::new, 0.5F, 0.75F, 10);
+    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT =
+            register("natural_spirit", SpiritItemEntity::new, 0.5F, 0.75F, 10);
 
     public static final DeferredHolder<EntityType<?>, EntityType<EthericNitrate>> ETHERIC_NITRATE =
             register("etheric_nitrate", EthericNitrate::new, 0.5F, 0.5F, 20);
@@ -167,6 +169,7 @@ public class MalumEntities {
 
             EntityRenderers.register(MalumEntities.CULTIST_BOLT.get(), CultistBoltRenderer::new);
             EntityRenderers.register(MalumEntities.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
+            EntityRenderers.register(MalumEntities.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
             EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
             EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);

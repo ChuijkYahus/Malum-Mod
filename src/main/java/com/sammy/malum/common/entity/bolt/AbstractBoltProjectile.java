@@ -34,9 +34,7 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     protected float magicDamage;
     public boolean isHoming;
     public int age;
-    public int spawnDelay;
 
-    public boolean fadingAway;
     public int fadingTimer;
 
     protected LivingEntity homingTarget;
@@ -82,12 +80,30 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
         return 0.3f;
     }
 
+    public float getOrbitingTrailRate() {
+        return 0.5f;
+    }
+
+    public Vec3 getOrbitingTrailOrbit(float angle) {
+        double xOffset = Math.cos(angle);
+        double zOffset = Math.sin(angle);
+        return new Vec3(xOffset, 0, zOffset);
+    }
+
     public boolean canHomeIn(LivingEntity target) {
         return true;
     }
 
+    public void setHomingTarget(LivingEntity target) {
+        this.homingTarget = target;
+    }
+
     public void onHit(LivingEntity target) {
 
+    }
+
+    public void startFadingAway() {
+        entityData.set(DATA_FADING_AWAY, true);
     }
 
     @Override
@@ -99,14 +115,10 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
         if (DATA_FADING_AWAY.equals(pKey)) {
-            fadingAway = entityData.get(DATA_FADING_AWAY);
-            if (fadingAway) {
+            if (isFadingAway()) {
                 age = getMaxAge() - 10;
                 setDeltaMovement(getDeltaMovement().scale(0.02f));
             }
-        }
-        if (DATA_SPAWN_DELAY.equals(pKey)) {
-            spawnDelay = entityData.get(DATA_SPAWN_DELAY);
         }
         super.onSyncedDataUpdated(pKey);
     }
@@ -115,42 +127,44 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         if (magicDamage != 0) {
-            compound.putFloat("magicDamage", magicDamage);
+            compound.putFloat("MagicDamage", magicDamage);
         }
         if (isHoming) {
-            compound.putBoolean("isHoming", true);
+            compound.putBoolean("IsHoming", true);
         }
         if (age != 0) {
-            compound.putInt("age", age);
+            compound.putInt("Age", age);
         }
-        if (spawnDelay != 0) {
-            compound.putInt("spawnDelay", spawnDelay);
-        }
-        if (fadingAway) {
-            compound.putBoolean("fadingAway", true);
-            compound.putInt("fadingTimer", fadingTimer);
+        compound.putInt("SpawnDelay", getSpawnDelay());
+        if (isFadingAway()) {
+            compound.putBoolean("FadingAway", true);
+            compound.putInt("FadingTimer", fadingTimer);
         }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        magicDamage = compound.getFloat("magicDamage");
-        isHoming = compound.getBoolean("isHoming");
-        age = compound.getInt("age");
-        getEntityData().set(DATA_SPAWN_DELAY, compound.getInt("spawnDelay"));
-        getEntityData().set(DATA_FADING_AWAY, compound.getBoolean("fadingAway"));
+        magicDamage = compound.getFloat("MagicDamage");
+        isHoming = compound.getBoolean("IsHoming");
+        age = compound.getInt("Age");
+
+        setSpawnDelay(compound.getInt("SpawnDelay"));
+        if (compound.hasUUID("FadingAway")) {
+            setFadingAway(true);
+            fadingTimer = compound.getInt("FadingTimer");
+        }
     }
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
-        if (fadingAway || spawnDelay > 0) {
+        if (isFadingAway() || isAwaitingSpawn()) {
             return;
         }
         if (level() instanceof ServerLevel serverLevel) {
             playImpactSound();
             spawnEffect(serverLevel, 0.25f);
-            getEntityData().set(DATA_FADING_AWAY, true);
+            startFadingAway();
             Vec3 direction = pResult.getLocation().subtract(position());
             Vec3 offset = direction.normalize().scale(0.5f);
             setPosRaw(getX() - offset.x, getY() - offset.y, getZ() - offset.z);
@@ -172,7 +186,7 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         if (level() instanceof ServerLevel serverLevel) {
-            if (fadingAway || spawnDelay > 0) {
+            if (isFadingAway() || isAwaitingSpawn()) {
                 return;
             }
             if (getOwner() instanceof LivingEntity boltOwner) {
@@ -183,9 +197,9 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
                 if (success && target instanceof LivingEntity livingentity) {
                     onHit(livingentity);
                     playImpactSound();
+                    startFadingAway();
                     spawnEffect(serverLevel, 0.5f);
                     setDeltaMovement(getDeltaMovement().scale(0.05f));
-                    getEntityData().set(DATA_FADING_AWAY, true);
                 }
             }
         }
@@ -194,44 +208,42 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
 
     @Override
     public void tick() {
-        if (spawnDelay > 0) {
-            spawnDelay--;
-            if (spawnDelay == 0 && !level().isClientSide) {
-                playShootSound();
-            }
+        if (decrementSpawnDelay(this::playShootSound)) {
             return;
         }
         super.tick();
         age++;
-        if (fadingAway) {
+        if (isFadingAway()) {
             fadingTimer++;
         } else {
-            var motion = getDeltaMovement();
-            float decay = getMovementDecay();
-            float gravity = getBoltGravity();
-            setDeltaMovement(motion.x * decay, (motion.y - gravity) * decay, motion.z * decay);
+            if (!level().isClientSide) {
+                var motion = getDeltaMovement();
+                float decay = getMovementDecay();
+                float gravity = getBoltGravity();
+                setDeltaMovement(motion.x * decay, (motion.y - gravity) * decay, motion.z * decay);
+            }
         }
         if (isHoming) {
             homeIn();
         }
         if (level().isClientSide) {
-            float offsetScale = fadingAway ? 0f : getOrbitingTrailDistance();
+            float offsetScale = isFadingAway() ? 0f : getOrbitingTrailDistance();
+            float rate = getOrbitingTrailRate();
             for (int i = 0; i < 2; i++) {
                 float progress = (i + 1) * 0.5f;
                 Vec3 position = getPosition(progress);
-                float scalar = (age + progress) / 2f;
-                double xOffset = Math.cos(spinOffset + scalar) * offsetScale;
-                double zOffset = Math.sin(spinOffset + scalar) * offsetScale;
+                float angle = (spinOffset + (age + progress) * rate) % 6.28f;
+                Vec3 orbit = position.add(getOrbitingTrailOrbit(angle).scale(offsetScale));
                 trailPointBuilder.addTrailPoint(position);
-                spinningTrailPointBuilder.addTrailPoint(position.add(xOffset, 0, zOffset));
+                spinningTrailPointBuilder.addTrailPoint(orbit);
             }
             trailPointBuilder.tickTrailPoints();
             spinningTrailPointBuilder.tickTrailPoints();
-            if (!fadingAway) {
+            if (!isFadingAway()) {
                 spawnParticles();
             }
         } else if (age >= getMaxAge()) {
-            if (fadingAway) {
+            if (isFadingAway()) {
                 discard();
             } else {
                 getEntityData().set(DATA_FADING_AWAY, true);
@@ -266,7 +278,7 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     public void homeIn() {
         var motion = getDeltaMovement();
         var owner = getOwner();
-        if (spawnDelay > 0 || owner == null || fadingAway) {
+        if (owner == null || isAwaitingSpawn() || isFadingAway()) {
             return;
         }
         if (homingTarget == null || homingTarget.isDeadOrDying()) {
@@ -277,24 +289,27 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
                 return;
             }
             var angle = getDeltaMovement().normalize();
-            homingTarget = entities.stream().max(Comparator.comparingDouble((e) -> e.position().subtract(position()).normalize().dot(angle))).get();
+            setHomingTarget(entities.stream().max(Comparator.comparingDouble((e) -> e.position().subtract(position()).normalize().dot(angle))).orElseThrow());
         }
         if (homingTarget != null) {
             var targetPosition = homingTarget.position().add(0, homingTarget.getBbHeight() / 2, 0);
             var diff = targetPosition.subtract(position());
             var nextPosition = position().add(getDeltaMovement());
-            if (homingTarget.distanceToSqr(nextPosition) > homingTarget.distanceToSqr(position())) {
-                //By checking if the next position is further away than the current one, we're effectively able to determine if the projectile is moving towards the enemy
-                homingTarget = null;
-                return;
-            }
             float dot = (float) motion.normalize().dot(diff.normalize());
-            if (dot < 0) {
-                homingTarget = null;
-                return;
+            double velocity = motion.length();
+            if (velocity > 0.1f) {
+                if (dot < 0) {
+                    setHomingTarget(null);
+                    return;
+                }
+                if (homingTarget.distanceToSqr(nextPosition) > homingTarget.distanceToSqr(position())) {
+                    //By checking if the next position is further away than the current one, we're effectively able to determine if the projectile is moving towards the enemy
+                    setHomingTarget(null);
+                    return;
+                }
             }
 
-            var newMotion = diff.normalize().scale(motion.length());
+            var newMotion = diff.normalize().scale(Math.max(velocity, 0.01f));
             if (newMotion.length() == 0) {
                 newMotion = newMotion.add(0.01, 0, 0);
             }
@@ -338,10 +353,45 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
         float effectScalar = 1;
         if (age < 8) {
             effectScalar = age / 8f;
-        } else if (fadingAway) {
+        } else if (isFadingAway()) {
             effectScalar = effectScalar / ((fadingTimer + 2) / 2f);
         }
         return effectScalar;
+    }
+
+    public boolean isFadingAway() {
+        return entityData.get(DATA_FADING_AWAY);
+    }
+
+    public void setFadingAway(boolean value) {
+        entityData.set(DATA_FADING_AWAY, value);
+    }
+
+    public boolean isAwaitingSpawn() {
+        return getSpawnDelay() > 0;
+    }
+
+    public int getSpawnDelay() {
+        return entityData.get(DATA_SPAWN_DELAY);
+    }
+
+    public void setSpawnDelay(int delay) {
+        entityData.set(DATA_SPAWN_DELAY, delay);
+    }
+
+    public boolean decrementSpawnDelay(Runnable onSpawn) {
+        int value = entityData.get(DATA_SPAWN_DELAY);
+        if (value > 0) {
+            value--;
+            entityData.set(DATA_SPAWN_DELAY, value);
+            if (value == 0) {
+                if (!level().isClientSide) {
+                    onSpawn.run();
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override

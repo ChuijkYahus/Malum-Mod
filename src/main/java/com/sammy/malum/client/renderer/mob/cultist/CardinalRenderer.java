@@ -24,7 +24,7 @@ public class CardinalRenderer extends MobRenderer<CardinalCultist, CardinalModel
 
     @Override
     protected void scale(CardinalCultist cardinal, PoseStack poseStack, float partialTicks) {
-        float scale = cardinal.getCardinalScaleMultiplier();
+        float scale = cardinal.getCultistScaleMultiplier();
         poseStack.scale(scale, scale, scale);
     }
 

@@ -2,7 +2,6 @@ package com.sammy.malum.client.model;
 
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.MalumMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -19,13 +18,13 @@ import team.lodestar.lodestone.systems.model.LodestoneArmorModel;
 public class SoulHunterArmorModel extends LodestoneArmorModel {
     public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("soul_hunter_armor"), "main");
 
-    public RotatedModelPart cape;
-    public RotatedModelPart hood;
+    public CachedModelPart cape;
+    public CachedModelPart hood;
 
     public SoulHunterArmorModel(ModelPart root) {
         super(root);
-        this.cape = RotatedModelPart.of(root.getChild("cape"));
-        this.hood = RotatedModelPart.of(root.getChild("hood"));
+        this.cape = CachedModelPart.of(root.getChild("cape"));
+        this.hood = CachedModelPart.of(root.getChild("hood"));
     }
 
     @Override
@@ -75,11 +74,11 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
             float x = (float) Math.toRadians(6.0F + f2 / 2.0F + f1);
             float y = (float) Math.toRadians(f3 / 2.0F);
             float z = (float) Math.toRadians(f3 / 2.0F);
-            cape.setRotation(x, y, z);
-            hood.setRotation(x / 3f, y / 3f, z / 3f);
+            cape.applyRotation(x, y, z);
+            hood.applyRotation(x / 3f, y / 3f, z / 3f);
         } else {
-            cape.setRotation(0, 0, 0);
-            hood.setRotation(0, 0, 0);
+            cape.applyRotation(0, 0, 0);
+            hood.applyRotation(0, 0, 0);
         }
         super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
     }

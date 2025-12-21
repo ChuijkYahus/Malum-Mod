@@ -8,8 +8,7 @@ import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
 import com.sammy.malum.visual_effects.networked.brazier.*;
 import com.sammy.malum.visual_effects.networked.crucible.*;
-import com.sammy.malum.visual_effects.networked.cultist.AltarBlessTargetParticleEffect;
-import com.sammy.malum.visual_effects.networked.cultist.AltarWeaveProjectileParticleEffect;
+import com.sammy.malum.visual_effects.networked.cultist.*;
 import com.sammy.malum.visual_effects.networked.geas.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import com.sammy.malum.visual_effects.networked.nitrate.*;
@@ -35,6 +34,9 @@ public class MalumParticleEffectTypes {
     //Cultist vfx
     public static final AltarWeaveProjectileParticleEffect ALTAR_WEAVES_PROJECTILE = new AltarWeaveProjectileParticleEffect("altar_weaves_projectile");
     public static final AltarBlessTargetParticleEffect ALTAR_BESTOWS_BLESSING = new AltarBlessTargetParticleEffect("altar_bestows_blessing");
+    public static final EntropyChargeDetonateParticleEffect ENTROPY_CHARGE_DETONATES = new EntropyChargeDetonateParticleEffect("entropy_charge_detonates");
+    public static final CardinalFireRetaliationBlastParticleEffect CARDINAL_FIRE_RETALIATION_BLAST = new CardinalFireRetaliationBlastParticleEffect("cardinal_fires_retaliation_blast");
+    public static final CardinalTriggerDetonationParticleEffect CARDINAL_TRIGGER_DETONATION = new CardinalTriggerDetonationParticleEffect("cardinal_trigger_detonation");
 
 
     //Spirit Altar

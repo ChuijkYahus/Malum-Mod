@@ -17,16 +17,16 @@ import team.lodestar.lodestone.helpers.*;
 
 import javax.annotation.*;
 
-public class SpiritItem extends FloatingItemEntity {
+public class SpiritItemEntity extends FloatingItemEntity {
 
     public int soundCooldown = 20 + random.nextInt(100);
 
-    public SpiritItem(Level level) {
+    public SpiritItemEntity(Level level) {
         super(MalumEntities.NATURAL_SPIRIT.get(), level);
         maxAge = 4000;
     }
 
-    public SpiritItem(Level level, @Nullable LivingEntity owner, ItemStack stack, Vec3 position, Vec3 velocity) {
+    public SpiritItemEntity(Level level, @Nullable LivingEntity owner, ItemStack stack, Vec3 position, Vec3 velocity) {
         this(level);
         if (owner != null) {
             setDestination(new FloatingItemDestinationData(owner));

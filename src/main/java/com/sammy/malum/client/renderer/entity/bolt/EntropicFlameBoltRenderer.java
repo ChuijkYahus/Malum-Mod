@@ -42,7 +42,7 @@ public class EntropicFlameBoltRenderer extends AbstractBoltEntityRenderer<Entrop
 
     @Override
     public void render(EntropicFlameBolt entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
-        if (entity.spawnDelay > 0) {
+        if (entity.isAwaitingSpawn()) {
             return;
         }
         float delta = entity.getVisualEffectScalar();

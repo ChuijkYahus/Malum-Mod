@@ -23,7 +23,7 @@ import static net.minecraft.util.Mth.*;
 
 public class SpiritLightSpecs {
 
-    public static void spiritParticles(SpiritItem spirit) {
+    public static void spiritParticles(SpiritItemEntity spirit) {
         Vec3 direction = spirit.getDeltaMovement().add(0, spirit.getYOffset(0.5f), 0).normalize();
         Vec3 motion = direction.scale(0.2f);
         Consumer<LodestoneWorldParticle> behavior = p -> {

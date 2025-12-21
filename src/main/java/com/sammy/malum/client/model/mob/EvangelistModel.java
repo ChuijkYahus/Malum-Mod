@@ -11,9 +11,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
+import team.lodestar.lodestone.systems.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class EvangelistModel extends HumanoidModel<EvangelistCultist> {
+public class EvangelistModel extends HierarchicalHumanoidModel<EvangelistCultist> {
 
 	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("evangelist"), "main");
 
@@ -120,59 +121,42 @@ public class EvangelistModel extends HumanoidModel<EvangelistCultist> {
 	}
 
 	@Override
-	public void setupAnim(EvangelistCultist entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		float headClamp = 0.08f;
-		float armClamp = 0.8F;
-		float legClamp = 0.1F;
-		head.xRot = Mth.clamp(head.xRot, -headClamp, headClamp);
-		head.y = -18.0F;
-		head.z = 0.0F;
+	public void setupAnim(EvangelistCultist evangelist, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		var utils = MalumAnimationUtils.create(this, evangelist, limbSwing, limbSwingAmount);
 
-		body.xRot = 0.0F;
-		body.y = -5.0F;
-		body.z = -0.0F;
+		float headYClamp = 0.7f;
+		float headXClamp = 0.08f;
+		float armClamp = 1.4F;
+		float legClamp = 0.2F;
 
-		rightArm.xRot *= 0.5F;
-		rightArm.setPos(-5.0F, -17.0F, 0.0F);
-		rightArm.xRot = Mth.clamp(rightArm.xRot, -armClamp, armClamp);
-		leftArm.xRot *= 0.5F;
-		leftArm.setPos(5.0F, -17.0F, 0.0F);
-		leftArm.xRot = Mth.clamp(leftArm.xRot, -armClamp, armClamp);
+		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
+		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
-		rightLeg.setPos(-2f, 0, 0);
-		rightLeg.xRot *= 0.5F;
-		rightLeg.xRot = Mth.clamp(rightLeg.xRot, -legClamp, legClamp);
-		leftLeg.setPos(2f, 0, 0);
-		leftLeg.xRot *= 0.5F;
-		leftLeg.xRot = Mth.clamp(leftLeg.xRot, -legClamp, legClamp);
+		float rightArmRotation = utils.getRightArmRotation(d -> d
+				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+		float leftArmRotation = utils.getLeftArmRotation(d -> d
+				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
 
+		float rightLegRotation = utils.getRightLegRotation(d -> d
+				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
+		float leftLegRotation = utils.getLeftLegRotation(d -> d
+				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
 
-		float motion = 1.0F;
-		boolean flag = entity.getFallFlyingTicks() > 4;
-		if (flag) {
-			motion = (float)entity.getDeltaMovement().lengthSqr();
-			motion /= 0.2F;
-			motion *= motion * motion;
+		utils.reset(this);
+		head.yRot = headYRot;
+		head.xRot = headXRot;
+
+		rightArm.xRot = rightArmRotation;
+		leftArm.xRot = leftArmRotation;
+
+		rightLeg.xRot = rightLegRotation;
+		leftLeg.xRot = leftLegRotation;
+
+		if (riding) {
+			utils.applyRidingRotations(this);
 		}
-
-		if (motion < 1.0F) {
-			motion = 1.0F;
-		}
-
-		float lowerRotation = Mth.cos(limbSwing * 0.4F) * 0.4F * limbSwingAmount / motion;
-		float middleRotation = Mth.cos(limbSwing * 0.5f) * 0.3F * limbSwingAmount / motion;
-		float upperRotation = Mth.cos(limbSwing * 0.6f) * 0.2F * limbSwingAmount / motion;
-		float lowerOffset = lowerRotation * 6;
-		float middleOffset = middleRotation * 6;
-		float upperOffset = upperRotation * 6;
-		lower.z = lowerOffset;
-		middle.z = middleOffset;
-		upper.z = upperOffset;
-		lower.xRot = lowerRotation;
-		middle.xRot = middleRotation;
-		upper.xRot = upperRotation;
+		utils.applyGenericArmAnimations(ageInTicks);
 	}
-
-
 }

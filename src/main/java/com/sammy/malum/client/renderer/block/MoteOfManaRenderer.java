@@ -1,6 +1,7 @@
 package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
@@ -9,18 +10,19 @@ import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;
-import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
-import java.awt.*;
 import java.util.*;
 
 import static com.sammy.malum.registry.client.MalumRenderTypeTokens.MOTE_OF_MANA;
 
 
 public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEntity> {
+
+
+    public static final RenderTypeToken MOTE_OF_MANA = RenderTypeToken.createToken(MalumMod.malumPath("textures/block/spirit_mote.png"));
 
     public MoteOfManaRenderer(BlockEntityRendererProvider.Context context) {
     }

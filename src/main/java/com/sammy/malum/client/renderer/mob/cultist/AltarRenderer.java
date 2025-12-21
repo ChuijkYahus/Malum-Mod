@@ -40,7 +40,7 @@ public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {
             }
             poseStack.scale(stretch, 1/stretch, stretch);
         }
-        float scale = altar.getAltarScaleMultiplier();
+        float scale = altar.getCultistScaleMultiplier();
         poseStack.scale(scale, scale, scale);
     }
 

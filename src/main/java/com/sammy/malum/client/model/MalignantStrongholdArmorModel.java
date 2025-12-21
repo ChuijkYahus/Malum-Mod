@@ -5,9 +5,7 @@ package com.sammy.malum.client.model;
 
 
 import com.google.common.collect.*;
-import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
-import com.sammy.malum.client.scarf.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
@@ -21,16 +19,16 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("malignant_lead_armor"), "main");
 
     public ModelPart scarf;
-    public RotatedModelPart lowerScarf;
-    public RotatedModelPart middleScarf;
-    public RotatedModelPart upperScarf;
+    public CachedModelPart lowerScarf;
+    public CachedModelPart middleScarf;
+    public CachedModelPart upperScarf;
 
     public MalignantStrongholdArmorModel(ModelPart root) {
         super(root);
         this.scarf = root.getChild("scarf");
-        this.lowerScarf = RotatedModelPart.of(scarf.getChild("lower_scarf"));
-        this.middleScarf = RotatedModelPart.of(scarf.getChild("middle_scarf"));
-        this.upperScarf = RotatedModelPart.of(scarf.getChild("upper_scarf"));
+        this.lowerScarf = CachedModelPart.of(scarf.getChild("lower_scarf"));
+        this.middleScarf = CachedModelPart.of(scarf.getChild("middle_scarf"));
+        this.upperScarf = CachedModelPart.of(scarf.getChild("upper_scarf"));
     }
 
 
@@ -79,13 +77,13 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
             float x = (float) Math.toRadians(6.0F + f2 / 2.0F + f1);
             float y = (float) Math.toRadians(f3 / 2.0F);
             float z = (float) Math.toRadians(f3 / 2.0F);
-            lowerScarf.setRotation(x / 2f, y / 2f, z / 2f);
-            middleScarf.setRotation(x, y, z);
-            upperScarf.setRotation(x, y, z);
+            lowerScarf.applyRotation(x / 2f, y / 2f, z / 2f);
+            middleScarf.applyRotation(x, y, z);
+            upperScarf.applyRotation(x, y, z);
         } else {
-            lowerScarf.setRotation(0, 0, 0);
-            middleScarf.setRotation(0, 0, 0);
-            upperScarf.setRotation(0, 0, 0);
+            lowerScarf.applyRotation(0, 0, 0);
+            middleScarf.applyRotation(0, 0, 0);
+            upperScarf.applyRotation(0, 0, 0);
         }
         super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
     }
