@@ -29,7 +29,6 @@ import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
-import com.sammy.malum.common.block.decor.NullGlassBlock;
 import com.sammy.malum.common.block.decor.SpiritedGlassBlock;
 import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.ether.*;
@@ -142,7 +141,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> AQUEOUS_SPIRITED_GLASS = BLOCKS.register("aqueous_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
     public static final DeferredHolder<Block, Block> EARTHEN_SPIRITED_GLASS = BLOCKS.register("earthen_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
     public static final DeferredHolder<Block, Block> INFERNAL_SPIRITED_GLASS = BLOCKS.register("infernal_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
-    public static final DeferredHolder<Block, Block> NULL_SPIRITED_GLASS = BLOCKS.register("null_spirited_glass", () -> new NullGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
+    public static final DeferredHolder<Block, Block> NULL_SPIRITED_GLASS = BLOCKS.register("null_spirited_glass", () -> new SpiritedGlassBlock(MalumBlockProperties.SPIRITED_GLASS()));
 
     //endregion
 
@@ -156,6 +155,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> AQUEOUS_VARNISHED_TERRACOTTA = BLOCKS.register("aqueous_varnished_terracotta", () -> new VarnishedTerracottaBlock(MalumBlockProperties.VARNISHED_TERRACOTTA(DyeColor.BLUE)));
     public static final DeferredHolder<Block, Block> EARTHEN_VARNISHED_TERRACOTTA = BLOCKS.register("earthen_varnished_terracotta", () -> new VarnishedTerracottaBlock(MalumBlockProperties.VARNISHED_TERRACOTTA(DyeColor.GREEN)));
     public static final DeferredHolder<Block, Block> INFERNAL_VARNISHED_TERRACOTTA = BLOCKS.register("infernal_varnished_terracotta", () -> new VarnishedTerracottaBlock(MalumBlockProperties.VARNISHED_TERRACOTTA(DyeColor.YELLOW)));
+    public static final DeferredHolder<Block, Block> NULL_VARNISHED_TERRACOTTA = BLOCKS.register("null_varnished_terracotta", () -> new VarnishedTerracottaBlock(MalumBlockProperties.VARNISHED_TERRACOTTA(DyeColor.BLACK)));
 
     //endregion
     public static final DeferredHolder<Block, Block> SOULWOVEN_BANNER = BLOCKS.register("soulwoven_banner", () -> new SoulwovenBannerBlock(MalumBlockProperties.SOULWOVEN_BANNER()).setBlockEntity(MalumBlockEntities.SOULWOVEN_BANNER));

@@ -888,11 +888,13 @@ public class CodexLangDatagen {
                 "I have designed a simple but aesthetically pleasing glass which is tinted by the arcana, framed in iron. The particles of the glass are 'aligned' by the power placed within - which means Raw and Eldritch, having no direction, are somewhat chaotic. They do still look interesting, though.");
         addSimpleEntryHeader("spirited_glass.null", "Approximating The Ninth Arcana", "A Counterfeit Nothing");
         addPages("spirited_glass.null",
-                "My set of spirited glass was designed with " + italic("Eight") + " types of Arcana in mind... a proper completion to the series is impossible with just my singular crystal. Formed from Null Slate, a counterfeit entry will have to suffice. Due to it's composition, Null Spirited Glass behaves similarly to Tinted Glass in all aspects.");
+                "My set of spirited glass was designed with " + italic("Eight") + " types of Arcana in mind... a proper completion to the series is impossible with just my singular crystal. Formed from Null Slate, a counterfeit entry will have to suffice.");
 
         addSimpleEntryHeader("varnished_terracotta", "Varnished Terracotta", "Pretty patterns");
         addPages("varnished_terracotta",
                 "In forming glazed terracotta, beautiful patterns can easily be formed through the careful use of a furnace's heat. By fusing terracotta with alchemical calx and then with arcana, a similar result can be achieved. Just as with glass, the resulting patterns are quite pretty.");
+        addPages("varnished_terracotta.null",
+                "My set of varnished terracotta, just as with glass, was designed with " + italic("Eight") + " types of Arcana in mind... a proper completion to the series is once again impossible with just my singular crystal. Formed from Null Slate, a counterfeit entry will once again have to suffice.");
 
         addSimpleEntryHeader("mote_making", "Mote Making", "Worship the cube");
         addPages("mote_making",

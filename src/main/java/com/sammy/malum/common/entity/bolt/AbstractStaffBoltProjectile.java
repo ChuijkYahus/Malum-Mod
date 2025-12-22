@@ -17,7 +17,7 @@ public abstract class AbstractStaffBoltProjectile extends AbstractBoltProjectile
 
     @Override
     public ResourceKey<DamageType> getDamageType() {
-        return MalumDamageTypes.CULTIST_MAGIC;
+        return MalumDamageTypes.VOODOO;
     }
 
     @Override

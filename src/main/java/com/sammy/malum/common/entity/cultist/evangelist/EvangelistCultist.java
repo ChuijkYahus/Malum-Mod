@@ -3,18 +3,15 @@ package com.sammy.malum.common.entity.cultist.evangelist;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.entity.cultist.CultistMeleeAttackGoal;
 import com.sammy.malum.common.entity.cultist.CultistMonster;
 import com.sammy.malum.common.entity.cultist.IAltarBlessingRecipient;
-import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.entity.MalumEntities;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -28,10 +25,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
-import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
 public class EvangelistCultist extends CultistMonster implements IAltarBlessingRecipient {
@@ -58,7 +52,7 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
     protected void registerGoals() {
         var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
-        var meleeAttackGoal = new EvangelistMeleeAttackGoal(this, 1.5f);
+        var meleeAttackGoal = new CultistMeleeAttackGoal(this, 1.5f);
 
         var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
         var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
@@ -91,7 +85,6 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
                 .add(Attributes.MAX_HEALTH, 60.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.15)
-                .add(Attributes.ATTACK_DAMAGE, 2.0)
                 .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f)
                 .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75f)

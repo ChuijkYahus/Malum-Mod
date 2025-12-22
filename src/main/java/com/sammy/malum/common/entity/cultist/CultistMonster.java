@@ -6,6 +6,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
@@ -27,6 +28,8 @@ public abstract class CultistMonster extends Monster implements Enemy {
 
     protected CultistMonster(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
+        setHealth(getMaxHealth());
+        xpReward = Mth.floor(getMaxHealth() * 1.5f);
     }
 
     @Override
@@ -64,7 +67,7 @@ public abstract class CultistMonster extends Monster implements Enemy {
     public boolean doHurtTarget(@NotNull Entity target) {
         if (super.doHurtTarget(target)) {
             float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
-            var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC);
+            var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
             target.invulnerableTime = 0;
             target.hurt(damagesource, magicDamage);
             return true;

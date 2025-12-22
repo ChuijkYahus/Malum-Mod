@@ -2,6 +2,7 @@ package com.sammy.malum.client.model.mob;
 
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.Mob;
@@ -11,12 +12,12 @@ import java.util.function.Consumer;
 
 public class MalumAnimationUtils<T extends Mob> {
 
-    public final HumanoidModel<T> model;
+    public final HierarchicalHumanoidModel<T> model;
     public final T mob;
     public final float limbSwing, limbSwingAmount;
     public final float motionDelta;
 
-    public MalumAnimationUtils(HumanoidModel<T> model, T mob, float limbSwing, float limbSwingAmount) {
+    public MalumAnimationUtils(HierarchicalHumanoidModel<T> model, T mob, float limbSwing, float limbSwingAmount) {
         this.model = model;
         this.mob = mob;
         this.limbSwing = limbSwing;
@@ -31,7 +32,7 @@ public class MalumAnimationUtils<T extends Mob> {
         this.motionDelta = Math.max(motionDelta, 1.0F);
     }
 
-    public static<T extends Mob> MalumAnimationUtils<T> create(HumanoidModel<T> model, T mob, float limbSwing, float limbSwingAmount) {
+    public static<T extends Mob> MalumAnimationUtils<T> create(HierarchicalHumanoidModel<T> model, T mob, float limbSwing, float limbSwingAmount) {
         return new MalumAnimationUtils<>(model, mob, limbSwing, limbSwingAmount);
     }
     public float getLeftArmRotation(Consumer<LimbRotationData> properties) {
@@ -83,13 +84,9 @@ public class MalumAnimationUtils<T extends Mob> {
     }
 
     public void reset(HierarchicalHumanoidModel<?> model) {
-        model.cachedHead.reset();
-        model.cachedBody.reset();
-        model.cachedRightArm.reset();
-        model.cachedLeftArm.reset();
-        model.cachedRightLeg.reset();
-        model.cachedLeftLeg.reset();
+        model.root.getAllParts().forEach(ModelPart::resetPose);
     }
+
     public void applyRidingRotations(HierarchicalHumanoidModel<?> model) {
         float armX = 0.628f;
         float legX = -1.413F;
@@ -102,21 +99,8 @@ public class MalumAnimationUtils<T extends Mob> {
     }
 
     public void applyGenericArmAnimations(float ageInTicks) {
-
-        boolean isRightHanded = mob.getMainArm() == HumanoidArm.RIGHT;
-        boolean isTwoHanded = isRightHanded ? model.leftArmPose.isTwoHanded() : model.rightArmPose.isTwoHanded();
-        if (isRightHanded != isTwoHanded) {
-            model.poseLeftArm(mob);
-            model.poseRightArm(mob);
-        } else {
-            model.poseRightArm(mob);
-            model.poseLeftArm(mob);
-        }
         model.setupAttackAnimation(mob, ageInTicks);
-
-
         AnimationUtils.bobModelPart(model.rightArm, ageInTicks, 1.0F);
-
         AnimationUtils.bobModelPart(model.leftArm, ageInTicks, -1.0F);
     }
 

@@ -41,6 +41,12 @@ public class MaterialSpiritInfusionRecipes {
         varnishedTerracottaRecipe(recipeOutput, AQUEOUS_SPIRIT, MalumItems.AQUEOUS_VARNISHED_TERRACOTTA.get());
         varnishedTerracottaRecipe(recipeOutput, EARTHEN_SPIRIT, MalumItems.EARTHEN_VARNISHED_TERRACOTTA.get());
         varnishedTerracottaRecipe(recipeOutput, INFERNAL_SPIRIT, MalumItems.INFERNAL_VARNISHED_TERRACOTTA.get());
+        new SpiritInfusionRecipeBuilder(Items.TERRACOTTA, 8, MalumItems.NULL_VARNISHED_TERRACOTTA.get(), 8)
+                .addSpirit(ARCANE_SPIRIT, 2)
+                .addSpirit(ELDRITCH_SPIRIT, 2)
+                .addExtraItem(MalumItems.ALCHEMICAL_CALX.get(), 1)
+                .addExtraItem(MalumItems.NULL_SLATE.get(), 1)
+                .save(recipeOutput);
 
         soulwovenBannerRecipe(recipeOutput, SoulwovenBannerPatternDataComponent.SACRED, SACRED_SPIRIT);
         soulwovenBannerRecipe(recipeOutput, SoulwovenBannerPatternDataComponent.WICKED, WICKED_SPIRIT);

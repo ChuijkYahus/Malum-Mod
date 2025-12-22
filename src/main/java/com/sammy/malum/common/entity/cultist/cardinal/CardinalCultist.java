@@ -171,7 +171,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         var area = new AABB(pos.subtract(radius, radius, radius), pos.add(radius, radius, radius));
         var targets = level().getEntities(this, area, t -> !(t instanceof CultistMonster) && t.isAlive() && hasLineOfSight(t));
 
-        var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC);
+        var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
         float knockbackStrength = 1.5f;
         Vec3 entropyChargeDirection = null;
         if (entropyCharge != null) {
@@ -185,7 +185,9 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
             }
             if (target instanceof LivingEntity) {
                 target.invulnerableTime = 0;
-                target.hurt(damagesource, magicDamage);
+                if (!target.hurt(damagesource, magicDamage)) {
+                    continue;
+                }
             }
             Vec3 knockback;
 

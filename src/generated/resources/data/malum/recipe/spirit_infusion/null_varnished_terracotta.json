@@ -1,0 +1,31 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 1,
+      "item": "malum:alchemical_calx"
+    },
+    {
+      "count": 1,
+      "item": "malum:null_slate"
+    }
+  ],
+  "input": {
+    "count": 8,
+    "item": "minecraft:terracotta"
+  },
+  "result": {
+    "count": 8,
+    "id": "malum:null_varnished_terracotta"
+  },
+  "spirits": [
+    {
+      "type": "malum:arcane",
+      "count": 2
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 2
+    }
+  ]
+}

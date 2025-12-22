@@ -35,8 +35,6 @@ public class EvangelistModel extends HierarchicalHumanoidModel<EvangelistCultist
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition hat = partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.offset(0, 0, 0));
-
 		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 18).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 8.0F, 9.0F, new CubeDeformation(0.0F))
 				.texOffs(34, 18).addBox(-3.0F, -9.0F, -3.0F, 6.0F, 9.0F, 7.0F, new CubeDeformation(0.55F))
 				.texOffs(0, 35).addBox(-4.0F, -2.0F, -4.0F, 8.0F, 6.0F, 4.0F, new CubeDeformation(0.0F))

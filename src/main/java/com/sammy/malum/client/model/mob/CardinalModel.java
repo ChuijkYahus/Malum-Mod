@@ -1,7 +1,4 @@
-package com.sammy.malum.client.model.mob;// Made with Blockbench 5.0.5
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
+package com.sammy.malum.client.model.mob;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.animation.CardinalAnimations;
@@ -25,8 +22,6 @@ public class CardinalModel extends HierarchicalHumanoidModel<CardinalCultist> {
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
-
-		PartDefinition hat = partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.offset(0, 0, 0));
 
 		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.0F))
 				.texOffs(64, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.5F))

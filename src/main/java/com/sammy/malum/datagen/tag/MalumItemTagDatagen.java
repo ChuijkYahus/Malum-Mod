@@ -95,7 +95,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
-                .add(SHAPED_SLAB.get())
+                .add(SHAPED_SLAB.get(), BROKEN_BLADE.get())
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
                 .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
@@ -252,7 +252,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 // Equipment
                 .add(CATALYST_LOBBER.get())
                 // Decor
-                .add(NULL_SPIRITED_GLASS.get())
+                .add(NULL_SPIRITED_GLASS.get(), NULL_VARNISHED_TERRACOTTA.get())
                 // Materials
                 .add(BLOCK_OF_NULL_SLATE.get(), NULL_SLATE.get(),
                         BLOCK_OF_VOID_SALTS.get(), VOID_SALTS.get(),

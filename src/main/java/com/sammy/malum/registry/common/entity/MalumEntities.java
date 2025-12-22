@@ -10,6 +10,7 @@ import com.sammy.malum.client.renderer.entity.cultist.EntropyChargeRenderer;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
 import com.sammy.malum.client.renderer.mob.cultist.AltarRenderer;
+import com.sammy.malum.client.renderer.mob.cultist.BelieverRenderer;
 import com.sammy.malum.client.renderer.mob.cultist.CardinalRenderer;
 import com.sammy.malum.client.renderer.mob.cultist.EvangelistRenderer;
 import com.sammy.malum.common.entity.*;
@@ -18,6 +19,7 @@ import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.cultist.CultistBlessingProjectile;
 import com.sammy.malum.common.entity.cultist.CultistBoltProjectile;
 import com.sammy.malum.common.entity.cultist.EntropyChargeProjectile;
+import com.sammy.malum.common.entity.cultist.believer.BelieverCultist;
 import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
 import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
 import com.sammy.malum.common.entity.hidden_blade.*;
@@ -49,6 +51,14 @@ public class MalumEntities {
                     .eyeHeight(1.1F)
                     .passengerAttachments(1.1F)
                     .ridingOffset(-0.2F)
+                    .clientTrackingRange(8)
+    );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<BelieverCultist>> BELIEVER = register(
+            "believer", BelieverCultist::new, MobCategory.MONSTER, b -> b
+                    .sized(0.6F, 1.9F)
+                    .eyeHeight(1.6F)
+                    .passengerAttachments(1.8f)
                     .clientTrackingRange(8)
     );
 
@@ -153,6 +163,7 @@ public class MalumEntities {
 
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ALTAR.get(), AltarCultist.createAttributes().build());
+        event.put(BELIEVER.get(), BelieverCultist.createAttributes().build());
         event.put(CARDINAL.get(), CardinalCultist.createAttributes().build());
         event.put(EVANGELIST.get(), EvangelistCultist.createAttributes().build());
     }
@@ -164,6 +175,7 @@ public class MalumEntities {
     public static class ClientOnly {
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             EntityRenderers.register(MalumEntities.ALTAR.get(), AltarRenderer::new);
+            EntityRenderers.register(MalumEntities.BELIEVER.get(), BelieverRenderer::new);
             EntityRenderers.register(MalumEntities.CARDINAL.get(), CardinalRenderer::new);
             EntityRenderers.register(MalumEntities.EVANGELIST.get(), EvangelistRenderer::new);
 
