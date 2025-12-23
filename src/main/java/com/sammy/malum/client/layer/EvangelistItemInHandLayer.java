@@ -2,8 +2,8 @@ package com.sammy.malum.client.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.sammy.malum.client.model.mob.EvangelistModel;
-import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
+import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
+import com.sammy.malum.common.entity.mob.cultist.evangelist.EvangelistCultist;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;

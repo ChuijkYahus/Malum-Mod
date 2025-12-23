@@ -2,7 +2,6 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
-import com.sammy.malum.client.screen.container.WeaversWorkbenchContainerScreen;
 import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
@@ -31,6 +30,11 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         MalumModels.registerLayerDefinitions(event);
+    }
+
+    @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        MalumModels.addLayers(event);
     }
 
     @SubscribeEvent

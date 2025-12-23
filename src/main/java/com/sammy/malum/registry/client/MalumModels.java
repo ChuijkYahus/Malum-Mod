@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.client;
 
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.*;
 import com.sammy.malum.client.model.cosmetic.GenericArmorModel;
 import com.sammy.malum.client.model.cosmetic.GenericSlimArmorModel;
@@ -13,13 +12,10 @@ import com.sammy.malum.client.model.cosmetic.risky.CommandoArmorModel;
 import com.sammy.malum.client.model.cosmetic.risky.ExecutionerArmorModel;
 import com.sammy.malum.client.model.cosmetic.ultrakill.UltrakillMachineArmorModel;
 
-import com.sammy.malum.client.model.mob.AltarModel;
-import com.sammy.malum.client.model.mob.BelieverModel;
-import com.sammy.malum.client.model.mob.CardinalModel;
-import com.sammy.malum.client.model.mob.EvangelistModel;
-import net.neoforged.api.distmarker.*;
-import net.neoforged.bus.api.*;
-import net.neoforged.fml.common.*;
+import com.sammy.malum.client.model.mob.altar.AltarModel;
+import com.sammy.malum.client.model.mob.believer.BelieverModel;
+import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
+import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
 import net.neoforged.neoforge.client.event.*;
 
 public class MalumModels {
@@ -80,8 +76,7 @@ public class MalumModels {
         event.registerLayerDefinition(ScarfModel.LAYER, ScarfModel::createBodyLayer);
     }
 
-    @SubscribeEvent
-    public static void registerLayers(EntityRenderersEvent.AddLayers event) {
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
         SOUL_HUNTER_ARMOR = new SoulHunterArmorModel(event.getEntityModels().bakeLayer(SoulHunterArmorModel.LAYER));
         SOUL_STAINED_ARMOR = new SoulStainedSteelArmorModel(event.getEntityModels().bakeLayer(SoulStainedSteelArmorModel.LAYER));
         MALIGNANT_LEAD_ARMOR = new MalignantStrongholdArmorModel(event.getEntityModels().bakeLayer(MalignantStrongholdArmorModel.LAYER));

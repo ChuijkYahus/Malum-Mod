@@ -2,11 +2,8 @@ package com.sammy.malum.client.renderer.mob.cultist;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.layer.EvangelistItemInHandLayer;
-import com.sammy.malum.client.model.mob.CardinalModel;
-import com.sammy.malum.client.model.mob.EvangelistModel;
-import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
-import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
+import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

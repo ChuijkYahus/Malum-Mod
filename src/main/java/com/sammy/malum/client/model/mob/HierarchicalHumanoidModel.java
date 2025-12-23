@@ -2,14 +2,12 @@ package com.sammy.malum.client.model.mob;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.client.model.CachedModelPart;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HeadedModel;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,8 +29,9 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
 
     private static final Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
 
-    protected final ModelPart root;
+    protected final ModelPart modelDefinition;
 
+    public final ModelPart root;
     public final ModelPart head;
     public final ModelPart body;
     public final ModelPart rightArm;
@@ -39,18 +39,28 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     public final ModelPart rightLeg;
     public final ModelPart leftLeg;
 
-    public HierarchicalHumanoidModel(ModelPart root) {
-        this(root, RenderType::entityCutoutNoCull);
+    public HierarchicalHumanoidModel(ModelPart modelDefinition) {
+        this(modelDefinition, RenderType::entityCutoutNoCull);
     }
-    public HierarchicalHumanoidModel(ModelPart root, Function<ResourceLocation, RenderType> renderType) {
-        super(renderType, true,16.0F, 0.0F, 2.0F, 2.0F, 24.0F);
-        this.root = root;
-        this.head = root.getChild("head");
-        this.body = root.getChild("body");
-        this.rightArm = root.getChild("right_arm");
-        this.leftArm = root.getChild("left_arm");
-        this.rightLeg = root.getChild("right_leg");
-        this.leftLeg = root.getChild("left_leg");
+
+    public HierarchicalHumanoidModel(ModelPart modelDefinition, Function<ResourceLocation, RenderType> renderType) {
+        super(renderType, true, 16.0F, 0.0F, 2.0F, 2.0F, 24.0F);
+        this.modelDefinition = modelDefinition;
+        this.root = modelDefinition.getChild("root");
+        this.head = getPart("head");
+        this.body = getPart("body");
+        this.rightArm = getPart("right_arm");
+        this.leftArm = getPart("left_arm");
+        this.rightLeg = getPart("right_leg");
+        this.leftLeg = getPart("left_leg");
+    }
+
+    public ModelPart getPart(String name) {
+        try {
+            return root.getChild(name);
+        } catch (Exception ignored) {
+            return new ModelPart(Collections.emptyList(), Collections.emptyMap());
+        }
     }
 
     @Override
@@ -79,8 +89,8 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
 
     public Optional<ModelPart> getAnyDescendantWithName(String name) {
         return name.equals("root")
-                ? Optional.of(root)
-                : root.getAllParts().filter(p_233400_ -> p_233400_.hasChild(name)).findFirst().map(p_233397_ -> p_233397_.getChild(name));
+                ? Optional.of(modelDefinition)
+                : modelDefinition.getAllParts().filter(p_233400_ -> p_233400_.hasChild(name)).findFirst().map(p_233397_ -> p_233397_.getChild(name));
     }
 
     public void setupAttackAnimation(T livingEntity, float ageInTicks) {
@@ -171,7 +181,7 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     }
 
     private static float getElapsedSeconds(AnimationDefinition animationDefinition, long accumulatedTime) {
-        float f = (float)accumulatedTime / 1000.0F;
+        float f = (float) accumulatedTime / 1000.0F;
         return animationDefinition.looping() ? f % animationDefinition.lengthInSeconds() : f;
     }
 
@@ -184,6 +194,6 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     }
 
     public static Vector3f scaleVec(double xScale, double yScale, double zScale) {
-        return new Vector3f((float)(xScale - 1.0), (float)(yScale - 1.0), (float)(zScale - 1.0));
+        return new Vector3f((float) (xScale - 1.0), (float) (yScale - 1.0), (float) (zScale - 1.0));
     }
 }

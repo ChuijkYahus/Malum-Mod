@@ -2,8 +2,8 @@ package com.sammy.malum.client.renderer.mob.cultist;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.model.mob.AltarModel;
-import com.sammy.malum.common.entity.cultist.altar.AltarCultist;
+import com.sammy.malum.client.model.mob.altar.AltarModel;
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
