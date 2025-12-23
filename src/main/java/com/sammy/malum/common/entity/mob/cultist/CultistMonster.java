@@ -114,7 +114,9 @@ public abstract class CultistMonster extends Monster implements Enemy {
     }
 
     public boolean isTargetWithinRadius(float radius) {
-        var target = getTarget();
+        return isTargetWithinRadius(getTarget(), radius);
+    }
+    public boolean isTargetWithinRadius(Entity target, float radius) {
         if (target != null) {
             float distanceToTarget = distanceTo(target);
             return (distanceToTarget < radius);

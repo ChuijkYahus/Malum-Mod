@@ -1,5 +1,6 @@
-package com.sammy.malum.common.entity.mob.cultist.cardinal;
+package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.pathfinder.Path;
@@ -46,6 +47,11 @@ public class CardinalAvoidTargetGoal extends Goal {
     public void start() {
         super.start();
         navigation.moveTo(path, speedModifier);
+    }
+
+    @Override
+    public void stop() {
+        navigation.stop();
     }
 
     @Override

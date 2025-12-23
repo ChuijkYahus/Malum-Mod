@@ -1,5 +1,6 @@
-package com.sammy.malum.common.entity.mob.cultist.altar;
+package com.sammy.malum.common.entity.mob.cultist.altar.goal;
 
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -15,7 +16,7 @@ public class AltarRetreatGoal extends Goal {
     protected final PathNavigation navigation;
 
     protected final double speedModifier;
-    protected final float retreatRadiusSqr;
+    protected final float retreatRadius;
 
     @Nullable
     protected LivingEntity avoidedTarget;
@@ -25,7 +26,7 @@ public class AltarRetreatGoal extends Goal {
     public AltarRetreatGoal(AltarCultist altar, double speedModifier, float retreatRadius) {
         this.altar = altar;
         this.navigation = altar.getNavigation();
-        this.retreatRadiusSqr = retreatRadius * retreatRadius;
+        this.retreatRadius = retreatRadius;
         this.speedModifier = speedModifier;
         setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
     }
@@ -38,7 +39,7 @@ public class AltarRetreatGoal extends Goal {
         if (altar.meleeVictim == null || altar.isAggressive() || altar.isRetreating()) {
             return false;
         }
-        if (level.getEntity(altar.meleeVictim) instanceof LivingEntity target && target.distanceToSqr(altar) < retreatRadiusSqr) {
+        if (level.getEntity(altar.meleeVictim) instanceof LivingEntity target && altar.isTargetWithinRadius(target, retreatRadius)) {
             avoidedTarget = target;
         } else {
             avoidedTarget = null;

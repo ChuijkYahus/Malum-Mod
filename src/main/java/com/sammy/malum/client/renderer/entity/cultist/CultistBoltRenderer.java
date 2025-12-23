@@ -1,11 +1,8 @@
 package com.sammy.malum.client.renderer.entity.cultist;
 
 import com.sammy.malum.client.renderer.entity.bolt.AbstractBoltEntityRenderer;
-import com.sammy.malum.common.entity.bolt.HexBolt;
-import com.sammy.malum.common.entity.mob.cultist.CultistBoltProjectile;
-import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
-import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.rendering.rendeertype.LodestoneRenderTypeBuilder;

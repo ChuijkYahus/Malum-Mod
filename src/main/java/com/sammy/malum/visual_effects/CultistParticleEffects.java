@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.common.entity.mob.cultist.EntropyChargeProjectile;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
@@ -13,7 +13,6 @@ import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.systems.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.ParticleEffectSpawner;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;

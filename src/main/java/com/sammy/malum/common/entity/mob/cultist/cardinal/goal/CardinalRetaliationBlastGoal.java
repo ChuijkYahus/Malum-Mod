@@ -1,14 +1,7 @@
-package com.sammy.malum.common.entity.mob.cultist.cardinal;
+package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.level.pathfinder.Path;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
 
 public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
 
@@ -27,7 +20,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
 
     @Override
     public boolean canContinueToUse() {
-        return attackTime > 0 || canUse() || super.canUse();
+        return attackTime > 0 || canUse();
     }
 
     @Override
@@ -55,7 +48,6 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
                     cardinal.triggerRetaliationBlast(level);
                 }
                 attackTime = 0;
-                stop();
             }
         }
     }

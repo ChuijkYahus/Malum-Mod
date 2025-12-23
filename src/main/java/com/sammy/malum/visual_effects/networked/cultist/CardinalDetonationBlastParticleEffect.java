@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.networked.cultist;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.common.entity.mob.cultist.EntropyChargeProjectile;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import com.sammy.malum.visual_effects.CultistParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;

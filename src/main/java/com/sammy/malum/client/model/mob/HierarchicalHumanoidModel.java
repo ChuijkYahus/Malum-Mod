@@ -2,11 +2,13 @@ package com.sammy.malum.client.model.mob;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.ArmedModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
@@ -25,7 +27,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends AgeableListModel<T> implements ArmedModel, HeadedModel {
+public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends EntityModel<T> implements ArmedModel, HeadedModel {
 
     private static final Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
 
@@ -44,10 +46,10 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     }
 
     public HierarchicalHumanoidModel(ModelPart modelDefinition, Function<ResourceLocation, RenderType> renderType) {
-        super(renderType, true, 16.0F, 0.0F, 2.0F, 2.0F, 24.0F);
+        super(renderType);
         this.modelDefinition = modelDefinition;
         this.root = modelDefinition.getChild("root");
-        this.head = getPart("head");
+        this.head = getHead("head");
         this.body = getPart("body");
         this.rightArm = getPart("right_arm");
         this.leftArm = getPart("left_arm");
@@ -55,6 +57,17 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
         this.leftLeg = getPart("left_leg");
     }
 
+    public ModelPart getHead(String name) {
+        try {
+            return root.getChild(name);
+        } catch (Exception ignored) {
+            ModelPart body = root.getChild("body");
+            if (body.hasChild(name)) {
+                return body.getChild(name);
+            }
+            return new ModelPart(Collections.emptyList(), Collections.emptyMap());
+        }
+    }
     public ModelPart getPart(String name) {
         try {
             return root.getChild(name);
@@ -64,13 +77,8 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     }
 
     @Override
-    protected @NotNull Iterable<ModelPart> headParts() {
-        return ImmutableList.of(head);
-    }
-
-    @Override
-    protected @NotNull Iterable<ModelPart> bodyParts() {
-        return ImmutableList.of(body, rightArm, leftArm, rightLeg, leftLeg);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
+        root.render(poseStack, buffer, packedLight, packedOverlay);
     }
 
     @Override
@@ -80,11 +88,11 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
 
     @Override
     public @NotNull ModelPart getHead() {
-        return this.head;
+        return head;
     }
 
     protected ModelPart getArm(HumanoidArm side) {
-        return side == HumanoidArm.LEFT ? this.leftArm : this.rightArm;
+        return side == HumanoidArm.LEFT ? leftArm : rightArm;
     }
 
     public Optional<ModelPart> getAnyDescendantWithName(String name) {

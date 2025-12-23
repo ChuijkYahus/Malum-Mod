@@ -27,19 +27,6 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 
 		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(64, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.5F))
-				.texOffs(38, 42).addBox(-4.0F, 6.0F, -3.5F, 8.0F, 3.0F, 1.0F, new CubeDeformation(0.5F))
-				.texOffs(0, 34).addBox(-10.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 34).mirror().addBox(2.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
-				.texOffs(64, 34).addBox(-10.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.5F))
-				.texOffs(64, 34).mirror().addBox(2.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.5F)).mirror(false)
-				.texOffs(30, 32).addBox(-6.0F, 2.0F, -3.5F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F))
-				.texOffs(30, 32).mirror().addBox(4.0F, 2.0F, -3.5F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -18.0F, -4.0F));
-
-		PartDefinition crown = head.addOrReplaceChild("crown", CubeListBuilder.create().texOffs(64, 0).addBox(-11.5F, -15.0F, 0.5F, 23.0F, 14.0F, 0.0F, new CubeDeformation(0.5F))
-				.texOffs(0, 0).addBox(-11.5F, -15.0F, 0.5F, 23.0F, 14.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-
 		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 46).addBox(-11.0F, -14.0F, -6.0F, 22.0F, 14.0F, 11.0F, new CubeDeformation(0.05F))
 				.texOffs(74, 46).addBox(-11.0F, -14.0F, -6.0F, 22.0F, 14.0F, 11.0F, new CubeDeformation(0.55F))
 				.texOffs(55, 60).addBox(7.0F, -18.0F, -6.0F, 4.0F, 4.0F, 11.0F, new CubeDeformation(0.05F))
@@ -54,6 +41,19 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 				.texOffs(54, 87).addBox(-11.0F, -14.0F, 5.0F, 22.0F, 12.0F, 2.0F, new CubeDeformation(0.0F))
 				.texOffs(102, 87).addBox(-11.0F, -14.0F, 5.0F, 22.0F, 12.0F, 2.0F, new CubeDeformation(0.5F))
 				.texOffs(54, 101).addBox(-4.5F, -6.0F, -3.0F, 9.0F, 13.0F, 6.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 1.0F, 0.0F));
+
+		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(64, 14).addBox(-4.0F, -5.0F, -3.5F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.5F))
+				.texOffs(38, 42).addBox(-4.0F, 6.0F, -3.5F, 8.0F, 3.0F, 1.0F, new CubeDeformation(0.5F))
+				.texOffs(0, 34).addBox(-10.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 34).mirror().addBox(2.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(64, 34).addBox(-10.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.5F))
+				.texOffs(64, 34).mirror().addBox(2.0F, -7.0F, -3.5F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.5F)).mirror(false)
+				.texOffs(30, 32).addBox(-6.0F, 2.0F, -3.5F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(30, 32).mirror().addBox(4.0F, 2.0F, -3.5F, 2.0F, 12.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -19.0F, -4.0F));
+
+		PartDefinition crown = head.addOrReplaceChild("crown", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, -51.0F, -3.5F, 23.0F, 14.0F, 0.0F, new CubeDeformation(0.0F))
+				.texOffs(64, 0).addBox(-12.0F, -51.0F, -3.5F, 23.0F, 14.0F, 0.0F, new CubeDeformation(0.5F)), PartPose.offset(0.5F, 36.0F, 4.0F));
 
 		PartDefinition right_arm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(0, 134).mirror().addBox(-5.0F, -7.5F, -2.0F, 4.0F, 28.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
 				.texOffs(16, 134).mirror().addBox(-6.0F, -9.0F, -2.5F, 5.0F, 31.0F, 5.0F, new CubeDeformation(0.5F)).mirror(false)
@@ -92,9 +92,9 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 				.setRate(0.3f).setAmount(1.4f).setEasing(Easing.BOUNCE_OUT).addClamp(armClamp));
 
 		float rightLegRotation = utils.getRightLegRotation(d -> d
-				.setRate(0.7f).setAmount(0.9f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
+				.setRate(0.7f).setAmount(0.6f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
 		float leftLegRotation = utils.getLeftLegRotation(d -> d
-				.setRate(0.7f).setAmount(0.9f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
+				.setRate(0.7f).setAmount(0.6f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
 
 		utils.reset(this);
 
@@ -115,8 +115,8 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 		utils.applyGenericArmAnimations(ageInTicks);
 		animate(cardinal.idleAnimationState, CardinalAnimations.IDLE, ageInTicks);
 		animate(cardinal.lobAnimationState, CardinalAnimations.LOB_CHARGE, ageInTicks);
-		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATE, ageInTicks);
-		animate(cardinal.retaliationBlastAnimationState, CardinalAnimations.RETALIATION_BLAST, ageInTicks);
-		animate(cardinal.immolationBlastAnimationState, CardinalAnimations.IMMOLATION_BLAST, ageInTicks);
+		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATION, ageInTicks);
+		animate(cardinal.retaliationBlastAnimationState, CardinalAnimations.RETALIATION, ageInTicks);
+		animate(cardinal.immolationBlastAnimationState, CardinalAnimations.IMMOLATION, ageInTicks);
 	}
 }

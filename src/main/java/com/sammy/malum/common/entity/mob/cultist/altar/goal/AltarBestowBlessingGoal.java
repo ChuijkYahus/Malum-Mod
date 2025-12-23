@@ -1,10 +1,9 @@
-package com.sammy.malum.common.entity.mob.cultist.altar;
+package com.sammy.malum.common.entity.mob.cultist.altar.goal;
 
-import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -12,12 +11,13 @@ import java.util.List;
 public class AltarBestowBlessingGoal extends Goal {
 
     private final AltarCultist altar;
+    protected final PathNavigation navigation;
 
     private final double speedModifier;
     private final int chargeDuration;
-    private final float chargeRadiusSqr;
+    private final float chargeRadius;
 
-    private LivingEntity targetedCultist;
+    private LivingEntity target;
 
     private int chargeTime;
 
@@ -25,15 +25,16 @@ public class AltarBestowBlessingGoal extends Goal {
 
     public AltarBestowBlessingGoal(AltarCultist altar, double speedModifier, int chargeDuration, float chargeRadius) {
         this.altar = altar;
+        this.navigation = altar.getNavigation();
         this.speedModifier = speedModifier;
         this.chargeDuration = chargeDuration;
-        this.chargeRadiusSqr = chargeRadius * chargeRadius;
+        this.chargeRadius = chargeRadius;
         this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     @Override
     public boolean canUse() {
-        if (targetedCultist == null) {
+        if (target == null) {
             var level = altar.level();
             var area = altar.getBoundingBox().inflate(20f, 10f, 20f);
             List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, area);
@@ -41,42 +42,40 @@ public class AltarBestowBlessingGoal extends Goal {
                 if (entity.equals(altar)) {
                     continue;
                 }
-                if (entity instanceof IAltarBlessingRecipient cultist) {
-                    if (cultist.canReceiveAltarBuff()) {
-                        if (altar.distanceTo(entity) <= chargeRadiusSqr) {
-                            targetedCultist = entity;
-                            break;
-                        }
+                if (altar.canBestowBlessing(entity)) {
+                    if (altar.isTargetWithinRadius(chargeRadius)) {
+                        target = entity;
+                        break;
                     }
                 }
             }
 
         }
-        else if (!targetedCultist.isAlive() || (targetedCultist instanceof IAltarBlessingRecipient cultist && !cultist.canReceiveAltarBuff())) {
-            targetedCultist = null;
+        else if (!target.isAlive() || !altar.canBestowBlessing(target)) {
+            target = null;
         }
-        return targetedCultist != null;
+        return target != null;
     }
 
     @Override
     public boolean canContinueToUse() {
-        return (targetedCultist != null && targetedCultist.isAlive() && targetedCultist instanceof IAltarBlessingRecipient cultist && cultist.canReceiveAltarBuff()) || this.canUse();
+        return (target != null && target.isAlive() && altar.canBestowBlessing(target)) || this.canUse();
     }
 
     @Override
     public void start() {
         super.start();
         altar.setAggressive(true);
-        altar.getNavigation().stop();
     }
 
     @Override
     public void stop() {
         super.stop();
         altar.setAggressive(false);
+        navigation.stop();
         seeTime = 0;
         chargeTime = -1;
-        targetedCultist = null;
+        target = null;
     }
 
     @Override
@@ -86,7 +85,6 @@ public class AltarBestowBlessingGoal extends Goal {
 
     @Override
     public void tick() {
-        LivingEntity target = targetedCultist;
         if (target != null) {
             double distanceToTarget = altar.distanceToSqr(target.getX(), target.getY(), target.getZ());
             boolean hasLineOfSight = altar.getSensing().hasLineOfSight(target);
@@ -102,10 +100,10 @@ public class AltarBestowBlessingGoal extends Goal {
             }
 
             if (seeTime > 20) {
-                if ((distanceToTarget < chargeRadiusSqr * 0.5f)) {
-                    altar.getNavigation().stop();
+                if ((distanceToTarget < chargeRadius * 0.5f)) {
+                    navigation.stop();
                 } else {
-                    altar.getNavigation().moveTo(target, speedModifier);
+                    navigation.moveTo(target, speedModifier);
                 }
             }
 
@@ -114,7 +112,7 @@ public class AltarBestowBlessingGoal extends Goal {
             if (hasLineOfSight) {
                 chargeTime++;
                 if (chargeTime >= chargeDuration) {
-                    altar.performRangedAttack(targetedCultist);
+                    altar.performRangedAttack(this.target);
                     chargeTime = 0;
                 }
             }

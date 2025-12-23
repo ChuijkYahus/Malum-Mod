@@ -1,18 +1,19 @@
-package com.sammy.malum.common.entity.mob.cultist.altar;
+package com.sammy.malum.common.entity.mob.cultist.altar.goal;
 
 import java.util.EnumSet;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import team.lodestar.lodestone.helpers.RandomHelper;
 
 public class AltarRangedAttackGoal extends Goal {
 
     private final AltarCultist altar;
+    protected final PathNavigation navigation;
 
     private final double speedModifier;
     private final int attackInterval;
@@ -28,6 +29,7 @@ public class AltarRangedAttackGoal extends Goal {
 
     public AltarRangedAttackGoal(AltarCultist altar, double speedModifier, int attackInterval, float attackRadius) {
         this.altar = altar;
+        this.navigation = altar.getNavigation();
         this.speedModifier = speedModifier;
         this.attackInterval = attackInterval;
         this.attackRadiusSqr = attackRadius * attackRadius;
@@ -41,23 +43,23 @@ public class AltarRangedAttackGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return this.canUse() || !altar.getNavigation().isDone();
+        return this.canUse() || !navigation.isDone();
     }
 
     @Override
     public void start() {
         super.start();
         altar.setAggressive(true);
-        altar.getNavigation().stop();
+        setRandomizedAttackInterval();
     }
 
     @Override
     public void stop() {
         super.stop();
         altar.setAggressive(false);
-        seeTime = 0;
-        attackTime = -1;
         randomizedAttackInterval = -1;
+        attackTime = 0;
+        seeTime = 0;
     }
 
     @Override
@@ -85,10 +87,10 @@ public class AltarRangedAttackGoal extends Goal {
 
             if (seeTime > 20) {
                 if ((distanceToTarget < attackRadiusSqr)) {
-                    altar.getNavigation().stop();
+                    navigation.stop();
                     strafingTime++;
                 } else {
-                    altar.getNavigation().moveTo(target, speedModifier);
+                    navigation.moveTo(target, speedModifier);
                     strafingTime = -1;
                 }
             }
@@ -116,27 +118,23 @@ public class AltarRangedAttackGoal extends Goal {
                 if (altar.getControlledVehicle() instanceof Mob mob) {
                     mob.lookAt(target, 30.0F, 30.0F);
                 }
-
-                altar.lookAt(target, 30.0F, 30.0F);
-            } else {
-                altar.getLookControl().setLookAt(target, 30.0F, 30.0F);
             }
-
+            altar.lookAtAndFaceTarget(target);
 
             if (hasLineOfSight) {
-                if (randomizedAttackInterval == -1) {
-                    randomizedAttackInterval = Mth.floor(RandomHelper.randomBetween(random, attackInterval*0.8f, attackInterval*1.2f));
-                }
                 attackTime++;
                 if (attackTime >= randomizedAttackInterval) {
                     altar.performRangedAttack(target);
+                    setRandomizedAttackInterval();
                     attackTime = 0;
-                    randomizedAttackInterval = -1;
                 }
-            }
-            else if (seeTime < -60) {
+            } else if (seeTime < -60) {
                 stop();
             }
         }
+    }
+
+    public void setRandomizedAttackInterval() {
+        randomizedAttackInterval = Mth.floor(RandomHelper.randomBetween(altar.getRandom(), attackInterval * 0.8f, attackInterval * 1.2f));
     }
 }

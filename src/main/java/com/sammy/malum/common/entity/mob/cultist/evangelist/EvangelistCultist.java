@@ -31,9 +31,7 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 public class EvangelistCultist extends CultistMonster implements IAltarBlessingRecipient {
 
     public static final float ALTAR_BLESSING_THRESHOLD = 0.6f;
-    public static final float ALTAR_BLESSING_HEALING = 0.4f;
     public static final int EMPOWERMENT_DURATION = 80;
-
 
     public static final ResourceLocation ALTAR_EMPOWERMENT = MalumMod.malumPath("altar_empowerment");
     public static final Multimap<Holder<Attribute>, AttributeModifier> EMPOWERMENT_MODIFIERS =
@@ -115,8 +113,6 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
 
     @Override
     public void receiveAltarBuff() {
-        float recoveredHealth = getMaxHealth()*ALTAR_BLESSING_HEALING;
-        heal(recoveredHealth);
         empowermentDuration = EMPOWERMENT_DURATION;
         getAttributes().addTransientAttributeModifiers(EMPOWERMENT_MODIFIERS);
     }

@@ -1,9 +1,9 @@
-package com.sammy.malum.common.entity.mob.cultist;
+package com.sammy.malum.common.entity.mob.cultist.cardinal.projectile;
 
 import com.mojang.datafixers.util.Pair;
-import com.sammy.malum.common.data.component.pouch.SoulwovenPouchContentsComponent;
 import com.sammy.malum.common.entity.bolt.AbstractBoltProjectile;
-import com.sammy.malum.common.entity.nitrate.EthericNitrate;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumParticles;
@@ -11,9 +11,7 @@ import com.sammy.malum.registry.common.entity.MalumEntities;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,9 +20,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -33,28 +31,21 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
 import team.lodestar.lodestone.systems.particle.world.behaviors.DirectionalParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.behaviors.SparkParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.awt.*;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class EntropyChargeProjectile extends AbstractBoltProjectile {
 
@@ -233,7 +224,6 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
 
     }
 
-
     public List<LivingEntity> getExplosionAffectedTargets() {
         if (!isPlaced()) {
             return Collections.emptyList();
@@ -244,6 +234,12 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
         var area = getBoundingBox().inflate(half, quarter, half);
         return level().getEntitiesOfClass(LivingEntity.class, area,
                 target -> {
+                    if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(target)) {
+                        return false;
+                    }
+                    if (target instanceof CultistMonster) {
+                        return false;
+                    }
                     Entity owner = getOwner();
                     if (owner != null) {
                         if (target == owner || target.isAlliedTo(owner)) {

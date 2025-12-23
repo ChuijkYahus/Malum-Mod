@@ -1,6 +1,9 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal;
 
 import com.sammy.malum.common.entity.mob.cultist.*;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.goal.*;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.entity.MalumEntities;
@@ -238,9 +241,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         if (random.nextFloat() < immolationBlastChance) {
             useImmolationBlast = true;
         }
-        else {
-            retaliationBlastCooldown = RETALIATION_BLAST_COOLDOWN;
-        }
+        retaliationBlastCooldown = RETALIATION_BLAST_COOLDOWN;
         immolationBlastProgress++;
 
         record KnockbackInfo(Function<Entity, Vec3> direction, float strength) {

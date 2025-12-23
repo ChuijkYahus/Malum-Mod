@@ -2,30 +2,21 @@ package com.sammy.malum.client.renderer.entity.cultist;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.SpiritBasedWorldVFXBuilder;
-import com.sammy.malum.client.renderer.block.SpiritJarRenderer;
 import com.sammy.malum.client.renderer.entity.bolt.AbstractBoltEntityRenderer;
-import com.sammy.malum.common.block.curiosities.mana_mote.ManaMoteBlock;
-import com.sammy.malum.common.entity.mob.cultist.CultistBoltProjectile;
-import com.sammy.malum.common.entity.mob.cultist.EntropyChargeProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
-import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.rendeertype.LodestoneRenderTypeBuilder;
-import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeProvider;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
 import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
-
-import java.awt.*;
-import java.util.ArrayList;
 
 public class EntropyChargeRenderer extends AbstractBoltEntityRenderer<EntropyChargeProjectile> {
 

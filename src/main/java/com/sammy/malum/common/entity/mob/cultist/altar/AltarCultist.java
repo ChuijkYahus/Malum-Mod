@@ -1,7 +1,11 @@
 package com.sammy.malum.common.entity.mob.cultist.altar;
 
-import com.sammy.malum.common.entity.mob.cultist.CultistBlessingProjectile;
-import com.sammy.malum.common.entity.mob.cultist.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarBestowBlessingGoal;
+import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarMeleeAttackGoal;
+import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarRangedAttackGoal;
+import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarRetreatGoal;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBlessingProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
@@ -39,10 +43,9 @@ import java.util.UUID;
 public class AltarCultist extends CultistMonster {
 
     private static final EntityDataAccessor<Boolean> IS_SQUISHED = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.BOOLEAN);
-
     private static final EntityDataAccessor<Integer> HEAD_TILT = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);
-
     private static final EntityDataAccessor<Float> CANDLE_ROTATION = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.FLOAT);
+
 
     public static final int SQUISH_ANIMATION_DURATION = 8;
     public static final int HEAD_TILT_ANIMATION_DURATION = 16;
@@ -52,9 +55,11 @@ public class AltarCultist extends CultistMonster {
     public static final float RETREAT_RADIUS = 8f;
     public static final int RETREAT_DURATION = 40;
     public static final float RANGED_RADIUS = 16f;
-    public static final int RANGED_ATTACK_INTERVAL = 80;
-    public static final int BLESSING_CHARGE_DURATION = 60;
+    public static final int RANGED_ATTACK_INTERVAL = 100;
     public static final float BLESSING_RADIUS = 8f;
+    public static final int BLESSING_CHARGE_DURATION = 120;
+    public static final float BLESSING_HEAL_PERCENTAGE = 0.25f;
+    public static final float BLESSING_HEALTH_THRESHOLD = 0.5f;
 
     public int meleeCooldown;
     public UUID meleeVictim;
@@ -81,8 +86,8 @@ public class AltarCultist extends CultistMonster {
 
         var retreat = new AltarRetreatGoal(this, 1.5f, RETREAT_RADIUS);
         var bestowBlessing = new AltarBestowBlessingGoal(this, 0.5f, BLESSING_CHARGE_DURATION, BLESSING_RADIUS);
-        var rangedAttack = new AltarRangedAttackGoal(this, 1.0f, RANGED_ATTACK_INTERVAL, RANGED_RADIUS);
         var meleeAttack = new AltarMeleeAttackGoal(this, 1.25f);
+        var rangedAttack = new AltarRangedAttackGoal(this, 1.0f, RANGED_ATTACK_INTERVAL, RANGED_RADIUS);
 
         var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
         var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
@@ -92,8 +97,8 @@ public class AltarCultist extends CultistMonster {
 
         goalSelector.addGoal(0, retreat);
         goalSelector.addGoal(1, bestowBlessing);
-        goalSelector.addGoal(2, rangedAttack);
-        goalSelector.addGoal(3, meleeAttack);
+        goalSelector.addGoal(2, meleeAttack);
+        goalSelector.addGoal(3, rangedAttack);
         goalSelector.addGoal(4, randomStroll);
         goalSelector.addGoal(5, lookAtPlayer);
         goalSelector.addGoal(6, randomLookAround);
@@ -241,7 +246,6 @@ public class AltarCultist extends CultistMonster {
         }
     }
 
-
     @Override
     public boolean doHurtTarget(@NotNull Entity target) {
         if (super.doHurtTarget(target)) {
@@ -292,7 +296,21 @@ public class AltarCultist extends CultistMonster {
         }
     }
 
+    public boolean canBestowBlessing(LivingEntity target) {
+        if (target instanceof IAltarBlessingRecipient recipient) {
+            float healthDelta = target.getHealth() / target.getMaxHealth();
+            return recipient.canReceiveAltarBuff() && healthDelta <= BLESSING_HEALTH_THRESHOLD;
+        }
+        return false;
+    }
+
     public void applyBlessing(ServerLevel level, LivingEntity target) {
+        float recoveredHealth = target.getMaxHealth()*AltarCultist.BLESSING_HEAL_PERCENTAGE;
+        target.heal(recoveredHealth);
+        if (target instanceof IAltarBlessingRecipient recipient) {
+            recipient.receiveAltarBuff();
+        }
+
         var position = target.position().add(0, target.getBbHeight() * 0.35f, 0);
         var color = ColorParticleData.create(CultistBlessingProjectile.CULTIST_PINK, CultistBlessingProjectile.CULTIST_PURPLE);
         MalumParticleEffectTypes.ALTAR_BESTOWS_BLESSING
@@ -311,12 +329,7 @@ public class AltarCultist extends CultistMonster {
     }
 
     public boolean isWithinMeleeRadius() {
-        var target = getTarget();
-        if (target != null) {
-            float distanceToTarget = distanceTo(target);
-            return (distanceToTarget < MELEE_RADIUS);
-        }
-        return false;
+        return isTargetWithinRadius(MELEE_RADIUS);
     }
 
     public boolean isRetreating() {

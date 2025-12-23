@@ -1,21 +1,14 @@
-package com.sammy.malum.common.entity.mob.cultist.altar;
+package com.sammy.malum.common.entity.mob.cultist.altar.goal;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
 public class AltarMeleeAttackGoal extends MeleeAttackGoal {
 
     private final AltarCultist altar;
-
     public AltarMeleeAttackGoal(AltarCultist altar, double speedModifier) {
         super(altar, speedModifier, false);
         this.altar = altar;
-    }
-
-    @Override
-    public void start() {
-        super.start();
     }
 
     @Override

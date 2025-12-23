@@ -1,5 +1,6 @@
-package com.sammy.malum.common.entity.mob.cultist.cardinal;
+package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 

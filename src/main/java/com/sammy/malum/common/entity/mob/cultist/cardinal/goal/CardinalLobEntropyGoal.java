@@ -1,7 +1,6 @@
-package com.sammy.malum.common.entity.mob.cultist.cardinal;
+package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -48,7 +47,7 @@ public class CardinalLobEntropyGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        if (attackTime >= randomizedAttackInterval * 0.9f) {
+        if (isInLobbingState) {
             return true;
         }
         if (cardinal.canTriggerRetaliationBlast()) {
@@ -60,10 +59,10 @@ public class CardinalLobEntropyGoal extends Goal {
     @Override
     public void start() {
         super.start();
+        setRandomizedAttackInterval();
         cardinal.setAggressive(true);
         navigation.stop();
         attackTime = 0;
-        setRandomizedAttackInterval();
     }
 
     @Override
@@ -71,9 +70,9 @@ public class CardinalLobEntropyGoal extends Goal {
         super.stop();
         cardinal.setAggressive(false);
         navigation.stop();
-        seeTime = 0;
-        attackTime = 0;
         randomizedAttackInterval = -1;
+        attackTime = 0;
+        seeTime = 0;
     }
 
     @Override
