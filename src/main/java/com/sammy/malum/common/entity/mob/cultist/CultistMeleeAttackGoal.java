@@ -17,7 +17,6 @@ public class CultistMeleeAttackGoal extends MeleeAttackGoal {
     public void start() {
         super.start();
         cultist.setAggressive(true);
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Melee"), false);
     }
 
     @Override

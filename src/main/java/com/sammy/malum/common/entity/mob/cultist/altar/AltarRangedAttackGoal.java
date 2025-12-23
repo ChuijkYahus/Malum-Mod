@@ -49,7 +49,6 @@ public class AltarRangedAttackGoal extends Goal {
         super.start();
         altar.setAggressive(true);
         altar.getNavigation().stop();
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Ranged"), false);
     }
 
     @Override

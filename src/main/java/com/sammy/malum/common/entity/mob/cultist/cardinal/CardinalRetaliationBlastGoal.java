@@ -27,7 +27,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
 
     @Override
     public boolean canContinueToUse() {
-        return attackTime > 0 || canUse();
+        return attackTime > 0 || canUse() || super.canUse();
     }
 
     @Override
@@ -41,6 +41,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
     public void stop() {
         super.stop();
         cardinal.setAggressive(false);
+        attackTime = 0;
     }
 
     @Override
@@ -54,6 +55,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
                     cardinal.triggerRetaliationBlast(level);
                 }
                 attackTime = 0;
+                stop();
             }
         }
     }

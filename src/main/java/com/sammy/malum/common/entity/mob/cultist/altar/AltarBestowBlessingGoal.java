@@ -68,7 +68,6 @@ public class AltarBestowBlessingGoal extends Goal {
         super.start();
         altar.setAggressive(true);
         altar.getNavigation().stop();
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Blessing"), false);
     }
 
     @Override

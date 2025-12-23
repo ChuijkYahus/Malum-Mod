@@ -1,8 +1,5 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.pathfinder.Path;
@@ -13,7 +10,7 @@ import java.util.EnumSet;
 public class CardinalAvoidTargetGoal extends Goal {
 
     protected final CardinalCultist cardinal;
-    protected final PathNavigation pathNav;
+    protected final PathNavigation navigation;
 
     private final double speedModifier;
 
@@ -22,22 +19,34 @@ public class CardinalAvoidTargetGoal extends Goal {
 
     public CardinalAvoidTargetGoal(CardinalCultist cardinal, double speedModifier) {
         this.cardinal = cardinal;
+        this.navigation = cardinal.getNavigation();
         this.speedModifier = speedModifier;
-        this.pathNav = cardinal.getNavigation();
         this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     @Override
     public boolean canUse() {
-        return cardinal.shouldAvoidTarget();
+        var target = cardinal.target;
+        if (target == null) {
+            return false;
+        }
+        if (cardinal.shouldAvoidTarget()) {
+            path = cardinal.getEscapePath(target, 8, 2);
+            return path != null;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canContinueToUse() {
+        return !cardinal.shouldAvoidTarget() || !navigation.isDone();
     }
 
     @Override
     public void start() {
         super.start();
-        cardinal.getNavigation().stop();
+        navigation.moveTo(path, speedModifier);
     }
-
 
     @Override
     public boolean requiresUpdateEveryTick() {
@@ -48,8 +57,6 @@ public class CardinalAvoidTargetGoal extends Goal {
     public void tick() {
         var target = cardinal.target;
         if (target != null) {
-            path = cardinal.getEscapePath(target, 8, 2);
-            pathNav.moveTo(path, speedModifier);
             cardinal.lookAtAndFaceTarget(target);
         }
     }

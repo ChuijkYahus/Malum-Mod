@@ -6,6 +6,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import team.lodestar.lodestone.helpers.RandomHelper;
 
 import java.util.EnumSet;
@@ -13,6 +14,7 @@ import java.util.EnumSet;
 public class CardinalLobEntropyGoal extends Goal {
 
     private final CardinalCultist cardinal;
+    protected final PathNavigation navigation;
 
     private static final int LOB_ANIMATION_DELAY = 12;
 
@@ -32,6 +34,7 @@ public class CardinalLobEntropyGoal extends Goal {
 
     public CardinalLobEntropyGoal(CardinalCultist cardinal, double speedModifier, int attackInterval, float attackRadius) {
         this.cardinal = cardinal;
+        this.navigation = cardinal.getNavigation();
         this.speedModifier = speedModifier;
         this.attackInterval = attackInterval;
         this.attackRadiusSqr = attackRadius * attackRadius;
@@ -45,22 +48,29 @@ public class CardinalLobEntropyGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return attackTime > randomizedAttackInterval * 0.75f || this.canUse() || !cardinal.getNavigation().isDone();
+        if (attackTime >= randomizedAttackInterval * 0.9f) {
+            return true;
+        }
+        if (cardinal.canTriggerRetaliationBlast()) {
+            return false;
+        }
+        return canUse() || !navigation.isDone();
     }
 
     @Override
     public void start() {
         super.start();
         cardinal.setAggressive(true);
-        cardinal.getNavigation().stop();
+        navigation.stop();
         attackTime = 0;
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Lobbing State"), false);
+        setRandomizedAttackInterval();
     }
 
     @Override
     public void stop() {
         super.stop();
         cardinal.setAggressive(false);
+        navigation.stop();
         seeTime = 0;
         attackTime = 0;
         randomizedAttackInterval = -1;
@@ -91,10 +101,10 @@ public class CardinalLobEntropyGoal extends Goal {
 
             if (seeTime > 20) {
                 if ((distanceToTarget < attackRadiusSqr)) {
-                    cardinal.getNavigation().stop();
+                    navigation.stop();
                     strafingTime++;
                 } else {
-                    cardinal.getNavigation().moveTo(target, speedModifier);
+                    navigation.moveTo(target, speedModifier);
                     strafingTime = -1;
                 }
             }
@@ -122,17 +132,11 @@ public class CardinalLobEntropyGoal extends Goal {
                 if (cardinal.getControlledVehicle() instanceof Mob mob) {
                     mob.lookAt(target, 30.0F, 30.0F);
                 }
-
-                cardinal.lookAt(target, 30.0F, 30.0F);
-            } else {
-                cardinal.getLookControl().setLookAt(target, 30.0F, 30.0F);
             }
+            cardinal.lookAtAndFaceTarget(target);
 
             if (hasLineOfSight || isInLobbingState) {
                 if (cardinal.entropyCharge == null) {
-                    if (randomizedAttackInterval == -1) {
-                        randomizedAttackInterval = Mth.floor(RandomHelper.randomBetween(random, attackInterval * 0.8f, attackInterval * 1.2f));
-                    }
                     attackTime++;
                     if (attackTime == randomizedAttackInterval - LOB_ANIMATION_DELAY) {
                         cardinal.level().broadcastEntityEvent(cardinal, CardinalCultist.THROW_ANIMATION);
@@ -140,8 +144,8 @@ public class CardinalLobEntropyGoal extends Goal {
                     }
                     if (attackTime >= randomizedAttackInterval) {
                         cardinal.throwEntropyCharge(target);
+                        setRandomizedAttackInterval();
                         attackTime = 0;
-                        randomizedAttackInterval = -1;
                         isInLobbingState = false;
                     }
                 }
@@ -149,5 +153,9 @@ public class CardinalLobEntropyGoal extends Goal {
                 stop();
             }
         }
+    }
+
+    public void setRandomizedAttackInterval() {
+        randomizedAttackInterval = Mth.floor(RandomHelper.randomBetween(cardinal.getRandom(), attackInterval * 0.8f, attackInterval * 1.2f));
     }
 }

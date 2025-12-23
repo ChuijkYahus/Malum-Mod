@@ -49,7 +49,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public static final float IMMOLATION_BLAST_CHANCE = 0.15f;
     public static final float IMMOLATION_BLAST_TRIGGER_RADIUS = 3f;
-    public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 12f;
+    public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 10f;
     public static final float IMMOLATION_BLAST_DAMAGE = 2.5f;
 
     public static final int RANGED_ATTACK_INTERVAL = 80;
@@ -117,9 +117,9 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
         var immolationBlast = new CardinalImmolationBlastGoal(this);
+        var detonateEntropy = new CardinalDetonateEntropyGoal(this, 1.25f, RANGED_RADIUS * 2);
         var lobEntropy = new CardinalLobEntropyGoal(this, 1.0f, RANGED_ATTACK_INTERVAL, RANGED_RADIUS);
         var retaliationBlast = new CardinalRetaliationBlastGoal(this, 0.5f);
-        var detonateEntropy = new CardinalDetonateEntropyGoal(this, 1.25f, RANGED_RADIUS * 2);
         var avoidTarget = new CardinalAvoidTargetGoal(this, 0.75f);
 
         var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
@@ -129,10 +129,10 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         targetSelector.addGoal(0, targeting);
 
         goalSelector.addGoal(0, immolationBlast);
-        goalSelector.addGoal(1, lobEntropy);
-        goalSelector.addGoal(2, retaliationBlast);
-        goalSelector.addGoal(3, detonateEntropy);
-        goalSelector.addGoal(3, avoidTarget);
+        goalSelector.addGoal(1, detonateEntropy);
+        goalSelector.addGoal(2, lobEntropy);
+        goalSelector.addGoal(3, retaliationBlast);
+        goalSelector.addGoal(4, avoidTarget);
         goalSelector.addGoal(5, randomStroll);
         goalSelector.addGoal(6, lookAtPlayer);
         goalSelector.addGoal(7, randomLookAround);
@@ -205,10 +205,11 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         double z = target.getZ() - pos.z;
         double distance = Math.sqrt(x * x + z * z);
         float inaccuracy = (14 - level.getDifficulty().getId() * 4);
+        float velocity = (float) (0.5f + distance * 0.06f);
 
         var projectile = new EntropyChargeProjectile(level);
         projectile.setPos(pos);
-        projectile.shoot(x, y + distance * 0.2f, z, 1.4F, inaccuracy);
+        projectile.shoot(x, y + distance * 0.2f, z, velocity, inaccuracy);
         projectile.setDeltaMovement(projectile.getDeltaMovement().add(0, 0.4f, 0));
         projectile.setData(this, magicDamage, 0, true);
         projectile.setHomingTarget(target);
@@ -257,15 +258,17 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
             if (target.distanceTo(this) > radius) {
                 continue;
             }
+            float knockbackStrength = info.strength;
             if (target instanceof LivingEntity living) {
                 target.invulnerableTime = 0;
                 if (!target.hurt(damagesource, magicDamage)) {
                     continue;
                 }
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
+                knockbackStrength *= (float) (1f - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
             }
             Vec3 knockbackDirection = info.direction().apply(target);
-            Vec3 knockback = knockbackDirection.scale(info.strength);
+            Vec3 knockback = knockbackDirection.scale(knockbackStrength);
             if (knockback.y < 0.6f) {
                 knockback = knockback.add(0, 0.6f, 0);
             }
@@ -288,15 +291,19 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         float magicDamage = (float) getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * IMMOLATION_BLAST_DAMAGE;
         float radius = IMMOLATION_BLAST_DAMAGE_RADIUS;
         var area = new AABB(pos.subtract(radius, radius, radius), pos.add(radius, radius, radius));
-        var targets = level().getEntities(this, area, t -> !(t instanceof CultistMonster) && t.isAlive() && hasLineOfSight(t));
+        var targets = level().getEntities(this, area, t -> t.isAlive() && hasLineOfSight(t));
         var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
         for (Entity target : targets) {
             if (target.distanceTo(this) > radius) {
                 continue;
             }
             if (target instanceof LivingEntity) {
+                float damageDealt = magicDamage;
+                if (target instanceof CultistMonster) {
+                    damageDealt *= 0.5f;
+                }
                 target.invulnerableTime = 0;
-                if (!target.hurt(damagesource, magicDamage)) {
+                if (!target.hurt(damagesource, damageDealt)) {
                     continue;
                 }
             }

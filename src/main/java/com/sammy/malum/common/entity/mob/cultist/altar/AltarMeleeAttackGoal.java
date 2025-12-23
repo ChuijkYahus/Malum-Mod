@@ -16,7 +16,6 @@ public class AltarMeleeAttackGoal extends MeleeAttackGoal {
     @Override
     public void start() {
         super.start();
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Melee"), false);
     }
 
     @Override

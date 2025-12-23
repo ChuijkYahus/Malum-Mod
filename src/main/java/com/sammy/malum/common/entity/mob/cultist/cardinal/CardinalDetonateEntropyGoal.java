@@ -4,12 +4,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 
 import java.util.EnumSet;
 
 public class CardinalDetonateEntropyGoal extends Goal {
 
     private final CardinalCultist cardinal;
+    protected final PathNavigation navigation;
 
     private static final int CHARGE_DURATION = 40;
     private final double speedModifier;
@@ -19,6 +21,7 @@ public class CardinalDetonateEntropyGoal extends Goal {
 
     public CardinalDetonateEntropyGoal(CardinalCultist cardinal, double speedModifier, float detonationRadius) {
         this.cardinal = cardinal;
+        this.navigation = cardinal.getNavigation();
         this.speedModifier = speedModifier;
         this.detonationRadiusSqr = detonationRadius * detonationRadius;
         this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
@@ -42,9 +45,8 @@ public class CardinalDetonateEntropyGoal extends Goal {
     public void start() {
         super.start();
         cardinal.setAggressive(true);
-        cardinal.getNavigation().stop();
+        navigation.stop();
         cardinal.level().broadcastEntityEvent(cardinal, CardinalCultist.DETONATE_ANIMATION);
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Detonation State"), false);
     }
 
     @Override
@@ -64,14 +66,14 @@ public class CardinalDetonateEntropyGoal extends Goal {
         var target = cardinal.entropyCharge;
         if (target != null) {
             target.age--;
-            cardinal.lookAtAndFaceTarget(target);
 
             double distanceToTarget = cardinal.distanceToSqr(target.getX(), target.getY(), target.getZ());
             if ((distanceToTarget < detonationRadiusSqr)) {
-                cardinal.getNavigation().stop();
+                navigation.stop();
             } else {
-                cardinal.getNavigation().moveTo(target, speedModifier);
+                navigation.moveTo(target, speedModifier);
             }
+            cardinal.lookAtAndFaceTarget(target);
 
             attackTime++;
             if (attackTime >= CHARGE_DURATION) {

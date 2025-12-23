@@ -55,7 +55,7 @@ public class EntropyChargeRenderer extends AbstractBoltEntityRenderer<EntropyCha
         }
 
         var builder = VFXBuilders.createWorld().replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
-        float delta = Math.min(entity.primedTime / 40f, 1);
+        float delta = Math.min(entity.primedTime / 40f, 1) * entity.getVisualEffectScalar();
         float timeDelta = ((entity.level().getGameTime() + partialTicks) % 80L) / 80f;
         for (int i = 0; i < 6; i++) {
             float angleDelay = i * 0.75f;

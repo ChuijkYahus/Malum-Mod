@@ -1,14 +1,10 @@
 package com.sammy.malum.common.entity.mob.cultist.altar;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -16,9 +12,10 @@ import java.util.EnumSet;
 public class AltarRetreatGoal extends Goal {
 
     protected final AltarCultist altar;
+    protected final PathNavigation navigation;
+
     protected final double speedModifier;
     protected final float retreatRadiusSqr;
-    protected final PathNavigation pathNav;
 
     @Nullable
     protected LivingEntity avoidedTarget;
@@ -27,9 +24,9 @@ public class AltarRetreatGoal extends Goal {
 
     public AltarRetreatGoal(AltarCultist altar, double speedModifier, float retreatRadius) {
         this.altar = altar;
+        this.navigation = altar.getNavigation();
         this.retreatRadiusSqr = retreatRadius * retreatRadius;
         this.speedModifier = speedModifier;
-        this.pathNav = altar.getNavigation();
         setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
     }
 
@@ -59,24 +56,25 @@ public class AltarRetreatGoal extends Goal {
         if (altar.distanceTo(avoidedTarget) > AltarCultist.RETREAT_RADIUS * 0.75f) {
             return false;
         }
-        return !pathNav.isDone();
+        return !navigation.isDone();
     }
 
     @Override
     public void start() {
-        pathNav.moveTo(path, speedModifier);
+        navigation.moveTo(path, speedModifier);
         altar.jumpFromGround();
         altar.retreatCooldown = AltarCultist.RETREAT_DURATION;
-        Minecraft.getInstance().player.displayClientMessage(Component.literal("Entering Retreat"), false);
     }
 
     @Override
     public void stop() {
+        navigation.stop();
         avoidedTarget = null;
     }
 
+
     @Override
     public void tick() {
-        altar.getNavigation().setSpeedModifier(speedModifier);
+        navigation.setSpeedModifier(speedModifier);
     }
 }
