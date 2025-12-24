@@ -46,6 +46,11 @@ public class MiscellaneousKnowledgeEntries {
                         SpiritInfusionPage.fromOutput(EARTHEN_VARNISHED_TERRACOTTA.get()),
                         SpiritInfusionPage.fromOutput(INFERNAL_VARNISHED_TERRACOTTA.get())
                 ))
+                .addReference(new EntryReference(NULL_VARNISHED_TERRACOTTA, BookEntry.create("varnished_terracotta.null")
+                        .addPage(new HeadlineTextPage("varnished_terracotta.null"))
+                        .addPage(SpiritInfusionPage.fromOutput(NULL_VARNISHED_TERRACOTTA.get()))
+                        .afterUmbralCrystal())
+                )
         );
 
         screen.addEntry("mote_making", 8, 10, b -> b

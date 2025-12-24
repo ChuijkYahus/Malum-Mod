@@ -22,9 +22,7 @@ public class MalumContainers {
     public static final DeferredHolder<MenuType<?>, MenuType<WeaversWorkbenchContainer>> WEAVERS_WORKBENCH = CONTAINERS.register("weavers_workbench", () -> IMenuTypeExtension.create(WeaversWorkbenchContainer::new));
 
 
-    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
     public static class ClientOnly {
-        @SubscribeEvent
         public static void bindContainerRenderers(RegisterMenuScreensEvent event) {
             event.register(MalumContainers.WEAVERS_WORKBENCH.get(), WeaversWorkbenchContainerScreen::new);
         }

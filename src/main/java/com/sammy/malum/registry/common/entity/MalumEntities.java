@@ -6,24 +6,28 @@ import com.sammy.malum.client.renderer.entity.activator.*;
 import com.sammy.malum.client.renderer.entity.bolt.*;
 import com.sammy.malum.client.renderer.entity.cultist.CultistBlessingRenderer;
 import com.sammy.malum.client.renderer.entity.cultist.CultistBoltRenderer;
+import com.sammy.malum.client.renderer.entity.cultist.EntropyChargeRenderer;
 import com.sammy.malum.client.renderer.entity.nitrate.*;
 import com.sammy.malum.client.renderer.entity.scythe.*;
 import com.sammy.malum.client.renderer.mob.cultist.AltarRenderer;
+import com.sammy.malum.client.renderer.mob.cultist.BelieverRenderer;
 import com.sammy.malum.client.renderer.mob.cultist.CardinalRenderer;
 import com.sammy.malum.client.renderer.mob.cultist.EvangelistRenderer;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.bolt.*;
-import com.sammy.malum.common.entity.cultist.CultistBlessingProjectile;
-import com.sammy.malum.common.entity.cultist.CultistBoltProjectile;
-import com.sammy.malum.common.entity.cultist.cardinal.CardinalCultist;
-import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBlessingProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
+import com.sammy.malum.common.entity.mob.cultist.believer.BelieverCultist;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
+import com.sammy.malum.common.entity.mob.cultist.evangelist.EvangelistCultist;
 import com.sammy.malum.common.entity.hidden_blade.*;
-import com.sammy.malum.common.entity.cultist.altar.AltarCultist;
+import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import com.sammy.malum.common.entity.nitrate.EthericNitrate;
 import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
-import com.sammy.malum.common.entity.spirit.SpiritItem;
+import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import com.sammy.malum.common.entity.thrown.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -31,9 +35,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -50,6 +51,14 @@ public class MalumEntities {
                     .eyeHeight(1.1F)
                     .passengerAttachments(1.1F)
                     .ridingOffset(-0.2F)
+                    .clientTrackingRange(8)
+    );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<BelieverCultist>> BELIEVER = register(
+            "believer", BelieverCultist::new, MobCategory.MONSTER, b -> b
+                    .sized(0.6F, 1.9F)
+                    .eyeHeight(1.6F)
+                    .passengerAttachments(1.8f)
                     .clientTrackingRange(8)
     );
 
@@ -72,6 +81,9 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<CultistBoltProjectile>> CULTIST_BOLT =
             register("cultist_bolt", CultistBoltProjectile::new, 1F, 1F, 10);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<EntropyChargeProjectile>> ENTROPY_CHARGE =
+            register("entropy_charge", EntropyChargeProjectile::new, 0.5F, 0.5F, 10);
+
 
     public static final DeferredHolder<EntityType<?>, EntityType<CultistBlessingProjectile>> CULTIST_BLESSING =
             register("cultist_blessing", CultistBlessingProjectile::new, 1F, 1F, 10);
@@ -79,8 +91,8 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK =
             register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItem>> NATURAL_SPIRIT =
-            register("natural_spirit", SpiritItem::new, 0.5F, 0.75F, 10);
+    public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT =
+            register("natural_spirit", SpiritItemEntity::new, 0.5F, 0.75F, 10);
 
     public static final DeferredHolder<EntityType<?>, EntityType<EthericNitrate>> ETHERIC_NITRATE =
             register("etheric_nitrate", EthericNitrate::new, 0.5F, 0.5F, 20);
@@ -151,6 +163,7 @@ public class MalumEntities {
 
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ALTAR.get(), AltarCultist.createAttributes().build());
+        event.put(BELIEVER.get(), BelieverCultist.createAttributes().build());
         event.put(CARDINAL.get(), CardinalCultist.createAttributes().build());
         event.put(EVANGELIST.get(), EvangelistCultist.createAttributes().build());
     }
@@ -162,11 +175,13 @@ public class MalumEntities {
     public static class ClientOnly {
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             EntityRenderers.register(MalumEntities.ALTAR.get(), AltarRenderer::new);
+            EntityRenderers.register(MalumEntities.BELIEVER.get(), BelieverRenderer::new);
             EntityRenderers.register(MalumEntities.CARDINAL.get(), CardinalRenderer::new);
             EntityRenderers.register(MalumEntities.EVANGELIST.get(), EvangelistRenderer::new);
 
             EntityRenderers.register(MalumEntities.CULTIST_BOLT.get(), CultistBoltRenderer::new);
             EntityRenderers.register(MalumEntities.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
+            EntityRenderers.register(MalumEntities.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
             EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
             EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);

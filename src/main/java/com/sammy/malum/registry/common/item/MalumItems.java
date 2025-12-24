@@ -173,6 +173,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> AQUEOUS_VARNISHED_TERRACOTTA = register("aqueous_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.AQUEOUS_VARNISHED_TERRACOTTA.get(), p));
     public static final DeferredHolder<Item, Item> EARTHEN_VARNISHED_TERRACOTTA = register("earthen_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EARTHEN_VARNISHED_TERRACOTTA.get(), p));
     public static final DeferredHolder<Item, Item> INFERNAL_VARNISHED_TERRACOTTA = register("infernal_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.INFERNAL_VARNISHED_TERRACOTTA.get(), p));
+    public static final DeferredHolder<Item, Item> NULL_VARNISHED_TERRACOTTA = register("null_varnished_terracotta", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.NULL_VARNISHED_TERRACOTTA.get(), p));
     //endregion
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_BANNER = register("soulwoven_banner", MalumItems::BUILDING_PROPERTIES, SoulwovenBannerBlockItem::new);
@@ -657,6 +658,7 @@ public class MalumItems {
     //region archaic sect stuff
 
     public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::ARCHAIC_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
+    public static final DeferredHolder<Item, Item> BROKEN_BLADE = register("broken_blade", MalumItems::ARCHAIC_PROPERTIES, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
 
     //region autmgnets
     public static final DeferredHolder<Item, Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItems::DEFAULT_PROPERTIES, MendingDiffuserItem::new);

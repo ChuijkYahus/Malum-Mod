@@ -1,0 +1,18 @@
+{
+  "registry_name": "malum:believer",
+  "primary_type": "malum:eldritch",
+  "spirits": [
+    {
+      "spirit": "malum:eldritch",
+      "count": 1
+    },
+    {
+      "spirit": "malum:arcane",
+      "count": 1
+    },
+    {
+      "spirit": "malum:infernal",
+      "count": 1
+    }
+  ]
+}

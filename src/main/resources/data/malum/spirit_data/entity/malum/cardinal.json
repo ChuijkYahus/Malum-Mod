@@ -1,0 +1,18 @@
+{
+  "registry_name": "malum:cardinal",
+  "primary_type": "malum:eldritch",
+  "spirits": [
+    {
+      "spirit": "malum:eldritch",
+      "count": 2
+    },
+    {
+      "spirit": "malum:earthen",
+      "count": 2
+    },
+    {
+      "spirit": "malum:infernal",
+      "count": 2
+    }
+  ]
+}

@@ -194,7 +194,7 @@ public class SoulHarvestHandler {
                 itemEntity.setDeltaMovement(xSpeed * 0.6f, ySpeed * 6f, zSpeed * 0.6f);
                 return itemEntity;
             }
-            return new SpiritItem(level, preferredCollector, stack, position, velocity);
+            return new SpiritItemEntity(level, preferredCollector, stack, position, velocity);
         }
     }
 

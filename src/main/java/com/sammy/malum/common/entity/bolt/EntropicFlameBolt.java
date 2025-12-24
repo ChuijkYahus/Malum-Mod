@@ -38,8 +38,8 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
     public EntropicFlameBolt(Level level) {
         super(MalumEntities.ENTROPIC_FLAME_BOLT.get(), level);
         trailPointBuilder = TrailPointBuilder.create(32);
-        secondarySpinningTrailPointBuilder = TrailPointBuilder.create(24);
         spinningTrailPointBuilder = TrailPointBuilder.create(24);
+        secondarySpinningTrailPointBuilder = TrailPointBuilder.create(24);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
-        if (fadingAway || spawnDelay > 0) {
+        if (isAwaitingSpawn() || isFadingAway()) {
             return;
         }
         if (result.getEntity() instanceof LivingEntity livingentity) {
@@ -73,10 +73,10 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
     public void tick() {
         super.tick();
         if (level().isClientSide) {
-            if (spawnDelay > 0) {
+            if (isAwaitingSpawn()) {
                 return;
             }
-            float offsetScale = fadingAway ? 0f : getOrbitingTrailDistance();
+            float offsetScale = isFadingAway() ? 0f : getOrbitingTrailDistance();
             for (int i = 0; i < 2; i++) {
                 float progress = (i + 1) * 0.5f;
                 Vec3 position = getPosition(progress);

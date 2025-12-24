@@ -3,12 +3,10 @@ package com.sammy.malum.client.renderer.mob.cultist;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.layer.EvangelistItemInHandLayer;
-import com.sammy.malum.client.model.mob.EvangelistModel;
-import com.sammy.malum.common.entity.cultist.evangelist.EvangelistCultist;
-import net.minecraft.client.model.EndermanModel;
+import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
+import com.sammy.malum.common.entity.mob.cultist.evangelist.EvangelistCultist;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -25,7 +23,7 @@ public class EvangelistRenderer extends MobRenderer<EvangelistCultist, Evangelis
 
     @Override
     protected void scale(EvangelistCultist evangelist, PoseStack poseStack, float partialTicks) {
-        float scale = evangelist.getEvangelistScaleMultiplier();
+        float scale = evangelist.getCultistScaleMultiplier();
         poseStack.scale(scale, scale, scale);
     }
 

@@ -6,6 +6,7 @@ import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.*;
+import com.sammy.malum.registry.common.MalumContainers;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.registry.common.entity.MalumEntities;
 import net.neoforged.api.distmarker.Dist;
@@ -32,8 +33,18 @@ public class ClientSetupEvents {
     }
 
     @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        MalumModels.addLayers(event);
+    }
+
+    @SubscribeEvent
     public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         MalumEntities.ClientOnly.bindEntityRenderers(event);
+    }
+
+    @SubscribeEvent
+    public static void bindContainerRenderers(RegisterMenuScreensEvent event) {
+        MalumContainers.ClientOnly.bindContainerRenderers(event);
     }
 
     @SubscribeEvent

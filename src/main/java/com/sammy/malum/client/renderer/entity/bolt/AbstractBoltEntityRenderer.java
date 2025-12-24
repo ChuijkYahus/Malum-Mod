@@ -64,7 +64,7 @@ public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectil
 
     @Override
     public void render(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
-        if (entity.spawnDelay > 0) {
+        if (entity.isAwaitingSpawn()) {
             return;
         }
         float delta = entity.getVisualEffectScalar();
