@@ -284,19 +284,21 @@ public class MalumBlocks {
 
     //region runewood
     public static final DeferredHolder<Block, Block> RUNEWOOD_SAPLING = BLOCKS.register("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_LEAVES = BLOCKS.register("runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
-    public static final DeferredHolder<Block, Block> HANGING_RUNEWOOD_LEAVES = BLOCKS.register("hanging_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
-
     public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_SAPLING = BLOCKS.register("azure_runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.AZURE_RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
+
+    public static final DeferredHolder<Block, Block> RUNEWOOD_LEAVES = BLOCKS.register("runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
     public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_LEAVES = BLOCKS.register("azure_runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
+
+    public static final DeferredHolder<Block, Block> HANGING_RUNEWOOD_LEAVES = BLOCKS.register("hanging_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
     public static final DeferredHolder<Block, Block> HANGING_AZURE_RUNEWOOD_LEAVES = BLOCKS.register("hanging_azure_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
 
     public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD_LOG = BLOCKS.register("stripped_runewood_log", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_LOGS)));
-    public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD = BLOCKS.register("stripped_runewood", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
-    public static final DeferredHolder<Block, Block> REVEALED_RUNEWOOD_LOG = BLOCKS.register("revealed_runewood_log", () -> new SapFilledLogBlock(MalumBlockProperties.RUNEWOOD_LOGS(), STRIPPED_RUNEWOOD_LOG, MalumItems.RUNIC_SAP, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
-
     public static final DeferredHolder<Block, Block> RUNEWOOD_LOG = BLOCKS.register("runewood_log", () -> new MalumLogBLock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD_LOG));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD = BLOCKS.register("stripped_runewood", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
     public static final DeferredHolder<Block, Block> RUNEWOOD = BLOCKS.register("runewood", () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD));
+
+    public static final DeferredHolder<Block, Block> REVEALED_RUNEWOOD_LOG = BLOCKS.register("revealed_runewood_log", () -> new SapFilledLogBlock(MalumBlockProperties.RUNEWOOD_LOGS(), STRIPPED_RUNEWOOD_LOG, MalumItems.RUNIC_SAP, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
     public static final DeferredHolder<Block, Block> EXPOSED_RUNEWOOD_LOG = BLOCKS.register("exposed_runewood_log", () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD().addTags(STRIPPED_LOGS), REVEALED_RUNEWOOD_LOG));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS = BLOCKS.register("runewood_boards", () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
@@ -367,13 +369,15 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_LEAVES = BLOCKS.register("soulwood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.SOULWOOD_LEAVES().setCutoutRenderType(), new Color(213, 8, 63), new Color(255, 61, 243)));
     public static final DeferredHolder<Block, Block> HANGING_SOULWOOD_LEAVES = BLOCKS.register("hanging_soulwood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_SOULWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), new Color(213, 8, 63), new Color(255, 61, 243)));
 
-    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD_LOG = BLOCKS.register("stripped_soulwood_log", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS)));
-    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD = BLOCKS.register("stripped_soulwood", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_WOODS)));
-    public static final DeferredHolder<Block, Block> REVEALED_SOULWOOD_LOG = BLOCKS.register("revealed_soulwood_log", () -> new SapFilledSoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG, MalumItems.CURSED_SAP, MalumSpiritTypes.ELDRITCH_COLORS().primaryColor(), new Color(255, 61, 106)));
-
     public static final DeferredHolder<Block, Block> BLIGHTED_SOULWOOD = BLOCKS.register("blighted_soulwood", () -> new BlightedSoulwoodBlock(MalumBlockProperties.SOULWOOD_LOGS()));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD_LOG = BLOCKS.register("stripped_soulwood_log", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS)));
     public static final DeferredHolder<Block, Block> SOULWOOD_LOG = BLOCKS.register("soulwood_log", () -> new SoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD = BLOCKS.register("stripped_soulwood", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_WOODS)));
     public static final DeferredHolder<Block, Block> SOULWOOD = BLOCKS.register("soulwood", () -> new SoulwoodBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD));
+
+    public static final DeferredHolder<Block, Block> REVEALED_SOULWOOD_LOG = BLOCKS.register("revealed_soulwood_log", () -> new SapFilledSoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG, MalumItems.CURSED_SAP, MalumSpiritTypes.ELDRITCH_COLORS().primaryColor(), new Color(255, 61, 106)));
     public static final DeferredHolder<Block, Block> EXPOSED_SOULWOOD_LOG = BLOCKS.register("exposed_soulwood_log", () -> new LodestoneLogBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS), REVEALED_SOULWOOD_LOG));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS = BLOCKS.register("soulwood_boards", () -> new Block(MalumBlockProperties.SOULWOOD_PLANKS()));
@@ -439,20 +443,21 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_WALL_SIGN = BLOCKS.register("soulwood_wall_sign", () -> new LodestoneWallSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
     //endregion
 
-    //region scarstone
-    public static final DeferredHolder<Block, Block> SCARSTONE = BLOCKS.register("scarstone", () -> new ScarstoneBlock(MalumBlockProperties.SCARSTONE()));
-    public static final DeferredHolder<Block, Block> STRANGE_CRYSTAL = BLOCKS.register("strange_crystal", () -> new StrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
-    public static final DeferredHolder<Block, Block> LARGE_STRANGE_CRYSTAL = BLOCKS.register("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
-    public static final DeferredHolder<Block, Block> STRANGEROOT = BLOCKS.register("strangeroot", () -> new StrangeRootBlock(MalumBlockProperties.STRANGEROOT()));
-
-    //endregion
     //region blight
+    public static final DeferredHolder<Block, Block> COLUMNAR_BLIGHT = BLOCKS.register("columnar_blight", () -> new ColumnarBlightBlock(MalumBlockProperties.BLIGHTED_EARTH()));
     public static final DeferredHolder<Block, Block> BLIGHTED_EARTH = BLOCKS.register("blighted_earth", () -> new BlightedEarthBlock(MalumBlockProperties.BLIGHTED_EARTH()));
     public static final DeferredHolder<Block, Block> BLIGHT = BLOCKS.register("blight", () -> new BlightedCoverageBlock(MalumBlockProperties.BLIGHTED_COVERING()));
     public static final DeferredHolder<Block, Block> BLIGHTED_GROWTH = BLOCKS.register("blighted_growth", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
     public static final DeferredHolder<Block, Block> BLIGHTPEARL = BLOCKS.register("blightpearl", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
     public static final DeferredHolder<Block, Block> BLIGHTROOT = BLOCKS.register("blightroot", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
     public static final DeferredHolder<Block, Block> CLINGING_BLIGHT = BLOCKS.register("clinging_blight", () -> new CreepingBlightBlock(MalumBlockProperties.CLINGING_BLIGHT()));
+    //endregion
+
+    //region scarstone
+    public static final DeferredHolder<Block, Block> SCARSTONE = BLOCKS.register("scarstone", () -> new ScarstoneBlock(MalumBlockProperties.SCARSTONE()));
+    public static final DeferredHolder<Block, Block> STRANGE_CRYSTAL = BLOCKS.register("strange_crystal", () -> new StrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
+    public static final DeferredHolder<Block, Block> LARGE_STRANGE_CRYSTAL = BLOCKS.register("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
+    public static final DeferredHolder<Block, Block> STRANGEROOT = BLOCKS.register("strangeroot", () -> new StrangeRootBlock(MalumBlockProperties.STRANGEROOT()));
     //endregion
 
     //region ether

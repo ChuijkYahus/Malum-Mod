@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "S": {
-      "tag": "c:rods/wooden"
-    },
     "X": {
       "item": "malum:iridescent_ether"
+    },
+    "Y": {
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [
     "X",
-    "S"
+    "Y"
   ],
   "result": {
     "count": 2,

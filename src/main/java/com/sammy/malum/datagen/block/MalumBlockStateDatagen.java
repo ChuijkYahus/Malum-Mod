@@ -211,10 +211,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD,
                 BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_ARCANE_CHARCOAL,
                 BLOCK_OF_AURIC_EMBERS, BLOCK_OF_LIVING_FLESH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
 
         setTexturePath("blight/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLIGHTED_EARTH);
+        MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_BLIGHT);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, BLIGHTED_EARTH);
         MalumBlockStateSmithTypes.COVERING_BLOCK.act(data, BLIGHT);
         MalumBlockStateSmithTypes.BLIGHTED_GROWTH.act(data, BLIGHTED_GROWTH);
         MalumBlockStateSmithTypes.CREEPING_BLIGHT.act(data, CLINGING_BLIGHT);

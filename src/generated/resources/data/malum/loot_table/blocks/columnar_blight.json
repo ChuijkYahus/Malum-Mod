@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "malum:columnar_blight"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/mass_of_blighted_gunk"
+  "random_sequence": "malum:blocks/columnar_blight"
 }

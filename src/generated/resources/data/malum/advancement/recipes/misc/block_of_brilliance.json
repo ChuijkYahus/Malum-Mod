@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_brilliance": {
+    "has_raw_brilliance": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brilliance"
+      "has_raw_brilliance"
     ]
   ],
   "rewards": {

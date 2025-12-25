@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_malignant_alloy": {
+    "has_refined_soulstone": {
       "conditions": {
         "items": [
           {
-            "items": "malum:malignant_pewter_ingot"
+            "items": "malum:refined_soulstone"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:malignant_alloy_from_block"
+        "recipe": "malum:refined_soulstone_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_malignant_alloy"
+      "has_refined_soulstone"
     ]
   ],
   "rewards": {
     "recipes": [
-      "malum:malignant_alloy_from_block"
+      "malum:refined_soulstone_from_block"
     ]
   }
 }

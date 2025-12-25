@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_raw_soulstone": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_raw_soulstone"
     ]
   ],
   "rewards": {

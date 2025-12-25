@@ -2,19 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "malum:dross_stone"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    },
     "X": {
       "item": "malum:iridescent_ether"
+    },
+    "Y": {
+      "item": "malum:dross_stone"
     }
   },
   "pattern": [
-    "#X#",
-    "S#S"
+    "X",
+    "Y"
   ],
   "result": {
     "count": 2,

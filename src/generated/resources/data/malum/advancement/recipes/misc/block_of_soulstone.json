@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_refined_soulstone": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_soulstone"
+            "items": "malum:refined_soulstone"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_refined_soulstone"
     ]
   ],
   "rewards": {

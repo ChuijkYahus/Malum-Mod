@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_brilliance": {
+    "has_malignant_pewter_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_brilliance"
+            "items": "malum:malignant_pewter_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:brilliance_from_block"
+        "recipe": "malum:malignant_pewter_ingot_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_brilliance"
+      "has_malignant_pewter_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "malum:brilliance_from_block"
+      "malum:malignant_pewter_ingot_from_block"
     ]
   }
 }
