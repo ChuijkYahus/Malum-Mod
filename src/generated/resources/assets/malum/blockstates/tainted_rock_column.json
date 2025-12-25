@@ -22,39 +22,39 @@
     },
     "axis=y,bottom=false,top=false": {
       "model": "malum:block/tainted_rock_column",
-      "y": 270
+      "y": 180
     },
     "axis=y,bottom=false,top=true": {
       "model": "malum:block/tainted_rock_column_lower",
-      "y": 270
+      "y": 180
     },
     "axis=y,bottom=true,top=false": {
       "model": "malum:block/tainted_rock_column_upper",
-      "y": 270
+      "y": 180
     },
     "axis=y,bottom=true,top=true": {
       "model": "malum:block/tainted_rock_column_segment",
-      "y": 270
+      "y": 180
     },
     "axis=z,bottom=false,top=false": {
       "model": "malum:block/tainted_rock_column",
       "x": 90,
-      "y": 270
+      "y": 180
     },
     "axis=z,bottom=false,top=true": {
       "model": "malum:block/tainted_rock_column_lower",
       "x": 90,
-      "y": 270
+      "y": 180
     },
     "axis=z,bottom=true,top=false": {
       "model": "malum:block/tainted_rock_column_upper",
       "x": 90,
-      "y": 270
+      "y": 180
     },
     "axis=z,bottom=true,top=true": {
       "model": "malum:block/tainted_rock_column_segment",
       "x": 90,
-      "y": 270
+      "y": 180
     }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "malum:block/arcane_rock/dross/dark_dross_tiles",
+    "side": "malum:block/arcane_rock/dross/dark_dross_tiles",
+    "top": "malum:block/arcane_rock/dross/dark_dross_tiles"
+  }
+}

@@ -83,14 +83,6 @@ public class MalumItems {
         return DEFAULT_PROPERTIES().stacksTo(1);
     }
 
-    public static LodestoneItemProperties ARCHAIC_PROPERTIES() {
-        return new LodestoneItemProperties(MalumCreativeTabs.ARCHAIC_SECT);
-    }
-
-    public static LodestoneItemProperties ARCHAIC_GEAR_PROPERTIES() {
-        return DEFAULT_PROPERTIES().stacksTo(1);
-    }
-
     public static LodestoneItemProperties BUILDING_PROPERTIES() {
         return new LodestoneItemProperties(MalumCreativeTabs.BUILDING);
     }
@@ -249,6 +241,54 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_ITEM_STAND = register("twisted_rock_item_stand", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_ITEM_STAND.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_ITEM_PEDESTAL = register("twisted_rock_item_pedestal", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_ITEM_PEDESTAL.get(), p));
     //endregion twisted rock
+
+    //region dross stone
+    public static final DeferredHolder<Item, Item> DROSS_STONE = register("dross_stone", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE.get(), p));
+    public static final DeferredHolder<Item, Item> POLISHED_DROSS_STONE = register("polished_dross_stone", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_DROSS_STONE.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_BRICKS = register("dross_stone_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_BRICKS.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_TILES = register("dross_stone_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_TILES.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_MOSAIC = register("dross_stone_mosaic", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_MOSAIC.get(), p));
+
+    public static final DeferredHolder<Item, Item> GRAY_DROSS_TILES = register("gray_dross_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.GRAY_DROSS_TILES.get(), p));
+    public static final DeferredHolder<Item, Item> DARK_DROSS_TILES = register("dark_dross_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DARK_DROSS_TILES.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_COLUMN = register("dross_stone_column", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_COLUMN.get(), p));
+    public static final DeferredHolder<Item, Item> CUT_DROSS_STONE = register("cut_dross_stone", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CUT_DROSS_STONE.get(), p));
+    public static final DeferredHolder<Item, Item> CHISELED_DROSS_STONE = register("chiseled_dross_stone", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CHISELED_DROSS_STONE.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_STAIRS = register("dross_stone_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> POLISHED_DROSS_STONE_STAIRS = register("polished_dross_stone_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_DROSS_STONE_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_BRICKS_STAIRS = register("dross_stone_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_BRICKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_TILES_STAIRS = register("dross_stone_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_TILES_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_MOSAIC_STAIRS = register("dross_stone_mosaic_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_MOSAIC_STAIRS.get(), p));
+
+    public static final DeferredHolder<Item, Item> GRAY_DROSS_TILES_STAIRS = register("gray_dross_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.GRAY_DROSS_TILES_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> DARK_DROSS_TILES_STAIRS = register("dark_dross_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DARK_DROSS_TILES_STAIRS.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_SLAB = register("dross_stone_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> POLISHED_DROSS_STONE_SLAB = register("polished_dross_stone_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_DROSS_STONE_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_BRICKS_SLAB = register("dross_stone_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_BRICKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_TILES_SLAB = register("dross_stone_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_TILES_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_MOSAIC_SLAB = register("dross_stone_mosaic_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_MOSAIC_SLAB.get(), p));
+
+    public static final DeferredHolder<Item, Item> GRAY_DROSS_TILES_SLAB = register("gray_dross_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.GRAY_DROSS_TILES_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> DARK_DROSS_TILES_SLAB = register("dark_dross_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DARK_DROSS_TILES_SLAB.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_WALL = register("dross_stone_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> POLISHED_DROSS_STONE_WALL = register("polished_dross_stone_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_DROSS_STONE_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_BRICKS_WALL = register("dross_stone_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_BRICKS_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_TILES_WALL = register("dross_stone_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_TILES_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_MOSAIC_WALL = register("dross_stone_mosaic_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_MOSAIC_WALL.get(), p));
+
+    public static final DeferredHolder<Item, Item> GRAY_DROSS_TILES_WALL = register("gray_dross_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.GRAY_DROSS_TILES_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> DARK_DROSS_TILES_WALL = register("dark_dross_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DARK_DROSS_TILES_WALL.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_PRESSURE_PLATE = register("dross_stone_pressure_plate", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_PRESSURE_PLATE.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_BUTTON = register("dross_stone_button", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_BUTTON.get(), p));
+
+    public static final DeferredHolder<Item, Item> DROSS_STONE_ITEM_STAND = register("dross_stone_item_stand", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_ITEM_STAND.get(), p));
+    public static final DeferredHolder<Item, Item> DROSS_STONE_ITEM_PEDESTAL = register("dross_stone_item_pedestal", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DROSS_STONE_ITEM_PEDESTAL.get(), p));
+    //endregion dross stone
 
     //region runewood
     public static final DeferredHolder<Item, Item> RUNIC_SAP = register("runic_sap", MalumItems::NATURE_PROPERTIES, (p) -> new BottledDrinkItem(NATURE_PROPERTIES().food(MalumFoodProperties.RUNIC_SAP)));
@@ -617,11 +657,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> TWISTED_IRIDESCENT_ETHER_BRAZIER = register("twisted_iridescent_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), p, true));
     //endregion
 
-    //region archaic sect stuff
-
-    public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::ARCHAIC_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
-    public static final DeferredHolder<Item, Item> BROKEN_BLADE = register("broken_blade", MalumItems::ARCHAIC_PROPERTIES, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
-
     //region autmgnets
     public static final DeferredHolder<Item, Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItems::DEFAULT_PROPERTIES, MendingDiffuserItem::new);
     public static final DeferredHolder<Item, Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItems::DEFAULT_PROPERTIES, ImpurityStabilizer::new);
@@ -755,6 +790,13 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNE_OF_INDOMITABILITY = register("rune_of_indomitability", MalumItems::GEAR_PROPERTIES, RuneIndomitabilityItem::new);
     public static final DeferredHolder<Item, Item> RUNE_OF_IGNEOUS_SOLACE = register("rune_of_igneous_solace", MalumItems::GEAR_PROPERTIES, RuneIgneousSolaceItem::new);
     //endregion
+
+    //region cult of the iron crow
+    public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::GEAR_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
+    public static final DeferredHolder<Item, Item> BROKEN_BLADE = register("broken_blade", MalumItems::GEAR_PROPERTIES, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
+    //endregion
+
+
 
 
     public static Item skinHoldingItem(Item.Properties properties, ItemSkinComponent skin) {

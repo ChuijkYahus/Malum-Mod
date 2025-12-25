@@ -17,6 +17,7 @@ import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.GRAY_DROSS_TILES_SLAB;
 
 public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
@@ -104,6 +105,32 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TWISTED_ETHER_BRAZIER);
         MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TWISTED_IRIDESCENT_ETHER_BRAZIER);
         itemModelProvider.setTexturePath("");
+
+        setTexturePath("arcane_rock/dross/");
+        BlockStateSmithTypes.FULL_BLOCK.act(data,
+                DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS, DROSS_STONE_TILES, DROSS_STONE_MOSAIC, CHISELED_DROSS_STONE,
+                GRAY_DROSS_TILES, DARK_DROSS_TILES);
+
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                DROSS_STONE_SLAB, POLISHED_DROSS_STONE_SLAB, DROSS_STONE_BRICKS_SLAB, DROSS_STONE_TILES_SLAB, DROSS_STONE_MOSAIC_SLAB,
+                GRAY_DROSS_TILES_SLAB, DARK_DROSS_TILES_SLAB);
+
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                DROSS_STONE_STAIRS, POLISHED_DROSS_STONE_STAIRS, DROSS_STONE_BRICKS_STAIRS, DROSS_STONE_TILES_STAIRS, DROSS_STONE_MOSAIC_STAIRS,
+                GRAY_DROSS_TILES_STAIRS, DARK_DROSS_TILES_STAIRS);
+
+        BlockStateSmithTypes.WALL_BLOCK.act(data,
+                DROSS_STONE_WALL, POLISHED_DROSS_STONE_WALL, DROSS_STONE_BRICKS_WALL, DROSS_STONE_TILES_WALL, DROSS_STONE_MOSAIC_WALL,
+                GRAY_DROSS_TILES_WALL, DARK_DROSS_TILES_WALL);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_DROSS_STONE);
+        MalumBlockStateSmithTypes.COLUMN.act(data, DROSS_STONE_COLUMN);
+
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, DROSS_STONE_BUTTON);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, DROSS_STONE_PRESSURE_PLATE);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, DROSS_STONE_ITEM_PEDESTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
 
         setTexturePath("runewood/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,

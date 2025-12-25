@@ -930,6 +930,576 @@
     ],
     "subtitle": "malum.subtitle.deepslate_soulstone_step"
   },
+  "dross_stone_break": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/break1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/break1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break5",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_break"
+  },
+  "dross_stone_bricks_break": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/break1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break5",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_bricks_break"
+  },
+  "dross_stone_bricks_fall": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_bricks_fall"
+  },
+  "dross_stone_bricks_hit": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_bricks_hit"
+  },
+  "dross_stone_bricks_place": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/break6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/break1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break5",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_bricks_place"
+  },
+  "dross_stone_bricks_step": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/bricks/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_bricks_step"
+  },
+  "dross_stone_fall": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_fall"
+  },
+  "dross_stone_hit": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_hit"
+  },
+  "dross_stone_place": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/break1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/break6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/break1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/break5",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_place"
+  },
+  "dross_stone_step": {
+    "sounds": [
+      {
+        "name": "malum:blocks/arcane_rock/hit1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:blocks/arcane_rock/hit6",
+        "pitch": 0.8
+      },
+      {
+        "name": "block/basalt/step1",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step2",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step3",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step4",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step5",
+        "pitch": 0.9,
+        "weight": 2
+      },
+      {
+        "name": "block/basalt/step6",
+        "pitch": 0.9,
+        "weight": 2
+      }
+    ],
+    "subtitle": "malum.subtitle.dross_stone_step"
+  },
   "echoing_ring_absorbs": {
     "sounds": [
       "malum:curiosities/trinkets/cancer_ring/grow1",

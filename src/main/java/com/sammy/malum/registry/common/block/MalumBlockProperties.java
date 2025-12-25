@@ -77,7 +77,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties TAINTED_ROCK() {
         return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.TAINTED_ROCK)
+                .addTag(TAINTED_ROCK)
                 .strength(1.25F, 9.0F)
                 .sound(MalumSoundEvents.TAINTED_ROCK)
                 .mapColor(MapColor.COLOR_GRAY)
@@ -87,6 +87,34 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties TAINTED_ROCK_BRICKS() {
         return TAINTED_ROCK().sound(MalumSoundEvents.TAINTED_ROCK_BRICKS);
+    }
+
+    public static LodestoneBlockProperties TWISTED_ROCK() {
+        return new LodestoneBlockProperties()
+                .addTag(TWISTED_ROCK)
+                .strength(1.25F, 9.0F)
+                .sound(MalumSoundEvents.TWISTED_ROCK)
+                .mapColor(MapColor.COLOR_BLACK)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties TWISTED_ROCK_BRICKS() {
+        return TWISTED_ROCK().sound(MalumSoundEvents.TWISTED_ROCK_BRICKS);
+    }
+
+    public static LodestoneBlockProperties DROSS_STONE() {
+        return new LodestoneBlockProperties()
+                .addTag(DROSS_STONE)
+                .strength(2F, -1.0F)
+                .sound(MalumSoundEvents.DROSS_STONE)
+                .mapColor(MapColor.COLOR_BROWN)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties DROSS_STONE_BRICKS() {
+        return TWISTED_ROCK().sound(MalumSoundEvents.DROSS_STONE_BRICKS);
     }
 
     public static LodestoneBlockProperties TAINTED_ROCK_ARTIFICE() {
@@ -108,20 +136,6 @@ public class MalumBlockProperties {
                 .strength(2F, 30.0F)
                 .isRedstoneConductor(Blocks::never)
                 .addTag(IS_RITE_IMMUNE);
-    }
-
-    public static LodestoneBlockProperties TWISTED_ROCK() {
-        return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.TWISTED_ROCK)
-                .strength(1.25F, 9.0F)
-                .sound(MalumSoundEvents.TWISTED_ROCK)
-                .mapColor(MapColor.COLOR_BLACK)
-                .requiresCorrectToolForDrops()
-                .needsPickaxe();
-    }
-
-    public static LodestoneBlockProperties TWISTED_ROCK_BRICKS() {
-        return TWISTED_ROCK().sound(MalumSoundEvents.TWISTED_ROCK_BRICKS);
     }
 
     public static LodestoneBlockProperties VARNISHED_TERRACOTTA(DyeColor color) {
@@ -282,7 +296,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties SOULWOOD_SAPLING() {
         return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.BLIGHTED_PLANTS)
+                .addTag(BLIGHTED_PLANTS)
                 .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
                 .mapColor(MapColor.TERRACOTTA_BLACK)
                 .setCutoutRenderType()
@@ -332,7 +346,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties BLIGHT() {
         return new LodestoneBlockProperties()
-                .addTags(MalumTags.BlockTags.BLIGHT)
+                .addTags(BLIGHT)
                 .mapColor(MapColor.COLOR_BLACK);
     }
 
@@ -360,7 +374,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties BLIGHTED_PLANTS() {
         return BLIGHT()
-                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS)
+                .addTags(BLIGHTED_PLANTS)
                 .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .addTag(REPLACEABLE_BY_TREES)
@@ -373,7 +387,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties CLINGING_BLIGHT() {
         return BLIGHT()
-                .addTags(MalumTags.BlockTags.BLIGHTED_PLANTS)
+                .addTags(BLIGHTED_PLANTS)
                 .sound(MalumSoundEvents.BLIGHTED_FOLIAGE)
                 .addTag(REPLACEABLE_BY_TREES)
                 .setCutoutRenderType()
@@ -480,7 +494,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties ETHER() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(MalumTags.BlockTags.TRAY_HEAT_SOURCES)
+                .addTag(TRAY_HEAT_SOURCES)
                 .sound(MalumSoundEvents.ETHER)
                 .noCollission()
                 .instabreak()
@@ -491,7 +505,7 @@ public class MalumBlockProperties {
         return RUNEWOOD()
                 .addTag(net.minecraft.tags.BlockTags.WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(MalumTags.BlockTags.TRAY_HEAT_SOURCES)
+                .addTag(TRAY_HEAT_SOURCES)
                 .noCollission()
                 .instabreak()
                 .setCutoutRenderType()
@@ -501,7 +515,7 @@ public class MalumBlockProperties {
         return TAINTED_ROCK()
                 .addTag(net.minecraft.tags.BlockTags.WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(MalumTags.BlockTags.TRAY_HEAT_SOURCES)
+                .addTag(TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .lightLevel((b) -> 14);
     }
@@ -509,14 +523,14 @@ public class MalumBlockProperties {
         return TWISTED_ROCK()
                 .addTag(net.minecraft.tags.BlockTags.WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(MalumTags.BlockTags.TRAY_HEAT_SOURCES)
+                .addTag(TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .lightLevel((b) -> 14);
     }
 
     public static LodestoneBlockProperties WAVEFORM_DIODE() {
         return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.CREATE_WRENCH_PICKUP)
+                .addTag(CREATE_WRENCH_PICKUP)
                 .mapColor(COPPER_BLOCK.defaultMapColor())
                 .strength(3.0F, 32.0F)
                 .sound(MalumSoundEvents.SPIRIT_DIODE)
@@ -528,7 +542,7 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties GUST_TECH() {
         return new LodestoneBlockProperties()
-                .addTag(MalumTags.BlockTags.CREATE_WRENCH_PICKUP)
+                .addTag(CREATE_WRENCH_PICKUP)
                 .mapColor(COPPER_BLOCK.defaultMapColor())
                 .strength(4.0F, 32.0F)
                 .sound(MalumSoundEvents.SPIRIT_DIODE)
@@ -565,7 +579,7 @@ public class MalumBlockProperties {
                 .mapColor(MapColor.COLOR_ORANGE)
                 .addTag(Tags.Blocks.STORAGE_BLOCKS)
                 .addTag(net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS)
-                .addTags(MalumTags.BlockTags.HEAT_SOURCES)
+                .addTags(HEAT_SOURCES)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(5.0F, 6.0F)

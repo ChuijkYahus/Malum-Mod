@@ -18,8 +18,8 @@ public class MalumCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_basis_of_magic"))
-                    .withTabsAfter(MalumMod.malumPath("malum_nature"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
+                    .withTabsAfter(MalumMod.malumPath("malum_nature"))
                     .icon(() -> MalumItems.SPIRIT_ALTAR.get().getDefaultInstance()).build()
     );
 
@@ -29,14 +29,6 @@ public class MalumCreativeTabs {
                     .withTabsBefore(CONTENT.getId())
                     .withTabsAfter(MalumMod.malumPath("malum_building"))
                     .icon(() -> MalumItems.RUNEWOOD_SAPLING.get().getDefaultInstance()).build()
-    );
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ARCHAIC_SECT = CREATIVE_MODE_TABS.register("malum_archaic_sect",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_archaic_sect"))
-                    .withTabsAfter(MalumMod.malumPath("malum_building"))
-                    .withTabsBefore(NATURE.getId())
-                    .icon(() -> MalumItems.SHAPED_SLAB.get().getDefaultInstance()).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING = CREATIVE_MODE_TABS.register("malum_building",
@@ -51,7 +43,7 @@ public class MalumCreativeTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_metallurgic_magics"))
                     .withTabsBefore(BUILDING.getId())
-                    .withTabsAfter(MalumMod.malumPath("ritual_shards"))
+                    .withTabsAfter(MalumMod.malumPath("malum_iron_crown_cult"))
                     .icon(() -> MalumItems.ALCHEMICAL_IMPETUS.get().getDefaultInstance()).build()
     );
 

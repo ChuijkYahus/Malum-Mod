@@ -110,7 +110,7 @@ public class MalumBlockStateSmithTypes {
             ResourceLocation side = provider.getBlockTexture(name + affix);
             ResourceLocation end = provider.getBlockTexture(name + "_end");
             BlockModelBuilder model = provider.models().cubeColumn(name + affix, side, end);
-            int y = axis.equals(Direction.Axis.X) ? 90 : 270;
+            int y = axis.equals(Direction.Axis.X) ? 90 : 180;
             int x = axis.equals(Direction.Axis.Y) ? 0 : 90;
             return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
         });

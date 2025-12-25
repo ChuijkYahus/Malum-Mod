@@ -120,6 +120,12 @@ public class MalumTags {
         public static final TagKey<Item> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
         public static final TagKey<Item> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
 
+        public static final TagKey<Item> DROSS_STONE = tag("dross_stone");
+        public static final TagKey<Item> DROSS_STONE_BLOCKS = tag("dross_stone_blocks");
+        public static final TagKey<Item> DROSS_STONE_SLABS = tag("dross_stone_slabs");
+        public static final TagKey<Item> DROSS_STONE_STAIRS = tag("dross_stone_stairs");
+        public static final TagKey<Item> DROSS_STONE_WALLS = tag("dross_stone_walls");
+
 
 
         private static TagKey<Item> modTag(String path) {
@@ -158,6 +164,12 @@ public class MalumTags {
         public static final TagKey<Block> TWISTED_ROCK_SLABS = tag("twisted_rock_slabs");
         public static final TagKey<Block> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
         public static final TagKey<Block> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
+
+        public static final TagKey<Block> DROSS_STONE = tag("dross_stone");
+        public static final TagKey<Block> DROSS_STONE_BLOCKS = tag("dross_stone_blocks");
+        public static final TagKey<Block> DROSS_STONE_SLABS = tag("dross_stone_slabs");
+        public static final TagKey<Block> DROSS_STONE_STAIRS = tag("dross_stone_stairs");
+        public static final TagKey<Block> DROSS_STONE_WALLS = tag("dross_stone_walls");
 
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");

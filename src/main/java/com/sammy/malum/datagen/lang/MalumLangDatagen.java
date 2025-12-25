@@ -447,6 +447,7 @@ public class MalumLangDatagen extends LanguageProvider {
         add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles");
         add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
         add("itemGroup.malum_scars_of_arcana", "Malum: Scars of Arcana");
+        add("itemGroup.malum_iron_crown_cult", "Malum: Influence Made Manifest");
         add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
         add("itemGroup.malum_geas", "Malum: Sworn Oaths");
         add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");

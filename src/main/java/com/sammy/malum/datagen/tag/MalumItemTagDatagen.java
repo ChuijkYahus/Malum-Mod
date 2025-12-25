@@ -55,7 +55,6 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = ITEMS.getEntries();
         MalumWoodSetDatagen.addTags(this);
-        MalumRockSetDatagen.addTags(this);
         copyTagsFromBlockProperties(blocks);
 
 
