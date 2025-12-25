@@ -73,8 +73,12 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
         tag(ItemTags.DYEABLE).add(
-                ETHER.get(), ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
-                IRIDESCENT_ETHER.get(), IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
+                ETHER.get(), IRIDESCENT_ETHER.get(),
+                ETHER_TORCH.get(), IRIDESCENT_ETHER_TORCH.get(),
+                TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
+                TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
+                TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
+                TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
@@ -208,13 +212,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
                 .addOptional(ResourceLocation.parse("tetra:geode"));
 
         tag(SOULWOVEN_POUCH_EFFICIENT)
-                .addTags(SOUL_SHATTER_CAPABLE_WEAPON, SPIRITS, MOB_DROPS, MATERIALS, MINERALS)
-                .addTags(AUGMENTS, METAL_NODES)
-                .addTag(ARMORS)
-                .addTags(RING_CURIO, NECKLACE_CURIO, BELT_CURIO, BROOCH_CURIO, RUNE_CURIO)
-                .add(TOTEMIC_STAFF.get(), ARTIFICERS_CLAW.get(), TUNING_FORK.get(), LAMPLIGHTERS_TONGS.get(), CATALYST_LOBBER.get())
-                .add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get())
-                .add(SOULWOVEN_BANNER.get());
+                .addTags(SPIRITS);
         tag(SOULWOVEN_POUCH_AUTOCOLLECT)
                 .addTags(SPIRITS);
 

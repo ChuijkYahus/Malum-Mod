@@ -22,6 +22,10 @@
     "malum:dross_stone_button",
     "malum:dross_stone_pressure_plate",
     "malum:dross_stone_item_stand",
-    "malum:dross_stone_item_pedestal"
+    "malum:dross_stone_item_pedestal",
+    "malum:dross_ether_brazier",
+    "malum:dross_iridescent_ether_brazier",
+    "malum:dross_ether_cresset",
+    "malum:dross_iridescent_ether_cresset"
   ]
 }

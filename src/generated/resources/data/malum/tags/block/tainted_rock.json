@@ -36,6 +36,8 @@
     "malum:tainted_rock_item_pedestal",
     "malum:tainted_ether_brazier",
     "malum:tainted_iridescent_ether_brazier",
+    "malum:tainted_ether_cresset",
+    "malum:tainted_iridescent_ether_cresset",
     "malum:the_device"
   ]
 }

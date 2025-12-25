@@ -1,12 +1,20 @@
 {
   "values": [
     "malum:ether",
+    "malum:iridescent_ether",
     "malum:ether_torch",
+    "malum:iridescent_ether_torch",
     "malum:tainted_ether_brazier",
     "malum:twisted_ether_brazier",
-    "malum:iridescent_ether",
-    "malum:iridescent_ether_torch",
+    "malum:dross_ether_brazier",
     "malum:tainted_iridescent_ether_brazier",
-    "malum:twisted_iridescent_ether_brazier"
+    "malum:twisted_iridescent_ether_brazier",
+    "malum:dross_iridescent_ether_brazier",
+    "malum:tainted_ether_cresset",
+    "malum:twisted_ether_cresset",
+    "malum:dross_ether_cresset",
+    "malum:tainted_iridescent_ether_cresset",
+    "malum:twisted_iridescent_ether_cresset",
+    "malum:dross_iridescent_ether_cresset"
   ]
 }

@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
+import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
 
@@ -113,21 +115,21 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         return provider.withExistingParent(name, HANDHELD).texture("layer0", provider.getItemTexture(name)).texture("layer1", provider.getItemTexture(name + "_overlay"));
     });
 
-    public static ItemModelSmith ETHER_BRAZIER_ITEM = new ItemModelSmith((item, provider) -> {
+    public static Function<String, ItemModelSmith> ETHER_CONTAINING_ITEM = Util.memoize(n -> new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
         String rockType = name.split("_")[0];
-        String brazierName = rockType + "_ether_brazier";
+        String containerName = rockType + "_" + n;
         String overlayName = name.replace(rockType + "_", "");
-        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(brazierName)).texture("layer1", provider.getItemTexture(overlayName + "_overlay"));
-    });
+        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(containerName)).texture("layer1", provider.getItemTexture(overlayName + "_overlay"));
+    }));
 
-    public static ItemModelSmith IRIDESCENT_ETHER_BRAZIER_ITEM = new ItemModelSmith((item, provider) -> {
+    public static Function<String, ItemModelSmith> IRIDESCENT_ETHER_CONTAINING_ITEM = Util.memoize(n -> new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
         String rockType = name.split("_")[0];
-        String brazierName = rockType + "_ether_brazier";
+        String containerName = rockType + "_" + n;
         String overlayName = name.replace(rockType + "_", "");
-        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(brazierName)).texture("layer1", provider.getItemTexture(overlayName)).texture("layer2", provider.getItemTexture(overlayName + "_overlay"));
-    });
+        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(containerName)).texture("layer1", provider.getItemTexture(overlayName)).texture("layer2", provider.getItemTexture(overlayName + "_overlay"));
+    }));
 
     public static ItemModelSmith IRIDESCENT_ETHER_TORCH_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);

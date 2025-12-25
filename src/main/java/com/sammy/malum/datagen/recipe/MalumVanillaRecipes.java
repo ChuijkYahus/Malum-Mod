@@ -118,11 +118,15 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
         //ETHER
         etherTorch(output, MalumItems.ETHER_TORCH.get(), MalumItems.ETHER.get());
+        etherTorch(output, MalumItems.IRIDESCENT_ETHER_TORCH.get(), MalumItems.IRIDESCENT_ETHER.get());
+
         etherBrazier(output, MalumItems.TAINTED_ETHER_BRAZIER.get(), MalumItems.TAINTED_ROCK.get(), MalumItems.ETHER.get());
         etherBrazier(output, MalumItems.TWISTED_ETHER_BRAZIER.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.ETHER.get());
-        etherTorch(output, MalumItems.IRIDESCENT_ETHER_TORCH.get(), MalumItems.IRIDESCENT_ETHER.get());
+        etherBrazier(output, MalumItems.DROSS_ETHER_BRAZIER.get(), MalumItems.DROSS_STONE.get(), MalumItems.ETHER.get());
+
         etherBrazier(output, MalumItems.TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), MalumItems.TAINTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
         etherBrazier(output, MalumItems.TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
+        etherBrazier(output, MalumItems.DROSS_IRIDESCENT_ETHER_BRAZIER.get(), MalumItems.DROSS_STONE.get(), MalumItems.IRIDESCENT_ETHER.get());
 
         //BANNERS
         shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(MalumItems.SOULWOVEN_SILK.get())).save(output);

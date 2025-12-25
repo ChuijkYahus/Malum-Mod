@@ -408,7 +408,6 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
 
         addMiscEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
-        addMiscEffect("soulwoven_pouch_storage", "Rotates Magical Items");
         addMiscEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
         addMiscEffect("ravenous_pouch_drop", "Retains A Minimum When Emptied");
         addMiscEffect("soul_based_damage", "Deals Soul-Rending Damage");

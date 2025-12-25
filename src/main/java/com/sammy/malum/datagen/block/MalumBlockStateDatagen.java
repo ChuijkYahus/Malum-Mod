@@ -17,7 +17,6 @@ import java.util.function.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
-import static com.sammy.malum.registry.common.block.MalumBlocks.GRAY_DROSS_TILES_SLAB;
 
 public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
@@ -73,12 +72,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TAINTED_ROCK_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TAINTED_ROCK_ITEM_STAND);
 
-
-        itemModelProvider.setTexturePath("ether/");
-        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TAINTED_ETHER_BRAZIER);
-        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_BRAZIER);
-        itemModelProvider.setTexturePath("");
-
         setTexturePath("arcane_rock/twisted/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 TWISTED_ROCK, POLISHED_TWISTED_ROCK, TWISTED_ROCK_BRICKS, TWISTED_ROCK_TILES, TWISTED_ROCK_MOSAIC, CHISELED_TWISTED_ROCK);
@@ -100,11 +93,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TWISTED_ROCK_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TWISTED_ROCK_ITEM_STAND);
-
-        itemModelProvider.setTexturePath("ether/");
-        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TWISTED_ETHER_BRAZIER);
-        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TWISTED_IRIDESCENT_ETHER_BRAZIER);
-        itemModelProvider.setTexturePath("");
 
         setTexturePath("arcane_rock/dross/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
@@ -150,7 +138,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.LOG_BLOCK.act(data, RUNEWOOD_BEAM, RUNEWOOD_LOG, STRIPPED_RUNEWOOD_LOG, EXPOSED_RUNEWOOD_LOG, REVEALED_RUNEWOOD_LOG);
         BlockStateSmithTypes.WOOD_BLOCK.act(data, RUNEWOOD, STRIPPED_RUNEWOOD);
         BlockStateSmithTypes.LEAVES_BLOCK.act(data, RUNEWOOD_LEAVES, AZURE_RUNEWOOD_LEAVES);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel, HANGING_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel,
+                HANGING_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES);
 
         MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_RUNEWOOD_SAPLING, POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, RUNEWOOD_SAPLING, AZURE_RUNEWOOD_SAPLING);
@@ -244,15 +233,29 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
         MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
 
-        setTexturePath("");
+        setTexturePath("ether/");
         itemModelProvider.setTexturePath("ether/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, this::etherModel, ETHER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherTorchModel, ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, WALL_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherModel, IRIDESCENT_ETHER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.IRIDESCENT_ETHER_TORCH_ITEM, this::simpleBlock, this::etherTorchModel, IRIDESCENT_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, IRIDESCENT_WALL_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, this::etherModel,
+                ETHER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherModel,
+                IRIDESCENT_ETHER);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherTorchModel,
+                ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.IRIDESCENT_ETHER_TORCH_ITEM, this::simpleBlock, this::etherTorchModel,
+                IRIDESCENT_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel,
+                WALL_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel,
+                IRIDESCENT_WALL_ETHER_TORCH);
+
+        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TAINTED_ETHER_BRAZIER, TWISTED_ETHER_BRAZIER, DROSS_ETHER_BRAZIER);
+        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_BRAZIER, TWISTED_IRIDESCENT_ETHER_BRAZIER, DROSS_IRIDESCENT_ETHER_BRAZIER);
+
+        MalumBlockStateSmithTypes.CRESSET_BLOCK.act(data, TAINTED_ETHER_CRESSET, TWISTED_ETHER_CRESSET, DROSS_ETHER_CRESSET);
+        MalumBlockStateSmithTypes.IRIDESCENT_CRESSET_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_CRESSET, TWISTED_IRIDESCENT_ETHER_CRESSET, DROSS_IRIDESCENT_ETHER_CRESSET);
         itemModelProvider.setTexturePath("");
+        setTexturePath("");
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop,
                 RITE_ANCHOR, RITE_UNWEAVER);

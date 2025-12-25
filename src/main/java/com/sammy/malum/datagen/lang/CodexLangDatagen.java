@@ -570,7 +570,7 @@ public class CodexLangDatagen {
         addPages("soulwoven_silk.soulwoven_banner", "Soulstuff can glow, as a shattered soul proves. Why not activate that glow within the cloth? I have made banners to test the effect, and used differing reagents and spirits to give a variety of patterns. When imbued, they will glow dimly, or fiercely if given an additional spirit.");
 
         addSimpleEntryHeader("soulwoven_pouch", "Soulwoven Pouch", "A hop, a skip, and a reach outside");
-        addPages("soulwoven_pouch", "I often find Spirit Arcana cluttering my inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up Arcana when I collect any. It's physical capacity is no more impressive than that of a bundle with the added benefit of magical items being rotated slightly out of reality, taking up less space.");
+        addPages("soulwoven_pouch", "I often find Spirit Arcana cluttering my inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up Arcana when I collect any. It's physical capacity is no more impressive than that of a bundle with the added benefit of spirits being rotated slightly out of reality, taking up less space.");
 
         addSimpleEntryHeader("soulwoven_pouch.ravenous_pouch", "Ravenous Pouch", "Now make it hungry.");
         addPages("soulwoven_pouch.ravenous_pouch", "Although Spirit Arcana makes up much of the clutter I carry, it is not all that burdens my pockets. By fusing the pouch with rot, it sprouts teeth and transforms into the Ravenous Pouch. This hungry sack embodies the Gourmet aspect of Gluttony, aggressively snatching up any collected item that matches it's stored appetite.");

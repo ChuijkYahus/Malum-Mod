@@ -437,15 +437,13 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUSTIC_SOULWOOD_TILES_SLAB = register("rustic_soulwood_tiles_slab", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUSTIC_SOULWOOD_TILES_SLAB.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_DOOR = register("soulwood_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_DOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_DOOR = register("bolted_soulwood_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_DOOR.get(), p));
-
     public static final DeferredHolder<Item, Item> SOULWOOD_TRAPDOOR = register("soulwood_trapdoor", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_TRAPDOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_TRAPDOOR = register("bolted_soulwood_trapdoor", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_TRAPDOOR.get(), p));
-
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_DOOR = register("soulwood_boards_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_DOOR.get(), p));
-    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_DOOR = register("bolted_soulwood_boards_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_DOOR.get(), p));
-
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_TRAPDOOR = register("soulwood_boards_trapdoor", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_TRAPDOOR.get(), p));
+
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_DOOR = register("bolted_soulwood_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_DOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_TRAPDOOR = register("bolted_soulwood_trapdoor", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_TRAPDOOR.get(), p));
+    public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_DOOR = register("bolted_soulwood_boards_door", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_DOOR.get(), p));
     public static final DeferredHolder<Item, Item> BOLTED_SOULWOOD_BOARDS_TRAPDOOR = register("bolted_soulwood_boards_trapdoor", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_WALL = register("soulwood_boards_wall", MalumItems::NATURE_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_WALL.get(), p));
@@ -647,17 +645,27 @@ public class MalumItems {
 
     //region ether
     public static final DeferredHolder<Item, Item> ETHER = register("ether", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherItem(MalumBlocks.ETHER.get(), p, false));
+    public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER = register("iridescent_ether", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherItem(MalumBlocks.IRIDESCENT_ETHER.get(), p, true));
+
     public static final DeferredHolder<Item, Item> ETHER_TORCH = register("ether_torch", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherTorchItem(MalumBlocks.ETHER_TORCH.get(), MalumBlocks.WALL_ETHER_TORCH.get(), p, false));
+    public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER_TORCH = register("iridescent_ether_torch", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherTorchItem(MalumBlocks.IRIDESCENT_ETHER_TORCH.get(), MalumBlocks.IRIDESCENT_WALL_ETHER_TORCH.get(), p, true));
+
     public static final DeferredHolder<Item, Item> TAINTED_ETHER_BRAZIER = register("tainted_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TAINTED_ETHER_BRAZIER.get(), p, false));
     public static final DeferredHolder<Item, Item> TWISTED_ETHER_BRAZIER = register("twisted_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TWISTED_ETHER_BRAZIER.get(), p, false));
-
-    public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER = register("iridescent_ether", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherItem(MalumBlocks.IRIDESCENT_ETHER.get(), p, true));
-    public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER_TORCH = register("iridescent_ether_torch", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherTorchItem(MalumBlocks.IRIDESCENT_ETHER_TORCH.get(), MalumBlocks.IRIDESCENT_WALL_ETHER_TORCH.get(), p, true));
+    public static final DeferredHolder<Item, Item> DROSS_ETHER_BRAZIER = register("dross_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.DROSS_ETHER_BRAZIER.get(), p, false));
     public static final DeferredHolder<Item, Item> TAINTED_IRIDESCENT_ETHER_BRAZIER = register("tainted_iridescent_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), p, true));
     public static final DeferredHolder<Item, Item> TWISTED_IRIDESCENT_ETHER_BRAZIER = register("twisted_iridescent_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), p, true));
+    public static final DeferredHolder<Item, Item> DROSS_IRIDESCENT_ETHER_BRAZIER = register("dross_iridescent_ether_brazier", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherBrazierItem(MalumBlocks.DROSS_IRIDESCENT_ETHER_BRAZIER.get(), p, true));
+
+    public static final DeferredHolder<Item, Item> TAINTED_ETHER_CRESSET = register("tainted_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.TAINTED_ETHER_CRESSET.get(), p, false));
+    public static final DeferredHolder<Item, Item> TWISTED_ETHER_CRESSET = register("twisted_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.TWISTED_ETHER_CRESSET.get(), p, false));
+    public static final DeferredHolder<Item, Item> DROSS_ETHER_CRESSET = register("dross_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.DROSS_ETHER_CRESSET.get(), p, false));
+    public static final DeferredHolder<Item, Item> TAINTED_IRIDESCENT_ETHER_CRESSET = register("tainted_iridescent_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.TAINTED_IRIDESCENT_ETHER_CRESSET.get(), p, true));
+    public static final DeferredHolder<Item, Item> TWISTED_IRIDESCENT_ETHER_CRESSET = register("twisted_iridescent_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.TWISTED_IRIDESCENT_ETHER_CRESSET.get(), p, true));
+    public static final DeferredHolder<Item, Item> DROSS_IRIDESCENT_ETHER_CRESSET = register("dross_iridescent_ether_cresset", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCressetItem(MalumBlocks.DROSS_IRIDESCENT_ETHER_CRESSET.get(), p, true));
     //endregion
 
-    //region autmgnets
+    //region augments
     public static final DeferredHolder<Item, Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItems::DEFAULT_PROPERTIES, MendingDiffuserItem::new);
     public static final DeferredHolder<Item, Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItems::DEFAULT_PROPERTIES, ImpurityStabilizer::new);
     public static final DeferredHolder<Item, Item> SHIELDING_APPARATUS = register("shielding_apparatus", MalumItems::DEFAULT_PROPERTIES, ShieldingApparatusItem::new);
@@ -919,8 +927,11 @@ public class MalumItems {
                         case 1 -> EtherItem.getPrimaryColor(s);
                         default -> -1;
                     },
-                    ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
-                    IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
+                    ETHER_TORCH.get(), IRIDESCENT_ETHER_TORCH.get(),
+                    TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
+                    TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
+                    TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
+                    TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
 
             event.register((s, c) -> c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s),
                     ETHER.get(), IRIDESCENT_ETHER.get());
