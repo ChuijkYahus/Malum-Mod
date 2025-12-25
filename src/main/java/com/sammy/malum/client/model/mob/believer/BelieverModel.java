@@ -1,6 +1,7 @@
 package com.sammy.malum.client.model.mob.believer;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.model.mob.CultistHumanoidModel;
 import com.sammy.malum.client.model.mob.HierarchicalHumanoidModel;
 import com.sammy.malum.client.model.mob.MalumAnimationUtils;
 import com.sammy.malum.common.entity.mob.cultist.believer.BelieverCultist;
@@ -12,7 +13,7 @@ import net.minecraft.util.Mth;
 import team.lodestar.lodestone.systems.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class BelieverModel extends HierarchicalHumanoidModel<BelieverCultist> {
+public class BelieverModel extends CultistHumanoidModel<BelieverCultist> {
 
 	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("believer"), "main");
 
@@ -21,8 +22,8 @@ public class BelieverModel extends HierarchicalHumanoidModel<BelieverCultist> {
 	private final ModelPart leftTooth;
 	private final ModelPart rightTooth;
 
-	public BelieverModel(ModelPart root) {
-        super(root);
+	public BelieverModel(ModelPart modelDefinition) {
+        super(modelDefinition);
 		mask = head.getChild("mask");
 		teeth = mask.getChild("teeth");
 		leftTooth = teeth.getChild("left_tooth");
@@ -69,17 +70,15 @@ public class BelieverModel extends HierarchicalHumanoidModel<BelieverCultist> {
 	}
 
 	@Override
-	public void setupAnim(BelieverCultist believer, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		var utils = MalumAnimationUtils.create(this, believer, limbSwing, limbSwingAmount);
-
+	public void setupAnim(BelieverCultist believer, MalumAnimationUtils<BelieverCultist> utils, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float headYClamp = 0.7f;
 		float headXClamp = 0.08f;
 		float armClamp = 1.4F;
 		float legClamp = 0.7F;
 
-		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		float headYRot = netHeadYaw * Mth.DEG_TO_RAD;
 		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
-		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
 		float rightArmRotation = utils.getRightArmRotation(d -> d
@@ -88,11 +87,10 @@ public class BelieverModel extends HierarchicalHumanoidModel<BelieverCultist> {
 				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
 
 		float rightLegRotation = utils.getRightLegRotation(d -> d
-				.setRate(0.7F).setAmount(0.3f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
+				.setRate(0.8F).setAmount(0.9f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
 		float leftLegRotation = utils.getLeftLegRotation(d -> d
-				.setRate(0.7F).setAmount(0.3f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
+				.setRate(0.8F).setAmount(0.9f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
 
-		utils.reset(this);
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
@@ -101,10 +99,5 @@ public class BelieverModel extends HierarchicalHumanoidModel<BelieverCultist> {
 
 		rightLeg.xRot = rightLegRotation;
 		leftLeg.xRot = leftLegRotation;
-
-		if (riding) {
-			utils.applyRidingRotations(this);
-		}
-		utils.applyGenericArmAnimations(ageInTicks);
 	}
 }

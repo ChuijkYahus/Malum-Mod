@@ -1,7 +1,4 @@
-package com.sammy.malum.client.model.mob.evangelist;// Made with Blockbench 5.0.5
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
+package com.sammy.malum.client.model.mob.evangelist;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.CultistHumanoidModel;
@@ -24,8 +21,8 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 	private final ModelPart middle;
 	private final ModelPart upper;
 
-	public EvangelistModel(ModelPart root) {
-        super(root);
+	public EvangelistModel(ModelPart modelDefinition) {
+		super(modelDefinition);
 		tentacles = body.getChild("tentacles");
 		lower = tentacles.getChild("lower");
 		middle = tentacles.getChild("middle");
@@ -125,30 +122,27 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 	}
 
 	@Override
-	public void setupAnim(EvangelistCultist evangelist, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		var utils = MalumAnimationUtils.create(this, evangelist, limbSwing, limbSwingAmount);
-
+	public void setupAnim(EvangelistCultist evangelist, MalumAnimationUtils<EvangelistCultist> utils, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float headYClamp = 0.7f;
 		float headXClamp = 0.08f;
 		float armClamp = 1.4F;
 		float legClamp = 0.2F;
 
-		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		float headYRot = netHeadYaw * Mth.DEG_TO_RAD;
 		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
-		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
 		float rightArmRotation = utils.getRightArmRotation(d -> d
-				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+				.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
 		float leftArmRotation = utils.getLeftArmRotation(d -> d
-				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+				.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
 
 		float rightLegRotation = utils.getRightLegRotation(d -> d
 				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
 		float leftLegRotation = utils.getLeftLegRotation(d -> d
 				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
 
-		utils.reset(this);
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
@@ -159,11 +153,5 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 		rightLeg.visible = false;
 		leftLeg.xRot = leftLegRotation;
 		leftLeg.visible = false;
-
-
-		if (riding) {
-			utils.applyRidingRotations(this);
-		}
-		utils.applyGenericArmAnimations(ageInTicks);
 	}
 }

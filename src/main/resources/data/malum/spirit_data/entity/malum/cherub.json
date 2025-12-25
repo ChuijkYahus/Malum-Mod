@@ -1,0 +1,14 @@
+{
+  "registry_name": "malum:cherub",
+  "primary_type": "malum:eldritch",
+  "spirits": [
+    {
+      "spirit": "malum:eldritch",
+      "count": 2
+    },
+    {
+      "spirit": "malum:aerial",
+      "count": 2
+    }
+  ]
+}

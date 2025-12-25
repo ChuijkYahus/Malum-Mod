@@ -10,6 +10,7 @@ import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
+import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
@@ -88,19 +89,31 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<Block> RITE_ANCHOR_BLOCK = new BlockStateSmith<>(Block.class, MalumItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ResourceLocation top = provider.getBlockTexture("rite_anchor_top");
-        ResourceLocation side = provider.getBlockTexture("rite_anchor_side");
-        ResourceLocation bottom = provider.getBlockTexture("rite_anchor_bottom");
-        ModelFile model = provider.models().cubeBottomTop(name, side, bottom, top);
 
-        provider.getVariantBuilder(block)
-                .forAllStates(state -> {
-                    ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-                    builder.modelFile(model);
-                    return builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
-                });
+
+    public static BlockStateSmith<ColumnBlock> COLUMN = new BlockStateSmith<>(ColumnBlock.class, MalumItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            var upper = s.getValue(ColumnBlock.TOP);
+            var lower = s.getValue(ColumnBlock.BOTTOM);
+            var axis = s.getValue(ColumnBlock.AXIS);
+            String affix = "";
+            if (upper && lower) {
+                affix = "_segment";
+            }
+            else if (upper) {
+                affix = "_lower";
+            }
+            else if (lower) {
+                affix = "_upper";
+            }
+            ResourceLocation side = provider.getBlockTexture(name + affix);
+            ResourceLocation end = provider.getBlockTexture(name + "_end");
+            BlockModelBuilder model = provider.models().cubeColumn(name + affix, side, end);
+            int y = axis.equals(Direction.Axis.X) ? 90 : 270;
+            int x = axis.equals(Direction.Axis.Y) ? 0 : 90;
+            return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
+        });
     });
 
     public static BlockStateSmith<SpiritDiodeBlock> SPIRIT_DIODE = new BlockStateSmith<>(SpiritDiodeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {

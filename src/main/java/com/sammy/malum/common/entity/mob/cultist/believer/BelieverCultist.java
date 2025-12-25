@@ -3,6 +3,7 @@ package com.sammy.malum.common.entity.mob.cultist.believer;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.common.entity.mob.cultist.CultistMeleeAttackGoal;
+import com.sammy.malum.common.entity.mob.cultist.ICherubFriend;
 import com.sammy.malum.registry.common.entity.MalumEntities;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.nbt.CompoundTag;
@@ -21,10 +22,13 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
-public class BelieverCultist extends CultistMonster implements IAltarBlessingRecipient {
+public class BelieverCultist extends CultistMonster implements IAltarBlessingRecipient, ICherubFriend {
+
+    public static final Vec3 CHERUB_OFFSET = new Vec3(0, 2.5f, 0);
 
     public BelieverCultist(Level level) {
         super(MalumEntities.BELIEVER.get(), level);
@@ -34,9 +38,9 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
     protected void registerGoals() {
         var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
-        var meleeAttackGoal = new CultistMeleeAttackGoal(this, 0.8f);
+        var meleeAttackGoal = new CultistMeleeAttackGoal(this, 0.75f);
 
-        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
+        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.5f);
         var lookAtCultistGoal = new LookAtPlayerGoal(this, CultistMonster.class, 12.0F, 0.05f);
         var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
         var randomLookAround = new RandomLookAroundGoal(this);
@@ -48,16 +52,17 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
         goalSelector.addGoal(2, lookAtCultistGoal);
         goalSelector.addGoal(3, lookAtPlayer);
         goalSelector.addGoal(4, randomLookAround);
+
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.25)
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.25f)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75f)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.25)
+                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75)
                 .add(Attributes.ARMOR, 8.0)
                 .add(Attributes.STEP_HEIGHT, 1);
     }
@@ -67,21 +72,26 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
         super.tick();
     }
 
-    @Override
-    public boolean canReceiveAltarBuff() {
-        return false;
-    }
-
-    @Override
-    public void receiveAltarBuff() {
-
-    }
-
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         setItemSlot(EquipmentSlot.MAINHAND, MalumItems.BROKEN_BLADE.get().getDefaultInstance());
         enchantSpawnedWeapon(level, random, difficulty);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    }
+
+    @Override
+    public int getCherubCapacity() {
+        return 1;
+    }
+
+    @Override
+    public ICherubFriend.CherubPriority getCherubPriority() {
+        return CherubPriority.STANDARD;
+    }
+
+    @Override
+    public Vec3 getCherubHoverOffset(int cherub) {
+        return new Vec3(0, getBbHeight()+0.5f, 0);
     }
 }

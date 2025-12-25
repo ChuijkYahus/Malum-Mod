@@ -67,7 +67,7 @@ public class WaveformConfigurationHandler {
     }
 
     public static void onBlockActivated(PlayerInteractEvent.RightClickBlock event) {
-        Level world = event.getLevel();
+        Level level = event.getLevel();
         BlockPos pos = event.getPos();
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
@@ -78,7 +78,7 @@ public class WaveformConfigurationHandler {
         if (!canInteract(player)) {
             return;
         }
-        if (!(world.getBlockEntity(pos) instanceof OpenStateBlockEntity)) {
+        if (!(level.getBlockEntity(pos) instanceof OpenStateBlockEntity)) {
             return;
         }
         if (interactionPos != null) {

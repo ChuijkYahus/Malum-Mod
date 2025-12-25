@@ -18,6 +18,9 @@ public class CardinalDetonateEntropyGoal extends Goal {
 
     private int attackTime;
 
+    public CardinalDetonateEntropyGoal(CardinalCultist cardinal, double speedModifier) {
+        this(cardinal, speedModifier, CardinalCultist.ENTROPY_DETONATION_RADIUS);
+    }
     public CardinalDetonateEntropyGoal(CardinalCultist cardinal, double speedModifier, float detonationRadius) {
         this.cardinal = cardinal;
         this.navigation = cardinal.getNavigation();

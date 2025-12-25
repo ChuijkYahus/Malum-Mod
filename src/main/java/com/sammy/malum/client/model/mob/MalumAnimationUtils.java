@@ -81,8 +81,8 @@ public class MalumAnimationUtils<T extends Mob> {
         return rotation;
     }
 
-    public void reset(HierarchicalHumanoidModel<?> model) {
-        model.modelDefinition.getAllParts().forEach(ModelPart::resetPose);
+    public void reset() {
+        reset(model);
     }
 
     public void applyRidingRotations(HierarchicalHumanoidModel<?> model) {
@@ -100,6 +100,10 @@ public class MalumAnimationUtils<T extends Mob> {
         model.setupAttackAnimation(mob, ageInTicks);
         AnimationUtils.bobModelPart(model.rightArm, ageInTicks, 1.0F);
         AnimationUtils.bobModelPart(model.leftArm, ageInTicks, -1.0F);
+    }
+
+    public static void reset(HierarchicalHumanoidModel<?> model) {
+        model.modelDefinition.getAllParts().forEach(ModelPart::resetPose);
     }
 
     public static class LimbRotationData {

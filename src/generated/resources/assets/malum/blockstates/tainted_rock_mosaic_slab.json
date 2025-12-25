@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/tainted_rock_mosaic_slab"
+    },
+    "type=double": {
+      "model": "malum:block/tainted_rock_mosaic"
+    },
+    "type=top": {
+      "model": "malum:block/tainted_rock_mosaic_slab_top"
+    }
+  }
+}

@@ -410,7 +410,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties NATURAL_QUARTZ_ORE(boolean isDeepslate) {
         return ORE_PROPERTIES(isDeepslate)
                 .mapColor(MapColor.TERRACOTTA_WHITE)
-                .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
+                .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES_QUARTZ)
                 .strength(isDeepslate ? 6f : 4f, 3f)
                 .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_QUARTZ_ORE : MalumSoundEvents.QUARTZ_ORE);
     }
@@ -428,9 +428,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.TERRACOTTA_ORANGE)
-                .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
-                .addTag(Tags.Blocks.ORES)
-                .addTag(Tags.Blocks.ORES_IN_GROUND_NETHERRACK)
+                .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES, Tags.Blocks.ORES_IN_GROUND_NETHERRACK)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(3.0F, 3.0F)

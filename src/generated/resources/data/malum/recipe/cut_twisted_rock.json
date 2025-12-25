@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "X": {
-      "item": "malum:polished_twisted_rock"
+      "tag": "malum:twisted_rock_slabs"
     },
     "Y": {
-      "item": "malum:twisted_rock"
+      "tag": "malum:twisted_rock_blocks"
     }
   },
   "pattern": [

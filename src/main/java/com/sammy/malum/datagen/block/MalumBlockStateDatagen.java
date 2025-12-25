@@ -52,32 +52,26 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         setTexturePath("arcane_rock/tainted/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
-                TAINTED_ROCK, POLISHED_TAINTED_ROCK, SMOOTH_TAINTED_ROCK,
-                TAINTED_ROCK_BRICKS, TAINTED_ROCK_TILES, SMALL_TAINTED_ROCK_BRICKS,
-                RUNIC_TAINTED_ROCK_BRICKS, RUNIC_TAINTED_ROCK_TILES, RUNIC_SMALL_TAINTED_ROCK_BRICKS,
-                CHISELED_TAINTED_ROCK);
+                TAINTED_ROCK, POLISHED_TAINTED_ROCK, TAINTED_ROCK_BRICKS, TAINTED_ROCK_TILES, TAINTED_ROCK_MOSAIC, CHISELED_TAINTED_ROCK);
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, TAINTED_ROCK_SLAB, POLISHED_TAINTED_ROCK_SLAB, SMOOTH_TAINTED_ROCK_SLAB,
-                TAINTED_ROCK_BRICKS_SLAB, TAINTED_ROCK_TILES_SLAB, SMALL_TAINTED_ROCK_BRICKS_SLAB,
-                RUNIC_TAINTED_ROCK_BRICKS_SLAB, RUNIC_TAINTED_ROCK_TILES_SLAB, RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                TAINTED_ROCK_SLAB, POLISHED_TAINTED_ROCK_SLAB, TAINTED_ROCK_BRICKS_SLAB, TAINTED_ROCK_TILES_SLAB, TAINTED_ROCK_MOSAIC_SLAB);
 
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, TAINTED_ROCK_STAIRS, POLISHED_TAINTED_ROCK_STAIRS, SMOOTH_TAINTED_ROCK_STAIRS,
-                TAINTED_ROCK_BRICKS_STAIRS, TAINTED_ROCK_TILES_STAIRS, SMALL_TAINTED_ROCK_BRICKS_STAIRS,
-                RUNIC_TAINTED_ROCK_BRICKS_STAIRS, RUNIC_TAINTED_ROCK_TILES_STAIRS, RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                TAINTED_ROCK_STAIRS, POLISHED_TAINTED_ROCK_STAIRS, TAINTED_ROCK_BRICKS_STAIRS, TAINTED_ROCK_TILES_STAIRS, TAINTED_ROCK_MOSAIC_STAIRS);
 
         BlockStateSmithTypes.WALL_BLOCK.act(data,
-                TAINTED_ROCK_WALL, SMOOTH_TAINTED_ROCK_WALL, POLISHED_TAINTED_ROCK_WALL,
-                TAINTED_ROCK_BRICKS_WALL, TAINTED_ROCK_TILES_WALL, SMALL_TAINTED_ROCK_BRICKS_WALL,
-                RUNIC_TAINTED_ROCK_BRICKS_WALL, RUNIC_TAINTED_ROCK_TILES_WALL, RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL);
+                TAINTED_ROCK_WALL, POLISHED_TAINTED_ROCK_WALL, TAINTED_ROCK_BRICKS_WALL, TAINTED_ROCK_TILES_WALL, TAINTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK, CHECKERED_TAINTED_ROCK);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::columnCapModel, TAINTED_ROCK_COLUMN_CAP);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK);
+        MalumBlockStateSmithTypes.COLUMN.act(data, TAINTED_ROCK_COLUMN);
+
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, TAINTED_ROCK_BUTTON);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TAINTED_ROCK_PRESSURE_PLATE);
+
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TAINTED_ROCK_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TAINTED_ROCK_ITEM_STAND);
 
-        BlockStateSmithTypes.LOG_BLOCK.act(data, TAINTED_ROCK_COLUMN);
-        BlockStateSmithTypes.BUTTON_BLOCK.act(data, TAINTED_ROCK_BUTTON);
-        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TAINTED_ROCK_PRESSURE_PLATE);
 
         itemModelProvider.setTexturePath("ether/");
         MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TAINTED_ETHER_BRAZIER);
@@ -86,32 +80,25 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         setTexturePath("arcane_rock/twisted/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
-                TWISTED_ROCK, POLISHED_TWISTED_ROCK, SMOOTH_TWISTED_ROCK,
-                TWISTED_ROCK_BRICKS, TWISTED_ROCK_TILES, SMALL_TWISTED_ROCK_BRICKS,
-                RUNIC_TWISTED_ROCK_BRICKS, RUNIC_TWISTED_ROCK_TILES, RUNIC_SMALL_TWISTED_ROCK_BRICKS,
-                CHISELED_TWISTED_ROCK);
+                TWISTED_ROCK, POLISHED_TWISTED_ROCK, TWISTED_ROCK_BRICKS, TWISTED_ROCK_TILES, TWISTED_ROCK_MOSAIC, CHISELED_TWISTED_ROCK);
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, TWISTED_ROCK_SLAB, POLISHED_TWISTED_ROCK_SLAB, SMOOTH_TWISTED_ROCK_SLAB,
-                TWISTED_ROCK_BRICKS_SLAB, TWISTED_ROCK_TILES_SLAB, SMALL_TWISTED_ROCK_BRICKS_SLAB,
-                RUNIC_TWISTED_ROCK_BRICKS_SLAB, RUNIC_TWISTED_ROCK_TILES_SLAB, RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                TWISTED_ROCK_SLAB, POLISHED_TWISTED_ROCK_SLAB, TWISTED_ROCK_BRICKS_SLAB, TWISTED_ROCK_TILES_SLAB, TWISTED_ROCK_MOSAIC_SLAB);
 
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, TWISTED_ROCK_STAIRS, POLISHED_TWISTED_ROCK_STAIRS, SMOOTH_TWISTED_ROCK_STAIRS,
-                TWISTED_ROCK_BRICKS_STAIRS, TWISTED_ROCK_TILES_STAIRS, SMALL_TWISTED_ROCK_BRICKS_STAIRS,
-                RUNIC_TWISTED_ROCK_BRICKS_STAIRS, RUNIC_TWISTED_ROCK_TILES_STAIRS, RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                TWISTED_ROCK_STAIRS, POLISHED_TWISTED_ROCK_STAIRS, TWISTED_ROCK_BRICKS_STAIRS, TWISTED_ROCK_TILES_STAIRS, TWISTED_ROCK_MOSAIC_STAIRS);
 
         BlockStateSmithTypes.WALL_BLOCK.act(data,
-                TWISTED_ROCK_WALL, SMOOTH_TWISTED_ROCK_WALL, POLISHED_TWISTED_ROCK_WALL,
-                TWISTED_ROCK_BRICKS_WALL, TWISTED_ROCK_TILES_WALL, SMALL_TWISTED_ROCK_BRICKS_WALL,
-                RUNIC_TWISTED_ROCK_BRICKS_WALL, RUNIC_TWISTED_ROCK_TILES_WALL, RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL);
+                TWISTED_ROCK_WALL, POLISHED_TWISTED_ROCK_WALL, TWISTED_ROCK_BRICKS_WALL, TWISTED_ROCK_TILES_WALL, TWISTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK, CHECKERED_TWISTED_ROCK);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::columnCapModel, TWISTED_ROCK_COLUMN_CAP);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TWISTED_ROCK_ITEM_PEDESTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TWISTED_ROCK_ITEM_STAND);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK);
+        MalumBlockStateSmithTypes.COLUMN.act(data, TWISTED_ROCK_COLUMN);
 
-        BlockStateSmithTypes.LOG_BLOCK.act(data, TWISTED_ROCK_COLUMN);
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, TWISTED_ROCK_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TWISTED_ROCK_PRESSURE_PLATE);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TWISTED_ROCK_ITEM_PEDESTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TWISTED_ROCK_ITEM_STAND);
 
         itemModelProvider.setTexturePath("ether/");
         MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TWISTED_ETHER_BRAZIER);
@@ -281,30 +268,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         return models().cubeAll(name, MalumMod.malumPath("block/air")).texture("particle", getBlockTexture(name));
     }
 
-    public ModelFile columnCapModel(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation top = getBlockTexture(name + "_top");
-        ResourceLocation bottom = getBlockTexture(name.replace("_cap", "") + "_top");
-        ResourceLocation side = getBlockTexture(name);
-        return models().cubeBottomTop(name, side, bottom, top);
-    }
-
-    public ModelFile directionalRedstoneMachineBlock(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation top = getBlockTexture("runewood_frame_top");
-        ResourceLocation bottom = getBlockTexture("runewood_frame_bottom");
-        ResourceLocation locked = getBlockTexture("runewood_frame_locked");
-        ResourceLocation input = getBlockTexture("runewood_frame_input");
-        ResourceLocation output = getBlockTexture(name + "_output");
-        return models().cube(name, bottom, top, output, input, locked, locked).texture("particle", locked);
-    }
-
     public ModelFile cutRockBlockModel(Block block) {
         String name = getBlockName(block);
         int index = name.indexOf("_");
         String substring = name.substring(index + 1);
         ResourceLocation top = getBlockTexture("polished_" + substring);
-        ResourceLocation bottom = getBlockTexture("smooth_" + substring);
+        ResourceLocation bottom = getBlockTexture(substring);
         ResourceLocation side = getBlockTexture(name);
         return models().cubeBottomTop(name, side, bottom, top);
     }

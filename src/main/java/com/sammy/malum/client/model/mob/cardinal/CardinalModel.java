@@ -17,8 +17,8 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 
 	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("cardinal"), "main");
 
-	public CardinalModel(ModelPart root) {
-        super(root);
+	public CardinalModel(ModelPart modelDefinition) {
+        super(modelDefinition);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -73,17 +73,15 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 	}
 
 	@Override
-	public void setupAnim(@NotNull CardinalCultist cardinal, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		var utils = MalumAnimationUtils.create(this, cardinal, limbSwing, limbSwingAmount);
-
+	public void setupAnim(CardinalCultist cardinal, MalumAnimationUtils<CardinalCultist> utils, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float headYClamp = 0.7f;
 		float headXClamp = 0.08f;
 		float armClamp = 4.4F;
 		float legClamp = 0.2F;
 
-		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		float headYRot = netHeadYaw * Mth.DEG_TO_RAD;
 		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
-		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
 		float rightArmRotation = utils.getRightArmRotation(d -> d
@@ -96,8 +94,6 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 		float leftLegRotation = utils.getLeftLegRotation(d -> d
 				.setRate(0.7f).setAmount(0.6f).setEasing(Easing.EXPO_OUT).addClamp(legClamp));
 
-		utils.reset(this);
-
 
 		head.yRot = headYRot;
 		head.xRot = headXRot;
@@ -108,11 +104,6 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 		rightLeg.xRot = rightLegRotation;
 		leftLeg.xRot = leftLegRotation;
 
-		if (riding) {
-			utils.applyRidingRotations(this);
-		}
-
-		utils.applyGenericArmAnimations(ageInTicks);
 		animate(cardinal.idleAnimationState, CardinalAnimations.IDLE, ageInTicks);
 		animate(cardinal.lobAnimationState, CardinalAnimations.LOB_CHARGE, ageInTicks);
 		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATION, ageInTicks);

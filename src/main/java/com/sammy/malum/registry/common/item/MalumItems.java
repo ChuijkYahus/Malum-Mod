@@ -180,51 +180,32 @@ public class MalumItems {
 
     //region tainted rock
     public static final DeferredHolder<Item, Item> TAINTED_ROCK = register("tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TAINTED_ROCK = register("smooth_tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TAINTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TAINTED_ROCK = register("polished_tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TAINTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_BRICKS = register("tainted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_BRICKS.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_TILES = register("tainted_rock_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_TILES.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TAINTED_ROCK_BRICKS = register("small_tainted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TAINTED_ROCK_BRICKS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_BRICKS = register("runic_tainted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_BRICKS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_TILES = register("runic_tainted_rock_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_TILES.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TAINTED_ROCK_BRICKS = register("runic_small_tainted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TAINTED_ROCK_BRICKS.get(), p));
+    public static final DeferredHolder<Item, Item> TAINTED_ROCK_MOSAIC = register("tainted_rock_mosaic", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_MOSAIC.get(), p));
 
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_COLUMN = register("tainted_rock_column", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_COLUMN.get(), p));
-    public static final DeferredHolder<Item, Item> TAINTED_ROCK_COLUMN_CAP = register("tainted_rock_column_cap", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_COLUMN_CAP.get(), p));
-
     public static final DeferredHolder<Item, Item> CUT_TAINTED_ROCK = register("cut_tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CUT_TAINTED_ROCK.get(), p));
-    public static final DeferredHolder<Item, Item> CHECKERED_TAINTED_ROCK = register("checkered_tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CHECKERED_TAINTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> CHISELED_TAINTED_ROCK = register("chiseled_tainted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CHISELED_TAINTED_ROCK.get(), p));
 
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_STAIRS = register("tainted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TAINTED_ROCK_STAIRS = register("smooth_tainted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TAINTED_ROCK_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TAINTED_ROCK_STAIRS = register("polished_tainted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TAINTED_ROCK_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_BRICKS_STAIRS = register("tainted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_BRICKS_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_TILES_STAIRS = register("tainted_rock_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_TILES_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("small_tainted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_BRICKS_STAIRS = register("runic_tainted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_BRICKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_TILES_STAIRS = register("runic_tainted_rock_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_TILES_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS = register("runic_small_tainted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> TAINTED_ROCK_MOSAIC_STAIRS = register("tainted_rock_mosaic_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_MOSAIC_STAIRS.get(), p));
 
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_SLAB = register("tainted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TAINTED_ROCK_SLAB = register("smooth_tainted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TAINTED_ROCK_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TAINTED_ROCK_SLAB = register("polished_tainted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TAINTED_ROCK_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_BRICKS_SLAB = register("tainted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_BRICKS_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_TILES_SLAB = register("tainted_rock_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_TILES_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TAINTED_ROCK_BRICKS_SLAB = register("small_tainted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TAINTED_ROCK_BRICKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_BRICKS_SLAB = register("runic_tainted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_BRICKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_TILES_SLAB = register("runic_tainted_rock_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_TILES_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB = register("runic_small_tainted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> TAINTED_ROCK_MOSAIC_SLAB = register("tainted_rock_mosaic_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_MOSAIC_SLAB.get(), p));
 
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_WALL = register("tainted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TAINTED_ROCK_WALL = register("smooth_tainted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TAINTED_ROCK_WALL.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TAINTED_ROCK_WALL = register("polished_tainted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TAINTED_ROCK_WALL.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_BRICKS_WALL = register("tainted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_BRICKS_WALL.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_TILES_WALL = register("tainted_rock_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_TILES_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TAINTED_ROCK_BRICKS_WALL = register("small_tainted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TAINTED_ROCK_BRICKS_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_BRICKS_WALL = register("runic_tainted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_BRICKS_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TAINTED_ROCK_TILES_WALL = register("runic_tainted_rock_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TAINTED_ROCK_TILES_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL = register("runic_small_tainted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> TAINTED_ROCK_MOSAIC_WALL = register("tainted_rock_mosaic_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_MOSAIC_WALL.get(), p));
 
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_PRESSURE_PLATE = register("tainted_rock_pressure_plate", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_PRESSURE_PLATE.get(), p));
     public static final DeferredHolder<Item, Item> TAINTED_ROCK_BUTTON = register("tainted_rock_button", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TAINTED_ROCK_BUTTON.get(), p));
@@ -235,51 +216,32 @@ public class MalumItems {
 
     //region twisted rock
     public static final DeferredHolder<Item, Item> TWISTED_ROCK = register("twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TWISTED_ROCK = register("smooth_twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TWISTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TWISTED_ROCK = register("polished_twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TWISTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_BRICKS = register("twisted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_BRICKS.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_TILES = register("twisted_rock_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_TILES.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TWISTED_ROCK_BRICKS = register("small_twisted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TWISTED_ROCK_BRICKS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_BRICKS = register("runic_twisted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_BRICKS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_TILES = register("runic_twisted_rock_tiles", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_TILES.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TWISTED_ROCK_BRICKS = register("runic_small_twisted_rock_bricks", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TWISTED_ROCK_BRICKS.get(), p));
+    public static final DeferredHolder<Item, Item> TWISTED_ROCK_MOSAIC = register("twisted_rock_mosaic", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_MOSAIC.get(), p));
 
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_COLUMN = register("twisted_rock_column", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_COLUMN.get(), p));
-    public static final DeferredHolder<Item, Item> TWISTED_ROCK_COLUMN_CAP = register("twisted_rock_column_cap", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_COLUMN_CAP.get(), p));
-
     public static final DeferredHolder<Item, Item> CUT_TWISTED_ROCK = register("cut_twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CUT_TWISTED_ROCK.get(), p));
-    public static final DeferredHolder<Item, Item> CHECKERED_TWISTED_ROCK = register("checkered_twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CHECKERED_TWISTED_ROCK.get(), p));
     public static final DeferredHolder<Item, Item> CHISELED_TWISTED_ROCK = register("chiseled_twisted_rock", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CHISELED_TWISTED_ROCK.get(), p));
 
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_STAIRS = register("twisted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TWISTED_ROCK_STAIRS = register("smooth_twisted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TWISTED_ROCK_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TWISTED_ROCK_STAIRS = register("polished_twisted_rock_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TWISTED_ROCK_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_BRICKS_STAIRS = register("twisted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_BRICKS_STAIRS.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_TILES_STAIRS = register("twisted_rock_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_TILES_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("small_twisted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_BRICKS_STAIRS = register("runic_twisted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_BRICKS_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_TILES_STAIRS = register("runic_twisted_rock_tiles_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_TILES_STAIRS.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS = register("runic_small_twisted_rock_bricks_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS.get(), p));
+    public static final DeferredHolder<Item, Item> TWISTED_ROCK_MOSAIC_STAIRS = register("twisted_rock_mosaic_stairs", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_MOSAIC_STAIRS.get(), p));
 
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_SLAB = register("twisted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TWISTED_ROCK_SLAB = register("smooth_twisted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TWISTED_ROCK_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TWISTED_ROCK_SLAB = register("polished_twisted_rock_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TWISTED_ROCK_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_BRICKS_SLAB = register("twisted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_BRICKS_SLAB.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_TILES_SLAB = register("twisted_rock_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_TILES_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TWISTED_ROCK_BRICKS_SLAB = register("small_twisted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TWISTED_ROCK_BRICKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_BRICKS_SLAB = register("runic_twisted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_BRICKS_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_TILES_SLAB = register("runic_twisted_rock_tiles_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_TILES_SLAB.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB = register("runic_small_twisted_rock_bricks_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB.get(), p));
+    public static final DeferredHolder<Item, Item> TWISTED_ROCK_MOSAIC_SLAB = register("twisted_rock_mosaic_slab", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_MOSAIC_SLAB.get(), p));
 
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_WALL = register("twisted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> SMOOTH_TWISTED_ROCK_WALL = register("smooth_twisted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMOOTH_TWISTED_ROCK_WALL.get(), p));
     public static final DeferredHolder<Item, Item> POLISHED_TWISTED_ROCK_WALL = register("polished_twisted_rock_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.POLISHED_TWISTED_ROCK_WALL.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_BRICKS_WALL = register("twisted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_BRICKS_WALL.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_TILES_WALL = register("twisted_rock_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_TILES_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> SMALL_TWISTED_ROCK_BRICKS_WALL = register("small_twisted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SMALL_TWISTED_ROCK_BRICKS_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_BRICKS_WALL = register("runic_twisted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_BRICKS_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_TWISTED_ROCK_TILES_WALL = register("runic_twisted_rock_tiles_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_TWISTED_ROCK_TILES_WALL.get(), p));
-    public static final DeferredHolder<Item, Item> RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL = register("runic_small_twisted_rock_bricks_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL.get(), p));
+    public static final DeferredHolder<Item, Item> TWISTED_ROCK_MOSAIC_WALL = register("twisted_rock_mosaic_wall", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_MOSAIC_WALL.get(), p));
 
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_PRESSURE_PLATE = register("twisted_rock_pressure_plate", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_PRESSURE_PLATE.get(), p));
     public static final DeferredHolder<Item, Item> TWISTED_ROCK_BUTTON = register("twisted_rock_button", MalumItems::BUILDING_PROPERTIES, (p) -> new BlockItem(MalumBlocks.TWISTED_ROCK_BUTTON.get(), p));

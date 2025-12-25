@@ -8,6 +8,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
@@ -108,19 +109,17 @@ public class MalumTags {
         public static final TagKey<Item> SOULWOOD_STAIRS = tag("soulwood_stairs");
 
         public static final TagKey<Item> TAINTED_ROCK = tag("tainted_rock");
-        public static final TagKey<Item> TAINTED_BLOCKS = tag("tainted_rock_blocks");
-        public static final TagKey<Item> TAINTED_SLABS = tag("tainted_rock_slabs");
-        public static final TagKey<Item> TAINTED_STAIRS = tag("tainted_rock_stairs");
-        public static final TagKey<Item> TAINTED_WALLS = tag("tainted_rock_walls");
+        public static final TagKey<Item> TAINTED_ROCK_BLOCKS = tag("tainted_rock_blocks");
+        public static final TagKey<Item> TAINTED_ROCK_SLABS = tag("tainted_rock_slabs");
+        public static final TagKey<Item> TAINTED_ROCK_STAIRS = tag("tainted_rock_stairs");
+        public static final TagKey<Item> TAINTED_ROCK_WALLS = tag("tainted_rock_walls");
 
         public static final TagKey<Item> TWISTED_ROCK = tag("twisted_rock");
-        public static final TagKey<Item> TWISTED_BLOCKS = tag("twisted_rock_blocks");
-        public static final TagKey<Item> TWISTED_SLABS = tag("twisted_rock_slabs");
-        public static final TagKey<Item> TWISTED_STAIRS = tag("twisted_rock_stairs");
-        public static final TagKey<Item> TWISTED_WALLS = tag("twisted_rock_walls");
+        public static final TagKey<Item> TWISTED_ROCK_BLOCKS = tag("twisted_rock_blocks");
+        public static final TagKey<Item> TWISTED_ROCK_SLABS = tag("twisted_rock_slabs");
+        public static final TagKey<Item> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
+        public static final TagKey<Item> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
 
-        public static final TagKey<Item> STRIPPED_LOGS = commonTag("stripped_logs");
-        public static final TagKey<Item> STRIPPED_WOODS = commonTag("stripped_woods");
 
 
         private static TagKey<Item> modTag(String path) {
@@ -149,16 +148,16 @@ public class MalumTags {
         public static final TagKey<Block> SOULWOOD_LOGS = tag("soulwood_logs");
 
         public static final TagKey<Block> TAINTED_ROCK = tag("tainted_rock");
-        public static final TagKey<Block> TAINTED_BLOCKS = tag("tainted_rock_blocks");
-        public static final TagKey<Block> TAINTED_SLABS = tag("tainted_rock_slabs");
-        public static final TagKey<Block> TAINTED_STAIRS = tag("tainted_rock_stairs");
-        public static final TagKey<Block> TAINTED_WALLS = tag("tainted_rock_walls");
+        public static final TagKey<Block> TAINTED_ROCK_BLOCKS = tag("tainted_rock_blocks");
+        public static final TagKey<Block> TAINTED_ROCK_SLABS = tag("tainted_rock_slabs");
+        public static final TagKey<Block> TAINTED_ROCK_STAIRS = tag("tainted_rock_stairs");
+        public static final TagKey<Block> TAINTED_ROCK_WALLS = tag("tainted_rock_walls");
 
         public static final TagKey<Block> TWISTED_ROCK = tag("twisted_rock");
-        public static final TagKey<Block> TWISTED_BLOCKS = tag("twisted_rock_blocks");
-        public static final TagKey<Block> TWISTED_SLABS = tag("twisted_rock_slabs");
-        public static final TagKey<Block> TWISTED_STAIRS = tag("twisted_rock_stairs");
-        public static final TagKey<Block> TWISTED_WALLS = tag("twisted_rock_walls");
+        public static final TagKey<Block> TWISTED_ROCK_BLOCKS = tag("twisted_rock_blocks");
+        public static final TagKey<Block> TWISTED_ROCK_SLABS = tag("twisted_rock_slabs");
+        public static final TagKey<Block> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
+        public static final TagKey<Block> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
 
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
@@ -250,6 +249,15 @@ public class MalumTags {
 
         public static TagKey<Biome> tag(String path) {
             return TagKey.create(Registries.BIOME, MalumMod.malumPath(path));
+        }
+    }
+
+    public static class EntityTags {
+
+        public static final TagKey<EntityType<?>> CULTIST = tag("cultist");
+
+        public static TagKey<EntityType<?>> tag(String path) {
+            return TagKey.create(Registries.ENTITY_TYPE, MalumMod.malumPath(path));
         }
     }
 
