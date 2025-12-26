@@ -1,10 +1,10 @@
 {
   "parent": "malum:block/templates/blight/template_soulwood_roots",
   "textures": {
-    "large": "malum:block/blight/soulwood_roots_large",
-    "large_extension": "malum:block/blight/soulwood_roots_large_extension",
-    "particle": "malum:block/blight/soulwood_roots_large",
-    "small": "malum:block/blight/soulwood_roots_small",
-    "small_extension": "malum:block/blight/soulwood_roots_small_extension"
+    "large_end": "malum:block/blight/soulwood_roots_large_end",
+    "large_start": "malum:block/blight/soulwood_roots_large_start",
+    "particle": "malum:block/blight/soulwood_roots_large_start",
+    "small_end": "malum:block/blight/soulwood_roots_small_end",
+    "small_start": "malum:block/blight/soulwood_roots_small_start"
   }
 }

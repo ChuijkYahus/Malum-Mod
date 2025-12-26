@@ -1,8 +1,8 @@
 {
   "values": [
-    "malum:columnar_blight",
-    "malum:blighted_earth",
     "malum:block_of_rotting_essence",
-    "malum:block_of_living_flesh"
+    "malum:block_of_living_flesh",
+    "malum:columnar_blight",
+    "malum:blighted_earth"
   ]
 }

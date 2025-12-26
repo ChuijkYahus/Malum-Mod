@@ -22,6 +22,10 @@
     "malum:wavemaker",
     "malum:wavebreaker",
     "malum:soulwoven_banner",
+    "malum:ether_torch",
+    "malum:wall_ether_torch",
+    "malum:iridescent_ether_torch",
+    "malum:iridescent_wall_ether_torch",
     "malum:stripped_runewood_log",
     "malum:runewood_log",
     "malum:stripped_runewood",
@@ -127,12 +131,8 @@
     "malum:ornate_soulwood_item_stand",
     "malum:soulwood_sign",
     "malum:soulwood_wall_sign",
+    "malum:mass_of_blighted_gunk",
     "malum:columnar_blight",
-    "malum:blighted_earth",
-    "malum:ether_torch",
-    "malum:wall_ether_torch",
-    "malum:iridescent_ether_torch",
-    "malum:iridescent_wall_ether_torch",
-    "malum:mass_of_blighted_gunk"
+    "malum:blighted_earth"
   ]
 }

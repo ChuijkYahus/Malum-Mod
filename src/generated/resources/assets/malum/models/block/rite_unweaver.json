@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/rite_unweaver_bottom",
     "side": "malum:block/rite_unweaver_side",
-    "top": "malum:block/rite_unweaver"
+    "top": "malum:block/rite_unweaver_top"
   }
 }

@@ -32,7 +32,9 @@ public class MalumRockSetDatagen {
 
                 MalumItems.TAINTED_ROCK_WALL.get(), MalumItems.POLISHED_TAINTED_ROCK_WALL.get(), MalumItems.TAINTED_ROCK_BRICKS_WALL.get(), MalumItems.TAINTED_ROCK_TILES_WALL.get(), MalumItems.TAINTED_ROCK_MOSAIC_WALL.get(),
 
-                MalumItems.TAINTED_ROCK_COLUMN.get(), MalumItems.CUT_TAINTED_ROCK.get(), MalumItems.CHISELED_TAINTED_ROCK.get(),
+                MalumItems.TAINTED_ROCK_COLUMN.get(), MalumItems.TAINTED_ROCK_ALTAR.get(),
+
+                MalumItems.CUT_TAINTED_ROCK.get(), MalumItems.CHISELED_TAINTED_ROCK.get(),
 
                 MalumItems.TAINTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TAINTED_ROCK_BUTTON.get(),
 
@@ -51,7 +53,9 @@ public class MalumRockSetDatagen {
 
                 MalumItems.TWISTED_ROCK_WALL.get(), MalumItems.POLISHED_TWISTED_ROCK_WALL.get(), MalumItems.TWISTED_ROCK_BRICKS_WALL.get(), MalumItems.TWISTED_ROCK_TILES_WALL.get(), MalumItems.TWISTED_ROCK_MOSAIC_WALL.get(),
 
-                MalumItems.TWISTED_ROCK_COLUMN.get(), MalumItems.CUT_TWISTED_ROCK.get(), MalumItems.CHISELED_TWISTED_ROCK.get(),
+                MalumItems.TWISTED_ROCK_COLUMN.get(), MalumItems.TWISTED_ROCK_ALTAR.get(),
+
+                MalumItems.CUT_TWISTED_ROCK.get(), MalumItems.CHISELED_TWISTED_ROCK.get(),
 
                 MalumItems.TWISTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TWISTED_ROCK_BUTTON.get(),
 
@@ -70,7 +74,9 @@ public class MalumRockSetDatagen {
 
                 MalumItems.DROSS_STONE_WALL.get(), MalumItems.POLISHED_DROSS_STONE_WALL.get(), MalumItems.DROSS_STONE_BRICKS_WALL.get(), MalumItems.DROSS_STONE_TILES_WALL.get(), MalumItems.DROSS_STONE_MOSAIC_WALL.get(),
 
-                MalumItems.DROSS_STONE_COLUMN.get(), MalumItems.CUT_DROSS_STONE.get(), MalumItems.CHISELED_DROSS_STONE.get(),
+                MalumItems.DROSS_STONE_COLUMN.get(), MalumItems.DROSS_STONE_ALTAR.get(),
+
+                MalumItems.CUT_DROSS_STONE.get(), MalumItems.CHISELED_DROSS_STONE.get(),
 
                 MalumItems.DROSS_STONE_PRESSURE_PLATE.get(), MalumItems.DROSS_STONE_BUTTON.get(),
 
@@ -97,7 +103,7 @@ public class MalumRockSetDatagen {
             Item rockSlab, Item polishedRockSlab, Item bricksSlab, Item tilesSlab, Item mosaicSlab,
             Item rockStairs, Item polishedRockStairs, Item bricksStairs, Item tilesStairs, Item mosaicStairs,
             Item rockWall, Item polishedRockWall, Item bricksWall, Item tilesWall, Item mosaicWall,
-            Item column, Item cutRock, Item chiseledRock,
+            Item column, Item altar, Item cutRock, Item chiseledRock,
             Item pressurePlate, Item button,
             Item itemStand, Item itemPedestal,
             TagKey<Item> setEncompassingTag, TagKey<Item> blockTag, TagKey<Item> stairTag,
@@ -132,13 +138,21 @@ public class MalumRockSetDatagen {
             stoneCutting(recipeOutput, blockTag, tiles);
             stoneCutting(recipeOutput, blockTag, mosaic);
 
+            stoneCutting(recipeOutput, blockTag, chiseledRock, 2);
+            stoneCutting(recipeOutput, blockTag, cutRock, 2);
+            stoneCutting(recipeOutput, blockTag, column, 2);
+            stoneCutting(recipeOutput, blockTag, altar, 2);
+
+            stoneCutting(recipeOutput, blockTag, itemPedestal);
+            stoneCutting(recipeOutput, blockTag, itemStand);
+
             shapelessButton(recipeOutput, button, rock);
             shapedPressurePlate(recipeOutput, pressurePlate, rock);
 
             shaped(RecipeCategory.MISC, chiseledRock, 1)
-                    .define('#', slabTag)
-                    .pattern("#")
-                    .pattern("#")
+                    .define('X', slabTag)
+                    .pattern("X")
+                    .pattern("X")
                     .unlockedBy("has_input", condition)
                     .save(recipeOutput);
             shaped(RecipeCategory.MISC, cutRock, 2)
@@ -149,12 +163,18 @@ public class MalumRockSetDatagen {
                     .unlockedBy("has_input", condition)
                     .save(recipeOutput);
             shaped(RecipeCategory.MISC, column, 3)
-                    .define('#', slabTag)
-                    .pattern("#")
-                    .pattern("#")
-                    .pattern("#")
+                    .define('X', slabTag)
+                    .pattern("X")
+                    .pattern("X")
+                    .pattern("X")
                     .unlockedBy("has_input", condition)
                     .save(recipeOutput);
+            shaped(RecipeCategory.MISC, altar, 3)
+                    .define('X', slabTag)
+                    .pattern("XXX")
+                    .unlockedBy("has_input", condition)
+                    .save(recipeOutput);
+
             shaped(RecipeCategory.MISC, itemStand, 2)
                     .define('X', rock)
                     .define('Y', rockSlab)

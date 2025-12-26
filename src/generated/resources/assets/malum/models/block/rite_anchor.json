@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/rite_anchor_bottom",
     "side": "malum:block/rite_anchor_side",
-    "top": "malum:block/rite_anchor"
+    "top": "malum:block/rite_anchor_top"
   }
 }

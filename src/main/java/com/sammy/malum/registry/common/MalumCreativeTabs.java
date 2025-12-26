@@ -17,45 +17,20 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_basis_of_magic"))
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.spirit_arcana"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .withTabsAfter(MalumMod.malumPath("malum_nature"))
                     .icon(() -> MalumItems.SPIRIT_ALTAR.get().getDefaultInstance()).build()
     );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NATURE = CREATIVE_MODE_TABS.register("malum_nature",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_scars_of_arcana"))
-                    .withTabsBefore(CONTENT.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_building"))
-                    .icon(() -> MalumItems.RUNEWOOD_SAPLING.get().getDefaultInstance()).build()
-    );
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING = CREATIVE_MODE_TABS.register("malum_building",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_arcane_construct"))
-                    .withTabsBefore(NATURE.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_metallurgy"))
-                    .icon(() -> MalumItems.TAINTED_ROCK.get().getDefaultInstance()).build()
-    );
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> METALLURGY = CREATIVE_MODE_TABS.register("malum_metallurgy",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_metallurgic_magics"))
-                    .withTabsBefore(BUILDING.getId())
-                    .withTabsAfter(MalumMod.malumPath("malum_iron_crown_cult"))
-                    .icon(() -> MalumItems.ALCHEMICAL_IMPETUS.get().getDefaultInstance()).build()
-    );
-
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GEAS = CREATIVE_MODE_TABS.register("malum_geas",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_geas"))
-                    .withTabsBefore(METALLURGY.getId())
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.geas"))
+                    .withTabsBefore(CONTENT.getId())
                     .withTabsAfter(MalumMod.malumPath("malum_cosmetics"))
                     .displayItems((p, o) -> {
-                        int i = 0;
-                        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> etchingType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
-                            final GeasEffectType geasEffectType = etchingType.get();
+                        for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geasType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
+                            final GeasEffectType geasEffectType = geasType.get();
                             if (geasEffectType.equals(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get())) {
                                 continue;
                             }
@@ -69,7 +44,7 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> COSMETIC = CREATIVE_MODE_TABS.register("malum_cosmetic",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup." + MalumMod.MALUM + "_cosmetics"))
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.cosmetics"))
                     .withTabsBefore(GEAS.getId())
                     .icon(() -> MalumItems.WEAVERS_WORKBENCH.get().getDefaultInstance()).build()
     );

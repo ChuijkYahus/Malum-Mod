@@ -46,7 +46,7 @@ public class ColumnarBlightBlock extends ColumnBlock implements BonemealableBloc
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return true;
+        return blockState.getValue(AXIS).equals(Direction.Axis.Y);
     }
 
     @Override

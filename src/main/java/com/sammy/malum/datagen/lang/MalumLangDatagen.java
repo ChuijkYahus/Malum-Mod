@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.creative_tab.MalumCreativeTabTweaks;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compat.create.*;
@@ -56,6 +57,7 @@ public class MalumLangDatagen extends LanguageProvider {
     @Override
     protected void addTranslations() {
         CodexLangDatagen.generateEntries();
+        MalumCreativeTabTweaks.ensureCategoriesAreReal();
 
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(ITEMS.getEntries());
@@ -68,6 +70,7 @@ public class MalumLangDatagen extends LanguageProvider {
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
+        var categories = MalumCreativeTabTweaks.CATEGORIES.values();
 
         add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
@@ -140,8 +143,12 @@ public class MalumLangDatagen extends LanguageProvider {
         crucibleAttributes.forEach(a -> {
             String name = DataHelper.toTitleCase(a.getId().getPath(), "_");
             add(a.getLangKey(), name);
-
         });
+        categories.forEach(a -> {
+            String name = DataHelper.toTitleCase(a.id(), "_");
+            add(a.getHeaderLangKey(), name);
+        });
+
 
         addSpiritFlavour(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
         addSpiritFlavour(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
@@ -443,14 +450,9 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.jei.weeping_well", "The Weeping Well");
         add("malum.jei.spirit_transmutation", "The Unchained Rite");
 
-        add("itemGroup.malum_basis_of_magic", "Malum: Study of Miracles");
-        add("itemGroup.malum_arcane_construct", "Malum: The Earth Imbued");
-        add("itemGroup.malum_scars_of_arcana", "Malum: Scars of Arcana");
-        add("itemGroup.malum_iron_crown_cult", "Malum: Influence Made Manifest");
-        add("itemGroup.malum_metallurgic_magics", "Malum: Imitation Alchemy");
-        add("itemGroup.malum_geas", "Malum: Sworn Oaths");
-        add("itemGroup.malum_ritual_shards", "Malum: Ritual Shards");
-        add("itemGroup.malum_cosmetics", "Malum: One's True Self");
+        add("malum.itemGroup.spirit_arcana", "Malum: Study of Miracles");
+        add("malum.itemGroup.geas", "Malum: Sworn Oaths");
+        add("malum.itemGroup.cosmetics", "Malum: One's True Self");
 
         addPlayerlessDeathMessage(MalumDamageTypes.CULTIST_MAGIC, "%1$s met their end", "%1$s met their end while trying to escape %2$s");
 

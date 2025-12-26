@@ -1,8 +1,8 @@
 {
   "values": [
+    "malum:mass_of_blighted_gunk",
     "malum:columnar_blight",
     "malum:blighted_earth",
-    "malum:scarstone",
-    "malum:mass_of_blighted_gunk"
+    "malum:scarstone"
   ]
 }

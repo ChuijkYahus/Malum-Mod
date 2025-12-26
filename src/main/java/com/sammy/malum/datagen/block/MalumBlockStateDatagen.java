@@ -63,8 +63,10 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.WALL_BLOCK.act(data,
                 TAINTED_ROCK_WALL, POLISHED_TAINTED_ROCK_WALL, TAINTED_ROCK_BRICKS_WALL, TAINTED_ROCK_TILES_WALL, TAINTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK);
         MalumBlockStateSmithTypes.COLUMN.act(data, TAINTED_ROCK_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, TAINTED_ROCK_ALTAR);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK);
 
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, TAINTED_ROCK_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TAINTED_ROCK_PRESSURE_PLATE);
@@ -85,8 +87,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.WALL_BLOCK.act(data,
                 TWISTED_ROCK_WALL, POLISHED_TWISTED_ROCK_WALL, TWISTED_ROCK_BRICKS_WALL, TWISTED_ROCK_TILES_WALL, TWISTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK);
         MalumBlockStateSmithTypes.COLUMN.act(data, TWISTED_ROCK_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, TWISTED_ROCK_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK);
 
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, TWISTED_ROCK_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TWISTED_ROCK_PRESSURE_PLATE);
@@ -111,8 +114,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 DROSS_STONE_WALL, POLISHED_DROSS_STONE_WALL, DROSS_STONE_BRICKS_WALL, DROSS_STONE_TILES_WALL, DROSS_STONE_MOSAIC_WALL,
                 GRAY_DROSS_TILES_WALL, DARK_DROSS_TILES_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_DROSS_STONE);
         MalumBlockStateSmithTypes.COLUMN.act(data, DROSS_STONE_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, DROSS_STONE_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_DROSS_STONE);
 
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, DROSS_STONE_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, DROSS_STONE_PRESSURE_PLATE);
@@ -229,6 +233,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, SCARSTONE);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, STRANGEROOT);
         MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_STRANGEROOT);
+
+        setTexturePath("dungeon/flesh/");
+        MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_FLESH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop, FLESHBULB);
+        MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
 
         setTexturePath("waveform_artifice/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
@@ -399,7 +408,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         String name = getBlockName(block);
         ResourceLocation side = getBlockTexture(name + "_side");
         ResourceLocation bottom = getBlockTexture(name + "_bottom");
-        ResourceLocation top = getBlockTexture(name);
+        ResourceLocation top = getBlockTexture(name + "_top");
         return models().cubeBottomTop(name, side, bottom, top);
     }
 

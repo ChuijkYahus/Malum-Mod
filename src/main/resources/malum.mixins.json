@@ -22,6 +22,7 @@
     "ProjectileMixin"
   ],
   "client": [
+    "client.AbstractContainerScreenMixin",
     "client.AccessorBakedGlyph",
     "client.AccessorFont",
     "client.CreativeModeInventoryScreenMixin",

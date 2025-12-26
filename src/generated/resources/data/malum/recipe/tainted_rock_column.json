@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
+    "X": {
       "tag": "malum:tainted_rock_slabs"
     }
   },
   "pattern": [
-    "#",
-    "#",
-    "#"
+    "X",
+    "X",
+    "X"
   ],
   "result": {
     "count": 3,

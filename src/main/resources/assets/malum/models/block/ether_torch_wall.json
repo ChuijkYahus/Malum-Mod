@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "malum:block/ether_torch",
+		"1": "malum:block/ether/ether_torch",
 		"particle": "malum:block/runewood/runewood_planks"
 	},
 	"elements": [

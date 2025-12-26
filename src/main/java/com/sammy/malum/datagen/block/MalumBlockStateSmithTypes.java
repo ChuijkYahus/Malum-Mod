@@ -11,6 +11,7 @@ import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.decor.ColumnBlock;
+import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
 import com.sammy.malum.common.block.ether.EtherBrazierBlock;
 import com.sammy.malum.common.block.ether.EtherCressetBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
@@ -189,14 +190,12 @@ public class MalumBlockStateSmithTypes {
                 });
     });
 
-
     public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addTextureNameAffix("_top"), (block, provider) -> {
         String name = provider.getBlockName(block);
         ModelFile model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/weeping_well/" + name));
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(PrimordialSoupBlock.TOP) ? topModel : model).build());
     });
-
 
     public static BlockStateSmith<LargeStrangeCrystalBlock> LARGE_STRANGE_CRYSTAL = new BlockStateSmith<>(LargeStrangeCrystalBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
@@ -213,35 +212,37 @@ public class MalumBlockStateSmithTypes {
 
     public static BlockStateSmith<CreepingBlightBlock> CREEPING_BLIGHT = new BlockStateSmith<>(CreepingBlightBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
-        ResourceLocation roots = malumPath("block/templates/blight/template_soulwood_roots");
-        ResourceLocation spike = malumPath("block/templates/blight/template_soulwood_spike");
-        ResourceLocation clinging = malumPath("block/templates/blight/template_clinging_blight");
-        ResourceLocation hanging = malumPath("block/templates/blight/template_hanging_blight");
+        var roots = malumPath("block/templates/blight/template_soulwood_roots");
+        var spike = malumPath("block/templates/blight/template_soulwood_spike");
+        var clinging = malumPath("block/templates/blight/template_clinging_blight");
+        var hanging = malumPath("block/templates/blight/template_hanging_blight");
 
         provider.getVariantBuilder(block).forAllStates(s -> {
             CreepingBlightBlock.BlightType value = s.getValue(CreepingBlightBlock.BLIGHT_TYPE);
             String valueName = value.getSerializedName();
-            ResourceLocation parent = switch (value) {
+            var parent = switch (value) {
                 case SOULWOOD_ROOTS -> roots;
                 case SOULWOOD_SPIKE -> spike;
                 case CLINGING_BLIGHT -> clinging;
                 case HANGING_BLIGHT -> hanging;
             };
-            ResourceLocation large = provider.getBlockTexture(valueName+"_large");
-            ResourceLocation largeExtension = provider.getBlockTexture(valueName+"_large_extension");
-            ResourceLocation side = provider.getBlockTexture(valueName +"_small");
+            var largeStart = provider.getBlockTexture(valueName+"_large_start");
+            var largeEnd = provider.getBlockTexture(valueName+"_large_end");
             var model = provider.models().withExistingParent(name+"_"+ valueName, parent)
-                    .texture("large", large)
-                    .texture("large_extension", largeExtension)
-                    .texture("small", side)
-                    .texture("particle", large);
+                    .texture("large_start", largeStart)
+                    .texture("large_end", largeEnd)
+                    .texture("particle", largeStart);
             if (parent.equals(roots)) {
-                ResourceLocation small_extension = provider.getBlockTexture(valueName +"_small_extension");
-                model.texture("small_extension", small_extension);
+                var smallStart = provider.getBlockTexture(valueName +"_small_start");
+                var smallEnd = provider.getBlockTexture(valueName +"_small_end");
+                model.texture("small_start", smallStart);
+                model.texture("small_end", smallEnd);
             }
             else {
-                ResourceLocation bracingTexture = provider.getBlockTexture(valueName +"_bracing");
-                model.texture("bracing", bracingTexture);
+                var bracing = provider.getBlockTexture(valueName +"_bracing");
+                var small = provider.getBlockTexture(valueName +"_small");
+                model.texture("bracing", bracing);
+                model.texture("small", small);
             }
             return ConfiguredModel.builder().modelFile(model).rotationY(((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
         });
@@ -261,6 +262,41 @@ public class MalumBlockStateSmithTypes {
         builder.addModel();
     });
 
+
+
+    public static BlockStateSmith<WrithingFleshBlock> WRITHING_FLESH = new BlockStateSmith<>(WrithingFleshBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        var writhing = malumPath("block/templates/flesh/template_writhing_flesh");
+        var clinging = malumPath("block/templates/flesh/template_clinging_flesh");
+        var hanging = malumPath("block/templates/flesh/template_hanging_flesh");
+
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            WrithingFleshBlock.FleshType value = s.getValue(WrithingFleshBlock.FLESH_TYPE);
+            String valueName = value.getSerializedName();
+            var parent = switch (value) {
+                case WRITHING_FLESH -> writhing;
+                case CLINGING_FLESH -> clinging;
+                case HANGING_FLESH -> hanging;
+            };
+            var largeStart = provider.getBlockTexture(valueName+"_large_start");
+            var largeEnd = provider.getBlockTexture(valueName+"_large_end");
+            var model = provider.models().withExistingParent(name+"_"+ valueName, parent)
+                    .texture("large_start", largeStart)
+                    .texture("large_end", largeEnd)
+                    .texture("particle", largeStart);
+            if (parent.equals(writhing)) {
+                var smallStart = provider.getBlockTexture(valueName +"_small_start");
+                var smallEnd = provider.getBlockTexture(valueName +"_small_end");
+                model.texture("small_start", smallStart);
+                model.texture("small_end", smallEnd);
+            }
+            else {
+                var small = provider.getBlockTexture(valueName +"_small");
+                model.texture("small", small);
+            }
+            return ConfiguredModel.builder().modelFile(model).rotationY(((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
+        });
+    });
     public static BlockStateSmith<EtherBrazierBlock> BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
 
     public static BlockStateSmith<EtherBrazierBlock> IRIDESCENT_BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.IRIDESCENT_ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);

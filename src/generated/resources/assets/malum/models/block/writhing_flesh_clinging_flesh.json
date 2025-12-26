@@ -1,0 +1,9 @@
+{
+  "parent": "malum:block/templates/flesh/template_clinging_flesh",
+  "textures": {
+    "large_end": "malum:block/dungeon/flesh/clinging_flesh_large_end",
+    "large_start": "malum:block/dungeon/flesh/clinging_flesh_large_start",
+    "particle": "malum:block/dungeon/flesh/clinging_flesh_large_start",
+    "small": "malum:block/dungeon/flesh/clinging_flesh_small"
+  }
+}

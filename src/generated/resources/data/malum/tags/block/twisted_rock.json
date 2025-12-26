@@ -1,12 +1,17 @@
 {
   "values": [
     "malum:rite_unweaver",
+    "malum:twisted_ether_brazier",
+    "malum:twisted_iridescent_ether_brazier",
+    "malum:twisted_ether_cresset",
+    "malum:twisted_iridescent_ether_cresset",
     "malum:twisted_rock",
     "malum:polished_twisted_rock",
     "malum:twisted_rock_bricks",
     "malum:twisted_rock_tiles",
     "malum:twisted_rock_mosaic",
     "malum:twisted_rock_column",
+    "malum:twisted_rock_altar",
     "malum:cut_twisted_rock",
     "malum:chiseled_twisted_rock",
     "malum:twisted_rock_slab",
@@ -31,6 +36,10 @@
     "malum:dross_stone_bricks",
     "malum:dross_stone_tiles",
     "malum:dross_stone_mosaic",
+    "malum:dross_stone_column",
+    "malum:dross_stone_altar",
+    "malum:cut_dross_stone",
+    "malum:chiseled_dross_stone",
     "malum:dross_stone_bricks_slab",
     "malum:dross_stone_tiles_slab",
     "malum:dross_stone_mosaic_slab",
@@ -40,10 +49,6 @@
     "malum:dross_stone_bricks_wall",
     "malum:dross_stone_tiles_wall",
     "malum:dross_stone_mosaic_wall",
-    "malum:twisted_ether_brazier",
-    "malum:twisted_iridescent_ether_brazier",
-    "malum:twisted_ether_cresset",
-    "malum:twisted_iridescent_ether_cresset",
     "malum:the_vessel"
   ]
 }

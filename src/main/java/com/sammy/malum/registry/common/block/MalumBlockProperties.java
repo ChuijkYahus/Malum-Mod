@@ -49,6 +49,14 @@ public class MalumBlockProperties {
                 .needsAxe();
     }
 
+    public static LodestoneBlockProperties SPIRIT_JAR() {
+        return new LodestoneBlockProperties()
+                .mapColor(MapColor.GOLD)
+                .strength(1f, 64f)
+                .sound(MalumSoundEvents.HALLOWED_GOLD)
+                .noOcclusion();
+    }
+
     public static LodestoneBlockProperties SOUL_BRAZIER() {
         return new LodestoneBlockProperties()
                 .lightLevel(b -> b.getValue(SoulBrazierBlock.LIT) ? 8 : 0)
@@ -89,6 +97,10 @@ public class MalumBlockProperties {
         return TAINTED_ROCK().sound(MalumSoundEvents.TAINTED_ROCK_BRICKS);
     }
 
+    public static LodestoneBlockProperties CHISELED_TAINTED_ROCK() {
+        return TAINTED_ROCK().sound(MalumSoundEvents.CHISELED_TAINTED_ROCK);
+    }
+
     public static LodestoneBlockProperties TWISTED_ROCK() {
         return new LodestoneBlockProperties()
                 .addTag(TWISTED_ROCK)
@@ -101,6 +113,10 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties TWISTED_ROCK_BRICKS() {
         return TWISTED_ROCK().sound(MalumSoundEvents.TWISTED_ROCK_BRICKS);
+    }
+
+    public static LodestoneBlockProperties CHISELED_TWISTED_ROCK() {
+        return TWISTED_ROCK().sound(MalumSoundEvents.CHISELED_TWISTED_ROCK);
     }
 
     public static LodestoneBlockProperties DROSS_STONE() {
@@ -117,9 +133,14 @@ public class MalumBlockProperties {
         return TWISTED_ROCK().sound(MalumSoundEvents.DROSS_STONE_BRICKS);
     }
 
-    public static LodestoneBlockProperties TAINTED_ROCK_ARTIFICE() {
+    public static LodestoneBlockProperties CHISELED_DROSS_STONE() {
+        return TWISTED_ROCK().sound(MalumSoundEvents.CHISELED_DROSS_STONE);
+    }
+
+    public static LodestoneBlockProperties ARCANE_ROCK_ARTIFICE() {
         return TAINTED_ROCK_BRICKS()
                 .strength(2.5f, 30.0F)
+                .sound(MalumSoundEvents.ARCANE_ROCK_ARTIFICE)
                 .setCutoutRenderType()
                 .noOcclusion();
     }
@@ -690,11 +711,29 @@ public class MalumBlockProperties {
                 .strength(10f, 9999f);
     }
 
-    public static LodestoneBlockProperties SPIRIT_JAR() {
+
+    public static LodestoneBlockProperties FLESH() {
         return new LodestoneBlockProperties()
-                .mapColor(MapColor.GOLD)
-                .strength(1f, 64f)
-                .sound(MalumSoundEvents.HALLOWED_GOLD)
+                .mapColor(MapColor.COLOR_BLACK);
+    }
+
+    public static LodestoneBlockProperties FLESH_BLOCK() {
+        return FLESH()
+                .sound(MalumSoundEvents.FLESH)
+                .strength(1.5F, -1.0F);
+    }
+
+    public static LodestoneBlockProperties FLESHBULB() {
+        return FLESH_BLOCK().lightLevel(s -> 6);
+    }
+
+    public static LodestoneBlockProperties WRITHING_FLESH() {
+        return FLESH()
+                .sound(MalumSoundEvents.WRITHING_FLESH)
+                .addTag(REPLACEABLE_BY_TREES)
+                .setCutoutRenderType()
+                .strength(0.5F, -1.0F)
+                .noCollission()
                 .noOcclusion();
     }
 

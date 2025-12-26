@@ -2,9 +2,9 @@
   "parent": "malum:block/templates/blight/template_clinging_blight",
   "textures": {
     "bracing": "malum:block/blight/clinging_blight_bracing",
-    "large": "malum:block/blight/clinging_blight_large",
-    "large_extension": "malum:block/blight/clinging_blight_large_extension",
-    "particle": "malum:block/blight/clinging_blight_large",
+    "large_end": "malum:block/blight/clinging_blight_large_end",
+    "large_start": "malum:block/blight/clinging_blight_large_start",
+    "particle": "malum:block/blight/clinging_blight_large_start",
     "small": "malum:block/blight/clinging_blight_small"
   }
 }
