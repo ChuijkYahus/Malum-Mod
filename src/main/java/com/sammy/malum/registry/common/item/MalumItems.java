@@ -42,6 +42,8 @@ import com.sammy.malum.common.item.disc.*;
 import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.common.item.impetus.*;
+import com.sammy.malum.common.item.nucleus.PyreNucleusItem;
+import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.compat.farmersdelight.*;
 import com.sammy.malum.core.enumextension.*;
@@ -354,9 +356,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> CRUSHED_BRILLIANCE = register("crushed_brilliance", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> REFINED_BRILLIANCE = register("refined_brilliance", MalumItems::DEFAULT_PROPERTIES, (p) -> new BrillianceChunkItem(p.food((new FoodProperties.Builder()).fast().alwaysEdible().build())));
 
-    public static final DeferredHolder<Item, Item> BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelBlockItem(MalumBlocks.BLOCK_OF_ARCANE_CHARCOAL.get(), p, 32000));
-    public static final DeferredHolder<Item, Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelItem(p, 3200));
-
     public static final DeferredHolder<Item, Item> BLOCK_OF_BLAZING_QUARTZ = register("block_of_blazing_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelBlockItem(MalumBlocks.BLOCK_OF_BLAZING_QUARTZ.get(), p, 16000));
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ_ORE = register("blazing_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLAZING_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ = register("blazing_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlazingQuartzItem(MalumBlocks.BLAZING_QUARTZ_CLUSTER.get(), 1600, p));
@@ -374,11 +373,16 @@ public class MalumItems {
     //region materials
     public static final DeferredHolder<Item, Item> BLOCK_OF_ROTTING_ESSENCE = register("block_of_rotting_essence", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ROTTING_ESSENCE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_GRIM_TALC = register("block_of_grim_talc", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_GRIM_TALC.get(), p));
-    public static final DeferredHolder<Item, Item> BLOCK_OF_ASTRAL_WEAVE = register("block_of_astral_weave", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ASTRAL_WEAVE.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_EERIE_WEAVE = register("block_of_eerie_weave", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_EERIE_WEAVE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_WARP_FLUX = register("block_of_warp_flux", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_WARP_FLUX.get(), p));
+
+    public static final DeferredHolder<Item, Item> BLOCK_OF_WIND_NUCLEI = register("block_of_wind_nuclei", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_WIND_NUCLEI.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_PYRE_NUCLEI = register("block_of_pyre_nuclei", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_PYRE_NUCLEI.get(), p));
+
     public static final DeferredHolder<Item, Item> BLOCK_OF_HEX_ASH = register("block_of_hex_ash", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_HEX_ASH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_LIVING_FLESH = register("block_of_living_flesh", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_LIVING_FLESH.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ALCHEMICAL_CALX.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelBlockItem(MalumBlocks.BLOCK_OF_ARCANE_CHARCOAL.get(), p, 32000));
 
     public static final DeferredHolder<Item, Item> BLOCK_OF_NULL_SLATE = register("block_of_null_slate", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_NULL_SLATE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_VOID_SALTS = register("block_of_void_salts", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_VOID_SALTS.get(), p));
@@ -388,12 +392,16 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> ROTTING_ESSENCE = register("rotting_essence", () -> DEFAULT_PROPERTIES().food(MalumFoodProperties.ROTTING_ESSENCE), Item::new);
     public static final DeferredHolder<Item, Item> GRIM_TALC = register("grim_talc", MalumItems::DEFAULT_PROPERTIES, Item::new);
-    public static final DeferredHolder<Item, Item> ASTRAL_WEAVE = register("astral_weave", MalumItems::DEFAULT_PROPERTIES, Item::new);
-    public static final DeferredHolder<Item, Item> WIND_NUCLEUS = register("wind_nucleus", MalumItems::DEFAULT_PROPERTIES, WindNucleusItem::new);
+    public static final DeferredHolder<Item, Item> EERIE_WEAVE = register("eerie_weave", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> WARP_FLUX = register("warp_flux", MalumItems::DEFAULT_PROPERTIES, Item::new);
+
+    public static final DeferredHolder<Item, Item> WIND_NUCLEUS = register("wind_nucleus", MalumItems::DEFAULT_PROPERTIES, WindNucleusItem::new);
+    public static final DeferredHolder<Item, Item> PYRE_NUCLEUS = register("pyre_nucleus", MalumItems::DEFAULT_PROPERTIES, PyreNucleusItem::new);
+
     public static final DeferredHolder<Item, Item> HEX_ASH = register("hex_ash", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> LIVING_FLESH = register("living_flesh", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> ALCHEMICAL_CALX = register("alchemical_calx", MalumItems::DEFAULT_PROPERTIES, Item::new);
+    public static final DeferredHolder<Item, Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelItem(p, 3200));
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> PARACAUSAL_FLAME = register("paracausal_flame", MalumItems::DEFAULT_PROPERTIES, Item::new);
@@ -420,6 +428,7 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> BLOCK_OF_HALLOWED_GOLD = register("block_of_hallowed_gold", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_HALLOWED_GOLD.get(), p));
     public static final DeferredHolder<Item, Item> HALLOWED_GOLD_INGOT = register("hallowed_gold_ingot", MalumItems::DEFAULT_PROPERTIES, Item::new);
+    public static final DeferredHolder<Item, Item> HALLOWED_GOLD_INLAY = register("hallowed_gold_inlay", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> HALLOWED_GOLD_NUGGET = register("hallowed_gold_nugget", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
     public static final DeferredHolder<Item, Item> BLOCK_OF_MALIGNANT_PEWTER = register("block_of_malignant_pewter", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_MALIGNANT_PEWTER.get(), p));

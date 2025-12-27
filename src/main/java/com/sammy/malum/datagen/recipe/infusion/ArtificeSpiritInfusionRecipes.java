@@ -114,7 +114,7 @@ public class ArtificeSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 6, MalumItems.RESONANCE_TUNER.get(), 1)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(AERIAL_SPIRIT, 16)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 8)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 8)
                 .addExtraItem(MalumItems.REFINED_BRILLIANCE.get(), 8)
                 .save(recipeOutput);
 
@@ -148,7 +148,7 @@ public class ArtificeSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 4, MalumItems.ACCELERATING_INLAY.get(), 1)
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 4)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 2)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 2)
                 .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 2)
                 .save(recipeOutput);
 

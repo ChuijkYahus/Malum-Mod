@@ -96,7 +96,7 @@ public class ArtificeEntries {
                 .addPage(new CyclingPage(
                         CraftingPage.bannerPage(ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER),
                         CraftingPage.bannerPage(GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS),
-                        CraftingPage.bannerPage(ASTRAL_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT),
+                        CraftingPage.bannerPage(EERIE_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT),
                         CraftingPage.bannerPage(WARP_FLUX.get(), SoulwovenBannerPatternDataComponent.HALLUCINATION)
                 ))
                 .addPage(new CyclingPage(

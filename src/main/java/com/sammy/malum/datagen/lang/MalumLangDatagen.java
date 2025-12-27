@@ -146,6 +146,7 @@ public class MalumLangDatagen extends LanguageProvider {
         });
         categories.forEach(a -> {
             String name = DataHelper.toTitleCase(a.id(), "_");
+            name = name.replaceAll("And", "&");
             add(a.getHeaderLangKey(), name);
         });
 

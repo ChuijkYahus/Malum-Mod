@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "malum:hallowed_gold_nugget"
+    },
+    "Y": {
+      "item": "malum:hallowed_gold_ingot"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XYX",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "malum:hallowed_gold_inlay"
+  }
+}

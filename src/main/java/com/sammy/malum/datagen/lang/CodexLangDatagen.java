@@ -445,16 +445,16 @@ public class CodexLangDatagen {
         addPages("esoteric_reaping",
                 "When a being dies, its soul disperses. This is basic theory, and well proven by this point. It's been proposed that sometimes, that power leaks into the body of the creature as it dies, to explain the existence of reagents they drop. That hadn't been proven yet.",
                 "But now, with my scythe, I have proved it beyond doubt. When a soul is shattered, even if only for a brief moment, the energy collides with what's left of it's vessel, it's physical remains. That collision creates brand new reagents that cannot normally be obtained by destroying just the body. This phenomena appears to create a strong reaction, a change of sorts.",
-                "I have discovered five reagents born through this process, which I will detail further in this entry. In summary, the flesh of zombies can curdle to Rotting Essence; the bones of skeletons can crystallize to Grim Talc; the wings of phantoms can spin to Astral Weave; the essence of the breeze can persist as the Wind Nucleus; and the magic of endermen can coalesce into Warp Flux.");
+                "I have discovered five reagents born through this process, which I will detail further in this entry. In summary, the flesh of zombies can curdle to Rotting Essence; the bones of skeletons can crystallize to Grim Talc; the wings of phantoms can spin to Eerie Weave; the essence of the breeze can persist as the Wind Nucleus; and the magic of endermen can coalesce into Warp Flux.");
         addHeadline("esoteric_reaping.rotting_essence", "Rotting Essence");
         addPages("esoteric_reaping.rotting_essence",
                 "When exposed to this magic, the flesh of the undead can curdle into Rotting Essence, a toxic and foul substance that smells like death itself.");
         addHeadline("esoteric_reaping.grim_talc", "Grim Talc");
         addPages("esoteric_reaping.grim_talc",
                 "Bones exposed to this magic can crystallize into Grim Talc, a useful mineral that can also be broken down into bonemeal.");
-        addHeadline("esoteric_reaping.astral_weave", "Astral Weave");
-        addPages("esoteric_reaping.astral_weave",
-                "The membrane of a phantom will spin into Astral Weave with this magic, a mystic cloth with strange arcane properties.");
+        addHeadline("esoteric_reaping.eerie_weave", "Eerie Weave");
+        addPages("esoteric_reaping.eerie_weave",
+                "The membrane of a phantom will spin into Eerie Weave with this magic, a mystic cloth with strange arcane properties.");
         addHeadline("esoteric_reaping.wind_nucleus", "Wind Nucleus");
         addPages("esoteric_reaping.wind_nucleus",
                 "The strange construction of the Breeze echoes the Trials around them, and the Wind Nucleus appears to be a part of a Breeze's core bindings. In a pinch, those bindings can be released to push surrounding creatures away.");
@@ -659,7 +659,7 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("accelerating_inlay", "Accelerating Inlay", "Doubling down");
         addPages("accelerating_inlay",
-                "Through the use of a superior conductor in Astral Weave, Accelerating Inlay simply provides a substantial bonus to the focusing speed of a Crucible without any drawbacks.");
+                "Through the use of a superior conductor in Eerie Weave, Accelerating Inlay simply provides a substantial bonus to the focusing speed of a Crucible without any drawbacks.");
 
         addSimpleEntryHeader("blazing_diode", "Blazing Diode", "The strongest force in the world");
         addPages("blazing_diode",

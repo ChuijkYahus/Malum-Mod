@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "malum:block/storage_blocks/block_of_alchemical_calx"
+    "bottom": "malum:block/storage_blocks/block_of_alchemical_calx_bottom",
+    "side": "malum:block/storage_blocks/block_of_alchemical_calx_side",
+    "top": "malum:block/storage_blocks/block_of_alchemical_calx_top"
   }
 }

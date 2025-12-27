@@ -26,6 +26,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static com.ibm.icu.impl.ValidIdentifiers.Datatype.x;
+import static com.sammy.malum.core.handlers.hiding.HiddenTagHandler.registerHiddenItemListener;
 
 public class MalumCreativeTabTweaks {
 
@@ -128,6 +129,7 @@ public class MalumCreativeTabTweaks {
 
     public static void fillMenu(CreativeModeInventoryScreen screen, CreativeModeInventoryScreen.ItemPickerMenu menu, Collection<Category> categories) {
         var items = menu.items;
+        HEADERS.clear();
         items.clear();
         for (Category category : categories) {
             addCategoryHeader(screen, menu, category);

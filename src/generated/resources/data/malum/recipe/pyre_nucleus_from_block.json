@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "malum:block_of_pyre_nuclei"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "malum:pyre_nucleus"
+  }
+}

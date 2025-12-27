@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "malum:item/ether/ether_torch",
     "layer1": "malum:item/ether/iridescent_ether_torch",
-    "layer2": "malum:item/ether/ether_torch_overlay"
+    "layer2": "malum:item/ether/iridescent_ether_torch_overlay"
   }
 }

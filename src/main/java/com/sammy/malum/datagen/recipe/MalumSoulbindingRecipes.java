@@ -140,19 +140,19 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
 
         new SoulBindingRecipeBuilder(Items.FEATHER, 12, MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT)
                 .addExtraItem(Items.LEATHER, 8)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 4)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 4)
                 .addSpirit(MalumSpiritTypes.AERIAL_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.FEATHER, 12, MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT)
                 .addExtraItem(Items.ARROW, 8)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 4)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 4)
                 .addSpirit(MalumSpiritTypes.AERIAL_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.WICKED_SPIRIT, 16)
                 .addSpirit(MalumSpiritTypes.AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(Items.HEAVY_CORE, 1, MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 8)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 8)
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 8)
                 .addExtraItem(Items.PHANTOM_MEMBRANE, 8)
                 .addSpirit(MalumSpiritTypes.AERIAL_SPIRIT, 32)
@@ -161,7 +161,7 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
         new SoulBindingRecipeBuilder(MalumItems.WIND_NUCLEUS.get(), 16, MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 8)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 8)
                 .addExtraItem(Items.WIND_CHARGE, 8)
                 .addExtraItem(Items.FEATHER, 8)
                 .addSpirit(MalumSpiritTypes.AERIAL_SPIRIT, 32)

@@ -9,13 +9,10 @@ import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.datagen.recipe.crafting.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.*;
-import net.minecraft.data.tags.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -29,7 +26,6 @@ import team.lodestar.lodestone.systems.datagen.*;
 import team.lodestar.lodestone.systems.datagen.providers.LodestoneItemTagsProvider;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.*;
 
 import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
@@ -165,12 +161,12 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
                 AERIAL_SPIRIT.get(), AQUEOUS_SPIRIT.get(), EARTHEN_SPIRIT.get(), INFERNAL_SPIRIT.get());
         tag(SPIRITS).addTag(ASPECTED_SPIRITS).add(UMBRAL_SPIRIT.get());
         tag(MOB_DROPS).add(
-                ROTTING_ESSENCE.get(), GRIM_TALC.get(), ASTRAL_WEAVE.get(), WARP_FLUX.get(),
+                ROTTING_ESSENCE.get(), GRIM_TALC.get(), EERIE_WEAVE.get(), WARP_FLUX.get(),
                 ROTTEN_FLESH, SPIDER_EYE, BONE, ARROW, GUNPOWDER, STRING, SLIME_BALL,
                 MAGMA_CREAM, BLAZE_ROD, BREEZE_ROD,
                 LEATHER, RABBIT_HIDE, FEATHER, INK_SAC);
         tag(MATERIALS).add(
-                ROTTING_ESSENCE.get(), GRIM_TALC.get(), ASTRAL_WEAVE.get(), WARP_FLUX.get(),
+                ROTTING_ESSENCE.get(), GRIM_TALC.get(), EERIE_WEAVE.get(), WARP_FLUX.get(),
                 HEX_ASH.get(), LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
                 SOULWOVEN_SILK.get(), ETHER.get(), IRIDESCENT_ETHER.get(),
                 SOUL_STAINED_STEEL_INGOT.get(), SOUL_STAINED_STEEL_NUGGET.get(), SOUL_STAINED_STEEL_PLATING.get(),

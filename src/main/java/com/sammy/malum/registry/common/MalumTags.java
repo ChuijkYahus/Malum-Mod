@@ -186,6 +186,7 @@ public class MalumTags {
         public static final TagKey<Block> MINEABLE_WITH_KNIFE = modTag("farmersdelight:mineable/knife");
 
         public static final TagKey<Block> CREATE_WRENCH_PICKUP = modTag("create:wrench_pickup");
+        public static final TagKey<Block> EIDOLON_ALTAR_BLOCK = modTag("eidolon_repraised:altar_blocks");
 
         public static final TagKey<Block> STRIPPED_LOGS = commonTag("stripped_logs");
         public static final TagKey<Block> STRIPPED_WOODS = commonTag("stripped_woods");

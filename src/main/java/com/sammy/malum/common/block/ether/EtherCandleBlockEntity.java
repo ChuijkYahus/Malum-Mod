@@ -20,27 +20,31 @@ import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 
 import java.awt.*;
 import java.util.List;
-import java.util.function.Function;
 
-public class EtherCandleBlockEntity extends EtherBlockEntity{
+public class EtherCandleBlockEntity extends EtherBlockEntity {
 
-    public static final Function<Integer, List<Vec3>> PARTICLE_OFFSETS = Util.memoize(r -> rotateAroundCenter(
-            List.of(
-                    new Vec3(0.5f, 0.625f, 0.5f),
+    public static final List<Vec3> BASE_OFFSETS = List.of(
+            new Vec3(0.5f, 0.625f, 0.5f),
 
-                    new Vec3(0.6f, 0.625f, 0.625f),
-                    new Vec3(0.46875, 0.75f, 0.375f),
+            new Vec3(0.6f, 0.625f, 0.625f),
+            new Vec3(0.46875, 0.75f, 0.375f),
 
-                    new Vec3(0.6875f, 0.625f, 0.625f),
-                    new Vec3(0.5625f, 0.75f, 0.375f),
-                    new Vec3(0.3125f, 0.875f, 0.4375f),
+            new Vec3(0.6875f, 0.625f, 0.625f),
+            new Vec3(0.5625f, 0.75f, 0.375f),
+            new Vec3(0.3125f, 0.875f, 0.4375f),
 
-                    new Vec3(0.6875f, 0.625f, 0.5625f),
-                    new Vec3(0.5625f, 0.75f, 0.3125f),
-                    new Vec3(0.3125f, 0.875f, 0.375f),
-                    new Vec3(0.34375f, 0.9375f, 0.65625f)
-            ), r
-    ));
+            new Vec3(0.6875f, 0.625f, 0.5625f),
+            new Vec3(0.5625f, 0.75f, 0.3125f),
+            new Vec3(0.3125f, 0.875f, 0.375f),
+            new Vec3(0.34375f, 0.9375f, 0.65625f)
+    );
+    @SuppressWarnings("unchecked")
+    public static final List<Vec3>[] PARTICLE_OFFSETS = new List[]{
+            BASE_OFFSETS,
+            rotateAroundCenter(BASE_OFFSETS, 1),
+            rotateAroundCenter(BASE_OFFSETS, 2),
+            rotateAroundCenter(BASE_OFFSETS, 3)
+    };
 
     public static final RandomSource CANDLE_ROTATION = RandomSource.create();
     public EtherCandleBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
@@ -64,7 +68,7 @@ public class EtherCandleBlockEntity extends EtherBlockEntity{
         //This should match perfectly the use of WeighedRandom in WeighedBakedModel
         CANDLE_ROTATION.setSeed(state.getSeed(getBlockPos()));
         int rotationIndex = Math.abs((int) CANDLE_ROTATION.nextLong()) % 4;
-        var offsets = PARTICLE_OFFSETS.apply(rotationIndex);
+        var offsets = PARTICLE_OFFSETS[rotationIndex];
         int candles = state.getValue(EtherCandleBlock.CANDLES);
         for (int i = 0; i < candles; i++) {
             int offsetIndex = i;
@@ -77,47 +81,54 @@ public class EtherCandleBlockEntity extends EtherBlockEntity{
             var z = worldPosition.getZ()+offset.z;
             Vec3 candleFlameCenter = new Vec3(x, y - 0.05f, z);
             //Upwards Moving Particles
-            if (level.getGameTime() % 16L == 0) {
+            if (level.getGameTime() % (32L + i) == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(1.5f).setEasing(Easing.SINE_IN_OUT).build();
+                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
                 int lifeTime = RandomHelper.randomBetween(random, 40, 120);
-                float scale = RandomHelper.randomBetween(random, 0.2f, 0.4f);
-                float velocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
+                float scale = RandomHelper.randomBetween(random, 0.1f, 0.3f);
+                float velocity = RandomHelper.randomBetween(random, 0.012f, 0.024f);
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
-                        .setTransparencyData(GenericParticleData.create(0.05f, 0.2f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
+                        .setTransparencyData(GenericParticleData.create(0.2f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
-                        .addMotion(0, velocity * 1.2f, 0)
+                        .addMotion(0, velocity, 0)
+                        .setRandomOffset(0.1f)
                         .setLifetime(lifeTime)
+                        .setLifeDelay(lifeDelay)
                         .setFriction(1);
                 lightSpecs.spawnParticlesRaw();
             }
             //Upwards Moving Sparks
-            if (level.getGameTime() % 24L == 0) {
+            if (level.getGameTime() % (24L + i) == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(2.5f).setEasing(Easing.SINE_IN_OUT).build();
+                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
                 int lifeTime = RandomHelper.randomBetween(random, 30, 40);
-                float scale = RandomHelper.randomBetween(random, 0.3f, 0.5f);
+                float scale = RandomHelper.randomBetween(random, 0.2f, 0.35f);
                 float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setLifeDelay(lifeDelay)
                         .setLifetime(lifeTime)
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                         .addMotion(0, velocity * 0.6f, 0)
-                        .setRandomOffset(0.1f);
+                        .setRandomOffset(0.2f);
                 lightSpecs.spawnParticlesRaw();
             }
 
             //Small Shine
-            if (level.getGameTime() % 24L == 0) {
-                var color = ColorParticleData.create(start, end).setCoefficient(0.9f).setEasing(Easing.SINE_IN_OUT).build();
-                int lifeTime = RandomHelper.randomBetween(random, 40, 50);
+            if (level.getGameTime() % (22L + i) == 0) {
+                var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
+                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
+                int lifeTime = RandomHelper.randomBetween(random, 30, 40);
                 float scale = RandomHelper.randomBetween(random, 0.15f, 0.25f);
                 WorldParticleBuilder.create(MalumParticles.STAR)
-                        .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
+                        .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 1f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.CIRC_IN).build())
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setLifeDelay(lifeDelay)
                         .setLifetime(lifeTime)
                         .setColorData(color)
                         .enableNoClip()

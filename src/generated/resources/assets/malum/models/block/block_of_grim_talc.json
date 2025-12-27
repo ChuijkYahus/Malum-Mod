@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "malum:block/storage_blocks/block_of_grim_talc"
+    "bottom": "malum:block/storage_blocks/block_of_grim_talc_bottom",
+    "side": "malum:block/storage_blocks/block_of_grim_talc_side",
+    "top": "malum:block/storage_blocks/block_of_grim_talc_top"
   }
 }

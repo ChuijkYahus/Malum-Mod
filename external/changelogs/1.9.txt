@@ -1,10 +1,13 @@
 # New Stuff & Tweaks
 
-# Creative Menu
+Creative Menu
 - Consolidated all creative tabs malum added into one, with the exception of Geas and Cosmetics
 - This new creative tab has some cool visual differences to the usual
 
-# Arcane Rock
+# Scythes
+- Scythes can now get Fire Aspect and Looting
+
+Arcane Rock
 - Tainted Rock and Twisted Rock block sets have been changed
 - The following block types are now gone:
   - Smooth
@@ -22,30 +25,30 @@
 - The Spirit Crucible, Spirit Catalyzer and Repair Pylon now have new place/break/hit/step sounds
 - Stonecutting recipes are now much more organized, similar to how Create does it
 
-# Spirited Glass
-- Updated the textures and opacity of Spirited Glass
-- Added Null Spirited Glass
-- Spirited Glass can no longer suffocate, conduct redstone, and some other stuff too - essentially just matching glass in various misc. behaviours
+Storage Blocks
+- Updated the textures for ALL Storage Blocks
 
-# Blight
-- Added Columnar Blight
-
-# Varnished Terracotta
-- Added Null Varnished Terracotta
-
-# Ether
+Ether
 - Updated the model for Ether Braziers
 - Added Ether Cressets
 - Added Ether Candles
 
+Spirited Glass
+- Updated the textures and opacity of Spirited Glass
+- Added Null Spirited Glass
+- Spirited Glass can no longer suffocate, conduct redstone, and some other stuff too - essentially just matching glass in various misc. behaviours
+
+Varnished Terracotta
+- Added Null Varnished Terracotta
+
+Blight
+- Added Columnar Blight
+
 # Geas Changes
 
-# Pact of the Lone Druid
+Pact of the Lone Druid
 - Damaging effect only kicks in when beneath half health, but grows stronger with each equipped armor piece
 - This change is meant to allow you to wear *some* armor, without getting totally screwed over
-
-# Scythes
-- Scythes can now get Fire Aspect and Looting
 
 # Bugfixes
 - Fixed the Belt of the Prospector Entry being way too long, I forgot to run datagen...

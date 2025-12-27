@@ -12,7 +12,6 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -144,23 +143,21 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(MalumItems.SOULWOVEN_SILK.get())).save(output);
         bannerRecipe(output, MalumItems.ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER);
         bannerRecipe(output, MalumItems.GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS);
-        bannerRecipe(output, MalumItems.ASTRAL_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT);
+        bannerRecipe(output, MalumItems.EERIE_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT);
         bannerRecipe(output, MalumItems.WARP_FLUX.get(), SoulwovenBannerPatternDataComponent.HALLUCINATION);
 
         //SPIRIT METALS
-        compactBlock(output, MalumItems.SOUL_STAINED_STEEL_INGOT, MalumItems.BLOCK_OF_SOUL_STAINED_STEEL);
-        shaped(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_INGOT.get()).define('#', MalumItems.SOUL_STAINED_STEEL_NUGGET.get()).pattern("###").pattern("###").pattern("###").unlockedBy("has_soul_stained_steel", has(MalumItems.SOUL_STAINED_STEEL_INGOT.get())).save(output, malumPath("soul_stained_steel_from_nuggets"));
-        shapeless(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_NUGGET.get(), 9).requires(MalumItems.SOUL_STAINED_STEEL_INGOT.get()).unlockedBy("has_soul_stained_steel", has(MalumItems.SOUL_STAINED_STEEL_INGOT.get())).save(output);
-        shaped(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 2).define('X', MalumItems.SOUL_STAINED_STEEL_INGOT.get()).define('Y', MalumItems.SOUL_STAINED_STEEL_NUGGET.get()).pattern(" Y ").pattern("YXY").pattern(" Y ").unlockedBy("has_soul_stained_steel", has(MalumItems.SOUL_STAINED_STEEL_INGOT.get())).save(output);
+        blockIngotExchange(output, MalumItems.SOUL_STAINED_STEEL_INGOT, MalumItems.BLOCK_OF_SOUL_STAINED_STEEL);
+        ingotNuggetExchange(output, MalumItems.SOUL_STAINED_STEEL_NUGGET, MalumItems.SOUL_STAINED_STEEL_INGOT);
+        plating(output, MalumItems.SOUL_STAINED_STEEL_NUGGET, MalumItems.SOUL_STAINED_STEEL_INGOT, MalumItems.SOUL_STAINED_STEEL_PLATING);
 
-        compactBlock(output, MalumItems.HALLOWED_GOLD_INGOT, MalumItems.BLOCK_OF_HALLOWED_GOLD);
-        shaped(RecipeCategory.MISC, MalumItems.HALLOWED_GOLD_INGOT.get()).define('#', MalumItems.HALLOWED_GOLD_NUGGET.get()).pattern("###").pattern("###").pattern("###").unlockedBy("has_hallowed_gold", has(MalumItems.HALLOWED_GOLD_INGOT.get())).save(output, malumPath("hallowed_gold_from_nuggets"));
-        shapeless(RecipeCategory.MISC, MalumItems.HALLOWED_GOLD_NUGGET.get(), 9).requires(MalumItems.HALLOWED_GOLD_INGOT.get()).unlockedBy("has_hallowed_gold", has(MalumItems.HALLOWED_GOLD_INGOT.get())).save(output);
+        blockIngotExchange(output, MalumItems.HALLOWED_GOLD_INGOT, MalumItems.BLOCK_OF_HALLOWED_GOLD);
+        ingotNuggetExchange(output, MalumItems.HALLOWED_GOLD_NUGGET, MalumItems.HALLOWED_GOLD_INGOT);
+        plating(output, MalumItems.HALLOWED_GOLD_NUGGET, MalumItems.HALLOWED_GOLD_INGOT, MalumItems.HALLOWED_GOLD_INLAY);
 
-        compactBlock(output, MalumItems.MALIGNANT_PEWTER_INGOT, MalumItems.BLOCK_OF_MALIGNANT_PEWTER);
-        shaped(RecipeCategory.MISC, MalumItems.MALIGNANT_PEWTER_INGOT.get()).define('#', MalumItems.MALIGNANT_PEWTER_NUGGET.get()).pattern("###").pattern("###").pattern("###").unlockedBy("has_malignant_alloy", has(MalumItems.MALIGNANT_PEWTER_INGOT.get())).save(output, malumPath("malignant_alloy_from_nuggets"));
-        shapeless(RecipeCategory.MISC, MalumItems.MALIGNANT_PEWTER_NUGGET.get(), 9).requires(MalumItems.MALIGNANT_PEWTER_INGOT.get()).unlockedBy("has_malignant_alloy", has(MalumItems.MALIGNANT_PEWTER_INGOT.get())).save(output);
-        shaped(RecipeCategory.MISC, MalumItems.MALIGNANT_PEWTER_PLATING.get(), 2).define('X', MalumItems.MALIGNANT_PEWTER_INGOT.get()).define('Y', MalumItems.MALIGNANT_PEWTER_NUGGET.get()).pattern(" Y ").pattern("YXY").pattern(" Y ").unlockedBy("has_malignant_alloy", has(MalumItems.MALIGNANT_PEWTER_INGOT.get())).save(output);
+        blockIngotExchange(output, MalumItems.MALIGNANT_PEWTER_INGOT, MalumItems.BLOCK_OF_MALIGNANT_PEWTER);
+        ingotNuggetExchange(output, MalumItems.MALIGNANT_PEWTER_NUGGET, MalumItems.MALIGNANT_PEWTER_INGOT);
+        plating(output, MalumItems.MALIGNANT_PEWTER_NUGGET, MalumItems.MALIGNANT_PEWTER_INGOT, MalumItems.MALIGNANT_PEWTER_PLATING);
 
         //NODES
         smeltingWithCount(Ingredient.of(MalumItems.IRON_NODE.get()), RecipeCategory.MISC, Items.IRON_NUGGET, 6, 0.25f, 200).unlockedBy("has_impetus", has(MalumItems.IRON_IMPETUS.get())).save(output, malumPath("iron_from_node_smelting"));
@@ -222,24 +219,30 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         blastingWithCount(Ingredient.of(MalumItems.CRUSHED_SOULSTONE.get()), RecipeCategory.MISC, MalumItems.REFINED_SOULSTONE.get(), 2, 0.25f, 100).unlockedBy("has_soulstone", has(MalumItems.RAW_SOULSTONE.get())).save(output, malumPath("soulstone_from_crushed_blasting"));
 
         //FULL BLOCKS
-        compactBlock(output, MalumItems.RAW_SOULSTONE, MalumItems.BLOCK_OF_RAW_SOULSTONE);
-        compactBlock(output, MalumItems.REFINED_SOULSTONE, MalumItems.BLOCK_OF_SOULSTONE);
-        compactBlock(output, MalumItems.RAW_BRILLIANCE, MalumItems.BLOCK_OF_BRILLIANCE);
-        compactBlock(output, MalumItems.ARCANE_CHARCOAL, MalumItems.BLOCK_OF_ARCANE_CHARCOAL);
-        compactBlock(output, MalumItems.BLAZING_QUARTZ, MalumItems.BLOCK_OF_BLAZING_QUARTZ);
-        compactBlock(output, MalumItems.CTHONIC_GOLD, MalumItems.BLOCK_OF_CTHONIC_GOLD);
-        compactBlock(output, MalumItems.ROTTING_ESSENCE, MalumItems.BLOCK_OF_ROTTING_ESSENCE);
-        compactBlock(output, MalumItems.GRIM_TALC, MalumItems.BLOCK_OF_GRIM_TALC);
-        compactBlock(output, MalumItems.ALCHEMICAL_CALX, MalumItems.BLOCK_OF_ALCHEMICAL_CALX);
-        compactBlock(output, MalumItems.ASTRAL_WEAVE, MalumItems.BLOCK_OF_ASTRAL_WEAVE);
-        compactBlock(output, MalumItems.WARP_FLUX, MalumItems.BLOCK_OF_WARP_FLUX);
-        compactBlock(output, MalumItems.HEX_ASH, MalumItems.BLOCK_OF_HEX_ASH);
-        compactBlock(output, MalumItems.LIVING_FLESH, MalumItems.BLOCK_OF_LIVING_FLESH);
-        compactBlock(output, MalumItems.NULL_SLATE, MalumItems.BLOCK_OF_NULL_SLATE);
-        compactBlock(output, MalumItems.VOID_SALTS, MalumItems.BLOCK_OF_VOID_SALTS);
-        compactBlock(output, MalumItems.MNEMONIC_FRAGMENT, MalumItems.BLOCK_OF_MNEMONIC_FRAGMENT);
-        compactBlock(output, MalumItems.MALIGNANT_LEAD, MalumItems.BLOCK_OF_MALIGNANT_LEAD);
-        compactBlock(output, MalumItems.AURIC_EMBERS, MalumItems.BLOCK_OF_AURIC_EMBERS);
+        blockIngotExchange(output, MalumItems.RAW_SOULSTONE, MalumItems.BLOCK_OF_RAW_SOULSTONE);
+        blockIngotExchange(output, MalumItems.REFINED_SOULSTONE, MalumItems.BLOCK_OF_SOULSTONE);
+        blockIngotExchange(output, MalumItems.RAW_BRILLIANCE, MalumItems.BLOCK_OF_BRILLIANCE);
+        blockIngotExchange(output, MalumItems.BLAZING_QUARTZ, MalumItems.BLOCK_OF_BLAZING_QUARTZ);
+        blockIngotExchange(output, MalumItems.CTHONIC_GOLD, MalumItems.BLOCK_OF_CTHONIC_GOLD);
+
+        blockIngotExchange(output, MalumItems.ROTTING_ESSENCE, MalumItems.BLOCK_OF_ROTTING_ESSENCE);
+        blockIngotExchange(output, MalumItems.GRIM_TALC, MalumItems.BLOCK_OF_GRIM_TALC);
+        blockIngotExchange(output, MalumItems.EERIE_WEAVE, MalumItems.BLOCK_OF_EERIE_WEAVE);
+        blockIngotExchange(output, MalumItems.WARP_FLUX, MalumItems.BLOCK_OF_WARP_FLUX);
+
+        blockIngotExchange(output, MalumItems.WIND_NUCLEUS, MalumItems.BLOCK_OF_WIND_NUCLEI);
+        blockIngotExchange(output, MalumItems.PYRE_NUCLEUS, MalumItems.BLOCK_OF_PYRE_NUCLEI);
+
+        blockIngotExchange(output, MalumItems.HEX_ASH, MalumItems.BLOCK_OF_HEX_ASH);
+        blockIngotExchange(output, MalumItems.LIVING_FLESH, MalumItems.BLOCK_OF_LIVING_FLESH);
+        blockIngotExchange(output, MalumItems.ALCHEMICAL_CALX, MalumItems.BLOCK_OF_ALCHEMICAL_CALX);
+        blockIngotExchange(output, MalumItems.ARCANE_CHARCOAL, MalumItems.BLOCK_OF_ARCANE_CHARCOAL);
+
+        blockIngotExchange(output, MalumItems.NULL_SLATE, MalumItems.BLOCK_OF_NULL_SLATE);
+        blockIngotExchange(output, MalumItems.VOID_SALTS, MalumItems.BLOCK_OF_VOID_SALTS);
+        blockIngotExchange(output, MalumItems.MNEMONIC_FRAGMENT, MalumItems.BLOCK_OF_MNEMONIC_FRAGMENT);
+        blockIngotExchange(output, MalumItems.MALIGNANT_LEAD, MalumItems.BLOCK_OF_MALIGNANT_LEAD);
+        blockIngotExchange(output, MalumItems.AURIC_EMBERS, MalumItems.BLOCK_OF_AURIC_EMBERS);
 
         //MISC
         shaped(RecipeCategory.MISC, Items.NETHERRACK, 2).define('Z', MalumItems.BLAZING_QUARTZ.get()).define('Y', Tags.Items.COBBLESTONES).pattern("ZY").pattern("YZ").unlockedBy("has_blazing_quartz", has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("netherrack_from_blazing_quartz"));
@@ -304,23 +307,42 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, output.get()).requires(MalumItems.ESOTERIC_SPOOL.get()).requires(sideItem).unlockedBy("has_spool", has(MalumItems.ESOTERIC_SPOOL.get())).save(consumer);
     }
 
-    private static void compactBlock(RecipeOutput consumer, Supplier<? extends Item> itemForm, Supplier<? extends Item> blockForm) {
-        var item = itemForm.get();
-        var block = blockForm.get();
-        String blockName = BuiltInRegistries.ITEM.getKey(block).getPath();
-        String itemName = BuiltInRegistries.ITEM.getKey(item).getPath();
-        shaped(RecipeCategory.MISC, block)
-                .define('#', item)
+    private static void ingotNuggetExchange(RecipeOutput consumer, Supplier<? extends Item> itemForm, Supplier<? extends Item> blockForm) {
+        compacting(consumer, itemForm, blockForm, "nugget");
+    }
+    private static void blockIngotExchange(RecipeOutput consumer, Supplier<? extends Item> itemForm, Supplier<? extends Item> blockForm) {
+        compacting(consumer, itemForm, blockForm, "block");
+    }
+    private static void compacting(RecipeOutput consumer, Supplier<? extends Item> smallForm, Supplier<? extends Item> bigForm, String type) {
+        var small = smallForm.get();
+        var big = bigForm.get();
+        String blockName = BuiltInRegistries.ITEM.getKey(big).getPath();
+        String itemName = BuiltInRegistries.ITEM.getKey(small).getPath();
+        shaped(RecipeCategory.MISC, big)
+                .define('#', small)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + itemName, has(item))
+                .unlockedBy("has_" + itemName, has(small))
                 .save(consumer, malumPath(blockName));
-
-        shapeless(RecipeCategory.MISC, item, 9)
-                .requires(block)
-                .unlockedBy("has_" + itemName, has(item))
-                .save(consumer, malumPath(itemName + "_from_block"));
+        shapeless(RecipeCategory.MISC, small, 9)
+                .requires(big)
+                .unlockedBy("has_" + itemName, has(small))
+                .save(consumer, malumPath(itemName + "_from_" + type));
+    }
+    private static void plating(RecipeOutput consumer, Supplier<? extends Item> nuggetForm, Supplier<? extends Item> ingotForm, Supplier<? extends Item> result) {
+        Item nugget = nuggetForm.get();
+        Item ingot = ingotForm.get();
+        Item plating = result.get();
+        String itemName = BuiltInRegistries.ITEM.getKey(ingot).getPath();
+        shaped(RecipeCategory.MISC, plating)
+                .define('X', nugget)
+                .define('Y', ingot)
+                .pattern(" X ")
+                .pattern("XYX")
+                .pattern(" X ")
+                .unlockedBy("has_" + itemName, has(ingot))
+                .save(consumer);
     }
 
     private static void nodeSmelting(RecipeOutput recipeoutput, Holder<Item> node, TagKey<Item> tag) {

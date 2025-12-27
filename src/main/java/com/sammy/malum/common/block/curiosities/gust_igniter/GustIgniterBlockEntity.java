@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.gust_igniter;
 
 import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -24,7 +24,6 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 import static com.sammy.malum.core.handlers.WindTunnelHandler.MAX_STRENGTH;
 

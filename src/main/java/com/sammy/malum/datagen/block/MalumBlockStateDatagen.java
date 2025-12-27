@@ -209,13 +209,18 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         setTexturePath("storage_blocks/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_SOULSTONE, BLOCK_OF_CTHONIC_GOLD, BLOCK_OF_BRILLIANCE,
-                BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_ASTRAL_WEAVE,
-                BLOCK_OF_HEX_ASH, BLOCK_OF_ALCHEMICAL_CALX,
-                MASS_OF_BLIGHTED_GUNK, BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
+                BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD,
-                BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_ARCANE_CHARCOAL,
-                BLOCK_OF_AURIC_EMBERS, BLOCK_OF_LIVING_FLESH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
+                BLOCK_OF_BLAZING_QUARTZ,
+                BLOCK_OF_AURIC_EMBERS);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
+                BLOCK_OF_GRIM_TALC, BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
+                BLOCK_OF_WIND_NUCLEI, BLOCK_OF_PYRE_NUCLEI);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
+                BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
 
         setTexturePath("blight/");
         MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_BLIGHT);
@@ -310,7 +315,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         String name = getBlockName(block);
         int index = name.indexOf("_");
         String substring = name.substring(index + 1);
-        ResourceLocation top = getBlockTexture("polished_" + substring);
+        ResourceLocation top = getBlockTexture(substring);
         ResourceLocation bottom = getBlockTexture(substring);
         ResourceLocation side = getBlockTexture(name);
         return models().cubeBottomTop(name, side, bottom, top);

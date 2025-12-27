@@ -3,7 +3,7 @@
   "drops": [
     {
       "ingredient": {
-        "item": "malum:astral_weave"
+        "item": "malum:eerie_weave"
       },
       "chance": "0.5",
       "min": "1",

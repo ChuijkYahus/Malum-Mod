@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "malum:item/ether/dross_ether_cresset",
     "layer1": "malum:item/ether/iridescent_ether_cresset",
-    "layer2": "malum:item/ether/ether_cresset_overlay"
+    "layer2": "malum:item/ether/iridescent_ether_cresset_overlay"
   }
 }
