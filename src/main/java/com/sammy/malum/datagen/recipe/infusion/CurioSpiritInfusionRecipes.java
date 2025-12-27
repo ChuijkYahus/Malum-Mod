@@ -15,7 +15,7 @@ public class CurioSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(MalumItems.RUNIC_BROOCH.get(), 1, MalumItems.GLASS_BROOCH.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 8))
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 4)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 4)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
                 .save(recipeOutput);
 
@@ -25,7 +25,7 @@ public class CurioSpiritInfusionRecipes {
                 .addSpirit(WICKED_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_ESOTERIC_SPOILS.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_ESOTERIC_SPOILS.get(), 1)
                 .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
@@ -107,7 +107,7 @@ public class CurioSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_NECKLACE.get(), 1, MalumItems.NECKLACE_OF_BLISSFUL_HARMONY.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
                 .addExtraItem(Items.PHANTOM_MEMBRANE, 4)
-                .addExtraItem(MalumItems.ASTRAL_WEAVE.get(), 2)
+                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 2)
                 .addExtraItem(Items.DIAMOND, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(SACRED_SPIRIT, 16)

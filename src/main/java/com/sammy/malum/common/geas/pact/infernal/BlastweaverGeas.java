@@ -1,31 +1,22 @@
 package com.sammy.malum.common.geas.pact.infernal;
 
-import com.google.common.collect.*;
 import com.sammy.malum.common.data.attachment.AvariceMarkData;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.tags.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.level.*;
-import net.neoforged.neoforge.event.tick.*;
 
-import javax.annotation.*;
-import java.util.*;
 import java.util.function.*;
 
-import static com.sammy.malum.common.item.WindNucleusItem.getExplosionAffectedEntities;
+import static com.sammy.malum.common.item.nucleus.WindNucleusItem.getExplosionAffectedEntities;
 
 public class BlastweaverGeas extends GeasEffect {
 

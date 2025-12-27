@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_malignant_alloy": {
+    "has_malignant_pewter_ingot": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_malignant_alloy"
+      "has_malignant_pewter_ingot"
     ]
   ],
   "rewards": {

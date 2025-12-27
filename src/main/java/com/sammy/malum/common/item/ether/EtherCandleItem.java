@@ -26,16 +26,16 @@ public class EtherCandleItem extends EtherItem {
         float time = level.getGameTime() + partialTick;
         var spinDataBuilder = SpinParticleData.create(0, 1).setSpinOffset(0.025f * time % 6.28f).setEasing(Easing.EXPO_IN_OUT);
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.STAR, target)
-                .setTransparencyData(GenericParticleData.create(0.06f * alphaMultiplier, 0f).setEasing(Easing.QUINTIC_IN).build())
-                .setScaleData(GenericParticleData.create((float) (1.3f + Math.sin(time * 0.1f) * 0.125f), 0).build())
-                .setColorData(ColorParticleData.create(firstColor, secondColor).setCoefficient(1.25f).build())
+                .setTransparencyData(GenericParticleData.create(0.15f * alphaMultiplier, 0f).setEasing(Easing.QUINTIC_IN))
+                .setScaleData(GenericParticleData.create((float) (0.6f + Math.sin(time * 0.1f) * 0.125f), 0))
+                .setColorData(ColorParticleData.create(firstColor, secondColor).setCoefficient(1.25f))
                 .setLifetime(6)
                 .setRandomOffset(0.05f)
                 .setSpinData(spinDataBuilder.build())
-                .spawnOnStack(-0.5f, -4)
-                .setScaleData(GenericParticleData.create((float) (1.2f - Math.sin(time * 0.075f) * 0.125f), 0).build())
-                .setColorData(ColorParticleData.create(secondColor, firstColor).build())
-                .setSpinData(spinDataBuilder.setSpinOffset(0.785f - 0.01f * time % 6.28f).build())
-                .spawnOnStack(-0.5f, -4);
+                .spawnOnStack(-0.5f, -5)
+                .setScaleData(GenericParticleData.create((float) (0.4f - Math.sin(time * 0.1f) * 0.125f), 0))
+                .setColorData(ColorParticleData.create(secondColor, firstColor))
+                .setSpinData(spinDataBuilder.setSpinOffset(0.785f - 0.01f * time % 6.28f))
+                .spawnOnStack(-0.5f, -5);
     }
 }

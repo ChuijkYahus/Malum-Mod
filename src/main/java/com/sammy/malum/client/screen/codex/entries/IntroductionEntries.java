@@ -41,27 +41,6 @@ public class IntroductionEntries {
                 .addPage(new TextPage("introduction.3"))
                 .addPage(new TextPage("introduction.4"))
                 .addPage(new TextPage("introduction.5"))
-//                .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-//                        BookEntry.create("a_personal_note")
-//                                .addPage(new HeadlineTextPage("a_personal_note"))
-//                                .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-//                                        BookEntry.create("a_personal_note.commendations")
-//                                                .addPage(new HeadlineTextPage("a_personal_note.commendations.wiresegal", "a_personal_note.commendations.wiresegal.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.commendations.alphalilly", "a_personal_note.commendations.alphalilly.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.commendations.pessi_mysterio", "a_personal_note.commendations.pessi_mysterio.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.commendations.kultik", "a_personal_note.commendations.kultik.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.commendations.coalition_of_magic", "a_personal_note.commendations.coalition_of_magic.1"))
-//                                ))
-//                                .addReference(new EntryReference(TOKEN_OF_GRATITUDE.get(),
-//                                        BookEntry.create("a_personal_note.inspirations")
-//                                                .addPage(new HeadlineTextPage("a_personal_note.inspirations.thaumcraft", "a_personal_note.inspirations.thaumcraft.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.inspirations.astral_sorcery", "a_personal_note.inspirations.astral_sorcery.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.inspirations.mystic_modding", "a_personal_note.inspirations.mystic_modding.1"))
-//                                                .addPage(new HeadlineTextPage("a_personal_note.inspirations.eidolon", "a_personal_note.inspirations.eidolon.1"))
-//                                ))
-//                ))
-
-
         );
 
         screen.addEntry("spirit_crystals", 0, 1, b -> b
@@ -175,7 +154,7 @@ public class IntroductionEntries {
                 .addPage(new TextPage("esoteric_reaping.3"))
                 .addPage(new HeadlineTextItemPage("esoteric_reaping.rotting_essence", "esoteric_reaping.rotting_essence.1", ROTTING_ESSENCE.get()))
                 .addPage(new HeadlineTextItemPage("esoteric_reaping.grim_talc", "esoteric_reaping.grim_talc.1", GRIM_TALC.get()))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.astral_weave", "esoteric_reaping.astral_weave.1", ASTRAL_WEAVE.get()))
+                .addPage(new HeadlineTextItemPage("esoteric_reaping.eerie_weave", "esoteric_reaping.eerie_weave.1", EERIE_WEAVE.get()))
                 .addPage(new HeadlineTextItemPage("esoteric_reaping.wind_nucleus", "esoteric_reaping.wind_nucleus.1", WIND_NUCLEUS.get()))
                 .addPage(new HeadlineTextItemPage("esoteric_reaping.warp_flux", "esoteric_reaping.warp_flux.1", WARP_FLUX.get()))
         );

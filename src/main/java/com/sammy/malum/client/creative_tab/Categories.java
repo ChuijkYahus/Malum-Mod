@@ -5,9 +5,9 @@ import com.sammy.malum.registry.common.item.MalumItems;
 
 public class Categories {
 
-        public static final String FUNDAMENTALS = "arcana_fundamentals";
+        public static final String FUNDAMENTALS = "fundamentals_of_arcana";
         public static final String GEAR = "gear_and_trinkets";
-        public static final String ARTIFICE = "alchemical_artifice";
+        public static final String ARTIFICE = "alchemy_and_artifice";
         public static final String METALLURGY = "alchemical_foci";
         public static final String MATERIALS = "soulformed_substance";
         public static final String ORES = "earthen_treasures";
@@ -223,33 +223,29 @@ public class Categories {
                         .bake();
                 MalumCreativeTabTweaks.create(MATERIALS)
                         .addItems(
-                                MalumItems.BLOCK_OF_ROTTING_ESSENCE,
-                                MalumItems.BLOCK_OF_GRIM_TALC,
-                                MalumItems.BLOCK_OF_ASTRAL_WEAVE,
-                                MalumItems.BLOCK_OF_WARP_FLUX,
-                                MalumItems.ROTTING_ESSENCE,
                                 MalumItems.GRIM_TALC,
-                                MalumItems.ASTRAL_WEAVE,
+                                MalumItems.ROTTING_ESSENCE,
+                                MalumItems.EERIE_WEAVE,
                                 MalumItems.WARP_FLUX
+                        )
+                        .addItems(
+                                MalumItems.WIND_NUCLEUS,
+                                MalumItems.PYRE_NUCLEUS
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_NULL_SLATE,
-                                MalumItems.BLOCK_OF_VOID_SALTS,
-                                MalumItems.BLOCK_OF_MNEMONIC_FRAGMENT,
-                                MalumItems.BLOCK_OF_AURIC_EMBERS,
+                                MalumItems.HEX_ASH,
+                                MalumItems.LIVING_FLESH,
+                                MalumItems.ALCHEMICAL_CALX,
+                                MalumItems.ARCANE_CHARCOAL
+                        )
+                        .addItems(
                                 MalumItems.NULL_SLATE,
                                 MalumItems.VOID_SALTS,
                                 MalumItems.MNEMONIC_FRAGMENT,
-                                MalumItems.AURIC_EMBERS
-                        ).nextLine()
-                        .addItems(
-                                MalumItems.BLOCK_OF_HEX_ASH,
-                                MalumItems.BLOCK_OF_LIVING_FLESH,
-                                MalumItems.BLOCK_OF_ALCHEMICAL_CALX,
-                                MalumItems.HEX_ASH,
-                                MalumItems.LIVING_FLESH,
-                                MalumItems.ALCHEMICAL_CALX
-                        ).nextLine()
+                                MalumItems.AURIC_EMBERS,
+                                MalumItems.MALIGNANT_LEAD
+                        )
+                        .nextLine()
                         .addItems(
                                 MalumItems.SOULWOVEN_SILK,
                                 MalumItems.PARACAUSAL_FLAME,
@@ -265,21 +261,43 @@ public class Categories {
                                 MalumItems.FUSED_CONSCIOUSNESS
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_SOUL_STAINED_STEEL,
                                 MalumItems.SOUL_STAINED_STEEL_INGOT,
                                 MalumItems.SOUL_STAINED_STEEL_PLATING,
                                 MalumItems.SOUL_STAINED_STEEL_NUGGET,
-                                MalumItems.BLOCK_OF_HALLOWED_GOLD,
                                 MalumItems.HALLOWED_GOLD_INGOT,
-                                MalumItems.HALLOWED_GOLD_NUGGET
-                        ).nextLine()
-                        .addItems(
-                                MalumItems.BLOCK_OF_MALIGNANT_LEAD,
-                                MalumItems.BLOCK_OF_MALIGNANT_PEWTER,
-                                MalumItems.MALIGNANT_LEAD,
+                                MalumItems.HALLOWED_GOLD_INLAY,
+                                MalumItems.HALLOWED_GOLD_NUGGET,
                                 MalumItems.MALIGNANT_PEWTER_INGOT,
                                 MalumItems.MALIGNANT_PEWTER_PLATING,
                                 MalumItems.MALIGNANT_PEWTER_NUGGET
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.BLOCK_OF_GRIM_TALC,
+                                MalumItems.BLOCK_OF_ROTTING_ESSENCE,
+                                MalumItems.BLOCK_OF_EERIE_WEAVE,
+                                MalumItems.BLOCK_OF_WARP_FLUX
+                        )
+                        .addItems(
+                                MalumItems.BLOCK_OF_WIND_NUCLEI,
+                                MalumItems.BLOCK_OF_PYRE_NUCLEI
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.BLOCK_OF_HEX_ASH,
+                                MalumItems.BLOCK_OF_LIVING_FLESH,
+                                MalumItems.BLOCK_OF_ALCHEMICAL_CALX,
+                                MalumItems.BLOCK_OF_ARCANE_CHARCOAL
+                        )
+                        .addItems(
+                                MalumItems.BLOCK_OF_NULL_SLATE,
+                                MalumItems.BLOCK_OF_VOID_SALTS,
+                                MalumItems.BLOCK_OF_MNEMONIC_FRAGMENT,
+                                MalumItems.BLOCK_OF_AURIC_EMBERS,
+                                MalumItems.BLOCK_OF_MALIGNANT_LEAD
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.BLOCK_OF_SOUL_STAINED_STEEL,
+                                MalumItems.BLOCK_OF_HALLOWED_GOLD,
+                                MalumItems.BLOCK_OF_MALIGNANT_PEWTER
                         ).bake();
                 MalumCreativeTabTweaks.create(ORES)
                         .addItems(

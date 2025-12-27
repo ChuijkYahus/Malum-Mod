@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "malum:block/storage_blocks/block_of_eerie_weave_bottom",
+    "side": "malum:block/storage_blocks/block_of_eerie_weave_side",
+    "top": "malum:block/storage_blocks/block_of_eerie_weave_top"
+  }
+}

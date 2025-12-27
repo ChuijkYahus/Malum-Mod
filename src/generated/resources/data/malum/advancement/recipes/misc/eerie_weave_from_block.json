@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eerie_weave": {
+      "conditions": {
+        "items": [
+          {
+            "items": "malum:eerie_weave"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "malum:eerie_weave_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_eerie_weave"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "malum:eerie_weave_from_block"
+    ]
+  }
+}

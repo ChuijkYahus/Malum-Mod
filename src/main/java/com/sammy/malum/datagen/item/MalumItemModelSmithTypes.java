@@ -127,17 +127,12 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
             return provider.withExistingParent(name, GENERATED)
                     .texture("layer0", provider.getItemTexture(containerName))
                     .texture("layer1", provider.getItemTexture("iridescent_" + n))
-                    .texture("layer2", provider.getItemTexture(overlayName));
+                    .texture("layer2", provider.getItemTexture("iridescent_" + overlayName));
         }
         return provider.withExistingParent(name, GENERATED)
                 .texture("layer0", provider.getItemTexture(containerName))
                 .texture("layer1", provider.getItemTexture(overlayName));
     }));
-
-    public static ItemModelSmith IRIDESCENT_ETHER_TORCH_ITEM = new ItemModelSmith((item, provider) -> {
-        String name = provider.getItemName(item);
-        return provider.withExistingParent(name, HANDHELD).texture("layer0", provider.getItemTexture("ether_torch")).texture("layer1", provider.getItemTexture(name)).texture("layer2", provider.getItemTexture(name + "_overlay"));
-    });
 
     public static ItemModelSmith SKIN_APPLICABLE_ARMOR_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);

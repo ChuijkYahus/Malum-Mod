@@ -74,7 +74,7 @@ public class MalumMobEffects {
         PotionBrewing.Builder builder = event.getBuilder();
         builder.addMix(Potions.WATER, MalumItems.ROTTING_ESSENCE.get(), Potions.MUNDANE);
         builder.addMix(Potions.AWKWARD, MalumItems.ROTTING_ESSENCE.get(), Potions.POISON);
-        builder.addMix(Potions.WATER, MalumItems.ASTRAL_WEAVE.get(), Potions.MUNDANE);
-        builder.addMix(Potions.AWKWARD, MalumItems.ASTRAL_WEAVE.get(), Potions.INVISIBILITY);
+        builder.addMix(Potions.WATER, MalumItems.EERIE_WEAVE.get(), Potions.MUNDANE);
+        builder.addMix(Potions.AWKWARD, MalumItems.EERIE_WEAVE.get(), Potions.INVISIBILITY);
     }
 }

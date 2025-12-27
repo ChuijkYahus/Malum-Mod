@@ -28,7 +28,7 @@
 
     "block.malum.block_of_arcane_charcoal": "Блок арканного древесного угля",
 
-    "block.malum.block_of_astral_weave": "Блок астрального полотна",
+    "block.malum.block_of_eerie_weave": "Блок астрального полотна",
 
     "block.malum.block_of_blazing_quartz": "Блок пылающего кварца",
 
@@ -506,7 +506,7 @@
 
     "item.malum.aroace_prideweave": "Катушка гордости (Аромантик асексуал)",
 
-    "item.malum.astral_weave": "Астральное полотно",
+    "item.malum.eerie_weave": "Астральное полотно",
 
     "item.malum.belt_of_the_magebane": "Пояс проклятья магов",
 
@@ -996,7 +996,7 @@
 
     "malum.gui.book.entry.page.headline.esoteric_reaping": "Эзотерическая жатва",
 
-    "malum.gui.book.entry.page.headline.esoteric_reaping.astral_weave": "Астральное полотно",
+    "malum.gui.book.entry.page.headline.esoteric_reaping.eerie_weave": "Астральное полотно",
 
     "malum.gui.book.entry.page.headline.esoteric_reaping.calx": "Алхимическая окалина",
 
@@ -1242,7 +1242,7 @@
 
     "malum.gui.book.entry.page.text.esoteric_reaping.3": "Я открыл четыре реагента через этот процесс, которые я опишу позже в этой статье. Подведя итоги, плоть зомби может быть преобразована в Прогнившую Эссенцию, кости скелетов могут быть кристаллизованы в Мрачный Тальк, магия ведьм может образовать Алхимическую Окалину и крылья фантомов могут быть сплетены В Астральное Полотно.",
 
-    "malum.gui.book.entry.page.text.esoteric_reaping.astral_weave.1": "Мембрана фантома сплетается в Астральное Полотно с помощью магии - мистическая ткань со странными аркаными характеристиками.",
+    "malum.gui.book.entry.page.text.esoteric_reaping.eerie_weave.1": "Мембрана фантома сплетается в Астральное Полотно с помощью магии - мистическая ткань со странными аркаными характеристиками.",
 
     "malum.gui.book.entry.page.text.esoteric_reaping.calx.1": "Ведьмы носят алхимические реагенты с собой, но магия не проникает в их тело, она превращается во что-то другое, создавая Алхимическую Окалину.",
 

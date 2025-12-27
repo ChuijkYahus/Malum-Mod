@@ -63,7 +63,6 @@ import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.neoforged.neoforge.common.Tags.Blocks.FENCE_GATES_WOODEN;
-import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;
 
 
 public class MalumBlocks {
@@ -199,7 +198,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_MOSAIC = BLOCKS.register("tainted_rock_mosaic", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_ROCK_BLOCKS)));
 
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_COLUMN = BLOCKS.register("tainted_rock_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_ALTAR = BLOCKS.register("tainted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_ALTAR = BLOCKS.register("tainted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK().addTag(EIDOLON_ALTAR_BLOCK)));
     public static final DeferredHolder<Block, Block> CUT_TAINTED_ROCK = BLOCKS.register("cut_tainted_rock", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
     public static final DeferredHolder<Block, Block> CHISELED_TAINTED_ROCK = BLOCKS.register("chiseled_tainted_rock", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
 
@@ -236,7 +235,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_MOSAIC = BLOCKS.register("twisted_rock_mosaic", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_ROCK_BLOCKS)));
 
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_COLUMN = BLOCKS.register("twisted_rock_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_ALTAR = BLOCKS.register("twisted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_ALTAR = BLOCKS.register("twisted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK().addTag(EIDOLON_ALTAR_BLOCK)));
     public static final DeferredHolder<Block, Block> CUT_TWISTED_ROCK = BLOCKS.register("cut_twisted_rock", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
     public static final DeferredHolder<Block, Block> CHISELED_TWISTED_ROCK = BLOCKS.register("chiseled_twisted_rock", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
 
@@ -276,7 +275,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> GRAY_DROSS_TILES = BLOCKS.register("gray_dross_tiles", () -> new Block(MalumBlockProperties.DROSS_STONE()));
 
     public static final DeferredHolder<Block, Block> DROSS_STONE_COLUMN = BLOCKS.register("dross_stone_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_DROSS_STONE()));
-    public static final DeferredHolder<Block, Block> DROSS_STONE_ALTAR = BLOCKS.register("dross_stone_altar", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_ALTAR = BLOCKS.register("dross_stone_altar", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE().addTag(EIDOLON_ALTAR_BLOCK)));
     public static final DeferredHolder<Block, Block> CUT_DROSS_STONE = BLOCKS.register("cut_dross_stone", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
     public static final DeferredHolder<Block, Block> CHISELED_DROSS_STONE = BLOCKS.register("chiseled_dross_stone", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
 
@@ -486,8 +485,6 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BRILLIANT_DEEPSLATE = BLOCKS.register("brilliant_deepslate", () -> new DropExperienceBlock(UniformInt.of(16, 26), MalumBlockProperties.BRILLIANCE_ORE(true).setCutoutRenderType()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_BRILLIANCE = BLOCKS.register("block_of_brilliance", () -> new Block(MalumBlockProperties.BRILLIANCE_BLOCK()));
 
-    public static final DeferredHolder<Block, Block> BLOCK_OF_ARCANE_CHARCOAL = BLOCKS.register("block_of_arcane_charcoal", () -> new Block(MalumBlockProperties.ARCANE_CHARCOAL_BLOCK()));
-
     public static final DeferredHolder<Block, Block> BLAZING_QUARTZ_ORE = BLOCKS.register("blazing_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(4, 7), MalumBlockProperties.BLAZING_QUARTZ_ORE().setCutoutRenderType().lightLevel((b) -> 6)));
     public static final DeferredHolder<Block, Block> BLAZING_QUARTZ_CLUSTER = BLOCKS.register("blazing_quartz_cluster", () -> new AmethystClusterBlock(4, 3, MalumBlockProperties.BLAZING_QUARTZ_CLUSTER().setCutoutRenderType().lightLevel((b) -> 14)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_BLAZING_QUARTZ = BLOCKS.register("block_of_blazing_quartz", () -> new Block(MalumBlockProperties.BLAZING_QUARTZ_BLOCK().lightLevel((b) -> 14)));
@@ -500,14 +497,18 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> CTHONIC_GOLD_CLUSTER = BLOCKS.register("cthonic_gold_cluster", () -> new AmethystClusterBlock(4, 3, MalumBlockProperties.CTHONIC_GOLD_CLUSTER().setCutoutRenderType()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_CTHONIC_GOLD = BLOCKS.register("block_of_cthonic_gold", () -> new Block(MalumBlockProperties.CTHONIC_GOLD_BLOCK()));
 
-    public static final DeferredHolder<Block, Block> BLOCK_OF_ROTTING_ESSENCE = BLOCKS.register("block_of_rotting_essence", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.CORAL_BLOCK, DyeColor.GREEN).needsShovel()));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_GRIM_TALC = BLOCKS.register("block_of_grim_talc", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.BONE_BLOCK, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_ASTRAL_WEAVE = BLOCKS.register("block_of_astral_weave", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.LIGHT_BLUE)));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_WARP_FLUX = BLOCKS.register("block_of_warp_flux", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(MalumSoundEvents.STRANGE_CRYSTAL, DyeColor.PURPLE).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_HEX_ASH = BLOCKS.register("block_of_hex_ash", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_LIVING_FLESH = BLOCKS.register("block_of_living_flesh", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.CORAL_BLOCK, DyeColor.RED).needsShovel()));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_ALCHEMICAL_CALX = BLOCKS.register("block_of_alchemical_calx", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
-    public static final DeferredHolder<Block, Block> MASS_OF_BLIGHTED_GUNK = BLOCKS.register("mass_of_blighted_gunk", () -> new Block(MalumBlockProperties.BLIGHTED_EARTH().addTags(STORAGE_BLOCKS)));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_ROTTING_ESSENCE = BLOCKS.register("block_of_rotting_essence", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.CORAL_BLOCK, DyeColor.GREEN).needsShovel()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_GRIM_TALC = BLOCKS.register("block_of_grim_talc", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.BONE_BLOCK, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_EERIE_WEAVE = BLOCKS.register("block_of_eerie_weave", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.LIGHT_BLUE)));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_WARP_FLUX = BLOCKS.register("block_of_warp_flux", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(MalumSoundEvents.STRANGE_CRYSTAL, DyeColor.PURPLE).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
+
+    public static final DeferredHolder<Block, Block> BLOCK_OF_WIND_NUCLEI = BLOCKS.register("block_of_wind_nuclei", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.LIGHT_BLUE).requiresCorrectToolForDrops().needsPickaxe()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_PYRE_NUCLEI = BLOCKS.register("block_of_pyre_nuclei", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.COPPER_BULB, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
+
+    public static final DeferredHolder<Block, Block> BLOCK_OF_HEX_ASH = BLOCKS.register("block_of_hex_ash", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_LIVING_FLESH = BLOCKS.register("block_of_living_flesh", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.CORAL_BLOCK, DyeColor.RED).needsShovel()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_ALCHEMICAL_CALX = BLOCKS.register("block_of_alchemical_calx", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_ARCANE_CHARCOAL = BLOCKS.register("block_of_arcane_charcoal", () -> new LodestoneDirectionalBlock(MalumBlockProperties.STORAGE_BLOCK(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK, DyeColor.GRAY).requiresCorrectToolForDrops().needsPickaxe()));
 
     public static final DeferredHolder<Block, Block> BLOCK_OF_NULL_SLATE = BLOCKS.register("block_of_null_slate", () -> new Block(MalumBlockProperties.SOULSTONE_BLOCK()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_VOID_SALTS = BLOCKS.register("block_of_void_salts", () -> new Block(MalumBlockProperties.STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
