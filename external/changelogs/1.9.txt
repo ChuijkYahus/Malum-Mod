@@ -36,6 +36,7 @@
 # Ether
 - Updated the model for Ether Braziers
 - Added Ether Cressets
+- Added Ether Candles
 
 # Geas Changes
 

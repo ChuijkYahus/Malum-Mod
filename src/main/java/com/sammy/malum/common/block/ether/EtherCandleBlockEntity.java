@@ -110,13 +110,13 @@ public class EtherCandleBlockEntity extends EtherBlockEntity{
             }
 
             //Small Shine
-            if (level.getGameTime() % 12L == 0) {
+            if (level.getGameTime() % 24L == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(0.9f).setEasing(Easing.SINE_IN_OUT).build();
                 int lifeTime = RandomHelper.randomBetween(random, 40, 50);
                 float scale = RandomHelper.randomBetween(random, 0.15f, 0.25f);
                 WorldParticleBuilder.create(MalumParticles.STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
-                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.CIRC_OUT).build())
+                        .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .setLifetime(lifeTime)
                         .setColorData(color)
