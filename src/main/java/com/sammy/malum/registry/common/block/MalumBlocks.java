@@ -168,6 +168,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> ETHER = BLOCKS.register("ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
     public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER = BLOCKS.register("iridescent_ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
 
+    public static final DeferredHolder<Block, Block> ETHER_CANDLE = BLOCKS.register("ether_candle", () -> new EtherCandleBlock<>(MalumBlockProperties.ETHER_CANDLE()).setBlockEntity(MalumBlockEntities.ETHER_CANDLE));
+    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER_CANDLE = BLOCKS.register("iridescent_ether_candle", () -> new EtherCandleBlock<>(MalumBlockProperties.ETHER_CANDLE()).setBlockEntity(MalumBlockEntities.ETHER_CANDLE));
+
     public static final DeferredHolder<Block, Block> ETHER_TORCH = BLOCKS.register("ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH()).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
     public static final DeferredHolder<Block, Block> WALL_ETHER_TORCH = BLOCKS.register("wall_ether_torch", () -> new EtherWallTorchBlock<>(MalumBlockProperties.ETHER_TORCH().lootFrom(ETHER_TORCH)).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
     public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER_TORCH = BLOCKS.register("iridescent_ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH()).setBlockEntity(MalumBlockEntities.ETHER_TORCH));

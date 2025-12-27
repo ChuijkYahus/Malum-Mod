@@ -12,6 +12,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -120,6 +121,9 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         etherTorch(output, MalumItems.ETHER_TORCH.get(), MalumItems.ETHER.get());
         etherTorch(output, MalumItems.IRIDESCENT_ETHER_TORCH.get(), MalumItems.IRIDESCENT_ETHER.get());
 
+        etherCandle(output, MalumItems.ETHER_CANDLE.get(), MalumItems.ETHER.get());
+        etherCandle(output, MalumItems.IRIDESCENT_ETHER_CANDLE.get(), MalumItems.IRIDESCENT_ETHER.get());
+
         etherBrazier(output, MalumItems.TAINTED_ETHER_BRAZIER.get(), MalumItems.TAINTED_ROCK.get(), MalumItems.ETHER.get());
         etherBrazier(output, MalumItems.TWISTED_ETHER_BRAZIER.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.ETHER.get());
         etherBrazier(output, MalumItems.DROSS_ETHER_BRAZIER.get(), MalumItems.DROSS_STONE.get(), MalumItems.ETHER.get());
@@ -128,13 +132,20 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         etherBrazier(output, MalumItems.TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
         etherBrazier(output, MalumItems.DROSS_IRIDESCENT_ETHER_BRAZIER.get(), MalumItems.DROSS_STONE.get(), MalumItems.IRIDESCENT_ETHER.get());
 
+        etherCresset(output, MalumItems.TAINTED_ETHER_CRESSET.get(), MalumItems.TAINTED_ROCK.get(), MalumItems.ETHER.get());
+        etherCresset(output, MalumItems.TWISTED_ETHER_CRESSET.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.ETHER.get());
+        etherCresset(output, MalumItems.DROSS_ETHER_CRESSET.get(), MalumItems.DROSS_STONE.get(), MalumItems.ETHER.get());
+
+        etherCresset(output, MalumItems.TAINTED_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.TAINTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
+        etherCresset(output, MalumItems.TWISTED_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
+        etherCresset(output, MalumItems.DROSS_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.DROSS_STONE.get(), MalumItems.IRIDESCENT_ETHER.get());
+
         //BANNERS
         shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(MalumItems.SOULWOVEN_SILK.get())).save(output);
         bannerRecipe(output, MalumItems.ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER);
         bannerRecipe(output, MalumItems.GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS);
         bannerRecipe(output, MalumItems.ASTRAL_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT);
         bannerRecipe(output, MalumItems.WARP_FLUX.get(), SoulwovenBannerPatternDataComponent.HALLUCINATION);
-
 
         //SPIRIT METALS
         compactBlock(output, MalumItems.SOUL_STAINED_STEEL_INGOT, MalumItems.BLOCK_OF_SOUL_STAINED_STEEL);
@@ -328,6 +339,26 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .save(conditionOutput, MalumMod.malumPath(name + "_from_node_blasting"));
     }
 
+    private static void etherTorch(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
+        var id = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath();
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
+                .define('X', ether)
+                .define('Y', Ingredient.of(Tags.Items.RODS_WOODEN))
+                .pattern("X").pattern("Y")
+                .unlockedBy("has_ether", has(MalumItems.ETHER.get()))
+                .save(recipeoutput, id + "_crafting");
+    }
+
+    private static void etherCandle(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
+        var id = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath();
+        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
+                .define('X', ether)
+                .define('Y', Items.HONEYCOMB)
+                .pattern("X").pattern("Y")
+                .unlockedBy("has_ether", has(MalumItems.ETHER.get()))
+                .save(recipeoutput, id + "_crafting");
+    }
+
     private static void etherBrazier(RecipeOutput recipeoutput, ItemLike output, ItemLike rock, ItemLike ether) {
         new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
                 .define('X', ether)
@@ -337,13 +368,14 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
     }
 
-    private static void etherTorch(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
+
+    private static void etherCresset(RecipeOutput recipeoutput, ItemLike output, ItemLike rock, ItemLike ether) {
         new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
                 .define('X', ether)
-                .define('Y', Ingredient.of(Tags.Items.RODS_WOODEN))
-                .pattern("X").pattern("Y")
+                .define('Y', rock)
+                .pattern("X").pattern("Y").pattern("Y")
                 .unlockedBy("has_ether", has(MalumItems.ETHER.get()))
-                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_from_stick");
+                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints count, ItemLike item) {

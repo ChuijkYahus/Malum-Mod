@@ -245,25 +245,23 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         setTexturePath("ether/");
         itemModelProvider.setTexturePath("ether/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, this::etherModel,
-                ETHER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherModel,
-                IRIDESCENT_ETHER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM,
+                this::simpleBlock, this::etherModel, ETHER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM,
+                this::simpleBlock, this::etherModel, IRIDESCENT_ETHER);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherTorchModel,
-                ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.IRIDESCENT_ETHER_TORCH_ITEM, this::simpleBlock, this::etherTorchModel,
-                IRIDESCENT_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel,
-                WALL_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel,
-                IRIDESCENT_WALL_ETHER_TORCH);
-
-        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TAINTED_ETHER_BRAZIER, TWISTED_ETHER_BRAZIER, DROSS_ETHER_BRAZIER);
-        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_BRAZIER, TWISTED_IRIDESCENT_ETHER_BRAZIER, DROSS_IRIDESCENT_ETHER_BRAZIER);
-
-        MalumBlockStateSmithTypes.CRESSET_BLOCK.act(data, TAINTED_ETHER_CRESSET, TWISTED_ETHER_CRESSET, DROSS_ETHER_CRESSET);
-        MalumBlockStateSmithTypes.IRIDESCENT_CRESSET_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_CRESSET, TWISTED_IRIDESCENT_ETHER_CRESSET, DROSS_IRIDESCENT_ETHER_CRESSET);
+        MalumBlockStateSmithTypes.ETHER_CANDLE_BLOCK.act(data,
+                ETHER_CANDLE, IRIDESCENT_ETHER_CANDLE);
+        MalumBlockStateSmithTypes.ETHER_TORCH_BLOCK.act(data,
+                ETHER_TORCH, IRIDESCENT_ETHER_TORCH);
+        MalumBlockStateSmithTypes.ETHER_WALL_TORCH_BLOCK.act(data,
+                WALL_ETHER_TORCH, IRIDESCENT_WALL_ETHER_TORCH);
+        MalumBlockStateSmithTypes.ETHER_BRAZIER_BLOCK.act(data,
+                TAINTED_ETHER_BRAZIER, TWISTED_ETHER_BRAZIER, DROSS_ETHER_BRAZIER,
+                TAINTED_IRIDESCENT_ETHER_BRAZIER, TWISTED_IRIDESCENT_ETHER_BRAZIER, DROSS_IRIDESCENT_ETHER_BRAZIER);
+        MalumBlockStateSmithTypes.ETHER_CRESSET_BLOCK.act(data,
+                TAINTED_ETHER_CRESSET, TWISTED_ETHER_CRESSET, DROSS_ETHER_CRESSET,
+                TAINTED_IRIDESCENT_ETHER_CRESSET, TWISTED_IRIDESCENT_ETHER_CRESSET, DROSS_IRIDESCENT_ETHER_CRESSET);
         itemModelProvider.setTexturePath("");
         setTexturePath("");
 
@@ -374,14 +372,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
     public ModelFile etherModel(Block block) {
         String name = getBlockName(block);
         return models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/air")).texture("particle", itemModelProvider.getItemTexture("ether"));
-    }
-
-    public ModelFile etherTorchModel(Block block) {
-        return models().getExistingFile(malumPath("block/ether_torch"));
-    }
-
-    public ModelFile wallEtherTorchModel(Block block) {
-        return models().getExistingFile(malumPath("block/ether_torch_wall"));
     }
 
     public ModelFile totemBaseModel(Block block) {

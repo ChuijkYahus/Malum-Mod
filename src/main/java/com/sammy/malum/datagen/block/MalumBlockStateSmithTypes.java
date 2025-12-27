@@ -12,8 +12,7 @@ import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
-import com.sammy.malum.common.block.ether.EtherBrazierBlock;
-import com.sammy.malum.common.block.ether.EtherCressetBlock;
+import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +27,7 @@ import java.util.function.Function;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
+@SuppressWarnings("rawtypes")
 public class MalumBlockStateSmithTypes {
 
     //TODO: Move this goober to lodestone
@@ -297,9 +297,42 @@ public class MalumBlockStateSmithTypes {
             return ConfiguredModel.builder().modelFile(model).rotationY(((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
         });
     });
-    public static BlockStateSmith<EtherBrazierBlock> BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
 
-    public static BlockStateSmith<EtherBrazierBlock> IRIDESCENT_BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.IRIDESCENT_ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
+
+    public static BlockStateSmith<EtherTorchBlock> ETHER_TORCH_BLOCK = new BlockStateSmith<>(EtherTorchBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_torch"), MalumBlockStateSmithTypes::makeEtherTorch);
+    public static BlockStateSmith<EtherWallTorchBlock> ETHER_WALL_TORCH_BLOCK = new BlockStateSmith<>(EtherWallTorchBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_torch"), MalumBlockStateSmithTypes::makeEtherWallTorch);
+    public static BlockStateSmith<EtherCandleBlock> ETHER_CANDLE_BLOCK = new BlockStateSmith<>(EtherCandleBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_candle"), MalumBlockStateSmithTypes::makeEtherCandles);
+    public static BlockStateSmith<EtherBrazierBlock> ETHER_BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
+    public static BlockStateSmith<EtherCressetBlock> ETHER_CRESSET_BLOCK = new BlockStateSmith<>(EtherCressetBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_cresset"), MalumBlockStateSmithTypes::makeEtherCresset);
+
+    public static void makeEtherTorch(EtherTorchBlock block, LodestoneBlockStateProvider provider) {
+        provider.simpleBlock(block, provider.models().getExistingFile(malumPath("block/ether_torch")));
+    }
+
+    public static void makeEtherWallTorch(EtherWallTorchBlock block, LodestoneBlockStateProvider provider) {
+        provider.horizontalBlock(block, provider.models().getExistingFile(malumPath("block/ether_torch_wall")), 90);
+    }
+
+    public static void makeEtherCandles(EtherCandleBlock block, LodestoneBlockStateProvider provider) {
+        var one = malumPath("block/ether_candle_one_candle");
+        var two = malumPath("block/ether_candle_two_candles");
+        var three = malumPath("block/ether_candle_three_candles");
+        var four = malumPath("block/ether_candle_four_candles");
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            int candles = s.getValue(EtherCandleBlock.CANDLES);
+            var path = switch (candles) {
+                case 1 -> one;
+                case 2 -> two;
+                case 3 -> three;
+                default -> four;
+            };
+            var model = provider.models().getExistingFile(path);
+            return ConfiguredModel.builder().modelFile(model)
+                    .nextModel().modelFile(model).rotationY(90)
+                    .nextModel().modelFile(model).rotationY(180)
+                    .nextModel().modelFile(model).rotationY(270).build();
+        });
+    }
 
     public static void makeEtherBrazier(EtherBrazierBlock block, LodestoneBlockStateProvider provider) {
         var name = provider.getBlockName(block);
@@ -315,10 +348,6 @@ public class MalumBlockStateSmithTypes {
                 .partialState().with(EtherBrazierBlock.HANGING, true).with(EtherBrazierBlock.ROTATED, false).modelForState().modelFile(hanging).addModel()
                 .partialState().with(EtherBrazierBlock.HANGING, true).with(EtherBrazierBlock.ROTATED, true).modelForState().modelFile(hanging).rotationY(90).addModel();
     }
-
-    public static BlockStateSmith<EtherCressetBlock> CRESSET_BLOCK = new BlockStateSmith<>(EtherCressetBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_cresset"), MalumBlockStateSmithTypes::makeEtherCresset);
-
-    public static BlockStateSmith<EtherCressetBlock> IRIDESCENT_CRESSET_BLOCK = new BlockStateSmith<>(EtherCressetBlock.class, MalumItemModelSmithTypes.IRIDESCENT_ETHER_CONTAINING_ITEM.apply("ether_cresset"), MalumBlockStateSmithTypes::makeEtherCresset);
 
     public static void makeEtherCresset(EtherCressetBlock block, LodestoneBlockStateProvider provider) {
         var name = provider.getBlockName(block);

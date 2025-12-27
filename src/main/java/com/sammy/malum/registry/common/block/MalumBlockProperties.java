@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.block;
 
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
+import com.sammy.malum.common.block.ether.EtherCandleBlock;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
@@ -521,6 +522,18 @@ public class MalumBlockProperties {
                 .instabreak()
                 .setCutoutRenderType()
                 .lightLevel((b) -> 14);
+    }
+
+    public static LodestoneBlockProperties ETHER_CANDLE() {
+        return new LodestoneBlockProperties()
+                .addTag(CANDLES)
+                .mapColor(MapColor.COLOR_YELLOW)
+                .noOcclusion()
+                .strength(0.1F)
+                .sound(SoundType.CANDLE)
+                .lightLevel(s -> 3 * s.getValue(EtherCandleBlock.CANDLES))
+                .pushReaction(PushReaction.DESTROY)
+                .setCutoutRenderType();
     }
     public static LodestoneBlockProperties ETHER_TORCH() {
         return RUNEWOOD()

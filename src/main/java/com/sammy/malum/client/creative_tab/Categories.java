@@ -306,6 +306,7 @@ public class Categories {
                 MalumCreativeTabTweaks.create(ETHER)
                         .addItems(
                                 MalumItems.ETHER,
+                                MalumItems.ETHER_CANDLE,
                                 MalumItems.ETHER_TORCH,
 
                                 MalumItems.TAINTED_ETHER_BRAZIER,
@@ -318,6 +319,7 @@ public class Categories {
                         ).nextLine()
                         .addItems(
                                 MalumItems.IRIDESCENT_ETHER,
+                                MalumItems.IRIDESCENT_ETHER_CANDLE,
                                 MalumItems.IRIDESCENT_ETHER_TORCH,
 
                                 MalumItems.TAINTED_IRIDESCENT_ETHER_BRAZIER,

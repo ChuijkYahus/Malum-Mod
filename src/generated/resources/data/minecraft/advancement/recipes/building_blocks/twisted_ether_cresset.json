@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:ether_torch_from_stick"
+        "recipe": "minecraft:twisted_ether_cresset"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:ether_torch_from_stick"
+      "minecraft:twisted_ether_cresset"
     ]
   }
 }

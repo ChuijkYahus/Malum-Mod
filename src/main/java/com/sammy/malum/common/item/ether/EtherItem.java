@@ -40,6 +40,7 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
         return stack.getItem() instanceof EtherItem ether && ether.isIridescent;
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public static int getSecondaryColor(ItemStack stack) {
         if (stack.has(MalumDataComponents.SECONDARY_DYED_COLOR)) {
             return stack.get(MalumDataComponents.SECONDARY_DYED_COLOR).rgb();
@@ -47,6 +48,7 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
         return DEFAULT_SECOND_COLOR.rgb();
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public static int getPrimaryColor(ItemStack stack) {
         if (stack.has(DataComponents.DYED_COLOR)) {
             return stack.get(DataComponents.DYED_COLOR).rgb();

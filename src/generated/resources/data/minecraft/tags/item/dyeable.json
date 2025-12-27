@@ -1,8 +1,10 @@
 {
   "values": [
     "malum:ether",
+    "malum:ether_candle",
     "malum:iridescent_ether",
     "malum:ether_torch",
+    "malum:iridescent_ether_candle",
     "malum:iridescent_ether_torch",
     "malum:tainted_ether_brazier",
     "malum:twisted_ether_brazier",

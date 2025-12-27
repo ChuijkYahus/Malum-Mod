@@ -73,8 +73,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
         tag(ItemTags.DYEABLE).add(
-                ETHER.get(), IRIDESCENT_ETHER.get(),
-                ETHER_TORCH.get(), IRIDESCENT_ETHER_TORCH.get(),
+                ETHER.get(), ETHER_CANDLE.get(), IRIDESCENT_ETHER.get(),
+                ETHER_TORCH.get(), IRIDESCENT_ETHER_CANDLE.get(), IRIDESCENT_ETHER_TORCH.get(),
                 TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
                 TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
                 TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),

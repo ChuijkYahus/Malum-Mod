@@ -20,6 +20,7 @@
   - Altar
 - Arcane Rock Item Pedestals, Item Stands, Altars and Columns now have new place/break/hit/step sounds
 - The Spirit Crucible, Spirit Catalyzer and Repair Pylon now have new place/break/hit/step sounds
+- Stonecutting recipes are now much more organized, similar to how Create does it
 
 # Spirited Glass
 - Updated the textures and opacity of Spirited Glass

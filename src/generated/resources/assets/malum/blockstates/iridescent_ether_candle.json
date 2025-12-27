@@ -1,0 +1,140 @@
+{
+  "variants": {
+    "candles=1,waterlogged=false": [
+      {
+        "model": "malum:block/ether_candle_one_candle"
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 270
+      }
+    ],
+    "candles=1,waterlogged=true": [
+      {
+        "model": "malum:block/ether_candle_one_candle"
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_one_candle",
+        "y": 270
+      }
+    ],
+    "candles=2,waterlogged=false": [
+      {
+        "model": "malum:block/ether_candle_two_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 270
+      }
+    ],
+    "candles=2,waterlogged=true": [
+      {
+        "model": "malum:block/ether_candle_two_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_two_candles",
+        "y": 270
+      }
+    ],
+    "candles=3,waterlogged=false": [
+      {
+        "model": "malum:block/ether_candle_three_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 270
+      }
+    ],
+    "candles=3,waterlogged=true": [
+      {
+        "model": "malum:block/ether_candle_three_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_three_candles",
+        "y": 270
+      }
+    ],
+    "candles=4,waterlogged=false": [
+      {
+        "model": "malum:block/ether_candle_four_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 270
+      }
+    ],
+    "candles=4,waterlogged=true": [
+      {
+        "model": "malum:block/ether_candle_four_candles"
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 90
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 180
+      },
+      {
+        "model": "malum:block/ether_candle_four_candles",
+        "y": 270
+      }
+    ]
+  }
+}

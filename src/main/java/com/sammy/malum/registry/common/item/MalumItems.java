@@ -317,6 +317,9 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> ETHER = register("ether", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherItem(MalumBlocks.ETHER.get(), p, false));
     public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER = register("iridescent_ether", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherItem(MalumBlocks.IRIDESCENT_ETHER.get(), p, true));
 
+    public static final DeferredHolder<Item, Item> ETHER_CANDLE = register("ether_candle", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCandleItem(MalumBlocks.ETHER_CANDLE.get(), p, false));
+    public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER_CANDLE = register("iridescent_ether_candle", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherCandleItem(MalumBlocks.IRIDESCENT_ETHER_CANDLE.get(), p, true));
+
     public static final DeferredHolder<Item, Item> ETHER_TORCH = register("ether_torch", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherTorchItem(MalumBlocks.ETHER_TORCH.get(), MalumBlocks.WALL_ETHER_TORCH.get(), p, false));
     public static final DeferredHolder<Item, Item> IRIDESCENT_ETHER_TORCH = register("iridescent_ether_torch", MalumItems::DEFAULT_PROPERTIES, (p) -> new EtherTorchItem(MalumBlocks.IRIDESCENT_ETHER_TORCH.get(), MalumBlocks.IRIDESCENT_WALL_ETHER_TORCH.get(), p, true));
 
@@ -945,6 +948,7 @@ public class MalumItems {
                         default -> -1;
                     },
                     ETHER_TORCH.get(), IRIDESCENT_ETHER_TORCH.get(),
+                    ETHER_CANDLE.get(), IRIDESCENT_ETHER_CANDLE.get(),
                     TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
                     TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
                     TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
