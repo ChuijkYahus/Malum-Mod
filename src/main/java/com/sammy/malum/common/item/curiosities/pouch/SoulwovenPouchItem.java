@@ -44,7 +44,6 @@ public class SoulwovenPouchItem extends MalumPouchItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         tooltipComponents.add(ComponentHelper.positivePouchEffect("soulwoven_pouch_collection"));
-        tooltipComponents.add(ComponentHelper.positivePouchEffect("soulwoven_pouch_storage"));
     }
 
     @Override

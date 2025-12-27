@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "blight_type=clinging_flesh,facing=east": {
+      "model": "malum:block/writhing_flesh_clinging_flesh",
+      "y": 90
+    },
+    "blight_type=clinging_flesh,facing=north": {
+      "model": "malum:block/writhing_flesh_clinging_flesh"
+    },
+    "blight_type=clinging_flesh,facing=south": {
+      "model": "malum:block/writhing_flesh_clinging_flesh",
+      "y": 180
+    },
+    "blight_type=clinging_flesh,facing=west": {
+      "model": "malum:block/writhing_flesh_clinging_flesh",
+      "y": 270
+    },
+    "blight_type=hanging_flesh,facing=east": {
+      "model": "malum:block/writhing_flesh_hanging_flesh",
+      "y": 90
+    },
+    "blight_type=hanging_flesh,facing=north": {
+      "model": "malum:block/writhing_flesh_hanging_flesh"
+    },
+    "blight_type=hanging_flesh,facing=south": {
+      "model": "malum:block/writhing_flesh_hanging_flesh",
+      "y": 180
+    },
+    "blight_type=hanging_flesh,facing=west": {
+      "model": "malum:block/writhing_flesh_hanging_flesh",
+      "y": 270
+    },
+    "blight_type=writhing_flesh,facing=east": {
+      "model": "malum:block/writhing_flesh_writhing_flesh",
+      "y": 90
+    },
+    "blight_type=writhing_flesh,facing=north": {
+      "model": "malum:block/writhing_flesh_writhing_flesh"
+    },
+    "blight_type=writhing_flesh,facing=south": {
+      "model": "malum:block/writhing_flesh_writhing_flesh",
+      "y": 180
+    },
+    "blight_type=writhing_flesh,facing=west": {
+      "model": "malum:block/writhing_flesh_writhing_flesh",
+      "y": 270
+    }
+  }
+}

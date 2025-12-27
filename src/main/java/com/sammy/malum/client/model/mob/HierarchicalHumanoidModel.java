@@ -91,6 +91,12 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
         return head;
     }
 
+    public void grow(float size) {
+        root.xScale += size;
+        root.yScale += size;
+        root.zScale += size;
+    }
+
     protected ModelPart getArm(HumanoidArm side) {
         return side == HumanoidArm.LEFT ? leftArm : rightArm;
     }
@@ -198,7 +204,7 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
     }
 
     public static Vector3f degreeVec(float xDegrees, float yDegrees, float zDegrees) {
-        return new Vector3f(xDegrees * (float) (Math.PI / 180.0), yDegrees * (float) (Math.PI / 180.0), zDegrees * (float) (Math.PI / 180.0));
+        return new Vector3f(xDegrees * Mth.DEG_TO_RAD, yDegrees * Mth.DEG_TO_RAD, zDegrees * Mth.DEG_TO_RAD);
     }
 
     public static Vector3f scaleVec(double xScale, double yScale, double zScale) {

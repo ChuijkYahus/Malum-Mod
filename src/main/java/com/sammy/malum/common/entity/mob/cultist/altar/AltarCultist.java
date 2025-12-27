@@ -1,11 +1,12 @@
 package com.sammy.malum.common.entity.mob.cultist.altar;
 
+import com.sammy.malum.common.entity.mob.cultist.ICherubFriend;
 import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarBestowBlessingGoal;
 import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarMeleeAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarRangedAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.altar.goal.AltarRetreatGoal;
 import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBlessingProjectile;
-import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CursedBoltProjectile;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
@@ -40,23 +41,26 @@ import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 
 import java.util.UUID;
 
-public class AltarCultist extends CultistMonster {
+public class AltarCultist extends CultistMonster implements ICherubFriend {
 
     private static final EntityDataAccessor<Boolean> IS_SQUISHED = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> HEAD_TILT = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> CANDLE_ROTATION = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.FLOAT);
-
 
     public static final int SQUISH_ANIMATION_DURATION = 8;
     public static final int HEAD_TILT_ANIMATION_DURATION = 16;
 
     public static final float MELEE_RADIUS = 4f;
     public static final int MELEE_COOLDOWN = 120;
+
     public static final float RETREAT_RADIUS = 8f;
     public static final int RETREAT_DURATION = 40;
-    public static final float RANGED_RADIUS = 16f;
+
+    public static final float RANGED_ATTACK_RADIUS = 16f;
     public static final int RANGED_ATTACK_INTERVAL = 100;
-    public static final float BLESSING_RADIUS = 8f;
+
+    public static final float BLESSING_SEARCH_RADIUS = 24f;
+    public static final float BLESSING_CHARGE_RADIUS = 8f;
     public static final int BLESSING_CHARGE_DURATION = 120;
     public static final float BLESSING_HEAL_PERCENTAGE = 0.25f;
     public static final float BLESSING_HEALTH_THRESHOLD = 0.5f;
@@ -84,12 +88,12 @@ public class AltarCultist extends CultistMonster {
     protected void registerGoals() {
         var playerTarget = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
-        var retreat = new AltarRetreatGoal(this, 1.5f, RETREAT_RADIUS);
-        var bestowBlessing = new AltarBestowBlessingGoal(this, 0.5f, BLESSING_CHARGE_DURATION, BLESSING_RADIUS);
+        var retreat = new AltarRetreatGoal(this, 2f);
+        var bestowBlessing = new AltarBestowBlessingGoal(this, 1.5f);
         var meleeAttack = new AltarMeleeAttackGoal(this, 1.25f);
-        var rangedAttack = new AltarRangedAttackGoal(this, 1.0f, RANGED_ATTACK_INTERVAL, RANGED_RADIUS);
+        var rangedAttack = new AltarRangedAttackGoal(this, 1.0f);
 
-        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
+        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.5f);
         var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
         var randomLookAround = new RandomLookAroundGoal(this);
 
@@ -104,6 +108,18 @@ public class AltarCultist extends CultistMonster {
         goalSelector.addGoal(6, randomLookAround);
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 24.0)
+                .add(Attributes.FOLLOW_RANGE, 35.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.ATTACK_DAMAGE, 2.0)
+                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
+                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.5)
+                .add(Attributes.ARMOR, 8.0)
+                .add(Attributes.STEP_HEIGHT, 1);
+    }
+
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
@@ -113,7 +129,7 @@ public class AltarCultist extends CultistMonster {
     }
 
     @Override
-    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+    public void onSyncedDataUpdated(@NotNull EntityDataAccessor<?> key) {
         if (HEAD_TILT.equals(key)) {
             headTiltStart = Math.round(headTilt);
             headTiltEnd = getEntityData().get(HEAD_TILT);
@@ -169,16 +185,25 @@ public class AltarCultist extends CultistMonster {
         headTiltTimer = compound.getInt("headTiltTimer");
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 24.0)
-                .add(Attributes.FOLLOW_RANGE, 35.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.3)
-                .add(Attributes.ATTACK_DAMAGE, 2.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.5f)
-                .add(Attributes.ARMOR, 8.0)
-                .add(Attributes.STEP_HEIGHT, 1);
+    @Override
+    public int getCherubCapacity() {
+        return 3;
+    }
+
+    @Override
+    public CherubPriority getCherubPriority() {
+        return CherubPriority.HIGH;
+    }
+
+    @Override
+    public Vec3 getCherubHoverOffset(int cherub) {
+        float delta = ((tickCount + cherub * 100) % 300) / 300f;
+        float angle = delta * 6.28f;
+        float offset = getBbWidth()*1.25f;
+        float x = Mth.sin(angle) * offset;
+        float y = getBbHeight() + 0.25f + 0.5f * (cherub+1);
+        float z = Mth.cos(angle) * offset;
+        return new Vec3(x, y, z);
     }
 
     @Override
@@ -279,7 +304,7 @@ public class AltarCultist extends CultistMonster {
         int amount = isBlessing ? 1 : 2;
         for (int i = 0; i < amount; i++) {
             int delay = i * 6;
-            var projectile = isBlessing ? new CultistBlessingProjectile(level) : new CultistBoltProjectile(level);
+            var projectile = isBlessing ? new CultistBlessingProjectile(level) : new CursedBoltProjectile(level);
             projectile.setPos(pos);
             projectile.shoot(x, y + 0.4f, z, 1.3F, inaccuracy);
             projectile.setDeltaMovement(projectile.getDeltaMovement().add(0, 0.2f, 0));
@@ -288,7 +313,7 @@ public class AltarCultist extends CultistMonster {
         }
         if (level instanceof ServerLevel serverLevel) {
             var color = isBlessing ? ColorParticleData.create(CultistBlessingProjectile.CULTIST_PINK, CultistBlessingProjectile.CULTIST_PURPLE)
-                    : ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON);
+                    : ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON);
             MalumParticleEffectTypes.ALTAR_WEAVES_PROJECTILE
                     .createEffect(pos)
                     .color(color)
@@ -309,6 +334,9 @@ public class AltarCultist extends CultistMonster {
         target.heal(recoveredHealth);
         if (target instanceof IAltarBlessingRecipient recipient) {
             recipient.receiveAltarBuff();
+        }
+        if (target instanceof CultistMonster cultistMonster) {
+            cultistMonster.setEmpowermentDuration(EMPOWERMENT_DURATION);
         }
 
         var position = target.position().add(0, target.getBbHeight() * 0.35f, 0);

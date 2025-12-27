@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.apache.commons.lang3.mutable.MutableDouble;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.blockentity.*;
@@ -85,6 +86,9 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         super.saveAdditional(tag, registries);
     }
 
+    public void modifyParticleCenter(MutableDouble x, MutableDouble y, MutableDouble z) {
+
+    }
     @Override
     public void clientTick(Level level) {
         if (firstColor == null) {
@@ -93,25 +97,14 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         var random = level.random;
         var start = new Color(firstColor.rgb());
         var end = new Color(secondColor == null ? firstColor.rgb() : secondColor.rgb());
-        double x = worldPosition.getX() + 0.5f;
-        double y = worldPosition.getY() + 0.5f;
-        double z = worldPosition.getZ() + 0.5f;
+        var xMutable = new MutableDouble(worldPosition.getX() + 0.5f);
+        var yMutable = new MutableDouble(worldPosition.getY() + 0.5f);
+        var zMutable = new MutableDouble(worldPosition.getZ() + 0.5f);
+        modifyParticleCenter(xMutable, yMutable, zMutable);
 
-        switch (getBlockState().getBlock()) { //TODO: this sucks
-            case EtherWallTorchBlock etherWallTorchBlock -> {
-                float offset = 0.15f;
-                Direction direction = getBlockState().getValue(WallTorchBlock.FACING);
-                x -= direction.getNormal().getX() * offset;
-                y += 0.4f;
-                z -= direction.getNormal().getZ() * offset;
-            }
-            case EtherTorchBlock etherTorchBlock -> y += 0.3f;
-            case EtherBrazierBlock etherBrazierBlock -> y -= 0.05f;
-            default -> {
-            }
-        }
-
-
+        var x = xMutable.getValue();
+        var y = yMutable.getValue();
+        var z = zMutable.getValue();
         Vec3 sparkPos = new Vec3(x, y - 0.05f, z);
         //Upwards Moving Particles
         if (level.getGameTime() % 2L == 0) {

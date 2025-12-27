@@ -1,11 +1,12 @@
 {
   "values": [
+    "malum:mass_of_blighted_gunk",
+    "malum:columnar_blight",
     "malum:blighted_earth",
     "malum:blight",
     "malum:blighted_growth",
     "malum:blightpearl",
     "malum:blightroot",
-    "malum:clinging_blight",
-    "malum:mass_of_blighted_gunk"
+    "malum:clinging_blight"
   ]
 }

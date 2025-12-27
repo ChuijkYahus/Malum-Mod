@@ -13,6 +13,7 @@ public class AltarBestowBlessingGoal extends Goal {
     private final AltarCultist altar;
     protected final PathNavigation navigation;
 
+    private final float searchRadius;
     private final double speedModifier;
     private final int chargeDuration;
     private final float chargeRadius;
@@ -23,9 +24,13 @@ public class AltarBestowBlessingGoal extends Goal {
 
     private int seeTime;
 
-    public AltarBestowBlessingGoal(AltarCultist altar, double speedModifier, int chargeDuration, float chargeRadius) {
+    public AltarBestowBlessingGoal(AltarCultist altar, double speedModifier) {
+        this(altar, AltarCultist.BLESSING_SEARCH_RADIUS, speedModifier, AltarCultist.BLESSING_CHARGE_DURATION, AltarCultist.BLESSING_CHARGE_RADIUS);
+    }
+    public AltarBestowBlessingGoal(AltarCultist altar, float searchRadius, double speedModifier, int chargeDuration, float chargeRadius) {
         this.altar = altar;
         this.navigation = altar.getNavigation();
+        this.searchRadius = searchRadius;
         this.speedModifier = speedModifier;
         this.chargeDuration = chargeDuration;
         this.chargeRadius = chargeRadius;
@@ -36,14 +41,15 @@ public class AltarBestowBlessingGoal extends Goal {
     public boolean canUse() {
         if (target == null) {
             var level = altar.level();
-            var area = altar.getBoundingBox().inflate(20f, 10f, 20f);
+            float half = searchRadius/2f;
+            var area = altar.getBoundingBox().inflate(searchRadius, half, searchRadius);
             List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, area);
             for (LivingEntity entity : entities) {
                 if (entity.equals(altar)) {
                     continue;
                 }
                 if (altar.canBestowBlessing(entity)) {
-                    if (altar.isTargetWithinRadius(chargeRadius)) {
+                    if (altar.isTargetWithinRadius(entity, searchRadius)) {
                         target = entity;
                         break;
                     }
@@ -100,7 +106,7 @@ public class AltarBestowBlessingGoal extends Goal {
             }
 
             if (seeTime > 20) {
-                if ((distanceToTarget < chargeRadius * 0.5f)) {
+                if ((distanceToTarget < chargeRadius * chargeRadius)) {
                     navigation.stop();
                 } else {
                     navigation.moveTo(target, speedModifier);

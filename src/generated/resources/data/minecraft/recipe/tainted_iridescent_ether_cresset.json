@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "malum:iridescent_ether"
+    },
+    "Y": {
+      "item": "malum:tainted_rock"
+    }
+  },
+  "pattern": [
+    "X",
+    "Y",
+    "Y"
+  ],
+  "result": {
+    "count": 2,
+    "id": "malum:tainted_iridescent_ether_cresset"
+  }
+}

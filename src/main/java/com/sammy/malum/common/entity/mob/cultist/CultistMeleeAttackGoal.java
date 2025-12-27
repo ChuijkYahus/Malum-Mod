@@ -24,4 +24,9 @@ public class CultistMeleeAttackGoal extends MeleeAttackGoal {
         super.stop();
         cultist.setAggressive(false);
     }
+
+    @Override
+    protected void resetAttackCooldown() {
+        ticksUntilNextAttack = adjustedTickDelay(40);
+    }
 }

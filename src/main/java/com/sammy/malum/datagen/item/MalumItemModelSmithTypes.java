@@ -2,6 +2,8 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.item.ether.EtherItem;
+import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
 
@@ -113,21 +116,23 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         return provider.withExistingParent(name, HANDHELD).texture("layer0", provider.getItemTexture(name)).texture("layer1", provider.getItemTexture(name + "_overlay"));
     });
 
-    public static ItemModelSmith ETHER_BRAZIER_ITEM = new ItemModelSmith((item, provider) -> {
+    public static Function<String, ItemModelSmith> ETHER_CONTAINING_ITEM = Util.memoize(n -> new ItemModelSmith((item, provider) -> {
+        boolean isIridescent = ((EtherItem) item).isIridescent;
         String name = provider.getItemName(item);
-        String rockType = name.split("_")[0];
-        String brazierName = rockType + "_ether_brazier";
-        String overlayName = name.replace(rockType + "_", "");
-        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(brazierName)).texture("layer1", provider.getItemTexture(overlayName + "_overlay"));
-    });
-
-    public static ItemModelSmith IRIDESCENT_ETHER_BRAZIER_ITEM = new ItemModelSmith((item, provider) -> {
-        String name = provider.getItemName(item);
-        String rockType = name.split("_")[0];
-        String brazierName = rockType + "_ether_brazier";
-        String overlayName = name.replace(rockType + "_", "");
-        return provider.withExistingParent(name, GENERATED).texture("layer0", provider.getItemTexture(brazierName)).texture("layer1", provider.getItemTexture(overlayName)).texture("layer2", provider.getItemTexture(overlayName + "_overlay"));
-    });
+        int ether = name.indexOf(isIridescent ? "iridescent_ether" : "ether");
+        String base = name.substring(0, ether);
+        String containerName = base + n;
+        String overlayName = n + "_overlay";
+        if (isIridescent) {
+            return provider.withExistingParent(name, GENERATED)
+                    .texture("layer0", provider.getItemTexture(containerName))
+                    .texture("layer1", provider.getItemTexture("iridescent_" + n))
+                    .texture("layer2", provider.getItemTexture(overlayName));
+        }
+        return provider.withExistingParent(name, GENERATED)
+                .texture("layer0", provider.getItemTexture(containerName))
+                .texture("layer1", provider.getItemTexture(overlayName));
+    }));
 
     public static ItemModelSmith IRIDESCENT_ETHER_TORCH_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);

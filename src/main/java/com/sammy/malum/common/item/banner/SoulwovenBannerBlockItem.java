@@ -1,5 +1,6 @@
 package com.sammy.malum.common.item.banner;
 
+import com.sammy.malum.client.creative_tab.MalumCreativeTabTweaks;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
@@ -46,15 +47,23 @@ public class SoulwovenBannerBlockItem extends BlockItem {
         }
     }
 
+    public static void addBannerPatterns(MalumCreativeTabTweaks.CategoryBuilder builder) {
+        var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
+        Collections.reverse(patterns);
+        for (SoulwovenBannerPatternDataComponent pattern : patterns) {
+            builder.addItem(pattern.getDefaultStack());
+        }
+    }
+
     public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
         var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
-        ItemStack colorfulWorld = pattern.getDefaultStack();
-        if (!event.getParentEntries().contains(colorfulWorld)) {
+        ItemStack stack = pattern.getDefaultStack();
+        if (!event.getParentEntries().contains(stack)) {
             if (before) {
-                event.insertBefore(source, colorfulWorld, PARENT_AND_SEARCH_TABS);
+                event.insertBefore(source, stack, PARENT_AND_SEARCH_TABS);
             }
             else {
-                event.insertAfter(source, colorfulWorld, PARENT_AND_SEARCH_TABS);
+                event.insertAfter(source, stack, PARENT_AND_SEARCH_TABS);
             }
         }
     }

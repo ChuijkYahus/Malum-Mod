@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/blight/scarstone/scarstone_bottom",
     "side": "malum:block/blight/scarstone/scarstone_side",
-    "top": "malum:block/blight/scarstone/scarstone"
+    "top": "malum:block/blight/scarstone/scarstone_top"
   }
 }

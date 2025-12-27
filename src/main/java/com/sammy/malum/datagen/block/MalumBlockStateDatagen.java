@@ -52,71 +52,77 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         setTexturePath("arcane_rock/tainted/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
-                TAINTED_ROCK, POLISHED_TAINTED_ROCK, SMOOTH_TAINTED_ROCK,
-                TAINTED_ROCK_BRICKS, TAINTED_ROCK_TILES, SMALL_TAINTED_ROCK_BRICKS,
-                RUNIC_TAINTED_ROCK_BRICKS, RUNIC_TAINTED_ROCK_TILES, RUNIC_SMALL_TAINTED_ROCK_BRICKS,
-                CHISELED_TAINTED_ROCK);
+                TAINTED_ROCK, POLISHED_TAINTED_ROCK, TAINTED_ROCK_BRICKS, TAINTED_ROCK_TILES, TAINTED_ROCK_MOSAIC, CHISELED_TAINTED_ROCK);
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, TAINTED_ROCK_SLAB, POLISHED_TAINTED_ROCK_SLAB, SMOOTH_TAINTED_ROCK_SLAB,
-                TAINTED_ROCK_BRICKS_SLAB, TAINTED_ROCK_TILES_SLAB, SMALL_TAINTED_ROCK_BRICKS_SLAB,
-                RUNIC_TAINTED_ROCK_BRICKS_SLAB, RUNIC_TAINTED_ROCK_TILES_SLAB, RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                TAINTED_ROCK_SLAB, POLISHED_TAINTED_ROCK_SLAB, TAINTED_ROCK_BRICKS_SLAB, TAINTED_ROCK_TILES_SLAB, TAINTED_ROCK_MOSAIC_SLAB);
 
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, TAINTED_ROCK_STAIRS, POLISHED_TAINTED_ROCK_STAIRS, SMOOTH_TAINTED_ROCK_STAIRS,
-                TAINTED_ROCK_BRICKS_STAIRS, TAINTED_ROCK_TILES_STAIRS, SMALL_TAINTED_ROCK_BRICKS_STAIRS,
-                RUNIC_TAINTED_ROCK_BRICKS_STAIRS, RUNIC_TAINTED_ROCK_TILES_STAIRS, RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                TAINTED_ROCK_STAIRS, POLISHED_TAINTED_ROCK_STAIRS, TAINTED_ROCK_BRICKS_STAIRS, TAINTED_ROCK_TILES_STAIRS, TAINTED_ROCK_MOSAIC_STAIRS);
 
         BlockStateSmithTypes.WALL_BLOCK.act(data,
-                TAINTED_ROCK_WALL, SMOOTH_TAINTED_ROCK_WALL, POLISHED_TAINTED_ROCK_WALL,
-                TAINTED_ROCK_BRICKS_WALL, TAINTED_ROCK_TILES_WALL, SMALL_TAINTED_ROCK_BRICKS_WALL,
-                RUNIC_TAINTED_ROCK_BRICKS_WALL, RUNIC_TAINTED_ROCK_TILES_WALL, RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL);
+                TAINTED_ROCK_WALL, POLISHED_TAINTED_ROCK_WALL, TAINTED_ROCK_BRICKS_WALL, TAINTED_ROCK_TILES_WALL, TAINTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK, CHECKERED_TAINTED_ROCK);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::columnCapModel, TAINTED_ROCK_COLUMN_CAP);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TAINTED_ROCK_ITEM_PEDESTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TAINTED_ROCK_ITEM_STAND);
+        MalumBlockStateSmithTypes.COLUMN.act(data, TAINTED_ROCK_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, TAINTED_ROCK_ALTAR);
 
-        BlockStateSmithTypes.LOG_BLOCK.act(data, TAINTED_ROCK_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TAINTED_ROCK);
+
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, TAINTED_ROCK_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TAINTED_ROCK_PRESSURE_PLATE);
 
-        itemModelProvider.setTexturePath("ether/");
-        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TAINTED_ETHER_BRAZIER);
-        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TAINTED_IRIDESCENT_ETHER_BRAZIER);
-        itemModelProvider.setTexturePath("");
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TAINTED_ROCK_ITEM_PEDESTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TAINTED_ROCK_ITEM_STAND);
 
         setTexturePath("arcane_rock/twisted/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
-                TWISTED_ROCK, POLISHED_TWISTED_ROCK, SMOOTH_TWISTED_ROCK,
-                TWISTED_ROCK_BRICKS, TWISTED_ROCK_TILES, SMALL_TWISTED_ROCK_BRICKS,
-                RUNIC_TWISTED_ROCK_BRICKS, RUNIC_TWISTED_ROCK_TILES, RUNIC_SMALL_TWISTED_ROCK_BRICKS,
-                CHISELED_TWISTED_ROCK);
+                TWISTED_ROCK, POLISHED_TWISTED_ROCK, TWISTED_ROCK_BRICKS, TWISTED_ROCK_TILES, TWISTED_ROCK_MOSAIC, CHISELED_TWISTED_ROCK);
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, TWISTED_ROCK_SLAB, POLISHED_TWISTED_ROCK_SLAB, SMOOTH_TWISTED_ROCK_SLAB,
-                TWISTED_ROCK_BRICKS_SLAB, TWISTED_ROCK_TILES_SLAB, SMALL_TWISTED_ROCK_BRICKS_SLAB,
-                RUNIC_TWISTED_ROCK_BRICKS_SLAB, RUNIC_TWISTED_ROCK_TILES_SLAB, RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                TWISTED_ROCK_SLAB, POLISHED_TWISTED_ROCK_SLAB, TWISTED_ROCK_BRICKS_SLAB, TWISTED_ROCK_TILES_SLAB, TWISTED_ROCK_MOSAIC_SLAB);
 
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, TWISTED_ROCK_STAIRS, POLISHED_TWISTED_ROCK_STAIRS, SMOOTH_TWISTED_ROCK_STAIRS,
-                TWISTED_ROCK_BRICKS_STAIRS, TWISTED_ROCK_TILES_STAIRS, SMALL_TWISTED_ROCK_BRICKS_STAIRS,
-                RUNIC_TWISTED_ROCK_BRICKS_STAIRS, RUNIC_TWISTED_ROCK_TILES_STAIRS, RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                TWISTED_ROCK_STAIRS, POLISHED_TWISTED_ROCK_STAIRS, TWISTED_ROCK_BRICKS_STAIRS, TWISTED_ROCK_TILES_STAIRS, TWISTED_ROCK_MOSAIC_STAIRS);
 
         BlockStateSmithTypes.WALL_BLOCK.act(data,
-                TWISTED_ROCK_WALL, SMOOTH_TWISTED_ROCK_WALL, POLISHED_TWISTED_ROCK_WALL,
-                TWISTED_ROCK_BRICKS_WALL, TWISTED_ROCK_TILES_WALL, SMALL_TWISTED_ROCK_BRICKS_WALL,
-                RUNIC_TWISTED_ROCK_BRICKS_WALL, RUNIC_TWISTED_ROCK_TILES_WALL, RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL);
+                TWISTED_ROCK_WALL, POLISHED_TWISTED_ROCK_WALL, TWISTED_ROCK_BRICKS_WALL, TWISTED_ROCK_TILES_WALL, TWISTED_ROCK_MOSAIC_WALL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK, CHECKERED_TWISTED_ROCK);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::columnCapModel, TWISTED_ROCK_COLUMN_CAP);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TWISTED_ROCK_ITEM_PEDESTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TWISTED_ROCK_ITEM_STAND);
+        MalumBlockStateSmithTypes.COLUMN.act(data, TWISTED_ROCK_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, TWISTED_ROCK_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_TWISTED_ROCK);
 
-        BlockStateSmithTypes.LOG_BLOCK.act(data, TWISTED_ROCK_COLUMN);
         BlockStateSmithTypes.BUTTON_BLOCK.act(data, TWISTED_ROCK_BUTTON);
         BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, TWISTED_ROCK_PRESSURE_PLATE);
 
-        itemModelProvider.setTexturePath("ether/");
-        MalumBlockStateSmithTypes.BRAZIER_BLOCK.act(data, TWISTED_ETHER_BRAZIER);
-        MalumBlockStateSmithTypes.IRIDESCENT_BRAZIER_BLOCK.act(data, TWISTED_IRIDESCENT_ETHER_BRAZIER);
-        itemModelProvider.setTexturePath("");
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, TWISTED_ROCK_ITEM_PEDESTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, TWISTED_ROCK_ITEM_STAND);
+
+        setTexturePath("arcane_rock/dross/");
+        BlockStateSmithTypes.FULL_BLOCK.act(data,
+                DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS, DROSS_STONE_TILES, DROSS_STONE_MOSAIC, CHISELED_DROSS_STONE,
+                GRAY_DROSS_TILES, DARK_DROSS_TILES);
+
+        BlockStateSmithTypes.SLAB_BLOCK.act(data,
+                DROSS_STONE_SLAB, POLISHED_DROSS_STONE_SLAB, DROSS_STONE_BRICKS_SLAB, DROSS_STONE_TILES_SLAB, DROSS_STONE_MOSAIC_SLAB,
+                GRAY_DROSS_TILES_SLAB, DARK_DROSS_TILES_SLAB);
+
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
+                DROSS_STONE_STAIRS, POLISHED_DROSS_STONE_STAIRS, DROSS_STONE_BRICKS_STAIRS, DROSS_STONE_TILES_STAIRS, DROSS_STONE_MOSAIC_STAIRS,
+                GRAY_DROSS_TILES_STAIRS, DARK_DROSS_TILES_STAIRS);
+
+        BlockStateSmithTypes.WALL_BLOCK.act(data,
+                DROSS_STONE_WALL, POLISHED_DROSS_STONE_WALL, DROSS_STONE_BRICKS_WALL, DROSS_STONE_TILES_WALL, DROSS_STONE_MOSAIC_WALL,
+                GRAY_DROSS_TILES_WALL, DARK_DROSS_TILES_WALL);
+
+        MalumBlockStateSmithTypes.COLUMN.act(data, DROSS_STONE_COLUMN);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, DROSS_STONE_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_DROSS_STONE);
+
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, DROSS_STONE_BUTTON);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, DROSS_STONE_PRESSURE_PLATE);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, DROSS_STONE_ITEM_PEDESTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
 
         setTexturePath("runewood/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
@@ -136,7 +142,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.LOG_BLOCK.act(data, RUNEWOOD_BEAM, RUNEWOOD_LOG, STRIPPED_RUNEWOOD_LOG, EXPOSED_RUNEWOOD_LOG, REVEALED_RUNEWOOD_LOG);
         BlockStateSmithTypes.WOOD_BLOCK.act(data, RUNEWOOD, STRIPPED_RUNEWOOD);
         BlockStateSmithTypes.LEAVES_BLOCK.act(data, RUNEWOOD_LEAVES, AZURE_RUNEWOOD_LEAVES);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel, HANGING_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel,
+                HANGING_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES);
 
         MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_RUNEWOOD_SAPLING, POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, RUNEWOOD_SAPLING, AZURE_RUNEWOOD_SAPLING);
@@ -208,10 +215,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD,
                 BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_ARCANE_CHARCOAL,
                 BLOCK_OF_AURIC_EMBERS, BLOCK_OF_LIVING_FLESH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, BLOCK_OF_WARP_FLUX);
 
         setTexturePath("blight/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop, BLIGHTED_EARTH);
+        MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_BLIGHT);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cubeBottomTop, BLIGHTED_EARTH);
         MalumBlockStateSmithTypes.COVERING_BLOCK.act(data, BLIGHT);
         MalumBlockStateSmithTypes.BLIGHTED_GROWTH.act(data, BLIGHTED_GROWTH);
         MalumBlockStateSmithTypes.CREEPING_BLIGHT.act(data, CLINGING_BLIGHT);
@@ -226,19 +234,36 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, STRANGEROOT);
         MalumBlockStateSmithTypes.POTTED_PLANT.act(data, POTTED_STRANGEROOT);
 
+        setTexturePath("dungeon/flesh/");
+        MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_FLESH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop, FLESHBULB);
+        MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
+
         setTexturePath("waveform_artifice/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
         MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
 
-        setTexturePath("");
+        setTexturePath("ether/");
         itemModelProvider.setTexturePath("ether/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, this::etherModel, ETHER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherTorchModel, ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, WALL_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM, this::simpleBlock, this::etherModel, IRIDESCENT_ETHER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.IRIDESCENT_ETHER_TORCH_ITEM, this::simpleBlock, this::etherTorchModel, IRIDESCENT_ETHER_TORCH);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, (b, m) -> horizontalBlock(b, m, 90), this::wallEtherTorchModel, IRIDESCENT_WALL_ETHER_TORCH);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM,
+                this::simpleBlock, this::etherModel, ETHER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM,
+                this::simpleBlock, this::etherModel, IRIDESCENT_ETHER);
+
+        MalumBlockStateSmithTypes.ETHER_CANDLE_BLOCK.act(data,
+                ETHER_CANDLE, IRIDESCENT_ETHER_CANDLE);
+        MalumBlockStateSmithTypes.ETHER_TORCH_BLOCK.act(data,
+                ETHER_TORCH, IRIDESCENT_ETHER_TORCH);
+        MalumBlockStateSmithTypes.ETHER_WALL_TORCH_BLOCK.act(data,
+                WALL_ETHER_TORCH, IRIDESCENT_WALL_ETHER_TORCH);
+        MalumBlockStateSmithTypes.ETHER_BRAZIER_BLOCK.act(data,
+                TAINTED_ETHER_BRAZIER, TWISTED_ETHER_BRAZIER, DROSS_ETHER_BRAZIER,
+                TAINTED_IRIDESCENT_ETHER_BRAZIER, TWISTED_IRIDESCENT_ETHER_BRAZIER, DROSS_IRIDESCENT_ETHER_BRAZIER);
+        MalumBlockStateSmithTypes.ETHER_CRESSET_BLOCK.act(data,
+                TAINTED_ETHER_CRESSET, TWISTED_ETHER_CRESSET, DROSS_ETHER_CRESSET,
+                TAINTED_IRIDESCENT_ETHER_CRESSET, TWISTED_IRIDESCENT_ETHER_CRESSET, DROSS_IRIDESCENT_ETHER_CRESSET);
         itemModelProvider.setTexturePath("");
+        setTexturePath("");
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop,
                 RITE_ANCHOR, RITE_UNWEAVER);
@@ -281,30 +306,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         return models().cubeAll(name, MalumMod.malumPath("block/air")).texture("particle", getBlockTexture(name));
     }
 
-    public ModelFile columnCapModel(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation top = getBlockTexture(name + "_top");
-        ResourceLocation bottom = getBlockTexture(name.replace("_cap", "") + "_top");
-        ResourceLocation side = getBlockTexture(name);
-        return models().cubeBottomTop(name, side, bottom, top);
-    }
-
-    public ModelFile directionalRedstoneMachineBlock(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation top = getBlockTexture("runewood_frame_top");
-        ResourceLocation bottom = getBlockTexture("runewood_frame_bottom");
-        ResourceLocation locked = getBlockTexture("runewood_frame_locked");
-        ResourceLocation input = getBlockTexture("runewood_frame_input");
-        ResourceLocation output = getBlockTexture(name + "_output");
-        return models().cube(name, bottom, top, output, input, locked, locked).texture("particle", locked);
-    }
-
     public ModelFile cutRockBlockModel(Block block) {
         String name = getBlockName(block);
         int index = name.indexOf("_");
         String substring = name.substring(index + 1);
         ResourceLocation top = getBlockTexture("polished_" + substring);
-        ResourceLocation bottom = getBlockTexture("smooth_" + substring);
+        ResourceLocation bottom = getBlockTexture(substring);
         ResourceLocation side = getBlockTexture(name);
         return models().cubeBottomTop(name, side, bottom, top);
     }
@@ -367,14 +374,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         return models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/air")).texture("particle", itemModelProvider.getItemTexture("ether"));
     }
 
-    public ModelFile etherTorchModel(Block block) {
-        return models().getExistingFile(malumPath("block/ether_torch"));
-    }
-
-    public ModelFile wallEtherTorchModel(Block block) {
-        return models().getExistingFile(malumPath("block/ether_torch_wall"));
-    }
-
     public ModelFile totemBaseModel(Block block) {
         String name = getBlockName(block);
         ResourceLocation texture = getBlockTexture(name);
@@ -399,7 +398,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         String name = getBlockName(block);
         ResourceLocation side = getBlockTexture(name + "_side");
         ResourceLocation bottom = getBlockTexture(name + "_bottom");
-        ResourceLocation top = getBlockTexture(name);
+        ResourceLocation top = getBlockTexture(name + "_top");
         return models().cubeBottomTop(name, side, bottom, top);
     }
 

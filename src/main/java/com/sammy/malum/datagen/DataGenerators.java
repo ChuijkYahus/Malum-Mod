@@ -27,8 +27,8 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
-        final boolean includeClient = event.includeClient();
-        final boolean includeServer = event.includeServer();
+        boolean includeClient = event.includeClient();
+        boolean includeServer = event.includeServer();
 
         var registryDataDatagen = new RegistryDataGenerator(output, provider);
         var registryProvider = registryDataDatagen.getRegistryProvider();
@@ -42,13 +42,16 @@ public class DataGenerators {
 
         var dataMapDatagen = new MalumDataMapDatagen(output, registryProvider);
         var blockLootDatagen = new MalumBlockLootTables(output, registryProvider);
+
         var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
         var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
         var geasTagDatagen = new MalumGeasTagDatagen(output, provider, helper);
+        var entityTagDatagen = new MalumEntityTypeTagDatagen(output, provider, helper);
         var biomeTagDatagen = new MalumBiomeTagDatagen(output, registryProvider, helper);
-        var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
         var enchantmentTagDatagen = new MalumEnchantmentTags(output, registryProvider, helper);
         var componentTagDatagen = new MalumDataComponentTypeTagDatagen(output, provider, helper);
+        var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
+
         var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
         var recipeDatagen = new MalumRecipes(output, registryProvider);
 
@@ -59,13 +62,16 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, dataMapDatagen);
         generator.addProvider(includeServer, blockLootDatagen);
+
         generator.addProvider(includeServer, blockTagsDatagen);
         generator.addProvider(includeServer, itemTagDatagen);
         generator.addProvider(includeServer, geasTagDatagen);
+        generator.addProvider(includeServer, entityTagDatagen);
         generator.addProvider(includeServer, biomeTagDatagen);
-        generator.addProvider(includeServer, damageTypeTagDatagen);
         generator.addProvider(includeServer, enchantmentTagDatagen);
         generator.addProvider(includeServer, componentTagDatagen);
+        generator.addProvider(includeServer, damageTypeTagDatagen);
+
         generator.addProvider(includeServer, curioDataDatagen);
         generator.addProvider(includeServer, recipeDatagen);
     }

@@ -15,6 +15,7 @@ import com.sammy.malum.client.model.cosmetic.ultrakill.UltrakillMachineArmorMode
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.client.model.mob.believer.BelieverModel;
 import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
+import com.sammy.malum.client.model.mob.cherub.CherubModel;
 import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
 import net.neoforged.neoforge.client.event.*;
 
@@ -48,6 +49,7 @@ public class MalumModels {
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
         event.registerLayerDefinition(BelieverModel.LAYER, BelieverModel::createBodyLayer);
+        event.registerLayerDefinition(CherubModel.LAYER, CherubModel::createBodyLayer);
         event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);
         event.registerLayerDefinition(EvangelistModel.LAYER, EvangelistModel::createBodyLayer);
 

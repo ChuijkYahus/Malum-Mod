@@ -8,6 +8,7 @@ import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.registry.common.entity.MalumEntities;
 import com.sammy.malum.registry.common.item.MalumItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -25,22 +26,11 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
 public class EvangelistCultist extends CultistMonster implements IAltarBlessingRecipient {
-
-    public static final float ALTAR_BLESSING_THRESHOLD = 0.6f;
-    public static final int EMPOWERMENT_DURATION = 80;
-
-    public static final ResourceLocation ALTAR_EMPOWERMENT = MalumMod.malumPath("altar_empowerment");
-    public static final Multimap<Holder<Attribute>, AttributeModifier> EMPOWERMENT_MODIFIERS =
-            ImmutableMultimap.of(
-                    Attributes.ATTACK_DAMAGE, new AttributeModifier(ALTAR_EMPOWERMENT, 2f, AttributeModifier.Operation.ADD_VALUE),
-                    Attributes.MOVEMENT_SPEED, new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                    Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_VALUE)
-            );
-    public int empowermentDuration;
 
     public EvangelistCultist(Level level) {
         super(MalumEntities.EVANGELIST.get(), level);
@@ -50,9 +40,9 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
     protected void registerGoals() {
         var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
-        var meleeAttackGoal = new CultistMeleeAttackGoal(this, 1.5f);
+        var meleeAttackGoal = new CultistMeleeAttackGoal(this, 1f);
 
-        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
+        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.5f);
         var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
         var randomLookAround = new RandomLookAroundGoal(this);
 
@@ -64,57 +54,16 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
         goalSelector.addGoal(5, randomLookAround);
     }
 
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-
-        compound.putInt("EmpowermentDuration", empowermentDuration);
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-
-        empowermentDuration = compound.getInt("EmpowermentDuration");
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 60.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.15)
+                .add(Attributes.MOVEMENT_SPEED, 0.1)
                 .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75f)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.75)
+                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75)
                 .add(Attributes.ARMOR, 20.0)
                 .add(Attributes.STEP_HEIGHT, 1);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        updateEmpowerment();
-    }
-
-    public void updateEmpowerment() {
-        if (empowermentDuration > 0) {
-            empowermentDuration--;
-            if (empowermentDuration == 0) {
-                getAttributes().removeAttributeModifiers(EMPOWERMENT_MODIFIERS);
-            }
-        }
-    }
-
-    @Override
-    public boolean canReceiveAltarBuff() {
-        float healthDelta = getHealth() / getMaxHealth();
-        return healthDelta <= ALTAR_BLESSING_THRESHOLD;
-    }
-
-    @Override
-    public void receiveAltarBuff() {
-        empowermentDuration = EMPOWERMENT_DURATION;
-        getAttributes().addTransientAttributeModifiers(EMPOWERMENT_MODIFIERS);
     }
 
     @Nullable
@@ -128,5 +77,10 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
     @Override
     public boolean isWithinMeleeAttackRange(LivingEntity entity) {
         return getAttackBoundingBox().inflate(0.5f).intersects(entity.getHitbox());
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+
     }
 }

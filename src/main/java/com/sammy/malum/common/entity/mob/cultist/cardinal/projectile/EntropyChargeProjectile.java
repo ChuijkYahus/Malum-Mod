@@ -2,7 +2,7 @@ package com.sammy.malum.common.entity.mob.cultist.cardinal.projectile;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.common.entity.bolt.AbstractBoltProjectile;
-import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CursedBoltProjectile;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
@@ -217,8 +217,8 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
         MalumParticleEffectTypes.ENTROPY_CHARGE_DETONATES
                 .createEffect(position())
                 .color(MalumNetworkedParticleEffectColorData.fromColors(
-                        List.of(ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON),
-                                ColorParticleData.create(CultistBoltProjectile.CULTIST_CRIMSON, CultistBoltProjectile.CULTIST_DARK))
+                        List.of(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON),
+                                ColorParticleData.create(CursedBoltProjectile.CULTIST_CRIMSON, CursedBoltProjectile.CULTIST_DARK))
                 ))
                 .spawn(level);
 
@@ -254,7 +254,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
     @Override
     public void spawnParticles() {
         var level = level();
-        var color = ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON);
+        var color = ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON);
         var position = position();
         float lifetimeMultiplier = 5f;
         if (isPlaced()) {
@@ -299,7 +299,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
                             .setLifeDelay(RandomHelper.randomBetween(random, 0, 8))
                             .setScaleData(GenericParticleData.create(particleScale * multiplier, 0).setEasing(Easing.SINE_IN))
                             .setSpinData(SpinParticleData.createRandomDirection(random, 0.2f, 0.1f).randomSpinOffset(random))
-                            .setColorData(ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, new Color(41, 11, 12)).setEasing(Easing.SINE_IN_OUT))
+                            .setColorData(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, new Color(41, 11, 12)).setEasing(Easing.SINE_IN_OUT))
                             .setTransparencyData(GenericParticleData.create(0, 0.9f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT));
                 }
                 builder

@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/storage_blocks/block_of_warp_flux_bottom",
     "side": "malum:block/storage_blocks/block_of_warp_flux_side",
-    "top": "malum:block/storage_blocks/block_of_warp_flux"
+    "top": "malum:block/storage_blocks/block_of_warp_flux_top"
   }
 }

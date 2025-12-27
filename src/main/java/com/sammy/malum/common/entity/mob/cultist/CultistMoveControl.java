@@ -7,6 +7,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.Vec3;
+import org.apache.commons.lang3.mutable.MutableDouble;
+import org.joml.Vector3d;
+import team.lodestar.lodestone.helpers.DataHelper;
+import team.lodestar.lodestone.systems.easing.Easing;
 
 public class CultistMoveControl extends MoveControl {
 
@@ -16,8 +21,13 @@ public class CultistMoveControl extends MoveControl {
         DISABLED
     }
 
-    public BodyDirection direction = BodyDirection.DEFAULT;
     public final CultistMonster cultist;
+
+    public BodyDirection direction = BodyDirection.DEFAULT;
+
+    public Vector3d motion = new Vector3d();
+
+    public int strafeAdjustmentLimiter;
 
     public CultistMoveControl(CultistMonster cultist) {
         super(cultist);
@@ -30,71 +40,145 @@ public class CultistMoveControl extends MoveControl {
 
     @Override
     public void tick() {
-        float baseSpeed = (float)cultist.getAttributeValue(Attributes.MOVEMENT_SPEED);
-        float speed = (float)speedModifier * baseSpeed;
-        if (operation == MoveControl.Operation.STRAFE) {
-            float forwards = strafeForwards;
-            float right = strafeRight;
-            float strafeDelta = Mth.sqrt(forwards * forwards + right * right);
-            if (strafeDelta < 1.0F) {
-                strafeDelta = 1.0F;
+        double baseSpeed = cultist.getAttributeValue(Attributes.MOVEMENT_SPEED);
+        float speed = (float) (speedModifier * baseSpeed);
+        float cultistSpeed = cultist.motion.length();
+        float delta = cultistSpeed / speed;
+        float driftRemoval = delta * 0.25f;
+        float acceleration = Mth.clamp(0.02f + driftRemoval, 0, 1) * speed;
+        motion.zero();
+        switch (operation) {
+            case MOVE_TO -> {
+                var wanted = getWantedPosition();
+                double x = wanted.x - cultist.getX();
+                double y = wanted.y - cultist.getY();
+                double z = wanted.z - cultist.getZ();
+                var trajectory = getMovementTrajectory(x, y, z);
+                var direction = trajectory.normalize();
+                double length = trajectory.length();
+                if (length < 1f) {
+                    float deceleration = Easing.CIRC_OUT.ease(length, 0, 1);
+                    speed *= deceleration;
+                }
+                motion.set(direction);
+                tryJump(x, y, z);
+                rotateBody();
             }
+            case STRAFE -> {
+                float forward = strafeForwards;
+                float right = strafeRight;
 
-            strafeDelta = speed / strafeDelta;
-            forwards *= strafeDelta;
-            right *= strafeDelta;
-            float sin = Mth.sin(cultist.getYRot() * (float) (Math.PI / 180.0));
-            float cos = Mth.cos(cultist.getYRot() * (float) (Math.PI / 180.0));
-            float xRelative = forwards * cos - right * sin;
-            float zRelative = right * cos + forwards * sin;
-            if (!isWalkable(xRelative, zRelative)) {
-                strafeForwards = 1.0F;
-                strafeRight = 0.0F;
+                if (forward == 0 && right == 0) {
+                    operation = Operation.WAIT;
+                    break;
+                }
+                var forwards = new Vec3(
+                        Math.cos(cultist.yBodyRot * Mth.DEG_TO_RAD + Mth.HALF_PI), 0,
+                        Math.sin(cultist.yBodyRot * Mth.DEG_TO_RAD + Mth.HALF_PI)
+                );
+                var side = forwards.cross(new Vec3(0, 1, 0)).normalize();
+                var xForward = new MutableDouble(forwards.x * forward);
+                var zForward = new MutableDouble(forwards.z * forward);
+                var xSide = new MutableDouble(side.x * right);
+                var zSide = new MutableDouble(side.z * right);
+                adjustStrafing(xForward, zForward, xSide, zSide);
+                double x = xForward.getValue() + xSide.getValue();
+                double z = zForward.getValue() + zSide.getValue();
+                motion.set(x, 0, z);
             }
-
-            cultist.setSpeed(speed);
-            cultist.setZza(strafeForwards);
-            cultist.setXxa(strafeRight);
-            operation = MoveControl.Operation.WAIT;
-        } else if (operation == MoveControl.Operation.MOVE_TO) {
-            operation = MoveControl.Operation.WAIT;
-            double xDiff = wantedX - cultist.getX();
-            double yDiff = wantedY - cultist.getY();
-            double zDiff = wantedZ - cultist.getZ();
-            double distance = xDiff * xDiff + yDiff * yDiff + zDiff * zDiff;
-            if (distance < 2.5000003E-7F) {
+            case WAIT -> {
+                acceleration = 0.1f;
+                cultist.setXxa(0.0F);
                 cultist.setZza(0.0F);
-                return;
             }
+        }
 
-            float movementAngle = (float)(Mth.atan2(zDiff, xDiff) * 180.0F / (float)Math.PI) - 90.0F;
-            cultist.setSpeed(speed);
-            var target = cultist.target;
-            if (direction.equals(BodyDirection.FACE_TARGET) && target != null) {
-                cultist.faceTarget(target);
-            }
-            else if (!direction.equals(BodyDirection.DISABLED)) {
-                cultist.setYRot(rotlerp(cultist.getYRot(), movementAngle, 90.0F));
-            }
-            tryJump(xDiff, yDiff, zDiff);
-        } else if (operation == MoveControl.Operation.JUMPING) {
-            cultist.setSpeed(speed);
-            if (cultist.onGround()) {
-                operation = MoveControl.Operation.WAIT;
-            }
-        } else {
-            cultist.setZza(0.0F);
+        double x = DataHelper.approach(cultist.previousMotion.x, motion.x*speed, acceleration);
+        double y = DataHelper.approach(cultist.previousMotion.y, motion.y*speed, acceleration);
+        double z = DataHelper.approach(cultist.previousMotion.z, motion.z*speed, acceleration);
+        cultist.setMotion(x, y, z);
+
+        resetValues();
+    }
+
+    public Vector3d getWantedPosition() {
+        return new Vector3d(wantedX, wantedY, wantedZ);
+    }
+
+    public Vector3d getMovementTrajectory(double x, double y, double z) {
+        return new Vector3d(x, 0, z);
+    }
+
+    public void resetValues() {
+        if (operation != Operation.JUMPING || mob.onGround()) {
+            operation = Operation.WAIT;
+        }
+        if (operation != Operation.STRAFE) {
+            strafeForwards = 0;
+            strafeRight = 0;
+        }
+        if (strafeAdjustmentLimiter < 0) {
+            strafeAdjustmentLimiter++;
         }
         direction = BodyDirection.DEFAULT;
+    }
+
+    public void adjustStrafing(MutableDouble xForward, MutableDouble zForward, MutableDouble xSide, MutableDouble zSide) {
+        if (strafeAdjustmentLimiter > 40) {
+            strafeAdjustmentLimiter = -20;
+        }
+        if (strafeAdjustmentLimiter < 0) {
+            return;
+        }
+        var fx = xForward.getValue();
+        var fz = zForward.getValue();
+        var sx = xSide.getValue();
+        var sz = zSide.getValue();
+
+        if (!isWalkable(fx, 0)) {
+            xForward.setValue(0);
+            strafeForwards *= -1;
+            strafeAdjustmentLimiter++;
+        }
+        if (!isWalkable(0, fz)) {
+            zForward.setValue(0);
+            strafeForwards *= -1;
+            strafeAdjustmentLimiter++;
+        }
+        if (!isWalkable(sx, 0)) {
+            xSide.setValue(0);
+            strafeRight *= -1;
+            strafeAdjustmentLimiter++;
+        }
+        if (!isWalkable(0, sz)) {
+            zSide.setValue(0);
+            strafeRight *= -1;
+            strafeAdjustmentLimiter++;
+        }
+    }
+
+    public void rotateBody() {
+        if (direction.equals(BodyDirection.DISABLED)) {
+            return;
+        }
+        var target = cultist.target;
+        if (direction.equals(BodyDirection.FACE_TARGET) && target != null) {
+            cultist.faceTarget(target);
+            return;
+        }
+        double xDiff = wantedX - cultist.getX();
+        double zDiff = wantedZ - cultist.getZ();
+        float movementAngle = (float) (Mth.atan2(zDiff, xDiff) * 180.0F / (float) Math.PI) - 90.0F;
+        cultist.setYRot(rotlerp(cultist.getYRot(), movementAngle, 90.0F));
     }
 
     public void tryJump(double xDiff, double yDiff, double zDiff) {
         var blockpos = cultist.blockPosition();
         var blockstate = cultist.level().getBlockState(blockpos);
         var voxelshape = blockstate.getCollisionShape(cultist.level(), blockpos);
-        if (yDiff > (double)cultist.maxUpStep() && xDiff * xDiff + zDiff * zDiff < (double)Math.max(1.0F, cultist.getBbWidth())
+        if (yDiff > (double) cultist.maxUpStep() && xDiff * xDiff + zDiff * zDiff < (double) Math.max(1.0F, cultist.getBbWidth())
                 || !voxelshape.isEmpty()
-                && cultist.getY() < voxelshape.max(Direction.Axis.Y) + (double)blockpos.getY()
+                && cultist.getY() < voxelshape.max(Direction.Axis.Y) + (double) blockpos.getY()
                 && !blockstate.is(BlockTags.DOORS)
                 && !blockstate.is(BlockTags.FENCES)) {
             cultist.getJumpControl().jump();
@@ -107,13 +191,13 @@ public class CultistMoveControl extends MoveControl {
         return super.rotlerp(sourceAngle, targetAngle, maximumChange);
     }
 
-    public boolean isWalkable(float relativeX, float relativeZ) {
+    public boolean isWalkable(double relativeX, double relativeZ) {
         var navigation = cultist.getNavigation();
         var node = navigation.getNodeEvaluator();
         var pathType = node.getPathType(cultist, BlockPos.containing(
-                        cultist.getX() + relativeX,
-                        cultist.getBlockY(),
-                        cultist.getZ() + relativeZ)
+                cultist.getX() + relativeX,
+                cultist.getBlockY(),
+                cultist.getZ() + relativeZ)
         );
         return pathType == PathType.WALKABLE;
     }

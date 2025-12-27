@@ -53,17 +53,17 @@ public class CreepingBlightBlock extends Block {
     }
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        final Direction direction = context.getClickedFace();
-        BlockState state = this.defaultBlockState().setValue(HORIZONTAL_FACING, direction.getAxis().isHorizontal() ? direction.getOpposite() : context.getHorizontalDirection());
-        final Level level = context.getLevel();
-        final BlockPos clickedPos = context.getClickedPos();
+        var direction = context.getClickedFace();
+        var state = this.defaultBlockState().setValue(HORIZONTAL_FACING, direction.getAxis().isHorizontal() ? direction.getOpposite() : context.getHorizontalDirection());
+        var level = context.getLevel();
+        var clickedPos = context.getClickedPos();
         if (!direction.getAxis().isVertical()) {
             state = state.setValue(BLIGHT_TYPE, BlightType.SOULWOOD_SPIKE);
         } else {
-                if (direction.equals(Direction.DOWN)) {
+            if (direction.equals(Direction.DOWN)) {
                 state = state.setValue(BLIGHT_TYPE, BlightType.HANGING_BLIGHT);
             }
-            if (direction.getAxis().isHorizontal() || (direction.equals(Direction.UP))) {
+            else if (direction.getAxis().isHorizontal() || (direction.equals(Direction.UP))) {
                 state = state.setValue(BLIGHT_TYPE, BlightType.CLINGING_BLIGHT);
                 if (!state.canSurvive(level, clickedPos)) {
                     return state.setValue(BLIGHT_TYPE, BlightType.SOULWOOD_ROOTS);
@@ -75,8 +75,8 @@ public class CreepingBlightBlock extends Block {
 
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        final BlightType value = pState.getValue(BLIGHT_TYPE);
-        Direction direction = pState.getValue(HORIZONTAL_FACING);
+        var value = pState.getValue(BLIGHT_TYPE);
+        var direction = pState.getValue(HORIZONTAL_FACING);
         if (value.equals(BlightType.CLINGING_BLIGHT) || value.equals(BlightType.SOULWOOD_ROOTS)) {
             BlockPos below = pPos.below();
             if (!pLevel.getBlockState(below).is(BLIGHT_PLACEABLE_ON)) {
@@ -99,7 +99,7 @@ public class CreepingBlightBlock extends Block {
         if (value.equals(BlightType.SOULWOOD_ROOTS)) {
             return true;
         }
-        final BlockPos pos = pPos.relative(direction);
+        var pos = pPos.relative(direction);
         return Block.canSupportCenter(pLevel, pos, direction);
     }
 

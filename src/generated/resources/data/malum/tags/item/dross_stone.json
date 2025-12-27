@@ -1,0 +1,28 @@
+{
+  "values": [
+    "malum:dross_ether_brazier",
+    "malum:dross_iridescent_ether_brazier",
+    "malum:dross_ether_cresset",
+    "malum:dross_iridescent_ether_cresset",
+    "malum:dross_stone",
+    "malum:polished_dross_stone",
+    "malum:dark_dross_tiles",
+    "malum:gray_dross_tiles",
+    "malum:dross_stone_slab",
+    "malum:polished_dross_stone_slab",
+    "malum:dark_dross_tiles_slab",
+    "malum:gray_dross_tiles_slab",
+    "malum:dross_stone_stairs",
+    "malum:polished_dross_stone_stairs",
+    "malum:dark_dross_tiles_stairs",
+    "malum:gray_dross_tiles_stairs",
+    "malum:dross_stone_wall",
+    "malum:polished_dross_stone_wall",
+    "malum:dark_dross_tiles_wall",
+    "malum:gray_dross_tiles_wall",
+    "malum:dross_stone_button",
+    "malum:dross_stone_pressure_plate",
+    "malum:dross_stone_item_stand",
+    "malum:dross_stone_item_pedestal"
+  ]
+}

@@ -129,8 +129,8 @@ public class AltarModel extends EntityModel<AltarCultist> {
 		float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		float headTilt = Mth.lerp(partialTicks, altar.oHeadTilt, altar.headTilt);
 
-		head.yRot = (headTilt*90 + netHeadYaw) * (float) (Math.PI / 180.0);
-		head.xRot = headPitch * (float) (Math.PI / 180.0);
+		head.yRot = (headTilt*90 + netHeadYaw) * Mth.DEG_TO_RAD;
+		head.xRot = headPitch * Mth.DEG_TO_RAD;
 
 		float bodyX = (Mth.sin(limbSwing * 1.2f + 0.0F) * 0.3F) * limbSwingAmount;
 		float bodyZ = (Mth.cos(limbSwing * 1.2f + 0.0F) * 0.3F) * limbSwingAmount;
@@ -138,10 +138,10 @@ public class AltarModel extends EntityModel<AltarCultist> {
 		body.setRotation(bodyX, 0, bodyZ);
 		candles.applyRotation(0, altar.getCandleRotation(), 0);
 
-		float hindLeft = (Mth.sin(limbSwing * 1.2f + 0.0F) * 0.6F) * limbSwingAmount;
-		float hindRight = (Mth.sin(limbSwing * 1.2f + 0.785f) * 0.6F) * limbSwingAmount;
-		float left = (Mth.sin(limbSwing * 1.2f + 1.57f) * 0.6F) * limbSwingAmount;
-		float right = (Mth.sin(limbSwing * 1.2f + 2.355f) * 0.6F) * limbSwingAmount;
+		float hindLeft = (Mth.sin(limbSwing * 1.2f + 0.785f) * 0.6F) * limbSwingAmount;
+		float hindRight = (Mth.sin(limbSwing * 1.2f + 1.57f) * 0.6F) * limbSwingAmount;
+		float left = (Mth.sin(limbSwing * 1.2f + 2.355f) * 0.6F) * limbSwingAmount;
+		float right = (Mth.sin(limbSwing * 1.2f + 3.14f) * 0.6F) * limbSwingAmount;
 
 		hindLeftLeg.applyRotation(0, left, left);
 		hindRightLeg.applyRotation(0, left, left);

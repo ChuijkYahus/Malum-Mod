@@ -26,16 +26,20 @@ import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.systems.block.*;
 import team.lodestar.lodestone.systems.datagen.*;
+import team.lodestar.lodestone.systems.datagen.providers.LodestoneItemTagsProvider;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.*;
 
 import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
+import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
 @SuppressWarnings("unchecked")
-public class MalumItemTagDatagen extends ItemTagsProvider {
+public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
 
     public MalumItemTagDatagen(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(pOutput, pLookupProvider, pBlockTags, MalumMod.MALUM, existingFileHelper);
@@ -48,31 +52,11 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = ITEMS.getEntries();
         MalumWoodSetDatagen.addTags(this);
-        MalumRockSetDatagen.addTags(this);
+        copyTagsFromBlockProperties(blocks);
 
-        copy(BlockTags.PLANKS, ItemTags.PLANKS);
-        copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
-        copy(BlockTags.BUTTONS, ItemTags.BUTTONS);
-        copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
-        copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
-        copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
-        copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
-        copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
-        copy(BlockTags.DOORS, ItemTags.DOORS);
-        copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
-        copy(MalumTags.BlockTags.STRIPPED_LOGS, STRIPPED_LOGS);
-        copy(MalumTags.BlockTags.STRIPPED_WOODS, STRIPPED_WOODS);
-        copy(BlockTags.SLABS, ItemTags.SLABS);
-        copy(BlockTags.WALLS, ItemTags.WALLS);
-        copy(BlockTags.STAIRS, ItemTags.STAIRS);
-        copy(BlockTags.LEAVES, ItemTags.LEAVES);
-        copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
-        copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
-        copy(BlockTags.FENCES, ItemTags.FENCES);
-        copy(Tags.Blocks.ORES, Tags.Items.ORES);
-        copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 
         tag(ItemTags.BOOKSHELF_BOOKS).add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
 
@@ -80,7 +64,6 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(ItemTags.LOGS).addTag(RUNEWOOD_LOGS).addTag(SOULWOOD_LOGS);
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
-        tag(Tags.Items.ORES_QUARTZ).add(NATURAL_QUARTZ_ORE.get(), DEEPSLATE_QUARTZ_ORE.get());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
         tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_NUGGET.get());
@@ -90,8 +73,12 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
         tag(ItemTags.DYEABLE).add(
-                ETHER.get(), ETHER_TORCH.get(), TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(),
-                IRIDESCENT_ETHER.get(), IRIDESCENT_ETHER_TORCH.get(), TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get());
+                ETHER.get(), ETHER_CANDLE.get(), IRIDESCENT_ETHER.get(),
+                ETHER_TORCH.get(), IRIDESCENT_ETHER_CANDLE.get(), IRIDESCENT_ETHER_TORCH.get(),
+                TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
+                TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
+                TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
+                TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
@@ -225,13 +212,7 @@ public class MalumItemTagDatagen extends ItemTagsProvider {
                 .addOptional(ResourceLocation.parse("tetra:geode"));
 
         tag(SOULWOVEN_POUCH_EFFICIENT)
-                .addTags(SOUL_SHATTER_CAPABLE_WEAPON, SPIRITS, MOB_DROPS, MATERIALS, MINERALS)
-                .addTags(AUGMENTS, METAL_NODES)
-                .addTag(ARMORS)
-                .addTags(RING_CURIO, NECKLACE_CURIO, BELT_CURIO, BROOCH_CURIO, RUNE_CURIO)
-                .add(TOTEMIC_STAFF.get(), ARTIFICERS_CLAW.get(), TUNING_FORK.get(), LAMPLIGHTERS_TONGS.get(), CATALYST_LOBBER.get())
-                .add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get())
-                .add(SOULWOVEN_BANNER.get());
+                .addTags(SPIRITS);
         tag(SOULWOVEN_POUCH_AUTOCOLLECT)
                 .addTags(SPIRITS);
 

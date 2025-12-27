@@ -2,6 +2,7 @@ package com.sammy.malum.client.model;
 
 import net.minecraft.client.model.geom.*;
 
+//TODO: This is pointless actually
 public class CachedModelPart {
 
     private final ModelPart part;

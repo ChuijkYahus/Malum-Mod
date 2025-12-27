@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "malum:block/blight/columnar_blight_end",
+    "side": "malum:block/blight/columnar_blight_segment"
+  }
+}

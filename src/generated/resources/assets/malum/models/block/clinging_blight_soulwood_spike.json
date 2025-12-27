@@ -2,9 +2,9 @@
   "parent": "malum:block/templates/blight/template_soulwood_spike",
   "textures": {
     "bracing": "malum:block/blight/soulwood_spike_bracing",
-    "large": "malum:block/blight/soulwood_spike_large",
-    "large_extension": "malum:block/blight/soulwood_spike_large_extension",
-    "particle": "malum:block/blight/soulwood_spike_large",
+    "large_end": "malum:block/blight/soulwood_spike_large_end",
+    "large_start": "malum:block/blight/soulwood_spike_large_start",
+    "particle": "malum:block/blight/soulwood_spike_large_start",
     "small": "malum:block/blight/soulwood_spike_small"
   }
 }

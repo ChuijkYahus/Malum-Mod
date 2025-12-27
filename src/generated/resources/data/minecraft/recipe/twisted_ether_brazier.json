@@ -2,19 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "malum:twisted_rock"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    },
     "X": {
       "item": "malum:ether"
+    },
+    "Y": {
+      "item": "malum:twisted_rock"
     }
   },
   "pattern": [
-    "#X#",
-    "S#S"
+    "X",
+    "Y"
   ],
   "result": {
     "count": 2,

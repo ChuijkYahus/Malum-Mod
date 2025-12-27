@@ -3,7 +3,7 @@ package com.sammy.malum.client.model.mob.cherub;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.CultistHumanoidModel;
 import com.sammy.malum.client.model.mob.MalumAnimationUtils;
-import com.sammy.malum.common.entity.mob.cultist.believer.BelieverCultist;
+import com.sammy.malum.common.entity.mob.cultist.cherub.CherubCultist;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,21 +12,27 @@ import net.minecraft.util.Mth;
 import team.lodestar.lodestone.systems.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class CherubModel extends CultistHumanoidModel<BelieverCultist> {
+public class CherubModel extends CultistHumanoidModel<CherubCultist> {
 
-	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("believer"), "main");
+	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("cherub"), "main");
 
-	private final ModelPart mask;
-	private final ModelPart teeth;
-	private final ModelPart leftTooth;
-	private final ModelPart rightTooth;
+	private final ModelPart wings;
+	private final ModelPart frontWings;
+	private final ModelPart backWings;
+	private final ModelPart frontRightWing;
+	private final ModelPart frontLeftWing;
+	private final ModelPart backRightWing;
+	private final ModelPart backLeftWing;
 
-	public CherubModel(ModelPart root) {
-        super(root);
-		mask = head.getChild("mask");
-		teeth = mask.getChild("teeth");
-		leftTooth = teeth.getChild("left_tooth");
-		rightTooth = teeth.getChild("right_tooth");
+	public CherubModel(ModelPart modelDefinition) {
+        super(modelDefinition);
+		wings = root.getChild("wings");
+		frontWings = wings.getChild("front");
+		backWings = wings.getChild("back");
+		frontRightWing = frontWings.getChild("front_right_wing");
+		frontLeftWing = frontWings.getChild("front_left_wing");
+		backRightWing = backWings.getChild("back_right_wing");
+		backLeftWing = backWings.getChild("back_left_wing");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -48,17 +54,19 @@ public class CherubModel extends CultistHumanoidModel<BelieverCultist> {
 				.texOffs(18, 27).addBox(-1.5F, -4.0F, -1.0F, 3.0F, 4.0F, 2.0F, new CubeDeformation(0.25F))
 				.texOffs(18, 33).addBox(-2.0F, -3.0F, -1.0F, 4.0F, 6.0F, 2.0F, new CubeDeformation(0.05F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition front_wings = root.addOrReplaceChild("front_wings", CubeListBuilder.create(), PartPose.offset(0.0F, 22.0F, 0.0F));
+		PartDefinition wings = root.addOrReplaceChild("wings", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition right_front_wing = front_wings.addOrReplaceChild("right_front_wing", CubeListBuilder.create().texOffs(0, 41).addBox(-11.5F, -2.0F, 0.0F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, -3.0F, 0.0F, 0.0F, 0.3927F, -0.3927F));
+		PartDefinition front = wings.addOrReplaceChild("front", CubeListBuilder.create(), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-		PartDefinition left_front_wing = front_wings.addOrReplaceChild("left_front_wing", CubeListBuilder.create().texOffs(0, 41).mirror().addBox(0.5F, -2.0F, 0.0F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.0F, -3.0F, 0.0F, 0.0F, -0.3927F, 0.3927F));
+		PartDefinition front_right_wing = front.addOrReplaceChild("front_right_wing", CubeListBuilder.create().texOffs(0, 41).addBox(-11.5F, -2.0F, 0.0F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, -3.0F, 0.0F, 0.0F, 0.3927F, -0.3927F));
 
-		PartDefinition back_wings = root.addOrReplaceChild("back_wings", CubeListBuilder.create(), PartPose.offset(0.0F, 22.0F, 0.0F));
+		PartDefinition front_left_wing = front.addOrReplaceChild("front_left_wing", CubeListBuilder.create().texOffs(0, 41).mirror().addBox(0.5F, -2.0F, 0.0F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.0F, -3.0F, 0.0F, 0.0F, -0.3927F, 0.3927F));
 
-		PartDefinition right_back_wing = back_wings.addOrReplaceChild("right_back_wing", CubeListBuilder.create().texOffs(0, 48).addBox(-13.0F, -7.9197F, 0.6213F, 14.0F, 9.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, -1.5F, 2.0F, 0.0F, 0.3927F, 0.3927F));
+		PartDefinition back = wings.addOrReplaceChild("back", CubeListBuilder.create(), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-		PartDefinition left_back_wing = back_wings.addOrReplaceChild("left_back_wing", CubeListBuilder.create().texOffs(0, 48).mirror().addBox(-1.0F, -7.9197F, 0.6213F, 14.0F, 9.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.0F, -1.5F, 2.0F, 0.0F, -0.3927F, -0.3927F));
+		PartDefinition back_right_wing = back.addOrReplaceChild("back_right_wing", CubeListBuilder.create().texOffs(0, 48).addBox(-13.0F, -7.9197F, 0.6213F, 14.0F, 9.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, -1.5F, 2.0F, 0.0F, 0.3927F, 0.3927F));
+
+		PartDefinition back_left_wing = back.addOrReplaceChild("back_left_wing", CubeListBuilder.create().texOffs(0, 48).mirror().addBox(-1.0F, -7.9197F, 0.6213F, 14.0F, 9.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.0F, -1.5F, 2.0F, 0.0F, -0.3927F, -0.3927F));
 
 		PartDefinition right_arm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(10, 27).addBox(-1.25F, -0.5F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(-0.1F)), PartPose.offset(-1.75F, 20.25F, 0.0F));
 
@@ -67,43 +75,42 @@ public class CherubModel extends CultistHumanoidModel<BelieverCultist> {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-	@Override
-	public void setupAnim(BelieverCultist believer, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		var utils = MalumAnimationUtils.create(this, believer, limbSwing, limbSwingAmount);
-
+	@SuppressWarnings("SuspiciousNameCombination")
+    @Override
+	public void setupAnim(CherubCultist cherub, MalumAnimationUtils<CherubCultist> utils, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float headYClamp = 0.7f;
 		float headXClamp = 0.08f;
 		float armClamp = 1.4F;
 		float legClamp = 0.7F;
 
-		float headYRot = netHeadYaw * (float) (Math.PI / 180.0);
+		float headYRot = netHeadYaw * Mth.DEG_TO_RAD;
 		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
-		float headXRot = headPitch * (float) (Math.PI / 180.0);
+		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
+		float armRotation = Mth.sin(ageInTicks * 5.5F * Mth.DEG_TO_RAD) * 0.1F;
 		float rightArmRotation = utils.getRightArmRotation(d -> d
-				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+				.setRate(0.25F).setAmount(0.3F).setEasing(Easing.SINE_IN_OUT).addClamp(armClamp));
 		float leftArmRotation = utils.getLeftArmRotation(d -> d
-				.setRate(0.65F).setAmount(0.9F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+				.setRate(0.25F).setAmount(0.3F).setEasing(Easing.SINE_IN_OUT).addClamp(armClamp));
 
-		float rightLegRotation = utils.getRightLegRotation(d -> d
-				.setRate(0.7F).setAmount(0.3f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
-		float leftLegRotation = utils.getLeftLegRotation(d -> d
-				.setRate(0.7F).setAmount(0.3f).setEasing(Easing.SINE_IN_OUT).addClamp(legClamp));
+		float backLeft = (Mth.sin(ageInTicks * 0.1f + 0.785f) * 0.6F);
+		float backRight = -(Mth.sin(ageInTicks * 0.1f + 1.57f) * 0.6F);
+		float frontLeft = (Mth.sin(ageInTicks * 0.1f + 2.355f) * 0.6F);
+		float frontRight = -(Mth.sin(ageInTicks * 0.1f + 3.14f) * 0.6F);
 
-		utils.reset(this);
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
+		rightArm.zRot = (float) (Math.PI / 5) + armRotation;
+		leftArm.zRot = -((float) (Math.PI / 5) + armRotation);
 		rightArm.xRot = rightArmRotation;
 		leftArm.xRot = leftArmRotation;
 
-		rightLeg.xRot = rightLegRotation;
-		leftLeg.xRot = leftLegRotation;
+		backLeftWing.yRot = backLeft;
+		backRightWing.yRot = backRight;
+		frontLeftWing.yRot = frontLeft;
+		frontRightWing.yRot = frontRight;
 
-		if (riding) {
-			utils.applyRidingRotations(this);
-		}
-		utils.applyGenericArmAnimations(ageInTicks);
 	}
 }

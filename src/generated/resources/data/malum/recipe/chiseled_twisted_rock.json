@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "malum:polished_twisted_rock_slab"
+    "X": {
+      "tag": "malum:twisted_rock_slabs"
     }
   },
   "pattern": [
-    "#",
-    "#"
+    "X",
+    "X"
   ],
   "result": {
     "count": 1,

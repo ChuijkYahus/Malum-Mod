@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "malum:item/ether/tainted_ether_brazier",
     "layer1": "malum:item/ether/iridescent_ether_brazier",
-    "layer2": "malum:item/ether/iridescent_ether_brazier_overlay"
+    "layer2": "malum:item/ether/ether_brazier_overlay"
   }
 }

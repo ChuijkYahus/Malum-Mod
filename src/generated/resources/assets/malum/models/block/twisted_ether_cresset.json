@@ -1,0 +1,7 @@
+{
+  "parent": "malum:block/templates/template_ether_cresset",
+  "textures": {
+    "bottom": "malum:block/ether/twisted_ether_cresset_bottom",
+    "top": "malum:block/ether/twisted_ether_cresset_top"
+  }
+}

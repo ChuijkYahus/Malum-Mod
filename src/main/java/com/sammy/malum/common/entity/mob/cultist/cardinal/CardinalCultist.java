@@ -1,7 +1,7 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal;
 
 import com.sammy.malum.common.entity.mob.cultist.*;
-import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CursedBoltProjectile;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.goal.*;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.registry.common.MalumDamageTypes;
@@ -55,8 +55,9 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 10f;
     public static final float IMMOLATION_BLAST_DAMAGE = 2.5f;
 
-    public static final int RANGED_ATTACK_INTERVAL = 80;
-    public static final float RANGED_RADIUS = 16f;
+    public static final int ENTROPY_THROW_INTERVAL = 80;
+    public static final float ENTROPY_THROW_RADIUS = 16f;
+    public static final float ENTROPY_DETONATION_RADIUS = 24f;
 
     public static final byte THROW_ANIMATION = 11;
     public static final byte DETONATE_ANIMATION = 12;
@@ -79,6 +80,46 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public CardinalCultist(Level level) {
         super(MalumEntities.CARDINAL.get(), level);
         idleAnimationState.start(tickCount);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
+
+        var immolationBlast = new CardinalImmolationBlastGoal(this);
+        var detonateEntropy = new CardinalDetonateEntropyGoal(this, 1.25f);
+        var throwEntropy = new CardinalThrowEntropyGoal(this, 1.0f);
+        var retaliationBlast = new CardinalRetaliationBlastGoal(this, 0.5f);
+        var avoidTarget = new CardinalAvoidTargetGoal(this, 0.75f);
+
+        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.5f);
+        var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
+        var randomLookAround = new RandomLookAroundGoal(this);
+
+        targetSelector.addGoal(0, targeting);
+
+        goalSelector.addGoal(0, immolationBlast);
+        goalSelector.addGoal(1, detonateEntropy);
+        goalSelector.addGoal(2, throwEntropy);
+        goalSelector.addGoal(3, retaliationBlast);
+        goalSelector.addGoal(4, avoidTarget);
+        goalSelector.addGoal(5, randomStroll);
+        goalSelector.addGoal(6, lookAtPlayer);
+        goalSelector.addGoal(7, randomLookAround);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 80.0)
+                .add(Attributes.FOLLOW_RANGE, 35.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.12)
+                .add(Attributes.ATTACK_DAMAGE, 2.0)
+                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
+                .add(LodestoneAttributes.MAGIC_RESISTANCE, 1.5)
+                .add(Attributes.ARMOR, 10.0)
+                .add(Attributes.STEP_HEIGHT, 1);
     }
 
     @Override
@@ -115,71 +156,30 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     }
 
     @Override
-    protected void registerGoals() {
-        super.registerGoals();
-        var targeting = new NearestAttackableTargetGoal<>(this, Player.class, true);
-
-        var immolationBlast = new CardinalImmolationBlastGoal(this);
-        var detonateEntropy = new CardinalDetonateEntropyGoal(this, 1.25f, RANGED_RADIUS * 2);
-        var lobEntropy = new CardinalLobEntropyGoal(this, 1.0f, RANGED_ATTACK_INTERVAL, RANGED_RADIUS);
-        var retaliationBlast = new CardinalRetaliationBlastGoal(this, 0.5f);
-        var avoidTarget = new CardinalAvoidTargetGoal(this, 0.75f);
-
-        var randomStroll = new WaterAvoidingRandomStrollGoal(this, 0.8f);
-        var lookAtPlayer = new LookAtPlayerGoal(this, Player.class, 24.0F);
-        var randomLookAround = new RandomLookAroundGoal(this);
-
-        targetSelector.addGoal(0, targeting);
-
-        goalSelector.addGoal(0, immolationBlast);
-        goalSelector.addGoal(1, detonateEntropy);
-        goalSelector.addGoal(2, lobEntropy);
-        goalSelector.addGoal(3, retaliationBlast);
-        goalSelector.addGoal(4, avoidTarget);
-        goalSelector.addGoal(5, randomStroll);
-        goalSelector.addGoal(6, lookAtPlayer);
-        goalSelector.addGoal(7, randomLookAround);
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 80.0)
-                .add(Attributes.FOLLOW_RANGE, 35.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.2)
-                .add(Attributes.ATTACK_DAMAGE, 2.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 1.5f)
-                .add(Attributes.ARMOR, 10.0)
-                .add(Attributes.STEP_HEIGHT, 1);
+    public boolean canDisableShield() {
+        return true;
     }
 
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
-
         if (retaliationBlastCooldown > 0) {
             retaliationBlastCooldown--;
         }
         if (level() instanceof ServerLevel level) {
-            if (entropyChargeID != null) {
-                entropyCharge = level.getEntity(entropyChargeID) instanceof EntropyChargeProjectile instance ? instance : null;
-            }
-            if (entropyCharge != null && entropyCharge.isAddedToLevel() && !entropyCharge.isFadingAway()) {
-                return;
-            }
-            entropyChargeID = null;
-            entropyCharge = null;
+            trackEntropyCharge(level);
         }
     }
 
-    @Override
-    public boolean canReceiveAltarBuff() {
-        return false;
-    }
-
-    @Override
-    public void receiveAltarBuff() {
+    public void trackEntropyCharge(ServerLevel level) {
+        if (entropyChargeID != null) {
+            entropyCharge = level.getEntity(entropyChargeID) instanceof EntropyChargeProjectile instance ? instance : null;
+        }
+        if (entropyCharge != null && entropyCharge.isAddedToLevel() && !entropyCharge.isFadingAway()) {
+            return;
+        }
+        entropyChargeID = null;
+        entropyCharge = null;
     }
 
     public boolean canTriggerRetaliationBlast() {
@@ -225,7 +225,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         MalumParticleEffectTypes.CARDINAL_DETONATION_BLAST
                 .createEffect(getRetaliationBlastPos())
                 .customData(new CardinalDetonationBlastParticleEffect.CardinalDetonationBlastParticleData(getId(), target.getId()))
-                .color(ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON))
+                .color(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON))
                 .spawn(level);
     }
 
@@ -283,7 +283,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         MalumParticleEffectTypes.CARDINAL_RETALIATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalRetaliationBlastParticleEffect.CardinalRetaliationBlastParticleData(getId(), blastDirection))
-                .color(ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON))
+                .color(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON))
                 .spawn(level);
     }
 
@@ -319,7 +319,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         MalumParticleEffectTypes.CARDINAL_IMMOLATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalImmolationBlastParticleEffect.CardinalImmolationBlastParticleData(getId()))
-                .color(ColorParticleData.create(CultistBoltProjectile.CULTIST_RED, CultistBoltProjectile.CULTIST_CRIMSON))
+                .color(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON))
                 .spawn(level);
     }
 
@@ -363,10 +363,10 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
         float sideYaw = rotation + 90F;
         float forwardsYaw = rotation - 180F;
-        float sideX = Mth.sin(-sideYaw * (float) (Math.PI / 180.0) - (float) Math.PI);
-        float sideZ = Mth.cos(-sideYaw * (float) (Math.PI / 180.0) - (float) Math.PI);
-        float x = Mth.sin(-forwardsYaw * (float) (Math.PI / 180.0) - (float) Math.PI);
-        float z = Mth.cos(-forwardsYaw * (float) (Math.PI / 180.0) - (float) Math.PI);
+        float sideX = Mth.sin(-sideYaw * Mth.DEG_TO_RAD - (float) Math.PI);
+        float sideZ = Mth.cos(-sideYaw * Mth.DEG_TO_RAD - (float) Math.PI);
+        float x = Mth.sin(-forwardsYaw * Mth.DEG_TO_RAD - (float) Math.PI);
+        float z = Mth.cos(-forwardsYaw * Mth.DEG_TO_RAD - (float) Math.PI);
 
         Vec3 base = hasDelta ? position() : getPosition(partialTicks);
         return base.add(x * forward + sideX * side, up * getCultistScaleMultiplier(), z * forward + sideZ * side);

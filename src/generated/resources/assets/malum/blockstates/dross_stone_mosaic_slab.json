@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/dross_stone_mosaic_slab"
+    },
+    "type=double": {
+      "model": "malum:block/dross_stone_mosaic"
+    },
+    "type=top": {
+      "model": "malum:block/dross_stone_mosaic_slab_top"
+    }
+  }
+}

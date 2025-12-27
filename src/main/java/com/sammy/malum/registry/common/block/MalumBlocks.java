@@ -29,8 +29,12 @@ import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
+import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.decor.SpiritedGlassBlock;
 import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
+import com.sammy.malum.common.block.dungeon.ColumnarFleshBlock;
+import com.sammy.malum.common.block.dungeon.FleshBulbBlock;
+import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.block.nature.soulwood.*;
@@ -86,14 +90,14 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> ARCANA_PYLON = BLOCKS.register("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().noOcclusion()));
     public static final DeferredHolder<Block, Block> ARCANA_PYLON_COMPONENT = BLOCKS.register("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumBlockProperties.SOULWOOD().setCutoutRenderType().lootFrom(ARCANA_PYLON).noOcclusion(), MalumItems.ARCANA_PYLON));
 
-    public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE = BLOCKS.register("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CRUCIBLE));
-    public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE_COMPONENT = BLOCKS.register("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));
+    public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE = BLOCKS.register("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(MalumBlockProperties.ARCANE_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CRUCIBLE));
+    public static final DeferredHolder<Block, Block> SPIRIT_CRUCIBLE_COMPONENT = BLOCKS.register("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(MalumBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));
 
-    public static final DeferredHolder<Block, Block> SPIRIT_CATALYZER = BLOCKS.register("spirit_catalyzer", () -> new SpiritCatalyzerCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CATALYZER));
-    public static final DeferredHolder<Block, Block> SPIRIT_CATALYZER_COMPONENT = BLOCKS.register("spirit_catalyzer_component", () -> new SpiritCatalyzerComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(SPIRIT_CATALYZER)));
+    public static final DeferredHolder<Block, Block> SPIRIT_CATALYZER = BLOCKS.register("spirit_catalyzer", () -> new SpiritCatalyzerCoreBlock<>(MalumBlockProperties.ARCANE_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.SPIRIT_CATALYZER));
+    public static final DeferredHolder<Block, Block> SPIRIT_CATALYZER_COMPONENT = BLOCKS.register("spirit_catalyzer_component", () -> new SpiritCatalyzerComponentBlock(MalumBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CATALYZER)));
 
-    public static final DeferredHolder<Block, Block> REPAIR_PYLON = BLOCKS.register("repair_pylon", () -> new RepairPylonCoreBlock<>(MalumBlockProperties.TAINTED_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.REPAIR_PYLON));
-    public static final DeferredHolder<Block, Block> REPAIR_PYLON_COMPONENT = BLOCKS.register("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumBlockProperties.TAINTED_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
+    public static final DeferredHolder<Block, Block> REPAIR_PYLON = BLOCKS.register("repair_pylon", () -> new RepairPylonCoreBlock<>(MalumBlockProperties.ARCANE_ROCK_ARTIFICE()).setBlockEntity(MalumBlockEntities.REPAIR_PYLON));
+    public static final DeferredHolder<Block, Block> REPAIR_PYLON_COMPONENT = BLOCKS.register("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_BASE = BLOCKS.register("runewood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_BASE = BLOCKS.register("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true).setBlockEntity(MalumBlockEntities.TOTEM_BASE));
@@ -160,131 +164,174 @@ public class MalumBlocks {
     //endregion
     public static final DeferredHolder<Block, Block> SOULWOVEN_BANNER = BLOCKS.register("soulwoven_banner", () -> new SoulwovenBannerBlock(MalumBlockProperties.SOULWOVEN_BANNER()).setBlockEntity(MalumBlockEntities.SOULWOVEN_BANNER));
 
+    //region ether
+    public static final DeferredHolder<Block, Block> ETHER = BLOCKS.register("ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
+    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER = BLOCKS.register("iridescent_ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
+
+    public static final DeferredHolder<Block, Block> ETHER_CANDLE = BLOCKS.register("ether_candle", () -> new EtherCandleBlock<>(MalumBlockProperties.ETHER_CANDLE()).setBlockEntity(MalumBlockEntities.ETHER_CANDLE));
+    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER_CANDLE = BLOCKS.register("iridescent_ether_candle", () -> new EtherCandleBlock<>(MalumBlockProperties.ETHER_CANDLE()).setBlockEntity(MalumBlockEntities.ETHER_CANDLE));
+
+    public static final DeferredHolder<Block, Block> ETHER_TORCH = BLOCKS.register("ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH()).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
+    public static final DeferredHolder<Block, Block> WALL_ETHER_TORCH = BLOCKS.register("wall_ether_torch", () -> new EtherWallTorchBlock<>(MalumBlockProperties.ETHER_TORCH().lootFrom(ETHER_TORCH)).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
+    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER_TORCH = BLOCKS.register("iridescent_ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH()).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
+    public static final DeferredHolder<Block, Block> IRIDESCENT_WALL_ETHER_TORCH = BLOCKS.register("iridescent_wall_ether_torch", () -> new EtherWallTorchBlock<>(MalumBlockProperties.ETHER_TORCH().lootFrom(IRIDESCENT_ETHER_TORCH)).setBlockEntity(MalumBlockEntities.ETHER_TORCH));
+
+    public static final DeferredHolder<Block, Block> TAINTED_ETHER_BRAZIER = BLOCKS.register("tainted_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TAINTED_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+    public static final DeferredHolder<Block, Block> TWISTED_ETHER_BRAZIER = BLOCKS.register("twisted_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TWISTED_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+    public static final DeferredHolder<Block, Block> DROSS_ETHER_BRAZIER = BLOCKS.register("dross_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.DROSS_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+    public static final DeferredHolder<Block, Block> TAINTED_IRIDESCENT_ETHER_BRAZIER = BLOCKS.register("tainted_iridescent_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TAINTED_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+    public static final DeferredHolder<Block, Block> TWISTED_IRIDESCENT_ETHER_BRAZIER = BLOCKS.register("twisted_iridescent_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TWISTED_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+    public static final DeferredHolder<Block, Block> DROSS_IRIDESCENT_ETHER_BRAZIER = BLOCKS.register("dross_iridescent_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.DROSS_ETHER_BRAZIER()).setBlockEntity(MalumBlockEntities.ETHER_BRAZIER));
+
+    public static final DeferredHolder<Block, Block> TAINTED_ETHER_CRESSET = BLOCKS.register("tainted_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.TAINTED_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    public static final DeferredHolder<Block, Block> TWISTED_ETHER_CRESSET = BLOCKS.register("twisted_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.TWISTED_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    public static final DeferredHolder<Block, Block> DROSS_ETHER_CRESSET = BLOCKS.register("dross_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.DROSS_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    public static final DeferredHolder<Block, Block> TAINTED_IRIDESCENT_ETHER_CRESSET = BLOCKS.register("tainted_iridescent_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.TAINTED_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    public static final DeferredHolder<Block, Block> TWISTED_IRIDESCENT_ETHER_CRESSET = BLOCKS.register("twisted_iridescent_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.TWISTED_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    public static final DeferredHolder<Block, Block> DROSS_IRIDESCENT_ETHER_CRESSET = BLOCKS.register("dross_iridescent_ether_cresset", () -> new EtherCressetBlock<>(MalumBlockProperties.DROSS_ETHER_CRESSET()).setBlockEntity(MalumBlockEntities.ETHER_CRESSET));
+    //endregion
+
     //region tainted rock
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK = BLOCKS.register("tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TAINTED_ROCK = BLOCKS.register("smooth_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK = BLOCKS.register("polished_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS = BLOCKS.register("tainted_rock_bricks", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES = BLOCKS.register("tainted_rock_tiles", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> SMALL_TAINTED_ROCK_BRICKS = BLOCKS.register("small_tainted_rock_bricks", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_BRICKS = BLOCKS.register("runic_tainted_rock_bricks", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_TILES = BLOCKS.register("runic_tainted_rock_tiles", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TAINTED_ROCK_BRICKS = BLOCKS.register("runic_small_tainted_rock_bricks", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK = BLOCKS.register("tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK().addTag(TAINTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK = BLOCKS.register("polished_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK().addTag(TAINTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS = BLOCKS.register("tainted_rock_bricks", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES = BLOCKS.register("tainted_rock_tiles", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_MOSAIC = BLOCKS.register("tainted_rock_mosaic", () -> new Block(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTag(TAINTED_ROCK_BLOCKS)));
 
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_COLUMN = BLOCKS.register("tainted_rock_column", () -> new RotatedPillarBlock(MalumBlockProperties.TAINTED_ROCK()));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_COLUMN_CAP = BLOCKS.register("tainted_rock_column_cap", () -> new LodestoneDirectionalBlock(MalumBlockProperties.TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_COLUMN = BLOCKS.register("tainted_rock_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_ALTAR = BLOCKS.register("tainted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> CUT_TAINTED_ROCK = BLOCKS.register("cut_tainted_rock", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> CHISELED_TAINTED_ROCK = BLOCKS.register("chiseled_tainted_rock", () -> new Block(MalumBlockProperties.CHISELED_TAINTED_ROCK()));
 
-    public static final DeferredHolder<Block, Block> CUT_TAINTED_ROCK = BLOCKS.register("cut_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK()));
-    public static final DeferredHolder<Block, Block> CHECKERED_TAINTED_ROCK = BLOCKS.register("checkered_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK()));
-    public static final DeferredHolder<Block, Block> CHISELED_TAINTED_ROCK = BLOCKS.register("chiseled_tainted_rock", () -> new Block(MalumBlockProperties.TAINTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_SLAB = BLOCKS.register("tainted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK().addTags(SLABS, TAINTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_SLAB = BLOCKS.register("polished_tainted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK().addTags(SLABS, TAINTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_SLAB = BLOCKS.register("tainted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_SLAB = BLOCKS.register("tainted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_MOSAIC_SLAB = BLOCKS.register("tainted_rock_mosaic_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_ROCK_SLABS)));
 
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_SLAB = BLOCKS.register("tainted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TAINTED_ROCK_SLAB = BLOCKS.register("smooth_tainted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_SLAB = BLOCKS.register("polished_tainted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_SLAB = BLOCKS.register("tainted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_SLAB = BLOCKS.register("tainted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> SMALL_TAINTED_ROCK_BRICKS_SLAB = BLOCKS.register("small_tainted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_BRICKS_SLAB = BLOCKS.register("runic_tainted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_TILES_SLAB = BLOCKS.register("runic_tainted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TAINTED_ROCK_BRICKS_SLAB = BLOCKS.register("runic_small_tainted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(SLABS, TAINTED_SLABS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_STAIRS = BLOCKS.register("tainted_rock_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK().addTags(STAIRS, MalumTags.BlockTags.TAINTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_STAIRS = BLOCKS.register("polished_tainted_rock_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK().addTags(STAIRS, MalumTags.BlockTags.TAINTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TAINTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_STAIRS = BLOCKS.register("tainted_rock_tiles_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TAINTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_MOSAIC_STAIRS = BLOCKS.register("tainted_rock_mosaic_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TAINTED_ROCK_STAIRS)));
 
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_STAIRS = BLOCKS.register("tainted_rock_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TAINTED_ROCK_STAIRS = BLOCKS.register("smooth_tainted_rock_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_STAIRS = BLOCKS.register("polished_tainted_rock_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_STAIRS = BLOCKS.register("tainted_rock_tiles_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> SMALL_TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("small_tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_TILES_STAIRS = BLOCKS.register("runic_tainted_rock_tiles_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TAINTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_small_tainted_rock_bricks_stairs", () -> new StairBlock(TAINTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(STAIRS, TAINTED_STAIRS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_WALL = BLOCKS.register("tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_WALL = BLOCKS.register("polished_tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_WALL = BLOCKS.register("tainted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_WALL = BLOCKS.register("tainted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TAINTED_ROCK_MOSAIC_WALL = BLOCKS.register("tainted_rock_mosaic_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_ROCK_WALLS)));
 
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_BUTTON = BLOCKS.register("tainted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TAINTED_ROCK().noCollission().addTag(BUTTONS)));
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_PRESSURE_PLATE = BLOCKS.register("tainted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TAINTED_ROCK().noCollission().addTag(PRESSURE_PLATES)));
-
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_WALL = BLOCKS.register("tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TAINTED_ROCK_WALL = BLOCKS.register("smooth_tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TAINTED_ROCK_WALL = BLOCKS.register("polished_tainted_rock_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_BRICKS_WALL = BLOCKS.register("tainted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> TAINTED_ROCK_TILES_WALL = BLOCKS.register("tainted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> SMALL_TAINTED_ROCK_BRICKS_WALL = BLOCKS.register("small_tainted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_BRICKS_WALL = BLOCKS.register("runic_tainted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TAINTED_ROCK_TILES_WALL = BLOCKS.register("runic_tainted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TAINTED_ROCK_BRICKS_WALL = BLOCKS.register("runic_small_tainted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TAINTED_ROCK_BRICKS().addTags(WALLS, TAINTED_WALLS)));
 
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_ITEM_STAND = BLOCKS.register("tainted_rock_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.TAINTED_ROCK().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
     public static final DeferredHolder<Block, Block> TAINTED_ROCK_ITEM_PEDESTAL = BLOCKS.register("tainted_rock_item_pedestal", () -> new ItemPedestalBlock<>(MalumBlockProperties.TAINTED_ROCK().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
     //endregion
 
     //region twisted rock
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK = BLOCKS.register("twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TWISTED_ROCK = BLOCKS.register("smooth_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK = BLOCKS.register("polished_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS = BLOCKS.register("twisted_rock_bricks", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES = BLOCKS.register("twisted_rock_tiles", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> SMALL_TWISTED_ROCK_BRICKS = BLOCKS.register("small_twisted_rock_bricks", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_BRICKS = BLOCKS.register("runic_twisted_rock_bricks", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_TILES = BLOCKS.register("runic_twisted_rock_tiles", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TWISTED_ROCK_BRICKS = BLOCKS.register("runic_small_twisted_rock_bricks", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK = BLOCKS.register("twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK().addTag(TWISTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK = BLOCKS.register("polished_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK().addTag(TWISTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS = BLOCKS.register("twisted_rock_bricks", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES = BLOCKS.register("twisted_rock_tiles", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_ROCK_BLOCKS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_MOSAIC = BLOCKS.register("twisted_rock_mosaic", () -> new Block(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTag(TWISTED_ROCK_BLOCKS)));
 
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_COLUMN = BLOCKS.register("twisted_rock_column", () -> new RotatedPillarBlock(MalumBlockProperties.TWISTED_ROCK()));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_COLUMN_CAP = BLOCKS.register("twisted_rock_column_cap", () -> new LodestoneDirectionalBlock(MalumBlockProperties.TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_COLUMN = BLOCKS.register("twisted_rock_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_ALTAR = BLOCKS.register("twisted_rock_altar", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> CUT_TWISTED_ROCK = BLOCKS.register("cut_twisted_rock", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> CHISELED_TWISTED_ROCK = BLOCKS.register("chiseled_twisted_rock", () -> new Block(MalumBlockProperties.CHISELED_TWISTED_ROCK()));
 
-    public static final DeferredHolder<Block, Block> CUT_TWISTED_ROCK = BLOCKS.register("cut_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK()));
-    public static final DeferredHolder<Block, Block> CHECKERED_TWISTED_ROCK = BLOCKS.register("checkered_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK()));
-    public static final DeferredHolder<Block, Block> CHISELED_TWISTED_ROCK = BLOCKS.register("chiseled_twisted_rock", () -> new Block(MalumBlockProperties.TWISTED_ROCK()));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_SLAB = BLOCKS.register("twisted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK().addTags(SLABS, TWISTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_SLAB = BLOCKS.register("polished_twisted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK().addTags(SLABS, TWISTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_SLAB = BLOCKS.register("twisted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_SLAB = BLOCKS.register("twisted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_ROCK_SLABS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_MOSAIC_SLAB = BLOCKS.register("twisted_rock_mosaic_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_ROCK_SLABS)));
 
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_SLAB = BLOCKS.register("twisted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TWISTED_ROCK_SLAB = BLOCKS.register("smooth_twisted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_SLAB = BLOCKS.register("polished_twisted_rock_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_SLAB = BLOCKS.register("twisted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_SLAB = BLOCKS.register("twisted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> SMALL_TWISTED_ROCK_BRICKS_SLAB = BLOCKS.register("small_twisted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_BRICKS_SLAB = BLOCKS.register("runic_twisted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_TILES_SLAB = BLOCKS.register("runic_twisted_rock_tiles_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TWISTED_ROCK_BRICKS_SLAB = BLOCKS.register("runic_small_twisted_rock_bricks_slab", () -> new SlabBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(SLABS, TWISTED_SLABS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_STAIRS = BLOCKS.register("twisted_rock_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK().addTags(STAIRS, MalumTags.BlockTags.TWISTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_STAIRS = BLOCKS.register("polished_twisted_rock_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK().addTags(STAIRS, MalumTags.BlockTags.TWISTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TWISTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_STAIRS = BLOCKS.register("twisted_rock_tiles_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TWISTED_ROCK_STAIRS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_MOSAIC_STAIRS = BLOCKS.register("twisted_rock_mosaic_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, MalumTags.BlockTags.TWISTED_ROCK_STAIRS)));
 
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_STAIRS = BLOCKS.register("twisted_rock_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TWISTED_ROCK_STAIRS = BLOCKS.register("smooth_twisted_rock_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_STAIRS = BLOCKS.register("polished_twisted_rock_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_STAIRS = BLOCKS.register("twisted_rock_tiles_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> SMALL_TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("small_twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_TILES_STAIRS = BLOCKS.register("runic_twisted_rock_tiles_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TWISTED_ROCK_BRICKS_STAIRS = BLOCKS.register("runic_small_twisted_rock_bricks_stairs", () -> new StairBlock(TWISTED_ROCK.get().defaultBlockState(), MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(STAIRS, TWISTED_STAIRS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_WALL = BLOCKS.register("twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_WALL = BLOCKS.register("polished_twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_WALL = BLOCKS.register("twisted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_WALL = BLOCKS.register("twisted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_ROCK_WALLS)));
+    public static final DeferredHolder<Block, Block> TWISTED_ROCK_MOSAIC_WALL = BLOCKS.register("twisted_rock_mosaic_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_ROCK_WALLS)));
 
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_BUTTON = BLOCKS.register("twisted_rock_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.TWISTED_ROCK().noCollission().addTag(BUTTONS)));
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_PRESSURE_PLATE = BLOCKS.register("twisted_rock_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.TWISTED_ROCK().noCollission().addTag(PRESSURE_PLATES)));
-
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_WALL = BLOCKS.register("twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> SMOOTH_TWISTED_ROCK_WALL = BLOCKS.register("smooth_twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> POLISHED_TWISTED_ROCK_WALL = BLOCKS.register("polished_twisted_rock_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_BRICKS_WALL = BLOCKS.register("twisted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> TWISTED_ROCK_TILES_WALL = BLOCKS.register("twisted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> SMALL_TWISTED_ROCK_BRICKS_WALL = BLOCKS.register("small_twisted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_BRICKS_WALL = BLOCKS.register("runic_twisted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_TWISTED_ROCK_TILES_WALL = BLOCKS.register("runic_twisted_rock_tiles_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
-    public static final DeferredHolder<Block, Block> RUNIC_SMALL_TWISTED_ROCK_BRICKS_WALL = BLOCKS.register("runic_small_twisted_rock_bricks_wall", () -> new WallBlock(MalumBlockProperties.TWISTED_ROCK_BRICKS().addTags(WALLS, TWISTED_WALLS)));
 
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_ITEM_STAND = BLOCKS.register("twisted_rock_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.TWISTED_ROCK().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
     public static final DeferredHolder<Block, Block> TWISTED_ROCK_ITEM_PEDESTAL = BLOCKS.register("twisted_rock_item_pedestal", () -> new ItemPedestalBlock<>(MalumBlockProperties.TWISTED_ROCK().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
     //endregion
 
+    //region dross stone
+    public static final DeferredHolder<Block, Block> DROSS_STONE = BLOCKS.register("dross_stone", () -> new Block(MalumBlockProperties.DROSS_STONE().addTag(DROSS_STONE_BLOCKS)));
+    public static final DeferredHolder<Block, Block> POLISHED_DROSS_STONE = BLOCKS.register("polished_dross_stone", () -> new Block(MalumBlockProperties.DROSS_STONE().addTag(DROSS_STONE_BLOCKS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_BRICKS = BLOCKS.register("dross_stone_bricks", () -> new Block(MalumBlockProperties.DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_TILES = BLOCKS.register("dross_stone_tiles", () -> new Block(MalumBlockProperties.DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_MOSAIC = BLOCKS.register("dross_stone_mosaic", () -> new Block(MalumBlockProperties.DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
+
+    public static final DeferredHolder<Block, Block> DARK_DROSS_TILES = BLOCKS.register("dark_dross_tiles", () -> new Block(MalumBlockProperties.DROSS_STONE()));
+    public static final DeferredHolder<Block, Block> GRAY_DROSS_TILES = BLOCKS.register("gray_dross_tiles", () -> new Block(MalumBlockProperties.DROSS_STONE()));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_COLUMN = BLOCKS.register("dross_stone_column", () -> new ColumnBlock(MalumBlockProperties.CHISELED_DROSS_STONE()));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_ALTAR = BLOCKS.register("dross_stone_altar", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
+    public static final DeferredHolder<Block, Block> CUT_DROSS_STONE = BLOCKS.register("cut_dross_stone", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
+    public static final DeferredHolder<Block, Block> CHISELED_DROSS_STONE = BLOCKS.register("chiseled_dross_stone", () -> new Block(MalumBlockProperties.CHISELED_DROSS_STONE()));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_SLAB = BLOCKS.register("dross_stone_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE().addTags(SLABS, DROSS_STONE_SLABS)));
+    public static final DeferredHolder<Block, Block> POLISHED_DROSS_STONE_SLAB = BLOCKS.register("polished_dross_stone_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE().addTags(SLABS, DROSS_STONE_SLABS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_BRICKS_SLAB = BLOCKS.register("dross_stone_bricks_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_TILES_SLAB = BLOCKS.register("dross_stone_tiles_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_MOSAIC_SLAB = BLOCKS.register("dross_stone_mosaic_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
+
+    public static final DeferredHolder<Block, Block> DARK_DROSS_TILES_SLAB = BLOCKS.register("dark_dross_tiles_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE().addTags(SLABS)));
+    public static final DeferredHolder<Block, Block> GRAY_DROSS_TILES_SLAB = BLOCKS.register("gray_dross_tiles_slab", () -> new SlabBlock(MalumBlockProperties.DROSS_STONE().addTags(SLABS)));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_STAIRS = BLOCKS.register("dross_stone_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE().addTags(STAIRS, MalumTags.BlockTags.DROSS_STONE_STAIRS)));
+    public static final DeferredHolder<Block, Block> POLISHED_DROSS_STONE_STAIRS = BLOCKS.register("polished_dross_stone_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE().addTags(STAIRS, MalumTags.BlockTags.DROSS_STONE_STAIRS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_BRICKS_STAIRS = BLOCKS.register("dross_stone_bricks_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.BlockTags.DROSS_STONE_STAIRS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_TILES_STAIRS = BLOCKS.register("dross_stone_tiles_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.BlockTags.DROSS_STONE_STAIRS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_MOSAIC_STAIRS = BLOCKS.register("dross_stone_mosaic_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.BlockTags.DROSS_STONE_STAIRS)));
+
+    public static final DeferredHolder<Block, Block> DARK_DROSS_TILES_STAIRS = BLOCKS.register("dark_dross_tiles_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE().addTags(STAIRS)));
+    public static final DeferredHolder<Block, Block> GRAY_DROSS_TILES_STAIRS = BLOCKS.register("gray_dross_tiles_stairs", () -> new StairBlock(DROSS_STONE.get().defaultBlockState(), MalumBlockProperties.DROSS_STONE().addTags(STAIRS)));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_WALL = BLOCKS.register("dross_stone_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE().addTags(WALLS, DROSS_STONE_WALLS)));
+    public static final DeferredHolder<Block, Block> POLISHED_DROSS_STONE_WALL = BLOCKS.register("polished_dross_stone_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE().addTags(WALLS, DROSS_STONE_WALLS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_BRICKS_WALL = BLOCKS.register("dross_stone_bricks_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_TILES_WALL = BLOCKS.register("dross_stone_tiles_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_MOSAIC_WALL = BLOCKS.register("dross_stone_mosaic_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
+
+    public static final DeferredHolder<Block, Block> DARK_DROSS_TILES_WALL = BLOCKS.register("dark_dross_tiles_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE().addTags(WALLS)));
+    public static final DeferredHolder<Block, Block> GRAY_DROSS_TILES_WALL = BLOCKS.register("gray_dross_tiles_wall", () -> new WallBlock(MalumBlockProperties.DROSS_STONE().addTags(WALLS)));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_BUTTON = BLOCKS.register("dross_stone_button", () -> new ButtonBlock(BlockSetType.STONE, 20, MalumBlockProperties.DROSS_STONE().noCollission().addTag(BUTTONS)));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_PRESSURE_PLATE = BLOCKS.register("dross_stone_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, MalumBlockProperties.DROSS_STONE().noCollission().addTag(PRESSURE_PLATES)));
+
+    public static final DeferredHolder<Block, Block> DROSS_STONE_ITEM_STAND = BLOCKS.register("dross_stone_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.DROSS_STONE().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
+    public static final DeferredHolder<Block, Block> DROSS_STONE_ITEM_PEDESTAL = BLOCKS.register("dross_stone_item_pedestal", () -> new ItemPedestalBlock<>(MalumBlockProperties.DROSS_STONE().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
+    //endregion
+
+
     //region runewood
     public static final DeferredHolder<Block, Block> RUNEWOOD_SAPLING = BLOCKS.register("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_LEAVES = BLOCKS.register("runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
-    public static final DeferredHolder<Block, Block> HANGING_RUNEWOOD_LEAVES = BLOCKS.register("hanging_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
-
     public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_SAPLING = BLOCKS.register("azure_runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.AZURE_RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
+
+    public static final DeferredHolder<Block, Block> RUNEWOOD_LEAVES = BLOCKS.register("runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
     public static final DeferredHolder<Block, Block> AZURE_RUNEWOOD_LEAVES = BLOCKS.register("azure_runewood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
+
+    public static final DeferredHolder<Block, Block> HANGING_RUNEWOOD_LEAVES = BLOCKS.register("hanging_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE, MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
     public static final DeferredHolder<Block, Block> HANGING_AZURE_RUNEWOOD_LEAVES = BLOCKS.register("hanging_azure_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
 
     public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD_LOG = BLOCKS.register("stripped_runewood_log", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_LOGS)));
-    public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD = BLOCKS.register("stripped_runewood", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
-    public static final DeferredHolder<Block, Block> REVEALED_RUNEWOOD_LOG = BLOCKS.register("revealed_runewood_log", () -> new SapFilledLogBlock(MalumBlockProperties.RUNEWOOD_LOGS(), STRIPPED_RUNEWOOD_LOG, MalumItems.RUNIC_SAP, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
-
     public static final DeferredHolder<Block, Block> RUNEWOOD_LOG = BLOCKS.register("runewood_log", () -> new MalumLogBLock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD_LOG));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD = BLOCKS.register("stripped_runewood", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
     public static final DeferredHolder<Block, Block> RUNEWOOD = BLOCKS.register("runewood", () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD));
+
+    public static final DeferredHolder<Block, Block> REVEALED_RUNEWOOD_LOG = BLOCKS.register("revealed_runewood_log", () -> new SapFilledLogBlock(MalumBlockProperties.RUNEWOOD_LOGS(), STRIPPED_RUNEWOOD_LOG, MalumItems.RUNIC_SAP, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
     public static final DeferredHolder<Block, Block> EXPOSED_RUNEWOOD_LOG = BLOCKS.register("exposed_runewood_log", () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD().addTags(STRIPPED_LOGS), REVEALED_RUNEWOOD_LOG));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS = BLOCKS.register("runewood_boards", () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
@@ -324,15 +371,13 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> RUNEWOOD_BEAM = BLOCKS.register("runewood_beam", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD()));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_DOOR = BLOCKS.register("runewood_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_DOOR = BLOCKS.register("bolted_runewood_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
-
     public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS_DOOR = BLOCKS.register("runewood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_BOARDS_DOOR = BLOCKS.register("bolted_runewood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
-
     public static final DeferredHolder<Block, Block> RUNEWOOD_TRAPDOOR = BLOCKS.register("runewood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_TRAPDOOR = BLOCKS.register("bolted_runewood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
-
     public static final DeferredHolder<Block, Block> RUNEWOOD_BOARDS_TRAPDOOR = BLOCKS.register("runewood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
+
+    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_DOOR = BLOCKS.register("bolted_runewood_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
+    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_BOARDS_DOOR = BLOCKS.register("bolted_runewood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
+    public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_TRAPDOOR = BLOCKS.register("bolted_runewood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
     public static final DeferredHolder<Block, Block> BOLTED_RUNEWOOD_BOARDS_TRAPDOOR = BLOCKS.register("bolted_runewood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
 
     public static final DeferredHolder<Block, Block> RUNEWOOD_BUTTON = BLOCKS.register("runewood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.RUNEWOOD, 20, MalumBlockProperties.RUNEWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
@@ -357,13 +402,15 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_LEAVES = BLOCKS.register("soulwood_leaves", () -> new MalumLeavesBlock(MalumBlockProperties.SOULWOOD_LEAVES().setCutoutRenderType(), new Color(213, 8, 63), new Color(255, 61, 243)));
     public static final DeferredHolder<Block, Block> HANGING_SOULWOOD_LEAVES = BLOCKS.register("hanging_soulwood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_SOULWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), new Color(213, 8, 63), new Color(255, 61, 243)));
 
-    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD_LOG = BLOCKS.register("stripped_soulwood_log", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS)));
-    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD = BLOCKS.register("stripped_soulwood", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_WOODS)));
-    public static final DeferredHolder<Block, Block> REVEALED_SOULWOOD_LOG = BLOCKS.register("revealed_soulwood_log", () -> new SapFilledSoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG, MalumItems.CURSED_SAP, MalumSpiritTypes.ELDRITCH_COLORS().primaryColor(), new Color(255, 61, 106)));
-
     public static final DeferredHolder<Block, Block> BLIGHTED_SOULWOOD = BLOCKS.register("blighted_soulwood", () -> new BlightedSoulwoodBlock(MalumBlockProperties.SOULWOOD_LOGS()));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD_LOG = BLOCKS.register("stripped_soulwood_log", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS)));
     public static final DeferredHolder<Block, Block> SOULWOOD_LOG = BLOCKS.register("soulwood_log", () -> new SoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG));
+
+    public static final DeferredHolder<Block, Block> STRIPPED_SOULWOOD = BLOCKS.register("stripped_soulwood", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_WOODS)));
     public static final DeferredHolder<Block, Block> SOULWOOD = BLOCKS.register("soulwood", () -> new SoulwoodBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD));
+
+    public static final DeferredHolder<Block, Block> REVEALED_SOULWOOD_LOG = BLOCKS.register("revealed_soulwood_log", () -> new SapFilledSoulwoodLogBlock(MalumBlockProperties.SOULWOOD_LOGS(), STRIPPED_SOULWOOD_LOG, MalumItems.CURSED_SAP, MalumSpiritTypes.ELDRITCH_COLORS().primaryColor(), new Color(255, 61, 106)));
     public static final DeferredHolder<Block, Block> EXPOSED_SOULWOOD_LOG = BLOCKS.register("exposed_soulwood_log", () -> new LodestoneLogBlock(MalumBlockProperties.SOULWOOD_LOGS().addTags(STRIPPED_LOGS), REVEALED_SOULWOOD_LOG));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS = BLOCKS.register("soulwood_boards", () -> new Block(MalumBlockProperties.SOULWOOD_PLANKS()));
@@ -403,15 +450,13 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_BEAM = BLOCKS.register("soulwood_beam", () -> new RotatedPillarBlock(MalumBlockProperties.SOULWOOD()));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_DOOR = BLOCKS.register("soulwood_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_DOOR = BLOCKS.register("bolted_soulwood_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
-
     public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS_DOOR = BLOCKS.register("soulwood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_BOARDS_DOOR = BLOCKS.register("bolted_soulwood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
-
     public static final DeferredHolder<Block, Block> SOULWOOD_TRAPDOOR = BLOCKS.register("soulwood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
-    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_TRAPDOOR = BLOCKS.register("bolted_soulwood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
-
     public static final DeferredHolder<Block, Block> SOULWOOD_BOARDS_TRAPDOOR = BLOCKS.register("soulwood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
+
+    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_DOOR = BLOCKS.register("bolted_soulwood_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
+    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_BOARDS_DOOR = BLOCKS.register("bolted_soulwood_boards_door", () -> new DoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_DOOR()));
+    public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_TRAPDOOR = BLOCKS.register("bolted_soulwood_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
     public static final DeferredHolder<Block, Block> BOLTED_SOULWOOD_BOARDS_TRAPDOOR = BLOCKS.register("bolted_soulwood_boards_trapdoor", () -> new TrapDoorBlock(MalumBlockSetTypes.SOULWOOD, MalumBlockProperties.SOULWOOD_TRAPDOOR()));
 
     public static final DeferredHolder<Block, Block> SOULWOOD_BUTTON = BLOCKS.register("soulwood_planks_button", () -> new ButtonBlock(MalumBlockSetTypes.SOULWOOD, 20, MalumBlockProperties.SOULWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS).addTags(BUTTONS, WOODEN_BUTTONS)));
@@ -431,36 +476,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_WALL_SIGN = BLOCKS.register("soulwood_wall_sign", () -> new LodestoneWallSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
     //endregion
 
-    //region scarstone
-    public static final DeferredHolder<Block, Block> SCARSTONE = BLOCKS.register("scarstone", () -> new ScarstoneBlock(MalumBlockProperties.SCARSTONE()));
-    public static final DeferredHolder<Block, Block> STRANGE_CRYSTAL = BLOCKS.register("strange_crystal", () -> new StrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
-    public static final DeferredHolder<Block, Block> LARGE_STRANGE_CRYSTAL = BLOCKS.register("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
-    public static final DeferredHolder<Block, Block> STRANGEROOT = BLOCKS.register("strangeroot", () -> new StrangeRootBlock(MalumBlockProperties.STRANGEROOT()));
-
-    //endregion
-    //region blight
-    public static final DeferredHolder<Block, Block> BLIGHTED_EARTH = BLOCKS.register("blighted_earth", () -> new BlightedEarthBlock(MalumBlockProperties.BLIGHTED_EARTH()));
-    public static final DeferredHolder<Block, Block> BLIGHT = BLOCKS.register("blight", () -> new BlightedCoverageBlock(MalumBlockProperties.BLIGHTED_COVERING()));
-    public static final DeferredHolder<Block, Block> BLIGHTED_GROWTH = BLOCKS.register("blighted_growth", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
-    public static final DeferredHolder<Block, Block> BLIGHTPEARL = BLOCKS.register("blightpearl", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
-    public static final DeferredHolder<Block, Block> BLIGHTROOT = BLOCKS.register("blightroot", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
-    public static final DeferredHolder<Block, Block> CLINGING_BLIGHT = BLOCKS.register("clinging_blight", () -> new CreepingBlightBlock(MalumBlockProperties.CLINGING_BLIGHT()));
-    //endregion
-
-    //region ether
-    public static final DeferredHolder<Block, Block> ETHER = BLOCKS.register("ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> ETHER_TORCH = BLOCKS.register("ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH().noCollission().instabreak().lightLevel((b) -> 14)).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> WALL_ETHER_TORCH = BLOCKS.register("wall_ether_torch", () -> new EtherWallTorchBlock<>(MalumBlockProperties.ETHER_TORCH().noCollission().instabreak().lightLevel((b) -> 14).lootFrom(ETHER_TORCH)).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> TAINTED_ETHER_BRAZIER = BLOCKS.register("tainted_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TAINTED_ETHER_BRAZIER().lightLevel((b) -> 14).noOcclusion()).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> TWISTED_ETHER_BRAZIER = BLOCKS.register("twisted_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TWISTED_ETHER_BRAZIER().lightLevel((b) -> 14).noOcclusion()).setBlockEntity(MalumBlockEntities.ETHER));
-
-    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER = BLOCKS.register("iridescent_ether", () -> new EtherBlock<>(MalumBlockProperties.ETHER()).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> IRIDESCENT_ETHER_TORCH = BLOCKS.register("iridescent_ether_torch", () -> new EtherTorchBlock<>(MalumBlockProperties.ETHER_TORCH().noCollission().instabreak().lightLevel((b) -> 14)).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> IRIDESCENT_WALL_ETHER_TORCH = BLOCKS.register("iridescent_wall_ether_torch", () -> new EtherWallTorchBlock<>(MalumBlockProperties.ETHER_TORCH().noCollission().instabreak().lightLevel((b) -> 14).lootFrom(IRIDESCENT_ETHER_TORCH)).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> TAINTED_IRIDESCENT_ETHER_BRAZIER = BLOCKS.register("tainted_iridescent_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TAINTED_ETHER_BRAZIER().lightLevel((b) -> 14).noOcclusion()).setBlockEntity(MalumBlockEntities.ETHER));
-    public static final DeferredHolder<Block, Block> TWISTED_IRIDESCENT_ETHER_BRAZIER = BLOCKS.register("twisted_iridescent_ether_brazier", () -> new EtherBrazierBlock<>(MalumBlockProperties.TWISTED_ETHER_BRAZIER().lightLevel((b) -> 14).noOcclusion()).setBlockEntity(MalumBlockEntities.ETHER));
-    //endregion
-
+    //region ores and such
     public static final DeferredHolder<Block, Block> SOULSTONE_ORE = BLOCKS.register("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumBlockProperties.SOULSTONE_ORE(false)));
     public static final DeferredHolder<Block, Block> DEEPSLATE_SOULSTONE_ORE = BLOCKS.register("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumBlockProperties.SOULSTONE_ORE(true)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_RAW_SOULSTONE = BLOCKS.register("block_of_raw_soulstone", () -> new Block(MalumBlockProperties.SOULSTONE_BLOCK()));
@@ -502,6 +518,31 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_SOUL_STAINED_STEEL = BLOCKS.register("block_of_soul_stained_steel", () -> new Block(MalumBlockProperties.SOUL_STAINED_STEEL_BLOCK()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_HALLOWED_GOLD = BLOCKS.register("block_of_hallowed_gold", () -> new Block(MalumBlockProperties.HALLOWED_GOLD()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_MALIGNANT_PEWTER = BLOCKS.register("block_of_malignant_pewter", () -> new Block(MalumBlockProperties.MALIGNANT_PEWTER_BLOCK()));
+    //endregion
+
+
+    //region blight
+    public static final DeferredHolder<Block, Block> COLUMNAR_BLIGHT = BLOCKS.register("columnar_blight", () -> new ColumnarBlightBlock(MalumBlockProperties.BLIGHTED_EARTH()));
+    public static final DeferredHolder<Block, Block> BLIGHTED_EARTH = BLOCKS.register("blighted_earth", () -> new BlightedEarthBlock(MalumBlockProperties.BLIGHTED_EARTH()));
+    public static final DeferredHolder<Block, Block> BLIGHT = BLOCKS.register("blight", () -> new BlightedCoverageBlock(MalumBlockProperties.BLIGHTED_COVERING()));
+    public static final DeferredHolder<Block, Block> BLIGHTED_GROWTH = BLOCKS.register("blighted_growth", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> BLIGHTPEARL = BLOCKS.register("blightpearl", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> BLIGHTROOT = BLOCKS.register("blightroot", () -> new BlightedPlantBlock(MalumBlockProperties.BLIGHTED_PLANTS()));
+    public static final DeferredHolder<Block, Block> CLINGING_BLIGHT = BLOCKS.register("clinging_blight", () -> new CreepingBlightBlock(MalumBlockProperties.CLINGING_BLIGHT()));
+    //endregion
+
+    //region scarstone
+    public static final DeferredHolder<Block, Block> SCARSTONE = BLOCKS.register("scarstone", () -> new ScarstoneBlock(MalumBlockProperties.SCARSTONE()));
+    public static final DeferredHolder<Block, Block> STRANGE_CRYSTAL = BLOCKS.register("strange_crystal", () -> new StrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
+    public static final DeferredHolder<Block, Block> LARGE_STRANGE_CRYSTAL = BLOCKS.register("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlockProperties.STRANGE_CRYSTAL()));
+    public static final DeferredHolder<Block, Block> STRANGEROOT = BLOCKS.register("strangeroot", () -> new StrangeRootBlock(MalumBlockProperties.STRANGEROOT()));
+    //endregion
+
+    //region dungeon
+    public static final DeferredHolder<Block, Block> COLUMNAR_FLESH = BLOCKS.register("columnar_flesh", () -> new ColumnarFleshBlock(MalumBlockProperties.FLESH_BLOCK()));
+    public static final DeferredHolder<Block, Block> FLESHBULB = BLOCKS.register("fleshbulb", () -> new FleshBulbBlock(MalumBlockProperties.FLESHBULB()));
+    public static final DeferredHolder<Block, Block> WRITHING_FLESH = BLOCKS.register("writhing_flesh", () -> new WrithingFleshBlock(MalumBlockProperties.WRITHING_FLESH()));
+    //endregion
 
     public static final DeferredHolder<Block, Block> POTTED_RUNEWOOD_SAPLING = BLOCKS.register("potted_runewood_sapling", () -> flowerPot(RUNEWOOD_SAPLING));
     public static final DeferredHolder<Block, Block> POTTED_AZURE_RUNEWOOD_SAPLING = BLOCKS.register("potted_azure_runewood_sapling", () -> flowerPot(AZURE_RUNEWOOD_SAPLING));

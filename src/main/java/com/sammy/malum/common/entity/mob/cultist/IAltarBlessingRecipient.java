@@ -2,7 +2,11 @@ package com.sammy.malum.common.entity.mob.cultist;
 
 public interface IAltarBlessingRecipient {
 
-    boolean canReceiveAltarBuff();
+    default boolean canReceiveAltarBuff() {
+        return true;
+    }
 
-    void receiveAltarBuff();
+    default void receiveAltarBuff() {
+
+    }
 }

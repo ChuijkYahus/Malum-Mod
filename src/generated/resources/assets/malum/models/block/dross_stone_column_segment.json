@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "malum:block/arcane_rock/dross/dross_stone_column_end",
+    "side": "malum:block/arcane_rock/dross/dross_stone_column_segment"
+  }
+}

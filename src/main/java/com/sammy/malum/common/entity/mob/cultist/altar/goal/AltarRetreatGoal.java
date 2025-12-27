@@ -23,6 +23,9 @@ public class AltarRetreatGoal extends Goal {
     @Nullable
     protected Path path;
 
+    public AltarRetreatGoal(AltarCultist altar, double speedModifier) {
+        this(altar, speedModifier, AltarCultist.RETREAT_RADIUS);
+    }
     public AltarRetreatGoal(AltarCultist altar, double speedModifier, float retreatRadius) {
         this.altar = altar;
         this.navigation = altar.getNavigation();

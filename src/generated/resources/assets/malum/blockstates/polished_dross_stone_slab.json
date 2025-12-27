@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/polished_dross_stone_slab"
+    },
+    "type=double": {
+      "model": "malum:block/polished_dross_stone"
+    },
+    "type=top": {
+      "model": "malum:block/polished_dross_stone_slab_top"
+    }
+  }
+}

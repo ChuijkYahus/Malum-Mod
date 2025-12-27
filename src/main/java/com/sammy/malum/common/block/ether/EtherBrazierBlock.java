@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class EtherBrazierBlock<T extends EtherBlockEntity> extends EtherBlock<T> {
+public class EtherBrazierBlock<T extends EtherBrazierBlockEntity> extends EtherBlock<T> {
     public static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
     public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
@@ -27,7 +27,6 @@ public class EtherBrazierBlock<T extends EtherBlockEntity> extends EtherBlock<T>
     public EtherBrazierBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HANGING, false).setValue(WATERLOGGED, false).setValue(ROTATED, false));
-
     }
 
     @Override

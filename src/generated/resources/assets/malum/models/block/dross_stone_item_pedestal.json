@@ -1,0 +1,6 @@
+{
+  "parent": "malum:block/templates/template_item_pedestal_rock",
+  "textures": {
+    "pedestal": "malum:block/arcane_rock/dross/dross_stone_item_pedestal"
+  }
+}

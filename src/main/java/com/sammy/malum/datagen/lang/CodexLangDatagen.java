@@ -570,7 +570,7 @@ public class CodexLangDatagen {
         addPages("soulwoven_silk.soulwoven_banner", "Soulstuff can glow, as a shattered soul proves. Why not activate that glow within the cloth? I have made banners to test the effect, and used differing reagents and spirits to give a variety of patterns. When imbued, they will glow dimly, or fiercely if given an additional spirit.");
 
         addSimpleEntryHeader("soulwoven_pouch", "Soulwoven Pouch", "A hop, a skip, and a reach outside");
-        addPages("soulwoven_pouch", "I often find Spirit Arcana cluttering my inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up Arcana when I collect any. It's physical capacity is no more impressive than that of a bundle with the added benefit of magical items being rotated slightly out of reality, taking up less space.");
+        addPages("soulwoven_pouch", "I often find Spirit Arcana cluttering my inventory. Why not solve a problem of magic with magic? This pouch acts like a bundle, but also snaps up Arcana when I collect any. It's physical capacity is no more impressive than that of a bundle with the added benefit of spirits being rotated slightly out of reality, taking up less space.");
 
         addSimpleEntryHeader("soulwoven_pouch.ravenous_pouch", "Ravenous Pouch", "Now make it hungry.");
         addPages("soulwoven_pouch.ravenous_pouch", "Although Spirit Arcana makes up much of the clutter I carry, it is not all that burdens my pockets. By fusing the pouch with rot, it sprouts teeth and transforms into the Ravenous Pouch. This hungry sack embodies the Gourmet aspect of Gluttony, aggressively snatching up any collected item that matches it's stored appetite.");
@@ -732,11 +732,11 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("belt_of_the_prospector", "Belt of the Prospector", "Treasures of the earth");
         addPages("belt_of_the_prospector",
-                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. Through enchanting - specifically through Fortune - I've been able to better suit my tools for extracting multitudes of resource at a time. Within this entry I will detail how Spirit Arcana can be utilized in a similar manner.",
+                "To fuel my various magics and other goals I more often than not find myself needing various earthen treasures. Much like through Enchanting, Spirit Arcana can be utilized to solve this issue.",
                 "When Avarice is successfully channeled through a tool with a submaximal Fortune enchantment, the applied bonus will be raised as if Fortune was at it's maximum level. Similarly, The Belt of the Prospector will bless any explosions " + italic("I") + " create with Fortune III, plus the bonus from Avarice.");
         addHeadline("belt_of_the_prospector.avarice", "Avarice");
         addPages("belt_of_the_prospector.avarice",
-                "While wearing the Belt of the Prospector, any valuable resources I extract will carry an imbued intent, an overflowing Avarice. Upon collection of such intent, the carried Avarice is temporarily inscribed onto my soul. Each amplitude of Avarice enables an added One Tenth chance for an additional level of Fortune when breaking blocks.");
+                "While wearing the Belt of the Prospector, any valuable resources I extract will carry imbued intent, an overflowing Avarice. Upon collection of such intent, the carried Avarice is temporarily inscribed onto my soul. Each amplitude of Avarice enables an added One Tenth chance for an extra level of Fortune when breaking blocks.");
 
         addSimpleEntryHeader("belt_of_the_prospector.ring_of_the_hoarder", "Ring of the Hoarder", "Directly into my veins");
         addPages("belt_of_the_prospector.ring_of_the_hoarder",

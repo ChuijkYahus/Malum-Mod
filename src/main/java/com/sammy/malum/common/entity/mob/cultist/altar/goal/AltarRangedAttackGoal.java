@@ -27,6 +27,9 @@ public class AltarRangedAttackGoal extends Goal {
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
+    public AltarRangedAttackGoal(AltarCultist altar, double speedModifier) {
+        this(altar, speedModifier, AltarCultist.RANGED_ATTACK_INTERVAL, AltarCultist.RANGED_ATTACK_RADIUS);
+    }
     public AltarRangedAttackGoal(AltarCultist altar, double speedModifier, int attackInterval, float attackRadius) {
         this.altar = altar;
         this.navigation = altar.getNavigation();
@@ -114,7 +117,10 @@ public class AltarRangedAttackGoal extends Goal {
                     strafingBackwards = true;
                 }
 
-                altar.getMoveControl().strafe(strafingBackwards ? -0.5F : 0.5F, strafingClockwise ? 0.5F : -0.5F);
+                float factor = 0.5F;
+                float forward = strafingBackwards ? -factor : factor;
+                float right = strafingClockwise ? factor : -factor;
+                altar.getMoveControl().strafe(forward, right);
                 if (altar.getControlledVehicle() instanceof Mob mob) {
                     mob.lookAt(target, 30.0F, 30.0F);
                 }

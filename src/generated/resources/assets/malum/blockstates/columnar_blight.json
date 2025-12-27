@@ -1,0 +1,60 @@
+{
+  "variants": {
+    "axis=x,bottom=false,top=false": {
+      "model": "malum:block/columnar_blight",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,bottom=false,top=true": {
+      "model": "malum:block/columnar_blight_lower",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,bottom=true,top=false": {
+      "model": "malum:block/columnar_blight_upper",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,bottom=true,top=true": {
+      "model": "malum:block/columnar_blight_segment",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,bottom=false,top=false": {
+      "model": "malum:block/columnar_blight",
+      "y": 180
+    },
+    "axis=y,bottom=false,top=true": {
+      "model": "malum:block/columnar_blight_lower",
+      "y": 180
+    },
+    "axis=y,bottom=true,top=false": {
+      "model": "malum:block/columnar_blight_upper",
+      "y": 180
+    },
+    "axis=y,bottom=true,top=true": {
+      "model": "malum:block/columnar_blight_segment",
+      "y": 180
+    },
+    "axis=z,bottom=false,top=false": {
+      "model": "malum:block/columnar_blight",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,bottom=false,top=true": {
+      "model": "malum:block/columnar_blight_lower",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,bottom=true,top=false": {
+      "model": "malum:block/columnar_blight_upper",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,bottom=true,top=true": {
+      "model": "malum:block/columnar_blight_segment",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

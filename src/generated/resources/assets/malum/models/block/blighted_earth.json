@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/blight/blighted_earth_bottom",
     "side": "malum:block/blight/blighted_earth_side",
-    "top": "malum:block/blight/blighted_earth"
+    "top": "malum:block/blight/blighted_earth_top"
   }
 }
