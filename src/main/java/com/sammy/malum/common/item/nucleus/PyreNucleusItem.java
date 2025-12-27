@@ -21,6 +21,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import team.lodestar.lodestone.systems.item.LodestoneFuelBlockItem;
+import team.lodestar.lodestone.systems.item.LodestoneFuelItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -29,13 +31,13 @@ import java.util.function.Function;
 
 import static com.sammy.malum.common.item.nucleus.WindNucleusItem.getExplosionAffectedEntities;
 
-public class PyreNucleusItem extends Item {
+public class PyreNucleusItem extends LodestoneFuelItem {
     public static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
             false, true, Optional.of(0.5f), Optional.empty()
     );
 
     public PyreNucleusItem(Properties properties) {
-        super(properties);
+        super(properties, 32000);
     }
 
     @Override

@@ -33,22 +33,6 @@
     "malum:twisted_rock_pressure_plate",
     "malum:twisted_rock_item_stand",
     "malum:twisted_rock_item_pedestal",
-    "malum:dross_stone_bricks",
-    "malum:dross_stone_tiles",
-    "malum:dross_stone_mosaic",
-    "malum:dross_stone_column",
-    "malum:dross_stone_altar",
-    "malum:cut_dross_stone",
-    "malum:chiseled_dross_stone",
-    "malum:dross_stone_bricks_slab",
-    "malum:dross_stone_tiles_slab",
-    "malum:dross_stone_mosaic_slab",
-    "malum:dross_stone_bricks_stairs",
-    "malum:dross_stone_tiles_stairs",
-    "malum:dross_stone_mosaic_stairs",
-    "malum:dross_stone_bricks_wall",
-    "malum:dross_stone_tiles_wall",
-    "malum:dross_stone_mosaic_wall",
     "malum:the_vessel"
   ]
 }

@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/arcane_rock/twisted/twisted_rock",
     "side": "malum:block/arcane_rock/twisted/cut_twisted_rock",
-    "top": "malum:block/arcane_rock/twisted/polished_twisted_rock"
+    "top": "malum:block/arcane_rock/twisted/twisted_rock"
   }
 }

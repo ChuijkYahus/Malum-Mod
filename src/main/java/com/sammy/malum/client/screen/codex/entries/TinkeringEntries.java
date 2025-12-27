@@ -99,9 +99,9 @@ public class TinkeringEntries {
                 .addPage(new HeadlineTextPage("spirit_trinkets", "spirit_trinkets.1"))
                 .addPage(new TextPage("spirit_trinkets.2"))
                 .addPage(CraftingPage.ringPage(ORNATE_RING.get(), SOUL_STAINED_STEEL_INGOT.get()))
-                .addPage(new CraftingPage(ORNATE_NECKLACE.get(), EMPTY, STRING, EMPTY, STRING, EMPTY, STRING, EMPTY, SOUL_STAINED_STEEL_INGOT.get(), EMPTY))
+                .addPage(CraftingPage.necklacePage(ORNATE_NECKLACE.get(), SOUL_STAINED_STEEL_PLATING.get()))
                 .addPage(CraftingPage.ringPage(GILDED_RING.get(), HALLOWED_GOLD_INGOT.get()))
-                .addPage(new CraftingPage(GILDED_BELT.get(), LEATHER, LEATHER, LEATHER, HALLOWED_GOLD_INGOT.get(), REFINED_SOULSTONE.get(), HALLOWED_GOLD_INGOT.get(), EMPTY, HALLOWED_GOLD_INGOT.get(), EMPTY))
+                .addPage(CraftingPage.beltPage(GILDED_BELT.get(), HALLOWED_GOLD_INLAY.get()))
                 .addReference(new EntryReference(RING_OF_ESOTERIC_SPOILS.get(),
                         BookEntry.create("ring_of_esoteric_spoils")
                                 .addPage(new HeadlineTextPage("ring_of_esoteric_spoils", "ring_of_esoteric_spoils.1"))

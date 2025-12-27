@@ -22,8 +22,9 @@ import java.util.function.Function;
 
 public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
 
-    public static final ResourceLocation LARGE_HANDHELD = MalumMod.malumPath("item/handheld_large");
-    public static final Consumer<ItemModelSmithResult> HUGE_ITEM = result -> {
+    protected static final ResourceLocation LARGE_HANDHELD = MalumMod.malumPath("item/handheld_large");
+    protected static final ResourceLocation LARGE_GENERATED = MalumMod.malumPath("item/generated_large");
+    protected static final Consumer<ItemModelSmithResult> HUGE_HANDHELD_ITEM = result -> {
         var provider = result.getProvider();
         var existingFileHelper = provider.existingFileHelper;
         var separateTransforms = result.addSeparateTransformData();
@@ -34,12 +35,29 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         var guiModel = ItemModelSmithTypes.GENERATED_ITEM
                 .addModelNameAffix("_gui")
                 .act(provider, result::getItem);
+        separateTransforms.perspective(ItemDisplayContext.GROUND, guiModel.parentedToThis(existingFileHelper));
         separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
         separateTransforms.perspective(ItemDisplayContext.FIXED, guiModel.parentedToThis(existingFileHelper));
         separateTransforms.base(firstPersonModel.parentedToThis(existingFileHelper));
     };
+    protected static final Consumer<ItemModelSmithResult> HUGE_GENERATED_ITEM = result -> {
+        var provider = result.getProvider();
+        var existingFileHelper = provider.existingFileHelper;
+        var separateTransforms = result.addSeparateTransformData();
+        var hugeModel = PARENTED_ITEM.apply(LARGE_GENERATED)
+                .addModelNameAffix("_huge")
+                .addTextureNameAffix("_huge")
+                .act(provider, result::getItem);
+        var guiModel = ItemModelSmithTypes.GENERATED_ITEM
+                .addModelNameAffix("_gui")
+                .act(provider, result::getItem);
+        separateTransforms.perspective(ItemDisplayContext.HEAD, hugeModel.parentedToThis(existingFileHelper));
+        separateTransforms.perspective(ItemDisplayContext.FIXED, hugeModel.parentedToThis(existingFileHelper));
+        separateTransforms.base(guiModel.parentedToThis(existingFileHelper));
+    };
 
-    public static ItemModelSmith LARGE_HANDHELD_ITEM = PARENTED_ITEM.apply(LARGE_HANDHELD).modifyResult(HUGE_ITEM);
+    public static ItemModelSmith LARGE_HANDHELD_ITEM = HANDHELD_ITEM.modifyResult(HUGE_HANDHELD_ITEM);
+    public static ItemModelSmith LARGE_GENERATED_ITEM = HANDHELD_ITEM.modifyResult(HUGE_GENERATED_ITEM);
 
     public static ItemModelSmith IMPETUS_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
@@ -49,7 +67,7 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         return provider.createGenericModel(item, GENERATED, provider.getItemTexture(alteredName));
     });
 
-    public static ItemModelSmith SOULWOVEN_POUCH = new ItemModelSmith((item, provider) -> {
+    public static ItemModelSmith POUCH = new ItemModelSmith((item, provider) -> {
         String base = provider.getItemName(item);
         final ResourceLocation texture = provider.getItemTexture(base);
         provider.createGenericModel(item, GENERATED, texture);

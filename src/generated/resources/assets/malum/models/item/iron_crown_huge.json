@@ -1,0 +1,6 @@
+{
+  "parent": "malum:item/generated_large",
+  "textures": {
+    "layer0": "malum:item/iron_crown_huge"
+  }
+}

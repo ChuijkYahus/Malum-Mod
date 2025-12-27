@@ -44,7 +44,7 @@ neoForge {
     runs {
         register("client") {
             client()
-
+            jvmArgument("-XX:ActiveProcessorCount=2") // My poor laptop :(
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty("neoforge.enabledGameTestNamespaces", project.property("mod_id").toString())
         }

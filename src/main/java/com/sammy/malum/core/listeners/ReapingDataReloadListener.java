@@ -32,31 +32,31 @@ public class ReapingDataReloadListener extends SimpleJsonResourceReloadListener 
     protected void apply(Map<ResourceLocation, JsonElement> objectIn, ResourceManager resourceManagerIn, ProfilerFiller profilerIn) {
         REAPING_DATA.clear();
         for (int i = 0; i < objectIn.size(); i++) {
-            ResourceLocation location = (ResourceLocation) objectIn.keySet().toArray()[i];
-            JsonObject object = objectIn.get(location).getAsJsonObject();
-            String name = object.getAsJsonPrimitive("registry_name").getAsString();
-            ResourceLocation resourceLocation = ResourceLocation.tryParse(name);
-            if (resourceLocation != null && !BuiltInRegistries.ENTITY_TYPE.containsKey(resourceLocation)) {
+            var location = (ResourceLocation) objectIn.keySet().toArray()[i];
+            var object = objectIn.get(location).getAsJsonObject();
+            var entityName = object.getAsJsonPrimitive("registry_name").getAsString();
+            var entity = ResourceLocation.tryParse(entityName);
+            if (entity != null && !BuiltInRegistries.ENTITY_TYPE.containsKey(entity)) {
                 continue;
             }
-            if (REAPING_DATA.containsKey(resourceLocation)) {
-                MalumMod.LOGGER.info("Entity with registry name: {} already has reaping data associated with it. Overwriting.", name);
+            if (REAPING_DATA.containsKey(entity)) {
+                MalumMod.LOGGER.info("Entity with registry name: {} already has reaping data associated with it. Overwriting.", entityName);
             }
-            JsonArray drops = object.getAsJsonArray("drops");
-            List<MalumReapingDropsData> dropsList = new ArrayList<>();
+            var drops = object.getAsJsonArray("drops");
+            var list = new ArrayList<MalumReapingDropsData>();
             for (JsonElement drop : drops) {
-                JsonObject dropObject = drop.getAsJsonObject();
+                var dropObject = drop.getAsJsonObject();
                 if (!dropObject.has("ingredient")) {
-                    MalumMod.LOGGER.info("Entity with registry name: {} lacks a reaping ingredient. Skipping drops entry.", name);
+                    MalumMod.LOGGER.info("Entity with registry name: {} lacks a reaping ingredient. Skipping drops entry.", entityName);
                     continue;
                 }
-                Ingredient dropIngredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, dropObject.getAsJsonObject("ingredient")).getOrThrow(JsonParseException::new);
-                float chance = dropObject.getAsJsonPrimitive("chance").getAsFloat();
-                int min = dropObject.getAsJsonPrimitive("min").getAsInt();
-                int max = dropObject.getAsJsonPrimitive("max").getAsInt();
-                dropsList.add(new MalumReapingDropsData(dropIngredient, chance, min, max));
+                var ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, dropObject.get("ingredient")).getOrThrow(JsonParseException::new);
+                float chance = dropObject.has("chance") ? dropObject.get("chance").getAsFloat() : 1f;
+                int min = dropObject.has("min") ? dropObject.get("min").getAsInt() : 1;
+                int max = dropObject.has("max") ? dropObject.get("max").getAsInt() : Math.max(min, 1);
+                list.add(new MalumReapingDropsData(ingredient, chance, min, max));
             }
-            REAPING_DATA.put(resourceLocation, dropsList);
+            REAPING_DATA.put(entity, list);
         }
     }
 

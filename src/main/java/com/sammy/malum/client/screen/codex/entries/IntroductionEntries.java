@@ -148,15 +148,30 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("esoteric_reaping", 0, 6, b -> b
-                .configureWidget(w -> w.setIcon(ROTTING_ESSENCE))
+                .configureWidget(w -> w.setIcon(GRIM_TALC))
                 .addPage(new HeadlineTextPage("esoteric_reaping"))
                 .addPage(new TextPage("esoteric_reaping.2"))
-                .addPage(new TextPage("esoteric_reaping.3"))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.rotting_essence", "esoteric_reaping.rotting_essence.1", ROTTING_ESSENCE.get()))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.grim_talc", "esoteric_reaping.grim_talc.1", GRIM_TALC.get()))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.eerie_weave", "esoteric_reaping.eerie_weave.1", EERIE_WEAVE.get()))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.wind_nucleus", "esoteric_reaping.wind_nucleus.1", WIND_NUCLEUS.get()))
-                .addPage(new HeadlineTextItemPage("esoteric_reaping.warp_flux", "esoteric_reaping.warp_flux.1", WARP_FLUX.get()))
+                .addReference(new EntryReference(ROTTING_ESSENCE.get(), BookEntry.create("esoteric_reaping.rotting_essence")
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.rotting_essence", ROTTING_ESSENCE.get()))
+                        .addPage(new TextPage("esoteric_reaping.rotting_essence.2"))
+                ))
+                .addReference(new EntryReference(GRIM_TALC.get(), BookEntry.create("esoteric_reaping.grim_talc")
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.grim_talc", GRIM_TALC.get()))
+                ))
+                .addReference(new EntryReference(EERIE_WEAVE.get(), BookEntry.create("esoteric_reaping.eerie_weave")
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.eerie_weave", EERIE_WEAVE.get()))
+                        .addPage(new TextPage("esoteric_reaping.eerie_weave.2"))
+                ))
+                .addReference(new EntryReference(WARP_FLUX.get(), BookEntry.create("esoteric_reaping.warp_flux")
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.warp_flux", WARP_FLUX.get()))
+//                        .addPage(new TextPage("esoteric_reaping.warp_flux.2"))
+                ))
+                .addReference(new EntryReference(WIND_NUCLEUS.get(), BookEntry.create("esoteric_reaping.core_keeping")
+                        .addPage(new HeadlineTextPage("esoteric_reaping.core_keeping"))
+                        .addPage(new TextPage("esoteric_reaping.core_keeping.2"))
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.wind_nucleus", WIND_NUCLEUS.get()))
+                        .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.pyre_nucleus", PYRE_NUCLEUS.get()))
+                ))
         );
 
         screen.addEntry("primary_arcana", -2, 4, b -> b

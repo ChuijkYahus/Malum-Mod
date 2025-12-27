@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
+    "X": {
       "item": "malum:soul_stained_steel_ingot"
     },
-    "X": {
+    "Y": {
       "tag": "c:leathers"
     }
   },
   "pattern": [
-    "#X ",
-    "X X",
-    " X "
+    "XY ",
+    "Y Y",
+    " Y "
   ],
   "result": {
     "count": 1,

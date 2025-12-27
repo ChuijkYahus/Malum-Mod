@@ -1142,56 +1142,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/chiseled/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1201,56 +1201,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1260,56 +1260,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1319,56 +1319,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/chiseled/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1378,56 +1378,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/chiseled/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1683,56 +1683,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1742,56 +1742,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/bricks/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1801,56 +1801,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/bricks/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1860,56 +1860,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/bricks/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1919,56 +1919,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/bricks/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -1978,56 +1978,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/bricks/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/bricks/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -2037,56 +2037,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -2096,56 +2096,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -2155,56 +2155,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/break1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/break6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/break1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/break6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],
@@ -2214,56 +2214,56 @@
     "sounds": [
       {
         "name": "malum:blocks/arcane_rock/hit1",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit2",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit3",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit4",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit5",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "malum:blocks/arcane_rock/hit6",
-        "pitch": 0.8
+        "pitch": 1.05
       },
       {
         "name": "block/mud_bricks/step1",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step2",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step3",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step4",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step5",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       },
       {
         "name": "block/mud_bricks/step6",
-        "pitch": 0.6,
+        "pitch": 1.2,
         "weight": 2
       }
     ],

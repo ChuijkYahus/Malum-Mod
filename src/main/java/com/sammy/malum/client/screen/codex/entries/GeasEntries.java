@@ -28,7 +28,7 @@ public class GeasEntries {
                 .configureWidget(w -> w.setIcon(SOUL_BRAZIER).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextPage("geas_magic", "geas_magic.1"))
                 .addPage(new CraftingPage(SOUL_BRAZIER.get(),
-                        HALLOWED_GOLD_INGOT.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INGOT.get(),
+                        HALLOWED_GOLD_INLAY.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INLAY.get(),
                         RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(),
                         TAINTED_ROCK.get(), RUNEWOOD_PLANKS.get(), TAINTED_ROCK.get()))
                 .addPage(new TextPage("geas_magic.2"))

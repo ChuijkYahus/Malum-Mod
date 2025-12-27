@@ -3,9 +3,9 @@
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"smooth": "malum:block/arcane_rock/tainted/smooth_tainted_rock",
+		"polished": "malum:block/arcane_rock/tainted/polished_tainted_rock",
 		"crucible": "malum:block/spirit_crucible",
-		"particle": "malum:block/arcane_rock/tainted/smooth_tainted_rock"
+		"particle": "malum:block/arcane_rock/tainted/polished_tainted_rock"
 	},
 	"elements": [
 		{
@@ -17,7 +17,7 @@
 				"south": {"uv": [0, 8, 8, 14], "texture": "#crucible", "cullface": "south"},
 				"west": {"uv": [0, 8, 8, 14], "texture": "#crucible", "cullface": "west"},
 				"up": {"uv": [0, 0, 8, 8], "texture": "#crucible"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#smooth", "cullface": "down"}
+				"down": {"uv": [0, 0, 16, 16], "texture": "#polished", "cullface": "down"}
 			}
 		},
 		{

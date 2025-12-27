@@ -1,0 +1,6 @@
+{
+  "parent": "malum:block/templates/dungeon/template_meditating_effigy",
+  "textures": {
+    "effigy": "malum:block/dungeon/effigy/corrupt_effigy"
+  }
+}
