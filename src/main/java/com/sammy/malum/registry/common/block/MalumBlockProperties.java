@@ -131,11 +131,11 @@ public class MalumBlockProperties {
     }
 
     public static LodestoneBlockProperties DROSS_STONE_BRICKS() {
-        return TWISTED_ROCK().sound(MalumSoundEvents.DROSS_STONE_BRICKS);
+        return DROSS_STONE().sound(MalumSoundEvents.DROSS_STONE_BRICKS);
     }
 
     public static LodestoneBlockProperties CHISELED_DROSS_STONE() {
-        return TWISTED_ROCK().sound(MalumSoundEvents.CHISELED_DROSS_STONE);
+        return DROSS_STONE().sound(MalumSoundEvents.CHISELED_DROSS_STONE);
     }
 
     public static LodestoneBlockProperties ARCANE_ROCK_ARTIFICE() {
@@ -748,6 +748,15 @@ public class MalumBlockProperties {
                 .strength(0.5F, -1.0F)
                 .noCollission()
                 .noOcclusion();
+    }
+
+    public static LodestoneBlockProperties MEDITATING_EFFIGY() {
+        return CHISELED_DROSS_STONE()
+                .addTag(WALL_POST_OVERRIDE)
+                .sound(MalumSoundEvents.CHISELED_DROSS_STONE)
+                .setCutoutRenderType()
+                .noOcclusion()
+                .strength(3.5F, -1.0F);
     }
 
     public static LodestoneBlockProperties WEEPING_WELL() {

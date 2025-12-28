@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/corrupt_effigy",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/corrupt_effigy"
+    },
+    "facing=south": {
+      "model": "malum:block/corrupt_effigy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/corrupt_effigy",
+      "y": 270
+    }
+  }
+}

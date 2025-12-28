@@ -50,13 +50,13 @@
       }
     },
     {
-      "model": "malum:item/soulwoven_banner_hunger",
+      "model": "malum:item/soulwoven_banner_horns",
       "predicate": {
         "malum:pattern": 9.0
       }
     },
     {
-      "model": "malum:item/soulwoven_banner_horns",
+      "model": "malum:item/soulwoven_banner_hunger",
       "predicate": {
         "malum:pattern": 10.0
       }

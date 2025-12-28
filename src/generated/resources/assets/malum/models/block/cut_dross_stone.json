@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "malum:block/arcane_rock/dross/dross_stone",
     "side": "malum:block/arcane_rock/dross/cut_dross_stone",
-    "top": "malum:block/arcane_rock/dross/polished_dross_stone"
+    "top": "malum:block/arcane_rock/dross/dross_stone"
   }
 }

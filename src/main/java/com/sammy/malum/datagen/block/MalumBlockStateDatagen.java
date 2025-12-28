@@ -244,6 +244,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop, FLESHBULB);
         MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
 
+        setTexturePath("dungeon/effigy/");
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY);
+
         setTexturePath("waveform_artifice/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
         MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
@@ -397,6 +400,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         ResourceLocation bottom = getBlockTexture("blighted_earth_bottom");
         ResourceLocation top = getStaticBlockTexture("soulwood/soulwood_log_top");
         return models().cubeBottomTop(name, side, bottom, top);
+    }
+
+    public ModelFile meditatingEffigy(Block block) {
+        String name = getBlockName(block);
+        ResourceLocation effigy = getBlockTexture(name);
+        return models().withExistingParent(name, malumPath("block/templates/dungeon/template_meditating_effigy")).texture("effigy", effigy);
     }
 
     public ModelFile cubeBottomTop(Block block) {

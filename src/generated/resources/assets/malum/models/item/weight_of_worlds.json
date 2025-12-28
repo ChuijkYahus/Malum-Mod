@@ -1,11 +1,14 @@
 {
-  "parent": "malum:item/handheld_large",
+  "parent": "minecraft:item/handheld",
   "base": {
     "parent": "malum:item/weight_of_worlds_huge"
   },
   "loader": "neoforge:separate_transforms",
   "perspectives": {
     "fixed": {
+      "parent": "malum:item/weight_of_worlds_gui"
+    },
+    "ground": {
       "parent": "malum:item/weight_of_worlds_gui"
     },
     "gui": {

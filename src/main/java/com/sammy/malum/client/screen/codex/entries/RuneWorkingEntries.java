@@ -27,13 +27,13 @@ public class RuneWorkingEntries {
         screen.addEntry("runic_brooch", -13, 10, b -> b
                 .configureWidget(w -> w.setIcon(RUNIC_BROOCH))
                 .addPage(new HeadlineTextPage("runic_brooch", "runic_brooch.1"))
-                .addPage(CraftingPage.broochPage(RUNIC_BROOCH.get(), HALLOWED_GOLD_INGOT.get(), BLOCK_OF_HALLOWED_GOLD.get()))
+                .addPage(CraftingPage.broochPage(RUNIC_BROOCH.get(), HALLOWED_GOLD_INLAY.get(), BLOCK_OF_HALLOWED_GOLD.get()))
         );
 
         screen.addEntry("elaborate_brooch", -12, 11, b -> b
                 .configureWidget(w -> w.setIcon(ELABORATE_BROOCH))
                 .addPage(new HeadlineTextPage("elaborate_brooch", "elaborate_brooch.1"))
-                .addPage(CraftingPage.broochPage(ELABORATE_BROOCH.get(), SOUL_STAINED_STEEL_INGOT.get(), BLOCK_OF_SOUL_STAINED_STEEL.get()))
+                .addPage(CraftingPage.broochPage(ELABORATE_BROOCH.get(), SOUL_STAINED_STEEL_PLATING.get(), BLOCK_OF_SOUL_STAINED_STEEL.get()))
         );
 
         screen.addEntry("glass_brooch", -14, 11, b -> b

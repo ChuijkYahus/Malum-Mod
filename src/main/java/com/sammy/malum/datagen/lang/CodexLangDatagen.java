@@ -443,24 +443,33 @@ public class CodexLangDatagen {
 
         addSimpleEntryHeader("esoteric_reaping", "Esoteric Reaping", "Leaked magic");
         addPages("esoteric_reaping",
-                "When a being dies, its soul disperses. This is basic theory, and well proven by this point. It's been proposed that sometimes, that power leaks into the body of the creature as it dies, to explain the existence of reagents they drop. That hadn't been proven yet.",
-                "But now, with my scythe, I have proved it beyond doubt. When a soul is shattered, even if only for a brief moment, the energy collides with what's left of it's vessel, it's physical remains. That collision creates brand new reagents that cannot normally be obtained by destroying just the body. This phenomena appears to create a strong reaction, a change of sorts.",
-                "I have discovered five reagents born through this process, which I will detail further in this entry. In summary, the flesh of zombies can curdle to Rotting Essence; the bones of skeletons can crystallize to Grim Talc; the wings of phantoms can spin to Eerie Weave; the essence of the breeze can persist as the Wind Nucleus; and the magic of endermen can coalesce into Warp Flux.");
-        addHeadline("esoteric_reaping.rotting_essence", "Rotting Essence");
+                "When a being dies, its soul disperses. This is basic theory, and well proven by this point. However, when a soul is shattered, some of it's energy tends to self-immolate. This phenomena causes bits of the soul to collide and fuse with the remains of the creature as it dies, bringing forth new artefacts.",
+                "But now, with my scythe, I have proved it beyond doubt. When a soul is shattered, even if only for a brief moment, the energy collides with what's left of it's vessel, it's physical remains. That collision creates brand new reagents that cannot be sourced by destroying just the body. This phenomena appears to create a strong reaction, a change of sorts.",
+                "I have thus far discovered four reagents born through this process, all of which are detailed in further pages. In summary, the flesh of zombies can curdle to Rotting Essence; the bones of skeletons can crystalize to Grim Talc; the wings of phantoms can spin to Eerie Weave; and the magic of endermen can coalesce into Warp Flux.");
+        addSimpleEntryHeader("esoteric_reaping.rotting_essence", "Rotting Essence", "Yucky!");
         addPages("esoteric_reaping.rotting_essence",
-                "When exposed to this magic, the flesh of the undead can curdle into Rotting Essence, a toxic and foul substance that smells like death itself.");
-        addHeadline("esoteric_reaping.grim_talc", "Grim Talc");
+                "When exposed to the energy of the soul, the flesh of the undead can curdle into Rotting Essence, a toxic and foul substance that smells like death itself.",
+                "It has... " + italic("some") + " nutritional value- though much like Rotten Flesh, it would be in your best interests avoid it's consumption.");
+        addSimpleEntryHeader("esoteric_reaping.grim_talc", "Grim Talc", "Sharp!");
         addPages("esoteric_reaping.grim_talc",
-                "Bones exposed to this magic can crystallize into Grim Talc, a useful mineral that can also be broken down into bonemeal.");
-        addHeadline("esoteric_reaping.eerie_weave", "Eerie Weave");
+                "Bones exposed to the energy of the soul can crystallize into Grim Talc, a useful pseudo-mineral that can also be broken down into bonemeal.");
+        addSimpleEntryHeader("esoteric_reaping.eerie_weave", "Eerie Weave", "Fancy!");
         addPages("esoteric_reaping.eerie_weave",
-                "The membrane of a phantom will spin into Eerie Weave with this magic, a mystic cloth with strange arcane properties.");
-        addHeadline("esoteric_reaping.wind_nucleus", "Wind Nucleus");
-        addPages("esoteric_reaping.wind_nucleus",
-                "The strange construction of the Breeze echoes the Trials around them, and the Wind Nucleus appears to be a part of a Breeze's core bindings. In a pinch, those bindings can be released to push surrounding creatures away.");
-        addHeadline("esoteric_reaping.warp_flux", "Warp Flux");
+                "The membrane of a phantom exposed to the energy of it's soul will spin into Eerie Weave, a mystic cloth with strange arcane properties capable of \"binding\" the flow of arcana.",
+                "The exact properties of this binding effect and it's potential use cases demand further study. Nonetheless, it still makes for a rather fine silk.");
+        addSimpleEntryHeader("esoteric_reaping.warp_flux", "Warp Flux", "Odd.");
         addPages("esoteric_reaping.warp_flux",
                 "The magic that envelops the endermen coalesces into Warp Flux, a strange essence that seems to be inimical to natural law.");
+        addSimpleEntryHeader("esoteric_reaping.core_keeping", "Core-Keeping", "Ancient Constructs");
+        addPages("esoteric_reaping.core_keeping",
+                "The Breeze and Blaze are two of a kind, with perhaps more Constructs of such nature yet to be discovered. They are unlike any other creature I've met in appearance and are capable of flight despite their unusual forms. Their souls resemble this, and uniquely so, they carry an excerpt of their original architectury.",
+                "The phenomena here is different ever so slightly from previously mentioned entries; the soul are artificial ones, with a Nucleus as their core. When the soul is shattered, the core remains intact. The exact origin of these constructs, be it through deliberate sorcery or a happenstance of nature, remains a mystery. Perhaps further study will unveil the truth.");
+        addHeadline("esoteric_reaping.core_keeping.wind_nucleus", "Wind Nucleus");
+        addPages("esoteric_reaping.core_keeping.wind_nucleus",
+                "The core of the Breeze, it is well preserved and bears runic etchings that appear to dictate the rules upon which wind bends around it. In a pinch, these etchings can be released to push surrounding creatures away.");
+        addHeadline("esoteric_reaping.core_keeping.pyre_nucleus", "Pyre Nucleus");
+        addPages("esoteric_reaping.core_keeping.pyre_nucleus",
+                "The core of the Blaze, it is warm to the touch and bears runic etchings that attract heat and ash from nearby. The etchings are greatly interwoven, and upon any sudden change the entire core detonates. Useful, perhaps.");
 
         addSimpleEntryHeader("spirit_infusion", "Spirit Infusion", "Creation of wonders");
         addPages("spirit_infusion",

@@ -1,11 +1,14 @@
 {
-  "parent": "malum:item/handheld_large",
+  "parent": "minecraft:item/handheld",
   "base": {
     "parent": "malum:item/soul_stained_steel_scythe_huge"
   },
   "loader": "neoforge:separate_transforms",
   "perspectives": {
     "fixed": {
+      "parent": "malum:item/soul_stained_steel_scythe_gui"
+    },
+    "ground": {
       "parent": "malum:item/soul_stained_steel_scythe_gui"
     },
     "gui": {

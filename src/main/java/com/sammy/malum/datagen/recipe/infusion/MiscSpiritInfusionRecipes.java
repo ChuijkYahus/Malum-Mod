@@ -17,7 +17,7 @@ public class MiscSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput consumer) {
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 2, MalumItems.RUNEWOOD_OBELISK.get(), 1)
-                .addExtraItem(MalumItems.HALLOWED_GOLD_INGOT.get(), 2)
+                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 2)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(SACRED_SPIRIT, 8)
                 .save(consumer);

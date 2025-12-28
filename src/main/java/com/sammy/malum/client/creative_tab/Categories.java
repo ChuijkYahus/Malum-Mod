@@ -39,7 +39,6 @@ public class Categories {
                                 MalumItems.SOUL_BRAZIER
                         ).nextLine()
                         .addItems(
-                                MalumItems.TOTEMIC_STAFF,
                                 MalumItems.RUNEWOOD_TOTEM_BASE,
                                 MalumItems.SOULWOOD_TOTEM_BASE,
                                 MalumItems.WAVEFORM_RUNEWOOD_TOTEM_BASE,
@@ -223,8 +222,8 @@ public class Categories {
                         .bake();
                 MalumCreativeTabTweaks.create(MATERIALS)
                         .addItems(
-                                MalumItems.GRIM_TALC,
                                 MalumItems.ROTTING_ESSENCE,
+                                MalumItems.GRIM_TALC,
                                 MalumItems.EERIE_WEAVE,
                                 MalumItems.WARP_FLUX
                         )
@@ -272,8 +271,8 @@ public class Categories {
                                 MalumItems.MALIGNANT_PEWTER_NUGGET
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_GRIM_TALC,
                                 MalumItems.BLOCK_OF_ROTTING_ESSENCE,
+                                MalumItems.BLOCK_OF_GRIM_TALC,
                                 MalumItems.BLOCK_OF_EERIE_WEAVE,
                                 MalumItems.BLOCK_OF_WARP_FLUX
                         )
@@ -697,6 +696,14 @@ public class Categories {
                                 MalumItems.WRITHING_FLESH,
                                 MalumItems.COLUMNAR_FLESH,
                                 MalumItems.FLESHBULB
+                        )
+                        .addItems(
+                                MalumItems.IRON_CROWN
+                        )
+                        .addItems(
+                                MalumItems.VEILED_EFFIGY,
+                                MalumItems.CORRUPT_EFFIGY,
+                                MalumItems.CRACKED_EFFIGY
                         )
                         .bake();
         }

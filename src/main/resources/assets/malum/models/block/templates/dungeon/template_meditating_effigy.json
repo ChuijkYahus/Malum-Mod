@@ -1,0 +1,61 @@
+{
+	"parent": "block/block",
+	"texture_size": [32, 32],
+	"textures": {
+		"particle": "#effigy"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 6, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
+			"faces": {
+				"north": {"uv": [2, 2, 4, 5], "texture": "#effigy"},
+				"east": {"uv": [0, 2, 2, 5], "texture": "#effigy"},
+				"south": {"uv": [6, 2, 8, 5], "texture": "#effigy"},
+				"west": {"uv": [4, 2, 6, 5], "texture": "#effigy"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#effigy"},
+				"down": {"uv": [6, 0, 4, 2], "texture": "#effigy"}
+			}
+		},
+		{
+			"from": [5.5, 6, 5.5],
+			"to": [10.5, 12, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 0]},
+			"faces": {
+				"north": {"uv": [2.5, 7.5, 5, 10.5], "texture": "#effigy"},
+				"east": {"uv": [0, 7.5, 2.5, 10.5], "texture": "#effigy"},
+				"south": {"uv": [7.5, 7.5, 10, 10.5], "texture": "#effigy"},
+				"west": {"uv": [5, 7.5, 7.5, 10.5], "texture": "#effigy"},
+				"up": {"uv": [5, 7.5, 2.5, 5], "texture": "#effigy"},
+				"down": {"uv": [7.5, 5, 5, 7.5], "texture": "#effigy"}
+			}
+		},
+		{
+			"from": [1.5, 7.75, 8],
+			"to": [14.5, 17.75, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 5.75, 0.5]},
+			"faces": {
+				"north": {"uv": [9.5, 0, 16, 5], "texture": "#effigy"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#effigy"},
+				"south": {"uv": [9.5, 0, 16, 5], "texture": "#effigy"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#effigy"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#effigy"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#effigy"}
+			}
+		},
+		{
+			"from": [4.5, 3.75, 5],
+			"to": [11.5, 6.75, 10],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 5.25, 7.5]},
+			"faces": {
+				"north": {"uv": [2.5, 13, 6, 14.5], "texture": "#effigy"},
+				"east": {"uv": [0, 13, 2.5, 14.5], "texture": "#effigy"},
+				"south": {"uv": [8.5, 13, 12, 14.5], "texture": "#effigy"},
+				"west": {"uv": [6, 13, 8.5, 14.5], "texture": "#effigy"},
+				"up": {"uv": [6, 13, 2.5, 10.5], "texture": "#effigy"},
+				"down": {"uv": [9.5, 10.5, 6, 13], "texture": "#effigy"}
+			}
+		}
+	]
+}

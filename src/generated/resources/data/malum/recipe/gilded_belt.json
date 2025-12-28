@@ -2,20 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "malum:hallowed_gold_ingot"
-    },
     "X": {
-      "tag": "c:leathers"
+      "item": "malum:hallowed_gold_inlay"
     },
     "Y": {
-      "item": "malum:refined_soulstone"
+      "tag": "c:leathers"
     }
   },
   "pattern": [
-    "XXX",
-    "#Y#",
-    " # "
+    " Y ",
+    "Y Y",
+    " X "
   ],
   "result": {
     "count": 1,

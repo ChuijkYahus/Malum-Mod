@@ -56,27 +56,30 @@ public class MalumItemModelDatagen extends LodestoneItemModelProvider {
 
         setTexturePath("impetus/");
         MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, items.stream().filter(i -> i.get() instanceof ImpetusItem ||
-                i.get() instanceof FracturedImpetusItem).collect(Collectors.toList())); //TODO: make this cleaner :3
+                i.get() instanceof FracturedImpetusItem).toList()); //TODO: make this cleaner :3
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof NodeItem).collect(Collectors.toList()));
 
         setTexturePath("");
         MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, GEAS);
         MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, UMBRAL_SPIRIT);
+        MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, UNWINDING_CHAOS, SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
+        MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, CRUDE_SCYTHE, SOUL_STAINED_STEEL_SCYTHE, EDGE_OF_DELIVERANCE, WEIGHT_OF_WORLDS, SHAPED_SLAB);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, SOUL_STAINED_STEEL_KNIFE, TUNING_FORK, LAMPLIGHTERS_TONGS, ARTIFICERS_CLAW, TOTEMIC_STAFF);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MNEMONIC_HEX_STAFF, EROSION_SCEPTER);
+        MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, SPELLWEAVING_PICKAXE, SPELLWEAVING_AXE);
+        MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, CATALYST_LOBBER);
+        MalumItemModelSmithTypes.POUCH.act(data, SOULWOVEN_POUCH, RAVENOUS_POUCH);
+
         MalumItemModelSmithTypes.SPIRIT_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SpiritShardItem).collect(Collectors.toList()));
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof DiggerItem).collect(Collectors.toList()));
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SwordItem).collect(Collectors.toList()));
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MNEMONIC_HEX_STAFF, EROSION_SCEPTER);
-        MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, UNWINDING_CHAOS, SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
-        MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, SHAPED_SLAB, CRUDE_SCYTHE, SOUL_STAINED_STEEL_SCYTHE, EDGE_OF_DELIVERANCE, WEIGHT_OF_WORLDS);
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, SOUL_STAINED_STEEL_KNIFE, TUNING_FORK, LAMPLIGHTERS_TONGS, ARTIFICERS_CLAW, TOTEMIC_STAFF);
-        MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, SPELLWEAVING_PICKAXE, SPELLWEAVING_AXE);
-        MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, CATALYST_LOBBER);
-        MalumItemModelSmithTypes.SOULWOVEN_POUCH.act(data, SOULWOVEN_POUCH, RAVENOUS_POUCH);
 
         MalumItemModelSmithTypes.SKIN_APPLICABLE_ARMOR_ITEM.act(data,
                 SOUL_HUNTER_CLOAK, SOUL_HUNTER_ROBE, SOUL_HUNTER_LEGGINGS, SOUL_HUNTER_BOOTS,
                 SOUL_STAINED_STEEL_HELMET, SOUL_STAINED_STEEL_CHESTPLATE, SOUL_STAINED_STEEL_LEGGINGS, SOUL_STAINED_STEEL_BOOTS,
                 MALIGNANT_STRONGHOLD_HELMET, MALIGNANT_STRONGHOLD_CHESTPLATE, MALIGNANT_STRONGHOLD_LEGGINGS, MALIGNANT_STRONGHOLD_BOOTS);
+
+        MalumItemModelSmithTypes.LARGE_GENERATED_ITEM.act(data, IRON_CROWN);
 
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items);
     }
