@@ -277,7 +277,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 RITE_ANCHOR, RITE_UNWEAVER);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
-                SPIRIT_ALTAR, SOUL_BRAZIER, RITUAL_PLINTH);
+                SPIRIT_ALTAR, SOUL_BRAZIER, RITUAL_PLINTH,
+                OMINOUS_ALTAR);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BUILTIN_ENTITY_ITEM, this::simpleBlock, this::predefinedModel,
                 SPIRIT_JAR);
@@ -286,9 +287,14 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, this::predefinedModel,
-                RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT, BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT, ARCANA_PYLON, ARCANA_PYLON_COMPONENT, SPIRIT_CRUCIBLE, SPIRIT_CRUCIBLE_COMPONENT, REPAIR_PYLON);
+                RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
+                BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT,
+                ARCANA_PYLON, ARCANA_PYLON_COMPONENT,
+                SPIRIT_CRUCIBLE, SPIRIT_CRUCIBLE_COMPONENT, REPAIR_PYLON,
+                OMINOUS_OBELISK, OMINOUS_OBELISK_COMPONENT);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel, RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE, WAVEFORM_RUNEWOOD_TOTEM_BASE, WAVEFORM_SOULWOOD_TOTEM_BASE);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
+                RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE, WAVEFORM_RUNEWOOD_TOTEM_BASE, WAVEFORM_SOULWOOD_TOTEM_BASE);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::horizontalBlock, this::predefinedModel,
                 SPIRIT_CATALYZER, SPIRIT_CATALYZER_COMPONENT);

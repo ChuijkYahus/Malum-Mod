@@ -36,6 +36,7 @@ import com.sammy.malum.common.block.dungeon.ColumnarFleshBlock;
 import com.sammy.malum.common.block.dungeon.FleshBulbBlock;
 import com.sammy.malum.common.block.dungeon.MeditatingEffigyBlock;
 import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
+import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.block.nature.soulwood.*;
@@ -542,10 +543,9 @@ public class MalumBlocks {
 
     //region dungeon
 
-//    public static final DeferredHolder<Block, Block> OMINOUS_ALTAR = BLOCKS.register("ominous_altar", () -> new SpiritAltarBlock<>(MalumBlockProperties.SPIRIT_ALTAR()).setBlockEntity(MalumBlockEntities.SPIRIT_ALTAR));
-//    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK = BLOCKS.register("ominous_obelisk", () -> new RunewoodObeliskCoreBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().noOcclusion()));
-//    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK_COMPONENT = BLOCKS.register("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumBlockProperties.RUNEWOOD().setCutoutRenderType().lootFrom(RUNEWOOD_OBELISK).noOcclusion(), MalumItems.RUNEWOOD_OBELISK));
-
+    public static final DeferredHolder<Block, Block> OMINOUS_ALTAR = BLOCKS.register("ominous_altar", () -> new OminousAltarBlock(MalumBlockProperties.OMINOUS_CRAFT()).setBlockEntity(MalumBlockEntities.OMINOUS_ALTAR));
+    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK = BLOCKS.register("ominous_obelisk", () -> new OminousObeliskCoreBlock(MalumBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().noOcclusion()));
+    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK_COMPONENT = BLOCKS.register("ominous_obelisk_component", () -> new ObeliskComponentBlock(MalumBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().lootFrom(OMINOUS_OBELISK).noOcclusion(), MalumItems.OMINOUS_OBELISK));
 
     public static final DeferredHolder<Block, Block> COLUMNAR_FLESH = BLOCKS.register("columnar_flesh", () -> new ColumnarFleshBlock(MalumBlockProperties.FLESH_BLOCK()));
     public static final DeferredHolder<Block, Block> FLESHBULB = BLOCKS.register("fleshbulb", () -> new FleshBulbBlock(MalumBlockProperties.FLESHBULB()));

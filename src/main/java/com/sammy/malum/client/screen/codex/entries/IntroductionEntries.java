@@ -169,6 +169,8 @@ public class IntroductionEntries {
                 .addReference(new EntryReference(WIND_NUCLEUS.get(), BookEntry.create("esoteric_reaping.core_keeping")
                         .addPage(new HeadlineTextPage("esoteric_reaping.core_keeping"))
                         .addPage(new TextPage("esoteric_reaping.core_keeping.2"))
+                        .addPage(new TextPage("esoteric_reaping.core_keeping.3"))
+                        .addPage(new TextPage("esoteric_reaping.core_keeping.4"))
                         .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.wind_nucleus", WIND_NUCLEUS.get()))
                         .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.pyre_nucleus", PYRE_NUCLEUS.get()))
                 ))

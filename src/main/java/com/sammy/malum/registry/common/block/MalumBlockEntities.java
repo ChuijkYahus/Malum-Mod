@@ -38,6 +38,7 @@ import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
+import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.block.storage.pedestal.*;
@@ -104,6 +105,8 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> BlockEntityType.Builder.of(GustIgniterBlockEntity::new, MalumBlocks.GUST_IGNITER.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> BlockEntityType.Builder.of(WindTunnelBlockEntity::new, MalumBlocks.WIND_TUNNEL.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> BlockEntityType.Builder.of(OminousAltarBlockEntity::new, MalumBlocks.OMINOUS_ALTAR.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OminousObeliskBlockEntity>> OMINOUS_OBELISK = BLOCK_ENTITY_TYPES.register("ominous_obelisk", () -> BlockEntityType.Builder.of(OminousObeliskBlockEntity::new, MalumBlocks.OMINOUS_OBELISK.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RitualPlinthBlockEntity>> RITUAL_PLINTH = BLOCK_ENTITY_TYPES.register("ritual_plinth", () -> BlockEntityType.Builder.of(RitualPlinthBlockEntity::new, MalumBlocks.RITUAL_PLINTH.get()).build(null));
 
@@ -111,9 +114,9 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SoulwovenBannerBlockEntity>> SOULWOVEN_BANNER = BLOCK_ENTITY_TYPES.register("soulwoven_banner", () -> BlockEntityType.Builder.of(SoulwovenBannerBlockEntity::new, getBlocks(SoulwovenBannerBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> BlockEntityType.Builder.of(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build(null));
 
-    public static void registerCapabilities(RegisterCapabilitiesEvent event)
-    {
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IItemHandlerSupplier::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IItemHandlerSupplier::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IItemHandlerSupplier::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CATALYZER.get(), IItemHandlerSupplier::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, REPAIR_PYLON.get(), IItemHandlerSupplier::getInventory);
@@ -151,14 +154,17 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(VOID_DEPOT.get(), VoidDepotRenderer::new);
 
             event.registerBlockEntityRenderer(SPIRIT_ALTAR.get(), SpiritAltarRenderer::new);
-            event.registerBlockEntityRenderer(RUNIC_WORKBENCH.get(), MalumItemHolderRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_JAR.get(), SpiritJarRenderer::new);
+            event.registerBlockEntityRenderer(RUNIC_WORKBENCH.get(), MalumItemHolderRenderer::new);
             event.registerBlockEntityRenderer(SOUL_BRAZIER.get(), SoulBrazierRenderer::new);
             event.registerBlockEntityRenderer(ARCANA_PYLON.get(), ArcanaPylonRenderer::new);
 
             event.registerBlockEntityRenderer(SPIRIT_CRUCIBLE.get(), SpiritCrucibleRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_CATALYZER.get(), SpiritCatalyzerRenderer::new);
             event.registerBlockEntityRenderer(REPAIR_PYLON.get(), RepairPylonRenderer::new);
+
+            event.registerBlockEntityRenderer(ITEM_STAND.get(), MalumItemHolderRenderer::new);
+            event.registerBlockEntityRenderer(ITEM_PEDESTAL.get(), MalumItemHolderRenderer::new);
 
             event.registerBlockEntityRenderer(TOTEM_BASE.get(), TotemBaseRenderer::new);
             event.registerBlockEntityRenderer(TOTEM_POLE.get(), TotemPoleRenderer::new);
@@ -172,15 +178,12 @@ public class MalumBlockEntities {
 
             event.registerBlockEntityRenderer(WIND_TUNNEL.get(), WindTunnelRenderer::new);
 
+            event.registerBlockEntityRenderer(OMINOUS_ALTAR.get(), SpiritAltarRenderer::new);
+
             event.registerBlockEntityRenderer(RITUAL_PLINTH.get(), RitualPlinthRenderer::new);
 
-            event.registerBlockEntityRenderer(ITEM_STAND.get(), MalumItemHolderRenderer::new);
-            event.registerBlockEntityRenderer(ITEM_PEDESTAL.get(), MalumItemHolderRenderer::new);
-
-
-
-            event.registerBlockEntityRenderer(MANA_MOTE.get(), MoteOfManaRenderer::new);
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
+            event.registerBlockEntityRenderer(MANA_MOTE.get(), MoteOfManaRenderer::new);
         }
     }
 }

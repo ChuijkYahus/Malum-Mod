@@ -230,6 +230,7 @@ dependencies {
     localRuntime(("curse.maven:spark-361579:5759671"))
     localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
     localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
+    localRuntime(("curse.maven:clutter-no-more-1339454:7357263"))
 
     //FTB Whatever
     localRuntime("curse.maven:architectury-api-419699:5786327")

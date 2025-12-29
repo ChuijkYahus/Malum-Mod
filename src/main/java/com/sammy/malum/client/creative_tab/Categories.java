@@ -689,21 +689,23 @@ public class Categories {
                         .bake();
                 MalumCreativeTabTweaks.create(THE_DUNGEON)
                         .addItems(
+                                MalumItems.OMINOUS_ALTAR,
+                                MalumItems.OMINOUS_OBELISK
+                        )
+                        .addItems(
                                 MalumItems.BROKEN_BLADE,
                                 MalumItems.SHAPED_SLAB
                         )
                         .addItems(
-                                MalumItems.WRITHING_FLESH,
-                                MalumItems.COLUMNAR_FLESH,
-                                MalumItems.FLESHBULB
-                        )
-                        .addItems(
-                                MalumItems.IRON_CROWN
-                        )
-                        .addItems(
+                                MalumItems.IRON_CROWN,
                                 MalumItems.VEILED_EFFIGY,
                                 MalumItems.CORRUPT_EFFIGY,
                                 MalumItems.CRACKED_EFFIGY
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.WRITHING_FLESH,
+                                MalumItems.COLUMNAR_FLESH,
+                                MalumItems.FLESHBULB
                         )
                         .bake();
         }

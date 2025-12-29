@@ -1,6 +1,7 @@
 package com.sammy.malum.common.worldgen.blight;
 
 import com.google.common.collect.*;
+import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
@@ -99,11 +100,50 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         var floraLayer = builder.createLayer();
         var coveringLayer = builder.createLayer();
 
-        List<BlockPos> blightedArea = fetchCoveringPositions(level, pos, radius);
+        var blightedArea = fetchCoveringPositions(level, pos, radius);
         for (BlockPos blockPos : blightedArea) {
             BlockState state = level.getBlockState(blockPos);
             if (state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE)) {
                 blightLayer.add(blockPos, MalumBlocks.BLIGHTED_EARTH.get());
+            }
+        }
+
+        if (random.nextFloat() < 0.2f) {
+            int offset = (int) (radius * 0.25f);
+            int xOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            int zOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            var columnPos = pos.offset(xOffset, 0, zOffset);
+            var columns = fetchCoveringPositions(level, columnPos, Mth.floor(radius*0.5f)+1);
+            var mutable = new BlockPos.MutableBlockPos();
+            for (BlockPos blockPos : columns) {
+                if (random.nextFloat() < 0.4f) {
+                    mutable.set(blockPos);
+                    var foundation = level.getBlockState(mutable);
+                    if (foundation.getBlock() instanceof ColumnarBlightBlock){
+                        continue;
+                    }
+                    int desiredHeight = RandomHelper.randomBetween(random, Easing.EXPO_IN_OUT, 2, 6);
+                    int height = 0;
+                    for (int i = 0; i < desiredHeight; i++) {
+                        mutable.move(Direction.UP);
+                        var state = level.getBlockState(mutable);
+                        if (!state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE) && !state.canBeReplaced()) {
+                            height = -1;
+                            break;
+                        }
+                        height++;
+                    }
+                    mutable.set(blockPos);
+                    if (height > 0) {
+                        for (int i = 0; i < height; i++) {
+                            mutable.move(Direction.UP);
+                            var columnarBlight = MalumBlocks.COLUMNAR_BLIGHT.get().defaultBlockState()
+                                    .setValue(ColumnarBlightBlock.BOTTOM, i > 0)
+                                    .setValue(ColumnarBlightBlock.TOP, i < height-1);
+                            blightLayer.add(mutable.immutable(), columnarBlight);
+                        }
+                    }
+                }
             }
         }
 
@@ -139,7 +179,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
-        List<BlockPos> coveringArea = WorldgenHelper.shuffle(fetchCoveringPositions(level, pos, radius + 3), random);
+        var coveringArea = WorldgenHelper.shuffle(fetchCoveringPositions(level, pos, radius + 3), random);
         if (!coveringArea.isEmpty()) {
             int coveringCount = Math.min(random.nextInt(1, 8 + radius * 8 + 1), coveringArea.size() - 1);
             for (BlockPos blockPos : coveringArea) {

@@ -4,7 +4,6 @@ import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.curiosities.obelisk.*;
 import com.sammy.malum.common.block.curiosities.spirit_altar.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -13,8 +12,6 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.magic.rite.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.altar.*;
 import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -24,7 +21,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.block.*;
+import net.neoforged.neoforge.items.*;
 import team.lodestar.lodestone.systems.blockentity.*;
 import team.lodestar.lodestone.systems.multiblock.*;
 
@@ -32,7 +29,7 @@ import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator {
+public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator, IItemHandlerSupplier {
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
     private static final IAltarAccelerator.AltarAcceleratorType ARCANA_PYLON = new IAltarAccelerator.AltarAcceleratorType(4, "arcana_pylon");
@@ -57,6 +54,11 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     public ArcanaPylonBlockEntity(BlockPos pos, BlockState state) {
         super(MalumBlockEntities.ARCANA_PYLON.get(), STRUCTURE.get(), pos, state);
         inventory = MalumSpiritBlockEntityInventory.singleSpiritStack(this).onContentsChanged(this::updateSpirit);
+    }
+
+    @Override
+    public IItemHandler getInventory(Direction direction) {
+        return inventory;
     }
 
     @Override
@@ -92,20 +94,20 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     }
 
     @Override
-    public boolean canAccelerate() {
+    public boolean canAccelerate(SpiritAltarBlockEntity altar) {
         return spirit != null && spirit.matches(MalumSpiritTypes.ARCANE_SPIRIT);
     }
 
     @Override
-    public void completeSpiritInfusion(ServerLevel level) {
-        if (canAccelerate()) {
+    public void completeSpiritInfusion(ServerLevel level, SpiritAltarBlockEntity altar) {
+        if (canAccelerate(altar)) {
             spendSpiritFuel(level, 16);
         }
     }
 
     @Override
-    public void addParticles(SpiritAltarBlockEntity blockEntity, SpiritArcanaType activeSpiritType) {
-        SpiritAltarParticleEffects.arcanaPylonParticles(this, blockEntity, spirit);
+    public void addParticles(SpiritAltarBlockEntity altar, SpiritArcanaType activeSpiritType) {
+        SpiritAltarParticleEffects.arcanaPylonParticles(this, altar, spirit);
     }
 
     @Override
