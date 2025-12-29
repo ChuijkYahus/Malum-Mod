@@ -24,11 +24,11 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
     public final TrailPointBuilder theLatter = TrailPointBuilder.create(8);
 
     public ScytheBoomerang(Level level) {
-        super(MalumEntities.SCYTHE_BOOMERANG.get(), level);
+        super(MalumEntityTypes.SCYTHE_BOOMERANG.get(), level);
     }
 
     public ScytheBoomerang(Level level, double pX, double pY, double pZ) {
-        super(MalumEntities.SCYTHE_BOOMERANG.get(), pX, pY, pZ, level);
+        super(MalumEntityTypes.SCYTHE_BOOMERANG.get(), pX, pY, pZ, level);
     }
 
     @Override

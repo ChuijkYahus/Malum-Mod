@@ -1,21 +1,13 @@
 package com.sammy.malum.common.entity.mob.cultist.evangelist;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.entity.mob.cultist.CultistMeleeAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -33,7 +25,7 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 public class EvangelistCultist extends CultistMonster implements IAltarBlessingRecipient {
 
     public EvangelistCultist(Level level) {
-        super(MalumEntities.EVANGELIST.get(), level);
+        super(MalumEntityTypes.EVANGELIST.get(), level);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.common.magic.rite;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
+import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.core.*;
@@ -85,7 +85,14 @@ public class MalumSpiritRiteTypes {
 
 
     public static SpiritRiteType getRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        List<? extends SpiritRiteType> rites = MalumSpiritRiteTypes.RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
+        boolean corrupted = totemBase.corrupted;
+        var totemPoles = totemBase.getTotemPoles(level);
+        for (TotemPoleBlockEntity totemPole : totemPoles) {
+            if (totemPole.isSoulwood() != corrupted) {
+                return null;
+            }
+        }
+        var rites = MalumSpiritRiteTypes.RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
         for (SpiritRiteType rite : rites) {
             if (rite.matches(level, totemBase)) {
                 return rite;

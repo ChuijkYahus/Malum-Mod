@@ -53,11 +53,11 @@ public class VividNitrate extends AbstractNitrateEntity {
     };
 
     public VividNitrate(Level level) {
-        super(MalumEntities.VIVID_NITRATE.get(), level);
+        super(MalumEntityTypes.VIVID_NITRATE.get(), level);
     }
 
     public VividNitrate(LivingEntity owner, Level level) {
-        super(MalumEntities.VIVID_NITRATE.get(), owner, level);
+        super(MalumEntityTypes.VIVID_NITRATE.get(), owner, level);
     }
 
     @Override

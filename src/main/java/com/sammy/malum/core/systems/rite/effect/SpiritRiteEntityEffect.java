@@ -1,6 +1,6 @@
 package com.sammy.malum.core.systems.rite.effect;
 
-import com.sammy.malum.common.entity.activator.EntityRiteEffectActivator;
+import com.sammy.malum.common.entity.activator.rite.EntityRiteEffectActivator;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;

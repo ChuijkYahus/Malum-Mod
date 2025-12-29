@@ -16,6 +16,7 @@ import com.sammy.malum.client.renderer.entity.cultist.cardinal.CardinalRenderer;
 import com.sammy.malum.client.renderer.entity.cultist.evangelist.EvangelistRenderer;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBlessingProjectile;
 import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CursedBoltProjectile;
@@ -44,7 +45,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Consumer;
 
-public class MalumEntities {
+public class MalumEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, MalumMod.MALUM);
 
     public static final DeferredHolder<EntityType<?>, EntityType<AltarCultist>> ALTAR = register(
@@ -124,6 +125,9 @@ public class MalumEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectActivator>> RITE_BLOCK_EFFECT_ACTIVATOR =
             register("bound_rite_locus", BlockRiteEffectActivator::new, 1f, 1f, 1, 1);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<BlockRiteEffectWaveActivator>> RITE_BLOCK_WAVE_EFFECT_ACTIVATOR =
+            register("locus_wave_projection", BlockRiteEffectWaveActivator::new, 1f, 1f, 1, 1);
+
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritCollectionActivator>> SPIRIT_COLLECTION_ACTIVATOR =
             register("pneuma_void", SpiritCollectionActivator::new, 1f, 1f, 10);
 
@@ -184,39 +188,40 @@ public class MalumEntities {
 
     public static class ClientOnly {
         public static void bindEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            EntityRenderers.register(MalumEntities.ALTAR.get(), AltarRenderer::new);
-            EntityRenderers.register(MalumEntities.CHERUB.get(), CherubRenderer::new);
-            EntityRenderers.register(MalumEntities.BELIEVER.get(), BelieverRenderer::new);
-            EntityRenderers.register(MalumEntities.CARDINAL.get(), CardinalRenderer::new);
-            EntityRenderers.register(MalumEntities.EVANGELIST.get(), EvangelistRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.ALTAR.get(), AltarRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.CHERUB.get(), CherubRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.BELIEVER.get(), BelieverRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.CARDINAL.get(), CardinalRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.EVANGELIST.get(), EvangelistRenderer::new);
 
-            EntityRenderers.register(MalumEntities.CURSED_BOLT.get(), CultistBoltRenderer::new);
-            EntityRenderers.register(MalumEntities.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
-            EntityRenderers.register(MalumEntities.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.CURSED_BOLT.get(), CultistBoltRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
-            EntityRenderers.register(MalumEntities.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
-            EntityRenderers.register(MalumEntities.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);
-            EntityRenderers.register(MalumEntities.SCYTHE_MAELSTROM.get(), NoopRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.SCYTHE_MAELSTROM.get(), NoopRenderer::new);
 
-            EntityRenderers.register(MalumEntities.ETHERIC_NITRATE.get(), EthericNitrateRenderer::new);
-            EntityRenderers.register(MalumEntities.VIVID_NITRATE.get(), VividNitrateRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.ETHERIC_NITRATE.get(), EthericNitrateRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.VIVID_NITRATE.get(), VividNitrateRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), SpellweaverToolEffectActivatorRenderer::new);
-            EntityRenderers.register(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorRenderer::new);
-            EntityRenderers.register(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), SpellweaverToolEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.RITE_ENTITY_EFFECT_ACTIVATOR.get(), EntityRiteEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.RITE_BLOCK_EFFECT_ACTIVATOR.get(), BlockRiteEffectActivatorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.RITE_BLOCK_WAVE_EFFECT_ACTIVATOR.get(), BlockRiteEffectWaveActivatorRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorRenderer::new);
-            EntityRenderers.register(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);
 
-            EntityRenderers.register(MalumEntities.THROWN_GLUTTONY.get(), ThrownConcentratedGluttonyRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.THROWN_GLUTTONY.get(), ThrownConcentratedGluttonyRenderer::new);
 
-            EntityRenderers.register(MalumEntities.HEX_BOLT.get(), HexBoltRenderer::new);
-            EntityRenderers.register(MalumEntities.DRAINING_BOLT.get(), DrainingBoltRenderer::new);
-            EntityRenderers.register(MalumEntities.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.HEX_BOLT.get(), HexBoltRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.DRAINING_BOLT.get(), DrainingBoltRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltRenderer::new);
 
-            EntityRenderers.register(MalumEntities.SUNDERING_ANCHOR.get(), SunderingAnchorRenderer::new);
+            EntityRenderers.register(MalumEntityTypes.SUNDERING_ANCHOR.get(), SunderingAnchorRenderer::new);
 
         }
     }

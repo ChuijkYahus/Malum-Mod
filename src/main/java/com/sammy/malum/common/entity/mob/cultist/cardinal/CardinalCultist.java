@@ -6,7 +6,7 @@ import com.sammy.malum.common.entity.mob.cultist.cardinal.goal.*;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalImmolationBlastParticleEffect;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalRetaliationBlastParticleEffect;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalDetonationBlastParticleEffect;
@@ -78,7 +78,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public boolean useImmolationBlast;
 
     public CardinalCultist(Level level) {
-        super(MalumEntities.CARDINAL.get(), level);
+        super(MalumEntityTypes.CARDINAL.get(), level);
         idleAnimationState.start(tickCount);
     }
 

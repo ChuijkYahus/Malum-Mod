@@ -1,11 +1,11 @@
-package com.sammy.malum.common.entity.activator;
+package com.sammy.malum.common.entity.activator.rite;
 
 import com.sammy.malum.common.entity.FloatingEntity;
 import com.sammy.malum.common.entity.FloatingItemDestinationData;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.MalumEntityDataSerializers;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import net.minecraft.nbt.CompoundTag;
@@ -27,7 +27,7 @@ public class EntityRiteEffectActivator extends FloatingEntity {
     protected SpiritRiteEntityEffect<?> effect;
 
     public EntityRiteEffectActivator(Level level) {
-        super(MalumEntities.RITE_ENTITY_EFFECT_ACTIVATOR.get(), level);
+        super(MalumEntityTypes.RITE_ENTITY_EFFECT_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 

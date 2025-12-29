@@ -6,7 +6,7 @@ import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -37,7 +37,7 @@ public class CultistBlessingProjectile extends AbstractBoltProjectile {
     public static final Color CULTIST_PURPLE = new Color(119, 10, 74);
 
     public CultistBlessingProjectile(Level level) {
-        super(MalumEntities.CULTIST_BLESSING.get(), level);
+        super(MalumEntityTypes.CULTIST_BLESSING.get(), level);
     }
 
     @Override

@@ -22,9 +22,9 @@ import team.lodestar.lodestone.systems.block.LodestoneLogBlock;
 
 import java.util.function.Supplier;
 
-public class MalumLogBLock extends LodestoneLogBlock {
+public class MalumLogBlock extends LodestoneLogBlock {
 
-    public MalumLogBLock(Properties properties, Supplier<Block> stripped) {
+    public MalumLogBlock(Properties properties, Supplier<Block> stripped) {
         super(properties, stripped);
     }
 

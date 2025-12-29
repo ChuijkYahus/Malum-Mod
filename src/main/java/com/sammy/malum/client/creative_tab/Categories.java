@@ -45,7 +45,9 @@ public class Categories {
                                 MalumItems.WAVEFORM_SOULWOOD_TOTEM_BASE,
                                 MalumItems.ARCANA_PYLON,
                                 MalumItems.RITE_ANCHOR,
-                                MalumItems.RITE_UNWEAVER
+                                MalumItems.RITE_UNWEAVER,
+                                MalumItems.RITE_SPREADER,
+                                MalumItems.RITE_CHANNEL
                         )
                         .bake();
                 MalumCreativeTabTweaks.create(GEAR)
@@ -429,9 +431,7 @@ public class Categories {
                                 MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL,
                                 MalumItems.RUNEWOOD_ITEM_PEDESTAL,
                                 MalumItems.GILDED_RUNEWOOD_ITEM_STAND,
-                                MalumItems.RUNEWOOD_ITEM_STAND,
-                                MalumItems.RUNEWOOD_PRESSURE_PLATE,
-                                MalumItems.RUNEWOOD_BUTTON
+                                MalumItems.RUNEWOOD_ITEM_STAND
                         ).nextLine()
                         .addItems(
                                 MalumItems.RUNEWOOD_DOOR,
@@ -444,6 +444,8 @@ public class Categories {
                                 MalumItems.BOLTED_RUNEWOOD_BOARDS_TRAPDOOR
                         ).nextLine()
                         .addItems(
+                                MalumItems.RUNEWOOD_PRESSURE_PLATE,
+                                MalumItems.RUNEWOOD_BUTTON,
                                 MalumItems.RUNEWOOD_BOARDS_WALL,
                                 MalumItems.RUNEWOOD_FENCE,
                                 MalumItems.RUNEWOOD_FENCE_GATE,
@@ -506,9 +508,7 @@ public class Categories {
                                 MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL,
                                 MalumItems.SOULWOOD_ITEM_PEDESTAL,
                                 MalumItems.ORNATE_SOULWOOD_ITEM_STAND,
-                                MalumItems.SOULWOOD_ITEM_STAND,
-                                MalumItems.SOULWOOD_PRESSURE_PLATE,
-                                MalumItems.SOULWOOD_BUTTON
+                                MalumItems.SOULWOOD_ITEM_STAND
                         ).nextLine()
                         .addItems(
                                 MalumItems.SOULWOOD_DOOR,

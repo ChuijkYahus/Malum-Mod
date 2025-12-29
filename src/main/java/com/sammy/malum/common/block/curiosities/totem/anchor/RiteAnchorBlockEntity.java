@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem.anchor;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
@@ -36,10 +36,10 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
         EFFECTS.put(MalumSpiritTypes.WICKED_SPIRIT, BlockRiteEffectActivator::leechHealth);
         EFFECTS.put(MalumSpiritTypes.ELDRITCH_SPIRIT, BlockRiteEffectActivator::duplicate);
 
-        EFFECTS.put(MalumSpiritTypes.AERIAL_SPIRIT, e -> e.upgrade(e.speed));
-        EFFECTS.put(MalumSpiritTypes.AQUEOUS_SPIRIT, e -> e.upgrade(e.potency));
-        EFFECTS.put(MalumSpiritTypes.EARTHEN_SPIRIT, e -> e.upgrade(e.impact));
-        EFFECTS.put(MalumSpiritTypes.INFERNAL_SPIRIT, e -> e.upgrade(e.distance));
+        EFFECTS.put(MalumSpiritTypes.AERIAL_SPIRIT, e -> e.upgrade(RiteSparkAttributeDataStorage::getSpeed));
+        EFFECTS.put(MalumSpiritTypes.AQUEOUS_SPIRIT, e -> e.upgrade(RiteSparkAttributeDataStorage::getPotency));
+        EFFECTS.put(MalumSpiritTypes.EARTHEN_SPIRIT, e -> e.upgrade(RiteSparkAttributeDataStorage::getImpact));
+        EFFECTS.put(MalumSpiritTypes.INFERNAL_SPIRIT, e -> e.upgrade(RiteSparkAttributeDataStorage::getDistance));
     }
 
     public static final StringRepresentable.EnumCodec<AimState> CODEC = StringRepresentable.fromEnum(AimState::values);

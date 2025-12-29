@@ -27,7 +27,7 @@ public class HexBolt extends AbstractStaffBoltProjectile {
 
     public static final MalumNetworkedParticleEffectColorData COLOR = new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.WICKED_SPIRIT);
     public HexBolt(Level level) {
-        super(MalumEntities.HEX_BOLT.get(), level);
+        super(MalumEntityTypes.HEX_BOLT.get(), level);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.sammy.malum.client.renderer.entity.activator;
 
-import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import team.lodestar.lodestone.systems.rendering.trail.*;

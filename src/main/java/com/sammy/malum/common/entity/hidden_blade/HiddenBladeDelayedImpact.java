@@ -22,12 +22,12 @@ public class HiddenBladeDelayedImpact extends ThrowableItemProjectile {
     public int enemiesHit;
 
     public HiddenBladeDelayedImpact(Level level) {
-        super(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), level);
+        super(MalumEntityTypes.HIDDEN_BLADE_DELAYED_IMPACT.get(), level);
         noPhysics = false;
     }
 
     public HiddenBladeDelayedImpact(Level level, double pX, double pY, double pZ) {
-        super(MalumEntities.HIDDEN_BLADE_DELAYED_IMPACT.get(), pX, pY, pZ, level);
+        super(MalumEntityTypes.HIDDEN_BLADE_DELAYED_IMPACT.get(), pX, pY, pZ, level);
         noPhysics = false;
     }
 

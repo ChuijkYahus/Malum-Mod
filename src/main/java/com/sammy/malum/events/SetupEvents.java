@@ -4,7 +4,7 @@ import com.sammy.malum.common.item.banner.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.event.lifecycle.*;
@@ -44,6 +44,6 @@ public class SetupEvents {
 
     @SubscribeEvent
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
-        MalumEntities.registerEntityAttributes(event);
+        MalumEntityTypes.registerEntityAttributes(event);
     }
 }

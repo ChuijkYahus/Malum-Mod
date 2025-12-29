@@ -1,25 +1,21 @@
 package com.sammy.malum.common.block.nature.soulwood;
 
-import com.sammy.malum.common.block.nature.MalumLogBLock;
+import com.sammy.malum.common.block.nature.MalumLogBlock;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumSoundEvents;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class SoulwoodLogBlock extends MalumLogBLock {
+public class SoulwoodLogBlock extends MalumLogBlock {
     public SoulwoodLogBlock(Properties properties, Supplier<Block> stripped) {
         super(properties, stripped);
     }

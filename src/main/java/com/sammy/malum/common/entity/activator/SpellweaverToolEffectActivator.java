@@ -39,7 +39,7 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
     protected int carriedExperience;
 
     public SpellweaverToolEffectActivator(Level level) {
-        super(MalumEntities.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), level);
+        super(MalumEntityTypes.SPELLWEAVER_TOOL_EFFECT_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 

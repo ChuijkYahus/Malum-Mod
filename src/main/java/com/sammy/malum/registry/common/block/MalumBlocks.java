@@ -23,6 +23,8 @@ import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
+import com.sammy.malum.common.block.curiosities.totem.channel.*;
+import com.sammy.malum.common.block.curiosities.totem.spreader.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
 import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
@@ -109,8 +111,10 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> RUNEWOOD_TOTEM_POLE = BLOCKS.register("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.RUNEWOOD_LOG, false).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
     public static final DeferredHolder<Block, Block> SOULWOOD_TOTEM_POLE = BLOCKS.register("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), MalumBlocks.SOULWOOD_LOG, true).setBlockEntity(MalumBlockEntities.TOTEM_POLE));
 
-    public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.RITE_ANCHOR()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
-    public static final DeferredHolder<Block, Block> RITE_UNWEAVER = BLOCKS.register("rite_unweaver", () -> new RiteUnweaverBlock(MalumBlockProperties.RITE_UNWEAVER()).setBlockEntity(MalumBlockEntities.RITE_UNWEAVER));
+    public static final DeferredHolder<Block, Block> RITE_ANCHOR = BLOCKS.register("rite_anchor", () -> new RiteAnchorBlock(MalumBlockProperties.TAINTED_ROCK_TOTEMANCY()).setBlockEntity(MalumBlockEntities.RITE_ANCHOR));
+    public static final DeferredHolder<Block, Block> RITE_UNWEAVER = BLOCKS.register("rite_unweaver", () -> new RiteUnweaverBlock(MalumBlockProperties.TWISTED_ROCK_TOTEMANCY()).setBlockEntity(MalumBlockEntities.RITE_UNWEAVER));
+    public static final DeferredHolder<Block, Block> RITE_SPREADER = BLOCKS.register("rite_spreader", () -> new RiteSpreaderBlock(MalumBlockProperties.TAINTED_ROCK_TOTEMANCY()).setBlockEntity(MalumBlockEntities.RITE_SPREADER));
+    public static final DeferredHolder<Block, Block> RITE_CHANNEL = BLOCKS.register("rite_channel", () -> new RiteChannelBlock(MalumBlockProperties.TAINTED_ROCK_TOTEMANCY()).setBlockEntity(MalumBlockEntities.RITE_CHANNEL));
 
     public static final DeferredHolder<Block, Block> WAVECHARGER = BLOCKS.register("wavecharger", () -> new WaveChargerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVECHARGER));
     public static final DeferredHolder<Block, Block> WAVEBANKER = BLOCKS.register("wavebanker", () -> new WaveBankerBlock(MalumBlockProperties.WAVEFORM_DIODE()).setBlockEntity(MalumBlockEntities.WAVEBANKER));
@@ -327,7 +331,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> HANGING_AZURE_RUNEWOOD_LEAVES = BLOCKS.register("hanging_azure_runewood_leaves", () -> new MalumHangingLeavesBlock(MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(), MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_BLUE, MalumBlockProperties.AZURE_RUNEWOOD_LEAVES_CYAN));
 
     public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD_LOG = BLOCKS.register("stripped_runewood_log", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_LOGS)));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_LOG = BLOCKS.register("runewood_log", () -> new MalumLogBLock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD_LOG));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_LOG = BLOCKS.register("runewood_log", () -> new MalumLogBlock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD_LOG));
 
     public static final DeferredHolder<Block, Block> STRIPPED_RUNEWOOD = BLOCKS.register("stripped_runewood", () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
     public static final DeferredHolder<Block, Block> RUNEWOOD = BLOCKS.register("runewood", () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD(), STRIPPED_RUNEWOOD));

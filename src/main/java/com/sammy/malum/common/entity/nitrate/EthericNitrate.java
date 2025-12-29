@@ -29,11 +29,11 @@ public class EthericNitrate extends AbstractNitrateEntity {
     public static final ColorParticleData AURIC_COLOR_DATA = ColorParticleData.create(AURIC_YELLOW, AURIC_PURPLE).setEasing(Easing.SINE_IN_OUT).setCoefficient(0.9f).build().lock();
 
     public EthericNitrate(Level level) {
-        super(MalumEntities.ETHERIC_NITRATE.get(), level);
+        super(MalumEntityTypes.ETHERIC_NITRATE.get(), level);
     }
 
     public EthericNitrate(LivingEntity owner) {
-        super(MalumEntities.ETHERIC_NITRATE.get(), owner, owner.level());
+        super(MalumEntityTypes.ETHERIC_NITRATE.get(), owner, owner.level());
     }
 
     @Override

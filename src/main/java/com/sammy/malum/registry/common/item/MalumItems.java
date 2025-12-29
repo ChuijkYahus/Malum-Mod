@@ -145,6 +145,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOULWOOD_TOTEM_BASE = register("soulwood_totem_base", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> RITE_ANCHOR = register("rite_anchor", MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(MalumBlocks.RITE_ANCHOR.get(), p));
     public static final DeferredHolder<Item, Item> RITE_UNWEAVER = register("rite_unweaver", MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(MalumBlocks.RITE_UNWEAVER.get(), p));
+    public static final DeferredHolder<Item, Item> RITE_SPREADER = register("rite_spreader", MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(MalumBlocks.RITE_SPREADER.get(), p));
+    public static final DeferredHolder<Item, Item> RITE_CHANNEL = register("rite_channel", MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(MalumBlocks.RITE_CHANNEL.get(), p));
     public static final DeferredHolder<Item, Item> WAVEFORM_RUNEWOOD_TOTEM_BASE = register("waveform_runewood_totem_base", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WAVEFORM_RUNEWOOD_TOTEM_BASE.get(), p));
     public static final DeferredHolder<Item, Item> WAVEFORM_SOULWOOD_TOTEM_BASE = register("waveform_soulwood_totem_base", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WAVEFORM_SOULWOOD_TOTEM_BASE.get(), p));
 

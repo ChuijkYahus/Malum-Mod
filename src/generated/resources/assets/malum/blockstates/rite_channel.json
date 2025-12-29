@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "channel_type=base": {
+      "model": "malum:block/rite_channel"
+    },
+    "channel_type=bend_east_south": {
+      "model": "malum:block/rite_channel_bend_east_south",
+      "y": 270
+    },
+    "channel_type=bend_north_east": {
+      "model": "malum:block/rite_channel_bend_north_east",
+      "y": 180
+    },
+    "channel_type=bend_south_west": {
+      "model": "malum:block/rite_channel_bend_south_west"
+    },
+    "channel_type=bend_west_north": {
+      "model": "malum:block/rite_channel_bend_west_north",
+      "y": 90
+    },
+    "channel_type=end_east": {
+      "model": "malum:block/rite_channel_end_east",
+      "y": 270
+    },
+    "channel_type=end_north": {
+      "model": "malum:block/rite_channel_end_north",
+      "y": 180
+    },
+    "channel_type=end_south": {
+      "model": "malum:block/rite_channel_end_south"
+    },
+    "channel_type=end_west": {
+      "model": "malum:block/rite_channel_end_west",
+      "y": 90
+    },
+    "channel_type=straight_x": {
+      "model": "malum:block/rite_channel_straight_x",
+      "y": 90
+    },
+    "channel_type=straight_z": {
+      "model": "malum:block/rite_channel_straight_z"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "malum:block/rite_spreader",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "malum:block/rite_spreader",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/rite_spreader",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "malum:block/rite_spreader",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "malum:block/rite_spreader"
+    },
+    "facing=west": {
+      "model": "malum:block/rite_spreader",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -7,7 +7,6 @@ import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.resources.*;
@@ -31,7 +30,7 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPE
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
-import static com.sammy.malum.registry.common.entity.MalumEntities.*;
+import static com.sammy.malum.registry.common.entity.MalumEntityTypes.*;
 import static com.sammy.malum.registry.common.item.MalumDataComponents.*;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static com.sammy.malum.registry.common.MalumCreativeTabs.*;
