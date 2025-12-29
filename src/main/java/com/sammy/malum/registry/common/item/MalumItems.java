@@ -8,6 +8,7 @@ import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
 import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
+import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
@@ -293,11 +294,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RESONANCE_TUNER = register("resonance_tuner", MalumItems::DEFAULT_PROPERTIES, ResonanceTuner::new);
 
     public static final DeferredHolder<Item, Item> STELLAR_MECHANISM = register("stellar_mechanism", MalumItems::DEFAULT_PROPERTIES, StellarMechanismItem::new);
-    //endregion
-
-    //region cult of the iron crow
-    public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::GEAR_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
-    public static final DeferredHolder<Item, Item> BROKEN_BLADE = register("broken_blade", MalumItems::GEAR_PROPERTIES, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
     //endregion
 
     //region ether
@@ -728,15 +724,21 @@ public class MalumItems {
     //endregion
 
     //region dungeon
-    public static final DeferredHolder<Item, Item> COLUMNAR_FLESH = register("columnar_flesh", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.COLUMNAR_FLESH.get(), p));
-    public static final DeferredHolder<Item, Item> FLESHBULB = register("fleshbulb", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.FLESHBULB.get(), p));
-    public static final DeferredHolder<Item, Item> WRITHING_FLESH = register("writhing_flesh", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WRITHING_FLESH.get(), p));
+    public static final DeferredHolder<Item, Item> OMINOUS_ALTAR = register("ominous_altar", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.OMINOUS_ALTAR.get(), p));
+    public static final DeferredHolder<Item, Item> OMINOUS_OBELISK = register("ominous_obelisk", MalumItems::DEFAULT_PROPERTIES, (p) -> new MultiBlockItem(MalumBlocks.OMINOUS_OBELISK.get(), p, OminousObeliskBlockEntity.STRUCTURE));
+
+    public static final DeferredHolder<Item, Item> SHAPED_SLAB = register("shaped_slab", MalumItems::GEAR_PROPERTIES, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
+    public static final DeferredHolder<Item, Item> BROKEN_BLADE = register("broken_blade", MalumItems::GEAR_PROPERTIES, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
 
     public static final DeferredHolder<Item, Item> IRON_CROWN = register("iron_crown", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
     public static final DeferredHolder<Item, Item> VEILED_EFFIGY = register("veiled_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.VEILED_EFFIGY.get(), p));
     public static final DeferredHolder<Item, Item> CORRUPT_EFFIGY = register("corrupt_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CORRUPT_EFFIGY.get(), p));
     public static final DeferredHolder<Item, Item> CRACKED_EFFIGY = register("cracked_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CRACKED_EFFIGY.get(), p));
+
+    public static final DeferredHolder<Item, Item> COLUMNAR_FLESH = register("columnar_flesh", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.COLUMNAR_FLESH.get(), p));
+    public static final DeferredHolder<Item, Item> FLESHBULB = register("fleshbulb", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.FLESHBULB.get(), p));
+    public static final DeferredHolder<Item, Item> WRITHING_FLESH = register("writhing_flesh", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WRITHING_FLESH.get(), p));
 
     //endregion
 

@@ -724,6 +724,20 @@ public class MalumBlockProperties {
                 .strength(10f, 9999f);
     }
 
+    public static LodestoneBlockProperties MEDITATING_EFFIGY() {
+        return CHISELED_DROSS_STONE()
+                .addTag(WALL_POST_OVERRIDE)
+                .setCutoutRenderType()
+                .noOcclusion()
+                .strength(3.5F, -1.0F);
+    }
+
+    public static LodestoneBlockProperties OMINOUS_CRAFT() {
+        return CHISELED_DROSS_STONE()
+                .setCutoutRenderType()
+                .noOcclusion()
+                .strength(3.5F, -1.0F);
+    }
 
     public static LodestoneBlockProperties FLESH() {
         return new LodestoneBlockProperties()
@@ -748,15 +762,6 @@ public class MalumBlockProperties {
                 .strength(0.5F, -1.0F)
                 .noCollission()
                 .noOcclusion();
-    }
-
-    public static LodestoneBlockProperties MEDITATING_EFFIGY() {
-        return CHISELED_DROSS_STONE()
-                .addTag(WALL_POST_OVERRIDE)
-                .sound(MalumSoundEvents.CHISELED_DROSS_STONE)
-                .setCutoutRenderType()
-                .noOcclusion()
-                .strength(3.5F, -1.0F);
     }
 
     public static LodestoneBlockProperties WEEPING_WELL() {

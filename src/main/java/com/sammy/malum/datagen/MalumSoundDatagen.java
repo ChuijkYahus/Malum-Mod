@@ -369,23 +369,23 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.ARTIFICE_ARCANE_ROCK_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/artifice/hit", 4)).with(sounds("minecraft:block/heavy_core/step", 4)));
         this.add(MalumSoundEvents.ARTIFICE_ARCANE_ROCK_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/artifice/hit", 4)).with(sounds("minecraft:block/heavy_core/step", 4)));
         
-        this.add(MalumSoundEvents.DROSS_STONE_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
 
-        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.DROSS_STONE_BRICKS_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/bricks/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
 
-        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/break", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
-        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/mud_bricks/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_BREAK, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_STEP, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_PLACE, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/break", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/break", 5, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_HIT, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
+        this.add(MalumSoundEvents.CHISELED_DROSS_STONE_FALL, s -> definition(s).with(sounds("blocks/arcane_rock/chiseled/hit", 6, se -> se.pitch(1.05f))).with(sounds("minecraft:block/dripstone/step", 6, se -> se.weight(2).pitch(1.2f))));
 
         this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_BREAK, s -> definition(s).with(sounds("blocks/terracotta/break", 4)));
         this.add(MalumSoundEvents.VARNISHED_TERRACOTTA_BRICKS_STEP, s -> definition(s).with(sounds("blocks/terracotta/step", 4)));

@@ -35,8 +35,8 @@ public class RunewoodObeliskBlockEntity extends ObeliskCoreBlockEntity implement
     }
 
     @Override
-    public void addParticles(SpiritAltarBlockEntity blockEntity, SpiritArcanaType activeSpiritType) {
-        SpiritAltarParticleEffects.runewoodObeliskParticles(this, blockEntity, activeSpiritType);
+    public void addParticles(SpiritAltarBlockEntity altar, SpiritArcanaType activeSpiritType) {
+        SpiritAltarParticleEffects.runewoodObeliskParticles(this, altar, activeSpiritType);
     }
 
     public Vec3 getParticleOffset() {

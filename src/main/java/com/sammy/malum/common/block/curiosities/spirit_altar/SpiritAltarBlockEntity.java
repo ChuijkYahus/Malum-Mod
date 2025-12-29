@@ -74,13 +74,13 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     public SpiritAltarBlockEntity(BlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-    }
-
-    public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
-        super(MalumBlockEntities.SPIRIT_ALTAR.get(), pos, state);
         inventory = MalumBlockEntityInventory.singleStackNotSpirit(this).onContentsChanged(this::recalculateRecipes);
         extrasInventory = MalumBlockEntityInventory.stacksNotSpirits(this, 8);
         spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this).onContentsChanged(this::recalculateRecipes);
+    }
+
+    public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
+        this(MalumBlockEntities.SPIRIT_ALTAR.get(), pos, state);
     }
 
     @Override
@@ -185,7 +185,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         }
         if (isCrafting) {
             if (level.getGameTime() % 20L == 0) {
-                boolean canAccelerate = accelerators.stream().allMatch(IAltarAccelerator::canAccelerate);
+                boolean canAccelerate = accelerators.stream().allMatch(iAltarAccelerator -> iAltarAccelerator.canAccelerate(this));
                 if (!canAccelerate) {
                     recalibrateAccelerators();
                 }
@@ -312,7 +312,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
         recalibrateAccelerators();
-        accelerators.forEach(a -> a.completeSpiritInfusion(level));
+        accelerators.forEach(a -> a.completeSpiritInfusion(level, this));
         recalculateRecipes();
         notifyObservers();
         setDirty();
@@ -325,7 +325,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         Collection<IAltarAccelerator> nearbyAccelerators = BlockEntityHelper.getBlockEntities(IAltarAccelerator.class, level, worldPosition, HORIZONTAL_RANGE, VERTICAL_RANGE, HORIZONTAL_RANGE);
         Map<IAltarAccelerator.AltarAcceleratorType, Integer> entries = new HashMap<>();
         for (IAltarAccelerator accelerator : nearbyAccelerators) {
-            if (accelerator.canAccelerate()) {
+            if (accelerator.canAccelerate(this)) {
                 int max = accelerator.getAcceleratorType().maximumEntries();
                 int amount = entries.computeIfAbsent(accelerator.getAcceleratorType(), (a) -> 0);
                 if (amount < max) {

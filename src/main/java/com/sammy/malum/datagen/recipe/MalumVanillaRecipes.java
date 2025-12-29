@@ -36,6 +36,7 @@ import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 public class MalumVanillaRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput output) {
+        var hasBlight = has(MalumItems.BLIGHTED_GUNK.get());
         var hasSoulstone = has(MalumItems.RAW_SOULSTONE.get());
         var hasHallowedGold = has(MalumItems.HALLOWED_GOLD_INGOT.get());
         var hasSoulStainedSteel = has(MalumItems.SOUL_STAINED_STEEL_INGOT.get());
@@ -144,6 +145,27 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         etherCresset(output, MalumItems.TWISTED_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.TWISTED_ROCK.get(), MalumItems.IRIDESCENT_ETHER.get());
         etherCresset(output, MalumItems.DROSS_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.DROSS_STONE.get(), MalumItems.IRIDESCENT_ETHER.get());
 
+        //SAP & ARCANE CHARCOAL
+        smelting(Ingredient.of(MalumTags.ItemTags.RUNEWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_runewood_planks", has(MalumTags.ItemTags.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
+        shapeless(RecipeCategory.MISC, MalumItems.RUNIC_SAPBALL.get()).requires(MalumItems.RUNIC_SAP.get()).unlockedBy("has_runic_sap", has(MalumItems.RUNIC_SAP.get())).save(output);
+
+        smelting(Ingredient.of(MalumTags.ItemTags.SOULWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_soulwood_planks", has(MalumTags.ItemTags.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
+        shapeless(RecipeCategory.MISC, MalumItems.CURSED_SAPBALL.get()).requires(MalumItems.CURSED_SAP.get()).unlockedBy("has_cursed_sap", has(MalumItems.CURSED_SAP.get())).save(output);
+
+        //BLIGHT
+        shapeless(RecipeCategory.MISC, MalumItems.BLIGHT.get()).requires(MalumItems.BLIGHTED_GUNK.get()).unlockedBy("has_blight", hasBlight).save(output);
+        shaped(RecipeCategory.MISC, MalumItems.BLIGHTED_EARTH.get())
+                .define('X', MalumItems.BLIGHTED_GUNK.get())
+                .pattern("XX")
+                .pattern("XX")
+                .unlockedBy("has_blight", hasBlight).save(output);
+        shaped(RecipeCategory.MISC, MalumItems.COLUMNAR_BLIGHT.get())
+                .define('X', MalumItems.BLIGHTED_GUNK.get())
+                .pattern("X")
+                .pattern("X")
+                .pattern("X")
+                .unlockedBy("has_blight", hasBlight).save(output);
+
         //BANNERS
         shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(MalumItems.SOULWOVEN_SILK.get())).save(output);
         bannerRecipe(output, MalumItems.ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER);
@@ -183,7 +205,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         nodeSmelting(output, MalumItems.TIN_NODE, NUGGETS_TIN);
 
         //TOOLS
-
         shaped(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_HOE.get()).define('#', Tags.Items.RODS_WOODEN).define('X', MalumItems.SOUL_STAINED_STEEL_INGOT.get()).pattern("XX").pattern(" #").pattern(" #").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
         shaped(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_PICKAXE.get()).define('#', Tags.Items.RODS_WOODEN).define('X', MalumItems.SOUL_STAINED_STEEL_INGOT.get()).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
         shaped(RecipeCategory.MISC, MalumItems.SOUL_STAINED_STEEL_AXE.get()).define('#', Tags.Items.RODS_WOODEN).define('X', MalumItems.SOUL_STAINED_STEEL_INGOT.get()).pattern("XX ").pattern("X# ").pattern(" # ").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
@@ -260,13 +281,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, Items.ZOMBIE_HEAD).define('#', MalumItems.GRIM_TALC.get()).define('&', Items.ROTTEN_FLESH).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", has(MalumItems.GRIM_TALC.get())).save(output, malumPath("zombie_head_from_grim_talc"));
 
         shaped(RecipeCategory.MISC, Items.TORCH, 6).define('#', MalumItems.BLAZING_QUARTZ.get()).define('&', Items.STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("torch_from_blazing_quartz"));
-
-        //SAP & ARCANE CHARCOAL
-        smelting(Ingredient.of(MalumTags.ItemTags.RUNEWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_runewood_planks", has(MalumTags.ItemTags.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
-        shapeless(RecipeCategory.MISC, MalumItems.RUNIC_SAPBALL.get()).requires(MalumItems.RUNIC_SAP.get()).unlockedBy("has_runic_sap", has(MalumItems.RUNIC_SAP.get())).save(output);
-
-        smelting(Ingredient.of(MalumTags.ItemTags.SOULWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_soulwood_planks", has(MalumTags.ItemTags.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
-        shapeless(RecipeCategory.MISC, MalumItems.CURSED_SAPBALL.get()).requires(MalumItems.CURSED_SAP.get()).unlockedBy("has_cursed_sap", has(MalumItems.CURSED_SAP.get())).save(output);
 
         //THE DEVICE
         shaped(RecipeCategory.MISC, MalumItems.THE_DEVICE.get()).define('X', MalumItems.TWISTED_ROCK.get()).define('Y', MalumItems.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(Items.BEDROCK)).save(output);

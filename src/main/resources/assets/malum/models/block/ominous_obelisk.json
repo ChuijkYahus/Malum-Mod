@@ -1,0 +1,8 @@
+{
+	"parent": "malum:block/runewood_obelisk",
+	"texture_size": [32, 32],
+	"textures": {
+		"obelisk": "malum:block/dungeon/ominous_obelisk",
+		"particle": "malum:block/arcane_rock/dross/dross_stone_bricks"
+	}
+}

@@ -1165,32 +1165,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1224,32 +1219,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1283,32 +1278,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1342,32 +1337,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1401,32 +1391,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1706,32 +1696,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1765,32 +1750,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1824,32 +1804,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1883,32 +1863,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -1942,32 +1922,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -2001,32 +1976,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -2060,32 +2035,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -2119,32 +2094,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }
@@ -2178,32 +2153,27 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/break1",
+        "name": "block/dripstone/break1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break2",
+        "name": "block/dripstone/break2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break3",
+        "name": "block/dripstone/break3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break4",
+        "name": "block/dripstone/break4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/break5",
-        "pitch": 1.2,
-        "weight": 2
-      },
-      {
-        "name": "block/mud_bricks/break6",
+        "name": "block/dripstone/break5",
         "pitch": 1.2,
         "weight": 2
       }
@@ -2237,32 +2207,32 @@
         "pitch": 1.05
       },
       {
-        "name": "block/mud_bricks/step1",
+        "name": "block/dripstone/step1",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step2",
+        "name": "block/dripstone/step2",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step3",
+        "name": "block/dripstone/step3",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step4",
+        "name": "block/dripstone/step4",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step5",
+        "name": "block/dripstone/step5",
         "pitch": 1.2,
         "weight": 2
       },
       {
-        "name": "block/mud_bricks/step6",
+        "name": "block/dripstone/step6",
         "pitch": 1.2,
         "weight": 2
       }

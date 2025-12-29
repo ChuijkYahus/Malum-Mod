@@ -57,7 +57,7 @@ public class SpiritAltarParticleEffects {
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
                 if (accelerator != null) {
-                    if (accelerator.canAccelerate()) {
+                    if (accelerator.canAccelerate(altar)) {
                         accelerator.addParticles(altar, activeSpiritType.getSpirit());
                     }
                 }
