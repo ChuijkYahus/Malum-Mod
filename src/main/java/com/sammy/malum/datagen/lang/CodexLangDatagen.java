@@ -904,6 +904,7 @@ public class CodexLangDatagen {
         addSimpleEntryHeader("varnished_terracotta", "Varnished Terracotta", "Pretty patterns");
         addPages("varnished_terracotta",
                 "In forming glazed terracotta, beautiful patterns can easily be formed through the careful use of a furnace's heat. By fusing terracotta with alchemical calx and then with arcana, a similar result can be achieved. Just as with glass, the resulting patterns are quite pretty.");
+        addSimpleEntryHeader("varnished_terracotta.null", "Approximating The Ninth Arcana", "A Counterfeit Everything");
         addPages("varnished_terracotta.null",
                 "My set of varnished terracotta, just as with glass, was designed with " + italic("Eight") + " types of Arcana in mind... a proper completion to the series is once again impossible with just my singular crystal. Formed from Null Slate, a counterfeit entry will once again have to suffice.");
 

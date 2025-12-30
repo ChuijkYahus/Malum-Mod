@@ -1,7 +1,7 @@
 package com.sammy.malum.common.spiritrite.effect.aerial;
 
 import com.sammy.malum.common.entity.AscendingBlock;
-import com.sammy.malum.common.entity.activator.BlockRiteEffectActivator;
+import com.sammy.malum.common.entity.activator.rite.BlockRiteEffectActivator;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;

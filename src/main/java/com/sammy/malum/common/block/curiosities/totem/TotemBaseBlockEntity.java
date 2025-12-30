@@ -133,7 +133,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public void receiveSparkUpdate() {
-        timerPause = 10;
+        timerPause = 100;
     }
 
     public TotemBaseState getState() {
@@ -162,12 +162,12 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     }
 
     public void updateRite(ServerLevel level) {
-        if (timer > 0) {
-            timer--;
-        }
         if (timerPause > 0) {
             timerPause--;
             return;
+        }
+        if (timer > 0) {
+            timer--;
         }
         if (canTriggerRite()) {
             triggerRite(level);

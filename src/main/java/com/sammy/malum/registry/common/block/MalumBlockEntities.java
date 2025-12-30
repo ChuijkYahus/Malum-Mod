@@ -33,6 +33,8 @@ import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
+import com.sammy.malum.common.block.curiosities.totem.channel.*;
+import com.sammy.malum.common.block.curiosities.totem.spreader.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
 import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.void_depot.*;
@@ -96,6 +98,8 @@ public class MalumBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteAnchorBlockEntity>> RITE_ANCHOR = BLOCK_ENTITY_TYPES.register("rite_anchor", () -> BlockEntityType.Builder.of(RiteAnchorBlockEntity::new, MalumBlocks.RITE_ANCHOR.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteUnweaverBlockEntity>> RITE_UNWEAVER = BLOCK_ENTITY_TYPES.register("rite_unweaver", () -> BlockEntityType.Builder.of(RiteUnweaverBlockEntity::new, MalumBlocks.RITE_UNWEAVER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteSpreaderBlockEntity>> RITE_SPREADER = BLOCK_ENTITY_TYPES.register("rite_spreader", () -> BlockEntityType.Builder.of(RiteSpreaderBlockEntity::new, MalumBlocks.RITE_SPREADER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RiteChannelBlockEntity>> RITE_CHANNEL = BLOCK_ENTITY_TYPES.register("rite_channel", () -> BlockEntityType.Builder.of(RiteChannelBlockEntity::new, MalumBlocks.RITE_CHANNEL.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveChargerBlockEntity>> WAVECHARGER = BLOCK_ENTITY_TYPES.register("wavecharger", () -> BlockEntityType.Builder.of(WaveChargerBlockEntity::new, getBlocks(WaveChargerBlock.class)).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WaveBankerBlockEntity>> WAVEBANKER = BLOCK_ENTITY_TYPES.register("wavebanker", () -> BlockEntityType.Builder.of(WaveBankerBlockEntity::new, getBlocks(WaveBankerBlock.class)).build(null));

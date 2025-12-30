@@ -3,7 +3,7 @@ package com.sammy.malum.common.entity.mob.cultist.cherub;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitEnemyGoal;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitLeaderGoal;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +15,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.behavior.LookAtTargetSink;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
@@ -53,7 +52,7 @@ public class CherubCultist extends CultistMonster {
     protected int leaderCherubIndex;
 
     public CherubCultist(Level level) {
-        super(MalumEntities.CHERUB.get(), level);
+        super(MalumEntityTypes.CHERUB.get(), level);
         moveControl = new CherubMoveControl(this);
     }
 

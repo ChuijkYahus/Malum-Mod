@@ -22,7 +22,7 @@ public class SpiritItemEntity extends FloatingItemEntity {
     public int soundCooldown = 20 + random.nextInt(100);
 
     public SpiritItemEntity(Level level) {
-        super(MalumEntities.NATURAL_SPIRIT.get(), level);
+        super(MalumEntityTypes.NATURAL_SPIRIT.get(), level);
         maxAge = 4000;
     }
 

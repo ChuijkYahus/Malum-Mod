@@ -36,7 +36,7 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
     public TrailPointBuilder secondarySpinningTrailPointBuilder;
 
     public EntropicFlameBolt(Level level) {
-        super(MalumEntities.ENTROPIC_FLAME_BOLT.get(), level);
+        super(MalumEntityTypes.ENTROPIC_FLAME_BOLT.get(), level);
         trailPointBuilder = TrailPointBuilder.create(32);
         spinningTrailPointBuilder = TrailPointBuilder.create(24);
         secondarySpinningTrailPointBuilder = TrailPointBuilder.create(24);

@@ -275,6 +275,10 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::cubeBottomTop,
                 RITE_ANCHOR, RITE_UNWEAVER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::directionalBlock, this::cubeBottomTop,
+                RITE_SPREADER);
+        MalumBlockStateSmithTypes.RITE_CHANNEL.act(data,
+                RITE_CHANNEL);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::predefinedModel,
                 SPIRIT_ALTAR, SOUL_BRAZIER, RITUAL_PLINTH,

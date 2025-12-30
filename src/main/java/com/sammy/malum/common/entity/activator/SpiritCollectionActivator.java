@@ -24,7 +24,7 @@ public class SpiritCollectionActivator extends FloatingEntity {
     public float spinOffset = (float) (random.nextFloat() * Math.PI * 2);
 
     public SpiritCollectionActivator(Level level) {
-        super(MalumEntities.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
+        super(MalumEntityTypes.SPIRIT_COLLECTION_ACTIVATOR.get(), level);
         maxAge = 4000;
     }
 

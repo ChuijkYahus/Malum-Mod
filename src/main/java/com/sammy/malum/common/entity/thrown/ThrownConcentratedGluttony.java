@@ -30,15 +30,15 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
     public int fadingTimer;
 
     public ThrownConcentratedGluttony(Level pLevel) {
-        super(MalumEntities.THROWN_GLUTTONY.get(), pLevel);
+        super(MalumEntityTypes.THROWN_GLUTTONY.get(), pLevel);
     }
 
     public ThrownConcentratedGluttony(Level pLevel, LivingEntity pShooter) {
-        super(MalumEntities.THROWN_GLUTTONY.get(), pShooter, pLevel);
+        super(MalumEntityTypes.THROWN_GLUTTONY.get(), pShooter, pLevel);
     }
 
     public ThrownConcentratedGluttony(Level pLevel, double pX, double pY, double pZ) {
-        super(MalumEntities.THROWN_GLUTTONY.get(), pX, pY, pZ, pLevel);
+        super(MalumEntityTypes.THROWN_GLUTTONY.get(), pX, pY, pZ, pLevel);
     }
 
     @Override

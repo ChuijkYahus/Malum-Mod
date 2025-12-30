@@ -13,11 +13,11 @@ import team.lodestar.lodestone.helpers.*;
 public class LocalizedMaelstrom extends AbstractScytheProjectileEntity {
 
     public LocalizedMaelstrom(Level level) {
-        super(MalumEntities.SCYTHE_MAELSTROM.get(), level);
+        super(MalumEntityTypes.SCYTHE_MAELSTROM.get(), level);
     }
 
     public LocalizedMaelstrom(Level level, double pX, double pY, double pZ) {
-        super(MalumEntities.SCYTHE_MAELSTROM.get(), pX, pY, pZ, level);
+        super(MalumEntityTypes.SCYTHE_MAELSTROM.get(), pX, pY, pZ, level);
     }
 
     @Override

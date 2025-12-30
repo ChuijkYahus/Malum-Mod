@@ -87,5 +87,27 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 4, MalumItems.RITE_SPREADER.get(), 4)
+                .addExtraItem(MalumItems.CONVOLUTED_LENS.get(), 4)
+                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 4)
+                .addExtraItem(Items.COPPER_INGOT, 4)
+                .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
+                .addExtraItem(MalumTags.ItemTags.TAINTED_ROCK_BLOCKS, 2)
+                .addSpirit(ARCANE_SPIRIT, 8)
+                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 4, MalumItems.RITE_CHANNEL.get(), 4)
+                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 1)
+                .addExtraItem(Items.COPPER_INGOT, 4)
+                .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
+                .addExtraItem(MalumTags.ItemTags.TAINTED_ROCK_BLOCKS, 2)
+                .addSpirit(ARCANE_SPIRIT, 4)
+                .addSpirit(AQUEOUS_SPIRIT, 4)
+                .addSpirit(EARTHEN_SPIRIT, 4)
+                .addSpirit(INFERNAL_SPIRIT, 4)
+                .addSpirit(ARCANE_SPIRIT, 4)
+                .save(recipeOutput);
     }
 }

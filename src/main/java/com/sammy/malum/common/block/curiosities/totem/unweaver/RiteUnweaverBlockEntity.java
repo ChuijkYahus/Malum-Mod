@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem.unweaver;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;

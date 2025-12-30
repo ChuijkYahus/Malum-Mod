@@ -29,7 +29,7 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
     public static final MalumNetworkedParticleEffectColorData COLOR = new MalumNetworkedParticleEffectColorData(SCEPTER_COLOR_DATA);
 
     public DrainingBolt(Level level) {
-        super(MalumEntities.DRAINING_BOLT.get(), level);
+        super(MalumEntityTypes.DRAINING_BOLT.get(), level);
     }
 
     @Override

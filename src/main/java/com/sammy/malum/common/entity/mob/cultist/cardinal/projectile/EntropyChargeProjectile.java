@@ -7,7 +7,7 @@ import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -55,7 +55,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
     public int primedTime;
 
     public EntropyChargeProjectile(Level level) {
-        super(MalumEntities.ENTROPY_CHARGE.get(), level);
+        super(MalumEntityTypes.ENTROPY_CHARGE.get(), level);
         trailPointBuilder = TrailPointBuilder.create(32);
         spinningTrailPointBuilder = TrailPointBuilder.create(16);
     }

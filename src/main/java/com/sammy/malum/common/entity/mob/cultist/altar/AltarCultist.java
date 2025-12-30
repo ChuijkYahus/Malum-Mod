@@ -10,7 +10,7 @@ import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CursedBoltProj
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.visual_effects.networked.cultist.AltarBlessTargetParticleEffect;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -81,7 +81,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     public int headTiltTimer = -1;
 
     public AltarCultist(Level level) {
-        super(MalumEntities.ALTAR.get(), level);
+        super(MalumEntityTypes.ALTAR.get(), level);
     }
 
     @Override

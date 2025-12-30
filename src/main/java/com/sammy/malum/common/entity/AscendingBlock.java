@@ -59,7 +59,7 @@ public class AscendingBlock extends Entity {
 
 
     public AscendingBlock(Level level) {
-        super(MalumEntities.ASCENDING_BLOCK.get(), level);
+        super(MalumEntityTypes.ASCENDING_BLOCK.get(), level);
         this.blockState = Blocks.SAND.defaultBlockState();
         this.dropItem = true;
         this.fallDamageMax = 40;

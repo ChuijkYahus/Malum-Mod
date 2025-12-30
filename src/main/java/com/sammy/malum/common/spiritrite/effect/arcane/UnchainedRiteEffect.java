@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.arcane;
 
-import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;

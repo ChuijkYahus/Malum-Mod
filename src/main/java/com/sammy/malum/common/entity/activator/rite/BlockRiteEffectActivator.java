@@ -1,4 +1,4 @@
-package com.sammy.malum.common.entity.activator;
+package com.sammy.malum.common.entity.activator.rite;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.entity.*;
@@ -13,14 +13,15 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
-import java.util.*;
+import java.util.function.*;
 
-public class BlockRiteEffectActivator extends MovingEntity {
+public class BlockRiteEffectActivator extends MovingEntity implements ILociAttributeBearer {
 
     public final TrailPointBuilder trail = TrailPointBuilder.create(6);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(20);
@@ -28,13 +29,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
     protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(BlockRiteEffectActivator.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
     protected SpiritRiteBlockEffect effect;
-
-    protected int upgradeSlots;
-    public final RiteSparkAttributeData speed = new RiteSparkAttributeData(RiteSparkAttributeDataType.SPEED);
-    public final RiteSparkAttributeData potency = new RiteSparkAttributeData(RiteSparkAttributeDataType.POTENCY);
-    public final RiteSparkAttributeData impact = new RiteSparkAttributeData(RiteSparkAttributeDataType.IMPACT);
-    public final RiteSparkAttributeData distance = new RiteSparkAttributeData(RiteSparkAttributeDataType.MAX_DISTANCE);
-    public final List<RiteSparkAttributeData> attributes = List.of(speed, potency, impact, distance);
+    public final RiteSparkAttributeDataStorage attributes = new RiteSparkAttributeDataStorage();
 
     protected BlockPos sourcePosition;
     protected BlockPos activationPosition;
@@ -47,19 +42,31 @@ public class BlockRiteEffectActivator extends MovingEntity {
     protected int healCounter;
     protected int copyCounter;
 
+    public BlockRiteEffectActivator(EntityType<?> entityType, Level level) {
+        super(entityType, level);
+    }
+
     public BlockRiteEffectActivator(Level level) {
-        super(MalumEntities.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level);
+        this(MalumEntityTypes.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level);
     }
 
     public BlockRiteEffectActivator(Level level, SpiritRiteBlockEffect effect, BlockPos sourcePosition, Direction movementDirection) {
-        this(level);
+        this(MalumEntityTypes.RITE_BLOCK_EFFECT_ACTIVATOR.get(), level, effect, sourcePosition, movementDirection);
+    }
+
+    public BlockRiteEffectActivator(EntityType<?> entityType, Level level, SpiritRiteBlockEffect effect, BlockPos sourcePosition, Direction movementDirection) {
+        this(entityType, level);
         this.effect = effect;
         this.sourcePosition = sourcePosition;
         this.activationPosition = sourcePosition;
         this.movementDirection = movementDirection;
-        this.upgradeSlots = 4;
         setPos(sourcePosition.getBottomCenter().add(0, 0.05f, 0));
         updateMotion();
+    }
+
+    @Override
+    public RiteSparkAttributeDataStorage getLociAttributes() {
+        return attributes;
     }
 
     @Override
@@ -76,9 +83,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
         if (effect != null) {
             effect.save(pCompound);
         }
-
-        pCompound.putInt("upgradeSlots", upgradeSlots);
-        attributes.forEach(a -> a.save(pCompound));
+        attributes.save(pCompound);
 
         if (sourcePosition != null) {
             pCompound.put("sourcePosition", NBTHelper.saveBlockPos(sourcePosition));
@@ -102,9 +107,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
     public void readAdditionalSaveData(CompoundTag pCompound) {
         setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
         effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteBlockEffect.class).orElse(null);
-
-        upgradeSlots = pCompound.getInt("upgradeSlots");
-        attributes.forEach(a -> a.load(pCompound));
+        attributes.load(pCompound);
 
         sourcePosition = NBTHelper.readBlockPos(pCompound.getCompound("sourcePosition"));
         activationPosition = NBTHelper.readBlockPos(pCompound.getCompound("activationPosition"));
@@ -134,17 +137,18 @@ public class BlockRiteEffectActivator extends MovingEntity {
                     return;
                 }
                 var level = level();
-                var affectedPos = activationPosition.below();
+                var affectedPos = getRiteEffectPosition(activationPosition);
                 boolean canTriggerEffect = true;
                 if (level.getBlockEntity(affectedPos) instanceof RiteSparkInteractable interactable) {
-                    interactable.travel(serverLevel, this);
+                    if (canTriggerTravelEffects()) {
+                        interactable.travel(serverLevel, this);
+                    }
                     canTriggerEffect = false;
-                }
-                else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
+                } else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
                     canTriggerEffect = false;
                 }
                 if (canTriggerEffect) {
-                    if (blockCounter >= distance.getValue()) {
+                    if (blockCounter >= attributes.distance.getValue()) {
                         discard();
                         return;
                     }
@@ -156,9 +160,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
             }
         }
         if (level().isClientSide) {
-            Vec3 position = getPosition(0.5f);
-            trail.addTrailPoint(position);
-            longTrail.addTrailPoint(position);
+            addTrailPoints();
             trail.tickTrailPoints();
             longTrail.tickTrailPoints();
             if (level().getGameTime() % 3 == 0L) {
@@ -181,18 +183,44 @@ public class BlockRiteEffectActivator extends MovingEntity {
         return false;
     }
 
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
-        var state = level.getBlockState(pos);
-        effect.applyEffect(level, this, state, pos, impact.getValue());
+    public float getTravelSpeedMultiplier() {
+        return 1f;
+    }
+
+    public BlockPos getRiteEffectPosition(BlockPos pos) {
+        return pos.below();
+    }
+
+    public Direction getMovementDirection() {
+        return movementDirection;
+    }
+
+    public SpiritRiteBlockEffect getEffect() {
+        return effect;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean canTriggerTravelEffects() {
         return true;
     }
 
-    public void upgrade(RiteSparkAttributeData target) {
-        if (upgradeSlots > 0) {
-            if (target.increase()) {
-                upgradeSlots--;
-            }
-        }
+    public void addTrailPoints() {
+        Vec3 position = getPosition(0.5f);
+        trail.addTrailPoint(position);
+        longTrail.addTrailPoint(position);
+    }
+
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos) {
+        var state = level.getBlockState(pos);
+        effect.applyEffect(level, this, state, pos, attributes.getImpact().getValue());
+        return true;
+    }
+
+    public void upgrade(Function<RiteSparkAttributeDataStorage, RiteSparkAttributeData> target) {
+        attributes.upgrade(target);
     }
 
     public void recoverHealth() {
@@ -201,7 +229,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
             if (healCounter > 4) {
                 return;
             }
-            healDuration = Mth.floor((blockCounter * 4) / potency.getValue());
+            healDuration = Mth.floor((blockCounter * 4) / attributes.getPotency().getValue());
             blockCounter = 0;
             updateMotion();
         }
@@ -214,7 +242,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
                 return;
             }
             blockCounter = 0;
-            for (RiteSparkAttributeData attribute : attributes) {
+            for (RiteSparkAttributeData attribute : attributes.getAttributes()) {
                 if (attribute.decrease()) {
                     return;
                 }
@@ -226,7 +254,7 @@ public class BlockRiteEffectActivator extends MovingEntity {
         if (copyCounter == -1 || copyCounter >= 4) {
             return;
         }
-        //The created copy more so takes over where the spark was moving, rather than the copy being one to split off
+        //The created copy more so takes over where the spark was moving, rather than the copy being one to follow the direction as defined by the anchor
         var doppelganger = new BlockRiteEffectActivator(level(), effect, activationPosition, movementDirection);
         var data = new CompoundTag();
         addAdditionalSaveData(data);
@@ -251,12 +279,12 @@ public class BlockRiteEffectActivator extends MovingEntity {
 
     public void updateMotion() {
         if (movementDirection != null) {
-            float rate = 0.2f * speed.getValue();
+            float rate = 0.2f * attributes.getSpeed().getValue() * getTravelSpeedMultiplier();
             if (healDuration > 0) {
                 setDeltaMovement(Vec3.ZERO);
                 return;
             }
-            setDeltaMovement(new Vec3(movementDirection.getStepX() * rate, movementDirection.getStepY(), movementDirection.getStepZ() * rate));
+            setDeltaMovement(new Vec3(movementDirection.getStepX() * rate, movementDirection.getStepY() * rate, movementDirection.getStepZ() * rate));
         }
     }
 
@@ -265,18 +293,18 @@ public class BlockRiteEffectActivator extends MovingEntity {
             return false;
         }
         float xOffset = movementDirection.getStepX() * 0.5f;
+        float yOffset = movementDirection.getStepY() * 0.5f;
         float zOffset = movementDirection.getStepZ() * 0.5f;
-        int i = Mth.floor(getX() - xOffset);
-        int j = Mth.floor(getY());
-        int k = Mth.floor(getZ() - zOffset);
-        var centered = new BlockPos(i, j, k);
+        int x = Mth.floor(getX() - xOffset);
+        int y = Mth.floor(getY() - yOffset);
+        int z = Mth.floor(getZ() - zOffset);
+        var centered = new BlockPos(x, y, z);
         if (activationPosition == null) {
             activationPosition = centered;
             return true;
         }
-        if (i != activationPosition.getX() || j != activationPosition.getY() || k != activationPosition.getZ()) {
+        if (x != activationPosition.getX() || y != activationPosition.getY() || z != activationPosition.getZ()) {
             activationPosition = centered;
-            setPos(centered.getX() + 0.5f, centered.getY() + 0.05f, centered.getZ() + 0.5f);
             return true;
         }
         return false;
@@ -292,75 +320,5 @@ public class BlockRiteEffectActivator extends MovingEntity {
 
     public void setSpirit(SpiritArcanaType spirit) {
         getEntityData().set(DATA_SPIRIT_GLOW, spirit);
-    }
-
-    public static class RiteSparkAttributeData {
-
-        protected final RiteSparkAttributeDataType type;
-        protected int tier;
-
-        public RiteSparkAttributeData(RiteSparkAttributeDataType type, int tier) {
-            this.type = type;
-            this.tier = tier;
-        }
-
-        public RiteSparkAttributeData(RiteSparkAttributeDataType type) {
-            this(type, 0);
-        }
-
-        public float getValue() {
-            return type.getValue(tier);
-        }
-
-        public boolean increase() {
-            if (tier < type.maxTier() - 1) {
-                tier++;
-                return true;
-            }
-            return false;
-        }
-
-        public boolean decrease() {
-            if (tier > 0) {
-                tier--;
-                return true;
-            }
-            return false;
-        }
-
-        public void save(CompoundTag compoundTag) {
-            CompoundTag tag = new CompoundTag();
-            tag.putInt("tier", tier);
-            compoundTag.put(type.name, tag);
-        }
-
-        public void load(CompoundTag compoundTag) {
-            if (compoundTag.contains(type.name)) {
-                CompoundTag tag = compoundTag.getCompound(type.name);
-                this.tier = tag.getInt("tier");
-            }
-        }
-    }
-
-    public record RiteSparkAttributeDataType(String name, int maxTier, List<Float> valuePerTier) {
-
-        public static RiteSparkAttributeDataType SPEED = new RiteSparkAttributeDataType("speed", List.of(1f, 2f, 4f));
-        public static RiteSparkAttributeDataType POTENCY = new RiteSparkAttributeDataType("potency", List.of(1f, 2f, 4f));
-        public static RiteSparkAttributeDataType IMPACT = new RiteSparkAttributeDataType("impact", List.of(1f, 2f, 4f));
-        public static RiteSparkAttributeDataType MAX_DISTANCE = new RiteSparkAttributeDataType("max_distance", List.of(8f, 16f, 32f));
-
-        public RiteSparkAttributeDataType(String name, List<Float> valuePerTier) {
-            this(name, valuePerTier.size(), valuePerTier);
-        }
-
-        public float getValue(int tier) {
-            if (tier < 0) {
-                return valuePerTier.getFirst() / (Mth.abs(tier)+1);
-            }
-            if (tier >= maxTier) {
-                return 0;
-            }
-            return valuePerTier.get(tier);
-        }
     }
 }

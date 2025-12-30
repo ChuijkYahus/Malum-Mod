@@ -146,14 +146,14 @@ public class MalumBlockProperties {
                 .noOcclusion();
     }
 
-    public static LodestoneBlockProperties RITE_ANCHOR() {
+    public static LodestoneBlockProperties TAINTED_ROCK_TOTEMANCY() {
         return TAINTED_ROCK_BRICKS()
                 .strength(2F, 30.0F)
                 .isRedstoneConductor(Blocks::never)
                 .addTag(IS_RITE_IMMUNE);
     }
 
-    public static LodestoneBlockProperties RITE_UNWEAVER() {
+    public static LodestoneBlockProperties TWISTED_ROCK_TOTEMANCY() {
         return TWISTED_ROCK_BRICKS()
                 .strength(2F, 30.0F)
                 .isRedstoneConductor(Blocks::never)

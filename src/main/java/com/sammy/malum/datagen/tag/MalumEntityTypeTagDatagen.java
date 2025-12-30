@@ -2,7 +2,7 @@ package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.entity.MalumEntities;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
@@ -20,11 +20,11 @@ public class MalumEntityTypeTagDatagen extends EntityTypeTagsProvider {
     @Override
     protected void addTags(Provider pProvider) {
         tag(MalumTags.EntityTags.CULTIST)
-                .add(MalumEntities.ALTAR.get())
-                .add(MalumEntities.BELIEVER.get())
-                .add(MalumEntities.CHERUB.get())
-                .add(MalumEntities.CARDINAL.get())
-                .add(MalumEntities.EVANGELIST.get());
+                .add(MalumEntityTypes.ALTAR.get())
+                .add(MalumEntityTypes.BELIEVER.get())
+                .add(MalumEntityTypes.CHERUB.get())
+                .add(MalumEntityTypes.CARDINAL.get())
+                .add(MalumEntityTypes.EVANGELIST.get());
 
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
                 .addTag(MalumTags.EntityTags.CULTIST);

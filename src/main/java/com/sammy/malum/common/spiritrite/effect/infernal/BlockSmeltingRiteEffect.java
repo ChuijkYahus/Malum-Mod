@@ -1,6 +1,6 @@
 package com.sammy.malum.common.spiritrite.effect.infernal;
 
-import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

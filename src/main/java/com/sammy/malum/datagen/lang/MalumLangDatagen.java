@@ -43,7 +43,7 @@ import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TY
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
-import static com.sammy.malum.registry.common.entity.MalumEntities.ENTITY_TYPES;
+import static com.sammy.malum.registry.common.entity.MalumEntityTypes.ENTITY_TYPES;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class MalumLangDatagen extends LanguageProvider {

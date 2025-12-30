@@ -63,7 +63,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
     private LivingEntity forcedTarget;
 
     public SunderingAnchorProjectile(Level level) {
-        super(MalumEntities.SUNDERING_ANCHOR.get(), level);
+        super(MalumEntityTypes.SUNDERING_ANCHOR.get(), level);
         noPhysics = false;
     }
 
