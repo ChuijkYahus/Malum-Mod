@@ -19,7 +19,7 @@ public class RiteSpreaderBlock extends LodestoneEntityBlock<RiteSpreaderBlockEnt
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         var direction = context.getNearestLookingDirection();
-        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
+        if (context.getPlayer() == null || context.getPlayer().isShiftKeyDown()) {
             direction = direction.getOpposite();
         }
         return this.defaultBlockState().setValue(FACING, direction);

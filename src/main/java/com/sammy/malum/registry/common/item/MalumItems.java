@@ -470,6 +470,8 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> ZEPHYR_IMPETUS = register("zephyr_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_ZEPHYR_IMPETUS = register("fractured_zephyr_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
+    public static final DeferredHolder<Item, Item> IFRIT_IMPETUS = register("ifrit_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_IFRIT_IMPETUS = register("fractured_ifrit_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> ALCHEMICAL_IMPETUS = register("alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
     //endregion

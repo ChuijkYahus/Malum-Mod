@@ -187,7 +187,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(METAL_IMPETUS, ImpetusItem.class).remove(ALCHEMICAL_IMPETUS.get(), ZEPHYR_IMPETUS.get());
 
         tag(FRACTURED_IMPETUS, FracturedImpetusItem.class);
-        tag(FRACTURED_METAL_IMPETUS, FracturedImpetusItem.class).addTag(FRACTURED_IMPETUS).remove(FRACTURED_ALCHEMICAL_IMPETUS.get(), FRACTURED_ZEPHYR_IMPETUS.get());
+        tag(FRACTURED_METAL_IMPETUS, FracturedImpetusItem.class).addTag(FRACTURED_IMPETUS).remove(FRACTURED_ALCHEMICAL_IMPETUS.get(), FRACTURED_ZEPHYR_IMPETUS.get(), FRACTURED_IFRIT_IMPETUS.get());
 
         tag(ARMORS, MalumArmorItem.class);
 

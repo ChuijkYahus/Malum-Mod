@@ -3,7 +3,7 @@
   "extraInputs": [
     {
       "count": 8,
-      "item": "minecraft:wind_charge"
+      "item": "minecraft:blaze_powder"
     },
     {
       "count": 6,
@@ -11,7 +11,7 @@
     },
     {
       "count": 4,
-      "item": "malum:wind_nucleus"
+      "item": "malum:pyre_nucleus"
     },
     {
       "count": 1,
@@ -24,11 +24,11 @@
   },
   "result": {
     "count": 1,
-    "id": "malum:zephyr_impetus"
+    "id": "malum:ifrit_impetus"
   },
   "spirits": [
     {
-      "type": "malum:aerial",
+      "type": "malum:infernal",
       "count": 32
     },
     {

@@ -201,11 +201,20 @@ public class ArtificeSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), 1, MalumItems.ZEPHYR_IMPETUS.get(), 1)
-                .addSpirit(AERIAL_SPIRIT, 16)
-                .addSpirit(ARCANE_SPIRIT, 16)
+                .addSpirit(AERIAL_SPIRIT, 32)
+                .addSpirit(ARCANE_SPIRIT, 32)
                 .addExtraItem(Items.WIND_CHARGE, 8)
                 .addExtraItem(MalumItems.IRON_NODE.get(), 6)
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 4)
+                .addExtraItem(Items.HEAVY_CORE, 1)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), 1, MalumItems.IFRIT_IMPETUS.get(), 1)
+                .addSpirit(INFERNAL_SPIRIT, 32)
+                .addSpirit(ARCANE_SPIRIT, 32)
+                .addExtraItem(Items.BLAZE_POWDER, 8)
+                .addExtraItem(MalumItems.IRON_NODE.get(), 6)
+                .addExtraItem(MalumItems.PYRE_NUCLEUS.get(), 4)
                 .addExtraItem(Items.HEAVY_CORE, 1)
                 .save(recipeOutput);
 

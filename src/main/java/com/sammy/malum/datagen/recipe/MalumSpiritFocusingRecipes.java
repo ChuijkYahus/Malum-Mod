@@ -67,6 +67,18 @@ public class MalumSpiritFocusingRecipes implements IConditionBuilder {
                 .addSpirit(WICKED_SPIRIT, 2)
                 .save(recipeOutput);
 
+        new SpiritFocusingRecipeBuilder(complexDuration, 1, MalumItems.IFRIT_IMPETUS, Items.BLAZE_POWDER, 4)
+                .addSpirit(INFERNAL_SPIRIT, 2)
+                .addSpirit(ARCANE_SPIRIT, 2)
+                .addSpirit(SACRED_SPIRIT, 2)
+                .save(recipeOutput);
+
+        new SpiritFocusingRecipeBuilder(complexDuration, 1, MalumItems.IFRIT_IMPETUS, MalumItems.PYRE_NUCLEUS.get(), 4)
+                .addSpirit(INFERNAL_SPIRIT, 2)
+                .addSpirit(ARCANE_SPIRIT, 2)
+                .addSpirit(WICKED_SPIRIT, 2)
+                .save(recipeOutput);
+
         addImpetusRecipes(recipeOutput, metalDuration, MalumItems.IRON_IMPETUS, MalumItems.IRON_NODE);
         addImpetusRecipes(recipeOutput, metalDuration, MalumItems.GOLD_IMPETUS, MalumItems.GOLD_NODE);
         addImpetusRecipes(recipeOutput, metalDuration, MalumItems.COPPER_IMPETUS, MalumItems.COPPER_NODE);
