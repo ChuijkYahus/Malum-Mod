@@ -89,8 +89,7 @@ public class TotemicSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 4, MalumItems.RITE_SPREADER.get(), 4)
-                .addExtraItem(MalumItems.CONVOLUTED_LENS.get(), 4)
-                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 4)
+                .addExtraItem(MalumItems.CONVOLUTED_LENS.get(), 2)
                 .addExtraItem(Items.COPPER_INGOT, 4)
                 .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
                 .addExtraItem(MalumTags.ItemTags.TAINTED_ROCK_BLOCKS, 2)
@@ -99,7 +98,7 @@ public class TotemicSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_PLANKS.get(), 4, MalumItems.RITE_CHANNEL.get(), 4)
-                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 1)
+                .addExtraItem(MalumItems.HALLOWED_GOLD_INLAY.get(), 2)
                 .addExtraItem(Items.COPPER_INGOT, 4)
                 .addExtraItem(MalumItems.SOULWOOD_PLANKS.get(), 2)
                 .addExtraItem(MalumTags.ItemTags.TAINTED_ROCK_BLOCKS, 2)

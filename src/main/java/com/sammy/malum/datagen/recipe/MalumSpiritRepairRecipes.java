@@ -206,6 +206,13 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("zephyr_impetus_restoration"));
 
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumItems.PYRE_NUCLEUS.get(), 4), 1f)
+                .withValidItem(MalumItems.FRACTURED_IFRIT_IMPETUS.get())
+                .addSpirit(ARCANE_SPIRIT, 8)
+                .addSpirit(INFERNAL_SPIRIT, 8)
+                .unlockedBy("has_pylon", has)
+                .save(recipeOutput, MalumMod.malumPath("ifrit_impetus_restoration"));
+
         metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_IRON_IMPETUS);
         metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_COPPER_IMPETUS);
         metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_GOLD_IMPETUS);

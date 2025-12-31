@@ -441,6 +441,22 @@ public class CodexLangDatagen {
         addPages("scythes.enchanting.ascension",
                 "A fascinating bit of symbolism is the role of the tool in raising man up. Civilization was built by the food a scythe harvests. By harnessing the purpose of the blade as a tool, I can… well, raise myself, the winds I rise on sharp as the blade itself to my foes. Rebound is incompatible; literally, at cross purposes with this enchantment.");
 
+        addSimpleEntryHeader("spirit_infusion", "Spirit Infusion", "Creation of wonders");
+        addPages("spirit_infusion",
+                "By using Runewood's natural magic as a base, I have designed the altar that will serve as the basis for my magecraft - the Spirit Altar. It is the other piece of the equation, the use for the arcana. By infusing them into items, and using the energies to effect other fusions, I can begin to explore this.",
+                "To use the altar, I must lay the item I wish to infuse on top of it, along with an appropriate set of arcana. If I wish to fuse other items in the process, I must place them on some form of Runewood item holder. They must be within four blocks of the altar to work.",
+                "Once all the arcana are present, the power within the crystals will begin to flow into the central item. If other items are fused in, they are pulled in during this process. When all of that is done, the product of the infusion will appear. It " + italic("is") + " rather slow, though...");
+        addSimpleEntryHeader("spirit_infusion.hex_ash", "Hex Ash", "Obligatory magic powder");
+        addPages("spirit_infusion.hex_ash",
+                "My first product with this process is a powder I call Hex Ash, after its color. It is a simple and useful grit, with the niter and sulfur mostly transmuted by the raw arcana, leaving a mixture of reagent and carbon.");
+        addSimpleEntryHeader("spirit_infusion.living_flesh", "Living Flesh", "Please don't try to eat it");
+        addPages("spirit_infusion.living_flesh",
+                "Next, for the sake of understanding how spirit arcana interacts with living substance, I have created... " + italic("something") + " which is now known as Living Flesh. It is a disgusting meaty chunk completely unfit for human consumption. Who knows if I'll end up finding a proper use for it.");
+        addSimpleEntryHeader("spirit_infusion.alchemical_calx", "Alchemical Calx", "Clay 2");
+        addPages("spirit_infusion.alchemical_calx",
+                "Lastly, I have created an experimental substrate I named Alchemical Calx. It's initially strong and tallow-like, but when met with a lesser amount of force it turns extremely malleable. It's bound to prove an useful ingredient.");
+
+
         addSimpleEntryHeader("esoteric_reaping", "Esoteric Reaping", "Leaked magic");
         addPages("esoteric_reaping",
                 "When a being dies, its soul disperses. This is basic theory, and well proven by this point. However, when a soul is shattered, some of it's energy tends to self-immolate. This phenomena causes bits of the soul to collide and fuse with the remains of the creature as it dies, bringing forth new artefacts.",
@@ -462,31 +478,16 @@ public class CodexLangDatagen {
                 "The magic that envelops the endermen coalesces into Warp Flux, a strange essence that seems to be inimical to natural law.");
         addSimpleEntryHeader("esoteric_reaping.core_keeping", "Core-Keeping", "Ancient Constructs");
         addPages("esoteric_reaping.core_keeping",
-                "From the various creatures humanity has studied, the Breeze and Blaze stand out. Both maintain a unique shape unlike any other and both display territorial behavior, reacting aggressively to any outsider that steps within their respective domains.",
-                "Analyzing the exact composition and structure of these beings reveals something fascinating: they appear to be Constructs, artificial souls given form and purpose. Their bodies are unusually simple, almost golem-like, but their souls are complex and compact, with distinct impulses driving them.",
-                "Confirmed by my usual experiments involving the arcane; when the Soul of a Construct is shattered it leaves behind a Nucleus, a core of condensed arcane design that appears to function as the heart of the being. This Nucleus retains much of the properties of the original soul, and can be studied further.",
-                "The phenomena here is notably different from previously mentioned entries. The Nuclei are stable physical objects that the constructs already bear, rather than reagents born from the collision of soul energy and physical remains. Fascinating.");
+                "Amongst the various creatures studied by earth's historians, the Breeze and Blaze by far remain shrouded in the most mystery. They are constructs of ancient design, animated by arcane energies and imbued with rudimentary intelligence. Their only known purpose appears to be the protection of their own respective domains.",
+                "Having studied their souls upon defeat, I have come to a fascinating conclusion. When the Soul of a Construct is shattered, it leaves behind a core; the Nucleus. It is an intricately woven arcane design that serves as the heart of the being. This Nucleus appears to hold etchings that dictate the properties of the soul, demanding further study.",
+                "The existence of the Nucleus is fascinating in and of itself as it proves beyond a doubt that these constructs are created with deliberate intent. The etchings found within are... complicated- overly so, but they're not indecipherable. The etched runic scriptures are not written in any known language, but the fundamentals of arcana apply much the same.",
+                "Lastly, although similar in acquisition to other cases of esoteric reaping- the Nuclei are stable arcane matter that the constructs already bear, rather than reagents born from the collision of soul energy and physical remains.");
         addHeadline("esoteric_reaping.core_keeping.wind_nucleus", "Wind Nucleus");
         addPages("esoteric_reaping.core_keeping.wind_nucleus",
                 "The core of the Breeze, it is well preserved and bears runic etchings that appear to dictate the rules upon which wind bends around it. In a pinch, these etchings can be released to push surrounding creatures away.");
         addHeadline("esoteric_reaping.core_keeping.pyre_nucleus", "Pyre Nucleus");
         addPages("esoteric_reaping.core_keeping.pyre_nucleus",
                 "The core of the Blaze, it is warm to the touch and bears runic etchings that attract heat and ash from nearby. The etchings are greatly interwoven, and upon any sudden change the entire core detonates. Useful, perhaps.");
-
-        addSimpleEntryHeader("spirit_infusion", "Spirit Infusion", "Creation of wonders");
-        addPages("spirit_infusion",
-                "By using Runewood's natural magic as a base, I have designed the altar that will serve as the basis for my magecraft - the Spirit Altar. It is the other piece of the equation, the use for the arcana. By infusing them into items, and using the energies to effect other fusions, I can begin to explore this.",
-                "To use the altar, I must lay the item I wish to infuse on top of it, along with an appropriate set of arcana. If I wish to fuse other items in the process, I must place them on some form of Runewood item holder. They must be within four blocks of the altar to work.",
-                "Once all the arcana are present, the power within the crystals will begin to flow into the central item. If other items are fused in, they are pulled in during this process. When all of that is done, the product of the infusion will appear. It " + italic("is") + " rather slow, though...");
-        addSimpleEntryHeader("spirit_infusion.hex_ash", "Hex Ash", "Obligatory magic powder");
-        addPages("spirit_infusion.hex_ash",
-                "My first product with this process is a powder I call Hex Ash, after its color. It is a simple and useful grit, with the niter and sulfur mostly transmuted by the raw arcana, leaving a mixture of reagent and carbon.");
-        addSimpleEntryHeader("spirit_infusion.living_flesh", "Living Flesh", "Please don't try to eat it");
-        addPages("spirit_infusion.living_flesh",
-                "Next, for the sake of understanding how spirit arcana interacts with living substance, I have created... " + italic("something") + " which is now known as Living Flesh. It is a disgusting meaty chunk completely unfit for human consumption. Who knows if I'll end up finding a proper use for it.");
-        addSimpleEntryHeader("spirit_infusion.alchemical_calx", "Alchemical Calx", "Clay 2");
-        addPages("spirit_infusion.alchemical_calx",
-                "Lastly, I have created an experimental substrate I named Alchemical Calx. It's initially strong and tallow-like, but when met with a lesser amount of force it turns extremely malleable. It's bound to prove an useful ingredient.");
 
         addEntryHeader("primary_arcana", "Primary Arcana", "The components of magic");
         addHeadline("primary_arcana.sacred", "Sacred Spirit");
@@ -571,7 +572,7 @@ public class CodexLangDatagen {
                 "These memories of wind rest everywhere, idle and exhausted. And yet, when imbued with Aerial, the flow of Arcana weaves these memories anew, allowing them to influence the world once more. I have created two applications of this effect by extrapolating it's already complete application in Wind Charges and Wind Nuclei.");
         addHeadline("windweaving.gust_igniter", "Gust Igniter");
         addPages("windweaving.gust_igniter",
-                "Wind Charges carry a memory of scattering. Inherently chaotic, it is released on impact. When powered by redstone, the Gust Igniter mimics a wind-burst capable of applying outwards propulsion to anything found nearby. The effect's intensity and exact form can be configured with the Artificer's Claw.");
+                "Wind Charges carry a memory of scattering. Inherently chaotic, it is released on impact. When powered by redstone, the Gust Igniter mimics a wind-burst capable of applying outwards propulsion to anything caught within. The effect's intensity and exact form can be configured with the Artificer's Claw.");
         addHeadline("windweaving.wind_tunnel", "Wind Tunnel");
         addPages("windweaving.wind_tunnel",
                 "Wind Nuclei are an encapsulated burst of wind, powerful and innately directed. When powered by a connected Gust Igniter, Wind Tunnels will continuously weave a rising column of flowing wind capable of transporting most objects and creatures. The effect's distance and direction can be configured with the Artificer's Claw.");
@@ -608,10 +609,19 @@ public class CodexLangDatagen {
         addPages("focus_crystals", "By applying differing qualities of arcana to an Alchemical Impetus, I can cause more mundane crystals to be formed.");
 
         addSimpleEntryHeader("focus_elemental", "Recreation of Relics", "Creating construct cores");
-        addHeadline("focus_elemental.zephyr_impetus", "Zephyr Impetus");
+        addPages("focus_elemental",
+                "After much study, I have devised a method of recreating the cores of the constructs. By fusing the Alchemical Impetus with a desired Nucleus and reinforcing it with a Heavy Core I may form an artefact capable of replicating the needed process.",
+                "However, this is merely a process of replication, not creation. Given the fact that I needed the Nucleus in order to recreate it, this cannot have been how the originals were created, and I do not understand the nature of their artificial existences enough to delve further.");
+        addSimpleEntryHeader("focus_elemental.zephyr_impetus", "Zephyr Impetus", "To form wind anew");
         addPages("focus_elemental.zephyr_impetus",
-                "Wind Charges are objects with fascinating implications. They are clearly created, but historians are not clear on who created them, or why. Regardless, what was created can be made again, given the right Impetus. The Heavy Core and Wind Nucleus create the Zephyr Impetus - though it is extremely slow to operate, due to the complexity.",
-                "The Wind Nucleus is a remnant of the Breeze, and, while it is analogous to a soul, it is not one. Given the fact that I needed a Wind Nucleus to recreate it, this cannot have been how the originals were created, and I do not understand the nature of their artificial existences enough to delve further.");
+                "Wind Charges are objects with fascinating implications. Although the Breeze uses them offensively, when used by a human they bring about a gentle and safe fall. Perhaps the original purpose of these constructs was not to fight, but to ferry travelers across dangerous heights.",
+                "The previously mentioned Wind Charges were relatively simple to recreate, being little more than compacted air. The Wind Nucleus however demanded a thorough understanding of aerial arcana, as well as a slow etching process in order to avoid unintentional discharge.",
+                "What was created once shall be created again, given the right Impetus. The Heavy Core and Wind Nucleus create the Zephyr Impetus - though it is extremely slow to operate, due to the complexity.");
+        addSimpleEntryHeader("focus_elemental.ifrit_impetus", "Ifrit Impetus", "To bud flames from nothing");
+        addPages("focus_elemental.ifrit_impetus",
+                "Blaze are known for their destructive capabilities, they are practically living embodiments of fire itself. Unlike their windy counterparts, they do not show any signs of anything but aggression. The nether is a dangerous place, after all.",
+                "The recreation of Blaze Powder is rather simple, it's a primitive substance and thus demands standard procedures. The Pyre Nucleus however proved to be more difficult, demanding an exact balance of arcana and a precise order of etching in order to avoid detonation.",
+                "What was created once shall be created again, given the right Impetus. The Heavy Core and Pyre Nucleus create the Ifrit Impetus - though it is extremely slow to operate, due to the complexity.");
 
         addSimpleEntryHeader("crucible_acceleration", "Crucible Acceleration", "Heating up");
         addPages("crucible_acceleration",

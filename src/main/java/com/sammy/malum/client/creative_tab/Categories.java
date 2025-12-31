@@ -220,6 +220,7 @@ public class Categories {
                         .addItems(MalumItems.URANIUM_IMPETUS, MalumItems.FRACTURED_URANIUM_IMPETUS, MalumItems.URANIUM_NODE)
                         .addItems(MalumItems.COBALT_IMPETUS, MalumItems.FRACTURED_COBALT_IMPETUS, MalumItems.COBALT_NODE)
                         .addItems(MalumItems.ZEPHYR_IMPETUS, MalumItems.FRACTURED_ZEPHYR_IMPETUS)
+                        .addItems(MalumItems.IFRIT_IMPETUS, MalumItems.FRACTURED_IFRIT_IMPETUS)
                         .addItems(MalumItems.ALCHEMICAL_IMPETUS, MalumItems.FRACTURED_ALCHEMICAL_IMPETUS)
                         .bake();
                 MalumCreativeTabTweaks.create(MATERIALS)
