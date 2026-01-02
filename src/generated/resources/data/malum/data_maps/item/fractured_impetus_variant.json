@@ -15,6 +15,9 @@
     "malum:gold_impetus": {
       "other_impetus": "malum:fractured_gold_impetus"
     },
+    "malum:ifrit_impetus": {
+      "other_impetus": "malum:fractured_ifrit_impetus"
+    },
     "malum:iron_impetus": {
       "other_impetus": "malum:fractured_iron_impetus"
     },
@@ -35,6 +38,9 @@
     },
     "malum:uranium_impetus": {
       "other_impetus": "malum:fractured_uranium_impetus"
+    },
+    "malum:zephyr_impetus": {
+      "other_impetus": "malum:fractured_zephyr_impetus"
     },
     "malum:zinc_impetus": {
       "other_impetus": "malum:fractured_zinc_impetus"
