@@ -139,14 +139,14 @@ public class JEIHandler implements IModPlugin {
     }
 
     public void hideItems(IJeiRuntime jeiRuntime, List<TagKey<Item>> tagsToHide) {
-        if (!CommonConfig.HIDE_RECIPES.getConfigValue()) {
-            return;
-        }
         var ingredientManager = jeiRuntime.getIngredientManager();
 
         if (!HIDDEN_ITEMS.isEmpty()) {
             ingredientManager.addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, HIDDEN_ITEMS);
             HIDDEN_ITEMS.clear();
+        }
+        if (!CommonConfig.HIDE_RECIPES.getConfigValue()) {
+            return;
         }
         if (!tagsToHide.isEmpty()) {
             Collection<ItemStack> ingredients = ingredientManager.getAllIngredients(VanillaTypes.ITEM_STACK);

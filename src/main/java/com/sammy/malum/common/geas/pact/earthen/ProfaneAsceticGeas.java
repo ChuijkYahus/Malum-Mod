@@ -50,7 +50,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
         if (isProfaneAscetic(event.getEntity())) {
             if (event.getItem().getFoodProperties(event.getEntity()) != null) {
-                final float multiplier = event.getItem().is(GROSS_FOODS) ? 0.66f : 2f;
+                float multiplier = event.getItem().is(GROSS_FOODS) ? 0.66f : 2f;
                 event.setDuration((int) (event.getDuration() * multiplier));
             }
         }

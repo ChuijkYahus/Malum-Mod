@@ -6,6 +6,7 @@ import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
+import net.minecraft.util.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -172,32 +173,38 @@ public class GluttonyEffect extends MobEffect {
         }
 
         public GluttonyEffectProperties scaleInitialDuration(float scalar) {
-            this.initialDuration = (int) (initialDuration * scalar);
+            this.initialDuration = Mth.floor(initialDuration * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleInitialAmplifier(float scalar) {
-            this.initialAmplifier = (int) (initialAmplifier * scalar);
+            this.initialAmplifier = Mth.floor(initialAmplifier * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleDurationGain(float scalar) {
-            this.durationGain = (int) (durationGain * scalar);
+            this.durationGain = Mth.floor(durationGain * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleAmplifierGain(float scalar) {
-            this.amplifierGain = (int) (amplifierGain * scalar);
+            this.amplifierGain = Mth.floor(amplifierGain * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleDurationLimit(float scalar) {
-            this.durationLimit = (int) (durationLimit * scalar);
+            if (durationLimit == -1) {
+                return this;
+            }
+            this.durationLimit = Mth.floor(durationLimit * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleAmplifierLimit(float scalar) {
-            this.amplifierLimit = (int) (amplifierLimit * scalar);
+            if (amplifierLimit == -1) {
+                return this;
+            }
+            this.amplifierLimit = Mth.floor(amplifierLimit * scalar);
             return this;
         }
 
