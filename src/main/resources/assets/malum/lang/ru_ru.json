@@ -658,7 +658,7 @@
 
     "item.malum.necklace_of_the_hidden_blade": "Ожерелье скрытого клинка",
 
-    "item.malum.necklace_of_the_mystic_mirror": "Ожерелье тайного зеркала",
+    "item.malum.necklace_of_mystic_potency": "Ожерелье тайного зеркала",
 
     "item.malum.necklace_of_the_narrow_edge": "Ожерелье небольшого преимущества",
 
@@ -940,9 +940,9 @@
 
   "malum.gui.book.entry.necklace_of_the_hidden_blade.description": "Злобное возмездие",
 
-  "malum.gui.book.entry.necklace_of_the_mystic_mirror": "Ожерелье тайного зеркала",
+  "malum.gui.book.entry.necklace_of_mystic_potency": "Ожерелье тайного зеркала",
 
-  "malum.gui.book.entry.necklace_of_the_mystic_mirror.description": "Какой снаружи, такой и внутри",
+  "malum.gui.book.entry.necklace_of_mystic_potency.description": "Какой снаружи, такой и внутри",
 
   "malum.gui.book.entry.necklace_of_the_narrow_edge": "Ожерелье небольшого преимущества",
 
@@ -1026,7 +1026,7 @@
 
     "malum.gui.book.entry.page.headline.necklace_of_the_hidden_blade": "Ожерелье скрытого клинка",
 
-    "malum.gui.book.entry.page.headline.necklace_of_the_mystic_mirror": "Ожерелье тайного зеркала",
+    "malum.gui.book.entry.page.headline.necklace_of_mystic_potency": "Ожерелье тайного зеркала",
 
     "malum.gui.book.entry.page.headline.necklace_of_the_narrow_edge": "Ожерелье небольшого преимущества",
 
@@ -1294,7 +1294,7 @@
 
     "malum.gui.book.entry.page.text.necklace_of_the_hidden_blade.1": "Когда носитель этого ожерелья получает урон, он получает временный, но невероятно сильный всплеск урона от его косы. Сила этого эффекта экспоненциально пропорциональна количеству полученного урона, но действует только один раз.",
 
-    "malum.gui.book.entry.page.text.necklace_of_the_mystic_mirror.1": "Я придумал еще один способ, чтобы собрать часть потерянной энергии у свободных духов. Резонирующая линза, которую я вставил, способна фокусировать магию так, чтобы при сборе арканы собиралась и избыточная энергия. Эта энергия распределяется на другие мои аксессуары, повышая эффект любого, который собирает духов.",
+    "malum.gui.book.entry.page.text.necklace_of_mystic_potency.1": "Я придумал еще один способ, чтобы собрать часть потерянной энергии у свободных духов. Резонирующая линза, которую я вставил, способна фокусировать магию так, чтобы при сборе арканы собиралась и избыточная энергия. Эта энергия распределяется на другие мои аксессуары, повышая эффект любого, который собирает духов.",
 
     "malum.gui.book.entry.page.text.necklace_of_the_narrow_edge.1": "Размах косы - ее главная фишка. Способность разрезать мою цель, как множество пшеницы, бесценна. Но это происходит за счет урона по простой цели. Это ожерелье мистически фокусирует лезвие моей атаки, направляя всю силу в одну цель для большого прироста урона.",
 

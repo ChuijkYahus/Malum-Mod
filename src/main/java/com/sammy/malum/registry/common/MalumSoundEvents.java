@@ -117,6 +117,9 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELLWOVEN_SPRITE_HARVESTS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spellwoven_sprite_harvests")));
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELLWOVEN_SPRITE_RETURNS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("spellwoven_sprite_returns")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> RAVENOUS_SCYTHE_EATS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("ravenous_scythe_eats")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> GLUTTONOUS_BLUDGEON_SPROUTS = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("gluttonous_bludgeon_sprouts")));
+
     public static final DeferredHolder<SoundEvent, SoundEvent> TYRVING_SLASH = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("tyrving_slashes_twice")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEIGHT_OF_WORLDS_CUT = register(SoundEvent.createVariableRangeEvent(MalumMod.malumPath("weight_of_worlds_cuts")));
 

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:ring_of_the_demolitionist"
+        "recipe": "malum:ring_of_esoteric_shadow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:ring_of_the_demolitionist"
+      "malum:ring_of_esoteric_shadow"
     ]
   }
 }

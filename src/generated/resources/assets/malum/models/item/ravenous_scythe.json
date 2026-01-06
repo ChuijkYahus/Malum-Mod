@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/handheld",
+  "base": {
+    "parent": "malum:item/ravenous_scythe_huge"
+  },
+  "loader": "neoforge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "malum:item/ravenous_scythe_gui"
+    },
+    "ground": {
+      "parent": "malum:item/ravenous_scythe_gui"
+    },
+    "gui": {
+      "parent": "malum:item/ravenous_scythe_gui"
+    }
+  },
+  "textures": {
+    "layer0": "malum:item/ravenous_scythe"
+  }
+}

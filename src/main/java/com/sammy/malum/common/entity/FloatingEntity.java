@@ -13,8 +13,8 @@ import java.util.*;
 
 public abstract class FloatingEntity extends MovingEntity {
 
-    public final TrailPointBuilder trail = TrailPointBuilder.create(5);
-    public final TrailPointBuilder longTrail = TrailPointBuilder.create(30);
+    public TrailPointBuilder trail = TrailPointBuilder.create(5);
+    public TrailPointBuilder longTrail = TrailPointBuilder.create(30);
 
     protected FloatingItemDestinationData destination;
 
@@ -32,6 +32,10 @@ public abstract class FloatingEntity extends MovingEntity {
     }
 
     public abstract void collect(ServerLevel level);
+
+    public boolean canCollect(ServerLevel level) {
+        return true;
+    }
 
     public boolean shouldVanishAfterCollection(ServerLevel level) {
         return true;
@@ -91,7 +95,7 @@ public abstract class FloatingEntity extends MovingEntity {
                     var targetMovement = targetPos.subtract(position()).normalize().scale(velocity);
                     var newMovement = getDeltaMovement().lerp(targetMovement, easing);
                     setDeltaMovement(newMovement);
-                    if (distance < 0.4f) {
+                    if (distance < 0.4f && canCollect(level)) {
                         var shouldVanish = shouldVanishAfterCollection(level);
                         collect(level);
                         if (shouldVanish) {
@@ -109,26 +113,12 @@ public abstract class FloatingEntity extends MovingEntity {
                     setDeltaMovement(getDeltaMovement().subtract(0, gravity, 0).multiply(0.9f, 0.96f, 0.9f));
                 }
                 if (level.getGameTime() % 20L == 0) {
-                    ServerPlayer nearestPlayer = null;
-                    float minimumDistance = 6f;
-                    for (ServerPlayer player : level.players()) {
-                        float distance = player.distanceTo(this);
-                        if (distance < minimumDistance) {
-                            if (player.hasLineOfSight(this)) {
-                                nearestPlayer = player;
-                                minimumDistance = distance;
-                            }
-                        }
-                    }
-                    if (nearestPlayer != null && nearestPlayer.isAlive()) {
-                        setDestination(new FloatingItemDestinationData(nearestPlayer.getUUID()));
-                    }
+                    var retarget = correctMissingTarget(level);
+                    retarget.ifPresent(entity -> setDestination(new FloatingItemDestinationData(entity.getUUID())));
                 }
             }
         } else {
-            Vec3 position = getOffsetPosition(0.5f);
-            trail.addTrailPoint(position);
-            longTrail.addTrailPoint(position);
+            addTrailPoints();
             trail.tickTrailPoints();
             longTrail.tickTrailPoints();
         }
@@ -158,6 +148,30 @@ public abstract class FloatingEntity extends MovingEntity {
         float windUpScalar = windUp * 0.01f;
         float distanceScalar = (1 / Math.max(distance, 1)) * 0.025f;
         return windUpScalar + distanceScalar;
+    }
+
+    public void addTrailPoints() {
+        Vec3 position = getOffsetPosition(0.5f);
+        trail.addTrailPoint(position);
+        longTrail.addTrailPoint(position);
+    }
+
+    public Optional<Entity> correctMissingTarget(ServerLevel level) {
+        ServerPlayer nearestPlayer = null;
+        float minimumDistance = 6f;
+        for (ServerPlayer player : level.players()) {
+            float distance = player.distanceTo(this);
+            if (distance < minimumDistance) {
+                if (player.hasLineOfSight(this)) {
+                    nearestPlayer = player;
+                    minimumDistance = distance;
+                }
+            }
+        }
+        if (nearestPlayer != null && nearestPlayer.isAlive()) {
+            return Optional.of(nearestPlayer);
+        }
+        return Optional.empty();
     }
 
     public Vec3 getOffsetPosition() {

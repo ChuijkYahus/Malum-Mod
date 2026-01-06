@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:necklace_of_the_mystic_mirror"
+        "recipe": "malum:necklace_of_mystic_potency"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:necklace_of_the_mystic_mirror"
+      "malum:necklace_of_mystic_potency"
     ]
   }
 }

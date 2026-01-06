@@ -189,18 +189,16 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
             if (isFadingAway() || isAwaitingSpawn()) {
                 return;
             }
-            if (getOwner() instanceof LivingEntity boltOwner) {
-                var target = result.getEntity();
-                target.invulnerableTime = 0;
-                var source = DamageTypeHelper.create(level(), getDamageType(), this, boltOwner);
-                boolean success = target.hurt(source, magicDamage);
-                if (success && target instanceof LivingEntity livingentity) {
-                    onHit(livingentity);
-                    playImpactSound();
-                    startFadingAway();
-                    spawnEffect(serverLevel, 0.5f);
-                    setDeltaMovement(getDeltaMovement().scale(0.05f));
-                }
+            var target = result.getEntity();
+            target.invulnerableTime = 0;
+            var source = DamageTypeHelper.create(level(), getDamageType(), this, getOwner());
+            boolean success = target.hurt(source, magicDamage);
+            if (success && target instanceof LivingEntity livingentity) {
+                onHit(livingentity);
+                playImpactSound();
+                startFadingAway();
+                spawnEffect(serverLevel, 0.5f);
+                setDeltaMovement(getDeltaMovement().scale(0.05f));
             }
         }
         super.onHitEntity(result);

@@ -83,8 +83,8 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
         if (isNarrow()) {
             if (isMaelstrom()) {
                 if (returnTimer > 0) {
-                    final Entity target = result.getEntity();
-                    LocalizedMaelstrom maelstrom = new LocalizedMaelstrom(level(), target.getX(), target.getY() + target.getBbHeight() * 0.75f, target.getZ());
+                    var target = result.getEntity();
+                    var maelstrom = new LocalizedMaelstrom(level(), target.getX(), target.getY() + target.getBbHeight() * 0.75f, target.getZ());
                     maelstrom.setData(getOwner(), damage, magicDamage, 0, 40);
                     maelstrom.setItem(getItem());
                     level().addFreshEntity(maelstrom);
@@ -115,11 +115,12 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
                 playSound();
                 returnTimer--;
                 if (returnTimer <= 0) {
-                    var ownerPos = scytheOwner.position().add(0, scytheOwner.getBbHeight() * 0.6f, 0);
+                    float height = scytheOwner.getBbHeight();
+                    var ownerPos = scytheOwner.position().add(0, height * 0.6f, 0);
                     float velocityLimit = 2f;
                     if (isNarrow()) {
                         double radians = Math.toRadians(90 - scytheOwner.yHeadRot);
-                        ownerPos = scytheOwner.position().add(0.75f * Math.sin(radians), scytheOwner.getBbHeight() * 0.5f, 0.75f * Math.cos(radians));
+                        ownerPos = scytheOwner.position().add(0.75f * Math.sin(radians), height * 0.5f, 0.75f * Math.cos(radians));
                         velocityLimit = 4f;
                         if (returnTimer == 0) {
                             flyBack(scytheOwner);

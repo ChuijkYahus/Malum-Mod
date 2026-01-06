@@ -30,10 +30,9 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
     @Override
     public void spiritCollectionEvent(CollectSpiritEvent event, LivingEntity collector, double arcaneResonance) {
         if (collector.level() instanceof ServerLevel serverLevel) {
-            int duration = Mth.floor(600 * arcaneResonance);
             int limit = Mth.floor(arcaneResonance * 5);
             GluttonyEffect.applyGluttony(collector, b -> b
-                    .setInitialDuration(duration)
+                    .setDuration(600)
                     .setAmplifierGain(1)
                     .setAmplifierLimit(limit));
 

@@ -28,7 +28,14 @@ public class CurioSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_ESOTERIC_SPOILS.get(), 1)
                 .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 8)
                 .addSpirit(WICKED_SPIRIT, 8)
-                .addSpirit(ARCANE_SPIRIT, 8)
+                .addSpirit(AQUEOUS_SPIRIT, 8)
+                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_ESOTERIC_SHADOW.get(), 1)
+                .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 8)
+                .addSpirit(SACRED_SPIRIT, 8)
+                .addSpirit(AERIAL_SPIRIT, 8)
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
@@ -49,69 +56,73 @@ public class CurioSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_MANAWEAVING.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_MANAWEAVING.get(), 1)
                 .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
                 .addExtraItem(MalumItems.REFINED_SOULSTONE.get(), 4)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_ARCANE_PROWESS.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_ARCANE_PROWESS.get(), 1)
                 .addExtraItem(MalumItems.RAW_BRILLIANCE.get(), 4)
                 .addExtraItem(MalumItems.ALCHEMICAL_CALX.get(), 4)
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_DESPERATE_VORACITY.get(), 1)
-                .addExtraItem(Items.BONE, 4)
+        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_DESPERATE_VORACITY.get(), 1)
+                .addExtraItem(Items.ROTTEN_FLESH, 4)
                 .addExtraItem(MalumItems.GRIM_TALC.get(), 4)
-                .addExtraItem(Items.ROTTEN_FLESH, 16)
-                .addExtraItem(MalumItems.HEX_ASH.get(), 4)
+                .addExtraItem(Items.BONE, 4)
+                .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 8)
                 .addSpirit(WICKED_SPIRIT, 32)
                 .addSpirit(SACRED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_THE_HOARDER.get(), 1)
-                .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
-                .addExtraItem(MalumItems.WARP_FLUX.get(), 4)
-                .addExtraItem(Items.ENDER_PEARL, 2)
-                .addSpirit(EARTHEN_SPIRIT, 32)
-                .addSpirit(SACRED_SPIRIT, 16)
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_SWARMING_ROT.get(), 1)
+                .addExtraItem(Items.SPIDER_EYE, 4)
+                .addExtraItem(MalumItems.GRIM_TALC.get(), 4)
+                .addExtraItem(Items.BONE, 4)
+                .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 8)
+                .addSpirit(WICKED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_THE_DEMOLITIONIST.get(), 1)
-                .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
-                .addExtraItem(Items.GUNPOWDER, 4)
-                .addExtraItem(Items.BLAZE_POWDER, 2)
-                .addSpirit(INFERNAL_SPIRIT, 32)
-                .save(recipeOutput);
-
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_THE_RISING_EDGE.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_THE_RISING_EDGE.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 4)
                 .addExtraItem(Items.WIND_CHARGE, 4)
-                .addSpirit(SACRED_SPIRIT, 32)
                 .addSpirit(AERIAL_SPIRIT, 32)
+                .addSpirit(SACRED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_THE_HOWLING_MAELSTROM.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 4)
                 .addExtraItem(Items.WIND_CHARGE, 4)
-                .addSpirit(WICKED_SPIRIT, 32)
                 .addSpirit(AERIAL_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_NECKLACE.get(), 1, MalumItems.NECKLACE_OF_BLISSFUL_HARMONY.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.GILDED_RING.get(), 1, MalumItems.RING_OF_HEARTY_AVARICE.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
-                .addExtraItem(Items.PHANTOM_MEMBRANE, 4)
-                .addExtraItem(MalumItems.EERIE_WEAVE.get(), 2)
-                .addExtraItem(Items.DIAMOND, 2)
+                .addExtraItem(MalumItems.LIVING_FLESH.get(), 8)
+                .addExtraItem(Items.ROTTEN_FLESH, 4)
+                .addSpirit(SACRED_SPIRIT, 32)
+                .addSpirit(WICKED_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
+                .save(recipeOutput);
+
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_RING.get(), 1, MalumItems.RING_OF_HEAVY_DISCHARGE.get(), 1)
+                .addExtraItem(SizedIngredient.of(Tags.Items.INGOTS_IRON, 6))
+                .addExtraItem(MalumItems.PYRE_NUCLEUS.get(), 8)
+                .addExtraItem(Items.BLAZE_POWDER, 4)
+                .addSpirit(INFERNAL_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
-                .addSpirit(SACRED_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 8)
+                .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_NECKLACE.get(), 1, MalumItems.NECKLACE_OF_THE_NARROW_EDGE.get(), 1)
@@ -122,11 +133,12 @@ public class CurioSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_NECKLACE.get(), 1, MalumItems.NECKLACE_OF_THE_MYSTIC_MIRROR.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.ORNATE_NECKLACE.get(), 1, MalumItems.NECKLACE_OF_MYSTIC_POTENCY.get(), 1)
                 .addExtraItem(MalumItems.RUNEWOOD_PLANKS.get(), 8)
                 .addExtraItem(MalumItems.WARP_FLUX.get(), 4)
-                .addExtraItem(Items.ENDER_EYE, 1)
-                .addSpirit(SACRED_SPIRIT, 24)
+                .addSpirit(SACRED_SPIRIT, 32)
+                .addSpirit(AQUEOUS_SPIRIT, 16)
+                .addSpirit(ARCANE_SPIRIT, 16)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.GILDED_BELT.get(), 1, MalumItems.BELT_OF_THE_STARVED.get(), 1)
@@ -203,7 +215,7 @@ public class CurioSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 32)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumItems.NECKLACE_OF_THE_MYSTIC_MIRROR.get(), 1, MalumItems.NECKLACE_OF_THE_WATCHER.get(), 1)
+        new SpiritInfusionRecipeBuilder(MalumItems.NECKLACE_OF_MYSTIC_POTENCY.get(), 1, MalumItems.NECKLACE_OF_THE_WATCHER.get(), 1)
                 .addExtraItem(MalumItems.NULL_SLATE.get(), 16)
                 .addExtraItem(MalumItems.MALIGNANT_LEAD.get(), 1)
                 .addSpirit(WICKED_SPIRIT, 32)

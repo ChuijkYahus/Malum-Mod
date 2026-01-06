@@ -8,10 +8,6 @@
     {
       "count": 4,
       "item": "malum:warp_flux"
-    },
-    {
-      "count": 1,
-      "item": "minecraft:ender_eye"
     }
   ],
   "input": {
@@ -20,12 +16,20 @@
   },
   "result": {
     "count": 1,
-    "id": "malum:necklace_of_the_mystic_mirror"
+    "id": "malum:necklace_of_mystic_potency"
   },
   "spirits": [
     {
       "type": "malum:sacred",
-      "count": 24
+      "count": 32
+    },
+    {
+      "type": "malum:aqueous",
+      "count": 16
+    },
+    {
+      "type": "malum:arcane",
+      "count": 16
     }
   ]
 }

@@ -70,24 +70,6 @@ public class IronsSpellsCompat {
         }
     }
 
-    public static void addGluttonySpellPower(GluttonyEffect effect) {
-        if (LOADED) {
-            LoadedOnly.addGluttonySpellPower(effect);
-        }
-    }
-
-    public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
-        if (LOADED) {
-            LoadedOnly.addTrialOfFaithSpellPower(effect);
-        }
-    }
-
-    public static void addDesperateNeedSpellPower(DesperateNeedEffect effect) {
-        if (LOADED) {
-            LoadedOnly.addDesperateNeedSpellPower(effect);
-        }
-    }
-
     public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {
         if (LOADED) {
             LoadedOnly.addSilencedNegativeAttributeModifiers(effect);
@@ -145,22 +127,6 @@ public class IronsSpellsCompat {
 
         public static void addEchoingArcanaSpellCooldown(EchoingArcanaEffect effect) {
             effect.addAttributeModifier(AttributeRegistry.COOLDOWN_REDUCTION, MalumMod.malumPath("echoing_arcana"), 0.02f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-        }
-
-        public static void addGluttonySpellPower(GluttonyEffect effect) {
-            effect.addAttributeModifier(AttributeRegistry.SPELL_POWER, MalumMod.malumPath("gluttony"), 0.03f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        }
-
-        public static void addTrialOfFaithSpellPower(TrialOfFaithEffect effect) {
-            var id = MalumMod.malumPath("trial_of_faith");
-            effect.addAttributeModifier(AttributeRegistry.HOLY_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        }
-
-        public static void addDesperateNeedSpellPower(DesperateNeedEffect effect) {
-            var id = MalumMod.malumPath("desperate_need");
-            effect.addAttributeModifier(AttributeRegistry.NATURE_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            effect.addAttributeModifier(AttributeRegistry.BLOOD_SPELL_POWER, id, 0.06f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
 
         public static void addSilencedNegativeAttributeModifiers(SilencedEffect effect) {

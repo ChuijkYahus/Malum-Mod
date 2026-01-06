@@ -79,11 +79,11 @@ public class Categories {
                                 MalumItems.SOUL_HUNTER_ROBE,
                                 MalumItems.SOUL_HUNTER_LEGGINGS,
                                 MalumItems.SOUL_HUNTER_BOOTS,
-                                MalumItems.TYRVING,
                                 MalumItems.SOUL_STAINED_STEEL_SCYTHE,
                                 MalumItems.SOUL_STAINED_STEEL_KNIFE,
-                                MalumItems.SPELLWEAVING_PICKAXE,
-                                MalumItems.SPELLWEAVING_AXE
+                                MalumItems.TYRVING,
+                                MalumItems.RAVENOUS_SCYTHE,
+                                MalumItems.GLUTTONOUS_BLUDGEON
                         )
                         .addItems(
                                 MalumItems.MALIGNANT_STRONGHOLD_HELMET,
@@ -92,7 +92,9 @@ public class Categories {
                                 MalumItems.MALIGNANT_STRONGHOLD_BOOTS,
                                 MalumItems.WEIGHT_OF_WORLDS,
                                 MalumItems.EDGE_OF_DELIVERANCE,
-                                MalumItems.SUNDERING_ANCHOR
+                                MalumItems.SUNDERING_ANCHOR,
+                                MalumItems.SPELLWEAVING_PICKAXE,
+                                MalumItems.SPELLWEAVING_AXE
                         ).nextLine()
                         .addItems(
                                 MalumItems.MNEMONIC_HEX_STAFF,
@@ -113,20 +115,23 @@ public class Categories {
                         ).nextLine()
                         .addItems(
                                 MalumItems.RING_OF_ESOTERIC_SPOILS,
-                                MalumItems.RING_OF_THE_RISING_EDGE,
-                                MalumItems.RING_OF_THE_HOWLING_MAELSTROM,
                                 MalumItems.RING_OF_CURATIVE_TALENT,
-                                MalumItems.RING_OF_ARCANE_PROWESS,
-                                MalumItems.RING_OF_MANAWEAVING,
                                 MalumItems.RING_OF_ALCHEMICAL_MASTERY,
                                 MalumItems.RING_OF_DESPERATE_VORACITY,
-                                MalumItems.RING_OF_THE_HOARDER,
-                                MalumItems.RING_OF_THE_DEMOLITIONIST
-                        )
+                                MalumItems.RING_OF_THE_RISING_EDGE,
+                                MalumItems.RING_OF_HEARTY_AVARICE
+                        ).nextLine()
                         .addItems(
-                                MalumItems.NECKLACE_OF_THE_MYSTIC_MIRROR,
-                                MalumItems.NECKLACE_OF_THE_NARROW_EDGE,
-                                MalumItems.NECKLACE_OF_BLISSFUL_HARMONY
+                                MalumItems.RING_OF_ESOTERIC_SHADOW,
+                                MalumItems.RING_OF_MANAWEAVING,
+                                MalumItems.RING_OF_ARCANE_PROWESS,
+                                MalumItems.RING_OF_SWARMING_ROT,
+                                MalumItems.RING_OF_THE_HOWLING_MAELSTROM,
+                                MalumItems.RING_OF_HEAVY_DISCHARGE
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.NECKLACE_OF_MYSTIC_POTENCY,
+                                MalumItems.NECKLACE_OF_THE_NARROW_EDGE
                         )
                         .addItems(
                                 MalumItems.BELT_OF_THE_STARVED,

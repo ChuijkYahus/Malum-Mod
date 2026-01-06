@@ -12,15 +12,11 @@
     {
       "count": 16,
       "item": "minecraft:rotten_flesh"
-    },
-    {
-      "count": 4,
-      "item": "malum:hex_ash"
     }
   ],
   "input": {
     "count": 1,
-    "item": "malum:ornate_ring"
+    "item": "malum:gilded_ring"
   },
   "result": {
     "count": 1,

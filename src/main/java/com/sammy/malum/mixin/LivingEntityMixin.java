@@ -30,7 +30,6 @@ public class LivingEntityMixin {
         LivingEntity livingEntity = (LivingEntity) ((Object)(this));
         if (food.getFoodProperties(livingEntity) != null) {
             CurioVoraciousRing.onEat(level, livingEntity, food);
-            CurioGruesomeConcentrationRing.onEat(level, livingEntity, food);
             ProfaneAsceticGeas.onEat(level, livingEntity, food);
             SelfCareGeas.onEat(level, livingEntity, food);
         }

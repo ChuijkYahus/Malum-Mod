@@ -2305,6 +2305,15 @@
     ],
     "subtitle": "malum.subtitle.gilded_trinket_equipped"
   },
+  "gluttonous_bludgeon_sprouts": {
+    "sounds": [
+      "malum:curiosities/weapons/ravenous/bludgeon_hit1",
+      "malum:curiosities/weapons/ravenous/bludgeon_hit2",
+      "malum:curiosities/weapons/ravenous/bludgeon_hit3",
+      "malum:curiosities/weapons/ravenous/bludgeon_hit4"
+    ],
+    "subtitle": "malum.subtitle.gluttonous_bludgeon_sprouts"
+  },
   "gruesome_ring_feeds": {
     "sounds": [
       "malum:curiosities/trinkets/starved/nom1",
@@ -2608,6 +2617,15 @@
       "malum:curiosities/pouch/ravenous/insert7"
     ],
     "subtitle": "malum.subtitle.ravenous_pouch_eats"
+  },
+  "ravenous_scythe_eats": {
+    "sounds": [
+      "malum:curiosities/weapons/ravenous/scythe_hit1",
+      "malum:curiosities/weapons/ravenous/scythe_hit2",
+      "malum:curiosities/weapons/ravenous/scythe_hit3",
+      "malum:curiosities/weapons/ravenous/scythe_hit4"
+    ],
+    "subtitle": "malum.subtitle.ravenous_scythe_eats"
   },
   "reaper_scythe_slashes": {
     "sounds": [

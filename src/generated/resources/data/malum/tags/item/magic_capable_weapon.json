@@ -1,12 +1,13 @@
 {
+  "remove": [
+    "malum:edge_of_deliverance"
+  ],
   "values": [
-    "malum:crude_scythe",
-    "malum:soul_stained_steel_scythe",
+    "#malum:scythe",
+    "#malum:staff",
     "malum:soul_stained_steel_sword",
     "malum:soul_stained_steel_knife",
-    "malum:mnemonic_hex_staff",
-    "malum:unwinding_chaos",
-    "malum:erosion_scepter",
+    "malum:gluttonous_bludgeon",
     "malum:tyrving",
     "malum:sundering_anchor",
     {

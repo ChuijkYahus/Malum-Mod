@@ -16,6 +16,7 @@ import com.sammy.malum.client.renderer.entity.cultist.cardinal.CardinalRenderer;
 import com.sammy.malum.client.renderer.entity.cultist.evangelist.EvangelistRenderer;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
+import com.sammy.malum.common.entity.activator.gluttony.*;
 import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.mob.cultist.altar.projectile.CultistBlessingProjectile;
@@ -116,6 +117,9 @@ public class MalumEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<LocalizedMaelstrom>> SCYTHE_MAELSTROM =
             register("scythe_maelstrom", LocalizedMaelstrom::new, 2f, 2f, 20);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<GluttonyDamageActivator>> GLUTTONY_LOCUST =
+            register("gluttony_locust", GluttonyDamageActivator::new, 0.25f, 0.25f, 4, 1);
+
     public static final DeferredHolder<EntityType<?>, EntityType<SpellweaverToolEffectActivator>> SPELLWEAVER_TOOL_EFFECT_ACTIVATOR =
             register("spellweavers_locus", SpellweaverToolEffectActivator::new, 0.25f, 0.25f, 4, 1);
 
@@ -203,6 +207,8 @@ public class MalumEntityTypes {
 
             EntityRenderers.register(MalumEntityTypes.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);
             EntityRenderers.register(MalumEntityTypes.SCYTHE_MAELSTROM.get(), NoopRenderer::new);
+
+            EntityRenderers.register(MalumEntityTypes.GLUTTONY_LOCUST.get(), GluttonyDamageActivatorRenderer::new);
 
             EntityRenderers.register(MalumEntityTypes.ETHERIC_NITRATE.get(), EthericNitrateRenderer::new);
             EntityRenderers.register(MalumEntityTypes.VIVID_NITRATE.get(), VividNitrateRenderer::new);

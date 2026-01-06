@@ -281,9 +281,12 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.negative", "-%s");
 
         addEffectKeyword(KeywordTooltipHandler.AVARICE, "Avarice; Gradually Increases Fortune");
-        addEffectKeyword(KeywordTooltipHandler.GLUTTONY, "Gluttony; Increases Magic Damage, But Drains Hunger");
         addEffectKeyword(KeywordTooltipHandler.SOUL_WARD, "Soul Ward; Absorbs Damage, Recharges Over Time");
-        addEffectKeyword(KeywordTooltipHandler.ARCANE_RESONANCE, "Arcane Resonance; Improves Spirit-Collection Effects");
+        addEffectKeyword(KeywordTooltipHandler.ARCANE_RESONANCE, "Arcane Resonance; Enhances Spirit-Collection Effects");
+
+        addEffectKeyword(KeywordTooltipHandler.GLUTTONY, "Gluttony; Enhances Magic Damage, Kills Sprout Damaging Locusts");
+        addEffectKeyword(KeywordTooltipHandler.TRIAL_OF_FAITH, "Trial of Faith; Enhances Healing, Healing Grows Damaging Locusts");
+        addEffectKeyword(KeywordTooltipHandler.DESPERATE_NEED, "Desperate Need; Enhances Scythe Damage, Dealing Damage Forms Damaging Locusts");
 
         addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
@@ -299,37 +302,44 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addCurioEffect("totem_effect", "Grants %s");
 
+        addCurioEffect("friendly_enemies", "Reduces Enemy Aggression");
+
         addCurioEffect("spirits_heal", "Spirit Collection Replenishes Health");
-        addCurioEffect("spirits_xp", "Spirit Collection Generates Experience Points");
         addCurioEffect("spirits_extend_effect", "Spirit Collection Aids Potion Durations");
         addCurioEffect("spirits_weave_mana", "Spirit Collection Recovers Soul Ward");
         addCurioEffect("spirits_weave_mana_irons_spellbooks", "Spirit Collection Recovers Spell Mana [Iron's Spellbooks]");
-        addCurioEffect("spirits_add_health", "Spirit Collection Grants Extra Hearts");
-        addCurioEffect("spirits_weave_resonance", "Spirit Collection Generates Arcane Resonance");
-        addCurioEffect("spirits_weave_resonance_irons_spellbooks", "Spirit Collection Reduces Spell Cooldown [Iron's Spellbooks]");
+        addCurioEffect("spirits_xp", "Spirit Collection Generates Experience Points");
+
         addCurioEffect("hunger_drain", "Actively Drains Hunger");
+        addCurioEffect("spirits_gluttony", "Spirit Collection Generates Gluttony");
         addCurioEffect("eat_rotten", "Rotten Foods are Tastier");
-        addCurioEffect("growing_gluttony", "Eating Rotten Foods Extends Gluttony");
-        addCurioEffect("explosion_drops_collected", "Automatic Collection of Explosion Drops");
-        addCurioEffect("bigger_explosions", "Enhances Explosions");
+        addCurioEffect("rotten_gluttony", "Eating Rotten Food Generates Gluttony");
+        addCurioEffect("rot_multiplicity", "Sprout More Gluttony Locusts");
+
+        addCurioEffect("ore_prospecting", "Collecting Precious Minerals Sometimes Grants Avarice");
+        addCurioEffect("enchanted_explosions", "Explosions Are Enchanted With %s");
+        addCurioEffect("avarice_healing", "Avarice Recovers Health And Hunger");
+        addCurioEffect("bigger_explosions", "Enhances Explosion Blast Radius");
+
         addCurioEffect("no_sweep", "Disables Scythe Sweeping");
         addCurioEffect("enhanced_maneuvers", "Augments Rebound and Ascension");
         addCurioEffect("ascension_launch", "Ascension Launches Targets Upwards");
         addCurioEffect("lower_ascension_damage", "Ascension Suffers a Damage Penalty");
         addCurioEffect("rebound_maelstrom", "Rebound Creates A Windborne Maelstrom");
         addCurioEffect("longer_rebound_cooldown", "Rebound Suffers a Longer Cooldown");
-        addCurioEffect("friendly_enemies", "Reduces Enemy Aggression");
-        addCurioEffect("soul_ward_magic_resilience", "Soul Ward Reroutes Magic");
-        addCurioEffect("soul_ward_long_shatter_cooldown", "Lengthy Soul Ward Recharge upon Disintegration");
-        addCurioEffect("rotten_gluttony", "Eating Rotten Food Generates Gluttony");
         addCurioEffect("scythe_counterattack", "Powerful Scythe Counterattack When Struck");
         addCurioEffect("pacifist_recharge", "Cooldown Extends if the Scythe is Used");
-        addCurioEffect("full_health_fake_collection", "Striking Full Health Targets Triggers Spirit Collection Effects");
+
+        addCurioEffect("soul_ward_magic_resilience", "Soul Ward Reroutes Magic");
+        addCurioEffect("soul_ward_long_shatter_cooldown", "Lengthy Soul Ward Recharge upon Disintegration");
         addCurioEffect("soul_ward_complete_absorption", "Soul Ward Absorbs All Damage");
         addCurioEffect("soul_ward_escalating_integrity", "Soul Ward Gains Integrity When Nearing Disintegration");
-        addCurioEffect("spirits_gluttony", "Spirit Collection Generates Gluttony");
-        addCurioEffect("enchanted_explosions", "Explosions Are Enchanted With %s");
-        addCurioEffect("ore_prospecting", "Collecting Precious Minerals Sometimes Grants Avarice");
+
+        addCurioEffect("full_health_fake_collection", "Striking Full Health Targets Triggers Spirit Collection Effects");
+        addCurioEffect("spirits_add_health", "Spirit Collection Grants Extra Hearts");
+        addCurioEffect("spirits_weave_resonance", "Spirit Collection Generates Arcane Resonance");
+        addCurioEffect("spirits_weave_resonance_irons_spellbooks", "Spirit Collection Reduces Spell Cooldown [Iron's Spellbooks]");
+
 
         addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
         addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
@@ -377,9 +387,9 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("rocket_jumping", "Wind Gusts Are Enhanced And Grant Ascension");
         addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
         addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-        addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");
-        addGeasEffect("avarice_healing", "Attaining Avarice Recovers Health");
-        addGeasEffect("avarice_combustion", "Avarice Engulfs You In Flames When Struck");
+//        addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");
+//        addGeasEffect("avarice_healing", "Attaining Avarice Recovers Health");
+//        addGeasEffect("avarice_combustion", "Avarice Engulfs You In Flames When Struck");
         addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
         addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
         addGeasEffect("vastly_bigger_explosions", "Greatly Enhances Explosions");
@@ -418,6 +428,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addMiscEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
         addMiscEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
         addMiscEffect("ravenous_pouch_drop", "Retains A Minimum When Emptied");
+        addMiscEffect("ravenous_scythe_gluttony", "Amasses Gluttony From Struck Targets");
+        addMiscEffect("gluttonous_bludgeon_locusts", "Sprouts Damaging Locusts When Hitting Targets");
         addMiscEffect("soul_based_damage", "Deals Soul-Rending Damage");
         addMiscEffect("weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
         addMiscEffect("weight_of_worlds_kill", "Kills Guarantee a Critical Strike");

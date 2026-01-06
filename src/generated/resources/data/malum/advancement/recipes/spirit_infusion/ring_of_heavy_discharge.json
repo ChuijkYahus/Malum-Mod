@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:ring_of_the_hoarder"
+        "recipe": "malum:ring_of_heavy_discharge"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:ring_of_the_hoarder"
+      "malum:ring_of_heavy_discharge"
     ]
   }
 }

@@ -186,37 +186,6 @@ public class ArtificeEntries {
                 ))
         );
 
-        screen.addEntry("focus_crystals", 12, 6, b -> b
-                .configureWidget(w -> w.setIcon(QUARTZ))
-                .addPage(new HeadlineTextPage("focus_crystals", "focus_crystals.1"))
-                .addPage(SpiritFocusingPage.fromOutput(QUARTZ))
-                .addPage(SpiritFocusingPage.fromOutput(AMETHYST_SHARD))
-                .addPage(SpiritFocusingPage.fromOutput(BLAZING_QUARTZ.get()))
-                .addPage(SpiritFocusingPage.fromOutput(PRISMARINE))
-        );
-
-        screen.addEntry("focus_elemental", 14, 5, b -> b
-                .configureWidget(w -> w.setIcon(ZEPHYR_IMPETUS))
-                .addPage(new HeadlineTextPage("focus_elemental"))
-                .addPage(new TextPage("focus_elemental.1"))
-                .addReference(new EntryReference(ZEPHYR_IMPETUS, BookEntry.create("focus_elemental.zephyr_impetus")
-                        .addPage(new HeadlineTextPage("focus_elemental.zephyr_impetus"))
-                        .addPage(new TextPage("focus_elemental.zephyr_impetus.2"))
-                        .addPage(new TextPage("focus_elemental.zephyr_impetus.3"))
-                        .addPage(SpiritInfusionPage.fromOutput(ZEPHYR_IMPETUS.get()))
-                        .addPage(SpiritFocusingPage.fromOutput(WIND_CHARGE))
-                        .addPage(SpiritFocusingPage.fromOutput(WIND_NUCLEUS.get()))
-                ))
-                .addReference(new EntryReference(IFRIT_IMPETUS, BookEntry.create("focus_elemental.ifrit_impetus")
-                        .addPage(new HeadlineTextPage("focus_elemental.ifrit_impetus"))
-                        .addPage(new TextPage("focus_elemental.ifrit_impetus.2"))
-                        .addPage(new TextPage("focus_elemental.ifrit_impetus.3"))
-                        .addPage(SpiritInfusionPage.fromOutput(IFRIT_IMPETUS.get()))
-                        .addPage(SpiritFocusingPage.fromOutput(BLAZE_POWDER))
-                        .addPage(SpiritFocusingPage.fromOutput(PYRE_NUCLEUS.get()))
-                ))
-        );
-
         screen.addEntry("crucible_acceleration", 10, 5, b -> b
                 .configureWidget(w -> w.setIcon(SPIRIT_CATALYZER))
                 .addPage(new HeadlineTextPage("crucible_acceleration", "crucible_acceleration.1"))
@@ -260,6 +229,55 @@ public class ArtificeEntries {
                         .addPage(SpiritRepairPage.fromId("soul_stained_steel_armor_restoration"))
                         .addPage(SpiritRepairPage.fromId("soul_hunter_armor_restoration"))
                 ))
+        );
+
+        screen.addEntry("focus_crystals", 12, 6, b -> b
+                .configureWidget(w -> w.setIcon(QUARTZ))
+                .addPage(new HeadlineTextPage("focus_crystals", "focus_crystals.1"))
+                .addPage(SpiritFocusingPage.fromOutput(QUARTZ))
+                .addPage(SpiritFocusingPage.fromOutput(AMETHYST_SHARD))
+                .addPage(SpiritFocusingPage.fromOutput(BLAZING_QUARTZ.get()))
+                .addPage(SpiritFocusingPage.fromOutput(PRISMARINE))
+        );
+
+        screen.addEntry("focus_elemental", 14, 5, b -> b
+                .configureWidget(w -> w.setIcon(ZEPHYR_IMPETUS))
+                .addPage(new HeadlineTextPage("focus_elemental"))
+                .addPage(new TextPage("focus_elemental.1"))
+                .addReference(new EntryReference(ZEPHYR_IMPETUS, BookEntry.create("focus_elemental.zephyr_impetus")
+                        .addPage(new HeadlineTextPage("focus_elemental.zephyr_impetus"))
+                        .addPage(new TextPage("focus_elemental.zephyr_impetus.2"))
+                        .addPage(new TextPage("focus_elemental.zephyr_impetus.3"))
+                        .addPage(SpiritInfusionPage.fromOutput(ZEPHYR_IMPETUS.get()))
+                        .addPage(SpiritFocusingPage.fromOutput(WIND_CHARGE))
+                        .addPage(SpiritFocusingPage.fromOutput(WIND_NUCLEUS.get()))
+                ))
+                .addReference(new EntryReference(IFRIT_IMPETUS, BookEntry.create("focus_elemental.ifrit_impetus")
+                        .addPage(new HeadlineTextPage("focus_elemental.ifrit_impetus"))
+                        .addPage(new TextPage("focus_elemental.ifrit_impetus.2"))
+                        .addPage(new TextPage("focus_elemental.ifrit_impetus.3"))
+                        .addPage(SpiritInfusionPage.fromOutput(IFRIT_IMPETUS.get()))
+                        .addPage(SpiritFocusingPage.fromOutput(BLAZE_POWDER))
+                        .addPage(SpiritFocusingPage.fromOutput(PYRE_NUCLEUS.get()))
+                ))
+        );
+
+        screen.addEntry("something", 15, 4, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+        screen.addEntry("something", 16, 4, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+
+
+        screen.addEntry("something", 11, 11, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+        screen.addEntry("something", 10, 12, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+        screen.addEntry("something", 10, 13, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
         );
     }
 }

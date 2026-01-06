@@ -1,22 +1,17 @@
-package com.sammy.malum.common.item.curiosities.curios.sets.spirit;
+package com.sammy.malum.common.item.curiosities.curios.sets.alchemical;
 
 import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
-import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-import java.util.function.Consumer;
-
-public class CurioMirrorNecklace extends MalumCurioItem implements IMalumEventResponder {
-    public CurioMirrorNecklace(Properties builder) {
+public class CurioMysticNecklace extends MalumCurioItem implements IMalumEventResponder {
+    public CurioMysticNecklace(Properties builder) {
         super(builder, MalumTrinketType.GILDED);
     }
 

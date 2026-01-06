@@ -26,12 +26,11 @@ import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.totemic.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.alchemical.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
+import com.sammy.malum.common.item.curiosities.curios.sets.esoteric.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.soulward.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.spirit.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.*;
@@ -177,7 +176,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> CATALYST_LOBBER = register("catalyst_lobber", MalumItems::GEAR_PROPERTIES, (p) -> new CatalystLobberItem(p.durability(500), EthericNitrate::new));
 
     public static final DeferredHolder<Item, Item> CRUDE_SCYTHE = register("crude_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, p.durability(500)));
-    public static final DeferredHolder<Item, Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.1f, 4, p));
+    public static final DeferredHolder<Item, Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.2f, 4, p));
     public static final DeferredHolder<Item, Item> SOUL_STAINED_STEEL_KNIFE = register("soul_stained_steel_knife", () -> FarmersDelightCompat.LOADED ? GEAR_PROPERTIES() : HIDDEN_PROPERTIES(), (p) -> FarmersDelightCompat.LOADED ? FarmersDelightCompat.LoadedOnly.makeMagicKnife(p) : new Item(p));
 
     public static final DeferredHolder<Item, Item> SOUL_STAINED_STEEL_HELMET = register("soul_stained_steel_helmet", MalumItems::GEAR_PROPERTIES, (p) -> new SoulStainedSteelArmorItem(ArmorItem.Type.HELMET, p));
@@ -196,6 +195,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOUL_HUNTER_LEGGINGS = register("soul_hunter_leggings", MalumItems::GEAR_PROPERTIES, (p) -> new SoulHunterArmorItem(ArmorItem.Type.LEGGINGS, p));
     public static final DeferredHolder<Item, Item> SOUL_HUNTER_BOOTS = register("soul_hunter_boots", MalumItems::GEAR_PROPERTIES, (p) -> new SoulHunterArmorItem(ArmorItem.Type.BOOTS, p));
 
+    public static final DeferredHolder<Item, Item> RAVENOUS_SCYTHE = register("ravenous_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new RavenousScytheItem(RAVENOUS, -4.5f, 0.6f, 3, p));
+    public static final DeferredHolder<Item, Item> GLUTTONOUS_BLUDGEON = register("gluttonous_bludgeon", MalumItems::GEAR_PROPERTIES, (p) -> new GluttonousBludgeonItem(RAVENOUS, -2.5f, -3f, 2, p));
     public static final DeferredHolder<Item, Item> TYRVING = register("tyrving", MalumItems::GEAR_PROPERTIES, (p) -> new TyrvingItem(MalumItemTiers.TYRVING, 0, -0.3f, p));
 
     public static final DeferredHolder<Item, Item> MNEMONIC_HEX_STAFF = register("mnemonic_hex_staff", MalumItems::GEAR_PROPERTIES, (p) -> new HexStaffItem(HEX_STAFF, 5, 1, 2, p));
@@ -226,19 +227,24 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> GLUTTONOUS_BROOCH = register("gluttonous_brooch", MalumItems::GEAR_PROPERTIES, CurioGluttonousBrooch::new);
 
     public static final DeferredHolder<Item, Item> RING_OF_ESOTERIC_SPOILS = register("ring_of_esoteric_spoils", MalumItems::GEAR_PROPERTIES, CurioArcaneSpoilRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_ESOTERIC_SHADOW = register("ring_of_esoteric_shadow", MalumItems::GEAR_PROPERTIES, CurioConcealingRing::new);
+
+    public static final DeferredHolder<Item, Item> RING_OF_CURATIVE_TALENT = register("ring_of_curative_talent", MalumItems::GEAR_PROPERTIES, CurioCurativeRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_ALCHEMICAL_MASTERY = register("ring_of_alchemical_mastery", MalumItems::GEAR_PROPERTIES, CurioAlchemicalRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_MANAWEAVING = register("ring_of_manaweaving", MalumItems::GEAR_PROPERTIES, CurioManaweavingRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_ARCANE_PROWESS = register("ring_of_arcane_prowess", MalumItems::GEAR_PROPERTIES, CurioProwessRing::new);
+
+    public static final DeferredHolder<Item, Item> RING_OF_DESPERATE_VORACITY = register("ring_of_desperate_voracity", MalumItems::GEAR_PROPERTIES, CurioVoraciousRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_SWARMING_ROT = register("ring_of_swarming_rot", MalumItems::GEAR_PROPERTIES, CurioSwarmingRing::new);
+
     public static final DeferredHolder<Item, Item> RING_OF_THE_RISING_EDGE = register("ring_of_the_rising_edge", MalumItems::GEAR_PROPERTIES, CurioRisingEdgeRing::new);
     public static final DeferredHolder<Item, Item> RING_OF_THE_HOWLING_MAELSTROM = register("ring_of_the_howling_maelstrom", MalumItems::GEAR_PROPERTIES, CurioHowlingMaelstromRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_CURATIVE_TALENT = register("ring_of_curative_talent", MalumItems::GEAR_PROPERTIES, CurioCurativeRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_ARCANE_PROWESS = register("ring_of_arcane_prowess", MalumItems::GEAR_PROPERTIES, CurioProwessRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_MANAWEAVING = register("ring_of_manaweaving", MalumItems::GEAR_PROPERTIES, CurioManaweavingRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_ALCHEMICAL_MASTERY = register("ring_of_alchemical_mastery", MalumItems::GEAR_PROPERTIES, CurioAlchemicalRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_DESPERATE_VORACITY = register("ring_of_desperate_voracity", MalumItems::GEAR_PROPERTIES, CurioVoraciousRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_THE_HOARDER = register("ring_of_the_hoarder", MalumItems::GEAR_PROPERTIES, CurioHoarderRing::new);
-    public static final DeferredHolder<Item, Item> RING_OF_THE_DEMOLITIONIST = register("ring_of_the_demolitionist", MalumItems::GEAR_PROPERTIES, CurioDemolitionistRing::new);
 
-    public static final DeferredHolder<Item, Item> NECKLACE_OF_THE_MYSTIC_MIRROR = register("necklace_of_the_mystic_mirror", MalumItems::GEAR_PROPERTIES, CurioMirrorNecklace::new);
+    public static final DeferredHolder<Item, Item> RING_OF_HEARTY_AVARICE = register("ring_of_hearty_avarice", MalumItems::GEAR_PROPERTIES, CurioHeartyAvariceRing::new);
+    public static final DeferredHolder<Item, Item> RING_OF_HEAVY_DISCHARGE = register("ring_of_heavy_discharge", MalumItems::GEAR_PROPERTIES, CurioDischargeRing::new);
+
+    public static final DeferredHolder<Item, Item> NECKLACE_OF_MYSTIC_POTENCY = register("necklace_of_mystic_potency", MalumItems::GEAR_PROPERTIES, CurioMysticNecklace::new);
     public static final DeferredHolder<Item, Item> NECKLACE_OF_THE_NARROW_EDGE = register("necklace_of_the_narrow_edge", MalumItems::GEAR_PROPERTIES, CurioNarrowEdgeNecklace::new);
-    public static final DeferredHolder<Item, Item> NECKLACE_OF_BLISSFUL_HARMONY = register("necklace_of_blissful_harmony", MalumItems::GEAR_PROPERTIES, CurioHarmonyNecklace::new);
 
     public static final DeferredHolder<Item, Item> BELT_OF_THE_STARVED = register("belt_of_the_starved", MalumItems::GEAR_PROPERTIES, CurioStarvedBelt::new);
     public static final DeferredHolder<Item, Item> BELT_OF_THE_PROSPECTOR = register("belt_of_the_prospector", MalumItems::GEAR_PROPERTIES, CurioProspectorBelt::new);

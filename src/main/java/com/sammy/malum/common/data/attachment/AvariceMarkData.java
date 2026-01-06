@@ -3,7 +3,7 @@ package com.sammy.malum.common.data.attachment;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.common.geas.pact.infernal.ProspectorGeas;
-import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioProspectorBelt;
+import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.registry.common.MalumAttachmentTypes;
 import com.sammy.malum.registry.common.MalumMobEffects;
@@ -21,6 +21,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -68,15 +69,7 @@ public class AvariceMarkData {
     }
 
     public static int getAppliedAvarice(LivingEntity entity) {
-        boolean hasPact = ProspectorGeas.hasProspectorPact(entity);
-        boolean hasBelt = CurioProspectorBelt.hasProspectorBelt(entity);
-        int amount = hasPact ? 1 : 0;
-        if (hasBelt) {
-            if (entity.getRandom().nextFloat() < 0.5f) {
-                amount++;
-            }
-        }
-        return amount;
+        return CurioProspectorBelt.hasProspectorBelt(entity) ? 1 : 0;
     }
 
     public void tickData(Entity entity) {
@@ -131,8 +124,11 @@ public class AvariceMarkData {
             EntityHelper.extendEffect(instance, target, 400, 2400);
             volume -= Math.min(instance.getAmplifier()*0.05f, 0.5f);
         }
-        if (GeasEffectHandler.hasGeasEffect(target, MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR)) {
+        if (CurioHeartyAvariceRing.hasHeartyRing(target)) {
             target.heal(amount*2);
+            if (target instanceof Player player) {
+                player.getFoodData().eat(1, 2f);
+            }
         }
         SoundHelper.playSound(target, MalumSoundEvents.AVARICE_COLLECT.get(), volume, 0.8f + target.getRandom().nextFloat() * 0.4f);
     }

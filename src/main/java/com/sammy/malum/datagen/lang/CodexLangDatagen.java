@@ -55,14 +55,14 @@ public class CodexLangDatagen {
         add(geas.getDetailedCons(), geasNegatives);
     }
 
-    private static void addEntryHeader(String identifier, String name, String description) {
-        add("malum.gui.book.entry." + identifier, name);
-        addDescription(identifier, description);
-    }
-
     private static void addSimpleEntryHeader(String identifier, String name, String description) {
         addHeadline(identifier, name);
         addEntryHeader(identifier, name, description);
+    }
+
+    private static void addEntryHeader(String identifier, String name, String description) {
+        add("malum.gui.book.entry." + identifier, name);
+        addDescription(identifier, description);
     }
 
     private static void addPage(String identifier, String page) {
@@ -605,24 +605,6 @@ public class CodexLangDatagen {
                 "By altering the composition of the Alchemical Impetus with niter, sulfur, and cthonic gold, it is possible to alter the artifact in such a way that allows for forming nodes of most pure metals.",
                 "It isn't particularly efficient or fast, but it is certainly better than having to mine for every ingot I need. Each metallic node can be processed at a furnace of any kind into two thirds of an ingot worth of metal nuggets.");
 
-        addSimpleEntryHeader("focus_crystals", "Creation of Crystals", "Forming irregular crystals");
-        addPages("focus_crystals", "By applying differing qualities of arcana to an Alchemical Impetus, I can cause more mundane crystals to be formed.");
-
-        addSimpleEntryHeader("focus_elemental", "Recreation of Relics", "Creating construct cores");
-        addPages("focus_elemental",
-                "After much study, I have devised a method of recreating the cores of the constructs. By fusing the Alchemical Impetus with a desired Nucleus and reinforcing it with a Heavy Core I may form an artefact capable of replicating the needed process.",
-                "However, this is merely a process of replication, not creation. Given the fact that I needed the Nucleus in order to recreate it, this cannot have been how the originals were created, and I do not understand the nature of their artificial existences enough to delve further.");
-        addSimpleEntryHeader("focus_elemental.zephyr_impetus", "Zephyr Impetus", "To form wind anew");
-        addPages("focus_elemental.zephyr_impetus",
-                "Wind Charges are objects with fascinating implications. Although the Breeze uses them offensively, when used by a human they bring about a gentle and safe fall. Perhaps the original purpose of these constructs was not to fight, but to ferry travelers across dangerous heights.",
-                "The previously mentioned Wind Charges were relatively simple to recreate, being little more than compacted air. The Wind Nucleus however demanded a thorough understanding of aerial arcana, as well as a slow etching process in order to avoid unintentional discharge.",
-                "What was created once shall be created again, given the right Impetus. The Heavy Core and Wind Nucleus create the Zephyr Impetus - though it is extremely slow to operate, due to the complexity.");
-        addSimpleEntryHeader("focus_elemental.ifrit_impetus", "Ifrit Impetus", "To bud flames from nothing");
-        addPages("focus_elemental.ifrit_impetus",
-                "Blaze are known for their destructive capabilities, they are practically living embodiments of fire itself. Unlike their windy counterparts, they do not show any signs of anything but aggression. The nether is a dangerous place, after all.",
-                "The recreation of Blaze Powder is rather simple, it's a primitive substance and thus demands standard procedures. The Pyre Nucleus however proved to be more difficult, demanding an exact balance of arcana and a precise order of etching in order to avoid detonation.",
-                "What was created once shall be created again, given the right Impetus. The Heavy Core and Pyre Nucleus create the Ifrit Impetus - though it is extremely slow to operate, due to the complexity.");
-
         addSimpleEntryHeader("crucible_acceleration", "Crucible Acceleration", "Heating up");
         addPages("crucible_acceleration",
                 "The Spirit Crucible is, unfortunately, a rather slow device. It takes time for it to coalesce the power of the arcana into the central item. This isn't without reason. Most matter simply can't take a faster stream, and you risk damaging the catalyst by overloading it.",
@@ -643,6 +625,25 @@ public class CodexLangDatagen {
                 "The Spirit Crucible is a machine of great, but largely unrealized, potential. Through a process I call Augmentation, revolving around foci of Alchemical Calx, this potential can be extracted.",
                 "Each augment provides a unique effect that can be activated by inserting it in the spirit catalyzer, or placing up to four in the spirit crucible itself. Using more than one instance of the same augment type will compound their effects.",
                 "To assist in controlling this process, I have modified a Tuning Fork for the purpose. While held, I can see all the unique resonances of the crucible and it's augments. On top of that, by using this Tuning Fork on the crucible, I may choose an attribute to improve, at the cost of other attributes lessening in potency.");
+
+        addSimpleEntryHeader("focus_crystals", "Creation of Crystals", "Forming irregular crystals");
+        addPages("focus_crystals", "By applying differing qualities of arcana to an Alchemical Impetus, I can cause more mundane crystals to be formed.");
+
+        addSimpleEntryHeader("focus_elemental", "Recreation of Relics", "Creating construct cores");
+        addPages("focus_elemental",
+                "After much study, I have devised a method of recreating the cores of the constructs. By fusing the Alchemical Impetus with a desired Nucleus and reinforcing it with a Heavy Core I may form an artefact capable of replicating the needed process.",
+                "However, this is merely a process of replication, not creation. Given the fact that I needed the Nucleus in order to recreate it, this cannot have been how the originals were created, and I do not understand the nature of their artificial existences enough to delve further.");
+        addSimpleEntryHeader("focus_elemental.zephyr_impetus", "Zephyr Impetus", "To form wind anew");
+        addPages("focus_elemental.zephyr_impetus",
+                "Wind Charges are objects with fascinating implications. Although the Breeze uses them offensively, when used by a human they bring about a gentle and safe fall. Perhaps the original purpose of these constructs was not to fight, but to ferry travelers across dangerous heights.",
+                "The previously mentioned Wind Charges were relatively simple to recreate, being little more than compacted air. The Wind Nucleus however demanded a thorough understanding of aerial arcana, as well as a slow etching process in order to avoid unintentional discharge.",
+                "What was created once shall be created again, given the right Impetus. The Heavy Core and Wind Nucleus create the Zephyr Impetus - though it is extremely slow to operate, due to the complexity.");
+        addSimpleEntryHeader("focus_elemental.ifrit_impetus", "Ifrit Impetus", "To bud flames from nothing");
+        addPages("focus_elemental.ifrit_impetus",
+                "Blaze are known for their destructive capabilities, they are practically living embodiments of fire itself. Unlike their windy counterparts, they do not show any signs of anything but aggression. The nether is a dangerous place, after all.",
+                "The recreation of Blaze Powder is rather simple, it's a primitive substance and thus demands standard procedures. The Pyre Nucleus however proved to be more difficult, demanding an exact balance of arcana and a precise order of etching in order to avoid detonation.",
+                "What was created once shall be created again, given the right Impetus. The Heavy Core and Pyre Nucleus create the Ifrit Impetus - though it is extremely slow to operate, due to the complexity.");
+
 
         addSimpleEntryHeader("sympathy_drive", "Sympathy Drive", "Harnessing hatreds");
         addPages("sympathy_drive",
@@ -720,36 +721,68 @@ public class CodexLangDatagen {
                 "Many disciplines of magic, and even more mundane practices, allow the creation of useful trinkets. These are also referred to as baubles or curios by some. The metals I have alloyed have properties useful in their own rights, and can be used as the basis for even grander designs.",
                 "In their most basic form, Hallowed Gold trinkets protect the user as if they were wearing weak armor, and Soulstained Steel trinkets increase the toughness of the armor being worn.");
 
-        addEntryHeader("reactive_trinkets", "Reactive Trinkets", "Harnessing the harvest");
-        addHeadline("reactive_trinkets.ring_of_curative_talent", "Ring of Curative Talent");
+        addSimpleEntryHeader("reactive_trinkets", "Reactive Trinkets", "Harnessing the harvest");
+        addPages("reactive_trinkets",
+                "",
+                "");
+        addSimpleEntryHeader("reactive_trinkets.ring_of_curative_talent", "Ring of Curative Talent", "Rejuvenation in response");
         addPages("reactive_trinkets.ring_of_curative_talent",
                 "The trinkets documented within cause effects whenever a spirit crystal is collected, feeding off the excess energy. As an example, this restorative trinket will replenish a small division of my health any time I collect arcana.");
-        addHeadline("reactive_trinkets.ring_of_alchemical_mastery", "Ring of Alchemical Mastery");
+        addSimpleEntryHeader("reactive_trinkets.ring_of_alchemical_mastery", "Ring of Alchemical Mastery", "Sieving the bad, keeping the good");
         addPages("reactive_trinkets.ring_of_alchemical_mastery",
                 "This ring, through alchemical trickery, is able to manipulate the potions running through my blood. Whenever I collect arcana, the ring will partially filter out negative effects, while at the same time prolonging positive ones.");
-        addHeadline("reactive_trinkets.ring_of_manaweaving", "Ring of Manaweaving");
+        addSimpleEntryHeader("reactive_trinkets.ring_of_manaweaving", "Ring of Manaweaving", "Steeling the shield");
         addPages("reactive_trinkets.ring_of_manaweaving",
                 "Soul Ward is a powerful barrier, but in it's current state it leaves much to be desired. One of it's glaring issues is the burdensome recovery time. To combat this, I've created a ring that in reaction to spirit arcana accelerates the recovery process of Soul Ward.");
-        addHeadline("reactive_trinkets.ring_of_prowess", "Ring of Prowess");
+        addSimpleEntryHeader("reactive_trinkets.ring_of_prowess", "Ring of Prowess", "Feedback loop of knowledge");
         addPages("reactive_trinkets.ring_of_prowess",
                 "Brilliance is attached to the soul, but isn't an impulse like the arcana. It is accumulated knowledge, and so is not inherently tied to the soul that learned it. Even strikes which pass through the soul harmlessly are capable of dislodging it.",
                 "By using condensed Brilliance, I have created a ring that filters out that Brilliance out of arcana I collect, giving me a burst of Brilliant knowledge whenever I collect arcana.");
+        addSimpleEntryHeader("reactive_trinkets.necklace_of_mystic_potency", "Necklace of Mystic Potency", "As without, so within");
+        addPages("reactive_trinkets.necklace_of_mystic_potency",
+                "I have devised another way to capture some of the lost energy from loose spirits. The Resonant Lens I socketed in is able to focus magic, collecting a little bit of excess energy as I pick up arcana. This energy is then redistributed to the rest of my trinkets, increasing the effect of any that act upon collecting spirits.");
+
+        addSimpleEntryHeader("bladed_trinkets", "Bladed Trinkets", "Sharpening the blade");
+        addPages("bladed_trinkets",
+                "",
+                "");
+        addSimpleEntryHeader("bladed_trinkets.necklace_of_the_narrow_edge", "Necklace of the Narrow Edge", "Focused and sharpened");
+        addPages("bladed_trinkets.necklace_of_the_narrow_edge",
+                "The sweep of the scythe is its main draw. The ability to cut my targets like so much wheat is invaluable. But that comes at the cost of damage to a single target. This necklace mystically focuses the edge of my attack, directing all of the power into one target for a strong damage boost.",
+                "Upon further use, I've discovered that the necklace also alters the nature of the two enchantments I use most often on the scythe: Rebound and Ascension. When worn, Rebound takes on a much more aggressive trajectory and Ascension becomes far more concentrated in the form of an Uppercut. Both enchantments see an increase in damage.");
+        addSimpleEntryHeader("bladed_trinkets.ring_of_the_rising_edge", "Ring of the Rising Edge", "An A press is an A press");
+        addPages("bladed_trinkets.ring_of_the_rising_edge",
+                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Ascension with an effect I name the Rising Edge.",
+                "A Wind Charge is presumably something constructed by tools, though I know not by who or how. Utilizing that connection, at the cost of a decrease to damage, those cut by Ascension's blades of wind under the Rising Edge’s effect will also find themselves launched upwards. Useful for crowd control and whatnot, but like the scythe itself, the Narrow Edge can change this purpose.",
+                "By wearing both the Necklace of the Narrow Edge and the Ring of the Rising Edge, the concentrated sweep of wind launches with vastly increased potency, allowing me to juggle my enemies above me.");
+        addSimpleEntryHeader("bladed_trinkets.ring_of_the_howling_maelstrom", "Ring of the Howling Maelstrom", "30% chance to flinch");
+        addPages("bladed_trinkets.ring_of_the_howling_maelstrom",
+                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Rebound with an effect I name the Howling Maelstrom.",
+                "Rebound is reaping, and a Wind Charge has been reaped. By utilizing that connection, this ring causes cutting winds to spin about the scythe when thrown, damaging things around, at the cost of a longer cooldown afterwards.",
+                "By wearing both the Necklace of the Narrow Edge and the Ring of the Howling Maelstrom, I concentrate these winds to the moment the scythe strikes a foe, creating a small storm there for around two seconds.");
 
         addSimpleEntryHeader("ring_of_esoteric_spoils", "Ring of Esoteric Spoils", "Be fruitful and multiply");
         addPages("ring_of_esoteric_spoils",
                 "It can be tiring, harvesting the sheer quantities of arcana I need for my research. This ring can increase the efficiency of the harvest, allowing me to reap an additional spirit from every slain soul. At a certain point, though, \"efficiency\" ceases to explain it. How am I obtaining more power than the soul itself has?");
 
-        addSimpleEntryHeader("belt_of_the_starved", "Belt of the Starved", "Channeling voracity");
-        addPages("belt_of_the_starved",
-                "The arcana I collect occasionally have scraps of wishes and desires woven in. Often, given the base nature of what I reap, this comes in the form of hunger, lust, or petty grudges. All of these impurities can be catalyzed into Gluttony, an stacking amplifier towards magic damage.",
-                "Harnessing magical power this way carries the perhaps predictable effect that my own hunger amplifies, draining quicker in the process. The magic proficiency this grants is not to be ignored, but... I must say, the means are rather distasteful.");
-        addSimpleEntryHeader("belt_of_the_starved.ring_of_desperate_voracity", "Ring of Desperate Voracity", "Widening the channel");
-        addPages("belt_of_the_starved.ring_of_desperate_voracity",
-                "This ring makes rotten foods just a little bit more bearable, allowing me to amass more hunger and saturation from such an unusual diet. Normally, such a diet would be ill-advised, however, a secondary function of the ring allows it to extend the duration of the Gluttony status effect that the Belt of the Starved grants.");
-        addSimpleEntryHeader("belt_of_the_starved.concentrated_gluttony", "Concentrated Gluttony", "Bypass");
-        addPages("belt_of_the_starved.concentrated_gluttony",
-                "I have grown somewhat annoyed with the rotten foods I rely on - they are hardly pleasant to eat. By concentrating them, I can minimize the time I spend tasting rot, granting Gluttony which is amplified by each rotten trinket I wear. It takes seconds to digest, but that is preferable to the taste.",
-                "It is like a potion, and so, like potions, I have derived a Splash variant of it. Upon impact, the essence of rot stored inside is released in a small area, applying its usual benefits to every creature caught inside.");
+        addSimpleEntryHeader("rotten_trinkets", "Rotten Trinkets", "Cultivating hunger");
+        addPages("rotten_trinkets",
+                "Rot is an interesting phenomenon. It is the natural end-state of living matter and even more so for pseudo-life such as the undead. The sheer overabundance of this state of life is practically a rule of the world at this point. We're all oddly familiar with the undead, but it is as if everyone has given up trying to uncover the cause of this phenomena, yet alone undo it.",
+                "Nevertheless, Rotting creatures are generally near or nearing their own end, and so they carry a certain... desperation. This desperation remains in Rotting Essence, and through shaping it I've been able to create a handful of trinkets that channel it into a useful form.");
+        addHeadline("rotten_trinkets.gluttony", "Gluttony");
+        addPages("rotten_trinkets.gluttony",
+                "Gluttony is a unique status effect tied to many of these trinkets, born from impurity and neglect carried in Rotting Essence. These negative emotions can be catalyzed into a tangible force, one that hungers for more. Each amplitude of Gluttony increases magic damage dealt by Five Percent, though it does also invoke a psychological feeling of hunger.",
+                "The most notable aspect of Gluttony however, are Gluttony Locusts. These small arcane constructs are born from excess Gluttony, and seek to devour anything in their path. When bearing any Gluttony and killing anything, the effect will catalyze into a tiny swarm of these Locusts, aggressively seeking out nearby creatures. Each locust deals approximately three magic damage.",
+                "Their hunger is insatiable, but they do appear to have some restriction on what they will consume. They naturally ignore anything inanimate, but interestingly enough whenever any are nearby, the Locusts will " + italic("always") + " prioritize creatures that bear Wicked within their soul.");
+        addSimpleEntryHeader("rotten_trinkets.belt_of_the_starved", "Belt of the Starved", "Channeling voracity");
+        addPages("rotten_trinkets.belt_of_the_starved",
+                "The arcana I collect occasionally bears scraps of wishes and desires. Often, given the nature of what I reap, this comes in the form of hunger, lust, or petty grudges. All of these impurities can be catalyzed into Gluttony.");
+        addSimpleEntryHeader("rotten_trinkets.ring_of_desperate_voracity", "Ring of Desperate Voracity", "Widening the channel");
+        addPages("rotten_trinkets.ring_of_desperate_voracity",
+                "This ring makes rotten foods just a little bit more bearable, allowing me to amass more hunger and saturation from such an unusual diet. Normally, such a diet would be ill-advised, however, a secondary function of the ring allows it to harness Gluttony from the ill-tasting food as I chew-down on it.");
+        addSimpleEntryHeader("rotten_trinkets.ring_of_swarming_rot", "Ring of Swarming Rot", "Grow the swarm");
+        addPages("rotten_trinkets.ring_of_swarming_rot",
+                "This ring is designed as a small housing cell for Gluttony Locusts. It holds a miniature yet comfortable habitat that enables the creatures to fester. While worn, anytime Gluttony Locusts are created, additional ones are released from the ring. The exact amount is random each time due to the unusual way of curating these things, but it will generally double the amount of sprouted Locusts.");
 
         addSimpleEntryHeader("belt_of_the_prospector", "Belt of the Prospector", "Treasures of the earth");
         addPages("belt_of_the_prospector",
@@ -771,30 +804,6 @@ public class CodexLangDatagen {
         addPages("necklace_of_blissful_harmony",
                 "To focus on my magics I more often than not need peace and clarity. As such, I have devised a tool to redirect attention around me. While worn, this accessory will hide my presence from nearby adversaries, decreasing their likelihood of taking interest in me.",
                 "Upon further studies, it would appear that the effects of my newly forged trinket are " + italic("especially") + " potent when exerting their influence over any soul bearing a Wicked spirit.");
-
-        addEntryHeader("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror", "As without, so within");
-        addHeadline("necklace_of_the_mystic_mirror", "Necklace of the Mystic Mirror");
-        addPages("necklace_of_the_mystic_mirror",
-                "I have devised another way to capture some of the lost energy from loose spirits. The Resonant Lens I socketed in is able to focus magic, collecting a little bit of excess energy as I pick up arcana. This energy is then redistributed to the rest of my trinkets, increasing the effect of any that act upon collecting spirits.");
-
-        addEntryHeader("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge", "Focused and sharpened");
-        addHeadline("necklace_of_the_narrow_edge", "Necklace of the Narrow Edge");
-        addPages("necklace_of_the_narrow_edge",
-                "The sweep of the scythe is its main draw. The ability to cut my targets like so much wheat is invaluable. But that comes at the cost of damage to a single target. This necklace mystically focuses the edge of my attack, directing all of the power into one target for a strong damage boost.");
-
-        addEntryHeader("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "Ring of the Rising Edge", "An A press is an A press");
-        addHeadline("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "The Rising Edge");
-        addPages("necklace_of_the_narrow_edge.ring_of_the_rising_edge",
-                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Ascension with an effect I name the Rising Edge.",
-                "A Wind Charge is presumably something constructed by tools, though I know not by who or how. Utilizing that connection, at the cost of a decrease to damage, those cut by Ascension's blades of wind under the Rising Edge’s effect will also find themselves launched upwards. Useful for crowd control and whatnot, but like the scythe itself, the Narrow Edge can change this purpose.",
-                "By wearing both the Necklace of the Narrow Edge and the Ring of the Rising Edge, the concentrated sweep of wind launches with vastly increased potency, allowing me to juggle my enemies above me.");
-
-        addEntryHeader("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "Ring of the Howling Maelstrom", "30% chance to flinch");
-        addHeadline("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "The Howling Maelstrom");
-        addPages("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom",
-                "Rebound and Ascension are interesting enchantments, from a categorical perspective. Neither association has any wind implication, and yet Aerial is their arcana all the same. In the course of investigating this, I discovered how to alter Rebound with an effect I name the Howling Maelstrom.",
-                "Rebound is reaping, and a Wind Charge has been reaped. By utilizing that connection, this ring causes cutting winds to spin about the scythe when thrown, damaging things around, at the cost of a longer cooldown afterwards.",
-                "By wearing both the Necklace of the Narrow Edge and the Ring of the Howling Maelstrom, I concentrate these winds to the moment the scythe strikes a foe, creating a small storm there for around two seconds.");
 
         addEntryHeader("runeworking", "Runeworking", "The central pin");
         addHeadline("runeworking", "Runeworking");
@@ -1161,13 +1170,14 @@ public class CodexLangDatagen {
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC,
                 scaled(0.65f) + """
                         Rot shall become your greatest friend.
-                         -Gluttony becomes Trial of Faith, Increasing Healing Received
-                         -Trial of Faith lasts Significantly Longer and has an Increased Limit of Power
-                         -Eating Rotten Foods Heals You and Omits the Demand for Appetite""",
+                         -Gluttony becomes Trial of Faith
+                         -Trial of Faith increases received healing and sprouts Locusts when you heal
+                         -Trial of Faith lasts significantly longer
+                         -Eating Rotten Foods recovers health""",
                 """
                         Your loyalty to the Rot takes quite a toll on your body.
-                         -Saturation and Hunger no longer restore health
-                         -Eating Forsworn Foods brings Ruin""");
+                         -Saturation and hunger no longer restore health
+                         -Forswear all meals but rot, eating forsworn food hurts you""");
 
         addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "To consume");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON,
@@ -1189,14 +1199,11 @@ public class CodexLangDatagen {
                          -Fire Effects you Inflict onto Enemies are Amplified""",
                 "You cannot deny the flame it's nature\n -Being Forcibly Extinguished Blasts you with Infernal Arcana");
 
-        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "To grow one's fortune");
+        addSimpleEntryHeader("pact_of_the_prospector", "Pact of the Prospector", "");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR,
                 """
-                        A favor born from flame.
-                         -Collecting Precious Minerals grants Avarice
-                         -Avarice gradually improves Fortune Chance
-                         -Avarice additionally recovers one heart of lost health when applied""",
-                "Burn with Greed\n -Being Struck when imbued with Avarice engulfs you in flames");
+                        """,
+                "");
 
         addSimpleEntryHeader("pact_of_the_blastweaver", "Pact of the Blastweaver", "To reap from ruin");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER,

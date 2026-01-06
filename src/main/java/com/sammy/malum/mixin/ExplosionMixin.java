@@ -3,7 +3,7 @@ package com.sammy.malum.mixin;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDemolitionistRing;
+import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDischargeRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioHoarderRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioProspectorBelt;
 import net.minecraft.core.*;
@@ -29,8 +29,6 @@ public abstract class ExplosionMixin {
     boolean malum$hasHoarderRing;
     @Unique
     boolean malum$hasProspectorBelt;
-    @Unique
-    boolean malum$hasProspectorGeas;
 
     @Mutable
     @Shadow
@@ -44,7 +42,7 @@ public abstract class ExplosionMixin {
     @Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/Holder;)V", at = @At(value = "RETURN"))
     private void malum$modifyExplosion(Level level, Entity source, DamageSource damageSource, ExplosionDamageCalculator damageCalculator, double x, double y, double z, float radius, boolean fire, Explosion.BlockInteraction blockInteraction, ParticleOptions smallExplosionParticles, ParticleOptions largeExplosionParticles, Holder explosionSound, CallbackInfo ci) {
         LivingEntity sourceEntity = getIndirectSourceEntity();
-        this.radius = CurioDemolitionistRing.increaseExplosionRadius(sourceEntity, radius);
+        this.radius = CurioDischargeRing.increaseExplosionRadius(sourceEntity, radius);
         this.radius = BlastweaverGeas.increaseExplosionRadius(sourceEntity, radius);
     }
 
@@ -54,7 +52,6 @@ public abstract class ExplosionMixin {
         if (entity != null) {
             malum$hasHoarderRing = CurioHoarderRing.hasHoarderRing(entity);
             malum$hasProspectorBelt = CurioProspectorBelt.hasProspectorBelt(entity);
-            malum$hasProspectorGeas = ProspectorGeas.hasProspectorPact(entity);
         }
     }
 
@@ -62,7 +59,7 @@ public abstract class ExplosionMixin {
     @Redirect(method = "finalizeExplosion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;popResource(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V"))
     private void malum$popResource(Level level, BlockPos pos, ItemStack stack) {
         pos = CurioHoarderRing.getExplosionPos(malum$hasHoarderRing, pos, getIndirectSourceEntity(), stack);
-        if (malum$hasProspectorBelt || malum$hasProspectorGeas) {
+        if (malum$hasProspectorBelt) {
             var avarice = AvariceMarkData.getAppliedAvarice(getIndirectSourceEntity());
             AvariceMarkData.popResourceAndMarkEntity(level, pos, stack, avarice);
         } else {

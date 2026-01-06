@@ -6,10 +6,8 @@ import com.sammy.malum.client.screen.codex.pages.recipe.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
-import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
@@ -102,102 +100,149 @@ public class TinkeringEntries {
                 .addPage(CraftingPage.necklacePage(ORNATE_NECKLACE.get(), SOUL_STAINED_STEEL_PLATING.get()))
                 .addPage(CraftingPage.ringPage(GILDED_RING.get(), HALLOWED_GOLD_INGOT.get()))
                 .addPage(CraftingPage.beltPage(GILDED_BELT.get(), HALLOWED_GOLD_INLAY.get()))
-                .addReference(new EntryReference(RING_OF_ESOTERIC_SPOILS.get(),
-                        BookEntry.create("ring_of_esoteric_spoils")
-                                .addPage(new HeadlineTextPage("ring_of_esoteric_spoils", "ring_of_esoteric_spoils.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ESOTERIC_SPOILS.get()))))
         );
 
-        screen.addEntry("reactive_trinkets", -12, 6, b -> b
-                .configureWidget(w -> w.setIcon(RING_OF_CURATIVE_TALENT))
-                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_curative_talent", "reactive_trinkets.ring_of_curative_talent.1"))
-                .addPage(SpiritInfusionPage.fromOutput(RING_OF_CURATIVE_TALENT.get()))
-                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_alchemical_mastery", "reactive_trinkets.ring_of_alchemical_mastery.1"))
-                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ALCHEMICAL_MASTERY.get()))
-                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_manaweaving", "reactive_trinkets.ring_of_manaweaving.1"))
-                .addPage(SpiritInfusionPage.fromOutput(RING_OF_MANAWEAVING.get()))
-                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_prowess", "reactive_trinkets.ring_of_prowess.1"))
-                .addPage(new TextPage("reactive_trinkets.ring_of_prowess.2"))
-                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ARCANE_PROWESS.get()))
+        screen.addEntry("ring_of_esoteric_spoils", -11, 8, b -> b
+                .configureWidget(w -> w.setIcon(RING_OF_ESOTERIC_SPOILS))
+                .addPage(new HeadlineTextPage("ring_of_esoteric_spoils"))
+                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ESOTERIC_SPOILS.get()))
         );
 
-        screen.addEntry("necklace_of_the_mystic_mirror", -14, 5, b -> b
-                .configureWidget(w -> w.setIcon(NECKLACE_OF_THE_MYSTIC_MIRROR))
-                .addPage(new HeadlineTextPage("necklace_of_the_mystic_mirror", "necklace_of_the_mystic_mirror.1"))
-                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_MYSTIC_MIRROR.get())));
+        screen.addEntry("ring_of_esoteric_shadow", -9, 6, b -> b
+                .configureWidget(w -> w.setIcon(RING_OF_ESOTERIC_SHADOW))
+                .addPage(new HeadlineTextPage("ring_of_esoteric_shadow"))
+                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ESOTERIC_SHADOW.get()))
+        );
 
-        screen.addEntry("belt_of_the_starved",-11, 8, b -> b
+        screen.addEntry("reactive_trinkets", -10, 5, b -> b
+                .configureWidget(w -> w.setIcon(NECKLACE_OF_MYSTIC_POTENCY))
+                .addPage(new HeadlineTextPage("reactive_trinkets"))
+                .addPage(new TextPage("reactive_trinkets.2"))
+                .addReference(new EntryReference(RING_OF_CURATIVE_TALENT.get(),
+                        BookEntry.create("reactive_trinkets.ring_of_curative_talent")
+                                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_curative_talent"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_CURATIVE_TALENT.get()))))
+                .addReference(new EntryReference(RING_OF_ALCHEMICAL_MASTERY.get(),
+                        BookEntry.create("reactive_trinkets.ring_of_alchemical_mastery")
+                                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_alchemical_mastery"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ALCHEMICAL_MASTERY.get()))))
+                .addReference(new EntryReference(RING_OF_MANAWEAVING.get(),
+                        BookEntry.create("reactive_trinkets.ring_of_manaweaving")
+                                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_manaweaving"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_MANAWEAVING.get()))))
+                .addReference(new EntryReference(RING_OF_ARCANE_PROWESS.get(),
+                        BookEntry.create("reactive_trinkets.ring_of_prowess")
+                                .addPage(new HeadlineTextPage("reactive_trinkets.ring_of_prowess"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_ARCANE_PROWESS.get()))
+                                .addPage(new TextPage("reactive_trinkets.ring_of_prowess.2"))))
+                .addReference(new EntryReference(NECKLACE_OF_MYSTIC_POTENCY.get(),
+                        BookEntry.create("reactive_trinkets.necklace_of_mystic_potency")
+                                .addPage(new HeadlineTextPage("reactive_trinkets.necklace_of_mystic_potency"))
+                                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_MYSTIC_POTENCY.get()))))
+        );
+
+        screen.addEntry("bladed_trinkets", -10, 9, b -> b
+                .configureWidget(w -> w.setIcon(NECKLACE_OF_THE_NARROW_EDGE))
+                .addPage(new HeadlineTextPage("bladed_trinkets"))
+                .addPage(new TextPage("bladed_trinkets.2"))
+                .addReference(new EntryReference(NECKLACE_OF_THE_NARROW_EDGE.get(),
+                        BookEntry.create("bladed_trinkets.necklace_of_the_narrow_edge")
+                                .addPage(new HeadlineTextPage("bladed_trinkets.necklace_of_the_narrow_edge"))
+                                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_NARROW_EDGE.get()))
+                                .addPage(new TextPage("bladed_trinkets.necklace_of_the_narrow_edge.2"))
+                ))
+                .addReference(new EntryReference(RING_OF_THE_RISING_EDGE.get(),
+                        BookEntry.create("bladed_trinkets.ring_of_the_rising_edge")
+                                .addPage(new HeadlineTextPage("bladed_trinkets.ring_of_the_rising_edge"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_RISING_EDGE.get()))
+                                .addPage(new TextPage("bladed_trinkets.ring_of_the_rising_edge.2"))
+                                .addPage(new TextPage("bladed_trinkets.ring_of_the_rising_edge.3"))
+                ))
+                .addReference(new EntryReference(RING_OF_THE_HOWLING_MAELSTROM.get(),
+                        BookEntry.create("bladed_trinkets.ring_of_the_howling_maelstrom")
+                                .addPage(new HeadlineTextPage("bladed_trinkets.ring_of_the_howling_maelstrom"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_HOWLING_MAELSTROM.get()))
+                                .addPage(new TextPage("bladed_trinkets.ring_of_the_howling_maelstrom.2"))
+                                .addPage(new TextPage("bladed_trinkets.ring_of_the_howling_maelstrom.3"))
+                ))
+        );
+
+        screen.addEntry("something", -12, 6, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+
+        screen.addEntry("rotten_trinkets",-14, 5, b -> b
                 .configureWidget(w -> w.setIcon(BELT_OF_THE_STARVED))
-                .addPage(new HeadlineTextPage("belt_of_the_starved", "belt_of_the_starved.1"))
-                .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_STARVED.get()))
-                .addPage(new TextPage("belt_of_the_starved.2"))
+                .addPage(new HeadlineTextPage("rotten_trinkets"))
+                .addPage(new TextPage("rotten_trinkets.2"))
+                .addPage(new HeadlineTextPage("rotten_trinkets.gluttony"))
+                .addPage(new TextPage("rotten_trinkets.gluttony.2"))
+                .addPage(new TextPage("rotten_trinkets.gluttony.3"))
+                .addReference(new EntryReference(
+                        BELT_OF_THE_STARVED.get(),
+                        BookEntry.create("rotten_trinkets.belt_of_the_starved")
+                                .addPage(new HeadlineTextPage("rotten_trinkets.belt_of_the_starved"))
+                                .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_STARVED.get()))
+                ))
                 .addReference(new EntryReference(
                         RING_OF_DESPERATE_VORACITY.get(),
-                        BookEntry.create("belt_of_the_starved.ring_of_desperate_voracity")
-                                .addPage(new HeadlineTextPage("belt_of_the_starved.ring_of_desperate_voracity", "belt_of_the_starved.ring_of_desperate_voracity.1"))
+                        BookEntry.create("rotten_trinkets.ring_of_desperate_voracity")
+                                .addPage(new HeadlineTextPage("rotten_trinkets.ring_of_desperate_voracity"))
                                 .addPage(SpiritInfusionPage.fromOutput(RING_OF_DESPERATE_VORACITY.get()))
                 ))
                 .addReference(new EntryReference(
-                        CONCENTRATED_GLUTTONY.get(),
-                        BookEntry.create("belt_of_the_starved.concentrated_gluttony")
-                                .addPage(new HeadlineTextPage("belt_of_the_starved.concentrated_gluttony", "belt_of_the_starved.concentrated_gluttony.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(CONCENTRATED_GLUTTONY.get()))
-                                .addPage(new TextPage("belt_of_the_starved.concentrated_gluttony.2"))
-                                .addPage(new CyclingPage(
-                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony")),
-                                        SpiritInfusionPage.fromId(malumPath("splash_of_gluttony_from_concentrated_gluttony"))
-                                ))
+                        RING_OF_SWARMING_ROT.get(),
+                        BookEntry.create("rotten_trinkets.ring_of_swarming_rot")
+                                .addPage(new HeadlineTextPage("rotten_trinkets.ring_of_swarming_rot"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_SWARMING_ROT.get()))
                 ))
         );
 
-        screen.addEntry("necklace_of_the_narrow_edge", -10, 9, b -> b
-                .configureWidget(w -> w.setIcon(NECKLACE_OF_THE_NARROW_EDGE))
-                .addPage(new HeadlineTextPage("necklace_of_the_narrow_edge", "necklace_of_the_narrow_edge.1"))
-                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_THE_NARROW_EDGE.get()))
-                .addReference(new EntryReference(
-                        RING_OF_THE_RISING_EDGE.get(),
-                        BookEntry.create("necklace_of_the_narrow_edge.ring_of_the_rising_edge")
-                                .addPage(new HeadlineTextPage("necklace_of_the_narrow_edge.ring_of_the_rising_edge", "necklace_of_the_narrow_edge.ring_of_the_rising_edge.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_RISING_EDGE.get()))
-                                .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_rising_edge.2"))
-                                .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_rising_edge.3"))
-                ))
-                .addReference(new EntryReference(
-                        RING_OF_THE_HOWLING_MAELSTROM.get(),
-                        BookEntry.create("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom")
-                                .addPage(new HeadlineTextPage("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom", "necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_HOWLING_MAELSTROM.get()))
-                                .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom.2"))
-                                .addPage(new TextPage("necklace_of_the_narrow_edge.ring_of_the_howling_maelstrom.3"))
-                ))
+        screen.addEntry("ravenous_scythe", -15, 4, b -> b
+                .configureWidget(w -> w.setIcon(RAVENOUS_SCYTHE))
+        );
+        screen.addEntry("gluttonous_bludgeon", -16, 4, b -> b
+                .configureWidget(w -> w.setIcon(GLUTTONOUS_BLUDGEON))
         );
 
-        screen.addEntry("belt_of_the_prospector", -9, 6, b -> b
+        screen.addEntry("avaricious_trinkets", -11, 11, b -> b
                 .configureWidget(w -> w.setIcon(BELT_OF_THE_PROSPECTOR))
-                .addPage(new HeadlineTextItemPage("belt_of_the_prospector", BELT_OF_THE_PROSPECTOR.get()))
-                .addPage(new HeadlineTextPage("belt_of_the_prospector.avarice"))
-                .addPage(new TextPage("belt_of_the_prospector.2"))
-                .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_PROSPECTOR.get()))
+                .addPage(new HeadlineTextPage("avaricious_trinkets"))
+                .addPage(new TextPage("avaricious_trinkets.2"))
+                .addPage(new HeadlineTextPage("avaricious_trinkets.avarice"))
+                .addPage(new TextPage("avaricious_trinkets.avarice.2"))
                 .addReference(new EntryReference(
-                        RING_OF_THE_HOARDER.get(),
-                        BookEntry.create("belt_of_the_prospector.ring_of_the_hoarder")
-                                .addPage(new HeadlineTextPage("belt_of_the_prospector.ring_of_the_hoarder", "belt_of_the_prospector.ring_of_the_hoarder.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_HOARDER.get()))
+                        BELT_OF_THE_PROSPECTOR.get(),
+                        BookEntry.create("avaricious_trinkets.belt_of_the_prospector")
+                                .addPage(new HeadlineTextPage("avaricious_trinkets.belt_of_the_prospector"))
+                                .addPage(SpiritInfusionPage.fromOutput(BELT_OF_THE_PROSPECTOR.get()))
                 ))
                 .addReference(new EntryReference(
-                        RING_OF_THE_DEMOLITIONIST.get(),
-                        BookEntry.create("belt_of_the_prospector.ring_of_the_demolitionist")
-                                .addPage(new HeadlineTextPage("belt_of_the_prospector.ring_of_the_demolitionist", "belt_of_the_prospector.ring_of_the_demolitionist.1"))
-                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_THE_DEMOLITIONIST.get()))
+                        RING_OF_HEARTY_AVARICE.get(),
+                        BookEntry.create("avaricious_trinkets.ring_of_hearty_avarice")
+                                .addPage(new HeadlineTextPage("avaricious_trinkets.ring_of_hearty_avarice"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_HEARTY_AVARICE.get()))
+                ))
+                .addReference(new EntryReference(
+                        RING_OF_HEAVY_DISCHARGE.get(),
+                        BookEntry.create("avaricious_trinkets.ring_of_heavy_discharge")
+                                .addPage(new HeadlineTextPage("avaricious_trinkets.ring_of_heavy_discharge"))
+                                .addPage(SpiritInfusionPage.fromOutput(RING_OF_HEAVY_DISCHARGE.get()))
                 ))
         );
-
-        screen.addEntry("necklace_of_blissful_harmony", -10, 5, b -> b
-                .configureWidget(w -> w.setIcon(NECKLACE_OF_BLISSFUL_HARMONY))
-                .addPage(new HeadlineTextPage("necklace_of_blissful_harmony", "necklace_of_blissful_harmony.1"))
-                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_BLISSFUL_HARMONY.get()))
-                .addPage(new TextPage("necklace_of_blissful_harmony.2"))
+        screen.addEntry("something", -10, 12, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
         );
+        screen.addEntry("something", -10, 13, b -> b
+                .configureWidget(w -> w.setIcon(BARRIER))
+        );
+//
+//        screen.addEntry("necklace_of_blissful_harmony", -10, 5, b -> b
+//                .configureWidget(w -> w.setIcon(NECKLACE_OF_BLISSFUL_HARMONY))
+//                .addPage(new HeadlineTextPage("necklace_of_blissful_harmony", "necklace_of_blissful_harmony.1"))
+//                .addPage(SpiritInfusionPage.fromOutput(NECKLACE_OF_BLISSFUL_HARMONY.get()))
+//                .addPage(new TextPage("necklace_of_blissful_harmony.2"))
+//        );
 
         screen.addEntry("spellweaving_pickaxe", -3, 12, b -> b
                 .configureWidget(w -> w.setIcon(SPELLWEAVING_PICKAXE))

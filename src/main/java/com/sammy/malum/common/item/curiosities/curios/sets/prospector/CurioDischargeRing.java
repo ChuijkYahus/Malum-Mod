@@ -9,9 +9,9 @@ import team.lodestar.lodestone.helpers.CurioHelper;
 
 import java.util.function.Consumer;
 
-public class CurioDemolitionistRing extends MalumCurioItem {
+public class CurioDischargeRing extends MalumCurioItem {
 
-    public CurioDemolitionistRing(Properties builder) {
+    public CurioDischargeRing(Properties builder) {
         super(builder, MalumTrinketType.METALLIC);
     }
 
@@ -21,7 +21,7 @@ public class CurioDemolitionistRing extends MalumCurioItem {
     }
 
     public static float increaseExplosionRadius(LivingEntity source, float original) {
-        if (source != null && CurioHelper.hasCurioEquipped(source, MalumItems.RING_OF_THE_DEMOLITIONIST.get())) {
+        if (source != null && CurioHelper.hasCurioEquipped(source, MalumItems.RING_OF_HEAVY_DISCHARGE.get())) {
             return original + 1;
         }
         return original;
