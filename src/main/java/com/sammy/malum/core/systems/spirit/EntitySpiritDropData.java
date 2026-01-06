@@ -33,10 +33,6 @@ public class EntitySpiritDropData {
         this.itemAsSoul = itemAsSoul;
     }
 
-    public static List<ItemStack> getSpiritStacks(LivingEntity entity) {
-        return getSpiritData(entity).map(EntitySpiritDropData::getSpiritStacks).orElse(Collections.emptyList());
-    }
-
     public SpiritHolder<SpiritArcanaType> getPrimaryType() {
         return primaryType;
     }
@@ -51,6 +47,15 @@ public class EntitySpiritDropData {
 
     public List<ItemStack> getSpiritStacks() {
         return spirits.stream().map(SpiritIngredient::asItemStack).collect(Collectors.toList());
+    }
+
+    public int countSpirit(SpiritHolder<SpiritArcanaType> type) {
+        for (SpiritIngredient spirit : spirits) {
+            if (type.is(spirit)) {
+                return spirit.count();
+            }
+        }
+        return 0;
     }
 
     @Nullable

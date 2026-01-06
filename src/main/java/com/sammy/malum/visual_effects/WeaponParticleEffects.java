@@ -113,7 +113,7 @@ public class WeaponParticleEffects {
     }
 
     public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, Function<WorldParticleOptions, WorldParticleBuilder> builderSupplier) {
-        var builder = builderSupplier.apply(new WorldParticleOptions(MalumParticles.SLAM));
+        var builder = builderSupplier.apply(new WorldParticleOptions(particleType));
         return spawnSlamParticle(level, pos, builder);
     }
 

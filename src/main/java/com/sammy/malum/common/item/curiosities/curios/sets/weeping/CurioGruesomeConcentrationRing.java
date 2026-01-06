@@ -26,19 +26,4 @@ public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IV
         consumer.accept(ComponentHelper.positiveCurioEffect("rotten_gluttony"));
     }
 
-    public static void onEat(Level level, LivingEntity livingEntity, ItemStack food) {
-        if (level.isClientSide) {
-            return;
-        }
-        if (food.is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_GRUESOME_CONCENTRATION.get())) {
-                GluttonyEffect.applyGluttony(livingEntity, b -> b
-                        .setInitialDuration(600)
-                        .setInitialAmplifier(1)
-                        .setAmplifierGain(2)
-                        .setAmplifierLimit(10));
-                livingEntity.playSound(MalumSoundEvents.GRUESOME_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 0.8f, 1.2f));
-            }
-        }
-    }
 }

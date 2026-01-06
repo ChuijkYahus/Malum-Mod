@@ -26,17 +26,13 @@ public class ProfaneAsceticGeas extends GeasEffect {
     @Override
     public void modifyGluttonyPropertiesEvent(ModifyGluttonyPropertiesEvent event, LivingEntity collector) {
         event.getProperties()
-                .scaleInitialDuration(2)
-                .scaleDurationLimit(4)
-                .scaleDurationGain(2)
-                .scaleAmplifierLimit(2)
+                .scaleDuration(3)
                 .replaceEffectType(MalumMobEffects.TRIAL_OF_FAITH);
     }
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("trial_of_faith"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("trial_of_faith_healing"));
         tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("rotten_healing"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("no_passive_healing"));
         tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("no_normal_foods"));
@@ -50,7 +46,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
         if (isProfaneAscetic(event.getEntity())) {
             if (event.getItem().getFoodProperties(event.getEntity()) != null) {
-                final float multiplier = event.getItem().is(GROSS_FOODS) ? 0.66f : 2f;
+                float multiplier = event.getItem().is(GROSS_FOODS) ? 0.66f : 2f;
                 event.setDuration((int) (event.getDuration() * multiplier));
             }
         }
@@ -62,7 +58,7 @@ public class ProfaneAsceticGeas extends GeasEffect {
         }
         if (isProfaneAscetic(livingEntity)) {
             if (food.is(GROSS_FOODS)) {
-                livingEntity.heal(livingEntity.getMaxHealth() / 5);
+                livingEntity.heal(livingEntity.getMaxHealth() / 5f);
             } else {
                 livingEntity.hurt(DamageTypeHelper.create(level, MalumDamageTypes.KARMIC), livingEntity.getMaxHealth() / 2);
             }

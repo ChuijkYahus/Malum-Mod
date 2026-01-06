@@ -23,25 +23,25 @@ public class ProspectorGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("ore_prospecting"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_healing"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("avarice_combustion"));
+//        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("ore_prospecting"));
+//        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_healing"));
+//        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("avarice_combustion"));
     }
 
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        var source = event.getSource();
-        if (!source.is(DamageTypeTags.IS_FIRE) && !source.is(DamageTypeTags.IS_EXPLOSION)) {
-            var effect = target.getEffect(MalumMobEffects.AVARICE);
-            if (effect != null) {
-                if (target.level() instanceof ServerLevel level) {
-                    target.igniteForSeconds((effect.amplifier + 1) * 0.5f);
-                    MalumParticleEffectTypes.PROSPECTORS_STREAK_BURN.createEffect(target)
-                            .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
-                            .spawn(level);
-                }
-            }
-        }
+//        var source = event.getSource();
+//        if (!source.is(DamageTypeTags.IS_FIRE) && !source.is(DamageTypeTags.IS_EXPLOSION)) {
+//            var effect = target.getEffect(MalumMobEffects.AVARICE);
+//            if (effect != null) {
+//                if (target.level() instanceof ServerLevel level) {
+//                    target.igniteForSeconds((effect.amplifier + 1) * 0.5f);
+//                    MalumParticleEffectTypes.PROSPECTORS_STREAK_BURN.createEffect(target)
+//                            .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.INFERNAL_SPIRIT))
+//                            .spawn(level);
+//                }
+//            }
+//        }
     }
 
     public static boolean hasProspectorPact(LivingEntity entity) {

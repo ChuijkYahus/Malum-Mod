@@ -107,6 +107,7 @@ public class MalumParticleEffectTypes {
 
     //Slam Effects
     public static final StaffSlamAttackParticleEffect STAFF_SLAM = new StaffSlamAttackParticleEffect("staff_slam");
+    public static final BludgeonAttackParticleEffect BLUDGEON_SLAM = new BludgeonAttackParticleEffect("bludgeon_slam");
 
     //Wand
     public static final BoltImpactParticleEffect HEX_BOLT_IMPACT = new HexBoltImpactParticleEffect("hex_bolt_impact");

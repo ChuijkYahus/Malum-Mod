@@ -5,6 +5,7 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -88,6 +89,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
         if (getOwner() instanceof LivingEntity owner) {
             var target = result.getEntity();
             var source = DamageTypeHelper.create(level(), MalumDamageTypes.SCYTHE_REBOUND, this, owner);
+            var magicSource = DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner);
             var heldItem = owner.getMainHandItem();
 
             owner.setItemInHand(InteractionHand.MAIN_HAND, getItem());
@@ -97,7 +99,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
                 if (magicDamage > 0) {
                     if (!livingentity.isDeadOrDying()) {
                         livingentity.invulnerableTime = 0;
-                        livingentity.hurt(DamageTypeHelper.create(level(), MalumDamageTypes.VOODOO, this, owner), magicDamage);
+                        livingentity.hurt(magicSource, magicDamage);
                     }
                 }
                 enemiesHit++;

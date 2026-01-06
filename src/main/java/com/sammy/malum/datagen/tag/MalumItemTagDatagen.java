@@ -99,15 +99,16 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
                 .addOptional(ResourceLocation.parse("irons_spellbooks:hellrazor"))
                 .addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe")); //TODO: Whenever BiC updates to 1.21, check if this is still valid! -Atobá
 
-        tag(MAGIC_CAPABLE_WEAPON).add(
-                CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(),
-                SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get(),
-                MNEMONIC_HEX_STAFF.get(), UNWINDING_CHAOS.get(), EROSION_SCEPTER.get(),
-                TYRVING.get(), SUNDERING_ANCHOR.get());
+        tag(MAGIC_CAPABLE_WEAPON)
+                .addTags(SCYTHES, STAVES)
+                .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
+                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get(), SUNDERING_ANCHOR.get())
+                .remove(EDGE_OF_DELIVERANCE.get());
+
         tag(MAGIC_CAPABLE_WEAPON).addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe"));
 
         tag(SCYTHES)
-                .add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
+                .add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
         tag(SCYTHES_COMMON).addTag(SCYTHES);
 
         tag(STAVES)
@@ -115,7 +116,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(STAVES_COMMON).addTag(STAVES);
 
         tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
-                CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
+                CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
                 SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
                 TYRVING.get(), MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), WEIGHT_OF_WORLDS.get(),
                 UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());

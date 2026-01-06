@@ -16,7 +16,7 @@ import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
-import com.sammy.malum.common.item.curiosities.curios.sets.misc.*;
+import com.sammy.malum.common.item.curiosities.curios.sets.esoteric.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
@@ -90,7 +90,7 @@ public class RuntimeEvents {
 
     @SubscribeEvent
     public static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
-        CurioHarmonyNecklace.preventDetection(event);
+        CurioConcealingRing.preventDetection(event);
         WarlockGeas.increaseDetection(event);
     }
 
@@ -197,11 +197,13 @@ public class RuntimeEvents {
     public static void onHeal(LivingHealEvent event) {
         MalumAttributeEventHandler.heal(event);
         LifeweaverGeas.onHeal(event);
+        TrialOfFaithEffect.onHeal(event);
     }
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
         SoulHarvestHandler.onDeath(event);
+        GluttonyEffect.onDeath(event);
     }
 
     @SubscribeEvent

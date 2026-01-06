@@ -1,0 +1,35 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 8,
+      "item": "malum:runewood_planks"
+    },
+    {
+      "count": 4,
+      "item": "malum:warp_flux"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:ornate_necklace"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:necklace_of_mystic_potency"
+  },
+  "spirits": [
+    {
+      "type": "malum:sacred",
+      "count": 32
+    },
+    {
+      "type": "malum:aqueous",
+      "count": 16
+    },
+    {
+      "type": "malum:arcane",
+      "count": 16
+    }
+  ]
+}

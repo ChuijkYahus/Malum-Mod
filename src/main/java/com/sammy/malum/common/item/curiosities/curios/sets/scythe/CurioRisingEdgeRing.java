@@ -29,11 +29,8 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
         consumer.accept(ComponentHelper.negativeCurioEffect("lower_ascension_damage"));
     }
 
-    public static void launchEntity(LivingEntity attacker, LivingEntity target) {
-        float velocity = 0.5f;
-        if (MalumScytheItem.isEnhanced(attacker)) {
-            velocity += 0.3f;
-        }
+    public static void launchEntity(LivingEntity attacker, LivingEntity target, boolean isUppercut) {
+        float velocity = isUppercut ? 0.8f : 0.5f;
         attacker.level().explode(
                 attacker,
                 null,

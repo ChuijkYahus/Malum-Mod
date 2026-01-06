@@ -640,7 +640,7 @@
   "item.malum.natural_quartz": "天然石英",
   "item.malum.necklace_of_blissful_harmony": "福乐和谐项链",
   "item.malum.necklace_of_the_hidden_blade": "隐藏锋刃项链",
-  "item.malum.necklace_of_the_mystic_mirror": "神秘透镜项链",
+  "item.malum.necklace_of_mystic_potency": "神秘透镜项链",
   "item.malum.necklace_of_the_narrow_edge": "精准镰刃项链",
   "item.malum.necklace_of_the_watcher": "监视者项链",
   "item.malum.nickel_impetus": "镍促符",
@@ -2659,10 +2659,10 @@
   "malum.gui.book.entry.page.headline.ritual_magic": "灵仪魔法",
   "malum.gui.book.entry.page.text.ritual_magic.1": "未来深藏诸多奥秘……",
 
-  "malum.gui.book.entry.necklace_of_the_mystic_mirror": "神秘透镜项链",
-  "malum.gui.book.entry.necklace_of_the_mystic_mirror.description": "如其在内，如其在外",
-  "malum.gui.book.entry.page.headline.necklace_of_the_mystic_mirror": "神秘透镜项链",
-  "malum.gui.book.entry.page.text.necklace_of_the_mystic_mirror.1": "我又设计了一种收集散在精魂损 失的能量的方式。嵌入其中的透 镜能够聚焦魔法，即能在收集到 奥术能量时多收集一些。这些能 量会被重新分配给我身上所有其 他护符，从而在收获精魂时增强 它们的效果。",
+  "malum.gui.book.entry.necklace_of_mystic_potency": "神秘透镜项链",
+  "malum.gui.book.entry.necklace_of_mystic_potency.description": "如其在内，如其在外",
+  "malum.gui.book.entry.page.headline.necklace_of_mystic_potency": "神秘透镜项链",
+  "malum.gui.book.entry.page.text.necklace_of_mystic_potency.1": "我又设计了一种收集散在精魂损 失的能量的方式。嵌入其中的透 镜能够聚焦魔法，即能在收集到 奥术能量时多收集一些。这些能 量会被重新分配给我身上所有其 他护符，从而在收获精魂时增强 它们的效果。",
 
   "malum.gui.book.entry.mirror_magic": "镜面魔法",
   "malum.gui.book.entry.mirror_magic.description": "魔法溜槽",

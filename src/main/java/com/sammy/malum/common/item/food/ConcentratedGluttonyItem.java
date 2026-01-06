@@ -9,7 +9,6 @@ import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -58,7 +57,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
                     duration += 400;
                 }
             }
-            builder.setInitialDuration((int) (duration * durationScalar));
+            builder.setDuration((int) (duration * durationScalar));
             builder.setInitialAmplifier(amplifier);
             builder.setAmplifierLimit(10);
         });

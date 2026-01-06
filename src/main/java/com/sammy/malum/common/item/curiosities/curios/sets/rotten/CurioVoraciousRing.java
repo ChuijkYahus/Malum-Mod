@@ -26,7 +26,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         consumer.accept(ComponentHelper.positiveCurioEffect("eat_rotten"));
-        consumer.accept(ComponentHelper.positiveCurioEffect("growing_gluttony"));
+        consumer.accept(ComponentHelper.positiveCurioEffect("rotten_gluttony"));
     }
 
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
@@ -43,12 +43,13 @@ public class CurioVoraciousRing extends MalumCurioItem {
         }
         if (food.is(GROSS_FOODS)) {
             if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
-                GluttonyEffect.applyGluttony(livingEntity, b -> b
-                        .setDurationGain(300)
-                        .setDurationLimit(3000));
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }
+                GluttonyEffect.applyGluttony(livingEntity, b -> b
+                        .setDuration(600)
+                        .setAmplifierGain(1)
+                        .setAmplifierLimit(5));
                 livingEntity.playSound(MalumSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
             }
         }

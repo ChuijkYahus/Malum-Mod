@@ -1,11 +1,16 @@
 package com.sammy.malum.common.effect.gluttony;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.entity.activator.gluttony.*;
 import com.sammy.malum.common.item.*;
-import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import com.sammy.malum.core.systems.events.*;
+import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.magic.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
+import net.minecraft.util.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,21 +18,24 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.lodestone.systems.enchanting.*;
 
 import java.util.function.*;
 
 import static net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result.DO_NOT_APPLY;
 
 public class GluttonyEffect extends MobEffect {
+
     public GluttonyEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(88, 86, 60));
-        addAttributeModifier(LodestoneAttributes.MAGIC_PROFICIENCY, MalumMod.malumPath("gluttony"), 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        IronsSpellsCompat.addGluttonySpellPower(this);
+        var id = MalumMod.malumPath("gluttony");
+        addAttributeModifier(LodestoneAttributes.MAGIC_PROFICIENCY, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override
@@ -36,48 +44,102 @@ public class GluttonyEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
-        if (entityLivingBaseIn instanceof Player player) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity instanceof Player player) {
             player.causeFoodExhaustion(0.005f * (amplifier + 1));
         }
         return true;
     }
 
+    public static void onDeath(LivingDeathEvent event) {
+        var source = event.getSource();
+        if (!(source.getEntity() instanceof LivingEntity attacker)) {
+            return;
+        }
+        var instance = attacker.getEffect(MalumMobEffects.GLUTTONY);
+        if (instance == null) {
+            return;
+        }
+        var target = event.getEntity();
+        int spawnedLocusts = (instance.amplifier + 1) * 2;
+        if (spawnLocusts(attacker, target, spawnedLocusts)) {
+            attacker.removeEffect(MalumMobEffects.GLUTTONY);
+        }
+    }
+
+    public static boolean spawnLocusts(LivingEntity attacker, LivingEntity target, int amount) {
+        var level = target.level();
+        var random = level.random;
+
+        var area = target.getBoundingBox().inflate(8f, 3f, 8f);
+        var targets = level.getEntitiesOfClass(LivingEntity.class, area, LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && attacker.hasLineOfSight(t)));
+
+        if (targets.isEmpty()) {
+            return false;
+        }
+        LivingEntity highestWicked = null;
+        if (!attacker.equals(target) && target instanceof Player && !target.isDeadOrDying()) {
+            highestWicked = target;
+        }
+        if (highestWicked != null) {
+            int wickedAmount = -1;
+            for (LivingEntity otherTarget : targets) {
+                int weight = EntitySpiritDropData.getSpiritData(otherTarget).map(e -> e.countSpirit(MalumSpiritTypes.WICKED_SPIRIT)).orElse(0);
+                if (weight > wickedAmount) {
+                    highestWicked = otherTarget;
+                    wickedAmount = weight;
+                }
+            }
+        }
+        if (CurioHelper.hasCurioEquipped(attacker, MalumItems.RING_OF_SWARMING_ROT.get())) {
+            float multiplier = 1 + random.nextFloat();
+            amount = Mth.ceil(amount * multiplier);
+        }
+        float velocity = 0.7f;
+        for (int i = 0; i < amount; i++) {
+            var propagationTarget = highestWicked != null ? highestWicked : targets.get(random.nextInt(targets.size()));
+            var velocityVector = new Vec3(
+                    RandomHelper.randomBetween(random, -velocity, velocity),
+                    RandomHelper.randomBetween(random, velocity / 2f, velocity),
+                    RandomHelper.randomBetween(random, -velocity, velocity)
+            );
+            var position = target.position().add(0, target.getBbHeight() * 0.5f, 0);
+            var locust = new GluttonyDamageActivator(level, attacker.getUUID(), 3, propagationTarget.getUUID(), position, velocityVector);
+            level.addFreshEntity(locust);
+        }
+        return true;
+    }
+
     public static void canApplyPotion(MobEffectEvent.Applicable event) {
-        MobEffectInstance potionEffect = event.getEffectInstance();
-        LivingEntity entityLiving = event.getEntity();
-        if (potionEffect.getEffect().equals(MobEffects.HUNGER)) {
-            final Holder<MobEffect> gluttony = getGluttonyEffectType(event.getEntity());
-            if (entityLiving.hasEffect(gluttony)) {
+        var instance = event.getEffectInstance();
+        if (instance == null) {
+            return;
+        }
+        var entity = event.getEntity();
+        if (instance.getEffect().equals(MobEffects.HUNGER)) {
+            if (hasAnyGluttony(entity)) {
                 event.setResult(DO_NOT_APPLY);
             }
         }
     }
 
     public static void removeExistingHunger(MobEffectEvent.Added event) {
-        MobEffectInstance potionEffect = event.getEffectInstance();
-        if (potionEffect == null) {
-            return;
-        }
-        final LivingEntity entity = event.getEntity();
-        final Holder<MobEffect> gluttony = getGluttonyEffectType(entity);
-        //TODO: this should instead just check if the applied effect is any of the gluttony effects instead of figuring out the active one, ideally with a tag but mob effect tags don't seem to exist?
-        if (potionEffect.getEffect().equals(gluttony)) {
-            if (entity.hasEffect(MobEffects.HUNGER)) {
+        var entity = event.getEntity();
+        if (entity.hasEffect(MobEffects.HUNGER)) {
+            if (hasAnyGluttony(entity)) {
                 entity.removeEffect(MobEffects.HUNGER);
             }
         }
+    }
+
+    public static boolean hasAnyGluttony(LivingEntity entity) {
+        return entity.hasEffect(MalumMobEffects.GLUTTONY) || entity.hasEffect(MalumMobEffects.TRIAL_OF_FAITH) || entity.hasEffect(MalumMobEffects.DESPERATE_NEED);
     }
 
     public static GluttonyEffectProperties applyGluttony(LivingEntity target, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
         var properties = getGluttonyEffectProperties(target, gluttonyBuilder);
         properties.apply(target);
         return properties;
-    }
-
-    public static Holder<MobEffect> getGluttonyEffectType(LivingEntity target) {
-        final GluttonyEffectProperties properties = getGluttonyEffectProperties(target, b -> {});
-        return properties.effectType;
     }
 
     public static GluttonyEffectProperties getGluttonyEffectProperties(LivingEntity target, Consumer<GluttonyEffectProperties> gluttonyBuilder) {
@@ -98,11 +160,9 @@ public class GluttonyEffect extends MobEffect {
     public static final class GluttonyEffectProperties {
 
         private Holder<MobEffect> effectType = MalumMobEffects.GLUTTONY;
-        private int initialDuration;
-        private int initialAmplifier;
-        private int durationGain;
+        private int duration = 200;
+        private int initialAmplifier = 1;
         private int amplifierGain;
-        private int durationLimit = -1;
         private int amplifierLimit = -1;
 
         private GluttonyEffectProperties() {
@@ -112,7 +172,7 @@ public class GluttonyEffect extends MobEffect {
             var effectType = getEffectType();
             var effectInstance = target.getEffect(effectType);
             if (effectInstance == null) {
-                int initialDuration = getInitialDuration();
+                int initialDuration = getDuration();
                 int initialAmplifier = getInitialAmplifier() - 1;
                 if (initialDuration <= 0) {
                     return;
@@ -120,14 +180,10 @@ public class GluttonyEffect extends MobEffect {
                 target.addEffect(new MobEffectInstance(effectType, initialDuration, initialAmplifier, true, true, true));
             } else {
                 int amplifierLimit = getAmplifierLimit() - 1;
-                int durationLimit = getDurationLimit();
                 int amplifierGain = getAmplifierGain();
-                int durationGain = getDurationGain();
                 if (amplifierGain > 0) {
+                    effectInstance.duration = getDuration();
                     EntityHelper.amplifyEffect(effectInstance, target, amplifierGain, amplifierLimit);
-                }
-                if (durationGain > 0) {
-                    EntityHelper.extendEffect(effectInstance, target, durationGain, durationLimit);
                 }
             }
         }
@@ -141,8 +197,13 @@ public class GluttonyEffect extends MobEffect {
             return this;
         }
 
-        public GluttonyEffectProperties setInitialDuration(int initialDuration) {
-            this.initialDuration = initialDuration;
+        public GluttonyEffectProperties setDuration(int duration) {
+            this.duration = duration;
+            return this;
+        }
+
+        public GluttonyEffectProperties scaleDuration(float scalar) {
+            this.duration = Mth.floor(duration * scalar);
             return this;
         }
 
@@ -151,18 +212,8 @@ public class GluttonyEffect extends MobEffect {
             return this;
         }
 
-        public GluttonyEffectProperties setDurationGain(int durationGain) {
-            this.durationGain = durationGain;
-            return this;
-        }
-
         public GluttonyEffectProperties setAmplifierGain(int amplifierGain) {
             this.amplifierGain = amplifierGain;
-            return this;
-        }
-
-        public GluttonyEffectProperties setDurationLimit(int durationLimit) {
-            this.durationLimit = durationLimit;
             return this;
         }
 
@@ -171,39 +222,26 @@ public class GluttonyEffect extends MobEffect {
             return this;
         }
 
-        public GluttonyEffectProperties scaleInitialDuration(float scalar) {
-            this.initialDuration = (int) (initialDuration * scalar);
-            return this;
-        }
-
         public GluttonyEffectProperties scaleInitialAmplifier(float scalar) {
-            this.initialAmplifier = (int) (initialAmplifier * scalar);
-            return this;
-        }
-
-        public GluttonyEffectProperties scaleDurationGain(float scalar) {
-            this.durationGain = (int) (durationGain * scalar);
+            this.initialAmplifier = Mth.floor(initialAmplifier * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleAmplifierGain(float scalar) {
-            this.amplifierGain = (int) (amplifierGain * scalar);
-            return this;
-        }
-
-        public GluttonyEffectProperties scaleDurationLimit(float scalar) {
-            this.durationLimit = (int) (durationLimit * scalar);
+            this.amplifierGain = Mth.floor(amplifierGain * scalar);
             return this;
         }
 
         public GluttonyEffectProperties scaleAmplifierLimit(float scalar) {
-            this.amplifierLimit = (int) (amplifierLimit * scalar);
+            if (amplifierLimit == -1) {
+                return this;
+            }
+            this.amplifierLimit = Mth.floor(amplifierLimit * scalar);
             return this;
         }
 
-        public int getInitialDuration() {
-            int limit = getDurationLimit();
-            return limit == -1 ? initialDuration : Math.min(initialDuration, limit);
+        public int getDuration() {
+            return duration;
         }
 
         public int getInitialAmplifier() {
@@ -211,16 +249,8 @@ public class GluttonyEffect extends MobEffect {
             return limit == -1 ? initialAmplifier : Math.min(initialAmplifier, limit);
         }
 
-        public int getDurationGain() {
-            return durationGain;
-        }
-
         public int getAmplifierGain() {
             return amplifierGain;
-        }
-
-        public int getDurationLimit() {
-            return durationLimit;
         }
 
         public int getAmplifierLimit() {

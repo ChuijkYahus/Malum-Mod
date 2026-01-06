@@ -4,6 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.helpers.ComponentHelper;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.DataHelper;
 
 import java.util.ArrayList;
@@ -16,9 +17,12 @@ public class KeywordTooltipHandler {
     public static List<TooltipKeyword> KEYWORDS = new ArrayList<>();
 
     public static final TooltipKeyword AVARICE = addKeyword("avarice");
-    public static final TooltipKeyword GLUTTONY = addKeyword("gluttony");
     public static final TooltipKeyword SOUL_WARD = addKeyword("soul_ward");
     public static final TooltipKeyword ARCANE_RESONANCE = addKeyword("arcane_resonance");
+
+    public static final TooltipKeyword GLUTTONY = addKeyword("gluttony");
+    public static final TooltipKeyword TRIAL_OF_FAITH = addKeyword("trial_of_faith");
+    public static final TooltipKeyword DESPERATE_NEED = addKeyword("desperate_need");
 
     public static void addKeywords(ItemTooltipEvent event) {
         var stack = event.getItemStack();
@@ -27,16 +31,7 @@ public class KeywordTooltipHandler {
             return;
         }
         var tooltip = event.getToolTip();
-        var presentKeywords = new ArrayList<TooltipKeyword>();
-        for (TooltipKeyword keyword : KEYWORDS) {
-            for (Component component : tooltip) {
-                var raw = component.getString();
-                if (raw.contains(keyword.name)) {
-                    presentKeywords.add(keyword);
-                    break;
-                }
-            }
-        }
+        final var presentKeywords = getPresentKeywords(tooltip);
         for (TooltipKeyword presentKeyword : presentKeywords) {
             int index = tooltip.size();
             if (event.getFlags().isAdvanced()) {
@@ -44,6 +39,24 @@ public class KeywordTooltipHandler {
             }
             tooltip.add(index, ComponentHelper.effectKeyword(presentKeyword));
         }
+    }
+
+    private static @NotNull ArrayList<TooltipKeyword> getPresentKeywords(List<Component> tooltip) {
+        var presentKeywords = new ArrayList<TooltipKeyword>();
+        for (TooltipKeyword keyword : KEYWORDS) {
+            for (Component component : tooltip) {
+                var raw = component.getString().toLowerCase();
+
+                if (raw.contains(keyword.name)) {
+                    presentKeywords.add(keyword);
+                    break;
+                }
+            }
+        }
+        if (presentKeywords.contains(TRIAL_OF_FAITH) || presentKeywords.contains(DESPERATE_NEED)) {
+            presentKeywords.remove(GLUTTONY);
+        }
+        return presentKeywords;
     }
 
     public static TooltipKeyword addKeyword(String id) {
@@ -55,7 +68,7 @@ public class KeywordTooltipHandler {
     public record TooltipKeyword(String id, String name) {
 
         public TooltipKeyword(String id) {
-            this(id, DataHelper.toTitleCase(id, "_"));
+            this(id, id.replaceAll("_", " "));
         }
 
         public String getLangKey() {

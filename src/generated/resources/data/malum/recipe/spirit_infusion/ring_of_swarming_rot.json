@@ -1,0 +1,39 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 4,
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "count": 4,
+      "item": "malum:grim_talc"
+    },
+    {
+      "count": 8,
+      "item": "malum:rotting_essence"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:ornate_ring"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:ring_of_swarming_rot"
+  },
+  "spirits": [
+    {
+      "type": "malum:wicked",
+      "count": 32
+    },
+    {
+      "type": "malum:aqueous",
+      "count": 16
+    },
+    {
+      "type": "malum:arcane",
+      "count": 16
+    }
+  ]
+}

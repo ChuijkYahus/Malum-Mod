@@ -119,6 +119,9 @@ public class MalumSoundDatagen extends SoundDefinitionsProvider {
         this.add(MalumSoundEvents.SPELLWOVEN_SPRITE_HARVESTS, s -> definition(s).with(sounds("curiosities/spellweaving/spell_mine", 4)));
         this.add(MalumSoundEvents.SPELLWOVEN_SPRITE_RETURNS, s -> definition(s).with(sounds("curiosities/spellweaving/spell_vanish", 4)));
 
+        this.add(MalumSoundEvents.RAVENOUS_SCYTHE_EATS, s -> definition(s).with(sounds("curiosities/weapons/ravenous/scythe_hit", 4)));
+        this.add(MalumSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS, s -> definition(s).with(sounds("curiosities/weapons/ravenous/bludgeon_hit", 4)));
+
         this.add(MalumSoundEvents.TYRVING_SLASH, s -> definition(s).with(sounds("curiosities/weapons/tyrving/hit", 5)));
         this.add(MalumSoundEvents.WEIGHT_OF_WORLDS_CUT, s -> definition(s).with(sounds("curiosities/weapons/scythe/sweep", 7)));
 
