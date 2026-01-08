@@ -3,15 +3,19 @@
   "extraInputs": [
     {
       "count": 4,
-      "item": "minecraft:bone"
+      "item": "minecraft:rotten_flesh"
     },
     {
       "count": 4,
       "item": "malum:grim_talc"
     },
     {
-      "count": 16,
-      "item": "minecraft:rotten_flesh"
+      "count": 4,
+      "item": "minecraft:bone"
+    },
+    {
+      "count": 8,
+      "item": "malum:rotting_essence"
     }
   ],
   "input": {

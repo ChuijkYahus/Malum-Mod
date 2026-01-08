@@ -28,6 +28,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.systems.item.*;
 import team.lodestar.lodestone.systems.item.tools.magic.*;
 
@@ -253,14 +254,14 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
     }
 
     public static int getSpawnedLoci(ServerLevel level, ItemStack stack, Player player) {
-        float spawnedLoci = 4 + createEffectActivator(ModEnchantmentComponents.LOCUS_COUNT.get(), level)
+        float spawnedLoci = 4 + LodestoneEnchantmentEffectActivator.createEffectActivator(ModEnchantmentComponents.LOCUS_COUNT.get(), level)
                 .setItemContext()
                 .countValue(stack, player);
         return Mth.floor(spawnedLoci);
     }
 
     public static float getLociSpeed(ServerLevel level, ItemStack stack, Player player) {
-        return 0.5f + createEffectActivator(ModEnchantmentComponents.LOCUS_SPEED.get(), level)
+        return 0.5f + LodestoneEnchantmentEffectActivator.createEffectActivator(ModEnchantmentComponents.LOCUS_SPEED.get(), level)
                 .setItemContext()
                 .countValue(stack, player);
     }

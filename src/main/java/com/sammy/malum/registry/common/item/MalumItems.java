@@ -195,7 +195,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOUL_HUNTER_LEGGINGS = register("soul_hunter_leggings", MalumItems::GEAR_PROPERTIES, (p) -> new SoulHunterArmorItem(ArmorItem.Type.LEGGINGS, p));
     public static final DeferredHolder<Item, Item> SOUL_HUNTER_BOOTS = register("soul_hunter_boots", MalumItems::GEAR_PROPERTIES, (p) -> new SoulHunterArmorItem(ArmorItem.Type.BOOTS, p));
 
-    public static final DeferredHolder<Item, Item> RAVENOUS_SCYTHE = register("ravenous_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new RavenousScytheItem(RAVENOUS, -4.5f, 0.6f, 3, p));
+    public static final DeferredHolder<Item, Item> RAVENOUS_SCYTHE = register("ravenous_scythe", MalumItems::GEAR_PROPERTIES, (p) -> new RavenousScytheItem(RAVENOUS, -4f, 0.4f, 2.5f, p));
     public static final DeferredHolder<Item, Item> GLUTTONOUS_BLUDGEON = register("gluttonous_bludgeon", MalumItems::GEAR_PROPERTIES, (p) -> new GluttonousBludgeonItem(RAVENOUS, -2.5f, -3f, 2, p));
     public static final DeferredHolder<Item, Item> TYRVING = register("tyrving", MalumItems::GEAR_PROPERTIES, (p) -> new TyrvingItem(MalumItemTiers.TYRVING, 0, -0.3f, p));
 

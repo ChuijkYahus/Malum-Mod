@@ -1,6 +1,7 @@
 {
   "values": [
     "#malum:enchantable/scythe",
-    "#malum:enchantable/staff"
+    "#malum:enchantable/staff",
+    "malum:gluttonous_bludgeon"
   ]
 }

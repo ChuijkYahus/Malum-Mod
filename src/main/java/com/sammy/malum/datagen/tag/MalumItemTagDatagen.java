@@ -118,8 +118,9 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
                 CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
                 SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
-                TYRVING.get(), MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), WEIGHT_OF_WORLDS.get(),
-                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
+                GLUTTONOUS_BLUDGEON.get(), TYRVING.get(),
+                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(),
+                SUNDERING_ANCHOR.get());
         tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
         tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());
@@ -134,7 +135,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         tag(ItemTags.LEG_ARMOR).add(SOUL_HUNTER_LEGGINGS.get(), SOUL_STAINED_STEEL_LEGGINGS.get(), MALIGNANT_STRONGHOLD_LEGGINGS.get());
         tag(ItemTags.FOOT_ARMOR).add(SOUL_HUNTER_BOOTS.get(), SOUL_STAINED_STEEL_BOOTS.get(), MALIGNANT_STRONGHOLD_BOOTS.get());
 
-        tag(MELEE_ENCHANTABLE).addTags(SCYTHE_ENCHANTABLE, STAFF_ENCHANTABLE);
+        tag(MELEE_ENCHANTABLE).addTags(SCYTHE_ENCHANTABLE, STAFF_ENCHANTABLE).add(GLUTTONOUS_BLUDGEON.get());
         tag(ItemTags.FIRE_ASPECT_ENCHANTABLE).addTags(SCYTHES);
 
         tag(HAUNTED_ENCHANTABLE).addTag(MAGIC_CAPABLE_WEAPON);
@@ -155,7 +156,9 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
 
 
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(SCYTHES, STAVES)
+                .add(GLUTTONOUS_BLUDGEON.get())
                 .add(CATALYST_LOBBER.get(), SUNDERING_ANCHOR.get());
+
 
         tag(ASPECTED_SPIRITS).add(
                 SACRED_SPIRIT.get(), WICKED_SPIRIT.get(), ARCANE_SPIRIT.get(), ELDRITCH_SPIRIT.get(),
