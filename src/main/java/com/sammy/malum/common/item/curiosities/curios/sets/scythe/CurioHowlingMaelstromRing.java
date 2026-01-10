@@ -7,6 +7,8 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
@@ -24,29 +26,35 @@ public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumE
         consumer.accept(ComponentHelper.negativeCurioEffect("longer_rebound_cooldown"));
     }
 
-    public static void handleMaelstrom(ServerLevel serverLevel, LivingEntity scytheOwner, AbstractScytheProjectileEntity entity) {
+    public static void handleMaelstrom(ServerLevel serverLevel, LivingEntity scytheOwner, AbstractScytheProjectileEntity projectile) {
         if (serverLevel.getGameTime() % 5L == 0) {
             boolean dealtDamage = false;
-            final AABB aabb = entity.getBoundingBox().inflate(2);
-            float damage = entity.damage * 0.2f;
-            float magicDamage = entity.magicDamage * 0.2f;
-            for (Entity target : serverLevel.getEntities(entity, aabb, t -> maelstromCanHitEntity(scytheOwner, t))) {
-                var damageSource = DamageTypeHelper.create(serverLevel, MalumDamageTypes.SCYTHE_MAELSTROM, entity, scytheOwner);
+            final AABB aabb = projectile.getBoundingBox().inflate(2);
+            float damage = projectile.damage * 0.2f;
+            float magicDamage = projectile.magicDamage * 0.2f;
+            var damageSource = DamageTypeHelper.create(serverLevel, MalumDamageTypes.SCYTHE_MAELSTROM, projectile, scytheOwner);
+            var magicDamageSource = DamageTypeHelper.create(serverLevel, MalumDamageTypes.VOODOO, projectile, scytheOwner);
+            
+            var heldItem = scytheOwner.getMainHandItem();
+            scytheOwner.setItemInHand(InteractionHand.MAIN_HAND, projectile.getItem());
+            for (Entity target : serverLevel.getEntities(projectile, aabb, t -> maelstromCanHitEntity(scytheOwner, t))) {
+
                 target.invulnerableTime = 0;
                 boolean success = target.hurt(damageSource, damage);
                 if (success && target instanceof LivingEntity livingentity) {
-                    if (entity.magicDamage > 0) {
+                    if (projectile.magicDamage > 0) {
                         if (!livingentity.isDeadOrDying()) {
                             livingentity.invulnerableTime = 0;
-                            livingentity.hurt(DamageTypeHelper.create(serverLevel, MalumDamageTypes.VOODOO, entity, scytheOwner), magicDamage);
+                            livingentity.hurt(magicDamageSource, magicDamage);
                         }
                     }
                     dealtDamage = true;
                 }
             }
+            scytheOwner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
             if (dealtDamage) {
-                entity.returnTimer += 1;
-                entity.setDeltaMovement(entity.getDeltaMovement().scale(0.7f));
+                projectile.returnTimer += 1;
+                projectile.setDeltaMovement(projectile.getDeltaMovement().scale(0.7f));
             }
         }
     }

@@ -2,7 +2,9 @@ package com.sammy.malum.common.block.curiosities.totem.spreader;
 
 import com.mojang.serialization.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
+import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
@@ -18,6 +20,12 @@ public class RiteSpreaderBlock extends LodestoneEntityBlock<RiteSpreaderBlockEnt
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        var level = context.getLevel();
+        var pos = context.getClickedPos().relative(context.getClickedFace().getOpposite());
+        var state = level.getBlockState(pos);
+        if (state.getBlock() instanceof RiteSpreaderBlock) {
+            return state;
+        }
         var direction = context.getNearestLookingDirection();
         if (context.getPlayer() == null || !context.getPlayer().isShiftKeyDown()) {
             direction = direction.getOpposite();

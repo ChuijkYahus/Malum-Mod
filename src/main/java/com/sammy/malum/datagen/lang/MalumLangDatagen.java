@@ -285,8 +285,8 @@ public class MalumLangDatagen extends LanguageProvider {
         addEffectKeyword(KeywordTooltipHandler.ARCANE_RESONANCE, "Arcane Resonance; Enhances Spirit-Collection Effects");
 
         addEffectKeyword(KeywordTooltipHandler.GLUTTONY, "Gluttony; Enhances Magic Damage, Kills Sprout Damaging Locusts");
-        addEffectKeyword(KeywordTooltipHandler.TRIAL_OF_FAITH, "Trial of Faith; Enhances Healing, Healing Grows Damaging Locusts");
-        addEffectKeyword(KeywordTooltipHandler.DESPERATE_NEED, "Desperate Need; Enhances Scythe Damage, Dealing Damage Forms Damaging Locusts");
+        addEffectKeyword(KeywordTooltipHandler.TRIAL_OF_FAITH, "Trial of Faith; Enhances Healing, Recovering Health Grows Damaging Locusts");
+        addEffectKeyword(KeywordTooltipHandler.DESPERATE_NEED, "Desperate Need; Enhances Scythe Damage, Scythe Damage Forms Damaging Locusts");
 
         addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
@@ -397,15 +397,12 @@ public class MalumLangDatagen extends LanguageProvider {
         addGeasEffect("avarice_explosions", "Avarice Further Enhances Explosions And Grants Fortune Chance");
         addGeasEffect("avarice_vulnerability", "Avarice Increases Explosive Damage Taken");
         addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
-        addGeasEffect("trial_of_faith_healing", "Trial of Faith Increases Healing Received");
         addGeasEffect("rotten_healing", "Eating Rotten Foods Heals You");
         addGeasEffect("no_passive_healing", "Saturation And Hunger No Longer Restore Health");
         addGeasEffect("no_normal_foods", "You Must Only Eat Rot");
         addGeasEffect("desperate_need", "Gluttony Becomes Desperate Need");
-        addGeasEffect("desperate_need_scythe_proficiency", "Desperate Need Substantially Increases Scythe Proficiency");
-        addGeasEffect("poison_slash", "Desperate Need Enables Poisonous Scythe Slashes");
-        addGeasEffect("poison_slash_consumes_desperate_need", "Desperate Need Fades When Attacking");
-        addGeasEffect("desperate_need_betrayal", "The Rot Will Consume You");
+        addGeasEffect("desperate_need_vulnerability", "Desperate Need Amplifies Damage Taken");
+        addGeasEffect("desperate_need_poison", "Starvation Brings Poison");
         addGeasEffect("wyrd_reconstruction", "Death Triggers Resurrection");
         addGeasEffect("wyrd_reconstruction_spirits", "Resurrection Repeatedly Activates Spirit-Collection Effects");
         addGeasEffect("wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");

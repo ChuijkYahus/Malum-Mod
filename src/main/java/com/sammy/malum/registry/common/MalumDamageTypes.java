@@ -38,9 +38,6 @@ public class MalumDamageTypes {
     public static final ResourceKey<DamageType> WARLOCK_SPIRIT_IMPACT = createDamageType("warlock_spirit_impact");
     public static final ResourceKey<DamageType> BERSERKER_SPIRIT_IMPACT = createDamageType("berserker_spirit_impact");
 
-    public static final ResourceKey<DamageType> DESPERATE_NEED_CUT = createDamageType("desperate_need_cut");
-    public static final ResourceKey<DamageType> DESPERATE_NEED_WITHDRAWAL = createDamageType("desperate_need_withdrawal");
-
     public static final ResourceKey<DamageType> UNMAKERS_DISDAIN_COMBO = createDamageType("unmakers_disdain_combo");
 
     public static final ResourceKey<DamageType> INVERTED_HEART_RETALIATION = createDamageType("inverted_heart_retaliation");

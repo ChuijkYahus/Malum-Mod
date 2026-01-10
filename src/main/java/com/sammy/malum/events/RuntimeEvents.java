@@ -172,6 +172,7 @@ public class RuntimeEvents {
     @SubscribeEvent
     public static void onHurt(LivingDamageEvent.Post event) {
         SoulDataHandler.exposeSoul(event);
+        DesperateNeedEffect.spawnLocusts(event);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -197,7 +198,7 @@ public class RuntimeEvents {
     public static void onHeal(LivingHealEvent event) {
         MalumAttributeEventHandler.heal(event);
         LifeweaverGeas.onHeal(event);
-        TrialOfFaithEffect.onHeal(event);
+        TrialOfFaithEffect.spawnLocusts(event);
     }
 
     @SubscribeEvent

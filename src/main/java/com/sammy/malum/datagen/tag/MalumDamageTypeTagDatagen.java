@@ -90,9 +90,6 @@ public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
         MAGIC.apply(WARLOCK_SPIRIT_IMPACT);
         MAGIC.apply(BERSERKER_SPIRIT_IMPACT);
 
-        SCYTHE.apply(DESPERATE_NEED_CUT).add(NO_KNOCKBACK);
-        MAGIC.apply(DESPERATE_NEED_WITHDRAWAL).add(NO_KNOCKBACK);
-
         MAGIC.apply(INVERTED_HEART_RETALIATION).add(IS_INVERTED_HEART);
         MAGIC.apply(INVERTED_HEART_PROPAGATION).add(IS_INVERTED_HEART);
 

@@ -765,14 +765,18 @@ public class CodexLangDatagen {
         addPages("ring_of_esoteric_spoils",
                 "It can be tiring, harvesting the sheer quantities of arcana I need for my research. This ring can increase the efficiency of the harvest, allowing me to reap an additional spirit from every slain soul. At a certain point, though, \"efficiency\" ceases to explain it. How am I obtaining more power than the soul itself has?");
 
+        addSimpleEntryHeader("ring_of_esoteric_shadow", "Ring of Esoteric Shadow", "Be weary, conceal your presence");
+        addPages("ring_of_esoteric_shadow",
+                "");
+
         addSimpleEntryHeader("rotten_trinkets", "Rotten Trinkets", "Cultivating hunger");
         addPages("rotten_trinkets",
-                "Rot is an interesting phenomenon. It is the natural end-state of living matter and even more so for pseudo-life such as the undead. The sheer overabundance of this state of life is practically a rule of the world at this point. We're all oddly familiar with the undead, but it is as if everyone has given up trying to uncover the cause of this phenomena, yet alone undo it.",
+                "Rot is an interesting phenomenon. It is the natural end-state of living matter and even more so for pseudo-life such as the undead. The sheer overabundance of this state of life is practically a rule of the world at this point. We're all oddly familiar with the undead, is that not strange?",
                 "Nevertheless, Rotting creatures are generally near or nearing their own end, and so they carry a certain... desperation. This desperation remains in Rotting Essence, and through shaping it I've been able to create a handful of trinkets that channel it into a useful form.");
         addHeadline("rotten_trinkets.gluttony", "Gluttony");
         addPages("rotten_trinkets.gluttony",
-                "Gluttony is a unique status effect tied to many of these trinkets, born from impurity and neglect carried in Rotting Essence. These negative emotions can be catalyzed into a tangible force, one that hungers for more. Each amplitude of Gluttony increases magic damage dealt by Five Percent, though it does also invoke a psychological feeling of hunger.",
-                "The most notable aspect of Gluttony however, are Gluttony Locusts. These small arcane constructs are born from excess Gluttony, and seek to devour anything in their path. When bearing any Gluttony and killing anything, the effect will catalyze into a tiny swarm of these Locusts, aggressively seeking out nearby creatures. Each locust deals approximately three magic damage.",
+                "Gluttony is a unique status effect tied to many of these trinkets, born from impurity and neglect carried in Rotting Essence. These negative emotions can be catalyzed into a tangible force, one that hungers for more. Each amplitude of Gluttony increases magic damage dealt by five percent at the cost of invoking a feeling of hunger.",
+                "The most notable aspect of Gluttony however, are Gluttony Locusts. These small arcane constructs are born from excess Gluttony, and seek to devour anything in their path. When bearing any Gluttony and killing anything, the effect will catalyze into a tiny swarm of these Locusts, aggressively seeking out nearby creatures. Each locust deals one and a half hearts' worth of magic damage.",
                 "Their hunger is insatiable, but they do appear to have some restriction on what they will consume. They naturally ignore anything inanimate, but interestingly enough whenever any are nearby, the Locusts will " + italic("always") + " prioritize creatures that bear Wicked within their soul.");
         addSimpleEntryHeader("rotten_trinkets.belt_of_the_starved", "Belt of the Starved", "Channeling voracity");
         addPages("rotten_trinkets.belt_of_the_starved",
@@ -782,7 +786,7 @@ public class CodexLangDatagen {
                 "This ring makes rotten foods just a little bit more bearable, allowing me to amass more hunger and saturation from such an unusual diet. Normally, such a diet would be ill-advised, however, a secondary function of the ring allows it to harness Gluttony from the ill-tasting food as I chew-down on it.");
         addSimpleEntryHeader("rotten_trinkets.ring_of_swarming_rot", "Ring of Swarming Rot", "Grow the swarm");
         addPages("rotten_trinkets.ring_of_swarming_rot",
-                "This ring is designed as a small housing cell for Gluttony Locusts. It holds a miniature yet comfortable habitat that enables the creatures to fester. While worn, anytime Gluttony Locusts are created, additional ones are released from the ring. The exact amount is random each time due to the unusual way of curating these things, but it will generally double the amount of sprouted Locusts.");
+                "This ring functions as a small housing cell for Gluttony Locusts. It holds a miniature habitat that enables these creatures to fester. While worn, anytime Gluttony Locusts are created, additional ones are released from the ring. The exact amount is random each time due to the unusual curation method, but it is generally around double.");
 
         addSimpleEntryHeader("belt_of_the_prospector", "Belt of the Prospector", "Treasures of the earth");
         addPages("belt_of_the_prospector",
@@ -1171,26 +1175,26 @@ public class CodexLangDatagen {
                 scaled(0.65f) + """
                         Rot shall become your greatest friend.
                          -Gluttony becomes Trial of Faith
-                         -Trial of Faith increases received healing and sprouts Locusts when you heal
+                         -Trial of Faith increases Healing Received and sprouts Locusts when you heal
                          -Trial of Faith lasts significantly longer
                          -Eating Rotten Foods recovers health""",
                 """
-                        Your loyalty to the Rot takes quite a toll on your body.
+                        Your loyalty to Rot takes quite a toll on your body.
                          -Saturation and hunger no longer restore health
                          -Forswear all meals but rot, eating forsworn food hurts you""");
 
         addSimpleEntryHeader("pact_of_the_profane_glutton", "Pact of The Profane Glutton", "To consume");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON,
-                scaled(0.6f) + """
+                scaled(0.65f) + """
                         Rot shall become your greatest weapon.
-                         -Gluttony becomes Desperate Need, Increasing Scythe Proficiency Substantially
-                         -Desperate Need Gains Potency Faster with an Increased Limit of Power
-                         -Scythe Strikes While Blessed by Desperate Need create an additional Poisonous Slash""",
+                         -Gluttony becomes Desperate Need
+                         -Desperate Need increases Scythe Proficiency and sprouts Locusts when you deal damage with a Scythe
+                         -Desperate Need gains amplitude faster and up to a higher limit""",
                 scaled(0.8f) + """
-                        The Rot will Consume You.
-                         -Desperate Need reduces Armor and Magic Resistance
-                         -Starvation Damage Poisons You
-                         -Poisoned Foes Spread Poison to You""");
+                        The Rot will consume you.
+                         -Each amplitude of Desperate Need increases incoming damage taken
+                         -Poison damage taken is doubled
+                         -Starvation damage poisons you""");
 
         addSimpleEntryHeader("pact_of_combustion", "Pact of Combustion", "To fuel the flame");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_COMBUSTION,

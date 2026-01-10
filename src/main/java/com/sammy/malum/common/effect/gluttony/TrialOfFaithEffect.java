@@ -1,7 +1,6 @@
 package com.sammy.malum.common.effect.gluttony;
 
 import com.sammy.malum.*;
-import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
@@ -10,8 +9,6 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
-
-import static com.sammy.malum.common.effect.gluttony.GluttonyEffect.spawnLocusts;
 
 public class TrialOfFaithEffect extends MobEffect {
     public TrialOfFaithEffect() {
@@ -32,14 +29,14 @@ public class TrialOfFaithEffect extends MobEffect {
         return true;
     }
 
-    public static void onHeal(LivingHealEvent event) {
+    public static void spawnLocusts(LivingHealEvent event) {
         var entity = event.getEntity();
         var instance = entity.getEffect(MalumMobEffects.TRIAL_OF_FAITH);
         if (instance == null) {
             return;
         }
         int amount = 1 + Mth.floor(event.getAmount() / 2f);
-        if (spawnLocusts(entity, entity, amount)) {
+        if (GluttonyEffect.spawnLocusts(entity, entity, amount)) {
             instance.amplifier--;
             if (instance.amplifier < 0) {
                 entity.removeEffect(MalumMobEffects.TRIAL_OF_FAITH);

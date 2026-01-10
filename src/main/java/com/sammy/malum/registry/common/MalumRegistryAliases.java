@@ -11,18 +11,19 @@ public class MalumRegistryAliases {
     public static void registerAliases() {
         fixUpRocks();
 
+        addBlockAndItemAlias("soulwood_growth", "soulwood_sapling");
+
         addBlockAndItemAlias("block_of_astral_weave", "block_of_eerie_weave");
-        MalumItems.ITEMS.addAlias(malumPath("astral_weave"), malumPath("eerie_weave"));
+        addItemAlias("astral_weave", "eerie_weave");
 
-        MalumBlocks.BLOCKS.addAlias(malumPath("soulwood_growth"), malumPath("soulwood_sapling"));
-        MalumItems.ITEMS.addAlias(malumPath("soulwood_growth"), malumPath("soulwood_sapling"));
 
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_aliment_cleansing"), malumPath("rune_of_ailment_cleansing"));
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_idle_restoration"), malumPath("rune_of_vitality"));
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_reactive_shielding"), malumPath("rune_of_protection"));
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_sacrificial_empowerment"), malumPath("rune_of_radial_empowerment"));
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_the_heretic"), malumPath("rune_of_heresy"));
-        MalumItems.ITEMS.addAlias(malumPath("rune_of_toughness"), malumPath("rune_of_indomitability"));
+        addItemAlias("necklace_of_the_mystic_mirror", "necklace_of_mystic_potency");
+        addItemAlias("rune_of_aliment_cleansing", "rune_of_ailment_cleansing");
+        addItemAlias("rune_of_idle_restoration", "rune_of_vitality");
+        addItemAlias("rune_of_reactive_shielding", "rune_of_protection");
+        addItemAlias("rune_of_sacrificial_empowerment", "rune_of_radial_empowerment");
+        addItemAlias("rune_of_the_heretic", "rune_of_heresy");
+        addItemAlias("rune_of_toughness", "rune_of_indomitability");
     }
 
     public static void fixUpRocks() {
@@ -90,5 +91,17 @@ public class MalumRegistryAliases {
         var toId = malumPath(to);
         MalumBlocks.BLOCKS.addAlias(fromId, toId);
         MalumItems.ITEMS.addAlias(fromId, toId);
+    }
+
+    public static void addItemAlias(String from, String to) {
+        var fromId = malumPath(from);
+        var toId = malumPath(to);
+        MalumItems.ITEMS.addAlias(fromId, toId);
+    }
+
+    public static void addBlockAlias(String from, String to) {
+        var fromId = malumPath(from);
+        var toId = malumPath(to);
+        MalumBlocks.BLOCKS.addAlias(fromId, toId);
     }
 }

@@ -39,8 +39,6 @@ public class MalumDamageTypeDatagen {
         register(context, MalumDamageTypes.WARLOCK_SPIRIT_IMPACT);
         register(context, MalumDamageTypes.BERSERKER_SPIRIT_IMPACT);
 
-        register(context, MalumDamageTypes.DESPERATE_NEED_CUT);
-        register(context, MalumDamageTypes.DESPERATE_NEED_WITHDRAWAL);
 
         register(context, MalumDamageTypes.UNMAKERS_DISDAIN_COMBO);
 

@@ -7,28 +7,28 @@
     },
     {
       "count": 8,
-      "item": "malum:pyre_nucleus"
+      "item": "malum:living_flesh"
     },
     {
       "count": 4,
-      "item": "minecraft:blaze_powder"
+      "item": "minecraft:rotten_flesh"
     }
   ],
   "input": {
     "count": 1,
-    "item": "malum:ornate_ring"
+    "item": "malum:gilded_ring"
   },
   "result": {
     "count": 1,
-    "id": "malum:ring_of_heavy_discharge"
+    "id": "malum:ring_of_hearty_avarice"
   },
   "spirits": [
     {
-      "type": "malum:infernal",
+      "type": "malum:sacred",
       "count": 32
     },
     {
-      "type": "malum:aqueous",
+      "type": "malum:wicked",
       "count": 16
     },
     {
