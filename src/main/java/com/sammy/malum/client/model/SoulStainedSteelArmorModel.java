@@ -1,7 +1,4 @@
 package com.sammy.malum.client.model;
-// Made with Blockbench 3.9.2
-// Exported for Minecraft version 1.15 - 1.16 with MCP mappings
-// Paste this class into your mod and generate all required imports
 
 
 import com.sammy.malum.MalumMod;
@@ -20,7 +17,7 @@ public class SoulStainedSteelArmorModel extends LodestoneArmorModel {
     }
 
     public static LayerDefinition createBodyLayer() {
-        return createArmorModel((mesh, root, body, leggings, right_legging, left_legging, right_foot, left_foot, right_arm, left_arm, head) -> {
+        return createArmorModel((mesh, root, head, body, right_arm, left_arm, leggings, right_legging, left_legging, right_foot, left_foot) -> {
             PartDefinition helmet = head.addOrReplaceChild("helmet", CubeListBuilder.create().texOffs(16, 15).addBox(-5.5F, -9.5F, -4.5F, 4.0F, 4.0F, 6.0F, new CubeDeformation(0.0F))
                     .texOffs(16, 15).mirror().addBox(1.5F, -9.5F, -4.5F, 4.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
                     .texOffs(16, 0).addBox(-1.5F, -10.5F, -5.5F, 3.0F, 6.0F, 9.0F, new CubeDeformation(0.0F))

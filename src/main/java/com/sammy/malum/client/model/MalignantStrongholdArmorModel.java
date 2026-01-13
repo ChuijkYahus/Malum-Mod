@@ -89,9 +89,7 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
     }
 
     public static LayerDefinition createBodyLayer() {
-        return createArmorModel((mesh, root, body, leggings, right_legging, left_legging, right_foot, left_foot, right_arm, left_arm, head) -> {
-            PartDefinition scarf = root.addOrReplaceChild("scarf", new CubeListBuilder(), PartPose.ZERO);
-
+        return createArmorModel((mesh, root, head, body, right_arm, left_arm, leggings, right_legging, left_legging, right_foot, left_foot) -> {
             PartDefinition helmet = head.addOrReplaceChild("helmet", CubeListBuilder.create().texOffs(0, 29).addBox(-4.0F, -9.5F, -5.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.01F))
                     .texOffs(0, 17).addBox(-4.5F, -6.5F, -1.5F, 9.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
                     .texOffs(0, 29).mirror().addBox(1.0F, -9.5F, -5.0F, 3.0F, 4.0F, 9.0F, new CubeDeformation(0.01F)).mirror(false)
@@ -129,6 +127,8 @@ public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
 
             PartDefinition cuirass = torso.addOrReplaceChild("cuirass", CubeListBuilder.create().texOffs(15, 36).addBox(-6.0F, -0.95F, -4.925F, 12.0F, 4.0F, 9.0F, new CubeDeformation(0.0F))
                     .texOffs(77, 36).addBox(-6.0F, -0.95F, -4.925F, 12.0F, 4.0F, 9.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
+
+            PartDefinition scarf = root.addOrReplaceChild("scarf", new CubeListBuilder(), PartPose.ZERO);
 
             PartDefinition lower_scarf = scarf.addOrReplaceChild("lower_scarf", CubeListBuilder.create().texOffs(0, 112).addBox(-5.5F, 2.05F, 4.075F, 11.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0873F, 0.0F, 0.0F));
 

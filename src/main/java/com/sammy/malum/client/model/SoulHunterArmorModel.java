@@ -84,24 +84,23 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
     }
 
     public static LayerDefinition createBodyLayer() {
-        return createArmorModel((mesh, root, body, leggings, right_legging, left_legging, right_foot, left_foot, right_arm, left_arm, head) -> {
+        return createArmorModel((mesh, root, head, body, right_arm, left_arm, leggings, right_legging, left_legging, right_foot, left_foot) -> {
             PartDefinition cape = root.addOrReplaceChild("cape", new CubeListBuilder(), PartPose.ZERO);
-
-            PartDefinition helmet = head.addOrReplaceChild("helmet", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F, new CubeDeformation(0.0F))
-                    .texOffs(36, 0).addBox(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-            PartDefinition left_hood_part = helmet.addOrReplaceChild("left_hood_part", CubeListBuilder.create().texOffs(0, 18).addBox(0.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.0F))
-                    .texOffs(42, 18).addBox(0.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(4.5F, -0.5F, -0.5F, 0.0F, 0.0F, -0.3927F));
-
-            PartDefinition right_hood_part = helmet.addOrReplaceChild("right_hood_part", CubeListBuilder.create().texOffs(42, 18).mirror().addBox(-2.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.25F)).mirror(false)
-                    .texOffs(0, 18).mirror().addBox(-2.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.5F, -0.5F, -0.5F, 0.0F, 0.0F, 0.3927F));
-
-            PartDefinition back_hood_part = helmet.addOrReplaceChild("back_hood_part", CubeListBuilder.create().texOffs(18, 20).addBox(-3.5F, 0.0F, 0.0F, 7.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.5F, 4.5F, -0.7854F, 0.0F, 0.0F));
-
             PartDefinition hood = root.addOrReplaceChild("hood", CubeListBuilder.create(), PartPose.ZERO);
 
+            PartDefinition helmet = head.addOrReplaceChild("helmet", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5F, -8.5F, -4.0F, 9.0F, 9.0F, 9.0F, new CubeDeformation(0.0F))
+                    .texOffs(36, 0).addBox(-4.5F, -8.5F, -4.0F, 9.0F, 9.0F, 9.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+            PartDefinition left_hood_part = helmet.addOrReplaceChild("left_hood_part", CubeListBuilder.create().texOffs(0, 18).addBox(0.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.0F))
+                    .texOffs(42, 18).addBox(0.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(4.5F, -0.5F, 0.0F, 0.0F, 0.0F, -0.3927F));
+
+            PartDefinition right_hood_part = helmet.addOrReplaceChild("right_hood_part", CubeListBuilder.create().texOffs(42, 18).mirror().addBox(-2.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.25F)).mirror(false)
+                    .texOffs(0, 18).mirror().addBox(-2.0F, -4.0F, -3.0F, 2.0F, 5.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.5F, -0.5F, 0.0F, 0.0F, 0.0F, 0.3927F));
+
+            PartDefinition back_hood_part = helmet.addOrReplaceChild("back_hood_part", CubeListBuilder.create().texOffs(18, 20).addBox(-3.5F, 0.0F, 0.0F, 7.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.5F, 5.0F, -0.7854F, 0.0F, 0.0F));
+
             PartDefinition lowered_hood = hood.addOrReplaceChild("lowered_hood", CubeListBuilder.create().texOffs(28, 30).addBox(-3.98F, -0.5028F, -2.1359F, 8.0F, 2.0F, 5.0F, new CubeDeformation(0.0F))
-                    .texOffs(54, 30).addBox(-3.98F, -0.5028F, -2.1359F, 8.0F, 2.0F, 5.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, -0.5F, 3.5F, -0.6109F, 0.0F, 0.0F));
+                    .texOffs(54, 30).addBox(-3.98F, -0.5028F, -2.1359F, 8.0F, 2.0F, 5.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.6109F, 0.0F, 0.0F));
 
             PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(0, 30).addBox(-4.5F, -0.5F, -2.5F, 9.0F, 10.0F, 5.0F, new CubeDeformation(0.0F))
                     .texOffs(0, 45).addBox(-4.5F, -0.5F, -2.5F, 9.0F, 10.0F, 5.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -110,8 +109,8 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
 
             PartDefinition right_robe = torso.addOrReplaceChild("right_robe", CubeListBuilder.create().texOffs(28, 37).addBox(-1.9074F, -0.5F, -0.6014F, 3.0F, 10.0F, 1.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(-2.5F, 0.0F, -2.5F, -0.0873F, 0.3491F, 0.0087F));
 
-            PartDefinition cape_top = cape.addOrReplaceChild("cape_top", CubeListBuilder.create().texOffs(36, 37).addBox(-5.5213F, 0.3976F, -0.5395F, 11.0F, 8.0F, 1.0F, new CubeDeformation(0.0F))
-                    .texOffs(60, 37).addBox(-5.5213F, 0.3976F, -0.5395F, 11.0F, 8.0F, 1.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, 0.0873F, 0.0F, 0.0F));
+            PartDefinition cape_top = cape.addOrReplaceChild("cape_top", CubeListBuilder.create().texOffs(36, 37).addBox(-5.5213F, 0.3975F, -0.5395F, 11.0F, 8.0F, 1.0F, new CubeDeformation(0.0F))
+                    .texOffs(60, 37).addBox(-5.5213F, 0.3975F, -0.5395F, 11.0F, 8.0F, 1.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, 0.0873F, 0.0F, 0.0F));
 
             PartDefinition cape_middle = cape_top.addOrReplaceChild("cape_middle", CubeListBuilder.create().texOffs(60, 45).addBox(-5.5213F, -0.2225F, -0.5569F, 11.0F, 7.0F, 1.0F, new CubeDeformation(0.25F))
                     .texOffs(36, 45).addBox(-5.5213F, -0.2225F, -0.5569F, 11.0F, 7.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 8.5455F, 0.0417F, 0.1309F, 0.0F, 0.0F));
@@ -124,18 +123,20 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
                     .texOffs(28, 53).addBox(-5.5213F, -1.3642F, -0.3206F, 3.0F, 4.0F, 1.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(0.0F, 8.0653F, -0.0043F, 0.1745F, 0.0F, 0.0F));
 
             PartDefinition left_shoulder = left_arm.addOrReplaceChild("left_shoulder", CubeListBuilder.create().texOffs(0, 60).addBox(-1.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.01F))
-                    .texOffs(20, 60).addBox(-1.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.26F))
-                    .texOffs(40, 60).addBox(-1.5F, 5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.01F))
-                    .texOffs(60, 60).addBox(-1.5F, 5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.26F))
-                    .texOffs(80, 62).addBox(2.5F, 4.5F, -1.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.0F))
-                    .texOffs(90, 62).addBox(2.5F, 4.5F, -1.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+                    .texOffs(20, 60).addBox(-1.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.26F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-            PartDefinition right_shoulder = right_arm.addOrReplaceChild("right_shoulder", CubeListBuilder.create().texOffs(40, 60).mirror().addBox(-3.5F, 5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.01F)).mirror(false)
-                    .texOffs(60, 60).mirror().addBox(-3.5F, 5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.26F)).mirror(false)
-                    .texOffs(80, 62).mirror().addBox(-4.5F, 4.5F, -1.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-                    .texOffs(90, 62).mirror().addBox(-4.5F, 4.5F, -1.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.25F)).mirror(false)
-                    .texOffs(0, 60).mirror().addBox(-3.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.01F)).mirror(false)
+            PartDefinition left_glove = left_shoulder.addOrReplaceChild("left_glove", CubeListBuilder.create().texOffs(90, 62).addBox(7.5F, -17.5F, -2.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.25F))
+                    .texOffs(40, 60).addBox(3.5F, -16.5F, -3.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.01F))
+                    .texOffs(60, 60).addBox(3.5F, -16.5F, -3.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.26F))
+                    .texOffs(80, 62).addBox(7.5F, -17.5F, -2.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 22.0F, 1.0F));
+
+            PartDefinition right_shoulder = right_arm.addOrReplaceChild("right_shoulder", CubeListBuilder.create().texOffs(0, 60).mirror().addBox(-3.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.01F)).mirror(false)
                     .texOffs(20, 60).mirror().addBox(-3.5F, -2.5F, -2.5F, 5.0F, 6.0F, 5.0F, new CubeDeformation(0.26F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+            PartDefinition right_glove = right_shoulder.addOrReplaceChild("right_glove", CubeListBuilder.create().texOffs(90, 62).mirror().addBox(-9.5F, -17.5F, -2.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.25F)).mirror(false)
+                    .texOffs(40, 60).mirror().addBox(-8.5F, -16.5F, -3.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.01F)).mirror(false)
+                    .texOffs(60, 60).mirror().addBox(-8.5F, -16.5F, -3.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.26F)).mirror(false)
+                    .texOffs(80, 62).mirror().addBox(-9.5F, -17.5F, -2.5F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, 22.0F, 1.0F));
 
             PartDefinition left_leg = left_legging.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 82).mirror().addBox(-2.4F, -0.5F, -2.5F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -151,8 +152,8 @@ public class SoulHunterArmorModel extends LodestoneArmorModel {
                     .texOffs(0, 95).addBox(-1.0F, 3.0F, -5.0F, 1.0F, 3.0F, 7.0F, new CubeDeformation(0.0F))
                     .texOffs(16, 95).addBox(-1.0F, 3.0F, -5.0F, 1.0F, 3.0F, 7.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(-3.1F, -0.5F, 1.5F, 0.0F, 0.0F, 0.3491F));
 
-            PartDefinition codpiece = leggings.addOrReplaceChild("codpiece", CubeListBuilder.create().texOffs(0, 71).addBox(-5.0F, -14.5F, -3.5F, 10.0F, 3.0F, 7.0F, new CubeDeformation(0.01F))
-                    .texOffs(34, 71).addBox(-5.0F, -14.5F, -3.5F, 10.0F, 3.0F, 7.0F, new CubeDeformation(0.26F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+            PartDefinition codpiece = leggings.addOrReplaceChild("codpiece", CubeListBuilder.create().texOffs(0, 71).addBox(-5.0F, 9.5F, -3.5F, 10.0F, 3.0F, 7.0F, new CubeDeformation(0.01F))
+                    .texOffs(34, 71).addBox(-5.0F, 9.5F, -3.5F, 10.0F, 3.0F, 7.0F, new CubeDeformation(0.26F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
             PartDefinition left_boot = left_foot.addOrReplaceChild("left_boot", CubeListBuilder.create().texOffs(0, 105).mirror().addBox(-2.9F, 7.0F, -3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.01F)).mirror(false)
                     .texOffs(24, 105).mirror().addBox(-2.9F, 7.0F, -3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.25F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
