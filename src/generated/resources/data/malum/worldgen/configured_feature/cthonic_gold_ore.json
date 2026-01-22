@@ -1,26 +1,77 @@
 {
   "type": "malum:cthonic_gold_ore",
   "config": {
-    "discard_chance_on_air_exposure": 0.0,
-    "size": 8,
-    "targets": [
-      {
-        "state": {
-          "Name": "malum:cthonic_gold_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
+    "decorator": {
+      "decorators": [
+        {
+          "state_provider": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "malum:cthonic_gold_cluster",
+              "Properties": {
+                "facing": "up",
+                "waterlogged": "false"
+              }
+            }
+          },
+          "target": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "minecraft:air"
+          }
         }
+      ],
+      "max_decorations": 6,
+      "min_decorations": 3
+    },
+    "ore_layers": [
+      {
+        "discard_chance_on_air_exposure": 0.0,
+        "discard_feature_if_empty": true,
+        "size": 4,
+        "targets": [
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:cthonic_gold_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:deepslate_ore_replaceables"
+            }
+          }
+        ]
       },
       {
-        "state": {
-          "Name": "minecraft:deepslate_gold_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
-        }
+        "discard_chance_on_air_exposure": 0.1,
+        "size": 12,
+        "targets": [
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:gold_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:stone_ore_replaceables"
+            }
+          },
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:deepslate_gold_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:deepslate_ore_replaceables"
+            }
+          }
+        ]
       }
     ]
   }

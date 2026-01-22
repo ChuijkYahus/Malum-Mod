@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.worldgen;
 
+import com.sammy.malum.common.worldgen.ore.*;
 import com.sammy.malum.common.worldgen.tree.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.worldgen.*;
@@ -17,24 +18,29 @@ import java.util.*;
 
 public class ConfiguredFeatureDatagen {
 
-    private static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-    private static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+    private static final RuleTest REPLACE_AIR = new TagMatchTest(BlockTags.AIR);
+    private static final RuleTest REPLACE_STONE = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+    private static final RuleTest REPLACE_DEEPSLATE = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
     public static final List<OreConfiguration.TargetBlockState> SOULSTONE_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.SOULSTONE_ORE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.DEEPSLATE_SOULSTONE_ORE.get().defaultBlockState()));
+            OreConfiguration.target(REPLACE_STONE, MalumBlocks.SOULSTONE_ORE.get().defaultBlockState()),
+            OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.DEEPSLATE_SOULSTONE_ORE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.BRILLIANT_STONE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
+            OreConfiguration.target(REPLACE_STONE, MalumBlocks.BRILLIANT_STONE.get().defaultBlockState()),
+            OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> NATURAL_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(STONE_ORE_REPLACEABLES, MalumBlocks.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
+            OreConfiguration.target(REPLACE_STONE, MalumBlocks.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
+            OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
 
-    public static final List<OreConfiguration.TargetBlockState> CTHONIC_GOLD_TARGET_LIST = List.of(
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, MalumBlocks.CTHONIC_GOLD_ORE.get().defaultBlockState()),
-            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState()));
+    public static final List<LayeredOreConfiguration.LayeredTargetBlockState> CTHONIC_GOLD_PRIMARY_LAYER = List.of(
+            LayeredOreConfiguration.target(REPLACE_DEEPSLATE, BlockStateProvider.simple(MalumBlocks.CTHONIC_GOLD_ORE.get())));
+    public static final List<LayeredOreConfiguration.LayeredTargetBlockState> CTHONIC_GOLD_SECONDARY_LAYER = List.of(
+            LayeredOreConfiguration.target(REPLACE_STONE, BlockStateProvider.simple(Blocks.GOLD_ORE)),
+            LayeredOreConfiguration.target(REPLACE_DEEPSLATE, BlockStateProvider.simple(Blocks.DEEPSLATE_GOLD_ORE)));
+    public static final List<LayeredOreConfiguration.LayeredTargetBlockState> CTHONIC_GOLD_DECORATOR_LAYER = List.of(
+            LayeredOreConfiguration.target(REPLACE_AIR, BlockStateProvider.simple(MalumBlocks.CTHONIC_GOLD_CLUSTER.get())));
 
     public static final List<OreConfiguration.TargetBlockState> BLAZING_QUARTZ_TARGET_LIST = List.of(
             OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), MalumBlocks.BLAZING_QUARTZ_ORE.get().defaultBlockState()));
@@ -43,8 +49,14 @@ public class ConfiguredFeatureDatagen {
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_SOULSTONE_ORE, addOreConfig(SOULSTONE_TARGET_LIST, 8));
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
-        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE, addOreConfig(MalumFeatures.CTHONIC_GOLD_ORE.get(), CTHONIC_GOLD_TARGET_LIST, 8));
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
+        context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(), new LayeredOreConfiguration(
+                List.of(
+                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_PRIMARY_LAYER, 4, 0f, true),
+                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_SECONDARY_LAYER, 12, 0.1f, false)
+                ),
+                Optional.of(new LayeredOreConfiguration.LayeredOreFeatureDecorator(CTHONIC_GOLD_DECORATOR_LAYER, 3, 6)))
+        ));
 
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
                 MalumBlocks.RUNEWOOD_SAPLING.get(),
