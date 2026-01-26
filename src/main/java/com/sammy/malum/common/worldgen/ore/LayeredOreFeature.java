@@ -22,7 +22,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
 
     public record BlockKey(LevelChunkSection section, BlockPos absolute, int x, int y, int z) {
 
-    };
+    }
     public record LayerFeedback(HashMap<BlockKey, BlockState> placedBlocks) {
 
         public LayerFeedback() {
@@ -47,18 +47,21 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         double minY = (blockpos.getY() + randomsource.nextInt(3) - 2);
         double maxY = (blockpos.getY() + randomsource.nextInt(3) - 2);
         for (LayeredOreConfiguration.OreLayer layer : layers) {
-            var size = layer.size();
-            float sizeFactor = size / 8.0F;
-            int j = Mth.ceil((size / 16.0F * 2.0F + 1.0F) / 2.0F);
-            double minX = (double) blockpos.getX() + sin * (double) sizeFactor;
-            double maxX = (double) blockpos.getX() - sin * (double) sizeFactor;
-            double minZ = (double) blockpos.getZ() + cos * (double) sizeFactor;
-            double maxZ = (double) blockpos.getZ() - cos * (double) sizeFactor;
-            int xStart = blockpos.getX() - Mth.ceil(sizeFactor) - j;
-            int yStart = blockpos.getY() - 2 - j;
-            int zStart = blockpos.getZ() - Mth.ceil(sizeFactor) - j;
-            int width = 2 * (Mth.ceil(sizeFactor) + j);
-            int height = 2 * (2 + j);
+            float horizontal = layer.width();
+            float vertical = layer.height();
+            float horizontalFactor = horizontal / 8f;
+            float verticalFactor = vertical / 8f;
+            int wRand = Mth.ceil((horizontalFactor + 1f) / 2f);
+            int yRand = Mth.ceil((verticalFactor + 1f) / 2f);
+            double minX = (double) blockpos.getX() + sin * (double) horizontalFactor;
+            double maxX = (double) blockpos.getX() - sin * (double) horizontalFactor;
+            double minZ = (double) blockpos.getZ() + cos * (double) horizontalFactor;
+            double maxZ = (double) blockpos.getZ() - cos * (double) horizontalFactor;
+            int xStart = blockpos.getX() - Mth.ceil(horizontalFactor) - wRand;
+            int yStart = blockpos.getY() - Mth.ceil(verticalFactor) - yRand;
+            int zStart = blockpos.getZ() - Mth.ceil(horizontalFactor) - wRand;
+            int width = Mth.ceil(2 * (horizontalFactor + wRand));
+            int height = Mth.ceil(2 * (verticalFactor + yRand));
 
             for (int x1 = xStart; x1 <= xStart + width; ++x1) {
                 for (int z1 = zStart; z1 <= zStart + width; ++z1) {
@@ -75,7 +78,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             }
         }
         for (int i = layers.size() - 1; i >= 0; i--) {
-            LayeredOreConfiguration.OreLayer layer = layers.get(i);
+            var layer = layers.get(i);
             blockMap.get(layer).placedBlocks.forEach((key, state) -> key.section.setBlockState(key.x, key.y, key.z, state, false));
         }
 
@@ -84,7 +87,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                 var decorator = decoratorOptional.get();
                 var positions = blockMap.values().stream().map(feedback -> feedback.placedBlocks).flatMap(m -> m.keySet().stream()).toList();
                 var shuffled = WorldgenHelper.shuffle(positions, randomsource);
-                BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+                var mutable = new BlockPos.MutableBlockPos();
 
                 int min = decorator.minDecorations();
                 int max = decorator.maxDecorations();
@@ -97,7 +100,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                     for (Direction direction : Direction.values()) {
                         mutable.set(position.absolute).move(direction);
                         if (worldgenlevel.ensureCanWrite(mutable)) {
-                            final LevelChunkSection offsetSection = bulksectionaccess.getSection(mutable);
+                            var offsetSection = bulksectionaccess.getSection(mutable);
                             if (offsetSection != null) {
                                 int clusterX = SectionPos.sectionRelative(mutable.getX());
                                 int clusterY = SectionPos.sectionRelative(mutable.getY());
@@ -143,9 +146,10 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             int width,
             int height
     ) {
+        //TODO: This method sucks
         BitSet bitset = new BitSet(width * height * width);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-        int j = layer.size();
+        int j = layer.width();
         double[] adouble = new double[j * 4];
 
         for (int k = 0; k < j; k++) {
@@ -255,9 +259,8 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
     ) {
         if (!targetState.target().test(state, random)) {
             return false;
-        } else {
-            return shouldSkipAirCheck(random, layer.discardChanceOnAirExposure()) || !isAdjacentToAir(adjacentStateAccessor, mutablePos);
         }
+        return shouldSkipAirCheck(random, layer.discardChanceOnAirExposure()) || !isAdjacentToAir(adjacentStateAccessor, mutablePos);
     }
 
     protected static boolean shouldSkipAirCheck(RandomSource random, float chance) {

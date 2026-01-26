@@ -27,7 +27,7 @@
       {
         "discard_chance_on_air_exposure": 0.0,
         "discard_feature_if_empty": true,
-        "size": 4,
+        "height": 16,
         "targets": [
           {
             "state_provider": {
@@ -38,14 +38,15 @@
             },
             "target": {
               "predicate_type": "minecraft:tag_match",
-              "tag": "minecraft:deepslate_ore_replaceables"
+              "tag": "minecraft:base_stone_overworld"
             }
           }
-        ]
+        ],
+        "width": 4
       },
       {
         "discard_chance_on_air_exposure": 0.1,
-        "size": 12,
+        "height": 24,
         "targets": [
           {
             "state_provider": {
@@ -71,7 +72,8 @@
               "tag": "minecraft:deepslate_ore_replaceables"
             }
           }
-        ]
+        ],
+        "width": 12
       }
     ]
   }

@@ -19,6 +19,7 @@ import java.util.*;
 public class ConfiguredFeatureDatagen {
 
     private static final RuleTest REPLACE_AIR = new TagMatchTest(BlockTags.AIR);
+    private static final RuleTest REPLACE_STONES = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
     private static final RuleTest REPLACE_STONE = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     private static final RuleTest REPLACE_DEEPSLATE = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
@@ -35,7 +36,7 @@ public class ConfiguredFeatureDatagen {
             OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
 
     public static final List<LayeredOreConfiguration.LayeredTargetBlockState> CTHONIC_GOLD_PRIMARY_LAYER = List.of(
-            LayeredOreConfiguration.target(REPLACE_DEEPSLATE, BlockStateProvider.simple(MalumBlocks.CTHONIC_GOLD_ORE.get())));
+            LayeredOreConfiguration.target(REPLACE_STONES, BlockStateProvider.simple(MalumBlocks.CTHONIC_GOLD_ORE.get())));
     public static final List<LayeredOreConfiguration.LayeredTargetBlockState> CTHONIC_GOLD_SECONDARY_LAYER = List.of(
             LayeredOreConfiguration.target(REPLACE_STONE, BlockStateProvider.simple(Blocks.GOLD_ORE)),
             LayeredOreConfiguration.target(REPLACE_DEEPSLATE, BlockStateProvider.simple(Blocks.DEEPSLATE_GOLD_ORE)));
@@ -52,8 +53,8 @@ public class ConfiguredFeatureDatagen {
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_CTHONIC_GOLD_ORE_FEATURE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(), new LayeredOreConfiguration(
                 List.of(
-                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_PRIMARY_LAYER, 4, 0f, true),
-                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_SECONDARY_LAYER, 12, 0.1f, false)
+                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_PRIMARY_LAYER, 4, 16, 0f, true),
+                        new LayeredOreConfiguration.OreLayer(CTHONIC_GOLD_SECONDARY_LAYER, 12, 24, 0.1f, false)
                 ),
                 Optional.of(new LayeredOreConfiguration.LayeredOreFeatureDecorator(CTHONIC_GOLD_DECORATOR_LAYER, 3, 6)))
         ));

@@ -22,12 +22,13 @@ public record LayeredOreConfiguration(List<OreLayer> oreLayers, Optional<Layered
         return new LayeredTargetBlockState(target, state);
     }
 
-    public record OreLayer(List<LayeredTargetBlockState> targetStates, int size, float discardChanceOnAirExposure,
+    public record OreLayer(List<LayeredTargetBlockState> targetStates, int width, int height, float discardChanceOnAirExposure,
                            boolean discardFeatureIfEmpty) {
         public static final Codec<OreLayer> CODEC = RecordCodecBuilder.create(
                 p_67849_ -> p_67849_.group(
                                 Codec.list(LayeredTargetBlockState.CODEC).fieldOf("targets").forGetter(layer -> layer.targetStates),
-                                Codec.intRange(0, 64).fieldOf("size").forGetter(layer -> layer.size),
+                                Codec.intRange(0, 128).fieldOf("width").forGetter(layer -> layer.width),
+                                Codec.intRange(0, 256).fieldOf("height").forGetter(layer -> layer.height),
                                 Codec.floatRange(0.0F, 1.0F).fieldOf("discard_chance_on_air_exposure").forGetter(layer -> layer.discardChanceOnAirExposure),
                                 Codec.BOOL.optionalFieldOf("discard_feature_if_empty", false).forGetter(layer -> layer.discardFeatureIfEmpty)
                         )
