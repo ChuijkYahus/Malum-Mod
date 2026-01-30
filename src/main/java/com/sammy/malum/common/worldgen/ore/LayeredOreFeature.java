@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.function.Function;
 
 public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
-    
+
     public LayeredOreFeature() {
         super(LayeredOreConfiguration.CODEC);
     }
@@ -23,10 +23,10 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
     public record BlockKey(LevelChunkSection section, BlockPos absolute, int x, int y, int z) {
 
     }
-    public record LayerFeedback(HashMap<BlockKey, BlockState> placedBlocks) {
+    public record LayerFeedback(HashMap<BlockKey, BlockState> placedBlocks, HashSet<Integer> blockHashes) {
 
         public LayerFeedback() {
-            this(new HashMap<>());
+            this(new HashMap<>(), new HashSet<>());
         }
     }
 
@@ -44,30 +44,32 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         float angle = randomsource.nextFloat() * (float) Math.PI;
         double sin = Math.sin(angle);
         double cos = Math.cos(angle);
-        double minY = (blockpos.getY() + randomsource.nextInt(3) - 2);
-        double maxY = (blockpos.getY() + randomsource.nextInt(3) - 2);
+        double sinOrCos = randomsource.nextBoolean() ? sin : cos;
         for (LayeredOreConfiguration.OreLayer layer : layers) {
             float horizontal = layer.width();
             float vertical = layer.height();
-            float horizontalFactor = horizontal / 8f;
-            float verticalFactor = vertical / 8f;
+            float horizontalFactor = horizontal / 4f;
+            float verticalFactor = vertical / 4f;
             int wRand = Mth.ceil((horizontalFactor + 1f) / 2f);
             int yRand = Mth.ceil((verticalFactor + 1f) / 2f);
-            double minX = (double) blockpos.getX() + sin * (double) horizontalFactor;
-            double maxX = (double) blockpos.getX() - sin * (double) horizontalFactor;
-            double minZ = (double) blockpos.getZ() + cos * (double) horizontalFactor;
-            double maxZ = (double) blockpos.getZ() - cos * (double) horizontalFactor;
-            int xStart = blockpos.getX() - Mth.ceil(horizontalFactor) - wRand;
-            int yStart = blockpos.getY() - Mth.ceil(verticalFactor) - yRand;
-            int zStart = blockpos.getZ() - Mth.ceil(horizontalFactor) - wRand;
-            int width = Mth.ceil(2 * (horizontalFactor + wRand));
-            int height = Mth.ceil(2 * (verticalFactor + yRand));
 
-            for (int x1 = xStart; x1 <= xStart + width; ++x1) {
-                for (int z1 = zStart; z1 <= zStart + width; ++z1) {
-                    if (yStart <= worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x1, z1)) {
-                        var feedback = blockMap.computeIfAbsent(layer, (l)->new LayerFeedback());
-                        doPlace(feedback, worldgenlevel, randomsource, layer, minX, maxX, minZ, maxZ, minY, maxY, xStart, yStart, zStart, width, height);
+            int xStart = blockpos.getX() - Mth.ceil(sin * horizontalFactor) - wRand;
+            int xEnd = blockpos.getX() + Mth.ceil(sin * horizontalFactor) + wRand;
+
+            int yStart = blockpos.getY() - Mth.ceil(sinOrCos * verticalFactor) - yRand;
+            int yEnd = blockpos.getY() + Mth.ceil(sinOrCos * verticalFactor) + yRand;
+
+            int zStart = blockpos.getZ() - Mth.ceil(cos * horizontalFactor) - wRand;
+            int zEnd = blockpos.getZ() + Mth.ceil(cos * horizontalFactor) + wRand;
+
+            var feedback = blockMap.computeIfAbsent(layer, (l) -> new LayerFeedback());
+            for (int x1 = xStart; x1 <= xEnd; x1++) {
+                for (int z1 = zStart; z1 <= zEnd; z1++) {
+                    int worldHeight = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x1, z1);
+                    for (int y1 = yStart; y1 < yEnd; y1++) {
+                        if (y1 <= worldHeight) {
+                            doPlace(feedback, worldgenlevel, randomsource, layer, x1, y1, z1, xStart, xEnd, yStart, yEnd, zStart, zEnd);
+                        }
                     }
                 }
             }
@@ -134,111 +136,70 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             WorldGenLevel level,
             RandomSource random,
             LayeredOreConfiguration.OreLayer layer,
-            double minX,
-            double maxX,
-            double minZ,
-            double maxZ,
-            double minY,
-            double maxY,
-            int x,
-            int y,
-            int z,
-            int width,
-            int height
+            int xPos, int yPos, int zPos,
+            int xStart, int xEnd,
+            int yStart, int yEnd,
+            int zStart, int zEnd
     ) {
-        //TODO: This method sucks
-        BitSet bitset = new BitSet(width * height * width);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-        int j = layer.width();
-        double[] adouble = new double[j * 4];
-
-        for (int k = 0; k < j; k++) {
-            float f = (float)k / (float)j;
-            double d0 = Mth.lerp(f, minX, maxX);
-            double d1 = Mth.lerp(f, minY, maxY);
-            double d2 = Mth.lerp(f, minZ, maxZ);
-            double d3 = random.nextDouble() * (double)j / 16.0;
-            double d4 = ((double)(Mth.sin((float) Math.PI * f) + 1.0F) * d3 + 1.0) / 2.0;
-            adouble[k * 4] = d0;
-            adouble[k * 4 + 1] = d1;
-            adouble[k * 4 + 2] = d2;
-            adouble[k * 4 + 3] = d4;
-        }
-
-        for (int l3 = 0; l3 < j - 1; l3++) {
-            if (!(adouble[l3 * 4 + 3] <= 0.0)) {
-                for (int i4 = l3 + 1; i4 < j; i4++) {
-                    if (!(adouble[i4 * 4 + 3] <= 0.0)) {
-                        double d8 = adouble[l3 * 4] - adouble[i4 * 4];
-                        double d10 = adouble[l3 * 4 + 1] - adouble[i4 * 4 + 1];
-                        double d12 = adouble[l3 * 4 + 2] - adouble[i4 * 4 + 2];
-                        double d14 = adouble[l3 * 4 + 3] - adouble[i4 * 4 + 3];
-                        if (d14 * d14 > d8 * d8 + d10 * d10 + d12 * d12) {
-                            if (d14 > 0.0) {
-                                adouble[i4 * 4 + 3] = -1.0;
-                            } else {
-                                adouble[l3 * 4 + 3] = -1.0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        var mutable = new BlockPos.MutableBlockPos();
+        int widthValue = layer.width();
         try (BulkSectionAccess bulksectionaccess = new BulkSectionAccess(level)) {
-            for (int j4 = 0; j4 < j; j4++) {
-                double d9 = adouble[j4 * 4 + 3];
-                if (!(d9 < 0.0)) {
-                    double d11 = adouble[j4 * 4];
-                    double d13 = adouble[j4 * 4 + 1];
-                    double d15 = adouble[j4 * 4 + 2];
-                    int k4 = Math.max(Mth.floor(d11 - d9), x);
-                    int l = Math.max(Mth.floor(d13 - d9), y);
-                    int i1 = Math.max(Mth.floor(d15 - d9), z);
-                    int j1 = Math.max(Mth.floor(d11 + d9), k4);
-                    int k1 = Math.max(Mth.floor(d13 + d9), l);
-                    int l1 = Math.max(Mth.floor(d15 + d9), i1);
+            for (int i = 0; i < widthValue; i++) {
+                float delta = i / (float)widthValue;
+                double rand = random.nextDouble() * (double)widthValue / 16.0;
+                double distanceOrSomething = ((double)(Mth.sin((float) Math.PI * delta) + 1.0F) * rand + 1.0);
+                if ((distanceOrSomething > 0.0)) {
+                    int negativeX = Math.max(Mth.floor(xPos - distanceOrSomething), xStart);
+                    int negativeY = Math.max(Mth.floor(yPos - distanceOrSomething), yStart);
+                    int negativeZ = Math.max(Mth.floor(zPos - distanceOrSomething), zStart);
+                    int positiveX = Math.min(Mth.ceil(xPos + distanceOrSomething), xEnd);
+                    int positiveY = Math.min(Mth.ceil(yPos + distanceOrSomething), yEnd);
+                    int positiveZ = Math.min(Mth.ceil(zPos + distanceOrSomething), zEnd);
+                    float xCenter = (xStart + xEnd) / 2f;
+                    float yCenter = (yStart + yEnd) / 2f;
+                    float zCenter = (zStart + zEnd) / 2f;
 
-                    for (int i2 = k4; i2 <= j1; i2++) {
-                        double d5 = ((double)i2 + 0.5 - d11) / d9;
-                        if (d5 * d5 < 1.0) {
-                            for (int j2 = l; j2 <= k1; j2++) {
-                                double d6 = ((double)j2 + 0.5 - d13) / d9;
-                                if (d5 * d5 + d6 * d6 < 1.0) {
-                                    for (int k2 = i1; k2 <= l1; k2++) {
-                                        double d7 = ((double)k2 + 0.5 - d15) / d9;
-                                        if (d5 * d5 + d6 * d6 + d7 * d7 < 1.0 && !level.isOutsideBuildHeight(j2)) {
-                                            int l2 = i2 - x + (j2 - y) * width + (k2 - z) * width * height;
-                                            if (!bitset.get(l2)) {
-                                                bitset.set(l2);
-                                                blockpos$mutableblockpos.set(i2, j2, k2);
-                                                if (level.ensureCanWrite(blockpos$mutableblockpos)) {
-                                                    LevelChunkSection levelchunksection = bulksectionaccess.getSection(blockpos$mutableblockpos);
-                                                    if (levelchunksection != null) {
-                                                        int i3 = SectionPos.sectionRelative(i2);
-                                                        int j3 = SectionPos.sectionRelative(j2);
-                                                        int k3 = SectionPos.sectionRelative(k2);
-                                                        BlockState blockstate = levelchunksection.getBlockState(i3, j3, k3);
+                    for (int xSomething = negativeX; xSomething <= positiveX; xSomething++) {
+                        double xDist = ((double)xSomething + 0.5 - xCenter) / distanceOrSomething;
+                        if (xDist * xDist > 1) {
+                            continue;
+                        }
+                        for (int ySomething = negativeY; ySomething <= positiveY; ySomething++) {
+                            double yDist = ((double)ySomething + 0.5 - yCenter) / distanceOrSomething;
+                            if (xDist * xDist + yDist * yDist > 1) {
+                                continue;
+                            }
 
-                                                        for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : layer.targetStates()) {
-                                                            if (canPlaceOre(
-                                                                    blockstate,
-                                                                    bulksectionaccess::getBlockState,
-                                                                    random,
-                                                                    layer,
-                                                                    placementRules,
-                                                                    blockpos$mutableblockpos
-                                                            )) {
-                                                                var oreState = placementRules.state().getState(random, blockpos$mutableblockpos);
-                                                                var key = new BlockKey(levelchunksection, blockpos$mutableblockpos.immutable(), i3, j3, k3);
-                                                                feedback.placedBlocks().put(key, oreState);
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
+                            for (int zSomething = negativeZ; zSomething <= positiveZ; zSomething++) {
+                                double zDist = ((double) zSomething + 0.5 - zCenter) / distanceOrSomething;
+                                if (xDist * xDist + yDist * yDist + zDist + zDist * zDist > 1) {
+                                    continue;
+                                }
+
+                                mutable.set(xSomething, ySomething, zSomething);
+                                if (!level.ensureCanWrite(mutable)) {
+                                    continue;
+                                }
+                                var section = bulksectionaccess.getSection(mutable);
+                                if (section == null) {
+                                    continue;
+                                }
+                                var hash = mutable.hashCode();
+                                if (feedback.blockHashes.contains(hash)) {
+                                    continue;
+                                }
+                                feedback.blockHashes.add(hash);
+                                int rX = SectionPos.sectionRelative(xSomething);
+                                int rY = SectionPos.sectionRelative(ySomething);
+                                int rZ = SectionPos.sectionRelative(zSomething);
+                                BlockState blockstate = section.getBlockState(rX, rY, rZ);
+
+                                for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : layer.targetStates()) {
+                                    if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, random, layer, placementRules, mutable)) {
+                                        var oreState = placementRules.state().getState(random, mutable);
+                                        var key = new BlockKey(section, mutable.immutable(), rX, rY, rZ);
+                                        feedback.placedBlocks().put(key, oreState);
+                                        break;
                                     }
                                 }
                             }

@@ -20,7 +20,7 @@ public class OakenMightEffect extends MobEffect {
     public static void increaseDamage(LivingDamageEvent.Pre event) {
         final DamageSource source = event.getSource();
         if (source.getDirectEntity() instanceof LivingEntity entity) {
-            if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+            if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 return;
             }
             var instance = entity.getEffect(MalumMobEffects.OAKEN_MIGHT);

@@ -1,6 +1,5 @@
 package com.sammy.malum.common.item.banner;
 
-import com.sammy.malum.client.creative_tab.MalumCreativeTabTweaks;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.*;
@@ -8,6 +7,7 @@ import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.*;
+import team.lodestar.lodestone.systems.creative_tab.*;
 
 import java.util.*;
 
@@ -47,11 +47,11 @@ public class SoulwovenBannerBlockItem extends BlockItem {
         }
     }
 
-    public static void addBannerPatterns(MalumCreativeTabTweaks.CategoryBuilder builder) {
+    public static void addBannerPatterns(CreativeTabCategoryBuilder builder) {
         var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
         Collections.reverse(patterns);
         for (SoulwovenBannerPatternDataComponent pattern : patterns) {
-            builder.addItem(pattern.getDefaultStack());
+            builder.addItemStack(pattern.getDefaultStack());
         }
     }
 

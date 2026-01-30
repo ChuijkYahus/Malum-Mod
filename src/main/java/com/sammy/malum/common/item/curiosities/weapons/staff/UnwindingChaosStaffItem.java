@@ -89,7 +89,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
             addStaffCharges(serverLevel, attacker, target, 40);
         }
 
-        boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC);
+        boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE);
         if (canTriggerMagic || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
             target.igniteForSeconds(5);
         }

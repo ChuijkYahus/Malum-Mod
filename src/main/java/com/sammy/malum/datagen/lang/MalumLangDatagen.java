@@ -1,7 +1,6 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.creative_tab.MalumCreativeTabTweaks;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compat.create.*;
@@ -32,6 +31,7 @@ import net.minecraft.world.level.block.WallTorchBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.helpers.DataHelper;
+import team.lodestar.lodestone.systems.creative_tab.*;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -57,7 +57,6 @@ public class MalumLangDatagen extends LanguageProvider {
     @Override
     protected void addTranslations() {
         CodexLangDatagen.generateEntries();
-        MalumCreativeTabTweaks.ensureCategoriesAreReal();
 
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(ITEMS.getEntries());
@@ -70,7 +69,7 @@ public class MalumLangDatagen extends LanguageProvider {
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
-        var categories = MalumCreativeTabTweaks.CATEGORIES.values();
+        var categories = ((CategorizedCreativeTab)MalumCreativeTabs.CONTENT.get()).getCategories().values();
 
         add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
