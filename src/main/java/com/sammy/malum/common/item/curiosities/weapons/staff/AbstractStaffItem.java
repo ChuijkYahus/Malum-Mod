@@ -50,7 +50,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (attacker instanceof ServerPlayer player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+        if (attacker instanceof ServerPlayer player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
             var level = player.serverLevel();
             SoundHelper.playSound(target, MalumSoundEvents.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, RandomHelper.randomBetween(level.random, 0.85f, 1.25f));
             MalumParticleEffectTypes.STAFF_SLAM.createEffect()

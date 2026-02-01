@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
 
+import com.sammy.malum.common.category.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
@@ -10,13 +11,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import team.lodestar.lodestone.systems.creative_tab.*;
 
 public class MalumCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MalumMod.MALUM);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
-            () -> CreativeModeTab.builder()
+            () -> CategorizedCreativeTab.builder(MalumCreativeTab::new)
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.spirit_arcana"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .withTabsAfter(MalumMod.malumPath("malum_nature"))

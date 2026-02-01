@@ -17,7 +17,8 @@ public class MalumFeatures {
 
     public static final DeferredHolder<Feature<?>, RunewoodTreeFeature> RUNEWOOD_TREE = FEATURE_TYPES.register("runewood_tree", RunewoodTreeFeature::new);
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);
-    public static final DeferredHolder<Feature<?>, LayeredOreFeature> CTHONIC_GOLD_ORE = FEATURE_TYPES.register("cthonic_gold_ore", CthonicGoldOreFeature::new);
+
+    public static final DeferredHolder<Feature<?>, LayeredOreFeature> LAYERED_ORE = FEATURE_TYPES.register("cthonic_gold_ore", LayeredOreFeature::new);
 
     public static class ConfiguredFeatures {
 

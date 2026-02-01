@@ -113,7 +113,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
                 applyHatred(target);
             }
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
                 float splitDamage = event.getNewDamage() / slashCount;
                 if (target.isAlive()) {

@@ -45,11 +45,11 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
                     return;
                 }
-                if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+                if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                     SoundHelper.playSound(attacker, MalumSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)

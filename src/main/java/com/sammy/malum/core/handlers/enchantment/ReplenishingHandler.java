@@ -13,7 +13,7 @@ public class ReplenishingHandler {
 
     public static void triggerReplenishing(DamageSource source, LivingEntity attacker, ItemStack stack) {
         if (!attacker.level().isClientSide) {
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 int level = getEnchantmentLevel(attacker.level(), EnchantmentKeys.REPLENISHING, stack);
                 if (level > 0) {
                     float chance = 0.4f * level;

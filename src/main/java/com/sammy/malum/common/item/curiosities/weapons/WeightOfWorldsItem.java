@@ -54,7 +54,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                 return;
             }
             var source = event.getSource();
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;
                 var effectType = MalumMobEffects.GRIM_CERTAINTY;
                 if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {
@@ -65,7 +65,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                 } else {
                     //We want only the crit to be present in case of exterior triggers such as Soulwashing
                     //Regular swing animations are still tied to the melee attack only
-                    if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC)) {
+                    if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                         return;
                     }
                 }

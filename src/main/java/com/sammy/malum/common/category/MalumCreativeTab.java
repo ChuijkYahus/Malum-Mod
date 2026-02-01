@@ -1,9 +1,22 @@
-package com.sammy.malum.client.creative_tab;
+package com.sammy.malum.common.category;
 
+import com.sammy.malum.*;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.core.handlers.hiding.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import team.lodestar.lodestone.systems.creative_tab.*;
 
-public class Categories {
+import java.util.*;
+
+public class MalumCreativeTab extends CategorizedCreativeTab {
+
+        private static final ResourceLocation SLOT_WRAPPER = MalumMod.malumPath("slot_wrapper");
+        private static final ResourceLocation SLOT_WRAPPER_LEFT = MalumMod.malumPath("slot_wrapper_left");
+        private static final ResourceLocation SLOT_WRAPPER_RIGHT = MalumMod.malumPath("slot_wrapper_right");
+        private static final ResourceLocation EMPTY_SLOT = MalumMod.malumPath("empty_slot");
 
         public static final String FUNDAMENTALS = "fundamentals_of_arcana";
         public static final String GEAR = "gear_and_trinkets";
@@ -21,8 +34,32 @@ public class Categories {
         public static final String DROSS_STONE = "dross_stone";
         public static final String THE_DUNGEON = "the_dungeon";
 
-        public static void buildCategories() {
-                MalumCreativeTabTweaks.create(FUNDAMENTALS)
+        public MalumCreativeTab(Builder builder) {
+                super(MalumMod.MALUM, builder);
+        }
+
+        @Override
+        public Optional<ResourceLocation> getHeaderTexture(CreativeTabCategory.CategoryHeader header, int row, int column) {
+                if (column == 0) {
+                        return Optional.of(SLOT_WRAPPER_LEFT);
+                } else if (column == 8) {
+                        return Optional.of(SLOT_WRAPPER_RIGHT);
+                }
+                return Optional.of(SLOT_WRAPPER);
+        }
+
+        @Override
+        public Optional<ResourceLocation> getEmptySlotTexture(int row, int column) {
+                return Optional.of(EMPTY_SLOT);
+        }
+
+        @Override
+        public boolean isItemVisible(ItemStack stack) {
+                return !HiddenTagHandler.isHiddenItem(stack);
+        }
+
+        public void buildCategories() {
+                createCategory(FUNDAMENTALS)
                         .addItems(
                                 MalumItems.SACRED_SPIRIT, MalumItems.WICKED_SPIRIT, MalumItems.ARCANE_SPIRIT, MalumItems.ELDRITCH_SPIRIT,
                                 MalumItems.AERIAL_SPIRIT, MalumItems.AQUEOUS_SPIRIT, MalumItems.EARTHEN_SPIRIT, MalumItems.INFERNAL_SPIRIT,
@@ -50,7 +87,7 @@ public class Categories {
                                 MalumItems.RITE_CHANNEL
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(GEAR)
+                createCategory(GEAR)
                         .addItems(
                                 MalumItems.CRUDE_SCYTHE,
                                 MalumItems.SOULWOVEN_POUCH,
@@ -178,7 +215,7 @@ public class Categories {
                                 MalumItems.RUNE_OF_IGNEOUS_SOLACE
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(ARTIFICE)
+                createCategory(ARTIFICE)
                         .addItems(
                                 MalumItems.TUNING_FORK,
                                 MalumItems.SPIRIT_CRUCIBLE,
@@ -211,7 +248,7 @@ public class Categories {
                                 MalumItems.STELLAR_MECHANISM
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(METALLURGY)
+                createCategory(METALLURGY)
                         .addItems(MalumItems.IRON_IMPETUS, MalumItems.FRACTURED_IRON_IMPETUS, MalumItems.IRON_NODE)
                         .addItems(MalumItems.COPPER_IMPETUS, MalumItems.FRACTURED_COPPER_IMPETUS, MalumItems.COPPER_NODE)
                         .addItems(MalumItems.GOLD_IMPETUS, MalumItems.FRACTURED_GOLD_IMPETUS, MalumItems.GOLD_NODE)
@@ -228,7 +265,7 @@ public class Categories {
                         .addItems(MalumItems.IFRIT_IMPETUS, MalumItems.FRACTURED_IFRIT_IMPETUS)
                         .addItems(MalumItems.ALCHEMICAL_IMPETUS, MalumItems.FRACTURED_ALCHEMICAL_IMPETUS)
                         .bake();
-                MalumCreativeTabTweaks.create(MATERIALS)
+                createCategory(MATERIALS)
                         .addItems(
                                 MalumItems.ROTTING_ESSENCE,
                                 MalumItems.GRIM_TALC,
@@ -306,7 +343,7 @@ public class Categories {
                                 MalumItems.BLOCK_OF_HALLOWED_GOLD,
                                 MalumItems.BLOCK_OF_MALIGNANT_PEWTER
                         ).bake();
-                MalumCreativeTabTweaks.create(ORES)
+                createCategory(ORES)
                         .addItems(
                                 MalumItems.BLOCK_OF_SOULSTONE, MalumItems.BLOCK_OF_RAW_SOULSTONE, MalumItems.DEEPSLATE_SOULSTONE_ORE, MalumItems.SOULSTONE_ORE,
                                 MalumItems.RAW_SOULSTONE, MalumItems.CRUSHED_SOULSTONE, MalumItems.REFINED_SOULSTONE
@@ -328,7 +365,7 @@ public class Categories {
                                 MalumItems.CTHONIC_GOLD, MalumItems.CTHONIC_GOLD_FRAGMENT
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(ETHER)
+                createCategory(ETHER)
                         .addItems(
                                 MalumItems.ETHER,
                                 MalumItems.ETHER_CANDLE,
@@ -356,7 +393,7 @@ public class Categories {
                                 MalumItems.DROSS_IRIDESCENT_ETHER_CRESSET
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(SOULSTUFF)
+                createCategory(SOULSTUFF)
                         .addItems(
                                 MalumItems.SACRED_SPIRITED_GLASS,
                                 MalumItems.WICKED_SPIRITED_GLASS,
@@ -381,7 +418,7 @@ public class Categories {
                         ).nextLine()
                         .addItems(SoulwovenBannerBlockItem::addBannerPatterns)
                         .bake();
-                MalumCreativeTabTweaks.create(RUNEWOOD)
+                createCategory(RUNEWOOD)
                         .addItems(
                                 MalumItems.RUNIC_SAP,
                                 MalumItems.RUNIC_SAPBALL,
@@ -460,7 +497,7 @@ public class Categories {
                                 MalumItems.RUNEWOOD_CHEST_BOAT
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(SOULWOOD)
+                createCategory(SOULWOOD)
                         .addItems(
                                 MalumItems.CURSED_SAP,
                                 MalumItems.CURSED_SAPBALL,
@@ -537,7 +574,7 @@ public class Categories {
                                 MalumItems.SOULWOOD_CHEST_BOAT
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(BLIGHT)
+                createCategory(BLIGHT)
                         .addItems(
                                 MalumItems.BLIGHTED_SOULWOOD,
                                 MalumItems.COLUMNAR_BLIGHT,
@@ -555,7 +592,7 @@ public class Categories {
                         )
                         .bake();
 
-                MalumCreativeTabTweaks.create(TAINTED_ROCK)
+                createCategory(TAINTED_ROCK)
                         .addItems(
                                 MalumItems.TAINTED_ROCK,
                                 MalumItems.POLISHED_TAINTED_ROCK,
@@ -597,7 +634,7 @@ public class Categories {
                                 MalumItems.TAINTED_ROCK_MOSAIC_WALL
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(TWISTED_ROCK)
+                createCategory(TWISTED_ROCK)
                         .addItems(
                                 MalumItems.TWISTED_ROCK,
                                 MalumItems.POLISHED_TWISTED_ROCK,
@@ -639,7 +676,7 @@ public class Categories {
                                 MalumItems.TWISTED_ROCK_MOSAIC_WALL
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(DROSS_STONE)
+                createCategory(DROSS_STONE)
                         .addItems(
                                 MalumItems.DROSS_STONE,
                                 MalumItems.POLISHED_DROSS_STONE,
@@ -693,7 +730,7 @@ public class Categories {
                                 MalumItems.DROSS_STONE_BUTTON
                         )
                         .bake();
-                MalumCreativeTabTweaks.create(THE_DUNGEON)
+                createCategory(THE_DUNGEON)
                         .addItems(
                                 MalumItems.OMINOUS_ALTAR,
                                 MalumItems.OMINOUS_OBELISK
