@@ -10,9 +10,9 @@ public class MalumWorldEventTypes {
 
     public static DeferredRegister<WorldEventType> WORLD_EVENT_TYPES = DeferredRegister.create(LodestoneWorldEventTypes.WORLD_EVENT_TYPE_REGISTRY, MalumMod.MALUM);
 
-    public static DeferredHolder<WorldEventType, WorldEventType> UNCHAINED_TOTEM_CONVERSION = WORLD_EVENT_TYPES.register("unchained_totem_conversion", r -> new WorldEventType(r, UnchainedTotemConversionWorldEvent::new, false));
-    public static DeferredHolder<WorldEventType, WorldEventType> SUSPICIOUS_DEVICE_TRIGGER = WORLD_EVENT_TYPES.register("suspicious_device_trigger", r -> new WorldEventType(r, SuspiciousDeviceTriggerWorldEvent::new, false));
+    public static DeferredHolder<WorldEventType, WorldEventType> UNCHAINED_TOTEM_CONVERSION = WORLD_EVENT_TYPES.register("unchained_totem_conversion", r -> new WorldEventType(r, UnchainedTotemConversionWorldEvent::new));
+    public static DeferredHolder<WorldEventType, WorldEventType> SUSPICIOUS_DEVICE_TRIGGER = WORLD_EVENT_TYPES.register("suspicious_device_trigger", r -> new WorldEventType(r, SuspiciousDeviceTriggerWorldEvent::new));
 
-    public static DeferredHolder<WorldEventType, WorldEventType> DELAYED_DAMAGE = WORLD_EVENT_TYPES.register("delayed_damage", r -> new WorldEventType(r, DelayedDamageWorldEvent::new, false));
+    public static DeferredHolder<WorldEventType, WorldEventType> DELAYED_DAMAGE = WORLD_EVENT_TYPES.register("delayed_damage", r -> new WorldEventType(r, DelayedDamageWorldEvent::new));
 
 }

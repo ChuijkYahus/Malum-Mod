@@ -11,7 +11,7 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 @EventBusSubscriber(value = Dist.CLIENT, modid = MalumMod.MALUM)
 public class MalumShaders {
 
-    public static LodestoneShaderRegistry SHADERS = new LodestoneShaderRegistry(MalumMod.MALUM);
+    public static ShaderRegister SHADERS = new ShaderRegister(MalumMod.MALUM);
 
     public static ShaderHolder DISSOLVING_HUD_ELEMENT = SHADERS.register("dissolving_hud_element", DefaultVertexFormat.POSITION_TEX_COLOR);
     public static ShaderHolder TOUCH_OF_DARKNESS = SHADERS.register("touch_of_darkness", DefaultVertexFormat.POSITION_TEX_COLOR);
