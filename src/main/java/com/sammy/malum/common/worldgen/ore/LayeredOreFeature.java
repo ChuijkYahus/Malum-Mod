@@ -169,7 +169,6 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                             if (xDist * xDist + yDist * yDist > 1) {
                                 continue;
                             }
-
                             for (int zSomething = negativeZ; zSomething <= positiveZ; zSomething++) {
                                 double zDist = ((double) zSomething + 0.5 - zCenter) / distanceOrSomething;
                                 if (xDist * xDist + yDist * yDist + zDist + zDist * zDist > 1) {
@@ -180,12 +179,13 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                                 if (!level.ensureCanWrite(mutable)) {
                                     continue;
                                 }
-                                var section = bulksectionaccess.getSection(mutable);
-                                if (section == null) {
-                                    continue;
-                                }
                                 var hash = mutable.hashCode();
                                 if (feedback.blockHashes.contains(hash)) {
+                                    continue;
+                                }
+
+                                var section = bulksectionaccess.getSection(mutable);
+                                if (section == null) {
                                     continue;
                                 }
                                 feedback.blockHashes.add(hash);
