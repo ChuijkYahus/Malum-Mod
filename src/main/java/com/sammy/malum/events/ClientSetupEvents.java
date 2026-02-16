@@ -29,12 +29,12 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        MalumModels.registerLayerDefinitions(event);
+        MalumArmorModels.registerLayerDefinitions(event);
     }
 
     @SubscribeEvent
     public static void addLayers(EntityRenderersEvent.AddLayers event) {
-        MalumModels.addLayers(event);
+        MalumArmorModels.addLayers(event);
     }
 
     @SubscribeEvent

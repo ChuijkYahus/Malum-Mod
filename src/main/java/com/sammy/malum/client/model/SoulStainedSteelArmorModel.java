@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import team.lodestar.lodestone.systems.model.LodestoneArmorModel;
+import team.lodestar.lodestone.systems.model.armor.*;
 
 public class SoulStainedSteelArmorModel extends LodestoneArmorModel {
     public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("soul_stained_steel_armor"), "main");

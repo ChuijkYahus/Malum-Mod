@@ -8,22 +8,24 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.model.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.systems.model.*;
+import team.lodestar.lodestone.systems.model.armor.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
 import java.util.function.*;
 
-public class MalignantArmorItemExtensions extends ArmorClientItemExtensions {
+public class MalignantArmorItemExtensions extends LodestoneArmorClientItemExtensions {
     public MalignantArmorItemExtensions(Supplier<LodestoneArmorModel> model) {
         super(model);
     }
 
     @Override
-    public LodestoneArmorModel getHumanoidArmorModel(LivingEntity entity, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel _default) {
-        final LodestoneArmorModel model = super.getHumanoidArmorModel(entity, itemStack, armorSlot, _default);
+    public @NotNull Model getGenericArmorModel(@NotNull LivingEntity entity, @NotNull ItemStack itemStack, @NotNull EquipmentSlot armorSlot, @NotNull HumanoidModel playerModel) {
+        var model = super.getGenericArmorModel(entity, itemStack, armorSlot, playerModel);
         if (armorSlot.equals(EquipmentSlot.CHEST)) {
-            final ItemSkinComponent skin = itemStack.get(MalumDataComponents.APPLIED_ITEM_SKIN);
+            var skin = itemStack.get(MalumDataComponents.APPLIED_ITEM_SKIN);
             RenderTypeToken scarfToken = skin != null ?
                     RenderTypeToken.createToken(skin.name().withPrefix("textures/vfx/scarf/").withSuffix(".png"))
                     : MalumRenderTypeTokens.SCARF;
