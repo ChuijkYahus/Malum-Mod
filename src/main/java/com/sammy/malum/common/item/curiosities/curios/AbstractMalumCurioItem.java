@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.curios;
 
 import com.google.common.collect.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.*;

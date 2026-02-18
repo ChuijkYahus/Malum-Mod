@@ -5,6 +5,7 @@ import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.listeners.MalignantConversionReloadListener.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -17,7 +18,6 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 
-import java.util.*;
 import java.util.function.*;
 
 public class MalignantConversionHandler {

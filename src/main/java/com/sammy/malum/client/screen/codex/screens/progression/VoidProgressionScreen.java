@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.screens.progression;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.VoidRevelationHandler;
 import com.sammy.malum.client.screen.codex.entries.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.resources.ResourceLocation;
 
 import java.awt.*;

@@ -1,25 +1,16 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.effect.gluttony.*;
-import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.core.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
-import net.minecraft.world.damagesource.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.systems.item.*;

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.entity.bolt;
 
 import com.sammy.malum.registry.common.MalumDamageTypes;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageType;

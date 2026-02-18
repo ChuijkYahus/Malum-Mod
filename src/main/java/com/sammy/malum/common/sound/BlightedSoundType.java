@@ -1,7 +1,7 @@
 package com.sammy.malum.common.sound;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
@@ -16,9 +16,10 @@ import team.lodestar.lodestone.systems.sound.ExtendedSoundType;
 
 import java.util.function.Supplier;
 
-public class BlightedSoundType extends ExtendedSoundType {
-    public BlightedSoundType(float volumeIn, float pitchIn, Supplier<SoundEvent> breakSoundIn, Supplier<SoundEvent> stepSoundIn, Supplier<SoundEvent> placeSoundIn, Supplier<SoundEvent> hitSoundIn, Supplier<SoundEvent> fallSoundIn) {
-        super(volumeIn, pitchIn, breakSoundIn, stepSoundIn, placeSoundIn, hitSoundIn, fallSoundIn);
+public class BlightedSoundType extends MalumSoundType {
+
+    public BlightedSoundType(String name) {
+        super(name);
     }
 
     @Override

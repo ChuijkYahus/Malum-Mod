@@ -4,6 +4,7 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;

@@ -2,16 +2,12 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.geas.pact.infernal.ProspectorGeas;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.*;
-import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.registry.common.MalumAttachmentTypes;
 import com.sammy.malum.registry.common.MalumMobEffects;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
 import com.sammy.malum.visual_effects.AvariceParticleEffects;
-import com.sammy.malum.visual_effects.GeasParticleEffects;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.codec.*;

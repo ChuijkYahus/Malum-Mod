@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.nature.soulwood;
 
 import com.sammy.malum.common.block.nature.SapFilledLogBlock;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;

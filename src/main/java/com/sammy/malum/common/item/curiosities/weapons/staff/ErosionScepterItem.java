@@ -6,6 +6,7 @@ import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.effect.*;

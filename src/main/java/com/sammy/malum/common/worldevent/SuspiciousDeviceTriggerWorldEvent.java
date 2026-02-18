@@ -3,6 +3,7 @@ package com.sammy.malum.common.worldevent;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;

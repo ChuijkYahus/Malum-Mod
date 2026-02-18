@@ -38,7 +38,7 @@ import java.util.function.Supplier;
 
 import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
-import static com.sammy.malum.registry.common.MalumSoundEvents.SOUNDS;
+import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUNDS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;

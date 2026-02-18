@@ -5,12 +5,12 @@ import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -21,7 +21,6 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.systems.network.*;
 
 import static com.sammy.malum.registry.common.enchantment.EnchantmentKeys.getEnchantmentLevel;
 

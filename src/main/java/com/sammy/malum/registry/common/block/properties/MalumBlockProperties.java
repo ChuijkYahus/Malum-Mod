@@ -1,8 +1,8 @@
-package com.sammy.malum.registry.common.block;
+package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.common.block.ether.EtherCandleBlock;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -17,18 +17,8 @@ import java.awt.*;
 import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
-import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;
 
 public class MalumBlockProperties {
-
-    public static LodestoneBlockProperties STORAGE_BLOCK(SoundType soundType, DyeColor mapColor) {
-        return new LodestoneBlockProperties()
-                .strength(2F, 6.0F)
-                .addTags(STORAGE_BLOCKS)
-                .mapColor(mapColor)
-                .sound(soundType);
-    }
-
 
     public static LodestoneBlockProperties POTTED_PLANT() {
         return new LodestoneBlockProperties()
@@ -54,7 +44,7 @@ public class MalumBlockProperties {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.GOLD)
                 .strength(1f, 64f)
-                .sound(MalumSoundEvents.HALLOWED_GOLD)
+                .sound(MalumSoundEvents.BLOCK_OF_HALLOWED_GOLD)
                 .noOcclusion();
     }
 
@@ -419,38 +409,6 @@ public class MalumBlockProperties {
                 .instabreak();
     }
 
-    public static LodestoneBlockProperties ORE_PROPERTIES(boolean isDeepslate) {
-        return new LodestoneBlockProperties()
-                .addTag(isDeepslate ? Tags.Blocks.ORES_IN_GROUND_DEEPSLATE : Tags.Blocks.ORES_IN_GROUND_STONE)
-                .addTag(Tags.Blocks.ORES)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops();
-    }
-
-    public static LodestoneBlockProperties SOULSTONE_ORE(boolean isDeepslate) {
-        return ORE_PROPERTIES(isDeepslate)
-                .mapColor(MapColor.TERRACOTTA_PURPLE)
-                .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
-                .strength(isDeepslate ? 7.0f : 5.0F, 3.0F)
-                .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_SOULSTONE : MalumSoundEvents.SOULSTONE);
-    }
-
-    public static LodestoneBlockProperties BRILLIANCE_ORE(boolean isDeepslate) {
-        return ORE_PROPERTIES(isDeepslate)
-                .mapColor(MapColor.COLOR_GREEN)
-                .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
-                .strength(isDeepslate ? 5f : 3f, 3f)
-                .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE : MalumSoundEvents.BRILLIANCE_ORE);
-    }
-
-    public static LodestoneBlockProperties NATURAL_QUARTZ_ORE(boolean isDeepslate) {
-        return ORE_PROPERTIES(isDeepslate)
-                .mapColor(MapColor.TERRACOTTA_WHITE)
-                .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES_QUARTZ)
-                .strength(isDeepslate ? 6f : 4f, 3f)
-                .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_QUARTZ_ORE : MalumSoundEvents.QUARTZ_ORE);
-    }
-
     public static LodestoneBlockProperties NATURAL_QUARTZ_CLUSTER() {
         return new LodestoneBlockProperties()
                 .addTag(Tags.Blocks.CLUSTERS)
@@ -458,17 +416,7 @@ public class MalumBlockProperties {
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(1.5F)
-                .sound(MalumSoundEvents.QUARTZ_CLUSTER);
-    }
-
-    public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_ORANGE)
-                .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES, Tags.Blocks.ORES_IN_GROUND_NETHERRACK)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(3.0F, 3.0F)
-                .sound(MalumSoundEvents.BLAZING_QUARTZ_ORE);
+                .sound(MalumSoundEvents.NATURAL_QUARTZ_CLUSTER);
     }
 
     public static LodestoneBlockProperties BLAZING_QUARTZ_CLUSTER() {
@@ -481,17 +429,6 @@ public class MalumBlockProperties {
                 .sound(MalumSoundEvents.BLAZING_QUARTZ_CLUSTER);
     }
 
-    public static LodestoneBlockProperties CTHONIC_GOLD_ORE() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(Tags.Blocks.ORE_RATES_DENSE)
-                .addTag(Tags.Blocks.ORES)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(10f, 9999f)
-                .sound(MalumSoundEvents.CTHONIC_GOLD);
-    }
-
     public static LodestoneBlockProperties CTHONIC_GOLD_CLUSTER() {
         return new LodestoneBlockProperties()
                 .addTag(Tags.Blocks.CLUSTERS)
@@ -499,18 +436,7 @@ public class MalumBlockProperties {
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(4f, 9999f)
-                .sound(MalumSoundEvents.CTHONIC_GOLD);
-    }
-
-    public static LodestoneBlockProperties CTHONIC_GOLD_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(10f, 9999f)
-                .sound(MalumSoundEvents.CTHONIC_GOLD);
+                .sound(MalumSoundEvents.CTHONIC_GOLD_CLUSTER);
     }
 
     public static LodestoneBlockProperties ETHER() {
@@ -621,107 +547,6 @@ public class MalumBlockProperties {
                 .requiresCorrectToolForDrops()
                 .isRedstoneConductor(Blocks::never)
                 .needsPickaxe();
-    }
-
-    public static LodestoneBlockProperties MANA_MOTE_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_LIGHT_BLUE)
-                .setRenderType(() -> RenderType::cutout)
-                .noOcclusion()
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(8.0F, 8.0f)
-                .lightLevel((b) -> 8)
-                .sound(MalumSoundEvents.BLAZING_QUARTZ_BLOCK);
-    }
-
-    public static LodestoneBlockProperties SOULSTONE_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.TERRACOTTA_PURPLE)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(5.0F, 3.0F)
-                .sound(MalumSoundEvents.SOULSTONE);
-    }
-
-    public static LodestoneBlockProperties BLAZING_QUARTZ_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_ORANGE)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .addTags(HEAT_SOURCES)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(5.0F, 6.0F)
-                .sound(MalumSoundEvents.BLAZING_QUARTZ_BLOCK);
-    }
-
-    public static LodestoneBlockProperties BRILLIANCE_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_GREEN)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(5.0F, 3.0F)
-                .sound(MalumSoundEvents.BRILLIANCE_BLOCK);
-    }
-
-    public static LodestoneBlockProperties ARCANE_CHARCOAL_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_GRAY)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(5.0F, 6.0F)
-                .sound(MalumSoundEvents.ARCANE_CHARCOAL_BLOCK);
-    }
-
-    public static LodestoneBlockProperties SOUL_STAINED_STEEL_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_PURPLE)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .requiresCorrectToolForDrops()
-                .needsPickaxe()
-                .sound(MalumSoundEvents.SOUL_STAINED_STEEL)
-                .strength(5f, 64.0f);
-    }
-
-    public static LodestoneBlockProperties HALLOWED_GOLD() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.GOLD)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .requiresCorrectToolForDrops()
-                .needsPickaxe()
-                .sound(MalumSoundEvents.HALLOWED_GOLD)
-                .noOcclusion()
-                .strength(2F, 16.0F);
-    }
-
-    public static LodestoneBlockProperties MALIGNANT_LEAD_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_LIGHT_BLUE)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .requiresCorrectToolForDrops()
-                .needsPickaxe()
-                .sound(MalumSoundEvents.MALIGNANT_LEAD)
-                .strength(10f, 9999f);
-    }
-
-    public static LodestoneBlockProperties MALIGNANT_PEWTER_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_LIGHT_BLUE)
-                .addTag(Tags.Blocks.STORAGE_BLOCKS)
-                .addTag(BEACON_BASE_BLOCKS)
-                .requiresCorrectToolForDrops()
-                .needsPickaxe()
-                .sound(MalumSoundEvents.MALIGNANT_PEWTER)
-                .strength(10f, 9999f);
     }
 
     public static LodestoneBlockProperties MEDITATING_EFFIGY() {

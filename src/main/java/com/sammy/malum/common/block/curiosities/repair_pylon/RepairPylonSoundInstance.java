@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.repair_pylon;
 
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import team.lodestar.lodestone.systems.sound.*;
 
 public class RepairPylonSoundInstance extends CachedBlockEntitySoundInstance<RepairPylonCoreBlockEntity> {

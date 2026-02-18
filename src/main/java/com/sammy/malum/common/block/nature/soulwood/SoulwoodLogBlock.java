@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.nature.soulwood;
 
 import com.sammy.malum.common.block.nature.MalumLogBlock;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.SoundSource;

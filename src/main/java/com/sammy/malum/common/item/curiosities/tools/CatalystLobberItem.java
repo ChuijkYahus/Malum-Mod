@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.tools;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
 import net.minecraft.world.*;

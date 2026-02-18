@@ -339,6 +339,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> REFINED_SOULSTONE = register("refined_soulstone", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
     public static final DeferredHolder<Item, Item> BLOCK_OF_BRILLIANCE = register("block_of_brilliance", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_BRILLIANCE.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_RAW_BRILLIANCE = register("block_of_raw_brilliance", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_RAW_BRILLIANCE.get(), p));
     public static final DeferredHolder<Item, Item> BRILLIANT_DEEPSLATE = register("brilliant_deepslate", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BRILLIANT_DEEPSLATE.get(), p));
     public static final DeferredHolder<Item, Item> BRILLIANT_STONE = register("brilliant_stone", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BRILLIANT_STONE.get(), p));
     public static final DeferredHolder<Item, Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItems::DEFAULT_PROPERTIES, Item::new);
@@ -349,6 +350,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ_ORE = register("blazing_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLAZING_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ = register("blazing_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlazingQuartzItem(MalumBlocks.BLAZING_QUARTZ_CLUSTER.get(), 1600, p));
 
+    public static final DeferredHolder<Item, Item> BLOCK_OF_NATURAL_QUARTZ = register("block_of_natural_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_NATURAL_QUARTZ.get(), p));
     public static final DeferredHolder<Item, Item> DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> NATURAL_QUARTZ_ORE = register("natural_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.NATURAL_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> NATURAL_QUARTZ = register("natural_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new ItemNameBlockItem(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get(), p));

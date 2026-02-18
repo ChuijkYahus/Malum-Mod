@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;

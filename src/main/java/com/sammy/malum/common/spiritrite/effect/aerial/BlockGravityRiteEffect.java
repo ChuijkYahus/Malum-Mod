@@ -3,7 +3,7 @@ package com.sammy.malum.common.spiritrite.effect.aerial;
 import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import com.sammy.malum.registry.common.MalumTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

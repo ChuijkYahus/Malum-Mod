@@ -349,15 +349,15 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.RAW_SOULSTONE, MalumItems.CRUSHED_SOULSTONE, MalumItems.REFINED_SOULSTONE
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_BRILLIANCE, MalumItems.BRILLIANT_DEEPSLATE, MalumItems.BRILLIANT_STONE, MalumItems.RAW_BRILLIANCE,
-                                MalumItems.CRUSHED_BRILLIANCE, MalumItems.REFINED_BRILLIANCE
+                                MalumItems.BLOCK_OF_BRILLIANCE, MalumItems.BLOCK_OF_RAW_BRILLIANCE, MalumItems.BRILLIANT_DEEPSLATE, MalumItems.BRILLIANT_STONE,
+                                MalumItems.RAW_BRILLIANCE, MalumItems.CRUSHED_BRILLIANCE, MalumItems.REFINED_BRILLIANCE
                         ).nextLine()
                         .addItems(
                                 MalumItems.BLOCK_OF_BLAZING_QUARTZ, MalumItems.BLAZING_QUARTZ_ORE,
                                 MalumItems.BLAZING_QUARTZ
                         )
                         .addItems(
-                                MalumItems.DEEPSLATE_QUARTZ_ORE, MalumItems.NATURAL_QUARTZ_ORE,
+                                MalumItems.BLOCK_OF_NATURAL_QUARTZ, MalumItems.DEEPSLATE_QUARTZ_ORE, MalumItems.NATURAL_QUARTZ_ORE,
                                 MalumItems.NATURAL_QUARTZ
                         ).nextLine()
                         .addItems(

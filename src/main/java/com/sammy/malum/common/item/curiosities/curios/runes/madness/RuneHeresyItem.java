@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumMobEffects;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;

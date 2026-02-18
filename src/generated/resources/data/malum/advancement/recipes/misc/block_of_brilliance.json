@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_brilliance": {
+    "has_refined_brilliance": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_brilliance"
+            "items": "malum:refined_brilliance"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_raw_brilliance"
+      "has_refined_brilliance"
     ]
   ],
   "rewards": {

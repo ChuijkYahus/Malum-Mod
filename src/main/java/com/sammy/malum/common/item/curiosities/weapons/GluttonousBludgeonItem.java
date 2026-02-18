@@ -1,12 +1,12 @@
 package com.sammy.malum.common.item.curiosities.weapons;
 
-import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;

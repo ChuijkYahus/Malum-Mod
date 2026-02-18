@@ -7,10 +7,10 @@ import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.resources.*;
@@ -34,8 +34,6 @@ import team.lodestar.lodestone.systems.item.tools.magic.*;
 
 import java.util.*;
 import java.util.stream.*;
-
-import static team.lodestar.lodestone.systems.enchanting.LodestoneEnchantmentEffectActivator.createEffectActivator;
 
 public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpiritAffiliatedItem, ISpellweavingTool {
 

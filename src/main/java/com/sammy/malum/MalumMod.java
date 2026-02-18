@@ -24,7 +24,7 @@ import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TY
 import static com.sammy.malum.registry.common.MalumAttributes.*;
 import static com.sammy.malum.registry.common.MalumContainers.*;
 import static com.sammy.malum.registry.common.MalumMobEffects.*;
-import static com.sammy.malum.registry.common.MalumSoundEvents.*;
+import static com.sammy.malum.registry.common.sound.MalumSoundEvents.*;
 import static com.sammy.malum.registry.common.enchantment.ModEnchantmentComponents.ENCHANTMENT_COMPONENTS;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;

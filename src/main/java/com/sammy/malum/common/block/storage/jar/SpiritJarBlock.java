@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.storage.jar;
 
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.*;

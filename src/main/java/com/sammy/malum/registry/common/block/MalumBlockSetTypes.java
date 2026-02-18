@@ -1,6 +1,6 @@
 package com.sammy.malum.registry.common.block;
 
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.level.block.state.properties.*;
 
 public class MalumBlockSetTypes {

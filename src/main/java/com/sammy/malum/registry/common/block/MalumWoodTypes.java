@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.common.block;
 
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.api.distmarker.Dist;
