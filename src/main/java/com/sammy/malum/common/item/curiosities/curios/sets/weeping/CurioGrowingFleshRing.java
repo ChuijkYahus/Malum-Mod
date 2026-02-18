@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.MalumMobEffects;
-import com.sammy.malum.registry.common.sound.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
@@ -37,6 +37,6 @@ public class CurioGrowingFleshRing extends MalumCurioItem implements IVoidItem, 
             EntityHelper.extendEffect(effect, collector, addedDuration, 72000);
             EntityHelper.amplifyEffect(effect, collector, 1, 19);
         }
-        collector.playSound(MalumSoundEvents.FLESH_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
+        collector.playSound(MalumGearSoundEvents.FLESH_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
     }
 }

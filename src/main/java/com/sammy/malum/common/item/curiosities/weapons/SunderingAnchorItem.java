@@ -98,7 +98,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, MalumSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
+            SoundHelper.playSound(player, MalumGearSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_THE_ANCHOR);
             applyCooldown(stack, player);
         }
@@ -125,12 +125,12 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                                         .setDamageData(0, splitDamage, i * 2)
                                         .setPhysicalDamageType(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO)
                                         .setMagicDamageType(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO)
-                                        .setSound(MalumSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.2f, 1.4f, 0.7f));
+                                        .setSound(MalumGearSoundEvents.SUNDERING_ANCHOR_EXTRA_SWING, 1.2f, 1.4f, 0.7f));
                     }
                 }
                 event.setNewDamage(splitDamage);
                 float pitch = RandomHelper.randomBetween(level.getRandom(), 1, 1.2f);
-                SoundHelper.playSound(attacker, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                SoundHelper.playSound(attacker, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                 MalumParticleEffectTypes.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)
                         .forwardOffset(1.5f)

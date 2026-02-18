@@ -75,7 +75,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     @Override
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? MalumSoundEvents.EDGE_OF_DELIVERANCE_SWEEP : MalumSoundEvents.EDGE_OF_DELIVERANCE_CUT;
+        return canSweep ? MalumGearSoundEvents.EDGE_OF_DELIVERANCE_SWEEP : MalumGearSoundEvents.EDGE_OF_DELIVERANCE_CUT;
     }
 
     public static boolean triggerMalignantCrit(DamageContainer damageContainer, LivingEntity attacker, LivingEntity target) {
@@ -94,9 +94,9 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         NeoForge.EVENT_BUS.post(postEvent);
 
         damageContainer.setNewDamage(damageContainer.getNewDamage() * 2);
-        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 2f, 0.75f);
-        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.25f);
-        SoundHelper.playSound(target, MalumSoundEvents.MALIGNANT_METAL_MOTIF.get(), SoundSource.PLAYERS, 3f, 1.75f);
+        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 2f, 0.75f);
+        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 3f, 1.25f);
+        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 3f, 1.75f);
         return true;
     }
 }

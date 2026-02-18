@@ -137,8 +137,8 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
     @Override
     public void collect(ServerLevel level) {
         var sound = destination.getTargetLocation().map(
-                u -> MalumSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
-                b -> MalumSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
+                u -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
+                b -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
         );
         SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {

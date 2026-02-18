@@ -37,8 +37,8 @@ import java.util.*;
 import java.util.function.Supplier;
 
 import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
-import static com.sammy.malum.registry.common.MalumMobEffects.EFFECTS;
-import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUNDS;
+import static com.sammy.malum.registry.common.MalumMobEffects.MOB_EFFECTS;
+import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUND_EVENTS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
@@ -60,8 +60,8 @@ public class MalumLangDatagen extends LanguageProvider {
 
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(ITEMS.getEntries());
-        var sounds = new HashSet<>(SOUNDS.getEntries());
-        var effects = new HashSet<>(EFFECTS.getEntries());
+        var sounds = new HashSet<>(SOUND_EVENTS.getEntries());
+        var effects = new HashSet<>(MOB_EFFECTS.getEntries());
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
         var spirits = new HashSet<>(SPIRIT_TYPES.getEntries());
@@ -70,6 +70,9 @@ public class MalumLangDatagen extends LanguageProvider {
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
         var categories = ((CategorizedCreativeTab)MalumCreativeTabs.CONTENT.get()).getCategories().values();
+
+        add(DataHelper.take(blocks, MalumBlocks.ODD_SCRIPTURES_I).get(), "Odd Scriptures I");
+
 
         add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");

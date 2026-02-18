@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.nature.soulwood;
 
 import com.sammy.malum.common.block.nature.SapFilledLogBlock;
-import com.sammy.malum.registry.common.sound.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +19,6 @@ public class SapFilledSoulwoodLogBlock extends SapFilledLogBlock {
 
     @Override
     public void collectSap(Level level, BlockPos pos, Player player) {
-        level.playSound(null, pos, MalumSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
+        level.playSound(null, pos, MalumBlockSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
     }
 }

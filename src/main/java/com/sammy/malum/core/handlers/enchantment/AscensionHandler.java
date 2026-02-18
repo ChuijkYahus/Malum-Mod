@@ -89,13 +89,13 @@ public class AscensionHandler {
         float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
         var area = player.getBoundingBox().inflate(4f, 1f, 4f);
-        var sound = MalumSoundEvents.SCYTHE_SWEEP.get();
+        var sound = MalumGearSoundEvents.SCYTHE_SWEEP.get();
 
         if (isUppercut) {
             baseDamage *= 1.4f;
             magicDamage *= 1.4f;
             area = area.move(player.getLookAngle().scale(2f)).inflate(-2f, 1f, -2f);
-            sound = MalumSoundEvents.SCYTHE_CUT.get();
+            sound = MalumGearSoundEvents.SCYTHE_CUT.get();
         }
         if (hasFunnyRing) {
             baseDamage *= 0.5f;
@@ -130,7 +130,7 @@ public class AscensionHandler {
         for (int i = 0; i < 3; i++) {
             SoundHelper.playSound(player, sound, 0.4f, RandomHelper.randomBetween(random, 1.25f, 1.75f));
         }
-        SoundHelper.playSound(player, MalumSoundEvents.SCYTHE_ASCENSION.get(), 0.8f, RandomHelper.randomBetween(random, 1.25f, 1.5f));
+        SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_ASCENSION.get(), 0.8f, RandomHelper.randomBetween(random, 1.25f, 1.5f));
     }
 
     protected static boolean ascensionCanHitEntity(Player attacker, Entity pTarget) {

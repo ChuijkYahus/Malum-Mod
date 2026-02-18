@@ -7,8 +7,8 @@ import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.magic.*;
-import com.sammy.malum.registry.common.magic.rite.*;
+import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.bus.api.IEventBus;
@@ -24,6 +24,9 @@ import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TY
 import static com.sammy.malum.registry.common.MalumAttributes.*;
 import static com.sammy.malum.registry.common.MalumContainers.*;
 import static com.sammy.malum.registry.common.MalumMobEffects.*;
+import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.*;
+import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteEffectTypes.*;
+import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.*;
 import static com.sammy.malum.registry.common.sound.MalumSoundEvents.*;
 import static com.sammy.malum.registry.common.enchantment.ModEnchantmentComponents.ENCHANTMENT_COMPONENTS;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
@@ -59,33 +62,50 @@ public class MalumMod {
         IronsSpellsCompat.init();
         CreateCompat.init();
 
-        MalumRegistryAliases.registerAliases();
 
+        //Blocks
         BLOCKS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
-        COMPONENTS.register(modEventBus);
-        ITEMS.register(modEventBus);
-        ENTITY_TYPES.register(modEventBus);
-        EFFECTS.register(modEventBus);
-        PARTICLES.register(modEventBus);
-        SOUNDS.register(modEventBus);
         CONTAINERS.register(modEventBus);
+
+        //Items
+        ITEMS.register(modEventBus);
+        COMPONENTS.register(modEventBus);
+        CREATIVE_MODE_TABS.register(modEventBus);
+        ENCHANTMENT_COMPONENTS.register(modEventBus);
+
+        //Entities
+        MalumEntityTypes.register(modEventBus);
+        ATTACHMENT_TYPES.register(modEventBus);
+        ENTITY_DATA_SERIALIZERS.register(modEventBus);
+
+        //Entity-Affecting
         ATTRIBUTES.register(modEventBus);
+        MOB_EFFECTS.register(modEventBus);
+
+        //User Experience
+        PARTICLES.register(modEventBus);
+        MalumSoundEvents.register(modEventBus);
+
+        //Recipes
         RECIPE_TYPES.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
+
+        //Worldgen
         FEATURE_TYPES.register(modEventBus);
         STRUCTURE_TYPES.register(modEventBus);
         STRUCTURE_PIECE_TYPES.register(modEventBus);
-        CREATIVE_MODE_TABS.register(modEventBus);
-        ENTITY_DATA_SERIALIZERS.register(modEventBus);
-        ATTACHMENT_TYPES.register(modEventBus);
-        WORLD_EVENT_TYPES.register(modEventBus);
-        SPIRIT_TYPES.register(modEventBus);
-        ENCHANTMENT_COMPONENTS.register(modEventBus);
-        MalumSpiritRiteEffectTypes.EFFECT_TYPES.register(modEventBus);
-        MalumSpiritRiteTypes.RITE_TYPES.register(modEventBus);
-        MalumGeasEffectTypes.GEAS_TYPES.register(modEventBus);
 
+        //World Event
+        WORLD_EVENT_TYPES.register(modEventBus);
+
+        //Malum
+        SPIRIT_TYPES.register(modEventBus);
+        RITE_TYPES.register(modEventBus);
+        RITE_EFFECT_TYPES.register(modEventBus);
+        GEAS_TYPES.register(modEventBus);
+
+        MalumRegistryAliases.registerAliases();
         MalumParticleEffectTypes.init();
     }
 

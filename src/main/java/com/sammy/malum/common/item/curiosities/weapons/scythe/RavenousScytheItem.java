@@ -41,7 +41,7 @@ public class RavenousScytheItem extends MagicScytheItem {
                     if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
                         return;
                     }
-                    SoundHelper.playSound(attacker, MalumSoundEvents.RAVENOUS_SCYTHE_EATS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+                    SoundHelper.playSound(attacker, MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
                 }
                 if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {
                     if (level.getRandom().nextFloat() >= 0.2f) {

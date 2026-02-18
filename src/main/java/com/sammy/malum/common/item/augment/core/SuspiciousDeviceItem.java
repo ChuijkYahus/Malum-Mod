@@ -29,7 +29,7 @@ public class SuspiciousDeviceItem extends CoreAugmentItem {
         if (level.getBlockState(pos.below()).getBlock() instanceof TheDevice) {
             delay = 50;
             pitch = 1;
-            sound = MalumSoundEvents.SWAG_MESSIAH.get();
+            sound = MalumSoundEvents.SUSPICIOUS_DEVICE_DETONATES_ODDLY.get();
         }
         WorldEventHandler.addWorldEvent(level,
                 new SuspiciousDeviceTriggerWorldEvent()

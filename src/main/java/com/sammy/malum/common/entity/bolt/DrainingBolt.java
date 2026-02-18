@@ -49,7 +49,7 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
     @Override
     public void playSound(@NotNull SoundEvent pSound, float pVolume, float pPitch) {
         super.playSound(pSound, pVolume, pPitch-0.2f);
-        super.playSound(MalumSoundEvents.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
+        super.playSound(MalumGearSoundEvents.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
     }
 
     @Override

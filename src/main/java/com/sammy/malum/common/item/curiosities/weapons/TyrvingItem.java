@@ -71,7 +71,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
                                 .setDamageData(0, magicDamage, 3));
             }
 
-            SoundHelper.playSound(attacker, MalumSoundEvents.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+            SoundHelper.playSound(attacker, MalumGearSoundEvents.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
 
             MalumParticleEffectTypes.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)

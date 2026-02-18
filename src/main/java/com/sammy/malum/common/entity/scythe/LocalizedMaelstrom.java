@@ -47,7 +47,7 @@ public class LocalizedMaelstrom extends AbstractScytheProjectileEntity {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
         }
     }
 }

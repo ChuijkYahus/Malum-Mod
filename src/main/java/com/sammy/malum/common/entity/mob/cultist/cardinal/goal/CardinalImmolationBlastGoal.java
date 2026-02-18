@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
 import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -34,7 +35,7 @@ public class CardinalImmolationBlastGoal extends Goal {
         super.start();
         cardinal.setAggressive(true);
         cardinal.getNavigation().stop();
-        cardinal.level().broadcastEntityEvent(cardinal, CardinalCultist.IMMOLATION_BLAST_ANIMATION);
+        cardinal.broadcastAnimation(CardinalCultist.IMMOLATION_BLAST_ANIMATION, MalumCultistSoundEvents.CARDINAL_IMMOLATION_CHARGE);
     }
 
     @Override

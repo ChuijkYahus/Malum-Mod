@@ -21,6 +21,73 @@
     ],
     "subtitle": "malum.subtitle.alchemical_trinket_equipped"
   },
+  "altar_death": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_death1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_death2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_death3",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.altar_death"
+  },
+  "altar_hurt": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_hurt1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt3",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt4",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt5",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt6",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.altar_hurt"
+  },
+  "altar_idle": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_idle1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle3",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle4",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.altar_idle"
+  },
   "arcana_codex_closed": {
     "sounds": [
       "malum:codex/book_close1",
@@ -301,6 +368,73 @@
       "malum:curiosities/effects/avarice/fortune4"
     ],
     "subtitle": "malum.subtitle.avarice_grants_fortune"
+  },
+  "believer_death": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_death1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_death2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_death3",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.believer_death"
+  },
+  "believer_hurt": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_hurt1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.believer_hurt"
+  },
+  "believer_idle": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_idle1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle4",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.believer_idle"
   },
   "blazing_quartz_cluster_break": {
     "sounds": [
@@ -1957,6 +2091,191 @@
     ],
     "subtitle": "malum.subtitle.brilliance_step"
   },
+  "cardinal_cannon_charge": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/cannon_charge1",
+      "malum:mob/cultist/cardinal/cannon_charge2",
+      "malum:mob/cultist/cardinal/cannon_charge3",
+      "malum:mob/cultist/cardinal/cannon_charge4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_cannon_charge"
+  },
+  "cardinal_cannon_fire": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/cannon_fire1",
+      "malum:mob/cultist/cardinal/cannon_fire2",
+      "malum:mob/cultist/cardinal/cannon_fire3",
+      "malum:mob/cultist/cardinal/cannon_fire4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_cannon_fire"
+  },
+  "cardinal_death": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_death1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_death2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_death3",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "malum.subtitle.cardinal_death"
+  },
+  "cardinal_entropy_detonate": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/entropy_charge/detonate1",
+      "malum:mob/cultist/cardinal/entropy_charge/detonate2",
+      "malum:mob/cultist/cardinal/entropy_charge/detonate3"
+    ],
+    "subtitle": "malum.subtitle.cardinal_entropy_detonate"
+  },
+  "cardinal_entropy_immolate": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/entropy_charge/immolate1",
+      "malum:mob/cultist/cardinal/entropy_charge/immolate2",
+      "malum:mob/cultist/cardinal/entropy_charge/immolate3"
+    ],
+    "subtitle": "malum.subtitle.cardinal_entropy_immolate"
+  },
+  "cardinal_entropy_loop": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/entropy_charge/loop"
+    ],
+    "subtitle": "malum.subtitle.cardinal_entropy_loop"
+  },
+  "cardinal_entropy_prime": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/entropy_charge/prime1",
+      "malum:mob/cultist/cardinal/entropy_charge/prime2",
+      "malum:mob/cultist/cardinal/entropy_charge/prime3",
+      "malum:mob/cultist/cardinal/entropy_charge/prime4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_entropy_prime"
+  },
+  "cardinal_entropy_throw": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/entropy_charge/throw1",
+      "malum:mob/cultist/cardinal/entropy_charge/throw2",
+      "malum:mob/cultist/cardinal/entropy_charge/throw3",
+      "malum:mob/cultist/cardinal/entropy_charge/throw4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_entropy_throw"
+  },
+  "cardinal_hurt": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_hurt1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt4",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt5",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt6",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "malum.subtitle.cardinal_hurt"
+  },
+  "cardinal_idle": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_idle1",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle2",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle3",
+        "pitch": 0.8
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle4",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "malum.subtitle.cardinal_idle"
+  },
+  "cardinal_immolation_charge": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_charge1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_charge2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_charge3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_charge4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.cardinal_immolation_charge"
+  },
+  "cardinal_immolation_fire": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_fire1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_fire2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_fire3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:mob/cultist/cardinal/cannon_fire4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.cardinal_immolation_fire"
+  },
+  "cardinal_knockback_charge": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/knockback_charge1",
+      "malum:mob/cultist/cardinal/knockback_charge2",
+      "malum:mob/cultist/cardinal/knockback_charge3",
+      "malum:mob/cultist/cardinal/knockback_charge4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_knockback_charge"
+  },
+  "cardinal_knockback_fire": {
+    "sounds": [
+      "malum:mob/cultist/cardinal/knockback_fire1",
+      "malum:mob/cultist/cardinal/knockback_fire2",
+      "malum:mob/cultist/cardinal/knockback_fire3",
+      "malum:mob/cultist/cardinal/knockback_fire4"
+    ],
+    "subtitle": "malum.subtitle.cardinal_knockback_fire"
+  },
   "catalyst_lobber_fired": {
     "sounds": [
       "malum:curiosities/gear/catalyst_lobber/fire1",
@@ -1984,6 +2303,73 @@
       "malum:curiosities/gear/catalyst_lobber/open2"
     ],
     "subtitle": "malum.subtitle.catalyst_lobber_unlocked"
+  },
+  "cherub_death": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_death1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_death2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_death3",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.cherub_death"
+  },
+  "cherub_hurt": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_hurt1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt6",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.cherub_hurt"
+  },
+  "cherub_idle": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_idle1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle4",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.cherub_idle"
   },
   "chiseled_dross_stone_break": {
     "sounds": [
@@ -3647,6 +4033,73 @@
     ],
     "subtitle": "malum.subtitle.ether_step"
   },
+  "evangelist_death": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_death1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_death2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_death3",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.evangelist_death"
+  },
+  "evangelist_hurt": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_hurt1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt3",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt4",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt5",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_hurt6",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.evangelist_hurt"
+  },
+  "evangelist_idle": {
+    "sounds": [
+      {
+        "name": "malum:mob/cultist/minor_idle1",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle2",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle3",
+        "pitch": 1.4
+      },
+      {
+        "name": "malum:mob/cultist/minor_idle4",
+        "pitch": 1.4
+      }
+    ],
+    "subtitle": "malum.subtitle.evangelist_idle"
+  },
   "flesh_break": {
     "sounds": [
       "dig/coral1",
@@ -4184,6 +4637,111 @@
       "malum:curiosities/effects/potion/oaken_might4"
     ],
     "subtitle": "malum.subtitle.oaken_might_takes_effect"
+  },
+  "odd_scriptures_break": {
+    "sounds": [
+      {
+        "name": "malum:block/terracotta/break1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.odd_scriptures_break"
+  },
+  "odd_scriptures_fall": {
+    "sounds": [
+      {
+        "name": "malum:block/terracotta/step1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.odd_scriptures_fall"
+  },
+  "odd_scriptures_hit": {
+    "sounds": [
+      {
+        "name": "malum:block/terracotta/step1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.odd_scriptures_hit"
+  },
+  "odd_scriptures_place": {
+    "sounds": [
+      {
+        "name": "malum:block/terracotta/break1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/break4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.odd_scriptures_place"
+  },
+  "odd_scriptures_step": {
+    "sounds": [
+      {
+        "name": "malum:block/terracotta/step1",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step2",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step3",
+        "pitch": 0.7
+      },
+      {
+        "name": "malum:block/terracotta/step4",
+        "pitch": 0.7
+      }
+    ],
+    "subtitle": "malum.subtitle.odd_scriptures_step"
   },
   "ornate_trinket_equipped": {
     "sounds": [

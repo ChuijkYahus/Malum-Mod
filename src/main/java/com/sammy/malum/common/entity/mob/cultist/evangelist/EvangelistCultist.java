@@ -3,8 +3,9 @@ package com.sammy.malum.common.entity.mob.cultist.evangelist;
 import com.sammy.malum.common.entity.mob.cultist.CultistMeleeAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -25,7 +26,7 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 public class EvangelistCultist extends CultistMonster implements IAltarBlessingRecipient {
 
     public EvangelistCultist(Level level) {
-        super(MalumEntityTypes.EVANGELIST.get(), level);
+        super(MalumCultistEntityTypes.EVANGELIST.get(), MalumCultistSoundEvents.EVANGELIST, level);
     }
 
     @Override

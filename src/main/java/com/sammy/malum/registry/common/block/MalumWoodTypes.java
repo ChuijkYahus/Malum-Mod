@@ -12,12 +12,12 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class MalumWoodTypes {
 
     public static final WoodType RUNEWOOD = WoodType.register(new WoodType("malum:runewood", MalumBlockSetTypes.RUNEWOOD,
-            MalumSoundEvents.RUNEWOOD, MalumSoundEvents.RUNEWOOD_HANGING_SIGN,
-            MalumSoundEvents.RUNEWOOD_FENCE_GATE_CLOSE.get(), MalumSoundEvents.RUNEWOOD_FENCE_GATE_OPEN.get()));
+            MalumBlockSoundEvents.RUNEWOOD, MalumBlockSoundEvents.RUNEWOOD_HANGING_SIGN,
+            MalumBlockSoundEvents.RUNEWOOD_FENCE_GATE_CLOSE.get(), MalumBlockSoundEvents.RUNEWOOD_FENCE_GATE_OPEN.get()));
 
     public static final WoodType SOULWOOD = WoodType.register(new WoodType("malum:soulwood", MalumBlockSetTypes.SOULWOOD,
-            MalumSoundEvents.SOULWOOD, MalumSoundEvents.SOULWOOD_HANGING_SIGN,
-            MalumSoundEvents.SOULWOOD_FENCE_GATE_CLOSE.get(), MalumSoundEvents.SOULWOOD_FENCE_GATE_OPEN.get()));
+            MalumBlockSoundEvents.SOULWOOD, MalumBlockSoundEvents.SOULWOOD_HANGING_SIGN,
+            MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_CLOSE.get(), MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_OPEN.get()));
 
     @EventBusSubscriber(modid= MalumMod.MALUM, bus= EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientOnly {

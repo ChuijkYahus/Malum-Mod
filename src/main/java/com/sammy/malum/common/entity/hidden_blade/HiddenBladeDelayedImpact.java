@@ -95,7 +95,7 @@ public class HiddenBladeDelayedImpact extends ThrowableItemProjectile {
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
             target.setDeltaMovement(motion);
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_CUT.get(), 1.0F, 0.9f + level().getRandom().nextFloat() * 0.2f);
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_CUT.get(), 1.0F, 0.9f + level().getRandom().nextFloat() * 0.2f);
         }
         super.onHitEntity(result);
     }

@@ -242,7 +242,7 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     public void onCompletion(ServerLevel level) {
         float pitch = Mth.nextFloat(level.getRandom(), 1.5f, 1.75f);
         MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter().add(0, 0.4f, 0)).spawn(level);
-        level.playSound(null, worldPosition, MalumSoundEvents.FLESH_RING_ABSORBS.get(), SoundSource.HOSTILE, 0.7f, pitch);
+        level.playSound(null, worldPosition, MalumGearSoundEvents.FLESH_RING_ABSORBS.get(), SoundSource.HOSTILE, 0.7f, pitch);
         level.playSound(null, worldPosition, MalumSoundEvents.VOID_TRANSMUTATION.get(), SoundSource.HOSTILE, 2f, pitch);
         if (repeatable) {
             for (VoidDepotGoal goal : goals) {

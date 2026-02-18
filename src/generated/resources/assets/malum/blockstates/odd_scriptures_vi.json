@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/odd_scriptures_vi",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/odd_scriptures_vi"
+    },
+    "facing=south": {
+      "model": "malum:block/odd_scriptures_vi",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/odd_scriptures_vi",
+      "y": 270
+    }
+  }
+}

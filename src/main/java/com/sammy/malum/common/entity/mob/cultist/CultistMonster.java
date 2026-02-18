@@ -3,24 +3,24 @@ package com.sammy.malum.common.entity.mob.cultist;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.entity.mob.cultist.cardinal.*;
 import com.sammy.malum.registry.common.MalumDamageTypes;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
@@ -30,13 +30,12 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3d;
-import org.joml.Vector3f;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
-import team.lodestar.lodestone.helpers.DataHelper;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
+import java.util.function.*;
+
+@SuppressWarnings("NullableProblems")
 public abstract class CultistMonster extends Monster implements Enemy {
 
     private static final EntityDataAccessor<Integer> SCALE = SynchedEntityData.defineId(CultistMonster.class, EntityDataSerializers.INT);
@@ -52,17 +51,29 @@ public abstract class CultistMonster extends Monster implements Enemy {
                     Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_VALUE)
             );
 
-    public final Vector3f motion = new Vector3f(), previousMotion = new Vector3f();
+    private final CultistSoundDefinition soundDefinition;
+    private final CultistMovementData movementData;
 
     public int empowermentDuration;
     public float empowermentVisibility;
 
-    protected CultistMonster(EntityType<? extends Monster> entityType, Level level) {
+    protected CultistMonster(EntityType<? extends Monster> entityType, CultistSoundDefinition soundDefinition, Level level) {
         super(entityType, level);
+        this.soundDefinition = soundDefinition;
+        this.movementData = new CultistMovementData(this);
+
         setHealth(getMaxHealth());
         xpReward = Mth.floor(getMaxHealth() * 1.5f);
         moveControl = new CultistMoveControl(this);
         lookControl = new CultistLookControl(this);
+    }
+
+    public CultistSoundDefinition getSoundDefinition() {
+        return soundDefinition;
+    }
+
+    public CultistMovementData getMovementData() {
+        return movementData;
     }
 
     @Override
@@ -103,6 +114,21 @@ public abstract class CultistMonster extends Monster implements Enemy {
     @Override
     public @NotNull SoundSource getSoundSource() {
         return SoundSource.HOSTILE;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return soundDefinition.idleSound.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return soundDefinition.hurtSound.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return soundDefinition.deathSound.get();
     }
 
     @Override
@@ -147,9 +173,9 @@ public abstract class CultistMonster extends Monster implements Enemy {
 
     @Override
     protected void customServerAiStep() {
-        previousMotion.set(motion);
+        movementData.update();
         super.customServerAiStep();
-        move(MoverType.SELF, new Vec3(motion.x, motion.y, motion.z));
+        move(MoverType.SELF, movementData.getMotionVector());
         updateEmpowerment();
     }
 
@@ -167,16 +193,14 @@ public abstract class CultistMonster extends Monster implements Enemy {
         empowermentVisibility = DataHelper.approach(empowermentDuration, hasEmpowerment() ? 1 : 0, 0.1f);
     }
 
-    public void setMotion(Vec3 motion) {
-        setMotion(motion.x, motion.y, motion.z);
+    public void startAnimation(AnimationState animation) {
+        animation.start(tickCount);
     }
 
-    public void setMotion(float x, float y, float z) {
-        motion.set(x, y, z);
-    }
 
-    public void setMotion(double x, double y, double z) {
-        motion.set(x, y, z);
+    public void broadcastAnimation(byte animationEvent, Supplier<SoundEvent> sound) {
+        level().broadcastEntityEvent(this, animationEvent);
+        SoundHelper.playSoundRandomPitch(this, sound, 1.5f, 0.8f, 1.2f);
     }
 
     public Vec3 directionToTarget(Entity target) {

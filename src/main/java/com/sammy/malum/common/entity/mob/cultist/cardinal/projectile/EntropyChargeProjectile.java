@@ -7,7 +7,8 @@ import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -31,8 +32,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.easing.Easing;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
@@ -53,9 +53,10 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
 
     public static final float DETONATION_RADIUS = 5f;
     public int primedTime;
+    public int detonationDelay;
 
     public EntropyChargeProjectile(Level level) {
-        super(MalumEntityTypes.ENTROPY_CHARGE.get(), level);
+        super(MalumCultistEntityTypes.ENTROPY_CHARGE.get(), level);
         trailPointBuilder = TrailPointBuilder.create(32);
         spinningTrailPointBuilder = TrailPointBuilder.create(16);
     }
@@ -72,6 +73,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
         if (isPlaced()) {
             compound.putBoolean("IsPlaced", true);
             compound.putInt("PrimedTime", primedTime);
+            compound.putInt("DetonationDelay", detonationDelay);
         }
     }
 
@@ -80,6 +82,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
         super.readAdditionalSaveData(compound);
         setPlaced(compound.getBoolean("IsPlaced"));
         primedTime = compound.getInt("PrimedTime");
+        detonationDelay = compound.getInt("DetonationDelay");
     }
 
     @Override
@@ -99,12 +102,12 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.CROSSBOW_SHOOT;
+        return MalumCultistSoundEvents.CARDINAL_ENTROPY_THROW.get();
     }
 
     @Override
     public SoundEvent getImpactSound() {
-        return SoundEvents.CROSSBOW_HIT;
+        return MalumCultistSoundEvents.CARDINAL_ENTROPY_PRIME.get();
     }
 
     @Override
@@ -184,27 +187,47 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
     public void tick() {
         super.tick();
         if (isPlaced()) {
+            if (level() instanceof ServerLevel level) {
+                tickDetonation(level);
+                hoverAboveGround();
+            }
             primedTime++;
-            float desiredY = (float) getY();
-            if (homingTarget != null) {
-                desiredY = (float) (homingTarget.getY() + 0.5f);
-            }
-            var mutable = blockPosition().mutable();
-            for (int i = 0; i < 4; i++) {
-                mutable.move(Direction.DOWN);
+        }
+    }
 
-                BlockState state = level().getBlockState(mutable);
-                if (state.isFaceSturdy(level(), mutable, Direction.UP)) {
-                    desiredY = Math.max(desiredY, mutable.getY() + 1.5f);
-                    break;
-                }
-            }
-            float difference = (float) (desiredY - getY());
-            float motion = difference * 0.015f;
-            if (motion != 0) {
-                setDeltaMovement(getDeltaMovement().add(0, motion, 0).scale(0.9f));
+    public void tickDetonation(ServerLevel level) {
+        if (detonationDelay > 0) {
+            detonationDelay--;
+            if (detonationDelay == 0) {
+                detonate(level);
             }
         }
+    }
+
+    public void hoverAboveGround() {
+        float desiredY = (float) getY();
+        if (homingTarget != null) {
+            desiredY = (float) (homingTarget.getY() + 0.5f);
+        }
+        var mutable = blockPosition().mutable();
+        for (int i = 0; i < 4; i++) {
+            mutable.move(Direction.DOWN);
+
+            BlockState state = level().getBlockState(mutable);
+            if (state.isFaceSturdy(level(), mutable, Direction.UP)) {
+                desiredY = Math.max(desiredY, mutable.getY() + 1.5f);
+                break;
+            }
+        }
+        float difference = (float) (desiredY - getY());
+        float motion = difference * 0.015f;
+        if (motion != 0) {
+            setDeltaMovement(getDeltaMovement().add(0, motion, 0).scale(0.9f));
+        }
+    }
+
+    public void scheduleDelayedDetonation(ServerLevel level) {
+        detonationDelay = RandomHelper.randomBetween(random, 2, 4);
     }
 
     public void detonate(ServerLevel level) {
@@ -214,6 +237,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
             explosionAffectedTarget.hurt(source, magicDamage);
         }
         entityData.set(DATA_FADING_AWAY, true);
+        SoundHelper.playSound(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_DETONATE.get(), 2f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
         MalumParticleEffectTypes.ENTROPY_CHARGE_DETONATES
                 .createEffect(position())
                 .color(MalumNetworkedParticleEffectColorData.fromColors(

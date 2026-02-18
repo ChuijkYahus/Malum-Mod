@@ -65,7 +65,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
                 EntityHelper.extendEffect(effect, target, 30, 300);
             }
             if (!event.getSource().is(MalumTags.DamageTypeTags.IS_INVERTED_HEART)) {
-                SoundHelper.playSound(target, MalumSoundEvents.DRAINING_MOTIF.get(), attacker.getSoundSource(), 1, 1.25f);
+                SoundHelper.playSound(target, MalumGearSoundEvents.DRAINING_MOTIF.get(), attacker.getSoundSource(), 1, 1.25f);
             }
         }
         super.outgoingDamageEvent(event, attacker, target, stack);

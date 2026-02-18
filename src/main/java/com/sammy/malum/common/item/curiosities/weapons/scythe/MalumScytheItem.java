@@ -73,7 +73,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     }
 
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
+        return canSweep ? MalumGearSoundEvents.SCYTHE_SWEEP : MalumGearSoundEvents.SCYTHE_CUT;
     }
 
     @Override

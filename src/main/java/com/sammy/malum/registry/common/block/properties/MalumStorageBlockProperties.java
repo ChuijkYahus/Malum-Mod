@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
-import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.systems.block.*;
 
 import static com.sammy.malum.registry.common.MalumTags.BlockTags.HEAT_SOURCES;
@@ -31,11 +30,11 @@ public class MalumStorageBlockProperties {
                 .requiresCorrectToolForDrops()
                 .strength(8.0F, 8.0f)
                 .lightLevel((b) -> 8)
-                .sound(MalumSoundEvents.BLOCK_OF_BLAZING_QUARTZ);
+                .sound(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ);
     }
 
     public static LodestoneBlockProperties SOULSTONE_BLOCK(boolean raw) {
-        return GENERIC_STORAGE_BLOCK(raw ? MalumSoundEvents.BLOCK_OF_RAW_SOULSTONE : MalumSoundEvents.BLOCK_OF_SOULSTONE, DyeColor.PURPLE)
+        return GENERIC_STORAGE_BLOCK(raw ? MalumBlockSoundEvents.BLOCK_OF_RAW_SOULSTONE : MalumBlockSoundEvents.BLOCK_OF_SOULSTONE, DyeColor.PURPLE)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -43,7 +42,7 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties BRILLIANCE_BLOCK(boolean raw) {
-        return GENERIC_STORAGE_BLOCK(raw ? MalumSoundEvents.BLOCK_OF_RAW_BRILLIANCE : MalumSoundEvents.BLOCK_OF_BRILLIANCE, DyeColor.GREEN)
+        return GENERIC_STORAGE_BLOCK(raw ? MalumBlockSoundEvents.BLOCK_OF_RAW_BRILLIANCE : MalumBlockSoundEvents.BLOCK_OF_BRILLIANCE, DyeColor.GREEN)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -51,14 +50,14 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties NATURAL_QUARTZ_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_NATURAL_QUARTZ, DyeColor.WHITE)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_NATURAL_QUARTZ, DyeColor.WHITE)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(1f);
     }
 
     public static LodestoneBlockProperties BLAZING_QUARTZ_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_BLAZING_QUARTZ, DyeColor.ORANGE)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ, DyeColor.ORANGE)
                 .addTag(BEACON_BASE_BLOCKS)
                 .addTags(HEAT_SOURCES)
                 .needsPickaxe()
@@ -67,7 +66,7 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties CTHONIC_GOLD_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_CTHONIC_GOLD, DyeColor.YELLOW)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_CTHONIC_GOLD, DyeColor.YELLOW)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -75,14 +74,14 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties ARCANE_CHARCOAL_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, DyeColor.GRAY)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, DyeColor.GRAY)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(5.0F, 6.0F);
     }
 
     public static LodestoneBlockProperties SOUL_STAINED_STEEL_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_SOUL_STAINED_STEEL, DyeColor.PURPLE)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_SOUL_STAINED_STEEL, DyeColor.PURPLE)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -90,7 +89,7 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties HALLOWED_GOLD() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_HALLOWED_GOLD, DyeColor.YELLOW)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_HALLOWED_GOLD, DyeColor.YELLOW)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -99,7 +98,7 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties MALIGNANT_LEAD_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_MALIGNANT_LEAD, DyeColor.LIGHT_BLUE)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_LEAD, DyeColor.LIGHT_BLUE)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
@@ -107,7 +106,7 @@ public class MalumStorageBlockProperties {
     }
 
     public static LodestoneBlockProperties MALIGNANT_PEWTER_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumSoundEvents.BLOCK_OF_MALIGNANT_PEWTER, DyeColor.LIGHT_BLUE)
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_PEWTER, DyeColor.LIGHT_BLUE)
                 .addTag(BEACON_BASE_BLOCKS)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()

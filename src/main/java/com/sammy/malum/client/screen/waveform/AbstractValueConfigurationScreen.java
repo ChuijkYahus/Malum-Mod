@@ -103,7 +103,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         super.tick();
         ticksOpen++;
         if (hasChanged()) {
-            playSound(MalumSoundEvents.SPIRIT_DIODE_CONFIGURATION_DRAG);
+            playSound(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_DRAG);
         }
         if (ticksOpen % 20 == 0) {
             notifyServer(true);
@@ -121,7 +121,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        playSound(MalumSoundEvents.SPIRIT_DIODE_CONFIGURATION_CLICK);
+        playSound(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_CLICK);
         return super.mouseClicked(mouseX, mouseY, button);
     }
 

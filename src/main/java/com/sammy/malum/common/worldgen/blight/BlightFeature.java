@@ -81,14 +81,14 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
             if (level instanceof ServerLevel realLevel) {
                 createBlightVFX(realLevel, pos, extraBlight);
                 createScarstoneVFX(realLevel, scarstonePos, scarstone);
-                level.playSound(null, scarstonePos, MalumSoundEvents.SCARSTONE_PROPAGATION.get(), SoundSource.BLOCKS, 2f, 1f);
+                level.playSound(null, scarstonePos, MalumBlockSoundEvents.SCARSTONE_PROPAGATION.get(), SoundSource.BLOCKS, 2f, 1f);
             }
         }
         var blight = generateBlight(level, pos, radius);
         builder.merge(blight);
         if (level instanceof ServerLevel realLevel) {
             createBlightVFX(realLevel, pos, blight);
-            level.playSound(null, pos, MalumSoundEvents.BLIGHT_PROPAGATION.get(), SoundSource.BLOCKS, 1f, 1f);
+            level.playSound(null, pos, MalumBlockSoundEvents.BLIGHT_PROPAGATION.get(), SoundSource.BLOCKS, 1f, 1f);
         }
         return builder;
     }

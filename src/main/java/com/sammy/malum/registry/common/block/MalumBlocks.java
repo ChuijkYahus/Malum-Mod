@@ -34,10 +34,7 @@ import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.decor.SpiritedGlassBlock;
 import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
-import com.sammy.malum.common.block.dungeon.ColumnarFleshBlock;
-import com.sammy.malum.common.block.dungeon.FleshBulbBlock;
-import com.sammy.malum.common.block.dungeon.MeditatingEffigyBlock;
-import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
+import com.sammy.malum.common.block.dungeon.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.nature.*;
@@ -510,7 +507,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_ROTTING_ESSENCE = BLOCKS.register("block_of_rotting_essence", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CORAL_BLOCK, DyeColor.GREEN).needsShovel()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_GRIM_TALC = BLOCKS.register("block_of_grim_talc", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.BONE_BLOCK, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_EERIE_WEAVE = BLOCKS.register("block_of_eerie_weave", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.LIGHT_BLUE)));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_WARP_FLUX = BLOCKS.register("block_of_warp_flux", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(MalumSoundEvents.STRANGE_CRYSTAL, DyeColor.PURPLE).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_WARP_FLUX = BLOCKS.register("block_of_warp_flux", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.STRANGE_CRYSTAL, DyeColor.PURPLE).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
 
     public static final DeferredHolder<Block, Block> BLOCK_OF_WIND_NUCLEI = BLOCKS.register("block_of_wind_nuclei", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.LIGHT_BLUE).requiresCorrectToolForDrops().needsPickaxe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_PYRE_NUCLEI = BLOCKS.register("block_of_pyre_nuclei", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.COPPER_BULB, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 8)));
@@ -523,7 +520,7 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_NULL_SLATE = BLOCKS.register("block_of_null_slate", () -> new Block(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_VOID_SALTS = BLOCKS.register("block_of_void_salts", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_MNEMONIC_FRAGMENT = BLOCKS.register("block_of_mnemonic_fragment", () -> new Block(MalumStorageBlockProperties.BRILLIANCE_BLOCK(false)));
-    public static final DeferredHolder<Block, Block> BLOCK_OF_AURIC_EMBERS = BLOCKS.register("block_of_auric_embers", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(MalumSoundEvents.STRANGE_CRYSTAL, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 12)));
+    public static final DeferredHolder<Block, Block> BLOCK_OF_AURIC_EMBERS = BLOCKS.register("block_of_auric_embers", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.STRANGE_CRYSTAL, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe().noOcclusion().lightLevel(b -> 12)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_MALIGNANT_LEAD = BLOCKS.register("block_of_malignant_lead", () -> new Block(MalumStorageBlockProperties.MALIGNANT_LEAD_BLOCK()));
 
     public static final DeferredHolder<Block, Block> BLOCK_OF_SOUL_STAINED_STEEL = BLOCKS.register("block_of_soul_stained_steel", () -> new Block(MalumStorageBlockProperties.SOUL_STAINED_STEEL_BLOCK()));
@@ -550,17 +547,26 @@ public class MalumBlocks {
     //endregion
 
     //region dungeon
-    public static final DeferredHolder<Block, Block> OMINOUS_ALTAR = BLOCKS.register("ominous_altar", () -> new OminousAltarBlock(MalumBlockProperties.OMINOUS_CRAFT()).setBlockEntity(MalumBlockEntities.OMINOUS_ALTAR));
-    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK = BLOCKS.register("ominous_obelisk", () -> new OminousObeliskCoreBlock(MalumBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().noOcclusion()));
-    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK_COMPONENT = BLOCKS.register("ominous_obelisk_component", () -> new ObeliskComponentBlock(MalumBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().lootFrom(OMINOUS_OBELISK).noOcclusion(), MalumItems.OMINOUS_OBELISK));
+    public static final DeferredHolder<Block, Block> OMINOUS_ALTAR = BLOCKS.register("ominous_altar", () -> new OminousAltarBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT()).setBlockEntity(MalumBlockEntities.OMINOUS_ALTAR));
+    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK = BLOCKS.register("ominous_obelisk", () -> new OminousObeliskCoreBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().noOcclusion()));
+    public static final DeferredHolder<Block, Block> OMINOUS_OBELISK_COMPONENT = BLOCKS.register("ominous_obelisk_component", () -> new ObeliskComponentBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT().setCutoutRenderType().lootFrom(OMINOUS_OBELISK).noOcclusion(), MalumItems.OMINOUS_OBELISK));
 
-    public static final DeferredHolder<Block, Block> COLUMNAR_FLESH = BLOCKS.register("columnar_flesh", () -> new ColumnarFleshBlock(MalumBlockProperties.FLESH_BLOCK()));
-    public static final DeferredHolder<Block, Block> FLESHBULB = BLOCKS.register("fleshbulb", () -> new FleshBulbBlock(MalumBlockProperties.FLESHBULB()));
-    public static final DeferredHolder<Block, Block> WRITHING_FLESH = BLOCKS.register("writhing_flesh", () -> new WrithingFleshBlock(MalumBlockProperties.WRITHING_FLESH()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_I = BLOCKS.register("odd_scriptures_i", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_II = BLOCKS.register("odd_scriptures_ii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_III = BLOCKS.register("odd_scriptures_iii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_IV = BLOCKS.register("odd_scriptures_iv", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_V = BLOCKS.register("odd_scriptures_v", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_VI = BLOCKS.register("odd_scriptures_vi", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_VII = BLOCKS.register("odd_scriptures_vii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
 
-    public static final DeferredHolder<Block, Block> VEILED_EFFIGY = BLOCKS.register("veiled_effigy", () -> new MeditatingEffigyBlock(MalumBlockProperties.MEDITATING_EFFIGY()));
-    public static final DeferredHolder<Block, Block> CORRUPT_EFFIGY = BLOCKS.register("corrupt_effigy", () -> new MeditatingEffigyBlock(MalumBlockProperties.MEDITATING_EFFIGY()));
-    public static final DeferredHolder<Block, Block> CRACKED_EFFIGY = BLOCKS.register("cracked_effigy", () -> new MeditatingEffigyBlock(MalumBlockProperties.MEDITATING_EFFIGY()));
+    public static final DeferredHolder<Block, Block> VEILED_EFFIGY = BLOCKS.register("veiled_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
+    public static final DeferredHolder<Block, Block> CORRUPT_EFFIGY = BLOCKS.register("corrupt_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
+    public static final DeferredHolder<Block, Block> CRACKED_EFFIGY = BLOCKS.register("cracked_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
+
+    public static final DeferredHolder<Block, Block> COLUMNAR_FLESH = BLOCKS.register("columnar_flesh", () -> new ColumnarFleshBlock(MalumDungeonBlockProperties.FLESH_BLOCK()));
+    public static final DeferredHolder<Block, Block> FLESHBULB = BLOCKS.register("fleshbulb", () -> new FleshBulbBlock(MalumDungeonBlockProperties.FLESHBULB()));
+    public static final DeferredHolder<Block, Block> WRITHING_FLESH = BLOCKS.register("writhing_flesh", () -> new WrithingFleshBlock(MalumDungeonBlockProperties.WRITHING_FLESH()));
+
     //endregion
 
     public static final DeferredHolder<Block, Block> POTTED_RUNEWOOD_SAPLING = BLOCKS.register("potted_runewood_sapling", () -> flowerPot(RUNEWOOD_SAPLING));

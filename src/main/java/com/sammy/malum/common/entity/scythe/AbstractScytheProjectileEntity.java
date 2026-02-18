@@ -106,7 +106,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
                 returnTimer += 2;
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
         }
         super.onHitEntity(result);
     }

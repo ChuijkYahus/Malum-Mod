@@ -190,7 +190,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 }
             }
             if (playSound) {
-                SoundHelper.playSound(player, MalumSoundEvents.SPELLWOVEN_SPRITE_SPAWN.get(), 1f, 1f);
+                SoundHelper.playSound(player, MalumGearSoundEvents.SPELLWOVEN_SPRITE_SPAWN.get(), 1f, 1f);
             }
         }
     }
@@ -223,7 +223,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
         var stack = player.getItemInHand(usedHand);
         var component = stack.getOrDefault(MalumDataComponents.SPELLWEAVING_TOOL_STATE, new SpellweavingToolStateComponent());
         boolean isPrimed = component.isPrimed();
-        var sound = isPrimed ? MalumSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get() : MalumSoundEvents.SPELLWEAVING_TOOL_PRIME.get();
+        var sound = isPrimed ? MalumGearSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get() : MalumGearSoundEvents.SPELLWEAVING_TOOL_PRIME.get();
         stack.set(MalumDataComponents.SPELLWEAVING_TOOL_STATE, new SpellweavingToolStateComponent(!isPrimed, 0));
         SoundHelper.playSound(player, sound, 1f, 1f);
         player.swing(usedHand, true);
@@ -245,7 +245,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
             if (timer >= 40) {
                 timer = 0;
                 isPrimed = false;
-                SoundHelper.playSound(entity, MalumSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get(), 1f, 1f);
+                SoundHelper.playSound(entity, MalumGearSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get(), 1f, 1f);
             }
             stack.set(MalumDataComponents.SPELLWEAVING_TOOL_STATE, new SpellweavingToolStateComponent(isPrimed, timer));
         }

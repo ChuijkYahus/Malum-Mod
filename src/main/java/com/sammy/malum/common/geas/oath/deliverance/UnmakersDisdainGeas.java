@@ -89,7 +89,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
                                 .setAttacker(attacker, source.getDirectEntity())
                                 .setDamageData(damage, 0, delay)
                                 .setPhysicalDamageType(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)
-                                .setSound(MalumSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
+                                .setSound(MalumGearSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
 
             }
         }

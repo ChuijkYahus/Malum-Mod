@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavebreaker;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
-import com.sammy.malum.registry.common.sound.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -24,7 +24,7 @@ public class WaveBreakerBlock extends SpiritDiodeBlock<WaveBreakerBlockEntity> {
         }
         diode.outputSignal = diode.pendingSignal;
 
-        var sound = diode.pendingSignal == 0 ? MalumSoundEvents.WAVEBREAKER_RELEASE.get() : MalumSoundEvents.WAVEBREAKER_STORE.get();
+        var sound = diode.pendingSignal == 0 ? MalumBlockSoundEvents.WAVEBREAKER_RELEASE.get() : MalumBlockSoundEvents.WAVEBREAKER_STORE.get();
         level.playSound(null, pos, sound, SoundSource.BLOCKS);
         updateState(level, pos, state, diode);
         return cachedSignal != diode.outputSignal;

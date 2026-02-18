@@ -20,7 +20,7 @@ public class MalumOreBlockProperties {
                 .mapColor(MapColor.TERRACOTTA_PURPLE)
                 .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
                 .strength(isDeepslate ? 7.0f : 5.0F, 3.0F)
-                .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_SOULSTONE_ORE : MalumSoundEvents.SOULSTONE_ORE);
+                .sound(isDeepslate ? MalumBlockSoundEvents.DEEPSLATE_SOULSTONE_ORE : MalumBlockSoundEvents.SOULSTONE_ORE);
     }
 
     public static LodestoneBlockProperties BRILLIANCE_ORE(boolean isDeepslate) {
@@ -28,7 +28,7 @@ public class MalumOreBlockProperties {
                 .mapColor(MapColor.COLOR_GREEN)
                 .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
                 .strength(isDeepslate ? 5f : 3f, 3f)
-                .sound(isDeepslate ? MalumSoundEvents.DEEPSLATE_BRILLIANCE_ORE : MalumSoundEvents.BRILLIANCE_ORE);
+                .sound(isDeepslate ? MalumBlockSoundEvents.DEEPSLATE_BRILLIANCE_ORE : MalumBlockSoundEvents.BRILLIANCE_ORE);
     }
 
     public static LodestoneBlockProperties NATURAL_QUARTZ_ORE(boolean isDeepslate) {
@@ -36,7 +36,7 @@ public class MalumOreBlockProperties {
                 .mapColor(MapColor.TERRACOTTA_WHITE)
                 .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES_QUARTZ)
                 .strength(isDeepslate ? 6f : 4f, 3f)
-                .sound(isDeepslate ? MalumSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE : MalumSoundEvents.NATURAL_QUARTZ_ORE);
+                .sound(isDeepslate ? MalumBlockSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE : MalumBlockSoundEvents.NATURAL_QUARTZ_ORE);
     }
 
     public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
@@ -46,7 +46,7 @@ public class MalumOreBlockProperties {
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(3.0F, 3.0F)
-                .sound(MalumSoundEvents.BLAZING_QUARTZ_ORE);
+                .sound(MalumBlockSoundEvents.BLAZING_QUARTZ_ORE);
     }
 
     public static LodestoneBlockProperties CTHONIC_GOLD_ORE() {
@@ -57,6 +57,6 @@ public class MalumOreBlockProperties {
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(10f, 9999f)
-                .sound(MalumSoundEvents.CTHONIC_GOLD_ORE);
+                .sound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE);
     }
 }

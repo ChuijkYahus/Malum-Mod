@@ -93,8 +93,8 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
     @Override
     public void playSound(@NotNull SoundEvent pSound, float pVolume, float pPitch) {
         super.playSound(pSound, pVolume, pPitch-0.2f);
-        super.playSound(MalumSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), pVolume - 0.2f, pPitch + 0.5f);
-        super.playSound(MalumSoundEvents.WORLDSOUL_MOTIF_REVERB.get(), pVolume - 0.2f, pPitch + 0.5f);
+        super.playSound(MalumGearSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), pVolume - 0.2f, pPitch + 0.5f);
+        super.playSound(MalumGearSoundEvents.WORLDSOUL_MOTIF_REVERB.get(), pVolume - 0.2f, pPitch + 0.5f);
     }
 
     @Override

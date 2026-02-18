@@ -38,6 +38,6 @@ public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem,
             EntityHelper.extendEffect(effect, collector, addedDuration, 72000);
             EntityHelper.amplifyEffect(effect, collector, 1, 19);
         }
-        collector.playSound(MalumSoundEvents.ECHOING_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
+        collector.playSound(MalumGearSoundEvents.ECHOING_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
     }
 }

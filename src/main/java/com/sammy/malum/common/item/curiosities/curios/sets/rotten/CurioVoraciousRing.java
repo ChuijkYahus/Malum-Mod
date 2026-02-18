@@ -50,7 +50,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
                         .setDuration(600)
                         .setAmplifierGain(1)
                         .setAmplifierLimit(5));
-                livingEntity.playSound(MalumSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
+                livingEntity.playSound(MalumGearSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
             }
         }
     }
