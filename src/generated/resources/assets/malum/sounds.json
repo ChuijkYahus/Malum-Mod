@@ -2490,12 +2490,12 @@
   },
   "chiseled_dross_stone_place": {
     "sounds": [
-      "malum:block/arcane_rock/chiseled/break1",
-      "malum:block/arcane_rock/chiseled/break2",
-      "malum:block/arcane_rock/chiseled/break3",
-      "malum:block/arcane_rock/chiseled/break4",
-      "malum:block/arcane_rock/chiseled/break5",
-      "malum:block/arcane_rock/chiseled/break6"
+      "malum:block/arcane_rock/chiseled/place1",
+      "malum:block/arcane_rock/chiseled/place2",
+      "malum:block/arcane_rock/chiseled/place3",
+      "malum:block/arcane_rock/chiseled/place4",
+      "malum:block/arcane_rock/chiseled/place5",
+      "malum:block/arcane_rock/chiseled/place6"
     ],
     "subtitle": "malum.subtitle.chiseled_dross_stone_place"
   },
@@ -2714,27 +2714,27 @@
   "chiseled_tainted_rock_place": {
     "sounds": [
       {
-        "name": "malum:block/arcane_rock/chiseled/break1",
+        "name": "malum:block/arcane_rock/chiseled/place1",
         "pitch": 1.1
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break2",
+        "name": "malum:block/arcane_rock/chiseled/place2",
         "pitch": 1.1
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break3",
+        "name": "malum:block/arcane_rock/chiseled/place3",
         "pitch": 1.1
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break4",
+        "name": "malum:block/arcane_rock/chiseled/place4",
         "pitch": 1.1
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break5",
+        "name": "malum:block/arcane_rock/chiseled/place5",
         "pitch": 1.1
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break6",
+        "name": "malum:block/arcane_rock/chiseled/place6",
         "pitch": 1.1
       }
     ],
@@ -2967,27 +2967,27 @@
   "chiseled_twisted_rock_place": {
     "sounds": [
       {
-        "name": "malum:block/arcane_rock/chiseled/break1",
+        "name": "malum:block/arcane_rock/chiseled/place1",
         "pitch": 0.85
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break2",
+        "name": "malum:block/arcane_rock/chiseled/place2",
         "pitch": 0.85
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break3",
+        "name": "malum:block/arcane_rock/chiseled/place3",
         "pitch": 0.85
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break4",
+        "name": "malum:block/arcane_rock/chiseled/place4",
         "pitch": 0.85
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break5",
+        "name": "malum:block/arcane_rock/chiseled/place5",
         "pitch": 0.85
       },
       {
-        "name": "malum:block/arcane_rock/chiseled/break6",
+        "name": "malum:block/arcane_rock/chiseled/place6",
         "pitch": 0.85
       }
     ],
