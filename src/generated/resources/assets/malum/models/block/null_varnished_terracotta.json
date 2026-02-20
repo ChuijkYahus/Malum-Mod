@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/template_glazed_terracotta",
   "textures": {
-    "all": "malum:block/terracotta/null_varnished_terracotta"
+    "pattern": "malum:block/terracotta/null_varnished_terracotta"
   }
 }

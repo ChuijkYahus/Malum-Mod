@@ -45,7 +45,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 NULL_SPIRITED_GLASS);
 
         setTexturePath("terracotta/");
-        BlockStateSmithTypes.HORIZONTAL_BLOCK.act(data,
+        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
                 SACRED_VARNISHED_TERRACOTTA, WICKED_VARNISHED_TERRACOTTA, ARCANE_VARNISHED_TERRACOTTA, ELDRITCH_VARNISHED_TERRACOTTA,
                 AERIAL_VARNISHED_TERRACOTTA, AQUEOUS_VARNISHED_TERRACOTTA, EARTHEN_VARNISHED_TERRACOTTA, INFERNAL_VARNISHED_TERRACOTTA,
                 NULL_VARNISHED_TERRACOTTA);
@@ -246,8 +246,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
 
         setTexturePath("dungeon/odd_scriptures/");
-        BlockStateSmithTypes.HORIZONTAL_BLOCK.act(data,
-                ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII);
+        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
+                ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX);
 
         setTexturePath("dungeon/effigy/");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY);

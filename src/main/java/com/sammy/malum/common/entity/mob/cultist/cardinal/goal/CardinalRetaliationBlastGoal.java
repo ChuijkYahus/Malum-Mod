@@ -27,7 +27,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
     @Override
     public void start() {
         super.start();
-        cardinal.broadcastAnimation(CardinalCultist.RETALIATION_BLAST_ANIMATION, MalumCultistSoundEvents.CARDINAL_KNOCKBACK_CHARGE);
+        cardinal.broadcastAnimation(CardinalCultist.QUICK_FIRE_ANIMATION, MalumCultistSoundEvents.CARDINAL_KNOCKBACK_CHARGE);
         cardinal.setAggressive(true);
     }
 

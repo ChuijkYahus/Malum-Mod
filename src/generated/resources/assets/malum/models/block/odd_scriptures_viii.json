@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_glazed_terracotta",
   "textures": {
-    "pattern": "malum:block/dungeon/odd_scriptures/odd_scriptures_i"
+    "pattern": "malum:block/dungeon/odd_scriptures/odd_scriptures_viii"
   }
 }

@@ -558,6 +558,8 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_V = BLOCKS.register("odd_scriptures_v", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
     public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_VI = BLOCKS.register("odd_scriptures_vi", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
     public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_VII = BLOCKS.register("odd_scriptures_vii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_VIII = BLOCKS.register("odd_scriptures_viii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
+    public static final DeferredHolder<Block, Block> ODD_SCRIPTURES_IX = BLOCKS.register("odd_scriptures_ix", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
 
     public static final DeferredHolder<Block, Block> VEILED_EFFIGY = BLOCKS.register("veiled_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
     public static final DeferredHolder<Block, Block> CORRUPT_EFFIGY = BLOCKS.register("corrupt_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));

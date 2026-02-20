@@ -701,8 +701,10 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.ODD_SCRIPTURES_IV,
                                 MalumItems.ODD_SCRIPTURES_V,
                                 MalumItems.ODD_SCRIPTURES_VI,
-                                MalumItems.ODD_SCRIPTURES_VII
-                        ).nextLine()
+                                MalumItems.ODD_SCRIPTURES_VII,
+                                MalumItems.ODD_SCRIPTURES_VIII,
+                                MalumItems.ODD_SCRIPTURES_IX
+                        )
                         .addItems(
                                 MalumItems.DROSS_STONE,
                                 MalumItems.POLISHED_DROSS_STONE,

@@ -752,6 +752,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_V = register("odd_scriptures_v", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_V.get(), p));
     public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VI = register("odd_scriptures_vi", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VI.get(), p));
     public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VII = register("odd_scriptures_vii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VII.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VIII = register("odd_scriptures_viii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VIII.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_IX = register("odd_scriptures_ix", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_IX.get(), p));
 
     public static final DeferredHolder<Item, Item> VEILED_EFFIGY = register("veiled_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.VEILED_EFFIGY.get(), p));
     public static final DeferredHolder<Item, Item> CORRUPT_EFFIGY = register("corrupt_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CORRUPT_EFFIGY.get(), p));

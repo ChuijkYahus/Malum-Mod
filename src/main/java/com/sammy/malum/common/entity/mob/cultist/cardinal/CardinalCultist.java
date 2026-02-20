@@ -63,13 +63,13 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public static final byte THROW_ANIMATION = 11;
     public static final byte DETONATE_ANIMATION = 12;
-    public static final byte RETALIATION_BLAST_ANIMATION = 13;
+    public static final byte QUICK_FIRE_ANIMATION = 13;
     public static final byte IMMOLATION_BLAST_ANIMATION = 14;
 
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState lobAnimationState = new AnimationState();
     public AnimationState detonateAnimationState = new AnimationState();
-    public AnimationState retaliationBlastAnimationState = new AnimationState();
+    public AnimationState quickFireAnimationState = new AnimationState();
     public AnimationState immolationBlastAnimationState = new AnimationState();
 
     public UUID entropyChargeID;
@@ -151,7 +151,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         switch (id) {
             case THROW_ANIMATION -> startAnimation(lobAnimationState);
             case DETONATE_ANIMATION -> startAnimation(detonateAnimationState);
-            case RETALIATION_BLAST_ANIMATION -> startAnimation(retaliationBlastAnimationState);
+            case QUICK_FIRE_ANIMATION -> startAnimation(quickFireAnimationState);
             case IMMOLATION_BLAST_ANIMATION -> startAnimation(immolationBlastAnimationState);
             default -> super.handleEntityEvent(id);
         }
@@ -226,7 +226,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         target.scheduleDelayedDetonation(level);
 
         //Feedback
-        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, 0.8f, 1.2f);
+        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, 1.5f, 0.8f, 1.2f);
         MalumParticleEffectTypes.CARDINAL_DETONATION_BLAST
                 .createEffect(getRetaliationBlastPos())
                 .customData(new CardinalDetonationBlastParticleEffect.CardinalDetonationBlastParticleData(getId(), target.getId()))
