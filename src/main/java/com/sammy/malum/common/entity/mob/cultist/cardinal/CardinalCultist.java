@@ -6,7 +6,8 @@ import com.sammy.malum.common.entity.mob.cultist.cardinal.goal.*;
 import com.sammy.malum.common.entity.mob.cultist.cardinal.projectile.EntropyChargeProjectile;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalImmolationBlastParticleEffect;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalRetaliationBlastParticleEffect;
 import com.sammy.malum.visual_effects.networked.cultist.CardinalDetonationBlastParticleEffect;
@@ -32,7 +33,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.helpers.DamageTypeHelper;
+import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 
@@ -53,21 +54,22 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public static final float IMMOLATION_BLAST_CHANCE = 0.15f;
     public static final float IMMOLATION_BLAST_TRIGGER_RADIUS = 3f;
     public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 10f;
-    public static final float IMMOLATION_BLAST_DAMAGE = 2.5f;
+    public static final float IMMOLATION_BLAST_DAMAGE = 4f;
 
     public static final int ENTROPY_THROW_INTERVAL = 80;
     public static final float ENTROPY_THROW_RADIUS = 16f;
     public static final float ENTROPY_DETONATION_RADIUS = 24f;
+    public static final float ENTROPY_DETONATION_DAMAGE = 2f;
 
     public static final byte THROW_ANIMATION = 11;
     public static final byte DETONATE_ANIMATION = 12;
-    public static final byte RETALIATION_BLAST_ANIMATION = 13;
+    public static final byte QUICK_FIRE_ANIMATION = 13;
     public static final byte IMMOLATION_BLAST_ANIMATION = 14;
 
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState lobAnimationState = new AnimationState();
     public AnimationState detonateAnimationState = new AnimationState();
-    public AnimationState retaliationBlastAnimationState = new AnimationState();
+    public AnimationState quickFireAnimationState = new AnimationState();
     public AnimationState immolationBlastAnimationState = new AnimationState();
 
     public UUID entropyChargeID;
@@ -78,7 +80,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public boolean useImmolationBlast;
 
     public CardinalCultist(Level level) {
-        super(MalumEntityTypes.CARDINAL.get(), level);
+        super(MalumCultistEntityTypes.CARDINAL.get(), MalumCultistSoundEvents.CARDINAL, level);
         idleAnimationState.start(tickCount);
     }
 
@@ -147,10 +149,10 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     @Override
     public void handleEntityEvent(byte id) {
         switch (id) {
-            case THROW_ANIMATION -> lobAnimationState.start(tickCount);
-            case DETONATE_ANIMATION -> detonateAnimationState.start(tickCount);
-            case RETALIATION_BLAST_ANIMATION -> retaliationBlastAnimationState.start(tickCount);
-            case IMMOLATION_BLAST_ANIMATION -> immolationBlastAnimationState.start(tickCount);
+            case THROW_ANIMATION -> startAnimation(lobAnimationState);
+            case DETONATE_ANIMATION -> startAnimation(detonateAnimationState);
+            case QUICK_FIRE_ANIMATION -> startAnimation(quickFireAnimationState);
+            case IMMOLATION_BLAST_ANIMATION -> startAnimation(immolationBlastAnimationState);
             default -> super.handleEntityEvent(id);
         }
     }
@@ -202,7 +204,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public void throwEntropyCharge(LivingEntity target) {
         var pos = getEntropyChargePos();
         var level = level();
-        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * 2;
+        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * ENTROPY_DETONATION_DAMAGE;
         double x = target.getX() - pos.x;
         double y = target.getY(0.25f) - pos.y;
         double z = target.getZ() - pos.z;
@@ -220,8 +222,11 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         entropyChargeID = projectile.getUUID();
     }
 
-    public void triggerDetonation(ServerLevel level, EntropyChargeProjectile target) {
-        target.detonate(level);
+    public void detonateEntropyCharge(ServerLevel level, EntropyChargeProjectile target) {
+        target.scheduleDelayedDetonation(level);
+
+        //Feedback
+        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, 1.5f, 0.8f, 1.2f);
         MalumParticleEffectTypes.CARDINAL_DETONATION_BLAST
                 .createEffect(getRetaliationBlastPos())
                 .customData(new CardinalDetonationBlastParticleEffect.CardinalDetonationBlastParticleData(getId(), target.getId()))
@@ -279,7 +284,10 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
             }
             directions.add(knockbackDirection);
         }
-        Vec3 blastDirection = getRetaliationBlastParticleDirection(directions);
+
+        //Feedback
+        var blastDirection = getRetaliationBlastParticleDirection(directions);
+        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_KNOCKBACK_FIRE, 0.8f, 1.2f);
         MalumParticleEffectTypes.CARDINAL_RETALIATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalRetaliationBlastParticleEffect.CardinalRetaliationBlastParticleData(getId(), blastDirection))
@@ -316,6 +324,10 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         immolationBlastProgress = 0;
         useImmolationBlast = false;
         hurt(damagesource, magicDamage);
+
+        //Feedback
+        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_IMMOLATION_FIRE, 0.8f, 1.2f);
+        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_IMMOLATE, 0.8f, 1.2f);
         MalumParticleEffectTypes.CARDINAL_IMMOLATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalImmolationBlastParticleEffect.CardinalImmolationBlastParticleData(getId()))

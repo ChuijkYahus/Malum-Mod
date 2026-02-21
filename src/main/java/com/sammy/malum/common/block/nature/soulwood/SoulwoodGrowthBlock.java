@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.nature.soulwood;
 
 import com.sammy.malum.common.block.nature.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -34,7 +34,7 @@ public class SoulwoodGrowthBlock extends MalumSaplingBlock {
     public void performBonemeal(ServerLevel pLevel, RandomSource pRand, BlockPos pPos, BlockState pState) {
         super.performBonemeal(pLevel, pRand, pPos, pState);
         pLevel.levelEvent(1505, pPos, 0);
-        pLevel.playSound(null, pPos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
+        pLevel.playSound(null, pPos, MalumBlockSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
         pLevel.playSound(null, pPos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1, 0.9f + pLevel.random.nextFloat() * 0.25f);
     }
 

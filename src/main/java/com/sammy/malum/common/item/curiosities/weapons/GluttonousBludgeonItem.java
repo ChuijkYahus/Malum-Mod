@@ -1,12 +1,12 @@
 package com.sammy.malum.common.item.curiosities.weapons;
 
-import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -50,7 +50,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
                     return;
                 }
                 if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
-                    SoundHelper.playSound(attacker, MalumSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+                    SoundHelper.playSound(attacker, MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)
                             .targets(target)

@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -37,7 +37,7 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
                     .setAmplifierLimit(limit));
 
             var random = serverLevel.random;
-            SoundHelper.playSound(collector, MalumSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
+            SoundHelper.playSound(collector, MalumGearSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
             SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
             ConcentratedGluttonyItem.createGluttonyVFX(serverLevel, collector, 0.5f);
         }

@@ -3,6 +3,7 @@ package com.sammy.malum.common.entity.bolt;
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.*;
@@ -48,7 +49,7 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
     @Override
     public void playSound(@NotNull SoundEvent pSound, float pVolume, float pPitch) {
         super.playSound(pSound, pVolume, pPitch-0.2f);
-        super.playSound(MalumSoundEvents.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
+        super.playSound(MalumGearSoundEvents.DRAINING_MOTIF.get(), pVolume, pPitch-0.1f);
     }
 
     @Override

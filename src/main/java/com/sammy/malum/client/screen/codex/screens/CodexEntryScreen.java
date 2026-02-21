@@ -7,7 +7,7 @@ import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;

@@ -249,8 +249,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         //FULL BLOCKS
         blockIngotExchange(output, MalumItems.RAW_SOULSTONE, MalumItems.BLOCK_OF_RAW_SOULSTONE);
         blockIngotExchange(output, MalumItems.REFINED_SOULSTONE, MalumItems.BLOCK_OF_SOULSTONE);
-        blockIngotExchange(output, MalumItems.RAW_BRILLIANCE, MalumItems.BLOCK_OF_BRILLIANCE);
+        blockIngotExchange(output, MalumItems.RAW_BRILLIANCE, MalumItems.BLOCK_OF_RAW_BRILLIANCE);
+        blockIngotExchange(output, MalumItems.REFINED_BRILLIANCE, MalumItems.BLOCK_OF_BRILLIANCE);
         blockIngotExchange(output, MalumItems.BLAZING_QUARTZ, MalumItems.BLOCK_OF_BLAZING_QUARTZ);
+        blockIngotExchange(output, MalumItems.NATURAL_QUARTZ, MalumItems.BLOCK_OF_NATURAL_QUARTZ);
         blockIngotExchange(output, MalumItems.CTHONIC_GOLD, MalumItems.BLOCK_OF_CTHONIC_GOLD);
 
         blockIngotExchange(output, MalumItems.ROTTING_ESSENCE, MalumItems.BLOCK_OF_ROTTING_ESSENCE);

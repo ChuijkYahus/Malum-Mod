@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
 import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -48,7 +49,7 @@ public class CardinalDetonateEntropyGoal extends Goal {
         super.start();
         cardinal.setAggressive(true);
         navigation.stop();
-        cardinal.level().broadcastEntityEvent(cardinal, CardinalCultist.DETONATE_ANIMATION);
+        cardinal.broadcastAnimation(CardinalCultist.DETONATE_ANIMATION, MalumCultistSoundEvents.CARDINAL_CANNON_CHARGE);
     }
 
     @Override
@@ -67,7 +68,8 @@ public class CardinalDetonateEntropyGoal extends Goal {
     public void tick() {
         var target = cardinal.entropyCharge;
         if (target != null) {
-            target.age--;
+            //Prevent the entity from aging
+            target.age = 0;
 
             double distanceToTarget = cardinal.distanceToSqr(target.getX(), target.getY(), target.getZ());
             if ((distanceToTarget < detonationRadiusSqr)) {
@@ -80,7 +82,7 @@ public class CardinalDetonateEntropyGoal extends Goal {
             attackTime++;
             if (attackTime >= CHARGE_DURATION) {
                 if (cardinal.level() instanceof ServerLevel level) {
-                    cardinal.triggerDetonation(level, target);
+                    cardinal.detonateEntropyCharge(level, target);
                 }
                 attackTime = 0;
                 stop();

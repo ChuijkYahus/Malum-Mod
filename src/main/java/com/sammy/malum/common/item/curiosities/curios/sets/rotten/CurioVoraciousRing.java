@@ -3,8 +3,8 @@ package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
@@ -50,7 +50,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
                         .setDuration(600)
                         .setAmplifierGain(1)
                         .setAmplifierLimit(5));
-                livingEntity.playSound(MalumSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
+                livingEntity.playSound(MalumGearSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
             }
         }
     }

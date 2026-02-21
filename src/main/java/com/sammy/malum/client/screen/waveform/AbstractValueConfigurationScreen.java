@@ -2,7 +2,7 @@ package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
@@ -103,7 +103,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         super.tick();
         ticksOpen++;
         if (hasChanged()) {
-            playSound(MalumSoundEvents.SPIRIT_DIODE_TICK);
+            playSound(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_DRAG);
         }
         if (ticksOpen % 20 == 0) {
             notifyServer(true);
@@ -121,7 +121,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        playSound(MalumSoundEvents.SPIRIT_DIODE_LONG_TICK);
+        playSound(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_CLICK);
         return super.mouseClicked(mouseX, mouseY, button);
     }
 

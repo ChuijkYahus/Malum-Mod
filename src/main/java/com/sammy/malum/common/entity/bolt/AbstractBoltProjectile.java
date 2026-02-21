@@ -48,10 +48,7 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
         setOwner(owner);
         this.magicDamage = magicDamage;
         this.isHoming = isHoming;
-        getEntityData().set(DATA_SPAWN_DELAY, spawnDelay);
-        if (!level().isClientSide && spawnDelay == 0) {
-            playShootSound();
-        }
+        setInitialSpawnDelay(spawnDelay);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -377,6 +374,12 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
         entityData.set(DATA_SPAWN_DELAY, delay);
     }
 
+    public void setInitialSpawnDelay(int delay) {
+        setSpawnDelay(delay);
+        if (!level().isClientSide && delay == 0) {
+            playShootSound();
+        }
+    }
     public boolean decrementSpawnDelay(Runnable onSpawn) {
         int value = entityData.get(DATA_SPAWN_DELAY);
         if (value > 0) {

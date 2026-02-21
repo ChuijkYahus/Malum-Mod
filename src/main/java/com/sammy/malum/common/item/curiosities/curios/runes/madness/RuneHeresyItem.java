@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.MalumMobEffects;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -42,6 +42,6 @@ public class RuneHeresyItem extends MadnessRuneCurioItem implements ItemEventHan
             }
             EntityHelper.extendEffect(effect, attacker, 30, 600);
         }
-        SoundHelper.playSound(attacked, MalumSoundEvents.DRAINING_MOTIF.get(), 1f, 1.5f);
+        SoundHelper.playSound(attacked, MalumGearSoundEvents.DRAINING_MOTIF.get(), 1f, 1.5f);
     }
 }

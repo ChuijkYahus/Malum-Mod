@@ -1,9 +1,8 @@
 package com.sammy.malum.common.effect.geas;
 
-import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.resources.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -11,8 +10,6 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.*;
 
 import javax.annotation.Nullable;
-
-import static com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData.fromSpirits;
 
 public class AvariceEffect extends MobEffect {
     public AvariceEffect() {

@@ -1,7 +1,7 @@
 package com.sammy.malum.client.screen.codex.screens.progression;
 
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.sounds.*;

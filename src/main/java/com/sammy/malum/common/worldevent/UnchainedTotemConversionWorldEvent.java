@@ -5,6 +5,7 @@ import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -57,7 +58,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void placeBlock(ServerLevel level, BlockPos pos, BlockState state) {
         level.setBlockAndUpdate(pos, state);
         level.levelEvent(null, 2001, pos, Block.getId(state));
-        level.playSound(null, pos, MalumSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
+        level.playSound(null, pos, MalumBlockSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
     }
 
     public void maybePlaceBlightedGunk(ServerLevel level, BlockPos pos, Direction totemDirection) {

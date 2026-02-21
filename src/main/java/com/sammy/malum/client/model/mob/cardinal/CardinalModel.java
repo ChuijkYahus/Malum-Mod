@@ -9,7 +9,6 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
@@ -106,8 +105,8 @@ public class CardinalModel extends CultistHumanoidModel<CardinalCultist> {
 
 		animate(cardinal.idleAnimationState, CardinalAnimations.IDLE, ageInTicks);
 		animate(cardinal.lobAnimationState, CardinalAnimations.LOB_CHARGE, ageInTicks);
-		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATION, ageInTicks);
-		animate(cardinal.retaliationBlastAnimationState, CardinalAnimations.RETALIATION, ageInTicks);
+		animate(cardinal.detonateAnimationState, CardinalAnimations.DETONATE, ageInTicks);
+		animate(cardinal.quickFireAnimationState, CardinalAnimations.QUICKFIRE, ageInTicks);
 		animate(cardinal.immolationBlastAnimationState, CardinalAnimations.IMMOLATION, ageInTicks);
 	}
 }

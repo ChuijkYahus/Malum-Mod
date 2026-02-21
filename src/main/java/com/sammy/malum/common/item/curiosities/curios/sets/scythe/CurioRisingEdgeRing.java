@@ -1,9 +1,8 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.scythe;
 
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
@@ -43,7 +42,7 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
                 Level.ExplosionInteraction.TRIGGER,
                 ParticleTypes.GUST,
                 ParticleTypes.GUST,
-                MalumSoundEvents.SCYTHE_ASCENSION_LAUNCH
+                MalumGearSoundEvents.SCYTHE_ASCENSION_LAUNCH
         );
         target.setDeltaMovement(target.getDeltaMovement().add(0, velocity, 0));
     }

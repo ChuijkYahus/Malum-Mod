@@ -8,6 +8,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;

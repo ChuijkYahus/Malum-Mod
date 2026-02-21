@@ -1,0 +1,191 @@
+package com.sammy.malum.datagen.sound;
+
+import com.sammy.malum.registry.common.sound.*;
+
+import static team.lodestar.lodestone.systems.datagen.providers.sound.LodestoneSoundEventProvider.sound;
+
+public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
+
+    public MalumBlockSoundDatagen(MalumSoundDatagen soundDatagen) {
+        super(soundDatagen);
+    }
+
+    @Override
+    public void registerSounds() {
+
+        //Soulstone
+        add(MalumBlockSoundEvents.SOULSTONE_ORE, "block/ore/soulstone", b -> b
+                .addStepHitFallSounds(allSounds("minecraft:block/basalt/step", se -> se.pitch(1.2f))));
+        add(MalumBlockSoundEvents.DEEPSLATE_SOULSTONE_ORE, "block/ore/soulstone/deepslate", b -> b
+                .setStepHitFallSoundPaths("block/ore/soulstone").addStepHitFallSounds(allSounds("minecraft:block/basalt/step")));
+        add(MalumBlockSoundEvents.BLOCK_OF_SOULSTONE, "block/ore/soulstone", b -> b
+                .modifySounds(se -> se.pitch(1.4f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_RAW_SOULSTONE, "block/ore/soulstone", b -> b
+                .modifySounds(se -> se.pitch(0.85f)));
+
+        //Brilliance
+        add(MalumBlockSoundEvents.BRILLIANCE_ORE, "block/ore/natural_quartz", b -> b
+                .addStepHitFallSounds(allSounds("minecraft:block/basalt/step", se -> se.pitch(1.2f)))
+                .modifySounds(se -> se.pitch(0.8f)));
+        add(MalumBlockSoundEvents.DEEPSLATE_BRILLIANCE_ORE, "block/ore/natural_quartz/deepslate", b -> b
+                .addStepHitFallSounds(allSounds("minecraft:block/basalt/step", se -> se.pitch(1.4f)))
+                .modifySounds(se -> se.pitch(0.8f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_BRILLIANCE, "block/ore/natural_quartz", b -> b
+                .modifySounds(se -> se.pitch(1.4f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_RAW_BRILLIANCE, "block/ore/natural_quartz", b -> b
+                .modifySounds(se -> se.pitch(1.2f)));
+
+        //Blazing Quartz
+        add(MalumBlockSoundEvents.BLAZING_QUARTZ_ORE, "block/ore/blazing_quartz", b -> b
+                .setStepHitFallSoundPaths("minecraft:block/nether_ore")
+                .modifySounds(se -> se.pitch(1.2f)));
+        add(MalumBlockSoundEvents.BLAZING_QUARTZ_CLUSTER, "block/ore/blazing_quartz", b -> b
+                .setStepHitFallSoundPaths("minecraft:block/nether_ore")
+                .modifySounds(se -> se.pitch(1.4f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ, "block/ore/blazing_quartz", b -> b
+                .setStepHitFallSoundPaths("minecraft:block/nether_ore")
+                .modifySounds(se -> se.pitch(1.6f)));
+
+        //Natural Quartz
+        add(MalumBlockSoundEvents.NATURAL_QUARTZ_ORE, "block/ore/natural_quartz", b -> b
+                .addStepHitFallSounds(allSounds("minecraft:block/calcite/step", se -> se.pitch(1.2f))));
+        add(MalumBlockSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE, "block/ore/natural_quartz/deepslate", b -> b
+                .addStepHitFallSounds(allSounds("minecraft:block/calcite/step", se -> se.pitch(1.4f))));
+        add(MalumBlockSoundEvents.NATURAL_QUARTZ_CLUSTER, "block/ore/natural_quartz", b -> b
+                .modifySounds(se -> se.pitch(1.4f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_NATURAL_QUARTZ, "block/ore/natural_quartz", b -> b
+                .modifySounds(se -> se.pitch(1.6f)));
+
+        //Cthonic Gold
+        add(MalumBlockSoundEvents.BLOCK_OF_CTHONIC_GOLD, "block/ore/soulstone/deepslate", b -> b
+                .setStepHitFallSoundPaths("block/ore/soulstone")
+                .modifySounds(se -> se.pitch(1.6f)));
+        add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE, "block/ore/soulstone/deepslate", b -> b
+                .setStepHitFallSoundPaths("block/ore/soulstone")
+                .modifySounds(se -> se.pitch(1.2f)));
+        add(MalumBlockSoundEvents.CTHONIC_GOLD_CLUSTER, "block/ore/soulstone/deepslate", b -> b
+                .setStepHitFallSoundPaths("block/ore/soulstone")
+                .modifySounds(se -> se.pitch(1.4f)));
+        add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_BREAK_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/break")));
+        add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_PLACE_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/break")));
+        add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_HIT_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/hit")).with(allSounds("minecraft:block/nether_ore/step")));
+
+        //Metals & Misc
+        add(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, "block/gemstone");
+        add(MalumBlockSoundEvents.BLOCK_OF_SOUL_STAINED_STEEL, "block/soul_stained_steel");
+        add(MalumBlockSoundEvents.BLOCK_OF_HALLOWED_GOLD, "block/hallowed_gold");
+
+        add(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_LEAD, "block/ore/soulstone", b -> b.modifySounds(se -> se.pitch(0.6f)));
+        add(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_PEWTER, "block/soul_stained_steel", b -> b.modifySounds(se -> se.pitch(1.6f)));
+
+        //Runewood
+        add(MalumBlockSoundEvents.RUNEWOOD, "block/runewood");
+        add(MalumBlockSoundEvents.RUNEWOOD_HANGING_SIGN, "block/runewood/hanging_sign");
+        add(MalumBlockSoundEvents.RUNEWOOD_LEAVES, "minecraft:block/azalea_leaves");
+
+        add(MalumBlockSoundEvents.RUNEWOOD_BUTTON_CLICK_OFF, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.RUNEWOOD_BUTTON_CLICK_ON, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.RUNEWOOD_PRESSURE_PLATE_CLICK_OFF, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.RUNEWOOD_PRESSURE_PLATE_CLICK_ON, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.RUNEWOOD_FENCE_GATE_CLOSE, s -> s.with(sounds("block/runewood/fence_gate/toggle", 3)));
+        add(MalumBlockSoundEvents.RUNEWOOD_FENCE_GATE_OPEN, s -> s.with(sounds("block/runewood/fence_gate/toggle", 3)));
+        add(MalumBlockSoundEvents.RUNEWOOD_DOOR_CLOSE, s -> s.with(sounds("block/runewood/door/toggle", 3)));
+        add(MalumBlockSoundEvents.RUNEWOOD_DOOR_OPEN, s -> s.with(sounds("block/runewood/door/toggle", 3)));
+        add(MalumBlockSoundEvents.RUNEWOOD_TRAPDOOR_CLOSE, s -> s.with(sounds("block/runewood/trapdoor/toggle", 3)));
+        add(MalumBlockSoundEvents.RUNEWOOD_TRAPDOOR_OPEN, s -> s.with(sounds("block/runewood/trapdoor/toggle", 3)));
+
+        //Soulwood
+        add(MalumBlockSoundEvents.SOULWOOD, "block/runewood");
+        add(MalumBlockSoundEvents.SOULWOOD_HANGING_SIGN, "block/runewood/hanging_sign");
+        add(MalumBlockSoundEvents.SOULWOOD_LEAVES, "minecraft:block/azalea_leaves");
+
+        add(MalumBlockSoundEvents.SOULWOOD_BUTTON_CLICK_OFF, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.SOULWOOD_BUTTON_CLICK_ON, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.SOULWOOD_PRESSURE_PLATE_CLICK_OFF, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.SOULWOOD_PRESSURE_PLATE_CLICK_ON, s -> s.with(sound("block/runewood/button/runewood_button")));
+        add(MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_CLOSE, s -> s.with(sounds("block/runewood/fence_gate/toggle", 3)));
+        add(MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_OPEN, s -> s.with(sounds("block/runewood/fence_gate/toggle", 3)));
+        add(MalumBlockSoundEvents.SOULWOOD_DOOR_CLOSE, s -> s.with(sounds("block/runewood/door/toggle", 3)));
+        add(MalumBlockSoundEvents.SOULWOOD_DOOR_OPEN, s -> s.with(sounds("block/runewood/door/toggle", 3)));
+        add(MalumBlockSoundEvents.SOULWOOD_TRAPDOOR_CLOSE, s -> s.with(sounds("block/runewood/trapdoor/toggle", 3)));
+        add(MalumBlockSoundEvents.SOULWOOD_TRAPDOOR_OPEN, s -> s.with(sounds("block/runewood/trapdoor/toggle", 3)));
+
+        //Tainted Rock
+        addArcaneRockSounds(MalumBlockSoundEvents.TAINTED_ROCK, "block/arcane_rock", 1.1f);
+        addArcaneRockSounds(MalumBlockSoundEvents.TAINTED_ROCK_BRICKS, "block/arcane_rock/bricks", 1.1f);
+        addArcaneRockSounds(MalumBlockSoundEvents.CHISELED_TAINTED_ROCK, "block/arcane_rock/chiseled", 1.1f);
+
+        //Twisted Rock
+        addArcaneRockSounds(MalumBlockSoundEvents.TWISTED_ROCK, "block/arcane_rock", 0.85f);
+        addArcaneRockSounds(MalumBlockSoundEvents.TWISTED_ROCK_BRICKS, "block/arcane_rock/bricks", 0.85f);
+        addArcaneRockSounds(MalumBlockSoundEvents.CHISELED_TWISTED_ROCK, "block/arcane_rock/chiseled", 0.85f);
+
+        //Misc
+        addArcaneRockSounds(MalumBlockSoundEvents.WEEPING_WELL_BRICKS, "block/arcane_rock/artifice","minecraft:block/heavy_core", 0.7f);
+        addArcaneRockSounds(MalumBlockSoundEvents.ARCANE_ROCK_ARTIFICE, "block/arcane_rock/artifice", "minecraft:block/heavy_core", 1.0f);
+
+        //Spirit Diodes
+        add(MalumBlockSoundEvents.SPIRIT_DIODE, "block/spirit_diode", b -> b.setStepHitFallSoundPaths("minecraft:block/copper_bulb"));
+        add(MalumBlockSoundEvents.SPIRIT_DIODE_OPEN, s -> s.with(sounds("block/spirit_diode/waveform_open", 4)));
+        add(MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE, s -> s.with(sounds("block/spirit_diode/waveform_close", 4)));
+        add(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_DRAG, s -> s.with(sounds("block/spirit_diode/waveform_tick", 8)));
+        add(MalumBlockSoundEvents.SPIRIT_DIODE_CONFIGURATION_CLICK, s -> s.with(sounds("block/spirit_diode/waveform_long_tick", 8)));
+
+        add(MalumBlockSoundEvents.WAVECHARGER_CHARGE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2f)));
+        add(MalumBlockSoundEvents.WAVECHARGER_RELEASE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8f)));
+        add(MalumBlockSoundEvents.WAVEBANKER_STORE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        add(MalumBlockSoundEvents.WAVEBANKER_RELEASE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        add(MalumBlockSoundEvents.WAVEBREAKER_STORE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(1.2)));
+        add(MalumBlockSoundEvents.WAVEBREAKER_RELEASE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.3f).pitch(0.8)));
+        add(MalumBlockSoundEvents.WAVEMAKER_PULSE, s -> s.with(sound("block/spirit_diode/waveform_pulse").volume(0.2f).pitch(1.4)));
+
+        //Decoration
+        add(MalumBlockSoundEvents.ETHER, "block/ether", b -> b.setStepHitFallSoundNames("cloth").setStepHitFallSoundPaths("minecraft:step"));
+        add(MalumBlockSoundEvents.VARNISHED_TERRACOTTA, "block/terracotta");
+
+        //Blight & Scarstone
+        add(MalumBlockSoundEvents.BLIGHTED_EARTH, "minecraft:block/nylium");
+        add(MalumBlockSoundEvents.BLIGHTED_FOLIAGE, "minecraft:block/netherwart", b -> b.setStepHitFallSoundPaths("minecraft:block/nether_sprouts"));
+        add(MalumBlockSoundEvents.SCARSTONE, "block/scarstone");
+        add(MalumBlockSoundEvents.STRANGE_CRYSTAL, "block/strange_crystal");
+
+        add(MalumBlockSoundEvents.MAJOR_BLIGHT_MOTIF, s -> s.with(sounds("block/blight/blight_motif", 6)));
+        add(MalumBlockSoundEvents.MINOR_BLIGHT_MOTIF, s -> s.with(sounds("block/blight/minor_blight_motif", 6)));
+
+        add(MalumBlockSoundEvents.BLIGHT_PROPAGATION, s -> s.with(allSounds("block/blight/blight_propagation")));
+        add(MalumBlockSoundEvents.SCARSTONE_PROPAGATION, s -> s.with(allSounds("block/scarstone/scarstone_propagation")));
+
+        //Dungeon Architecture
+        add(MalumBlockSoundEvents.ODD_SCRIPTURES, "block/terracotta", b -> b.modifySounds(se -> se.pitch(0.7f)));
+        addDrossStoneSounds(MalumBlockSoundEvents.DROSS_STONE, "block/arcane_rock", 1.0f);
+        addDrossStoneSounds(MalumBlockSoundEvents.DROSS_STONE_BRICKS, "block/arcane_rock/bricks", 1.0f);
+        addDrossStoneSounds(MalumBlockSoundEvents.CHISELED_DROSS_STONE, "block/arcane_rock/chiseled", 1.0f);
+
+        //Dungeon Flesh
+        add(MalumBlockSoundEvents.WRITHING_FLESH, "minecraft:dig", b -> b
+                .setBreakPlaceSoundNames("coral")
+                .setStepHitFallSoundNames("coral")
+                .setStepHitFallSoundPaths("minecraft:step")
+                .modifySounds(se -> se.pitch(1.25f)));
+        add(MalumBlockSoundEvents.FLESH, "minecraft:dig", b -> b
+                .setBreakPlaceSoundNames("coral")
+                .setStepHitFallSoundNames("coral")
+                .setStepHitFallSoundPaths("minecraft:step"));
+    }
+
+    public void addArcaneRockSounds(MalumBlockSoundType soundType, String path, float pitch) {
+        addArcaneRockSounds(soundType, path, "minecraft:block/basalt", pitch);
+    }
+
+    public void addDrossStoneSounds(MalumBlockSoundType soundType, String path, float pitch) {
+        addArcaneRockSounds(soundType, path, "minecraft:block/dripstone", pitch);
+    }
+
+    public void addArcaneRockSounds(MalumBlockSoundType soundType, String path, String fillerStepPath, float pitch) {
+        add(soundType, path, b -> b
+                .modifyStepHitFallSounds(se -> se.weight(3))
+                .modifySounds(se -> se.pitch(pitch))
+                .addStepHitFallSounds(allSounds(fillerStepPath, "step", se -> se.weight(2).pitch(pitch))
+                ));
+    }
+}

@@ -4,6 +4,7 @@ import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
@@ -125,7 +126,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
         setDeltaMovement(getDeltaMovement().scale(0.05f));
         setNoGravity(true);
         level.levelEvent(2002, blockPosition(), MalumMobEffects.GLUTTONY.get().getColor());
-        level.playSound(null, blockPosition(), MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), SoundSource.PLAYERS, 0.5f, 1.25f + level.random.nextFloat() * 0.25f);
+        level.playSound(null, blockPosition(), MalumGearSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), SoundSource.PLAYERS, 0.5f, 1.25f + level.random.nextFloat() * 0.25f);
         MalumParticleEffectTypes.THROWN_GLUTTONY_IMPACT.createEffect(position()).spawn(level);
         applyGluttony(level, impactedEntity);
         super.onHit(pResult);

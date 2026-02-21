@@ -6,6 +6,7 @@ import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.gluttony.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -27,7 +28,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         var properties = applyConcentratedGluttonyEffect(pEntityLiving, 1f);
-        SoundHelper.playSound(pEntityLiving, MalumSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
+        SoundHelper.playSound(pEntityLiving, MalumGearSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
             if (pEntityLiving.hasEffect(properties.getEffectType())) {
                 createGluttonyVFX(serverLevel, pEntityLiving, 0.75f);

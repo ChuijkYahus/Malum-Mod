@@ -4,8 +4,9 @@ import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.common.entity.mob.cultist.CultistMeleeAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.ICherubFriend;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
@@ -29,7 +30,7 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
     public static final Vec3 CHERUB_OFFSET = new Vec3(0, 2.5f, 0);
 
     public BelieverCultist(Level level) {
-        super(MalumEntityTypes.BELIEVER.get(), level);
+        super(MalumCultistEntityTypes.BELIEVER.get(), MalumCultistSoundEvents.BELIEVER, level);
     }
 
     @Override

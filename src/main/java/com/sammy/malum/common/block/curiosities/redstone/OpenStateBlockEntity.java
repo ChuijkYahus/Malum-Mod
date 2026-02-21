@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone;
 
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -45,7 +46,7 @@ public abstract class OpenStateBlockEntity extends LodestoneBlockEntity {
         boolean value = getBlockState().getValue(BlockStateProperties.OPEN);
         if (value != newValue) {
             level.setBlock(getBlockPos(), getBlockState().setValue(BlockStateProperties.OPEN, !value), 3);
-            level.playSound(null, getBlockPos(), value ? MalumSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumSoundEvents.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+            level.playSound(null, getBlockPos(), value ? MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumBlockSoundEvents.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
             var particleEffect = value ? MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE : MalumParticleEffectTypes.SPIRIT_DIODE_OPEN;
             particleEffect.createEffect()
                     .at(getBlockPos().getCenter().add(0, value ? 0 : 0.5f, 0))

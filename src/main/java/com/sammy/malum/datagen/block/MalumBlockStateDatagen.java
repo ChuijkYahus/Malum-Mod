@@ -45,7 +45,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
                 NULL_SPIRITED_GLASS);
 
         setTexturePath("terracotta/");
-        BlockStateSmithTypes.HORIZONTAL_BLOCK.act(data,
+        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
                 SACRED_VARNISHED_TERRACOTTA, WICKED_VARNISHED_TERRACOTTA, ARCANE_VARNISHED_TERRACOTTA, ELDRITCH_VARNISHED_TERRACOTTA,
                 AERIAL_VARNISHED_TERRACOTTA, AQUEOUS_VARNISHED_TERRACOTTA, EARTHEN_VARNISHED_TERRACOTTA, INFERNAL_VARNISHED_TERRACOTTA,
                 NULL_VARNISHED_TERRACOTTA);
@@ -208,14 +208,15 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
 
         setTexturePath("storage_blocks/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
-                BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_SOULSTONE, BLOCK_OF_CTHONIC_GOLD, BLOCK_OF_BRILLIANCE,
                 BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
-                BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD,
-                BLOCK_OF_BLAZING_QUARTZ,
-                BLOCK_OF_AURIC_EMBERS);
+                BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD, BLOCK_OF_AURIC_EMBERS);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
-                BLOCK_OF_GRIM_TALC, BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
+                BLOCK_OF_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE,
+                BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_NATURAL_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
+                BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop,
                 BLOCK_OF_WIND_NUCLEI, BLOCK_OF_PYRE_NUCLEI);
 
@@ -243,6 +244,10 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateProvider {
         MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_FLESH);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::cubeBottomTop, FLESHBULB);
         MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
+
+        setTexturePath("dungeon/odd_scriptures/");
+        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
+                ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX);
 
         setTexturePath("dungeon/effigy/");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY);

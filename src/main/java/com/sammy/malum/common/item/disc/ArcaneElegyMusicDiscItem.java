@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.disc;
 
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.world.item.*;
 
 public class ArcaneElegyMusicDiscItem extends Item {

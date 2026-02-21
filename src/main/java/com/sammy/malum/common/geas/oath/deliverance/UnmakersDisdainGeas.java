@@ -8,6 +8,7 @@ import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -88,7 +89,7 @@ public class UnmakersDisdainGeas extends GeasEffect {
                                 .setAttacker(attacker, source.getDirectEntity())
                                 .setDamageData(damage, 0, delay)
                                 .setPhysicalDamageType(MalumDamageTypes.UNMAKERS_DISDAIN_COMBO)
-                                .setSound(MalumSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
+                                .setSound(MalumGearSoundEvents.MALIGNANT_METAL_COMBO, 0.5f, 1.5f, 0.3f));
 
             }
         }

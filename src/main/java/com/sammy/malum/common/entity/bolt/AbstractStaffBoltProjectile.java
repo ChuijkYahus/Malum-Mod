@@ -1,7 +1,7 @@
 package com.sammy.malum.common.entity.bolt;
 
 import com.sammy.malum.registry.common.MalumDamageTypes;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageType;
@@ -22,12 +22,12 @@ public abstract class AbstractStaffBoltProjectile extends AbstractBoltProjectile
 
     @Override
     public SoundEvent getShootSound() {
-        return MalumSoundEvents.STAFF_FIRES.get();
+        return MalumGearSoundEvents.STAFF_FIRES.get();
     }
 
     @Override
     public SoundEvent getImpactSound() {
-        return MalumSoundEvents.STAFF_STRIKES.get();
+        return MalumGearSoundEvents.STAFF_STRIKES.get();
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.tools;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
 import net.minecraft.world.*;
@@ -48,7 +48,7 @@ public class CatalystLobberItem extends Item {
                     timer = 0;
                     stashedState = state;
                     state = 0;
-                    pEntity.playSound(MalumSoundEvents.CATALYST_LOBBER_LOCKED.get(), 1.2f, 0.8f);
+                    pEntity.playSound(MalumGearSoundEvents.CATALYST_LOBBER_LOCKED.get(), 1.2f, 0.8f);
                 }
                 pStack.set(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent(timer, state, stashedState));
             }
@@ -69,7 +69,7 @@ public class CatalystLobberItem extends Item {
             case 0 -> {
                 cooldown = 60;
                 state = Math.max(1, stashedState);
-                sound = MalumSoundEvents.CATALYST_LOBBER_UNLOCKED.get();
+                sound = MalumGearSoundEvents.CATALYST_LOBBER_UNLOCKED.get();
             }
             case 1 -> {
                 if (!playerIn.isCreative()) {
@@ -88,7 +88,7 @@ public class CatalystLobberItem extends Item {
                 }
                 cooldown = 20;
                 state = 2;
-                sound = MalumSoundEvents.CATALYST_LOBBER_PRIMED.get();
+                sound = MalumGearSoundEvents.CATALYST_LOBBER_PRIMED.get();
             }
             case 2 -> {
                 if (!worldIn.isClientSide) {
@@ -105,7 +105,7 @@ public class CatalystLobberItem extends Item {
                     stack.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
                 }
                 state = 1;
-                sound = MalumSoundEvents.CATALYST_LOBBER_FIRED.get();
+                sound = MalumGearSoundEvents.CATALYST_LOBBER_FIRED.get();
             }
             default -> {
                 stack.set(MalumDataComponents.CATALYST_LOBBER_STATE, new CatalystFlingerStateComponent());

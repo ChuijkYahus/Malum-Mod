@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.redstone.wavecharger;
 
 import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -18,10 +18,10 @@ public class WaveChargerBlock extends SpiritDiodeBlock<WaveChargerBlockEntity> {
         int startingSignal = diode.outputSignal;
         if (startingSignal > liveSignal) {
             diode.outputSignal--;
-            level.playSound(null, pos, MalumSoundEvents.WAVECHARGER_RELEASE.get(), SoundSource.BLOCKS);
+            level.playSound(null, pos, MalumBlockSoundEvents.WAVECHARGER_RELEASE.get(), SoundSource.BLOCKS);
         } else if (startingSignal < liveSignal) {
             diode.outputSignal++;
-            level.playSound(null, pos, MalumSoundEvents.WAVECHARGER_CHARGE.get(), SoundSource.BLOCKS);
+            level.playSound(null, pos, MalumBlockSoundEvents.WAVECHARGER_CHARGE.get(), SoundSource.BLOCKS);
         } else {
             return false;
         }

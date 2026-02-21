@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import team.lodestar.lodestone.systems.sound.*;
 
 public class AltarSoundInstance extends CachedBlockEntitySoundInstance<SpiritAltarBlockEntity> {

@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.common.entity.bolt.AbstractBoltProjectile;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -35,7 +35,7 @@ public class CursedBoltProjectile extends AbstractBoltProjectile {
     public static final Color CULTIST_DARK = new Color(48, 11, 13);
 
     public CursedBoltProjectile(Level level) {
-        super(MalumEntityTypes.CURSED_BOLT.get(), level);
+        super(MalumCultistEntityTypes.CURSED_BOLT.get(), level);
     }
 
     @Override

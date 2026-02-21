@@ -2,6 +2,7 @@ package com.sammy.malum.common.item.curiosities.weapons;
 
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.*;
@@ -78,7 +79,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                     effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(RandomHelper.randomBetween(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
                 }
                 effectBuilder.spawn(level);
-                SoundHelper.playSound(target, MalumSoundEvents.WEIGHT_OF_WORLDS_CUT.get(), SoundSource.PLAYERS, 2f, 0.75f);
+                SoundHelper.playSound(target, MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT.get(), SoundSource.PLAYERS, 2f, 0.75f);
             }
         }
     }

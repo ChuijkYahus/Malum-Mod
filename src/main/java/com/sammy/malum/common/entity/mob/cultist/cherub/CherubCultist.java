@@ -3,8 +3,9 @@ package com.sammy.malum.common.entity.mob.cultist.cherub;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitEnemyGoal;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitLeaderGoal;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -52,7 +53,7 @@ public class CherubCultist extends CultistMonster {
     protected int leaderCherubIndex;
 
     public CherubCultist(Level level) {
-        super(MalumEntityTypes.CHERUB.get(), level);
+        super(MalumCultistEntityTypes.CHERUB.get(), MalumCultistSoundEvents.CHERUB, level);
         moveControl = new CherubMoveControl(this);
     }
 

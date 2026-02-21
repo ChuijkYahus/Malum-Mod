@@ -82,8 +82,11 @@ public class IntroductionEntries {
                 .configureWidget(w -> w.setIcon(RAW_BRILLIANCE).setDesign(SMALL, RUNEWOOD, PAPER))
                 .addPage(new HeadlineTextItemPage("brilliance", RAW_BRILLIANCE.get()))
                 .addPage(new TextPage("brilliance.2"))
-                .addPage(CraftingPage.fullPage(BLOCK_OF_BRILLIANCE.get(), RAW_BRILLIANCE.get()))
                 .addPage(new SmeltingPage(new ItemStack(RAW_BRILLIANCE.get()), new ItemStack(REFINED_BRILLIANCE.get(), 2)))
+                .addPage(new CyclingPage(
+                        CraftingPage.fullPage(BLOCK_OF_BRILLIANCE.get(), REFINED_BRILLIANCE.get()),
+                        CraftingPage.fullPage(BLOCK_OF_RAW_BRILLIANCE.get(), RAW_BRILLIANCE.get())
+                ))
                 .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
         );
 

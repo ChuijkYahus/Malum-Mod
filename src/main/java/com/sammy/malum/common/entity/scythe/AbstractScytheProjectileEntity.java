@@ -2,10 +2,10 @@ package com.sammy.malum.common.entity.scythe;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -106,7 +106,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
                 returnTimer += 2;
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(),1.0f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
         }
         super.onHitEntity(result);
     }

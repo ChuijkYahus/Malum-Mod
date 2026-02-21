@@ -2,8 +2,8 @@ package com.sammy.malum.common.entity.scythe;
 
 import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.core.handlers.enchantment.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -138,7 +138,7 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
                         if (scytheOwner instanceof ServerPlayer player) {
                             ReboundHandler.pickupScythe(this, scythe, player);
                         }
-                        SoundHelper.playSound(scytheOwner, MalumSoundEvents.SCYTHE_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+                        SoundHelper.playSound(scytheOwner, MalumGearSoundEvents.SCYTHE_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
                         remove(RemovalReason.DISCARDED);
                     }
                 }
@@ -162,8 +162,8 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SPINS.get(), 0.6f * volumeScalar, pitch);
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SPINS.get(), 0.6f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
         }
     }
 

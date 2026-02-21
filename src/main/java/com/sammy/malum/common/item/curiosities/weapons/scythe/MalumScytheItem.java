@@ -7,6 +7,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
 
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -72,7 +73,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     }
 
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
-        return canSweep ? MalumSoundEvents.SCYTHE_SWEEP : MalumSoundEvents.SCYTHE_CUT;
+        return canSweep ? MalumGearSoundEvents.SCYTHE_SWEEP : MalumGearSoundEvents.SCYTHE_CUT;
     }
 
     @Override

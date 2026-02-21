@@ -3,7 +3,6 @@ package com.sammy.malum.common.category;
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.core.handlers.hiding.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
@@ -31,8 +30,10 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
         public static final String BLIGHT = "blight";
         public static final String TAINTED_ROCK = "tainted_rock";
         public static final String TWISTED_ROCK = "twisted_rock";
-        public static final String DROSS_STONE = "dross_stone";
-        public static final String THE_DUNGEON = "the_dungeon";
+
+        public static final String DUNGEON_REGALIA = "dungeon_regalia";
+        public static final String DUNGEON_ARCHITECTURE = "dungeon_architecture";
+        public static final String DUNGEON_ODDITIES = "dungeon_distortions";
 
         public MalumCreativeTab(Builder builder) {
                 super(MalumMod.MALUM, builder);
@@ -349,15 +350,15 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.RAW_SOULSTONE, MalumItems.CRUSHED_SOULSTONE, MalumItems.REFINED_SOULSTONE
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_BRILLIANCE, MalumItems.BRILLIANT_DEEPSLATE, MalumItems.BRILLIANT_STONE, MalumItems.RAW_BRILLIANCE,
-                                MalumItems.CRUSHED_BRILLIANCE, MalumItems.REFINED_BRILLIANCE
+                                MalumItems.BLOCK_OF_BRILLIANCE, MalumItems.BLOCK_OF_RAW_BRILLIANCE, MalumItems.BRILLIANT_DEEPSLATE, MalumItems.BRILLIANT_STONE,
+                                MalumItems.RAW_BRILLIANCE, MalumItems.CRUSHED_BRILLIANCE, MalumItems.REFINED_BRILLIANCE
                         ).nextLine()
                         .addItems(
                                 MalumItems.BLOCK_OF_BLAZING_QUARTZ, MalumItems.BLAZING_QUARTZ_ORE,
                                 MalumItems.BLAZING_QUARTZ
                         )
                         .addItems(
-                                MalumItems.DEEPSLATE_QUARTZ_ORE, MalumItems.NATURAL_QUARTZ_ORE,
+                                MalumItems.BLOCK_OF_NATURAL_QUARTZ, MalumItems.DEEPSLATE_QUARTZ_ORE, MalumItems.NATURAL_QUARTZ_ORE,
                                 MalumItems.NATURAL_QUARTZ
                         ).nextLine()
                         .addItems(
@@ -676,7 +677,34 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.TWISTED_ROCK_MOSAIC_WALL
                         )
                         .bake();
-                createCategory(DROSS_STONE)
+                createCategory(DUNGEON_REGALIA)
+                        .addItems(
+                                MalumItems.OMINOUS_ALTAR,
+                                MalumItems.OMINOUS_OBELISK
+                        )
+                        .addItems(
+                                MalumItems.BROKEN_BLADE,
+                                MalumItems.SHAPED_SLAB
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.IRON_CROWN,
+                                MalumItems.VEILED_EFFIGY,
+                                MalumItems.CORRUPT_EFFIGY,
+                                MalumItems.CRACKED_EFFIGY
+                        )
+                        .bake();
+                createCategory(DUNGEON_ARCHITECTURE)
+                        .addItems(
+                                MalumItems.ODD_SCRIPTURES_I,
+                                MalumItems.ODD_SCRIPTURES_II,
+                                MalumItems.ODD_SCRIPTURES_III,
+                                MalumItems.ODD_SCRIPTURES_IV,
+                                MalumItems.ODD_SCRIPTURES_V,
+                                MalumItems.ODD_SCRIPTURES_VI,
+                                MalumItems.ODD_SCRIPTURES_VII,
+                                MalumItems.ODD_SCRIPTURES_VIII,
+                                MalumItems.ODD_SCRIPTURES_IX
+                        )
                         .addItems(
                                 MalumItems.DROSS_STONE,
                                 MalumItems.POLISHED_DROSS_STONE,
@@ -730,21 +758,7 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.DROSS_STONE_BUTTON
                         )
                         .bake();
-                createCategory(THE_DUNGEON)
-                        .addItems(
-                                MalumItems.OMINOUS_ALTAR,
-                                MalumItems.OMINOUS_OBELISK
-                        )
-                        .addItems(
-                                MalumItems.BROKEN_BLADE,
-                                MalumItems.SHAPED_SLAB
-                        )
-                        .addItems(
-                                MalumItems.IRON_CROWN,
-                                MalumItems.VEILED_EFFIGY,
-                                MalumItems.CORRUPT_EFFIGY,
-                                MalumItems.CRACKED_EFFIGY
-                        ).nextLine()
+                createCategory(DUNGEON_ODDITIES)
                         .addItems(
                                 MalumItems.WRITHING_FLESH,
                                 MalumItems.COLUMNAR_FLESH,

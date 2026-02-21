@@ -1,6 +1,7 @@
 package com.sammy.malum.common.entity.mob.cultist.cardinal.goal;
 
 import com.sammy.malum.common.entity.mob.cultist.cardinal.CardinalCultist;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.ServerLevel;
 
 public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
@@ -26,7 +27,7 @@ public class CardinalRetaliationBlastGoal extends CardinalAvoidTargetGoal {
     @Override
     public void start() {
         super.start();
-        cardinal.level().broadcastEntityEvent(cardinal, CardinalCultist.RETALIATION_BLAST_ANIMATION);
+        cardinal.broadcastAnimation(CardinalCultist.QUICK_FIRE_ANIMATION, MalumCultistSoundEvents.CARDINAL_KNOCKBACK_CHARGE);
         cardinal.setAggressive(true);
     }
 

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block;
 
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;

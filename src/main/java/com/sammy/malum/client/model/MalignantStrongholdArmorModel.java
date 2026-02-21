@@ -14,6 +14,7 @@ import net.minecraft.client.player.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.systems.model.*;
+import team.lodestar.lodestone.systems.model.armor.*;
 
 public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("malignant_lead_armor"), "main");

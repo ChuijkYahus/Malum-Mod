@@ -339,6 +339,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> REFINED_SOULSTONE = register("refined_soulstone", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
     public static final DeferredHolder<Item, Item> BLOCK_OF_BRILLIANCE = register("block_of_brilliance", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_BRILLIANCE.get(), p));
+    public static final DeferredHolder<Item, Item> BLOCK_OF_RAW_BRILLIANCE = register("block_of_raw_brilliance", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_RAW_BRILLIANCE.get(), p));
     public static final DeferredHolder<Item, Item> BRILLIANT_DEEPSLATE = register("brilliant_deepslate", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BRILLIANT_DEEPSLATE.get(), p));
     public static final DeferredHolder<Item, Item> BRILLIANT_STONE = register("brilliant_stone", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BRILLIANT_STONE.get(), p));
     public static final DeferredHolder<Item, Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItems::DEFAULT_PROPERTIES, Item::new);
@@ -349,6 +350,7 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ_ORE = register("blazing_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLAZING_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> BLAZING_QUARTZ = register("blazing_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlazingQuartzItem(MalumBlocks.BLAZING_QUARTZ_CLUSTER.get(), 1600, p));
 
+    public static final DeferredHolder<Item, Item> BLOCK_OF_NATURAL_QUARTZ = register("block_of_natural_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_NATURAL_QUARTZ.get(), p));
     public static final DeferredHolder<Item, Item> DEEPSLATE_QUARTZ_ORE = register("deepslate_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> NATURAL_QUARTZ_ORE = register("natural_quartz_ore", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.NATURAL_QUARTZ_ORE.get(), p));
     public static final DeferredHolder<Item, Item> NATURAL_QUARTZ = register("natural_quartz", MalumItems::DEFAULT_PROPERTIES, (p) -> new ItemNameBlockItem(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get(), p));
@@ -742,6 +744,17 @@ public class MalumItems {
 
     public static final DeferredHolder<Item, Item> IRON_CROWN = register("iron_crown", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
+
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_I = register("odd_scriptures_i", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_I.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_II = register("odd_scriptures_ii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_II.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_III = register("odd_scriptures_iii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_III.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_IV = register("odd_scriptures_iv", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_IV.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_V = register("odd_scriptures_v", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_V.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VI = register("odd_scriptures_vi", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VI.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VII = register("odd_scriptures_vii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VII.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_VIII = register("odd_scriptures_viii", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_VIII.get(), p));
+    public static final DeferredHolder<Item, Item> ODD_SCRIPTURES_IX = register("odd_scriptures_ix", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.ODD_SCRIPTURES_IX.get(), p));
+
     public static final DeferredHolder<Item, Item> VEILED_EFFIGY = register("veiled_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.VEILED_EFFIGY.get(), p));
     public static final DeferredHolder<Item, Item> CORRUPT_EFFIGY = register("corrupt_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CORRUPT_EFFIGY.get(), p));
     public static final DeferredHolder<Item, Item> CRACKED_EFFIGY = register("cracked_effigy", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CRACKED_EFFIGY.get(), p));
@@ -837,11 +850,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOULWOOD_CHEST_BOAT = register("soulwood_chest_boat", () -> DEFAULT_PROPERTIES().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.SOULWOOD_BOAT_TYPE.getValue(), p));
     //endregion
 
-
-
-    public static Item skinHoldingItem(Item.Properties properties, ItemSkinComponent skin) {
-        return new Item(properties.component(MalumDataComponents.ITEM_SKIN, skin));
-    }
     //region cosmetics
     public static final DeferredHolder<Item, Item> ESOTERIC_SPOOL = register("esoteric_spool", MalumItems::COSMETIC_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> ANCIENT_WEAVE = register("ancient_weave", MalumItems::COSMETIC_PROPERTIES, p -> skinHoldingItem(p, ItemSkinComponent.ANCIENT_CLOTH));
@@ -869,7 +877,6 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> TRANS_PRIDEWEAVE = register("trans_prideweave", MalumItems::COSMETIC_PROPERTIES, p -> skinHoldingItem(p, ItemSkinComponent.TRANS));
 
     public static final DeferredHolder<Item, Item> TOPHAT = register("tophat", () -> COSMETIC_PROPERTIES().stacksTo(1), CurioTopHat::new);
-
     //endregion
 
     //region hidden items
@@ -894,6 +901,11 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> WEEPING_WELL_COLUMN_CAP = register("weeping_well_column_cap", MalumItems::HIDDEN_PROPERTIES, (p) -> new BlockItem(MalumBlocks.WEEPING_WELL_COLUMN_CAP.get(), p));
 
     //endregion
+
+
+    public static Item skinHoldingItem(Item.Properties properties, ItemSkinComponent skin) {
+        return new Item(properties.component(MalumDataComponents.ITEM_SKIN, skin));
+    }
 
     @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
     public static class ClientOnly {

@@ -6,6 +6,7 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import it.unimi.dsi.fastutil.objects.*;
@@ -223,7 +224,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                     setDeltaMovement(motion.lerp(returnMotion, 0.3f));
 
                     if (isAlive() && distanceTo(owner) < 2.5f) {
-                        SoundHelper.playSound(owner, MalumSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
+                        SoundHelper.playSound(owner, MalumGearSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             float cooldownScalar = hitCount.isEmpty() ? 0.25f : 1f;
                             TemporarilyDisabledItem.enable(player, slot);
@@ -340,7 +341,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                 var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
                 int delay = 8;
                 float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
-                SoundHelper.playSound(this, MalumSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                SoundHelper.playSound(this, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                 applyHatred(livingEntity);
                 for (int j = 0; j < slashCount; j++) {
                     int comboDelay = delay + j;
@@ -349,7 +350,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                                     .setAttacker(owner)
                                     .setDamageData(physicalDamageType, damage / slashCount, magicDamageType, magicDamage / slashCount, comboDelay)
                                     .setImpactParticleEffect(MalumParticleEffectTypes.SUNDERING_ANCHOR_SWEEP, new MalumNetworkedParticleEffectColorData(getSunderingAnchorSpirit()))
-                                    .setSound(MalumSoundEvents.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
+                                    .setSound(MalumGearSoundEvents.SUNDERING_ANCHOR_PROJECTILE_SWING, 1.25f, 1.5f, 0.7f));
                 }
 
                 selectNearestTarget(level);

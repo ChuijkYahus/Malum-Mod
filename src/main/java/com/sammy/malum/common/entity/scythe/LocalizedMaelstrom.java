@@ -1,8 +1,8 @@
 package com.sammy.malum.common.entity.scythe;
 
 import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
@@ -47,7 +47,7 @@ public class LocalizedMaelstrom extends AbstractScytheProjectileEntity {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, MalumSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
         }
     }
 }

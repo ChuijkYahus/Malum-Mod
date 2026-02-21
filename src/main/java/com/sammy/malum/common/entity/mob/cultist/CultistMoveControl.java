@@ -9,9 +9,10 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.mutable.MutableDouble;
-import org.joml.Vector3d;
-import team.lodestar.lodestone.helpers.DataHelper;
+import org.joml.*;
 import team.lodestar.lodestone.systems.easing.Easing;
+
+import java.lang.Math;
 
 public class CultistMoveControl extends MoveControl {
 
@@ -24,8 +25,6 @@ public class CultistMoveControl extends MoveControl {
     public final CultistMonster cultist;
 
     public BodyDirection direction = BodyDirection.DEFAULT;
-
-    public Vector3d motion = new Vector3d();
 
     public int strafeAdjustmentLimiter;
 
@@ -40,13 +39,16 @@ public class CultistMoveControl extends MoveControl {
 
     @Override
     public void tick() {
+        var movementData = cultist.getMovementData();
+        var movementDirection = movementData.getMovementDirection();
         double baseSpeed = cultist.getAttributeValue(Attributes.MOVEMENT_SPEED);
         float speed = (float) (speedModifier * baseSpeed);
-        float cultistSpeed = cultist.motion.length();
+        float cultistSpeed = movementData.getMotionLength();
         float delta = cultistSpeed / speed;
         float driftRemoval = delta * 0.25f;
         float acceleration = Mth.clamp(0.02f + driftRemoval, 0, 1) * speed;
-        motion.zero();
+
+        movementDirection.zero();
         switch (operation) {
             case MOVE_TO -> {
                 var wanted = getWantedPosition();
@@ -60,7 +62,7 @@ public class CultistMoveControl extends MoveControl {
                     float deceleration = Easing.CIRC_OUT.ease(length, 0, 1);
                     speed *= deceleration;
                 }
-                motion.set(direction);
+                movementDirection.set(direction);
                 tryJump(x, y, z);
                 rotateBody();
             }
@@ -84,7 +86,7 @@ public class CultistMoveControl extends MoveControl {
                 adjustStrafing(xForward, zForward, xSide, zSide);
                 double x = xForward.getValue() + xSide.getValue();
                 double z = zForward.getValue() + zSide.getValue();
-                motion.set(x, 0, z);
+                movementDirection.set(x, 0, z);
             }
             case WAIT -> {
                 acceleration = 0.1f;
@@ -93,11 +95,7 @@ public class CultistMoveControl extends MoveControl {
             }
         }
 
-        double x = DataHelper.approach(cultist.previousMotion.x, motion.x*speed, acceleration);
-        double y = DataHelper.approach(cultist.previousMotion.y, motion.y*speed, acceleration);
-        double z = DataHelper.approach(cultist.previousMotion.z, motion.z*speed, acceleration);
-        cultist.setMotion(x, y, z);
-
+        movementData.interpolate(speed, acceleration);
         resetValues();
     }
 

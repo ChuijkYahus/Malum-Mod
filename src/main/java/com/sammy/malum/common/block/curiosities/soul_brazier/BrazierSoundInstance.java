@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.soul_brazier;
 
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import team.lodestar.lodestone.systems.sound.CachedBlockEntitySoundInstance;
 
 public class BrazierSoundInstance extends CachedBlockEntitySoundInstance<SoulBrazierBlockEntity> {

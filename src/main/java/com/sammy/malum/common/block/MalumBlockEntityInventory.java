@@ -3,6 +3,7 @@ package com.sammy.malum.common.block;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
 
+import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;

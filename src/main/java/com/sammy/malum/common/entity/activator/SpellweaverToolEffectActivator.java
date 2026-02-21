@@ -6,6 +6,7 @@ import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -136,8 +137,8 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
     @Override
     public void collect(ServerLevel level) {
         var sound = destination.getTargetLocation().map(
-                u -> MalumSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
-                b -> MalumSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
+                u -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
+                b -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
         );
         SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {

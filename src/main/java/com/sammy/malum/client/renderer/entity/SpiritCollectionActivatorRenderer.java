@@ -16,6 +16,7 @@ import java.awt.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class SpiritCollectionActivatorRenderer extends EntityRenderer<SpiritCollectionActivator> {
+
     public final ItemRenderer itemRenderer;
 
     public SpiritCollectionActivatorRenderer(EntityRendererProvider.Context context) {
@@ -24,7 +25,6 @@ public class SpiritCollectionActivatorRenderer extends EntityRenderer<SpiritColl
         this.shadowRadius = 0;
         this.shadowStrength = 0;
     }
-
 
     @Override
     public void render(SpiritCollectionActivator entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {

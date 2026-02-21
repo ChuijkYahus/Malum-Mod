@@ -5,7 +5,7 @@ import com.sammy.malum.common.entity.activator.rite.BlockRiteEffectActivator;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteBlockEffect;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
-import com.sammy.malum.registry.common.MalumSoundEvents;
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;

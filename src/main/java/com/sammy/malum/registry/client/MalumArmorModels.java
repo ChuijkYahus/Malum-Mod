@@ -1,0 +1,96 @@
+package com.sammy.malum.registry.client;
+
+import com.sammy.malum.client.model.*;
+import com.sammy.malum.client.model.cosmetic.ScarfModel;
+import com.sammy.malum.client.model.cosmetic.ancient.AncientSoulHunterArmorModel;
+import com.sammy.malum.client.model.cosmetic.ancient.AncientSoulStainedSteelArmorModel;
+import com.sammy.malum.client.model.cosmetic.pride.PridewearArmorModel;
+import com.sammy.malum.client.model.cosmetic.pride.SlimPridewearArmorModel;
+import com.sammy.malum.client.model.cosmetic.risky.CommandoArmorModel;
+import com.sammy.malum.client.model.cosmetic.risky.ExecutionerArmorModel;
+import com.sammy.malum.client.model.cosmetic.ultrakill.UltrakillMachineArmorModel;
+
+import com.sammy.malum.client.model.mob.altar.AltarModel;
+import com.sammy.malum.client.model.mob.believer.BelieverModel;
+import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
+import com.sammy.malum.client.model.mob.cherub.CherubModel;
+import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
+import net.neoforged.neoforge.client.event.*;
+
+public class MalumArmorModels {
+
+    public static SoulHunterArmorModel SOUL_HUNTER_ARMOR;
+    public static AncientSoulHunterArmorModel ANCIENT_SOUL_HUNTER_ARMOR;
+
+    public static SoulStainedSteelArmorModel SOUL_STAINED_ARMOR;
+    public static AncientSoulStainedSteelArmorModel ANCIENT_SOUL_STAINED_STEEL_ARMOR;
+
+    public static MalignantStrongholdArmorModel MALIGNANT_LEAD_ARMOR;
+
+    public static CommandoArmorModel COMMANDO;
+    public static ExecutionerArmorModel EXECUTIONER;
+
+    public static UltrakillMachineArmorModel ULTRAKILL_MACHINE;
+
+    public static PridewearArmorModel PRIDEWEAR;
+    public static SlimPridewearArmorModel SLIM_PRIDEWEAR;
+
+    public static TopHatModel TOP_HAT;
+    public static TailModel TAIL_MODEL;
+
+    public static HeadOverlayModel HEAD_OVERLAY_MODEL;
+    public static ScarfModel SCARF;
+
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
+        event.registerLayerDefinition(BelieverModel.LAYER, BelieverModel::createBodyLayer);
+        event.registerLayerDefinition(CherubModel.LAYER, CherubModel::createBodyLayer);
+        event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);
+        event.registerLayerDefinition(EvangelistModel.LAYER, EvangelistModel::createBodyLayer);
+
+
+        event.registerLayerDefinition(SoulHunterArmorModel.LAYER, SoulHunterArmorModel::createBodyLayer);
+        event.registerLayerDefinition(SoulStainedSteelArmorModel.LAYER, SoulStainedSteelArmorModel::createBodyLayer);
+        event.registerLayerDefinition(MalignantStrongholdArmorModel.LAYER, MalignantStrongholdArmorModel::createBodyLayer);
+
+        event.registerLayerDefinition(CommandoArmorModel.LAYER, CommandoArmorModel::createBodyLayer);
+        event.registerLayerDefinition(ExecutionerArmorModel.LAYER, ExecutionerArmorModel::createBodyLayer);
+
+        event.registerLayerDefinition(UltrakillMachineArmorModel.LAYER, UltrakillMachineArmorModel::createBodyLayer);
+
+        event.registerLayerDefinition(AncientSoulStainedSteelArmorModel.LAYER, AncientSoulStainedSteelArmorModel::createBodyLayer);
+        event.registerLayerDefinition(AncientSoulHunterArmorModel.LAYER, AncientSoulHunterArmorModel::createBodyLayer);
+
+        event.registerLayerDefinition(PridewearArmorModel.LAYER, PridewearArmorModel::createBodyLayer);
+        event.registerLayerDefinition(SlimPridewearArmorModel.LAYER, SlimPridewearArmorModel::createBodyLayer);
+
+        event.registerLayerDefinition(TopHatModel.LAYER, TopHatModel::createBodyLayer);
+        event.registerLayerDefinition(TailModel.LAYER, TailModel::createBodyLayer);
+
+        event.registerLayerDefinition(HeadOverlayModel.LAYER, HeadOverlayModel::createBodyLayer);
+        event.registerLayerDefinition(ScarfModel.LAYER, ScarfModel::createBodyLayer);
+    }
+
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        SOUL_HUNTER_ARMOR = new SoulHunterArmorModel(event.getEntityModels().bakeLayer(SoulHunterArmorModel.LAYER));
+        SOUL_STAINED_ARMOR = new SoulStainedSteelArmorModel(event.getEntityModels().bakeLayer(SoulStainedSteelArmorModel.LAYER));
+        MALIGNANT_LEAD_ARMOR = new MalignantStrongholdArmorModel(event.getEntityModels().bakeLayer(MalignantStrongholdArmorModel.LAYER));
+
+        COMMANDO = new CommandoArmorModel(event.getEntityModels().bakeLayer(CommandoArmorModel.LAYER));
+        EXECUTIONER = new ExecutionerArmorModel(event.getEntityModels().bakeLayer(ExecutionerArmorModel.LAYER));
+
+        ULTRAKILL_MACHINE = new UltrakillMachineArmorModel(event.getEntityModels().bakeLayer(UltrakillMachineArmorModel.LAYER));
+
+        ANCIENT_SOUL_HUNTER_ARMOR = new AncientSoulHunterArmorModel(event.getEntityModels().bakeLayer(AncientSoulHunterArmorModel.LAYER));
+        ANCIENT_SOUL_STAINED_STEEL_ARMOR = new AncientSoulStainedSteelArmorModel(event.getEntityModels().bakeLayer(AncientSoulStainedSteelArmorModel.LAYER));
+
+        PRIDEWEAR = new PridewearArmorModel(event.getEntityModels().bakeLayer(PridewearArmorModel.LAYER));
+        SLIM_PRIDEWEAR = new SlimPridewearArmorModel(event.getEntityModels().bakeLayer(SlimPridewearArmorModel.LAYER));
+
+        TOP_HAT = new TopHatModel(event.getEntityModels().bakeLayer(TopHatModel.LAYER));
+        TAIL_MODEL = new TailModel(event.getEntityModels().bakeLayer(TailModel.LAYER));
+
+        HEAD_OVERLAY_MODEL = new HeadOverlayModel(event.getEntityModels().bakeLayer(HeadOverlayModel.LAYER));
+        SCARF = new ScarfModel(event.getEntityModels().bakeLayer(ScarfModel.LAYER));
+    }
+}
