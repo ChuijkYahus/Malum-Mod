@@ -29,7 +29,8 @@ import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.enchanting.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 import team.lodestar.lodestone.systems.item.tools.magic.*;
 
 import java.util.*;

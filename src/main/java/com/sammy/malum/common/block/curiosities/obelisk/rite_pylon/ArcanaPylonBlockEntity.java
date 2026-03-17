@@ -22,14 +22,14 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator, IItemHandlerSupplier {
+public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator, IInventoryCapabilityProvider {
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
     private static final IAltarAccelerator.AltarAcceleratorType ARCANA_PYLON = new IAltarAccelerator.AltarAcceleratorType(4, "arcana_pylon");
@@ -45,7 +45,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     private static final Vec3 ITEM_OFFSET = new Vec3(0.5f, 2.25f, 0.5f);
     private static final int WARMUP_DURATION = 20;
 
-    protected LodestoneBlockEntityInventory inventory;
+    protected LodestoneItemStackHandler inventory;
     protected SpiritArcanaType spirit;
     protected int unspentSpiritFuel;
     protected int visualEffectStrength;
@@ -53,7 +53,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
 
     public ArcanaPylonBlockEntity(BlockPos pos, BlockState state) {
         super(MalumBlockEntities.ARCANA_PYLON.get(), STRUCTURE.get(), pos, state);
-        inventory = MalumSpiritBlockEntityInventory.singleSpiritStack(this).onContentsChanged(this::updateSpirit);
+        inventory = MalumSpiritBlockItemStackHandler.singleSpiritStack(this).onContentsChanged(this::updateSpirit);
     }
 
     @Override
@@ -202,7 +202,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
         setDirty();
     }
 
-    public LodestoneBlockEntityInventory getInventory() {
+    public LodestoneItemStackHandler getInventory() {
         return inventory;
     }
 

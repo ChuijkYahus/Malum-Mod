@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneEntityBlock;
 
 public class ManaMoteBlock extends LodestoneEntityBlock<ManaMoteBlockEntity> {
 

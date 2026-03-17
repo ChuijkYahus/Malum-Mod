@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneEntityBlock;
 
 import java.util.function.Supplier;
 

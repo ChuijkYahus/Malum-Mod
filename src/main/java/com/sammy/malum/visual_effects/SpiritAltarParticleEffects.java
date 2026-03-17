@@ -14,8 +14,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
@@ -30,7 +30,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 public class SpiritAltarParticleEffects {
 
     public static SpiritLike getCentralSpiritType(SpiritAltarBlockEntity altar) {
-        final LodestoneBlockEntityInventory spiritInventory = altar.spiritInventory;
+        final LodestoneItemStackHandler spiritInventory = altar.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
         if (spiritCount > 1) {

@@ -4,7 +4,7 @@ import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import static net.minecraft.tags.BlockTags.*;
 

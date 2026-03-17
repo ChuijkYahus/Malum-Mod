@@ -28,15 +28,16 @@ import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.multiblock.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 import javax.annotation.Nullable;
 import java.util.function.*;
 
 @SuppressWarnings("deprecation")
-public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements IItemHandlerSupplier {
+public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements IInventoryCapabilityProvider {
 
     private static final Vec3 PYLON_ITEM_OFFSET = new Vec3(0.5f, 2.5f, 0.5f);
     private static final int HORIZONTAL_RANGE = 6;
@@ -65,8 +66,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
         }
     }
 
-    public LodestoneBlockEntityInventory inventory;
-    public LodestoneBlockEntityInventory spiritInventory;
+    public LodestoneItemStackHandler inventory;
+    public LodestoneItemStackHandler spiritInventory;
     public SpiritRepairRecipe recipe;
 
     public RepairPylonState state = RepairPylonState.IDLE;
@@ -80,8 +81,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
 
     public RepairPylonCoreBlockEntity(BlockEntityType<? extends RepairPylonCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
-        inventory = MalumBlockEntityInventory.singleItemStack(this).onContentsChanged(this::updateRecipe);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this, 4).onContentsChanged(this::updateRecipe);
+        inventory = MalumBlockItemStackHandler.singleItemStack(this).onContentsChanged(this::updateRecipe);
+        spiritInventory = MalumSpiritBlockItemStackHandler.spiritStacks(this, 4).onContentsChanged(this::updateRecipe);
     }
 
     public RepairPylonCoreBlockEntity(BlockPos pos, BlockState state) {

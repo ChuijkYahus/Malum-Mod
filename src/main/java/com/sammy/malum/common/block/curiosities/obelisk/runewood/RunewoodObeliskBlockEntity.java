@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import team.lodestar.lodestone.systems.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import java.util.function.*;
 

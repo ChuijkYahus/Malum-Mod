@@ -19,7 +19,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.items.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
 public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedEntityBlock<T> {
     public static final VoxelShape SHAPE = makeShape();

@@ -8,18 +8,18 @@ import net.minecraft.data.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.systems.datagen.*;
-import team.lodestar.lodestone.systems.datagen.itemsmith.*;
-import team.lodestar.lodestone.systems.datagen.providers.*;
+import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
+import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
+import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
+import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSystemData;
 
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
 import static com.sammy.malum.registry.common.item.MalumItems.*;
-import static team.lodestar.lodestone.systems.datagen.ItemModelSmithTypes.*;
 
-public class MalumItemModelDatagen extends LodestoneItemModelProvider {
+public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
     public MalumItemModelDatagen(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, MalumMod.MALUM, existingFileHelper);
@@ -31,10 +31,10 @@ public class MalumItemModelDatagen extends LodestoneItemModelProvider {
 
         items.removeIf(i -> i.get() instanceof BlockItem);
 
-        ItemModelSmithData data = new ItemModelSmithData(this, items::remove);
-        PARENTED_ITEM.apply(ResourceLocation.parse("item/air")).act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR).forEach(r -> r.applyModifier(result -> {
+        ItemModelSystemData data = new ItemModelSystemData(this, items::remove);
+        ItemModelSmith.parentedItem(ResourceLocation.parse("item/air"), false).act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR).forEach(r -> r.applyModifier(result -> {
             var separateTransforms = result.addSeparateTransformData();
-            var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelNameAffix("_gui").act(data, result::getItem);
+            var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelPathAffix("_gui").act(data, result::item);
             separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
             separateTransforms.perspective(ItemDisplayContext.FIXED, guiModel.parentedToThis(existingFileHelper));
             separateTransforms.base(getBuilder("item/air"));

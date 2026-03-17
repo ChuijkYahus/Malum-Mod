@@ -6,7 +6,7 @@ import com.sammy.malum.common.recipe.spirit_repair.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.registries.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 public class MalumRecipeTypes {
 

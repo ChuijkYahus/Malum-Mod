@@ -4,7 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import team.lodestar.lodestone.systems.datagen.providers.sound.*;
+import team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneBlockSoundEventSystem;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -13,7 +13,7 @@ import java.util.function.*;
 import static com.sammy.malum.registry.common.sound.MalumSoundEvents.*;
 
 
-public class MalumSoundDatagen extends LodestoneBlockSoundEventProvider {
+public class MalumSoundDatagen extends LodestoneBlockSoundEventSystem {
 
     public List<MalumSoundDatagenWrapper> partials = List.of(
             new MalumBlockSoundDatagen(this), new MalumGearSoundDatagen(this), new MalumMobSoundDatagen(this)

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING;
 
@@ -39,7 +39,7 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (be instanceof ItemStandBlockEntity stand) {
-            return ItemHandlerHelper.calcRedstoneFromInventory(stand.getInventory(Direction.UP));
+            return ItemHandlerHelper.calcRedstoneFromInventory(stand.inventory);
         }
         return 0;
     }

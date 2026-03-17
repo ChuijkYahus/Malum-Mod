@@ -1,0 +1,84 @@
+package com.sammy.malum.common.block;
+
+import com.sammy.malum.common.item.spirit.*;
+
+import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.registry.common.sound.*;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
+import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
+
+import java.util.Collection;
+import java.util.function.*;
+
+public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
+
+    public static <T extends LodestoneBlockEntity> MalumBlockItemStackHandlerBuilder create(T parent, int slotCount) {
+        return new MalumBlockItemStackHandlerBuilder(parent, slotCount);
+    }
+
+    protected final LodestoneBlockEntity parent;
+
+    public MalumBlockItemStackHandler(LodestoneBlockEntity parent, int slotCount, int allowedItemSize, Predicate<ItemStack> inputPredicate, Runnable contentsChangeBehavior) {
+        super(slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
+        this.parent = parent;
+    }
+
+    @Override
+    public InventoryInteractionResult extractItem(ServerLevel level, Player player) {
+        var result = super.extractItem(level, player);
+        if (result.wasSuccessful()) {
+            ItemStack stack = result.original();
+            var soundEvent = getExtractSound(stack);
+            playSound(level, soundEvent, stack);
+        }
+        return result;
+    }
+
+    @Override
+    public InventoryInteractionResult insertItem(ServerLevel level, ItemStack stack) {
+        var result = super.insertItem(level, stack);
+        if (result.wasSuccessful()) {
+            SoundEvent soundEvent = getInsertSound(stack);
+            playSound(level, soundEvent, stack);
+        }
+        return result;
+    }
+
+    public void playSound(ServerLevel level, SoundEvent soundEvent, ItemStack stack) {
+        var blockPos = parent.getBlockPos();
+        float pitch = RandomHelper.randomBetween(level.getRandom(), 1f, 1.2f);
+        level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 0.7f, pitch);
+        if (stack.getItem() instanceof BlockItem blockItem) {
+            var block = blockItem.getBlock();
+            var blockSoundType = block.getSoundType(block.defaultBlockState(), level, blockPos, null);
+            float blockSoundVolume = blockSoundType.getVolume() * 0.4f;
+            float blockSoundPitch = blockSoundType.getPitch() * 1.2f;
+            level.playSound(null, blockPos, blockSoundType.getHitSound(), SoundSource.BLOCKS, blockSoundVolume, blockSoundPitch);
+        }
+    }
+
+    public void spendSpiritsOnRecipe(Collection<SpiritIngredient> spirits) {
+        for (SpiritIngredient spiritIngredient : spirits) {
+            for (ItemStack spirit : getNonEmptyStacks()) {
+                if (spiritIngredient.test(spirit)) {
+                    spirit.shrink(spiritIngredient.count());
+                    break;
+                }
+            }
+        }
+    }
+
+    public SoundEvent getExtractSound(ItemStack stack) {
+        return stack.getItem() instanceof SpiritShardItem ? MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get() : MalumSoundEvents.PEDESTAL_ITEM_PICKUP.get();
+    }
+
+    public SoundEvent getInsertSound(ItemStack stack) {
+        return stack.getItem() instanceof SpiritShardItem ? MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get() : MalumSoundEvents.PEDESTAL_ITEM_INSERT.get();
+    }
+}

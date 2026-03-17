@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.augment.*;
+import com.sammy.malum.common.item.augment.core.CoreAugmentItem;
 import com.sammy.malum.common.item.curiosities.armor.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
@@ -21,9 +22,7 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.data.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.block.*;
-import team.lodestar.lodestone.systems.datagen.*;
-import team.lodestar.lodestone.systems.datagen.providers.LodestoneItemTagsProvider;
+import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneItemTagsSystem;
 
 import java.util.HashSet;
 import java.util.concurrent.*;
@@ -35,7 +34,7 @@ import static net.minecraft.world.item.Items.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
 @SuppressWarnings("unchecked")
-public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
+public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
     public MalumItemTagDatagen(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(pOutput, pLookupProvider, pBlockTags, MalumMod.MALUM, existingFileHelper);
@@ -51,7 +50,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = ITEMS.getEntries();
         MalumWoodSetDatagen.addTags(this);
-        copyTagsFromBlockProperties(blocks);
+        addTagsFromBlockProperties(blocks);
 
 
         tag(ItemTags.BOOKSHELF_BOOKS).add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
@@ -83,29 +82,11 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
                 .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
 
-        tag(SOUL_SHATTER_CAPABLE_WEAPON)
-                .addOptional(ResourceLocation.parse("irons_spellbooks:graybeard_staff"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:artificer_cane"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:lightning_rod"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:ice_staff"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:blood_staff"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:magehunter"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:keeper_flamberge"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:spellbreaker"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:amethyst_rapier"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:pyrium_staff"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:legionnaire_flamberge"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:decrepit_scythe"))
-                .addOptional(ResourceLocation.parse("irons_spellbooks:hellrazor"))
-                .addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe")); //TODO: Whenever BiC updates to 1.21, check if this is still valid! -Atobá
-
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
                 .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
                 .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get(), SUNDERING_ANCHOR.get())
                 .remove(EDGE_OF_DELIVERANCE.get());
-
-        tag(MAGIC_CAPABLE_WEAPON).addOptional(ResourceLocation.parse("born_in_chaos_v1:nightmare_scythe"));
 
         tag(SCYTHES)
                 .add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
@@ -185,6 +166,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
                 NATURAL_QUARTZ.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(AUGMENTS, AugmentItem.class);
+        tag(CORE_AUGMENTS, CoreAugmentItem.class);
         tag(METAL_NODES, NodeItem.class);
 
         tag(IMPETUS, ImpetusItem.class);
@@ -313,28 +295,5 @@ public class MalumItemTagDatagen extends LodestoneItemTagsProvider {
             }
         }
         return appender;
-    }
-
-    public void safeCopy(TagKey<net.minecraft.world.item.Item> itemTag) {
-        safeCopy(MalumBlocks.BLOCKS, TagKey.create(BuiltInRegistries.BLOCK.key(), itemTag.location()), itemTag);
-    }
-
-    public void safeCopy(TagKey<Block> blockTag, TagKey<net.minecraft.world.item.Item> itemTag) {
-        safeCopy(MalumBlocks.BLOCKS, blockTag, itemTag);
-    }
-
-    public void safeCopy(DeferredRegister<Block> blocks, TagKey<Block> blockTag, TagKey<net.minecraft.world.item.Item> itemTag) {
-        for (DeferredHolder<Block, ? extends Block> object : blocks.getEntries()) {
-            final Block block = object.get();
-            if (block.properties() instanceof LodestoneBlockProperties lodestoneBlockProperties) {
-                final LodestoneDatagenBlockData datagenData = lodestoneBlockProperties.getDatagenData();
-                if (datagenData.getTags().contains(blockTag)) {
-                    final net.minecraft.world.item.Item item = block.asItem();
-                    if (!item.equals(AIR)) {
-                        tag(itemTag).add(item);
-                    }
-                }
-            }
-        }
     }
 }

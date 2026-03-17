@@ -2,7 +2,6 @@ package com.sammy.malum.core.systems.artifice;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
 import com.sammy.malum.common.item.augment.ImpurityStabilizer;
 import com.sammy.malum.common.item.augment.core.CausticCatalystItem;
 import com.sammy.malum.common.item.augment.core.ResonanceTuner;
@@ -34,6 +33,7 @@ public class ArtificeAttributeData {
             Codec.INT.fieldOf("sympathyBuffedCycles").forGetter(v -> v.sympathyBuffedCycles)
     ).apply(obj, ((attributes, modifierPositions, tunedAttribute, demandsFuel, chainProcessingBonus, sympathyDamageStacks, sympathyBuffStrength, sympathyBuffedCycles) ->
             new ArtificeAttributeData(attributes, modifierPositions, tunedAttribute.orElse(null), demandsFuel, chainProcessingBonus, sympathyDamageStacks, sympathyBuffStrength, sympathyBuffedCycles))));
+
     public final ArtificeAttributeValue focusingSpeed = new ArtificeAttributeValue(FOCUSING_SPEED);
     public final ArtificeAttributeValue instability = new ArtificeAttributeValue(INSTABILITY);
     public final ArtificeAttributeValue fuelUsageRate = new ArtificeAttributeValue(FUEL_USAGE_RATE);
@@ -56,6 +56,7 @@ public class ArtificeAttributeData {
             chainFocusingChance, damageAbsorptionChance, restorationChance, weaknessTuning,
             tuningPotency, tuningStrain
     );
+
     public final List<BlockPos> modifierPositions = new ArrayList<>();
     @Nullable
     private ArtificeInfluenceData influenceData;
@@ -75,22 +76,6 @@ public class ArtificeAttributeData {
         target.applyAugments(this::applyAugment);
     }
 
-    public ArtificeAttributeData applyModifierInfluence(ArtificeInfluenceData influenceData) {
-        this.influenceData = influenceData;
-        if (influenceData != null) {
-            for (ArtificeModifierSourceInstance modifier : influenceData.modifiers()) {
-                modifier.modifyFocusing(this::applyModifier);
-                modifier.applyAugments(this::applyAugment);
-                this.modifierPositions.add(modifier.sourcePosition);
-                if (modifier.consumesFuel()) {
-                    demandsFuel = true;
-                }
-            }
-        }
-        applyTuning();
-        return this;
-    }
-
     public ArtificeAttributeData(List<ArtificeAttributeValue> attributes, List<BlockPos> modifierPositions, ArtificeAttributeType tunedAttribute,
                                  boolean demandsFuel, float chainProcessingBonus, int sympathyDamageStacks, float sympathyBuffStrength, int sympathyBuffedCycles) {
         for (int i = 0; i < this.attributes.size(); i++) {
@@ -107,6 +92,22 @@ public class ArtificeAttributeData {
 
     public ArtificeAttributeData() {
 
+    }
+
+    public ArtificeAttributeData applyInfluences(ArtificeInfluenceData influenceData) {
+        this.influenceData = influenceData;
+        if (influenceData != null) {
+            for (ArtificeModifierSourceInstance modifier : influenceData.modifiers()) {
+                modifier.modifyFocusing(this::applyModifier);
+                modifier.applyAugments(this::applyAugment);
+                this.modifierPositions.add(modifier.sourcePosition);
+                if (modifier.consumesFuel()) {
+                    demandsFuel = true;
+                }
+            }
+        }
+        applyTuning();
+        return this;
     }
 
     public void applyTuning() {
@@ -131,11 +132,10 @@ public class ArtificeAttributeData {
     }
 
     public void applyAugment(ItemStack augment) {
-        if (!augment.has(MalumDataComponents.ARTIFICE_AUGMENT))
-        {
+        var augmentData = augment.get(MalumDataComponents.ARTIFICE_AUGMENT);
+        if (augmentData == null) {
             throw new IllegalArgumentException();
         }
-        ArtificeAugmentDataComponent augmentData = augment.get(MalumDataComponents.ARTIFICE_AUGMENT);
         for (ArtificeModifier modifier : augmentData.modifiers()) {
             applyModifier(modifier);
         }

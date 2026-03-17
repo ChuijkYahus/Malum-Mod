@@ -8,7 +8,7 @@ import com.sammy.malum.registry.common.item.*;
 
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.awt.*;
 

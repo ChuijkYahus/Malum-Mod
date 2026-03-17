@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.block.redstone;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlockEntity;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 
 public class WavebankerRenderer extends SpiritDiodeRenderer<WaveBankerBlockEntity> {

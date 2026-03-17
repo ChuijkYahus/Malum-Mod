@@ -52,6 +52,7 @@ public class MalumTags {
         public static final TagKey<Item> MATERIALS = tag("materials");
         public static final TagKey<Item> MINERALS = tag("minerals");
         public static final TagKey<Item> AUGMENTS = tag("augments");
+        public static final TagKey<Item> CORE_AUGMENTS = tag("augments");
         public static final TagKey<Item> METAL_NODES = tag("metal_nodes");
         public static final TagKey<Item> IMPETUS = tag("impetus");
         public static final TagKey<Item> METAL_IMPETUS = tag("metal_impetus");

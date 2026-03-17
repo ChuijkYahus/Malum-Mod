@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
-import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory;
+import team.lodestar.lodestone.systems.blockentity.LodestoneItemStackHandler;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
@@ -28,7 +28,7 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
     public void render(SpiritAltarBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        LodestoneBlockEntityInventory inventory = blockEntityIn.spiritInventory;
+        LodestoneItemStackHandler inventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!inventory.isEmpty()) {
             for (int i = 0; i < inventory.slotCount; i++) {

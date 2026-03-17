@@ -6,16 +6,16 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
 
-public class AugmentBlockEntityInventory extends MalumBlockEntityInventory {
+public class AugmentBlockItemStackHandler extends MalumBlockItemStackHandler {
 
-    public static AugmentBlockEntityInventory augmentInventory(LodestoneBlockEntity blockEntity, int slotCount) {
-        return new AugmentBlockEntityInventory(blockEntity, slotCount, false);
+    public static AugmentBlockItemStackHandler augmentInventory(LodestoneBlockEntity blockEntity, int slotCount) {
+        return new AugmentBlockItemStackHandler(blockEntity, slotCount, false);
     }
-    public static AugmentBlockEntityInventory coreAugmentInventory(LodestoneBlockEntity blockEntity, int slotCount) {
-        return new AugmentBlockEntityInventory(blockEntity, slotCount, true);
+    public static AugmentBlockItemStackHandler coreAugmentInventory(LodestoneBlockEntity blockEntity, int slotCount) {
+        return new AugmentBlockItemStackHandler(blockEntity, slotCount, true);
     }
 
-    public AugmentBlockEntityInventory(LodestoneBlockEntity blockEntity, int slotCount, boolean coreAugment) {
+    public AugmentBlockItemStackHandler(LodestoneBlockEntity blockEntity, int slotCount, boolean coreAugment) {
         super(blockEntity, slotCount, 1);
         setInputPredicate(s -> s.has(MalumDataComponents.ARTIFICE_AUGMENT) && coreAugment == s.get(MalumDataComponents.ARTIFICE_AUGMENT).isCoreAugment());
     }

@@ -20,9 +20,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.client.model.generators.*;
-import team.lodestar.lodestone.systems.datagen.ItemModelSmithTypes;
-import team.lodestar.lodestone.systems.datagen.providers.LodestoneBlockStateProvider;
-import team.lodestar.lodestone.systems.datagen.statesmith.BlockStateSmith;
+import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
+import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
+import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSmith;
 
 import java.util.function.Function;
 
@@ -31,14 +31,6 @@ import static com.sammy.malum.MalumMod.malumPath;
 @SuppressWarnings("rawtypes")
 public class MalumBlockStateSmithTypes {
 
-    //TODO: Move this goober to lodestone
-    public static BlockStateSmith<FlowerPotBlock> POTTED_PLANT = new BlockStateSmith<>(FlowerPotBlock.class, MalumItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ResourceLocation texture = provider.getBlockTexture(name.replace("potted_", ""));
-        provider.simpleBlock(block, provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/flower_pot_cross")).texture("plant", texture));
-    });
-
-    //TODO: Move this goober to lodestone
     public static BlockStateSmith<BlightedCoverageBlock> COVERING_BLOCK = new BlockStateSmith<>(BlightedCoverageBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
         ModelFile model = provider.models().withExistingParent(name, MalumMod.malumPath("block/templates/template_covering"))
@@ -336,15 +328,15 @@ public class MalumBlockStateSmithTypes {
     public static BlockStateSmith<EtherBrazierBlock> ETHER_BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
     public static BlockStateSmith<EtherCressetBlock> ETHER_CRESSET_BLOCK = new BlockStateSmith<>(EtherCressetBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_cresset"), MalumBlockStateSmithTypes::makeEtherCresset);
 
-    public static void makeEtherTorch(EtherTorchBlock block, LodestoneBlockStateProvider provider) {
+    public static void makeEtherTorch(EtherTorchBlock block, LodestoneBlockStateSystem provider) {
         provider.simpleBlock(block, provider.models().getExistingFile(malumPath("block/ether_torch")));
     }
 
-    public static void makeEtherWallTorch(EtherWallTorchBlock block, LodestoneBlockStateProvider provider) {
+    public static void makeEtherWallTorch(EtherWallTorchBlock block, LodestoneBlockStateSystem provider) {
         provider.horizontalBlock(block, provider.models().getExistingFile(malumPath("block/ether_torch_wall")), 90);
     }
 
-    public static void makeEtherCandles(EtherCandleBlock block, LodestoneBlockStateProvider provider) {
+    public static void makeEtherCandles(EtherCandleBlock block, LodestoneBlockStateSystem provider) {
         var one = malumPath("block/ether_candle_one_candle");
         var two = malumPath("block/ether_candle_two_candles");
         var three = malumPath("block/ether_candle_three_candles");
@@ -365,7 +357,7 @@ public class MalumBlockStateSmithTypes {
         });
     }
 
-    public static void makeEtherBrazier(EtherBrazierBlock block, LodestoneBlockStateProvider provider) {
+    public static void makeEtherBrazier(EtherBrazierBlock block, LodestoneBlockStateSystem provider) {
         var name = provider.getBlockName(block);
         var textureName = name.replaceFirst("_iridescent", "");
         var brazier = provider.getBlockTexture(textureName);
@@ -380,7 +372,7 @@ public class MalumBlockStateSmithTypes {
                 .partialState().with(EtherBrazierBlock.HANGING, true).with(EtherBrazierBlock.ROTATED, true).modelForState().modelFile(hanging).rotationY(90).addModel();
     }
 
-    public static void makeEtherCresset(EtherCressetBlock block, LodestoneBlockStateProvider provider) {
+    public static void makeEtherCresset(EtherCressetBlock block, LodestoneBlockStateSystem provider) {
         var name = provider.getBlockName(block);
         var textureName = name.replaceFirst("_iridescent", "");
         var parent = malumPath("block/templates/template_ether_cresset");

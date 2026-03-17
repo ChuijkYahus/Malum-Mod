@@ -7,7 +7,7 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class RiteChannelBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 

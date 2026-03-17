@@ -1,4 +1,4 @@
-package com.sammy.malum.datagen;
+package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.enchantment.*;
@@ -10,9 +10,9 @@ import net.neoforged.neoforge.common.data.*;
 
 import java.util.concurrent.*;
 
-public class MalumEnchantmentTags extends EnchantmentTagsProvider {
+public class MalumEnchantmentTagDatagen extends EnchantmentTagsProvider {
 
-    public MalumEnchantmentTags(PackOutput pOutput, CompletableFuture<Provider> pProvider, ExistingFileHelper existingFileHelper) {
+    public MalumEnchantmentTagDatagen(PackOutput pOutput, CompletableFuture<Provider> pProvider, ExistingFileHelper existingFileHelper) {
         super(pOutput, pProvider, MalumMod.MALUM, existingFileHelper);
     }
 

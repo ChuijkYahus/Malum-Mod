@@ -2,23 +2,24 @@ package com.sammy.malum.common.block.storage;
 
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity implements IMalumSpecialItemAccessPoint {
 
     public MalumItemHolderBlockEntity(BlockEntityType<? extends MalumItemHolderBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        inventory = MalumBlockEntityInventory.singleItemStack(this);
+        inventory = MalumBlockItemStackHandler.create(this, 1).build();
     }
 
     @Override
-    public LodestoneBlockEntityInventory getSuppliedInventory() {
+    public LodestoneItemStackHandler getSuppliedInventory() {
         return inventory;
     }
 
@@ -35,11 +36,9 @@ public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity i
     }
 
     @Override
-    public void tick() {
-        if (level.isClientSide) {
-            if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
-                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.4f, 2);
-            }
+    public void clientTick(Level level) {
+        if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
+            SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.4f, 2);
         }
     }
 

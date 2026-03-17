@@ -13,7 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import org.joml.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.*;
 
@@ -33,7 +33,7 @@ public class RepairPylonRenderer implements BlockEntityRenderer<RepairPylonCoreB
     public void render(RepairPylonCoreBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        LodestoneBlockEntityInventory inventory = blockEntityIn.spiritInventory;
+        LodestoneItemStackHandler inventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!inventory.isEmpty()) {
             for (int i = 0; i < inventory.slotCount; i++) {

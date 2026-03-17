@@ -49,7 +49,7 @@ public class DataGenerators {
         var geasTagDatagen = new MalumGeasTagDatagen(output, provider, helper);
         var entityTagDatagen = new MalumEntityTypeTagDatagen(output, provider, helper);
         var biomeTagDatagen = new MalumBiomeTagDatagen(output, registryProvider, helper);
-        var enchantmentTagDatagen = new MalumEnchantmentTags(output, registryProvider, helper);
+        var enchantmentTagDatagen = new MalumEnchantmentTagDatagen(output, registryProvider, helper);
         var componentTagDatagen = new MalumDataComponentTypeTagDatagen(output, provider, helper);
         var damageTypeTagDatagen = new MalumDamageTypeTagDatagen(output, registryProvider, helper);
 

@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 public class RepairPylonComponentBlock extends MultiblockComponentBlock {
 

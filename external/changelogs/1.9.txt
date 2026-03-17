@@ -50,6 +50,9 @@ Pact of the Lone Druid
 - Damaging effect only kicks in when beneath half health, but grows stronger with each equipped armor piece
 - This change is meant to allow you to wear *some* armor, without getting totally screwed over
 
+Oath of Unmaker's Distain 
+- Fixed old penalty still being applied
+
 # Tweaks
 - Tweaked the datadriven format of the cthonic gold/layered ore feature, exposing a lot more of how it works to the datadriven format
 # Bugfixes

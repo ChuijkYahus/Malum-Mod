@@ -32,7 +32,7 @@ public interface IArtificeAcceptor {
         invalidateModifiers(level);
         var attributes = new ArtificeAttributeData(this);
         var influence = ArtificeInfluenceData.createFreshData(getLookupRadius(), level, pos, attributes);
-        setAttributes(attributes.applyModifierInfluence(influence));
+        setAttributes(attributes.applyInfluences(influence));
         bindModifiers(level);
         BlockStateHelper.updateState(level, pos);
     }

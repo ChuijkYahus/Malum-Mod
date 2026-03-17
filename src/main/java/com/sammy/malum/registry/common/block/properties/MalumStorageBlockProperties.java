@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import static com.sammy.malum.registry.common.MalumTags.BlockTags.HEAT_SOURCES;
 import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;

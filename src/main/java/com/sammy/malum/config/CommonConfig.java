@@ -54,11 +54,11 @@ public class CommonConfig extends LodestoneConfig {
 
     public static ConfigValueHolder<Boolean> IRONS_SPELLBOOKS_SPIRIT_DAMAGE = new ConfigValueHolder<>(MALUM, "common/compat/irons_spellbooks", (builder ->
             builder.comment("Should Iron's Spellbooks' magic damage count as Soul Damage?")
-                    .define("ironsSpellbooksPlayerSpiritDrops", true)));
+                    .define("ironsSpellbooksPlayerSpiritDrops", false)));
 
     public static ConfigValueHolder<Boolean> IRONS_SPELLBOOKS_NON_PLAYER_SPIRIT_DAMAGE = new ConfigValueHolder<>(MALUM, "common/compat/irons_spellbooks", (builder ->
             builder.comment("Should Iron's Spellbooks' magic damage when dealt by non-players count as Soul Damage")
-                    .define("ironsSpellbooksNonPlayerSpiritDrops", true)));
+                    .define("ironsSpellbooksNonPlayerSpiritDrops", false)));
 
     public CommonConfig(ModConfigSpec.Builder builder) {
         super(MALUM, "common", builder);

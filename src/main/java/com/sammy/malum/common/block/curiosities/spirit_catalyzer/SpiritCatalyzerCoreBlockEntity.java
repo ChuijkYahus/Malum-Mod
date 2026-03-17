@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.spirit_catalyzer;
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.core.systems.artifice.ArtificeModifierSourceInstance;
 import com.sammy.malum.core.systems.artifice.IArtificeModifierSource;
-import com.sammy.malum.common.block.AugmentBlockEntityInventory;
+import com.sammy.malum.common.block.AugmentBlockItemStackHandler;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.*;
@@ -17,28 +17,31 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.IItemHandler;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackMultiHandler;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IItemHandlerSupplier {
+public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IInventoryCapabilityProvider {
 
     public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
     public static final Vec3 CATALYZER_ITEM_OFFSET = new Vec3(0.5f, 2f, 0.5f);
     public static final Vec3 CATALYZER_AUGMENT_OFFSET = new Vec3(0.5f, 2.75f, 0.5f);
 
-    public LodestoneBlockEntityInventory inventory;
-    public LodestoneBlockEntityInventory augmentInventory;
+    public MalumBlockItemStackHandler inventory;
+    public MalumBlockItemStackHandler augmentInventory;
+    public ItemStackMultiHandler inventoryHandler;
     public CatalyzerArtificeModifierSourceInstance modifier;
     public float burnTicks;
 
     public SpiritCatalyzerCoreBlockEntity(BlockEntityType<? extends SpiritCatalyzerCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
-        inventory = MalumBlockEntityInventory.singleItemStack(this).onContentsChanged(()->triggerRecalibration(level, pos));
-        augmentInventory = AugmentBlockEntityInventory.augmentInventory(this, 1).onContentsChanged(()->triggerRecalibration(level, pos));
+        inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::triggerRecalibration).build();
+        augmentInventory = MalumBlockItemStackHandler.create(this, 1).onlyAugments().onContentsChanged(this::triggerRecalibration).build();
+        inventoryHandler = new ItemStackMultiHandler(inventory, augmentInventory);
     }
 
     public SpiritCatalyzerCoreBlockEntity(BlockPos pos, BlockState state) {
@@ -65,19 +68,8 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
         if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.CONSUME;
         }
-        var heldStack = pPlayer.getItemInHand(pHand);
-        boolean isAugment = heldStack.has(MalumDataComponents.ARTIFICE_AUGMENT);
-        if (!isAugment || heldStack.isEmpty()) {
-            var result = inventory.interact(serverLevel, pPlayer, pHand);
-            if (!result.isEmpty()) {
-                return ItemInteractionResult.SUCCESS;
-            }
-        }
-        if (isAugment || heldStack.isEmpty()) {
-            var augment = augmentInventory.interact(serverLevel, pPlayer, pHand);
-            if (!augment.isEmpty()) {
-                return ItemInteractionResult.SUCCESS;
-            }
+        if (inventoryHandler.interact(serverLevel, pPlayer, pHand)) {
+            return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.FAIL;
     }
@@ -112,5 +104,9 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
         inventory.load(registries, compound);
         augmentInventory.load(registries, compound, "augmentInventory");
         super.loadAdditional(compound, registries);
+    }
+
+    public void triggerRecalibration() {
+        triggerRecalibration(level, getBlockPos());
     }
 }

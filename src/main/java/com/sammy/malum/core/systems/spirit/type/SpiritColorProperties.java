@@ -1,7 +1,7 @@
 package com.sammy.malum.core.systems.spirit.type;
 
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.awt.*;

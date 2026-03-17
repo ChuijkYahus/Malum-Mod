@@ -8,7 +8,8 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.ModList;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 import vectorwing.farmersdelight.common.utility.TextUtils;
 
 public class FarmersDelightCompat {

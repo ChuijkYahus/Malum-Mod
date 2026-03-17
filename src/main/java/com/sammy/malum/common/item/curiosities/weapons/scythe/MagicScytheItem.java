@@ -8,7 +8,8 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 
 public class MagicScytheItem extends MalumScytheItem implements ISpiritAffiliatedItem {
 

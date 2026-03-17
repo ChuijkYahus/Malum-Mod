@@ -23,7 +23,7 @@ import net.minecraft.world.level.levelgen.synth.*;
 import net.minecraft.world.level.material.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.*;

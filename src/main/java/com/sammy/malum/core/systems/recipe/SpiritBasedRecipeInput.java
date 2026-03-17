@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.recipe;
 
+import com.sammy.malum.common.block.MalumBlockItemStackHandler;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -14,6 +15,10 @@ public class SpiritBasedRecipeInput implements RecipeInput {
 
     public SpiritBasedRecipeInput(ItemStack stack, ItemStack spirit) {
         this(stack, List.of(spirit));
+    }
+
+    public SpiritBasedRecipeInput(MalumBlockItemStackHandler mainInventory, MalumBlockItemStackHandler spiritInventory) {
+        this(mainInventory.getNonEmptyStacks(), spiritInventory.getNonEmptyStacks());
     }
 
     public SpiritBasedRecipeInput(ItemStack stack, List<ItemStack> spirits) {

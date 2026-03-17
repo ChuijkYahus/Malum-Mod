@@ -3,7 +3,7 @@ package com.sammy.malum.registry.common.block.properties;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 public class MalumOreBlockProperties {
 

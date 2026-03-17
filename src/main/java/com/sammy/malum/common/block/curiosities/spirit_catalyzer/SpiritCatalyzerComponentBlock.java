@@ -54,19 +54,6 @@ public class SpiritCatalyzerComponentBlock extends MultiblockComponentBlock {
         builder.add(HORIZONTAL_FACING);
     }
 
-    @Override
-    public boolean hasAnalogOutputSignal(BlockState pState) {
-        return true;
-    }
-
-    @Override
-    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
-        if (pLevel.getBlockEntity(pPos) instanceof MultiBlockComponentEntity component) {
-            IItemHandler inv = Capabilities.ItemHandler.BLOCK.getCapability(pLevel, pPos, pState, component, null);
-            if (inv != null) return ItemHandlerHelper.calcRedstoneFromInventory(inv);
-        }
-        return 0;
-    }
 
     public static VoxelShape makeNorthSouthShape() {
         VoxelShape shape = Shapes.empty();

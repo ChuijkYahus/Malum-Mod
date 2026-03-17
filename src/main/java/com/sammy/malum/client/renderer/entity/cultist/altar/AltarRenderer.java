@@ -11,7 +11,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 @OnlyIn(Dist.CLIENT)
 public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {
