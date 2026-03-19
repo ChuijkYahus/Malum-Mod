@@ -21,7 +21,7 @@ import net.neoforged.neoforge.capabilities.IBlockCapabilityProvider;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class WeaversWorkbenchBlockEntity extends LodestoneBlockEntity implements IBlockCapabilityProvider<IItemHandler, Direction> {
 

@@ -19,10 +19,12 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import javax.annotation.*;
@@ -45,15 +47,15 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     private static final Vec3 ITEM_OFFSET = new Vec3(0.5f, 2.25f, 0.5f);
     private static final int WARMUP_DURATION = 20;
 
-    protected LodestoneItemStackHandler inventory;
-    protected SpiritArcanaType spirit;
+    public LodestoneItemStackHandler inventory;
+    public SpiritArcanaType spirit;
     protected int unspentSpiritFuel;
     protected int visualEffectStrength;
     protected int timer;
 
     public ArcanaPylonBlockEntity(BlockPos pos, BlockState state) {
         super(MalumBlockEntities.ARCANA_PYLON.get(), STRUCTURE.get(), pos, state);
-        inventory = MalumSpiritBlockItemStackHandler.singleSpiritStack(this).onContentsChanged(this::updateSpirit);
+        inventory = MalumBlockItemStackHandler.create(this, 1).onlySpirits().onContentsChanged(this::updateSpirit).build();
     }
 
     @Override
@@ -127,37 +129,38 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     }
 
     @Override
-    public void tick() {
-        if (level instanceof ServerLevel serverLevel) {
-            if (spirit != null) {
-                if (timer == 0) {
-                    triggerPassiveEffects(serverLevel);
-                    timer = 100;
-                } else {
-                    timer--;
-                }
-            }
+    public void serverTick(ServerLevel level) {
+        if (spirit == null) {
+            return;
         }
-        if (spirit != null) {
-            if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
-                if (level.isClientSide) {
-                    SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.55f, 2);
-                }
-            } else {
-                if (unspentSpiritFuel == 0) {
-                    if (visualEffectStrength > 0) {
-                        visualEffectStrength--;
-                        if (visualEffectStrength == 0) {
-                            spirit = null;
-                            setDirty();
-                        }
-                        return;
-                    }
-                }
-            }
+        if (timer-- <= 0) {
+            triggerPassiveEffects(level);
+            timer = 100;
+        }
+    }
+
+    @Override
+    public void commonTick(Level level) {
+        var stack = inventory.getStackInSlot(0);
+        if (stack.getItem() instanceof SpiritShardItem || hasLeftoverSpirit()) {
             if (visualEffectStrength < WARMUP_DURATION) {
                 visualEffectStrength++;
             }
+            return;
+        }
+        if (visualEffectStrength > 0) {
+            visualEffectStrength--;
+            if (visualEffectStrength == 0) {
+                spirit = null;
+                setDirty();
+            }
+        }
+    }
+
+    @Override
+    public void clientTick(Level level) {
+        if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
+            SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.55f, 2);
         }
     }
 
@@ -202,12 +205,8 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
         setDirty();
     }
 
-    public LodestoneItemStackHandler getInventory() {
-        return inventory;
-    }
-
-    public SpiritArcanaType getSpirit() {
-        return spirit;
+    public boolean hasLeftoverSpirit() {
+        return spirit != null && unspentSpiritFuel > 0;
     }
 
     public float getGlowDelta() {

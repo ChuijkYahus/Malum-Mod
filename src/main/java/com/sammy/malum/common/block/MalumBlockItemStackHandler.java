@@ -3,11 +3,13 @@ package com.sammy.malum.common.block;
 import com.sammy.malum.common.item.spirit.*;
 
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
@@ -48,6 +50,19 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
             playSound(level, soundEvent, stack);
         }
         return result;
+    }
+    @Override
+    public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+        if (stack.is(MalumTags.ItemTags.SPIRITS)) {
+            for (int i = 0; i < getSlots(); i++) {
+                if (i != slot) {
+                    ItemStack stackInSlot = getStackInSlot(i);
+                    if (!stackInSlot.isEmpty() && stackInSlot.is(stack.getItem()))
+                        return false;
+                }
+            }
+        }
+        return super.isItemValid(slot, stack);
     }
 
     public void playSound(ServerLevel level, SoundEvent soundEvent, ItemStack stack) {

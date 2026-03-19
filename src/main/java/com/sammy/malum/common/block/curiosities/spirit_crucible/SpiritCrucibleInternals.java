@@ -50,7 +50,7 @@ public class SpiritCrucibleInternals {
             float speed = attributes.focusingSpeed.getValue(attributes);
             attributes.getInfluenceData(level).ifPresent(d -> d.tickInfluences(level, crucible));
             crucible.progress += speed;
-            if (crucible.progress >= recipe.time) {
+            if (crucible.progress >= recipe.getTime()) {
                 completeFocusingCycle(level, crucible);
             }
         } else {
@@ -85,7 +85,7 @@ public class SpiritCrucibleInternals {
             SuspiciousDeviceItem.blowUp(level, pos);
         }
         if (WarpingEngineItem.skipForward(level, pos, attributes)) {
-            crucible.progress = recipe.time - 10 * speed;
+            crucible.progress = recipe.getTime() - 10 * speed;
             return;
         }
         crucible.progress = 0;
@@ -127,8 +127,9 @@ public class SpiritCrucibleInternals {
         int durabilityCost = 0;
         if (!ShieldingApparatusItem.shieldImpetus(level, crucible.getBlockPos(), attributes)) {
             var recipe = crucible.recipe;
-            if (recipe.durabilityCost != 0 && impetus.isDamageableItem()) {
-                durabilityCost = recipe.durabilityCost;
+            int recipeCost = recipe.getDurabilityCost();
+            if (recipeCost != 0 && impetus.isDamageableItem()) {
+                durabilityCost = recipeCost;
                 if (instability > 0 && random.nextFloat() < instability) {
                     durabilityCost *= 2;
                     if (instability > 1) {

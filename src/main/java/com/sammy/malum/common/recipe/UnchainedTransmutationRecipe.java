@@ -6,27 +6,30 @@ import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
+import java.util.*;
+
+@SuppressWarnings("NullableProblems")
 public class UnchainedTransmutationRecipe extends LodestoneInWorldRecipe<SingleRecipeInput> {
 
     public static final MapCodec<UnchainedTransmutationRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
-            Ingredient.CODEC.fieldOf("input").forGetter((recipe) -> recipe.ingredient),
+            Ingredient.CODEC.fieldOf("input").forGetter((recipe) -> recipe.input),
             ItemStack.CODEC.fieldOf("result").forGetter((recipe) -> recipe.output),
             Codec.STRING.optionalFieldOf("group", "").forGetter((recipe) -> recipe.group)
     ).apply(obj, UnchainedTransmutationRecipe::new));
 
     public static final String NAME = "unchained_transmutation";
 
-    public final Ingredient ingredient;
+    protected final Ingredient input;
+    protected final ItemStack output;
 
-    public final ItemStack output;
+    protected final String group;
 
-    public final String group;
-
-    public UnchainedTransmutationRecipe(Ingredient ingredient, ItemStack output, String group) {
+    public UnchainedTransmutationRecipe(Ingredient input, ItemStack output, String group) {
         super(MalumRecipeSerializers.SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER.get(), MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), output);
-        this.ingredient = ingredient;
+        this.input = input;
         this.output = output;
         this.group = group;
     }
@@ -38,6 +41,13 @@ public class UnchainedTransmutationRecipe extends LodestoneInWorldRecipe<SingleR
 
     @Override
     public boolean matches(SingleRecipeInput input, Level level) {
-        return this.ingredient.test(input.item());
+        return this.input.test(input.item());
+    }
+
+    public Optional<Block> createOutput() {
+        if (output.getItem() instanceof BlockItem blockItem) {
+            return Optional.of(blockItem.getBlock());
+        }
+        return Optional.empty();
     }
 }

@@ -119,7 +119,7 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> BlockEntityType.Builder.of(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build(null));
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        eve
+
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IInventoryCapabilityProvider::getInventory);

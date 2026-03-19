@@ -4,7 +4,7 @@ import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class AugmentBlockItemStackHandler extends MalumBlockItemStackHandler {
 
