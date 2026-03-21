@@ -21,7 +21,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneEntityBlock;
 
 import java.util.Arrays;
 import java.util.Locale;

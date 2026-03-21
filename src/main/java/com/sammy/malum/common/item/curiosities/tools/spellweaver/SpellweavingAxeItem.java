@@ -10,7 +10,8 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 import team.lodestar.lodestone.systems.item.tools.magic.*;
 
 public class SpellweavingAxeItem extends MagicAxeItem implements ISpiritAffiliatedItem, ISpellweavingTool {

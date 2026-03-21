@@ -7,7 +7,7 @@ import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.systems.multiblock.*;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import java.util.function.*;
 

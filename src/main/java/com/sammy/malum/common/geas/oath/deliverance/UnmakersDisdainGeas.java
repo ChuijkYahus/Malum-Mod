@@ -42,14 +42,6 @@ public class UnmakersDisdainGeas extends GeasEffect {
     }
 
     @Override
-    public void malignantCritEvent(MalignantCritEvent.Pre event, LivingEntity attacker) {
-        float health = attacker.getHealth() / attacker.getMaxHealth();
-        if (health <= 0.8f) {
-            event.setCanceled(true);
-        }
-    }
-
-    @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();

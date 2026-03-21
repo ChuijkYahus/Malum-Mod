@@ -13,7 +13,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;

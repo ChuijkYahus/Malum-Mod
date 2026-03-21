@@ -5,7 +5,7 @@ import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import com.sammy.malum.registry.common.block.MalumBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
-import team.lodestar.lodestone.systems.multiblock.MultiBlockStructure;
+import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 import java.util.function.Supplier;
 

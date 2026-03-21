@@ -18,7 +18,7 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 

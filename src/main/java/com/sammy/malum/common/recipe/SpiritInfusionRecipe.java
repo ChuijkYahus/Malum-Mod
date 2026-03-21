@@ -15,7 +15,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.*;
 

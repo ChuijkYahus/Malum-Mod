@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
 import net.neoforged.neoforge.registries.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;

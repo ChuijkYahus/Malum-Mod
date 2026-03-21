@@ -15,7 +15,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
@@ -49,8 +49,7 @@ public class SpiritCatalyzerCoreBlock<T extends SpiritCatalyzerCoreBlockEntity> 
     @Override
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof SpiritCatalyzerCoreBlockEntity catalyzer) {
-            IItemHandler inv = Capabilities.ItemHandler.BLOCK.getCapability(pLevel, pPos, pState, catalyzer, null);
-            if (inv != null) return ItemHandlerHelper.calcRedstoneFromInventory(inv);
+            return ItemHandlerHelper.calcRedstoneFromInventory(catalyzer.inventory);
         }
         return 0;
     }

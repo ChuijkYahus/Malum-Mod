@@ -11,7 +11,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import team.lodestar.lodestone.handlers.screenparticle.ParticleEmitterHandler;
 import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;

@@ -10,7 +10,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.event.entity.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.*;
 

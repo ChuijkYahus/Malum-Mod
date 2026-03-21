@@ -8,8 +8,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import team.lodestar.lodestone.systems.block.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class AbstractGustGizmoBlock<T extends AbstractGustGizmoBlockEntity> extends LodestoneEntityBlock<T> {
 

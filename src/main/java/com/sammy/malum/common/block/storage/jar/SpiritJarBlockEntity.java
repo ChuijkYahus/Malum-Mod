@@ -25,12 +25,12 @@ import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 import java.util.*;
 import java.util.function.Supplier;
 
-public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IItemHandlerSupplier {
+public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
     public SpiritJarBlockEntity(BlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);

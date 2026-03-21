@@ -10,7 +10,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class BelieverModel extends CultistHumanoidModel<BelieverCultist> {

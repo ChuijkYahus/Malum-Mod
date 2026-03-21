@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.RandomHelper;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;

@@ -10,7 +10,7 @@ import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.mutable.MutableDouble;
 import org.joml.*;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.lang.Math;
 

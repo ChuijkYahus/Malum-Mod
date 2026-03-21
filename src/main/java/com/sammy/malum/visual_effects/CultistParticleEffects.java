@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.helpers.VecHelper;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;

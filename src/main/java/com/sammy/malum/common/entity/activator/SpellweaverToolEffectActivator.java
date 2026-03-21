@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.*;
 

@@ -11,8 +11,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
 
 import javax.annotation.*;
@@ -23,7 +23,7 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 public class RepairPylonParticleEffects {
 
     public static SpiritLike getCentralSpiritType(RepairPylonCoreBlockEntity pylon) {
-        final LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
+        final LodestoneItemStackHandler spiritInventory = pylon.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
         if (spiritCount > 1) {
@@ -58,7 +58,7 @@ public class RepairPylonParticleEffects {
             }
         }
 
-        LodestoneBlockEntityInventory spiritInventory = pylon.spiritInventory;
+        LodestoneItemStackHandler spiritInventory = pylon.spiritInventory;
         int spiritsRendered = 0;
         for (int i = 0; i < spiritInventory.slotCount; i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);

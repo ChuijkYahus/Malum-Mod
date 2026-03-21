@@ -22,8 +22,9 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
-import team.lodestar.lodestone.systems.easing.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;

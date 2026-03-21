@@ -12,7 +12,7 @@ import net.minecraft.util.*;
 import net.neoforged.neoforge.client.event.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 
 import java.lang.Math;

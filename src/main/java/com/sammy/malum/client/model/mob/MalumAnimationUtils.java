@@ -4,7 +4,7 @@ import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Mob;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.Consumer;
 

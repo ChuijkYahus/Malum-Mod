@@ -55,7 +55,7 @@ import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 import java.util.*;
 
@@ -119,13 +119,14 @@ public class MalumBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> BlockEntityType.Builder.of(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build(null));
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CATALYZER.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, REPAIR_PYLON.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ITEM_STAND.get(), IItemHandlerSupplier::getInventory);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ITEM_PEDESTAL.get(), IItemHandlerSupplier::getInventory);
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CATALYZER.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, REPAIR_PYLON.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ITEM_STAND.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ITEM_PEDESTAL.get(), IInventoryCapabilityProvider::getInventory);
     }
 
     public static Block[] getBlocks(Class<?>... blockClasses) {

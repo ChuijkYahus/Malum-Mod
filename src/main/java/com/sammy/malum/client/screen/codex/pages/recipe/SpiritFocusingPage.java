@@ -10,7 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.Item;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.function.Predicate;
 

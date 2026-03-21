@@ -6,7 +6,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import org.joml.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 

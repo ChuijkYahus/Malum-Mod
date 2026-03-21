@@ -37,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 
 import java.util.UUID;

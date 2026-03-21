@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.SoundHelper;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.UUID;
 

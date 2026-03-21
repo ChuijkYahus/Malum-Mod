@@ -5,7 +5,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.items.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 public class RepairPylonCoreBlock<T extends RepairPylonCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
 

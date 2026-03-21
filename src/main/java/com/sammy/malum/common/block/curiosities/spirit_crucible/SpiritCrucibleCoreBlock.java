@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import team.lodestar.lodestone.systems.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
 public class SpiritCrucibleCoreBlock<T extends SpiritCrucibleCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
     public static final VoxelShape SHAPE = makeShape();
@@ -28,8 +28,7 @@ public class SpiritCrucibleCoreBlock<T extends SpiritCrucibleCoreBlockEntity> ex
     @Override
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof SpiritCrucibleCoreBlockEntity crucible) {
-            IItemHandler inv = Capabilities.ItemHandler.BLOCK.getCapability(pLevel, pPos, pState, crucible, null);
-            if (inv != null) return ItemHandlerHelper.calcRedstoneFromInventory(inv);
+            return ItemHandlerHelper.calcRedstoneFromInventory(crucible.inventoryHandler);
         }
         return 0;
     }

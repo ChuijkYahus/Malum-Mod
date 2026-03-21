@@ -4,7 +4,7 @@ import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class RitualPlinthBlockEntity extends LodestoneBlockEntity {
 

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.soul_brazier;
 
-import com.sammy.malum.common.block.MalumBlockEntityInventory;
-import com.sammy.malum.common.block.MalumSpiritBlockEntityInventory;
+import com.sammy.malum.common.block.MalumBlockItemStackHandler;
+import com.sammy.malum.common.block.MalumSpiritBlockItemStackHandler;
 import com.sammy.malum.common.recipe.SoulBindingRecipe;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
@@ -35,8 +35,8 @@ import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.recipe.LodestoneRecipeType;
 
 import javax.annotation.*;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IItemHandlerSupplier {
+public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
     public static final StringRepresentable.EnumCodec<BrazierState> CODEC = StringRepresentable.fromEnum(BrazierState::values);
 
@@ -69,8 +69,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
     public static final Vec3 BRAZIER_GEAS_ICON_OFFSET = new Vec3(0.5f, 4f, 0.5f);
     private static final int WARMUP_DURATION = 40;
     private static final int SOULBINDING_DURATION = 600;
-    public LodestoneBlockEntityInventory inventory;
-    public LodestoneBlockEntityInventory spiritInventory;
+    public LodestoneItemStackHandler inventory;
+    public LodestoneItemStackHandler spiritInventory;
 
     public Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, spiritInventory);
 
@@ -92,8 +92,8 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IIte
 
     public SoulBrazierBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.SOUL_BRAZIER.get(), pos, state);
-        inventory = MalumBlockEntityInventory.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this).onContentsChanged(this::updateRecipe);
+        inventory = MalumBlockItemStackHandler.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
+        spiritInventory = MalumSpiritBlockItemStackHandler.spiritStacks(this).onContentsChanged(this::updateRecipe);
     }
 
     @Override

@@ -3,7 +3,8 @@ package com.sammy.malum.compat.create;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 
 public class CreateCompat {
     public static boolean LOADED;

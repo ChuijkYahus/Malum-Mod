@@ -8,7 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.event.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 

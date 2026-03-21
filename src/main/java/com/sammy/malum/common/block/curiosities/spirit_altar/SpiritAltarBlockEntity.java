@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
-import com.sammy.malum.common.block.MalumBlockEntityInventory;
-import com.sammy.malum.common.block.MalumSpiritBlockEntityInventory;
+import com.sammy.malum.common.block.MalumBlockItemStackHandler;
+import com.sammy.malum.common.block.MalumSpiritBlockItemStackHandler;
 import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
@@ -33,18 +33,19 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackMultiHandler;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.function.Supplier;
 
-public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IItemHandlerSupplier {
+public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
     public static final Vec3 ALTAR_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
     public static final int HORIZONTAL_RANGE = 4;
@@ -63,20 +64,20 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     public List<BlockPos> acceleratorPositions = new ArrayList<>();
     public List<IAltarAccelerator> accelerators = new ArrayList<>();
 
+    public MalumBlockItemStackHandler inventory;
+    public MalumBlockItemStackHandler extrasInventory;
+    public MalumBlockItemStackHandler spiritInventory;
+    public ItemStackMultiHandler inventoryHandler;
 
-    public LodestoneBlockEntityInventory inventory;
-    public LodestoneBlockEntityInventory extrasInventory;
-    public LodestoneBlockEntityInventory spiritInventory;
     public Map<SpiritInfusionRecipe, AltarCraftingHelper.Ranking> possibleRecipes = new HashMap<>();
     public SpiritInfusionRecipe recipe;
 
-    public Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, spiritInventory);
-
     public SpiritAltarBlockEntity(BlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        inventory = MalumBlockEntityInventory.singleStackNotSpirit(this).onContentsChanged(this::recalculateRecipes);
-        extrasInventory = MalumBlockEntityInventory.stacksNotSpirits(this, 8);
-        spiritInventory = MalumSpiritBlockEntityInventory.spiritStacks(this).onContentsChanged(this::recalculateRecipes);
+        inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::recalculateRecipes).build();
+        extrasInventory = MalumBlockItemStackHandler.create(this, 32).noSpirits().build();
+        spiritInventory = MalumBlockItemStackHandler.create(this, 9).onlySpirits().onContentsChanged(this::recalculateRecipes).build();
+        inventoryHandler = new ItemStackMultiHandler(inventory, extrasInventory, spiritInventory);
     }
 
     public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
@@ -85,7 +86,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
 
     @Override
     public IItemHandler getInventory(Direction direction) {
-        return exposedInventory.get();
+        return inventory;
     }
 
     @Override
@@ -152,19 +153,14 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     @Override
-    public ItemInteractionResult onUse(Player pPlayer, InteractionHand pHand) {
+    public ItemInteractionResult onUse(Player player, InteractionHand hand) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.CONSUME;
         }
-        var spiritResult = spiritInventory.interact(serverLevel, pPlayer, pHand);
-        if (!spiritResult.isEmpty()) {
+        if (inventoryHandler.interact(serverLevel, player, hand)) {
             return ItemInteractionResult.SUCCESS;
         }
-        var result = inventory.interact(serverLevel, pPlayer, pHand);
-        if (!result.isEmpty()) {
-            return ItemInteractionResult.SUCCESS;
-        }
-        return super.onUse(pPlayer, pHand);
+        return super.onUse(player, hand);
     }
 
     @Override
@@ -219,16 +215,12 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
     }
 
     private void recalculateRecipes() {
-        recalculateRecipes(level);
-    }
-
-    private void recalculateRecipes(Level level) {
         boolean hadRecipe = recipe != null;
-        inventory.updateInventoryCaches();
+        inventory.updateCaches();
         ItemStack stack = inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
-            var all = LodestoneRecipeType.getRecipes(level, MalumRecipeTypes.SPIRIT_INFUSION.get());
-            Collection<SpiritInfusionRecipe> recipes = all.stream().filter(r -> r.matches(new SpiritBasedRecipeInput(stack, spiritInventory.nonEmptyItemStacks), level)).toList();
+            var input = new SpiritBasedRecipeInput(inventory, spiritInventory);
+            var recipes = LodestoneRecipeSearch.search(level, MalumRecipeTypes.SPIRIT_INFUSION::get).findRecipes(input);
             possibleRecipes.clear();
             IItemHandlerModifiable pedestalItems = AltarCraftingHelper.createPedestalInventoryCapture(AltarCraftingHelper.capturePedestals(level, worldPosition));
             for (SpiritInfusionRecipe recipe : recipes) {
@@ -276,7 +268,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
                             .customData(new SpiritAltarEatItemParticleEffect.SpiritAltarEatItemEffectData(provider.getAccessPointBlockPos(), providedStack))
                             .spawn(level);
                     var extractedStack = providerInventory.extractItem(0, nextIngredient.count(), false);
-                    extrasInventory.insertItem(extractedStack);
+                    extrasInventory.insertItem(level, extractedStack);
                     break;
                 }
             }
@@ -297,15 +289,8 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         progress -= (int) (progress * 0.2f);
         stack.shrink(recipe.input.count());
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
-        for (SpiritIngredient spirit : recipe.spirits) {
-            for (int i = 0; i < spiritInventory.slotCount; i++) {
-                ItemStack spiritStack = spiritInventory.getStackInSlot(i);
-                if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.count());
-                    break;
-                }
-            }
-        }
+
+        spendSpiritsOnRecipe();
         MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
@@ -316,6 +301,17 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IIte
         recalculateRecipes();
         notifyObservers();
         setDirty();
+    }
+
+    public void spendSpiritsOnRecipe() {
+        for (SpiritIngredient spiritIngredient : recipe.spirits) {
+            for (ItemStack spirit : spiritInventory.getNonEmptyStacks()) {
+                if (spiritIngredient.test(spirit)) {
+                    spirit.shrink(spiritIngredient.count());
+                    break;
+                }
+            }
+        }
     }
 
     public void recalibrateAccelerators() {

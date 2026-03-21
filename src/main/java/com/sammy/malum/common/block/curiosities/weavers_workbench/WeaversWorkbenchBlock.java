@@ -5,7 +5,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import team.lodestar.lodestone.systems.block.LodestoneEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneEntityBlock;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 

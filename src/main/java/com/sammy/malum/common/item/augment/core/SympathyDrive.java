@@ -14,7 +14,7 @@ public class SympathyDrive extends CoreAugmentItem {
                 new ArtificeModifier(ArtificeAttributeType.MISFORTUNE_REVERSAL, 1f));
     }
 
-    public static void completeCycle(ArtificeAttributeData attributes, int durabilityCost) {
+    public static void completeFocusingCycle(ArtificeAttributeData attributes, int durabilityCost) {
         float misfortuneReversal = attributes.misfortuneReversal.getValue(attributes);
         if (misfortuneReversal > 0) {
             attributes.sympathyDamageStacks += durabilityCost;

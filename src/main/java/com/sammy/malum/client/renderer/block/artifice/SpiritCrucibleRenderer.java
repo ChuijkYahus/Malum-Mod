@@ -21,8 +21,8 @@ import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 
 import java.lang.Math;
@@ -43,7 +43,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
 
         Level level = Minecraft.getInstance().level;
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        LodestoneBlockEntityInventory inventory = blockEntityIn.spiritInventory;
+        LodestoneItemStackHandler inventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!inventory.isEmpty()) {
             for (int i = 0; i < inventory.slotCount; i++) {
@@ -81,7 +81,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
             poseStack.popPose();
         }
 
-        final LodestoneBlockEntityInventory augmentInventory = blockEntityIn.augmentInventory;
+        final LodestoneItemStackHandler augmentInventory = blockEntityIn.augmentInventory;
 
         int augmentsRendered = 0;
         if (!augmentInventory.isEmpty()) {

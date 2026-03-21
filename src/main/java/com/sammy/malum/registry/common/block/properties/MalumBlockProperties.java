@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.Tags;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import java.awt.*;
 

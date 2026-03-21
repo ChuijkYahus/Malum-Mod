@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.LodestoneArmorItem;
 
 public abstract class MalumArmorItem extends LodestoneArmorItem {
 

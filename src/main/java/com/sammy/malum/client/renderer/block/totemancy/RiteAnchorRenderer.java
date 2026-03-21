@@ -14,7 +14,7 @@ import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;

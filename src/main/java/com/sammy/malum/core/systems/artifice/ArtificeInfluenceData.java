@@ -3,6 +3,7 @@ package com.sammy.malum.core.systems.artifice;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import team.lodestar.lodestone.helpers.NBTHelper;
@@ -11,6 +12,16 @@ import team.lodestar.lodestone.helpers.block.BlockEntityHelper;
 import java.util.*;
 
 public record ArtificeInfluenceData(Set<ArtificeModifierSourceInstance> modifiers) {
+
+    public void tickInfluences(ServerLevel level, IArtificeAcceptor acceptor) {
+        var attributes = acceptor.getAttributes();
+        for (ArtificeModifierSourceInstance modifier : modifiers()) {
+            modifier.tickFocusing(attributes);
+            if (!modifier.canModifyFocusing(attributes)) {
+                acceptor.recalibrateAccelerators(level);
+            }
+        }
+    }
 
     public static ArtificeInfluenceData createFreshData(int lookupRange, Level level, BlockPos pos, ArtificeAttributeData attributes) {
         var nearbyInfluencers = BlockEntityHelper.getBlockEntities(IArtificeModifierSource.class, level, pos, lookupRange, ArtificeInfluenceData::isValidInfluencer);

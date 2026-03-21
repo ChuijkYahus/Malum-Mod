@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 

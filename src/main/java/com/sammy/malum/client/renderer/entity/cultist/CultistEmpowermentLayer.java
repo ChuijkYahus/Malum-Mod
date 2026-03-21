@@ -16,6 +16,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class CultistEmpowermentLayer<T extends CultistMonster, M extends CultistHumanoidModel<T>> extends RenderLayer<T, M> {
+
     public static final ResourceLocation SMALL = MalumMod.malumPath("textures/entity/cultist/empowerment_small.png");
     public static final ResourceLocation MEDIUM = MalumMod.malumPath("textures/entity/cultist/empowerment_medium.png");
     public static final ResourceLocation LARGE = MalumMod.malumPath("textures/entity/cultist/empowerment_large.png");

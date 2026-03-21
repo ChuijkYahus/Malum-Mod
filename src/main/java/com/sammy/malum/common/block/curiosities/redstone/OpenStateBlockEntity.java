@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
 import java.awt.*;

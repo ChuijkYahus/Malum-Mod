@@ -7,7 +7,7 @@ import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.*;
 

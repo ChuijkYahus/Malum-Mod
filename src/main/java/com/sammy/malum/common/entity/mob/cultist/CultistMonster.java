@@ -247,7 +247,7 @@ public abstract class CultistMonster extends Monster implements Enemy {
         double zTargetDiff = target.getZ() - getZ();
         float toTarget = (float) (Mth.atan2(zTargetDiff, xTargetDiff) * 180.0F / (float) Math.PI) - 90.0F;
 
-        setYRot(rotlerp(getYRot(), toTarget, 90.0F));
+        setYRot(getMoveControl().rotlerp(getYRot(), toTarget, 90.0F));
     }
 
     public void setCultistScale(int scale) {
@@ -276,25 +276,5 @@ public abstract class CultistMonster extends Monster implements Enemy {
 
     public float getCultistScaleMultiplier() {
         return 0.9f + getCultistScale() * 0.05f;
-    }
-
-    protected static float rotlerp(float sourceAngle, float targetAngle, float maximumChange) {
-        float f = Mth.wrapDegrees(targetAngle - sourceAngle);
-        if (f > maximumChange) {
-            f = maximumChange;
-        }
-
-        if (f < -maximumChange) {
-            f = -maximumChange;
-        }
-
-        float f1 = sourceAngle + f;
-        if (f1 < 0.0F) {
-            f1 += 360.0F;
-        } else if (f1 > 360.0F) {
-            f1 -= 360.0F;
-        }
-
-        return f1;
     }
 }

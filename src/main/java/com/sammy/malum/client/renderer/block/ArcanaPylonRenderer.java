@@ -14,7 +14,7 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.cube.*;
 
 import java.lang.Math;
@@ -37,7 +37,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
     public void render(ArcanaPylonBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         var level = Minecraft.getInstance().level;
         var itemRenderer = Minecraft.getInstance().getItemRenderer();
-        var stack = blockEntityIn.getInventory().getStackInSlot(0);
+        var stack = blockEntityIn.inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
             poseStack.pushPose();
             Vec3 offset = blockEntityIn.getCentralItemOffset();
@@ -48,8 +48,8 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
             poseStack.popPose();
         }
 
-        var spiritType = blockEntityIn.getSpirit();
-        if (spiritType == null) {
+        var spirit = blockEntityIn.spirit;
+        if (spirit == null) {
             return;
         }
 
@@ -73,7 +73,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
 
             int time = 160;
             for (int j = 0; j < 4; j++) {
-                var color = j <= 1 ? spiritType.getPrimaryColor() : spiritType.getSecondaryColor();
+                var color = j <= 1 ? spirit.getPrimaryColor() : spirit.getSecondaryColor();
                 double offset = 0;
                 if (offsetDistance > 0) {
                     double angle = j / 4f * (Math.PI * 2);
@@ -87,7 +87,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
                 poseStack.pushPose();
                 poseStack.translate(offset, 0, 0);
                 CubeVertexData.applyVertexWobble(vertices, j*2f, wobbleStrength);
-                SpiritBasedWorldVFXBuilder.create(spiritType)
+                SpiritBasedWorldVFXBuilder.create(spirit)
                         .setColor(color, alpha)
                         .setRenderType(renderType)
                         .renderQuad(poseStack, vertices, 1f);

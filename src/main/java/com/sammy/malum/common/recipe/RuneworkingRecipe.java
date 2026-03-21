@@ -10,7 +10,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 public class RuneworkingRecipe extends LodestoneInWorldRecipe<RuneworkingRecipe.RunicWorkbenchRecipeInput> {
 

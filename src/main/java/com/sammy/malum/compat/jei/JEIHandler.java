@@ -27,7 +27,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import org.apache.commons.compress.utils.Lists;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import javax.annotation.Nonnull;
 import java.util.*;

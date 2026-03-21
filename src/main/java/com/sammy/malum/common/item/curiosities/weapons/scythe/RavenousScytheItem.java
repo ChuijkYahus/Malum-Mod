@@ -13,7 +13,8 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.enchanting.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 
 public class RavenousScytheItem extends MagicScytheItem {
 

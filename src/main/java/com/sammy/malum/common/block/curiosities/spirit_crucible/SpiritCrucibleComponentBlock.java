@@ -17,8 +17,8 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.systems.multiblock.MultiBlockComponentEntity;
-import team.lodestar.lodestone.systems.multiblock.MultiblockComponentBlock;
+import team.lodestar.lodestone.modules.toolkit.multiblock.MultiBlockComponentEntity;
+import team.lodestar.lodestone.modules.toolkit.multiblock.MultiblockComponentBlock;
 
 public class SpiritCrucibleComponentBlock extends MultiblockComponentBlock {
     public static final VoxelShape SHAPE = makeShape();
@@ -48,20 +48,6 @@ public class SpiritCrucibleComponentBlock extends MultiblockComponentBlock {
         return RENDER_SHAPE;
     }
 
-    @Override
-    public boolean hasAnalogOutputSignal(BlockState pState) {
-        return true;
-    }
-
-    @Override
-    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
-        if (pLevel.getBlockEntity(pPos) instanceof MultiBlockComponentEntity component) {
-            if (Capabilities.ItemHandler.BLOCK.getCapability(pLevel, pPos, pState, component, null) instanceof IItemHandler inventory) {
-                return ItemHandlerHelper.calcRedstoneFromInventory(inventory);
-            }
-        }
-        return 0;
-    }
 
     public static VoxelShape makeShape() {
         VoxelShape shape = Shapes.empty();

@@ -8,7 +8,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.*;
 
@@ -24,12 +24,12 @@ public class SpiritFocusingRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
 
     public static final String NAME = "spirit_focusing";
 
-    public final Ingredient input;
-    public final ItemStack output;
-    public final List<SpiritIngredient> spirits;
+    protected final Ingredient input;
+    protected final ItemStack output;
+    protected final List<SpiritIngredient> spirits;
 
-    public final int time;
-    public final int durabilityCost;
+    protected final int time;
+    protected final int durabilityCost;
 
     public SpiritFocusingRecipe(Ingredient input, ItemStack output, List<SpiritIngredient> spirits, int time, int durabilityCost) {
         super(MalumRecipeSerializers.FOCUSING_RECIPE_SERIALIZER.get(), MalumRecipeTypes.SPIRIT_FOCUSING.get());
@@ -43,5 +43,25 @@ public class SpiritFocusingRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
     @Override
     public boolean matches(SpiritBasedRecipeInput input, Level level) {
         return input.test(new SizedIngredient(this.input, 1), spirits);
+    }
+
+    public Ingredient getInput() {
+        return input;
+    }
+
+    public ItemStack createOutput() {
+        return output.copy();
+    }
+
+    public List<SpiritIngredient> getSpirits() {
+        return spirits;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public int getDurabilityCost() {
+        return durabilityCost;
     }
 }

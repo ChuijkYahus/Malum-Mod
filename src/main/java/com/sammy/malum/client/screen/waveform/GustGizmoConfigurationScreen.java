@@ -15,8 +15,8 @@ import net.minecraft.util.*;
 import net.neoforged.neoforge.network.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.blockentity.*;
-import team.lodestar.lodestone.systems.easing.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 

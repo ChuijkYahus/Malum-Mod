@@ -18,7 +18,8 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.systems.enchanting.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 
 import static com.sammy.malum.common.effect.gluttony.GluttonyEffect.spawnLocusts;
 

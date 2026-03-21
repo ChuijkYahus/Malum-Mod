@@ -11,7 +11,8 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
-import team.lodestar.lodestone.systems.recipe.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 import java.util.function.*;
 

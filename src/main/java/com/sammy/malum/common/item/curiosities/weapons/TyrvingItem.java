@@ -22,7 +22,8 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
-import team.lodestar.lodestone.systems.item.*;
+import team.lodestar.lodestone.modules.toolkit.item.*;
+
 import team.lodestar.lodestone.systems.item.tools.*;
 
 public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder, ISpiritAffiliatedItem {

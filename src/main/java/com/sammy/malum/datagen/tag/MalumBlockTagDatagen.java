@@ -12,14 +12,14 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.systems.datagen.providers.LodestoneBlockTagsProvider;
+import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneBlockTagsSystem;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 
-public class MalumBlockTagDatagen extends LodestoneBlockTagsProvider {
+public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
 
     public MalumBlockTagDatagen(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, MalumMod.MALUM, existingFileHelper);

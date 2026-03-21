@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.block.*;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 public class RiteAnchorBlock extends LodestoneEntityBlock<RiteAnchorBlockEntity> {
 
