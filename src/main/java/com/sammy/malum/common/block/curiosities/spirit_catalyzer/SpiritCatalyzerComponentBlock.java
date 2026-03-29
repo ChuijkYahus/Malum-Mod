@@ -14,11 +14,8 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.multiblock.MultiBlockComponentEntity;
-import team.lodestar.lodestone.systems.multiblock.MultiblockComponentBlock;
+import team.lodestar.lodestone.modules.toolkit.multiblock.MultiblockComponentBlock;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 

@@ -9,6 +9,7 @@ import com.sammy.malum.core.systems.geas.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderWrappingText;
 
@@ -20,13 +21,17 @@ public class GeasInfoPage extends BookPage {
     public final float consScale;
 
     public GeasInfoPage(Holder<GeasEffectType> geas) {
-        super(MalumMod.malumPath("textures/gui/book/pages/geas_info_page.png"));
         var prosData = makeText(geas.value().getDetailedPros());
         var consData = makeText(geas.value().getDetailedCons());
         this.pros = prosData.getFirst();
         this.prosScale = prosData.getSecond();
         this.cons = consData.getFirst();
         this.consScale = consData.getSecond();
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/geas_info_page.png");
     }
 
     @Override

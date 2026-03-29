@@ -6,11 +6,14 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.geas.*;
+import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeType;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
@@ -18,23 +21,19 @@ import java.util.function.*;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
-public class SoulBindingPage extends BookPage {
+public class SoulBindingPage extends BookRecipePage<SpiritBasedRecipeInput, SoulBindingRecipe> {
 
-    private final SoulBindingRecipe recipe;
-
-    public SoulBindingPage(Predicate<SoulBindingRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SOUL_BINDING.get(), predicate));
-    }
-
-    public SoulBindingPage(SoulBindingRecipe recipe) {
-        super(isVoidThemed
-                ? MalumMod.malumPath("textures/gui/book/pages/soulbinding_page_void.png")
-                : MalumMod.malumPath("textures/gui/book/pages/soulbinding_page.png"));
-        this.recipe = recipe;
+    public SoulBindingPage(Predicate<SoulBindingRecipe> filter) {
+        super(filter);
     }
 
     public String headlineTranslationKey() {
         return recipe.result.getLangKey();
+    }
+
+    @Override
+    public RecipeType<SoulBindingRecipe> getRecipeType() {
+        return null;
     }
 
     @Override

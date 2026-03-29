@@ -2,7 +2,7 @@ package com.sammy.malum.datagen.sound;
 
 import com.sammy.malum.registry.common.sound.*;
 
-import static team.lodestar.lodestone.systems.datagen.providers.sound.LodestoneSoundEventProvider.sound;
+import static team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneSoundEventSystem.sound;
 
 public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
 

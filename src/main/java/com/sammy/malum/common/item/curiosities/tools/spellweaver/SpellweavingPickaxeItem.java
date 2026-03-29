@@ -28,10 +28,9 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.enchanting.*;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectActivator;
 import team.lodestar.lodestone.modules.toolkit.item.*;
-
-import team.lodestar.lodestone.systems.item.tools.magic.*;
+import team.lodestar.lodestone.modules.toolkit.item.tools.magic.MagicPickaxeItem;
 
 import java.util.*;
 import java.util.stream.*;

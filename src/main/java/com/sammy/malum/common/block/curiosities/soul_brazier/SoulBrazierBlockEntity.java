@@ -1,11 +1,9 @@
 package com.sammy.malum.common.block.curiosities.soul_brazier;
 
 import com.sammy.malum.common.block.MalumBlockItemStackHandler;
-import com.sammy.malum.common.block.MalumSpiritBlockItemStackHandler;
 import com.sammy.malum.common.recipe.SoulBindingRecipe;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
-import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -28,23 +26,22 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.recipe.LodestoneRecipeType;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackMultiHandler;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import javax.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Supplier;
 
+@SuppressWarnings({"deprecation", "NullableProblems"})
 public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
     public static final StringRepresentable.EnumCodec<BrazierState> CODEC = StringRepresentable.fromEnum(BrazierState::values);
@@ -69,10 +66,9 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
     public static final Vec3 BRAZIER_GEAS_ICON_OFFSET = new Vec3(0.5f, 4f, 0.5f);
     private static final int WARMUP_DURATION = 40;
     private static final int SOULBINDING_DURATION = 600;
-    public LodestoneItemStackHandler inventory;
-    public LodestoneItemStackHandler spiritInventory;
-
-    public Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, spiritInventory);
+    public MalumBlockItemStackHandler inventory;
+    public MalumBlockItemStackHandler spiritInventory;
+    public ItemStackMultiHandler inventoryHandler;
 
     public SoulBindingRecipe recipe;
     public BrazierState state = BrazierState.IDLE;
@@ -92,45 +88,47 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
 
     public SoulBrazierBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.SOUL_BRAZIER.get(), pos, state);
-        inventory = MalumBlockItemStackHandler.stacksNotSpirits(this, 9).onContentsChanged(this::updateRecipe);
-        spiritInventory = MalumSpiritBlockItemStackHandler.spiritStacks(this).onContentsChanged(this::updateRecipe);
+
+        inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::updateRecipe).build();
+        spiritInventory = MalumBlockItemStackHandler.create(this, 9).onlySpirits().onContentsChanged(this::updateRecipe).build();
+        inventoryHandler = new ItemStackMultiHandler(inventory, spiritInventory);
     }
 
     @Override
     public IItemHandler getInventory(Direction direction) {
-        return exposedInventory.get();
+        return inventoryHandler;
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        inventory.save(pRegistries, compound);
-        spiritInventory.save(pRegistries, compound, "spiritInventory");
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        inventory.save(registries, tag);
+        spiritInventory.save(registries, tag, "spiritInventory");
 
-        compound.putString("state", state.name);
-        compound.putFloat("warmupTimer", warmupTimer);
-        compound.putInt("progress", progress);
-        compound.putBoolean("isReady", isReady);
+        tag.putString("state", state.name);
+        tag.putFloat("warmupTimer", warmupTimer);
+        tag.putInt("progress", progress);
+        tag.putBoolean("isReady", isReady);
 
         ListTag list = new ListTag();
-        for (UUID uuid : sacrificedTargets) {
-            list.add(NbtUtils.createUUID(uuid));
+        for (UUID target : sacrificedTargets) {
+            list.add(NbtUtils.createUUID(target));
         }
-        compound.put("sacrificedTargets", list);
+        tag.put("sacrificedTargets", list);
     }
 
     @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        inventory.load(pRegistries, compound);
-        spiritInventory.load(pRegistries, compound, "spiritInventory");
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        inventory.load(registries, tag);
+        spiritInventory.load(registries, tag, "spiritInventory");
 
-        state = compound.contains("state") ? CODEC.byName(compound.getString("state")) : BrazierState.IDLE;
-        warmupTimer = compound.getFloat("warmupTimer");
-        progress = compound.getInt("progress");
-        isReady = compound.getBoolean("isReady");
+        state = tag.contains("state") ? CODEC.byName(tag.getString("state")) : BrazierState.IDLE;
+        warmupTimer = tag.getFloat("warmupTimer");
+        progress = tag.getInt("progress");
+        isReady = tag.getBoolean("isReady");
 
         sacrificedTargets.clear();
-        for (Tag tag : compound.getList("sacrificedTargets", 11)) {
-            sacrificedTargets.add(NbtUtils.loadUUID(tag));
+        for (Tag target : tag.getList("sacrificedTargets", 11)) {
+            sacrificedTargets.add(NbtUtils.loadUUID(target));
         }
 
         if (level != null) {
@@ -139,7 +137,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
                 BrazierSoundInstance.playSound(this);
             }
         }
-        super.loadAdditional(compound, pRegistries);
+        super.loadAdditional(tag, registries);
     }
 
     @Override
@@ -149,28 +147,23 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
     }
 
     @Override
-    public ItemInteractionResult onUse(Player pPlayer, InteractionHand pHand) {
+    public ItemInteractionResult onUse(Player player, InteractionHand hand) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.SUCCESS;
         }
-        if (attemptSoulbinding(serverLevel, pPlayer, pPlayer.getItemInHand(pHand))) {
+        if (attemptSoulbinding(serverLevel, player, player.getItemInHand(hand))) {
             return ItemInteractionResult.SUCCESS;
         }
         if (isActive()) {
-            if (addSacrifice(serverLevel, pPlayer)) {
+            if (addSacrifice(serverLevel, player)) {
                 return ItemInteractionResult.SUCCESS;
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        var spiritResult = spiritInventory.interact(serverLevel, pPlayer, pHand);
-        if (!spiritResult.isEmpty()) {
+        if (inventoryHandler.interact(serverLevel, player, hand)) {
             return ItemInteractionResult.SUCCESS;
         }
-        var result = inventory.interact(serverLevel, pPlayer, pHand);
-        if (!result.isEmpty()) {
-            return ItemInteractionResult.SUCCESS;
-        }
-        return super.onUse(pPlayer, pHand);
+        return super.onUse(player, hand);
     }
 
     @Override
@@ -300,26 +293,9 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
                 return;
             }
         }
-        for (SpiritIngredient spirit : recipe.spirits) {
-            for (int i = 0; i < spiritInventory.slotCount; i++) {
-                ItemStack spiritStack = spiritInventory.getStackInSlot(i);
-                if (spirit.test(spiritStack)) {
-                    spiritStack.shrink(spirit.count());
-                    break;
-                }
-            }
-        }
-        List<SizedIngredient> extraIngredients = new ArrayList<>(recipe.extraInputs);
         inventory.getStackInSlot(0).shrink(recipe.input.count());
-        for (SizedIngredient ingredient : extraIngredients) {
-            for (int i = 0; i < inventory.slotCount; i++) {
-                ItemStack stack = inventory.getStackInSlot(i);
-                if (ingredient.test(stack)) {
-                    stack.shrink(ingredient.count());
-                    break;
-                }
-            }
-        }
+        spiritInventory.spendSpiritsOnRecipe(recipe.spirits);
+        inventory.spendItemsOnRecipe(recipe.extraInputs);
         for (LivingEntity target : targets) {
             boolean success = false;
 
@@ -345,10 +321,10 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
     }
 
     public void updateRecipe() {
-        inventory.updateInventoryCaches();
-        spiritInventory.updateInventoryCaches();
-        recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.SOUL_BINDING.get(),
-                new SpiritBasedRecipeInput(inventory.nonEmptyItemStacks, spiritInventory.nonEmptyItemStacks));
+        inventory.updateCaches();
+        spiritInventory.updateCaches();
+        var input = new SpiritBasedRecipeInput(inventory.getNonEmptyStacks(), spiritInventory.getNonEmptyStacks());
+        recipe = LodestoneRecipeSearch.search(level, MalumRecipeTypes.SOUL_BINDING::get).findRecipe(input);
     }
 
     public boolean isActive() {

@@ -61,6 +61,9 @@ public class CodexItemHelper {
     }
 
     public static void renderIngredients(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, List<?> ingredients, int left, int top, int mouseX, int mouseY, boolean vertical) {
+        if (ingredients.isEmpty()) {
+            return;
+        }
         final List<List<ItemStack>> stackBundles =
                 Stream.of(
                         ingredients.stream().filter(o -> o instanceof ICustomIngredient).map(o -> ((ICustomIngredient) o).getItems().toList()),

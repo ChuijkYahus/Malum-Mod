@@ -38,7 +38,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
         var spiritInventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!spiritInventory.isEmpty()) {
-            for (int i = 0; i < spiritInventory.slotCount; i++) {
+            for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
                 ItemStack item = spiritInventory.getStackInSlot(i);
                 if (item.getItem() instanceof SpiritShardItem shardItem) {
                     poseStack.pushPose();
@@ -54,7 +54,7 @@ public class SoulBrazierRenderer implements BlockEntityRenderer<SoulBrazierBlock
         }
         int extrasRendered = 0;
         if (!inventory.isEmpty()) {
-            for (int i = 0; i < inventory.slotCount-1; i++) {
+            for (int i = 0; i < inventory.getSlotCount()-1; i++) {
                 ItemStack item = inventory.getStackInSlot(i+1);
                 poseStack.pushPose();
                 Vector3f offset = blockEntityIn.getExtrasOffset(extrasRendered++, partialTicks).toVector3f();

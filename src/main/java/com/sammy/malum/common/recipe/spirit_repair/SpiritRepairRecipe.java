@@ -9,7 +9,6 @@ import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
@@ -91,7 +90,7 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
         return input.test(repairMaterial, spirits);
     }
 
-    public boolean matches(SpiritBasedRecipeInput input, ItemStack repairTarget) {
+    public boolean canApply(SpiritBasedRecipeInput input, ItemStack repairTarget) {
         return input.test(repairMaterial, spirits) && validItems.stream().anyMatch(repairTarget::is);
     }
 

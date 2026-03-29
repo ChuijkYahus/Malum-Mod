@@ -58,7 +58,8 @@ import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import team.lodestar.lodestone.modules.toolkit.block.*;
-import team.lodestar.lodestone.systems.block.sign.*;
+import team.lodestar.lodestone.modules.toolkit.block.sign.LodestoneStandingSignBlock;
+import team.lodestar.lodestone.modules.toolkit.block.sign.LodestoneWallSignBlock;
 
 import java.awt.*;
 

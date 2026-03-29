@@ -49,6 +49,10 @@ public class SpiritFocusingRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
         return input;
     }
 
+    public ItemStack getOutputRaw() {
+        return output;
+    }
+
     public ItemStack createOutput() {
         return output.copy();
     }

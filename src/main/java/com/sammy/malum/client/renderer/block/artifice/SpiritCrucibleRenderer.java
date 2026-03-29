@@ -20,6 +20,7 @@ import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
@@ -46,7 +47,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
         LodestoneItemStackHandler inventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!inventory.isEmpty()) {
-            for (int i = 0; i < inventory.slotCount; i++) {
+            for (int i = 0; i < inventory.getSlotCount(); i++) {
                 ItemStack item = inventory.getStackInSlot(i);
                 if (item.getItem() instanceof SpiritShardItem shardItem) {
                     poseStack.pushPose();
@@ -85,7 +86,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
 
         int augmentsRendered = 0;
         if (!augmentInventory.isEmpty()) {
-            float total = augmentInventory.slotCount;
+            float total = augmentInventory.getSlotCount();
             float time = 240;
             for (int i = 0; i < total; i++) {
                 ItemStack item = augmentInventory.getStackInSlot(i);

@@ -9,6 +9,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
@@ -78,11 +80,19 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
         }
     }
 
+    public void spendItemsOnRecipe(Collection<SizedIngredient> items) {
+        spendThingsOnRecipeSpiritsOnRecipe(items.stream().map(IngredientRecipeCostData::new).toList());
+    }
+
     public void spendSpiritsOnRecipe(Collection<SpiritIngredient> spirits) {
-        for (SpiritIngredient spiritIngredient : spirits) {
-            for (ItemStack spirit : getNonEmptyStacks()) {
-                if (spiritIngredient.test(spirit)) {
-                    spirit.shrink(spiritIngredient.count());
+        spendThingsOnRecipeSpiritsOnRecipe(spirits.stream().map(IngredientRecipeCostData::new).toList());
+    }
+
+    protected void spendThingsOnRecipeSpiritsOnRecipe(Collection<IngredientRecipeCostData> ingredients) {
+        for (IngredientRecipeCostData data : ingredients) {
+            for (ItemStack stack : getNonEmptyStacks()) {
+                if (data.ingredient().test(stack)) {
+                    stack.shrink(data.count());
                     break;
                 }
             }
@@ -95,5 +105,16 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
 
     public SoundEvent getInsertSound(ItemStack stack) {
         return stack.getItem() instanceof SpiritShardItem ? MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get() : MalumSoundEvents.PEDESTAL_ITEM_INSERT.get();
+    }
+
+    public record IngredientRecipeCostData(Ingredient ingredient, int count) {
+
+        public IngredientRecipeCostData(SpiritIngredient ingredient) {
+            this(ingredient.toVanilla(), ingredient.count());
+        }
+
+        public IngredientRecipeCostData(SizedIngredient ingredient) {
+            this(ingredient.ingredient(), ingredient.count());
+        }
     }
 }

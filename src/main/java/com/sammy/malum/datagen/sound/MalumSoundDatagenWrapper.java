@@ -1,13 +1,12 @@
 package com.sammy.malum.datagen.sound;
 
-import com.sammy.malum.registry.common.sound.*;
-import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.systems.datagen.providers.sound.*;
-import team.lodestar.lodestone.systems.datagen.providers.sound.LodestoneBlockSoundEventProvider.*;
-import team.lodestar.lodestone.systems.sound.*;
+import team.lodestar.lodestone.core.sound.RegistryReadyBlockSoundType;
+import team.lodestar.lodestone.modules.datagen.providers.sound.BlockSoundEventBuilder;
+import team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneBlockSoundEventSystem;
+import team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneBlockSoundEventSystem.SoundEventBuilderBlueprint;
 
 import java.util.function.*;
 

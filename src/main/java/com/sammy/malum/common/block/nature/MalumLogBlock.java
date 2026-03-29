@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.block.LodestoneLogBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneLogBlock;
 
 import java.util.function.Supplier;
 

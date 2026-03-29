@@ -11,6 +11,7 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
+import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 import team.lodestar.lodestone.helpers.*;
 
@@ -29,8 +30,12 @@ public class SpiritRiteRecipePage extends BookPage {
     private final SpiritRiteType riteType;
 
     public SpiritRiteRecipePage(RiteHolder<SpiritRiteType> riteType) {
-        super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_recipe_page.png"));
         this.riteType = riteType.value();
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/spirit_rite_recipe_page.png");
     }
 
     @Override

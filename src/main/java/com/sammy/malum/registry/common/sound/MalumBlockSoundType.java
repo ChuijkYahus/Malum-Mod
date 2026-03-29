@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.sound;
 
 import com.sammy.malum.*;
+import team.lodestar.lodestone.core.sound.RegistryReadyBlockSoundType;
 import team.lodestar.lodestone.systems.sound.*;
 
 public class MalumBlockSoundType extends RegistryReadyBlockSoundType {

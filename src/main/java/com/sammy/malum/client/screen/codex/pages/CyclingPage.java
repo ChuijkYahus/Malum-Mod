@@ -16,7 +16,6 @@ public class CyclingPage extends BookPage {
     }
 
     public CyclingPage(List<? extends BookPage> pages) {
-        super(null);
         this.pages = pages.stream().filter(BookPage::isValid).collect(Collectors.toList());
     }
 

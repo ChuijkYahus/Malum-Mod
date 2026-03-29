@@ -4,6 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
+import com.sammy.malum.common.recipe.UnchainedTransmutationRecipe;
 import com.sammy.malum.registry.client.MalumScreenParticles;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.item.MalumItems;
@@ -11,48 +12,53 @@ import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.handlers.screenparticle.ScreenParticleHandler;
 import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
-import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpiritTransmutationRecipeTreePage extends BookPage {
+public class UnchainedTransmutationRecipeTreePage extends BookPage {
 
     private static final ScreenParticleHolder TRANSMUTATION_PARTICLES = new ScreenParticleHolder();
 
     private final Component headline;
     private final List<Ingredient> itemTree = new ArrayList<>();
 
-    public SpiritTransmutationRecipeTreePage(String headline, Item start) {
-        super(MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_tree_page.png"));
+    public UnchainedTransmutationRecipeTreePage(String headline, Item start) {
         this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
 
         Level level = Minecraft.getInstance().level;
         if (level != null) {
-
-            var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), new SingleRecipeInput(start.getDefaultInstance()));
+            var search = LodestoneRecipeSearch.search(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION);
+            var input = new SingleRecipeInput(start.getDefaultInstance());
+            UnchainedTransmutationRecipe recipe;
             while (true) {
+                recipe = search.findRecipe(input);
                 if (recipe == null) {
                     itemTree.add(Ingredient.of(MalumItems.BLIGHTED_EARTH.get()));
                     break;
                 }
-                itemTree.add(recipe.ingredient);
-                ItemStack output = recipe.output;
-                recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.UNCHAINED_TRANSMUTATION.get(), new SingleRecipeInput(output));
+                itemTree.add(recipe.getInput());
+                input = new SingleRecipeInput(recipe.getOutputRaw());
             }
         }
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_tree_page.png");
     }
 
     @Override

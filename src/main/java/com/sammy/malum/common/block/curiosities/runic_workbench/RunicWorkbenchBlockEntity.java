@@ -22,6 +22,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 @SuppressWarnings("DataFlowIssue")
 public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
@@ -40,23 +41,23 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.saveAdditional(pTag, pRegistries);
-        pTag.putInt("progress", progress);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putInt("progress", progress);
         if (input != null) {
             var access = level.registryAccess();
-            pTag.put("primaryInput", input.primaryInput().save(access));
-            pTag.put("secondaryInput", input.secondaryInput().save(access));
+            tag.put("primaryInput", input.primaryInput().save(access));
+            tag.put("secondaryInput", input.secondaryInput().save(access));
         }
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        progress = pTag.getInt("progress");
-        if (pTag.contains("primaryInput") && pTag.contains("secondaryInput")) {
-            var primaryInput = ItemStack.parseOptional(level.registryAccess(), pTag.getCompound("primaryInput"));
-            var secondaryInput = ItemStack.parseOptional(level.registryAccess(), pTag.getCompound("secondaryInput"));
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        progress = tag.getInt("progress");
+        if (tag.contains("primaryInput") && tag.contains("secondaryInput")) {
+            var primaryInput = ItemStack.parseOptional(level.registryAccess(), tag.getCompound("primaryInput"));
+            var secondaryInput = ItemStack.parseOptional(level.registryAccess(), tag.getCompound("secondaryInput"));
             input = new RunicWorkbenchRecipeInput(
                     primaryInput,
                     secondaryInput
@@ -87,37 +88,32 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     @Override
-    public void tick() {
-        if (level instanceof ServerLevel serverLevel) {
-            if (input != null) {
-                progress++;
-                if (progress == 20) {
-                    craft(serverLevel);
-                    progress = 0;
-                    input = null;
-                }
+    public void serverTick(ServerLevel level) {
+        if (input != null) {
+            progress++;
+            if (progress == 20) {
+                craft(level);
+                progress = 0;
+                input = null;
             }
         }
-        super.tick();
     }
 
     public boolean tryCraft(Level level, ItemStack primaryInput, ItemStack secondaryInput, boolean consumeItems) {
-        var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.RUNEWORKING.get(), new RunicWorkbenchRecipeInput(primaryInput, secondaryInput));
+        var storedInput = new RunicWorkbenchRecipeInput(primaryInput, secondaryInput);
+        var recipe = LodestoneRecipeSearch.search(level, MalumRecipeTypes.RUNEWORKING::get).findRecipe(storedInput);
         if (recipe == null) {
             return false;
         }
         if (level instanceof ServerLevel serverLevel) {
             int primaryCount = recipe.input.count();
             int secondaryCount = recipe.secondaryInput.count();
-            input = new RunicWorkbenchRecipeInput(
-                    primaryInput.copyWithCount(primaryCount),
-                    secondaryInput.copyWithCount(secondaryCount)
-            );
 
             if (consumeItems) {
                 primaryInput.shrink(primaryCount);
                 secondaryInput.shrink(secondaryCount);
             }
+            input = storedInput;
 
             SpiritShardItem spirit = null;
             if (input.secondaryInput().getItem() instanceof SpiritShardItem shardItem) {
@@ -138,7 +134,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     public void craft(ServerLevel level) {
-        var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.RUNEWORKING.get(), input);
+        var recipe = LodestoneRecipeSearch.search(level, MalumRecipeTypes.RUNEWORKING::get).findRecipe(input);
         if (recipe == null) {
             return;
         }

@@ -21,6 +21,7 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import java.util.*;
 
@@ -134,7 +135,8 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     }
 
     public void spitOutItem(ItemStack stack) {
-        var recipe = LodestoneRecipeType.getRecipe(level, MalumRecipeTypes.VOID_FAVOR.get(), new SingleRecipeInput(stack));
+        var input = new SingleRecipeInput(stack);
+        var recipe = LodestoneRecipeSearch.search(level, MalumRecipeTypes.VOID_FAVOR::get).findRecipe(input);
         float pitch = RandomHelper.randomBetween(level.getRandom(), 0.8f, 1.3f);
         var outputPosition = worldPosition.getCenter();
         var sound = MalumSoundEvents.VOID_REJECTION.get();

@@ -9,6 +9,7 @@ import com.sammy.malum.core.systems.rite.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
@@ -19,10 +20,14 @@ public class SpiritRiteTextPage extends BookPage {
     private final Component text;
 
     public SpiritRiteTextPage(RiteHolder<SpiritRiteType> riteType) {
-        super(MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png"));
         this.rite = riteType.value();
         this.headline = Component.translatable(rite.getLangKey());
         this.text = Component.translatable(rite.getCodexEntryLangKey());
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png");
     }
 
     @Override

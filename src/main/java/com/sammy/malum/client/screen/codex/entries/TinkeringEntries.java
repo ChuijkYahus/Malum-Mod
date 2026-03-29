@@ -272,7 +272,7 @@ public class TinkeringEntries {
                 .addPage(new TextPage("tyrving.3"))
                 .addPage(SpiritInfusionPage.fromOutput(TYRVING.get()))
                 .addPage(new TextPage("tyrving.4"))
-                .addPage(SpiritRepairPage.fromId("tyrving_restoration"))
+                .addPage(new SpiritRepairPage("tyrving_restoration"))
         );
     }
 }

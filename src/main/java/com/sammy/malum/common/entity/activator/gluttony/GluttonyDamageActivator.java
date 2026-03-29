@@ -1,33 +1,25 @@
 package com.sammy.malum.common.entity.activator.gluttony;
 
 import com.sammy.malum.common.entity.*;
-import com.sammy.malum.common.spiritrite.effect.aerial.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
-import com.sammy.malum.registry.common.magic.*;
-import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.enchanting.*;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class GluttonyDamageActivator extends FloatingEntity {
 
@@ -136,7 +128,8 @@ public class GluttonyDamageActivator extends FloatingEntity {
     public Optional<Entity> correctMissingTarget(ServerLevel level) {
         if (level.getEntity(owner) instanceof LivingEntity attacker) {
             var area = getBoundingBox().inflate(8f, 3f, 8f);
-            var targets = level.getEntitiesOfClass(LivingEntity.class, area, LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && !(t instanceof Player)));
+            var predicate = LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && !(t instanceof Player));
+            var targets = level.getEntitiesOfClass(LivingEntity.class, area, predicate);
             if (targets.isEmpty()) {
                 return Optional.empty();
             }

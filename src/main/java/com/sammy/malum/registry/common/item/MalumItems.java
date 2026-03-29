@@ -64,7 +64,7 @@ import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
-import team.lodestar.lodestone.systems.item.tools.magic.*;
+import team.lodestar.lodestone.modules.toolkit.item.tools.magic.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 import top.theillusivec4.curios.api.client.*;
 

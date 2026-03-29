@@ -9,6 +9,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 import team.lodestar.lodestone.registry.common.particle.*;
@@ -30,7 +31,6 @@ public class WeepingWellTextPage extends BookPage {
     private final ItemStack stack;
 
     public WeepingWellTextPage(String headlineTranslationKey, String translationKey, ItemStack stack) {
-        super(MalumMod.malumPath("textures/gui/book/pages/weeping_well_page.png"));
         this.headlineTranslationKey = headlineTranslationKey;
         this.translationKey = translationKey;
         this.stack = stack;
@@ -38,6 +38,11 @@ public class WeepingWellTextPage extends BookPage {
 
     public WeepingWellTextPage(String headlineTranslationKey, String translationKey, Item spirit) {
         this(headlineTranslationKey, translationKey, spirit.getDefaultInstance());
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/weeping_well_page.png");
     }
 
     public String headlineTranslationKey() {
@@ -51,7 +56,6 @@ public class WeepingWellTextPage extends BookPage {
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         final ClientLevel level = Minecraft.getInstance().level;
-        var rand = level.random;
         Component component = Component.translatable(headlineTranslationKey());
         CodexTextHelper.renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
         CodexTextHelper.renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);

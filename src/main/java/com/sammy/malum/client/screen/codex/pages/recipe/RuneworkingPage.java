@@ -5,28 +5,22 @@ import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.*;
+import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.RecipeType;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 
 import java.util.function.*;
 
-public class RuneworkingPage extends BookPage {
+public class RuneworkingPage extends BookRecipePage<RuneworkingRecipe.RunicWorkbenchRecipeInput, RuneworkingRecipe> {
 
-    private final RuneworkingRecipe recipe;
-
-    public RuneworkingPage(Predicate<RuneworkingRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.RUNEWORKING.get(), predicate));
-    }
-
-    public RuneworkingPage(RuneworkingRecipe recipe) {
-        super(isVoidThemed
-                ? MalumMod.malumPath("textures/gui/book/pages/runeworking_page_void.png")
-                : MalumMod.malumPath("textures/gui/book/pages/runeworking_page.png"));
-        this.recipe = recipe;
+    public RuneworkingPage(Predicate<RuneworkingRecipe> filter) {
+        super(filter);
     }
 
     @Override
@@ -38,12 +32,12 @@ public class RuneworkingPage extends BookPage {
         renderRecipeInfo(guiGraphics, screen, "runeworking", left + 62, top + 74, mouseX, mouseY);
     }
 
-    @Override
-    public boolean isValid() {
-        return recipe != null;
-    }
-
     public static RuneworkingPage fromOutput(Item outputItem) {
         return new RuneworkingPage(s -> s.output.is(outputItem));
+    }
+
+    @Override
+    public RecipeType<RuneworkingRecipe> getRecipeType() {
+        return MalumRecipeTypes.RUNEWORKING.get();
     }
 }

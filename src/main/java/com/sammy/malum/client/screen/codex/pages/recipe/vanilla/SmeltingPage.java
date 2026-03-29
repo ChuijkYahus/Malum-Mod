@@ -5,10 +5,12 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderItem;
 
@@ -17,13 +19,17 @@ public class SmeltingPage extends BookPage {
     private final ItemStack outputStack;
 
     public SmeltingPage(ItemStack inputStack, ItemStack outputStack) {
-        super(MalumMod.malumPath("textures/gui/book/pages/smelting_page.png"));
         this.inputStack = inputStack;
         this.outputStack = outputStack;
     }
 
     public SmeltingPage(Item inputItem, Item outputItem) {
         this(inputItem.getDefaultInstance(), outputItem.getDefaultInstance());
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/smelting_page.png");
     }
 
     @Override
@@ -39,7 +45,7 @@ public class SmeltingPage extends BookPage {
 
     public static SmeltingPage fromInput(Item input) {
         var level = Minecraft.getInstance().level;
-        SmeltingRecipe recipe = LodestoneRecipeType.getRecipe(level, RecipeType.SMELTING, new SingleRecipeInput(new ItemStack(input, 1)));
+        SmeltingRecipe recipe = LodestoneRecipeSearch.search(level, RecipeType.SMELTING).findRecipe(new SingleRecipeInput(new ItemStack(input, 1)));
         if (recipe != null) {
             return new SmeltingPage(new ItemStack(input), recipe.getResultItem(level.registryAccess()));
         }

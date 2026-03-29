@@ -285,33 +285,23 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
         ItemStack stack = inventory.getStackInSlot(0);
         ItemStack outputStack = recipe.getOutput(level, stack);
         Vec3 itemPos = getItemPos();
-        extrasInventory.clear();
         progress -= (int) (progress * 0.2f);
         stack.shrink(recipe.input.count());
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
 
-        spendSpiritsOnRecipe();
+        spiritInventory.spendSpiritsOnRecipe(recipe.spirits);
+        extrasInventory.clear();
+        recalibrateAccelerators();
+        accelerators.forEach(a -> a.completeSpiritInfusion(level, this));
+
         MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-        recalibrateAccelerators();
-        accelerators.forEach(a -> a.completeSpiritInfusion(level, this));
         recalculateRecipes();
         notifyObservers();
         setDirty();
-    }
-
-    public void spendSpiritsOnRecipe() {
-        for (SpiritIngredient spiritIngredient : recipe.spirits) {
-            for (ItemStack spirit : spiritInventory.getNonEmptyStacks()) {
-                if (spiritIngredient.test(spirit)) {
-                    spirit.shrink(spiritIngredient.count());
-                    break;
-                }
-            }
-        }
     }
 
     public void recalibrateAccelerators() {

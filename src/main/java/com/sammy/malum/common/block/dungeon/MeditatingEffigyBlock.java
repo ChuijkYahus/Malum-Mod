@@ -6,8 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import team.lodestar.lodestone.systems.block.LodestoneDirectionalBlock;
-import team.lodestar.lodestone.systems.block.LodestoneHorizontalBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneHorizontalBlock;
 
 public class MeditatingEffigyBlock extends LodestoneHorizontalBlock {
 

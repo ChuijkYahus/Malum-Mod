@@ -23,8 +23,8 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
-import team.lodestar.lodestone.systems.enchanting.*;
 
 import java.util.function.*;
 
@@ -72,7 +72,8 @@ public class GluttonyEffect extends MobEffect {
         var random = level.random;
 
         var area = target.getBoundingBox().inflate(8f, 3f, 8f);
-        var targets = level.getEntitiesOfClass(LivingEntity.class, area, LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && attacker.hasLineOfSight(t)));
+        var predicate = LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && attacker.hasLineOfSight(t));
+        var targets = level.getEntitiesOfClass(LivingEntity.class, area, predicate);
 
         if (targets.isEmpty()) {
             return false;

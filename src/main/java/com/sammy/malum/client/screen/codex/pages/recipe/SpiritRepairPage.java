@@ -5,6 +5,7 @@ import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
+import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -17,27 +18,32 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import java.util.*;
 import java.util.function.*;
 
-public class SpiritRepairPage extends BookPage {
+public class SpiritRepairPage extends BookRecipePage<SpiritBasedRecipeInput, SpiritRepairRecipe> {
 
-    private final SpiritRepairRecipe recipe;
+    private List<ItemStack> damagedStacks;
+    private List<ItemStack> repairedStacks;
 
-    private final List<ItemStack> damagedStacks;
-    private final List<ItemStack> repairedStacks;
-
-    public SpiritRepairPage(Predicate<SpiritRepairRecipe> predicate) {
-        this(LodestoneRecipeType.findRecipe(Minecraft.getInstance().level, MalumRecipeTypes.SPIRIT_REPAIR.get(), predicate));
+    public SpiritRepairPage(String id) {
+        super(id);
     }
 
-    public SpiritRepairPage(SpiritRepairRecipe recipe) {
-        super(MalumMod.malumPath("textures/gui/book/pages/spirit_repair_page.png"));
-        this.recipe = recipe;
-        this.damagedStacks = recipe != null ? recipe.getDamagedItems() : Collections.emptyList();
-        this.repairedStacks = recipe != null ? recipe.getRepairedItems() : Collections.emptyList();
+    public SpiritRepairPage(ResourceLocation id) {
+        super(id);
+    }
+
+    public SpiritRepairPage(Predicate<SpiritRepairRecipe> filter) {
+        super(filter);
     }
 
     @Override
-    public boolean isValid() {
-        return recipe != null;
+    public void gatherRecipeData() {
+        this.damagedStacks = recipe.getDamagedItems();
+        this.repairedStacks = recipe.getRepairedItems();
+    }
+
+    @Override
+    public RecipeType<SpiritRepairRecipe> getRecipeType() {
+        return MalumRecipeTypes.SPIRIT_REPAIR.get();
     }
 
     public static SpiritRepairPage fromOutput(Item outputItem) {
@@ -45,19 +51,7 @@ public class SpiritRepairPage extends BookPage {
     }
 
     public static SpiritRepairPage fromId(String recipeId) {
-        return fromId(MalumMod.malumPath(recipeId));
-    }
-
-    public static SpiritRepairPage fromId(ResourceLocation recipeId) {
-        var level = Minecraft.getInstance().level;
-        ResourceLocation other = recipeId.withPrefix("spirit_repair/");
-        var recipe = LodestoneRecipeType.getRecipeHolders(level, MalumRecipeTypes.SPIRIT_REPAIR.get())
-                .stream()
-                .filter(r -> r.id().equals(other))
-                .findFirst()
-                .map(RecipeHolder::value)
-                .orElse(null);
-        return new SpiritRepairPage(recipe);
+        return new SpiritRepairPage(recipeId);
     }
 
     @Override

@@ -6,7 +6,8 @@ import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.creative_tab.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 
 import java.util.*;
 

@@ -1,5 +1,6 @@
 package com.sammy.malum.client.screen.codex.pages;
 
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.screens.*;
@@ -8,6 +9,8 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
 
 import javax.annotation.*;
 import java.util.*;
@@ -22,18 +25,12 @@ public abstract class BookPage {
     public static String getRecipeInfoHeadlineKey(String recipeType) {
         return "malum.gui.book.entry.page.info." + recipeType + ".headline";
     }
+
     public static String getRecipeInfoKey(String recipeType) {
         return "malum.gui.book.entry.page.info." + recipeType;
     }
 
     public static boolean isVoidThemed = false;
-
-    @Nullable
-    protected final ResourceLocation background;
-
-    public BookPage(@Nullable ResourceLocation background) {
-        this.background = background;
-    }
 
     public boolean isValid() {
         return true;
@@ -47,12 +44,21 @@ public abstract class BookPage {
 
     public void click(CodexEntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
     }
-    
-    public ResourceLocation getBackground(boolean isRightSide) {
-        return background;
+
+
+    public abstract ResourceLocation getBackground(boolean isRightSide);
+
+    public final ResourceLocation getBackground(String path){
+        var voidPage = MalumMod.malumPath("textures/gui/book/pages/" + path + "_void.png");
+        var manager = Minecraft.getInstance().getResourceManager();
+        var resource = manager.getResource(voidPage);
+        if (resource.isPresent()) {
+            return voidPage;
+        }
+        return MalumMod.malumPath("textures/gui/book/pages/" + path + ".png");
     }
 
-    protected void renderRecipeInfo(GuiGraphics guiGraphics, CodexEntryScreen screen, String recipeName, int left, int top, int mouseX, int mouseY){
+    protected void renderRecipeInfo(GuiGraphics guiGraphics, CodexEntryScreen screen, String recipeName, int left, int top, int mouseX, int mouseY) {
         screen.renderLater(() -> {
             if (screen.isHovering(mouseX, mouseY, left, top, 18, 18)) {
                 var headline = Component.translatable(getRecipeInfoHeadlineKey(recipeName)).withStyle(isVoidThemed ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD);

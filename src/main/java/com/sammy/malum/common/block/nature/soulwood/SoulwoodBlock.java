@@ -8,11 +8,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.systems.block.LodestoneLogBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneLogBlock;
 
 import java.util.function.Supplier;
 
 public class SoulwoodBlock extends LodestoneLogBlock {
+
     public SoulwoodBlock(Properties properties, Supplier<Block> stripped) {
         super(properties, stripped);
     }

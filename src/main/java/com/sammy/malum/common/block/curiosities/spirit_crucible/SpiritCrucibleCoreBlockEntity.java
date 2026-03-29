@@ -124,11 +124,6 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
         if (level != null) {
             updateRecipe();
-            if (level.isClientSide) {
-                if (recipe != null) {
-                    CrucibleSoundInstance.playSound(this);
-                }
-            }
         }
         super.loadAdditional(compound, pRegistries);
     }

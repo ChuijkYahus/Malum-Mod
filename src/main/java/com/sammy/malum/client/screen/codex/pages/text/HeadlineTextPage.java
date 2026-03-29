@@ -16,14 +16,15 @@ public class HeadlineTextPage extends BookPage {
     public HeadlineTextPage(String text) {
         this(text, text +".1");
     }
-    public HeadlineTextPage(String headline, String text) {
-        this(MalumMod.malumPath("textures/gui/book/pages/headline_page.png"), headline, text);
-    }
 
-    public HeadlineTextPage(ResourceLocation texture, String headline, String text) {
-        super(texture);
+    public HeadlineTextPage(String headline, String text) {
         this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
         this.text = Component.translatable(BookPage.TEXT + "." + text);
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/headline_page.png");
     }
 
     @Override

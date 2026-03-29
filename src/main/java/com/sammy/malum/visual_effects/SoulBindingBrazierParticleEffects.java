@@ -16,8 +16,8 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.helpers.VecHelper;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
-import team.lodestar.lodestone.systems.blockentity.LodestoneItemStackHandler;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
@@ -36,7 +36,7 @@ import static net.minecraft.util.Mth.nextFloat;
 public class SoulBindingBrazierParticleEffects {
 
     public static SpiritLike getCentralSpiritType(SoulBrazierBlockEntity brazier) {
-        final LodestoneItemStackHandler spiritInventory = brazier.spiritInventory;
+        var spiritInventory = brazier.spiritInventory;
         int spiritCount = spiritInventory.getFilledSlotCount();
         Item currentItem = spiritInventory.getStackInSlot(0).getItem();
         if (spiritCount > 1) {
