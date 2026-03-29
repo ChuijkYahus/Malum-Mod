@@ -126,7 +126,7 @@ public class SpiritCrucibleParticleEffects {
 
         if (recipe != null) {
             int spiritsRendered = 0;
-            for (int i = 0; i < spiritInventory.slotCount; i++) {
+            for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
                 var item = spiritInventory.getStackInSlot(i);
                 if (item.getItem() instanceof SpiritShardItem shardItem) {
                     var offset = crucible.getSpiritItemOffset(spiritsRendered++, 0);
@@ -150,7 +150,7 @@ public class SpiritCrucibleParticleEffects {
         }
         if (level.getGameTime() % 4L == 0) {
             int augmentsRendered = 0;
-            for (int i = 0; i < augmentInventory.slotCount; i++) {
+            for (int i = 0; i < augmentInventory.getSlotCount(); i++) {
                 var item = augmentInventory.getStackInSlot(i);
                 if (item.getItem() instanceof AugmentItem augmentItem) {
                     var offset = crucible.getAugmentItemOffset(augmentsRendered++, 0);

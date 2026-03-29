@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
@@ -24,41 +25,37 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
 
     protected static final ResourceLocation LARGE_HANDHELD = MalumMod.malumPath("item/handheld_large");
     protected static final ResourceLocation LARGE_GENERATED = MalumMod.malumPath("item/generated_large");
-    protected static final Consumer<ItemModelSmithResult> HUGE_HANDHELD_ITEM = result -> {
+    protected static final Function<ResourceLocation, Consumer<ItemModelSmithResult>> LARGE_ITEM = modelType -> result -> {
         var provider = result.provider();
         var existingFileHelper = provider.existingFileHelper;
         var separateTransforms = result.addSeparateTransformData();
-        var firstPersonModel = ItemModelSmith.parentedItem(LARGE_HANDHELD, false)
-                .addModelPathAffix("_huge")
-                .addTextureNameAffix("_huge")
+        var firstPersonModel = ItemModelSmith.parentedItem(modelType, false)
+                .addModelPathAffix("_huge").addTextureNameAffix("_huge")
                 .act(provider, result::item);
         var guiModel = ItemModelSmithTypes.GENERATED_ITEM
                 .addModelPathAffix("_gui")
                 .act(provider, result::item);
-        separateTransforms.perspective(ItemDisplayContext.GROUND, guiModel.parentedToThis(existingFileHelper));
-        separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
-        separateTransforms.perspective(ItemDisplayContext.FIXED, guiModel.parentedToThis(existingFileHelper));
+        var reparent = guiModel.parentedToThis(existingFileHelper);
+        separateTransforms.perspective(ItemDisplayContext.GROUND, reparent);
+        separateTransforms.perspective(ItemDisplayContext.GUI, reparent);
+        separateTransforms.perspective(ItemDisplayContext.FIXED, reparent);
         separateTransforms.base(firstPersonModel.parentedToThis(existingFileHelper));
     };
-    protected static final Consumer<ItemModelSmithResult> HUGE_GENERATED_ITEM = result -> {
-        var provider = result.provider();
-        var existingFileHelper = provider.existingFileHelper;
-        var separateTransforms = result.addSeparateTransformData();
-        var hugeModel = ItemModelSmith.parentedItem(LARGE_GENERATED, false)
-                .addModelPathAffix("_huge")
-                .addTextureNameAffix("_huge")
-                .act(provider, result::item);
-        var guiModel = ItemModelSmithTypes.GENERATED_ITEM
-                .addModelPathAffix("_gui")
-                .act(provider, result::item);
-        separateTransforms.perspective(ItemDisplayContext.HEAD, hugeModel.parentedToThis(existingFileHelper));
-        separateTransforms.perspective(ItemDisplayContext.FIXED, hugeModel.parentedToThis(existingFileHelper));
-        separateTransforms.base(guiModel.parentedToThis(existingFileHelper));
-    };
 
-    public static ItemModelSmith LARGE_HANDHELD_ITEM = HANDHELD_ITEM.modifyResult(HUGE_HANDHELD_ITEM);
-    public static ItemModelSmith LARGE_GENERATED_ITEM = HANDHELD_ITEM.modifyResult(HUGE_GENERATED_ITEM);
+    public static ItemModelSmith LARGE_HANDHELD_ITEM = HANDHELD_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_HANDHELD));
+    public static ItemModelSmith LARGE_GENERATED_ITEM = HANDHELD_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_GENERATED));
 
+    public static ItemModelSmith SOUL_OF_AN_ITEM = new ItemModelSmith((item, provider) -> provider.getBuilder(provider.getItemName(item)))
+                    .modifyResult(result -> {
+                        var provider = result.provider();
+                        var existingFileHelper = provider.existingFileHelper;
+                        var separateTransforms = result.addSeparateTransformData();
+                        var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelPathAffix("_gui").act(provider, result::item);
+                        var reparent = guiModel.parentedToThis(existingFileHelper);
+                        separateTransforms.perspective(ItemDisplayContext.GUI, reparent);
+                        separateTransforms.perspective(ItemDisplayContext.FIXED, reparent);
+                        separateTransforms.base(provider.getBuilder("item/air"));
+                    });
     public static ItemModelSmith IMPETUS_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
         List<String> split = DataHelper.reverseOrder(new ArrayList<>(), Arrays.asList(name.split("_")));

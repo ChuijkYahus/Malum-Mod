@@ -38,8 +38,8 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
     @Override
     public void draw(SpiritFocusingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         overlay.draw(guiGraphics);
-        if (!recipe.spirits.isEmpty()) {
-            CodexItemHelper.renderItemFrames(guiGraphics, recipe.spirits.size(), 61, 12, false);
+        if (!recipe.getSpirits().isEmpty()) {
+            CodexItemHelper.renderItemFrames(guiGraphics, recipe.getSpirits().size(), 61, 12, false);
         }
     }
 
@@ -71,11 +71,11 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SpiritFocusingRecipe recipe, IFocusGroup focuses) {
-        JEIHelper.addItemsToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.spirits.stream().map(ICustomIngredient::toVanilla).toList());
+        JEIHelper.addItemsToJei(builder, RecipeIngredientRole.INPUT, 61, 12, false, recipe.getSpirits().stream().map(ICustomIngredient::toVanilla).toList());
 
         builder.addSlot(RecipeIngredientRole.INPUT, 63, 57)
-                .addIngredients(recipe.input);
+                .addIngredients(recipe.getInput());
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
-                .addItemStack(recipe.output);
+                .addItemStack(recipe.getOutputRaw());
     }
 }

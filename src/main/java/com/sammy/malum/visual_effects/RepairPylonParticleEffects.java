@@ -13,6 +13,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.systems.particle.builder.*;
 
 import javax.annotation.*;
@@ -58,9 +59,9 @@ public class RepairPylonParticleEffects {
             }
         }
 
-        LodestoneItemStackHandler spiritInventory = pylon.spiritInventory;
+        var spiritInventory = pylon.spiritInventory;
         int spiritsRendered = 0;
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
+        for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem spiritSplinterItem) {
                 Vec3 offset = pylon.getSpiritItemOffset(spiritsRendered++, 0);

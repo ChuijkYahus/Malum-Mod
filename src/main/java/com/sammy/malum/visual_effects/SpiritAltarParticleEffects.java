@@ -16,6 +16,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
@@ -67,7 +68,7 @@ public class SpiritAltarParticleEffects {
         }
 
         int spiritsRendered = 0;
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
+        for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem shard) {
                 var offset = altar.getSpiritItemOffset(spiritsRendered++, 0);

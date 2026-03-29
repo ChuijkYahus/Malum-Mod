@@ -7,6 +7,7 @@ import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.common.data.*;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
@@ -31,14 +32,9 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
         items.removeIf(i -> i.get() instanceof BlockItem);
 
-        ItemModelSystemData data = new ItemModelSystemData(this, items::remove);
-        ItemModelSmith.parentedItem(ResourceLocation.parse("item/air"), false).act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR).forEach(r -> r.applyModifier(result -> {
-            var separateTransforms = result.addSeparateTransformData();
-            var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelPathAffix("_gui").act(data, result::item);
-            separateTransforms.perspective(ItemDisplayContext.GUI, guiModel.parentedToThis(existingFileHelper));
-            separateTransforms.perspective(ItemDisplayContext.FIXED, guiModel.parentedToThis(existingFileHelper));
-            separateTransforms.base(getBuilder("item/air"));
-        }));
+        ItemModelSystemData data = new ItemModelSystemData(this, items::remove);;
+
+        MalumItemModelSmithTypes.SOUL_OF_AN_ITEM.act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR);
         setTexturePath("cosmetic/weaves/pride/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data,
                 ACE_PRIDEWEAVE, AGENDER_PRIDEWEAVE, ARO_PRIDEWEAVE, AROACE_PRIDEWEAVE, BI_PRIDEWEAVE,

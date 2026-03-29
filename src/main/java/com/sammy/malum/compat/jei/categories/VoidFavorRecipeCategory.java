@@ -21,13 +21,13 @@ import javax.annotation.Nonnull;
 
 import static com.sammy.malum.MalumMod.malumPath;
 
-public class WeepingWellRecipeCategory implements IRecipeCategory<VoidFavorRecipe> {
+public class VoidFavorRecipeCategory implements IRecipeCategory<VoidFavorRecipe> {
 
-    public static final ResourceLocation UID = malumPath("weeping_well");
+    public static final ResourceLocation UID = malumPath("void_favor");
     private final IDrawable overlay;
     private final IDrawable icon;
 
-    public WeepingWellRecipeCategory(IGuiHelper guiHelper) {
+    public VoidFavorRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(malumPath("textures/gui/weeping_well_jei.png"), 0, 0, 142, 185);
         icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItems.VOID_DEPOT.get()));
     }
@@ -39,7 +39,7 @@ public class WeepingWellRecipeCategory implements IRecipeCategory<VoidFavorRecip
 
     @Override
     public RecipeType<VoidFavorRecipe> getRecipeType() {
-        return JEIHandler.WEEPING_WELL;
+        return JEIHandler.VOID_FAVOR;
     }
 
     @Override

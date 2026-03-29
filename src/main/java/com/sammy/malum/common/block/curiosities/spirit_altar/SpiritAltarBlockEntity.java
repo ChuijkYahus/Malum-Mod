@@ -1,11 +1,9 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
 import com.sammy.malum.common.block.MalumBlockItemStackHandler;
-import com.sammy.malum.common.block.MalumSpiritBlockItemStackHandler;
 import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
-import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;

@@ -260,7 +260,7 @@ public class SoulBindingBrazierParticleEffects {
         var spiritInventory = brazier.spiritInventory;
         int spiritsRendered = 0;
         BlockPos blockPos = brazier.getBlockPos();
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
+        for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem shard) {
                 var offset = brazier.getSpiritOffset(spiritsRendered++, 0);
