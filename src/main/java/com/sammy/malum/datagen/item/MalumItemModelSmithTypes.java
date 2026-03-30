@@ -43,7 +43,7 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
     };
 
     public static ItemModelSmith LARGE_HANDHELD_ITEM = HANDHELD_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_HANDHELD));
-    public static ItemModelSmith LARGE_GENERATED_ITEM = HANDHELD_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_GENERATED));
+    public static ItemModelSmith LARGE_GENERATED_ITEM = GENERATED_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_GENERATED));
 
     public static ItemModelSmith SOUL_OF_AN_ITEM = new ItemModelSmith((item, provider) -> provider.getBuilder(provider.getItemName(item)))
                     .modifyResult(result -> {
