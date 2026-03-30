@@ -33,6 +33,11 @@ public class SetupEventHandler {
     }
 
     @SubscribeEvent
+    public static void bindBlockEntities(BlockEntityTypeAddBlocksEvent event) {
+        MalumBlockEntities.bindBlockEntities(event);
+    }
+
+    @SubscribeEvent
     public static void buildCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         SoulwovenBannerBlockItem.addBannerVariantsToCreativeTab(event);
     }
