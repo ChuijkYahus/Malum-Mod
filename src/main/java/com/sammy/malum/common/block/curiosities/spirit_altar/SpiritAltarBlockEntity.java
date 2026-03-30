@@ -75,7 +75,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::recalculateRecipes).build();
         extrasInventory = MalumBlockItemStackHandler.create(this, 32).noSpirits().build();
         spiritInventory = MalumBlockItemStackHandler.create(this, 9).onlySpirits().onContentsChanged(this::recalculateRecipes).build();
-        inventoryHandler = new ItemStackMultiHandler(inventory, extrasInventory, spiritInventory);
+        inventoryHandler = new ItemStackMultiHandler(inventory, spiritInventory);
     }
 
     public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
