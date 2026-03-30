@@ -9,10 +9,6 @@
     "malum:soul_stained_steel_knife",
     "malum:gluttonous_bludgeon",
     "malum:tyrving",
-    "malum:sundering_anchor",
-    {
-      "id": "born_in_chaos_v1:nightmare_scythe",
-      "required": false
-    }
+    "malum:sundering_anchor"
   ]
 }

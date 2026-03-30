@@ -1,0 +1,25 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "malum:block/flora/ebony_stalk",
+		"particle": "malum:block/flora/ebony_stalk"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 16, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 3, 8], "texture": "#0"},
+				"east": {"uv": [9, 0, 12, 8], "texture": "#0"},
+				"south": {"uv": [6, 0, 9, 8], "texture": "#0"},
+				"west": {"uv": [3, 0, 6, 8], "texture": "#0"},
+				"up": {"uv": [12, 0, 15, 3], "texture": "#0"},
+				"down": {"uv": [12, 0, 15, 3], "texture": "#0"}
+			}
+		}
+	]
+}

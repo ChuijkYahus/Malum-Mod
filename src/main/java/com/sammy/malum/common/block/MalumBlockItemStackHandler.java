@@ -34,6 +34,12 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
     }
 
     @Override
+    public void onContentsChanged(int slot) {
+        super.onContentsChanged(slot);
+        parent.setDirty();
+    }
+
+    @Override
     public InventoryInteractionResult extractItem(ServerLevel level, Player player) {
         var result = super.extractItem(level, player);
         if (result.wasSuccessful()) {
