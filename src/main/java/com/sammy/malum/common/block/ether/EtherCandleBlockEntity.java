@@ -14,6 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
@@ -47,7 +48,8 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
     };
 
     public static final RandomSource CANDLE_ROTATION = RandomSource.create();
-    public EtherCandleBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
+
+    public EtherCandleBlockEntity(LodestoneBlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

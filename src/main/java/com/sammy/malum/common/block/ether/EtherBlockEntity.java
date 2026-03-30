@@ -35,7 +35,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
     public DyedItemColor firstColor = EtherItem.DEFAULT_FIRST_COLOR;
     public DyedItemColor secondColor = EtherItem.DEFAULT_SECOND_COLOR;
 
-    public EtherBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
+    public EtherBlockEntity(LodestoneBlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

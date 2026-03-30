@@ -39,7 +39,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     protected int timer;
     protected int timerPause;
 
-    public TotemBaseBlockEntity(BlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
+    public TotemBaseBlockEntity(LodestoneBlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.corrupted = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
     }

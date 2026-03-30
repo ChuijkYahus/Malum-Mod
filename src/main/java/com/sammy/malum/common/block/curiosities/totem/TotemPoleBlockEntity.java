@@ -40,7 +40,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
     protected BlockPos basePos;
     protected int glow;
 
-    public TotemPoleBlockEntity(BlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
+    public TotemPoleBlockEntity(LodestoneBlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         spirit = SpiritTypeProperty.getSpiritType(state).value();
     }

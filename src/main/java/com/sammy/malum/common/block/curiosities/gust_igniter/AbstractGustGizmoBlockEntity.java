@@ -9,6 +9,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 public abstract class AbstractGustGizmoBlockEntity extends OpenStateBlockEntity {
 
@@ -27,7 +28,7 @@ public abstract class AbstractGustGizmoBlockEntity extends OpenStateBlockEntity 
         }
     }
 
-    public AbstractGustGizmoBlockEntity(BlockEntityType<? extends AbstractGustGizmoBlockEntity> type, BlockPos pos, BlockState state) {
+    public AbstractGustGizmoBlockEntity(LodestoneBlockEntityType<? extends AbstractGustGizmoBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

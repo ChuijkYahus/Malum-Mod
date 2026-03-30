@@ -7,7 +7,9 @@ import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.common.data.component.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
@@ -19,7 +21,7 @@ public class ArtificeEntries {
 
     public static void setupEntries(ArcanaProgressionScreen screen) {
         Item EMPTY = ItemStack.EMPTY.getItem();
-
+        
         var spiritStonesReexamination = BookEntry.create("spirit_stones.reexamination")
                 .addPage(new HeadlineTextPage("spirit_stones.reexamination", "spirit_stones.reexamination.1"))
                 .addPage(new TextPage("spirit_stones.reexamination.2"))

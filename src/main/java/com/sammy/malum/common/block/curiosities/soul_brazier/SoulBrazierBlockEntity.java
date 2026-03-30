@@ -82,7 +82,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
     public float extrasAmount, extrasSpin;
     public float spiritAmount, spiritSpin;
 
-    public SoulBrazierBlockEntity(BlockEntityType<? extends SoulBrazierBlockEntity> type, BlockPos pos, BlockState state) {
+    public SoulBrazierBlockEntity(LodestoneBlockEntityType<? extends SoulBrazierBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

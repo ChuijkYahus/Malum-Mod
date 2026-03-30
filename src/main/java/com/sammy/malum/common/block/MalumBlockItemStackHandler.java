@@ -15,22 +15,20 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import java.util.Collection;
 import java.util.function.*;
 
-public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
+public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
 
-    public static <T extends LodestoneBlockEntity> MalumBlockItemStackHandlerBuilder create(T parent, int slotCount) {
+    public static MalumBlockItemStackHandlerBuilder create(LodestoneBlockEntity parent, int slotCount) {
         return new MalumBlockItemStackHandlerBuilder(parent, slotCount);
     }
 
-    protected final LodestoneBlockEntity parent;
-
     public MalumBlockItemStackHandler(LodestoneBlockEntity parent, int slotCount, int allowedItemSize, Predicate<ItemStack> inputPredicate, Runnable contentsChangeBehavior) {
-        super(slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
-        this.parent = parent;
+        super(parent, slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
     }
 
     @Override
@@ -59,6 +57,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
         }
         return result;
     }
+
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
         if (stack.is(MalumTags.ItemTags.SPIRITS)) {

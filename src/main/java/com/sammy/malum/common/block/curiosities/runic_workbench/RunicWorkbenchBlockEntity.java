@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
@@ -32,7 +33,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
     protected int progress = 0;
     protected RunicWorkbenchRecipeInput input;
 
-    public RunicWorkbenchBlockEntity(BlockEntityType<? extends RunicWorkbenchBlockEntity> type, BlockPos pos, BlockState state) {
+    public RunicWorkbenchBlockEntity(LodestoneBlockEntityType<? extends RunicWorkbenchBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

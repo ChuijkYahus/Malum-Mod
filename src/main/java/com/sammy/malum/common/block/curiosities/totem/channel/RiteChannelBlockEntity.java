@@ -11,7 +11,7 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class RiteChannelBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
-    public RiteChannelBlockEntity(BlockEntityType<? extends RiteChannelBlockEntity> type, BlockPos pos, BlockState state) {
+    public RiteChannelBlockEntity(LodestoneBlockEntityType<? extends RiteChannelBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

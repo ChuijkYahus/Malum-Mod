@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class WindTunnelBlockEntity extends AbstractGustGizmoBlockEntity {
 
     private BlockPos igniterPos;
 
-    public WindTunnelBlockEntity(BlockEntityType<? extends WindTunnelBlockEntity> type, BlockPos pos, BlockState state) {
+    public WindTunnelBlockEntity(LodestoneBlockEntityType<? extends WindTunnelBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

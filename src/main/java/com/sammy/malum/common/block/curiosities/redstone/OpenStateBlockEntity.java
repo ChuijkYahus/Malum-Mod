@@ -18,7 +18,7 @@ public abstract class OpenStateBlockEntity extends LodestoneBlockEntity {
 
     public int closeDelay;
 
-    public OpenStateBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public OpenStateBlockEntity(LodestoneBlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

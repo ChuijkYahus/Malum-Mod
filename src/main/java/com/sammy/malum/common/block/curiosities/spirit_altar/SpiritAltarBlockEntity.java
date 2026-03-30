@@ -70,7 +70,7 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
     public Map<SpiritInfusionRecipe, AltarCraftingHelper.Ranking> possibleRecipes = new HashMap<>();
     public SpiritInfusionRecipe recipe;
 
-    public SpiritAltarBlockEntity(BlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
+    public SpiritAltarBlockEntity(LodestoneBlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::recalculateRecipes).build();
         extrasInventory = MalumBlockItemStackHandler.create(this, 32).noSpirits().build();

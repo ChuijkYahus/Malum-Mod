@@ -33,7 +33,7 @@ import java.util.function.Supplier;
 
 public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
-    public SpiritJarBlockEntity(BlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
+    public SpiritJarBlockEntity(LodestoneBlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

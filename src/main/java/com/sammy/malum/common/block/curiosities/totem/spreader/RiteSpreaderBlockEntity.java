@@ -12,7 +12,7 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class RiteSpreaderBlockEntity extends LodestoneBlockEntity implements RiteSparkInteractable {
 
-    public RiteSpreaderBlockEntity(BlockEntityType<? extends RiteSpreaderBlockEntity> type, BlockPos pos, BlockState state) {
+    public RiteSpreaderBlockEntity(LodestoneBlockEntityType<? extends RiteSpreaderBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

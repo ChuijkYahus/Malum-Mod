@@ -13,7 +13,7 @@ import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandl
 
 public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity implements IMalumSpecialItemAccessPoint {
 
-    public MalumItemHolderBlockEntity(BlockEntityType<? extends MalumItemHolderBlockEntity> type, BlockPos pos, BlockState state) {
+    public MalumItemHolderBlockEntity(LodestoneBlockEntityType<? extends MalumItemHolderBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).build();
     }

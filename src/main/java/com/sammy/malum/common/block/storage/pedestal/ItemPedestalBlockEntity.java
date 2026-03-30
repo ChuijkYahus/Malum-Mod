@@ -7,12 +7,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 public class ItemPedestalBlockEntity extends MalumItemHolderBlockEntity {
 
     public static final Vec3 PEDESTAL_ITEM_OFFSET = new Vec3(0.5f, 1.1f, 0.5f);
 
-    public ItemPedestalBlockEntity(BlockEntityType<? extends ItemPedestalBlockEntity> type, BlockPos pos, BlockState state) {
+    public ItemPedestalBlockEntity(LodestoneBlockEntityType<? extends ItemPedestalBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

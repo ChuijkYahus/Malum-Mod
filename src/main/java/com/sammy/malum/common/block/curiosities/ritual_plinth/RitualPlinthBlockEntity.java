@@ -8,7 +8,7 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 public class RitualPlinthBlockEntity extends LodestoneBlockEntity {
 
-    public RitualPlinthBlockEntity(BlockEntityType<? extends RitualPlinthBlockEntity> type, BlockPos pos, BlockState state) {
+    public RitualPlinthBlockEntity(LodestoneBlockEntityType<? extends RitualPlinthBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

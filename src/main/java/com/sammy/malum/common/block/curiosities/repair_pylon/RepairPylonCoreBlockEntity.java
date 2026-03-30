@@ -80,7 +80,7 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
 
     private final Supplier<IItemHandler> exposedInventory = () -> new CombinedInvWrapper(inventory, spiritInventory);
 
-    public RepairPylonCoreBlockEntity(BlockEntityType<? extends RepairPylonCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
+    public RepairPylonCoreBlockEntity(LodestoneBlockEntityType<? extends RepairPylonCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::updateRecipe).build();
         spiritInventory = MalumBlockItemStackHandler.create(this, 6).onlySpirits().onContentsChanged(this::updateRecipe).build();

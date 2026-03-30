@@ -9,13 +9,14 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 import java.util.function.Supplier;
 
 public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
     private static final VoxelShape SHAPE = makeShape();
 
-    public ObeliskCoreBlock(Properties properties, Supplier<BlockEntityType<T>> type) {
+    public ObeliskCoreBlock(Properties properties, Supplier<LodestoneBlockEntityType<T>> type) {
         super(properties);
         setBlockEntity(type);
     }
