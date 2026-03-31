@@ -37,8 +37,15 @@ import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.dungeon.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.common.block.nature.*;
-import com.sammy.malum.common.block.nature.soulwood.*;
+import com.sammy.malum.common.block.flora.EbonySaplingBlock;
+import com.sammy.malum.common.block.flora.EbonyStalkBlock;
+import com.sammy.malum.common.block.flora.WildWitchhazelPlantBlock;
+import com.sammy.malum.common.block.flora.WitchhazelCropBlock;
+import com.sammy.malum.common.block.flora.soulwood.SapFilledSoulwoodLogBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodGrowthBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodLogBlock;
+import com.sammy.malum.common.block.flora.wood.*;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.block.storage.pedestal.*;
 import com.sammy.malum.common.block.storage.stand.*;
@@ -516,6 +523,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_ALCHEMICAL_CALX = BLOCKS.register("block_of_alchemical_calx", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_ARCANE_CHARCOAL = BLOCKS.register("block_of_arcane_charcoal", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
 
+    public static final DeferredHolder<Block, Block> BLOCK_OF_EBONY = BLOCKS.register("block_of_ebony", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.EBONY_BLOCK()));
+    public static final DeferredHolder<Block, Block> CRATE_OF_WITCHHAZEL = BLOCKS.register("crate_of_witchhazel", () -> new Block(MalumStorageBlockProperties.WITCHHAZEL_CRATE()));
+
     public static final DeferredHolder<Block, Block> BLOCK_OF_NULL_SLATE = BLOCKS.register("block_of_null_slate", () -> new Block(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_VOID_SALTS = BLOCKS.register("block_of_void_salts", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_MNEMONIC_FRAGMENT = BLOCKS.register("block_of_mnemonic_fragment", () -> new Block(MalumStorageBlockProperties.BRILLIANCE_BLOCK(false)));
@@ -527,6 +537,13 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_MALIGNANT_PEWTER = BLOCKS.register("block_of_malignant_pewter", () -> new Block(MalumStorageBlockProperties.MALIGNANT_PEWTER_BLOCK()));
     //endregion
 
+    //region flora
+    public static final DeferredHolder<Block, Block> EBONY_SAPLING = BLOCKS.register("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
+    public static final DeferredHolder<Block, Block> EBONY = BLOCKS.register("ebony", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));
+
+    public static final DeferredHolder<Block, Block> WILD_WITCHHAZEL = BLOCKS.register("wild_witchhazel", () -> new WildWitchhazelPlantBlock(MalumFloraBlockProperties.WILD_WITCHHAZEL()));
+    public static final DeferredHolder<Block, Block> WITCHHAZEL = BLOCKS.register("witchhazel", () -> new WitchhazelCropBlock(MalumFloraBlockProperties.WITCHHAZEL_CROP()));
+    //endregion
 
     //region blight
     public static final DeferredHolder<Block, Block> COLUMNAR_BLIGHT = BLOCKS.register("columnar_blight", () -> new ColumnarBlightBlock(MalumBlockProperties.BLIGHTED_EARTH()));

@@ -2,7 +2,7 @@ package com.sammy.malum.common.worldgen.tree;
 
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.common.worldgen.blight.*;
 import com.sammy.malum.registry.common.block.*;
@@ -19,8 +19,6 @@ import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.function.*;
 
 import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.*;

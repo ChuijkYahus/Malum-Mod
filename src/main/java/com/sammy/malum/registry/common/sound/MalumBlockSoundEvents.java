@@ -44,10 +44,22 @@ public class MalumBlockSoundEvents {
 
     //Metals & Misc
     public static final MalumBlockSoundType BLOCK_OF_ARCANE_CHARCOAL = new MalumBlockSoundType("block_of_arcane_charcoal");
+    public static final MalumBlockSoundType BLOCK_OF_EBONY = new MalumBlockSoundType("block_of_ebony");
+
     public static final MalumBlockSoundType BLOCK_OF_SOUL_STAINED_STEEL = new MalumBlockSoundType("block_of_soul_stained_steel");
     public static final MalumBlockSoundType BLOCK_OF_HALLOWED_GOLD = new MalumBlockSoundType("block_of_hallowed_gold");
+
     public static final MalumBlockSoundType BLOCK_OF_MALIGNANT_LEAD = new MalumBlockSoundType("block_of_malignant_lead");
     public static final MalumBlockSoundType BLOCK_OF_MALIGNANT_PEWTER = new MalumBlockSoundType("block_of_malignant_pewter");
+
+    //Flora
+    public static final MalumBlockSoundType EBONY_SAPLING = new MalumBlockSoundType("ebony_sapling");
+    public static final MalumBlockSoundType EBONY = new MalumBlockSoundType("ebony");
+
+
+    public static final MalumBlockSoundType WILD_WITCHHAZEL = new MalumBlockSoundType("wild_witchhazel");
+    public static final MalumBlockSoundType WITCHHAZEL = new MalumBlockSoundType("witchhazel");
+
 
     //Runewood
     public static final MalumBlockSoundType RUNEWOOD = new MalumBlockSoundType("runewood");

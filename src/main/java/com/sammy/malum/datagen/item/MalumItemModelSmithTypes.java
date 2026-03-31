@@ -29,7 +29,7 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         var provider = result.provider();
         var existingFileHelper = provider.existingFileHelper;
         var separateTransforms = result.addSeparateTransformData();
-        var firstPersonModel = ItemModelSmith.parentedItem(modelType, false)
+        var firstPersonModel = ItemModelSmith.parentedItem(modelType, true)
                 .addModelPathAffix("_huge").addTextureNameAffix("_huge")
                 .act(provider, result::item);
         var guiModel = ItemModelSmithTypes.GENERATED_ITEM

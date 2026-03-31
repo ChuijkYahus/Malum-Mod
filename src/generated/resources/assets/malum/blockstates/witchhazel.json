@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "malum:block/witchhazel_0"
+    },
+    "age=1": {
+      "model": "malum:block/witchhazel_1"
+    },
+    "age=2": {
+      "model": "malum:block/witchhazel_2"
+    },
+    "age=3": {
+      "model": "malum:block/witchhazel_3"
+    },
+    "age=4": {
+      "model": "malum:block/witchhazel_4"
+    },
+    "age=5": {
+      "model": "malum:block/witchhazel_5"
+    },
+    "age=6": {
+      "model": "malum:block/witchhazel_6"
+    }
+  }
+}

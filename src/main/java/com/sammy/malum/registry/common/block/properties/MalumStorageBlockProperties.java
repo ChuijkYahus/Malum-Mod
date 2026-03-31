@@ -80,6 +80,19 @@ public class MalumStorageBlockProperties {
                 .strength(5.0F, 6.0F);
     }
 
+    public static LodestoneBlockProperties EBONY_BLOCK() {
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_EBONY, DyeColor.BLACK)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(5.0F, 6.0F);
+    }
+
+    public static LodestoneBlockProperties WITCHHAZEL_CRATE() {
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.RUNEWOOD, DyeColor.PURPLE)
+                .needsAxe()
+                .strength(2.0f, 3.0F);
+    }
+
     public static LodestoneBlockProperties SOUL_STAINED_STEEL_BLOCK() {
         return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_SOUL_STAINED_STEEL, DyeColor.PURPLE)
                 .addTag(BEACON_BASE_BLOCKS)

@@ -2,7 +2,8 @@ package com.sammy.malum.registry.client;
 
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.core.systems.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;

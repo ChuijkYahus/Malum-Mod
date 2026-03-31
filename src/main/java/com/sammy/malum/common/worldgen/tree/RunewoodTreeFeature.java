@@ -1,7 +1,7 @@
 package com.sammy.malum.common.worldgen.tree;
 
-import com.sammy.malum.common.block.blight.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;

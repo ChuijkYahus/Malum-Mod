@@ -15,12 +15,12 @@ import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlock
 public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
 
     public ItemHolderItemDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 16f, 0.2f, 0.01f, 0.025f);
+        super(parent, 0.2f, 0.0125f, 0.01f, 0.025f);
     }
 
     @Override
     public float getDistanceForItem(ItemDisplayDataEntry item, int index, float total) {
-        return (1 - (item.getAge() / 40f)) * 0.25f;
+        return Math.max(1 - (item.getAge() / 40f), 0) * 0.25f;
     }
 
     @Override

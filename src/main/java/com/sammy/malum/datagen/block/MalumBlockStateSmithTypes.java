@@ -14,6 +14,7 @@ import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
 import com.sammy.malum.common.block.ether.*;
+import com.sammy.malum.common.block.flora.EbonyStalkBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -70,6 +71,27 @@ public class MalumBlockStateSmithTypes {
                     .texture("top", top)
                     .texture("front", front);
             return ConfiguredModel.builder().modelFile(pole).rotationY(((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360).build();
+        });
+    });
+
+    public static BlockStateSmith<EbonyStalkBlock> EBONY = new BlockStateSmith<>(EbonyStalkBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            var leaves = s.getValue(EbonyStalkBlock.LEAVES);
+            if (leaves.equals(BambooLeaves.NONE)) {
+                var model = provider.models().getExistingFile(MalumMod.malumPath("block/flora/ebony"));
+                return ConfiguredModel.builder().modelFile(model).build();
+            }
+            var leavesType = leaves + "_leaves";
+            var builder = ConfiguredModel.builder();
+            for (int i = 0; i < 4; i++) {
+                var path = malumPath("block/flora/ebony_" + leavesType + i);
+                var model = provider.models().getExistingFile(path);
+                builder.modelFile(model);
+                if (i != 3) {
+                    builder.nextModel();
+                }
+            }
+            return builder.build();
         });
     });
 

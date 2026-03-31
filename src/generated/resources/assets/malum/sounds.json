@@ -1194,6 +1194,51 @@
     ],
     "subtitle": "malum.subtitle.block_of_cthonic_gold_step"
   },
+  "block_of_ebony_break": {
+    "sounds": [
+      "malum:block/gemstone/break1",
+      "malum:block/gemstone/break2",
+      "malum:block/gemstone/break3",
+      "malum:block/gemstone/break4"
+    ],
+    "subtitle": "malum.subtitle.block_of_ebony_break"
+  },
+  "block_of_ebony_fall": {
+    "sounds": [
+      "malum:block/gemstone/hit1",
+      "malum:block/gemstone/hit2",
+      "malum:block/gemstone/hit3",
+      "malum:block/gemstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.block_of_ebony_fall"
+  },
+  "block_of_ebony_hit": {
+    "sounds": [
+      "malum:block/gemstone/hit1",
+      "malum:block/gemstone/hit2",
+      "malum:block/gemstone/hit3",
+      "malum:block/gemstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.block_of_ebony_hit"
+  },
+  "block_of_ebony_place": {
+    "sounds": [
+      "malum:block/gemstone/break1",
+      "malum:block/gemstone/break2",
+      "malum:block/gemstone/break3",
+      "malum:block/gemstone/break4"
+    ],
+    "subtitle": "malum.subtitle.block_of_ebony_place"
+  },
+  "block_of_ebony_step": {
+    "sounds": [
+      "malum:block/gemstone/hit1",
+      "malum:block/gemstone/hit2",
+      "malum:block/gemstone/hit3",
+      "malum:block/gemstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.block_of_ebony_step"
+  },
   "block_of_hallowed_gold_break": {
     "sounds": [
       "malum:block/hallowed_gold/break1",
@@ -3955,6 +4000,98 @@
       }
     ],
     "subtitle": "malum.subtitle.dross_stone_step"
+  },
+  "ebony_break": {
+    "sounds": [
+      "malum:block/flora/ebony/break1",
+      "malum:block/flora/ebony/break2",
+      "malum:block/flora/ebony/break3",
+      "malum:block/flora/ebony/break4",
+      "malum:block/flora/ebony/break5",
+      "malum:block/flora/ebony/break6"
+    ],
+    "subtitle": "malum.subtitle.ebony_break"
+  },
+  "ebony_fall": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_fall"
+  },
+  "ebony_hit": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_hit"
+  },
+  "ebony_place": {
+    "sounds": [
+      "malum:block/flora/ebony/place1",
+      "malum:block/flora/ebony/place2",
+      "malum:block/flora/ebony/place3",
+      "malum:block/flora/ebony/place4"
+    ],
+    "subtitle": "malum.subtitle.ebony_place"
+  },
+  "ebony_sapling_break": {
+    "sounds": [
+      "malum:block/flora/ebony/sapling/place1",
+      "malum:block/flora/ebony/sapling/place2",
+      "malum:block/flora/ebony/sapling/place3",
+      "malum:block/flora/ebony/sapling/place4"
+    ],
+    "subtitle": "malum.subtitle.ebony_sapling_break"
+  },
+  "ebony_sapling_fall": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_sapling_fall"
+  },
+  "ebony_sapling_hit": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_sapling_hit"
+  },
+  "ebony_sapling_place": {
+    "sounds": [
+      "malum:block/flora/ebony/sapling/place1",
+      "malum:block/flora/ebony/sapling/place2",
+      "malum:block/flora/ebony/sapling/place3",
+      "malum:block/flora/ebony/sapling/place4"
+    ],
+    "subtitle": "malum.subtitle.ebony_sapling_place"
+  },
+  "ebony_sapling_step": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_sapling_step"
+  },
+  "ebony_step": {
+    "sounds": [
+      "malum:block/flora/ebony/hit1",
+      "malum:block/flora/ebony/hit2",
+      "malum:block/flora/ebony/hit3",
+      "malum:block/flora/ebony/hit4"
+    ],
+    "subtitle": "malum.subtitle.ebony_step"
   },
   "echoing_ring_absorbs": {
     "sounds": [
@@ -7714,6 +7851,96 @@
       "malum:curiosities/geas/warlock_impact2"
     ],
     "subtitle": "malum.subtitle.wicked_energy_bursts_forward"
+  },
+  "wild_witchhazel_break": {
+    "sounds": [
+      "malum:block/flora/witchhazel/break1",
+      "malum:block/flora/witchhazel/break2",
+      "malum:block/flora/witchhazel/break3",
+      "malum:block/flora/witchhazel/break4"
+    ],
+    "subtitle": "malum.subtitle.wild_witchhazel_break"
+  },
+  "wild_witchhazel_fall": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.wild_witchhazel_fall"
+  },
+  "wild_witchhazel_hit": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.wild_witchhazel_hit"
+  },
+  "wild_witchhazel_place": {
+    "sounds": [
+      "malum:block/flora/witchhazel/place1",
+      "malum:block/flora/witchhazel/place2",
+      "malum:block/flora/witchhazel/place3",
+      "malum:block/flora/witchhazel/place4"
+    ],
+    "subtitle": "malum.subtitle.wild_witchhazel_place"
+  },
+  "wild_witchhazel_step": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.wild_witchhazel_step"
+  },
+  "witchhazel_break": {
+    "sounds": [
+      "malum:block/flora/witchhazel/break1",
+      "malum:block/flora/witchhazel/break2",
+      "malum:block/flora/witchhazel/break3",
+      "malum:block/flora/witchhazel/break4"
+    ],
+    "subtitle": "malum.subtitle.witchhazel_break"
+  },
+  "witchhazel_fall": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.witchhazel_fall"
+  },
+  "witchhazel_hit": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.witchhazel_hit"
+  },
+  "witchhazel_place": {
+    "sounds": [
+      "malum:block/flora/witchhazel/place1",
+      "malum:block/flora/witchhazel/place2",
+      "malum:block/flora/witchhazel/place3",
+      "malum:block/flora/witchhazel/place4"
+    ],
+    "subtitle": "malum.subtitle.witchhazel_place"
+  },
+  "witchhazel_step": {
+    "sounds": [
+      "malum:block/flora/witchhazel/step1",
+      "malum:block/flora/witchhazel/step2",
+      "malum:block/flora/witchhazel/step3",
+      "malum:block/flora/witchhazel/step4"
+    ],
+    "subtitle": "malum.subtitle.witchhazel_step"
   },
   "wrathful_energy_surges": {
     "sounds": [

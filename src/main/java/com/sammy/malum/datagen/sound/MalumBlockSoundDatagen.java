@@ -72,11 +72,19 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
 
         //Metals & Misc
         add(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, "block/gemstone");
+        add(MalumBlockSoundEvents.BLOCK_OF_EBONY, "block/gemstone");
+
         add(MalumBlockSoundEvents.BLOCK_OF_SOUL_STAINED_STEEL, "block/soul_stained_steel");
         add(MalumBlockSoundEvents.BLOCK_OF_HALLOWED_GOLD, "block/hallowed_gold");
 
         add(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_LEAD, "block/ore/soulstone", b -> b.modifySounds(se -> se.pitch(0.6f)));
         add(MalumBlockSoundEvents.BLOCK_OF_MALIGNANT_PEWTER, "block/soul_stained_steel", b -> b.modifySounds(se -> se.pitch(1.6f)));
+
+        add(MalumBlockSoundEvents.EBONY_SAPLING, "block/flora/ebony", b -> b.setBreakPlaceSoundPaths("block/flora/ebony/sapling"));
+        add(MalumBlockSoundEvents.EBONY, "block/flora/ebony");
+
+        add(MalumBlockSoundEvents.WILD_WITCHHAZEL, "block/flora/witchhazel");
+        add(MalumBlockSoundEvents.WITCHHAZEL, "block/flora/witchhazel");
 
         //Runewood
         add(MalumBlockSoundEvents.RUNEWOOD, "block/runewood");
