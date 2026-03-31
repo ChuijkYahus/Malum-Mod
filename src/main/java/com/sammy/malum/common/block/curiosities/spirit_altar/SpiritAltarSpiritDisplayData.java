@@ -21,7 +21,7 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
     public int warmupTicks;
 
     public SpiritAltarSpiritDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 2f, 0.2f, 0.01f, 0.025f);
+        super(parent, 0.02f, 0.0125f, 0.01f, 0.025f);
         altar = (SpiritAltarBlockEntity) parent.getParent();
     }
 
@@ -42,13 +42,9 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
 
     @Override
     public float getLiftForItem(ItemDisplayDataEntry item, int index, float total) {
-        return 0.75f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
+        return 0.25f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
     }
 
-    @Override
-    public Vec3 getDisplayCenter(LodestoneBlockEntity parent, float partialTicks) {
-        return super.getDisplayCenter(parent, partialTicks);
-    }
 
     public float getSpinUp(Easing easing) {
         return easing.ease(warmupTicks / (float)WARMUP_DURATION, 0, 1, 1);
