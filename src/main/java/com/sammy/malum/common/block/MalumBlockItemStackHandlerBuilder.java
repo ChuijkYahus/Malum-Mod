@@ -4,10 +4,7 @@ import com.sammy.malum.registry.common.MalumTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandlerBuilder;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandlerBuilder;
+import team.lodestar.lodestone.modules.toolkit.inventory.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;

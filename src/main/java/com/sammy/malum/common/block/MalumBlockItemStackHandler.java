@@ -15,6 +15,7 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
