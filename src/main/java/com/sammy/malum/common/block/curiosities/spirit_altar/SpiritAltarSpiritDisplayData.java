@@ -3,6 +3,8 @@ package com.sammy.malum.common.block.curiosities.spirit_altar;
 import dev.kosmx.playerAnim.core.util.MathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -13,6 +15,8 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 
+import java.util.Objects;
+
 public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayData {
 
     protected static final int WARMUP_DURATION = 30;
@@ -21,8 +25,14 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
     public int warmupTicks;
 
     public SpiritAltarSpiritDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 0.02f, 0.0125f);
+        super(parent, 0.015f, 0.1f);
         altar = (SpiritAltarBlockEntity) parent.getParent();
+    }
+
+    @Override
+    public ItemDisplayDataEntry addNewItem(int index, ItemStack stack) {
+        RandomSource random = Objects.requireNonNull(handler.getParent().getLevel()).random;
+        return super.addNewItem(index, stack).setAngle(random.nextFloat() * 6.28f);
     }
 
     @Override
@@ -43,6 +53,12 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
     @Override
     public float getLiftForItem(ItemDisplayDataEntry item, int index, float total) {
         return 0.25f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
+    }
+
+    @Override
+    public float getItemScaleForItem(ItemDisplayDataEntry item, int index, float total) {
+        float delta = Math.min(item.getAge() / 6f, 1f);
+        return Easing.SINE_IN_OUT.lerp(delta, 0f, 0.5f);
     }
 
     public float getSpinUp(Easing easing) {
