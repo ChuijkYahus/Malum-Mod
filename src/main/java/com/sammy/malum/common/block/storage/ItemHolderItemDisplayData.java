@@ -68,8 +68,8 @@ public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
     @Override
     public float getLiftForItem(ItemDisplayDataEntry item, int index, float total) {
         float delta = Math.min(item.getAge() / 8f, 1f);
-        float eased = Easing.QUINTIC_IN_OUT.asValueDistribution(delta, 0.15f, 0.2f, 0f);
-        return addSpiritLift(handler.getParent(), item, eased);
+        float drop = Easing.QUINTIC_IN_OUT.asValueDistribution(delta, 0.15f, 0.2f, 0f);
+        return addSpiritLift(handler.getParent(), item, drop);
     }
 
     public static float addSpiritLift(LodestoneBlockEntity blockEntity, ItemDisplayDataEntry item, float base) {

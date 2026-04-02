@@ -47,6 +47,11 @@ public abstract class BookRecipePage<T extends RecipeInput, K extends Recipe<T>>
         tryGatherRecipeData();
     }
 
+    @Override
+    public boolean isValid() {
+        return recipe != null;
+    }
+
     private void tryGatherRecipeData() {
         if (isValid()) {
             gatherRecipeData();
