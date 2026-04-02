@@ -113,11 +113,14 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
     }
 
     @Override
-    public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
-        if (level instanceof ServerLevel serverLevel) {
-            inventory.interact(serverLevel, pPlayer, pHand);
+    public ItemInteractionResult onUse(Player pPlayer, InteractionHand pHand) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return ItemInteractionResult.CONSUME;
         }
-        return ItemInteractionResult.SUCCESS;
+        if (inventory.interact(serverLevel, pPlayer, pHand)) {
+            return ItemInteractionResult.SUCCESS;
+        }
+        return super.onUse(pPlayer, pHand);
     }
 
     @Override

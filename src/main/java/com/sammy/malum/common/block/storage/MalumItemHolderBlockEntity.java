@@ -29,12 +29,7 @@ public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity i
     @Override
     public Vec3 getItemPos(float partialTicks) {
         var displayData = inventory.getDisplayData();
-        var optional = displayData.getEntry(0);
-        var center = displayData.getDisplayCenter(0);
-        if (optional.isEmpty()) {
-            return center;
-        }
-        return optional.get().getPosition(center);
+        return displayData.getItemPosition(0).orElseGet(displayData::getDisplayCenter);
     }
 
     @Override

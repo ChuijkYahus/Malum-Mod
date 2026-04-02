@@ -68,11 +68,10 @@ public class SpiritAltarParticleEffects {
         }
 
         var spiritDisplayData = altar.spiritInventory.getDisplayData();
-        var center = spiritDisplayData.getDisplayCenter(0);
         for (ItemStackHandlerItemDisplayData.ItemDisplayDataEntry dataEntry : spiritDisplayData.getDataEntries()) {
             var stack = dataEntry.getStack();
             if (stack.getItem() instanceof SpiritShardItem shard) {
-                Vec3 spiritPosition = dataEntry.getPosition(center);
+                Vec3 spiritPosition = spiritDisplayData.getItemPosition(dataEntry);
                 spiritLightSpecs(level, spiritPosition, shard).spawnParticles();
                 if (recipe != null) {
                     Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));

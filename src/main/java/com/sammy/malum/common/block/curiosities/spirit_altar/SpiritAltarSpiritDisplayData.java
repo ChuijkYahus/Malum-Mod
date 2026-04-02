@@ -25,7 +25,7 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
     public int warmupTicks;
 
     public SpiritAltarSpiritDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 0.015f, 0.1f);
+        super(parent);
         altar = (SpiritAltarBlockEntity) parent.getParent();
     }
 
@@ -40,7 +40,23 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
         int target = altar.possibleRecipes.isEmpty() ? 0 : WARMUP_DURATION;
         warmupTicks = DataHelper.approach(warmupTicks, target, 1);
         super.tick(parent, level, pos, state);
-        turn += getSpinUp(Easing.SINE_IN_OUT) * 0.05f + altar.speed * 0.5f;
+    }
+
+    @Override
+    public float getTurnRate() {
+        return 0.01f + getSpinUp(Easing.SINE_IN_OUT) * 0.03f + altar.speed * 0.01f;
+    }
+
+    @Override
+    public float handleAngleCorrection(ItemDisplayDataEntry item, int index, float total, float targetAngle) {
+        float angle = item.getAngle(1);
+        float difference = Math.abs(angle - targetAngle);
+        float delta = Math.min(difference / 2f, 1f);
+        float step = Easing.QUAD_IN_OUT.asValueDistribution(delta, 0.02f, 0.08f, 0.04f);
+        if (angle > targetAngle) {
+            step *= 0.5f;
+        }
+        return DataHelper.approach(angle, targetAngle, step);
     }
 
     @Override

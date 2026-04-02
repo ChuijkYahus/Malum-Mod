@@ -21,15 +21,18 @@ import java.util.Objects;
 public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
 
     public ItemHolderItemDisplayData(LodestoneItemStackBlockHandler handler) {
-        super(handler, 0.2f, 0.0125f);
+        super(handler);
     }
 
     @Override
     public ItemDisplayDataEntry addNewItem(int index, ItemStack stack) {
         RandomSource random = Objects.requireNonNull(handler.getParent().getLevel()).random;
-        turn = random.nextFloat() * 6.28f;
-
         return super.addNewItem(index, stack).setAngle(random.nextFloat() * 6.28f).setDistance(0.2f);
+    }
+
+    @Override
+    public float getTurnRate() {
+        return 0.2f;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
     @Override
     public float getItemScaleForItem(ItemDisplayDataEntry item, int index, float total) {
         float delta = Math.min(item.getAge() / 6f, 1f);
-        return Easing.SINE_IN_OUT.lerp(delta, 0f, 0.6f);
+        return Easing.SINE_IN_OUT.lerp(delta, 0f, 0.55f);
     }
 
     @Override
