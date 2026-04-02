@@ -14,7 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
@@ -78,12 +78,12 @@ public class SoulBindingBrazierParticleEffects {
         long gameTime = level.getGameTime();
         var color = getParticleColor(brazier);
         for (int i = 0; i < 4; i++) {
-            int lifeTime = RandomHelper.randomBetween(random, 20, 25);
-            float spin = RandomHelper.randomBetween(random, 0.01f, 0.02f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 20, 25);
+            float spin = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.01f, 0.02f);
             float scale = 5f;
             WorldParticleBuilder.create(MalumParticles.RADIAL_DISPLAY)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.SINE_OUT, Easing.CUBIC_OUT).build())
-                    .setScaleData(GenericParticleData.create(scale * 0.2f, scale * RandomHelper.randomBetween(random, 0.9f, 1.1f)).build())
+                    .setScaleData(GenericParticleData.create(scale * 0.2f, scale * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.9f, 1.1f)).build())
                     .setColorData(color.setCoefficient(0.7f).build())
                     .setSpinData(SpinParticleData.create(spin).build())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
@@ -92,16 +92,16 @@ public class SoulBindingBrazierParticleEffects {
                     .enableNoClip()
                     .spawn(level, x, y - 0.4f, z)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
-                    .setScaleData(GenericParticleData.create(scale * 0.2f, scale * RandomHelper.randomBetween(random, 0.9f, 1.1f)).build())
+                    .setScaleData(GenericParticleData.create(scale * 0.2f, scale * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.9f, 1.1f)).build())
                     .setColorData(color.setCoefficient(1.2f).build())
                     .setMotion(0, -0.04f, 0)
                     .spawn(level, x, y + 0.4f, z);
         }
         for (int i = 0; i < 16; i++) {
             Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 0.5f, i, 16, gameTime, 80);
-            int lifeTime = RandomHelper.randomBetween(random, 30, 40);
-            float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f);
-            float length = RandomHelper.randomBetween(random, 1.8f, 2.2f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 30, 40);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f);
+            float length = Easing.SINE_IN_OUT.asWeighedRandom(random, 1.8f, 2.2f);
             WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                     .setLengthData(GenericParticleData.create(length, 0).setEasing(Easing.SINE_IN_OUT).build())
@@ -160,9 +160,9 @@ public class SoulBindingBrazierParticleEffects {
         long gameTime = level.getGameTime();
         for (int i = 0; i < 16; i++) {
             Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 0.6f, i, 16, gameTime, 80);
-            int lifeTime = RandomHelper.randomBetween(random, 80, 120);
-            float scale = RandomHelper.randomBetween(random, 0.4f, 0.5f);
-            float length = RandomHelper.randomBetween(random, 0.8f, 1.6f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 80, 120);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 0.5f);
+            float length = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.6f);
             WorldParticleBuilder.create(LodestoneParticleTypes.EXTRUDING_SPARK_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                     .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)).setLengthCenter(1f))
@@ -218,9 +218,9 @@ public class SoulBindingBrazierParticleEffects {
         for (int j = 0; j < 64; j++) {
             Vec3 rotatingPos = VecHelper.rotatingRadialOffset(pos, 2.15f, j, 64, gameTime, 80);
             Vec3 direction = rotatingPos.subtract(pos).normalize();
-            int lifeTime = RandomHelper.randomBetween(random, 40, 60);
-            float scale = RandomHelper.randomBetween(random, 1.2f, 1.4f);
-            float length = RandomHelper.randomBetween(random, 4.2f, 6.6f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 40, 60);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 1.2f, 1.4f);
+            float length = Easing.SINE_IN_OUT.asWeighedRandom(random, 4.2f, 6.6f);
             WorldParticleBuilder.create(LodestoneParticleTypes.SPARK_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                     .setLengthData(GenericParticleData.create(length, 0).setEasing(Easing.SINE_IN_OUT).build())
@@ -267,7 +267,7 @@ public class SoulBindingBrazierParticleEffects {
                 var spiritPosition = offset.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 spiritLightSpecs(level, spiritPosition, shard).spawnParticles();
                 if (brazier.isActive()) {
-                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.04f, 0.08f));
+                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.04f, 0.08f));
                     if (random.nextFloat() < 0.9f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
                         sparkParticles.getBuilder()
@@ -307,9 +307,9 @@ public class SoulBindingBrazierParticleEffects {
             //Upwards Moving Particles
             if (gameTime % 2L == 0) {
                 var color = getParticleColor(brazier).setCoefficient(1.5f).build();
-                int lifeTime = RandomHelper.randomBetween(random, 60, 80);
-                float scale = RandomHelper.randomBetween(random, 1.2f, 1.4f);
-                float velocity = RandomHelper.randomBetween(random, 0.03f, 0.05f);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 60, 80);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 1.2f, 1.4f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.05f);
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, pos, color);
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.2f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
@@ -321,9 +321,9 @@ public class SoulBindingBrazierParticleEffects {
             //Upwards Moving Sparks
             if (gameTime % 2L == 0) {
                 var color = getParticleColor(brazier).setCoefficient(2.5f).build();
-                int lifeTime = RandomHelper.randomBetween(random, 100, 120);
-                float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f);
-                float velocity = RandomHelper.randomBetween(random, 0.06f, 0.07f);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 100, 120);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.06f, 0.07f);
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, rotatingPos, color);
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
@@ -339,8 +339,8 @@ public class SoulBindingBrazierParticleEffects {
             final Vec3 up = new Vec3(0, 1, 0);
             if (gameTime % 12L == 0) {
                 var color = getParticleColor(brazier).setCoefficient(0.6f).build();
-                int lifeTime = RandomHelper.randomBetween(random, 50, 60);
-                float scale = RandomHelper.randomBetween(random, 1.9f, 2.2f);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 50, 60);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 1.9f, 2.2f);
                 WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale*1.5f, 0).setEasing(Easing.SINE_IN).build())
@@ -359,12 +359,12 @@ public class SoulBindingBrazierParticleEffects {
             //Radial Display
             if (brazier.progress % 15L == 0) {
                 var color = getParticleColor(brazier);
-                int lifeTime = RandomHelper.randomBetween(random, 80, 100);
-                float spin = RandomHelper.randomBetween(random, 0.005f, 0.01f);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 80, 100);
+                float spin = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.005f, 0.01f);
                 float scale = 4.5f;
                 WorldParticleBuilder.create(MalumParticles.RADIAL_DISPLAY)
                         .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
-                        .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.95f, 1.05f)).build())
+                        .setScaleData(GenericParticleData.create(scale, scale * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.95f, 1.05f)).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                         .setSpinData(SpinParticleData.create(spin).build())
@@ -378,7 +378,7 @@ public class SoulBindingBrazierParticleEffects {
                         .spawn(level, x, y, z)
                         //Shrinking Central Ring
                         .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setCoefficient(0.8f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
-                        .setScaleData(GenericParticleData.create(scale, scale * RandomHelper.randomBetween(random, 0.4f, 0.5f)).build())
+                        .setScaleData(GenericParticleData.create(scale, scale * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 0.5f)).build())
                         .setColorData(color.setCoefficient(1.5f).build())
                         .setMotion(0, 0.02f, 0)
                         .setLifetime(40)
@@ -394,8 +394,8 @@ public class SoulBindingBrazierParticleEffects {
                 for (int i = 0; i < amount; i++) {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(pos, distance, i, amount, level.getGameTime(), 3000);
                     var spiritType = colorEffectData.getSpirit();
-                    int lifeTime = RandomHelper.randomBetween(random, 80, 100);
-                    float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
+                    int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 80, 100);
+                    float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
                     SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC)
                             .setSpirit(spiritType)
@@ -428,8 +428,8 @@ public class SoulBindingBrazierParticleEffects {
             if (gameTime % 20L == 0) {
                 Vec3 geasIconPos = SoulBrazierBlockEntity.BRAZIER_GEAS_ICON_OFFSET.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 var color = activeSpiritType.createColorData().setCoefficient(0.6f).build();
-                int lifeTime = RandomHelper.randomBetween(random, 50, 60);
-                float scale = RandomHelper.randomBetween(random, 2.4f, 2.8f);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 50, 60);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 2.4f, 2.8f);
                 WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                         .setTransparencyData(GenericParticleData.create(0f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
@@ -452,8 +452,8 @@ public class SoulBindingBrazierParticleEffects {
                 for (int i = 0; i < amount; i++) {
                     var spiritSparkPos = VecHelper.rotatingRadialOffset(geasIconPos, distance, i, amount, level.getGameTime(), 600);
                     var spiritType = colorEffectData.getSpirit();
-                    int lifeTime = RandomHelper.randomBetween(random, 60, 80);
-                    float scale = RandomHelper.randomBetween(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
+                    int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 60, 80);
+                    float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f) * Math.min((brazier.progress + 10) / 40f, 1);
                     var direction = geasIconPos.subtract(spiritSparkPos).normalize();
                     SpiritBasedParticleBuilder.createSpirit(MalumParticles.LIGHT_SPEC)
                             .setSpirit(spiritType)

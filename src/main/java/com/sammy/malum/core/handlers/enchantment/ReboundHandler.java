@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.*;
 
 public class ReboundHandler {
@@ -43,7 +44,8 @@ public class ReboundHandler {
             entity.setMaelstrom(isMaelstrom);
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velocity, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f));
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 1.25f);
+            SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_THROW.get(), 0.5f, pitch);
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);

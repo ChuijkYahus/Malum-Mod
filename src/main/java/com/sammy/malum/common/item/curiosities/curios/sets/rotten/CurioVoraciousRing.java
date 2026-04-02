@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -50,7 +51,8 @@ public class CurioVoraciousRing extends MalumCurioItem {
                         .setDuration(600)
                         .setAmplifierGain(1)
                         .setAmplifierLimit(5));
-                livingEntity.playSound(MalumGearSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, RandomHelper.randomBetween(level.random, 1.2f, 1.6f));
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 1.2f, 1.6f);
+                livingEntity.playSound(MalumGearSoundEvents.VORACIOUS_RING_FEEDS.get(), 0.5f, pitch);
             }
         }
     }

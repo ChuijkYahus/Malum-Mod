@@ -15,6 +15,7 @@ import net.minecraft.world.item.component.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
@@ -51,7 +52,8 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
                     return;
                 }
                 if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
-                    SoundHelper.playSound(attacker, MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+                    float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
+                    SoundHelper.playSound(attacker, MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, pitch);
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)
                             .targets(target)

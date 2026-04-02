@@ -27,9 +27,9 @@ public class BlightParticleEffects {
     public static void strangeCrystalForms(Level level, MalumNetworkedParticleEffectColorData color, BlockPos sourcePos, BlockPos targetPos) {
         var rand = level.getRandom();
 
-        float xOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
-        float yOffset = RandomHelper.randomBetween(rand, 0.1f, 0.2f);
-        float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+        float xOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
+        float yOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.1f, 0.2f);
+        float zOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
         Vec3 center = targetPos.getCenter().add(xOffset, yOffset, zOffset);
         int distance = targetPos.distManhattan(sourcePos);
         int lifetime = 40 + 20 * distance;
@@ -38,7 +38,7 @@ public class BlightParticleEffects {
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(center, 0.9f, i, 16, level.getGameTime(), 640);
             SpiritArcanaType spiritType = color.getSpirit();
             for (int j = 0; j < 2; j++) {
-                float acceleration = RandomHelper.randomBetween(rand, 0.001f, 0.005f);
+                float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.001f, 0.005f);
                 final Consumer<LodestoneWorldParticle> behavior = p -> {
                     if (p.age < 6) {
                         p.setParticleSpeed(p.getParticleSpeed().add(0, acceleration, 0));
@@ -73,9 +73,9 @@ public class BlightParticleEffects {
         int lifeDelay = 4 + 6 * distance;
         for (int i = 0; i < 6; i++) {
             if (rand.nextFloat() < 0.75f) {
-                float xOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
-                float yOffset = RandomHelper.randomBetween(rand, 0.5f, 0.6f);
-                float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+                float xOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
+                float yOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 0.6f);
+                float zOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
                 Vec3 particlePosition = targetPos.getCenter().add(xOffset, yOffset, zOffset);
                 SpiritArcanaType spiritType = color.getSpirit();
                 float scale = (0.6f) - distance * 0.05f;
@@ -103,11 +103,11 @@ public class BlightParticleEffects {
         for (int i = 0; i < 3; i++) {
             if (rand.nextFloat() < 0.85f) {
                 Color color = getBlightColor(rand);
-                float xVelocity = RandomHelper.randomBetween(rand, Easing.CUBIC_OUT, -0.025f, 0.025f);
-                float zVelocity = RandomHelper.randomBetween(rand, Easing.CUBIC_OUT, -0.025f, 0.025f);
-                float xOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
-                float yOffset = RandomHelper.randomBetween(rand, 0.5f, 0.65f);
-                float zOffset = RandomHelper.randomBetween(rand, -0.5f, 0.5f);
+                float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(rand, -0.025f, 0.025f);
+                float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(rand, -0.025f, 0.025f);
+                float xOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
+                float yOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 0.65f);
+                float zOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.5f, 0.5f);
 
                 Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
                 Vec3 particlePosition = targetPos.getCenter().add(xOffset, yOffset, zOffset);
@@ -143,16 +143,17 @@ public class BlightParticleEffects {
         for (int i = 0; i < 3; i++) {
             if (rand.nextFloat() < 0.85f) {
                 Color color = getBlightColor(rand);
-                float xOffset = RandomHelper.randomBetween(rand, -0.3f, 0.3f);
-                float yOffset = RandomHelper.randomBetween(rand, -0.6f, -0.4f);
-                float zOffset = RandomHelper.randomBetween(rand, -0.3f, 0.3f);
+                float xOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.3f, 0.3f);
+                float yOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.6f, -0.4f);
+                float zOffset = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.3f, 0.3f);
 
                 Consumer<LodestoneWorldParticle> movement = p -> {
                     var center = targetPos.getCenter();
                     Vec3 distance = p.getParticlePosition().subtract(center.x, center.y+1, center.z);
                     Vec3 direction = distance.normalize();
                     float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0);
-                    float velocity = Easing.CIRC_IN_OUT.ease(delta, 0.02f, 0.5f - distance.length() * 0.4);
+                    float length = (float) distance.length();
+                    float velocity = Easing.CIRC_IN_OUT.lerp(delta, 0.02f, 0.5f - length * 0.4f);
                     Vec3 speed = direction.scale(velocity).multiply(1f, 0.7f, 1f);
                     Vec3 lerp = p.getParticleSpeed().lerp(speed, delta);
                     p.setParticleSpeed(lerp);

@@ -41,12 +41,12 @@ public class SpiritCrucibleParticleEffects {
         var random = level.random;
 
         for (int i = 0; i < 4; i++) {
-            final GenericParticleData scaleData = GenericParticleData.create(RandomHelper.randomBetween(random, 1.2f, 0.8f), 0f)
+            final GenericParticleData scaleData = GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 1.2f, 0.8f), 0f)
                     .setEasing(Easing.BOUNCE_IN_OUT)
-                    .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
+                    .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 1.25f)).build();
             WorldParticleBuilder.create(MalumParticles.CIRCLE.get())
                     .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
-                    .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.4f, 0.8f)).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 0.8f)).build())
                     .setColorData(colorData.getColor())
                     .setScaleData(scaleData)
                     .setFriction(0.99f)
@@ -57,13 +57,13 @@ public class SpiritCrucibleParticleEffects {
                     .repeat(level, positionData.getPosX(), positionData.getPosY(), positionData.getPosZ(), 2);
         }
         for (int i = 0; i < 4; i++) {
-            final GenericParticleData scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(random, 0.8f, 0.4f), 0f)
+            final GenericParticleData scaleData = GenericParticleData.create(0.1f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 0.4f), 0f)
                     .setEasing(Easing.BOUNCE_IN_OUT)
-                    .setCoefficient(RandomHelper.randomBetween(random, 1f, 1.25f)).build();
+                    .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 1.25f)).build();
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
             WorldParticleBuilder.create(MalumParticles.SHINE.get())
                     .setTransparencyData(GenericParticleData.create(0.7f, 0.3f).setEasing(Easing.SINE_IN_OUT).build())
-                    .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.3f)).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.3f)).build())
                     .setColorData(colorData.getColor())
                     .setScaleData(scaleData)
                     .addTickActor(behavior)
@@ -132,7 +132,7 @@ public class SpiritCrucibleParticleEffects {
                     var offset = crucible.getSpiritItemOffset(spiritsRendered++, 0);
                     var blockPos = crucible.getBlockPos();
                     var spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
-                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
+                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shardItem);
                         sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
@@ -158,7 +158,7 @@ public class SpiritCrucibleParticleEffects {
                     var particlePosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                     for (var spiritType : augmentItem.spiritTypes) {
                         if (recipe != null) {
-                            Vec3 velocity = itemPos.subtract(particlePosition).normalize().scale(RandomHelper.randomBetween(random, 0.01f, 0.02f));
+                            Vec3 velocity = itemPos.subtract(particlePosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.01f, 0.02f));
                             if (random.nextFloat() < 0.15f) {
                                 var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, particlePosition, spiritType);
                                 sparkParticles.getBuilder().multiplyLifetime(2.5f).setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
@@ -198,10 +198,10 @@ public class SpiritCrucibleParticleEffects {
         for (int i = 0; i < 24; i++) {
             int lifeDelay = i / 8;
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
-            float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.75f, 1f);
+            float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.5f);
+            float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1f);
             if (random.nextFloat() < 0.85f) {
                 var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, crucibleItemPos, cyclingSpiritType);
                 sparkParticles.getBuilder()
@@ -246,9 +246,9 @@ public class SpiritCrucibleParticleEffects {
         var smokePos = crucibleItemPos.subtract(0, 0.5f, 0);
         for (int i = 0; i < 8; i++) {
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
-            float yVelocity = RandomHelper.randomBetween(random, 0.015f, 0.035f);
-            float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.025f, 0.025f);
+            float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.025f, 0.025f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.015f, 0.035f);
+            float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.025f, 0.025f);
             if (random.nextFloat() < 0.85f) {
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, smokePos, cyclingSpiritType, new WorldParticleOptions(MalumParticles.STRANGE_SMOKE.get()));
                 lightSpecs.getBuilder()
@@ -281,7 +281,7 @@ public class SpiritCrucibleParticleEffects {
         RandomSource random = level.random;
         Vec3 targetPos = target.getVisualAccelerationPoint();
         if (level.getGameTime() % 2L == 0) {
-            Vec3 velocity = targetPos.subtract(startPos).normalize().scale(RandomHelper.randomBetween(random, 0.06f, 0.12f));
+            Vec3 velocity = targetPos.subtract(startPos).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.06f, 0.12f));
             Vec3 sparkPos = startPos.add(0.05f - random.nextFloat() * 0.1f, 0.05f - random.nextFloat() * 0.1f, 0.05f - random.nextFloat() * 0.1f);
             var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, sparkPos, spiritType);
             sparkParticles.getBuilder().setMotion(velocity)
@@ -294,7 +294,7 @@ public class SpiritCrucibleParticleEffects {
         if (level.getGameTime() % 10L == 0) {
             Vec3 velocity = targetPos.subtract(startPos).normalize().scale(0.02f * targetPos.distanceTo(startPos));
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
-            final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.1f, 0.2f)).randomSpinOffset(random).build();
+            final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.2f)).randomSpinOffset(random).build();
             WorldParticleBuilder.create(MalumParticles.HEXAGON.get())
                     .setBehavior(DirectionalParticleBehavior.directional(velocity.normalize()))
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.4f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
@@ -316,7 +316,7 @@ public class SpiritCrucibleParticleEffects {
                 BlockPos blockPos = catalyzer.getBlockPos();
                 Vec3 particlePosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                 for (var augmentSpiritType : augmentItem.spiritTypes) {
-                    Vec3 velocity = targetPos.subtract(particlePosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
+                    Vec3 velocity = targetPos.subtract(particlePosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.15f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, particlePosition, augmentSpiritType);
                         sparkParticles.getBuilder().multiplyLifetime(2.5f).setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));

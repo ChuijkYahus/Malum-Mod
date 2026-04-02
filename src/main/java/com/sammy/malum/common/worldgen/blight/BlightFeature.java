@@ -72,8 +72,8 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         var builder = LodestoneWorldgenBuilder.create();
         if (allowScarstone && random.nextFloat() < 0.1f) {
             int offset = (int) (radius * 0.8f);
-            int xOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
-            int zOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            int xOffset = Easing.CIRC_OUT.asWeighedRandom(random, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            int zOffset = Easing.CIRC_OUT.asWeighedRandom(random, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
             var scarstonePos = pos.offset(xOffset, 0, zOffset);
             var extraBlight = generateBlight(level, scarstonePos, radius);
             var scarstone = ScarstoneFeature.generateScarstone(level, scarstonePos, (int) (radius * 0.7f));
@@ -111,8 +111,8 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
 
         if (random.nextFloat() < 0.2f) {
             int offset = (int) (radius * 0.25f);
-            int xOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
-            int zOffset = RandomHelper.randomBetween(random, Easing.CIRC_OUT, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            int xOffset = Easing.CIRC_OUT.asWeighedRandom(random, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
+            int zOffset = Easing.CIRC_OUT.asWeighedRandom(random, offset / 2, offset * 2) * (random.nextBoolean() ? 1 : -1);
             var columnPos = pos.offset(xOffset, 0, zOffset);
             var columns = fetchCoveringPositions(level, columnPos, Mth.floor(radius*0.5f)+1);
             var mutable = new BlockPos.MutableBlockPos();
@@ -123,7 +123,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                     if (foundation.getBlock() instanceof ColumnarBlightBlock){
                         continue;
                     }
-                    int desiredHeight = RandomHelper.randomBetween(random, Easing.EXPO_IN_OUT, 2, 6);
+                    int desiredHeight = Easing.EXPO_IN_OUT.asWeighedRandom(random, 2, 6);
                     int height = 0;
                     for (int i = 0; i < desiredHeight; i++) {
                         mutable.move(Direction.UP);
@@ -243,9 +243,9 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 int offsetX = x + i;
                 int offsetZ = z + j;
                 float distance = Mth.sqrt(i * i + j * j);
-                double theta = Math.toDegrees(Math.atan2(i, j)) * 0.01f;
-                double noise = (COVERING_NOISE.getValue(x * 10000 + theta, z * 10000 + theta, true) + 1) / 2;
-                double threshold = Easing.SINE_IN_OUT.clamped(noise, 0.5f, 2) * radius * (limit - distance) / limit;
+                float theta = (float) (Math.toDegrees(Math.atan2(i, j)) * 0.01f);
+                float noise = (float) ((COVERING_NOISE.getValue(x * 10000 + theta, z * 10000 + theta, true) + 1) / 2);
+                double threshold = Easing.SINE_IN_OUT.lerp(noise, 0.5f, 2f) * radius * (limit - distance) / limit;
                 if (distance <= threshold) {
                     mutable.set(offsetX, center.getY(), offsetZ);
                     for (int k = 0; k < verticalRange; k++) {

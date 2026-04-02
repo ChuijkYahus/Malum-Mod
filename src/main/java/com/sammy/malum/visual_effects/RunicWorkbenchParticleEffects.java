@@ -43,9 +43,9 @@ public class RunicWorkbenchParticleEffects {
         }
         for (int i = 0; i < 6; i++) {
             int lifeDelay = 2 + i;
-            var scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.5f, 0.6f) + i * 0.05f, 0.5f)
+            var scaleData = GenericParticleData.create(0.1f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 0.6f) + i * 0.05f, 0.5f)
                     .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
-                    .setCoefficient(RandomHelper.randomBetween(rand, 1.5f, 2f)).build();
+                    .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 2f)).build();
             var builder = SpiritBasedParticleBuilder.createSpirit(MalumParticles.SQUARE.get())
                     .setSpirit(colorData.getSpirit())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
@@ -70,9 +70,9 @@ public class RunicWorkbenchParticleEffects {
 
         for (int i = 0; i < 4; i++) {
             int lifeDelay = 18;
-            var scaleData = GenericParticleData.create(0.2f, RandomHelper.randomBetween(rand, 0.3f, 0.4f) + i * 0.1f, 0.3f)
+            var scaleData = GenericParticleData.create(0.2f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.3f, 0.4f) + i * 0.1f, 0.3f)
                     .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
-                    .setCoefficient(RandomHelper.randomBetween(rand, 1.5f, 2f)).build();
+                    .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 2f)).build();
             var builder = SpiritBasedParticleBuilder.createSpirit(MalumParticles.SQUARE.get())
                     .setSpirit(colorData.getSpirit())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))

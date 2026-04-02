@@ -359,6 +359,6 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
         if (warmupTimer >= WARMUP_DURATION) {
             return 1;
         }
-        return easing.ease(warmupTimer / WARMUP_DURATION, 0, 1, 1);
+        return easing.ease(warmupTimer / (float)WARMUP_DURATION);
     }
 }

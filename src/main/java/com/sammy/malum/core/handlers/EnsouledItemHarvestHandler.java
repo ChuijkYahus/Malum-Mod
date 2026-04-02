@@ -5,11 +5,8 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
-import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
-
-import static team.lodestar.lodestone.helpers.RandomHelper.randomBetween;
 
 public class EnsouledItemHarvestHandler {
 

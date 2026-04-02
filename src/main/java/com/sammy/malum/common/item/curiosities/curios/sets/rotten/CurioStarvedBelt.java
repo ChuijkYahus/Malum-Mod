@@ -13,6 +13,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -37,8 +38,8 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
                     .setAmplifierLimit(limit));
 
             var random = serverLevel.random;
-            SoundHelper.playSound(collector, MalumGearSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, RandomHelper.randomBetween(random, 1.5f, 2f));
-            SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
+            SoundHelper.playSound(collector, MalumGearSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.5f, 2f));
+            SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f));
             ConcentratedGluttonyItem.createGluttonyVFX(serverLevel, collector, 0.5f);
         }
     }

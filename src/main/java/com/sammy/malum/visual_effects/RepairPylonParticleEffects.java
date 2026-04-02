@@ -70,7 +70,7 @@ public class RepairPylonParticleEffects {
                 Vec3 spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                 spiritLightSpecs(level, spiritPosition, activeSpiritType).spawnParticles();
                 if (recipe != null && isCharging) {
-                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
+                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, activeSpiritType);
                         sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
@@ -188,10 +188,10 @@ public class RepairPylonParticleEffects {
         for (int i = 0; i < 24; i++) {
             int lifeDelay = i / 8;
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
-            float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.75f, 1f);
+            float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.5f);
+            float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1f);
             if (random.nextFloat() < 0.85f) {
                 var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, itemPos, cyclingSpiritType);
                 sparkParticles.getBuilder()

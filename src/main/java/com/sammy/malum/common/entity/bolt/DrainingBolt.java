@@ -89,7 +89,7 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
         WorldParticleBuilder.create(MalumParticles.SAW)
                 .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
-                .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
+                .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 24))

@@ -36,7 +36,7 @@ public class WeepingWellParticleEffects {
     private static final GenericParticleData SMOKE_TRANSPARENCY = GenericParticleData.create(0.5f, 1f, 0.2f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build();
 
     public static Color getWeepingWellSmokeColor(RandomSource rand) {
-        float colorMultiplier = RandomHelper.randomBetween(rand, 0.6f, 1.2f);
+        float colorMultiplier = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.6f, 1.2f);
         return new Color((int) (4 * colorMultiplier), (int) (3 * colorMultiplier), (int) (6 * colorMultiplier));
     }
 
@@ -50,10 +50,10 @@ public class WeepingWellParticleEffects {
         ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
         Consumer<LodestoneWorldParticle> spawnBehavior = p -> p.tick(2);
         for (int i = 0; i < 64; i++) {
-            float xVelocity = RandomHelper.randomBetween(rand, 0f, 0.15f) * (rand.nextBoolean() ? 1 : -1);
-            float yVelocity = RandomHelper.randomBetween(rand, 0.5f, 1f);
-            float zVelocity = RandomHelper.randomBetween(rand, 0f, 0.15f) * (rand.nextBoolean() ? 1 : -1);
-            float gravityStrength = RandomHelper.randomBetween(rand, 0.75f, 1f);
+            float xVelocity = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0f, 0.15f) * (rand.nextBoolean() ? 1 : -1);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 1f);
+            float zVelocity = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0f, 0.15f) * (rand.nextBoolean() ? 1 : -1);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.75f, 1f);
             if (rand.nextFloat() < 0.85f) {
                 var sparkParticles = weepingWellSparks(level, pos, colorData, LodestoneWorldParticleRenderType.LUMITRANSPARENT);
                 sparkParticles.getBuilder()
@@ -125,7 +125,7 @@ public class WeepingWellParticleEffects {
         if (level.getGameTime() % 6L == 0) {
             final BlockPos blockPos = voidConduit.getBlockPos();
             var rand = level.random;
-            int lifetime = RandomHelper.randomBetween(rand, 80, 120);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 80, 120);
             float yMotion = 0.004f;
             Color color = getWeepingWellSmokeColor(rand);
             ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
@@ -164,7 +164,7 @@ public class WeepingWellParticleEffects {
             if (rand.nextFloat() < 0.75f) {
                 int rotation = rand.nextInt(16);
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 1.1f, rotation, 16, level.getGameTime(), 640);
-                final float acceleration = RandomHelper.randomBetween(rand, 0.002f, 0.02f);
+                final float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.002f, 0.02f);
                 final long gameTime = level.getGameTime();
                 final Consumer<LodestoneWorldParticle> behavior = p -> {
                     if (level.getGameTime() < gameTime + 10) {
@@ -188,7 +188,7 @@ public class WeepingWellParticleEffects {
         if (level.getGameTime() % 60L == 0) {
             final BlockPos blockPos = voidDepot.getBlockPos();
             var rand = level.random;
-            int lifetime = RandomHelper.randomBetween(rand, 80, 120);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 80, 120);
             float yMotion = 0.0005f;
             Color color = getWeepingWellSmokeColor(rand);
             ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
@@ -207,7 +207,7 @@ public class WeepingWellParticleEffects {
             if (rand.nextFloat() < 0.2f) {
                 int rotation = rand.nextInt(16);
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 0.5f, rotation, 16, level.getGameTime(), 640);
-                final float acceleration = RandomHelper.randomBetween(rand, 0.002f, 0.02f);
+                final float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.002f, 0.02f);
                 final long gameTime = level.getGameTime();
                 final Consumer<LodestoneWorldParticle> behavior = p -> {
                     if (level.getGameTime() < gameTime + 4) {
@@ -239,14 +239,14 @@ public class WeepingWellParticleEffects {
         lightSpecs.getBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
-                .modifyLengthData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.75f, 2.5f)))
-                .modifyTransparencyData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
-                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f)));
+                .modifyLengthData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.75f, 2.5f)))
+                .modifyTransparencyData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.75f, 1f)))
+                .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 3.5f)));
         lightSpecs.getBloomBuilder()
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
-                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f)));
+                .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1f, 1.25f)));
         return lightSpecs;
     }
 
@@ -263,22 +263,22 @@ public class WeepingWellParticleEffects {
         lightSpecs.getBuilder().act(b -> b
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
-                .modifyTransparencyData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 0.75f, 1f)))
-                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1.5f, 3.5f))));
+                .modifyTransparencyData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.75f, 1f)))
+                .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 3.5f))));
         lightSpecs.getBloomBuilder().act(b -> b
                 .setRenderType(renderType)
                 .multiplyLifetime(6f)
                 .setTransparencyData(GenericParticleData.create(0f, 0.75f, 0.25f).build())
                
-                .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(rand, 1f, 1.25f))));
+                .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1f, 1.25f))));
         return lightSpecs;
     }
 
     public static ParticleEffectSpawner weepingWellSquare(Level level, Vec3 pos, ColorParticleData colorData) {
         RandomSource rand = level.random;
-        final GenericParticleData scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 1.7f, 1.8f), 0.5f).setEasing(Easing.SINE_OUT, Easing.SINE_IN).setCoefficient(RandomHelper.randomBetween(rand, 1f, 1.25f)).build();
+        final GenericParticleData scaleData = GenericParticleData.create(0.1f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.7f, 1.8f), 0.5f).setEasing(Easing.SINE_OUT, Easing.SINE_IN).setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1f, 1.25f)).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
-        float yMotion = RandomHelper.randomBetween(rand, 0.04f, 0.06f);
+        float yMotion = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.04f, 0.06f);
         Vec3 motion = new Vec3(0f, yMotion, 0f);
         var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setBehavior(DirectionalParticleBehavior.directional())

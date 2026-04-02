@@ -231,7 +231,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 CRATE_OF_WITCHHAZEL);
 
         setTexturePath("flora/");
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, EBONY_SAPLING);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.NO_DATAGEN, EBONY_SAPLING);
         MalumBlockStateSmithTypes.EBONY.act(data, EBONY);
 
 

@@ -36,7 +36,8 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
             if (riteType == null) {
                 return;
             }
-            float scalar = Easing.SINE_IN_OUT.ease(STAFF_TRACKER.getDelta(partialTicks), 0, 1);
+            float held = STAFF_TRACKER.getDelta(partialTicks);
+            float eased = Easing.SINE_IN_OUT.ease(held);
             var spirit = riteType.getIdentifyingSpirit();
             var riteEffect = riteType.getEffect();
             if (riteEffect instanceof SpiritRiteEntityEffect<?> entityEffect) {
@@ -82,15 +83,15 @@ public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEnti
                     var builder = SpiritBasedWorldVFXBuilder.create(spirit);
                     builder
                             .setRenderType(border)
-                            .setColor(primaryColor, 0.95f * scalar)
+                            .setColor(primaryColor, 0.95f * eased)
                             .renderCube(poseStack, borderArea);
                     builder
                             .setRenderType(squiggles)
-                            .setColor(secondaryColor, 0.8f * scalar)
+                            .setColor(secondaryColor, 0.8f * eased)
                             .renderCube(poseStack, squiggleArea);
                     builder
                             .setRenderType(checkerboard)
-                            .setColor(primaryColor, 0.6f * scalar)
+                            .setColor(primaryColor, 0.6f * eased)
                             .renderCube(poseStack, checkerboardArea);
                 }
                 poseStack.popPose();

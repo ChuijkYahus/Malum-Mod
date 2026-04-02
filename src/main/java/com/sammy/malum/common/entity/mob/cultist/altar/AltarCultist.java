@@ -35,7 +35,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
@@ -239,7 +239,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
         if (headTiltTimer == -1) {
             if (!level().isClientSide) {
                 if (level().getGameTime() % duration * 2 == 0) {
-                    int rotation = RandomHelper.randomBetween(random, Easing.QUAD_IN, 1, 4) * (random.nextBoolean() ? 1 : -1);
+                    int rotation = Easing.SINE_IN_OUT.asWeighedRandom(random, 1, 4) * (random.nextBoolean() ? 1 : -1);
                     entityData.set(HEAD_TILT, entityData.get(HEAD_TILT) + rotation);
                 }
             }
@@ -248,9 +248,9 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
         if (headTiltTimer < duration) {
             headTiltTimer++;
             float delta = headTiltTimer / (float) duration;
-            delta = Easing.BACK_IN_OUT.clamped(delta, 0, 1);
+            float eased = Easing.BACK_IN_OUT.lerp(delta, 0f, 1f);
             oHeadTilt = headTilt;
-            headTilt = Mth.lerp(delta, headTiltStart, headTiltEnd);
+            headTilt = Mth.lerp(eased, headTiltStart, headTiltEnd);
             if (headTiltTimer == duration) {
                 headTiltTimer = -1;
             }

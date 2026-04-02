@@ -13,6 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 public class ScytheBoomerang extends AbstractScytheProjectileEntity {
@@ -138,7 +139,8 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
                         if (scytheOwner instanceof ServerPlayer player) {
                             ReboundHandler.pickupScythe(this, scythe, player);
                         }
-                        SoundHelper.playSound(scytheOwner, MalumGearSoundEvents.SCYTHE_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 0.75f, 1.25f));
+                        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level().getRandom(), 0.75f, 1.25f);
+                        SoundHelper.playSound(scytheOwner, MalumGearSoundEvents.SCYTHE_CATCH.get(), 0.5f, pitch);
                         remove(RemovalReason.DISCARDED);
                     }
                 }

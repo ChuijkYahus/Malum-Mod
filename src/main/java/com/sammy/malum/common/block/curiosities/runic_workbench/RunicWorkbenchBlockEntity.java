@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
@@ -64,15 +65,6 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
                     secondaryInput
             );
         }
-    }
-
-    @Override
-    public Vec3 getItemOffset(float partialTicks) {
-        if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem) {
-            float gameTime = level.getGameTime() + partialTicks;
-            return RUNIC_WORKBENCH_ITEM_OFFSET.add(0, (float) Math.sin((gameTime % 360) / 20f) * 0.05f, 0);
-        }
-        return RUNIC_WORKBENCH_ITEM_OFFSET;
     }
 
     @Override
@@ -122,7 +114,8 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
             } else if (input.primaryInput().getItem() instanceof SpiritShardItem shardItem) {
                 spirit = shardItem;
             }
-            serverLevel.playSound(null, worldPosition, recipe.soundType, SoundSource.BLOCKS, 1, RandomHelper.randomBetween(serverLevel.random, 0.9f, 1.2f));
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.random, 0.9f, 1.2f);
+            playSound(recipe.soundType, 1, pitch);
             var effectType = spirit != null ? MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_RUNE : MalumParticleEffectTypes.RUNIC_WORKBENCH_CRAFTS_SPIRITLESS_ITEM;
             var particle = effectType.createEffect(worldPosition).customData(new RunicWorkbenchEffectData(input.primaryInput().copy(), input.secondaryInput().copy()));
             if (spirit != null) {

@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
@@ -42,7 +43,8 @@ public class RavenousScytheItem extends MagicScytheItem {
                     if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
                         return;
                     }
-                    SoundHelper.playSound(attacker, MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+                    float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
+                    SoundHelper.playSound(attacker, MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS.get(), 1, pitch);
                 }
                 if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {
                     if (level.getRandom().nextFloat() >= 0.2f) {

@@ -11,6 +11,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -38,6 +39,7 @@ public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem,
             EntityHelper.extendEffect(effect, collector, addedDuration, 72000);
             EntityHelper.amplifyEffect(effect, collector, 1, 19);
         }
-        collector.playSound(MalumGearSoundEvents.ECHOING_RING_ABSORBS.get(), 0.3f, RandomHelper.randomBetween(collector.getRandom(), 1.5f, 2f));
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(collector.getRandom(), 1.5f, 2f);
+        collector.playSound(MalumGearSoundEvents.ECHOING_RING_ABSORBS.get(), 0.3f, pitch);
     }
 }

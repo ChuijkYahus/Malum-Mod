@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 import team.lodestar.lodestone.modules.toolkit.client.ItemStackDisplayDataRenderer;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
@@ -28,13 +29,13 @@ public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlock
     @Override
     public void render(SpiritAltarBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         var renderer = new ItemStackDisplayDataRenderer();
-        renderer.setItemScale(0.45f).render(blockEntityIn.inventory, poseStack, bufferIn, combinedLightIn, partialTicks);
-        renderer.setItemScale(0.5f).render(blockEntityIn.spiritInventory, poseStack, bufferIn, combinedLightIn, partialTicks);
+        renderer.render(blockEntityIn.inventory, poseStack, bufferIn, combinedLightIn, partialTicks);
+        renderer.render(blockEntityIn.spiritInventory, poseStack, bufferIn, combinedLightIn, partialTicks);
 //      FloatingItemRenderer.renderSpiritGlimmer(poseStack, shardItem.getSpiritHolder(), partialTicks);
     }
 
     @Override
-    public AABB getRenderBoundingBox(SpiritAltarBlockEntity altar) {
+    public @NotNull AABB getRenderBoundingBox(SpiritAltarBlockEntity altar) {
         var pos = altar.getBlockPos();
         return new AABB(pos.getX() - 1, pos.getY(), pos.getZ() - 1, pos.getX() + 2, pos.getY() + 2, pos.getZ() + 2);
     }

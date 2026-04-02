@@ -20,6 +20,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.*;
 
 import static com.sammy.malum.registry.common.enchantment.EnchantmentKeys.getEnchantmentLevel;
@@ -116,7 +117,8 @@ public class AscensionHandler {
                         living.hurt(magicDamageType, magicDamage);
                     }
                 }
-                SoundHelper.playSound(player, sound, 0.8f, RandomHelper.randomBetween(random, 0.75f, 1.25f));
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1.25f);
+                SoundHelper.playSound(player, sound, 0.8f, pitch);
                 dealtDamage = true;
                 if (hasFunnyRing) {
                     CurioRisingEdgeRing.launchEntity(player, living, isUppercut);
@@ -128,9 +130,9 @@ public class AscensionHandler {
         }
 
         for (int i = 0; i < 3; i++) {
-            SoundHelper.playSound(player, sound, 0.4f, RandomHelper.randomBetween(random, 1.25f, 1.75f));
+            SoundHelper.playSound(player, sound, 0.4f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.25f, 1.75f));
         }
-        SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_ASCENSION.get(), 0.8f, RandomHelper.randomBetween(random, 1.25f, 1.5f));
+        SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_ASCENSION.get(), 0.8f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.25f, 1.5f));
     }
 
     protected static boolean ascensionCanHitEntity(Player attacker, Entity pTarget) {

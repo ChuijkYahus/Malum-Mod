@@ -17,43 +17,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.*;
+import team.lodestar.lodestone.modules.toolkit.client.ItemStackDisplayDataRenderer;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
 
+@SuppressWarnings("NullableProblems")
 public class MalumItemHolderRenderer implements BlockEntityRenderer<MalumItemHolderBlockEntity> {
     public MalumItemHolderRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
     public void render(MalumItemHolderBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        var stack = blockEntityIn.inventory.getStackInSlot(0);
-        if (!stack.isEmpty()) {
-            var level = blockEntityIn.getLevel();
-            var itemRenderer = Minecraft.getInstance().getItemRenderer();
-            var state = blockEntityIn.getBlockState();
-            var itemOffset = blockEntityIn.getItemOffset(partialTicks);
-            boolean shouldRotate = true;
-            poseStack.pushPose();
-            poseStack.translate(itemOffset.x(), itemOffset.y(), itemOffset.z());
-            if (state.hasProperty(BlockStateProperties.FACING)) {
-                Direction direction = state.getValue(BlockStateProperties.FACING);
-                poseStack.mulPose(direction.getRotation());
-                if (direction.getAxis().isHorizontal()) {
-                    poseStack.mulPose(Axis.XN.rotationDegrees(90));
-                    shouldRotate = false;
-                }
-            }
-            if (shouldRotate) {
-                poseStack.mulPose(Axis.YP.rotationDegrees(((level.getGameTime() % 360) + partialTicks) * 3));
-            }
-
-            if (!stack.is(MalumItems.IRON_CROWN)) {
-                poseStack.scale(0.6f, 0.6f, 0.6f);
-            }
-            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLightIn, NO_OVERLAY, poseStack, bufferIn, level, 0);
-            poseStack.popPose();
-        }
+        var renderer = new ItemStackDisplayDataRenderer();
+        renderer.render(blockEntityIn.inventory, poseStack, bufferIn, combinedLightIn, partialTicks);
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 import team.lodestar.lodestone.systems.particle.builder.*;
@@ -32,9 +33,9 @@ public class EntropicBoltImpactParticleEffect extends BoltImpactParticleEffect {
 
         for (int i = 0; i < 32; i++) {
             var color = colorData.getColor();
-            float spread = RandomHelper.randomBetween(random, 0.05f, 0.075f);
-            float speed = RandomHelper.randomBetween(random, 0.4f, 0.6f);
-            float distance = RandomHelper.randomBetween(random, 4f, 12f);
+            float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.05f, 0.075f);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 0.6f);
+            float distance = Easing.SINE_IN_OUT.asWeighedRandom(random, 4f, 12f);
             float angle = i / 32f * (float) Math.PI * 2f;
 
             Vec3 direction = projectileDirection

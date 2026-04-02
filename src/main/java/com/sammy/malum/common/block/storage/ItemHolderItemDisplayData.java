@@ -1,8 +1,12 @@
 package com.sammy.malum.common.block.storage;
 
 import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
+import com.sammy.malum.common.block.storage.stand.ItemStandDisplayData;
+import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -12,20 +16,64 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 
+import java.util.Objects;
+
 public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
 
-    public ItemHolderItemDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 0.2f, 0.0125f, 0.01f, 0.025f);
+    public ItemHolderItemDisplayData(LodestoneItemStackBlockHandler handler) {
+        super(handler, 0.2f, 0.0125f);
     }
 
     @Override
-    public float getDistanceForItem(ItemDisplayDataEntry item, int index, float total) {
-        return Math.max(1 - (item.getAge() / 40f), 0) * 0.25f;
+    public ItemDisplayDataEntry addNewItem(int index, ItemStack stack) {
+        RandomSource random = Objects.requireNonNull(handler.getParent().getLevel()).random;
+        turn = random.nextFloat() * 6.28f;
+
+        return super.addNewItem(index, stack).setAngle(random.nextFloat() * 6.28f).setDistance(0.2f);
     }
 
     @Override
     public Vec3 getDisplayCenter(LodestoneBlockEntity parent, float partialTicks) {
-        BlockPos pos = parent.getBlockPos();
+        var pos = parent.getBlockPos();
         return new Vec3(pos.getX() + 0.5f, pos.getY() + 1.25f, pos.getZ() + 0.5f);
+    }
+
+    @Override
+    public float getDistanceForItem(ItemDisplayDataEntry item, int index, float total) {
+        float rand = (item.getSeed()%50f)/50f;
+        float timing = Easing.SINE_IN_OUT.asValueDistribution(rand, 12f, 16f);
+
+        float delta = Math.min(item.getAge() / timing, 1f);
+        return Easing.SINE_IN_OUT.lerp(delta, 0.1f, 0f);
+    }
+
+    @Override
+    public float getItemRotationRateForItem(ItemDisplayDataEntry item, int index, float total) {
+        float rand = (item.getSeed()%40f)/40f;
+        float timing = Easing.SINE_IN_OUT.asValueDistribution(rand, 24f, 40f);
+
+        float delta = Math.min(item.getAge() / timing, 1f);
+        return Easing.BACK_IN.lerp(delta, 0.3f, 0.05f);
+    }
+
+    @Override
+    public float getItemScaleForItem(ItemDisplayDataEntry item, int index, float total) {
+        float delta = Math.min(item.getAge() / 6f, 1f);
+        return Easing.SINE_IN_OUT.lerp(delta, 0f, 0.6f);
+    }
+
+    @Override
+    public float getLiftForItem(ItemDisplayDataEntry item, int index, float total) {
+        float delta = Math.min(item.getAge() / 8f, 1f);
+        float eased = Easing.QUINTIC_IN_OUT.asValueDistribution(delta, 0.15f, 0.2f, 0f);
+        return addSpiritLift(handler.getParent(), item, eased);
+    }
+
+    public static float addSpiritLift(LodestoneBlockEntity blockEntity, ItemDisplayDataEntry item, float base) {
+        if (item.getStack().getItem() instanceof SpiritShardItem) {
+            long gameTime = blockEntity.getLevel().getGameTime();
+            return base + Mth.sin((gameTime * 0.05f) % 6.28f) * 0.075f;
+        }
+        return base;
     }
 }

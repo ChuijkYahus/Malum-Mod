@@ -95,9 +95,9 @@ public class GluttonyDamageActivator extends FloatingEntity {
                 var length = getDeltaMovement().length();
                 var disharmony = 0.25f * (1 - delta);
                 var addedOffset = new Vec3(
-                        RandomHelper.randomBetween(random, -disharmony, disharmony),
-                        RandomHelper.randomBetween(random, -disharmony, disharmony),
-                        RandomHelper.randomBetween(random, -disharmony, disharmony)
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony)
                 );
                 var newMovement = getDeltaMovement().add(addedOffset).normalize().scale(length);
                 setDeltaMovement(newMovement);
@@ -151,12 +151,12 @@ public class GluttonyDamageActivator extends FloatingEntity {
 
     @Override
     public float getMovementSpeed(float windUp, float distance) {
-        return (0.2f + Easing.EXPO_OUT.ease(windUp, 0, 1f));
+        return (0.2f + Easing.EXPO_OUT.ease(windUp));
     }
 
     @Override
     public float getMovementEasing(float windUp, float distance) {
-        return 0.1f + Easing.EXPO_IN_OUT.ease(windUp, 0, 0.2f);
+        return 0.1f + Easing.EXPO_IN_OUT.ease(windUp) * 0.2f;
     }
 
     @Override

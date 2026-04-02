@@ -37,7 +37,7 @@ public class TotemParticleEffects {
             gameTime += offset;
             final float time = 480;
             for (int i = 0; i < 2; i++) {
-                float velocity = RandomHelper.randomBetween(random, 0.005f, 0.015f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.005f, 0.015f);
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(totemPole.getBlockPos().getCenter(), 0.9f, i, 2, gameTime, time);
                 offsetPosition = offsetPosition.add(0, (Math.cos(((gameTime + i * 240) % time) / time) * 0.25f) - 0.25f, 0);
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, spiritType);
@@ -45,12 +45,12 @@ public class TotemParticleEffects {
                         .multiplyLifetime(4.5f)
                         .setMotion(0, velocity, 0)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(3f)
                         .setMotion(0, velocity, 0)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -62,7 +62,7 @@ public class TotemParticleEffects {
         float time = 16;
         var position = positionData.getAsBlockPos().getCenter();
         for (int i = 0; i < 16; i++) {
-            float velocity = RandomHelper.randomBetween(random, 0.005f, 0.015f);
+            float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.005f, 0.015f);
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(position, 0.85f, i, 16, gameTime, time);
             offsetPosition = offsetPosition.add(0, (Math.cos(((gameTime + i * 240) % time) / time) * 0.25f) - 0.25f, 0);
             var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
@@ -71,13 +71,13 @@ public class TotemParticleEffects {
                     .setMotion(0, velocity, 0)
                     .setLifeDelay(i)
                     .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
             lightSpecs.getBloomBuilder()
                     .multiplyLifetime(1.5f)
                     .setMotion(0, velocity, 0)
                     .setLifeDelay(i)
                     .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
             lightSpecs.spawnParticles();
         }
     }
@@ -164,20 +164,20 @@ public class TotemParticleEffects {
             offsetPosition = offsetPosition.add(0, (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f, 0);
             for (int j = 0; j < 3; j++) {
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getColor());
-                float velocity = RandomHelper.randomBetween(random, 0.02f, 0.03f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.03f);
                 var motion = offsetPosition.subtract(position).normalize().scale(velocity);
                 lightSpecs.getBuilder()
                         .multiplyLifetime(2.5f)
                         .setMotion(motion)
                         .setLifeDelay(j * 6)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(1.5f)
                         .setMotion(motion)
                         .setLifeDelay(j * 6)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -198,12 +198,12 @@ public class TotemParticleEffects {
                         .multiplyLifetime(2.5f)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(1.5f)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -216,17 +216,17 @@ public class TotemParticleEffects {
             int zOffset = Mth.clamp((i-1)%4, 0, 1);
             for (int j = 0; j < 2; j++) {
                 Vec3 offsetPosition = new Vec3(position.getX()+xOffset, position.getY()+j, position.getZ()+zOffset);
-                float motion = RandomHelper.randomBetween(random, 0.05f, 0.06f);
+                float motion = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.05f, 0.06f);
                 Vec3 velocity = position.getCenter().subtract(offsetPosition).add(0, -2, 0).normalize().scale(motion);
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
                 lightSpecs.getBuilder()
                         .multiplyLifetime(2.5f)
                         .setMotion(velocity)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -247,12 +247,12 @@ public class TotemParticleEffects {
                         .multiplyLifetime(3.5f)
                         .setMotion(xMotion, yMotion, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(2.5f)
                         .setMotion(xMotion, yMotion, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -276,13 +276,13 @@ public class TotemParticleEffects {
                         .setMotion(xMotion, yMotion, zMotion)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(2.5f)
                         .setMotion(xMotion, yMotion, zMotion)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }

@@ -69,12 +69,12 @@ public class SpiritRiteRecipePage extends BookPage {
             if (ScreenParticleHandler.canSpawnParticles && minecraft.level.getGameTime() % 6L == 0) {
                 int x = riteStartX + 8;
                 int xOffset = 25;
-                float yMotion = RandomHelper.randomBetween(rand, -0.05f, -0.3f);
-                int lifetime = RandomHelper.randomBetween(rand, 60, 120);
+                float yMotion = Easing.SINE_IN_OUT.asWeighedRandom(rand, -0.05f, -0.3f);
+                int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 60, 120);
                 ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC, RITE_PARTICLES)
                         .setTransparencyData(GenericParticleData.create(0.04f, 0.4f, 0f).setEasing(Easing.CUBIC_OUT, Easing.SINE_IN_OUT).build())
-                        .setSpinData(SpinParticleData.createRandomDirection(rand, RandomHelper.randomBetween(rand, 0.1f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
-                        .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 0.8f, 2.4f), 0).setEasing(Easing.SINE_IN_OUT).build())
+                        .setSpinData(SpinParticleData.createRandomDirection(rand, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.1f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.8f, 2.4f), 0).setEasing(Easing.SINE_IN_OUT).build())
                         .setColorData(spiritType.createColorData().setCoefficient(0.25f).build())
                         .setLifetime(lifetime)
                         .setMotion(0, yMotion)

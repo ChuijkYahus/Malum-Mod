@@ -107,8 +107,9 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
             var accelerationData = blockEntityIn.getAttributes();
             var attributes = accelerationData.getExistingAttributesForTuning();
             var font = Minecraft.getInstance().font;
-            float scalar = Easing.SINE_IN_OUT.ease(FORK_TRACKER.getDelta(partialTicks), 0, 1);
-            float scale = 0.016F - (1 - scalar) * 0.004f;
+            float delta = FORK_TRACKER.getDelta(partialTicks);
+            float eased = Easing.SINE_IN_OUT.ease(delta);
+            float scale = 0.016F - (1 - eased) * 0.004f;
             poseStack.pushPose();
             poseStack.translate(0.5f, 2f, 0.55f);
             poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
@@ -134,12 +135,12 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
                 poseStack.translate(0, i * 0.15f, 0);
                 poseStack.scale(scale, -scale, -scale);
                 Matrix4f pose = poseStack.last().pose();
-                float alpha = 0.38f * scalar;
+                float alpha = 0.38f * eased;
                 int color = ColorHelper.getColor(1, 1, 1, alpha);
                 if (alpha > 0.02) { //For whatever reason Font#adjustColor gets considers alpha lesser than 3 to be "unset" and so it sets it to 255...
                     renderText(text, xPos, 0, color, pose);
                 }
-                alpha = 0.18f * scalar;
+                alpha = 0.18f * eased;
                 if (alpha > 0.02) {
                     color = ColorHelper.getColor(1, 1, 1, alpha);
                     renderText(text, xPos - 0.5f, 0, color, pose);
@@ -147,7 +148,7 @@ public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCruci
                     renderText(text, xPos, 0.5f, color, pose);
                     renderText(text, xPos, -0.5f, color, pose);
                 }
-                alpha = 0.12f * scalar;
+                alpha = 0.12f * eased;
                 if (alpha > 0.02) {
                     color = ColorHelper.getColor(1, 1, 1, alpha);
                     renderText(text, xPos - 1, 0, color, pose);

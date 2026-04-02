@@ -31,6 +31,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
 import java.util.function.*;
@@ -155,7 +156,7 @@ public abstract class CultistMonster extends Monster implements Enemy {
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        int scale = RandomHelper.randomBetween(random, 0, 3);
+        int scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0, 3);
         setCultistScale(scale);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

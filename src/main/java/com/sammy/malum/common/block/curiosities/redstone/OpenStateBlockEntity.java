@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
@@ -46,8 +47,10 @@ public abstract class OpenStateBlockEntity extends LodestoneBlockEntity {
         boolean value = getBlockState().getValue(BlockStateProperties.OPEN);
         if (value != newValue) {
             level.setBlock(getBlockPos(), getBlockState().setValue(BlockStateProperties.OPEN, !value), 3);
-            level.playSound(null, getBlockPos(), value ? MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumBlockSoundEvents.SPIRIT_DIODE_OPEN.get(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+            var sound = value ? MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumBlockSoundEvents.SPIRIT_DIODE_OPEN.get();
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.9f, 1.1f);
             var particleEffect = value ? MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE : MalumParticleEffectTypes.SPIRIT_DIODE_OPEN;
+            level.playSound(null, getBlockPos(), sound, SoundSource.BLOCKS, 0.8f, pitch);
             particleEffect.createEffect()
                     .at(getBlockPos().getCenter().add(0, value ? 0 : 0.5f, 0))
                     .color(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build())

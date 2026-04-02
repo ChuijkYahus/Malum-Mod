@@ -17,6 +17,6 @@ public class WavebankerRenderer extends SpiritDiodeRenderer<WaveBankerBlockEntit
         if (delta > 0.5f) {
             return 1;
         }
-        return Easing.QUARTIC_OUT.ease(delta*2, 0, 1);
+        return Easing.QUARTIC_OUT.ease(delta*2);
     }
 }

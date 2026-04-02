@@ -53,13 +53,13 @@ public class SpiritMotePlaceParticleEffect extends MalumNetworkedParticleEffectT
                         .multiplyLifetime(2.5f)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.4f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .setLifeDelay(delay)
                         .multiplyLifetime(1.5f)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }

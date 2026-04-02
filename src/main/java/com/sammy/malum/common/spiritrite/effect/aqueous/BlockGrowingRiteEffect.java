@@ -12,6 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -43,6 +44,7 @@ public class BlockGrowingRiteEffect extends SpiritRiteBlockEffect {
             bonemealableBlock.performBonemeal(level, level.random, pos, state);
         }
         createEffect(level, MalumParticleEffectTypes.BLOCK_GROW_RITE_EFFECT, pos, AQUEOUS_SPIRIT);
-        level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GROW.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(level.random, 1.75f, 2f));
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 1.75f, 2f);
+        level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GROW.get(), SoundSource.BLOCKS, 0.5f, pitch);
     }
 }

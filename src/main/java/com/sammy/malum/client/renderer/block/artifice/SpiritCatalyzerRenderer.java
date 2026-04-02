@@ -74,7 +74,7 @@ public class SpiritCatalyzerRenderer implements BlockEntityRenderer<SpiritCataly
         var startPos = SpiritCatalyzerCoreBlockEntity.CATALYZER_ITEM_OFFSET.add(catalyzerPos.getX(), catalyzerPos.getY(), catalyzerPos.getZ());
         var targetPos = target.getVisualAccelerationPoint();
         var difference = targetPos.subtract(startPos);
-        float distance = 0.35f + Easing.SINE_OUT.ease(delta, 0, 0.35f, 1);
+        float distance = 0.35f + Easing.SINE_OUT.lerp(delta, 0, 0.35f);
         var midPoint = startPos.add(difference.scale(distance));
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL);
         PoseStack.Pose last = poseStack.last();

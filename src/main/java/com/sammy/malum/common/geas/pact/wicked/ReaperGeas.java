@@ -16,6 +16,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -100,7 +101,7 @@ public class ReaperGeas extends GeasEffect {
                 } else {
                     particle.verticalSlashRotation();
                 }
-                particle.slashRotation(particle.getSlashRotation() + RandomHelper.randomBetween(random, -0.3f, 0.3f));
+                particle.slashRotation(particle.getSlashRotation() + Easing.SINE_IN_OUT.asWeighedRandom(random, -0.3f, 0.3f));
                 particle.spawn(level);
             }
         }

@@ -84,8 +84,8 @@ public class BlockRiteEffectWaveActivatorRenderer extends AbstractEffectActivato
 
         float ageDelta = Math.min(entity.getAge() + partialTicks, 30) / 30f;
 
-        float length = Easing.SINE_IN_OUT.ease(ageDelta, 0, 4f);
-        float alpha = Easing.SINE_IN_OUT.ease(ageDelta, 0, 1f);
+        float length = Easing.SINE_IN_OUT.ease(ageDelta) * 4;
+        float alpha = Easing.SINE_IN_OUT.ease(ageDelta);
         poseStack.translate(0, -length/2f + 0.5f, 0);
         poseStack.scale(1, length, 1);
         var cube = CubeVertexData.makeCubePositions(1.05f);

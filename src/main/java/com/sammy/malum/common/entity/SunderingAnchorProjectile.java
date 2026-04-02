@@ -224,7 +224,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                     setDeltaMovement(motion.lerp(returnMotion, 0.3f));
 
                     if (isAlive() && distanceTo(owner) < 2.5f) {
-                        SoundHelper.playSound(owner, MalumGearSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, RandomHelper.randomBetween(level().getRandom(), 1.5f, 2f));
+                        SoundHelper.playSound(owner, MalumGearSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(level().getRandom(), 1.5f, 2f));
                         if (owner instanceof ServerPlayer player) {
                             float cooldownScalar = hitCount.isEmpty() ? 0.25f : 1f;
                             TemporarilyDisabledItem.enable(player, slot);
@@ -340,7 +340,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                 var physicalDamageType = MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
                 var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
                 int delay = 8;
-                float pitch = RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f);
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.5f, 2f);
                 SoundHelper.playSound(this, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                 applyHatred(livingEntity);
                 for (int j = 0; j < slashCount; j++) {
@@ -504,7 +504,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
             WorldParticleBuilder.create(MalumParticles.ROUNDABOUT_SLASH)
                     .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))
                     .setTransparencyData(GenericParticleData.create(0.9f * scalar, 0.7f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
-                    .setSpinData(SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                     .setScaleData(GenericParticleData.create(0.2f * scalar, 0.4f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                     .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)

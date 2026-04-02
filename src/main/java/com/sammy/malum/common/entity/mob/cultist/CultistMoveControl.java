@@ -57,9 +57,9 @@ public class CultistMoveControl extends MoveControl {
                 double z = wanted.z - cultist.getZ();
                 var trajectory = getMovementTrajectory(x, y, z);
                 var direction = trajectory.normalize();
-                double length = trajectory.length();
+                float length = (float) trajectory.length();
                 if (length < 1f) {
-                    float deceleration = Easing.CIRC_OUT.ease(length, 0, 1);
+                    float deceleration = Easing.CIRC_OUT.lerp(length, 0f, 1f);
                     speed *= deceleration;
                 }
                 movementDirection.set(direction);

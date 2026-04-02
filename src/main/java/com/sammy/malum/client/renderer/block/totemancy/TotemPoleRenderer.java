@@ -35,7 +35,7 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         var renderType = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(RenderTypeToken.createToken(spiritType.getGlowTexture()));
         float delta = blockEntityIn.getGlowDelta();
         float alpha = delta * 0.7f;
-        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
+        float ease = Easing.SINE_OUT.ease(delta);
         float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
         Vector3f[] vertices = new Vector3f[]{

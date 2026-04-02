@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -31,8 +32,8 @@ public class BludgeonAttackParticleEffect extends MalumNetworkedWeaponParticleEf
         var direction = extraData.getDirection();
         slam.getBuilder()
                 .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()).build())
-                .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 0.5f, 0.8f)).build())
-                .setMotion(direction.scale(RandomHelper.randomBetween(random, 1.4f, 2f)))
+                .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 0.8f)).build())
+                .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 1.4f, 2f)))
                 .setBehavior(DirectionalParticleBehavior.directional(direction));
         slam.spawnParticles();
 

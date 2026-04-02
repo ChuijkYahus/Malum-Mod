@@ -31,8 +31,8 @@ public class CodexRenderHelper {
 
     public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
         float pct = screen.getVoidFadeoutDelta();
-        float overlayAlpha = Easing.SINE_IN_OUT.ease(pct, 0, 1, 1);
-        float effectStrength = Easing.QUAD_OUT.ease(pct, 0, 1, 1);
+        float overlayAlpha = Easing.SINE_IN_OUT.ease(pct);
+        float effectStrength = Easing.QUAD_OUT.ease(pct);
         float effectAlpha = Math.min(1, effectStrength * 1);
         float zoom = 0.5f + Math.min(0.35f, effectStrength);
         float intensity = 1f + (effectStrength > 0.5f ? (effectStrength - 0.5f) * 2.5f : 0);

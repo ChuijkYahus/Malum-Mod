@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
@@ -85,10 +85,10 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
             //Upwards Moving Particles
             if (level.getGameTime() % (32L + i) == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(1.5f).setEasing(Easing.SINE_IN_OUT).build();
-                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
-                int lifeTime = RandomHelper.randomBetween(random, 40, 120);
-                float scale = RandomHelper.randomBetween(random, 0.1f, 0.3f);
-                float velocity = RandomHelper.randomBetween(random, 0.012f, 0.024f);
+                int lifeDelay = i + Easing.SINE_IN_OUT.asWeighedRandom(random, 0, 5);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 40, 120);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.3f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.012f, 0.024f);
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
@@ -104,10 +104,10 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
             //Upwards Moving Sparks
             if (level.getGameTime() % (24L + i) == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(2.5f).setEasing(Easing.SINE_IN_OUT).build();
-                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
-                int lifeTime = RandomHelper.randomBetween(random, 30, 40);
-                float scale = RandomHelper.randomBetween(random, 0.2f, 0.35f);
-                float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
+                int lifeDelay = i + Easing.SINE_IN_OUT.asWeighedRandom(random, 0, 5);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 30, 40);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.35f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
                         .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
@@ -123,9 +123,9 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
             //Small Shine
             if (level.getGameTime() % (22L + i) == 0) {
                 var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
-                int lifeDelay = i + RandomHelper.randomBetween(random, 0, 5);
-                int lifeTime = RandomHelper.randomBetween(random, 30, 40);
-                float scale = RandomHelper.randomBetween(random, 0.15f, 0.25f);
+                int lifeDelay = i + Easing.SINE_IN_OUT.asWeighedRandom(random, 0, 5);
+                int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 30, 40);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.15f, 0.25f);
                 WorldParticleBuilder.create(MalumParticles.STAR)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 1f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.CIRC_IN).build())

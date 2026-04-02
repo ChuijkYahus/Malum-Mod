@@ -21,7 +21,7 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
     public int warmupTicks;
 
     public SpiritAltarSpiritDisplayData(LodestoneItemStackBlockHandler parent) {
-        super(parent, 0.02f, 0.0125f, 0.01f, 0.025f);
+        super(parent, 0.02f, 0.0125f);
         altar = (SpiritAltarBlockEntity) parent.getParent();
     }
 
@@ -45,8 +45,7 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
         return 0.25f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
     }
 
-
     public float getSpinUp(Easing easing) {
-        return easing.ease(warmupTicks / (float)WARMUP_DURATION, 0, 1, 1);
+        return easing.ease(warmupTicks / (float)WARMUP_DURATION);
     }
 }

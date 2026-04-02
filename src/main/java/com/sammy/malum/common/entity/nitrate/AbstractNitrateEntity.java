@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
@@ -134,9 +135,9 @@ public abstract class AbstractNitrateEntity extends ThrowableProjectile {
             float progress = i * 0.5f;
             Vec3 position = getPosition(progress);
             Vec3 randomizedPosition = position.add(
-                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale),
-                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale),
-                    RandomHelper.randomBetween(random, -randomOffsetScale, randomOffsetScale));
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -randomOffsetScale, randomOffsetScale),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -randomOffsetScale, randomOffsetScale),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -randomOffsetScale, randomOffsetScale));
             Vec3 rotatingPosition = position.add(Math.cos(spinOffset + (age + progress) / 2f) * radialOffsetScale, 0, Math.sin(spinOffset + (age + progress) / 2f) * radialOffsetScale);
             trailPointBuilder.addTrailPoint(new InterpolatedTrailPoint(position, i, randomizedPosition, (int) (trailPointBuilder.getTrailLength()*1.5f)));
             spinningTrailPointBuilder.addTrailPoint(new TrailPoint(rotatingPosition, i));

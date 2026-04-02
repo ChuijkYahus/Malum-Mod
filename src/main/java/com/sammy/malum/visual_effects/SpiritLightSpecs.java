@@ -148,9 +148,9 @@ public class SpiritLightSpecs {
         var rand = level.getRandom();
         SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, nextFloat(rand, 0.05f, 0.1f)).randomSpinOffset(rand).build();
         float friction = 0.95f;
-        int lifetime = RandomHelper.randomBetween(rand, 10, 20);
+        int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 10, 20);
         WorldParticleBuilder worldParticleBuilder = builder
-                .setScaleData(GenericParticleData.create(0.025f, RandomHelper.randomBetween(rand, 0.2f, 0.3f), 0).build())
+                .setScaleData(GenericParticleData.create(0.025f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.2f, 0.3f), 0).build())
                 .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())
                 .multiplyFriction(friction)
                 .setSpinData(spinData)
@@ -183,7 +183,7 @@ public class SpiritLightSpecs {
     public static WorldParticleBuilder spiritBloom(Level level, WorldParticleBuilder builder, int lifetime) {
         var rand = level.random;
         return builder
-                .setScaleData(GenericParticleData.create(0.04f, RandomHelper.randomBetween(rand, 0.08f, 0.14f), 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
+                .setScaleData(GenericParticleData.create(0.04f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.08f, 0.14f), 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                 .setTransparencyData(GenericParticleData.create(0.35f, 0f).build())
                 .setLifetime(lifetime)
                 .enableNoClip();

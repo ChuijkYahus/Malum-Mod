@@ -23,6 +23,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
@@ -54,7 +55,8 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker instanceof ServerPlayer player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
             var level = player.serverLevel();
-            SoundHelper.playSound(target, MalumGearSoundEvents.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, RandomHelper.randomBetween(level.random, 0.85f, 1.25f));
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.85f, 1.25f);
+            SoundHelper.playSound(target, MalumGearSoundEvents.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, pitch);
             MalumParticleEffectTypes.STAFF_SLAM.createEffect()
                     .originatesFrom(attacker)
                     .targets(target)

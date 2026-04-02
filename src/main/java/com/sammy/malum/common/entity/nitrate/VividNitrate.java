@@ -113,8 +113,8 @@ public class VividNitrate extends AbstractNitrateEntity {
         Color smokeColor = AbstractNitrateEntity.SECOND_SMOKE_COLOR;
         for (int i = 0; i < 3; i++) {
             color = age < 3 ? smokeColor : COLOR_FUNCTION.apply(new ColorFunctionData(level(), i*0.25f));
-            int lifetime = (int) (RandomHelper.randomBetween(random, 60, 80) * (1 - i / 3f));
-            final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, 0, RandomHelper.randomBetween(random, 0f, 0.4f), 0).randomSpinOffset(random).build();
+            int lifetime = (int) (Easing.SINE_IN_OUT.asWeighedRandom(random, 60, 80) * (1 - i / 3f));
+            final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, 0, Easing.SINE_IN_OUT.asWeighedRandom(random, 0f, 0.4f), 0).randomSpinOffset(random).build();
             final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.98f));
             WorldParticleBuilder.create(MalumParticles.STRANGE_SMOKE)
                     .setTransparencyData(GenericParticleData.create(0.7f * scalar, 0.9f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())

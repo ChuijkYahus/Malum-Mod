@@ -11,8 +11,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.helpers.VecHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
 
@@ -42,7 +43,7 @@ public class AvariceParticleEffects {
 
             for (int i = 0; i < 2; i++) {
                 var angle = i + (level.getGameTime() % 80f) / 80f;
-                int delay = RandomHelper.randomBetween(MalumMod.RANDOM, 0, 4);
+                int delay = Easing.SINE_IN_OUT.asWeighedRandom(MalumMod.RANDOM, 0, 4);
                 var offsetCenter = VecHelper.radialOffset(center, distance, angle, 2);
                 var lightSpecs = spiritLightSpecs(level, offsetCenter, MalumSpiritTypes.INFERNAL_SPIRIT);
                 lightSpecs.getBuilder()
@@ -84,13 +85,13 @@ public class AvariceParticleEffects {
                         .addTickActor(tickBehavior)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.75f)
                         .addTickActor(tickBehavior)
                         .setMotion(xMotion, 0, zMotion)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }

@@ -19,7 +19,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.handlers.screenparticle.ScreenParticleHandler;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
@@ -93,8 +94,8 @@ public class UnchainedTransmutationRecipeTreePage extends BookPage {
             long time = level.getGameTime();
             for (int i = 0; i < 36; i++) {
                 int yOffsetScale = 4 + Mth.floor(i/4f);
-                float scale = RandomHelper.randomBetween(rand, 0.6f, 0.9f);
-                float spin = RandomHelper.randomBetween(rand, 0.2f, 0.4f);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.6f, 0.9f);
+                float spin = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.2f, 0.4f);
                 float xTime = ((time + i * 33) % 240) / 240f;
                 float yTime = ((time + i * 27) % 100f) / 100f;
                 final double xOffset = 92 * xTime;

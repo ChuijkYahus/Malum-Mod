@@ -4,6 +4,7 @@ import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.world.level.Level;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
@@ -33,9 +34,9 @@ public class HexBoltImpactParticleEffect extends BoltImpactParticleEffect {
         Vec3 pos = positionData.getAsVector();
         for (int i = 0; i < 32; i++) {
             var color = colorData.getColor();
-            float spread = RandomHelper.randomBetween(random, 0.1f, 0.5f);
-            float speed = RandomHelper.randomBetween(random, 0.3f, 0.4f);
-            float distance = RandomHelper.randomBetween(random, 3f, 6f);
+            float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.5f);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f);
+            float distance = Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 6f);
             float angle = i / 32f * (float) Math.PI * 2f;
 
             Vec3 direction = projectileDirection

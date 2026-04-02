@@ -12,6 +12,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.lodestone.systems.worldevent.*;
@@ -137,8 +138,8 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                     }
                     target.setDeltaMovement(deltaMovement);
                     if (soundEvent != null) {
-                        float pitch = RandomHelper.randomBetween(serverLevel.getRandom(), minPitch, maxPitch);
-                        float volume = RandomHelper.randomBetween(serverLevel.getRandom(), minVolume, maxVolume);
+                        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minPitch, maxPitch);
+                        float volume = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minVolume, maxVolume);
                         SoundHelper.playSound(target, soundEvent.value(), volume, pitch);
                     }
                     if (particleEffect != null) {

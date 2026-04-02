@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
@@ -130,14 +131,16 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         if (streak >= 4096) {
             reachedStreakGoal = true;
         }
-        level.playSound(null, worldPosition, MalumSoundEvents.VOID_EATS_GUNK.get(), SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
-        level.playSound(null, worldPosition, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.7f, RandomHelper.randomBetween(level.getRandom(), 0.5f, 2f));
+        float volume = 0.7f;
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.5f, 2f);
+        playSound(SoundEvents.GENERIC_EAT, volume, pitch);
+        playSound(MalumSoundEvents.VOID_EATS_GUNK.get(), volume, pitch);
     }
 
     public void spitOutItem(ItemStack stack) {
         var input = new SingleRecipeInput(stack);
         var recipe = LodestoneRecipeSearch.search(level, MalumRecipeTypes.VOID_FAVOR::get).findRecipe(input);
-        float pitch = RandomHelper.randomBetween(level.getRandom(), 0.8f, 1.3f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.8f, 1.3f);
         var outputPosition = worldPosition.getCenter();
         var sound = MalumSoundEvents.VOID_REJECTION.get();
         var outputStack = stack.copy();

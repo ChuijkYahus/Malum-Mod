@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
@@ -75,7 +76,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
 
     public void playSound(ServerLevel level, SoundEvent soundEvent, ItemStack stack) {
         var blockPos = parent.getBlockPos();
-        float pitch = RandomHelper.randomBetween(level.getRandom(), 1f, 1.2f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1f, 1.2f);
         level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 0.7f, pitch);
         if (stack.getItem() instanceof BlockItem blockItem) {
             var block = blockItem.getBlock();

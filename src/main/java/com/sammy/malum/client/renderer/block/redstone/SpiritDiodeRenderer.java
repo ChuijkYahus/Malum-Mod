@@ -54,10 +54,10 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
         if (blockEntityIn.visualTransitionDuration != 0) {
             float timing = (blockEntityIn.getLevel().getGameTime() - blockEntityIn.visualStartTime) / (float) blockEntityIn.visualTransitionDuration;
             float delta = Mth.clampedLerp(blockEntityIn.visualTransitionStart, blockEntityIn.visualTransitionEnd, timing);
-            float pct = Mth.clamp(getGlowDelta(blockEntityIn, delta), 0, 1);
-            if (pct > 0) {
-                float alpha = Easing.CUBIC_OUT.clamped(pct, 0, 1) * 0.8f;
-                float glowAlpha = Easing.SINE_OUT.clamped(pct, 0, 1) * 0.4f;
+            float glow = Mth.clamp(getGlowDelta(blockEntityIn, delta), 0, 1);
+            if (glow > 0) {
+                float alpha = Easing.CUBIC_OUT.ease(glow) * 0.8f;
+                float glowAlpha = Easing.SINE_OUT.ease(glow) * 0.4f;
                 var cubeVertexData = CubeVertexData.makeCubePositions(1.002f);
                 var builder = VFXBuilders.createWorld()
                         .setColor(COLOR);
@@ -79,8 +79,9 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
         if (CLAW_TRACKER.isVisible()) {
             Minecraft minecraft = Minecraft.getInstance();
             var font = minecraft.font;
-            float delta = Easing.SINE_IN_OUT.clamped(CLAW_TRACKER.getDelta(partialTicks), 0, 1);
-            float scale = 0.016F - (1 - delta) * 0.004f;
+            float delta = CLAW_TRACKER.getDelta(partialTicks);
+            float eased = Easing.SINE_IN_OUT.ease(delta);
+            float scale = 0.016F - (1 - eased) * 0.004f;
             poseStack.pushPose();
             poseStack.translate(0.5f, 1.75f, 0.55f);
             poseStack.mulPose(minecraft.getEntityRenderDispatcher().cameraOrientation());
@@ -92,13 +93,13 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
             float f = (-font.width(textComponent) / 2f);
             float xPos = 0 + f;
             Matrix4f pose = poseStack.last().pose();
-            float alpha = 0.38f * delta; //We're rendering in additive, so whether we change alpha or the color it doesn't really matter.
+            float alpha = 0.38f * eased; //We're rendering in additive, so whether we change alpha or the color it doesn't really matter.
             //Minecraft for whatever reason treats alpha values between 0-3 as 255 when rendering text, so we're going to modify color instead of alpha
             int color = ColorHelper.getColor(1, 1, 1, alpha);
             if (alpha > 0.02f) {
                 renderText(textComponent, xPos, 0, color, pose);
             }
-            alpha = 0.18f * delta;
+            alpha = 0.18f * eased;
             if (alpha > 0.02f) {
                 color = ColorHelper.getColor(1, 1, 1, alpha);
                 renderText(textComponent, xPos - 0.5f, 0, color, pose);
@@ -106,7 +107,7 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
                 renderText(textComponent, xPos, 0.5f, color, pose);
                 renderText(textComponent, xPos, -0.5f, color, pose);
             }
-            alpha = 0.12f * delta;
+            alpha = 0.12f * eased;
             if (alpha > 0.02f) {
                 color = ColorHelper.getColor(1, 1, 1, alpha);
                 renderText(textComponent, xPos - 1, 0, color, pose);

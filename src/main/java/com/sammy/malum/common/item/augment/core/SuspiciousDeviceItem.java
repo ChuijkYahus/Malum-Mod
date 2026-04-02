@@ -13,6 +13,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class SuspiciousDeviceItem extends CoreAugmentItem {
 
     public static void blowUp(ServerLevel level, BlockPos pos) {
         int delay = 20;
-        float pitch = RandomHelper.randomBetween(level.random, 0.8f, 1.2f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.8f, 1.2f);
         var sound = MalumSoundEvents.SUSPICIOUS_DEVICE_DETONATES.get();
         if (level.getBlockState(pos.below()).getBlock() instanceof TheDevice) {
             delay = 50;

@@ -7,6 +7,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 
@@ -23,7 +24,7 @@ public class SoulwovenBannerParticleEffects {
         float time = 16;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                float velocity = RandomHelper.randomBetween(random, 0.005f, 0.015f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.005f, 0.015f);
                 Vec3 offsetPosition = VecHelper.rotatingRadialOffset(position, 0.65f, j + i * 4, 32, gameTime, time);
                 offsetPosition = offsetPosition.add(0, (Math.cos(((gameTime + j * 240) % time) / time) * 0.25f) - 0.2f * (j+1), 0);
                 if (direction.getAxis().isHorizontal()) {
@@ -43,13 +44,13 @@ public class SoulwovenBannerParticleEffects {
                         .setMotion(motion)
                         .setLifeDelay(i+j*4)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.8f)
                         .setMotion(motion)
                         .setLifeDelay(i+j*4)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -75,20 +76,20 @@ public class SoulwovenBannerParticleEffects {
                     );
                 }
 
-                float velocity = RandomHelper.randomBetween(random, 0.02f, 0.05f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.05f);
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getSpirit());
                 lightSpecs.getBuilder()
                         .multiplyLifetime(2f)
                         .setMotion(0, -velocity,0)
                         .setLifeDelay(i+j*2)
                         .setTransparencyData(GenericParticleData.create(0.9f, 0.4f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(1.2f)
                         .setMotion(0, -velocity, 0)
                         .setLifeDelay(i+j*2)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }

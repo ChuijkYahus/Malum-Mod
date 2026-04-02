@@ -36,14 +36,14 @@ public class EthericNitrateImpactParticleEffect extends NitrateImpactParticleEff
         Vec3 pos = new Vec3(posX, posY, posZ);
         for (int i = 0; i < 16; i++) {
             ColorParticleData color = colorData.getColor();
-            float lifetimeMultiplier = RandomHelper.randomBetween(random, 1f, 1.5f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.03f, 0.06f);
+            float lifetimeMultiplier = Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 1.5f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f);
             double horizontalAngle = random.nextDouble() * Math.PI * 2;
             double x = (Math.cos(horizontalAngle));
             double y = Mth.nextFloat(random, -1, 1);
             double z = (Math.sin(horizontalAngle));
             Vec3 direction = new Vec3(x, y, z);
-            Vec3 motion = direction.scale(RandomHelper.randomBetween(random, 2f, 3f));
+            Vec3 motion = direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 2f, 3f));
             Vec3 spawnPosition = pos.add(direction.scale(0.25f));
             final Consumer<LodestoneWorldParticle> sparkBehavior = p -> {
                 Vec3 velocity = p.getParticleSpeed().scale(0.75f);
@@ -63,7 +63,7 @@ public class EthericNitrateImpactParticleEffect extends NitrateImpactParticleEff
                     }
                 }
             };
-            float scalar = RandomHelper.randomBetween(random, 0.8f, 1.1f);
+            float scalar = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.1f);
             var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(SparkParticleBehavior.sparkBehavior()));
             sparks.getBuilder()
                     .setLengthData(GenericParticleData.create(3f * scalar, 0.75f * scalar, 0f).setEasing(Easing.QUARTIC_OUT, Easing.SINE_IN_OUT).build())

@@ -98,7 +98,7 @@ public class EntityRiteEffectActivator extends FloatingEntity {
 
     @Override
     public float getMovementEasing(float windUp, float distance) {
-        return 0.02f + Easing.EXPO_IN.ease(windUp, 0, 0.4f);
+        return 0.02f + Easing.EXPO_IN.lerp(windUp, 0, 0.4f);
     }
 
     @Override

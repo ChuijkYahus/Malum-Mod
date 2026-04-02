@@ -27,7 +27,9 @@ public class MalumFloraBlockProperties {
                 .noOcclusion()
                 .setCutoutRenderType()
                 .dynamicShape()
+                .randomTicks()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
+                .addTag(MalumTags.BlockTags.EBONY_PLANTABLE_ON)
                 .sound(MalumBlockSoundEvents.EBONY_SAPLING);
     }
 
@@ -38,6 +40,8 @@ public class MalumFloraBlockProperties {
                 .noOcclusion()
                 .setCutoutRenderType()
                 .dynamicShape()
+                .randomTicks()
+                .addTag(MalumTags.BlockTags.EBONY_PLANTABLE_ON)
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .sound(MalumBlockSoundEvents.EBONY);
     }

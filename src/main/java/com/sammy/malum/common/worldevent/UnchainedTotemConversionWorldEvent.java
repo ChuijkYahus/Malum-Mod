@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_BASE;
 import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_POLE;
@@ -58,7 +59,8 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void placeBlock(ServerLevel level, BlockPos pos, BlockState state) {
         level.setBlockAndUpdate(pos, state);
         level.levelEvent(null, 2001, pos, Block.getId(state));
-        level.playSound(null, pos, MalumBlockSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, RandomHelper.randomBetween(level.getRandom(), 1.6f, 2f));
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.6f, 2f);
+        level.playSound(null, pos, MalumBlockSoundEvents.MINOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1f, pitch);
     }
 
     public void maybePlaceBlightedGunk(ServerLevel level, BlockPos pos, Direction totemDirection) {

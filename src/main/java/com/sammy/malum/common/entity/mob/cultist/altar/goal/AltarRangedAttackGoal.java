@@ -8,7 +8,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+
 
 public class AltarRangedAttackGoal extends Goal {
 
@@ -141,6 +142,8 @@ public class AltarRangedAttackGoal extends Goal {
     }
 
     public void setRandomizedAttackInterval() {
-        randomizedAttackInterval = Mth.floor(RandomHelper.randomBetween(altar.getRandom(), attackInterval * 0.8f, attackInterval * 1.2f));
+        float min = attackInterval * 0.8f;
+        float max = attackInterval * 1.2f;
+        randomizedAttackInterval = Mth.floor(Easing.SINE_IN_OUT.asWeighedRandom(altar.getRandom(), min, max));
     }
 }

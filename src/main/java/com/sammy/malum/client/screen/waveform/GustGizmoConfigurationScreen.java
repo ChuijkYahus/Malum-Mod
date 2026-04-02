@@ -133,8 +133,8 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
     public void renderDial(GuiGraphics graphics, int x, int y) {
         renderDial(graphics, DIAL_TEXTURE, x, y);
         float delta = displayedStrength / WindTunnelHandler.MAX_STRENGTH;
-        float range = Easing.QUAD_IN.ease(delta, 90f, 270f);
-        float alpha = Easing.EXPO_IN_OUT.ease(delta, 0.25f, 1f);
+        float range = Easing.QUAD_IN.lerp(delta, 90f, 270f);
+        float alpha = Easing.EXPO_IN_OUT.lerp(delta, 0.25f, 1f);
         renderDialOverlay(graphics, DIAL_TEXTURE, x, y, 0, range, alpha);
     }
 

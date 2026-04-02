@@ -48,7 +48,7 @@ public class BlockRiteEffectWaveActivator extends BlockRiteEffectActivator{
     @Override
     public float getTravelSpeedMultiplier() {
         float delta = Math.min(acceleration * 0.05f, 1f);
-        delta = Easing.EXPO_IN.ease(delta, 0, 1);
+        delta = Easing.EXPO_IN.ease(delta);
         acceleration++;
         return delta;
     }

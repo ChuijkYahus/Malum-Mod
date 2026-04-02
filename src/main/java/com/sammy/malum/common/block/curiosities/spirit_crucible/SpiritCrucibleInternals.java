@@ -13,7 +13,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.item.ItemEntity;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+
 
 public class SpiritCrucibleInternals {
 
@@ -26,7 +27,7 @@ public class SpiritCrucibleInternals {
         if (crucible.crackTimer % 5 == 0) {
             var random = level.getRandom();
             float pitchDelta = (crucible.crackTimer / 15f);
-            float pitch = RandomHelper.randomBetween(random, 0.9f, 1.1f) * Mth.lerp(pitchDelta, 0.9f, 1.1f);
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.9f, 1.1f) * Mth.lerp(pitchDelta, 0.9f, 1.1f);
             crucible.playSound(MalumSoundEvents.IMPETUS_CRACK.get(), 0.5f, pitch);
             crucible.queuedCracks--;
             if (crucible.crackTimer >= 15) {
@@ -114,7 +115,7 @@ public class SpiritCrucibleInternals {
         MalumParticleEffectTypes.SPIRIT_CRUCIBLE_CRAFTS.createEffect(pos)
                 .color(MalumNetworkedParticleEffectColorData.fromSpirits(spirits))
                 .spawn(level);
-        float pitch = RandomHelper.randomBetween(level.random, 0.75f, 1.25f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.75f, 1.25f);
         crucible.playSound(MalumSoundEvents.CRUCIBLE_CRAFT.get(), 1, pitch);
     }
 

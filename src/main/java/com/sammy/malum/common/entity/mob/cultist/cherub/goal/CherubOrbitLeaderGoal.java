@@ -7,7 +7,8 @@ import com.sammy.malum.common.entity.mob.cultist.cherub.CherubMoveControl;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+
 
 import java.util.EnumSet;
 
@@ -48,7 +49,7 @@ public class CherubOrbitLeaderGoal extends Goal {
             var moveControl = cherub.getMoveControl();
             moveControl.setRandomOrbitOffset(orbitRadius);
             flyTowardsLeader(moveControl, friend);
-            randomizedOrbitRate = RandomHelper.randomBetween(cherub.getRandom(), -orbitRate, orbitRate);
+            randomizedOrbitRate = Easing.SINE_IN_OUT.asWeighedRandom(cherub.getRandom(), -orbitRate, orbitRate);
         }
     }
 

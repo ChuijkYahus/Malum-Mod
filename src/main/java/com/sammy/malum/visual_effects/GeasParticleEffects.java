@@ -57,8 +57,8 @@ public class GeasParticleEffects {
             };
             for (int i = 0; i < 4; i++) {
                 SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-                float spread = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-                float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
+                float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
+                float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
                 float angle = i / 4f * (float) Math.PI * 2f;
                 Vec3 particleDirection = direction
                         .add(left.scale(Math.sin(angle) * spread))
@@ -106,18 +106,18 @@ public class GeasParticleEffects {
                 offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
                  for (int j = 0; j < 2; j++) {
                     var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                    float velocity = -RandomHelper.randomBetween(random, 0.05f, 0.1f);
+                    float velocity = -Easing.SINE_IN_OUT.asWeighedRandom(random, 0.05f, 0.1f);
                     var motion = offsetTargetPosition.subtract(targetPos).normalize().scale(velocity);
                     lightSpecs.getBuilder()
                             .multiplyLifetime(0.8f)
                             .setMotion(motion)
                             .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                            .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                            .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                     lightSpecs.getBloomBuilder()
                             .multiplyLifetime(0.6f)
                             .setMotion(motion)
                             .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                            .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                            .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                     lightSpecs.spawnParticles();
                 }
             }
@@ -149,9 +149,9 @@ public class GeasParticleEffects {
 
         for (int i = 0; i < 16; i++) {
             var color = colorData.getColor();
-            float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
-            float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-            float distance = -RandomHelper.randomBetween(random, 4f, 6f);
+            float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.2f);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
+            float distance = -Easing.SINE_IN_OUT.asWeighedRandom(random, 4f, 6f);
             float angle = i / 16f * (float) Math.PI * 2f;
 
             Vec3 particleDirection = direction
@@ -217,9 +217,9 @@ public class GeasParticleEffects {
             Vec3 up = left.cross(direction);
             for (int j = 0; j < 3; j++) {
                 var color = colorData.getColor();
-                float spread = RandomHelper.randomBetween(random, 0.1f, 0.2f);
-                float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-                float distance = -RandomHelper.randomBetween(random, 4f, 6f);
+                float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.2f);
+                float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
+                float distance = -Easing.SINE_IN_OUT.asWeighedRandom(random, 4f, 6f);
                 float angle = angleOffset + j / 3f * (float) Math.PI * 2f;
 
                 Vec3 particleDirection = direction
@@ -267,20 +267,20 @@ public class GeasParticleEffects {
             offsetTargetPosition = offsetTargetPosition.add(0, timeOffset, 0);
             for (int j = 0; j < 3; j++) {
                 var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
-                float velocity = RandomHelper.randomBetween(random, 0.45f, 0.55f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.45f, 0.55f);
                 var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
                 lightSpecs.getBuilder()
                         .multiplyLifetime(0.6f)
                         .setMotion(motion)
                         .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.6f)
                         .setMotion(motion)
                         .setLifeDelay(j*3)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -301,13 +301,13 @@ public class GeasParticleEffects {
                         .setMotion(motion)
                         .setLifeDelay(j*2)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.8f)
                         .setMotion(motion)
                         .setLifeDelay(j*2)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -326,13 +326,13 @@ public class GeasParticleEffects {
                         .setMotion(0, velocity, 0)
                         .setLifeDelay(delay)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .multiplyLifetime(0.8f)
                         .setMotion(0, velocity, 0)
                         .setLifeDelay(delay)
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -343,21 +343,21 @@ public class GeasParticleEffects {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 6; j++) {
                 var offsetTargetPosition = VecHelper.radialOffset(pos, 1.4f-j*0.1f, i, 8);
-                float velocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.01f, 0.02f);
                 var motion = offsetTargetPosition.subtract(pos).normalize().scale(-velocity);
 
                 var lightSpecs = spiritLightSpecs(level, offsetTargetPosition, colorData.getColor());
                 int delay = j * 2;
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)))
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)))
                         .multiplyLifetime(0.4f)
                         .setLifeDelay(delay)
                         .setFriction(2f)
                         .setMotion(motion);
                 lightSpecs.getBloomBuilder()
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.35f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)))
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)))
                         .multiplyLifetime(0.4f)
                         .setLifeDelay(delay)
                         .setFriction(2f)
@@ -376,11 +376,11 @@ public class GeasParticleEffects {
 
         for (int i = 0; i < 12; i++) {
             Color primaryColor = colorData.getColor().getStartingColor();
-            int lifetime = RandomHelper.randomBetween(random, 20, 40);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(random, 20, 40);
             final boolean isAdditive = i % 2 == 0;
             final float scale = (2f + i * 0.5f) * (isAdditive ? 1 : 2);
             final LodestoneWorldParticleRenderType renderType = (isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT).withDepthFade();
-            final float spin = RandomHelper.randomBetween(random, 0.04f, 0.08f);
+            final float spin = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.04f, 0.08f);
             float randomOffset = i * 0.2f;
             for (int j = 0; j < 2; j++) {
                 var options = new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR);
@@ -406,12 +406,13 @@ public class GeasParticleEffects {
         long gameTime = level.getGameTime();
         Consumer<LodestoneWorldParticle> behavior = p -> {
             Vec3 offset = entity.position().add(0, entity.getBbHeight() / 2f, 0).subtract(p.getParticlePosition());
-            if (offset.length() == 0) {
+            float length = (float) offset.length();
+            if (length == 0) {
                 offset = new Vec3(0, 0.02f, 0);
             }
             float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0) * 2;
-            float lerp = Easing.QUINTIC_IN.ease(delta, 0, 0.3f);
-            float velocity = Easing.CIRC_IN.ease(delta, 0f, 0.3f + offset.length() * 0.6f);
+            float lerp = Easing.QUINTIC_IN.lerp(delta, 0, 0.3f);
+            float velocity = Easing.CIRC_IN.lerp(delta, 0f, 0.3f + length * 0.6f);
             final Vec3 speed = p.getParticleSpeed().lerp(offset.normalize().scale(velocity), lerp);
             p.setParticleSpeed(speed);
         };
@@ -420,8 +421,8 @@ public class GeasParticleEffects {
             Color primaryColor = color.getStartingColor();
             Color secondaryColor = color.getEndingColor();
             Vec3 offsetPosition = VecHelper.rotatingRadialOffset(pos, distance, i, sparkCount, gameTime, 320);
-            final float motionFactor = RandomHelper.randomBetween(random, 0.06f, 0.12f);
-            int lifetime = RandomHelper.randomBetween(random, 20, 40);
+            final float motionFactor = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.06f, 0.12f);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(random, 20, 40);
             Vec3 motion = offsetPosition.subtract(pos).normalize().scale(motionFactor);
             distance += 0.03f;
             gameTime += 10;
@@ -429,8 +430,8 @@ public class GeasParticleEffects {
                 boolean isAdditive = j % 2 == 0;
                 Color start = isAdditive ? primaryColor : secondaryColor;
                 Color end = isAdditive ? secondaryColor : smokeColor;
-                float lengthMultiplier = (isAdditive ? 0.5f : 1f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
-                float scaleMultiplier = (isAdditive ? 1.75f : 5.5f) * RandomHelper.randomBetween(random, 0.4f, 1.8f);
+                float lengthMultiplier = (isAdditive ? 0.5f : 1f) * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 1.8f);
+                float scaleMultiplier = (isAdditive ? 1.75f : 5.5f) * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 1.8f);
                 float alphaMultiplier = isAdditive ? 1.5f : 3f;
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
@@ -464,12 +465,12 @@ public class GeasParticleEffects {
         for (int i = 0; i < 3; i++) {
             final ColorParticleData color = colorData.getColor();
             final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, nextFloat(random, 0.15f, 0.3f)).randomSpinOffset(random).build();
-            float scaleMultiplier = RandomHelper.randomBetween(random, 0.5f, 1f);
+            float scaleMultiplier = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f);
             WorldParticleBuilder.create(MalumParticles.SHINE.get())
                     .setScaleData(GenericParticleData.create(0.8f * scaleMultiplier, 0.25f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.6f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                    .setLifetime(RandomHelper.randomBetween(random, 5, 15))
+                    .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(random, 5, 15))
                     .setRandomMotion(0.02f, 0.02f)
                     .setColorData(color)
                     .setSpinData(spinData)
@@ -481,7 +482,7 @@ public class GeasParticleEffects {
                     .setScaleData(GenericParticleData.create(5f * scaleMultiplier, 0.25f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN).build())
                     .setTransparencyData(GenericParticleData.create(0.4f, 0.07f, 0).setEasing(Easing.SINE_IN, Easing.CIRC_IN).build())
                     .setColorData(color.invert().build())
-                    .setLifetime(RandomHelper.randomBetween(random, 10, 20))
+                    .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(random, 10, 20))
                     .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .setRandomMotion(0.02f, 0.02f)
                     .setSpinData(spinData)
