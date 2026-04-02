@@ -29,46 +29,46 @@ public class CodexRenderHelper {
 
     protected static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
 
-    public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
-        float pct = screen.getVoidFadeoutDelta();
-        float overlayAlpha = Easing.SINE_IN_OUT.ease(pct);
-        float effectStrength = Easing.QUAD_OUT.ease(pct);
-        float effectAlpha = Math.min(1, effectStrength * 1);
-        float zoom = 0.5f + Math.min(0.35f, effectStrength);
-        float intensity = 1f + (effectStrength > 0.5f ? (effectStrength - 0.5f) * 2.5f : 0);
-
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        RenderSystem.disableCull();
-        int left = screen.getInsideLeft();
-        int top = screen.getInsideTop();
-        int width = AbstractProgressionCodexScreen.BOOK_INSIDE_WIDTH;
-        int height = AbstractProgressionCodexScreen.BOOK_INSIDE_HEIGHT;
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen().setPositionWithWidth(left, top, width, height)
-                .setColor(0, 0, 0)
-                .setAlpha(overlayAlpha)
-                .setZLevel(200)
-                .setShader(GameRenderer::getPositionColorShader)
-                .blit(stack);
-
-        ExtendedShaderInstance shaderInstance = MalumShaders.TOUCH_OF_DARKNESS.getShaderInstance();
-        shaderInstance.safeGetUniform("Speed").set(1000f);
-        Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
-        Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
-        builder.setAlpha(effectAlpha).setShader(shaderInstance);
-
-        setZoom.accept(zoom);
-        setIntensity.accept(intensity);
-        builder.blit(stack);
-
-        setZoom.accept(zoom * 1.25f + 0.15f);
-        setIntensity.accept(intensity * 0.8f + 0.5f);
-        builder.blit(stack);
-
-        shaderInstance.setUniformDefaults();
-        RenderSystem.disableDepthTest();
-        RenderSystem.disableBlend();
-    }
+//    public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
+//        float pct = screen.getVoidFadeoutDelta();
+//        float overlayAlpha = Easing.SINE_IN_OUT.ease(pct);
+//        float effectStrength = Easing.QUAD_OUT.ease(pct);
+//        float effectAlpha = Math.min(1, effectStrength * 1);
+//        float zoom = 0.5f + Math.min(0.35f, effectStrength);
+//        float intensity = 1f + (effectStrength > 0.5f ? (effectStrength - 0.5f) * 2.5f : 0);
+//
+//        RenderSystem.enableBlend();
+//        RenderSystem.enableDepthTest();
+//        RenderSystem.disableCull();
+//        int left = screen.getInsideLeft();
+//        int top = screen.getInsideTop();
+//        int width = AbstractProgressionCodexScreen.BOOK_INSIDE_WIDTH;
+//        int height = AbstractProgressionCodexScreen.BOOK_INSIDE_HEIGHT;
+//        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen().setPositionWithWidth(left, top, width, height)
+//                .setColor(0, 0, 0)
+//                .setAlpha(overlayAlpha)
+//                .setZLevel(200)
+//                .setShader(GameRenderer::getPositionColorShader)
+//                .blit(stack);
+//
+//        ExtendedShaderInstance shaderInstance = MalumShaders.TOUCH_OF_DARKNESS.getShaderInstance();
+//        shaderInstance.safeGetUniform("Speed").set(1000f);
+//        Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
+//        Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
+//        builder.setAlpha(effectAlpha).setShader(shaderInstance);
+//
+//        setZoom.accept(zoom);
+//        setIntensity.accept(intensity);
+//        builder.blit(stack);
+//
+//        setZoom.accept(zoom * 1.25f + 0.15f);
+//        setIntensity.accept(intensity * 0.8f + 0.5f);
+//        builder.blit(stack);
+//
+//        shaderInstance.setUniformDefaults();
+//        RenderSystem.disableDepthTest();
+//        RenderSystem.disableBlend();
+//    }
 
     public static void renderGeasIcon(ResourceLocation location, PoseStack stack, GeasEffectType type, float x, float y) {
         renderGeasIcon(location, stack, type, x, y, 0);
