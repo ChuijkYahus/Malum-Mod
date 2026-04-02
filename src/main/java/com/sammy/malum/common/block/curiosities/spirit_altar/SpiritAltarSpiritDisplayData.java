@@ -52,7 +52,7 @@ public class SpiritAltarSpiritDisplayData extends ItemStackHandlerItemDisplayDat
         float angle = item.getAngle(1);
         float difference = Math.abs(angle - targetAngle);
         float delta = Math.min(difference / 2f, 1f);
-        float step = Easing.QUAD_IN_OUT.asValueDistribution(delta, 0.02f, 0.08f, 0.04f);
+        float step = Easing.QUAD_IN_OUT.asValueDistribution(delta, 0.001f, 0.02f, 0.01f);
         if (angle > targetAngle) {
             step *= 0.5f;
         }
