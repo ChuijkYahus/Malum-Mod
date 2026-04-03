@@ -176,14 +176,14 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public void renderObjects(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        int guiLeft = getGuiLeft();
-        int guiTop = getGuiTop();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
-        var x = Mth.lerp(delta, oldObjectXOffset, objectXOffset);
-        var y = Mth.lerp(delta, oldObjectYOffset, objectYOffset);
-        float objectX = guiLeft + BOOK_WIDTH / 2f + x;
-        float objectY = guiTop + BOOK_HEIGHT / 2f + y;
-        progressionObjects.renderObjects(this, graphics, objectX, objectY, mouseX, mouseY, partialTicks);
+        float x = Mth.lerp(delta, oldObjectXOffset, objectXOffset);
+        float y = Mth.lerp(delta, oldObjectYOffset, objectYOffset);
+
+        mouseX -= getGuiLeft();
+        mouseY -= getGuiTop();
+
+        progressionObjects.renderObjects(this, graphics, BOOK_WIDTH / 2f + x, BOOK_HEIGHT / 2f + y, mouseX, mouseY, partialTicks);
     }
 
 
@@ -197,12 +197,9 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public Matrix4f getProjectionMatrix() {
-        int xOffset = 227;
-        int yOffset = 69;
-
         return new Matrix4f().ortho(
-                xOffset, BOOK_WIDTH + xOffset,
-                BOOK_HEIGHT + yOffset, yOffset,
+                0, BOOK_WIDTH,
+                BOOK_HEIGHT, 0,
                 0.05f, 2000.0f
         );
     }
@@ -267,10 +264,11 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     @Override
     public boolean isHovering(double mouseX, double mouseY, float posX, float posY, int width, int height) {
-        if (!isInView(mouseX, mouseY)) {
-            return false;
-        }
-        return super.isHovering(mouseX, mouseY, posX, posY, width, height);
+        return mouseX >= 0
+                && mouseY >= 0
+                && mouseX <= BOOK_WIDTH
+                && mouseY <= BOOK_HEIGHT
+                && super.isHovering(mouseX, mouseY, posX, posY, width, height);
     }
 
     public void correctOOBB() {
@@ -311,13 +309,12 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         var offsets = clampOffsets(x, y, 0.8f, 0f, 1f);
         float xOffset = offsets.x;
         float yOffset = offsets.y;
-        int guiLeft = getGuiLeft();
-        int guiTop = getGuiTop();
         float uOffset = (backgroundImageWidth / 12f) - xOffset * xModifier;
         float vOffset = (backgroundImageHeight - BOOK_HEIGHT) - yOffset * yModifier;
+
         VFXBuilders.createScreen().setTexture(texture)
                 .setShader(GameRenderer::getPositionTexColorShader)
-                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
+                .setPositionWithWidth(0, 0, BOOK_WIDTH, BOOK_HEIGHT)
                 .setUVWithWidth(uOffset, vOffset, BOOK_WIDTH, BOOK_HEIGHT, backgroundImageWidth / 2f, backgroundImageHeight / 2f)
                 .multiplyColor(0.75f)
                 .blit(poseStack);
