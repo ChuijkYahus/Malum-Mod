@@ -197,8 +197,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public Matrix4f getProjectionMatrix() {
-        int xOffset = 200 + 25;
-        int yOffset = 65;
+        int xOffset = 227;
+        int yOffset = 69;
 
         return new Matrix4f().ortho(
                 xOffset, BOOK_WIDTH + xOffset,
