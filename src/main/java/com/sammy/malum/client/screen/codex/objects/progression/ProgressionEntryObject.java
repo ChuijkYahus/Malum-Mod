@@ -49,10 +49,12 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
 
     @Override
     public boolean isInView(AbstractProgressionCodexScreen screen) {
-        return screen.isInView(getOffsetXPosition(), getOffsetYPosition())
-                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition())
-                || screen.isInView(getOffsetXPosition(), getOffsetYPosition() + height)
-                || screen.isInView(getOffsetXPosition() + width, getOffsetYPosition() + height);
+        int posX = getOffsetXPosition() - 16;
+        int posY = getOffsetYPosition() - 16;
+        return posX + 64 >= 0
+                && posY + 64 >= 0
+                && posX <= AbstractProgressionCodexScreen.BOOK_WIDTH
+                && posY <= AbstractProgressionCodexScreen.BOOK_HEIGHT;
     }
 
     @Override
