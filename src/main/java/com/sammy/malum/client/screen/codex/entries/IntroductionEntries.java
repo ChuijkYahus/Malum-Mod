@@ -10,6 +10,8 @@ import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.world.item.*;
 
+import java.util.List;
+
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
@@ -56,16 +58,19 @@ public class IntroductionEntries {
                 .addPage(new HeadlineTextItemPage("runewood", RUNEWOOD_SAPLING.get()))
                 .addPage(new TextPage("runewood.2"))
                 .addPage(new HeadlineTextItemPage("runewood.arcane_charcoal", ARCANE_CHARCOAL.get()))
-                .addPage(new CyclingPage(
-                        new SmeltingPage(RUNEWOOD_LOG.get(), ARCANE_CHARCOAL.get()),
-                        CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get())
-                ))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(new SmeltingPage(RUNEWOOD_LOG.get(), ARCANE_CHARCOAL.get()),
+                                        ARCANE_CHARCOAL.get())
+                                .add(CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()),
+                                        BLOCK_OF_ARCANE_CHARCOAL.get())
+                        )
+                )
+
                 .addPage(new HeadlineTextItemPage("runewood.runic_sap", RUNIC_SAP.get()))
                 .addPage(new TextPage("runewood.runic_sap.2"))
                 .addPage(new TextPage("runewood.runic_sap.3"))
                 .addPage(new CraftingPage(new ItemStack(RUNIC_SAPBALL.get()), RUNIC_SAP.get()))
         );
-
 
         screen.addEntry("natural_quartz", 3, 1, b -> b
                 .configureWidget(w -> w.setIcon(NATURAL_QUARTZ).setDesign(SMALL, RUNEWOOD, PAPER))

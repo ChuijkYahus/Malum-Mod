@@ -1,7 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.handlers.BookObjectHandler;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.*;
@@ -9,10 +9,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -45,8 +42,12 @@ public abstract class BookPage {
     public void click(CodexEntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
     }
 
+    public BookObjectHandler<CodexEntryScreen> addObjects(CodexEntryScreen screen, int left, int top) {
+        return null;
+    }
 
-    public abstract ResourceLocation getBackground(boolean isRightSide);
+
+    public abstract ResourceLocation getBackground();
 
     public final ResourceLocation getBackground(String path){
         var voidPage = MalumMod.malumPath("textures/gui/book/pages/" + path + "_void.png");
@@ -69,5 +70,9 @@ public abstract class BookPage {
                 guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY);
             }
         });
+    }
+
+    public int getPageMiddle(int left) {
+        return left + CodexEntryScreen.PAGE_WIDTH/2;
     }
 }

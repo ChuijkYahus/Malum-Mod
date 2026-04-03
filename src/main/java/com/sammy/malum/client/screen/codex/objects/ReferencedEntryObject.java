@@ -22,9 +22,9 @@ public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEn
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        final int entryX = getOffsetXPosition();
-        final int entryY = getOffsetYPosition();
-        final PoseStack poseStack = guiGraphics.pose();
+        int entryX = getOffsetXPosition();
+        int entryY = getOffsetYPosition();
+        var poseStack = guiGraphics.pose();
         renderTexture(LINK, poseStack, entryX, entryY, 0, flipped ? 26 : 0, width, height, 36, 52);
         guiGraphics.renderItem(iconStack, entryX + 5, entryY + 5);
     }

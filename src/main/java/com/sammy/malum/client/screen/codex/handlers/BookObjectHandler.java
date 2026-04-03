@@ -43,6 +43,10 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
         objects.remove(object);
     }
 
+    public void clear() {
+        objects.clear();
+    }
+
     public void tick(T screen) {
         var minecraft = Minecraft.getInstance();
         var mouseHandler = minecraft.mouseHandler;

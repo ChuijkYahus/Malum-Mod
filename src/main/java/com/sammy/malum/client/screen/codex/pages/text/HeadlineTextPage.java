@@ -23,13 +23,13 @@ public class HeadlineTextPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/headline_page.png");
     }
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 25, 130);
+        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 32, 140);
     }
 }

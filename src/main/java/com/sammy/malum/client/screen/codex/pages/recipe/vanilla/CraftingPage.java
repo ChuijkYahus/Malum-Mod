@@ -7,13 +7,18 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.*;
+import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.util.*;
 
 public class CraftingPage extends BookPage {
+
+    public static final ResourceLocation CRAFTING_SEGMENTS = MalumMod.malumPath("textures/gui/book/entry_elements/crafting_segments.png");
+
     private final ItemStack outputStack;
     private final List<ItemStack> inputStacks;
 
@@ -35,27 +40,37 @@ public class CraftingPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/crafting_page.png");
     }
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                int index = i * 3 + j;
-                if (inputStacks.size() > index) {
-                    final ItemStack stack = inputStacks.get(index);
-                    if (!stack.isEmpty()) {
-                        int itemPosX = left + 42 + j * 21;
-                        int itemPosY = top + 35 + i * 21;
-                        CodexItemHelper.renderItem(screen, guiGraphics, stack, itemPosX, itemPosY, mouseX, mouseY);
-                    }
+
+        var segments = VFXBuilders.createScreen().setTexture(CRAFTING_SEGMENTS)
+                        .setShader(GameRenderer::getPositionTexColorShader);
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                int index = x * 3 + y;
+                if (inputStacks.size() <= index) {
+                    continue;
                 }
+                var stack = inputStacks.get(index);
+                if (stack.isEmpty()) {
+                    continue;
+                }
+                int itemPosX = left + 43 + y * 20;
+                int itemPosY = top + 50 + x * 20;
+
+                segments.setPositionWithWidth(itemPosX, itemPosY, 16, 16)
+                        .setUVWithWidth(x*20, y*20, 18, 18, 58, 58)
+                        .blit(guiGraphics.pose());
+
+                CodexItemHelper.renderItem(screen, guiGraphics, stack, itemPosX, itemPosY, mouseX, mouseY);
             }
         }
 
-        CodexItemHelper.renderItem(screen, guiGraphics, outputStack, left + 63, top + 132, mouseX, mouseY);
+        CodexItemHelper.renderItem(screen, guiGraphics, outputStack, left + 63, top + 162, mouseX, mouseY);
     }
 
     public static CraftingPage shapeless(Item output, Item... inputs) {

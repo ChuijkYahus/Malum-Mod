@@ -13,7 +13,6 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.handlers.screenparticle.*;
-import team.lodestar.lodestone.helpers.*;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
@@ -34,7 +33,7 @@ public class SpiritRiteRecipePage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/spirit_rite_recipe_page.png");
     }
 

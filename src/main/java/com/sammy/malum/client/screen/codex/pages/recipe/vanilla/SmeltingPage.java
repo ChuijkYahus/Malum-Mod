@@ -9,7 +9,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
-import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderItem;
@@ -28,7 +27,7 @@ public class SmeltingPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/smelting_page.png");
     }
 

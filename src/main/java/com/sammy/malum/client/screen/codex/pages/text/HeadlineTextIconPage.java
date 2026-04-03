@@ -3,16 +3,11 @@ package com.sammy.malum.client.screen.codex.pages.text;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
-import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
@@ -41,7 +36,7 @@ public class HeadlineTextIconPage extends HeadlineTextPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/headline_icon_page.png");
     }
 
@@ -50,7 +45,8 @@ public class HeadlineTextIconPage extends HeadlineTextPage {
         int iconX = left + 63;
         int iconY = top + 38;
         renderHeadline(guiGraphics, headline, left, top);
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 75, 130);
+        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 87, 140);
+
         renderSpiritIcon(icon, guiGraphics.pose(), spirit, false, iconX, iconY);
         renderSpiritIcon(GLOW_TEXTURE, guiGraphics.pose(), spirit, false, iconX - 8, iconY - 8, 32, 32);
 

@@ -67,13 +67,13 @@ public class CodexTextHelper {
     }
 
     public static void renderHeadline(GuiGraphics graphics, Component component, int left, int top) {
-        final int width = Minecraft.getInstance().font.width(component.getString());
+        int width = Minecraft.getInstance().font.width(component.getString());
         float scale = 1f;
         if (width > 100) {
             scale -= (width - 100) / 200f;
         }
         float textLeft = left + 72;
-        float textTop = top + 5;
+        float textTop = top + 7;
 
         if (scale != 1) {
             textLeft /= scale;
