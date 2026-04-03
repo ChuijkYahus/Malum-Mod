@@ -23,6 +23,9 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 import org.joml.Matrix4f;
+import org.joml.Matrix4fStack;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.systems.rendering.*;
 
@@ -122,19 +125,42 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         var cutout = MalumShaders.PROGRESSION_SCREEN.getShaderInstance();
         RenderSystem.setShaderTexture(1, FRAME_CUTOUT_TEXTURE);
         RenderSystem.setShaderTexture(2, target.getColorTextureId());
-        VFXBuilders.createScreen()
-                .setShader(cutout)
-                .setTexture(FRAME_TEXTURE)
-                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
-                .blit(poseStack);
+        //RenderSystem.setShaderTexture(2, 2);
+//        VFXBuilders.createScreen()
+//                .setShader(cutout)
+//                .setTexture(FRAME_TEXTURE)
+//                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
+//                .blit(poseStack);
+
+        RenderSystem.setShaderTexture(0, FRAME_TEXTURE);
+        RenderSystem.setShader(() -> cutout);
+        BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        PoseStack.Pose last = guiGraphics.pose().last();
+
+        Vector2ic size = new Vector2i(BOOK_WIDTH, BOOK_HEIGHT);
+        Vector2ic offset = new Vector2i(0, 0);
+        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + offset.y(), 0).setUv(0,1).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(0,0).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(1,0).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + offset.y(), 0).setUv(1,1).setColor(255,255,255,255);
+
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
+
     }
 
     public void renderBookInnards(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         var poseStack = guiGraphics.pose();
 
         Matrix4f oldProjMat = RenderSystem.getProjectionMatrix();
-//        RenderSystem.setProjectionMatrix(getProjectionMatrix(), VertexSorting.ORTHOGRAPHIC_Z);
-        target.setClearColor(0, 0, 0, 0);
+        Matrix4f newProjMat = getProjectionMatrix();
+
+        Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
+        matrix4fstack.pushMatrix();
+        matrix4fstack.set(getModelViewMatrix());
+        RenderSystem.applyModelViewMatrix();
+
+        RenderSystem.setProjectionMatrix(newProjMat, VertexSorting.ORTHOGRAPHIC_Z);
+        target.setClearColor(0, 0, 1, 1);
         target.clear(Minecraft.ON_OSX);
         target.bindWrite(true);
 
@@ -143,6 +169,9 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
         target.unbindWrite();
         Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
+
+        matrix4fstack.popMatrix();
+        RenderSystem.applyModelViewMatrix();
         RenderSystem.setProjectionMatrix(oldProjMat, VertexSorting.ORTHOGRAPHIC_Z);
     }
 
@@ -168,13 +197,21 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public Matrix4f getProjectionMatrix() {
-        int scale = (int) getMinecraft().getWindow().getGuiScale();
+        int xOffset = 200 + 25;
+        int yOffset = 65;
+
+        return new Matrix4f().ortho(
+                xOffset, BOOK_WIDTH + xOffset,
+                BOOK_HEIGHT + yOffset, yOffset,
+                0.05f, 2000.0f
+        );
+    }
+
+    public Matrix4f getModelViewMatrix() {
         Matrix4f matrix4f = new Matrix4f();
-        int left = getGuiLeft() * scale;
-        int right = (getGuiLeft() + BOOK_WIDTH) * scale;
-        int bottom = (getGuiTop()+ BOOK_HEIGHT) * scale;
-        int top = getGuiTop()* scale;
-        return matrix4f.ortho(left, right, bottom, top, 0.005f, 1000.0f);
+        matrix4f.identity();
+        matrix4f.translate(0, 0, -2000);
+        return matrix4f;
     }
 
     @Override
