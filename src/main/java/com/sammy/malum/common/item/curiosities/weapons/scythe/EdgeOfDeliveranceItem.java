@@ -19,7 +19,7 @@ import net.neoforged.neoforge.common.damagesource.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.enchanting.*;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
 

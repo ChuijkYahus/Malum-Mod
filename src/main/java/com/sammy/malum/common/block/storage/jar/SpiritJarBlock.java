@@ -1,14 +1,11 @@
 package com.sammy.malum.common.block.storage.jar;
 
-import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -16,9 +13,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.entity.player.*;
-import net.neoforged.neoforge.items.*;
-import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
 public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedEntityBlock<T> {
@@ -38,7 +32,7 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
         handleAttack(pLevel, pPos, pPlayer);
     }
 
-    public static void attack(PlayerInteractEvent.LeftClickBlock event) {
+    public static void cancelBreak(PlayerInteractEvent.LeftClickBlock event) {
         BlockPos pos = event.getPos();
         Level level = event.getLevel();
         BlockState state = level.getBlockState(pos);
@@ -54,20 +48,9 @@ public class SpiritJarBlock<T extends SpiritJarBlockEntity> extends WaterLoggedE
         }
     }
 
-    public boolean handleAttack(Level pLevel, BlockPos pPos, Player pPlayer) {
-        BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (be instanceof SpiritJarBlockEntity jar) {
-            IItemHandler jarHandler = jar.getInventory(Direction.DOWN);
-            ItemStack item = jarHandler.extractItem(0, pPlayer.isShiftKeyDown() ? 64 : 1, false);
-            if (!item.isEmpty()) {
-                ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selected);
-                if (!pLevel.isClientSide) {
-                    BlockStateHelper.updateAndNotifyState(pLevel, pPos);
-                }
-                SoundHelper.playSound(pPlayer, MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
-
-                return true;
-            }
+    public boolean handleAttack(Level level, BlockPos pos, Player player) {
+        if (level.getBlockEntity(pos) instanceof SpiritJarBlockEntity jar) {
+            return jar.handleAttack(player);
         }
         return false;
     }

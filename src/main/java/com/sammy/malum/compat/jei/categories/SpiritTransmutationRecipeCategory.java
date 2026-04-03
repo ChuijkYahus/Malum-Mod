@@ -73,9 +73,9 @@ public class SpiritTransmutationRecipeCategory implements IRecipeCategory<Spirit
         List<ItemStack> outputs = new ArrayList<>();
 
         for (var subRecipe : recipe.subRecipes()) {
-            for (ItemStack stack : subRecipe.ingredient.getItems()) {
+            for (ItemStack stack : subRecipe.getInput().getItems()) {
                 inputs.add(stack);
-                outputs.add(subRecipe.output);
+                outputs.add(subRecipe.getOutputRaw());
             }
         }
 

@@ -17,6 +17,8 @@
     "malum:block_of_living_flesh",
     "malum:block_of_alchemical_calx",
     "malum:block_of_arcane_charcoal",
+    "malum:block_of_ebony",
+    "malum:crate_of_witchhazel",
     "malum:block_of_null_slate",
     "malum:block_of_void_salts",
     "malum:block_of_mnemonic_fragment",
@@ -24,6 +26,7 @@
     "malum:block_of_malignant_lead",
     "malum:block_of_soul_stained_steel",
     "malum:block_of_hallowed_gold",
-    "malum:block_of_malignant_pewter"
+    "malum:block_of_malignant_pewter",
+    "malum:witchhazel"
   ]
 }

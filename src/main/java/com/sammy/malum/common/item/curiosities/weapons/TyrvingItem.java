@@ -21,10 +21,10 @@ import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneSwordItem;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
-
-import team.lodestar.lodestone.systems.item.tools.*;
 
 public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
@@ -72,7 +72,8 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
                                 .setDamageData(0, magicDamage, 3));
             }
 
-            SoundHelper.playSound(attacker, MalumGearSoundEvents.TYRVING_SLASH.get(), 1, RandomHelper.randomBetween(attacker.getRandom(), 1f, 1.5f));
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
+            SoundHelper.playSound(attacker, MalumGearSoundEvents.TYRVING_SLASH.get(), 1, pitch);
 
             MalumParticleEffectTypes.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)

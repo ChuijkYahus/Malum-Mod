@@ -26,11 +26,10 @@ import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import javax.annotation.*;
 import java.util.*;
-
-import static team.lodestar.lodestone.helpers.RandomHelper.*;
 
 public class SoulHarvestHandler {
     public static final Codec<SoulHarvestHandler> CODEC = Codec.unit(SoulHarvestHandler::new);
@@ -177,17 +176,17 @@ public class SoulHarvestHandler {
                     level.addFreshEntity(entity);
                 }
             }
-            float pitch = RandomHelper.randomBetween(level.random, 0.7f, 1.3f);
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.7f, 1.3f);
             level.playSound(null, position.x, position.y, position.z, MalumSoundEvents.SOUL_SHATTER, SoundSource.PLAYERS, 1.0F, pitch);
         }
 
         public Entity createSpiritEntity(ItemStack stack, Vec3 position) {
             var level = target.level();
             var random = level.getRandom();
-            float speed = RandomHelper.randomBetween(random, 0.2f, 0.4f);
-            float xSpeed = randomBetween(random, -speed, speed);
-            float ySpeed = randomBetween(random, 0.05f, 0.06f);
-            float zSpeed = randomBetween(random, -speed, speed);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.4f);
+            float xSpeed = Easing.QUAD_IN_OUT.asWeighedRandom(random, -speed, speed);
+            float ySpeed = Easing.QUAD_IN_OUT.asWeighedRandom(random, 0.05f, 0.06f);
+            float zSpeed = Easing.QUAD_IN_OUT.asWeighedRandom(random, -speed, speed);
             var velocity = new Vec3(xSpeed, ySpeed, zSpeed);
             if (CommonConfig.NO_FANCY_SPIRITS.getConfigValue()) {
                 var itemEntity = new ItemEntity(level, position.x, position.y, position.z, stack);

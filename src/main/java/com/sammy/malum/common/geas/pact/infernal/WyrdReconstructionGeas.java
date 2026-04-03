@@ -19,6 +19,7 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -87,7 +88,7 @@ public class WyrdReconstructionGeas extends GeasEffect {
             target.setHealth(1);
             return;
         }
-        float health = RandomHelper.randomBetween(target.getRandom(), 1, target.getMaxHealth() * 0.66f);
+        float health = Easing.SINE_IN_OUT.asWeighedRandom(target.getRandom(), 1, target.getMaxHealth() * 0.66f);
         if (target.level() instanceof ServerLevel serverLevel) {
             for (Entity knockbackTarget : serverLevel.getEntities(target, target.getBoundingBox().inflate(2f), t -> canApplyKnockback(target, t))) {
                 knockbackTarget.setDeltaMovement(knockbackTarget.position().subtract(target.position()).normalize().scale(2f).add(0, 0.5f, 0));

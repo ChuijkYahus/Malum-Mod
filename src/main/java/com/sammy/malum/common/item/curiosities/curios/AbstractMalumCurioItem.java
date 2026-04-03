@@ -9,6 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -54,7 +55,7 @@ public abstract class AbstractMalumCurioItem extends Item implements ICurioItem 
     @Override
     public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
         final LivingEntity livingEntity = slotContext.entity();
-        livingEntity.level().playSound(null, livingEntity.blockPosition(), type.sound.get(), SoundSource.PLAYERS, 1.0f, RandomHelper.randomBetween(livingEntity.getRandom(), 0.9f, 1.1f));
+        livingEntity.level().playSound(null, livingEntity.blockPosition(), type.sound.get(), SoundSource.PLAYERS, 1.0f, Easing.SINE_IN_OUT.asWeighedRandom(livingEntity.getRandom(), 0.9f, 1.1f));
     }
 
     @Override

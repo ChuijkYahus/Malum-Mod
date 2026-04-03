@@ -13,6 +13,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.systems.particle.builder.*;
 
 import javax.annotation.*;
@@ -58,9 +59,9 @@ public class RepairPylonParticleEffects {
             }
         }
 
-        LodestoneItemStackHandler spiritInventory = pylon.spiritInventory;
+        var spiritInventory = pylon.spiritInventory;
         int spiritsRendered = 0;
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
+        for (int i = 0; i < spiritInventory.getSlotCount(); i++) {
             ItemStack item = spiritInventory.getStackInSlot(i);
             if (item.getItem() instanceof SpiritShardItem spiritSplinterItem) {
                 Vec3 offset = pylon.getSpiritItemOffset(spiritsRendered++, 0);
@@ -69,7 +70,7 @@ public class RepairPylonParticleEffects {
                 Vec3 spiritPosition = new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
                 spiritLightSpecs(level, spiritPosition, activeSpiritType).spawnParticles();
                 if (recipe != null && isCharging) {
-                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
+                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, activeSpiritType);
                         sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
@@ -187,10 +188,10 @@ public class RepairPylonParticleEffects {
         for (int i = 0; i < 24; i++) {
             int lifeDelay = i / 8;
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
-            float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.75f, 1f);
+            float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.5f);
+            float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1f);
             if (random.nextFloat() < 0.85f) {
                 var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, itemPos, cyclingSpiritType);
                 sparkParticles.getBuilder()

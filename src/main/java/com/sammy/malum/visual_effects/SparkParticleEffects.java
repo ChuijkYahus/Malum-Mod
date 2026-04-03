@@ -50,10 +50,10 @@ public class SparkParticleEffects {
         RandomSource rand = level.getRandom();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, nextFloat(rand, 0.05f, 0.1f)).randomSpinOffset(rand).build();
         final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
-        int lifetime = RandomHelper.randomBetween(rand, 10, 20);
+        int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 10, 20);
         final WorldParticleBuilder sparkParticleBuilder = builder
                 .setLengthData(GenericParticleData.create(0.1f, 0.2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
-                .setScaleData(GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.2f, 0.3f), 0).build())
+                .setScaleData(GenericParticleData.create(0.1f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.2f, 0.3f), 0).build())
                 .setTransparencyData(GenericParticleData.create(0.8f, 0f).build())
                 .addTickActor(slowDown)
                 .setLifetime(lifetime)

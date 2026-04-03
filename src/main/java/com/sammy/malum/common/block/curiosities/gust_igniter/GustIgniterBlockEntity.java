@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 import java.util.*;
 
@@ -37,7 +38,7 @@ public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
     public AABB windArea;
     public Direction windDirection;
 
-    public GustIgniterBlockEntity(BlockEntityType<? extends GustIgniterBlockEntity> type, BlockPos pos, BlockState state) {
+    public GustIgniterBlockEntity(LodestoneBlockEntityType<? extends GustIgniterBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

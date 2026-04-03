@@ -31,7 +31,7 @@ public class GluttonyParticleEffects {
         var random = level.random;
 
         for (int i = 0; i < 2; i++) {
-            int lifetime = RandomHelper.randomBetween(random, 20, 30);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(random, 20, 30);
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0.2f, 0.7f, 0).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, 0.05f).build())
@@ -62,7 +62,7 @@ public class GluttonyParticleEffects {
         var random = level.random;
 
         for (int i = 0; i < 4; i++) {
-            int lifetime = RandomHelper.randomBetween(random, 40, 50);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(random, 40, 50);
             float upwardsOffset = 0.1f + i * 0.05f;
             WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
                     .setBehavior(DirectionalParticleBehavior.directional())
@@ -94,7 +94,7 @@ public class GluttonyParticleEffects {
         var random = level.random;
         var builder = WorldParticleBuilder.create(options.setBehaviorIfDefault(SparkParticleBehavior.sparkBehavior().setLengthCenter(1f)))
                 .setLengthData(GenericParticleData.create(0.1f, 0.5f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build())
-                .setScaleData(GenericParticleData.create(0.025f, RandomHelper.randomBetween(random, 0.2f, 0.3f), 0).build())
+                .setScaleData(GenericParticleData.create(0.025f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.3f), 0).build())
                 .setTransparencyData(GenericParticleData.create(0.4f, 1f, 0f).setEasing(Easing.EXPO_OUT, Easing.EXPO_IN).build());
         return gluttonyRing(center, builder, distance, count, lifetimeScalar);
     }
@@ -115,8 +115,8 @@ public class GluttonyParticleEffects {
                     Color bright = j < 2 ? GLUTTONY_GREEN : GLUTTONY_DARK;
                     Color dark = j < 2 ? GLUTTONY_GREEN : GLUTTONY_SHADE;
                     float alphaMultiplier = isAdditive ? 1.5f : 3f;
-                    float scaleMultiplier = (isAdditive ? 1.25f : 2.5f) * RandomHelper.randomBetween(random, 0.8f, 1.2f);
-                    float lengthMultiplier = (isAdditive ? 0.75f : 1.25f) * RandomHelper.randomBetween(random, 0.8f, 1.2f);;
+                    float scaleMultiplier = (isAdditive ? 1.25f : 2.5f) * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f);
+                    float lengthMultiplier = (isAdditive ? 0.75f : 1.25f) * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f);;
                     float colorCoefficient = isAdditive ? 1f : 1.75f;
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
                     var renderTarget = j < 2 ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
@@ -125,7 +125,7 @@ public class GluttonyParticleEffects {
                             .modifyTransparencyData(d -> d.copy().multiplyValue(alphaMultiplier))
                             .modifyScaleData(d -> d.copy().multiplyValue(scaleMultiplier))
                             .setColorData(ColorParticleData.create(bright, dark).setCoefficient(colorCoefficient).build())
-                            .setLifetime((int) (RandomHelper.randomBetween(random, 30, 60) * lifetimeScalar))
+                            .setLifetime((int) (Easing.SINE_IN_OUT.asWeighedRandom(random, 30, 60) * lifetimeScalar))
                             .setMotion(0, 0.001f, 0)
                             .setRenderTarget(renderTarget)
                             .setRenderType(renderType)

@@ -227,7 +227,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
     }
 
     public void scheduleDelayedDetonation(ServerLevel level) {
-        detonationDelay = RandomHelper.randomBetween(random, 2, 4);
+        detonationDelay = Easing.SINE_IN_OUT.asWeighedRandom(random, 2, 4);
     }
 
     public void detonate(ServerLevel level) {
@@ -237,7 +237,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
             explosionAffectedTarget.hurt(source, magicDamage);
         }
         entityData.set(DATA_FADING_AWAY, true);
-        SoundHelper.playSound(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_DETONATE.get(), 2f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
+        SoundHelper.playSound(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_DETONATE.get(), 2f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f));
         MalumParticleEffectTypes.ENTROPY_CHARGE_DETONATES
                 .createEffect(position())
                 .color(MalumNetworkedParticleEffectColorData.fromColors(
@@ -308,7 +308,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
             float particleScale = isPlaced() ? 0.5f : 0.15f;
             for (int i = 0; i < times; i++) {
                 var pulsePosition = getPosition(i / (float) times);
-                int delay = times == 1 ? 0 : RandomHelper.randomBetween(random, i*4, 8+i*4);
+                int delay = times == 1 ? 0 : Easing.SINE_IN_OUT.asWeighedRandom(random, i*4, 8+i*4);
                 float multiplier = (1 + random.nextFloat() * random.nextFloat())*scale;
                 WorldParticleBuilder builder = WorldParticleBuilder.create(particle)
                         .setBehavior(DirectionalParticleBehavior.directional().setForcedDirection(direction))
@@ -320,7 +320,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
                         .enableNoClip();
                 if (isPlaced()) {
                     builder.setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.RANDOM_SPRITE)
-                            .setLifeDelay(RandomHelper.randomBetween(random, 0, 8))
+                            .setLifeDelay(Easing.SINE_IN_OUT.asWeighedRandom(random, 0, 8))
                             .setScaleData(GenericParticleData.create(particleScale * multiplier, 0).setEasing(Easing.SINE_IN))
                             .setSpinData(SpinParticleData.createRandomDirection(random, 0.2f, 0.1f).randomSpinOffset(random))
                             .setColorData(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, new Color(41, 11, 12)).setEasing(Easing.SINE_IN_OUT))

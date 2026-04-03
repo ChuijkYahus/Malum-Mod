@@ -23,16 +23,10 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
     public static final ResourceLocation BACKGROUND_TEXTURE = malumPath("textures/gui/book/background.png");
 
-    public static final Color OUTLINE_COLOR = new Color(25, 235, 255);
     public static final ProgressionScreenHolder<ArcanaProgressionScreen> SCREEN = new ProgressionScreenHolder<>(ArcanaProgressionScreen::new, MalumSoundEvents.ARCANA_TRANSITION_NORMAL);
 
     protected ArcanaProgressionScreen() {
         super(MalumSoundEvents.ARCANA_SWEETENER_NORMAL, 1024, 2560);
-    }
-
-    @Override
-    public Color getOutlineColor() {
-        return OUTLINE_COLOR;
     }
 
     @Override
@@ -49,41 +43,41 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
         );
 
         IntroductionEntries.setupEntries(this);
-        ArtificeEntries.setupEntries(this);
-        AugmentationEntries.setupEntries(this);
-        TinkeringEntries.setupEntries(this);
-        RuneWorkingEntries.setupEntries(this);
-        GeasEntries.setupEntries(this);
-        TotemMagicEntries.setupEntries(this);
-        MiscellaneousKnowledgeEntries.setupEntries(this);
+//        ArtificeEntries.setupEntries(this);
+//        AugmentationEntries.setupEntries(this);
+//        TinkeringEntries.setupEntries(this);
+//        RuneWorkingEntries.setupEntries(this);
+//        GeasEntries.setupEntries(this);
+//        TotemMagicEntries.setupEntries(this);
+//        MiscellaneousKnowledgeEntries.setupEntries(this);
 
-        addEntry("ritual_magic", 0, 24, b -> b
-                .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("ritual_magic"))
-        );
+//        addEntry("ritual_magic", 0, 24, b -> b
+//                .configureWidget(w -> w.setIcon(RITUAL_PLINTH).setDesign(GILDED, SOULWOOD, PAPER))
+//                .addPage(new HeadlineTextPage("ritual_magic"))
+//        );
 //        RitualEntries.setupEntries(ENTRIES);
 
-        addEntry("mirror_magic", 6, 17, b -> b
-                .configureWidget(w -> w.setIcon(CONVOLUTED_LENS).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("mirror_magic"))
-                .addPage(new TextPage("mirror_magic.2"))
-        );
-
-        addEntry("voodoo_magic", -6, 17, b -> b
-                .configureWidget(w -> w.setIcon(POPPET).setDesign(GILDED, SOULWOOD, PAPER))
-                .addPage(new HeadlineTextPage("voodoo_magic"))
-                .addPage(new TextPage("voodoo_magic.2"))
-        );
-
-        addEntry("the_device", 0, -10, b -> b
-                .setWidgetSupplier(VanishingEntryObject::new)
-                .configureWidget(w -> w.setIcon(THE_DEVICE).setDesign(DEFAULT, WITHERED, DARK))
-                .disableTooltip()
-                .addPage(new HeadlineTextPage("the_device"))
-                .addPage(new CraftingPage(THE_DEVICE.get(),
-                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get(),
-                        TAINTED_ROCK.get(), TWISTED_ROCK.get(), TAINTED_ROCK.get(),
-                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get()))
-        );
+//        addEntry("mirror_magic", 6, 17, b -> b
+//                .configureWidget(w -> w.setIcon(CONVOLUTED_LENS).setDesign(GILDED, SOULWOOD, PAPER))
+//                .addPage(new HeadlineTextPage("mirror_magic"))
+//                .addPage(new TextPage("mirror_magic.2"))
+//        );
+//
+//        addEntry("voodoo_magic", -6, 17, b -> b
+//                .configureWidget(w -> w.setIcon(POPPET).setDesign(GILDED, SOULWOOD, PAPER))
+//                .addPage(new HeadlineTextPage("voodoo_magic"))
+//                .addPage(new TextPage("voodoo_magic.2"))
+//        );
+//
+//        addEntry("the_device", 0, -10, b -> b
+//                .setWidgetSupplier(VanishingEntryObject::new)
+//                .configureWidget(w -> w.setIcon(THE_DEVICE).setDesign(DEFAULT, WITHERED, DARK))
+//                .disableTooltip()
+//                .addPage(new HeadlineTextPage("the_device"))
+//                .addPage(new CraftingPage(THE_DEVICE.get(),
+//                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get(),
+//                        TAINTED_ROCK.get(), TWISTED_ROCK.get(), TAINTED_ROCK.get(),
+//                        TWISTED_ROCK.get(), TAINTED_ROCK.get(), TWISTED_ROCK.get()))
+//        );
     }
 }

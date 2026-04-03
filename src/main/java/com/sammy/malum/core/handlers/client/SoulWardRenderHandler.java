@@ -71,7 +71,7 @@ public class SoulWardRenderHandler {
                 double capacity = player.getAttributeValue(MalumAttributes.SOUL_WARD_CAPACITY);
                 if (displayedSoulWard > 0 && capacity > 0) {
                     float delta = (float) (displayedSoulWard / capacity);
-                    float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
+                    float dissolvement = Easing.QUAD_OUT.ease(delta);
                     float alpha = (1 - fadeout / 80f) * 0.75f;
                     int left = guiGraphics.guiWidth() / 2 - ClientConfig.UI_SHIELD_X_OFFSET.getConfigValue();
                     int top = guiGraphics.guiHeight() - ClientConfig.UI_SHIELD_Y_OFFSET.getConfigValue();
@@ -109,7 +109,7 @@ public class SoulWardRenderHandler {
                         float time = minecraft.level.getGameTime() + deltaTracker.getGameTimeDeltaPartialTick(true);
                         float glowAlpha = (20 - Math.abs(20 - glow)) / 20f;
                         int angle = Mth.floor((time * 20) % 360);
-                        float range = Easing.SINE_IN_OUT.ease(glowAlpha, 0, 320f);
+                        float range = Easing.SINE_IN_OUT.ease(glowAlpha) * 320f;
                         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
                         light.safeGetUniform("YFrequency").set(24f);
                         light.safeGetUniform("XFrequency").set(16f);

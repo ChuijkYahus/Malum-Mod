@@ -37,8 +37,15 @@ import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.dungeon.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.common.block.nature.*;
-import com.sammy.malum.common.block.nature.soulwood.*;
+import com.sammy.malum.common.block.flora.EbonySaplingBlock;
+import com.sammy.malum.common.block.flora.EbonyStalkBlock;
+import com.sammy.malum.common.block.flora.WildWitchhazelPlantBlock;
+import com.sammy.malum.common.block.flora.WitchhazelCropBlock;
+import com.sammy.malum.common.block.flora.soulwood.SapFilledSoulwoodLogBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodGrowthBlock;
+import com.sammy.malum.common.block.flora.soulwood.SoulwoodLogBlock;
+import com.sammy.malum.common.block.flora.wood.*;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.block.storage.pedestal.*;
 import com.sammy.malum.common.block.storage.stand.*;
@@ -58,7 +65,6 @@ import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import team.lodestar.lodestone.modules.toolkit.block.*;
-import team.lodestar.lodestone.systems.block.sign.*;
 
 import java.awt.*;
 
@@ -396,8 +402,8 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> RUNEWOOD_ITEM_PEDESTAL = BLOCKS.register("runewood_item_pedestal", () -> new WoodItemPedestalBlock<>(MalumBlockProperties.RUNEWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
     public static final DeferredHolder<Block, Block> GILDED_RUNEWOOD_ITEM_STAND = BLOCKS.register("gilded_runewood_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.RUNEWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
 
-    public static final DeferredHolder<Block, Block> RUNEWOOD_SIGN = BLOCKS.register("runewood_sign", () -> new LodestoneStandingSignBlock(MalumWoodTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(SIGNS, STANDING_SIGNS).noOcclusion().noCollission()));
-    public static final DeferredHolder<Block, Block> RUNEWOOD_WALL_SIGN = BLOCKS.register("runewood_wall_sign", () -> new LodestoneWallSignBlock(MalumWoodTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_SIGN = BLOCKS.register("runewood_sign", () -> new StandingSignBlock(MalumWoodTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(SIGNS, STANDING_SIGNS).noOcclusion().noCollission()));
+    public static final DeferredHolder<Block, Block> RUNEWOOD_WALL_SIGN = BLOCKS.register("runewood_wall_sign", () -> new WallSignBlock(MalumWoodTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
     //endregion
 
     //region soulwood
@@ -476,8 +482,8 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> SOULWOOD_ITEM_STAND = BLOCKS.register("soulwood_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.SOULWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
     public static final DeferredHolder<Block, Block> ORNATE_SOULWOOD_ITEM_STAND = BLOCKS.register("ornate_soulwood_item_stand", () -> new ItemStandBlock<>(MalumBlockProperties.SOULWOOD().noOcclusion()).setBlockEntity(MalumBlockEntities.ITEM_STAND));
 
-    public static final DeferredHolder<Block, Block> SOULWOOD_SIGN = BLOCKS.register("soulwood_sign", () -> new LodestoneStandingSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, STANDING_SIGNS).noOcclusion().noCollission()));
-    public static final DeferredHolder<Block, Block> SOULWOOD_WALL_SIGN = BLOCKS.register("soulwood_wall_sign", () -> new LodestoneWallSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
+    public static final DeferredHolder<Block, Block> SOULWOOD_SIGN = BLOCKS.register("soulwood_sign", () -> new StandingSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, STANDING_SIGNS).noOcclusion().noCollission()));
+    public static final DeferredHolder<Block, Block> SOULWOOD_WALL_SIGN = BLOCKS.register("soulwood_wall_sign", () -> new WallSignBlock(MalumWoodTypes.SOULWOOD, MalumBlockProperties.SOULWOOD().addTags(SIGNS, WALL_SIGNS).noOcclusion().noCollission()));
     //endregion
 
     //region ores and such
@@ -517,6 +523,9 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_ALCHEMICAL_CALX = BLOCKS.register("block_of_alchemical_calx", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_ARCANE_CHARCOAL = BLOCKS.register("block_of_arcane_charcoal", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
 
+    public static final DeferredHolder<Block, Block> BLOCK_OF_EBONY = BLOCKS.register("block_of_ebony", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.EBONY_BLOCK()));
+    public static final DeferredHolder<Block, Block> CRATE_OF_WITCHHAZEL = BLOCKS.register("crate_of_witchhazel", () -> new Block(MalumStorageBlockProperties.WITCHHAZEL_CRATE()));
+
     public static final DeferredHolder<Block, Block> BLOCK_OF_NULL_SLATE = BLOCKS.register("block_of_null_slate", () -> new Block(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
     public static final DeferredHolder<Block, Block> BLOCK_OF_VOID_SALTS = BLOCKS.register("block_of_void_salts", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
     public static final DeferredHolder<Block, Block> BLOCK_OF_MNEMONIC_FRAGMENT = BLOCKS.register("block_of_mnemonic_fragment", () -> new Block(MalumStorageBlockProperties.BRILLIANCE_BLOCK(false)));
@@ -528,6 +537,13 @@ public class MalumBlocks {
     public static final DeferredHolder<Block, Block> BLOCK_OF_MALIGNANT_PEWTER = BLOCKS.register("block_of_malignant_pewter", () -> new Block(MalumStorageBlockProperties.MALIGNANT_PEWTER_BLOCK()));
     //endregion
 
+    //region flora
+    public static final DeferredHolder<Block, Block> EBONY_SAPLING = BLOCKS.register("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
+    public static final DeferredHolder<Block, Block> EBONY = BLOCKS.register("ebony", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));
+
+    public static final DeferredHolder<Block, Block> WILD_WITCHHAZEL = BLOCKS.register("wild_witchhazel", () -> new WildWitchhazelPlantBlock(MalumFloraBlockProperties.WILD_WITCHHAZEL()));
+    public static final DeferredHolder<Block, Block> WITCHHAZEL = BLOCKS.register("witchhazel", () -> new WitchhazelCropBlock(MalumFloraBlockProperties.WITCHHAZEL_CROP()));
+    //endregion
 
     //region blight
     public static final DeferredHolder<Block, Block> COLUMNAR_BLIGHT = BLOCKS.register("columnar_blight", () -> new ColumnarBlightBlock(MalumBlockProperties.BLIGHTED_EARTH()));

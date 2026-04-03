@@ -12,6 +12,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -49,9 +50,9 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
             var uuid = target.getUUID();
             var position = pos.getCenter().add(0, totemHeight, 0);
             var velocity = new Vec3(
-                    RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1),
-                    RandomHelper.randomBetween(random, 0.1f, 0.2f),
-                    RandomHelper.randomBetween(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.2f),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.6f) * (random.nextBoolean() ? 1 : -1)
             );
             EntityRiteEffectActivator entity = new EntityRiteEffectActivator(level, this, uuid, position, velocity);
             entity.setSpirit(definingSpirit);

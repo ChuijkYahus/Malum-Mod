@@ -9,6 +9,7 @@ import net.minecraft.core.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -19,24 +20,23 @@ public class CthonicGoldBlockSoundType extends MalumBlockSoundType {
     }
 
     @Override
-    public void onPlayBreakSound(Level level, BlockPos pos) {
-        level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, MalumBlockSoundEvents.CTHONIC_GOLD_ORE_BREAK_MOTIF.get(), SoundSource.BLOCKS, (getVolume() + 1.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f, false);
+    public void onPlayBreakSound(Level level, Player player, BlockPos pos, BlockState state, EquivalentEffectSoundAcceptor acceptor) {
+        acceptor.playSound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_BREAK_MOTIF, 1.0f, 1.0f);
     }
 
     @Override
-    public void onPlayPlaceSound(Level level, BlockPos pos, Player player) {
-        level.playSound(player, pos, MalumBlockSoundEvents.CTHONIC_GOLD_ORE_PLACE_MOTIF.get(), SoundSource.BLOCKS, (getVolume() + 2.0F) / 2.0F, getPitch() - level.random.nextFloat() * 0.4f);
+    public void onPlayPlaceSound(Level level, Player player, BlockPos pos, EquivalentEffectSoundAcceptor acceptor) {
+        acceptor.playSound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_PLACE_MOTIF, 1.0f, 1.0f);
     }
 
     @Override
-    @OnlyIn(value = Dist.CLIENT)
-    public void onPlayHitSound(BlockPos pos) {
-        MultiPlayerGameMode gameMode = Minecraft.getInstance().gameMode;
+    public void onPlayHitSound(Level level, Player player, BlockPos pos, EquivalentEffectSoundAcceptor acceptor) {
+        var gameMode = Minecraft.getInstance().gameMode;
         if (gameMode != null) {
             float progress = gameMode.destroyProgress;
             float volume = (getVolume() + progress * progress * 4f) / 8f;
             float pitch = getPitch() * (0.5f + 0.25f * progress);
-            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_HIT_MOTIF.get(), SoundSource.BLOCKS, volume, pitch, MalumMod.RANDOM, pos));
+            acceptor.playSound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_HIT_MOTIF, volume, pitch);
         }
     }
 }

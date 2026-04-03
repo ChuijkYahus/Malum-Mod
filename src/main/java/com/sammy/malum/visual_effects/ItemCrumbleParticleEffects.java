@@ -26,7 +26,7 @@ public class ItemCrumbleParticleEffects {
         var rand = level.getRandom();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, nextFloat(rand, 0.5f, 0.75f), 0).setCoefficient(0.6f).randomSpinOffset(rand).build();
         final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.925f));
-        int lifetime = RandomHelper.randomBetween(rand, 30, 40);
+        int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 30, 40);
         var crumbs = makeCrumbs(rand, stack, spinData, lifetime, slowDown);
         return new ParticleEffectSpawner(level, pos, crumbs);
     }
@@ -35,7 +35,7 @@ public class ItemCrumbleParticleEffects {
         var rand = level.getRandom();
         final SpinParticleData spinData = SpinParticleData.createRandomDirection(rand, 0, nextFloat(rand, 0.5f, 0.75f), 0).setCoefficient(0.6f).randomSpinOffset(rand).build();
         final Consumer<LodestoneWorldParticle> slowDown = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.925f));
-        int lifetime = RandomHelper.randomBetween(rand, 30, 40);
+        int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 30, 40);
         var crumbs = makeCrumbs(rand, stack, spinData, lifetime, slowDown);
         var bloom = SpiritLightSpecs.spiritBloom(level, spiritType, lifetime).setSpinData(spinData).addTickActor(slowDown);
         return new ParticleEffectSpawner(level, pos, crumbs, bloom);
@@ -46,7 +46,7 @@ public class ItemCrumbleParticleEffects {
         return WorldParticleBuilder.create(options)
                 .setSpinData(spinData)
                 .setTransparencyData(GenericParticleData.create(0.5f, 1f, 0.25f).setEasing(Easing.EXPO_IN, Easing.SINE_IN_OUT).build())
-                .setScaleData(GenericParticleData.create(0.05f, RandomHelper.randomBetween(rand, 0.06f, 0.07f), 0f).build())
+                .setScaleData(GenericParticleData.create(0.05f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.06f, 0.07f), 0f).build())
                 .setLifetime(lifetime)
                 .setRenderType(ParticleRenderType.TERRAIN_SHEET)
                 .addTickActor(slowDown);

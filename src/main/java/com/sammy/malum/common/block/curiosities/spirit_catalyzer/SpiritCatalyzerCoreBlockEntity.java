@@ -3,9 +3,7 @@ package com.sammy.malum.common.block.curiosities.spirit_catalyzer;
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.core.systems.artifice.ArtificeModifierSourceInstance;
 import com.sammy.malum.core.systems.artifice.IArtificeModifierSource;
-import com.sammy.malum.common.block.AugmentBlockItemStackHandler;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -37,7 +35,7 @@ public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity impleme
     public CatalyzerArtificeModifierSourceInstance modifier;
     public float burnTicks;
 
-    public SpiritCatalyzerCoreBlockEntity(BlockEntityType<? extends SpiritCatalyzerCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
+    public SpiritCatalyzerCoreBlockEntity(LodestoneBlockEntityType<? extends SpiritCatalyzerCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::triggerRecalibration).build();
         augmentInventory = MalumBlockItemStackHandler.create(this, 1).onlyAugments().onContentsChanged(this::triggerRecalibration).build();

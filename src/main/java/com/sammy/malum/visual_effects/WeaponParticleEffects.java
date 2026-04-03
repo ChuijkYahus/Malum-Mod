@@ -9,6 +9,7 @@ import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColo
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.*;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -31,12 +32,12 @@ public class WeaponParticleEffects {
             var random = level.getRandom();
             var spirit = entity.getItem().getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType() : null;
             var slash = WeaponParticleEffects.spawnSlashParticle(level, entity.position(), MalumParticles.ROUNDABOUT_SLASH, spirit);
-            float spinOffset = RandomHelper.randomBetween(random, -0.8f, 0.8f);
-            int age = RandomHelper.randomBetween(random, 8, 18);
+            float spinOffset = Easing.SINE_IN_OUT.asWeighedRandom(random, -0.8f, 0.8f);
+            int age = Easing.SINE_IN_OUT.asWeighedRandom(random, 8, 18);
             slash.getBuilder()
                     .setBehavior(MAELSTROM_DIRECTION)
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
-                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1.5f, 3f)).build())
+                    .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 1.5f, 3f)).build())
                     .setTransparencyData(GenericParticleData.create(0.9f, 0.6f).build())
                     .addTickActor(p -> p.setParticlePosition(entity.position()))
                     .setLifetime(age);
@@ -80,7 +81,7 @@ public class WeaponParticleEffects {
     public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, WorldParticleBuilder builder) {
         var rand = level.getRandom();
         final WorldParticleBuilder worldParticleBuilder = builder
-                .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 1.5f, 2f)).build())
+                .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 2f)).build())
                 .setTransparencyData(GenericParticleData.create(1f, 0.9f).build())
                 .enableForcedSpawn()
                 .setLifetime(5)
@@ -120,7 +121,7 @@ public class WeaponParticleEffects {
     public static ParticleEffectSpawner spawnSlamParticle(Level level, Vec3 pos, WorldParticleBuilder builder) {
         var rand = level.getRandom();
         final WorldParticleBuilder worldParticleBuilder = builder
-                .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 1.5f, 2f)).build())
+                .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.5f, 2f)).build())
                 .setTransparencyData(GenericParticleData.create(1f, 0.9f).build())
                 .enableForcedSpawn()
                 .setLifetime(5)

@@ -85,8 +85,8 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         if (blockEntityIn.textVisibility > 12) {
             final Font font = Minecraft.getInstance().font;
             float timer = Mth.clamp((blockEntityIn.textVisibility + (blockEntityIn.nearTimer > 0 ? 1 : -1) * partialTicks), 0, 40);
-            float scalar = Easing.SINE_IN_OUT.ease(timer/40f, 0, 1, 1);
-            float scale = 0.016F - (1-scalar)*0.004f;
+            float eased = Easing.SINE_IN_OUT.ease(timer/40f);
+            float scale = 0.016F - (1-eased)*0.004f;
             final Font.DisplayMode display = Font.DisplayMode.NORMAL;
 
             List<VoidDepotBlockEntity.VoidDepotGoal> goals = blockEntityIn.goals;
@@ -121,16 +121,16 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
                     float offset = isAdditive ? 0.4f : 0.8f;
                     float f = (-font.width(text) / 2f);
                     float xPos = 0 + f;
-                    int color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.3f : 0.9f)*scalar);
+                    int color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.3f : 0.9f)*eased);
                     font.drawInBatch(text, xPos, 0, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
 
-                    color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.15f : 0.7f)*scalar);
+                    color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.15f : 0.7f)*eased);
                     font.drawInBatch(text, xPos - offset, 0, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
                     font.drawInBatch(text, xPos - offset, 0, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
                     font.drawInBatch(text, xPos, offset, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
                     font.drawInBatch(text, xPos, -offset, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
 
-                    color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.1f : 0.5f)*scalar);
+                    color = ColorHelper.getColor(1, 1, 1, (isAdditive ? 0.1f : 0.5f)*eased);
                     font.drawInBatch(text, xPos - 2*offset, 0, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
                     font.drawInBatch(outlineText, xPos + 2*offset, 0, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);
                     font.drawInBatch(outlineText, xPos, 2*offset, color, false, pose, bufferToUse, display, 0, LightTexture.FULL_BRIGHT);

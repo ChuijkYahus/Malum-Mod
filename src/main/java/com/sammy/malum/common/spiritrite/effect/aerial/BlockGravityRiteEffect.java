@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.List;
 
@@ -36,7 +37,8 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
                 FallingBlockEntity.fall(level, pos, state);
 
                 createEffect(level, MalumParticleEffectTypes.BLOCK_FALL_RITE_EFFECT, pos, AERIAL_SPIRIT);
-                level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GRAVITY.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(level.random, 1.75f, 2f));
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 1.75f, 2f);
+                level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_GRAVITY.get(), SoundSource.BLOCKS, 0.5f, pitch);
             }
         }
     }

@@ -34,7 +34,6 @@ public class IronsSpellsCompat {
         LOADED = ModList.get().isLoaded("irons_spellbooks");
         if (LOADED) {
             NeoForge.EVENT_BUS.addListener(LoadedOnly::spellDamage);
-            NeoForge.EVENT_BUS.addListener(LoadedOnly::triggerReplenishing);
         }
     }
 
@@ -48,11 +47,6 @@ public class IronsSpellsCompat {
         }
     }
 
-    public static void recoverSpellCooldowns(LivingEntity mage, int enchantmentLevel) {
-        if (LOADED) {
-            LoadedOnly.recoverSpellCooldowns(mage, enchantmentLevel);
-        }
-    }
     public static void addSoulHunterSpellPower(ItemAttributeModifiers.Builder attributes, EquipmentSlotGroup group) {
         if (LOADED) {
             LoadedOnly.addSoulHunterSpellPower(attributes, group);
@@ -84,18 +78,6 @@ public class IronsSpellsCompat {
                     CommonConfig.IRONS_SPELLBOOKS_NON_PLAYER_SPIRIT_DAMAGE.getConfigValue();
             if (canShatter) {
                 event.getEntity().getData(MalumAttachmentTypes.LIVING_SOUL_INFO).setExposed();
-            }
-        }
-
-        public static void triggerReplenishing(LivingDamageEvent.Post event) {
-            DamageSource source = event.getSource();
-            Entity directEntity = source.getDirectEntity();
-            if (directEntity instanceof ServerPlayer serverPlayer) {
-                if (serverPlayer.getAttackStrengthScale(0) > 0.8f) {
-                    ItemStack stack = serverPlayer.getMainHandItem();
-                    int level = getEnchantmentLevel(serverPlayer.level(), EnchantmentKeys.REPLENISHING, stack);
-                    recoverSpellCooldowns(serverPlayer, 0.025f * level);
-                }
             }
         }
 

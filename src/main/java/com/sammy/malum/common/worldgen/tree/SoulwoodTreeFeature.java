@@ -2,7 +2,7 @@ package com.sammy.malum.common.worldgen.tree;
 
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.common.worldgen.blight.*;
 import com.sammy.malum.registry.common.block.*;
@@ -15,12 +15,11 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.function.*;
 
 import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.*;
@@ -290,7 +289,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         int offsetColor = leavesColor;
         for (int x = -leavesSize; x <= leavesSize; x++) {
             for (int z = -leavesSize; z <= leavesSize; z++) {
-                float colorRate = RandomHelper.randomBetween(rand, 0.1f, 0.3f) + leavesSize * 0.1f;
+                float colorRate = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.1f, 0.3f) + leavesSize * 0.1f;
                 if (Math.abs(x) == leavesSize && Math.abs(z) == leavesSize) {
                     continue;
                 }
@@ -299,8 +298,8 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 BlockPos leavesPos = pos.offset(x, 0, z);
                 if (!(x == 0 && z == 0)) {
-                    int startOffset = Math.max(RandomHelper.randomBetween(rand, 0, leavesSize - 2), 0);
-                    int size = 2 + RandomHelper.randomBetween(rand, 0, leavesSize) - startOffset;
+                    int startOffset = Math.max(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0, leavesSize - 2), 0);
+                    int size = 2 + Easing.SINE_IN_OUT.asWeighedRandom(rand, 0, leavesSize) - startOffset;
                     var mutable = leavesPos.mutable().move(Direction.UP, startOffset);
                     for (int i = 0; i <= size; i++) {
                         mutable.move(Direction.DOWN);

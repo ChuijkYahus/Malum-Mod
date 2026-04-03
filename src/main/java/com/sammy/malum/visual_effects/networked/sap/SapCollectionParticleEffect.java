@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.world.*;
@@ -66,11 +67,11 @@ public class SapCollectionParticleEffect extends MalumNetworkedParticleEffectTyp
             lightSpecs.getBuilder().act(b -> b
                     .addTickActor(acceleration)
                     .setMotion(actualMotion)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f))));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f))));
             lightSpecs.getBloomBuilder().act(b -> b
                     .addTickActor(acceleration)
                     .setMotion(actualMotion)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f))));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 1.5f))));
             lightSpecs.spawnParticles();
         }
     }

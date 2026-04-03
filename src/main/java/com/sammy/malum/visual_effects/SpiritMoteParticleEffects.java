@@ -8,7 +8,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.*;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.render_types.*;
@@ -66,7 +67,7 @@ public class SpiritMoteParticleEffects {
                                             motionY - 0.5f + (random.nextFloat() * 2f - 1f) * 0.4f,
                                             motionZ - 0.5f + (random.nextFloat() * 2f - 1f) * 0.4f
                                     )
-                                    .setLifetime(RandomHelper.randomBetween(level.random, 20, 40))
+                                    .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(level.random, 20, 40))
                                     .spawn(level, posX, posY, posZ);
                         }
                     }

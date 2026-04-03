@@ -44,6 +44,14 @@ public class UnchainedTransmutationRecipe extends LodestoneInWorldRecipe<SingleR
         return this.input.test(input.item());
     }
 
+    public Ingredient getInput() {
+        return input;
+    }
+
+    public ItemStack getOutputRaw() {
+        return output;
+    }
+
     public Optional<Block> createOutput() {
         if (output.getItem() instanceof BlockItem blockItem) {
             return Optional.of(blockItem.getBlock());

@@ -28,10 +28,10 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.systems.enchanting.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectActivator;
 import team.lodestar.lodestone.modules.toolkit.item.*;
-
-import team.lodestar.lodestone.systems.item.tools.magic.*;
+import team.lodestar.lodestone.modules.toolkit.item.tools.magic.MagicPickaxeItem;
 
 import java.util.*;
 import java.util.stream.*;
@@ -210,9 +210,9 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
     private static void spawnBreaker(ServerLevel level, BlockPos markedPos, RandomSource random, ItemStack tool, Player player, float lociSpeed, BlockPos pos, SpiritLike spirit, List<BlockPos> backup) {
         float velocity = 0.35f;
         var velocityVector = new Vec3(
-                RandomHelper.randomBetween(random, -velocity, velocity),
-                RandomHelper.randomBetween(random, -velocity, velocity),
-                RandomHelper.randomBetween(random, -velocity, velocity)
+                Easing.SINE_IN_OUT.asWeighedRandom(random, -velocity, velocity),
+                Easing.SINE_IN_OUT.asWeighedRandom(random, -velocity, velocity),
+                Easing.SINE_IN_OUT.asWeighedRandom(random, -velocity, velocity)
         );
         var breaker = new SpellweaverToolEffectActivator(level, tool, player.getUUID(), lociSpeed, markedPos, pos.getCenter(), velocityVector);
         breaker.setSpirit(spirit.getSpirit());

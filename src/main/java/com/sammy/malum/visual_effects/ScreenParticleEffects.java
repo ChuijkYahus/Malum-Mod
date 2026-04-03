@@ -31,7 +31,7 @@ public class ScreenParticleEffects {
                 .setTransparencyData(GenericParticleData.create(0.03f, 0f).setEasing(Easing.SINE_IN_OUT).build())
                 .setScaleData(GenericParticleData.create(0.5f + rand.nextFloat() * 0.1f, 0).setEasing(Easing.SINE_IN_OUT, Easing.BOUNCE_IN_OUT).build())
                 .setColorData(spiritType.createColorData().build())
-                .setLifetime(RandomHelper.randomBetween(rand, 20, 30))
+                .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(rand, 20, 30))
                 .setRandomOffset(0.05f)
                 .setRandomMotion(0.05f, 0.05f)
                 .spawnOnStack(2, -1);
@@ -41,11 +41,11 @@ public class ScreenParticleEffects {
                 .setSpinData(SpinParticleData.create(nextFloat(rand, 0.2f, 0.4f)).setEasing(Easing.EXPO_OUT).build())
                 .setScaleData(GenericParticleData.create(0.3f + rand.nextFloat() * 0.3f, 0).setEasing(Easing.EXPO_OUT).build())
                 .setColorData(spiritType.createColorData().build())
-                .setLifetime(RandomHelper.randomBetween(rand, 20, 30))
+                .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(rand, 20, 30))
                 .setRandomOffset(0.1f)
                 .setRandomMotion(0.4f, 0.4f)
                 .spawnOnStack(2, 0)
-                .setLifetime(RandomHelper.randomBetween(rand, 8, 12))
+                .setLifetime(Easing.SINE_IN_OUT.asWeighedRandom(rand, 8, 12))
                 .setSpinData(SpinParticleData.create(nextFloat(rand, 0.05f, 0.1f)).build())
                 .setScaleData(GenericParticleData.create(0.6f + rand.nextFloat() * 0.3f, 0f).build())
                 .setRandomMotion(0.01f, 0.01f)
@@ -157,7 +157,7 @@ public class ScreenParticleEffects {
             float time = (((level.getGameTime() + partialTick) * 0.05f + i * (6.28f / 2)) % 6.28f);
             float scalar = 0.6f;
             if (time > 1.57f && time < 4.71f) {
-                scalar *= Easing.QUAD_IN.ease(Math.abs(3.14f - time) / 1.57f, 0, 1, 1);
+                scalar *= Easing.QUAD_IN.ease(Math.abs(3.14f - time) / 1.57f);
             }
             double xOffset = Math.sin(time) * distance;
             double yOffset = Math.cos(time) * distance * 0.5f;
@@ -174,7 +174,7 @@ public class ScreenParticleEffects {
                     .setLifetime(60)
                     .spawnOnStack(xOffset, yOffset)
                     .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
-                    .setScaleData(GenericParticleData.create(0.25f * scalar, RandomHelper.randomBetween(rand, 0.3f, 0.4f) * scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
+                    .setScaleData(GenericParticleData.create(0.25f * scalar, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.3f, 0.4f) * scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
                     .repeatOnStack(xOffset, yOffset, 2);
         }
     }
@@ -223,14 +223,14 @@ public class ScreenParticleEffects {
                 float gameTime = level.getGameTime() + partialTick;
                 SpinParticleData spinParticleData = SpinParticleData.createRandomDirection(rand, level.random.nextBoolean() ? 1 : -2).setSpinOffset(0.025f * gameTime % 6.28f).build();
                 ScreenParticleBuilder.create(LodestoneScreenParticleTypes.WISP, target)
-                        .setScaleData(GenericParticleData.create(0.1f*scalar, RandomHelper.randomBetween(rand, 0.2f, 0.3f)*scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.1f*scalar, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.2f, 0.3f)*scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
                         .setTransparencyData(GenericParticleData.create(0f, 0.25f, 0f).setEasing(Easing.SINE_IN_OUT).build())
                         .setColorData(ColorParticleData.create(color, endColor.darker()).setCoefficient(1.25f).build())
                         .setSpinData(spinParticleData)
                         .setLifetime(40)
                         .spawnOnStack(xOffset, yOffset)
                         .setRenderType(LodestoneScreenParticleRenderType.LUMITRANSPARENT)
-                        .setScaleData(GenericParticleData.create(0.25f*scalar, RandomHelper.randomBetween(rand, 0.3f, 0.4f)*scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
+                        .setScaleData(GenericParticleData.create(0.25f*scalar, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.3f, 0.4f)*scalar, 0).setEasing(Easing.SINE_IN_OUT).setEasing(Easing.EXPO_OUT).build())
                         .repeatOnStack(xOffset, yOffset, 2);
             }
         }

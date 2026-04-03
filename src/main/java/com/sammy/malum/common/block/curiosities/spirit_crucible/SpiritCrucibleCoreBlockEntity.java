@@ -46,6 +46,7 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 import javax.annotation.Nullable;
 import java.util.function.*;
 
+@SuppressWarnings("NullableProblems")
 public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeAcceptor, IMalumSpecialItemAccessPoint, IInventoryCapabilityProvider {
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
@@ -71,7 +72,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public ArtificeAttributeData attributes = new ArtificeAttributeData();
 
-    public SpiritCrucibleCoreBlockEntity(BlockEntityType<? extends SpiritCrucibleCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
+    public SpiritCrucibleCoreBlockEntity(LodestoneBlockEntityType<? extends SpiritCrucibleCoreBlockEntity> type, MultiBlockStructure structure, BlockPos pos, BlockState state) {
         super(type, structure, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::updateRecipe).build();
         spiritInventory = MalumBlockItemStackHandler.create(this, 6).onlySpirits().onContentsChanged(this::updateRecipe).build();
@@ -124,11 +125,6 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
         if (level != null) {
             updateRecipe();
-            if (level.isClientSide) {
-                if (recipe != null) {
-                    CrucibleSoundInstance.playSound(this);
-                }
-            }
         }
         super.loadAdditional(compound, pRegistries);
     }
@@ -231,6 +227,10 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
     @Override
     public LodestoneItemStackHandler getSuppliedInventory() {
         return inventory;
+    }
+
+    private void recalibrateAccelerators() {
+        recalibrateAccelerators(level);
     }
 
     public void updateRecipe() {

@@ -15,17 +15,11 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
     public static final ResourceLocation BACKGROUND_TEXTURE = malumPath("textures/gui/book/void_background.png");
 
-    public static final Color OUTLINE_COLOR = new Color(255, 25, 125);
     public static final ProgressionScreenHolder<VoidProgressionScreen> SCREEN = new ProgressionScreenHolder<>(VoidProgressionScreen::new, MalumSoundEvents.ARCANA_TRANSITION_EVIL);
 
     protected VoidProgressionScreen() {
         super(MalumSoundEvents.ARCANA_SWEETENER_EVIL, 1024, 768);
         VoidRevelationHandler.seeTheRevelation(VOID_READER);
-    }
-
-    @Override
-    public Color getOutlineColor() {
-        return OUTLINE_COLOR;
     }
 
     @Override

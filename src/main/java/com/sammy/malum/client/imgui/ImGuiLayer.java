@@ -1,9 +1,11 @@
 package com.sammy.malum.client.imgui;
 
 import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
+import com.sammy.malum.client.screen.codex.screens.progression.AbstractProgressionCodexScreen;
 import imgui.ImGui;
 import imgui.type.ImBoolean;
 import imgui.type.ImInt;
+import net.minecraft.client.Minecraft;
 
 public class ImGuiLayer {
 
@@ -12,10 +14,13 @@ public class ImGuiLayer {
 
     public void render() {
         ImGui.begin("Texture Viewer");
-        if (ParallelWorldRenderer.INSTANCE != null) {
-            ImGui.text("" + ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
+        if (Minecraft.getInstance().screen instanceof AbstractProgressionCodexScreen codexScreen) {
+            ImGui.text("" + codexScreen.target.getColorTextureId());
         }
-        ImGui.sliderInt("Texture", texture, 0, 100);
+//        if (ParallelWorldRenderer.INSTANCE != null) {
+//            ImGui.text("" + ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
+//        }
+        ImGui.sliderInt("Texture", texture, 0, 200);
         ImGui.sliderInt("Texture Size", textureSize, 100, 2000);
         ImGui.image(texture[0], textureSize[0], textureSize[0], 0, 1, 1, 0);
         ImGui.end();

@@ -7,6 +7,7 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,23 +21,26 @@ public class QuartzClusterBlockSoundType extends MalumBlockSoundType {
     }
 
     @Override
-    public void onPlayBreakSound(Level level, BlockPos pos) {
-        level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, (getVolume() + 2.0F) / 4.0F, getPitch() * 1.6F, false);
+    public void onPlayBreakSound(Level level, Player player, BlockPos pos, BlockState state, EquivalentEffectSoundAcceptor acceptor) {
+        acceptor.playSound(SoundEvents.AMETHYST_CLUSTER_BREAK, 1f, 0.75f);
     }
 
     @Override
-    public void onPlayStepSound(Level level, BlockPos pos, BlockState state, SoundSource category) {
-        level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.AMETHYST_CLUSTER_STEP, category, getVolume() * 0.65F, getPitch() * 1.3F);
+    public void onPlayStepSound(Level level, Entity entity, BlockPos pos, BlockState state, EquivalentEffectSoundAcceptor acceptor) {
+        if (level.random.nextFloat() < 0.25f) {
+            acceptor.playSound(SoundEvents.AMETHYST_CLUSTER_STEP, 1f, 1.5f);
+        }
     }
 
     @Override
-    public void onPlayPlaceSound(Level level, BlockPos pos, Player player) {
-        level.playSound(player, pos, SoundEvents.AMETHYST_CLUSTER_PLACE, SoundSource.BLOCKS, (getVolume() + 2.0F) / 4.0F, getPitch() * 1.5F);
+    public void onPlayPlaceSound(Level level, Player player, BlockPos pos, EquivalentEffectSoundAcceptor acceptor) {
+        acceptor.playSound(SoundEvents.AMETHYST_CLUSTER_PLACE, 1f, 1.25f);
     }
 
     @Override
-    @OnlyIn(value = Dist.CLIENT)
-    public void onPlayHitSound(BlockPos pos) {
-        Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(SoundEvents.AMETHYST_CLUSTER_HIT, SoundSource.BLOCKS, (getVolume() + 2.0F) / 16.0F, getPitch() * 1.65F, MalumMod.RANDOM, pos));
+    public void onPlayHitSound(Level level, Player player, BlockPos pos, EquivalentEffectSoundAcceptor acceptor) {
+        if (level.random.nextFloat() < 0.5f) {
+            acceptor.playSound(SoundEvents.AMETHYST_CLUSTER_HIT, 1f, 1.5f);
+        }
     }
 }

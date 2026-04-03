@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -32,15 +33,15 @@ public class AscensionUppercutParticleEffect extends MalumNetworkedWeaponParticl
             float upwardsOffset = i*0.4f;
             float slashOffset = 2 - i*0.6f;
             for (int j = 0; j < 2; j++) {
-                float spinOffset = extraData.getSlashRotation() + RandomHelper.randomBetween(random, -0.25f, 0.25f) + (extraData.isMirrored() ? 3.14f : 0);
+                float spinOffset = extraData.getSlashRotation() + Easing.SINE_IN_OUT.asWeighedRandom(random, -0.25f, 0.25f) + (extraData.isMirrored() ? 3.14f : 0);
 
                 var slashPosition = positionData.getAsVector().add(direction.scale(slashOffset)).add(up.scale(upwardsOffset));
 
                 var slash = WeaponParticleEffects.spawnSlashParticle(level, slashPosition, MalumParticles.SLASH, colorData);
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
-                        .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2.5f, 3f)).build())
-                        .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.2f, 0.4f)).add(0, 0.8f, 0))
+                        .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 2.5f, 3f)).build())
+                        .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.4f)).add(0, 0.8f, 0))
                         .setLifetime(3+i)
                         .setLifeDelay(i/2)
                         .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));

@@ -6,6 +6,7 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,7 +16,7 @@ public class HeadlineTextItemPage extends HeadlineTextPage {
     private final ItemStack stack;
 
     public HeadlineTextItemPage(String headline, String text, ItemStack stack) {
-        super(MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png"), headline, text);
+        super(headline, text);
         this.stack = stack;
     }
 
@@ -29,6 +30,11 @@ public class HeadlineTextItemPage extends HeadlineTextPage {
 
     public HeadlineTextItemPage(String text, Item item) {
         this(text, item.getDefaultInstance());
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png");
     }
 
     @Override

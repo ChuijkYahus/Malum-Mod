@@ -31,13 +31,18 @@ public class HeadlineTextIconPage extends HeadlineTextPage {
     }
 
     public HeadlineTextIconPage(String headline, String text, ResourceLocation icon, SpiritLike spirit) {
-        super(MalumMod.malumPath("textures/gui/book/pages/headline_icon_page.png"), headline, text);
+        super(headline, text);
         this.icon = icon;
         this.spirit = spirit;
     }
 
     public HeadlineTextIconPage(String text, ResourceLocation icon, SpiritLike spirit) {
         this(text, text + ".1", icon, spirit);
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/headline_icon_page.png");
     }
 
     @Override

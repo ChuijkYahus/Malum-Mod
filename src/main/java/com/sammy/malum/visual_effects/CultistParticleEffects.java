@@ -9,7 +9,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
@@ -50,7 +50,7 @@ public class CultistParticleEffects {
             offsetPosition = offsetPosition.add(0, (Math.cos(((gameTime + i * 480) % time) / time) * 0.25f) - 0.25f, 0);
             for (int j = 0; j < 3; j++) {
                 var lightSpecs = spiritLightSpecs(level, offsetPosition, colorData.getColor());
-                float velocity = RandomHelper.randomBetween(random, 0.02f, 0.03f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.03f);
                 var motion = offsetPosition.subtract(position).normalize().scale(velocity);
                 int lifeDelay = j * 6;
                 lightSpecs.getBuilder()
@@ -59,14 +59,14 @@ public class CultistParticleEffects {
                         .setMotion(motion)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.9f, 0.5f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .multiplyLifetime(1.5f)
                         .setMotion(motion)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.6f, 0.35f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -76,7 +76,7 @@ public class CultistParticleEffects {
             float upwardsVelocity = 0.02f;
             for (int j = 0; j < 2; j++) {
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, offsetPosition, colorData.getColor(), new WorldParticleOptions(MalumParticles.MOTION_LINES));
-                float velocity = RandomHelper.randomBetween(random, 0.02f, 0.03f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.03f);
                 var motion = offsetPosition.subtract(position).normalize().scale(velocity);
                 int lifeDelay = j * 3;
                 lightSpecs.getBuilder()
@@ -86,7 +86,7 @@ public class CultistParticleEffects {
                         .addMotion(0, upwardsVelocity, 0)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.9f, 0.6f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
                 lightSpecs.getBloomBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .multiplyLifetime(1.5f)
@@ -94,7 +94,7 @@ public class CultistParticleEffects {
                         .addMotion(0, upwardsVelocity, 0)
                         .setLifeDelay(lifeDelay)
                         .setTransparencyData(GenericParticleData.create(0.9f, 0.35f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.5f, 1f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 1f)));
                 lightSpecs.spawnParticles();
             }
         }
@@ -133,7 +133,7 @@ public class CultistParticleEffects {
             float upwardsVelocity = 0.2f;
             for (int j = 0; j < 3; j++) {
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, offsetPosition, colorData.getColor(), new WorldParticleOptions(MalumParticles.MOTION_LINES));
-                float velocity = RandomHelper.randomBetween(random, 0.05f, 0.1f);
+                float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.05f, 0.1f);
                 var motion = offsetPosition.subtract(position).normalize().scale(velocity);
                 int lifeDelay = j * 3;
                 lightSpecs.getBuilder()
@@ -145,7 +145,7 @@ public class CultistParticleEffects {
                         .setLifeDelay(lifeDelay)
                         .setLengthData(GenericParticleData.create(2f, 0.5f).setEasing(Easing.EXPO_OUT).build())
                         .setTransparencyData(GenericParticleData.create(0.6f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 3f, 4f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f)));
                 lightSpecs.getBloomBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .addRenderActor(offset)
@@ -232,9 +232,9 @@ public class CultistParticleEffects {
         Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
         Vec3 up = left.cross(direction);
         for (int i = 0; i < 8; i++) {
-            float spread = RandomHelper.randomBetween(random, 0f, 0.1f);
-            float speed = RandomHelper.randomBetween(random, 0.5f, 2f);
-            float distance = RandomHelper.randomBetween(random, 3f, 5f);
+            float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0f, 0.1f);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 2f);
+            float distance = Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 5f);
             float angle = i / 8f * 6.28f;
 
             var particleDirection = direction
@@ -255,7 +255,7 @@ public class CultistParticleEffects {
                         .setLifeDelay(lifeDelay)
                         .setLengthData(GenericParticleData.create(4f, 0.5f).setEasing(Easing.EXPO_OUT).build())
                         .setTransparencyData(GenericParticleData.create(0.6f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 3f, 4f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f)));
                 lightSpecs.getBloomBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .addRenderActor(offset)
@@ -310,9 +310,9 @@ public class CultistParticleEffects {
         Vec3 left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
         Vec3 up = left.cross(direction);
         for (int i = 0; i < 16; i++) {
-            float spread = RandomHelper.randomBetween(random, 0.1f, 0.5f);
-            float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
-            float distance = RandomHelper.randomBetween(random, 2f, 4f);
+            float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.5f);
+            float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
+            float distance = Easing.SINE_IN_OUT.asWeighedRandom(random, 2f, 4f);
             float angle = i / 16f * 6.28f;
 
             var particleDirection = direction
@@ -333,7 +333,7 @@ public class CultistParticleEffects {
                         .setLifeDelay(lifeDelay)
                         .setLengthData(GenericParticleData.create(2f, 0.5f).setEasing(Easing.EXPO_OUT).build())
                         .setTransparencyData(GenericParticleData.create(0.6f, 0.8f, 0f).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 3f, 4f)));
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f)));
                 lightSpecs.getBloomBuilder()
                         .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                         .addRenderActor(offset)
@@ -385,14 +385,14 @@ public class CultistParticleEffects {
         var random = level.random;
         for (int i = 0; i < amount; i++) {
             var color = colorData.getColor();
-            float lifetimeMultiplier = RandomHelper.randomBetween(random, 2f, 2.5f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.03f, 0.06f);
+            float lifetimeMultiplier = Easing.SINE_IN_OUT.asWeighedRandom(random, 2f, 2.5f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f);
             double horizontalAngle = random.nextDouble() * Math.PI * 2;
             double x = Math.sin(horizontalAngle);
             double y = Mth.nextFloat(random, 0.35f, 1);
             double z = Math.cos(horizontalAngle);
             Vec3 direction = new Vec3(x, y, z);
-            Vec3 motion = direction.scale(speed * RandomHelper.randomBetween(random, 1f, 1.25f));
+            Vec3 motion = direction.scale(speed * Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 1.25f));
             Vec3 spawnPosition = position.add(direction.scale(0.25f));
             Consumer<LodestoneWorldParticle> sparkBehavior = p -> {
                 Vec3 velocity = p.getParticleSpeed().scale(0.75f);
@@ -416,7 +416,7 @@ public class CultistParticleEffects {
                     }
                 }
             };
-            float scalar = RandomHelper.randomBetween(random, 0.8f, 1.1f);
+            float scalar = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.1f);
             var sparks = SparkParticleEffects.spiritMotionSparks(level, spawnPosition, color).act(b -> b.getParticleOptions().setBehavior(SparkParticleBehavior.sparkBehavior()));
             sparks.getBuilder()
                     .setLengthData(GenericParticleData.create(3f * scalar, 0.75f * scalar, 0f).setEasing(Easing.QUARTIC_OUT, Easing.SINE_IN_OUT))
@@ -444,9 +444,9 @@ public class CultistParticleEffects {
 
     public static WorldParticleBuilder cultistSigil(Level level, ColorParticleData colorData) {
         RandomSource rand = level.random;
-        var scaleData = GenericParticleData.create(RandomHelper.randomBetween(rand, 0.5f, 0.6f), 0.5f)
+        var scaleData = GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 0.6f), 0.5f)
                 .setEasing(Easing.SINE_IN)
-                .setCoefficient(RandomHelper.randomBetween(rand, 1f, 1.25f)).build();
+                .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1f, 1.25f)).build();
         return WorldParticleBuilder.create(MalumParticles.CULTIST_SIGIL.get())
                 .setTransparencyData(GenericParticleData.create(0.95f, 0.7f).setEasing(Easing.SINE_IN_OUT).build())
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)

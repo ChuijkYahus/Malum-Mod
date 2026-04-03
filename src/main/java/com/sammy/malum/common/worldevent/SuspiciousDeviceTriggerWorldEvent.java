@@ -10,6 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 
@@ -21,7 +22,7 @@ public class SuspiciousDeviceTriggerWorldEvent extends ActiveBlightWorldEvent {
     @Override
     public void createBlight(ServerLevel level, int intensity) {
         final RandomSource random = level.random;
-        level.playSound(null, position, MalumSoundEvents.SUSPICIOUS_DEVICE_DETONATES_AGAIN.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(random, 0.8f, 1.2f));
+        level.playSound(null, position, MalumSoundEvents.SUSPICIOUS_DEVICE_DETONATES_AGAIN.get(), SoundSource.BLOCKS, 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f));
         final Vec3 center = position.getCenter().add(SpiritCrucibleCoreBlockEntity.CRUCIBLE_CORE_AUGMENT_OFFSET);
         MalumParticleEffectTypes.ETHERIC_NITRATE_IMPACT.createEffect(center)
                 .color(MalumSpiritTypes.ARCANE_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT)
@@ -32,9 +33,9 @@ public class SuspiciousDeviceTriggerWorldEvent extends ActiveBlightWorldEvent {
             level.updateNeighborsAt(position, SPIRIT_CRUCIBLE.get());
         }
         level.explode(null, null, null,
-                center.x+RandomHelper.randomBetween(random, -2f, 2f),
-                center.y+RandomHelper.randomBetween(random, -2f, 2f),
-                center.z+RandomHelper.randomBetween(random, -2f, 2f),
+                center.x+Easing.SINE_IN_OUT.asWeighedRandom(random, -2f, 2f),
+                center.y+Easing.SINE_IN_OUT.asWeighedRandom(random, -2f, 2f),
+                center.z+Easing.SINE_IN_OUT.asWeighedRandom(random, -2f, 2f),
                 1.9F, true, Level.ExplosionInteraction.TNT
         );
         super.createBlight(level, intensity);

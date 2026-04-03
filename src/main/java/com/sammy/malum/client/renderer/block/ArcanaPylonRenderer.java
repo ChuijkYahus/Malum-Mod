@@ -54,7 +54,7 @@ public class ArcanaPylonRenderer implements BlockEntityRenderer<ArcanaPylonBlock
         }
 
         float delta = blockEntityIn.getGlowDelta();
-        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
+        float ease = Easing.SINE_OUT.ease(delta);
         float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
         float gameTime = level.getGameTime() + partialTicks;

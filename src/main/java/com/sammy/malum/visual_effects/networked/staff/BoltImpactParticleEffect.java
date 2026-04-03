@@ -2,29 +2,19 @@ package com.sammy.malum.visual_effects.networked.staff;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
-import com.sammy.malum.visual_effects.SparkParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import team.lodestar.lodestone.helpers.RandomHelper;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.builder.AbstractParticleBuilder;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public abstract class BoltImpactParticleEffect extends MalumNetworkedParticleEffectType<BoltImpactParticleEffect.BoltImpactEffectData> {
 

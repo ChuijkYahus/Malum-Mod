@@ -91,7 +91,7 @@ public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEn
         var level = Minecraft.getInstance().level;
         float gameTime = level.getGameTime() + partialTicks;
         float alpha = delta * 0.7f;
-        float ease = Easing.SINE_OUT.ease(delta, 0, 1, 1);
+        float ease = Easing.SINE_OUT.ease(delta);
         float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
         int time = 160;

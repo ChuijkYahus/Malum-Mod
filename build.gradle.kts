@@ -226,20 +226,20 @@ dependencies {
 //    localRuntime(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
 
     //Runtime Mods
-    localRuntime(("curse.maven:jeed-532286:5693385"))
-    localRuntime(("curse.maven:spark-361579:5759671"))
-    localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
-    localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
-    localRuntime(("curse.maven:clutter-no-more-1339454:7357263"))
+//    localRuntime(("curse.maven:jeed-532286:5693385"))
+//    localRuntime(("curse.maven:spark-361579:5759671"))
+//    localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
+//    localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
+//    localRuntime(("curse.maven:clutter-no-more-1339454:7357263"))
 
     //FTB Whatever
-    localRuntime("curse.maven:architectury-api-419699:5786327")
-    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
+//    localRuntime("curse.maven:architectury-api-419699:5786327")
+//    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
 
     //AttributeFix
-    localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
-    localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
-    localRuntime(("curse.maven:attributefix-280510:5824104"))
+//    localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
+//    localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
+//    localRuntime(("curse.maven:attributefix-280510:5824104"))
 
     // Imgui
     compileOnly("io.github.spair:imgui-java-app:${property("imgui_version")}")

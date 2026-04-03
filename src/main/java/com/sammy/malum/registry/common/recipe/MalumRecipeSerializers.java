@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSerializer;
 
 public class MalumRecipeSerializers {
 

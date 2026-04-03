@@ -11,7 +11,6 @@ import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
 import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
-import team.lodestar.lodestone.modules.datagen.smith.blockstate.AbstractBlockStateSmith;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
 
 import javax.annotation.*;
@@ -225,6 +224,20 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
                 BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
+                BLOCK_OF_EBONY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop,
+                CRATE_OF_WITCHHAZEL);
+
+        setTexturePath("flora/");
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.NO_DATAGEN, EBONY_SAPLING);
+        MalumBlockStateSmithTypes.EBONY.act(data, EBONY);
+
+
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, WILD_WITCHHAZEL);
+        BlockStateSmithTypes.CROSS_CROP_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, WITCHHAZEL);
+
 
         setTexturePath("blight/");
         MalumBlockStateSmithTypes.COLUMN.act(data, COLUMNAR_BLIGHT);

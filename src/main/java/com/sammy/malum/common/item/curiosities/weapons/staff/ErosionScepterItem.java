@@ -84,8 +84,8 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
         float velocity = 4f;
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE) * 0.3f;
         for (int i = 0; i < 4; i++) {
-            float xSpread = RandomHelper.randomBetween(level.random, -0.125f, 0.125f);
-            float ySpread = RandomHelper.randomBetween(level.random, -0.025f, 0.025f);
+            float xSpread = Easing.SINE_IN_OUT.asWeighedRandom(level.random, -0.125f, 0.125f);
+            float ySpread = Easing.SINE_IN_OUT.asWeighedRandom(level.random, -0.025f, 0.025f);
             var projectile = fireProjectile(player, hand, DrainingBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
             var direction = projectile.getDeltaMovement();
             float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
@@ -104,7 +104,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
         RandomSource random = pLevel.random;
         WorldParticleBuilder.create(MalumParticles.DRAINING_TARGET)
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
-                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
+                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(Easing.SINE_IN_OUT.asWeighedRandom(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.8f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setColorData(SCEPTER_COLOR_DATA.copy().setCoefficient(2f).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())

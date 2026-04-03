@@ -14,6 +14,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.*;
 
@@ -28,7 +29,7 @@ public class ConcentratedGluttonyItem extends BottledDrinkItem {
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         var properties = applyConcentratedGluttonyEffect(pEntityLiving, 1f);
-        SoundHelper.playSound(pEntityLiving, MalumGearSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, RandomHelper.randomBetween(pLevel.random, 1.5f, 2f));
+        SoundHelper.playSound(pEntityLiving, MalumGearSoundEvents.CONCENTRATED_GLUTTONY_DRINK.get(), 1f, Easing.SINE_IN_OUT.asWeighedRandom(pLevel.random, 1.5f, 2f));
         if (pLevel instanceof ServerLevel serverLevel) {
             if (pEntityLiving.hasEffect(properties.getEffectType())) {
                 createGluttonyVFX(serverLevel, pEntityLiving, 0.75f);

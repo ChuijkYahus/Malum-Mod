@@ -5,6 +5,7 @@ import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
@@ -26,8 +27,8 @@ public class ScytheSlashParticleEffect extends MalumNetworkedWeaponParticleEffec
         var direction = extraData.getDirection();
         slash.getBuilder()
                 .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
-                .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 2f, 3f)).build())
-                .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.4f)))
+                .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 2f, 3f)).build())
+                .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.4f)))
                 .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
         slash.spawnParticles();
     }

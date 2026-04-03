@@ -1,14 +1,13 @@
 package com.sammy.malum.common.worldgen;
 
 import com.google.common.collect.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import net.minecraft.core.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class WorldgenHelper {
 

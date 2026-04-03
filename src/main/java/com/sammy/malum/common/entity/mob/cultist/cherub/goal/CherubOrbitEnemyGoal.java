@@ -5,7 +5,8 @@ import com.sammy.malum.common.entity.mob.cultist.cherub.CherubMoveControl;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
@@ -107,10 +108,12 @@ public class CherubOrbitEnemyGoal extends Goal {
 
     public void scrambleMovement(CherubMoveControl moveControl) {
         moveControl.setRandomOrbitOffset(orbitRadius);
-        orbitRate = RandomHelper.randomBetween(cherub.getRandom(), -0.05f, 0.05f);
+        orbitRate = Easing.SINE_IN_OUT.asWeighedRandom(cherub.getRandom(), -0.05f, 0.05f);
     }
 
     public void setRandomizedFlightInterval() {
-        randomizedFlightInterval = Mth.floor(RandomHelper.randomBetween(cherub.getRandom(), flightInterval * 0.8f, flightInterval * 1.2f));
+        float min = flightInterval * 0.8f;
+        float max = flightInterval * 1.2f;
+        randomizedFlightInterval = Mth.floor(Easing.SINE_IN_OUT.asWeighedRandom(cherub.getRandom(), min, max));
     }
 }

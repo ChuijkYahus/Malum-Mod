@@ -37,9 +37,9 @@ public class WindTunnelParticleEffects {
                     .addSpawnActor(p -> {
                         float offsetScale = 0.2f;
                         Vec3 offset = new Vec3(
-                                RandomHelper.randomBetween(random, -offsetScale, offsetScale),
-                                RandomHelper.randomBetween(random, -offsetScale, offsetScale),
-                                RandomHelper.randomBetween(random, -offsetScale, offsetScale)
+                                Easing.SINE_IN_OUT.asWeighedRandom(random, -offsetScale, offsetScale),
+                                Easing.SINE_IN_OUT.asWeighedRandom(random, -offsetScale, offsetScale),
+                                Easing.SINE_IN_OUT.asWeighedRandom(random, -offsetScale, offsetScale)
                         );
                         var position = target.position().add(0, target.getBbHeight() / 2, 0).add(offset);
                         p.setParticlePosition(position);

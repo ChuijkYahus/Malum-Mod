@@ -123,14 +123,14 @@ public class CodexTextHelper {
         float textY = ((y + lineHeight) * guiScale) / screenHeight;
         float differenceX = (textX - mouseX);
         float differenceY = (textY - mouseY);
-        double horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
-        double verticalDelta = Math.clamp(1 - Mth.abs(differenceY) * inverseScale, 0, 1);
+        float horizontalDelta = Math.clamp(1 - Mth.abs(differenceX) * inverseScale, 0, 1);
+        float verticalDelta = Math.clamp(1 - Mth.abs(differenceY) * inverseScale, 0, 1);
         if (differenceY > 0) {
-            verticalDelta = Math.pow(verticalDelta * (1 - differenceY), 3);
+            verticalDelta = (float) Math.pow(verticalDelta * (1 - differenceY), 3);
         }
-        double delta = Easing.QUINTIC_OUT.ease(horizontalDelta, 0, 1) * Easing.QUINTIC_OUT.ease(verticalDelta, 0, 1);
+        float delta = Easing.QUINTIC_OUT.ease(horizontalDelta) * Easing.QUINTIC_OUT.ease(verticalDelta);
         if (CodexEntryScreen.textJump > 0) {
-            double jumpDelta = delta * Easing.SINE_IN_OUT.ease(CodexEntryScreen.textJump, 0, 1);
+            double jumpDelta = delta * Easing.SINE_IN_OUT.ease(CodexEntryScreen.textJump);
             glowMultiplier *= (float) (1 + jumpDelta);
         }
 
@@ -150,9 +150,9 @@ public class CodexTextHelper {
 
             guiGraphics.drawString(font, text, x, y, color(255, dark.getRGB()), false);
 
-            int alpha = Mth.floor(255 * Easing.QUARTIC_IN.ease(delta, 0.4f, 1, 1) * glowMultiplier);
+            int alpha = Mth.floor(255 * Easing.QUARTIC_IN.lerp(delta, 0.4f, 1) * glowMultiplier);
             if (alpha > 15) {
-                float color = Easing.CUBIC_IN.ease(delta, 0, 1, 1);
+                float color = Easing.CUBIC_IN.ease(delta);
                 Color start = colorData.glowStart();
                 Color end = colorData.glowEnd();
                 int r = (int) Mth.lerp(color, start.getRed(), end.getRed());

@@ -7,7 +7,7 @@ import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.*;
-import team.lodestar.lodestone.systems.creative_tab.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 
 import java.util.*;
 

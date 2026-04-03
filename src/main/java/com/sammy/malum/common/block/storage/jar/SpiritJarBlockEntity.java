@@ -17,6 +17,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +26,7 @@ import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
 import java.util.*;
@@ -32,7 +34,7 @@ import java.util.function.Supplier;
 
 public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
-    public SpiritJarBlockEntity(BlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
+    public SpiritJarBlockEntity(LodestoneBlockEntityType<? extends SpiritJarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
@@ -130,7 +132,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
             inserted = insertHeldItem(player);
         }
         if (inserted > 0) {
-            SoundHelper.playSound(player, MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+            SoundHelper.playSound(player, MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
         }
 
         lastClickTime = getLevel().getGameTime();
@@ -148,7 +150,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
             ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selected);
             if (!level.isClientSide()) {
                 BlockStateHelper.updateAndNotifyState(level, worldPosition);
-                SoundHelper.playSound(pPlayer, MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, RandomHelper.randomBetween(pPlayer.getRandom(), 0.8f, 1.2f));
+                SoundHelper.playSound(pPlayer, MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(pPlayer.getRandom(), 0.8f, 1.2f));
             }
 
             return true;
@@ -197,7 +199,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
                     remainingSpirits.add(item);
                 }
             }
-            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
             stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
 
             return inserted;
@@ -211,7 +213,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
                     remainingSpirits.add(item);
                 }
             }
-            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, RandomHelper.randomBetween(player.getRandom(), 0.8f, 1.2f));
+            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
             stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
 
             return inserted;
@@ -261,11 +263,9 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
     }
 
     @Override
-    public void tick() {
-        if (level.isClientSide) {
-            if (contents != null) {
-                SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), contents.spirit(), 0.4f, 3);
-            }
+    public void clientTick(Level level) {
+        if (contents != null) {
+            SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), contents.spirit(), 0.4f, 3);
         }
     }
 

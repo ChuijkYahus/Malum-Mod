@@ -7,6 +7,7 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.*;
 
@@ -17,7 +18,6 @@ public class CraftingPage extends BookPage {
     private final List<ItemStack> inputStacks;
 
     public CraftingPage(ItemStack outputStack, List<ItemStack> inputStacks) {
-        super(MalumMod.malumPath("textures/gui/book/pages/crafting_page.png"));
         this.outputStack = outputStack;
         this.inputStacks = inputStacks;
     }
@@ -32,6 +32,11 @@ public class CraftingPage extends BookPage {
 
     public CraftingPage(ItemStack outputStack, Item... inputItems) {
         this(outputStack, Arrays.stream(inputItems).map(Item::getDefaultInstance).toList());
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return MalumMod.malumPath("textures/gui/book/pages/crafting_page.png");
     }
 
     @Override

@@ -151,7 +151,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
             } else {
                 duration -= partialTicks;
             }
-            float delta = Easing.SINE_IN_OUT.ease(Math.min(0.1f + duration / (float) WARMUP_TIME, 1), 0, 1);
+            float delta = Easing.SINE_IN_OUT.ease(Math.min(0.1f + duration / (float) WARMUP_TIME, 1));
             var minecraft = Minecraft.getInstance();
             int scale = (int) minecraft.getWindow().getGuiScale();
             int size = (int) (subspaceSize * delta);
@@ -225,11 +225,11 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         if (level.getGameTime() % 4 == 0L) {
             for (int i = 0; i < 3; i++) {
                 float angle = ((level.getGameTime() * 1.5f + i * 120) / 360 * 6.28f) % 6.28f;
-                int lifetime = RandomHelper.randomBetween(rand, 100, 140);
+                int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 100, 140);
                 ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC, entryParticles)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0f).setEasing(Easing.CUBIC_OUT, Easing.SINE_IN_OUT).build())
-                        .setSpinData(SpinParticleData.createRandomDirection(rand, RandomHelper.randomBetween(rand, 0.05f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
-                        .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 0.3f, 0.9f), 0).setEasing(Easing.SINE_IN_OUT).build())
+                        .setSpinData(SpinParticleData.createRandomDirection(rand, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.05f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
+                        .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.3f, 0.9f), 0).setEasing(Easing.SINE_IN_OUT).build())
                         .setColorData(spirit.createColorData().setCoefficient(0.9f))
                         .setLifetime(lifetime)
                         .addRenderActor(p -> {
@@ -253,14 +253,14 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         var level = minecraft.level;
         var rand = level.random;
         float distance = (subspaceSize - 20) * 0.5f;
-        float finalDistance = distance * RandomHelper.randomBetween(rand, 0.6f, 1.2f);
+        float finalDistance = distance * Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.6f, 1.2f);
         for (int i = 0; i < 4; i++) {
             float angle = ((level.getGameTime() * 8.2f + i * 80) / 320 * 6.28f) % 6.28f;
-            int lifetime = RandomHelper.randomBetween(rand, 200, 400);
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 200, 400);
             ScreenParticleBuilder.create(MalumScreenParticles.LIGHT_SPEC, subspaceParticles)
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.4f, 0f).setEasing(Easing.CUBIC_OUT, Easing.SINE_IN_OUT).build())
-                    .setSpinData(SpinParticleData.createRandomDirection(rand, RandomHelper.randomBetween(rand, 0.05f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
-                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(rand, 0.5f, 1.5f), 0).setEasing(Easing.EXPO_IN).build())
+                    .setSpinData(SpinParticleData.createRandomDirection(rand, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.05f, 0.2f), 0).randomSpinOffset(rand).setEasing(Easing.SINE_IN_OUT).build())
+                    .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 1.5f), 0).setEasing(Easing.EXPO_IN).build())
                     .setColorData(spirit.createColorData().setCoefficient(0.9f))
                     .setLifetime(lifetime)
                     .addRenderActor(p -> {

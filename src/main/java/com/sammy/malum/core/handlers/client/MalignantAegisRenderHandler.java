@@ -70,7 +70,7 @@ public class MalignantAegisRenderHandler {
                 double capacity = MalignantInfluenceData.getMalignantAegisCapacity(player);
                 if (displayedReinforcement > 0 && capacity > 0) {
                     float delta = (float) (displayedReinforcement / capacity);
-                    float dissolvement = Easing.QUAD_OUT.ease(delta, 0, 1f);
+                    float dissolvement = Easing.QUAD_OUT.ease(delta);
                     float alpha = (1 - fadeout / 80f) * 0.75f;
                     int left = guiGraphics.guiWidth() / 2 - ClientConfig.UI_SHIELD_X_OFFSET.getConfigValue();
                     int top = guiGraphics.guiHeight() - ClientConfig.UI_SHIELD_Y_OFFSET.getConfigValue();
@@ -108,7 +108,7 @@ public class MalignantAegisRenderHandler {
                         float time = minecraft.level.getGameTime() + deltaTracker.getGameTimeDeltaPartialTick(true);
                         float glowAlpha = (40 - Math.abs(40 - glow)) / 40f;
                         int angle = Mth.floor((time * 20) % 360);
-                        float range = Easing.SINE_IN_OUT.ease(glowAlpha, 160f, 320f);
+                        float range = Easing.SINE_IN_OUT.lerp(glowAlpha, 160f, 320f);
                         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
                         light.safeGetUniform("YFrequency").set(24f);
                         light.safeGetUniform("XFrequency").set(16f);

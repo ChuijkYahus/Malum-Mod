@@ -15,6 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
@@ -219,23 +220,20 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (level.isClientSide) {
-            WeepingWellParticleEffects.passiveVoidDepotParticles(this);
-            if (level.getGameTime() % 5f == 0) {
-                final BlockPos blockPos = getBlockPos();
-                final Player nearestPlayer = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 6f, false);
-                if (nearestPlayer != null) {
-                    nearTimer = 10;
-                }
+    public void clientTick(Level level) {
+        WeepingWellParticleEffects.passiveVoidDepotParticles(this);
+        if (level.getGameTime() % 5f == 0) {
+            final BlockPos blockPos = getBlockPos();
+            final Player nearestPlayer = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 6f, false);
+            if (nearestPlayer != null) {
+                nearTimer = 10;
             }
-            nearTimer--;
-            if (nearTimer > 0 && textVisibility < 40) {
-                textVisibility++;
-            } else if (textVisibility > 0) {
-                textVisibility--;
-            }
+        }
+        nearTimer--;
+        if (nearTimer > 0 && textVisibility < 40) {
+            textVisibility++;
+        } else if (textVisibility > 0) {
+            textVisibility--;
         }
     }
 

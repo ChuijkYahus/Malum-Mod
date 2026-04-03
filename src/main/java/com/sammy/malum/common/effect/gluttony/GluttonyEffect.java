@@ -23,8 +23,9 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
-import team.lodestar.lodestone.systems.enchanting.*;
 
 import java.util.function.*;
 
@@ -72,7 +73,8 @@ public class GluttonyEffect extends MobEffect {
         var random = level.random;
 
         var area = target.getBoundingBox().inflate(8f, 3f, 8f);
-        var targets = level.getEntitiesOfClass(LivingEntity.class, area, LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && attacker.hasLineOfSight(t)));
+        var predicate = LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(t -> !t.isDeadOrDying() && attacker.hasLineOfSight(t));
+        var targets = level.getEntitiesOfClass(LivingEntity.class, area, predicate);
 
         if (targets.isEmpty()) {
             return false;
@@ -99,9 +101,9 @@ public class GluttonyEffect extends MobEffect {
         for (int i = 0; i < amount; i++) {
             var propagationTarget = highestWicked != null ? highestWicked : targets.get(random.nextInt(targets.size()));
             var velocityVector = new Vec3(
-                    RandomHelper.randomBetween(random, -velocity, velocity),
-                    RandomHelper.randomBetween(random, velocity / 2f, velocity),
-                    RandomHelper.randomBetween(random, -velocity, velocity)
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -velocity, velocity),
+                    Easing.QUAD_IN_OUT.asWeighedRandom(random, velocity / 2f, velocity),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -velocity, velocity)
             );
             var position = target.position().add(0, target.getBbHeight() * 0.5f, 0);
             var locust = new GluttonyDamageActivator(level, attacker.getUUID(), 3, propagationTarget.getUUID(), position, velocityVector);

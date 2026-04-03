@@ -6,9 +6,10 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 public class WaveformTotemBaseBlockEntity extends TotemBaseBlockEntity {
-    public WaveformTotemBaseBlockEntity(BlockEntityType<? extends WaveformTotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
+    public WaveformTotemBaseBlockEntity(LodestoneBlockEntityType<? extends WaveformTotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

@@ -10,6 +10,7 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.tag.*;
 
 import static team.lodestar.lodestone.handlers.ItemEventHandler.*;
@@ -70,7 +71,7 @@ public class SoulWardHandler {
 
             var sound = data.getSoulWard() == 0 ? MalumSoundEvents.SOUL_WARD_DEPLETE : MalumSoundEvents.SOUL_WARD_HIT;
             var volume = source.is(MalumDamageTypes.KARMIC) ? 0.2f : 0.5f; //reduced volume for karmic damage, specifically with the pact of patience repaid in mind
-            float pitch = RandomHelper.randomBetween(living.getRandom(), 1f, 1.5f);
+            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(living.getRandom(), 1f, 1.5f);
             SoundHelper.playSound(living, sound.get(), volume, pitch);
             event.setNewDamage((float) (amount - absorbedDamage));
         }

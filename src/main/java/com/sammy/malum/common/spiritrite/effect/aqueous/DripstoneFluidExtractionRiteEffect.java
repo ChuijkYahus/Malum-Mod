@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
@@ -40,7 +41,8 @@ public class DripstoneFluidExtractionRiteEffect extends SpiritRiteBlockEffect {
             }
             if (foundDripstone) {
                 createEffect(level, MalumParticleEffectTypes.BLOCK_INFUSION_RITE_EFFECT, pos, AQUEOUS_SPIRIT, ELDRITCH_SPIRIT);
-                level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_SAP.get(), SoundSource.BLOCKS, 0.5f, RandomHelper.randomBetween(level.random, 0.5f, 0.75f));
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.5f, 0.75f);
+                level.playSound(null, pos, MalumSoundEvents.TOTEM_BLOCK_SAP.get(), SoundSource.BLOCKS, 0.5f, pitch);
             }
         }
     }

@@ -55,10 +55,11 @@ public class SpiritItemEntity extends FloatingItemEntity {
                 ItemHelper.giveItemToEntity(collector, stack);
             }
         });
+        float pitch = Mth.nextFloat(random, 1.1f, 2f);
         if (random.nextFloat() < 0.6f) {
-            SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.1f, 2f));
+            playSound(MalumSoundEvents.SPIRIT_PICKUP.get(), 0.5f, pitch);
         }
-        SoundHelper.playSound(this, SoundEvents.ITEM_PICKUP, 0.3f, Mth.nextFloat(random, 1.1f, 2f));
+        playSound(SoundEvents.ITEM_PICKUP, 0.5f, pitch);
     }
 
     @Override
@@ -70,7 +71,8 @@ public class SpiritItemEntity extends FloatingItemEntity {
         else {
             if (soundCooldown-- == 0) {
                 if (random.nextFloat() < 0.4f) {
-                    SoundHelper.playSound(this, MalumSoundEvents.ARCANE_WHISPERS.get(), 0.3f, Mth.nextFloat(random, 0.8f, 2f));
+                    float pitch = Mth.nextFloat(random, 0.8f, 2f);
+                    playSound(MalumSoundEvents.ARCANE_WHISPERS.get(), 0.3f, pitch);
                 }
                 soundCooldown = 40 + random.nextInt(40);
             }

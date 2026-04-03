@@ -93,8 +93,7 @@ public class FloatingItemRenderer extends EntityRenderer<FloatingItemEntity> {
 
         float gameTime = level.getGameTime() + partialTicks;
         double sine = Math.abs(((Math.sin((gameTime / 80f) % 360)) * 0.075f));
-        float bounce = EasingHelper.weightedEasingLerp(Easing.BOUNCE_IN_OUT, (gameTime % 20) / 20f, 0.025f, 0.05f, 0.025f);
-        float scale = (float) ((0.12f + sine + bounce) * scaleScalar);
+        float scale = (float) ((0.12f + sine) * scaleScalar);
 
         poseStack.pushPose();
         poseStack.mulPose(minecraft.getEntityRenderDispatcher().cameraOrientation());

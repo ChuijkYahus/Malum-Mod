@@ -6,9 +6,11 @@ import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.apache.commons.lang3.mutable.MutableDouble;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 public class EtherCressetBlockEntity extends EtherBlockEntity{
-    public EtherCressetBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
+
+    public EtherCressetBlockEntity(LodestoneBlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

@@ -16,6 +16,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
+import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
 import java.util.*;
 
@@ -94,7 +95,7 @@ public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
     public int visualTransitionStart;
     public int visualTransitionEnd;
 
-    public SpiritDiodeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public SpiritDiodeBlockEntity(LodestoneBlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

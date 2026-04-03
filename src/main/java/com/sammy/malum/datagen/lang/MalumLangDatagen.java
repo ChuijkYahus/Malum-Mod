@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.WallTorchBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.helpers.DataHelper;
-import team.lodestar.lodestone.systems.creative_tab.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
 
 import java.util.*;
 import java.util.function.Supplier;

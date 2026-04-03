@@ -144,6 +144,10 @@ public class MalumTags {
 
     public static class BlockTags {
 
+        public static final TagKey<Block> WILD_WITCHHAZEL_PLACEABLE_ON = tag("wild_witchhazel_placeable_on");
+
+        public static final TagKey<Block> EBONY_PLANTABLE_ON = tag("ebony_plantable_on");
+
         public static final TagKey<Block> BLIGHT_PLACEABLE_ON = tag("blight_placeable_on");
         public static final TagKey<Block> BLIGHT_REPLACEABLE = tag("blight_replaceable");
         public static final TagKey<Block> BLIGHT_REMOVABLE = tag("blight_removable");

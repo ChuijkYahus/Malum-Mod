@@ -184,8 +184,9 @@ public abstract class FloatingEntity extends MovingEntity {
 
     public float getYOffset(float partialTicks) {
         float windUpDuration = getWindUpDuration();
-        float offsetStrength = Easing.CIRC_IN_OUT.clamped((age + partialTicks) / windUpDuration, 0, 1);
-        return Mth.sin(((float) age + partialTicks) / 6.0F + hoverOffset) * (0.5F - (offsetStrength * 0.25F));
+        float delta = Math.min((age + partialTicks) / windUpDuration, 1);
+        float eased = Easing.CIRC_IN_OUT.ease(delta);
+        return Mth.sin(((float) age + partialTicks) / 6.0F + hoverOffset) * (0.5F - (eased * 0.25F));
     }
 
     public float getRotation(float partialTicks) {

@@ -2,7 +2,8 @@ package com.sammy.malum.registry.client;
 
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.core.systems.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;
@@ -33,7 +34,7 @@ public class MalumBlockColors {
             float colorMax = colorProperty.getPossibleValues().size();
             float color = s.getValue(colorProperty);
             float pct = (colorMax - (color / colorMax));
-            float value = Easing.SINE_IN_OUT.ease(pct, 0, 1, 1);
+            float value = Easing.SINE_IN_OUT.ease(pct);
             var leaves = (IGradientedLeavesBlock) s.getBlock();
             int red = (int) Mth.lerp(value, leaves.getMinColor().getRed(), leaves.getMaxColor().getRed());
             int green = (int) Mth.lerp(value, leaves.getMinColor().getGreen(), leaves.getMaxColor().getGreen());
@@ -58,7 +59,7 @@ public class MalumBlockColors {
             float color = s.getValue(colorProperty);
             float distanceDelta = distance / distanceMax;
             float colorDelta = color / colorMax;
-            float value = isPersistent ? colorDelta : Easing.QUAD_OUT.ease(distanceDelta, 0, colorDelta);
+            float value = isPersistent ? colorDelta : Easing.QUAD_OUT.lerp(distanceDelta, 0, colorDelta);
             var leaves = (IGradientedLeavesBlock) s.getBlock();
             int red = (int) Mth.lerp(value, leaves.getMinColor().getRed(), leaves.getMaxColor().getRed());
             int green = (int) Mth.lerp(value, leaves.getMinColor().getGreen(), leaves.getMaxColor().getGreen());

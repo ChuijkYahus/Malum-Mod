@@ -3,10 +3,8 @@ package com.sammy.malum.common.entity.mob.cultist.cherub;
 import com.sammy.malum.common.entity.mob.cultist.CultistMoveControl;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3d;
-import team.lodestar.lodestone.helpers.RandomHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 public class CherubMoveControl extends CultistMoveControl {
 
@@ -20,11 +18,11 @@ public class CherubMoveControl extends CultistMoveControl {
         super(cherub);
     }
 
-    public void setRandomOrbitOffset(double distance) {
+    public void setRandomOrbitOffset(float distance) {
         var random = mob.getRandom();
         float angle = random.nextFloat() * 6.28f;
-        double half = distance * 0.5f;
-        double y = RandomHelper.randomBetween(random, -half, half);
+        float half = distance * 0.5f;
+        float y = Easing.QUAD_IN_OUT.asWeighedRandom(random, -half, half);
         setOrbitOffset(distance, y, angle);
     }
 

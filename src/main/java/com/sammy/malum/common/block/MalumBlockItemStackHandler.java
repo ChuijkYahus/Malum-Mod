@@ -9,26 +9,34 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import java.util.Collection;
 import java.util.function.*;
 
-public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
+public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
 
-    public static <T extends LodestoneBlockEntity> MalumBlockItemStackHandlerBuilder create(T parent, int slotCount) {
+    public static MalumBlockItemStackHandlerBuilder create(LodestoneBlockEntity parent, int slotCount) {
         return new MalumBlockItemStackHandlerBuilder(parent, slotCount);
     }
 
-    protected final LodestoneBlockEntity parent;
-
     public MalumBlockItemStackHandler(LodestoneBlockEntity parent, int slotCount, int allowedItemSize, Predicate<ItemStack> inputPredicate, Runnable contentsChangeBehavior) {
-        super(slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
-        this.parent = parent;
+        super(parent, slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
+    }
+
+    @Override
+    public void onContentsChanged(int slot) {
+        super.onContentsChanged(slot);
+        parent.setDirty();
     }
 
     @Override
@@ -51,6 +59,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
         }
         return result;
     }
+
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
         if (stack.is(MalumTags.ItemTags.SPIRITS)) {
@@ -67,7 +76,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
 
     public void playSound(ServerLevel level, SoundEvent soundEvent, ItemStack stack) {
         var blockPos = parent.getBlockPos();
-        float pitch = RandomHelper.randomBetween(level.getRandom(), 1f, 1.2f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1f, 1.2f);
         level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 0.7f, pitch);
         if (stack.getItem() instanceof BlockItem blockItem) {
             var block = blockItem.getBlock();
@@ -78,11 +87,19 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
         }
     }
 
+    public void spendItemsOnRecipe(Collection<SizedIngredient> items) {
+        spendThingsOnRecipeSpiritsOnRecipe(items.stream().map(IngredientRecipeCostData::new).toList());
+    }
+
     public void spendSpiritsOnRecipe(Collection<SpiritIngredient> spirits) {
-        for (SpiritIngredient spiritIngredient : spirits) {
-            for (ItemStack spirit : getNonEmptyStacks()) {
-                if (spiritIngredient.test(spirit)) {
-                    spirit.shrink(spiritIngredient.count());
+        spendThingsOnRecipeSpiritsOnRecipe(spirits.stream().map(IngredientRecipeCostData::new).toList());
+    }
+
+    protected void spendThingsOnRecipeSpiritsOnRecipe(Collection<IngredientRecipeCostData> ingredients) {
+        for (IngredientRecipeCostData data : ingredients) {
+            for (ItemStack stack : getNonEmptyStacks()) {
+                if (data.ingredient().test(stack)) {
+                    stack.shrink(data.count());
                     break;
                 }
             }
@@ -95,5 +112,16 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackHandler {
 
     public SoundEvent getInsertSound(ItemStack stack) {
         return stack.getItem() instanceof SpiritShardItem ? MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get() : MalumSoundEvents.PEDESTAL_ITEM_INSERT.get();
+    }
+
+    public record IngredientRecipeCostData(Ingredient ingredient, int count) {
+
+        public IngredientRecipeCostData(SpiritIngredient ingredient) {
+            this(ingredient.toVanilla(), ingredient.count());
+        }
+
+        public IngredientRecipeCostData(SizedIngredient ingredient) {
+            this(ingredient.ingredient(), ingredient.count());
+        }
     }
 }

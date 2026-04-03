@@ -14,62 +14,6 @@
     "malum:soul_stained_steel_hoe",
     "malum:soul_stained_steel_knife",
     "malum:spellweaving_pickaxe",
-    "malum:spellweaving_axe",
-    {
-      "id": "irons_spellbooks:graybeard_staff",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:artificer_cane",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:lightning_rod",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:ice_staff",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:blood_staff",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:magehunter",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:keeper_flamberge",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:spellbreaker",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:amethyst_rapier",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:pyrium_staff",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:legionnaire_flamberge",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:decrepit_scythe",
-      "required": false
-    },
-    {
-      "id": "irons_spellbooks:hellrazor",
-      "required": false
-    },
-    {
-      "id": "born_in_chaos_v1:nightmare_scythe",
-      "required": false
-    }
+    "malum:spellweaving_axe"
   ]
 }

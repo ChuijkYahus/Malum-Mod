@@ -118,8 +118,8 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
         renderDial(graphics, DIAL_TEXTURE, x, y);
         int angle = Mth.floor(displayedAngle);
         float delta = displayedDelta / 360f;
-        float range = Easing.SINE_IN_OUT.ease(delta, 40f, 90f);
-        float alpha = Easing.EXPO_IN_OUT.ease(delta, 0.25f, 1f);
+        float range = Easing.SINE_IN_OUT.lerp(delta, 40f, 90f);
+        float alpha = Easing.EXPO_IN_OUT.lerp(delta, 0.25f, 1f);
         renderDialOverlay(graphics, DIAL_TEXTURE, x, y, angle, range, alpha);
     }
 

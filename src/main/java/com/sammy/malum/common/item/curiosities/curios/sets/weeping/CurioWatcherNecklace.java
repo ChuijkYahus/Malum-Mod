@@ -13,6 +13,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
@@ -37,9 +38,9 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
                 var position = target.position().add(0, target.getBbHeight() / 2f, 0);
                 int amount = target instanceof Player ? 2 : 1;
                 var velocity = new Vec3(
-                        RandomHelper.randomBetween(random, -0.4f, 0.4f),
-                        RandomHelper.randomBetween(random, 0.1f, 0.2f),
-                        RandomHelper.randomBetween(random, -0.4f, 0.4f)
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -0.4f, 0.4f),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, 0.1f, 0.2f),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -0.4f, 0.4f)
                 );
 
 

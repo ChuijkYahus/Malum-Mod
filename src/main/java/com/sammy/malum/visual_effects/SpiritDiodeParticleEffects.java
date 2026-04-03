@@ -7,7 +7,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.ParticleEffectSpawner;
@@ -31,7 +31,7 @@ public class SpiritDiodeParticleEffects {
 
         for (int i = 0; i < 2; i++) {
             int lifeDelay = i * 3;
-            float yVelocity = RandomHelper.randomBetween(random, 0.01f, 0.02f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.01f, 0.02f);
             var square = waveformSquare(level, positionData.getAsVector(), colorData.getColor());
             square.getBuilder()
                     .setBehavior(DirectionalParticleBehavior.directional())
@@ -58,9 +58,9 @@ public class SpiritDiodeParticleEffects {
 
     public static ParticleEffectSpawner waveformSquare(Level level, Vec3 pos, ColorParticleData colorData) {
         RandomSource rand = level.random;
-        final GenericParticleData scaleData = GenericParticleData.create(0.1f, RandomHelper.randomBetween(rand, 0.5f, 0.6f), 0.5f)
+        final GenericParticleData scaleData = GenericParticleData.create(0.1f, Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.5f, 0.6f), 0.5f)
                 .setEasing(Easing.SINE_OUT, Easing.SINE_IN)
-                .setCoefficient(RandomHelper.randomBetween(rand, 1f, 1.25f)).build();
+                .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1f, 1.25f)).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.99f));
         var squares = WorldParticleBuilder.create(MalumParticles.SQUARE.get())
                 .setTransparencyData(GenericParticleData.create(0.7f, 0f).setEasing(Easing.SINE_IN_OUT).build())

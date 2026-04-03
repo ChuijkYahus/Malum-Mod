@@ -6,7 +6,8 @@ import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.creative_tab.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 
 import java.util.*;
 
@@ -284,13 +285,29 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.ARCANE_CHARCOAL
                         )
                         .addItems(
+                                MalumItems.EBONY_STALK,
+                                MalumItems.EBONY,
+                                MalumItems.WILD_WITCHHAZEL,
+                                MalumItems.WITCHHAZEL
+                        ).nextLine()
+                        .addItems(
                                 MalumItems.NULL_SLATE,
                                 MalumItems.VOID_SALTS,
                                 MalumItems.MNEMONIC_FRAGMENT,
                                 MalumItems.AURIC_EMBERS,
                                 MalumItems.MALIGNANT_LEAD
-                        )
-                        .nextLine()
+                        ).nextLine()
+                        .addItems(
+                                MalumItems.SOUL_STAINED_STEEL_INGOT,
+                                MalumItems.SOUL_STAINED_STEEL_PLATING,
+                                MalumItems.SOUL_STAINED_STEEL_NUGGET,
+                                MalumItems.HALLOWED_GOLD_INGOT,
+                                MalumItems.HALLOWED_GOLD_INLAY,
+                                MalumItems.HALLOWED_GOLD_NUGGET,
+                                MalumItems.MALIGNANT_PEWTER_INGOT,
+                                MalumItems.MALIGNANT_PEWTER_PLATING,
+                                MalumItems.MALIGNANT_PEWTER_NUGGET
+                        ).nextLine()
                         .addItems(
                                 MalumItems.SOULWOVEN_SILK,
                                 MalumItems.PARACAUSAL_FLAME,
@@ -304,17 +321,6 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.ANOMALOUS_DESIGN,
                                 MalumItems.COMPLETE_DESIGN,
                                 MalumItems.FUSED_CONSCIOUSNESS
-                        ).nextLine()
-                        .addItems(
-                                MalumItems.SOUL_STAINED_STEEL_INGOT,
-                                MalumItems.SOUL_STAINED_STEEL_PLATING,
-                                MalumItems.SOUL_STAINED_STEEL_NUGGET,
-                                MalumItems.HALLOWED_GOLD_INGOT,
-                                MalumItems.HALLOWED_GOLD_INLAY,
-                                MalumItems.HALLOWED_GOLD_NUGGET,
-                                MalumItems.MALIGNANT_PEWTER_INGOT,
-                                MalumItems.MALIGNANT_PEWTER_PLATING,
-                                MalumItems.MALIGNANT_PEWTER_NUGGET
                         ).nextLine()
                         .addItems(
                                 MalumItems.BLOCK_OF_ROTTING_ESSENCE,
@@ -332,6 +338,10 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.BLOCK_OF_ALCHEMICAL_CALX,
                                 MalumItems.BLOCK_OF_ARCANE_CHARCOAL
                         )
+                        .addItems(
+                                MalumItems.BLOCK_OF_EBONY,
+                                MalumItems.CRATE_OF_WITCHHAZEL
+                        ).nextLine()
                         .addItems(
                                 MalumItems.BLOCK_OF_NULL_SLATE,
                                 MalumItems.BLOCK_OF_VOID_SALTS,

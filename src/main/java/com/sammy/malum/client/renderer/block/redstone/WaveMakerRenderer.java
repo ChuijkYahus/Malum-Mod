@@ -15,8 +15,8 @@ public class WaveMakerRenderer extends SpiritDiodeRenderer<WaveMakerBlockEntity>
     @Override
     public float getGlowDelta(WaveMakerBlockEntity blockEntityIn, float delta) {
         if (blockEntityIn.cachedInputSignal != 0) {
-            return Easing.EXPO_OUT.ease(delta, 0, 1);
+            return Easing.EXPO_OUT.ease(delta);
         }
-        return Easing.EXPO_IN.ease(delta, 0, 1);
+        return Easing.EXPO_IN.ease(delta);
     }
 }

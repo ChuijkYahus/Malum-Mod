@@ -35,7 +35,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
     public DyedItemColor firstColor = EtherItem.DEFAULT_FIRST_COLOR;
     public DyedItemColor secondColor = EtherItem.DEFAULT_SECOND_COLOR;
 
-    public EtherBlockEntity(BlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
+    public EtherBlockEntity(LodestoneBlockEntityType<? extends EtherBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
@@ -109,9 +109,9 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         //Upwards Moving Particles
         if (level.getGameTime() % 2L == 0) {
             var color = ColorParticleData.create(start, end).setCoefficient(1.5f).setEasing(Easing.SINE_IN_OUT).build();
-            int lifeTime = RandomHelper.randomBetween(random, 50, 60);
-            float scale = RandomHelper.randomBetween(random, 0.7f, 0.9f);
-            float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 50, 60);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.7f, 0.9f);
+            float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, sparkPos, color);
             lightSpecs.getBuilder()
                     .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
@@ -124,9 +124,9 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         //Upwards Moving Sparks
         if (level.getGameTime() % 4L == 0) {
             var color = ColorParticleData.create(start, end).setCoefficient(2.5f).setEasing(Easing.SINE_IN_OUT).build();
-            int lifeTime = RandomHelper.randomBetween(random, 50, 60);
-            float scale = RandomHelper.randomBetween(random, 0.3f, 0.5f);
-            float velocity = RandomHelper.randomBetween(random, 0.02f, 0.025f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 50, 60);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.5f);
+            float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
             var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, sparkPos, color);
             lightSpecs.getBuilder()
                     .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
@@ -141,8 +141,8 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         //Big Shine
         if (level.getGameTime() % 16L == 0) {
             var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
-            int lifeTime = RandomHelper.randomBetween(random, 50, 60);
-            float scale = RandomHelper.randomBetween(random, 0.9f, 1.2f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 50, 60);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.9f, 1.2f);
             WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setTransparencyData(GenericParticleData.create(0f, 0.2f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
@@ -155,8 +155,8 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
         //Small Shine
         if (level.getGameTime() % 4L == 0) {
             var color = ColorParticleData.create(start, end).setCoefficient(0.6f).setEasing(Easing.SINE_IN_OUT).build();
-            int lifeTime = RandomHelper.randomBetween(random, 20, 30);
-            float scale = RandomHelper.randomBetween(random, 0.25f, 0.35f);
+            int lifeTime = Easing.SINE_IN_OUT.asWeighedRandom(random, 20, 30);
+            float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.35f);
             WorldParticleBuilder.create(MalumParticles.STAR)
                     .setTransparencyData(GenericParticleData.create(0f, 0.6f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())

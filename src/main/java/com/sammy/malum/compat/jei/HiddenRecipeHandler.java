@@ -2,24 +2,19 @@ package com.sammy.malum.compat.jei;
 
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.handlers.hiding.*;
-import com.sammy.malum.registry.common.*;
 import mezz.jei.api.constants.*;
 import mezz.jei.api.recipe.*;
 import mezz.jei.api.runtime.*;
-import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 public class HiddenRecipeHandler {
 
 	private static final Set<ItemStack> HIDDEN_ITEMS = new LinkedHashSet<>();
 	private static final Map<RecipeType<?>, HiddenRecipeSet<?>> HIDDEN_RECIPE_SETS = new HashMap<>();
-
-	private static final List<UUID> CALLBACKS = new ArrayList<>();
+	private static final List<UUID> LISTENER_KEYS = new ArrayList<>();
 
 	public static void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
 		var key = HiddenTagHandler.registerHiddenItemListener(() -> {
@@ -27,12 +22,12 @@ public class HiddenRecipeHandler {
 			hideItems(jeiRuntime, tagsToHide);
 			hideRecipes(jeiRuntime, tagsToHide);
 		});
-		CALLBACKS.add(key);
+		LISTENER_KEYS.add(key);
 	}
 
 	public static void onRuntimeUnavailable() {
-		CALLBACKS.forEach(HiddenTagHandler::removeListener);
-		CALLBACKS.clear();
+		LISTENER_KEYS.forEach(HiddenTagHandler::removeListener);
+		LISTENER_KEYS.clear();
 		HIDDEN_RECIPE_SETS.clear();
 		HIDDEN_ITEMS.clear();
 	}

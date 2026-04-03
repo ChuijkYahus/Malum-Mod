@@ -24,13 +24,6 @@ import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.listeners.*;
-import net.minecraft.core.*;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.event.*;
@@ -54,20 +47,7 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void playerLeftClick(PlayerInteractEvent.LeftClickBlock event) {
-        //TODO: move this to the jar class
-        BlockPos pos = event.getPos();
-        Level level = event.getLevel();
-        BlockState state = level.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block instanceof SpiritJarBlock jarBlock) {
-            Player player = event.getEntity();
-            BlockHitResult target = Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
-            if (target.getType() == HitResult.Type.BLOCK && target.getBlockPos().equals(pos) && target.getDirection().getAxis() == Direction.Axis.X) {
-                if (player.isCreative()) {
-                    event.setCanceled(jarBlock.handleAttack(level, pos, player));
-                }
-            }
-        }
+        SpiritJarBlock.cancelBreak(event);
     }
 
     @SubscribeEvent

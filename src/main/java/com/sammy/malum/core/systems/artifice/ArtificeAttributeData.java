@@ -12,8 +12,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import team.lodestar.lodestone.helpers.RandomHelper;
+
 import team.lodestar.lodestone.helpers.block.BlockStateHelper;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -154,8 +155,8 @@ public class ArtificeAttributeData {
     public void applyTuningForkBuff(ServerLevel level, BlockPos pos) {
         selectNextAttributeForTuning();
         applyTuning();
-        float volume = RandomHelper.randomBetween(level.getRandom(), 1.25f, 1.75f);
-        float pitch = RandomHelper.randomBetween(level.getRandom(), 0.75f, 1.25f);
+        float volume = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.25f, 1.75f);
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 1.25f);
         level.playSound(null, pos, MalumSoundEvents.TUNING_FORK_TINKER.get(), SoundSource.BLOCKS, volume, pitch);
         BlockStateHelper.updateAndNotifyState(level, pos);
     }

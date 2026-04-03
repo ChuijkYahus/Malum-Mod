@@ -17,6 +17,7 @@ import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.*;
@@ -95,7 +96,8 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
     public void playSound(Holder<SoundEvent> soundEvent) {
         var player = minecraft.player;
         var level = minecraft.level;
-        level.playSound(player, player.blockPosition(), soundEvent.value(), SoundSource.BLOCKS, 0.8f, RandomHelper.randomBetween(level.getRandom(), 0.9f, 1.1f));
+        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.9f, 1.1f);
+        level.playSound(player, player.blockPosition(), soundEvent.value(), SoundSource.BLOCKS, 0.8f, pitch);
     }
 
     @Override

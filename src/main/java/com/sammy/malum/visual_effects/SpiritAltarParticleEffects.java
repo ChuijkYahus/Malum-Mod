@@ -16,6 +16,8 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
@@ -51,8 +53,7 @@ public class SpiritAltarParticleEffects {
         }
         var level = altar.getLevel();
         var random = level.random;
-        var itemPos = altar.getItemPos();
-        var spiritInventory = altar.spiritInventory;
+        var itemPos = altar.inventory.getDisplayData().getDisplayCenter(0);
         var recipe = altar.recipe;
         if (recipe != null) {
             for (IAltarAccelerator accelerator : altar.accelerators) {
@@ -66,16 +67,14 @@ public class SpiritAltarParticleEffects {
                     b -> b.multiplyLifetime(1.2f).modifyScaleData(d -> d.multiplyValue(1.2f)));
         }
 
-        int spiritsRendered = 0;
-        for (int i = 0; i < spiritInventory.slotCount; i++) {
-            ItemStack item = spiritInventory.getStackInSlot(i);
-            if (item.getItem() instanceof SpiritShardItem shard) {
-                var offset = altar.getSpiritItemOffset(spiritsRendered++, 0);
-                var blockPos = altar.getBlockPos();
-                var spiritPosition = offset.add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+        var spiritDisplayData = altar.spiritInventory.getDisplayData();
+        for (ItemStackHandlerItemDisplayData.ItemDisplayDataEntry dataEntry : spiritDisplayData.getDataEntries()) {
+            var stack = dataEntry.getStack();
+            if (stack.getItem() instanceof SpiritShardItem shard) {
+                Vec3 spiritPosition = spiritDisplayData.getItemPosition(dataEntry);
                 spiritLightSpecs(level, spiritPosition, shard).spawnParticles();
                 if (recipe != null) {
-                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(RandomHelper.randomBetween(random, 0.03f, 0.06f));
+                    Vec3 velocity = itemPos.subtract(spiritPosition).normalize().scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.03f, 0.06f));
                     if (random.nextFloat() < 0.85f) {
                         var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, spiritPosition, shard);
                         sparkParticles.getBuilder().setMotion(velocity).modifyScaleData(d -> d.multiplyValue(1.2f));
@@ -100,8 +99,8 @@ public class SpiritAltarParticleEffects {
         }
         long gameTime = level.getGameTime();
         var random = level.random;
-        Vec3 altarTargetPos = altar.getItemPos();
-        Vec3 holderTargetPos = holder.getItemPos();
+        var altarTargetPos = getItemPos(altar);
+        var holderTargetPos = holder.getItemPos();
         for (int i = 0; i < 2; i++) {
             SpiritLightSpecs.coolLookingShinyThing(level, holderTargetPos, activeSpiritType);
         }
@@ -119,11 +118,11 @@ public class SpiritAltarParticleEffects {
             lightSpecs.getBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2.5f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
             lightSpecs.getBloomBuilder()
                     .addTickActor(behavior)
                     .multiplyLifetime(2f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
 
             var crumbles = ItemCrumbleParticleEffects.spawnItemCrumbs(level, holderTargetPos, stack);
@@ -143,17 +142,17 @@ public class SpiritAltarParticleEffects {
         }
         long gameTime = level.getGameTime();
         var random = level.random;
-        BlockPos altarPos = altar.getBlockPos();
-        Vec3 targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
+        var targetPos = getItemPos(altar);
 
         for (int i = 0; i < 2; i++) {
             SpiritLightSpecs.coolLookingShinyThing(level, targetPos, activeSpiritType);
         }
         for (int i = 0; i < 8; i++) {
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xOffset = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, 0.1f, 0.5f)*(random.nextBoolean()?-1:1);
+            float xOffset = Easing.CUBIC_OUT.asWeighedRandom(random, 0.1f, 0.5f) * (random.nextBoolean() ? -1 : 1);
             float yOffset = i * 0.08f;
-            float zOffset = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, 0.1f, 0.5f)*(random.nextBoolean()?-1:1);
+            float zOffset = Easing.CUBIC_OUT.asWeighedRandom(random, 0.1f, 0.5f) * (random.nextBoolean() ? -1 : 1);
+
             var offsetPos = targetPos.add(xOffset, yOffset, zOffset);
             int lifeDelay = 5 + i * 3;
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, offsetPos, cyclingSpiritType, new WorldParticleOptions(MalumParticles.SHINE));
@@ -177,10 +176,10 @@ public class SpiritAltarParticleEffects {
         for (int i = 0; i < 12; i++) {
             int lifeDelay = i / 4;
             SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-            float xVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float yVelocity = RandomHelper.randomBetween(random, 0.2f, 0.5f);
-            float zVelocity = RandomHelper.randomBetween(random, Easing.CUBIC_OUT, -0.075f, 0.075f);
-            float gravityStrength = RandomHelper.randomBetween(random, 0.75f, 1f);
+            float xVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float yVelocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.2f, 0.5f);
+            float zVelocity = Easing.CUBIC_OUT.asWeighedRandom(random, -0.075f, 0.075f);
+            float gravityStrength = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1f);
             if (random.nextFloat() < 0.85f) {
                 var sparkParticles = SparkParticleEffects.spiritMotionSparks(level, targetPos, cyclingSpiritType);
                 sparkParticles.getBuilder()
@@ -229,7 +228,7 @@ public class SpiritAltarParticleEffects {
                     p.setParticleSpeed(p.getParticleSpeed().add(0, 0.015f, 0));
                 }
             });
-            int lifetime = RandomHelper.randomBetween(random, 10, 20) + finalI * 2;
+            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(random, 10, 20) + finalI * 2;
             var lightSpecs = spiritLightSpecs(level, offsetPosition, activeSpiritType);
             lightSpecs.getBuilder()
                     .act(behavior)
@@ -255,10 +254,9 @@ public class SpiritAltarParticleEffects {
         if (level.getGameTime() % 2L == 0) {
             var random = level.random;
             long gameTime = level.getGameTime();
-            var altarPos = altar.getBlockPos();
-            var targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
+            var targetPos = getItemPos(altar);
             var direction = targetPos.subtract(startPos).normalize();
-            var velocity = direction.scale(RandomHelper.randomBetween(random, 0.01f, 0.02f));
+            var velocity = direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.01f, 0.02f));
             double yOffset = Math.sin((gameTime*0.2f) % 6.28f) * 0.1f;
             var offsetPosition = VecHelper.rotatingRadialOffset(startPos.add(0, yOffset, 0), 0.45f, 0, 1, gameTime, 30);
             Consumer<WorldParticleBuilder> behavior = b -> b.addTickActor(p -> {
@@ -271,12 +269,12 @@ public class SpiritAltarParticleEffects {
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(2f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
             lightSpecs.getBloomBuilder()
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(1.5f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
         }
     }
@@ -288,10 +286,9 @@ public class SpiritAltarParticleEffects {
         if (level.getGameTime() % 2L == 0) {
             var random = level.random;
             long gameTime = level.getGameTime();
-            var altarPos = altar.getBlockPos();
-            var targetPos = altar.getCentralItemOffset().add(altarPos.getX(), altarPos.getY(), altarPos.getZ());
+            var targetPos = getItemPos(altar);
             var direction = targetPos.subtract(startPos).normalize();
-            var velocity = direction.scale(RandomHelper.randomBetween(random, 0.025f, 0.04f));
+            var velocity = direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.025f, 0.04f));
             double yOffset = Math.sin((gameTime*0.4f) % 6.28f) * 0.1f;
             var offsetPosition = VecHelper.rotatingRadialOffset(startPos.add(0, yOffset, 0), 0.45f, 0, 1, gameTime, 40);
             Consumer<WorldParticleBuilder> behavior = b -> b.addTickActor(p -> {
@@ -304,13 +301,17 @@ public class SpiritAltarParticleEffects {
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(3f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 1f, 2f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
             sparks.getBloomBuilder()
                     .act(behavior)
                     .setMotion(velocity)
                     .multiplyLifetime(2.5f)
-                    .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.6f, 1.5f)));
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 1.5f)));
             sparks.spawnParticles();
         }
+    }
+
+    public static Vec3 getItemPos(SpiritAltarBlockEntity altar) {
+        return altar.inventory.getDisplayData().getDisplayCenter(0);
     }
 }

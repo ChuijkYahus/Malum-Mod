@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.systems.creative_tab.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
 
 public class MalumCreativeTabs {
 

@@ -9,7 +9,7 @@ import com.sammy.malum.common.block.curiosities.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
-import com.sammy.malum.common.block.nature.*;
+import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.item.*;
@@ -64,7 +64,7 @@ import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
-import team.lodestar.lodestone.systems.item.tools.magic.*;
+import team.lodestar.lodestone.modules.toolkit.item.tools.magic.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 import top.theillusivec4.curios.api.client.*;
 
@@ -376,6 +376,9 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> BLOCK_OF_ALCHEMICAL_CALX = register("block_of_alchemical_calx", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_ALCHEMICAL_CALX.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_ARCANE_CHARCOAL = register("block_of_arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelBlockItem(MalumBlocks.BLOCK_OF_ARCANE_CHARCOAL.get(), p, 32000));
 
+    public static final DeferredHolder<Item, Item> BLOCK_OF_EBONY = register("block_of_ebony", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_EBONY.get(), p));
+    public static final DeferredHolder<Item, Item> CRATE_OF_WITCHHAZEL = register("crate_of_witchhazel", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.CRATE_OF_WITCHHAZEL.get(), p));
+
     public static final DeferredHolder<Item, Item> BLOCK_OF_NULL_SLATE = register("block_of_null_slate", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_NULL_SLATE.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_VOID_SALTS = register("block_of_void_salts", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_VOID_SALTS.get(), p));
     public static final DeferredHolder<Item, Item> BLOCK_OF_MNEMONIC_FRAGMENT = register("block_of_mnemonic_fragment", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.BLOCK_OF_MNEMONIC_FRAGMENT.get(), p));
@@ -394,6 +397,12 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> LIVING_FLESH = register("living_flesh", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> ALCHEMICAL_CALX = register("alchemical_calx", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItems::DEFAULT_PROPERTIES, (p) -> new LodestoneFuelItem(p, 3200));
+
+    public static final DeferredHolder<Item, Item> EBONY_STALK = register("ebony_stalk", MalumItems::DEFAULT_PROPERTIES, p -> new ItemNameBlockItem(MalumBlocks.EBONY.get(), p));
+    public static final DeferredHolder<Item, Item> EBONY = register("ebony", MalumItems::DEFAULT_PROPERTIES, Item::new);
+
+    public static final DeferredHolder<Item, Item> WILD_WITCHHAZEL = register("wild_witchhazel", MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(MalumBlocks.WILD_WITCHHAZEL.get(), p));
+    public static final DeferredHolder<Item, Item> WITCHHAZEL = register("witchhazel", MalumItems::DEFAULT_PROPERTIES, p -> new ItemNameBlockItem(MalumBlocks.WITCHHAZEL.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOVEN_SILK = register("soulwoven_silk", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> PARACAUSAL_FLAME = register("paracausal_flame", MalumItems::DEFAULT_PROPERTIES, Item::new);

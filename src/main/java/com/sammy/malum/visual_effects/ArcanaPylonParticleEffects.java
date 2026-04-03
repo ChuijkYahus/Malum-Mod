@@ -26,9 +26,9 @@ public class ArcanaPylonParticleEffects {
         float scalar = extraData.intensity();
         for (int i = 0; i < 4; i++) {
             int lifeDelay = 2 * i;
-            var scaleData = GenericParticleData.create(0f, (RandomHelper.randomBetween(rand, 0.3f, 0.45f) + i * 0.05f) * scalar)
+            var scaleData = GenericParticleData.create(0f, (Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.3f, 0.45f) + i * 0.05f) * scalar)
                     .setEasing(Easing.EXPO_OUT)
-                    .setCoefficient(RandomHelper.randomBetween(rand, 1.25f, 1.5f)).build();
+                    .setCoefficient(Easing.SINE_IN_OUT.asWeighedRandom(rand, 1.25f, 1.5f)).build();
             var builder = SpiritBasedParticleBuilder.createSpirit(MalumParticles.CIRCLE.get())
                     .setSpirit(colorData.getSpirit())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))

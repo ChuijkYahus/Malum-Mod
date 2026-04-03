@@ -90,7 +90,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
     protected int visualEffectStrength;
     protected AimState aimDirection;
 
-    public RiteAnchorBlockEntity(BlockEntityType<? extends RiteAnchorBlockEntity> type, BlockPos pos, BlockState state) {
+    public RiteAnchorBlockEntity(LodestoneBlockEntityType<? extends RiteAnchorBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 

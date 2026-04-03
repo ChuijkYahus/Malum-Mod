@@ -4,41 +4,35 @@ import com.sammy.malum.registry.common.MalumTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandlerBuilder;
+import team.lodestar.lodestone.modules.toolkit.inventory.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class MalumBlockItemStackHandlerBuilder extends LodestoneItemStackHandlerBuilder {
+public class MalumBlockItemStackHandlerBuilder extends LodestoneItemStackBlockHandlerBuilder {
 
-    protected final LodestoneBlockEntity parent;
     protected MalumBlockItemStackHandlerBuilder(LodestoneBlockEntity parent, int slotCount) {
-        super(slotCount);
-        this.parent = parent;
+        super(parent, slotCount);
     }
 
     @Override
-    public MalumBlockItemStackHandlerBuilder setInputPredicate(Predicate<ItemStack> inputPredicate) {
-        super.setInputPredicate(inputPredicate);
-        return this;
+    public MalumBlockItemStackHandlerBuilder limitItemSize(int allowedItemSize) {
+        return (MalumBlockItemStackHandlerBuilder) super.limitItemSize(allowedItemSize);
     }
 
     @Override
     public MalumBlockItemStackHandlerBuilder onContentsChanged(Runnable contentsChangeBehavior) {
-        super.onContentsChanged(contentsChangeBehavior);
-        return this;
+        return (MalumBlockItemStackHandlerBuilder) super.onContentsChanged(contentsChangeBehavior);
     }
 
-    public MalumBlockItemStackHandlerBuilder onContentsChanged(Consumer<Level> contentsChangeBehavior) {
-        super.onContentsChanged(() -> contentsChangeBehavior.accept(parent.getLevel()));
-        return this;
+    @Override
+    public MalumBlockItemStackHandlerBuilder setInputPredicate(Predicate<ItemStack> inputPredicate) {
+        return (MalumBlockItemStackHandlerBuilder) super.setInputPredicate(inputPredicate);
     }
 
     @Override
     public MalumBlockItemStackHandler build() {
-        return (MalumBlockItemStackHandler) build(((slotCount, allowedItemSize, inputPredicate, onContentsChanged) ->
-                new MalumBlockItemStackHandler(parent, slotCount, allowedItemSize, inputPredicate, onContentsChanged)));
+        return new MalumBlockItemStackHandler(parent, slotCount, allowedItemSize, inputPredicate,onContentsChanged);
     }
 
     public MalumBlockItemStackHandlerBuilder onlyAugments() {

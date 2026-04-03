@@ -49,7 +49,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
         RandomSource random = pLevel.random;
         WorldParticleBuilder.create(MalumParticles.HEX_TARGET)
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
-                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(RandomHelper.randomBetween(random, -0.314f, 0.314f)).build())
+                .setSpinData(SpinParticleData.createRandomDirection(random, 0.1f, 0.2f).setSpinOffset(Easing.SINE_IN_OUT.asWeighedRandom(random, -0.314f, 0.314f)).build())
                 .setTransparencyData(GenericParticleData.create(0.6f * pct, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())

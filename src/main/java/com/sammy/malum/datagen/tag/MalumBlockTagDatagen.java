@@ -17,7 +17,9 @@ import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneBlockTagsS
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
+import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
+import static net.minecraft.tags.BlockTags.*;
 
 public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
 
@@ -35,16 +37,19 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
     protected void addTags(HolderLookup.Provider pProvider) {
         var blocks = new HashSet<>(BLOCKS.getEntries());
 
-        tag(MalumTags.BlockTags.BLIGHT_REPLACEABLE).addTags(BlockTags.MOSS_REPLACEABLE, BlockTags.SAND).add(Blocks.CLAY, Blocks.GRAVEL);
-        tag(MalumTags.BlockTags.BLIGHT_REMOVABLE).addTags(BlockTags.FLOWERS, BlockTags.REPLACEABLE).remove(MalumTags.BlockTags.BLIGHTED_PLANTS).remove(MalumBlocks.CLINGING_BLIGHT.get());
+        tag(WILD_WITCHHAZEL_PLACEABLE_ON).addTags(BASE_STONE_OVERWORLD).add(Blocks.MYCELIUM);
+        tag(EBONY_PLANTABLE_ON).addTags(BASE_STONE_OVERWORLD);
 
-        tag(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST).add(MalumBlocks.BLIGHTED_EARTH.get());
-        tag(MalumTags.BlockTags.IS_RITE_IMMUNE).addTags(MalumTags.BlockTags.TAINTED_ROCK, MalumTags.BlockTags.TWISTED_ROCK, MalumTags.BlockTags.WEEPING_WELL);
+        tag(BLIGHT_REPLACEABLE).addTags(MOSS_REPLACEABLE, SAND).add(Blocks.CLAY, Blocks.GRAVEL);
+        tag(BLIGHT_REMOVABLE).addTags(FLOWERS, REPLACEABLE).remove(BLIGHTED_PLANTS).remove(MalumBlocks.CLINGING_BLIGHT.get());
 
-        tag(MalumTags.BlockTags.INEXTINGUISHABLE_FLAME);
-        tag(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST);
+        tag(UNCHAINED_RITE_CATALYST).add(MalumBlocks.BLIGHTED_EARTH.get());
+        tag(IS_RITE_IMMUNE).addTags(TAINTED_ROCK, TWISTED_ROCK, WEEPING_WELL);
 
-        tag(MalumTags.BlockTags.SUNDERING_ANCHOR_KNIFE_BEHAVIOR).addOptional(ResourceLocation.parse("farmersdelight:cutting_board"));
+        tag(INEXTINGUISHABLE_FLAME);
+        tag(GREATER_AERIAL_WHITELIST);
+
+        tag(SUNDERING_ANCHOR_KNIFE_BEHAVIOR).addOptional(ResourceLocation.parse("farmersdelight:cutting_board"));
 
         addTagsFromBlockProperties(blocks);
     }

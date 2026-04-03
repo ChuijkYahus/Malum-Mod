@@ -1,5 +1,4 @@
 {
-  "parent": "minecraft:item/air",
   "base": {},
   "loader": "neoforge:separate_transforms",
   "perspectives": {
@@ -9,8 +8,5 @@
     "gui": {
       "parent": "malum:item/soul_of_a_scythe_gui"
     }
-  },
-  "textures": {
-    "layer0": "malum:item/soul_of_a_scythe"
   }
 }

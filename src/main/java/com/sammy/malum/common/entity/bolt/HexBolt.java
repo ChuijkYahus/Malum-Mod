@@ -57,7 +57,7 @@ public class HexBolt extends AbstractStaffBoltProjectile {
                 .multiplyLifetime(1.25f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
-        final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, RandomHelper.randomBetween(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
+        final SpinParticleData spinData = SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.5f)).randomSpinOffset(random).build();
         final Consumer<LodestoneWorldParticle> behavior = p -> p.setParticleSpeed(p.getParticleSpeed().scale(0.95f));
         WorldParticleBuilder.create(MalumParticles.SAW)
                 .setBehavior(DirectionalParticleBehavior.directional(getDeltaMovement().normalize()))

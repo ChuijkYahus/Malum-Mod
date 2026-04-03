@@ -12,7 +12,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import team.lodestar.lodestone.systems.item.LodestoneArmorItem;
+import team.lodestar.lodestone.modules.toolkit.item.LodestoneArmorItem;
 
 import javax.annotation.Nonnull;
 

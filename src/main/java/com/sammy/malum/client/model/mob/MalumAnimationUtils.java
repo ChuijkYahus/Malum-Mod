@@ -73,7 +73,7 @@ public class MalumAnimationUtils<T extends Mob> {
         float clamp = data.clamp;
         var easing = data.easing;
         float sign = delta >= 0 ? 1 : -1;
-        float eased = easing.ease(Mth.abs(delta), 0, 1);
+        float eased = easing.ease(Mth.abs(delta));
         float rotation = sign * eased * data.amount * limbSwingAmount / motionDelta;
         if (clamp != -1) {
             rotation = Mth.clamp(rotation, -clamp, clamp);

@@ -1,13 +1,15 @@
 package com.sammy.malum.client.screen.codex.screens.progression;
 
+import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
-import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.events.*;
+import com.sammy.malum.registry.client.MalumShaders;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -20,28 +22,29 @@ import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
+import org.joml.Matrix4f;
+import org.joml.Matrix4fStack;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.shader.*;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
 import static com.sammy.malum.MalumMod.*;
-import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
-import static org.lwjgl.opengl.GL11C.*;
 
 public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexScreen implements PlacedEntryAcceptor {
 
-    public static final ResourceLocation FRAME_TEXTURE = malumPath("textures/gui/book/frame.png");
+    public static final ResourceLocation FRAME_TEXTURE = malumPath("textures/gui/book/progression_frame.png");
+    public static final ResourceLocation FRAME_CUTOUT_TEXTURE = malumPath("textures/gui/book/progression_cutout.png");
+
     public static final ResourceLocation FRAME_FADE_TEXTURE = malumPath("textures/gui/book/frame_fade.png");
 
-    public static final int BOOK_WIDTH = 378;
-    public static final int BOOK_HEIGHT = 250;
-    public static final int BOOK_INSIDE_WIDTH = 344;
-    public static final int BOOK_INSIDE_HEIGHT = 218;
+    public static int BOOK_WIDTH = 400;
+    public static int BOOK_HEIGHT = 320;
+
+    public RenderTarget target;
 
     protected float oldBackgroundXOffset;
     protected float oldBackgroundYOffset;
@@ -81,49 +84,134 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         NeoForge.EVENT_BUS.post(new SetupMalumCodexEntriesEvent(this));
         setupObjects();
         faceOrigin();
-    }
-
-    @Override
-    public void init() {
-        super.init();
+        target = new TextureTarget(BOOK_WIDTH, BOOK_HEIGHT, true, Minecraft.ON_OSX);
     }
 
     public abstract void renderBackground(PoseStack poseStack);
 
     public abstract void setupEntries();
 
-    public abstract Color getOutlineColor();
     @Override
     public List<PlacedBookEntry> getEntries() {
         return entries;
     }
 
     @Override
+    public void resize(Minecraft minecraft, int width, int height) {
+        target.resize(BOOK_WIDTH, BOOK_HEIGHT, Minecraft.ON_OSX);
+        super.resize(minecraft, width, height);
+    }
+
+    @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
+        renderBookInnards(guiGraphics, mouseX, mouseY, partialTicks);
+        renderFrameCutout(guiGraphics);
+//        if (voidFadeoutTimer > 0) {
+//            CodexRenderHelper.renderTransitionFade(this, poseStack);
+//        }
+//        renderFade(poseStack);
+
+        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+        doLateRendering();
+    }
+
+    public void renderFrameCutout(GuiGraphics guiGraphics) {
+        var poseStack = guiGraphics.pose();
         int guiLeft = getGuiLeft();
         int guiTop = getGuiTop();
-        PoseStack poseStack = guiGraphics.pose();
+
+        var cutout = MalumShaders.PROGRESSION_SCREEN.getShaderInstance();
+        RenderSystem.setShaderTexture(1, FRAME_CUTOUT_TEXTURE);
+        RenderSystem.setShaderTexture(2, target.getColorTextureId());
+        //RenderSystem.setShaderTexture(2, 2);
+//        VFXBuilders.createScreen()
+//                .setShader(cutout)
+//                .setTexture(FRAME_TEXTURE)
+//                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
+//                .blit(poseStack);
+
+        RenderSystem.setShaderTexture(0, FRAME_TEXTURE);
+        RenderSystem.setShader(() -> cutout);
+        BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        PoseStack.Pose last = guiGraphics.pose().last();
+
+        Vector2ic size = new Vector2i(BOOK_WIDTH, BOOK_HEIGHT);
+        Vector2ic offset = new Vector2i(0, 0);
+        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + offset.y(), 0).setUv(0,1).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(0,0).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(1,0).setColor(255,255,255,255);
+        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + offset.y(), 0).setUv(1,1).setColor(255,255,255,255);
+
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
+
+    }
+
+    public void renderBookInnards(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        var poseStack = guiGraphics.pose();
+
+        Matrix4f oldProjMat = RenderSystem.getProjectionMatrix();
+        Matrix4f newProjMat = getProjectionMatrix();
+
+        Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
+        matrix4fstack.pushMatrix();
+        matrix4fstack.set(getModelViewMatrix());
+        RenderSystem.applyModelViewMatrix();
+
+        RenderSystem.setProjectionMatrix(newProjMat, VertexSorting.ORTHOGRAPHIC_Z);
+        target.setClearColor(0, 0, 1, 1);
+        target.clear(Minecraft.ON_OSX);
+        target.bindWrite(true);
 
         renderBackground(poseStack);
-        GL11.glEnable(GL_SCISSOR_TEST);
-        constrictEntryRendering();
+        renderObjects(guiGraphics, mouseX, mouseY, partialTicks);
 
+        target.unbindWrite();
+        Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
+
+        matrix4fstack.popMatrix();
+        RenderSystem.applyModelViewMatrix();
+        RenderSystem.setProjectionMatrix(oldProjMat, VertexSorting.ORTHOGRAPHIC_Z);
+    }
+
+    public void renderObjects(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+        int guiLeft = getGuiLeft();
+        int guiTop = getGuiTop();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
         var x = Mth.lerp(delta, oldObjectXOffset, objectXOffset);
         var y = Mth.lerp(delta, oldObjectYOffset, objectYOffset);
-        float objectX = guiLeft + BOOK_INSIDE_WIDTH / 2f + x;
-        float objectY = guiTop + BOOK_INSIDE_HEIGHT / 2f + y;
-        progressionObjects.renderObjects(this, guiGraphics, objectX, objectY, mouseX, mouseY, partialTicks);
-        GL11.glDisable(GL_SCISSOR_TEST);
+        float objectX = guiLeft + BOOK_WIDTH / 2f + x;
+        float objectY = guiTop + BOOK_HEIGHT / 2f + y;
+        progressionObjects.renderObjects(this, graphics, objectX, objectY, mouseX, mouseY, partialTicks);
+    }
 
-        if (voidFadeoutTimer > 0) {
-            CodexRenderHelper.renderTransitionFade(this, poseStack);
-        }
-        renderFade(poseStack);
-        renderTexture(FRAME_TEXTURE, poseStack, guiLeft, guiTop, 400, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
-        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
-        doLateRendering();
+
+    public void constrictEntryRendering() {
+        int scale = (int) getMinecraft().getWindow().getGuiScale();
+        GL11.glScissor(
+                getGuiLeft() * scale,
+                getMinecraft().getWindow().getHeight() - (getGuiTop() + BOOK_HEIGHT) * scale,
+                BOOK_WIDTH * scale,
+                BOOK_HEIGHT * scale);
+    }
+
+    public Matrix4f getProjectionMatrix() {
+        int xOffset = 227;
+        int yOffset = 69;
+
+        return new Matrix4f().ortho(
+                xOffset, BOOK_WIDTH + xOffset,
+                BOOK_HEIGHT + yOffset, yOffset,
+                0.05f, 2000.0f
+        );
+    }
+
+    public Matrix4f getModelViewMatrix() {
+        Matrix4f matrix4f = new Matrix4f();
+        matrix4f.identity();
+        matrix4f.translate(0, 0, -2000);
+        return matrix4f;
     }
 
     @Override
@@ -223,38 +311,37 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         var offsets = clampOffsets(x, y, 0.8f, 0f, 1f);
         float xOffset = offsets.x;
         float yOffset = offsets.y;
-        int insideLeft = getInsideLeft();
-        int insideTop = getInsideTop();
+        int guiLeft = getGuiLeft();
+        int guiTop = getGuiTop();
         float uOffset = (backgroundImageWidth / 12f) - xOffset * xModifier;
-        float vOffset = (backgroundImageHeight - BOOK_INSIDE_HEIGHT) - yOffset * yModifier;
+        float vOffset = (backgroundImageHeight - BOOK_HEIGHT) - yOffset * yModifier;
         VFXBuilders.createScreen().setTexture(texture)
                 .setShader(GameRenderer::getPositionTexColorShader)
-                .setPositionWithWidth(insideLeft, insideTop, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT)
-                .setUVWithWidth(uOffset, vOffset, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT, backgroundImageWidth / 2f, backgroundImageHeight / 2f)
-                .setZLevel(-100)
+                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
+                .setUVWithWidth(uOffset, vOffset, BOOK_WIDTH, BOOK_HEIGHT, backgroundImageWidth / 2f, backgroundImageHeight / 2f)
                 .multiplyColor(0.75f)
                 .blit(poseStack);
     }
 
-    public void renderFade(PoseStack poseStack) {
-        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-        shaderInstance.safeGetUniform("YFrequency").set(32f);
-        shaderInstance.safeGetUniform("XFrequency").set(16f);
-        shaderInstance.safeGetUniform("Speed").set(1000f);
-        shaderInstance.safeGetUniform("Intensity").set(120f);
-        int insideLeft = getInsideLeft();
-        int insideTop = getInsideTop();
-        RenderSystem.depthMask(true);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        VFXBuilders.createScreen().setTexture(FRAME_FADE_TEXTURE)
-                .setShader(shaderInstance)
-                .setPositionWithWidth(insideLeft, insideTop, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT)
-                .setZLevel(400)
-                .blit(poseStack);
-        shaderInstance.setUniformDefaults();
-        RenderSystem.disableBlend();
-    }
+//    public void renderFade(PoseStack poseStack) {
+//        ExtendedShaderInstance shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
+//        shaderInstance.safeGetUniform("YFrequency").set(32f);
+//        shaderInstance.safeGetUniform("XFrequency").set(16f);
+//        shaderInstance.safeGetUniform("Speed").set(1000f);
+//        shaderInstance.safeGetUniform("Intensity").set(120f);
+//        int insideLeft = getInsideLeft();
+//        int insideTop = getInsideTop();
+//        RenderSystem.depthMask(true);
+//        RenderSystem.enableBlend();
+//        RenderSystem.defaultBlendFunc();
+//        VFXBuilders.createScreen().setTexture(FRAME_FADE_TEXTURE)
+//                .setShader(shaderInstance)
+//                .setPositionWithWidth(insideLeft, insideTop, BOOK_INSIDE_WIDTH, BOOK_INSIDE_HEIGHT)
+//                .setZLevel(400)
+//                .blit(poseStack);
+//        shaderInstance.setUniformDefaults();
+//        RenderSystem.disableBlend();
+//    }
 
 
     public Vec2 clampOffsets(float x, float y, float horizontalClamp, float bottomClamp, float topClamp) {
@@ -274,35 +361,28 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public boolean isInView(double x, double y) {
-        return x >= getInsideLeft()
-                && y >= getInsideTop()
-                && x <= (getInsideLeft() + BOOK_INSIDE_WIDTH)
-                && y <= (getInsideTop() + BOOK_INSIDE_HEIGHT);
+        int top = getGuiTop();
+        int left = getGuiLeft();
+        return x >= left
+                && y >= top
+                && x <= (left + BOOK_WIDTH)
+                && y <= (top + BOOK_HEIGHT);
     }
 
-    public void constrictEntryRendering() {
-        int scale = (int) getMinecraft().getWindow().getGuiScale();
-        GL11.glScissor(
-                getInsideLeft() * scale,
-                getMinecraft().getWindow().getHeight() - (getInsideTop() + BOOK_INSIDE_HEIGHT) * scale,
-                BOOK_INSIDE_WIDTH * scale,
-                BOOK_INSIDE_HEIGHT * scale);
-    }
+//    public int getInsideLeft() {
+//        return getGuiLeft() + 17;
+//    }
 
-    public int getInsideLeft() {
-        return getGuiLeft() + 17;
-    }
-
-    public int getInsideTop() {
-        return getGuiTop() + 14;
-    }
+//    public int getInsideTop() {
+//        return getGuiTop() + 14;
+//    }
 
     public int getGuiLeft() {
-        return (width - BOOK_WIDTH) / 2;
+        return width / 2 - BOOK_WIDTH / 2;
     }
 
     public int getGuiTop() {
-        return (height - BOOK_HEIGHT) / 2;
+        return height / 2 - BOOK_HEIGHT / 2;
     }
 
     public float getVoidFadeoutDelta() {

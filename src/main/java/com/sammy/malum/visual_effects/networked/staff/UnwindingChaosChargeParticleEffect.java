@@ -68,16 +68,16 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                     distance = new Vec3(0, 0.02f, 0);
                 }
                 float delta = Math.max(p.getAge() / (float) p.getLifetime(), 0);
-                float lerp = Easing.QUINTIC_IN_OUT.ease(delta, 0.05f, 0.5f);
-                float velocity = Easing.CIRC_IN.ease(delta, 0.05f, 0.2f + distance.length() * 1.2f);
+                float lerp = Easing.QUINTIC_IN_OUT.lerp(delta, 0.05f, 0.5f);
+                float velocity = (float) Easing.CIRC_IN.lerp(delta, 0.05f, 0.2f + distance.length() * 1.2f);
                 final Vec3 speed = p.getParticleSpeed().lerp(distance.normalize().scale(velocity), lerp);
                 p.setParticleSpeed(speed);
             };
 
             for (int i = 0; i < 16; i++) {
                 SpiritArcanaType cyclingSpiritType = colorData.getSpirit();
-                float spread = RandomHelper.randomBetween(random, 0.5f, 0.6f);
-                float speed = RandomHelper.randomBetween(random, 0.6f, 0.8f);
+                float spread = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 0.6f);
+                float speed = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 0.8f);
                 float angle = i / 16f * (float) Math.PI * 2f;
                 Vec3 particleDirection = direction
                         .add(left.scale(Math.sin(angle) * spread))
@@ -91,7 +91,7 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                 lightSpecs.getBuilder()
                         .setBehavior(SparkParticleBehavior.sparkBehavior())
                         .setLengthData(GenericParticleData.create(0.2f, 2f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 2, 2.5f)))
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 2, 2.5f)))
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
                         .setTransparencyData(transparencyData)
                         .setLifeDelay(lifeDelay)
@@ -103,7 +103,7 @@ public class UnwindingChaosChargeParticleEffect extends MalumNetworkedParticleEf
                         .setLifetime(lifetime)
                         .addTickActor(behavior)
                         .modifyColorData(c -> c.multiplyCoefficient(0.5f))
-                        .modifyScaleData(d -> d.multiplyValue(RandomHelper.randomBetween(random, 0.7f, 1.1f)))
+                        .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.7f, 1.1f)))
                         .modifyTransparencyData(d -> d.multiplyCoefficient(1.4f));
                 lightSpecs.spawnParticles();
 

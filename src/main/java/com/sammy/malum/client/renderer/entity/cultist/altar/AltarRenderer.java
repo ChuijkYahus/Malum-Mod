@@ -31,11 +31,11 @@ public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {
             float stretch;
             if (squishDelta < squishIn) {
                 float relative = squishDelta / squishIn;
-                var lerp = Easing.BACK_OUT.ease(relative, 0, 1);
+                var lerp = Easing.BACK_OUT.ease(relative);
                 stretch = Mth.lerp(lerp, 1, strength);
             } else {
                 float relative = (squishDelta - squishIn) / inverse;
-                var lerp = Easing.BOUNCE_OUT.ease(relative, 0, 1);
+                var lerp = Easing.BOUNCE_OUT.ease(relative);
                 stretch = Mth.lerp(lerp, strength, 1);
             }
             poseStack.scale(stretch, 1/stretch, stretch);

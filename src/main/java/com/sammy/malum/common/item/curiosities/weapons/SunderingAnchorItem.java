@@ -34,6 +34,7 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
@@ -99,7 +100,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, MalumGearSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, RandomHelper.randomBetween(level.getRandom(), 1.5f, 2f));
+            SoundHelper.playSound(player, MalumGearSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.5f, 2f));
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_THE_ANCHOR);
             applyCooldown(stack, player);
         }
@@ -130,7 +131,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                     }
                 }
                 event.setNewDamage(splitDamage);
-                float pitch = RandomHelper.randomBetween(level.getRandom(), 1, 1.2f);
+                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1, 1.2f);
                 SoundHelper.playSound(attacker, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
                 MalumParticleEffectTypes.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)

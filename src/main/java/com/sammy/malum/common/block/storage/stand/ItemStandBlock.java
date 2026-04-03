@@ -9,14 +9,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING;
 
+@SuppressWarnings("NullableProblems")
 public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedEntityBlock<T> {
+
+    public static DirectionProperty FACING = BlockStateProperties.FACING;
 
     public static final VoxelShape UP = Block.box(4, 0, 4, 12, 2, 12);
     public static final VoxelShape DOWN = Block.box(4, 14, 4, 12, 16, 12);
@@ -75,8 +79,9 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
         super.createBlockStateDefinition(builder);
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext p_152803_) {
-        return super.getStateForPlacement(p_152803_).setValue(FACING, p_152803_.getClickedFace());
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context). setValue(FACING, context.getClickedFace());
     }
 }

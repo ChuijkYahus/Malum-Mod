@@ -217,9 +217,9 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
             var length = getDeltaMovement().length();
             var disharmony = 0.25f * (1 - delta) / Math.max(speed, 0.1f);
             var addedOffset = new Vec3(
-                    RandomHelper.randomBetween(random, -disharmony, disharmony),
-                    RandomHelper.randomBetween(random, -disharmony, disharmony),
-                    RandomHelper.randomBetween(random, -disharmony, disharmony)
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony)
             );
             var newMovement = getDeltaMovement().add(addedOffset).normalize().scale(length);
             setDeltaMovement(newMovement);
@@ -245,12 +245,12 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
 
     @Override
     public float getMovementSpeed(float windUp, float distance) {
-        return (0.4f + Easing.EXPO_OUT.ease(windUp, 0, 1.6f + speed * 0.4f));
+        return (0.4f + Easing.EXPO_OUT.lerp(windUp, 0, 1.6f + speed * 0.4f));
     }
 
     @Override
     public float getMovementEasing(float windUp, float distance) {
-        return 0.1f + Easing.EXPO_IN.ease(windUp, 0, 0.4f);
+        return 0.1f + Easing.EXPO_IN.lerp(windUp, 0, 0.4f);
     }
 
     public SpiritArcanaType getSpiritType() {

@@ -5,13 +5,18 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 
 public class TextPage extends BookPage {
     public final Component text;
 
     public TextPage(String text) {
-        super(null);
         this.text = Component.translatable(BookPage.TEXT + "." + text);
+    }
+
+    @Override
+    public ResourceLocation getBackground(boolean isRightSide) {
+        return null;
     }
 
     @Override

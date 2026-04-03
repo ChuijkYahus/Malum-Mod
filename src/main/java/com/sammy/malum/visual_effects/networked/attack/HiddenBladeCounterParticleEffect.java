@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.data.*;
@@ -27,19 +28,19 @@ public class HiddenBladeCounterParticleEffect extends MalumNetworkedWeaponPartic
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 100; j++) {
                 var direction = extraData.getDirection();
-                float offsetBase = RandomHelper.randomBetween(random, 0.314f, 3.14f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
+                float offsetBase = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.314f, 3.14f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
                 float spinOffset = extraData.getSlashRotation() + (j % 2 == 0 ? 1 : -1) * offsetBase;
-                float scale = RandomHelper.randomBetween(random, 2f, 6f);
+                float scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 2f, 6f);
                 int lifeDelay = (j % 2 == 0 ? 2 : 0) + i + j / 6;
                 var position = positionData.getAsVector().add(direction.multiply(
-                        RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
-                        RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset),
-                        RandomHelper.randomBetween(random, -maxBackwardsOffset, maxForwardsOffset)));
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -maxBackwardsOffset, maxForwardsOffset),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -maxBackwardsOffset, maxForwardsOffset),
+                        Easing.SINE_IN_OUT.asWeighedRandom(random, -maxBackwardsOffset, maxForwardsOffset)));
                 var slash = WeaponParticleEffects.spawnSlashParticle(level, position, random.nextBoolean() ? MalumParticles.SLASH : MalumParticles.THIN_SLASH, colorData);
                 slash.getBuilder()
                         .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
                         .setScaleData(GenericParticleData.create(scale).build())
-                        .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.3f, 0.5f)))
+                        .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.3f, 0.5f)))
                         .setLifeDelay(lifeDelay)
                         .setLifetime(2 + i)
                         .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));

@@ -1,11 +1,10 @@
 package com.sammy.malum.common.block.curiosities.spirit_altar;
 
 import com.sammy.malum.common.block.MalumBlockItemStackHandler;
-import com.sammy.malum.common.block.MalumSpiritBlockItemStackHandler;
 import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
+import com.sammy.malum.common.block.storage.ItemHolderItemDisplayData;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
-import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
@@ -19,7 +18,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -27,7 +25,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -36,30 +33,22 @@ import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackMultiHandler;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
-import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
+@SuppressWarnings("NullableProblems")
 public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
 
-    public static final Vec3 ALTAR_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
     public static final int HORIZONTAL_RANGE = 4;
     public static final int VERTICAL_RANGE = 3;
-    private static final int WARMUP_DURATION = 30;
 
     public float speed = 1f;
     public int progress;
     public int idleProgress;
     public boolean isCrafting;
-    public float warmupTimer;
-
-    public float spiritAmount;
-    public float spiritSpin;
 
     public List<BlockPos> acceleratorPositions = new ArrayList<>();
     public List<IAltarAccelerator> accelerators = new ArrayList<>();
@@ -72,12 +61,15 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
     public Map<SpiritInfusionRecipe, AltarCraftingHelper.Ranking> possibleRecipes = new HashMap<>();
     public SpiritInfusionRecipe recipe;
 
-    public SpiritAltarBlockEntity(BlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
+    public SpiritAltarBlockEntity(LodestoneBlockEntityType<? extends SpiritAltarBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         inventory = MalumBlockItemStackHandler.create(this, 1).noSpirits().onContentsChanged(this::recalculateRecipes).build();
         extrasInventory = MalumBlockItemStackHandler.create(this, 32).noSpirits().build();
         spiritInventory = MalumBlockItemStackHandler.create(this, 9).onlySpirits().onContentsChanged(this::recalculateRecipes).build();
-        inventoryHandler = new ItemStackMultiHandler(inventory, extrasInventory, spiritInventory);
+
+        inventory.attachDisplayData(ItemHolderItemDisplayData::new);
+        spiritInventory.attachDisplayData(SpiritAltarSpiritDisplayData::new);
+        inventoryHandler = new ItemStackMultiHandler(inventory, spiritInventory);
     }
 
     public SpiritAltarBlockEntity(BlockPos pos, BlockState state) {
@@ -90,24 +82,23 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        super.saveAdditional(compound, pRegistries);
-        compound.putFloat("speed", speed);
-        compound.putInt("progress", progress);
-        compound.putInt("idleProgress", idleProgress);
-        compound.putBoolean("isCrafting", isCrafting);
-        compound.putFloat("warmupTimer", warmupTimer);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putFloat("speed", speed);
+        tag.putInt("progress", progress);
+        tag.putInt("idleProgress", idleProgress);
+        tag.putBoolean("isCrafting", isCrafting);
 
         var acceleratorData = new CompoundTag();
         acceleratorData.putInt("acceleratorAmount", acceleratorPositions.size());
         for (int i = 0; i < acceleratorPositions.size(); i++) {
             acceleratorData.put("acceleratorPosition_" + i, NBTHelper.saveBlockPos(acceleratorPositions.get(i)));
         }
-        compound.put("acceleratorData", acceleratorData);
+        tag.put("acceleratorData", acceleratorData);
 
-        inventory.save(pRegistries, compound);
-        spiritInventory.save(pRegistries, compound, "spiritInventory");
-        extrasInventory.save(pRegistries, compound, "extrasInventory");
+        inventory.save(registries, tag);
+        spiritInventory.save(registries, tag, "spiritInventory");
+        extrasInventory.save(registries, tag, "extrasInventory");
     }
 
     @Override
@@ -116,7 +107,6 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
         progress = compound.getInt("progress");
         idleProgress = compound.getInt("idleProgress");
         isCrafting = compound.getBoolean("isCrafting");
-        warmupTimer = compound.getFloat("warmupTimer");
 
         acceleratorPositions.clear();
         accelerators.clear();
@@ -198,19 +188,14 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
 
     @Override
     public void clientTick(Level level) {
-        spiritAmount = Math.max(1, Mth.lerp(0.1f, spiritAmount, spiritInventory.getFilledSlotCount()));
-        spiritSpin += 1 + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
         SpiritAltarParticleEffects.passiveSpiritAltarParticles(this);
     }
 
     @Override
     public void commonTick(Level level) {
-        if (!possibleRecipes.isEmpty()) {
-            warmupTimer++;
-        } else {
+        if (possibleRecipes.isEmpty()) {
             isCrafting = false;
             progress = 0;
-            warmupTimer = Mth.clamp(warmupTimer - 1, 0, WARMUP_DURATION);
         }
     }
 
@@ -282,36 +267,26 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
     }
 
     public void craft(ServerLevel level) {
-        ItemStack stack = inventory.getStackInSlot(0);
-        ItemStack outputStack = recipe.getOutput(level, stack);
-        Vec3 itemPos = getItemPos();
-        extrasInventory.clear();
+        var stack = inventory.getStackInSlot(0);
+        var outputStack = recipe.getOutput(level, stack);
+        var itemPos = inventory.getDisplayData().getDisplayCenter(0);
         progress -= (int) (progress * 0.2f);
         stack.shrink(recipe.input.count());
         level.addFreshEntity(new ItemEntity(level, itemPos.x, itemPos.y, itemPos.z, outputStack));
 
-        spendSpiritsOnRecipe();
+        spiritInventory.spendSpiritsOnRecipe(recipe.spirits);
+        extrasInventory.clear();
+        recalibrateAccelerators();
+        accelerators.forEach(a -> a.completeSpiritInfusion(level, this));
+
         MalumParticleEffectTypes.SPIRIT_ALTAR_CRAFTS
                 .createEffect(worldPosition)
                 .color(MalumNetworkedParticleEffectColorData.fromSpirits(recipe.spirits))
                 .spawn(level);
         level.playSound(null, worldPosition, MalumSoundEvents.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 0.9f + level.random.nextFloat() * 0.2f);
-        recalibrateAccelerators();
-        accelerators.forEach(a -> a.completeSpiritInfusion(level, this));
         recalculateRecipes();
         notifyObservers();
         setDirty();
-    }
-
-    public void spendSpiritsOnRecipe() {
-        for (SpiritIngredient spiritIngredient : recipe.spirits) {
-            for (ItemStack spirit : spiritInventory.getNonEmptyStacks()) {
-                if (spiritIngredient.test(spirit)) {
-                    spirit.shrink(spiritIngredient.count());
-                    break;
-                }
-            }
-        }
     }
 
     public void recalibrateAccelerators() {
@@ -332,31 +307,5 @@ public class SpiritAltarBlockEntity extends LodestoneBlockEntity implements IInv
                 }
             }
         }
-    }
-
-    public Vec3 getCentralItemOffset() {
-        return ALTAR_ITEM_OFFSET;
-    }
-
-    public Vec3 getItemPos() {
-        final BlockPos blockPos = getBlockPos();
-        final Vec3 offset = getCentralItemOffset();
-        return new Vec3(blockPos.getX() + offset.x, blockPos.getY() + offset.y, blockPos.getZ() + offset.z);
-    }
-
-    public Vec3 getSpiritItemOffset(int slot, float partialTicks) {
-        float projectedSpiritSpin = spiritSpin + getSpinUp(Easing.SINE_IN_OUT) * 0.05f + speed * 0.5f;
-        float lerpSpiritSpin = spiritSpin + partialTicks * (projectedSpiritSpin - spiritSpin);
-        float distanceOscillation = Mth.sin((lerpSpiritSpin / 20f) % 6.28f) * 0.025f;
-        float distance = 1 - getSpinUp(Easing.SINE_OUT) * 0.25f + distanceOscillation;
-        float height = 0.75f + getSpinUp(Easing.QUARTIC_OUT) * getSpinUp(Easing.BACK_OUT) * 0.5f;
-        return VecHelper.rotatingRadialOffset(new Vec3(0.5f, height, 0.5f), distance, slot, spiritAmount, lerpSpiritSpin, 360);
-    }
-
-    public float getSpinUp(Easing easing) {
-        if (warmupTimer > WARMUP_DURATION) {
-            return 1;
-        }
-        return easing.ease(warmupTimer / WARMUP_DURATION, 0, 1, 1);
     }
 }

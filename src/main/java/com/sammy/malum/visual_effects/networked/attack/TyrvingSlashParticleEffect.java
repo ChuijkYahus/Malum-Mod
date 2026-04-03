@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;
@@ -25,7 +26,7 @@ public class TyrvingSlashParticleEffect extends MalumNetworkedWeaponParticleEffe
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
-        float offsetBase = RandomHelper.randomBetween(random, 0.4f, 0.8f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
+        float offsetBase = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.4f, 0.8f) * (random.nextBoolean() ? 1 : -1) + (extraData.isMirrored() ? 3.14f : 0);
         for (int i = 0; i < 8; i++) {
             ParticleEffectSpawner slash;
             if (i >= 6) {
@@ -39,8 +40,8 @@ public class TyrvingSlashParticleEffect extends MalumNetworkedWeaponParticleEffe
             int lifeDelay = (i % 2 == 0 ? 3 : 0);
             slash.getBuilder()
                     .setSpinData(SpinParticleData.create(0).setSpinOffset(spinOffset).build())
-                    .setScaleData(GenericParticleData.create(RandomHelper.randomBetween(random, 1f, 2f)).build())
-                    .setMotion(direction.scale(RandomHelper.randomBetween(random, 0.5f, 0.7f)))
+                    .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)).build())
+                    .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 0.7f)))
                     .setLifeDelay(lifeDelay)
                     .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
             slash.spawnParticles();

@@ -14,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.*;
 
@@ -36,7 +37,7 @@ public class RepairPylonRenderer implements BlockEntityRenderer<RepairPylonCoreB
         LodestoneItemStackHandler inventory = blockEntityIn.spiritInventory;
         int spiritsRendered = 0;
         if (!inventory.isEmpty()) {
-            for (int i = 0; i < inventory.slotCount; i++) {
+            for (int i = 0; i < inventory.getSlotCount(); i++) {
                 ItemStack item = inventory.getStackInSlot(i);
                 if (item.getItem() instanceof SpiritShardItem shardItem) {
                     poseStack.pushPose();

@@ -16,11 +16,11 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
+import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneAxeItem;
 import team.lodestar.lodestone.registry.common.tag.*;
-import team.lodestar.lodestone.systems.enchanting.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
-
-import team.lodestar.lodestone.systems.item.tools.*;
 
 import static com.sammy.malum.common.item.curiosities.weapons.scythe.EdgeOfDeliveranceItem.triggerMalignantCrit;
 
@@ -77,7 +77,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                         .horizontalOffset(0.4f)
                         .forwardOffset(0.8f);
                 if (source.is(MalumTags.DamageTypeTags.IS_INVERTED_HEART)) {
-                    effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(RandomHelper.randomBetween(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
+                    effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
                 }
                 effectBuilder.spawn(level);
                 SoundHelper.playSound(target, MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT.get(), SoundSource.PLAYERS, 2f, 0.75f);

@@ -5,8 +5,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import team.lodestar.lodestone.systems.item.LodestoneItemProperties;
-import team.lodestar.lodestone.systems.item.tools.LodestoneSwordItem;
+import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
+import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneSwordItem;
 
 public class ShapedSlabSwordItem extends LodestoneSwordItem {
 
