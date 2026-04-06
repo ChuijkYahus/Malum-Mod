@@ -13,6 +13,7 @@ import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
+@Deprecated
 public class HeadlineTextIconPage extends HeadlineTextPage {
 
     private static final ResourceLocation GLOW_TEXTURE = malumPath("textures/gui/book/icon_glow.png");

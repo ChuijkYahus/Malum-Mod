@@ -197,6 +197,14 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     }
 
     @Override
+    public boolean tryRelease(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
+        if (isActive) {
+            return objects.release(screen, mouseX, mouseY);
+        }
+        return super.tryRelease(screen, mouseX, mouseY);
+    }
+
+    @Override
     public boolean click(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         for (BookObject<AbstractProgressionCodexScreen> object : screen.progressionObjects.getObjects()) {
             if (object instanceof SubspaceEntryObject otherSubspace) {

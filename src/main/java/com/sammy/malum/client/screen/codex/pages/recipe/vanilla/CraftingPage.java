@@ -15,6 +15,8 @@ import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.util.*;
 
+import static net.minecraft.world.item.Items.AIR;
+
 public class CraftingPage extends BookPage {
 
     public static final ResourceLocation CRAFTING_SEGMENTS = MalumMod.malumPath("textures/gui/book/entry_elements/crafting_segments.png");
@@ -73,6 +75,10 @@ public class CraftingPage extends BookPage {
         CodexItemHelper.renderItem(screen, guiGraphics, outputStack, left + 63, top + 162, mouseX, mouseY);
     }
 
+    public static CraftingPage topAndMiddle(Item output, Item top, Item middle) {
+        return new CraftingPage(output.getDefaultInstance(), AIR, top, AIR, AIR, middle);
+    }
+
     public static CraftingPage shapeless(Item output, Item... inputs) {
         return new CraftingPage(output.getDefaultInstance(), inputs);
     }
@@ -95,7 +101,7 @@ public class CraftingPage extends BookPage {
 
     public static CraftingPage scythePage(ItemStack scythe, ItemStack metal, ItemStack reagent) {
         ItemStack stick = Items.STICK.getDefaultInstance();
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return new CraftingPage(scythe, metal, metal, reagent, empty, stick, metal, stick, empty, empty);
     }
 
@@ -104,24 +110,24 @@ public class CraftingPage extends BookPage {
     }
 
     public static CraftingPage broochPage(ItemStack brooch, ItemStack material, ItemStack ingot, ItemStack block) {
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return new CraftingPage(brooch, empty, material, empty, material, ingot, material, empty, block, empty);
     }
 
     public static CraftingPage beltPage(Item belt, Item material) {
-        var empty = Items.AIR;
+        var empty = AIR;
         var leather = Items.LEATHER;
         return new CraftingPage(belt, empty, leather, empty, leather, empty, leather, empty, material, empty);
     }
 
     public static CraftingPage necklacePage(Item necklace, Item material) {
-        var empty = Items.AIR;
+        var empty = AIR;
         var weave = MalumItems.EERIE_WEAVE.get();
         return new CraftingPage(necklace, empty, weave, empty, weave, empty, weave, empty, material, empty);
     }
 
     public static CraftingPage ringPage(Item ring, Item material) {
-        var empty = Items.AIR;
+        var empty = AIR;
         var leather = Items.LEATHER;
         return new CraftingPage(ring, material, leather, empty, leather, empty, leather, empty, leather, empty);
     }
@@ -131,7 +137,7 @@ public class CraftingPage extends BookPage {
     }
 
     public static CraftingPage itemPedestalPage(ItemStack pedestal, ItemStack fullBlock, ItemStack slab) {
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return new CraftingPage(pedestal, slab, slab, slab, empty, fullBlock, empty, slab, slab, slab);
     }
 
@@ -140,7 +146,7 @@ public class CraftingPage extends BookPage {
     }
 
     public static CraftingPage itemStandPage(ItemStack stand, ItemStack fullBlock, ItemStack slab) {
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return new CraftingPage(stand.copyWithCount(2), empty, empty, empty, slab, slab, slab, fullBlock, fullBlock, fullBlock);
     }
 
@@ -150,7 +156,7 @@ public class CraftingPage extends BookPage {
 
     public static CraftingPage toolPage(ItemStack tool, ItemStack metal) {
         ItemStack stick = Items.STICK.getDefaultInstance();
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return switch (tool.getItem()) {
             case SwordItem swordItem ->
                     new CraftingPage(tool, empty, metal, empty, empty, metal, empty, empty, stick, empty);
@@ -172,7 +178,7 @@ public class CraftingPage extends BookPage {
 
     public static CraftingPage knifePage(ItemStack tool, ItemStack metal) {
         ItemStack stick = Items.STICK.getDefaultInstance();
-        var empty = Items.AIR.getDefaultInstance();
+        var empty = AIR.getDefaultInstance();
         return new CraftingPage(tool, empty, empty, empty, empty, metal, empty, stick, empty) {
             @Override
             public boolean isValid() {

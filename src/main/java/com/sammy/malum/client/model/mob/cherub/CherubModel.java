@@ -3,6 +3,7 @@ package com.sammy.malum.client.model.mob.cherub;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.CultistHumanoidModel;
 import com.sammy.malum.client.model.mob.MalumAnimationUtils;
+import com.sammy.malum.client.model.mob.cardinal.CardinalAnimations;
 import com.sammy.malum.common.entity.mob.cultist.cherub.CherubCultist;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -88,29 +89,11 @@ public class CherubModel extends CultistHumanoidModel<CherubCultist> {
 		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
-		float armRotation = Mth.sin(ageInTicks * 5.5F * Mth.DEG_TO_RAD) * 0.1F;
-		float rightArmRotation = utils.getRightArmRotation(d -> d
-				.setRate(0.25F).setAmount(0.3F).setEasing(Easing.SINE_IN_OUT).addClamp(armClamp));
-		float leftArmRotation = utils.getLeftArmRotation(d -> d
-				.setRate(0.25F).setAmount(0.3F).setEasing(Easing.SINE_IN_OUT).addClamp(armClamp));
-
-		float backLeft = (Mth.sin(ageInTicks * 0.1f + 0.785f) * 0.6F);
-		float backRight = -(Mth.sin(ageInTicks * 0.1f + 1.57f) * 0.6F);
-		float frontLeft = (Mth.sin(ageInTicks * 0.1f + 2.355f) * 0.6F);
-		float frontRight = -(Mth.sin(ageInTicks * 0.1f + 3.14f) * 0.6F);
-
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
-		rightArm.zRot = (float) (Math.PI / 5) + armRotation;
-		leftArm.zRot = -((float) (Math.PI / 5) + armRotation);
-		rightArm.xRot = rightArmRotation;
-		leftArm.xRot = leftArmRotation;
-
-		backLeftWing.yRot = backLeft;
-		backRightWing.yRot = backRight;
-		frontLeftWing.yRot = frontLeft;
-		frontRightWing.yRot = frontRight;
+		animate(cherub.idleAnimationState, CherubAnimations.IDLE, ageInTicks);
+		animate(cherub.castAnimationState, CherubAnimations.CAST, ageInTicks);
 
 	}
 }

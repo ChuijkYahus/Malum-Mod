@@ -13,7 +13,7 @@ public class SubspaceEntryObjectHandler extends EntryObjectHandler {
         super.setupEntryObjects(screen, entries);
         for (BookObject<AbstractProgressionCodexScreen> object : objects) {
             //A bit ugly, ideally this should be part of some sorta builder, but who cares
-            object.isSubspace = true;
+            object.isInSubspace = true;
         }
     }
 }

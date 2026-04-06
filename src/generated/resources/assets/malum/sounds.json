@@ -21,6 +21,51 @@
     ],
     "subtitle": "malum.subtitle.alchemical_trinket_equipped"
   },
+  "altar_bestows_blessing": {
+    "sounds": [
+      "malum:mob/cultist/altar/impact_bless1",
+      "malum:mob/cultist/altar/impact_bless2",
+      "malum:mob/cultist/altar/impact_bless3",
+      "malum:mob/cultist/altar/impact_bless4"
+    ],
+    "subtitle": "malum.subtitle.altar_bestows_blessing"
+  },
+  "altar_bestows_curse": {
+    "sounds": [
+      "malum:mob/cultist/altar/impact_curse1",
+      "malum:mob/cultist/altar/impact_curse2",
+      "malum:mob/cultist/altar/impact_curse3",
+      "malum:mob/cultist/altar/impact_curse4"
+    ],
+    "subtitle": "malum.subtitle.altar_bestows_curse"
+  },
+  "altar_bites_assailant": {
+    "sounds": [
+      "malum:mob/cultist/altar/attack1",
+      "malum:mob/cultist/altar/attack2",
+      "malum:mob/cultist/altar/attack3",
+      "malum:mob/cultist/altar/attack4"
+    ],
+    "subtitle": "malum.subtitle.altar_bites_assailant"
+  },
+  "altar_channels_blessing": {
+    "sounds": [
+      "malum:mob/cultist/altar/shoot_bless1",
+      "malum:mob/cultist/altar/shoot_bless2",
+      "malum:mob/cultist/altar/shoot_bless3",
+      "malum:mob/cultist/altar/shoot_bless4"
+    ],
+    "subtitle": "malum.subtitle.altar_channels_blessing"
+  },
+  "altar_channels_curse": {
+    "sounds": [
+      "malum:mob/cultist/altar/shoot_curse1",
+      "malum:mob/cultist/altar/shoot_curse2",
+      "malum:mob/cultist/altar/shoot_curse3",
+      "malum:mob/cultist/altar/shoot_curse4"
+    ],
+    "subtitle": "malum.subtitle.altar_channels_curse"
+  },
   "altar_death": {
     "sounds": [
       {
@@ -87,6 +132,51 @@
       }
     ],
     "subtitle": "malum.subtitle.altar_idle"
+  },
+  "altar_skitters_away": {
+    "sounds": [
+      "malum:mob/cultist/altar/flee1",
+      "malum:mob/cultist/altar/flee2",
+      "malum:mob/cultist/altar/flee3",
+      "malum:mob/cultist/altar/flee4"
+    ],
+    "subtitle": "malum.subtitle.altar_skitters_away"
+  },
+  "arcana_button_click": {
+    "sounds": [
+      "malum:codex/button/click1",
+      "malum:codex/button/click2",
+      "malum:codex/button/click3",
+      "malum:codex/button/click4"
+    ],
+    "subtitle": "malum.subtitle.arcana_button_click"
+  },
+  "arcana_button_hover": {
+    "sounds": [
+      "malum:codex/button/hover1",
+      "malum:codex/button/hover2",
+      "malum:codex/button/hover3",
+      "malum:codex/button/hover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_button_hover"
+  },
+  "arcana_button_unclick": {
+    "sounds": [
+      "malum:codex/button/unclick1",
+      "malum:codex/button/unclick2",
+      "malum:codex/button/unclick3",
+      "malum:codex/button/unclick4"
+    ],
+    "subtitle": "malum.subtitle.arcana_button_unclick"
+  },
+  "arcana_button_unhover": {
+    "sounds": [
+      "malum:codex/button/unhover1",
+      "malum:codex/button/unhover2",
+      "malum:codex/button/unhover3",
+      "malum:codex/button/unhover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_button_unhover"
   },
   "arcana_codex_closed": {
     "sounds": [
@@ -2349,6 +2439,24 @@
     ],
     "subtitle": "malum.subtitle.catalyst_lobber_unlocked"
   },
+  "cherub_casts_curse": {
+    "sounds": [
+      "malum:mob/cultist/cherub/cast_curse1",
+      "malum:mob/cultist/cherub/cast_curse2",
+      "malum:mob/cultist/cherub/cast_curse3",
+      "malum:mob/cultist/cherub/cast_curse4"
+    ],
+    "subtitle": "malum.subtitle.cherub_casts_curse"
+  },
+  "cherub_casts_heal": {
+    "sounds": [
+      "malum:mob/cultist/cherub/cast_heal1",
+      "malum:mob/cultist/cherub/cast_heal2",
+      "malum:mob/cultist/cherub/cast_heal3",
+      "malum:mob/cultist/cherub/cast_heal4"
+    ],
+    "subtitle": "malum.subtitle.cherub_casts_heal"
+  },
   "cherub_death": {
     "sounds": [
       {
@@ -2415,6 +2523,15 @@
       }
     ],
     "subtitle": "malum.subtitle.cherub_idle"
+  },
+  "cherub_prepares_spell": {
+    "sounds": [
+      "malum:mob/cultist/cherub/prepare_spell1",
+      "malum:mob/cultist/cherub/prepare_spell2",
+      "malum:mob/cultist/cherub/prepare_spell3",
+      "malum:mob/cultist/cherub/prepare_spell4"
+    ],
+    "subtitle": "malum.subtitle.cherub_prepares_spell"
   },
   "chiseled_dross_stone_break": {
     "sounds": [

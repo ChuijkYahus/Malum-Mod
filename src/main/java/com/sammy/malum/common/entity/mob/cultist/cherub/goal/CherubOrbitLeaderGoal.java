@@ -12,6 +12,7 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.EnumSet;
 
+import static com.sammy.malum.common.entity.mob.cultist.cherub.CherubCultist.LEADER_ORBIT_RADIUS;
 import static com.sammy.malum.common.entity.mob.cultist.cherub.CherubCultist.LEADER_ORBIT_RATE;
 
 public class CherubOrbitLeaderGoal extends Goal {
@@ -19,16 +20,12 @@ public class CherubOrbitLeaderGoal extends Goal {
     protected final CherubCultist cherub;
 
     protected final double speedModifier;
-    protected final float orbitRadius;
-    protected final float orbitRate;
 
     private float randomizedOrbitRate;
 
-    public CherubOrbitLeaderGoal(CherubCultist cherub, double speedModifier, float orbitRadius, float orbitRate) {
+    public CherubOrbitLeaderGoal(CherubCultist cherub, double speedModifier) {
         this.cherub = cherub;
         this.speedModifier = speedModifier;
-        this.orbitRadius = orbitRadius;
-        this.orbitRate = orbitRate;
         this.setFlags(EnumSet.of(Flag.MOVE));
     }
 
@@ -47,15 +44,11 @@ public class CherubOrbitLeaderGoal extends Goal {
         var leader = cherub.getLeader();
         if (leader instanceof ICherubFriend friend) {
             var moveControl = cherub.getMoveControl();
-            moveControl.setRandomOrbitOffset(orbitRadius);
+            var orbitRate = LEADER_ORBIT_RATE;
+            moveControl.setRandomOrbitOffset(LEADER_ORBIT_RADIUS);
             flyTowardsLeader(moveControl, friend);
             randomizedOrbitRate = Easing.SINE_IN_OUT.asWeighedRandom(cherub.getRandom(), -orbitRate, orbitRate);
         }
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
     }
 
     @Override
@@ -69,13 +62,17 @@ public class CherubOrbitLeaderGoal extends Goal {
         if (leader instanceof ICherubFriend friend) {
             var moveControl = cherub.getMoveControl();
             flyTowardsLeader(moveControl, friend);
-            var target = cherub.getTarget();
-            if (target == null) {
-                cherub.faceTarget(leader);
+            var cherubTarget = cherub.getTarget();
+            var leaderTarget = leader.getTarget();
+            if (cherubTarget == null && leaderTarget == null) {
+                cherub.lookAtAndFaceTarget(leader);
+                return;
             }
-            else {
-                cherub.faceTarget(target);
+            if (leaderTarget != null) {
+                cherub.lookAtAndFaceTarget(leaderTarget);
+                return;
             }
+            cherub.lookAtAndFaceTarget(cherubTarget);
         }
     }
 

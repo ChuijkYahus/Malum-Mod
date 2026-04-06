@@ -112,7 +112,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
+        return createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.12)

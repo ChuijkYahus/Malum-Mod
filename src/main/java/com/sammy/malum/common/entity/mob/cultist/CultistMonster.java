@@ -142,14 +142,14 @@ public abstract class CultistMonster extends Monster implements Enemy {
 
     @Override
     public boolean doHurtTarget(@NotNull Entity target) {
-        if (super.doHurtTarget(target)) {
-            float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
-            var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
-            target.invulnerableTime = 0;
-            target.hurt(damagesource, magicDamage);
+        boolean hurt = super.doHurtTarget(target);
+        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
+        var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
+        target.invulnerableTime = 0;
+        if (target.hurt(damagesource, magicDamage)) {
             return true;
         }
-        return false;
+        return hurt;
     }
 
     @SuppressWarnings("deprecation")
@@ -194,10 +194,14 @@ public abstract class CultistMonster extends Monster implements Enemy {
         empowermentVisibility = DataHelper.approach(empowermentDuration, hasEmpowerment() ? 1 : 0, 0.1f);
     }
 
-    public void startAnimation(AnimationState animation) {
+    public boolean startAnimation(AnimationState animation) {
         animation.start(tickCount);
+        return true;
     }
 
+    public void broadcastAnimation(byte animationEvent) {
+        level().broadcastEntityEvent(this, animationEvent);
+    }
 
     public void broadcastAnimation(byte animationEvent, Supplier<SoundEvent> sound) {
         level().broadcastEntityEvent(this, animationEvent);
@@ -234,7 +238,10 @@ public abstract class CultistMonster extends Monster implements Enemy {
         return getNavigation().createPath(escapePos.x, escapePos.y, escapePos.z, 0);
     }
 
-    public void lookAtAndFaceTarget(Entity target) {
+    public void lookAtAndFaceTarget(@Nullable Entity target) {
+        if (target == null) {
+            return;
+        }
         if (navigation.getPath() != null && !navigation.isDone()) {
             getMoveControl().replaceBodyDirection(CultistMoveControl.BodyDirection.FACE_TARGET);
         } else {

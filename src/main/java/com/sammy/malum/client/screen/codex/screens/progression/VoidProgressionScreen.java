@@ -29,6 +29,6 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
 
     @Override
     public void setupEntries() {
-        VoidCodexEntries.setupEntries(this);
+//        VoidCodexEntries.setupEntries(this);
     }
 }

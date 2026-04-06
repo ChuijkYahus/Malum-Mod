@@ -55,10 +55,11 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
+        return createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.ATTACK_DAMAGE, 2.0)
                 .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.25)
                 .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75)

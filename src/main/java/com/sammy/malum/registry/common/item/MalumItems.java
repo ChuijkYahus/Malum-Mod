@@ -661,8 +661,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> RUNEWOOD = register("runewood", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNEWOOD.get(), p));
     public static final DeferredHolder<Item, Item> STRIPPED_RUNEWOOD = register("stripped_runewood", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.STRIPPED_RUNEWOOD.get(), p));
 
-    public static final DeferredHolder<Item, Item> EXPOSED_RUNEWOOD_LOG = register("exposed_runewood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EXPOSED_RUNEWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> REVEALED_RUNEWOOD_LOG = register("revealed_runewood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.REVEALED_RUNEWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> SAPPY_RUNEWOOD_LOG = register("sappy_runewood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SAPPY_RUNEWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_SAPPY_RUNEWOOD_LOG = register("stripped_sappy_runewood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.STRIPPED_SAPPY_RUNEWOOD_LOG.get(), p));
 
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOARDS = register("runewood_boards", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNEWOOD_BOARDS.get(), p));
     public static final DeferredHolder<Item, Item> RUNEWOOD_BOARDS_STAIRS = register("runewood_boards_stairs", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.RUNEWOOD_BOARDS_STAIRS.get(), p));
@@ -792,8 +792,8 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> SOULWOOD = register("soulwood", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD.get(), p));
     public static final DeferredHolder<Item, Item> STRIPPED_SOULWOOD = register("stripped_soulwood", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.STRIPPED_SOULWOOD.get(), p));
 
-    public static final DeferredHolder<Item, Item> EXPOSED_SOULWOOD_LOG = register("exposed_soulwood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.EXPOSED_SOULWOOD_LOG.get(), p));
-    public static final DeferredHolder<Item, Item> REVEALED_SOULWOOD_LOG = register("revealed_soulwood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.REVEALED_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> SAPPY_SOULWOOD_LOG = register("sappy_soulwood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SAPPY_SOULWOOD_LOG.get(), p));
+    public static final DeferredHolder<Item, Item> STRIPPED_SAPPY_SOULWOOD_LOG = register("stripped_sappy_soulwood_log", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.STRIPPED_SAPPY_SOULWOOD_LOG.get(), p));
 
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS = register("soulwood_boards", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS.get(), p));
     public static final DeferredHolder<Item, Item> SOULWOOD_BOARDS_STAIRS = register("soulwood_boards_stairs", MalumItems::DEFAULT_PROPERTIES, (p) -> new BlockItem(MalumBlocks.SOULWOOD_BOARDS_STAIRS.get(), p));

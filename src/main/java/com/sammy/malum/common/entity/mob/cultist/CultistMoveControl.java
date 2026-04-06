@@ -26,6 +26,8 @@ public class CultistMoveControl extends MoveControl {
 
     public BodyDirection direction = BodyDirection.DEFAULT;
 
+    public float addedSpeed;
+
     public int strafeAdjustmentLimiter;
 
     public CultistMoveControl(CultistMonster cultist) {
@@ -119,6 +121,7 @@ public class CultistMoveControl extends MoveControl {
             strafeAdjustmentLimiter++;
         }
         direction = BodyDirection.DEFAULT;
+        addedSpeed *= 0.5f;
     }
 
     public void adjustStrafing(MutableDouble xForward, MutableDouble zForward, MutableDouble xSide, MutableDouble zSide) {

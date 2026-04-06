@@ -445,8 +445,8 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.STRIPPED_RUNEWOOD_LOG,
                                 MalumItems.RUNEWOOD,
                                 MalumItems.STRIPPED_RUNEWOOD,
-                                MalumItems.EXPOSED_RUNEWOOD_LOG,
-                                MalumItems.REVEALED_RUNEWOOD_LOG
+                                MalumItems.SAPPY_RUNEWOOD_LOG,
+                                MalumItems.STRIPPED_SAPPY_RUNEWOOD_LOG
                         ).nextLine()
                         .addItems(
                                 MalumItems.RUNEWOOD_BOARDS,
@@ -521,8 +521,8 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.STRIPPED_SOULWOOD_LOG,
                                 MalumItems.SOULWOOD,
                                 MalumItems.STRIPPED_SOULWOOD,
-                                MalumItems.EXPOSED_SOULWOOD_LOG,
-                                MalumItems.REVEALED_SOULWOOD_LOG,
+                                MalumItems.SAPPY_SOULWOOD_LOG,
+                                MalumItems.STRIPPED_SAPPY_SOULWOOD_LOG,
                                 MalumItems.BLIGHTED_SOULWOOD
                         ).nextLine()
                         .addItems(

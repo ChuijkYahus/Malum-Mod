@@ -57,6 +57,7 @@ public class MalumLangDatagen extends LanguageProvider {
     @Override
     protected void addTranslations() {
         CodexLangDatagen.generateEntries();
+        IntroductionChapterLangDatagen.generateEntries();
 
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(ITEMS.getEntries());

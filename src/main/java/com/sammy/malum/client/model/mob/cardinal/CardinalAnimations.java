@@ -398,7 +398,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition DOWNED = AnimationDefinition.Builder.withLength(1.75F)
+	public static final AnimationDefinition DOWNED_START = AnimationDefinition.Builder.withLength(1.75F)
 			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(-27.5F, -17.5F, 0.0F), AnimationChannel.Interpolations.LINEAR),
@@ -493,7 +493,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition DOWNED_IDLE = AnimationDefinition.Builder.withLength(3.0F).looping()
+	public static final AnimationDefinition DOWNED_LOOP = AnimationDefinition.Builder.withLength(3.0F).looping()
 			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(55.7261F, 18.1931F, 22.1869F), AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(1.5F, KeyframeAnimations.degreeVec(55.4717F, 14.9825F, 11.9015F), AnimationChannel.Interpolations.LINEAR),
@@ -543,7 +543,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition REVIVAL = AnimationDefinition.Builder.withLength(3.5F).looping()
+	public static final AnimationDefinition REVIVE = AnimationDefinition.Builder.withLength(3.5F).looping()
 			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(55.7261F, 18.1931F, 22.1869F), AnimationChannel.Interpolations.LINEAR),
 					new Keyframe(1.0F, KeyframeAnimations.degreeVec(54.5185F, 6.5908F, 8.5703F), AnimationChannel.Interpolations.LINEAR),
@@ -653,7 +653,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition FUNNY_DANCE = AnimationDefinition.Builder.withLength(8.0F).looping()
+	public static final AnimationDefinition gangnam = AnimationDefinition.Builder.withLength(8.0F).looping()
 			.addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(7.5071F, 2.4786F, 0.3265F), AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(7.5F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -944,7 +944,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition SICK_FLIP = AnimationDefinition.Builder.withLength(1.25F)
+	public static final AnimationDefinition sickflip = AnimationDefinition.Builder.withLength(1.25F)
 			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.6667F, KeyframeAnimations.degreeVec(-124.45F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -979,7 +979,7 @@ public class CardinalAnimations {
 			))
 			.build();
 
-	public static final AnimationDefinition JOYOUS = AnimationDefinition.Builder.withLength(1.25F)
+	public static final AnimationDefinition joy = AnimationDefinition.Builder.withLength(1.25F)
 			.addAnimation("right_arm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),

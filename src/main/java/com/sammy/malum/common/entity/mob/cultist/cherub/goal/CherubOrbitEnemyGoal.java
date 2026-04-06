@@ -40,7 +40,7 @@ public class CherubOrbitEnemyGoal extends Goal {
         this.orbitRadius = orbitRadius;
         this.approachRadius = approachRadius;
         this.flightInterval = flightInterval;
-        this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
+        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
     }
 
     @Override

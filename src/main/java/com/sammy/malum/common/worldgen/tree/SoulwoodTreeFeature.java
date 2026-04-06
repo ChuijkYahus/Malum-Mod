@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.worldgen.*;
 
@@ -210,7 +209,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         for (LodestoneWorldgenBuilderEntry entry : getRandomEntries(treeLayer.getOrderedEntries(), getSapBlockCount(rand), rand)) {
             entry.changeState(s -> {
                 if (s.getBlock().equals(MalumBlocks.SOULWOOD_LOG.get())) {
-                    return MalumBlocks.EXPOSED_SOULWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
+                    return MalumBlocks.SAPPY_SOULWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
                 }
                 return s;
             });

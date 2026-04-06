@@ -7,6 +7,7 @@ import net.minecraft.resources.*;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
+@Deprecated
 public class IconObject extends ProgressionEntryObject {
     public final ResourceLocation textureLocation;
     public final int textureWidth;

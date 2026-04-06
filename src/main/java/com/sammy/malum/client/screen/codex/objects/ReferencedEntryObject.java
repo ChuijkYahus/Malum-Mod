@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.objects;
 
-import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
@@ -26,6 +25,6 @@ public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEn
         int entryY = getOffsetYPosition();
         var poseStack = guiGraphics.pose();
         renderTexture(LINK, poseStack, entryX, entryY, 0, flipped ? 26 : 0, width, height, 36, 52);
-        guiGraphics.renderItem(iconStack, entryX + 5, entryY + 5);
+        displayedGizmo.render(screen, guiGraphics, entryX + 5, entryY + 5, mouseX, mouseY);
     }
 }

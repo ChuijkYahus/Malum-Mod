@@ -73,6 +73,6 @@ public abstract class BookPage {
     }
 
     public int getPageMiddle(int left) {
-        return left + CodexEntryScreen.PAGE_WIDTH/2;
+        return left + CodexEntryScreen.PAGE_WIDTH/2 + 1;
     }
 }

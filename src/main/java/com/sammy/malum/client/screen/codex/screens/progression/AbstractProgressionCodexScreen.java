@@ -97,12 +97,6 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     @Override
-    public void resize(Minecraft minecraft, int width, int height) {
-        target.resize(BOOK_WIDTH, BOOK_HEIGHT, Minecraft.ON_OSX);
-        super.resize(minecraft, width, height);
-    }
-
-    @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
 

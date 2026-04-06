@@ -62,14 +62,14 @@ public class ConfiguredFeatureDatagen {
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
                 MalumBlocks.RUNEWOOD_SAPLING.get(),
                 MalumBlocks.RUNEWOOD_LOG.get(),
-                MalumBlocks.EXPOSED_RUNEWOOD_LOG.get(),
+                MalumBlocks.SAPPY_RUNEWOOD_LOG.get(),
                 MalumBlocks.RUNEWOOD_LEAVES.get(),
                 MalumBlocks.HANGING_RUNEWOOD_LEAVES.get()
         )));
         context.register(MalumFeatures.ConfiguredFeatures.CONFIGURED_AZURE_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
                 MalumBlocks.RUNEWOOD_SAPLING.get(),
                 MalumBlocks.RUNEWOOD_LOG.get(),
-                MalumBlocks.EXPOSED_RUNEWOOD_LOG.get(),
+                MalumBlocks.SAPPY_RUNEWOOD_LOG.get(),
                 MalumBlocks.AZURE_RUNEWOOD_LEAVES.get(),
                 MalumBlocks.HANGING_AZURE_RUNEWOOD_LEAVES.get()
         )));

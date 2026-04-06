@@ -16,6 +16,7 @@ import net.minecraft.util.*;
 import javax.annotation.*;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
@@ -110,14 +111,8 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        codexObjects.click(this, mouseX, mouseY);
-        if (leftPageObjects != null) {
-            leftPageObjects.click(this, mouseX, mouseY);
-        }
-        if (rightPageObjects != null) {
-            rightPageObjects.click(this, mouseX, mouseY);
-        }
-
+        iterateOnAllObjects(o -> o.click(this, mouseX, mouseY));
+        
         int pageTop = getPageTop();
         int leftPageLeft = getLeftPageLeft();
         int rightPageLeft = getRightPageLeft();
@@ -133,9 +128,16 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     }
 
     @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        iterateOnAllObjects(o -> o.release(this, mouseX, mouseY));
+
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
     public void tick() {
         super.tick();
-        codexObjects.tick(this);
+        iterateOnAllObjects(o -> o.tick(this));
         textJump = Math.max(textJump - 0.1f, 0);
     }
 
@@ -198,7 +200,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
             return;
         }
         if (isEarly) {
-            objects.renderObjects(this, guiGraphics, 0, 0, mouseX, mouseY, partialTicks);
+            objects.renderObjects(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks);
             return;
         }
         objects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
@@ -268,6 +270,16 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         }
         if (right != null) {
             rightPageObjects = right.addObjects(this, getRightPageLeft(), pageTop);
+        }
+    }
+
+    public void iterateOnAllObjects(Consumer<BookObjectHandler<CodexEntryScreen>> acceptor) {
+        acceptor.accept(codexObjects);
+        if (leftPageObjects != null) {
+            acceptor.accept(leftPageObjects);
+        }
+        if (rightPageObjects != null) {
+            acceptor.accept(rightPageObjects);
         }
     }
 

@@ -2,9 +2,11 @@ package com.sammy.malum.common.entity.mob.cultist.altar.projectile;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.common.entity.bolt.AbstractBoltProjectile;
+import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.MalumCultistSoundEvents;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -55,12 +57,12 @@ public class CursedBoltProjectile extends AbstractBoltProjectile {
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.CROSSBOW_SHOOT;
+        return MalumCultistSoundEvents.ALTAR_CURSE_LAUNCH.get();
     }
 
     @Override
     public SoundEvent getImpactSound() {
-        return SoundEvents.CROSSBOW_HIT;
+        return MalumCultistSoundEvents.ALTAR_CURSE_IMPACT.get();
     }
 
     @Override
@@ -70,6 +72,9 @@ public class CursedBoltProjectile extends AbstractBoltProjectile {
 
     @Override
     protected boolean canHitEntity(Entity pTarget) {
+        if (pTarget instanceof CultistMonster) {
+            return false;
+        }
         if (homingTarget != null) {
             return pTarget.equals(homingTarget);
         }

@@ -7,6 +7,7 @@ import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
 import com.sammy.malum.registry.common.MalumDamageTypes;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.registry.common.entity.*;
+import com.sammy.malum.registry.common.sound.MalumCultistSoundEvents;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.staff.BoltImpactParticleEffect;
@@ -57,12 +58,12 @@ public class CultistBlessingProjectile extends AbstractBoltProjectile {
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.CROSSBOW_SHOOT;
+        return MalumCultistSoundEvents.ALTAR_BLESSING_LAUNCH.get();
     }
 
     @Override
     public SoundEvent getImpactSound() {
-        return SoundEvents.CROSSBOW_HIT;
+        return MalumCultistSoundEvents.ALTAR_BLESSING_IMPACT.get();
     }
 
     @Override

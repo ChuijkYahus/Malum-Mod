@@ -11,86 +11,99 @@ import team.lodestar.lodestone.helpers.DataHelper;
 
 public class CodexLangDatagen {
 
-    private static String obfuscate(String s) {
+    protected static String obfuscate(String s) {
         return "$k" + s + "/$";
     }
 
     //Only supported by geas info pages
-    private static String scaled(float s) {
+    protected static String scaled(float s) {
         return "$m" + s + "/$";
     }
 
-    private static String italic(String s) {
+    protected static String italic(String s) {
         return "$i" + s + "/$";
     }
 
-    private static String bold(String s) {
+    protected static String bold(String s) {
         return "$b" + s + "/$";
     }
 
-    private static String strike(String s) {
+    protected static String strike(String s) {
         return "$s" + s + "/$";
     }
 
-    private static String underline(String s) {
+    protected static String underline(String s) {
         return "$u" + s + "/$";
     }
 
-    private static void addSimpleRiteEntry(RiteHolder<SpiritRiteType> holder, String entryDescription, String riteDescription, String effect) {
-        SpiritRiteType rite = holder.value();
-        String name = rite.getName();
+    protected static void addSimpleRiteEntry(RiteHolder<SpiritRiteType> holder, String entryDescription, String riteDescription, String effect) {
+        var rite = holder.value();
+        var name = rite.getName();
         addEntryHeader(name, DataHelper.toTitleCase(name, "_"), entryDescription);
         addRiteDetails(holder, riteDescription, effect);
     }
 
-    private static void addRiteDetails(RiteHolder<SpiritRiteType> holder, String description, String effect) {
-        SpiritRiteType rite = holder.value();
+    protected static void addRiteDetails(RiteHolder<SpiritRiteType> holder, String description, String effect) {
+        var rite = holder.value();
         add(rite.getCodexEntryLangKey(), description);
         add(rite.getEffectLangKey(), effect);
     }
 
-    private static void addGeasDetails(Holder<GeasEffectType> geasEffectType, String geasPositives, String geasNegatives) {
-        final GeasEffectType geas = geasEffectType.value();
+    protected static void addGeasDetails(Holder<GeasEffectType> geasEffectType, String geasPositives, String geasNegatives) {
+        var geas = geasEffectType.value();
         add(geas.getDetailedPros(), geasPositives);
         add(geas.getDetailedCons(), geasNegatives);
     }
 
-    private static void addSimpleEntryHeader(String identifier, String name, String description) {
+    protected static void addSimpleEntryHeader(String identifier, String name, String description) {
         addHeadline(identifier, name);
         addEntryHeader(identifier, name, description);
     }
 
-    private static void addEntryHeader(String identifier, String name, String description) {
+    protected static void addEntryHeader(String identifier, String name, String description) {
         add("malum.gui.book.entry." + identifier, name);
         addDescription(identifier, description);
     }
 
-    private static void addPage(String identifier, String page) {
+    protected static void addPage(String identifier, String page) {
         add(BookPage.TEXT + "." + identifier, page);
     }
 
-    private static void addPages(String identifier, String... pages) {
+    protected static void addPages(String identifier, String... pages) {
         int i = 1;
         for (String s : pages) {
             addPage(identifier + "." + i++, s);
         }
     }
 
-    private static void addDescription(String identifier, String tooltip) {
+    protected static void addDescription(String identifier, String tooltip) {
         add("malum.gui.book.entry." + identifier + ".description", tooltip);
     }
 
-    private static void addHeadline(String identifier, String tooltip) {
+    protected static void addSnippetAndTitle(String identifier, String title, String tooltip) {
+        add("malum.gui.book.snippet.title." + identifier, title);
+        addSnippet(identifier, tooltip);
+    }
+
+    protected static void addLore(String identifier, String tooltip) {
+        add("malum.gui.book.snippet.lore." + identifier, tooltip);
+    }
+
+    protected static void addSnippet(String identifier, String tooltip) {
+        add("malum.gui.book.snippet." + identifier, tooltip);
+    }
+
+    protected static void addHeadline(String identifier, String tooltip) {
         add(BookPage.HEADLINE + "." + identifier, tooltip);
     }
 
-    private static void addRecipeInfo(String identifier, String recipeName, String recipeDescriptor) {
+    protected static void addRecipeInfo(String identifier, String recipeName, String recipeDescriptor) {
         add(BookPage.getRecipeInfoHeadlineKey(identifier), recipeName);
         add(BookPage.getRecipeInfoKey(identifier), recipeDescriptor);
     }
 
 
-    private static void add(String key, String value) {
+    protected static void add(String key, String value) {
         MalumLangDatagen.lang.add(key, value);
     }
 
@@ -117,6 +130,9 @@ public class CodexLangDatagen {
 
         addRecipeInfo("spirit_repair", "Spirit Repair",
                 "Socket a repair material and spirit arcana into the repair pylon\nThe damaged item must be placed within a nearby item holder");
+
+
+
 
         addSimpleEntryHeader("void.the_weeping_well", "The Weeping Well", "Gate to the unknown");
         addPages("void.the_weeping_well",
@@ -365,168 +381,6 @@ public class CodexLangDatagen {
                 "Love. It is a curious thing, but the Belt of the Limitless loves without barrier, without condition. It sees you for what and who you are, and loves you despite. I cannot claim to be comfortable with that, though nor can I deny the utility.",
                 "The Belt adds its own Soul Ward to the bearer's, doubling their capacity. The overlaid effects cause the Soul Ward to absorb " + italic("all") + " damage, not merely most. Integrity increases as the Ward grows weaker, giving me a defense when I need it most.",
                 "Unfortunately, it is not wholly benefit. The harmonization of the barriers of two minds is taxing, and Soul Ward suffers in its recovery from this exhaustion. I consider the trade worthwhile.");
-
-        addSimpleEntryHeader("introduction", "Introduction", "On the nature of souls");
-        addPages("introduction",
-                "\"Within our world, every living being has a soul. That soul is consciousness, what animates the body, and the meeting point between matter and magic. These represent our existence; as the body is presented to the physical world, so the soul is to the arcane.\"",
-                "I seem to have stumbled upon something peculiar: a form of magic so far undocumented. I could hardly call myself a magus if I refused the opportunity to study it. In this codex, the Encyclopedia Arcana, I write my research into this power, hoping to document everything about it.",
-                "The energies this thaumaturgical discipline manipulates seem to be rooted in the soul. More accurately, they are the energies of the soul, the inclinations and impulses that make up each one of us.",
-                "So far, what I have described is basic. But I have found a way to separate, and then condense, the impulse of a soul into a physical form I call a spirit crystal. This forms the basis of my research.",
-                "The natures of the soul I condense influence the crystal's properties. Each soul is slightly different, and that can result in changes to the crystals formed. I believe these spirit crystals to be just the breakthrough I need.");
-
-        addSimpleEntryHeader("spirit_crystals", "Spirit Crystals", "Matter and magic");
-        addPages("spirit_crystals",
-                "The soul is a notoriously fickle thing. Even confirming its existence is difficult, requiring the highest thaumaturgies to get a reading. That is what sets spirit arcana apart from other magic. We don't need grand assemblies and esoteric artifice to see a soul. Simply destroying it is proof enough.",
-                "A material I have named Soulstone is the means by which we do so. It appears mundane until refined, but once it is rid of impurities, it seems... out of phase with the world. By creating a blade using it as a core, I should be able to strike not only the physical form, but also the soul, shattering it to energy before it can disperse.",
-                "These energies, as previously noted, have different 'frequencies' of sorts. A being burning with light would have a soul that reflects that radiance, and a being prone to adaptation would have a soul as malleable as itself. Occasionally, the energy has no flavor to it at all, leaving only the raw impulse of creation behind. That type of crystal bears further study.");
-
-        addSimpleEntryHeader("soulstone", "Soulstone", "Out of phase");
-        addPages("soulstone",
-                "Sometimes, it appears that matter can be charged with the energies of a soul, despite not having a soul of its own.",
-                "This serves as the basis for spirit arcana - the ensouling of the soulless. Soulstone is an ore that exists more in the arcane than the physical, and, refined, presents many uses for my magic. It strongly radiates magic.");
-
-        addSimpleEntryHeader("natural_quartz", "Natural Quartz", "Deep in the earth");
-        addPages("natural_quartz",
-                "Natural Quartz is, as the name implies, a natural equivalent of the nether resource. It's used for most of the same things. It's rare, and found deep underground, sometimes in geodes.");
-
-        addSimpleEntryHeader("cthonic_gold", "Cthonic Gold", "Fused with the arcane");
-        addPages("cthonic_gold",
-                "Cthonic Gold is a strange yet useful metal. Its physical makeup is that of gold, yet its properties are entirely distinct. The ore is found deep underground in the deepslate layer of the world, rooted deeply into existing veins of gold.",
-                "Physically, Cthonic Gold resembles pyrite, albeit with the density of true gold. The altered nature of the metal appears to derive from a mix of earthen and infernal arcana somehow bonded to its physical structure, creating a strange alloy. Arcana does not normally interact with metal in this way, at least in my experiments.",
-                "The alloy of physical and metaphysical causes this material to serve as a bridging point, a gate between realms, so to speak. Or perhaps a guardian of those gates? It exists as purely physical, yet the arcane acknowledges its passage.",
-                "I'm not sure what use this metal will have quite yet, but I doubt I will be short for applications for a material with such atypical properties.");
-
-        addSimpleEntryHeader("runewood", "Runewood", "Arcane oak");
-        addPages("runewood",
-                "Runewood is a strange mix of magic and nature, and a fairly common one at that. While pretty, I am more interested in practicality. Runewood is soaked in magic, and as such, can serve as the basis for the arcane.",
-                "The tree is predominantly found within large open plains, however it can also be found in forests. The tree can be best identified by it's leaves, proudly displaying an orange-yellow palette.");
-        addHeadline("runewood.arcane_charcoal", "Arcane Charcoal");
-        addPages("runewood.arcane_charcoal",
-                "Runewood's charcoal, as magic-infused as it is, burns with an arcane fervor for longer than regular charcoal. This makes it rather useful for fueling any smelting I need to do.");
-        addHeadline("runewood.runic_sap", "Runic Sap");
-        addPages("runewood.runic_sap",
-                "Runewood trees tend to have a buildup of sticky sap on the sides of their logs. When this happens, if you strip off the bark, you'll be able to bottle the sap, which makes for a rejuvenating drink.",
-                "In terms of taste, it is a bit like honey, sweet but with a more earthly flavor. The aftertaste in particular is quite special, it is rejuvenating in the purest of forms as it mends your wounds.",
-                "The sap can also be used to create sapballs, able to be used interchangeably with slimeballs for most recipes.");
-
-        addSimpleEntryHeader("blazing_quartz", "Blazing Quartz", "Ignition");
-        addPages("blazing_quartz",
-                "It stands to reason that a place like the nether would have a substance that was flammable, and Blazing Quartz certainly fits the bill. It acts much like coal, even being able to form torches. A useful substance, even if fairly mundane.");
-
-        addSimpleEntryHeader("brilliance", "Brilliance", "The stuff of experience");
-        addPages("brilliance",
-                "Brilliance is a term I have heard bandied about for what others call experience. It is a part of the soul, though improperly attached, and can be collected and used for enchanting and repairs.",
-                "What many don't know is that it can condense into a physical form. I have heard rumors of solid Brilliance coming from crushing ore, but the most reliable source is small clusters of ore where a soul faded away, leaving its experiences engraved on the stone.");
-
-        addSimpleEntryHeader("scythes", "Scythes", "Harvest");
-        addPages("scythes",
-                "After several inert attempts, I have socketed Soulstone into a weapon that can reliably harvest these spirit crystals. The long blade allows time for the body to die before I strike the soul, while also providing a wide sweep attack. It isn't as sharp as a sword, but for my purposes, it will do nicely.",
-                "What I had managed to do before with careful, painstaking experiments, the scythe did in a matter of seconds. The souls of the monsters I slew shattered, streaming bits of deeply hued matter towards me: the spirit crystals. Finally, my research can begin in earnest.");
-        addSimpleEntryHeader("scythes.enchanting", "Enchanting a Scythe", "Two ways to skin a soul");
-        addPages("scythes.enchanting",
-                "At its core, the scythe enchants like other weapons or tools I've used. It has its own set of enchantments, of course, due to its differing nature, but can take Unbreaking and the like as well as a sword can.");
-        addHeadline("scythes.enchanting.spirit_plunder", "Spirit Plunder");
-        addPages("scythes.enchanting.spirit_plunder",
-                "This is not a perfect method. Some of the soul is unavoidably lost in the moment between blade and stone. But by enchanting the blade, that loss can be mitigated, and more of the soul condensed. This unfortunately strains the stone, and can result in my scythe's durability decreasing.");
-        addHeadline("scythes.enchanting.haunted", "Haunted");
-        addPages("scythes.enchanting.haunted",
-                "Soulstone interacts with souls, obviously. The crudest and simplest use is blunt force, shattering a soul like a pane of glass. If I condense the arcane power of the stone, it would therefore hit and shatter harder, perhaps even damaging the body with the backlash.");
-        addHeadline("scythes.enchanting.animated", "Animated");
-        addPages("scythes.enchanting.animated",
-                "If power can be concentrated, it can be diffused. Interestingly, by diffusing the power that would be drawn together for Haunted into the rest of the scythe, the entire weapon gains a conceptual \"lightness\", making its swings lighter and faster.");
-        addHeadline("scythes.enchanting.rebound", "Rebound");
-        addPages("scythes.enchanting.rebound",
-                "A scythe reaps. That is its purpose, and that can be harnessed. Should a reaper need my hand? By harnessing the purpose of the blade as a weapon, I can let it act on its own to some extent, as if it were a boomerang. The stronger the enchantment, the sooner it’s ready to throw again.");
-        addHeadline("scythes.enchanting.ascension", "Ascension");
-        addPages("scythes.enchanting.ascension",
-                "A fascinating bit of symbolism is the role of the tool in raising man up. Civilization was built by the food a scythe harvests. By harnessing the purpose of the blade as a tool, I can… well, raise myself, the winds I rise on sharp as the blade itself to my foes. Rebound is incompatible; literally, at cross purposes with this enchantment.");
-
-        addSimpleEntryHeader("spirit_infusion", "Spirit Infusion", "Creation of wonders");
-        addPages("spirit_infusion",
-                "By using Runewood's natural magic as a base, I have designed the altar that will serve as the basis for my magecraft - the Spirit Altar. It is the other piece of the equation, the use for the arcana. By infusing them into items, and using the energies to effect other fusions, I can begin to explore this.",
-                "To use the altar, I must lay the item I wish to infuse on top of it, along with an appropriate set of arcana. If I wish to fuse other items in the process, I must place them on some form of Runewood item holder. They must be within four blocks of the altar to work.",
-                "Once all the arcana are present, the power within the crystals will begin to flow into the central item. If other items are fused in, they are pulled in during this process. When all of that is done, the product of the infusion will appear. It " + italic("is") + " rather slow, though...");
-        addSimpleEntryHeader("spirit_infusion.hex_ash", "Hex Ash", "Obligatory magic powder");
-        addPages("spirit_infusion.hex_ash",
-                "My first product with this process is a powder I call Hex Ash, after its color. It is a simple and useful grit, with the niter and sulfur mostly transmuted by the raw arcana, leaving a mixture of reagent and carbon.");
-        addSimpleEntryHeader("spirit_infusion.living_flesh", "Living Flesh", "Please don't try to eat it");
-        addPages("spirit_infusion.living_flesh",
-                "Next, for the sake of understanding how spirit arcana interacts with living substance, I have created... " + italic("something") + " which is now known as Living Flesh. It is a disgusting meaty chunk completely unfit for human consumption. Who knows if I'll end up finding a proper use for it.");
-        addSimpleEntryHeader("spirit_infusion.alchemical_calx", "Alchemical Calx", "Clay 2");
-        addPages("spirit_infusion.alchemical_calx",
-                "Lastly, I have created an experimental substrate I named Alchemical Calx. It's initially strong and tallow-like, but when met with a lesser amount of force it turns extremely malleable. It's bound to prove an useful ingredient.");
-
-
-        addSimpleEntryHeader("esoteric_reaping", "Esoteric Reaping", "Leaked magic");
-        addPages("esoteric_reaping",
-                "When a being dies, its soul disperses. This is basic theory, and well proven by this point. However, when a soul is shattered, some of it's energy tends to self-immolate. This phenomena causes bits of the soul to collide and fuse with the remains of the creature as it dies, bringing forth new artefacts.",
-                "But now, with my scythe, I have proved it beyond doubt. When a soul is shattered, even if only for a brief moment, the energy collides with what's left of it's vessel, it's physical remains. That collision creates brand new reagents that cannot be sourced by destroying just the body. This phenomena appears to create a strong reaction, a change of sorts.",
-                "I have thus far discovered four reagents born through this process, all of which are detailed in further pages. In summary, the flesh of zombies can curdle to Rotting Essence; the bones of skeletons can crystalize to Grim Talc; the wings of phantoms can spin to Eerie Weave; and the magic of endermen can coalesce into Warp Flux.");
-        addSimpleEntryHeader("esoteric_reaping.rotting_essence", "Rotting Essence", "Yucky!");
-        addPages("esoteric_reaping.rotting_essence",
-                "When exposed to the energy of the soul, the flesh of the undead can curdle into Rotting Essence, a toxic and foul substance that smells like death itself.",
-                "It has... " + italic("some") + " nutritional value- though much like Rotten Flesh, it would be in your best interests avoid it's consumption.");
-        addSimpleEntryHeader("esoteric_reaping.grim_talc", "Grim Talc", "Sharp!");
-        addPages("esoteric_reaping.grim_talc",
-                "Bones exposed to the energy of the soul can crystallize into Grim Talc, a useful pseudo-mineral that can also be broken down into bonemeal.");
-        addSimpleEntryHeader("esoteric_reaping.eerie_weave", "Eerie Weave", "Fancy!");
-        addPages("esoteric_reaping.eerie_weave",
-                "The membrane of a phantom exposed to the energy of it's soul will spin into Eerie Weave, a mystic cloth with strange arcane properties capable of \"binding\" the flow of arcana.",
-                "The exact properties of this binding effect and it's potential use cases demand further study. Nonetheless, it still makes for a rather fine silk.");
-        addSimpleEntryHeader("esoteric_reaping.warp_flux", "Warp Flux", "Odd.");
-        addPages("esoteric_reaping.warp_flux",
-                "The magic that envelops the endermen coalesces into Warp Flux, a strange essence that seems to be inimical to natural law.");
-        addSimpleEntryHeader("esoteric_reaping.core_keeping", "Core-Keeping", "Ancient Constructs");
-        addPages("esoteric_reaping.core_keeping",
-                "Amongst the various creatures studied by earth's historians, the Breeze and Blaze by far remain shrouded in the most mystery. They are constructs of ancient design, animated by arcane energies and imbued with rudimentary intelligence. Their only known purpose appears to be the protection of their own respective domains.",
-                "Having studied their souls upon defeat, I have come to a fascinating conclusion. When the Soul of a Construct is shattered, it leaves behind a core; the Nucleus. It is an intricately woven arcane design that serves as the heart of the being. This Nucleus appears to hold etchings that dictate the properties of the soul, demanding further study.",
-                "The existence of the Nucleus is fascinating in and of itself as it proves beyond a doubt that these constructs are created with deliberate intent. The etchings found within are... complicated- overly so, but they're not indecipherable. The etched runic scriptures are not written in any known language, but the fundamentals of arcana apply much the same.",
-                "Lastly, although similar in acquisition to other cases of esoteric reaping- the Nuclei are stable arcane matter that the constructs already bear, rather than reagents born from the collision of soul energy and physical remains.");
-        addHeadline("esoteric_reaping.core_keeping.wind_nucleus", "Wind Nucleus");
-        addPages("esoteric_reaping.core_keeping.wind_nucleus",
-                "The core of the Breeze, it is well preserved and bears runic etchings that appear to dictate the rules upon which wind bends around it. In a pinch, these etchings can be released to push surrounding creatures away.");
-        addHeadline("esoteric_reaping.core_keeping.pyre_nucleus", "Pyre Nucleus");
-        addPages("esoteric_reaping.core_keeping.pyre_nucleus",
-                "The core of the Blaze, it is warm to the touch and bears runic etchings that attract heat and ash from nearby. The etchings are greatly interwoven, and upon any sudden change the entire core detonates. Useful, perhaps.");
-
-        addEntryHeader("primary_arcana", "Primary Arcana", "The components of magic");
-        addHeadline("primary_arcana.sacred", "Sacred Spirit");
-        addPages("primary_arcana.sacred",
-                "Sacred arcana is essential to any magic that enhances life. It can be defined as holy, the energy of particularly vibrant life, or even the simplicity of youth. It is pure and untainted, making it a useful component.",
-                "It is the impulse of purity, the desire for optimism. It is found in those who are passive, innocent, or holy in origin.");
-        addHeadline("primary_arcana.wicked", "Wicked Spirit");
-        addPages("primary_arcana.wicked",
-                "Wicked arcana is inimical to life. It seeks death and despair, and warps the living into something else. Even touching the crystal makes my soul shudder in pain.",
-                "It is the impulse of corruption, the desire to cause suffering. It is found in those whose souls lack life, or those twisted by malice.");
-        addHeadline("primary_arcana.arcane", "Arcane Spirit");
-        addPages("primary_arcana.arcane",
-                "While other arcana are impulses of the soul, it would be more accurate to say that the arcane is the impulse of the arcana themselves. This " + bold("raw arcana") + " lacks any particular quality, simply being undirected spiritual power.",
-                "It is the impulse of creation, the first principle of all things. It is found within those who have opened their soul to power, or whose origins lie in that power.",
-                "I suspect that this arcana, unlike others, can join a soul over time. Most things about the soul are defined early on. The impulses that define you are woven into your very self, after all. But lacking an impulse, perhaps this arcana is different. A witch was not born a mage, after all.");
-
-        addSimpleEntryHeader("elemental_arcana", "Elemental Arcana", "Focused magic");
-        addHeadline("elemental_arcana.aerial", "Aerial Spirit");
-        addPages("elemental_arcana.aerial",
-                "Aerial arcana is the simplest of the elemental arcana. That very simplicity that gives it its utility. I have heard tales of magi soaring on the winds, ruling the skies. If any arcana is to make those tales achievable, it is this.",
-                "It is the impulse of speed given form, the desire to run and to soar. It is found in anything particularly swift or mobile.");
-        addHeadline("elemental_arcana.earthen", "Earthen Spirit");
-        addPages("elemental_arcana.earthen",
-                "Earthen arcana is relatively simple as well. It lends itself easily to strength, communion with nature, and the force of vitality. If I wish to enhance myself, or reshape the world, this arcana will be the key.",
-                "It is the impulse of stability, the desire to stand and endure. It is found in anything that is unconcerned with the world around it changing.");
-        addHeadline("elemental_arcana.infernal", "Infernal Spirit");
-        addPages("elemental_arcana.infernal",
-                "Infernal arcana is more complex, but not nearly as malicious as it might seem. Fire is dangerous, yes, but it is also the source of light and heat. It can burn something down as easily as it can fuse two things together.",
-                "It is the impulse of light, the desire to burn. It is found in anything that shines brightly, as well as most denizens of the nether.");
-        addHeadline("elemental_arcana.aqueous", "Aqueous Spirit");
-        addPages("elemental_arcana.aqueous",
-                "And finally, Aqueous arcana. It is strange, to say the least. It is malleable, yet doesn't do much by itself. It grants an affinity for the sea, but beyond that, its effects are rather esoteric.",
-                "It is the impulse of change, the desire to adapt. It is found in anything that embodies that adaptation, as well as anything which lives in the flowing waters.");
-
-        addEntryHeader("eldritch_arcana", "Eldritch Arcana", "For every push there is a pull");
-        addHeadline("eldritch_arcana", "Eldritch Spirit");
-        addPages("eldritch_arcana",
-                "Eldritch arcana is a mystery to me. It has no impulse, none that I can understand, at least. And yet, it doesn't act like raw arcana. It changes, emboldens, enlightens... Raw arcana merely amplifies. This... this alters.",
-                "I am not sure I understand what impulse creates this arcana. I find it in very few beings, and those I find it in are those who already defy explanation. But if it must be the pair to raw arcana, then that would imply that it's the impulse of endings, the " + italic("last") + " principle of all things.\n\nI do not like that thought.");
 
         addEntryHeader("spirit_stones", "Spirit Stones", "To suffuse with arcana");
         addHeadline("spirit_stones.tainted_rock", "Tainted Rock");

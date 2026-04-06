@@ -1,0 +1,11 @@
+{
+  "type": "malum:unchained_transmutation",
+  "group": "soulwood",
+  "input": {
+    "item": "malum:sappy_runewood_log"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:sappy_soulwood_log"
+  }
+}

@@ -1,33 +1,20 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
 import com.google.common.collect.*;
-import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.helper.CodexOutlineRenderer;
+import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
+import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
-import com.sammy.malum.core.systems.geas.GeasEffectType;
-import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
-import it.unimi.dsi.fastutil.ints.*;
 import net.minecraft.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.*;
 
-import java.awt.*;
 import java.util.List;
 import java.util.function.*;
 
@@ -105,8 +92,8 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
             design.getFrameTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
             design.getFillingTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
         }
-        if (iconStack != null) {
-            guiGraphics.renderItem(iconStack, centerX-8, centerY-8);
+        if (displayedGizmo != null) {
+            displayedGizmo.render(screen, guiGraphics, centerX-8, centerY-8, mouseX, mouseY);
         }
     }
 
@@ -135,23 +122,8 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
     }
 
     @Override
-    public ProgressionEntryObject setIcon(Supplier<? extends Item> item) {
-        return (ProgressionEntryObject) super.setIcon(item);
-    }
-
-    @Override
-    public ProgressionEntryObject setIcon(Item item) {
-        return (ProgressionEntryObject) super.setIcon(item);
-    }
-
-    @Override
-    public ProgressionEntryObject setIcon(Holder<GeasEffectType> geas) {
-        return (ProgressionEntryObject) super.setIcon(geas);
-    }
-
-    @Override
-    public ProgressionEntryObject setIcon(ItemStack itemStack) {
-        return (ProgressionEntryObject) super.setIcon(itemStack);
+    public ProgressionEntryObject setIcon(DisplayedGizmo displayedGizmo) {
+        return (ProgressionEntryObject) super.setIcon(displayedGizmo);
     }
 
     @Override

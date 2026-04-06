@@ -18,6 +18,20 @@ public class MalumCultistSoundEvents {
     public static final CultistSoundDefinition CARDINAL = new CultistSoundDefinition(CultistSoundProfile.MINOR, "cardinal");
     public static final CultistSoundDefinition EVANGELIST = new CultistSoundDefinition(CultistSoundProfile.MINOR, "evangelist");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_BLESSING_LAUNCH = MalumSoundEvents.registerVariable("altar_channels_blessing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_BLESSING_IMPACT = MalumSoundEvents.registerVariable("altar_bestows_blessing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_CURSE_LAUNCH = MalumSoundEvents.registerVariable("altar_channels_curse");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_CURSE_IMPACT = MalumSoundEvents.registerVariable("altar_bestows_curse");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_MELEE_ATTACK = MalumSoundEvents.registerVariable("altar_bites_assailant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ALTAR_FLEE = MalumSoundEvents.registerVariable("altar_skitters_away");
+
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CHERUB_PREPARE_SPELL = MalumSoundEvents.registerVariable("cherub_prepares_spell");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CHERUB_CAST_CURSE = MalumSoundEvents.registerVariable("cherub_casts_curse");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CHERUB_CAST_HEAL = MalumSoundEvents.registerVariable("cherub_casts_heal");
+
+
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_ENTROPY_THROW = MalumSoundEvents.registerVariable("cardinal_entropy_throw");
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_ENTROPY_LOOP = MalumSoundEvents.registerVariable("cardinal_entropy_loop");
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_ENTROPY_PRIME = MalumSoundEvents.registerVariable("cardinal_entropy_prime");
