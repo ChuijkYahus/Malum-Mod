@@ -212,29 +212,5 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("ifrit_impetus_restoration"));
-
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_IRON_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_COPPER_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_GOLD_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_ALUMINUM_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_NICKEL_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_SILVER_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_TIN_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_ZINC_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_OSMIUM_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_LEAD_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_URANIUM_IMPETUS);
-        metalImpetusRestoration(recipeOutput, MalumItems.FRACTURED_COBALT_IMPETUS);
-    }
-    @SuppressWarnings({"DataFlowIssue"})
-    public static void metalImpetusRestoration(RecipeOutput recipeOutput, Holder<Item> crackedImpetus) {
-        var id = crackedImpetus.getKey().location().withSuffix("_restoration");
-        var has = MalumRecipes.has(MalumItems.REPAIR_PYLON.get());
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumItems.CTHONIC_GOLD_FRAGMENT.get(), 2), 1f)
-                .withValidItem(crackedImpetus.value())
-                .addSpirit(AQUEOUS_SPIRIT, 8)
-                .addSpirit(INFERNAL_SPIRIT, 8)
-                .unlockedBy("has_pylon", has)
-                .save(recipeOutput, id);
     }
 }

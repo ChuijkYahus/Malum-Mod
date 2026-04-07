@@ -27,7 +27,7 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
-                .addExtraItem(MalumItems.IRON_NODE.get(), 4)
+                .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 4)
                 .addExtraItem(MalumItems.CTHONIC_GOLD.get(), 2)
                 .carryOverComponentData()
                 .save(recipeOutput);
@@ -36,7 +36,7 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(MalumItems.SOUL_STAINED_STEEL_PLATING.get(), 6)
-                .addExtraItem(MalumItems.IRON_NODE.get(), 4)
+                .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 4)
                 .addExtraItem(MalumItems.CTHONIC_GOLD.get(), 2)
                 .carryOverComponentData()
                 .save(recipeOutput);

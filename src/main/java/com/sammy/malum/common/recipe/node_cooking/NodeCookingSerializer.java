@@ -61,12 +61,6 @@ public class NodeCookingSerializer<T extends AbstractCookingRecipe & INodeCookin
         return streamCodec;
     }
 
-    public static ItemStack getStackFromIngredient(Ingredient ingredient) {
-        final ItemStack[] items = ingredient.getItems();
-        final Optional<ItemStack> stack = Arrays.stream(items).min(Comparator.comparing(c -> c.getItem().getDescriptionId()));
-        return stack.orElse(new ItemStack(Items.BARRIER));
-    }
-
     public interface Factory<T extends AbstractCookingRecipe> {
         T create(String group, Ingredient ingredient, Ingredient output, int outputCount, float experience, int cookingTime);
     }

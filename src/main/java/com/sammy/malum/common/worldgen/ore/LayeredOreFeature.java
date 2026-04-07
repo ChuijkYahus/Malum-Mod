@@ -48,27 +48,47 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         for (LayeredOreConfiguration.OreLayer layer : layers) {
             float horizontal = layer.width();
             float vertical = layer.height();
-            float horizontalFactor = horizontal / 4f;
-            float verticalFactor = vertical / 4f;
-            int wRand = Mth.ceil((horizontalFactor + 1f) / 2f);
-            int yRand = Mth.ceil((verticalFactor + 1f) / 2f);
+            float width = horizontal / 4f;
+            float height = vertical / 4f;
+            int wRand = Mth.ceil((width + 1f) / 2f);
+            int yRand = Mth.ceil((height + 1f) / 2f);
 
-            int xStart = blockpos.getX() - Mth.ceil(sin * horizontalFactor) - wRand;
-            int xEnd = blockpos.getX() + Mth.ceil(sin * horizontalFactor) + wRand;
+            int minX = ((blockpos.getX() >> 4) - 1) * 16;
+            int maxX = ((blockpos.getX() >> 4) + 1) * 16;
 
-            int yStart = blockpos.getY() - Mth.ceil(sinOrCos * verticalFactor) - yRand;
-            int yEnd = blockpos.getY() + Mth.ceil(sinOrCos * verticalFactor) + yRand;
+            int minZ = ((blockpos.getZ() >> 4) - 1) * 16;
+            int maxZ = ((blockpos.getZ() >> 4) + 1) * 16;
 
-            int zStart = blockpos.getZ() - Mth.ceil(cos * horizontalFactor) - wRand;
-            int zEnd = blockpos.getZ() + Mth.ceil(cos * horizontalFactor) + wRand;
+            int xOffset = Mth.ceil(sin * width);
+            int xStart = blockpos.getX() - xOffset - wRand;
+            int xEnd = blockpos.getX() + xOffset + wRand;
+
+            int yOffset = Mth.ceil(sinOrCos * height);
+            int yStart = blockpos.getY() - yOffset - yRand;
+            int yEnd = blockpos.getY() + yOffset + yRand;
+
+            int zOffset = Mth.ceil(cos * width);
+            int zStart = blockpos.getZ() - zOffset - wRand;
+            int zEnd = blockpos.getZ() + zOffset + wRand;
+
+            xStart = Mth.clamp(xStart, minX, maxX);
+            xEnd = Mth.clamp(xEnd, minX, maxX);
+            zStart = Mth.clamp(zStart, minZ, maxZ);
+            zEnd = Mth.clamp(zEnd, minZ, maxZ);
+
+            int xCenter = (xStart + xEnd) / 2;
+            int zCenter = (zStart + zEnd) / 2;
+
 
             var feedback = blockMap.computeIfAbsent(layer, (l) -> new LayerFeedback());
-            for (int x1 = xStart; x1 <= xEnd; x1++) {
-                for (int z1 = zStart; z1 <= zEnd; z1++) {
-                    int worldHeight = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x1, z1);
-                    for (int y1 = yStart; y1 < yEnd; y1++) {
-                        if (y1 <= worldHeight) {
-                            doPlace(feedback, worldgenlevel, randomsource, layer, x1, y1, z1, xStart, xEnd, yStart, yEnd, zStart, zEnd);
+            for (int x = xStart; x <= xEnd; x++) {
+                for (int z = zStart; z <= zEnd; z++) {
+                    int worldHeight = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
+                    for (int y = yStart; y < yEnd; y++) {
+                        if (y <= worldHeight) {
+                            float xDelta = xCenter - x;
+                            float zDelta = zCenter - z;
+                            float delta = Mth.sqrt(xDelta * xDelta + zDelta * zDelta);
                         }
                     }
                 }
@@ -176,9 +196,6 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                                 }
 
                                 mutable.set(xSomething, ySomething, zSomething);
-                                if (!level.ensureCanWrite(mutable)) {
-                                    continue;
-                                }
                                 var hash = mutable.hashCode();
                                 if (feedback.blockHashes.contains(hash)) {
                                     continue;

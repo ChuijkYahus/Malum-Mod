@@ -1,0 +1,60 @@
+package com.sammy.malum.common.recipe.node_cooking;
+
+import com.sammy.malum.registry.common.recipe.MalumRecipeSerializers;
+import net.minecraft.core.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
+
+@SuppressWarnings("NullableProblems")
+public class IngredientBasedBlastingRecipe extends BlastingRecipe implements INodeCookingRecipe {
+
+    public static final String NAME = "node_blasting";
+
+    private final Ingredient rawOutput;
+    private final int outputCount;
+    private ItemStack outputCache;
+
+    public IngredientBasedBlastingRecipe(String group, Ingredient ingredient, Ingredient output, int outputCount, float experience, int cookingTime) {
+        super(group, CookingBookCategory.MISC, ingredient, ItemStack.EMPTY, experience, cookingTime);
+        this.rawOutput = output;
+        this.outputCount = outputCount;
+    }
+
+    @Override
+    public RecipeSerializer<?> getSerializer() {
+        return MalumRecipeSerializers.METAL_NODE_BLASTING_SERIALIZER.get();
+    }
+
+    @Override
+    public Ingredient getInput() {
+        return ingredient;
+    }
+
+    @Override
+    public int getOutputCount() {
+        return outputCount;
+    }
+
+    @Override
+    public Ingredient getRawOutput() {
+        return rawOutput;
+    }
+
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider registries) {
+        return getOutput();
+    }
+
+    @Override
+    public ItemStack assemble(SingleRecipeInput input, HolderLookup.Provider registries) {
+        return getResultItem(registries).copy();
+    }
+
+    @Override
+    public ItemStack getOutput() {
+        if (outputCache == null) {
+            outputCache = bakeOutput();
+        }
+        return outputCache;
+    }
+}

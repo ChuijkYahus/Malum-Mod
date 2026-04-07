@@ -42,6 +42,7 @@ import com.sammy.malum.common.item.disc.*;
 import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.common.item.impetus.*;
+import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.common.item.nucleus.PyreNucleusItem;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.common.item.spirit.*;
@@ -437,61 +438,26 @@ public class MalumItems {
     public static final DeferredHolder<Item, Item> MALIGNANT_PEWTER_PLATING = register("malignant_pewter_plating", MalumItems::DEFAULT_PROPERTIES, Item::new);
     public static final DeferredHolder<Item, Item> MALIGNANT_PEWTER_NUGGET = register("malignant_pewter_nugget", MalumItems::DEFAULT_PROPERTIES, Item::new);
 
-    //region impetus
-    public static final DeferredHolder<Item, Item> IRON_IMPETUS = register("iron_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_IRON_IMPETUS = register("fractured_iron_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> IRON_NODE = register("iron_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> COPPER_IMPETUS = register("copper_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_COPPER_IMPETUS = register("fractured_copper_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> COPPER_NODE = register("copper_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> GOLD_IMPETUS = register("gold_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_GOLD_IMPETUS = register("fractured_gold_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> GOLD_NODE = register("gold_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> ALUMINUM_IMPETUS = register("aluminum_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ALUMINUM_IMPETUS = register("fractured_aluminum_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> ALUMINUM_NODE = register("aluminum_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> NICKEL_IMPETUS = register("nickel_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_NICKEL_IMPETUS = register("fractured_nickel_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> NICKEL_NODE = register("nickel_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> SILVER_IMPETUS = register("silver_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_SILVER_IMPETUS = register("fractured_silver_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> SILVER_NODE = register("silver_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> TIN_IMPETUS = register("tin_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_TIN_IMPETUS = register("fractured_tin_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> TIN_NODE = register("tin_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> ZINC_IMPETUS = register("zinc_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ZINC_IMPETUS = register("fractured_zinc_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> ZINC_NODE = register("zinc_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> OSMIUM_IMPETUS = register("osmium_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_OSMIUM_IMPETUS = register("fractured_osmium_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> OSMIUM_NODE = register("osmium_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> LEAD_IMPETUS = register("lead_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_LEAD_IMPETUS = register("fractured_lead_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> LEAD_NODE = register("lead_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> URANIUM_IMPETUS = register("uranium_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_URANIUM_IMPETUS = register("fractured_uranium_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> URANIUM_NODE = register("uranium_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
-    public static final DeferredHolder<Item, Item> COBALT_IMPETUS = register("cobalt_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_COBALT_IMPETUS = register("fractured_cobalt_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> COBALT_NODE = register("cobalt_node", MalumItems::DEFAULT_PROPERTIES, NodeItem::new);
-
+    //alchemical impetus
+    public static final DeferredHolder<Item, Item> ALCHEMICAL_IMPETUS = register("alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
+    public static final DeferredHolder<Item, Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> ZEPHYR_IMPETUS = register("zephyr_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_ZEPHYR_IMPETUS = register("fractured_zephyr_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
     public static final DeferredHolder<Item, Item> IFRIT_IMPETUS = register("ifrit_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
     public static final DeferredHolder<Item, Item> FRACTURED_IFRIT_IMPETUS = register("fractured_ifrit_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
-    public static final DeferredHolder<Item, Item> ALCHEMICAL_IMPETUS = register("alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, ImpetusItem::new);
-    public static final DeferredHolder<Item, Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", MalumItems::IMPETUS_PROPERTIES, FracturedImpetusItem::new);
+
+    //endregion
+
+    //region metallics
+
+    public static final MetallicsItemRegistryBundle IRON_METALLICS = new MetallicsItemRegistryBundle("iron");
+    public static final MetallicsItemRegistryBundle COPPER_METALLICS = new MetallicsItemRegistryBundle("copper");
+    public static final MetallicsItemRegistryBundle GOLD_METALLICS = new MetallicsItemRegistryBundle("gold");
+    public static final MetallicsItemRegistryBundle ZINC_METALLICS = new MetallicsItemRegistryBundle("zinc");
+    public static final MetallicsItemRegistryBundle LEAD_METALLICS = new MetallicsItemRegistryBundle("lead");
+    public static final MetallicsItemRegistryBundle SILVER_METALLICS = new MetallicsItemRegistryBundle("silver");
+    public static final MetallicsItemRegistryBundle ALUMINIUM_METALLICS = new MetallicsItemRegistryBundle("aluminium");
+    public static final MetallicsItemRegistryBundle NICKEL_METALLICS = new MetallicsItemRegistryBundle("nickel");
     //endregion
 
     //region spirited glass

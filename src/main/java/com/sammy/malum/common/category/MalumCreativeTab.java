@@ -2,6 +2,7 @@ package com.sammy.malum.common.category;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.resources.*;
@@ -21,7 +22,7 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
         public static final String FUNDAMENTALS = "fundamentals_of_arcana";
         public static final String GEAR = "gear_and_trinkets";
         public static final String ARTIFICE = "alchemy_and_artifice";
-        public static final String METALLURGY = "alchemical_foci";
+        public static final String ALCHEMICAL_FOCI = "alchemical_foci";
         public static final String MATERIALS = "soulformed_substance";
         public static final String ORES = "earthen_treasures";
         public static final String ETHER = "ether";
@@ -250,22 +251,20 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumItems.STELLAR_MECHANISM
                         )
                         .bake();
-                createCategory(METALLURGY)
-                        .addItems(MalumItems.IRON_IMPETUS, MalumItems.FRACTURED_IRON_IMPETUS, MalumItems.IRON_NODE)
-                        .addItems(MalumItems.COPPER_IMPETUS, MalumItems.FRACTURED_COPPER_IMPETUS, MalumItems.COPPER_NODE)
-                        .addItems(MalumItems.GOLD_IMPETUS, MalumItems.FRACTURED_GOLD_IMPETUS, MalumItems.GOLD_NODE)
-                        .addItems(MalumItems.ALUMINUM_IMPETUS, MalumItems.FRACTURED_ALUMINUM_IMPETUS, MalumItems.ALUMINUM_NODE)
-                        .addItems(MalumItems.NICKEL_IMPETUS, MalumItems.FRACTURED_NICKEL_IMPETUS, MalumItems.NICKEL_NODE)
-                        .addItems(MalumItems.SILVER_IMPETUS, MalumItems.FRACTURED_SILVER_IMPETUS, MalumItems.SILVER_NODE)
-                        .addItems(MalumItems.TIN_IMPETUS, MalumItems.FRACTURED_TIN_IMPETUS, MalumItems.TIN_NODE)
-                        .addItems(MalumItems.ZINC_IMPETUS, MalumItems.FRACTURED_ZINC_IMPETUS, MalumItems.ZINC_NODE)
-                        .addItems(MalumItems.OSMIUM_IMPETUS, MalumItems.FRACTURED_OSMIUM_IMPETUS, MalumItems.OSMIUM_NODE)
-                        .addItems(MalumItems.LEAD_IMPETUS, MalumItems.FRACTURED_LEAD_IMPETUS, MalumItems.LEAD_NODE)
-                        .addItems(MalumItems.URANIUM_IMPETUS, MalumItems.FRACTURED_URANIUM_IMPETUS, MalumItems.URANIUM_NODE)
-                        .addItems(MalumItems.COBALT_IMPETUS, MalumItems.FRACTURED_COBALT_IMPETUS, MalumItems.COBALT_NODE)
-                        .addItems(MalumItems.ZEPHYR_IMPETUS, MalumItems.FRACTURED_ZEPHYR_IMPETUS)
-                        .addItems(MalumItems.IFRIT_IMPETUS, MalumItems.FRACTURED_IFRIT_IMPETUS)
-                        .addItems(MalumItems.ALCHEMICAL_IMPETUS, MalumItems.FRACTURED_ALCHEMICAL_IMPETUS)
+                createCategory(ALCHEMICAL_FOCI)
+                        .addItems(MalumItems.ALCHEMICAL_IMPETUS)
+                        .addItems(MalumItems.IFRIT_IMPETUS)
+                        .addItems(MalumItems.ZEPHYR_IMPETUS)
+
+                        .addItems(MalumItems.IRON_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.COPPER_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.GOLD_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.ZINC_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.LEAD_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.SILVER_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.ALUMINIUM_METALLICS::addToCreativeTab)
+                        .addItems(MalumItems.NICKEL_METALLICS::addToCreativeTab)
+
                         .bake();
                 createCategory(MATERIALS)
                         .addItems(

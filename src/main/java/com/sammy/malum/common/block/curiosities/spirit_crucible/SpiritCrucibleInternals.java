@@ -140,12 +140,7 @@ public class SpiritCrucibleInternals {
             }
         }
         if (durabilityCost > 0) {
-            impetus.hurtAndBreak(durabilityCost, level, null, item -> {
-                var key = BuiltInRegistries.ITEM.getResourceKey(item).orElseThrow();
-                var data = BuiltInRegistries.ITEM.getData(MalumDataMaps.FRACTURED_IMPETUS_VARIANT, key);
-                if (data != null) {
-                    inventory.setStackInSlot(0, data.otherImpetus().value().getDefaultInstance());
-                }
+            impetus.hurtAndBreak(durabilityCost, level, null, p_348118_ -> {
             });
             if (MendingDiffuserItem.repairImpetus(level, attributes, impetus)) {
                 SympathyDrive.repairImpetus(level, attributes, impetus);

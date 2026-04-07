@@ -204,7 +204,7 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(AERIAL_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addExtraItem(Items.WIND_CHARGE, 8)
-                .addExtraItem(MalumItems.IRON_NODE.get(), 6)
+                .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 6)
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 4)
                 .addExtraItem(Items.HEAVY_CORE, 1)
                 .save(recipeOutput);
@@ -213,47 +213,10 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(INFERNAL_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addExtraItem(Items.BLAZE_POWDER, 8)
-                .addExtraItem(MalumItems.IRON_NODE.get(), 6)
+                .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 6)
                 .addExtraItem(MalumItems.PYRE_NUCLEUS.get(), 4)
                 .addExtraItem(Items.HEAVY_CORE, 1)
                 .save(recipeOutput);
 
-        metalImpetusRecipe(recipeOutput, MalumItems.IRON_IMPETUS, Items.IRON_INGOT);
-        metalImpetusRecipe(recipeOutput, MalumItems.COPPER_IMPETUS, Items.COPPER_INGOT);
-        metalImpetusRecipe(recipeOutput, MalumItems.GOLD_IMPETUS, Items.GOLD_INGOT);
-        metalImpetusRecipe(recipeOutput, MalumItems.LEAD_IMPETUS, INGOTS_LEAD);
-        metalImpetusRecipe(recipeOutput, MalumItems.SILVER_IMPETUS, INGOTS_SILVER);
-        metalImpetusRecipe(recipeOutput, MalumItems.ALUMINUM_IMPETUS, INGOTS_ALUMINUM);
-        metalImpetusRecipe(recipeOutput, MalumItems.NICKEL_IMPETUS, INGOTS_NICKEL);
-        metalImpetusRecipe(recipeOutput, MalumItems.URANIUM_IMPETUS, INGOTS_URANIUM);
-        metalImpetusRecipe(recipeOutput, MalumItems.COBALT_IMPETUS, INGOTS_COBALT);
-        metalImpetusRecipe(recipeOutput, MalumItems.OSMIUM_IMPETUS, INGOTS_OSMIUM);
-        metalImpetusRecipe(recipeOutput, MalumItems.ZINC_IMPETUS, INGOTS_ZINC);
-        metalImpetusRecipe(recipeOutput, MalumItems.TIN_IMPETUS, INGOTS_TIN);
-    }
-
-    public static void metalImpetusRecipe(RecipeOutput recipeOutput, Holder<net.minecraft.world.item.Item> impetus, TagKey<net.minecraft.world.item.Item> ingot) {
-        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), impetus.value(), 1)
-                .addSpirit(EARTHEN_SPIRIT, 8)
-                .addSpirit(INFERNAL_SPIRIT, 8)
-                .addSpirit(AQUEOUS_SPIRIT, 8)
-                .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 4))
-                .addExtraItem(SizedIngredient.of(MalumItems.CTHONIC_GOLD.get(), 1))
-                .addExtraItem(SizedIngredient.of(ingot, 6))
-                .save(recipeOutput.withConditions(
-                        new NotCondition(
-                                new TagEmptyCondition(ingot.location())
-                        )));
-    }
-
-    public static void metalImpetusRecipe(RecipeOutput recipeOutput, Holder<net.minecraft.world.item.Item> impetus, net.minecraft.world.item.Item ingot) {
-        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), impetus.value(), 1)
-                .addSpirit(EARTHEN_SPIRIT, 8)
-                .addSpirit(INFERNAL_SPIRIT, 8)
-                .addSpirit(AQUEOUS_SPIRIT, 8)
-                .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 4))
-                .addExtraItem(SizedIngredient.of(MalumItems.CTHONIC_GOLD.get(), 1))
-                .addExtraItem(SizedIngredient.of(ingot, 6))
-                .save(recipeOutput);
     }
 }

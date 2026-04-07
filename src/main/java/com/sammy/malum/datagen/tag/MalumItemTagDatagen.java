@@ -9,10 +9,10 @@ import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.impetus.*;
+import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
+import com.sammy.malum.common.item.metallics.MetalNodeItem;
 import com.sammy.malum.datagen.recipe.crafting.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -167,13 +167,13 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(AUGMENTS, AugmentItem.class);
         tag(CORE_AUGMENTS, CoreAugmentItem.class);
-        tag(METAL_NODES, NodeItem.class);
+        tag(METAL_NODES, MetalNodeItem.class);
 
         tag(IMPETUS, ImpetusItem.class);
         tag(METAL_IMPETUS, ImpetusItem.class).remove(ALCHEMICAL_IMPETUS.get(), ZEPHYR_IMPETUS.get());
 
         tag(FRACTURED_IMPETUS, FracturedImpetusItem.class);
-        tag(FRACTURED_METAL_IMPETUS, FracturedImpetusItem.class).addTag(FRACTURED_IMPETUS).remove(FRACTURED_ALCHEMICAL_IMPETUS.get(), FRACTURED_ZEPHYR_IMPETUS.get(), FRACTURED_IFRIT_IMPETUS.get());
+        tag(FRACTURED_METAL_IMPETUS, FracturedMetalImpetusItem.class).addTag(FRACTURED_IMPETUS);
 
         tag(ARMORS, MalumArmorItem.class);
 

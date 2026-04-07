@@ -40,15 +40,11 @@ public abstract class DisplayedGizmo {
 
 
     public DisplayedGizmo addTitleAndSnippet(String id) {
-        return addTitle(id).addLore(id);
+        return addTitle(id).addSnippet(id);
     }
 
     public DisplayedGizmo addTitle(String id) {
-        return addText(Component.translatable("malum.gui.book.snippet.title." + id).withStyle(ChatFormatting.BLUE));
-    }
-
-    public DisplayedGizmo addLore(String id) {
-        return addText(Component.translatable("malum.gui.book.snippet.lore." + id).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        return addText(Component.translatable("malum.gui.book.snippet.title." + id).withStyle(ChatFormatting.GOLD));
     }
 
     public DisplayedGizmo addSnippet(String id) {
