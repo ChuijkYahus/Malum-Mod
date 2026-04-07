@@ -3,8 +3,7 @@ package com.sammy.malum.client.screen.codex.screens;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
-import com.sammy.malum.client.screen.codex.objects.*;
-import com.sammy.malum.client.screen.codex.pages.*;
+import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -16,15 +15,27 @@ import net.minecraft.util.*;
 
 import javax.annotation.*;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
+@SuppressWarnings("DataFlowIssue")
 public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
-    public static final ResourceLocation BOOK_TEXTURE = MalumMod.malumPath("textures/gui/book/entry.png");
+    public static final ResourceLocation FRAME_TEXTURE = MalumMod.malumPath("textures/gui/book/entry_frame.png");
+    public static final ResourceLocation PAPER_TEXTURE = MalumMod.malumPath("textures/gui/book/entry_paper.png");
+
+    public static final ResourceLocation TEST_PIECE = MalumMod.malumPath("textures/gui/book/art/canvas.png");
+
     public static final ResourceLocation ITEM_SOCKET = MalumMod.malumPath("textures/gui/book/entry_elements/item_sockets.png");
 
-    protected static final int BOOK_WIDTH = 312;
-    protected static final int BOOK_HEIGHT = 206;
+    public static final int BOOK_WIDTH = 352;
+    public static final int BOOK_HEIGHT = 272;
+
+
+    public static final int PAGE_WIDTH = 142;
+    public static final int PAGE_HEIGHT = 210;
 
     public static float textJump;
 
@@ -34,10 +45,10 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     protected final BookEntry openEntry;
     protected int openPageIndex;
 
-    protected final BookObjectHandler<CodexEntryScreen> entryObjects = new BookObjectHandler<>();
+    protected final BookObjectHandler<CodexEntryScreen> codexObjects = new BookObjectHandler<>();
 
-    // Minecraft instance, non nullable
-    protected final Minecraft minecraft = Minecraft.getInstance();
+    protected BookObjectHandler<CodexEntryScreen> leftPageObjects;
+    protected BookObjectHandler<CodexEntryScreen> rightPageObjects;
 
     public CodexEntryScreen(BookEntry openEntry) {
         this(null, openEntry);
@@ -47,97 +58,86 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
-        int left = -21;
-        int right = BOOK_WIDTH - 15;
-        entryObjects.add(new ArrowObject(left, 150, false));
-        entryObjects.add(new ArrowObject(right, 150, true));
+        addPageObjects();
+//        int left = -21;
+//        int right = BOOK_WIDTH - 15;
+//        entryObjects.add(new ArrowObject(left, 150, false));
+//        entryObjects.add(new ArrowObject(right, 150, true));
 
-        var references = openEntry.references;
-        if (references != null) {
-            int counter = 0;
-            for (EntryReference reference : references) {
-                if (reference.entry.shouldShow()) {
-                    entryObjects.add(new ReferencedEntryObject(right, 15 + counter * 30, true, reference));
-                    counter++;
-                }
-            }
-        }
+//        var references = openEntry.references;
+//        if (references != null) {
+//            int counter = 0;
+//            for (EntryReference reference : references) {
+//                if (reference.entry.shouldShow()) {
+//                    entryObjects.add(new ReferencedEntryObject(right, 15 + counter * 30, true, reference));
+//                    counter++;
+//                }
+//            }
+//        }
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         var poseStack = guiGraphics.pose();
         int guiLeft = getGuiLeft();
         int guiTop = getGuiTop();
-        renderTexture(BOOK_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
 
-        int pageTop = guiTop + 11;
-        if (!openEntry.pages.isEmpty()) {
-            int openPages = openPageIndex * 2;
-            for (int i = openPages; i < openPages + 2; i++) {
-                if (i < openEntry.pages.size()) {
-                    var page = openEntry.pages.get(i);
-                    final boolean isRightSide = i % 2 == 1;
-                    int backgroundLeft = guiLeft + (isRightSide ? 165 : 13);
-                    final ResourceLocation background = page.getBackground(isRightSide);
-                    if (background != null) {
-                        renderTexture(background, poseStack, backgroundLeft, pageTop, 0, 0, 134, 172);
-                    }
-                }
-            }
-        }
-        entryObjects.renderObjects(this, guiGraphics, guiLeft, guiTop, mouseX, mouseY, partialTicks);
-        if (!openEntry.pages.isEmpty()) {
-            int openPages = openPageIndex * 2;
-            for (int i = openPages; i < openPages + 2; i++) {
-                if (i < openEntry.pages.size()) {
-                    var page = openEntry.pages.get(i);
-                    boolean isRightSide = i % 2 == 1;
-                    int pageLeft = guiLeft + (isRightSide ? 161 : 9);
-                    boolean isRepeat = i % 2 != 0 && page.getClass().equals(openEntry.pages.get(i - 1).getClass());
-                    page.render(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks, isRepeat);
-                    lateRendering.add(() -> page.renderLate(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks, isRepeat));
-                }
-            }
-        }
-        entryObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+        int pageTop = getPageTop();
+        int leftPageLeft = getLeftPageLeft();
+        int rightPageLeft = getRightPageLeft();
+
+        var leftPage = getLeftPage();
+        var rightPage = getRightPage();
+
+        renderTexture(FRAME_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
+        renderTexture(PAPER_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
+
+        renderPageBackground(guiGraphics, leftPage, pageTop, leftPageLeft);
+        renderPageBackground(guiGraphics, rightPage, pageTop, rightPageLeft);
+
+        codexObjects.renderObjects(this, guiGraphics, guiLeft, guiTop, mouseX, mouseY, partialTicks);
+        renderPageObjects(guiGraphics, leftPage, leftPageObjects, pageTop, leftPageLeft, mouseX, mouseY, partialTicks, true);
+        renderPageObjects(guiGraphics, rightPage, rightPageObjects, pageTop, rightPageLeft, mouseX, mouseY, partialTicks, true);
+
+        renderPageContents(guiGraphics, leftPage, pageTop, leftPageLeft, mouseX, mouseY, partialTicks);
+        renderPageContents(guiGraphics, rightPage, pageTop, rightPageLeft, mouseX, mouseY, partialTicks);
+
+        codexObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+        renderPageObjects(guiGraphics, leftPage, leftPageObjects, pageTop, leftPageLeft, mouseX, mouseY, partialTicks, false);
+        renderPageObjects(guiGraphics, rightPage, rightPageObjects, pageTop, rightPageLeft, mouseX, mouseY, partialTicks, false);
         doLateRendering();
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        entryObjects.click(this, mouseX, mouseY);
+        iterateOnAllObjects(o -> o.click(this, mouseX, mouseY));
+        
+        int pageTop = getPageTop();
+        int leftPageLeft = getLeftPageLeft();
+        int rightPageLeft = getRightPageLeft();
 
-        int guiLeft = getGuiLeft();
-        int guiTop = getGuiTop();
+        var leftPage = getLeftPage();
+        var rightPage = getRightPage();
+        tryClick(leftPage, pageTop, leftPageLeft, mouseX, mouseY);
+        tryClick(rightPage, pageTop, rightPageLeft, mouseX, mouseY);
 
-        if (!openEntry.pages.isEmpty()) {
-            int openPages = openPageIndex * 2;
-            for (int i = openPages; i < openPages + 2; i++) {
-                if (i < openEntry.pages.size()) {
-                    var page = openEntry.pages.get(i);
-                    final boolean isRightSide = i % 2 == 1;
-                    int pageLeft = guiLeft + (isRightSide ? 161 : 9);
-                    int pageTop = guiTop + 8;
-                    if (isHovering(mouseX, mouseY, pageLeft, pageTop, 142, 172)) {
-                        double relativeX = Mth.clamp(mouseX - guiLeft, guiLeft, guiLeft + 142);
-                        double relativeY = Mth.clamp(mouseY - guiTop, guiTop, guiTop + 172);
-                        page.click(this, pageLeft, pageTop, mouseX, mouseY, relativeX, relativeY);
-                    }
-                }
-            }
-        }
         textJump += 1f;
 
         return false;
     }
 
     @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        iterateOnAllObjects(o -> o.release(this, mouseX, mouseY));
+
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
     public void tick() {
         super.tick();
-        entryObjects.tick(this);
+        iterateOnAllObjects(o -> o.tick(this));
         textJump = Math.max(textJump - 0.1f, 0);
     }
 
@@ -171,6 +171,74 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         close(false);
     }
 
+    public void renderPageBackground(GuiGraphics guiGraphics, BookPage page, int pageTop, int pageLeft) {
+        if (page == null) {
+            return;
+        }
+        var background = page.getBackground();
+        if (background == null) {
+            return;
+        }
+        renderTexture(background, guiGraphics.pose(), pageLeft, pageTop, 0, 0, PAGE_WIDTH, PAGE_HEIGHT);
+    }
+
+    public void renderPageContents(GuiGraphics guiGraphics, BookPage page, int pageTop, int pageLeft, int mouseX, int mouseY, float partialTicks) {
+        if (page == null) {
+            return;
+        }
+        var leftPage = getLeftPage();
+        boolean isRepeat = !page.equals(leftPage) && page.getClass().equals(leftPage.getClass());
+        page.render(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks, isRepeat);
+        lateRendering.add(() -> page.renderLate(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks, isRepeat));
+    }
+
+    public void renderPageObjects(GuiGraphics guiGraphics, BookPage page, BookObjectHandler<CodexEntryScreen> objects, int pageTop, int pageLeft, int mouseX, int mouseY, float partialTicks, boolean isEarly) {
+        if (page == null) {
+            return;
+        }
+        if (objects == null) {
+            return;
+        }
+        if (isEarly) {
+            objects.renderObjects(this, guiGraphics, pageLeft, pageTop, mouseX, mouseY, partialTicks);
+            return;
+        }
+        objects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+    }
+
+    public void tryClick(BookPage page, int pageTop, int pageLeft, double mouseX, double mouseY) {
+        if (page == null) {
+            return;
+        }
+        int width = PAGE_WIDTH;
+        int height = PAGE_HEIGHT;
+        if (!isHovering(mouseX, mouseY, pageLeft, pageTop, width, height)) {
+            return;
+        }
+        int guiLeft = getGuiLeft();
+        int guiTop = getGuiTop();
+        double relativeX = Mth.clamp(mouseX - guiLeft, guiLeft, guiLeft + width);
+        double relativeY = Mth.clamp(mouseY - guiTop, guiTop, guiTop + height);
+        page.click(this, pageLeft, pageTop, mouseX, mouseY, relativeX, relativeY);
+    }
+
+    public BookPage getLeftPage() {
+        return getPage(0).orElse(null);
+    }
+
+    public BookPage getRightPage() {
+        return getPage(1).orElse(null);
+    }
+
+    public Optional<BookPage> getPage(int offset) {
+        int index = openPageIndex * 2 + offset;
+        var pages = openEntry.pages;
+        if (pages.size() >= index + 1) {
+            return Optional.ofNullable(pages.get(index));
+        }
+        return Optional.empty();
+    }
+
     public boolean hasNextPage() {
         return openPageIndex < openEntry.pages.size() / 2f - 1;
     }
@@ -178,6 +246,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     public void nextPage() {
         if (hasNextPage()) {
             openPageIndex += 1;
+            addPageObjects();
             playPageFlipSound(MalumSoundEvents.ARCANA_PAGE_FLIP, getSweetenerPitch());
         }
     }
@@ -185,17 +254,39 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     public void previousPage(boolean ignore) {
         if (openPageIndex > 0) {
             openPageIndex -= 1;
+            addPageObjects();
             playPageFlipSound(MalumSoundEvents.ARCANA_PAGE_FLIP, getSweetenerPitch());
         } else {
             close(ignore);
         }
     }
 
+    public void addPageObjects() {
+        var left = getLeftPage();
+        var right = getRightPage();
+        int pageTop = getPageTop();
+        if (left != null) {
+            leftPageObjects = left.addObjects(this, getLeftPageLeft(), pageTop);
+        }
+        if (right != null) {
+            rightPageObjects = right.addObjects(this, getRightPageLeft(), pageTop);
+        }
+    }
+
+    public void iterateOnAllObjects(Consumer<BookObjectHandler<CodexEntryScreen>> acceptor) {
+        acceptor.accept(codexObjects);
+        if (leftPageObjects != null) {
+            acceptor.accept(leftPageObjects);
+        }
+        if (rightPageObjects != null) {
+            acceptor.accept(rightPageObjects);
+        }
+    }
+
     public void close(boolean ignoreNextInput) {
         if (parentScreen == null) {
             ProgressionScreenHolder.getAppropriateCodexScreen().reopenCodexFromEntryScreen(isVoidTouched, ignoreNextInput);
-        }
-        else {
+        } else {
             ProgressionScreenHolder.openCodex(parentScreen, isVoidTouched, ignoreNextInput);
         }
         playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_CLOSE, 0.85f);
@@ -207,8 +298,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         if (minecraft.screen instanceof AbstractMalumCodexScreen openScreen) {
             screen = new CodexEntryScreen(openScreen, bookEntry);
             screen.setVoidTouched(openScreen.isVoidTouched);
-        }
-        else {
+        } else {
             screen = new CodexEntryScreen(bookEntry);
         }
         screen.playSweetenedSound(MalumSoundEvents.ARCANA_ENTRY_OPEN, 1.15f);
@@ -217,6 +307,21 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public float getSweetenerPitch() {
         return 1 + (float) openPageIndex / openEntry.pages.size();
+    }
+
+    public int getPageTop() {
+        int guiTop = getGuiTop();
+        return guiTop + 24;
+    }
+
+    public int getLeftPageLeft() {
+        int guiLeft = getGuiLeft();
+        return guiLeft + 13;
+    }
+
+    public int getRightPageLeft() {
+        int guiLeft = getGuiLeft();
+        return guiLeft + 197;
     }
 
     public int getGuiLeft() {

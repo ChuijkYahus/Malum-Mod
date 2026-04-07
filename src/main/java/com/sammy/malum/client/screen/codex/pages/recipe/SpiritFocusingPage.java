@@ -22,10 +22,6 @@ public class SpiritFocusingPage extends BookRecipePage<SpiritBasedRecipeInput, S
         super(filter);
     }
 
-    @Override
-    public boolean isValid() {
-        return recipe != null;
-    }
 
     public static SpiritFocusingPage fromOutput(Item outputItem) {
         return new SpiritFocusingPage(s -> s.getOutputRaw().is(outputItem));

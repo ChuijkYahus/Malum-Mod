@@ -50,10 +50,6 @@ public class SoulBindingPage extends BookRecipePage<SpiritBasedRecipeInput, Soul
         renderRecipeInfo(guiGraphics, screen, "soul_binding", left + 62, top + 105, mouseX, mouseY);
     }
 
-    @Override
-    public boolean isValid() {
-        return recipe != null;
-    }
 
     public static SoulBindingPage fromGeas(Holder<GeasEffectType> geasEffectType) {
         return new SoulBindingPage(s -> s.result.equals(geasEffectType.value()));

@@ -58,7 +58,7 @@ public class UnchainedTransmutationRecipeTreePage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/transmutation_recipe_tree_page.png");
     }
 

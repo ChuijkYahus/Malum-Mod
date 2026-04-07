@@ -28,7 +28,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -44,18 +43,17 @@ import java.util.UUID;
 
 public class AltarCultist extends CultistMonster implements ICherubFriend {
 
-    private static final EntityDataAccessor<Boolean> IS_SQUISHED = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> HEAD_TILT = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> CANDLE_ROTATION = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.FLOAT);
 
-    public static final int SQUISH_ANIMATION_DURATION = 8;
     public static final int HEAD_TILT_ANIMATION_DURATION = 16;
 
-    public static final float MELEE_RADIUS = 4f;
+    public static final float MELEE_CHASE_RADIUS = 4f;
     public static final int MELEE_COOLDOWN = 120;
 
     public static final float RETREAT_RADIUS = 8f;
-    public static final int RETREAT_DURATION = 40;
+    public static final int RETREAT_DELAY = 10;
+    public static final int RETREAT_DURATION = 120;
 
     public static final float RANGED_ATTACK_RADIUS = 16f;
     public static final int RANGED_ATTACK_INTERVAL = 100;
@@ -66,13 +64,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     public static final float BLESSING_HEAL_PERCENTAGE = 0.25f;
     public static final float BLESSING_HEALTH_THRESHOLD = 0.5f;
 
-    public int meleeCooldown;
-    public UUID meleeVictim;
-
-    public int retreatCooldown;
-
-    public int squish;
-    public int oSquish;
+    public long mostRecentMelee;
 
     public int headTiltStart;
     public int headTiltEnd;
@@ -89,7 +81,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     protected void registerGoals() {
         var playerTarget = new NearestAttackableTargetGoal<>(this, Player.class, true);
 
-        var retreat = new AltarRetreatGoal(this, 2f);
+        var retreat = new AltarRetreatGoal(this, 3f);
         var bestowBlessing = new AltarBestowBlessingGoal(this, 1.5f);
         var meleeAttack = new AltarMeleeAttackGoal(this, 1.25f);
         var rangedAttack = new AltarRangedAttackGoal(this, 1.0f);
@@ -110,7 +102,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
+        return createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 24.0)
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
@@ -124,7 +116,6 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(IS_SQUISHED, false);
         builder.define(HEAD_TILT, 0);
         builder.define(CANDLE_ROTATION, 0f);
     }
@@ -144,16 +135,10 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
 
-        compound.putFloat("candleRotation", getCandleRotation());
+        compound.putFloat("CandleRotation", getCandleRotation());
 
-        compound.putInt("meleeCooldown", meleeCooldown);
-        if (meleeVictim != null) {
-            compound.putUUID("meleeVictim", meleeVictim);
-        }
-        compound.putInt("retreatCooldown", retreatCooldown);
+        compound.putLong("MostRecentMelee", mostRecentMelee);
 
-        compound.putInt("squish", squish);
-        compound.putInt("oSquish", oSquish);
 
         compound.putInt("headTiltStart", headTiltStart);
         compound.putInt("headTiltEnd", headTiltEnd);
@@ -169,14 +154,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
 
         setCandleRotation(compound.getFloat("candleRotation"));
 
-        meleeCooldown = compound.getInt("meleeCooldown");
-        if (compound.hasUUID("meleeVictim")) {
-            meleeVictim = compound.getUUID("meleeVictim");
-        }
-        retreatCooldown = compound.getInt("retreatCooldown");
-
-        squish = compound.getInt("squish");
-        oSquish = compound.getInt("oSquish");
+        mostRecentMelee = compound.getLong("MostRecentMelee");
 
         headTiltStart = compound.getInt("headTiltStart");
         headTiltEnd = compound.getInt("headTiltEnd");
@@ -210,28 +188,9 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     @Override
     public void tick() {
         if (!isNoAi()) {
-            updateSquish();
             updateHeadTilt();
-            updateMeleeState();
-            updateRetreatState();
         }
         super.tick();
-    }
-
-    public void updateSquish() {
-        boolean isSquished = entityData.get(IS_SQUISHED);
-        if (isSquished) {
-            oSquish = squish;
-            squish++;
-            if (squish >= SQUISH_ANIMATION_DURATION) {
-                oSquish = 0;
-                squish = 0;
-                entityData.set(IS_SQUISHED, false);
-            }
-        } else {
-            oSquish = 0;
-            squish = 0;
-        }
     }
 
     public void updateHeadTilt() {
@@ -257,27 +216,11 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
         }
     }
 
-    public void updateMeleeState() {
-        if (meleeCooldown > 0) {
-            meleeCooldown--;
-            if (meleeCooldown == 0) {
-                meleeVictim = null;
-            }
-        }
-    }
-
-    public void updateRetreatState() {
-        if (retreatCooldown > 0) {
-            retreatCooldown--;
-        }
-    }
-
     @Override
     public boolean doHurtTarget(@NotNull Entity target) {
         if (super.doHurtTarget(target)) {
-            meleeVictim = target.getUUID();
-            meleeCooldown = MELEE_COOLDOWN;
-            triggerSquishAnimation();
+            playSound(MalumCultistSoundEvents.ALTAR_MELEE_ATTACK.get());
+            mostRecentMelee = level().getGameTime();
             return true;
         }
         return false;
@@ -293,7 +236,6 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
 
     public void performRangedAttack(LivingEntity target) {
         boolean isBlessing = target instanceof IAltarBlessingRecipient;
-        triggerSquishAnimation();
         var pos = getProjectileSpawnPos();
         var level = level();
         float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
@@ -313,7 +255,8 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
             level.addFreshEntity(projectile);
         }
         if (level instanceof ServerLevel serverLevel) {
-            var color = isBlessing ? ColorParticleData.create(CultistBlessingProjectile.CULTIST_PINK, CultistBlessingProjectile.CULTIST_PURPLE)
+            var color = isBlessing
+                    ? ColorParticleData.create(CultistBlessingProjectile.CULTIST_PINK, CultistBlessingProjectile.CULTIST_PURPLE)
                     : ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON);
             MalumParticleEffectTypes.ALTAR_WEAVES_PROJECTILE
                     .createEffect(pos)
@@ -353,16 +296,22 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
         return position().add(0, 1.5f * getCultistScaleMultiplier(), 0);
     }
 
-    public boolean canEnterMeleeState() {
-        return retreatCooldown == 0 && meleeCooldown == 0;
+    public boolean shouldChaseTarget() {
+        return isTargetWithinRadius(MELEE_CHASE_RADIUS);
     }
 
-    public boolean isWithinMeleeRadius() {
-        return isTargetWithinRadius(MELEE_RADIUS);
+    public boolean shouldRetreatFromTarget() {
+        if (hasAttackedRecently(RETREAT_DELAY)) {
+            return false;
+        }
+        if (!hasAttackedRecently(RETREAT_DELAY + RETREAT_DURATION)) {
+            return false;
+        }
+        return isTargetWithinRadius(RETREAT_RADIUS);
     }
 
-    public boolean isRetreating() {
-        return retreatCooldown > 0;
+    public boolean hasAttackedRecently(int timeframe) {
+        return level().getGameTime() - mostRecentMelee < timeframe;
     }
 
     public void setCandleRotation(float rotation) {
@@ -371,13 +320,5 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
 
     public float getCandleRotation() {
         return entityData.get(CANDLE_ROTATION);
-    }
-
-    public void triggerSquishAnimation() {
-        entityData.set(IS_SQUISHED, true);
-    }
-
-    public boolean isSquished() {
-        return entityData.get(IS_SQUISHED);
     }
 }

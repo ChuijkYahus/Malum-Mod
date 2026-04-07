@@ -16,8 +16,12 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
     public final int width;
     public final int height;
 
-    public boolean isSubspace;
+    public boolean wasHoveredOver;
     public boolean isHoveredOver;
+    public boolean wasPressed;
+    public boolean isPressed;
+
+    public boolean isInSubspace;
     public float xOffset;
     public float yOffset;
 
@@ -34,6 +38,12 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
 
     public boolean hasPriority(T screen) {
         return false;
+    }
+
+
+    public final void updateValues(T screen, double mouseX, double mouseY) {
+        wasHoveredOver = isHoveredOver;
+        wasPressed = isPressed;
     }
 
     public void tick(T screen, double mouseX, double mouseY) {
@@ -54,12 +64,25 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
 
     public boolean tryClick(T screen, double mouseX, double mouseY) {
         if (isHoveredOver) {
+            isPressed = true;
             return click(screen, mouseX, mouseY);
         }
         return false;
     }
 
+    public boolean tryRelease(T screen, double mouseX, double mouseY) {
+        if (isHoveredOver || isPressed) {
+            isPressed = false;
+            return release(screen, mouseX, mouseY);
+        }
+        return false;
+    }
+
     public boolean click(T screen, double mouseX, double mouseY) {
+        return false;
+    }
+
+    public boolean release(T screen, double mouseX, double mouseY) {
         return false;
     }
 

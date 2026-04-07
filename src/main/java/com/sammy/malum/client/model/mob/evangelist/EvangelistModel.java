@@ -1,5 +1,6 @@
 package com.sammy.malum.client.model.mob.evangelist;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.CultistHumanoidModel;
 import com.sammy.malum.client.model.mob.MalumAnimationUtils;
@@ -9,12 +10,16 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.HumanoidArm;
+import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 
 	public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("evangelist"), "main");
+
+	private final ModelPart swordbone;
 
 	private final ModelPart tentacles;
 	private final ModelPart lower;
@@ -23,6 +28,7 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 
 	public EvangelistModel(ModelPart modelDefinition) {
 		super(modelDefinition);
+		swordbone = rightArm.getChild("swordbone");
 		tentacles = body.getChild("tentacles");
 		lower = tentacles.getChild("lower");
 		middle = tentacles.getChild("middle");
@@ -105,7 +111,7 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 				.texOffs(115, 40).mirror().addBox(-6.0F, 7.0F, -1.0F, 2.0F, 3.0F, 4.0F, new CubeDeformation(0.25F)).mirror(false)
 				.texOffs(97, 34).addBox(-6.0F, -2.0F, -1.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.25F)), PartPose.offset(-5.0F, -16.0F, 0.0F));
 
-		PartDefinition swordbone = right_arm.addOrReplaceChild("swordbone", CubeListBuilder.create().texOffs(0, -9).mirror().addBox(0.0F, -5.0F, -33.0F, 0.0F, 10.0F, 34.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-3.0F, 22.0F, 1.0F));
+		PartDefinition swordbone = right_arm.addOrReplaceChild("swordbone", CubeListBuilder.create(), PartPose.offset(-3.0F, 22.0F, 1.0F));
 
 		PartDefinition left_arm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(30, 65).addBox(2.0F, 0.0F, 0.0F, 2.0F, 24.0F, 2.0F, new CubeDeformation(0.0F))
 				.texOffs(33, 34).mirror().addBox(1.0F, -2.0F, -1.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
@@ -113,10 +119,6 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 				.texOffs(115, 40).addBox(4.0F, 7.0F, -1.0F, 2.0F, 3.0F, 4.0F, new CubeDeformation(0.25F))
 				.texOffs(94, 65).addBox(2.0F, 0.0F, 0.0F, 2.0F, 24.0F, 2.0F, new CubeDeformation(0.25F))
 				.texOffs(97, 34).mirror().addBox(1.0F, -2.0F, -1.0F, 5.0F, 9.0F, 4.0F, new CubeDeformation(0.25F)).mirror(false), PartPose.offset(5.0F, -16.0F, 0.0F));
-
-		PartDefinition right_leg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(38, 65).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 24.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-2.0F, 0.0F, 0.0F));
-
-		PartDefinition left_leg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(38, 65).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 24.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
@@ -126,32 +128,50 @@ public class EvangelistModel extends CultistHumanoidModel<EvangelistCultist> {
 		float headYClamp = 0.7f;
 		float headXClamp = 0.08f;
 		float armClamp = 1.4F;
-		float legClamp = 0.2F;
 
 		float headYRot = netHeadYaw * Mth.DEG_TO_RAD;
 		headYRot = Mth.clamp(headYRot, -headYClamp, headYClamp);
 		float headXRot = headPitch * Mth.DEG_TO_RAD;
 		headXRot = Mth.clamp(headXRot, -headXClamp, headXClamp);
 
-		float rightArmRotation = utils.getRightArmRotation(d -> d
-				.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
-		float leftArmRotation = utils.getLeftArmRotation(d -> d
-				.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
-
-		float rightLegRotation = utils.getRightLegRotation(d -> d
-				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
-		float leftLegRotation = utils.getLeftLegRotation(d -> d
-				.setRate(0.8F).setAmount(0.6f).setEasing(Easing.SINE_OUT).addClamp(legClamp));
 
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
-		rightArm.xRot = rightArmRotation;
-		leftArm.xRot = leftArmRotation;
+		var heavyStance = evangelist.heavyStanceAnimationSet;
 
-		rightLeg.xRot = rightLegRotation;
-		rightLeg.visible = false;
-		leftLeg.xRot = leftLegRotation;
-		leftLeg.visible = false;
+		boolean isInHeavyStance = heavyStance.isInHeavyStance;
+
+		if (!isInHeavyStance) {
+			float rightArmRotation = utils.getRightArmRotation(d -> d
+					.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+			float leftArmRotation = utils.getLeftArmRotation(d -> d
+					.setRate(0.3F).setAmount(0.7F).setEasing(Easing.SINE_IN).addClamp(armClamp));
+			rightArm.xRot = rightArmRotation;
+			leftArm.xRot = leftArmRotation;
+		}
+
+		boolean canPlayHeavyIdle = isInHeavyStance;
+		canPlayHeavyIdle &= !animate(heavyStance.startAnimationState, EvangelistAnimations.ENTER_HEAVY_STANCE, ageInTicks);
+		canPlayHeavyIdle &= !animate(heavyStance.parryStartAnimationState, EvangelistAnimations.critical_parry_to_tele, ageInTicks);
+		canPlayHeavyIdle &= !animate(heavyStance.meleeSwingAnimationState, EvangelistAnimations.HEAVY_STANCE_SWING, ageInTicks);
+		canPlayHeavyIdle &= !animate(heavyStance.endingSwingAnimationState, EvangelistAnimations.HEAVY_STANCE_ENDING_SWING, ageInTicks);
+
+		if (canPlayHeavyIdle) {
+			animate(heavyStance.idleAnimationState, EvangelistAnimations.HEAVY_STANCE_IDLE, ageInTicks);
+		}
+		else {
+			animate(evangelist.idleAnimationState, EvangelistAnimations.IDLE, ageInTicks);
+			animate(evangelist.meleeAttackAnimationState, EvangelistAnimations.MELEE_SWING, ageInTicks);
+		}
+	}
+
+
+	@Override
+	public void translateToHand(@NotNull HumanoidArm side, @NotNull PoseStack poseStack) {
+		super.translateToHand(side, poseStack);
+		if (side.equals(HumanoidArm.RIGHT)) {
+			swordbone.translateAndRotate(poseStack);
+		}
 	}
 }

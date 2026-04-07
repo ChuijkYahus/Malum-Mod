@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class SapFilledLogBlock extends RotatedPillarBlock {
+
     public final Supplier<Block> drained;
     public final Supplier<Item> sap;
     public final List<? extends ColorParticleData> sapColor;
@@ -40,25 +41,24 @@ public class SapFilledLogBlock extends RotatedPillarBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (itemstack.getItem() == Items.GLASS_BOTTLE) {
-            if (level instanceof ServerLevel serverLevel) {
-                itemstack.shrink(1);
-                serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(sap.get()));
-                MalumParticleEffectTypes.SAP_COLLECTED.createEffect(pos)
-                        .customData(new SapCollectionParticleEffect.SapCollectionEffectData(hit.getDirection(), player.getUUID()))
-                        .color(sapColor)
-                        .spawn(serverLevel);
-                if (level.random.nextBoolean()) {
-                    BlockStateHelper.setBlockStateWithExistingProperties(level, pos, drained.get().defaultBlockState(), 3);
-                }
-                collectSap(level, pos, player);
-            }
+        if (itemstack.getItem() != Items.GLASS_BOTTLE) {
+            return super.useItemOn(itemstack, state, level, pos, player, handIn, hit);
+        }
+        if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.SUCCESS;
         }
-        return super.useItemOn(itemstack, state, level, pos, player, handIn, hit);
-    }
+        itemstack.shrink(1);
+        player.playSound(SoundEvents.BOTTLE_FILL);
+        ItemHandlerHelper.giveItemToPlayer(player, sap.get().getDefaultInstance());
+        MalumParticleEffectTypes.SAP_COLLECTED.createEffect(pos)
+                .customData(new SapCollectionParticleEffect.SapCollectionEffectData(hit.getDirection(), player.getUUID()))
+                .color(sapColor)
+                .spawn(serverLevel);
+        BlockStateHelper.setBlockStateWithExistingProperties(level, pos, drained.get().defaultBlockState(), 3);
 
+        collectSap(level, pos, player);
+        return ItemInteractionResult.SUCCESS;
+    }
     public void collectSap(Level level, BlockPos pos, Player player) {
     }
 }

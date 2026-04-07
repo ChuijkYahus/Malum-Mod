@@ -13,11 +13,17 @@ public class AltarMeleeAttackGoal extends MeleeAttackGoal {
 
     @Override
     public boolean canUse() {
-        return altar.canEnterMeleeState() && altar.isWithinMeleeRadius() && super.canUse();
+        if (altar.hasAttackedRecently(AltarCultist.MELEE_COOLDOWN)) {
+            return false;
+        }
+        return altar.shouldChaseTarget() && super.canUse();
     }
 
     @Override
     public boolean canContinueToUse() {
-        return altar.canEnterMeleeState() && altar.isWithinMeleeRadius() && super.canContinueToUse();
+        if (altar.hasAttackedRecently(AltarCultist.MELEE_COOLDOWN)) {
+            return false;
+        }
+        return altar.shouldChaseTarget() && super.canContinueToUse();
     }
 }

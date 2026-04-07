@@ -15,7 +15,7 @@ public class TextPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return null;
     }
 

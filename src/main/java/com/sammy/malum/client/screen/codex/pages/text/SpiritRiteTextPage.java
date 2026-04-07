@@ -26,7 +26,7 @@ public class SpiritRiteTextPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/spirit_rite_page.png");
     }
 

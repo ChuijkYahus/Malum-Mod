@@ -41,7 +41,7 @@ public class WeepingWellTextPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         return MalumMod.malumPath("textures/gui/book/pages/weeping_well_page.png");
     }
 

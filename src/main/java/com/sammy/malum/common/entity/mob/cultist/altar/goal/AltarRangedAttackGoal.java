@@ -42,7 +42,7 @@ public class AltarRangedAttackGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return altar.target != null && !altar.isWithinMeleeRadius();
+        return altar.target != null && !altar.shouldChaseTarget();
     }
 
     @Override

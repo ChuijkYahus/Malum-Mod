@@ -36,6 +36,11 @@ public class MalumSoundDatagen extends LodestoneBlockSoundEventSystem {
         add(ARCANA_ENTRY_HOVER, s -> s.with(allSounds("codex/book_hover")));
         add(ARCANA_ENTRY_UNHOVER, s -> s.with(allSounds("codex/book_unhover")));
         add(ARCANA_PAGE_FLIP, s -> s.with(allSounds("codex/book_page_turn")));
+        add(ARCANA_BUTTON_HOVER, s -> s.with(allSounds("codex/button/hover")));
+        add(ARCANA_BUTTON_UNHOVER, s -> s.with(allSounds("codex/button/unhover")));
+        add(ARCANA_BUTTON_CLICK, s -> s.with(allSounds("codex/button/click")));
+        add(ARCANA_BUTTON_UNCLICK, s -> s.with(allSounds("codex/button/unclick")));
+
         add(ARCANA_SUBENTRY_OPEN, s -> s.with(allSounds("codex/book_subentry_open")));
         add(ARCANA_SUBENTRY_CLOSE, s -> s.with(allSounds("codex/book_subentry_close")));
         add(ARCANA_SWEETENER_NORMAL, s -> s.with(allSounds("codex/book_swtnr_normal")));

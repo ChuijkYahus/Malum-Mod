@@ -20,6 +20,22 @@ public class MalumMobSoundDatagen extends MalumSoundDatagenWrapper {
         addCultistSounds(MalumCultistSoundEvents.CARDINAL, 0.8f);
         addCultistSounds(MalumCultistSoundEvents.EVANGELIST, 1.4f);
 
+
+        //Altar
+        add(MalumCultistSoundEvents.ALTAR_BLESSING_LAUNCH, s -> s.with(allSounds("mob/cultist/altar/shoot_bless")));
+        add(MalumCultistSoundEvents.ALTAR_BLESSING_IMPACT, s -> s.with(allSounds("mob/cultist/altar/impact_bless")));
+        add(MalumCultistSoundEvents.ALTAR_CURSE_LAUNCH, s -> s.with(allSounds("mob/cultist/altar/shoot_curse")));
+        add(MalumCultistSoundEvents.ALTAR_CURSE_IMPACT, s -> s.with(allSounds("mob/cultist/altar/impact_curse")));
+        add(MalumCultistSoundEvents.ALTAR_MELEE_ATTACK, s -> s.with(allSounds("mob/cultist/altar/attack")));
+        add(MalumCultistSoundEvents.ALTAR_FLEE, s -> s.with(allSounds("mob/cultist/altar/flee")));
+
+        //Cherub
+
+        add(MalumCultistSoundEvents.CHERUB_PREPARE_SPELL, s -> s.with(allSounds("mob/cultist/cherub/prepare_spell")));
+        add(MalumCultistSoundEvents.CHERUB_CAST_CURSE, s -> s.with(allSounds("mob/cultist/cherub/cast_curse")));
+        add(MalumCultistSoundEvents.CHERUB_CAST_HEAL, s -> s.with(allSounds("mob/cultist/cherub/cast_heal")));
+
+
         //Cardinal
         add(MalumCultistSoundEvents.CARDINAL_ENTROPY_THROW, s -> s.with(allSounds("mob/cultist/cardinal/entropy_charge/throw")));
         add(MalumCultistSoundEvents.CARDINAL_ENTROPY_LOOP, s -> s.with(sound("mob/cultist/cardinal/entropy_charge/loop")));

@@ -32,9 +32,9 @@ public class EvangelistItemInHandLayer extends ItemInHandLayer<EvangelistCultist
             poseStack.pushPose();
             this.getParentModel().translateToHand(arm, poseStack);
             poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
+            poseStack.translate(0f, 0.35F, 0f);
             poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
             boolean flag = arm == HumanoidArm.LEFT;
-            poseStack.translate((float)(flag ? -1 : 1) / 5.0F, 0.125F, -1.4F);
             itemInHandRenderer.renderItem(livingEntity, itemStack, displayContext, flag, poseStack, buffer, packedLight);
             poseStack.popPose();
         }

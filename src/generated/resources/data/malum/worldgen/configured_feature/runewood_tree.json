@@ -4,7 +4,7 @@
     "hangingLeaves": "malum:hanging_runewood_leaves",
     "leaves": "malum:runewood_leaves",
     "log": "malum:runewood_log",
-    "sapFilledLog": "malum:exposed_runewood_log",
+    "sapFilledLog": "malum:sappy_runewood_log",
     "sapling": "malum:runewood_sapling"
   }
 }

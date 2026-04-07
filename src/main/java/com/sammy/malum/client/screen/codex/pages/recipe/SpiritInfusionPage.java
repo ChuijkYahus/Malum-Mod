@@ -40,11 +40,6 @@ public class SpiritInfusionPage extends BookRecipePage<SpiritBasedRecipeInput, S
     }
 
     @Override
-    public boolean isValid() {
-        return recipe != null;
-    }
-
-    @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.spirits, left + 13, top + 75, mouseX, mouseY, true);
         CodexItemHelper.renderIngredients(screen, guiGraphics, recipe.extraInputs, left + 113, top + 75, mouseX, mouseY, true);

@@ -94,6 +94,8 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
             }
         }
 
+        List<BlockPos> sapBlockPositions = WorldgenHelper.shuffle(filler.getLayer(LOGS).keySet(), rand);
+
         for (int i = 0; i < 4; i++) { //Branches
             Direction direction = Direction.from2DDataValue(i);
             int downwardsBranchOffset = getDownwardsBranchOffset(rand);
@@ -121,9 +123,8 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         }
         makeLeafBlob(config, filler, mutable.set(pos).move(Direction.UP, trunkHeight-1));
 
-        List<BlockPos> sapBlockPositions = WorldgenHelper.shuffle(filler.getLayer(LOGS).keySet(), rand);
         for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
-            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.EXPOSED_RUNEWOOD_LOG.get().defaultBlockState())).build());
+            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.SAPPY_RUNEWOOD_LOG.get().defaultBlockState())).build());
         }
 
         filler.fill(level);

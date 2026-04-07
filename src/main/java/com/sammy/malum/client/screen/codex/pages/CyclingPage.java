@@ -20,12 +20,12 @@ public class CyclingPage extends BookPage {
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         if (pages.isEmpty()) {
             return null;
         }
         int index = getIndex();
-        return pages.get(index).getBackground(isRightSide);
+        return pages.get(index).getBackground();
     }
 
     @Override

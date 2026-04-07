@@ -141,60 +141,62 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
         return entity.swingingArm == InteractionHand.MAIN_HAND ? humanoidarm : humanoidarm.getOpposite();
     }
 
-    protected void animate(AnimationState animationState, AnimationDefinition animationDefinition, float ageInTicks) {
-        this.animate(animationState, animationDefinition, ageInTicks, 1.0F);
+    protected boolean animateWalk(net.neoforged.neoforge.client.entity.animation.json.AnimationHolder animation, float limbSwing, float limbSwingAmount, float maxAnimationSpeed, float animationScaleFactor) {
+        return animateWalk(animation.get(), limbSwing, limbSwingAmount, maxAnimationSpeed, animationScaleFactor);
     }
 
-    protected void animate(AnimationState animationState, net.neoforged.neoforge.client.entity.animation.json.AnimationHolder animation, float ageInTicks) {
-        this.animate(animationState, animation.get(), ageInTicks);
-    }
-
-    protected void animateWalk(AnimationDefinition animationDefinition, float limbSwing, float limbSwingAmount, float maxAnimationSpeed, float animationScaleFactor) {
+    protected boolean animateWalk(AnimationDefinition animationDefinition, float limbSwing, float limbSwingAmount, float maxAnimationSpeed, float animationScaleFactor) {
         long i = (long) (limbSwing * 50.0F * maxAnimationSpeed);
         float f = Math.min(limbSwingAmount * animationScaleFactor, 1.0F);
-        animate(this, animationDefinition, i, f, ANIMATION_VECTOR_CACHE);
+        return animate(this, animationDefinition, i, f, ANIMATION_VECTOR_CACHE);
     }
 
-    protected void animateWalk(net.neoforged.neoforge.client.entity.animation.json.AnimationHolder animation, float limbSwing, float limbSwingAmount, float maxAnimationSpeed, float animationScaleFactor) {
-        this.animateWalk(animation.get(), limbSwing, limbSwingAmount, maxAnimationSpeed, animationScaleFactor);
+    protected boolean animate(AnimationState animationState, AnimationDefinition animationDefinition, float ageInTicks) {
+        return animate(animationState, animationDefinition, ageInTicks, 1.0F);
     }
 
-    protected void animate(AnimationState animationState, AnimationDefinition animationDefinition, float ageInTicks, float speed) {
+    protected boolean animate(AnimationState animationState, AnimationDefinition animationDefinition, float ageInTicks, float speed) {
         animationState.updateTime(ageInTicks, speed);
-        animationState.ifStarted(time -> animate(this, animationDefinition, time.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
-    }
-
-    protected void applyStatic(AnimationDefinition animationDefinition) {
-        animate(this, animationDefinition, 0L, 1.0F, ANIMATION_VECTOR_CACHE);
-    }
-
-    public static void animate(HierarchicalHumanoidModel<?> model, AnimationDefinition animationDefinition, long accumulatedTime, float scale, Vector3f animationVecCache) {
-        float f = getElapsedSeconds(animationDefinition, accumulatedTime);
-
-        for (Map.Entry<String, List<AnimationChannel>> entry : animationDefinition.boneAnimations().entrySet()) {
-            Optional<ModelPart> optional = model.getAnyDescendantWithName(entry.getKey());
-            List<AnimationChannel> list = entry.getValue();
-            optional.ifPresent(p_232330_ -> list.forEach(p_288241_ -> {
-                Keyframe[] akeyframe = p_288241_.keyframes();
-                int i = Math.max(0, Mth.binarySearch(0, akeyframe.length, p_232315_ -> f <= akeyframe[p_232315_].timestamp()) - 1);
-                int j = Math.min(akeyframe.length - 1, i + 1);
-                Keyframe keyframe = akeyframe[i];
-                Keyframe keyframe1 = akeyframe[j];
-                float f1 = f - keyframe.timestamp();
-                float f2;
-                if (j != i) {
-                    f2 = Mth.clamp(f1 / (keyframe1.timestamp() - keyframe.timestamp()), 0.0F, 1.0F);
-                } else {
-                    f2 = 0.0F;
-                }
-
-                keyframe1.interpolation().apply(animationVecCache, f2, akeyframe, i, j, scale);
-                p_288241_.target().apply(p_232330_, animationVecCache);
-            }));
+        if (animationState.isStarted()) {
+            return animate(this, animationDefinition, animationState.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE);
         }
+        return false;
     }
 
-    private static float getElapsedSeconds(AnimationDefinition animationDefinition, long accumulatedTime) {
+    protected boolean applyStatic(AnimationDefinition animationDefinition) {
+        return animate(this, animationDefinition, 0L, 1.0F, ANIMATION_VECTOR_CACHE);
+    }
+
+    public static boolean animate(HierarchicalHumanoidModel<?> model, AnimationDefinition animationDefinition, long accumulatedTime, float scale, Vector3f animationVecCache) {
+        float delta = getElapsedSeconds(animationDefinition, accumulatedTime);
+        if (delta < animationDefinition.lengthInSeconds()) {
+            for (Map.Entry<String, List<AnimationChannel>> entry : animationDefinition.boneAnimations().entrySet()) {
+                Optional<ModelPart> optional = model.getAnyDescendantWithName(entry.getKey());
+                List<AnimationChannel> list = entry.getValue();
+                optional.ifPresent(p_232330_ -> list.forEach(p_288241_ -> {
+                    Keyframe[] akeyframe = p_288241_.keyframes();
+                    int i = Math.max(0, Mth.binarySearch(0, akeyframe.length, p_232315_ -> delta <= akeyframe[p_232315_].timestamp()) - 1);
+                    int j = Math.min(akeyframe.length - 1, i + 1);
+                    Keyframe keyframe = akeyframe[i];
+                    Keyframe keyframe1 = akeyframe[j];
+                    float f1 = delta - keyframe.timestamp();
+                    float f2;
+                    if (j != i) {
+                        f2 = Mth.clamp(f1 / (keyframe1.timestamp() - keyframe.timestamp()), 0.0F, 1.0F);
+                    } else {
+                        f2 = 0.0F;
+                    }
+
+                    keyframe1.interpolation().apply(animationVecCache, f2, akeyframe, i, j, scale);
+                    p_288241_.target().apply(p_232330_, animationVecCache);
+                }));
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static float getElapsedSeconds(AnimationDefinition animationDefinition, long accumulatedTime) {
         float f = (float) accumulatedTime / 1000.0F;
         return animationDefinition.looping() ? f % animationDefinition.lengthInSeconds() : f;
     }

@@ -53,7 +53,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
                 }
                 if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                     float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
-                    attacker.playSound(MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, pitch);
+                    SoundHelper.playSound(attacker, MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, pitch);
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)
                             .targets(target)

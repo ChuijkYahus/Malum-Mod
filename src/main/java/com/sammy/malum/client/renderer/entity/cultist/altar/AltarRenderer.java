@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
+import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -23,23 +24,6 @@ public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {
 
     @Override
     protected void scale(AltarCultist altar, PoseStack poseStack, float partialTicks) {
-        if (altar.isSquished()) {
-            float squishDelta = Mth.lerp(partialTicks, altar.oSquish, altar.squish) / AltarCultist.SQUISH_ANIMATION_DURATION;
-            float squishIn = 0.2f;
-            float inverse = 1 - squishIn;
-            float strength = 0.6f;
-            float stretch;
-            if (squishDelta < squishIn) {
-                float relative = squishDelta / squishIn;
-                var lerp = Easing.BACK_OUT.ease(relative);
-                stretch = Mth.lerp(lerp, 1, strength);
-            } else {
-                float relative = (squishDelta - squishIn) / inverse;
-                var lerp = Easing.BOUNCE_OUT.ease(relative);
-                stretch = Mth.lerp(lerp, strength, 1);
-            }
-            poseStack.scale(stretch, 1/stretch, stretch);
-        }
         float scale = altar.getCultistScaleMultiplier();
         poseStack.scale(scale, scale, scale);
     }

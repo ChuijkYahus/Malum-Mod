@@ -2,14 +2,9 @@ package com.sammy.malum.client.screen.codex.pages.recipe;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
-import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -17,7 +12,6 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public abstract class BookRecipePage<T extends RecipeInput, K extends Recipe<T>> extends BookPage {
 
@@ -73,7 +67,7 @@ public abstract class BookRecipePage<T extends RecipeInput, K extends Recipe<T>>
     }
 
     @Override
-    public ResourceLocation getBackground(boolean isRightSide) {
+    public ResourceLocation getBackground() {
         var recipeType = getRecipeType();
         var id = BuiltInRegistries.RECIPE_TYPE.getKey(recipeType);
         assert id != null;
