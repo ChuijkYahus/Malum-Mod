@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHT_PLACEABLE_ON;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.BLIGHT_PLACEABLE_ON;
 
 public class StrangeRootBlock extends BushBlock {
     public static final MapCodec<StrangeRootBlock> CODEC = simpleCodec(StrangeRootBlock::new);

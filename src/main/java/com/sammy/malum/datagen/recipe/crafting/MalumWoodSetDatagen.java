@@ -44,7 +44,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             MalumItems.RUNEWOOD_SIGN.get(), MalumItems.RUNEWOOD_SIGN.get(),
             MalumItems.RUNEWOOD_ITEM_STAND.get(), MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(),
             MalumItems.GILDED_RUNEWOOD_ITEM_STAND.get(), MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(),
-            MalumTags.ItemTags.RUNEWOOD_LOGS, MalumTags.ItemTags.RUNEWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.RUNEWOOD_PLANKS, MalumTags.ItemTags.RUNEWOOD_BOARDS, MalumTags.ItemTags.RUNEWOOD_STAIRS, MalumTags.ItemTags.RUNEWOOD_SLABS,
+            MalumTags.Items.RUNEWOOD_LOGS, MalumTags.Items.RUNEWOOD_BOARD_INGREDIENT, MalumTags.Items.RUNEWOOD_PLANKS, MalumTags.Items.RUNEWOOD_BOARDS, MalumTags.Items.RUNEWOOD_STAIRS, MalumTags.Items.RUNEWOOD_SLABS,
             MalumItems.RUNEWOOD_BOAT.get(), MalumItems.RUNEWOOD_CHEST_BOAT.get(),
             MalumItems.HALLOWED_GOLD_NUGGET.get()
     );
@@ -74,7 +74,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             MalumItems.SOULWOOD_SIGN.get(), MalumItems.SOULWOOD_SIGN.get(),
             MalumItems.SOULWOOD_ITEM_STAND.get(), MalumItems.SOULWOOD_ITEM_PEDESTAL.get(),
             MalumItems.ORNATE_SOULWOOD_ITEM_STAND.get(), MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(),
-            MalumTags.ItemTags.SOULWOOD_LOGS, MalumTags.ItemTags.SOULWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.SOULWOOD_PLANKS, MalumTags.ItemTags.SOULWOOD_BOARDS, MalumTags.ItemTags.SOULWOOD_STAIRS, MalumTags.ItemTags.SOULWOOD_SLABS,
+            MalumTags.Items.SOULWOOD_LOGS, MalumTags.Items.SOULWOOD_BOARD_INGREDIENT, MalumTags.Items.SOULWOOD_PLANKS, MalumTags.Items.SOULWOOD_BOARDS, MalumTags.Items.SOULWOOD_STAIRS, MalumTags.Items.SOULWOOD_SLABS,
             MalumItems.SOULWOOD_BOAT.get(), MalumItems.SOULWOOD_CHEST_BOAT.get(),
             MalumItems.SOUL_STAINED_STEEL_NUGGET.get()
     );
@@ -189,7 +189,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
 
         shaped(RecipeCategory.MISC, woodSet.boardWall, 6)
                 .define('X', woodSet.boardsTag)
-                .define('Y', Items.STICK)
+                .define('Y', net.minecraft.world.item.Items.STICK)
                 .pattern("XYX")
                 .pattern("XYX")
                 .unlockedBy("has_input", condition)
@@ -245,7 +245,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         final ResourceLocation recipeID = getDefaultRecipeId(output).withSuffix("_bolting");
         shapeless(RecipeCategory.MISC, output)
                 .requires(input)
-                .requires(Items.IRON_NUGGET)
+                .requires(net.minecraft.world.item.Items.IRON_NUGGET)
                 .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput, recipeID);
     }

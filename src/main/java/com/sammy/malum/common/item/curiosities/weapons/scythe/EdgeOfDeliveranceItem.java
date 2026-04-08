@@ -51,7 +51,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
                 return;
             }
             var source = event.getSource();
-            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(MalumTags.DamageTypes.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 var effect = MalumMobEffects.IMMINENT_DELIVERANCE;
                 if (target.hasEffect(effect)) {
                     if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
@@ -65,7 +65,7 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
                     }
                 } else {
                     event.setNewDamage(event.getNewDamage() * 0.5f);
-                    if (source.is(MalumTags.DamageTypeTags.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() <= 0.5f) {
+                    if (source.is(MalumTags.DamageTypes.IS_HIDDEN_BLADE) && attacker.getRandom().nextFloat() <= 0.5f) {
                         return;
                     }
                     target.addEffect(new MobEffectInstance(MalumMobEffects.IMMINENT_DELIVERANCE, 60));

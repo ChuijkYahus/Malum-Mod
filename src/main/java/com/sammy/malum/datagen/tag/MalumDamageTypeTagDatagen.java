@@ -2,7 +2,6 @@ package com.sammy.malum.datagen.tag;
 
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.*;
 import net.minecraft.core.HolderLookup.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
@@ -10,14 +9,13 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.*;
 
 import static com.sammy.malum.registry.common.MalumDamageTypes.*;
-import static com.sammy.malum.registry.common.MalumTags.DamageTypeTags.*;
+import static com.sammy.malum.registry.common.MalumTags.DamageTypes.*;
 import static net.minecraft.tags.DamageTypeTags.*;
 import static net.minecraft.world.damagesource.DamageTypes.*;
 import static net.neoforged.neoforge.common.Tags.DamageTypes.*;

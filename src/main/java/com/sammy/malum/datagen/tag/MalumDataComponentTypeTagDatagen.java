@@ -2,7 +2,6 @@ package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -28,11 +27,11 @@ public class MalumDataComponentTypeTagDatagen extends IntrinsicHolderTagsProvide
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        tag(MalumTags.DataComponentTags.SPIRIT_INFUSION_BLACKLIST)
-                .add(DataComponents.MAX_STACK_SIZE)
-                .add(DataComponents.MAX_DAMAGE)
-                .add(DataComponents.DAMAGE)
-                .add(DataComponents.ATTRIBUTE_MODIFIERS)
-                .add(DataComponents.REPAIR_COST);
+        tag(MalumTags.DataComponents.SPIRIT_INFUSION_BLACKLIST)
+                .add(net.minecraft.core.component.DataComponents.MAX_STACK_SIZE)
+                .add(net.minecraft.core.component.DataComponents.MAX_DAMAGE)
+                .add(net.minecraft.core.component.DataComponents.DAMAGE)
+                .add(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS)
+                .add(net.minecraft.core.component.DataComponents.REPAIR_COST);
     }
 }

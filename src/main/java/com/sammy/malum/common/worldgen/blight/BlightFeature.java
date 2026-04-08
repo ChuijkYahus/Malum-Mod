@@ -21,7 +21,6 @@ import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.synth.*;
 import net.minecraft.world.level.material.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.worldgen.*;
@@ -104,7 +103,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         var blightedArea = fetchCoveringPositions(level, pos, radius);
         for (BlockPos blockPos : blightedArea) {
             BlockState state = level.getBlockState(blockPos);
-            if (state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE)) {
+            if (state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE)) {
                 blightLayer.add(blockPos, MalumBlocks.BLIGHTED_EARTH.get());
             }
         }
@@ -128,7 +127,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                     for (int i = 0; i < desiredHeight; i++) {
                         mutable.move(Direction.UP);
                         var state = level.getBlockState(mutable);
-                        if (!state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE) && !state.canBeReplaced()) {
+                        if (!state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE) && !state.canBeReplaced()) {
                             height = -1;
                             break;
                         }
@@ -161,7 +160,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 if (!state.canBeReplaced()) {
                     continue;
                 }
-                if (state.is(MalumTags.BlockTags.BLIGHTED_PLANTS)) {
+                if (state.is(MalumTags.Blocks.BLIGHTED_PLANTS)) {
                     continue;
                 }
                 Block block;
@@ -185,7 +184,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
             int coveringCount = Math.min(random.nextInt(1, 8 + radius * 8 + 1), coveringArea.size() - 1);
             for (BlockPos blockPos : coveringArea) {
                 BlockState state = level.getBlockState(blockPos);
-                if (!state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE)) {
+                if (!state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE)) {
                     continue;
                 }
                 if (blightLayer.containsKey(blockPos)) {
@@ -212,8 +211,8 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         for (int i = 0; i < 3; i++) {
             mutable.move(Direction.UP);
             BlockState aboveState = level.getBlockState(mutable);
-            if (aboveState.getFluidState().isEmpty() && aboveState.is(MalumTags.BlockTags.BLIGHT_REMOVABLE)) {
-                level.setBlock(mutable, Blocks.AIR.defaultBlockState(), 19);
+            if (aboveState.getFluidState().isEmpty() && aboveState.is(MalumTags.Blocks.BLIGHT_REMOVABLE)) {
+                level.setBlock(mutable, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 19);
                 if (level instanceof Level realLevel) {
                     BlockStateHelper.updateState(realLevel, mutable);
                 }
@@ -225,7 +224,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         return fetchCoveringPositions(level, center, radius, BlightFeature::canBeRemoved).stream().filter(
                         p -> {
                             BlockState above = level.getBlockState(p.above());
-                            return above.canBeReplaced() || above.is(MalumTags.BlockTags.BLIGHT_REMOVABLE);
+                            return above.canBeReplaced() || above.is(MalumTags.Blocks.BLIGHT_REMOVABLE);
                         })
                 .collect(Collectors.toList());
     }
@@ -269,6 +268,6 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     public static boolean canBeRemoved(BlockState state) {
-        return state.canBeReplaced() || state.is(MalumTags.BlockTags.BLIGHT_REMOVABLE);
+        return state.canBeReplaced() || state.is(MalumTags.Blocks.BLIGHT_REMOVABLE);
     }
 }

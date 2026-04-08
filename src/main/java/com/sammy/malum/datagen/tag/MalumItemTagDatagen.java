@@ -27,7 +27,7 @@ import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneItemTagsSy
 import java.util.HashSet;
 import java.util.concurrent.*;
 
-import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
+import static com.sammy.malum.registry.common.MalumTags.Items.*;
 import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static net.minecraft.world.item.Items.*;

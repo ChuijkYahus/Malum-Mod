@@ -4,6 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.core.handlers.hiding.*;
+import com.sammy.malum.registry.common.block.MalumBlocks;
 import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
@@ -11,6 +12,9 @@ import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeT
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 
 import java.util.*;
+
+import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class MalumCreativeTab extends CategorizedCreativeTab {
 
@@ -64,715 +68,715 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
         public void buildCategories() {
                 createCategory(FUNDAMENTALS)
                         .addItems(
-                                MalumItems.SACRED_SPIRIT, MalumItems.WICKED_SPIRIT, MalumItems.ARCANE_SPIRIT, MalumItems.ELDRITCH_SPIRIT,
-                                MalumItems.AERIAL_SPIRIT, MalumItems.AQUEOUS_SPIRIT, MalumItems.EARTHEN_SPIRIT, MalumItems.INFERNAL_SPIRIT,
-                                MalumItems.UMBRAL_SPIRIT
+                                SACRED_SPIRIT, WICKED_SPIRIT, ARCANE_SPIRIT, ELDRITCH_SPIRIT,
+                                AERIAL_SPIRIT, AQUEOUS_SPIRIT, EARTHEN_SPIRIT, INFERNAL_SPIRIT,
+                                UMBRAL_SPIRIT
                         ).nextLine()
                         .addItems(
-                                MalumItems.ENCYCLOPEDIA_ARCANA,
-                                MalumItems.ENCYCLOPEDIA_ESOTERICA,
-                                MalumItems.SPIRIT_ALTAR,
-                                MalumItems.RUNEWOOD_OBELISK,
-                                MalumItems.BRILLIANT_OBELISK,
-                                MalumItems.SPIRIT_JAR,
-                                MalumItems.RUNIC_WORKBENCH,
-                                MalumItems.SOUL_BRAZIER
+                                ENCYCLOPEDIA_ARCANA,
+                                ENCYCLOPEDIA_ESOTERICA,
+                                SPIRIT_ALTAR::getItem,
+                                RUNEWOOD_OBELISK::getItem,
+                                BRILLIANT_OBELISK::getItem,
+                                SPIRIT_JAR::getItem,
+                                RUNIC_WORKBENCH::getItem,
+                                SOUL_BRAZIER::getItem
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_TOTEM_BASE,
-                                MalumItems.SOULWOOD_TOTEM_BASE,
-                                MalumItems.WAVEFORM_RUNEWOOD_TOTEM_BASE,
-                                MalumItems.WAVEFORM_SOULWOOD_TOTEM_BASE,
-                                MalumItems.ARCANA_PYLON,
-                                MalumItems.RITE_ANCHOR,
-                                MalumItems.RITE_UNWEAVER,
-                                MalumItems.RITE_SPREADER,
-                                MalumItems.RITE_CHANNEL
+                                RUNEWOOD_TOTEM_BASE::getItem,
+                                SOULWOOD_TOTEM_BASE::getItem,
+                                WAVEFORM_RUNEWOOD_TOTEM_BASE::getItem,
+                                WAVEFORM_SOULWOOD_TOTEM_BASE::getItem,
+                                ARCANA_PYLON::getItem,
+                                RITE_ANCHOR::getItem,
+                                RITE_UNWEAVER::getItem,
+                                RITE_SPREADER::getItem,
+                                RITE_CHANNEL::getItem
                         )
                         .bake();
                 createCategory(GEAR)
                         .addItems(
-                                MalumItems.CRUDE_SCYTHE,
-                                MalumItems.SOULWOVEN_POUCH,
-                                MalumItems.RAVENOUS_POUCH,
-                                MalumItems.TOTEMIC_STAFF,
-                                MalumItems.ARTIFICERS_CLAW,
-                                MalumItems.TUNING_FORK,
-                                MalumItems.LAMPLIGHTERS_TONGS,
-                                MalumItems.CATALYST_LOBBER,
-                                MalumItems.CONCENTRATED_GLUTTONY,
-                                MalumItems.SPLASH_OF_GLUTTONY
+                                CRUDE_SCYTHE,
+                                SOULWOVEN_POUCH,
+                                RAVENOUS_POUCH,
+                                TOTEMIC_STAFF,
+                                ARTIFICERS_CLAW,
+                                TUNING_FORK,
+                                LAMPLIGHTERS_TONGS,
+                                CATALYST_LOBBER,
+                                CONCENTRATED_GLUTTONY,
+                                SPLASH_OF_GLUTTONY
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOUL_STAINED_STEEL_HELMET,
-                                MalumItems.SOUL_STAINED_STEEL_CHESTPLATE,
-                                MalumItems.SOUL_STAINED_STEEL_LEGGINGS,
-                                MalumItems.SOUL_STAINED_STEEL_BOOTS,
-                                MalumItems.SOUL_STAINED_STEEL_SWORD,
-                                MalumItems.SOUL_STAINED_STEEL_PICKAXE,
-                                MalumItems.SOUL_STAINED_STEEL_AXE,
-                                MalumItems.SOUL_STAINED_STEEL_SHOVEL,
-                                MalumItems.SOUL_STAINED_STEEL_HOE
+                                SOUL_STAINED_STEEL_HELMET,
+                                SOUL_STAINED_STEEL_CHESTPLATE,
+                                SOUL_STAINED_STEEL_LEGGINGS,
+                                SOUL_STAINED_STEEL_BOOTS,
+                                SOUL_STAINED_STEEL_SWORD,
+                                SOUL_STAINED_STEEL_PICKAXE,
+                                SOUL_STAINED_STEEL_AXE,
+                                SOUL_STAINED_STEEL_SHOVEL,
+                                SOUL_STAINED_STEEL_HOE
                         )
                         .addItems(
-                                MalumItems.SOUL_HUNTER_CLOAK,
-                                MalumItems.SOUL_HUNTER_ROBE,
-                                MalumItems.SOUL_HUNTER_LEGGINGS,
-                                MalumItems.SOUL_HUNTER_BOOTS,
-                                MalumItems.SOUL_STAINED_STEEL_SCYTHE,
-                                MalumItems.SOUL_STAINED_STEEL_KNIFE,
-                                MalumItems.TYRVING,
-                                MalumItems.RAVENOUS_SCYTHE,
-                                MalumItems.GLUTTONOUS_BLUDGEON
+                                SOUL_HUNTER_CLOAK,
+                                SOUL_HUNTER_ROBE,
+                                SOUL_HUNTER_LEGGINGS,
+                                SOUL_HUNTER_BOOTS,
+                                SOUL_STAINED_STEEL_SCYTHE,
+                                SOUL_STAINED_STEEL_KNIFE,
+                                TYRVING,
+                                RAVENOUS_SCYTHE,
+                                GLUTTONOUS_BLUDGEON
                         )
                         .addItems(
-                                MalumItems.MALIGNANT_STRONGHOLD_HELMET,
-                                MalumItems.MALIGNANT_STRONGHOLD_CHESTPLATE,
-                                MalumItems.MALIGNANT_STRONGHOLD_LEGGINGS,
-                                MalumItems.MALIGNANT_STRONGHOLD_BOOTS,
-                                MalumItems.WEIGHT_OF_WORLDS,
-                                MalumItems.EDGE_OF_DELIVERANCE,
-                                MalumItems.SUNDERING_ANCHOR,
-                                MalumItems.SPELLWEAVING_PICKAXE,
-                                MalumItems.SPELLWEAVING_AXE
+                                MALIGNANT_STRONGHOLD_HELMET,
+                                MALIGNANT_STRONGHOLD_CHESTPLATE,
+                                MALIGNANT_STRONGHOLD_LEGGINGS,
+                                MALIGNANT_STRONGHOLD_BOOTS,
+                                WEIGHT_OF_WORLDS,
+                                EDGE_OF_DELIVERANCE,
+                                SUNDERING_ANCHOR,
+                                SPELLWEAVING_PICKAXE,
+                                SPELLWEAVING_AXE
                         ).nextLine()
                         .addItems(
-                                MalumItems.MNEMONIC_HEX_STAFF,
-                                MalumItems.EROSION_SCEPTER,
-                                MalumItems.UNWINDING_CHAOS
+                                MNEMONIC_HEX_STAFF,
+                                EROSION_SCEPTER,
+                                UNWINDING_CHAOS
                         ).nextLine()
                         .addItems(
-                                MalumItems.GILDED_RING,
-                                MalumItems.GILDED_BELT,
-                                MalumItems.ORNATE_RING,
-                                MalumItems.ORNATE_NECKLACE
+                                GILDED_RING,
+                                GILDED_BELT,
+                                ORNATE_RING,
+                                ORNATE_NECKLACE
                         )
                         .addItems(
-                                MalumItems.RUNIC_BROOCH,
-                                MalumItems.ELABORATE_BROOCH,
-                                MalumItems.GLASS_BROOCH,
-                                MalumItems.GLUTTONOUS_BROOCH
+                                RUNIC_BROOCH,
+                                ELABORATE_BROOCH,
+                                GLASS_BROOCH,
+                                GLUTTONOUS_BROOCH
                         ).nextLine()
                         .addItems(
-                                MalumItems.RING_OF_ESOTERIC_SPOILS,
-                                MalumItems.RING_OF_CURATIVE_TALENT,
-                                MalumItems.RING_OF_ALCHEMICAL_MASTERY,
-                                MalumItems.RING_OF_DESPERATE_VORACITY,
-                                MalumItems.RING_OF_THE_RISING_EDGE,
-                                MalumItems.RING_OF_HEARTY_AVARICE
+                                RING_OF_ESOTERIC_SPOILS,
+                                RING_OF_CURATIVE_TALENT,
+                                RING_OF_ALCHEMICAL_MASTERY,
+                                RING_OF_DESPERATE_VORACITY,
+                                RING_OF_THE_RISING_EDGE,
+                                RING_OF_HEARTY_AVARICE
                         ).nextLine()
                         .addItems(
-                                MalumItems.RING_OF_ESOTERIC_SHADOW,
-                                MalumItems.RING_OF_MANAWEAVING,
-                                MalumItems.RING_OF_ARCANE_PROWESS,
-                                MalumItems.RING_OF_SWARMING_ROT,
-                                MalumItems.RING_OF_THE_HOWLING_MAELSTROM,
-                                MalumItems.RING_OF_HEAVY_DISCHARGE
+                                RING_OF_ESOTERIC_SHADOW,
+                                RING_OF_MANAWEAVING,
+                                RING_OF_ARCANE_PROWESS,
+                                RING_OF_SWARMING_ROT,
+                                RING_OF_THE_HOWLING_MAELSTROM,
+                                RING_OF_HEAVY_DISCHARGE
                         ).nextLine()
                         .addItems(
-                                MalumItems.NECKLACE_OF_MYSTIC_POTENCY,
-                                MalumItems.NECKLACE_OF_THE_NARROW_EDGE
+                                NECKLACE_OF_MYSTIC_POTENCY,
+                                NECKLACE_OF_THE_NARROW_EDGE
                         )
                         .addItems(
-                                MalumItems.BELT_OF_THE_STARVED,
-                                MalumItems.BELT_OF_THE_PROSPECTOR,
-                                MalumItems.BELT_OF_THE_MAGEBANE
+                                BELT_OF_THE_STARVED,
+                                BELT_OF_THE_PROSPECTOR,
+                                BELT_OF_THE_MAGEBANE
                         ).nextLine()
                         .addItems(
-                                MalumItems.RING_OF_THE_ENDLESS_WELL,
-                                MalumItems.RING_OF_ECHOING_ARCANA,
-                                MalumItems.RING_OF_GROWING_FLESH,
-                                MalumItems.RING_OF_GRUESOME_CONCENTRATION,
-                                MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE,
-                                MalumItems.NECKLACE_OF_THE_WATCHER,
-                                MalumItems.BELT_OF_THE_LIMITLESS
+                                RING_OF_THE_ENDLESS_WELL,
+                                RING_OF_ECHOING_ARCANA,
+                                RING_OF_GROWING_FLESH,
+                                RING_OF_GRUESOME_CONCENTRATION,
+                                NECKLACE_OF_THE_HIDDEN_BLADE,
+                                NECKLACE_OF_THE_WATCHER,
+                                BELT_OF_THE_LIMITLESS
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNE_OF_VITALITY,
-                                MalumItems.RUNE_OF_CULLING,
-                                MalumItems.RUNE_OF_REINFORCEMENT,
-                                MalumItems.RUNE_OF_VOLATILE_DISTORTION,
-                                MalumItems.RUNE_OF_DEXTERITY,
-                                MalumItems.RUNE_OF_AILMENT_CLEANSING,
-                                MalumItems.RUNE_OF_PROTECTION,
-                                MalumItems.RUNE_OF_SCORCHING
+                                RUNE_OF_VITALITY,
+                                RUNE_OF_CULLING,
+                                RUNE_OF_REINFORCEMENT,
+                                RUNE_OF_VOLATILE_DISTORTION,
+                                RUNE_OF_DEXTERITY,
+                                RUNE_OF_AILMENT_CLEANSING,
+                                RUNE_OF_PROTECTION,
+                                RUNE_OF_SCORCHING
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNE_OF_HOWLING_GALE,
-                                MalumItems.RUNE_OF_FLOWING_GRASP,
-                                MalumItems.RUNE_OF_STONE_WARD,
-                                MalumItems.RUNE_OF_BURNING_FERVOR,
-                                MalumItems.RUNE_OF_SKY_TETHER,
-                                MalumItems.RUNE_OF_GOOD_TIDES,
-                                MalumItems.RUNE_OF_OAKEN_MIGHT,
-                                MalumItems.RUNE_OF_FIERY_EMBRACE
+                                RUNE_OF_HOWLING_GALE,
+                                RUNE_OF_FLOWING_GRASP,
+                                RUNE_OF_STONE_WARD,
+                                RUNE_OF_BURNING_FERVOR,
+                                RUNE_OF_SKY_TETHER,
+                                RUNE_OF_GOOD_TIDES,
+                                RUNE_OF_OAKEN_MIGHT,
+                                RUNE_OF_FIERY_EMBRACE
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNE_OF_BOLSTERING,
-                                MalumItems.RUNE_OF_RADIAL_EMPOWERMENT,
-                                MalumItems.RUNE_OF_SPELL_MASTERY,
-                                MalumItems.RUNE_OF_HERESY,
-                                MalumItems.RUNE_OF_UNNATURAL_STAMINA,
-                                MalumItems.RUNE_OF_TWINNED_DURATION,
-                                MalumItems.RUNE_OF_INDOMITABILITY,
-                                MalumItems.RUNE_OF_IGNEOUS_SOLACE
+                                RUNE_OF_BOLSTERING,
+                                RUNE_OF_RADIAL_EMPOWERMENT,
+                                RUNE_OF_SPELL_MASTERY,
+                                RUNE_OF_HERESY,
+                                RUNE_OF_UNNATURAL_STAMINA,
+                                RUNE_OF_TWINNED_DURATION,
+                                RUNE_OF_INDOMITABILITY,
+                                RUNE_OF_IGNEOUS_SOLACE
                         )
                         .bake();
                 createCategory(ARTIFICE)
                         .addItems(
-                                MalumItems.TUNING_FORK,
-                                MalumItems.SPIRIT_CRUCIBLE,
-                                MalumItems.SPIRIT_CATALYZER,
-                                MalumItems.REPAIR_PYLON
+                                TUNING_FORK,
+                                SPIRIT_CRUCIBLE::getItem,
+                                SPIRIT_CATALYZER::getItem,
+                                REPAIR_PYLON::getItem
                         ).nextLine()
                         .addItems(
-                                MalumItems.WAVECHARGER,
-                                MalumItems.WAVEBANKER,
-                                MalumItems.WAVEMAKER,
-                                MalumItems.WAVEBREAKER,
-                                MalumItems.GUST_IGNITER,
-                                MalumItems.WIND_TUNNEL
+                                WAVECHARGER::getItem,
+                                WAVEBANKER::getItem,
+                                WAVEMAKER::getItem,
+                                WAVEBREAKER::getItem,
+                                GUST_IGNITER::getItem,
+                                WIND_TUNNEL::getItem
                         ).nextLine()
                         .addItems(
-                                MalumItems.MENDING_DIFFUSER,
-                                MalumItems.IMPURITY_STABILIZER,
-                                MalumItems.SHIELDING_APPARATUS,
-                                MalumItems.WARPING_ENGINE,
-                                MalumItems.ACCELERATING_INLAY,
-                                MalumItems.PRISMATIC_FOCUS_LENS,
-                                MalumItems.BLAZING_DIODE,
-                                MalumItems.INTRICATE_ASSEMBLY
+                                MENDING_DIFFUSER,
+                                IMPURITY_STABILIZER,
+                                SHIELDING_APPARATUS,
+                                WARPING_ENGINE,
+                                ACCELERATING_INLAY,
+                                PRISMATIC_FOCUS_LENS,
+                                BLAZING_DIODE,
+                                INTRICATE_ASSEMBLY
                         ).nextLine()
                         .addItems(
-                                MalumItems.SYMPATHY_DRIVE,
-                                MalumItems.SUSPICIOUS_DEVICE,
-                                MalumItems.CAUSTIC_CATALYST,
-                                MalumItems.RESONANCE_TUNER,
-                                MalumItems.STELLAR_MECHANISM
+                                SYMPATHY_DRIVE,
+                                SUSPICIOUS_DEVICE,
+                                CAUSTIC_CATALYST,
+                                RESONANCE_TUNER,
+                                STELLAR_MECHANISM
                         )
                         .bake();
                 createCategory(ALCHEMICAL_FOCI)
-                        .addItems(MalumItems.ALCHEMICAL_IMPETUS, MalumItems.FRACTURED_ALCHEMICAL_IMPETUS)
-                        .addItems(MalumItems.ZEPHYR_IMPETUS, MalumItems.FRACTURED_ZEPHYR_IMPETUS)
-                        .addItems(MalumItems.IFRIT_IMPETUS, MalumItems.FRACTURED_IFRIT_IMPETUS)
+                        .addItems(ALCHEMICAL_IMPETUS, FRACTURED_ALCHEMICAL_IMPETUS)
+                        .addItems(ZEPHYR_IMPETUS, FRACTURED_ZEPHYR_IMPETUS)
+                        .addItems(IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS)
                         .nextLine()
 
-                        .addItems(MalumItems.IRON_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.COPPER_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.GOLD_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.ZINC_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.LEAD_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.SILVER_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.ALUMINIUM_METALLICS::addToCreativeTab)
-                        .addItems(MalumItems.NICKEL_METALLICS::addToCreativeTab)
+                        .addItems(IRON_METALLICS::addToCreativeTab)
+                        .addItems(COPPER_METALLICS::addToCreativeTab)
+                        .addItems(GOLD_METALLICS::addToCreativeTab)
+                        .addItems(ZINC_METALLICS::addToCreativeTab)
+                        .addItems(LEAD_METALLICS::addToCreativeTab)
+                        .addItems(SILVER_METALLICS::addToCreativeTab)
+                        .addItems(ALUMINIUM_METALLICS::addToCreativeTab)
+                        .addItems(NICKEL_METALLICS::addToCreativeTab)
 
                         .bake();
                 createCategory(MATERIALS)
                         .addItems(
-                                MalumItems.ROTTING_ESSENCE,
-                                MalumItems.GRIM_TALC,
-                                MalumItems.EERIE_WEAVE,
-                                MalumItems.WARP_FLUX
+                                ROTTING_ESSENCE,
+                                GRIM_TALC,
+                                EERIE_WEAVE,
+                                WARP_FLUX
                         )
                         .addItems(
-                                MalumItems.WIND_NUCLEUS,
-                                MalumItems.PYRE_NUCLEUS
+                                WIND_NUCLEUS,
+                                PYRE_NUCLEUS
                         ).nextLine()
                         .addItems(
-                                MalumItems.HEX_ASH,
-                                MalumItems.LIVING_FLESH,
-                                MalumItems.ALCHEMICAL_CALX,
-                                MalumItems.ARCANE_CHARCOAL
+                                HEX_ASH,
+                                LIVING_FLESH,
+                                ALCHEMICAL_CALX,
+                                ARCANE_CHARCOAL
                         )
                         .addItems(
-                                MalumItems.EBONY_STALK,
-                                MalumItems.EBONY,
-                                MalumItems.WILD_WITCHHAZEL,
-                                MalumItems.WITCHHAZEL
+                                EBONY_STALK,
+                                EBONY,
+                                WILD_WITCHHAZEL,
+                                WITCHHAZEL
                         ).nextLine()
                         .addItems(
-                                MalumItems.NULL_SLATE,
-                                MalumItems.VOID_SALTS,
-                                MalumItems.MNEMONIC_FRAGMENT,
-                                MalumItems.AURIC_EMBERS,
-                                MalumItems.MALIGNANT_LEAD
+                                NULL_SLATE,
+                                VOID_SALTS,
+                                MNEMONIC_FRAGMENT,
+                                AURIC_EMBERS,
+                                MALIGNANT_LEAD
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOUL_STAINED_STEEL_INGOT,
-                                MalumItems.SOUL_STAINED_STEEL_PLATING,
-                                MalumItems.SOUL_STAINED_STEEL_NUGGET,
-                                MalumItems.HALLOWED_GOLD_INGOT,
-                                MalumItems.HALLOWED_GOLD_INLAY,
-                                MalumItems.HALLOWED_GOLD_NUGGET,
-                                MalumItems.MALIGNANT_PEWTER_INGOT,
-                                MalumItems.MALIGNANT_PEWTER_PLATING,
-                                MalumItems.MALIGNANT_PEWTER_NUGGET
+                                SOUL_STAINED_STEEL_INGOT,
+                                SOUL_STAINED_STEEL_PLATING,
+                                SOUL_STAINED_STEEL_NUGGET,
+                                HALLOWED_GOLD_INGOT,
+                                HALLOWED_GOLD_INLAY,
+                                HALLOWED_GOLD_NUGGET,
+                                MALIGNANT_PEWTER_INGOT,
+                                MALIGNANT_PEWTER_PLATING,
+                                MALIGNANT_PEWTER_NUGGET
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOVEN_SILK,
-                                MalumItems.PARACAUSAL_FLAME,
-                                MalumItems.CONVOLUTED_LENS,
-                                MalumItems.MIMICRY_RELAY,
-                                MalumItems.POPPET,
-                                MalumItems.IMITATION_FLESH,
-                                MalumItems.IMITATION_HEART
+                                SOULWOVEN_SILK,
+                                PARACAUSAL_FLAME,
+                                CONVOLUTED_LENS,
+                                MIMICRY_RELAY,
+                                POPPET,
+                                IMITATION_FLESH,
+                                IMITATION_HEART
                         ).nextLine()
                         .addItems(
-                                MalumItems.ANOMALOUS_DESIGN,
-                                MalumItems.COMPLETE_DESIGN,
-                                MalumItems.FUSED_CONSCIOUSNESS
+                                ANOMALOUS_DESIGN,
+                                COMPLETE_DESIGN,
+                                FUSED_CONSCIOUSNESS
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_ROTTING_ESSENCE,
-                                MalumItems.BLOCK_OF_GRIM_TALC,
-                                MalumItems.BLOCK_OF_EERIE_WEAVE,
-                                MalumItems.BLOCK_OF_WARP_FLUX
+                                BLOCK_OF_ROTTING_ESSENCE,
+                                BLOCK_OF_GRIM_TALC,
+                                BLOCK_OF_EERIE_WEAVE,
+                                BLOCK_OF_WARP_FLUX
                         )
                         .addItems(
-                                MalumItems.BLOCK_OF_WIND_NUCLEI,
-                                MalumItems.BLOCK_OF_PYRE_NUCLEI
+                                BLOCK_OF_WIND_NUCLEI,
+                                BLOCK_OF_PYRE_NUCLEI
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_HEX_ASH,
-                                MalumItems.BLOCK_OF_LIVING_FLESH,
-                                MalumItems.BLOCK_OF_ALCHEMICAL_CALX,
-                                MalumItems.BLOCK_OF_ARCANE_CHARCOAL
+                                BLOCK_OF_HEX_ASH,
+                                BLOCK_OF_LIVING_FLESH,
+                                BLOCK_OF_ALCHEMICAL_CALX,
+                                BLOCK_OF_ARCANE_CHARCOAL
                         )
                         .addItems(
-                                MalumItems.BLOCK_OF_EBONY,
-                                MalumItems.CRATE_OF_WITCHHAZEL
+                                BLOCK_OF_EBONY,
+                                CRATE_OF_WITCHHAZEL
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_NULL_SLATE,
-                                MalumItems.BLOCK_OF_VOID_SALTS,
-                                MalumItems.BLOCK_OF_MNEMONIC_FRAGMENT,
-                                MalumItems.BLOCK_OF_AURIC_EMBERS,
-                                MalumItems.BLOCK_OF_MALIGNANT_LEAD
+                                BLOCK_OF_NULL_SLATE,
+                                BLOCK_OF_VOID_SALTS,
+                                BLOCK_OF_MNEMONIC_FRAGMENT,
+                                BLOCK_OF_AURIC_EMBERS,
+                                BLOCK_OF_MALIGNANT_LEAD
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_SOUL_STAINED_STEEL,
-                                MalumItems.BLOCK_OF_HALLOWED_GOLD,
-                                MalumItems.BLOCK_OF_MALIGNANT_PEWTER
+                                BLOCK_OF_SOUL_STAINED_STEEL,
+                                BLOCK_OF_HALLOWED_GOLD,
+                                BLOCK_OF_MALIGNANT_PEWTER
                         ).bake();
                 createCategory(ORES)
                         .addItems(
-                                MalumItems.BLOCK_OF_SOULSTONE, MalumItems.BLOCK_OF_RAW_SOULSTONE, MalumItems.DEEPSLATE_SOULSTONE_ORE, MalumItems.SOULSTONE_ORE,
-                                MalumItems.RAW_SOULSTONE, MalumItems.CRUSHED_SOULSTONE, MalumItems.REFINED_SOULSTONE
+                                BLOCK_OF_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, DEEPSLATE_SOULSTONE_ORE, SOULSTONE_ORE,
+                                RAW_SOULSTONE, CRUSHED_SOULSTONE, REFINED_SOULSTONE
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_BRILLIANCE, MalumItems.BLOCK_OF_RAW_BRILLIANCE, MalumItems.BRILLIANT_DEEPSLATE, MalumItems.BRILLIANT_STONE,
-                                MalumItems.RAW_BRILLIANCE, MalumItems.CRUSHED_BRILLIANCE, MalumItems.REFINED_BRILLIANCE
+                                BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE, BRILLIANT_DEEPSLATE, BRILLIANT_STONE,
+                                RAW_BRILLIANCE, CRUSHED_BRILLIANCE, REFINED_BRILLIANCE
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_BLAZING_QUARTZ, MalumItems.BLAZING_QUARTZ_ORE,
-                                MalumItems.BLAZING_QUARTZ
+                                BLOCK_OF_BLAZING_QUARTZ, BLAZING_QUARTZ_ORE,
+                                BLAZING_QUARTZ
                         )
                         .addItems(
-                                MalumItems.BLOCK_OF_NATURAL_QUARTZ, MalumItems.DEEPSLATE_QUARTZ_ORE, MalumItems.NATURAL_QUARTZ_ORE,
-                                MalumItems.NATURAL_QUARTZ
+                                BLOCK_OF_NATURAL_QUARTZ, DEEPSLATE_QUARTZ_ORE, NATURAL_QUARTZ_ORE,
+                                NATURAL_QUARTZ
                         ).nextLine()
                         .addItems(
-                                MalumItems.BLOCK_OF_CTHONIC_GOLD, MalumItems.CTHONIC_GOLD_ORE,
-                                MalumItems.CTHONIC_GOLD, MalumItems.CTHONIC_GOLD_FRAGMENT
+                                BLOCK_OF_CTHONIC_GOLD, CTHONIC_GOLD_ORE,
+                                CTHONIC_GOLD, CTHONIC_GOLD_FRAGMENT
                         )
                         .bake();
                 createCategory(ETHER)
                         .addItems(
-                                MalumItems.ETHER,
-                                MalumItems.ETHER_CANDLE,
-                                MalumItems.ETHER_TORCH,
+                                ETHER,
+                                ETHER_CANDLE,
+                                ETHER_TORCH,
 
-                                MalumItems.TAINTED_ETHER_BRAZIER,
-                                MalumItems.TWISTED_ETHER_BRAZIER,
-                                MalumItems.DROSS_ETHER_BRAZIER,
+                                TAINTED_ETHER_BRAZIER,
+                                TWISTED_ETHER_BRAZIER,
+                                DROSS_ETHER_BRAZIER,
 
-                                MalumItems.TAINTED_ETHER_CRESSET,
-                                MalumItems.TWISTED_ETHER_CRESSET,
-                                MalumItems.DROSS_ETHER_CRESSET
+                                TAINTED_ETHER_CRESSET,
+                                TWISTED_ETHER_CRESSET,
+                                DROSS_ETHER_CRESSET
                         ).nextLine()
                         .addItems(
-                                MalumItems.IRIDESCENT_ETHER,
-                                MalumItems.IRIDESCENT_ETHER_CANDLE,
-                                MalumItems.IRIDESCENT_ETHER_TORCH,
+                                IRIDESCENT_ETHER,
+                                IRIDESCENT_ETHER_CANDLE,
+                                IRIDESCENT_ETHER_TORCH,
 
-                                MalumItems.TAINTED_IRIDESCENT_ETHER_BRAZIER,
-                                MalumItems.TWISTED_IRIDESCENT_ETHER_BRAZIER,
-                                MalumItems.DROSS_IRIDESCENT_ETHER_BRAZIER,
+                                TAINTED_IRIDESCENT_ETHER_BRAZIER,
+                                TWISTED_IRIDESCENT_ETHER_BRAZIER,
+                                DROSS_IRIDESCENT_ETHER_BRAZIER,
 
-                                MalumItems.TAINTED_IRIDESCENT_ETHER_CRESSET,
-                                MalumItems.TWISTED_IRIDESCENT_ETHER_CRESSET,
-                                MalumItems.DROSS_IRIDESCENT_ETHER_CRESSET
+                                TAINTED_IRIDESCENT_ETHER_CRESSET,
+                                TWISTED_IRIDESCENT_ETHER_CRESSET,
+                                DROSS_IRIDESCENT_ETHER_CRESSET
                         )
                         .bake();
                 createCategory(SOULSTUFF)
                         .addItems(
-                                MalumItems.SACRED_SPIRITED_GLASS,
-                                MalumItems.WICKED_SPIRITED_GLASS,
-                                MalumItems.ARCANE_SPIRITED_GLASS,
-                                MalumItems.ELDRITCH_SPIRITED_GLASS,
-                                MalumItems.AERIAL_SPIRITED_GLASS,
-                                MalumItems.AQUEOUS_SPIRITED_GLASS,
-                                MalumItems.EARTHEN_SPIRITED_GLASS,
-                                MalumItems.INFERNAL_SPIRITED_GLASS,
-                                MalumItems.NULL_SPIRITED_GLASS
+                                SACRED_SPIRITED_GLASS,
+                                WICKED_SPIRITED_GLASS,
+                                ARCANE_SPIRITED_GLASS,
+                                ELDRITCH_SPIRITED_GLASS,
+                                AERIAL_SPIRITED_GLASS,
+                                AQUEOUS_SPIRITED_GLASS,
+                                EARTHEN_SPIRITED_GLASS,
+                                INFERNAL_SPIRITED_GLASS,
+                                NULL_SPIRITED_GLASS
                         ).nextLine()
                         .addItems(
-                                MalumItems.SACRED_VARNISHED_TERRACOTTA,
-                                MalumItems.WICKED_VARNISHED_TERRACOTTA,
-                                MalumItems.ARCANE_VARNISHED_TERRACOTTA,
-                                MalumItems.ELDRITCH_VARNISHED_TERRACOTTA,
-                                MalumItems.AERIAL_VARNISHED_TERRACOTTA,
-                                MalumItems.AQUEOUS_VARNISHED_TERRACOTTA,
-                                MalumItems.EARTHEN_VARNISHED_TERRACOTTA,
-                                MalumItems.INFERNAL_VARNISHED_TERRACOTTA,
-                                MalumItems.NULL_VARNISHED_TERRACOTTA
+                                SACRED_VARNISHED_TERRACOTTA,
+                                WICKED_VARNISHED_TERRACOTTA,
+                                ARCANE_VARNISHED_TERRACOTTA,
+                                ELDRITCH_VARNISHED_TERRACOTTA,
+                                AERIAL_VARNISHED_TERRACOTTA,
+                                AQUEOUS_VARNISHED_TERRACOTTA,
+                                EARTHEN_VARNISHED_TERRACOTTA,
+                                INFERNAL_VARNISHED_TERRACOTTA,
+                                NULL_VARNISHED_TERRACOTTA
                         ).nextLine()
                         .addItems(SoulwovenBannerBlockItem::addBannerPatterns)
                         .bake();
                 createCategory(RUNEWOOD)
                         .addItems(
-                                MalumItems.RUNIC_SAP,
-                                MalumItems.RUNIC_SAPBALL,
-                                MalumItems.RUNEWOOD_SAPLING,
-                                MalumItems.RUNEWOOD_LEAVES,
-                                MalumItems.HANGING_RUNEWOOD_LEAVES,
-                                MalumItems.AZURE_RUNEWOOD_SAPLING,
-                                MalumItems.AZURE_RUNEWOOD_LEAVES,
-                                MalumItems.HANGING_AZURE_RUNEWOOD_LEAVES
+                                RUNIC_SAP,
+                                RUNIC_SAPBALL,
+                                RUNEWOOD_SAPLING,
+                                RUNEWOOD_LEAVES,
+                                HANGING_RUNEWOOD_LEAVES,
+                                AZURE_RUNEWOOD_SAPLING,
+                                AZURE_RUNEWOOD_LEAVES,
+                                HANGING_AZURE_RUNEWOOD_LEAVES
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_LOG,
-                                MalumItems.STRIPPED_RUNEWOOD_LOG,
-                                MalumItems.RUNEWOOD,
-                                MalumItems.STRIPPED_RUNEWOOD,
-                                MalumItems.SAPPY_RUNEWOOD_LOG,
-                                MalumItems.STRIPPED_SAPPY_RUNEWOOD_LOG
+                                RUNEWOOD_LOG,
+                                STRIPPED_RUNEWOOD_LOG,
+                                RUNEWOOD,
+                                STRIPPED_RUNEWOOD,
+                                SAPPY_RUNEWOOD_LOG,
+                                STRIPPED_SAPPY_RUNEWOOD_LOG
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_BOARDS,
-                                MalumItems.VERTICAL_RUNEWOOD_BOARDS,
-                                MalumItems.RUNEWOOD_PLANKS,
-                                MalumItems.VERTICAL_RUNEWOOD_PLANKS,
-                                MalumItems.RUNEWOOD_TILES,
-                                MalumItems.RUSTIC_RUNEWOOD_PLANKS,
-                                MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS,
-                                MalumItems.RUSTIC_RUNEWOOD_TILES
+                                RUNEWOOD_BOARDS,
+                                VERTICAL_RUNEWOOD_BOARDS,
+                                RUNEWOOD_PLANKS,
+                                VERTICAL_RUNEWOOD_PLANKS,
+                                RUNEWOOD_TILES,
+                                RUSTIC_RUNEWOOD_PLANKS,
+                                VERTICAL_RUSTIC_RUNEWOOD_PLANKS,
+                                RUSTIC_RUNEWOOD_TILES
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_BOARDS_SLAB,
-                                MalumItems.VERTICAL_RUNEWOOD_BOARDS_SLAB,
-                                MalumItems.RUNEWOOD_PLANKS_SLAB,
-                                MalumItems.VERTICAL_RUNEWOOD_PLANKS_SLAB,
-                                MalumItems.RUNEWOOD_TILES_SLAB,
-                                MalumItems.RUSTIC_RUNEWOOD_PLANKS_SLAB,
-                                MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB,
-                                MalumItems.RUSTIC_RUNEWOOD_TILES_SLAB
+                                RUNEWOOD_BOARDS_SLAB,
+                                VERTICAL_RUNEWOOD_BOARDS_SLAB,
+                                RUNEWOOD_PLANKS_SLAB,
+                                VERTICAL_RUNEWOOD_PLANKS_SLAB,
+                                RUNEWOOD_TILES_SLAB,
+                                RUSTIC_RUNEWOOD_PLANKS_SLAB,
+                                VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB,
+                                RUSTIC_RUNEWOOD_TILES_SLAB
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_BOARDS_STAIRS,
-                                MalumItems.VERTICAL_RUNEWOOD_BOARDS_STAIRS,
-                                MalumItems.RUNEWOOD_PLANKS_STAIRS,
-                                MalumItems.VERTICAL_RUNEWOOD_PLANKS_STAIRS,
-                                MalumItems.RUNEWOOD_TILES_STAIRS,
-                                MalumItems.RUSTIC_RUNEWOOD_PLANKS_STAIRS,
-                                MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS,
-                                MalumItems.RUSTIC_RUNEWOOD_TILES_STAIRS
+                                RUNEWOOD_BOARDS_STAIRS,
+                                VERTICAL_RUNEWOOD_BOARDS_STAIRS,
+                                RUNEWOOD_PLANKS_STAIRS,
+                                VERTICAL_RUNEWOOD_PLANKS_STAIRS,
+                                RUNEWOOD_TILES_STAIRS,
+                                RUSTIC_RUNEWOOD_PLANKS_STAIRS,
+                                VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS,
+                                RUSTIC_RUNEWOOD_TILES_STAIRS
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_PANEL,
-                                MalumItems.CUT_RUNEWOOD_PLANKS,
-                                MalumItems.RUNEWOOD_BEAM,
-                                MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL,
-                                MalumItems.RUNEWOOD_ITEM_PEDESTAL,
-                                MalumItems.GILDED_RUNEWOOD_ITEM_STAND,
-                                MalumItems.RUNEWOOD_ITEM_STAND
+                                RUNEWOOD_PANEL,
+                                CUT_RUNEWOOD_PLANKS,
+                                RUNEWOOD_BEAM,
+                                GILDED_RUNEWOOD_ITEM_PEDESTAL,
+                                RUNEWOOD_ITEM_PEDESTAL,
+                                GILDED_RUNEWOOD_ITEM_STAND,
+                                RUNEWOOD_ITEM_STAND
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_DOOR,
-                                MalumItems.BOLTED_RUNEWOOD_DOOR,
-                                MalumItems.RUNEWOOD_TRAPDOOR,
-                                MalumItems.BOLTED_RUNEWOOD_TRAPDOOR,
-                                MalumItems.RUNEWOOD_BOARDS_DOOR,
-                                MalumItems.BOLTED_RUNEWOOD_BOARDS_DOOR,
-                                MalumItems.RUNEWOOD_BOARDS_TRAPDOOR,
-                                MalumItems.BOLTED_RUNEWOOD_BOARDS_TRAPDOOR
+                                RUNEWOOD_DOOR,
+                                BOLTED_RUNEWOOD_DOOR,
+                                RUNEWOOD_TRAPDOOR,
+                                BOLTED_RUNEWOOD_TRAPDOOR,
+                                RUNEWOOD_BOARDS_DOOR,
+                                BOLTED_RUNEWOOD_BOARDS_DOOR,
+                                RUNEWOOD_BOARDS_TRAPDOOR,
+                                BOLTED_RUNEWOOD_BOARDS_TRAPDOOR
                         ).nextLine()
                         .addItems(
-                                MalumItems.RUNEWOOD_PRESSURE_PLATE,
-                                MalumItems.RUNEWOOD_BUTTON,
-                                MalumItems.RUNEWOOD_BOARDS_WALL,
-                                MalumItems.RUNEWOOD_FENCE,
-                                MalumItems.RUNEWOOD_FENCE_GATE,
-                                MalumItems.RUNEWOOD_SIGN,
-                                MalumItems.RUNEWOOD_BOAT,
-                                MalumItems.RUNEWOOD_CHEST_BOAT
+                                RUNEWOOD_PRESSURE_PLATE,
+                                RUNEWOOD_BUTTON,
+                                RUNEWOOD_BOARDS_WALL,
+                                RUNEWOOD_FENCE,
+                                RUNEWOOD_FENCE_GATE,
+                                RUNEWOOD_SIGN,
+                                RUNEWOOD_BOAT,
+                                RUNEWOOD_CHEST_BOAT
                         )
                         .bake();
                 createCategory(SOULWOOD)
                         .addItems(
-                                MalumItems.CURSED_SAP,
-                                MalumItems.CURSED_SAPBALL,
-                                MalumItems.SOULWOOD_SAPLING,
-                                MalumItems.SOULWOOD_LEAVES,
-                                MalumItems.HANGING_SOULWOOD_LEAVES
+                                CURSED_SAP,
+                                CURSED_SAPBALL,
+                                SOULWOOD_SAPLING,
+                                SOULWOOD_LEAVES,
+                                HANGING_SOULWOOD_LEAVES
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_LOG,
-                                MalumItems.STRIPPED_SOULWOOD_LOG,
-                                MalumItems.SOULWOOD,
-                                MalumItems.STRIPPED_SOULWOOD,
-                                MalumItems.SAPPY_SOULWOOD_LOG,
-                                MalumItems.STRIPPED_SAPPY_SOULWOOD_LOG,
-                                MalumItems.BLIGHTED_SOULWOOD
+                                SOULWOOD_LOG,
+                                STRIPPED_SOULWOOD_LOG,
+                                SOULWOOD,
+                                STRIPPED_SOULWOOD,
+                                SAPPY_SOULWOOD_LOG,
+                                STRIPPED_SAPPY_SOULWOOD_LOG,
+                                BLIGHTED_SOULWOOD
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_BOARDS,
-                                MalumItems.VERTICAL_SOULWOOD_BOARDS,
-                                MalumItems.SOULWOOD_PLANKS,
-                                MalumItems.VERTICAL_SOULWOOD_PLANKS,
-                                MalumItems.SOULWOOD_TILES,
-                                MalumItems.RUSTIC_SOULWOOD_PLANKS,
-                                MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS,
-                                MalumItems.RUSTIC_SOULWOOD_TILES
+                                SOULWOOD_BOARDS,
+                                VERTICAL_SOULWOOD_BOARDS,
+                                SOULWOOD_PLANKS,
+                                VERTICAL_SOULWOOD_PLANKS,
+                                SOULWOOD_TILES,
+                                RUSTIC_SOULWOOD_PLANKS,
+                                VERTICAL_RUSTIC_SOULWOOD_PLANKS,
+                                RUSTIC_SOULWOOD_TILES
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_BOARDS_SLAB,
-                                MalumItems.VERTICAL_SOULWOOD_BOARDS_SLAB,
-                                MalumItems.SOULWOOD_PLANKS_SLAB,
-                                MalumItems.VERTICAL_SOULWOOD_PLANKS_SLAB,
-                                MalumItems.SOULWOOD_TILES_SLAB,
-                                MalumItems.RUSTIC_SOULWOOD_PLANKS_SLAB,
-                                MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB,
-                                MalumItems.RUSTIC_SOULWOOD_TILES_SLAB
+                                SOULWOOD_BOARDS_SLAB,
+                                VERTICAL_SOULWOOD_BOARDS_SLAB,
+                                SOULWOOD_PLANKS_SLAB,
+                                VERTICAL_SOULWOOD_PLANKS_SLAB,
+                                SOULWOOD_TILES_SLAB,
+                                RUSTIC_SOULWOOD_PLANKS_SLAB,
+                                VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB,
+                                RUSTIC_SOULWOOD_TILES_SLAB
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_BOARDS_STAIRS,
-                                MalumItems.VERTICAL_SOULWOOD_BOARDS_STAIRS,
-                                MalumItems.SOULWOOD_PLANKS_STAIRS,
-                                MalumItems.VERTICAL_SOULWOOD_PLANKS_STAIRS,
-                                MalumItems.SOULWOOD_TILES_STAIRS,
-                                MalumItems.RUSTIC_SOULWOOD_PLANKS_STAIRS,
-                                MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS,
-                                MalumItems.RUSTIC_SOULWOOD_TILES_STAIRS
+                                SOULWOOD_BOARDS_STAIRS,
+                                VERTICAL_SOULWOOD_BOARDS_STAIRS,
+                                SOULWOOD_PLANKS_STAIRS,
+                                VERTICAL_SOULWOOD_PLANKS_STAIRS,
+                                SOULWOOD_TILES_STAIRS,
+                                RUSTIC_SOULWOOD_PLANKS_STAIRS,
+                                VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS,
+                                RUSTIC_SOULWOOD_TILES_STAIRS
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_PANEL,
-                                MalumItems.CUT_SOULWOOD_PLANKS,
-                                MalumItems.SOULWOOD_BEAM,
-                                MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL,
-                                MalumItems.SOULWOOD_ITEM_PEDESTAL,
-                                MalumItems.ORNATE_SOULWOOD_ITEM_STAND,
-                                MalumItems.SOULWOOD_ITEM_STAND
+                                SOULWOOD_PANEL,
+                                CUT_SOULWOOD_PLANKS,
+                                SOULWOOD_BEAM,
+                                ORNATE_SOULWOOD_ITEM_PEDESTAL,
+                                SOULWOOD_ITEM_PEDESTAL,
+                                ORNATE_SOULWOOD_ITEM_STAND,
+                                SOULWOOD_ITEM_STAND
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_DOOR,
-                                MalumItems.BOLTED_SOULWOOD_DOOR,
-                                MalumItems.SOULWOOD_TRAPDOOR,
-                                MalumItems.BOLTED_SOULWOOD_TRAPDOOR,
-                                MalumItems.SOULWOOD_BOARDS_DOOR,
-                                MalumItems.BOLTED_SOULWOOD_BOARDS_DOOR,
-                                MalumItems.SOULWOOD_BOARDS_TRAPDOOR,
-                                MalumItems.BOLTED_SOULWOOD_BOARDS_TRAPDOOR
+                                SOULWOOD_DOOR,
+                                BOLTED_SOULWOOD_DOOR,
+                                SOULWOOD_TRAPDOOR,
+                                BOLTED_SOULWOOD_TRAPDOOR,
+                                SOULWOOD_BOARDS_DOOR,
+                                BOLTED_SOULWOOD_BOARDS_DOOR,
+                                SOULWOOD_BOARDS_TRAPDOOR,
+                                BOLTED_SOULWOOD_BOARDS_TRAPDOOR
                         ).nextLine()
                         .addItems(
-                                MalumItems.SOULWOOD_BUTTON,
-                                MalumItems.SOULWOOD_PRESSURE_PLATE,
-                                MalumItems.SOULWOOD_BOARDS_WALL,
-                                MalumItems.SOULWOOD_FENCE,
-                                MalumItems.SOULWOOD_FENCE_GATE,
-                                MalumItems.SOULWOOD_SIGN,
-                                MalumItems.SOULWOOD_BOAT,
-                                MalumItems.SOULWOOD_CHEST_BOAT
+                                SOULWOOD_BUTTON,
+                                SOULWOOD_PRESSURE_PLATE,
+                                SOULWOOD_BOARDS_WALL,
+                                SOULWOOD_FENCE,
+                                SOULWOOD_FENCE_GATE,
+                                SOULWOOD_SIGN,
+                                SOULWOOD_BOAT,
+                                SOULWOOD_CHEST_BOAT
                         )
                         .bake();
                 createCategory(BLIGHT)
                         .addItems(
-                                MalumItems.BLIGHTED_SOULWOOD,
-                                MalumItems.COLUMNAR_BLIGHT,
-                                MalumItems.BLIGHTED_EARTH,
-                                MalumItems.BLIGHT,
-                                MalumItems.BLIGHTED_GUNK,
-                                MalumItems.BLIGHTPEARL,
-                                MalumItems.BLIGHTROOT
+                                BLIGHTED_SOULWOOD,
+                                COLUMNAR_BLIGHT,
+                                BLIGHTED_EARTH,
+                                BLIGHT,
+                                BLIGHTED_GUNK,
+                                BLIGHTPEARL,
+                                BLIGHTROOT
                         ).nextLine()
                         .addItems(
-                                MalumItems.SCARSTONE,
-                                MalumItems.LARGE_STRANGE_CRYSTAL,
-                                MalumItems.STRANGE_CRYSTAL,
-                                MalumItems.STRANGEROOT
+                                SCARSTONE,
+                                LARGE_STRANGE_CRYSTAL,
+                                STRANGE_CRYSTAL,
+                                STRANGEROOT
                         )
                         .bake();
 
                 createCategory(TAINTED_ROCK)
                         .addItems(
-                                MalumItems.TAINTED_ROCK,
-                                MalumItems.POLISHED_TAINTED_ROCK,
-                                MalumItems.TAINTED_ROCK_BRICKS,
-                                MalumItems.TAINTED_ROCK_TILES,
-                                MalumItems.TAINTED_ROCK_MOSAIC
+                                TAINTED_ROCK,
+                                POLISHED_TAINTED_ROCK,
+                                TAINTED_ROCK_BRICKS,
+                                TAINTED_ROCK_TILES,
+                                TAINTED_ROCK_MOSAIC
                         )
                         .addItems(
-                                MalumItems.TAINTED_ROCK_COLUMN,
-                                MalumItems.TAINTED_ROCK_ALTAR,
-                                MalumItems.CUT_TAINTED_ROCK,
-                                MalumItems.CHISELED_TAINTED_ROCK
+                                TAINTED_ROCK_COLUMN,
+                                TAINTED_ROCK_ALTAR,
+                                CUT_TAINTED_ROCK,
+                                CHISELED_TAINTED_ROCK
                         ).nextLine()
                         .addItems(
-                                MalumItems.TAINTED_ROCK_STAIRS,
-                                MalumItems.POLISHED_TAINTED_ROCK_STAIRS,
-                                MalumItems.TAINTED_ROCK_BRICKS_STAIRS,
-                                MalumItems.TAINTED_ROCK_TILES_STAIRS,
-                                MalumItems.TAINTED_ROCK_MOSAIC_STAIRS
+                                TAINTED_ROCK_STAIRS,
+                                POLISHED_TAINTED_ROCK_STAIRS,
+                                TAINTED_ROCK_BRICKS_STAIRS,
+                                TAINTED_ROCK_TILES_STAIRS,
+                                TAINTED_ROCK_MOSAIC_STAIRS
                         )
                         .addItems(
-                                MalumItems.TAINTED_ROCK_ITEM_PEDESTAL,
-                                MalumItems.TAINTED_ROCK_ITEM_STAND,
-                                MalumItems.TAINTED_ROCK_PRESSURE_PLATE,
-                                MalumItems.TAINTED_ROCK_BUTTON
+                                TAINTED_ROCK_ITEM_PEDESTAL,
+                                TAINTED_ROCK_ITEM_STAND,
+                                TAINTED_ROCK_PRESSURE_PLATE,
+                                TAINTED_ROCK_BUTTON
                         ).nextLine()
                         .addItems(
-                                MalumItems.TAINTED_ROCK_SLAB,
-                                MalumItems.POLISHED_TAINTED_ROCK_SLAB,
-                                MalumItems.TAINTED_ROCK_BRICKS_SLAB,
-                                MalumItems.TAINTED_ROCK_TILES_SLAB,
-                                MalumItems.TAINTED_ROCK_MOSAIC_SLAB
+                                TAINTED_ROCK_SLAB,
+                                POLISHED_TAINTED_ROCK_SLAB,
+                                TAINTED_ROCK_BRICKS_SLAB,
+                                TAINTED_ROCK_TILES_SLAB,
+                                TAINTED_ROCK_MOSAIC_SLAB
                         ).nextLine()
                         .addItems(
-                                MalumItems.TAINTED_ROCK_WALL,
-                                MalumItems.POLISHED_TAINTED_ROCK_WALL,
-                                MalumItems.TAINTED_ROCK_BRICKS_WALL,
-                                MalumItems.TAINTED_ROCK_TILES_WALL,
-                                MalumItems.TAINTED_ROCK_MOSAIC_WALL
+                                TAINTED_ROCK_WALL,
+                                POLISHED_TAINTED_ROCK_WALL,
+                                TAINTED_ROCK_BRICKS_WALL,
+                                TAINTED_ROCK_TILES_WALL,
+                                TAINTED_ROCK_MOSAIC_WALL
                         )
                         .bake();
                 createCategory(TWISTED_ROCK)
                         .addItems(
-                                MalumItems.TWISTED_ROCK,
-                                MalumItems.POLISHED_TWISTED_ROCK,
-                                MalumItems.TWISTED_ROCK_BRICKS,
-                                MalumItems.TWISTED_ROCK_TILES,
-                                MalumItems.TWISTED_ROCK_MOSAIC
+                                TWISTED_ROCK,
+                                POLISHED_TWISTED_ROCK,
+                                TWISTED_ROCK_BRICKS,
+                                TWISTED_ROCK_TILES,
+                                TWISTED_ROCK_MOSAIC
                         )
                         .addItems(
-                                MalumItems.TWISTED_ROCK_COLUMN,
-                                MalumItems.TWISTED_ROCK_ALTAR,
-                                MalumItems.CUT_TWISTED_ROCK,
-                                MalumItems.CHISELED_TWISTED_ROCK
+                                TWISTED_ROCK_COLUMN,
+                                TWISTED_ROCK_ALTAR,
+                                CUT_TWISTED_ROCK,
+                                CHISELED_TWISTED_ROCK
                         ).nextLine()
                         .addItems(
-                                MalumItems.TWISTED_ROCK_STAIRS,
-                                MalumItems.POLISHED_TWISTED_ROCK_STAIRS,
-                                MalumItems.TWISTED_ROCK_BRICKS_STAIRS,
-                                MalumItems.TWISTED_ROCK_TILES_STAIRS,
-                                MalumItems.TWISTED_ROCK_MOSAIC_STAIRS
+                                TWISTED_ROCK_STAIRS,
+                                POLISHED_TWISTED_ROCK_STAIRS,
+                                TWISTED_ROCK_BRICKS_STAIRS,
+                                TWISTED_ROCK_TILES_STAIRS,
+                                TWISTED_ROCK_MOSAIC_STAIRS
                         )
                         .addItems(
-                                MalumItems.TWISTED_ROCK_ITEM_PEDESTAL,
-                                MalumItems.TWISTED_ROCK_ITEM_STAND,
-                                MalumItems.TWISTED_ROCK_PRESSURE_PLATE,
-                                MalumItems.TWISTED_ROCK_BUTTON
+                                TWISTED_ROCK_ITEM_PEDESTAL,
+                                TWISTED_ROCK_ITEM_STAND,
+                                TWISTED_ROCK_PRESSURE_PLATE,
+                                TWISTED_ROCK_BUTTON
                         ).nextLine()
                         .addItems(
-                                MalumItems.TWISTED_ROCK_SLAB,
-                                MalumItems.POLISHED_TWISTED_ROCK_SLAB,
-                                MalumItems.TWISTED_ROCK_BRICKS_SLAB,
-                                MalumItems.TWISTED_ROCK_TILES_SLAB,
-                                MalumItems.TWISTED_ROCK_MOSAIC_SLAB
+                                TWISTED_ROCK_SLAB,
+                                POLISHED_TWISTED_ROCK_SLAB,
+                                TWISTED_ROCK_BRICKS_SLAB,
+                                TWISTED_ROCK_TILES_SLAB,
+                                TWISTED_ROCK_MOSAIC_SLAB
                         ).nextLine()
                         .addItems(
-                                MalumItems.TWISTED_ROCK_WALL,
-                                MalumItems.POLISHED_TWISTED_ROCK_WALL,
-                                MalumItems.TWISTED_ROCK_BRICKS_WALL,
-                                MalumItems.TWISTED_ROCK_TILES_WALL,
-                                MalumItems.TWISTED_ROCK_MOSAIC_WALL
+                                TWISTED_ROCK_WALL,
+                                POLISHED_TWISTED_ROCK_WALL,
+                                TWISTED_ROCK_BRICKS_WALL,
+                                TWISTED_ROCK_TILES_WALL,
+                                TWISTED_ROCK_MOSAIC_WALL
                         )
                         .bake();
                 createCategory(DUNGEON_REGALIA)
                         .addItems(
-                                MalumItems.OMINOUS_ALTAR,
-                                MalumItems.OMINOUS_OBELISK
+                                OMINOUS_ALTAR,
+                                OMINOUS_OBELISK
                         )
                         .addItems(
-                                MalumItems.BROKEN_BLADE,
-                                MalumItems.SHAPED_SLAB
+                                BROKEN_BLADE,
+                                SHAPED_SLAB
                         ).nextLine()
                         .addItems(
-                                MalumItems.IRON_CROWN,
-                                MalumItems.VEILED_EFFIGY,
-                                MalumItems.CORRUPT_EFFIGY,
-                                MalumItems.CRACKED_EFFIGY
+                                IRON_CROWN,
+                                VEILED_EFFIGY,
+                                CORRUPT_EFFIGY,
+                                CRACKED_EFFIGY
                         )
                         .bake();
                 createCategory(DUNGEON_ARCHITECTURE)
                         .addItems(
-                                MalumItems.ODD_SCRIPTURES_I,
-                                MalumItems.ODD_SCRIPTURES_II,
-                                MalumItems.ODD_SCRIPTURES_III,
-                                MalumItems.ODD_SCRIPTURES_IV,
-                                MalumItems.ODD_SCRIPTURES_V,
-                                MalumItems.ODD_SCRIPTURES_VI,
-                                MalumItems.ODD_SCRIPTURES_VII,
-                                MalumItems.ODD_SCRIPTURES_VIII,
-                                MalumItems.ODD_SCRIPTURES_IX
+                                ODD_SCRIPTURES_I,
+                                ODD_SCRIPTURES_II,
+                                ODD_SCRIPTURES_III,
+                                ODD_SCRIPTURES_IV,
+                                ODD_SCRIPTURES_V,
+                                ODD_SCRIPTURES_VI,
+                                ODD_SCRIPTURES_VII,
+                                ODD_SCRIPTURES_VIII,
+                                ODD_SCRIPTURES_IX
                         )
                         .addItems(
-                                MalumItems.DROSS_STONE,
-                                MalumItems.POLISHED_DROSS_STONE,
-                                MalumItems.DROSS_STONE_BRICKS,
-                                MalumItems.DROSS_STONE_TILES,
-                                MalumItems.DROSS_STONE_MOSAIC,
-                                MalumItems.DARK_DROSS_TILES,
-                                MalumItems.GRAY_DROSS_TILES
+                                DROSS_STONE,
+                                POLISHED_DROSS_STONE,
+                                DROSS_STONE_BRICKS,
+                                DROSS_STONE_TILES,
+                                DROSS_STONE_MOSAIC,
+                                DARK_DROSS_TILES,
+                                GRAY_DROSS_TILES
                         )
                         .addItems(
-                                MalumItems.DROSS_STONE_COLUMN,
-                                MalumItems.DROSS_STONE_ALTAR
+                                DROSS_STONE_COLUMN,
+                                DROSS_STONE_ALTAR
                         ).nextLine()
                         .addItems(
-                                MalumItems.DROSS_STONE_STAIRS,
-                                MalumItems.POLISHED_DROSS_STONE_STAIRS,
-                                MalumItems.DROSS_STONE_BRICKS_STAIRS,
-                                MalumItems.DROSS_STONE_TILES_STAIRS,
-                                MalumItems.DROSS_STONE_MOSAIC_STAIRS,
-                                MalumItems.DARK_DROSS_TILES_STAIRS,
-                                MalumItems.GRAY_DROSS_TILES_STAIRS
+                                DROSS_STONE_STAIRS,
+                                POLISHED_DROSS_STONE_STAIRS,
+                                DROSS_STONE_BRICKS_STAIRS,
+                                DROSS_STONE_TILES_STAIRS,
+                                DROSS_STONE_MOSAIC_STAIRS,
+                                DARK_DROSS_TILES_STAIRS,
+                                GRAY_DROSS_TILES_STAIRS
                         )
                         .addItems(
-                                MalumItems.CUT_DROSS_STONE,
-                                MalumItems.CHISELED_DROSS_STONE
+                                CUT_DROSS_STONE,
+                                CHISELED_DROSS_STONE
                         ).nextLine()
                         .addItems(
-                                MalumItems.DROSS_STONE_SLAB,
-                                MalumItems.POLISHED_DROSS_STONE_SLAB,
-                                MalumItems.DROSS_STONE_BRICKS_SLAB,
-                                MalumItems.DROSS_STONE_TILES_SLAB,
-                                MalumItems.DROSS_STONE_MOSAIC_SLAB,
-                                MalumItems.DARK_DROSS_TILES_SLAB,
-                                MalumItems.GRAY_DROSS_TILES_SLAB
+                                DROSS_STONE_SLAB,
+                                POLISHED_DROSS_STONE_SLAB,
+                                DROSS_STONE_BRICKS_SLAB,
+                                DROSS_STONE_TILES_SLAB,
+                                DROSS_STONE_MOSAIC_SLAB,
+                                DARK_DROSS_TILES_SLAB,
+                                GRAY_DROSS_TILES_SLAB
                         )
                         .addItems(
-                                MalumItems.DROSS_STONE_ITEM_PEDESTAL,
-                                MalumItems.DROSS_STONE_ITEM_STAND
+                                DROSS_STONE_ITEM_PEDESTAL,
+                                DROSS_STONE_ITEM_STAND
                         ).nextLine()
                         .addItems(
-                                MalumItems.DROSS_STONE_WALL,
-                                MalumItems.POLISHED_DROSS_STONE_WALL,
-                                MalumItems.DROSS_STONE_BRICKS_WALL,
-                                MalumItems.DROSS_STONE_TILES_WALL,
-                                MalumItems.DROSS_STONE_MOSAIC_WALL,
-                                MalumItems.DARK_DROSS_TILES_WALL,
-                                MalumItems.GRAY_DROSS_TILES_WALL
+                                DROSS_STONE_WALL,
+                                POLISHED_DROSS_STONE_WALL,
+                                DROSS_STONE_BRICKS_WALL,
+                                DROSS_STONE_TILES_WALL,
+                                DROSS_STONE_MOSAIC_WALL,
+                                DARK_DROSS_TILES_WALL,
+                                GRAY_DROSS_TILES_WALL
                         )
                         .addItems(
-                                MalumItems.DROSS_STONE_PRESSURE_PLATE,
-                                MalumItems.DROSS_STONE_BUTTON
+                                DROSS_STONE_PRESSURE_PLATE,
+                                DROSS_STONE_BUTTON
                         )
                         .bake();
                 createCategory(DUNGEON_ODDITIES)
                         .addItems(
-                                MalumItems.WRITHING_FLESH,
-                                MalumItems.COLUMNAR_FLESH,
-                                MalumItems.FLESHBULB
+                                WRITHING_FLESH,
+                                COLUMNAR_FLESH,
+                                FLESHBULB
                         )
                         .bake();
         }

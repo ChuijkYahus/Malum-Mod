@@ -7,12 +7,9 @@ import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -70,16 +67,16 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         }
-        return belowState.is(MalumTags.BlockTags.EBONY_PLANTABLE_ON);
+        return belowState.is(MalumTags.Blocks.EBONY_PLANTABLE_ON);
     }
 
     @Override
     protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if (!state.canSurvive(level, currentPos)) {
-            return Blocks.AIR.defaultBlockState();
+            return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
         } else {
-            if (facing == Direction.UP && facingState.is(MalumBlocks.EBONY)) {
-                level.setBlock(currentPos, MalumBlocks.EBONY.get().defaultBlockState(), 2);
+            if (facing == Direction.UP && facingState.is(MalumBlocks.EBONY_STALK)) {
+                level.setBlock(currentPos, MalumBlocks.EBONY_STALK.get().defaultBlockState(), 2);
             }
 
             return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
@@ -115,6 +112,6 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
     }
 
     protected void growEbony(Level level, BlockPos state) {
-        level.setBlock(state.above(), MalumBlocks.EBONY.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
+        level.setBlock(state.above(), MalumBlocks.EBONY_STALK.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
     }
 }

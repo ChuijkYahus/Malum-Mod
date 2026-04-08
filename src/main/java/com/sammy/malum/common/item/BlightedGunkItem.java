@@ -17,8 +17,8 @@ public class BlightedGunkItem extends ItemNameBlockItem {
 
     public final Block wallPlacement;
 
-    public BlightedGunkItem(Properties pProperties) {
-        this(MalumBlocks.BLIGHTED_GROWTH.get(), MalumBlocks.CLINGING_BLIGHT.get(), pProperties);
+    public BlightedGunkItem(Block defaultPlacement, Properties pProperties) {
+        this(defaultPlacement, MalumBlocks.CLINGING_BLIGHT.get(), pProperties);
     }
     public BlightedGunkItem(Block defaultPlacement, Block wallPlacement, Properties pProperties) {
         super(defaultPlacement, pProperties);

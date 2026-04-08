@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.recipe;
 
+import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.datagen.recipe.infusion.*;
 import net.minecraft.advancements.*;
@@ -43,7 +44,7 @@ public class MalumRecipes extends VanillaRecipeProvider {
         TotemicSpiritInfusionRecipes.buildRecipes(recipeOutput);
         MiscSpiritInfusionRecipes.buildRecipes(recipeOutput);
 
-        MalumMetallicsRecipes.buildRecipes(recipeOutput);
+        MalumMetallicsDatagen.MALUM.buildMetallicsRecipes(recipeOutput);
 
         MalumRuneworkingRecipes.buildRecipes(recipeOutput);
         MalumSpiritFocusingRecipes.buildRecipes(recipeOutput);

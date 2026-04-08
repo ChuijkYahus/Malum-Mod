@@ -130,7 +130,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     }
 
     public static DamageSource replaceDamageSource(Player player, DamageSource source) {
-        if (player.getMainHandItem().is(MalumTags.ItemTags.SCYTHES)) {
+        if (player.getMainHandItem().is(MalumTags.Items.SCYTHES)) {
             return DamageTypeHelper.create(player.level(), MalumDamageTypes.SCYTHE_MELEE, player);
         }
         return source;

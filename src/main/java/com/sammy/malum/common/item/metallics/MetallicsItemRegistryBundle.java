@@ -6,6 +6,7 @@ import com.sammy.malum.registry.common.block.properties.MalumStorageBlockPropert
 import com.sammy.malum.registry.common.item.MalumItems;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -17,6 +18,8 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneDirectionalBlock;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
@@ -39,17 +42,21 @@ public class MetallicsItemRegistryBundle {
                 MalumItems.NICKEL_METALLICS);
     }
 
+
+
     protected final String id;
 
+    protected final TagKey<Block> oreTag;
+    protected final TagKey<Block> deepslateOreTag;
     protected final TagKey<Item> nuggetTag;
     protected final TagKey<Item> ingotTag;
 
-    protected final DeferredHolder<Item, Item> impetus;
-    protected final DeferredHolder<Item, Item> fracturedImpetus;
-    protected final DeferredHolder<Item, Item> node;
+    protected final DeferredItem<Item> impetus;
+    protected final DeferredItem<Item> fracturedImpetus;
+    protected final DeferredItem<Item> node;
 
-    protected final DeferredHolder<Item, Item> derealizedMetal;
-    protected final DeferredHolder<Item, Item> harmonizedMetal;
+    protected final DeferredItem<Item> derealizedMetal;
+    protected final DeferredItem<Item> harmonizedMetal;
 
     protected final MalumBlockSoundType oreSound;
     protected final MalumBlockSoundType deepslateOreSound;
@@ -57,19 +64,17 @@ public class MetallicsItemRegistryBundle {
     protected final MalumBlockSoundType derealizedBlockSound;
     protected final MalumBlockSoundType harmonizedBlockSound;
 
-    protected final DeferredHolder<Block, Block> ore;
-    protected final DeferredHolder<Block, Block> deepslateOre;
-    protected final DeferredHolder<Block, Block> derealizedStorageBlock;
-    protected final DeferredHolder<Block, Block> harmonizedStorageBlock;
+    protected final BlockBlockItemHolder<Block, BlockItem> ore;
+    protected final BlockBlockItemHolder<Block, BlockItem> deepslateOre;
+    protected final BlockBlockItemHolder<Block, BlockItem> derealizedStorageBlock;
+    protected final BlockBlockItemHolder<Block, BlockItem> harmonizedStorageBlock;
 
-    protected final DeferredHolder<Item, Item> oreItem;
-    protected final DeferredHolder<Item, Item> deepslateOreItem;
-    protected final DeferredHolder<Item, Item> derealizedStorageBlockItem;
-    protected final DeferredHolder<Item, Item> harmonizedStorageBlockItem;
 
     public MetallicsItemRegistryBundle(String id) {
         this.id = id;
 
+        oreTag = createOreTag(false);
+        deepslateOreTag = createOreTag(true);
         nuggetTag = createNuggetTag();
         ingotTag = createIngotTag();
 
@@ -97,15 +102,10 @@ public class MetallicsItemRegistryBundle {
         derealizedBlockSound = new MalumBlockSoundType(derealizedBlockName);
         harmonizedBlockSound = new MalumBlockSoundType(harmonizedBlockName);
 
-        ore = MalumBlocks.BLOCKS.register(oreName, () -> new DropExperienceBlock(UniformInt.of(2, 4), makeOreProperties(false)));
-        deepslateOre = MalumBlocks.BLOCKS.register(deepslateOreName, () -> new DropExperienceBlock(UniformInt.of(3, 6), makeOreProperties(true)));
+        ore = registerBlock(oreName, () -> new DropExperienceBlock(UniformInt.of(2, 4), makeOreProperties(false)));
+        deepslateOre = registerBlock(deepslateOreName, () -> new DropExperienceBlock(UniformInt.of(3, 6), makeOreProperties(true)));
         derealizedStorageBlock = registerBlock(derealizedBlockName, () -> new LodestoneDirectionalBlock(makeStorageBlockProperties(false)));
         harmonizedStorageBlock = registerBlock(harmonizedBlockName, () -> new LodestoneDirectionalBlock(makeStorageBlockProperties(true)));
-
-        oreItem = MalumItems.register(oreName, MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(ore.get(), p));
-        deepslateOreItem = MalumItems.register(deepslateOreName, MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(deepslateOre.get(), p));
-        derealizedStorageBlockItem = MalumItems.register(derealizedBlockName, MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(derealizedStorageBlock.get(), p));
-        harmonizedStorageBlockItem = MalumItems.register(harmonizedBlockName, MalumItems::DEFAULT_PROPERTIES, p -> new BlockItem(harmonizedStorageBlock.get(), p));
     }
 
     public String getId() {
@@ -113,7 +113,7 @@ public class MetallicsItemRegistryBundle {
     }
 
     public void addToCreativeTab(CreativeTabCategoryBuilder builder) {
-        builder.addItems(oreItem, deepslateOreItem, derealizedStorageBlockItem, harmonizedStorageBlockItem, derealizedMetal, harmonizedMetal, fracturedImpetus, impetus, node);
+        builder.addItems(ore, deepslateOre, derealizedStorageBlock, harmonizedStorageBlock, derealizedMetal, harmonizedMetal, fracturedImpetus, impetus, node);
     }
 
     public LodestoneBlockProperties makeOreProperties(boolean isDeepslate) {
@@ -132,8 +132,13 @@ public class MetallicsItemRegistryBundle {
                 .strength(5.0F, 3.0F);
     }
 
-    public DeferredHolder<Block, Block> registerBlock(String name, Supplier<Block> block) {
-        return MalumBlocks.BLOCKS.register(name, block);
+    public BlockBlockItemHolder<Block, BlockItem> registerBlock(String name, Supplier<Block> block) {
+        return MalumBlocks.registerBlock(name, block);
+    }
+
+    protected TagKey<Block> createOreTag(boolean isDeepslate) {
+        var path = (isDeepslate ? "ores/deepslate/" : "ores/");
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", path + id));
     }
 
     protected TagKey<Item> createNuggetTag() {
@@ -144,6 +149,10 @@ public class MetallicsItemRegistryBundle {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/" + id));
     }
 
+    public TagKey<Block> getOreTag() {
+        return oreTag;
+    }
+
     public TagKey<Item> getNuggetTag() {
         return nuggetTag;
     }
@@ -152,23 +161,23 @@ public class MetallicsItemRegistryBundle {
         return ingotTag;
     }
 
-    public DeferredHolder<Item, Item> getImpetus() {
+    public DeferredItem<Item> getImpetus() {
         return impetus;
     }
 
-    public DeferredHolder<Item, Item> getFracturedImpetus() {
+    public DeferredItem<Item> getFracturedImpetus() {
         return fracturedImpetus;
     }
 
-    public DeferredHolder<Item, Item> getNode() {
+    public DeferredItem<Item> getNode() {
         return node;
     }
 
-    public DeferredHolder<Item, Item> getDerealizedMetal() {
+    public DeferredItem<Item> getDerealizedMetal() {
         return derealizedMetal;
     }
 
-    public DeferredHolder<Item, Item> getHarmonizedMetal() {
+    public DeferredItem<Item> getHarmonizedMetal() {
         return harmonizedMetal;
     }
 
@@ -188,35 +197,20 @@ public class MetallicsItemRegistryBundle {
         return harmonizedBlockSound;
     }
 
-    public DeferredHolder<Block, Block> getOre() {
+    public BlockBlockItemHolder<Block, BlockItem> getOre() {
         return ore;
     }
 
-    public DeferredHolder<Block, Block> getDeepslateOre() {
+    public BlockBlockItemHolder<Block, BlockItem> getDeepslateOre() {
         return deepslateOre;
     }
 
-    public DeferredHolder<Block, Block> getDerealizedStorageBlock() {
+    public BlockBlockItemHolder<Block, BlockItem> getDerealizedStorageBlock() {
         return derealizedStorageBlock;
     }
 
-    public DeferredHolder<Block, Block> getHarmonizedStorageBlock() {
+    public BlockBlockItemHolder<Block, BlockItem> getHarmonizedStorageBlock() {
         return harmonizedStorageBlock;
     }
 
-    public DeferredHolder<Item, Item> getOreItem() {
-        return oreItem;
-    }
-
-    public DeferredHolder<Item, Item> getDeepslateOreItem() {
-        return deepslateOreItem;
-    }
-
-    public DeferredHolder<Item, Item> getDerealizedStorageBlockItem() {
-        return derealizedStorageBlockItem;
-    }
-
-    public DeferredHolder<Item, Item> getHarmonizedStorageBlockItem() {
-        return harmonizedStorageBlockItem;
-    }
 }

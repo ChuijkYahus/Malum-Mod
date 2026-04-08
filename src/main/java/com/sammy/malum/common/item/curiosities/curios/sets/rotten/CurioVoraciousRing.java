@@ -16,7 +16,7 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
+import static com.sammy.malum.registry.common.MalumTags.Items.*;
 
 public class CurioVoraciousRing extends MalumCurioItem {
 

@@ -6,16 +6,19 @@ import com.sammy.malum.registry.common.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
+import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
 
 import java.util.*;
 
 import static net.minecraft.world.item.CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
 
 public class SoulwovenBannerBlockItem extends BlockItem {
-    public SoulwovenBannerBlockItem(Properties properties) {
-        super(MalumBlocks.SOULWOVEN_BANNER.get(), properties.component(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
+    public SoulwovenBannerBlockItem(Block block, LodestoneItemProperties properties) {
+        super(block, properties.component(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
     }
 
     @Override

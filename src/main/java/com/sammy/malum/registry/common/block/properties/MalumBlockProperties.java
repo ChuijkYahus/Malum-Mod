@@ -14,7 +14,7 @@ import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import java.awt.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
 
@@ -442,7 +442,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties ETHER() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .sound(MalumBlockSoundEvents.ETHER)
                 .noCollission()
                 .instabreak()
@@ -465,7 +465,7 @@ public class MalumBlockProperties {
         return RUNEWOOD()
                 .addTag(WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .noCollission()
                 .instabreak()
                 .setCutoutRenderType()
@@ -475,7 +475,7 @@ public class MalumBlockProperties {
         return TAINTED_ROCK()
                 .addTag(WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .noOcclusion()
                 .lightLevel((b) -> 14);
@@ -484,7 +484,7 @@ public class MalumBlockProperties {
         return TWISTED_ROCK()
                 .addTag(WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .noOcclusion()
                 .lightLevel((b) -> 14);
@@ -493,7 +493,7 @@ public class MalumBlockProperties {
         return DROSS_STONE()
                 .addTag(WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .noOcclusion()
                 .lightLevel((b) -> 14);

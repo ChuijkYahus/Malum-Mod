@@ -10,8 +10,8 @@ import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_R
 public class MalumHiddenTags {
 
 	public static void registerHiddenTags() {
-		HiddenTagHandler.hideTagWhen(MalumTags.ItemTags.HIDDEN_ALWAYS, () -> true);
-		HiddenTagHandler.hideTagWhen(MalumTags.ItemTags.HIDDEN_UNTIL_VOID, () -> !VoidRevelationHandler.hasSeenTheRevelation(VOID_READER));
-		HiddenTagHandler.hideTagWhen(MalumTags.ItemTags.HIDDEN_UNTIL_BLACK_CRYSTAL, () -> !VoidRevelationHandler.hasSeenTheRevelation(BLACK_CRYSTAL));
+		HiddenTagHandler.hideTagWhen(MalumTags.Items.HIDDEN_ALWAYS, () -> true);
+		HiddenTagHandler.hideTagWhen(MalumTags.Items.HIDDEN_UNTIL_VOID, () -> !VoidRevelationHandler.hasSeenTheRevelation(VOID_READER));
+		HiddenTagHandler.hideTagWhen(MalumTags.Items.HIDDEN_UNTIL_BLACK_CRYSTAL, () -> !VoidRevelationHandler.hasSeenTheRevelation(BLACK_CRYSTAL));
 	}
 }

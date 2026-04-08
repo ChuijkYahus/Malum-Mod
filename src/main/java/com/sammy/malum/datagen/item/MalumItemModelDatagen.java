@@ -4,6 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.common.item.spirit.*;
+import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import net.minecraft.data.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
@@ -52,13 +53,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS);
 
         setTexturePath("alchemy/metallics/");
-        for (MetallicsItemRegistryBundle metallic : MetallicsItemRegistryBundle.getMalumMetallics()) {
-            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getImpetus());
-            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getFracturedImpetus());
-            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getNode());
-            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getDerealizedMetal());
-            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getHarmonizedMetal());
-        }
+        MalumMetallicsDatagen.MALUM.addItemModels(data);
 
         setTexturePath("");
 

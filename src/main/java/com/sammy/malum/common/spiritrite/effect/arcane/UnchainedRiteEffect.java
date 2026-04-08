@@ -1,17 +1,14 @@
 package com.sammy.malum.common.spiritrite.effect.arcane;
 
 import com.sammy.malum.common.entity.activator.rite.*;
-import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import team.lodestar.lodestone.helpers.block.BlockStateHelper;
 import team.lodestar.lodestone.modules.toolkit.recipe.*;
@@ -26,7 +23,7 @@ public class UnchainedRiteEffect extends SpiritRiteBlockEffect {
 
     @Override
     public void applyEffect(ServerLevel level, BlockRiteEffectActivator entity, BlockState state, BlockPos pos, float impact) {
-        if (!state.is(MalumTags.BlockTags.UNCHAINED_RITE_CATALYST)) {
+        if (!state.is(MalumTags.Blocks.UNCHAINED_RITE_CATALYST)) {
             entity.discard();
             return;
         }

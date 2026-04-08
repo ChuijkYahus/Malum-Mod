@@ -17,23 +17,17 @@ import team.lodestar.lodestone.modules.toolkit.multiblock.MultiblockComponentBlo
 
 import java.util.function.Supplier;
 
+@SuppressWarnings("NullableProblems")
 public class ObeliskComponentBlock extends MultiblockComponentBlock {
     private static final VoxelShape SHAPE = makeShape();
-    private final Supplier<Item> cloneStack;
 
-    public ObeliskComponentBlock(Properties properties, Supplier<Item> cloneStack) {
+    public ObeliskComponentBlock(Properties properties) {
         super(properties);
-        this.cloneStack = cloneStack;
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
-    }
-
-    @Override
-    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return cloneStack.get().getDefaultInstance();
     }
 
     private static VoxelShape makeShape() {

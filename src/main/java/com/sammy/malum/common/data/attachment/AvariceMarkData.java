@@ -102,7 +102,7 @@ public class AvariceMarkData {
     }
 
     public static ItemEntity tryMarkEntity(ItemEntity entity, int amount) {
-        if (entity.getItem().is(MalumTags.ItemTags.PROSPECTORS_TREASURE)) {
+        if (entity.getItem().is(MalumTags.Items.PROSPECTORS_TREASURE)) {
             entity.getData(MalumAttachmentTypes.AVARICE_MARK).enableMark(amount);
             entity.syncData(MalumAttachmentTypes.AVARICE_MARK);
         }

@@ -6,7 +6,6 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -29,7 +28,7 @@ public class MiscSpiritInfusionRecipes {
                 .save(consumer);
 
         new SpiritInfusionRecipeBuilder(MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(), 1, MalumItems.RUNIC_WORKBENCH.get(), 1)
-                .addExtraItem(SizedIngredient.of(MalumTags.ItemTags.RUNEWOOD_PLANKS, 4))
+                .addExtraItem(SizedIngredient.of(MalumTags.Items.RUNEWOOD_PLANKS, 4))
                 .addExtraItem(MalumItems.SOULWOVEN_SILK.get(), 4)
                 .addExtraItem(MalumItems.HALLOWED_GOLD_INGOT.get(), 2)
                 .addSpirit(SACRED_SPIRIT, 16)
@@ -37,14 +36,14 @@ public class MiscSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .save(consumer);
 
-        new SpiritInfusionRecipeBuilder(Items.HONEY_BOTTLE, 1, MalumItems.CONCENTRATED_GLUTTONY.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.HONEY_BOTTLE, 1, MalumItems.CONCENTRATED_GLUTTONY.get(), 2)
                 .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 1)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
                 .addSpirit(SACRED_SPIRIT, 2)
                 .addSpirit(WICKED_SPIRIT, 2)
                 .save(consumer);
 
-        new SpiritInfusionRecipeBuilder(Items.HONEY_BOTTLE, 1, MalumItems.SPLASH_OF_GLUTTONY.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.HONEY_BOTTLE, 1, MalumItems.SPLASH_OF_GLUTTONY.get(), 2)
                 .addExtraItem(MalumItems.ROTTING_ESSENCE.get(), 1)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 1))
                 .addSpirit(AQUEOUS_SPIRIT, 3)
@@ -82,7 +81,7 @@ public class MiscSpiritInfusionRecipes {
                 .addExtraItem(MalumItems.MALIGNANT_LEAD.get(), 1)
                 .save(consumer);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(MalumTags.ItemTags.ARCANE_ELEGY_COMPONENTS), 1, MalumItems.ARCANE_ELEGY.get(), 1)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(MalumTags.Items.ARCANE_ELEGY_COMPONENTS), 1, MalumItems.ARCANE_ELEGY.get(), 1)
                 .addSpirit(AERIAL_SPIRIT, 4)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)

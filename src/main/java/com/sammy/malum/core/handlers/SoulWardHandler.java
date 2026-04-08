@@ -39,7 +39,7 @@ public class SoulWardHandler {
             return;
         }
         var source = event.getSource();
-        if (source.is(MalumTags.DamageTypeTags.BYPASSES_SOUL_WARD)) {
+        if (source.is(MalumTags.DamageTypes.BYPASSES_SOUL_WARD)) {
             return;
         }
 

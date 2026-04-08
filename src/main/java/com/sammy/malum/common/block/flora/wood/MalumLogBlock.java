@@ -58,7 +58,7 @@ public class MalumLogBlock extends LodestoneLogBlock {
             return false;
         }
 
-        TotemPoleMap conversion = builtInRegistryHolder().getData(MalumDataMaps.TOTEM_POLE_CONVERSION);
+        TotemPoleConversionMap conversion = builtInRegistryHolder().getData(MalumDataMaps.TOTEM_POLE_CONVERSION);
         if (conversion == null) {
             return false;
         }

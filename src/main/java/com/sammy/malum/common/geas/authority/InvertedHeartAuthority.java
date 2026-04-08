@@ -50,7 +50,7 @@ public class InvertedHeartAuthority extends GeasEffect {
 
     @Override
     public void finalizedIncomingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(MalumTags.DamageTypeTags.INVERTED_HEART_RETALIATION_BLACKLIST)) {
+        if (event.getSource().is(MalumTags.DamageTypes.INVERTED_HEART_RETALIATION_BLACKLIST)) {
             return;
         }
         damageTargets(target, null, MalumDamageTypes.INVERTED_HEART_RETALIATION, event.getOriginalDamage());
@@ -58,7 +58,7 @@ public class InvertedHeartAuthority extends GeasEffect {
 
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(MalumTags.DamageTypeTags.INVERTED_HEART_PROPAGATION_BLACKLIST)) {
+        if (event.getSource().is(MalumTags.DamageTypes.INVERTED_HEART_PROPAGATION_BLACKLIST)) {
             return;
         }
         if (!attacker.equals(event.getSource().getEntity())) {

@@ -39,7 +39,7 @@ public class MalumRockSetDatagen {
 
                 MalumItems.TAINTED_ROCK_ITEM_STAND.get(), MalumItems.TAINTED_ROCK_ITEM_PEDESTAL.get(),
 
-                MalumTags.ItemTags.TAINTED_ROCK, MalumTags.ItemTags.TAINTED_ROCK_BLOCKS, MalumTags.ItemTags.TAINTED_ROCK_STAIRS, MalumTags.ItemTags.TAINTED_ROCK_SLABS, MalumTags.ItemTags.TAINTED_ROCK_WALLS
+                MalumTags.Items.TAINTED_ROCK, MalumTags.Items.TAINTED_ROCK_BLOCKS, MalumTags.Items.TAINTED_ROCK_STAIRS, MalumTags.Items.TAINTED_ROCK_SLABS, MalumTags.Items.TAINTED_ROCK_WALLS
         ));
 
         registerSet(new MalumDatagenRockSet(
@@ -60,7 +60,7 @@ public class MalumRockSetDatagen {
 
                 MalumItems.TWISTED_ROCK_ITEM_STAND.get(), MalumItems.TWISTED_ROCK_ITEM_PEDESTAL.get(),
 
-                MalumTags.ItemTags.TWISTED_ROCK, MalumTags.ItemTags.TWISTED_ROCK_BLOCKS, MalumTags.ItemTags.TWISTED_ROCK_STAIRS, MalumTags.ItemTags.TWISTED_ROCK_SLABS, MalumTags.ItemTags.TWISTED_ROCK_WALLS
+                MalumTags.Items.TWISTED_ROCK, MalumTags.Items.TWISTED_ROCK_BLOCKS, MalumTags.Items.TWISTED_ROCK_STAIRS, MalumTags.Items.TWISTED_ROCK_SLABS, MalumTags.Items.TWISTED_ROCK_WALLS
         ));
 
         registerSet(new MalumDatagenRockSet(
@@ -81,7 +81,7 @@ public class MalumRockSetDatagen {
 
                 MalumItems.DROSS_STONE_ITEM_STAND.get(), MalumItems.DROSS_STONE_ITEM_PEDESTAL.get(),
 
-                MalumTags.ItemTags.DROSS_STONE, MalumTags.ItemTags.DROSS_STONE_BLOCKS, MalumTags.ItemTags.DROSS_STONE_STAIRS, MalumTags.ItemTags.DROSS_STONE_SLABS, MalumTags.ItemTags.DROSS_STONE_WALLS
+                MalumTags.Items.DROSS_STONE, MalumTags.Items.DROSS_STONE_BLOCKS, MalumTags.Items.DROSS_STONE_STAIRS, MalumTags.Items.DROSS_STONE_SLABS, MalumTags.Items.DROSS_STONE_WALLS
         ));
     }
 

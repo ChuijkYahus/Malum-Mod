@@ -144,7 +144,7 @@ public class BlockRiteEffectActivator extends MovingEntity implements ILociAttri
                         interactable.travel(serverLevel, this);
                     }
                     canTriggerEffect = false;
-                } else if (level.getBlockState(affectedPos).is(MalumTags.BlockTags.IS_RITE_IMMUNE)) {
+                } else if (level.getBlockState(affectedPos).is(MalumTags.Blocks.IS_RITE_IMMUNE)) {
                     canTriggerEffect = false;
                 }
                 if (canTriggerEffect) {

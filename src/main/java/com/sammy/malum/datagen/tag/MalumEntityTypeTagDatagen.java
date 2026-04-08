@@ -19,7 +19,7 @@ public class MalumEntityTypeTagDatagen extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(Provider pProvider) {
-        tag(MalumTags.EntityTags.CULTIST)
+        tag(MalumTags.Entities.CULTIST)
                 .add(MalumCultistEntityTypes.ALTAR.get())
                 .add(MalumCultistEntityTypes.BELIEVER.get())
                 .add(MalumCultistEntityTypes.CHERUB.get())
@@ -27,6 +27,6 @@ public class MalumEntityTypeTagDatagen extends EntityTypeTagsProvider {
                 .add(MalumCultistEntityTypes.EVANGELIST.get());
 
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
-                .addTag(MalumTags.EntityTags.CULTIST);
+                .addTag(MalumTags.Entities.CULTIST);
     }
 }

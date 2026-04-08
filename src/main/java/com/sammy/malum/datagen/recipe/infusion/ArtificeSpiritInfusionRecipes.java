@@ -4,72 +4,67 @@ import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
-import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
-import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
 public class ArtificeSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WAVECHARGER.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.WAVECHARGER.get(), 2)
                 .addSpirit(AERIAL_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
-                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
                 .addExtraItem(MalumItems.ETHER.get(), 1)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WAVEBANKER.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.WAVEBANKER.get(), 2)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
-                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
                 .addExtraItem(MalumItems.ETHER.get(), 1)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WAVEMAKER.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.WAVEMAKER.get(), 2)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
-                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
                 .addExtraItem(MalumItems.ETHER.get(), 1)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WAVEBREAKER.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.WAVEBREAKER.get(), 2)
                 .addSpirit(INFERNAL_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
-                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
                 .addExtraItem(MalumItems.ETHER.get(), 1)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_COPPER), 2, MalumItems.ARTIFICERS_CLAW.get(), 1)
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(MalumItems.RUNEWOOD_PLANKS.get(), 2)
-                .addExtraItem(Items.REDSTONE_BLOCK, 1)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE_BLOCK, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.GUST_IGNITER.get(), 2)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.GUST_IGNITER.get(), 2)
                 .addSpirit(AERIAL_SPIRIT, 8)
-                .addExtraItem(Items.REDSTONE, 4)
-                .addExtraItem(Items.WIND_CHARGE, 2)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.WIND_CHARGE, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.COPPER_BLOCK, 1, MalumItems.WIND_TUNNEL.get(), 4)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 1, MalumItems.WIND_TUNNEL.get(), 4)
                 .addSpirit(AERIAL_SPIRIT, 8)
-                .addExtraItem(Items.REDSTONE, 4)
+                .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 4)
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 2)
-                .addExtraItem(MalumTags.ItemTags.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Items.FURNACE, 1, MalumItems.SPIRIT_CRUCIBLE.get(), 1)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.FURNACE, 1, MalumItems.SPIRIT_CRUCIBLE.get(), 1)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(MalumItems.HEX_ASH.get(), 2)
@@ -108,7 +103,7 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(INFERNAL_SPIRIT, 16)
                 .addExtraItem(MalumItems.BLAZING_QUARTZ.get(), 8)
-                .addExtraItem(Items.PRISMARINE_CRYSTALS, 8)
+                .addExtraItem(net.minecraft.world.item.Items.PRISMARINE_CRYSTALS, 8)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_CALX.get(), 6, MalumItems.RESONANCE_TUNER.get(), 1)
@@ -203,19 +198,19 @@ public class ArtificeSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), 1, MalumItems.ZEPHYR_IMPETUS.get(), 1)
                 .addSpirit(AERIAL_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 32)
-                .addExtraItem(Items.WIND_CHARGE, 8)
+                .addExtraItem(net.minecraft.world.item.Items.WIND_CHARGE, 8)
                 .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 6)
                 .addExtraItem(MalumItems.WIND_NUCLEUS.get(), 4)
-                .addExtraItem(Items.HEAVY_CORE, 1)
+                .addExtraItem(net.minecraft.world.item.Items.HEAVY_CORE, 1)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), 1, MalumItems.IFRIT_IMPETUS.get(), 1)
                 .addSpirit(INFERNAL_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 32)
-                .addExtraItem(Items.BLAZE_POWDER, 8)
+                .addExtraItem(net.minecraft.world.item.Items.BLAZE_POWDER, 8)
                 .addExtraItem(MalumItems.IRON_METALLICS.getNode().get(), 6)
                 .addExtraItem(MalumItems.PYRE_NUCLEUS.get(), 4)
-                .addExtraItem(Items.HEAVY_CORE, 1)
+                .addExtraItem(net.minecraft.world.item.Items.HEAVY_CORE, 1)
                 .save(recipeOutput);
 
     }

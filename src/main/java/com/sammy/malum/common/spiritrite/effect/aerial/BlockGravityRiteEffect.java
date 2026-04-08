@@ -16,7 +16,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class BlockGravityRiteEffect extends SpiritRiteBlockEffect {
     // From Botania, modified slightly
 
     protected static boolean canSilkTouch(ServerLevel level, BlockPos pos, BlockState state) {
-        if (state.is(MalumTags.BlockTags.GREATER_AERIAL_WHITELIST)) {
+        if (state.is(MalumTags.Blocks.GREATER_AERIAL_WHITELIST)) {
             return true;
         }
         ItemStack harvestToolStack = getToolForState(state);

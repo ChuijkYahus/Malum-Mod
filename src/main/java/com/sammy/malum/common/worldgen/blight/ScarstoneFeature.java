@@ -1,6 +1,5 @@
 package com.sammy.malum.common.worldgen.blight;
 
-import com.google.common.collect.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
@@ -10,17 +9,13 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
-import net.minecraft.world.level.levelgen.synth.*;
-import net.minecraft.world.level.material.*;
 import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.SOULWOOD_SPIKE;
 import static com.sammy.malum.common.worldgen.blight.BlightFeature.fetchCoveringPositions;
 
 public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
@@ -47,7 +42,7 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
         List<BlockPos> scarredArea = fetchCoveringPositions(level, pos, radius);
         for (BlockPos blockPos : scarredArea) {
             BlockState state = level.getBlockState(blockPos);
-            if (state.is(MalumTags.BlockTags.BLIGHT_REPLACEABLE) || state.is(MalumTags.BlockTags.BLIGHT)) {
+            if (state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE) || state.is(MalumTags.Blocks.BLIGHT)) {
                 scarstoneLayer.add(blockPos, MalumBlocks.SCARSTONE.get()).setImportant();
             }
         }
@@ -86,7 +81,7 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
         return BlightFeature.fetchCoveringPositions(level, center, radius, ScarstoneFeature::canBeRemoved).stream().filter(
                         p -> {
                             BlockState above = level.getBlockState(p.above());
-                            return above.canBeReplaced() || above.is(MalumTags.BlockTags.BLIGHT_REMOVABLE) || above.is(MalumTags.BlockTags.BLIGHTED_PLANTS);
+                            return above.canBeReplaced() || above.is(MalumTags.Blocks.BLIGHT_REMOVABLE) || above.is(MalumTags.Blocks.BLIGHTED_PLANTS);
                         })
                 .collect(Collectors.toList());
     }

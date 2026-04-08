@@ -55,7 +55,7 @@ public class IntroductionEntries {
                 .addPage(new TextPage("spirit_crystals.3"))
         );
 
-        screen.addEntry("runewood", -1, 3, b -> b
+        screen.addEntry("runewood", 0, 2, b -> b
                 .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
                 .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
                 .addPage(PageSelectionPage.create(s -> s
@@ -82,7 +82,7 @@ public class IntroductionEntries {
                 )
         );
 
-        screen.addEntry("arcane_wonders", 0, 2, b -> b
+        screen.addEntry("arcane_wonders", -1, 3, b -> b
                 .configureWidget(w -> w
                         .setIcon(EntryCommons.OVERWORLD)
                         .setDesign(SMALL, RUNEWOOD, DARK)
@@ -90,6 +90,7 @@ public class IntroductionEntries {
                 .addPage(new HeadlineTextGizmoPage("arcane_wonders", EntryCommons.OVERWORLD))
                 .addPage(new TextPage("arcane_wonders.2"))
                 .addPage(new TextPage("arcane_wonders.3"))
+                .addPage(new TextPage("arcane_wonders.4"))
         );
 
         screen.addEntry("soulstone", 0, 4, b -> b

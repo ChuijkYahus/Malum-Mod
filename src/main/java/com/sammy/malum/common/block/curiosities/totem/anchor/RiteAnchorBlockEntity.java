@@ -19,7 +19,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
@@ -158,7 +157,7 @@ public class RiteAnchorBlockEntity extends LodestoneBlockEntity implements RiteS
 
     @Override
     public ItemInteractionResult onUseWithItem(Player pPlayer, ItemStack pStack, InteractionHand pHand) {
-        if (pStack.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL)) {
+        if (pStack.is(MalumTags.Items.IS_TOTEMIC_TOOL)) {
             if (level instanceof ServerLevel serverLevel) {
                 if (updateAimDirection(serverLevel, pPlayer)) {
                     BlockStateHelper.updateState(level, worldPosition);

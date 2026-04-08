@@ -16,7 +16,7 @@ public class MalumAttributeEventHandler {
         }
         DamageSource source = event.getSource();
         if (source.getEntity() instanceof LivingEntity attacker) {
-            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+            if (source.is(MalumTags.DamageTypes.IS_SCYTHE)) {
                 var scytheProficiency = attacker.getAttribute(MalumAttributes.SCYTHE_PROFICIENCY);
                 if (scytheProficiency != null) {
                     event.setNewDamage((float) (event.getNewDamage() * scytheProficiency.getValue()));
@@ -39,7 +39,7 @@ public class MalumAttributeEventHandler {
 
     public static Optional<Float> modifyMagicDamageArmorPiercing(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
         if (CommonConfig.MAGIC_DAMAGE_REDUCED_ARMOR_PIERCING.getConfigValue()) {
-            if (damageSource.is(MalumTags.DamageTypeTags.BYPASSES_HALF_ARMOR)) {
+            if (damageSource.is(MalumTags.DamageTypes.BYPASSES_HALF_ARMOR)) {
                 float armor = livingEntity.getArmorValue() * 0.5f;
                 float toughness = (float) livingEntity.getAttributeValue(Attributes.ARMOR_TOUGHNESS) * 0.5f;
                 var newAmount = CombatRules.getDamageAfterAbsorb(livingEntity, damageAmount, damageSource, armor, toughness);

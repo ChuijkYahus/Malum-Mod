@@ -2,30 +2,15 @@ package com.sammy.malum.common.item.curiosities.pouch;
 
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
-import net.minecraft.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
-import net.minecraft.stats.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.inventory.*;
-import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import org.apache.commons.lang3.math.*;
-import team.lodestar.lodestone.helpers.*;
 
 import java.util.*;
 
@@ -71,7 +56,7 @@ public class SoulwovenPouchItem extends MalumPouchItem {
         }
         Player player = event.getPlayer();
         ItemStack pickedUp = itemEntity.getItem();
-        if (!pickedUp.is(MalumTags.ItemTags.SOULWOVEN_POUCH_AUTOCOLLECT)) {
+        if (!pickedUp.is(MalumTags.Items.SOULWOVEN_POUCH_AUTOCOLLECT)) {
             return;
         }
         for (NonNullList<ItemStack> playerInventory : player.getInventory().compartments) {

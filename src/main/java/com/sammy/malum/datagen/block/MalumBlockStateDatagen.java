@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
+import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.item.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -226,14 +226,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, CRATE_OF_WITCHHAZEL);
 
         setTexturePath("storage_blocks/metallics");
-        for (MetallicsItemRegistryBundle metallics : MetallicsItemRegistryBundle.getMalumMetallics()) {
-            MalumBlockStateSmithTypes.METALLIC_STORAGE_BLOCK.act(data, metallics.getDerealizedStorageBlock());
-            MalumBlockStateSmithTypes.METALLIC_STORAGE_BLOCK.act(data, metallics.getHarmonizedStorageBlock());
-        }
+        MalumMetallicsDatagen.MALUM.addBlockStates(data);
 
         setTexturePath("flora/");
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.NO_DATAGEN, EBONY_SAPLING);
-        MalumBlockStateSmithTypes.EBONY.act(data, EBONY);
+        MalumBlockStateSmithTypes.EBONY.act(data, EBONY_STALK);
 
 
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, WILD_WITCHHAZEL);

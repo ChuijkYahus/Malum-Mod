@@ -40,7 +40,7 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         this(new SizedIngredient(input, inputCount), new ItemStack(output, outputCount));
     }
 
-    public SpiritInfusionRecipeBuilder(Item input, int inputCount, ItemLike output, int outputCount) {
+    public SpiritInfusionRecipeBuilder(ItemLike input, int inputCount, ItemLike output, int outputCount) {
         this(SizedIngredient.of(input, inputCount), new ItemStack(output, outputCount));
     }
 
@@ -61,7 +61,7 @@ public class SpiritInfusionRecipeBuilder implements LodestoneRecipeBuilder<Spiri
         return this;
     }
 
-    public SpiritInfusionRecipeBuilder addExtraItem(Item input, int amount) {
+    public SpiritInfusionRecipeBuilder addExtraItem(ItemLike input, int amount) {
         extraIngredients.add(SizedIngredient.of(input, amount));
         return this;
     }

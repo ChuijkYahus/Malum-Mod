@@ -15,7 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 
 import java.util.function.*;
 
-import static com.sammy.malum.registry.common.MalumTags.ItemTags.GROSS_FOODS;
+import static com.sammy.malum.registry.common.MalumTags.Items.GROSS_FOODS;
 
 public class ProfaneAsceticGeas extends GeasEffect {
 

@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHT_PLACEABLE_ON;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.BLIGHT_PLACEABLE_ON;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
 public class CreepingBlightBlock extends Block {

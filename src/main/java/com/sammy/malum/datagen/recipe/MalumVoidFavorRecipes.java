@@ -6,7 +6,6 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
 
@@ -17,7 +16,7 @@ public class MalumVoidFavorRecipes {
         new VoidFavorRecipeBuilder(Ingredient.of(MalumItems.ENCYCLOPEDIA_ARCANA.get()), MalumItems.ENCYCLOPEDIA_ESOTERICA.get(), 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Ingredient.of(MalumTags.ItemTags.VOID_SOULSTONE_CONVERSION), MalumItems.RAW_SOULSTONE.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(MalumTags.Items.VOID_SOULSTONE_CONVERSION), MalumItems.RAW_SOULSTONE.get(), 1)
                 .save(recipeOutput);
 
         new VoidFavorRecipeBuilder(Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON), MalumItems.ANOMALOUS_DESIGN.get(), 1)
@@ -36,7 +35,7 @@ public class MalumVoidFavorRecipes {
         new VoidFavorRecipeBuilder(MalumItems.RAW_BRILLIANCE.get(), MalumItems.MNEMONIC_FRAGMENT.get(), 2)
                 .save(recipeOutput, MalumMod.malumPath("mnemonic_fragment_from_cluster"));
 
-        new VoidFavorRecipeBuilder(Items.BLAZE_POWDER, MalumItems.AURIC_EMBERS.get(), 1)
+        new VoidFavorRecipeBuilder(net.minecraft.world.item.Items.BLAZE_POWDER, MalumItems.AURIC_EMBERS.get(), 1)
                 .save(recipeOutput);
 
         new VoidFavorRecipeBuilder(MalumItems.CTHONIC_GOLD.get(), MalumItems.MALIGNANT_LEAD.get(), 1)
@@ -45,7 +44,7 @@ public class MalumVoidFavorRecipes {
         new VoidFavorRecipeBuilder(Ingredient.of(MalumItems.THE_DEVICE.get()), MalumItems.THE_VESSEL.get(), 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Items.BLACK_WOOL, MalumItems.TOPHAT.get(), 1)
+        new VoidFavorRecipeBuilder(net.minecraft.world.item.Items.BLACK_WOOL, MalumItems.TOPHAT.get(), 1)
                 .save(recipeOutput);
 
         new VoidFavorRecipeBuilder(MalumItems.ARCANE_ELEGY.get(), MalumItems.AESTHETICA.get(), 1)

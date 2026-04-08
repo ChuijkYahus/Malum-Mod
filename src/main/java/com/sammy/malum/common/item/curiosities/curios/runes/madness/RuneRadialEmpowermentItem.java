@@ -41,7 +41,7 @@ public class RuneRadialEmpowermentItem extends MadnessRuneCurioItem implements I
     @Override
     public void outgoingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         final DamageSource source = event.getSource();
-        if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE_MELEE) && !source.is(MalumDamageTypes.SCYTHE_SWEEP)) {
+        if (source.is(MalumTags.DamageTypes.IS_SCYTHE_MELEE) && !source.is(MalumDamageTypes.SCYTHE_SWEEP)) {
             var attribute = attacker.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
             if (attribute == null) {
                 return;

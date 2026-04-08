@@ -37,7 +37,7 @@ public class GleefulTargetAuthority extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(MalumTags.DamageTypeTags.GLEEFUL_TARGET_BLACKLIST)) {
+        if (event.getSource().is(MalumTags.DamageTypes.GLEEFUL_TARGET_BLACKLIST)) {
             return;
         }
         var gleefulTarget = target.getEffect(MalumMobEffects.GLEEFUL_TARGET);

@@ -27,13 +27,7 @@ import static net.minecraft.data.recipes.SimpleCookingRecipeBuilder.smelting;
 
 public class MalumMetallicsRecipes implements IConditionBuilder {
 
-    protected static void buildRecipes(RecipeOutput output) {
-        for (MetallicsItemRegistryBundle metallic : MetallicsItemRegistryBundle.getMalumMetallics()) {
-            buildMetallicsRecipes(output, metallic);
-        }
-    }
-
-    private static void buildMetallicsRecipes(RecipeOutput output, MetallicsItemRegistryBundle bundle) {
+    public static void buildMetallicsRecipes(RecipeOutput output, MetallicsItemRegistryBundle bundle) {
         var id = bundle.getId();
         var node = bundle.getNode().get();
         Pair<String, Criterion<?>> hasNode = Pair.of("has_node", RecipeDatagenCommons.has(node));

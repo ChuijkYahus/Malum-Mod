@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.grower.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 
 public class SoulwoodGrowthBlock extends MalumSaplingBlock {
     public SoulwoodGrowthBlock(TreeGrower treeGrower, Properties properties) {

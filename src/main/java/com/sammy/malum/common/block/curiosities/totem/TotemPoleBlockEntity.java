@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
@@ -83,7 +82,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
             return ItemInteractionResult.SUCCESS;
         }
 
-        if (held.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL)) {
+        if (held.is(MalumTags.Items.IS_TOTEMIC_TOOL)) {
             if (level instanceof ServerLevel serverLevel) {
                 if (state.equals(CHARGING) || state.equals(ACTIVE)) {
                     return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

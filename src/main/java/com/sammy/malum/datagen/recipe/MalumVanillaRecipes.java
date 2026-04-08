@@ -1,23 +1,17 @@
 package com.sammy.malum.datagen.recipe;
 
 import com.mojang.datafixers.util.Pair;
-import com.sammy.malum.*;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.datagen.recipe.builder.vanilla.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
-import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import net.neoforged.neoforge.common.conditions.NotCondition;
-import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import team.lodestar.lodestone.recipe.builder.*;
 
 import java.util.function.*;
@@ -38,7 +32,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
         //KEY ITEMS
         shapeless(RecipeCategory.MISC, MalumItems.ENCYCLOPEDIA_ARCANA.get())
-                .requires(Items.BOOK)
+                .requires(net.minecraft.world.item.Items.BOOK)
                 .requires(MalumItems.REFINED_SOULSTONE.get())
                 .unlockedBy("has_soulstone", hasSoulstone)
                 .save(output);
@@ -54,7 +48,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumItems.SPIRIT_ALTAR.get())
                 .define('Z', Tags.Items.INGOTS_GOLD)
                 .define('Y', MalumItems.REFINED_SOULSTONE.get())
-                .define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS)
+                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
                 .pattern(" Y ")
                 .pattern("ZXZ")
                 .pattern("XXX")
@@ -63,7 +57,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumItems.WEAVERS_WORKBENCH.get())
                 .define('Z', MalumItems.HALLOWED_GOLD_INGOT.get())
                 .define('Y', MalumItems.HEX_ASH.get())
-                .define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS)
+                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
                 .pattern("XYX")
                 .pattern("XZX")
                 .unlockedBy("has_hex_ash", RecipeDatagenCommons.has(MalumItems.HEX_ASH.get()))
@@ -71,7 +65,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumItems.SOUL_BRAZIER.get())
                 .define('Z', MalumItems.CTHONIC_GOLD.get())
                 .define('Y', MalumItems.HALLOWED_GOLD_INLAY.get())
-                .define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS)
+                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
                 .define('W', MalumItems.TAINTED_ROCK.get())
                 .pattern("YZY")
                 .pattern("XXX")
@@ -94,7 +88,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .save(output);
         shaped(RecipeCategory.MISC, MalumItems.TOTEMIC_STAFF.get())
                 .define('X', Tags.Items.RODS_WOODEN)
-                .define('Y', MalumTags.ItemTags.RUNEWOOD_PLANKS)
+                .define('Y', MalumTags.Items.RUNEWOOD_PLANKS)
                 .pattern("  Y")
                 .pattern(" X ")
                 .pattern("X  ")
@@ -140,10 +134,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         etherCresset(output, MalumItems.DROSS_IRIDESCENT_ETHER_CRESSET.get(), MalumItems.DROSS_STONE.get(), MalumItems.IRIDESCENT_ETHER.get());
 
         //SAP & ARCANE CHARCOAL
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.ItemTags.RUNEWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_runewood_planks", RecipeDatagenCommons.has(MalumTags.ItemTags.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.Items.RUNEWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_runewood_planks", RecipeDatagenCommons.has(MalumTags.Items.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
         shapeless(RecipeCategory.MISC, MalumItems.RUNIC_SAPBALL.get()).requires(MalumItems.RUNIC_SAP.get()).requires(MalumItems.RUNIC_SAP.get()).unlockedBy("has_runic_sap", RecipeDatagenCommons.has(MalumItems.RUNIC_SAP.get())).save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.ItemTags.SOULWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_soulwood_planks", RecipeDatagenCommons.has(MalumTags.ItemTags.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.Items.SOULWOOD_LOGS), RecipeCategory.MISC, MalumItems.ARCANE_CHARCOAL.get(), 0.25f, 200).unlockedBy("has_soulwood_planks", RecipeDatagenCommons.has(MalumTags.Items.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
         shapeless(RecipeCategory.MISC, MalumItems.CURSED_SAPBALL.get()).requires(MalumItems.CURSED_SAP.get()).unlockedBy("has_cursed_sap", RecipeDatagenCommons.has(MalumItems.CURSED_SAP.get())).save(output);
 
         //BLIGHT
@@ -161,7 +155,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .unlockedBy("has_blight", hasBlight).save(output);
 
         //BANNERS
-        shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.ItemTags.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(MalumItems.SOULWOVEN_SILK.get())).save(output);
+        shaped(RecipeCategory.BUILDING_BLOCKS, MalumItems.SOULWOVEN_BANNER.get()).define('X', MalumTags.Items.RUNEWOOD_PLANKS).define('Y', MalumItems.SOULWOVEN_SILK.get()).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(MalumItems.SOULWOVEN_SILK.get())).save(output);
         bannerRecipe(output, MalumItems.ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER);
         bannerRecipe(output, MalumItems.GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS);
         bannerRecipe(output, MalumItems.EERIE_WEAVE.get(), SoulwovenBannerPatternDataComponent.HEFT);
@@ -278,43 +272,43 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, MalumItems.AURIC_EMBERS, MalumItems.BLOCK_OF_AURIC_EMBERS);
 
         //MISC
-        shaped(RecipeCategory.MISC, Items.NETHERRACK, 2).define('Z', MalumItems.BLAZING_QUARTZ.get()).define('Y', Tags.Items.COBBLESTONES).pattern("ZY").pattern("YZ").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("netherrack_from_blazing_quartz"));
-        shapeless(RecipeCategory.MISC, Items.EXPERIENCE_BOTTLE).requires(MalumItems.REFINED_BRILLIANCE.get()).requires(Items.GLASS_BOTTLE).unlockedBy("has_brilliance", RecipeDatagenCommons.has(MalumItems.REFINED_BRILLIANCE.get())).save(output, malumPath("experience_bottle_from_brilliance"));
+        shaped(RecipeCategory.MISC, net.minecraft.world.item.Items.NETHERRACK, 2).define('Z', MalumItems.BLAZING_QUARTZ.get()).define('Y', Tags.Items.COBBLESTONES).pattern("ZY").pattern("YZ").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("netherrack_from_blazing_quartz"));
+        shapeless(RecipeCategory.MISC, net.minecraft.world.item.Items.EXPERIENCE_BOTTLE).requires(MalumItems.REFINED_BRILLIANCE.get()).requires(net.minecraft.world.item.Items.GLASS_BOTTLE).unlockedBy("has_brilliance", RecipeDatagenCommons.has(MalumItems.REFINED_BRILLIANCE.get())).save(output, malumPath("experience_bottle_from_brilliance"));
 
-        shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 6).requires(MalumItems.GRIM_TALC.get()).unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("bonemeal_from_grim_talc"));
-        shaped(RecipeCategory.MISC, Items.SKELETON_SKULL).define('#', MalumItems.GRIM_TALC.get()).define('&', Tags.Items.BONES).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("skeleton_skull_from_grim_talc"));
-        shaped(RecipeCategory.MISC, Items.ZOMBIE_HEAD).define('#', MalumItems.GRIM_TALC.get()).define('&', Items.ROTTEN_FLESH).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("zombie_head_from_grim_talc"));
+        shapeless(RecipeCategory.MISC, net.minecraft.world.item.Items.BONE_MEAL, 6).requires(MalumItems.GRIM_TALC.get()).unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("bonemeal_from_grim_talc"));
+        shaped(RecipeCategory.MISC, net.minecraft.world.item.Items.SKELETON_SKULL).define('#', MalumItems.GRIM_TALC.get()).define('&', Tags.Items.BONES).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("skeleton_skull_from_grim_talc"));
+        shaped(RecipeCategory.MISC, net.minecraft.world.item.Items.ZOMBIE_HEAD).define('#', MalumItems.GRIM_TALC.get()).define('&', net.minecraft.world.item.Items.ROTTEN_FLESH).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(MalumItems.GRIM_TALC.get())).save(output, malumPath("zombie_head_from_grim_talc"));
 
-        shaped(RecipeCategory.MISC, Items.TORCH, 6).define('#', MalumItems.BLAZING_QUARTZ.get()).define('&', Items.STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("torch_from_blazing_quartz"));
+        shaped(RecipeCategory.MISC, net.minecraft.world.item.Items.TORCH, 6).define('#', MalumItems.BLAZING_QUARTZ.get()).define('&', net.minecraft.world.item.Items.STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(MalumItems.BLAZING_QUARTZ.get())).save(output, malumPath("torch_from_blazing_quartz"));
 
         //THE DEVICE
-        shaped(RecipeCategory.MISC, MalumItems.THE_DEVICE.get()).define('X', MalumItems.TWISTED_ROCK.get()).define('Y', MalumItems.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", RecipeDatagenCommons.has(Items.BEDROCK)).save(output);
+        shaped(RecipeCategory.MISC, MalumItems.THE_DEVICE.get()).define('X', MalumItems.TWISTED_ROCK.get()).define('Y', MalumItems.TAINTED_ROCK.get()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", RecipeDatagenCommons.has(net.minecraft.world.item.Items.BEDROCK)).save(output);
 
 
         //WEAVES
         weaveRecipe(output, MalumItems.BLIGHTED_GUNK.get(), MalumItems.ANCIENT_WEAVE);
-        weaveRecipe(output, Items.IRON_INGOT, MalumItems.CORNERED_WEAVE);
-        weaveRecipe(output, Items.LAPIS_LAZULI, MalumItems.MECHANICAL_WEAVE_V1);
-        weaveRecipe(output, Items.REDSTONE, MalumItems.MECHANICAL_WEAVE_V2);
+        weaveRecipe(output, net.minecraft.world.item.Items.IRON_INGOT, MalumItems.CORNERED_WEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.LAPIS_LAZULI, MalumItems.MECHANICAL_WEAVE_V1);
+        weaveRecipe(output, net.minecraft.world.item.Items.REDSTONE, MalumItems.MECHANICAL_WEAVE_V2);
 
-        weaveRecipe(output, Items.BREAD, MalumItems.ACE_PRIDEWEAVE);
-        weaveRecipe(output, Items.BOOK, MalumItems.AGENDER_PRIDEWEAVE);
-        weaveRecipe(output, Items.ARROW, MalumItems.ARO_PRIDEWEAVE);
-        weaveRecipe(output, Items.WHEAT_SEEDS, MalumItems.AROACE_PRIDEWEAVE);
-        weaveRecipe(output, Items.WHEAT, MalumItems.BI_PRIDEWEAVE);
-        weaveRecipe(output, Items.RAW_IRON, MalumItems.DEMIBOY_PRIDEWEAVE);
-        weaveRecipe(output, Items.RAW_COPPER, MalumItems.DEMIGIRL_PRIDEWEAVE);
-        weaveRecipe(output, Items.MOSS_BLOCK, MalumItems.ENBY_PRIDEWEAVE);
-        weaveRecipe(output, Items.MELON_SLICE, MalumItems.GAY_PRIDEWEAVE);
-        weaveRecipe(output, Items.WATER_BUCKET, MalumItems.GENDERFLUID_PRIDEWEAVE);
-        weaveRecipe(output, Items.GLASS_BOTTLE, MalumItems.GENDERQUEER_PRIDEWEAVE);
-        weaveRecipe(output, Items.AZALEA, MalumItems.INTERSEX_PRIDEWEAVE);
-        weaveRecipe(output, Items.HONEYCOMB, MalumItems.LESBIAN_PRIDEWEAVE);
-        weaveRecipe(output, Items.CARROT, MalumItems.PAN_PRIDEWEAVE);
-        weaveRecipe(output, Items.REPEATER, MalumItems.PLURAL_PRIDEWEAVE);
-        weaveRecipe(output, Items.COMPARATOR, MalumItems.POLY_PRIDEWEAVE);
-        weaveRecipe(output, Items.STONE_BRICK_WALL, MalumItems.PRIDE_PRIDEWEAVE);
-        weaveRecipe(output, Items.EGG, MalumItems.TRANS_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.BREAD, MalumItems.ACE_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.BOOK, MalumItems.AGENDER_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.ARROW, MalumItems.ARO_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.WHEAT_SEEDS, MalumItems.AROACE_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.WHEAT, MalumItems.BI_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.RAW_IRON, MalumItems.DEMIBOY_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.RAW_COPPER, MalumItems.DEMIGIRL_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.MOSS_BLOCK, MalumItems.ENBY_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.MELON_SLICE, MalumItems.GAY_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.WATER_BUCKET, MalumItems.GENDERFLUID_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.GLASS_BOTTLE, MalumItems.GENDERQUEER_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.AZALEA, MalumItems.INTERSEX_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.HONEYCOMB, MalumItems.LESBIAN_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.CARROT, MalumItems.PAN_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.REPEATER, MalumItems.PLURAL_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.COMPARATOR, MalumItems.POLY_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.STONE_BRICK_WALL, MalumItems.PRIDE_PRIDEWEAVE);
+        weaveRecipe(output, net.minecraft.world.item.Items.EGG, MalumItems.TRANS_PRIDEWEAVE);
     }
 
     protected static void bannerRecipe(RecipeOutput consumer, Item material, SoulwovenBannerPatternDataComponent pattern) {
@@ -354,7 +348,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         var id = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath();
         new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
                 .define('X', ether)
-                .define('Y', Items.HONEYCOMB)
+                .define('Y', net.minecraft.world.item.Items.HONEYCOMB)
                 .pattern("X").pattern("Y")
                 .unlockedBy("has_ether", RecipeDatagenCommons.has(MalumItems.ETHER.get()))
                 .save(recipeoutput, id + "_crafting");

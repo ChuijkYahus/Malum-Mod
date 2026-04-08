@@ -52,7 +52,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     public SunderingAnchorItem(Tier tier, float magicDamage, LodestoneItemProperties properties) {
         super(tier, -2f, -2f, properties
-                .component(DataComponents.TOOL, createToolProperties(tier, MalumTags.BlockTags.MINEABLE_WITH_KNIFE))
+                .component(DataComponents.TOOL, createToolProperties(tier, MalumTags.Blocks.FD_MINEABLE_WITH_KNIFE))
                 .mergeAttributes(
                         ItemAttributeModifiers.builder()
                                 .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -82,7 +82,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         var stack = player.getItemInHand(usedHand);
         if (EntityHelper.pick(player) instanceof BlockHitResult blockHitResult) {
-            if (level.getBlockState(blockHitResult.getBlockPos()).is(MalumTags.BlockTags.SUNDERING_ANCHOR_KNIFE_BEHAVIOR)) {
+            if (level.getBlockState(blockHitResult.getBlockPos()).is(MalumTags.Blocks.SUNDERING_ANCHOR_PLEASE_BE_A_KNIFE)) {
                 return InteractionResultHolder.pass(stack);
             }
         }
@@ -167,7 +167,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         }
     }
     public static Tool createToolProperties(Tier tier, TagKey<Block> blocks) {
-        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F),
+        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(net.minecraft.world.level.block.Blocks.COBWEB), 15.0F),
                 Tool.Rule.overrideSpeed(net.minecraft.tags.BlockTags.SWORD_EFFICIENT, 1.5F),
                 Tool.Rule.deniesDrops(tier.getIncorrectBlocksForDrops()), Tool.Rule.minesAndDrops(blocks, tier.getSpeed())), 1.0F, 2);
     }

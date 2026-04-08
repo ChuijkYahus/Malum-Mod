@@ -72,7 +72,7 @@ public class WaveformConfigurationHandler {
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack stack = player.getItemInHand(hand);
-        if (!stack.is(MalumTags.ItemTags.IS_REDSTONE_TOOL)) {
+        if (!stack.is(MalumTags.Items.IS_REDSTONE_TOOL)) {
             return;
         }
         if (!canInteract(player)) {

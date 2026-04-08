@@ -22,7 +22,7 @@ public class StructureDatagen {
     public static void structureBootstrap(BootstrapContext<Structure> context) {
         context.register(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_KEY,
                 new WeepingWellStructure(
-                        structure(context.lookup(Registries.BIOME).getOrThrow(MalumTags.BiomeTags.HAS_WEEPING_WELL), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE)
+                        structure(context.lookup(Registries.BIOME).getOrThrow(MalumTags.Biomes.HAS_WEEPING_WELL), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE)
                 )
         );
     }
