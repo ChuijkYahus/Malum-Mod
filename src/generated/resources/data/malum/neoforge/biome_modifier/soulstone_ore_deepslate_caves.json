@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#malum:has_soulstone",
+  "features": "malum:ore_soulstone_deepslate",
+  "step": "underground_ores"
+}

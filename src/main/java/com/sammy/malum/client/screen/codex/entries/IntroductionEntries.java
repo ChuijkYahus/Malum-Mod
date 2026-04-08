@@ -55,6 +55,33 @@ public class IntroductionEntries {
                 .addPage(new TextPage("spirit_crystals.3"))
         );
 
+        screen.addEntry("runewood", -1, 3, b -> b
+                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
+                .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(GRASS_BLOCK).addTitleAndSnippet("runewood.placement"),
+                                        new HeadlineTextPage("runewood.placement"))
+                                .add(item(RUNEWOOD_SAPLING).addTitleAndSnippet("runewood.genesis"),
+                                        new HeadlineTextPage("runewood.genesis"))
+                                .add(item(AZURE_RUNEWOOD_SAPLING).addTitleAndSnippet("runewood.azure"),
+                                        new HeadlineTextPage("runewood.azure"))
+                        )
+                )
+                .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_LOG), item(ARCANE_CHARCOAL)))
+                                .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
+                        )
+                )
+                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(STRIPPED_SAPPY_RUNEWOOD_LOG).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(SAPPY_RUNEWOOD_LOG), item(STRIPPED_SAPPY_RUNEWOOD_LOG)))
+                                .add(item(RUNIC_SAP).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(STRIPPED_SAPPY_RUNEWOOD_LOG), item(RUNIC_SAP)))
+                                .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP))))
+                        )
+                )
+        );
+
         screen.addEntry("arcane_wonders", 0, 2, b -> b
                 .configureWidget(w -> w
                         .setIcon(EntryCommons.OVERWORLD)
@@ -65,47 +92,16 @@ public class IntroductionEntries {
                 .addPage(new TextPage("arcane_wonders.3"))
         );
 
-        var runicSapStripping = item(STRIPPED_SAPPY_RUNEWOOD_LOG).addTitleAndSnippet("runewood.runic_sap.stripping");
-        var runicSapBottling = item(RUNIC_SAP).addTitleAndSnippet("runewood.runic_sap.bottling");
-        var runicSapMixing = item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing");
-        screen.addEntry("runewood", -1, 3, b -> b
-                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
-                .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(GRASS_BLOCK),
-                                        new HeadlineTextPage("runewood.placement"))
-                                .add(item(RUNEWOOD_SAPLING),
-                                        new HeadlineTextPage("runewood.genesis"))
-                                .add(item(AZURE_RUNEWOOD_SAPLING),
-                                        new HeadlineTextPage("runewood.azure"))
-                        )
-                )
-                .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(ARCANE_CHARCOAL),
-                                        new SmeltingPage(RUNEWOOD_LOG.get(), ARCANE_CHARCOAL.get()))
-                                .add(item(BLOCK_OF_ARCANE_CHARCOAL),
-                                        CraftingPage.fullPage(BLOCK_OF_ARCANE_CHARCOAL.get(), ARCANE_CHARCOAL.get()))
-                        )
-                )
-                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(runicSapStripping, InteractionPage.stripping(item(SAPPY_RUNEWOOD_LOG), runicSapStripping))
-                                .add(runicSapBottling, InteractionPage.bottling(item(STRIPPED_SAPPY_RUNEWOOD_LOG), runicSapBottling))
-                                .add(runicSapMixing, CraftingPage.topAndMiddle(RUNIC_SAPBALL.get(), WHEAT, RUNIC_SAP.get()))
-                        )
-                )
-        );
-
         screen.addEntry("soulstone", 0, 4, b -> b
                 .configureWidget(w -> w.setIcon(item(REFINED_SOULSTONE)))
                 .addPage(new HeadlineTextGizmoPage("soulstone", item(REFINED_SOULSTONE)))
                 .addPage(new TextPage("soulstone.2"))
-                .addPage(new SmeltingPage(new ItemStack(RAW_SOULSTONE.get()), new ItemStack(REFINED_SOULSTONE.get(), 2)))
-                .addPage(new CyclingPage(
-                        CraftingPage.fullPage(BLOCK_OF_SOULSTONE.get(), REFINED_SOULSTONE.get()),
-                        CraftingPage.fullPage(BLOCK_OF_RAW_SOULSTONE.get(), RAW_SOULSTONE.get())
-                ))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(REFINED_SOULSTONE), new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE)))
+                                .add(item(BLOCK_OF_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_SOULSTONE), item(REFINED_SOULSTONE)))
+                                .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
+                        )
+                )
 //                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
         );
 

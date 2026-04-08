@@ -21,6 +21,7 @@ public class MalumStorageBlockProperties {
                 .sound(soundType);
     }
 
+    //TODO: move this once mana motes are cool
     public static LodestoneBlockProperties MANA_MOTE_BLOCK() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_LIGHT_BLUE)

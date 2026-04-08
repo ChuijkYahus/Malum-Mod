@@ -4,6 +4,13 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/lead"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
         "tag": "c:ingots/lead"
       }
     }
@@ -11,7 +18,7 @@
   "type": "malum:spirit_infusion",
   "extraInputs": [
     {
-      "count": 4,
+      "count": 6,
       "tag": "c:gunpowders"
     },
     {
@@ -34,7 +41,7 @@
   "spirits": [
     {
       "type": "malum:earthen",
-      "count": 8
+      "count": 16
     },
     {
       "type": "malum:infernal",

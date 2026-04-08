@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "malum:block/block_of_harmonized_iron",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "malum:block/block_of_harmonized_iron",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/block_of_harmonized_iron",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "malum:block/block_of_harmonized_iron",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "malum:block/block_of_harmonized_iron"
+    },
+    "facing=west": {
+      "model": "malum:block/block_of_harmonized_iron",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

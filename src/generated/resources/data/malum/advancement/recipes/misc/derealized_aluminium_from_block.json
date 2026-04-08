@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_derealized_aluminium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "malum:derealized_aluminium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "malum:derealized_aluminium_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_derealized_aluminium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "malum:derealized_aluminium_from_block"
+    ]
+  }
+}

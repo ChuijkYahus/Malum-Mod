@@ -3,6 +3,7 @@ package com.sammy.malum.common.entity.mob.cultist.cherub;
 import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.CultistMoveControl;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubCastCurseGoal;
+import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubCastHealGoal;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitEnemyGoal;
 import com.sammy.malum.common.entity.mob.cultist.cherub.goal.CherubOrbitLeaderGoal;
 import com.sammy.malum.registry.common.entity.*;
@@ -79,6 +80,7 @@ public class CherubCultist extends CultistMonster {
 
         var targeting = new NearestAttackableTargetGoal<>(this, Player.class, false);
 
+        var castHeal = new CherubCastHealGoal(this);
         var castCurse = new CherubCastCurseGoal(this);
         var orbitLeader = new CherubOrbitLeaderGoal(this, 0.75f);
         var evasiveEnemyOrbit = CherubOrbitEnemyGoal.evasive(this, 1.25f);
@@ -90,6 +92,7 @@ public class CherubCultist extends CultistMonster {
 
         targetSelector.addGoal(0, targeting);
 
+        goalSelector.addGoal(0, castHeal);
         goalSelector.addGoal(1, castCurse);
         goalSelector.addGoal(2, orbitLeader);
         goalSelector.addGoal(3, evasiveEnemyOrbit);

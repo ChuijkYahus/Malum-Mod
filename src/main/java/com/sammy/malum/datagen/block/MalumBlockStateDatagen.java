@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.datagen.item.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -213,22 +214,22 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD, BLOCK_OF_AURIC_EMBERS);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
-                BLOCK_OF_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE,
-                BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_NATURAL_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_NATURAL_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
-                BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
-                BLOCK_OF_WIND_NUCLEI, BLOCK_OF_PYRE_NUCLEI);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_WIND_NUCLEI, BLOCK_OF_PYRE_NUCLEI);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
-                BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop,
-                BLOCK_OF_EBONY);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop,
-                CRATE_OF_WITCHHAZEL);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_EBONY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, CRATE_OF_WITCHHAZEL);
+
+        setTexturePath("storage_blocks/metallics");
+        for (MetallicsItemRegistryBundle metallics : MetallicsItemRegistryBundle.getMalumMetallics()) {
+            MalumBlockStateSmithTypes.METALLIC_STORAGE_BLOCK.act(data, metallics.getDerealizedStorageBlock());
+            MalumBlockStateSmithTypes.METALLIC_STORAGE_BLOCK.act(data, metallics.getHarmonizedStorageBlock());
+        }
 
         setTexturePath("flora/");
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.NO_DATAGEN, EBONY_SAPLING);

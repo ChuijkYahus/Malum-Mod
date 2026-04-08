@@ -1,6 +1,6 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
-import com.sammy.malum.datagen.tag.*;
+import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.data.recipes.*;
@@ -11,7 +11,6 @@ import net.minecraft.world.level.*;
 
 import java.util.ArrayList;
 
-import static com.sammy.malum.datagen.recipe.MalumVanillaRecipes.*;
 import static net.minecraft.data.recipes.RecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
@@ -110,7 +109,7 @@ public class MalumRockSetDatagen {
             TagKey<Item> slabTag, TagKey<Item> wallTag
     ) {
         public void buildRecipes(RecipeOutput recipeOutput) {
-            var condition = has(rock);
+            var condition = RecipeDatagenCommons.has(rock);
             slabRecipe(recipeOutput, rock, rockSlab);
             slabRecipe(recipeOutput, polishedRock, polishedRockSlab);
             slabRecipe(recipeOutput, bricks, bricksSlab);
@@ -198,7 +197,7 @@ public class MalumRockSetDatagen {
                     .define('#', input)
                     .pattern("##")
                     .pattern("##")
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput, recipeID);
             stoneCutting(recipeOutput, input, output);
         }
@@ -206,7 +205,7 @@ public class MalumRockSetDatagen {
         public void shapelessButton(RecipeOutput recipeOutput, ItemLike button, Item input) {
             shapeless(RecipeCategory.MISC, button)
                     .requires(input)
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput);
             stoneCutting(recipeOutput, input, button);
         }
@@ -215,7 +214,7 @@ public class MalumRockSetDatagen {
             shaped(RecipeCategory.MISC, pressurePlate)
                     .define('#', input)
                     .pattern("##")
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput);
         }
 
@@ -223,7 +222,7 @@ public class MalumRockSetDatagen {
             shaped(RecipeCategory.MISC, slab, 6)
                     .define('#', input)
                     .pattern("###")
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput);
             stoneCutting(recipeOutput, blockTag, slab);
         }
@@ -234,7 +233,7 @@ public class MalumRockSetDatagen {
                     .pattern("#  ")
                     .pattern("## ")
                     .pattern("###")
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput);
             stoneCutting(recipeOutput, blockTag, stairs);
         }
@@ -244,7 +243,7 @@ public class MalumRockSetDatagen {
                     .define('#', input)
                     .pattern("###")
                     .pattern("###")
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput);
             stoneCutting(recipeOutput, blockTag, wall);
         }
@@ -257,7 +256,7 @@ public class MalumRockSetDatagen {
             var defaultID = getDefaultRecipeId(output);
             var recipeID = defaultID.withSuffix(getDefaultRecipeId(input).getPath() + "_stonecutting");
             stonecutting(Ingredient.of(input), RecipeCategory.MISC, output, outputCount)
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput, recipeID);
         }
 
@@ -269,7 +268,7 @@ public class MalumRockSetDatagen {
             var defaultID = getDefaultRecipeId(output);
             var recipeID = defaultID.withSuffix(input.location().getPath() + "_stonecutting");
             stonecutting(Ingredient.of(input), RecipeCategory.MISC, output, outputCount)
-                    .unlockedBy("has_input", has(input))
+                    .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                     .save(recipeOutput, recipeID);
         }
     }

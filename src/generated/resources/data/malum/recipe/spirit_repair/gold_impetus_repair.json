@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/gold"
+      }
+    }
+  ],
+  "type": "malum:spirit_repair",
+  "durabilityPercentage": 1.0,
+  "repairMaterial": {
+    "count": 2,
+    "item": "malum:cthonic_gold_fragment"
+  },
+  "spirits": [
+    {
+      "type": "malum:aqueous",
+      "count": 8
+    },
+    {
+      "type": "malum:infernal",
+      "count": 8
+    }
+  ],
+  "validItems": [
+    "malum:fractured_gold_impetus"
+  ]
+}

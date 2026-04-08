@@ -8,16 +8,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.neoforge.client.model.generators.*;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmithResult;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneArmorItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -56,11 +51,19 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
                         separateTransforms.perspective(ItemDisplayContext.FIXED, reparent);
                         separateTransforms.base(provider.getBuilder("item/air"));
                     });
+
+
     public static ItemModelSmith IMPETUS_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
-        List<String> split = DataHelper.reverseOrder(new ArrayList<>(), Arrays.asList(name.split("_")));
-        split.removeFirst();
+        var split = name.split("_");
+        int lastIndex = split.length - 1;
+        int secondLastIndex = lastIndex - 1;
+        var last = split[lastIndex];
+        var secondLast = split[secondLastIndex];
+        split[lastIndex] = secondLast;
+        split[secondLastIndex] = last;
         String alteredName = String.join("_", split);
+
         return provider.createGenericModel(item, GENERATED, provider.getItemTexture(alteredName));
     });
 

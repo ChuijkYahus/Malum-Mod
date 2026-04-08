@@ -24,6 +24,10 @@ public record LayeredOreConfiguration(List<OreLayer> oreLayers, Optional<Layered
 
     public record OreLayer(List<LayeredTargetBlockState> targetStates, int width, int height, float discardChanceOnAirExposure,
                            boolean discardFeatureIfEmpty) {
+
+        public OreLayer(LayeredTargetBlockState state, int width, int height, float discardChanceOnAirExposure, boolean discardFeatureIfEmpty) {
+            this(List.of(state), width, height, discardChanceOnAirExposure, discardFeatureIfEmpty);
+        }
         public static final Codec<OreLayer> CODEC = RecordCodecBuilder.create(
                 p_67849_ -> p_67849_.group(
                                 Codec.list(LayeredTargetBlockState.CODEC).fieldOf("targets").forGetter(layer -> layer.targetStates),
@@ -47,6 +51,10 @@ public record LayeredOreConfiguration(List<OreLayer> oreLayers, Optional<Layered
     }
 
     public record LayeredOreFeatureDecorator(List<LayeredTargetBlockState> decorators, int minDecorations, int maxDecorations) {
+
+        public LayeredOreFeatureDecorator(LayeredTargetBlockState decorator, int minDecorations, int maxDecorations) {
+            this(List.of(decorator), minDecorations, maxDecorations);
+        }
         public static final Codec<LayeredOreFeatureDecorator> CODEC = RecordCodecBuilder.create(
                 obj -> obj.group(
                                 Codec.list(LayeredTargetBlockState.CODEC).fieldOf("decorators").forGetter(layer -> layer.decorators),

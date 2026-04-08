@@ -1,14 +1,5 @@
 package com.sammy.malum.datagen.lang;
 
-import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.core.systems.geas.GeasEffectType;
-import com.sammy.malum.core.systems.registry.rite.RiteHolder;
-import com.sammy.malum.core.systems.rite.SpiritRiteType;
-import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
-import com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes;
-import net.minecraft.core.Holder;
-import team.lodestar.lodestone.helpers.DataHelper;
-
 public class IntroductionChapterLangDatagen extends CodexLangDatagen {
 
     public static void generateEntries() {
@@ -26,37 +17,42 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
                 "A material I have named Soulstone is the means by which we do so. It appears mundane until refined, but once it is rid of impurities, it seems... out of phase with the world. By creating a blade using it as a core, I should be able to strike not only the physical form, but also the soul, shattering it to energy before it can disperse.",
                 "These energies, as previously noted, have different 'frequencies' of sorts. A being burning with light would have a soul that reflects that radiance, and a being prone to adaptation would have a soul as malleable as itself. Occasionally, the energy has no flavor to it at all, leaving only the raw impulse of creation behind. That type of crystal bears further study.");
 
-        addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
-        addPages("arcane_wonders",
-                "Page 1",
-                "Page 2",
-                "Page 3");
-
         addSimpleEntryHeader("runewood", "Runewood", "Arcane oak");
         addPages("runewood",
                 "Runewood is a strange mix of magic and nature that has always stood out amongst the many trees of the overworld. While pretty, I am more interested in practicality. Runewood is soaked in magic, and as such, can serve as the basis for the arcane.");
 
-        addHeadline("runewood.placement", "Runewood; Whereabouts");
+        addHeadline("runewood.placement", "Runewood's Habitat");
         addPages("runewood.placement",
-                "The tree is predominantly found within large open plains and sometimes forests. It is rare, but not outrageously so. It stands taller than most trees found within the same climate, and at its height it can be immediately identified by its leaves, proudly displaying an orange-yellow palette.");
-        addHeadline("runewood.genesis", "Runewood; Genesis");
+                "The tree is predominantly found within large open plains and sometimes forests. It is rare, but not outrageously so. It stands taller than most trees found within the same climate and thus can be easily identified by its leaves, proudly displaying an orange-yellow palette soaked in hues of the sun.");
+        addHeadline("runewood.genesis", "Runewood's Genesis");
         addPages("runewood.genesis",
-                "The exact origins of the tree are yet unknown to me. It has clear connections to regular Oak, yes, however the nature of that connection is rather puzzling. Given the arcana involved it is unclear if its history is rooted in biology or thaumaturgy. This demands further research.");
-        addHeadline("runewood.azure", "Runewood; Brilliant Blue");
+                "The exact origins of the tree are yet unknown to me. It has clear connections to Oak, yes, however the nature of that connection is rather puzzling. Given the arcana involved, it is hard to decipher if its history is rooted in biology, or thaumaturgy. I'm not a biologist, after all.");
+        addHeadline("runewood.azure", "Runewood's Brilliant Blue");
         addPages("runewood.azure",
-                "Having azure the world quite far by now, I've made another discovery. Azure Runewood, as I have named it, is a variant of the tree that adapted to grow in a colder climate. Its arcane composition and looks are all mostly the same, though its crown took on a bluish appearance. It can be found in most snow biomes.");
+                "During a recent travel I came across another discovery. Azure Runewood, as I have named it, is a variant of the tree that adapted to grow in a colder climate. Its arcane composition and looks are all mostly the same, though its crown took on a bluish appearance. It can be found in colder biomes.");
+        addTitleAndSnippet("runewood.placement", "Runewood's Habitat", "Where to locate");
+        addTitleAndSnippet("runewood.genesis", "Runewood's Genesis", "How it came to be");
+        addTitleAndSnippet("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
 
         addHeadline("runewood.arcane_charcoal", "Arcane Charcoal");
         addPages("runewood.arcane_charcoal",
                 "Runewood's charcoal, as magic-infused as it is, burns with an arcane fervor for longer than regular charcoal. When fed to a furnace it is capable of supporting its flame for exactly twice as long. This makes it rather useful for fueling any smelting I need to do.");
+        addTitleAndSnippet("runewood.arcane_charcoal.smelting", "Runewood's Pyrolysis", "When broken down in a furnace, the leftover arcana of Runewood remains imbued in the resulting charcoal.");
+        addTitleAndSnippet("runewood.arcane_charcoal.compacting", "Compacting Arcane Charcoal", "Arcane Charcoal can be compacted into a block form.");
+
 
         addHeadline("runewood.runic_sap", "Runic Sap");
         addPages("runewood.runic_sap",
-                "Runewood trees tend to have a buildup of sticky sap on the sides of their lower logs. When this happens, if you strip off the bark, you'll be able to bottle the sap. In terms of taste, it is a bit like honey, sweet but with a more earthly flavor. The aftertaste in particular is quite special, it is rejuvenating in the purest of forms as it mends your wounds.");
-        addSnippetAndTitle("runewood.runic_sap.stripping", "Runic Sap; Stripping", "Stripping Sappy Runewood exposes it's stored sap.");
-        addSnippetAndTitle("runewood.runic_sap.bottling", "Runic Sap; Bottling", "Sap is to be collected and stored using a bottle.");
-        addSnippetAndTitle("runewood.runic_sap.mixing", "Runic Sap; Mixing", "Thicken using dough to create sapballs.");
+                "Runewood trees tend to have a buildup of sticky sap on the sides of their lower logs. When this happens, if you strip off the bark, you'll be able to bottle the sap. In terms of taste, it is a bit like honey, sweet but with a more earthly flavor, but where it shines most is it's rejuvenating aftertaste.");
+        addTitleAndSnippet("runewood.runic_sap.stripping", "Stripping Sappy Runewood", "When stripped using an axe, Sappy Runewood exposes it's stored sap for collection.");
+        addTitleAndSnippet("runewood.runic_sap.bottling", "Harvesting Runic Sap", "Sap can be collected and stored within a bottle.");
+        addTitleAndSnippet("runewood.runic_sap.mixing", "Mixing Runic Sapballs", "Mixing Runic Sap together with dough thickens it's composition and yields Sapballs");
 
+        addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
+        addPages("arcane_wonders",
+                "Having carved open a few samples of raw Soulstone, a clear pattern emerges. Both Runewood and Soulstone are two instances of magic influence spanning the world that appear to have been sprung into existence through the same principle.",
+                "The existence of Runewood, regardless if it is either a maxim of nature or a forgotten piece of human wisdom, is clearly founded upon the biology of Oak. In opposition to such a tightly carved ancestry, each different batch of Soulstone I've thus far gathered has had a completely different metal basis.",
+                "When cut or crushed, differing amounts of copper, iron and gold bits can be spotted inside the inner strata of Soulstone which suggests that Soulstone is the product of " + italic("any") + " metal deposit being imbued with disorderly arcana.");
 
         addSimpleEntryHeader("soulstone", "Soulstone", "Out of phase");
         addPages("soulstone",

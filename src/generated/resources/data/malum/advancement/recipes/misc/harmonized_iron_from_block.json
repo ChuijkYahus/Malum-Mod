@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_harmonized_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "malum:harmonized_iron"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "malum:harmonized_iron_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_harmonized_iron"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "malum:harmonized_iron_from_block"
+    ]
+  }
+}

@@ -72,7 +72,9 @@ public abstract class AbstractCherubCastSpellGoal extends Goal {
         spellProgress++;
         if (spellProgress >= CherubCultist.SPELL_DURATION) {
             spellProgress = 0;
-            castSpell(target);
+            if (target != null) {
+                castSpell(target);
+            }
             stop();
         }
     }

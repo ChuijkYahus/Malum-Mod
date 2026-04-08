@@ -32,6 +32,22 @@ import static com.sammy.malum.MalumMod.malumPath;
 @SuppressWarnings("rawtypes")
 public class MalumBlockStateSmithTypes {
 
+    public static BlockStateSmith<Block> STORAGE_BLOCK = new BlockStateSmith<>(Block.class, (block, provider) -> {
+        provider.directionalBlock(block, provider.models().cubeBottomTop(block));
+    });
+
+    public static BlockStateSmith<Block> METALLIC_STORAGE_BLOCK = new BlockStateSmith<>(Block.class, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        boolean isDerealized = name.contains("derealized");
+        var metalName = name.replace("block_of_", "").replace(isDerealized ? "derealized_" : "harmonized_", "");
+        var affixedTextureName = isDerealized ? metalName + "_derealized" : metalName;
+        var topTexture = provider.getBlockTexture(metalName + "_top");
+        var sideTexture = provider.getBlockTexture(affixedTextureName + "_side");
+        var bottomTexture = provider.getBlockTexture(affixedTextureName + "_bottom");
+        var model = provider.models().cubeBottomTop(name, sideTexture, bottomTexture, topTexture);
+        provider.directionalBlock(block, model);
+    });
+
     public static BlockStateSmith<BlightedCoverageBlock> COVERING_BLOCK = new BlockStateSmith<>(BlightedCoverageBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
         ModelFile model = provider.models().withExistingParent(name, MalumMod.malumPath("block/templates/template_covering"))

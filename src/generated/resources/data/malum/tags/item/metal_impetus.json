@@ -4,20 +4,16 @@
     "malum:zephyr_impetus"
   ],
   "values": [
+    "malum:alchemical_impetus",
+    "malum:zephyr_impetus",
+    "malum:ifrit_impetus",
     "malum:iron_impetus",
     "malum:copper_impetus",
     "malum:gold_impetus",
-    "malum:aluminum_impetus",
-    "malum:nickel_impetus",
-    "malum:silver_impetus",
-    "malum:tin_impetus",
     "malum:zinc_impetus",
-    "malum:osmium_impetus",
     "malum:lead_impetus",
-    "malum:uranium_impetus",
-    "malum:cobalt_impetus",
-    "malum:zephyr_impetus",
-    "malum:ifrit_impetus",
-    "malum:alchemical_impetus"
+    "malum:silver_impetus",
+    "malum:aluminium_impetus",
+    "malum:nickel_impetus"
   ]
 }

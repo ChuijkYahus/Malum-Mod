@@ -23,9 +23,17 @@ import java.util.function.Supplier;
 @SuppressWarnings("unchecked")
 public class BiomeModificationDatagen {
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
-        register(context, "soulstone_ore", () ->
+        register(context, "soulstone_ore_surface", () ->
                 addFeatureModifier(context,
-                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_SOULSTONE),
+                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_SOULSTONE_SURFACE),
+                        MalumTags.BiomeTags.HAS_SOULSTONE, GenerationStep.Decoration.UNDERGROUND_ORES));
+        register(context, "soulstone_ore_caves", () ->
+                addFeatureModifier(context,
+                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_SOULSTONE_CAVES),
+                        MalumTags.BiomeTags.HAS_SOULSTONE, GenerationStep.Decoration.UNDERGROUND_ORES));
+        register(context, "soulstone_ore_deepslate_caves", () ->
+                addFeatureModifier(context,
+                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_SOULSTONE_DEEPSLATE_CAVES),
                         MalumTags.BiomeTags.HAS_SOULSTONE, GenerationStep.Decoration.UNDERGROUND_ORES));
 
         register(context, "brilliant_ore", () ->

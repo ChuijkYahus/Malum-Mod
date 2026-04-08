@@ -5,6 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
+@SuppressWarnings("NullableProblems")
 public class ImpetusItem extends Item {
 
     public ImpetusItem(Properties properties) {
@@ -17,7 +18,7 @@ public class ImpetusItem extends Item {
     }
 
     @Override
-    public boolean isEnchantable(ItemStack p_41456_) {
+    public boolean isEnchantable(ItemStack stack) {
         return false;
     }
 }

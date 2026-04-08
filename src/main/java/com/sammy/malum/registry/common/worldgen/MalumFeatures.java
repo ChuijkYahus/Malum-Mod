@@ -18,22 +18,28 @@ public class MalumFeatures {
     public static final DeferredHolder<Feature<?>, RunewoodTreeFeature> RUNEWOOD_TREE = FEATURE_TYPES.register("runewood_tree", RunewoodTreeFeature::new);
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);
 
-    public static final DeferredHolder<Feature<?>, LayeredOreFeature> LAYERED_ORE = FEATURE_TYPES.register("cthonic_gold_ore", LayeredOreFeature::new);
+    public static final DeferredHolder<Feature<?>, LayeredOreFeature> LAYERED_ORE = FEATURE_TYPES.register("layered_ore", LayeredOreFeature::new);
+    public static final DeferredHolder<Feature<?>, DistributedOreFeature> DISTRIBUTED_ORE = FEATURE_TYPES.register("distributed_ore", DistributedOreFeature::new);
 
     public static class ConfiguredFeatures {
 
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_SOULSTONE_ORE = registerKey("soulstone_ore");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_BRILLIANT_ORE = registerKey("brilliant_ore");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_NATURAL_QUARTZ_ORE = registerKey("natural_quartz_ore");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_BLAZING_QUARTZ_ORE = registerKey("blazing_quartz_ore");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_CTHONIC_GOLD_ORE_FEATURE = registerKey("cthonic_gold_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE = registerKey("soulstone_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_SURFACE = registerKey("soulstone_ore_surface");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_CAVES = registerKey("soulstone_ore_caves");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_DEEPSLATE_CAVES = registerKey("soulstone_ore_deepslate_caves");
 
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_RUNEWOOD_TREE = registerKey("runewood_tree");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_AZURE_RUNEWOOD_TREE = registerKey("azure_runewood_tree");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_SOULWOOD_TREE = registerKey("soulwood_tree");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> BRILLIANT_ORE = registerKey("brilliant_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> CTHONIC_GOLD_ORE = registerKey("cthonic_gold_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> NATURAL_QUARTZ_ORE = registerKey("natural_quartz_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> BLAZING_QUARTZ_ORE = registerKey("blazing_quartz_ore");
 
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_QUARTZ_GEODE_FEATURE = registerKey("quartz_geode");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> CONFIGURED_DEEPSLATE_QUARTZ_GEODE_FEATURE = registerKey("deepslate_quartz_geode");
+
+        public static final ResourceKey<ConfiguredFeature<?, ?>> QUARTZ_GEODE = registerKey("quartz_geode");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_QUARTZ_GEODE = registerKey("deepslate_quartz_geode");
+
+        public static final ResourceKey<ConfiguredFeature<?, ?>> RUNEWOOD_TREE = registerKey("runewood_tree");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_RUNEWOOD_TREE = registerKey("azure_runewood_tree");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULWOOD_TREE = registerKey("soulwood_tree");
 
         public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, malumPath(name));
@@ -42,10 +48,13 @@ public class MalumFeatures {
 
     public static class PlacedFeatures {
 
-        public static final ResourceKey<PlacedFeature> ORE_SOULSTONE = registerKey("ore_soulstone");
+        public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_SURFACE = registerKey("ore_soulstone_surface");
+        public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_CAVES = registerKey("ore_soulstone_caves");
+        public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_DEEPSLATE_CAVES = registerKey("ore_soulstone_deepslate");
+
         public static final ResourceKey<PlacedFeature> ORE_BRILLIANT = registerKey("ore_brilliant");
-        public static final ResourceKey<PlacedFeature> ORE_NATURAL_QUARTZ = registerKey("ore_natural_quartz");
         public static final ResourceKey<PlacedFeature> ORE_CTHONIC_GOLD = registerKey("cthonic_gold_ore");
+        public static final ResourceKey<PlacedFeature> ORE_NATURAL_QUARTZ = registerKey("ore_natural_quartz");
         public static final ResourceKey<PlacedFeature> ORE_BLAZING_QUARTZ = registerKey("blazing_quartz_ore");
 
         public static final ResourceKey<PlacedFeature> RUNEWOOD_TREE = registerKey("runewood_tree");

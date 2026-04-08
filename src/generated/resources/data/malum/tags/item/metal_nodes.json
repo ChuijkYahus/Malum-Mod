@@ -3,14 +3,10 @@
     "malum:iron_node",
     "malum:copper_node",
     "malum:gold_node",
-    "malum:aluminum_node",
-    "malum:nickel_node",
-    "malum:silver_node",
-    "malum:tin_node",
     "malum:zinc_node",
-    "malum:osmium_node",
     "malum:lead_node",
-    "malum:uranium_node",
-    "malum:cobalt_node"
+    "malum:silver_node",
+    "malum:aluminium_node",
+    "malum:nickel_node"
   ]
 }

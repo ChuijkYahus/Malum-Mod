@@ -2,17 +2,12 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
-import com.sammy.malum.common.item.impetus.*;
+import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.data.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
-import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSystemData;
 
 import java.util.*;
@@ -51,10 +46,19 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         setTexturePath("runes/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));
 
-        setTexturePath("impetus/");
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, items.stream().filter(i -> i.get() instanceof ImpetusItem ||
-                i.get() instanceof FracturedImpetusItem).toList()); //TODO: make this cleaner :3
-        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof NodeItem).collect(Collectors.toList()));
+        setTexturePath("alchemy/");
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ALCHEMICAL_IMPETUS, FRACTURED_ALCHEMICAL_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ZEPHYR_IMPETUS, FRACTURED_ZEPHYR_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS);
+
+        setTexturePath("alchemy/metallics/");
+        for (MetallicsItemRegistryBundle metallic : MetallicsItemRegistryBundle.getMalumMetallics()) {
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getImpetus());
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getFracturedImpetus());
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getNode());
+            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getDerealizedMetal());
+            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getHarmonizedMetal());
+        }
 
         setTexturePath("");
 

@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
+import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.datagen.tag.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
@@ -13,7 +14,6 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.conditions.*;
 
 import static net.minecraft.data.recipes.RecipeBuilder.*;
-import static com.sammy.malum.datagen.recipe.MalumVanillaRecipes.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
 
@@ -185,7 +185,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
 
         shapedPanel(recipeOutput, woodSet.panel, woodSet.planksTag);
 
-        var condition = has(woodSet.planksTag);
+        var condition = RecipeDatagenCommons.has(woodSet.planksTag);
 
         shaped(RecipeCategory.MISC, woodSet.boardWall, 6)
                 .define('X', woodSet.boardsTag)
@@ -246,7 +246,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         shapeless(RecipeCategory.MISC, output)
                 .requires(input)
                 .requires(Items.IRON_NUGGET)
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput, recipeID);
     }
 
@@ -257,7 +257,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern(" # ")
                 .pattern("# #")
                 .pattern(" # ")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput, recipeID);
     }
 
@@ -268,14 +268,14 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern(" # ")
                 .pattern("###")
                 .pattern(" # ")
-                .unlockedBy("has_input", has(input)).save(recipeOutput, recipeID);
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input)).save(recipeOutput, recipeID);
     }
 
     private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<Item> input) {
         shapeless(RecipeCategory.MISC, planks, 4)
                 .requires(input)
                 .group("planks")
-                .unlockedBy("has_logs", has(input))
+                .unlockedBy("has_logs", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -285,7 +285,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern(" # ")
                 .pattern("###")
                 .pattern(" # ")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -295,7 +295,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -305,14 +305,14 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("##")
                 .pattern("##")
                 .group("bark")
-                .unlockedBy("has_log", has(input))
+                .unlockedBy("has_log", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
     private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<Item> input) {
         shapeless(RecipeCategory.MISC, button)
                 .requires(input)
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -322,7 +322,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -332,7 +332,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .define('W', input)
                 .pattern("W#W")
                 .pattern("W#W")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -342,7 +342,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .define('W', input)
                 .pattern("#W#")
                 .pattern("#W#")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -350,7 +350,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         shaped(RecipeCategory.MISC, pressurePlate)
                 .define('#', input)
                 .pattern("##")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -358,7 +358,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         shaped(RecipeCategory.MISC, slab, 6)
                 .define('#', input)
                 .pattern("###")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -368,7 +368,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -377,7 +377,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .define('#', input)
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -389,7 +389,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("###")
                 .pattern("###")
                 .pattern(" X ")
-                .unlockedBy("has_input", has(input))
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -398,7 +398,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .define('#', input)
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_input", has(input)).save(recipeOutput);
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input)).save(recipeOutput);
     }
 
     public record MalumDatagenWoodSet(

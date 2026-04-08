@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/gold"
+      }
+    }
+  ],
+  "type": "malum:node_blasting",
+  "cookingTime": 100,
+  "experience": 0.5,
+  "group": "",
+  "ingredient": {
+    "item": "malum:gold_node"
+  },
+  "output": {
+    "tag": "c:nuggets/gold"
+  },
+  "outputCount": 6
+}

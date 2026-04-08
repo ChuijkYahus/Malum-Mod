@@ -78,37 +78,5 @@ public class MalumSpiritFocusingRecipes implements IConditionBuilder {
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addSpirit(WICKED_SPIRIT, 2)
                 .save(recipeOutput);
-
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.IRON_IMPETUS, MalumItems.IRON_NODE);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.GOLD_IMPETUS, MalumItems.GOLD_NODE);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.COPPER_IMPETUS, MalumItems.COPPER_NODE);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.LEAD_IMPETUS, MalumItems.LEAD_NODE, NUGGETS_LEAD);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.SILVER_IMPETUS, MalumItems.SILVER_NODE, NUGGETS_SILVER);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.ALUMINUM_IMPETUS, MalumItems.ALUMINUM_NODE, NUGGETS_ALUMINUM);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.NICKEL_IMPETUS, MalumItems.NICKEL_NODE, NUGGETS_NICKEL);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.URANIUM_IMPETUS, MalumItems.URANIUM_NODE, NUGGETS_URANIUM);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.COBALT_IMPETUS, MalumItems.COBALT_NODE, NUGGETS_COBALT);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.OSMIUM_IMPETUS, MalumItems.OSMIUM_NODE, NUGGETS_OSMIUM);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.ZINC_IMPETUS, MalumItems.ZINC_NODE, NUGGETS_ZINC);
-        addImpetusRecipes(recipeOutput, metalDuration, MalumItems.TIN_IMPETUS, MalumItems.TIN_NODE, NUGGETS_TIN);
-    }
-
-    public static void addImpetusRecipes(RecipeOutput recipeOutput, int duration, Holder<Item> impetus, Holder<Item> node) {
-        var recipeName = MalumMod.malumPath("node_focusing_" + BuiltInRegistries.ITEM.getKey(node.value()).getPath().replace("_node", ""));
-        new SpiritFocusingRecipeBuilder(duration, 2, Ingredient.of(impetus.value()), node.value(), 3)
-                .addSpirit(EARTHEN_SPIRIT, 2)
-                .addSpirit(INFERNAL_SPIRIT, 2)
-                .save(recipeOutput, recipeName);
-    }
-
-    public static void addImpetusRecipes(RecipeOutput recipeOutput, int duration, Holder<Item> impetus, Holder<Item> node, TagKey<Item> nugget) {
-        var recipeName = MalumMod.malumPath("node_focusing_" + nugget.location().getPath().replace("nuggets/", ""));
-        new SpiritFocusingRecipeBuilder(duration, 2, Ingredient.of(impetus.value()), node.value(), 3)
-                .addSpirit(EARTHEN_SPIRIT, 2)
-                .addSpirit(INFERNAL_SPIRIT, 2)
-                .save(recipeOutput.withConditions(
-                        new NotCondition(
-                                new TagEmptyCondition(nugget.location())
-                        )), recipeName);
     }
 }

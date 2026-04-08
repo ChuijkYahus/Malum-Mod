@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_harmonized_zinc": {
+      "conditions": {
+        "items": [
+          {
+            "items": "malum:harmonized_zinc"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "malum:harmonized_zinc_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_harmonized_zinc"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "malum:harmonized_zinc_from_block"
+    ]
+  }
+}

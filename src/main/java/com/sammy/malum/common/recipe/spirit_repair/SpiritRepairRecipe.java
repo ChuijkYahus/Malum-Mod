@@ -53,12 +53,6 @@ public class SpiritRepairRecipe extends LodestoneInWorldRecipe<SpiritBasedRecipe
     }
 
     public ItemStack getResultItem(ItemStack input) {
-        var holder = input.getItemHolder();
-        var data = holder.getData(MalumDataMaps.REPAIRED_IMPETUS_VARIANT);
-        if (data != null) {
-            var otherImpetus = data.otherImpetus().value();
-            return otherImpetus.getDefaultInstance();
-        }
         var output = input.copy();
         output.setDamageValue(Math.max(0, input.getDamageValue() - (int) (output.getMaxDamage() * repairEfficiency)));
         return output;

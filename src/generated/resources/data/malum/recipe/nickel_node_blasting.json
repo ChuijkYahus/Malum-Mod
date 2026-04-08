@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/nickel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/nickel"
+      }
+    }
+  ],
+  "type": "malum:node_blasting",
+  "cookingTime": 100,
+  "experience": 0.5,
+  "group": "",
+  "ingredient": {
+    "item": "malum:nickel_node"
+  },
+  "output": {
+    "tag": "c:nuggets/nickel"
+  },
+  "outputCount": 6
+}

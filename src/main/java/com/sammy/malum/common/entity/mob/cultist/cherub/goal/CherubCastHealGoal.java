@@ -26,8 +26,7 @@ public class CherubCastHealGoal extends AbstractCherubCastSpellGoal {
     }
 
     @Override
-    protected void castSpell(@Nullable LivingEntity target) {
-        cherub.castHeal();
+    protected void castSpell(LivingEntity target) {
+        cherub.castHeal(target);
     }
-
 }

@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/zinc"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/zinc"
+      }
+    }
+  ],
+  "type": "malum:node_blasting",
+  "cookingTime": 100,
+  "experience": 0.5,
+  "group": "",
+  "ingredient": {
+    "item": "malum:zinc_node"
+  },
+  "output": {
+    "tag": "c:nuggets/zinc"
+  },
+  "outputCount": 6
+}

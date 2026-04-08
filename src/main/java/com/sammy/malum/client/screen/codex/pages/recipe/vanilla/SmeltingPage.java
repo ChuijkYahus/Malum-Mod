@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import net.minecraft.client.Minecraft;
@@ -14,16 +15,13 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 import static com.sammy.malum.client.screen.codex.helper.CodexItemHelper.renderItem;
 
 public class SmeltingPage extends BookPage {
-    private final ItemStack inputStack;
-    private final ItemStack outputStack;
 
-    public SmeltingPage(ItemStack inputStack, ItemStack outputStack) {
-        this.inputStack = inputStack;
-        this.outputStack = outputStack;
-    }
+    private final DisplayedGizmo input;
+    private final DisplayedGizmo output;
 
-    public SmeltingPage(Item inputItem, Item outputItem) {
-        this(inputItem.getDefaultInstance(), outputItem.getDefaultInstance());
+    public SmeltingPage(DisplayedGizmo input, DisplayedGizmo output) {
+        this.input = input;
+        this.output = output;
     }
 
     @Override
@@ -33,21 +31,7 @@ public class SmeltingPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderItem(screen, guiGraphics, inputStack, left + 63, top + 56, mouseX, mouseY);
-        renderItem(screen, guiGraphics, outputStack, left + 63, top + 132, mouseX, mouseY);
-    }
-
-    @Override
-    public boolean isValid() {
-        return !inputStack.isEmpty() && !outputStack.isEmpty();
-    }
-
-    public static SmeltingPage fromInput(Item input) {
-        var level = Minecraft.getInstance().level;
-        SmeltingRecipe recipe = LodestoneRecipeSearch.search(level, RecipeType.SMELTING).findRecipe(new SingleRecipeInput(new ItemStack(input, 1)));
-        if (recipe != null) {
-            return new SmeltingPage(new ItemStack(input), recipe.getResultItem(level.registryAccess()));
-        }
-        return new SmeltingPage(ItemStack.EMPTY, ItemStack.EMPTY);
+        input.render(screen, guiGraphics, left + 63, top + 70, mouseX, mouseY);
+        output.render(screen, guiGraphics, left + 63, top + 162, mouseX, mouseY);
     }
 }
