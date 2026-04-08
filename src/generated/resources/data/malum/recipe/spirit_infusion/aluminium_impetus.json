@@ -1,0 +1,55 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/aluminium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/aluminium"
+      }
+    }
+  ],
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 6,
+      "tag": "c:gunpowders"
+    },
+    {
+      "count": 1,
+      "item": "malum:cthonic_gold"
+    },
+    {
+      "count": 6,
+      "tag": "c:ingots/aluminium"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:alchemical_impetus"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:aluminium_impetus"
+  },
+  "spirits": [
+    {
+      "type": "malum:earthen",
+      "count": 16
+    },
+    {
+      "type": "malum:infernal",
+      "count": 8
+    },
+    {
+      "type": "malum:aqueous",
+      "count": 8
+    }
+  ]
+}

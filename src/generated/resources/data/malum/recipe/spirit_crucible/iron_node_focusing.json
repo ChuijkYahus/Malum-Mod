@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/iron"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/iron"
+      }
+    }
+  ],
+  "type": "malum:spirit_focusing",
+  "durabilityCost": 2,
+  "input": {
+    "item": "malum:iron_impetus"
+  },
+  "result": {
+    "count": 3,
+    "id": "malum:iron_node"
+  },
+  "spirits": [
+    {
+      "type": "malum:earthen",
+      "count": 2
+    },
+    {
+      "type": "malum:infernal",
+      "count": 2
+    }
+  ],
+  "time": 900
+}

@@ -1,8 +1,24 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/gold"
+      }
+    }
+  ],
   "type": "malum:spirit_infusion",
   "extraInputs": [
     {
-      "count": 4,
+      "count": 6,
       "tag": "c:gunpowders"
     },
     {
@@ -11,7 +27,7 @@
     },
     {
       "count": 6,
-      "item": "minecraft:gold_ingot"
+      "tag": "c:ingots/gold"
     }
   ],
   "input": {
@@ -25,7 +41,7 @@
   "spirits": [
     {
       "type": "malum:earthen",
-      "count": 8
+      "count": 16
     },
     {
       "type": "malum:infernal",

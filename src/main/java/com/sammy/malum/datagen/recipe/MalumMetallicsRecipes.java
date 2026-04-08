@@ -46,8 +46,8 @@ public class MalumMetallicsRecipes implements IConditionBuilder {
         var nugget = Ingredient.of(nuggetTag);
         TagKey<Item> ingotTag = bundle.getIngotTag();
         var conditional = output.withConditions(
-                new NotCondition(new TagEmptyCondition(nuggetTag.toString())),
-                new NotCondition(new TagEmptyCondition(ingotTag.toString())));
+                new NotCondition(new TagEmptyCondition(nuggetTag.location())),
+                new NotCondition(new TagEmptyCondition(ingotTag.location())));
 
         //Impetus
         Item impetus = bundle.getImpetus().get();

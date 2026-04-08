@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:item/impetus/copper"
+    "layer0": "malum:item/alchemy/metallics/impetus_copper"
   }
 }

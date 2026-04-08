@@ -6,6 +6,22 @@
     "malum:brilliant_stone",
     "malum:blazing_quartz_ore",
     "malum:deepslate_quartz_ore",
-    "malum:natural_quartz_ore"
+    "malum:natural_quartz_ore",
+    "malum:derealized_iron_ore",
+    "malum:deepslate_derealized_iron_ore",
+    "malum:derealized_copper_ore",
+    "malum:deepslate_derealized_copper_ore",
+    "malum:derealized_gold_ore",
+    "malum:deepslate_derealized_gold_ore",
+    "malum:derealized_zinc_ore",
+    "malum:deepslate_derealized_zinc_ore",
+    "malum:derealized_lead_ore",
+    "malum:deepslate_derealized_lead_ore",
+    "malum:derealized_silver_ore",
+    "malum:deepslate_derealized_silver_ore",
+    "malum:derealized_aluminium_ore",
+    "malum:deepslate_derealized_aluminium_ore",
+    "malum:derealized_nickel_ore",
+    "malum:deepslate_derealized_nickel_ore"
   ]
 }

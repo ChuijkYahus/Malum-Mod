@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/aluminium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/aluminium"
+      }
+    }
+  ],
+  "type": "malum:node_blasting",
+  "cookingTime": 100,
+  "experience": 0.5,
+  "group": "",
+  "ingredient": {
+    "item": "malum:derealized_aluminium"
+  },
+  "output": {
+    "tag": "c:nuggets/aluminium"
+  },
+  "outputCount": 6
+}

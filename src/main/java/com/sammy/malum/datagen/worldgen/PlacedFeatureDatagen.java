@@ -17,6 +17,13 @@ public class PlacedFeatureDatagen {
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
 
+        context.register(MalumFeatures.PlacedFeatures.ORE_SOULSTONE_SURFACE,
+                addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.SOULSTONE_ORE), 32, 64, 1, RarityFilter.onAverageOnceEvery(8)));
+        context.register(MalumFeatures.PlacedFeatures.ORE_SOULSTONE_CAVES,
+                addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.SOULSTONE_ORE), -16, 48, 2, RarityFilter.onAverageOnceEvery(6)));
+        context.register(MalumFeatures.PlacedFeatures.ORE_SOULSTONE_DEEPSLATE_CAVES,
+                addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.SOULSTONE_ORE), -64, 0, 3, RarityFilter.onAverageOnceEvery(4)));
+
 
         context.register(MalumFeatures.PlacedFeatures.ORE_BRILLIANT,
                 addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.BRILLIANT_ORE), -64, 40, 3));

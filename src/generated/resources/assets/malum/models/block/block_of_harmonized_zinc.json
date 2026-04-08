@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "malum:block/storage_blocks/metallics/zinc_bottom",
+    "side": "malum:block/storage_blocks/metallics/zinc_side",
+    "top": "malum:block/storage_blocks/metallics/zinc_top"
+  }
+}

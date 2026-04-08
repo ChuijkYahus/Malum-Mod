@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/silver"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/silver"
+      }
+    }
+  ],
+  "type": "malum:node_smelting",
+  "cookingTime": 200,
+  "experience": 0.5,
+  "group": "",
+  "ingredient": {
+    "item": "malum:derealized_silver"
+  },
+  "output": {
+    "tag": "c:nuggets/silver"
+  },
+  "outputCount": 6
+}

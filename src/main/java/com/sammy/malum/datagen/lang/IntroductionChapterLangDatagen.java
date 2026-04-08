@@ -34,7 +34,6 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addTitleAndSnippet("runewood.genesis", "Runewood's Genesis", "How it came to be");
         addTitleAndSnippet("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
 
-
         addHeadline("runewood.arcane_charcoal", "Arcane Charcoal");
         addPages("runewood.arcane_charcoal",
                 "Runewood's charcoal, as magic-infused as it is, burns with an arcane fervor for longer than regular charcoal. When fed to a furnace it is capable of supporting its flame for exactly twice as long. This makes it rather useful for fueling any smelting I need to do.");
@@ -49,11 +48,11 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addTitleAndSnippet("runewood.runic_sap.bottling", "Harvesting Runic Sap", "Sap can be collected and stored within a bottle.");
         addTitleAndSnippet("runewood.runic_sap.mixing", "Mixing Runic Sapballs", "Mixing Runic Sap together with dough thickens it's composition and yields Sapballs");
 
-
         addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
         addPages("arcane_wonders",
-                "Having examined runewood and tinkered with my initial supply of soulstone, I've been able to draw a few parallels between the two. While the physical composition of Runewood mostly matches Oak, for Soulstone a similar relation can be spotted between it and most other metals.",
-                "All the different batches of Soulstone I've gathered from the surface have seemingly been formed alongside a different native material. When cut and crushed, differing amounts of copper, iron and gold bits are found inside the material which could suggest that Soulstone is merely the product of " + italic("any") + " mineral deposit being imbued with arcana.");
+                "Having carved open a few samples of raw Soulstone, a clear pattern emerges. Both Runewood and Soulstone are two instances of magic influence spanning the world that appear to have been sprung into existence through the same principle.",
+                "The existence of Runewood, regardless if it is either a maxim of nature or a forgotten piece of human wisdom, is clearly founded upon the biology of Oak. In opposition to such a tightly carved ancestry, each different batch of Soulstone I've thus far gathered has had a completely different metal basis.",
+                "When cut or crushed, differing amounts of copper, iron and gold bits can be spotted inside the inner strata of Soulstone which suggests that Soulstone is the product of " + italic("any") + " metal deposit being imbued with disorderly arcana.");
 
         addSimpleEntryHeader("soulstone", "Soulstone", "Out of phase");
         addPages("soulstone",

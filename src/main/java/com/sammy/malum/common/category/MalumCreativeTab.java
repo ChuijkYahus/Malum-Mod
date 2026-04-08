@@ -252,9 +252,10 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         )
                         .bake();
                 createCategory(ALCHEMICAL_FOCI)
-                        .addItems(MalumItems.ALCHEMICAL_IMPETUS)
-                        .addItems(MalumItems.IFRIT_IMPETUS)
-                        .addItems(MalumItems.ZEPHYR_IMPETUS)
+                        .addItems(MalumItems.ALCHEMICAL_IMPETUS, MalumItems.FRACTURED_ALCHEMICAL_IMPETUS)
+                        .addItems(MalumItems.ZEPHYR_IMPETUS, MalumItems.FRACTURED_ZEPHYR_IMPETUS)
+                        .addItems(MalumItems.IFRIT_IMPETUS, MalumItems.FRACTURED_IFRIT_IMPETUS)
+                        .nextLine()
 
                         .addItems(MalumItems.IRON_METALLICS::addToCreativeTab)
                         .addItems(MalumItems.COPPER_METALLICS::addToCreativeTab)

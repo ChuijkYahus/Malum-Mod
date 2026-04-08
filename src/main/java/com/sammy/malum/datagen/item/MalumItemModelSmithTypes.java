@@ -53,16 +53,17 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
                     });
 
 
-    public static ItemModelSmith METALLICS_ITEM = new ItemModelSmith((item, provider) -> {
+    public static ItemModelSmith IMPETUS_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);
         var split = name.split("_");
-        int lastIndex = split.length-1;
-        int secondLastIndex = lastIndex-1;
+        int lastIndex = split.length - 1;
+        int secondLastIndex = lastIndex - 1;
         var last = split[lastIndex];
         var secondLast = split[secondLastIndex];
         split[lastIndex] = secondLast;
         split[secondLastIndex] = last;
         String alteredName = String.join("_", split);
+
         return provider.createGenericModel(item, GENERATED, provider.getItemTexture(alteredName));
     });
 

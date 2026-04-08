@@ -2,8 +2,6 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
-import com.sammy.malum.common.item.impetus.*;
-import com.sammy.malum.common.item.metallics.MetalNodeItem;
 import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.data.*;
@@ -49,16 +47,17 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));
 
         setTexturePath("alchemy/");
-        MalumItemModelSmithTypes.METALLICS_ITEM.act(data, ALCHEMICAL_IMPETUS, FRACTURED_ALCHEMICAL_IMPETUS);
-        MalumItemModelSmithTypes.METALLICS_ITEM.act(data, ZEPHYR_IMPETUS, FRACTURED_ZEPHYR_IMPETUS);
-        MalumItemModelSmithTypes.METALLICS_ITEM.act(data, IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ALCHEMICAL_IMPETUS, FRACTURED_ALCHEMICAL_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ZEPHYR_IMPETUS, FRACTURED_ZEPHYR_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS);
 
         setTexturePath("alchemy/metallics/");
         for (MetallicsItemRegistryBundle metallic : MetallicsItemRegistryBundle.getMalumMetallics()) {
-            MalumItemModelSmithTypes.METALLICS_ITEM.act(data, metallic.getImpetus());
-            MalumItemModelSmithTypes.METALLICS_ITEM.act(data, metallic.getNode());
-            MalumItemModelSmithTypes.METALLICS_ITEM.act(data, metallic.getDerealizedMetal());
-            MalumItemModelSmithTypes.METALLICS_ITEM.act(data, metallic.getHarmonizedMetal());
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getImpetus());
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getFracturedImpetus());
+            MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, metallic.getNode());
+            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getDerealizedMetal());
+            MalumItemModelSmithTypes.GENERATED_ITEM.act(data, metallic.getHarmonizedMetal());
         }
 
         setTexturePath("");

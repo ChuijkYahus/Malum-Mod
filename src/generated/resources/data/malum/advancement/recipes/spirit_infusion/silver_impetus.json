@@ -4,6 +4,13 @@
       "type": "neoforge:not",
       "value": {
         "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/silver"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
         "tag": "c:ingots/silver"
       }
     }

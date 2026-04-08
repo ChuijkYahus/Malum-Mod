@@ -222,8 +222,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
 
-        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_EBONY, CRATE_OF_WITCHHAZEL);
-        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, CRATE_OF_WITCHHAZEL);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_EBONY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, CRATE_OF_WITCHHAZEL);
 
         setTexturePath("storage_blocks/metallics");
         for (MetallicsItemRegistryBundle metallics : MetallicsItemRegistryBundle.getMalumMetallics()) {
