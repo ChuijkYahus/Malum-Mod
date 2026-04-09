@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -48,6 +48,6 @@ public class CurioProspectorBelt extends MalumCurioItem {
     }
 
     public static boolean hasProspectorBelt(LivingEntity entity) {
-        return CurioHelper.hasCurioEquipped(entity, MalumItems.BELT_OF_THE_PROSPECTOR.get());
+        return CurioHelper.hasCurioEquipped(entity, MalumContent.Gear.BELT_OF_THE_PROSPECTOR.get());
     }
 }

@@ -3,7 +3,7 @@ package com.sammy.malum.common.container;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchItemHandler;
 import com.sammy.malum.registry.common.MalumContainers;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

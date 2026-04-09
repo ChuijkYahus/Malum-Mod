@@ -8,7 +8,8 @@ import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.block.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.magic.rite.*;
 import com.sammy.malum.visual_effects.*;
@@ -18,7 +19,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
@@ -33,7 +33,7 @@ import java.util.function.*;
 
 public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator, IInventoryCapabilityProvider {
 
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Progression.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
     private static final IAltarAccelerator.AltarAcceleratorType ARCANA_PYLON = new IAltarAccelerator.AltarAcceleratorType(4, "arcana_pylon");
 
     private static final HashMap<Holder<SpiritArcanaType>, RiteEffectHolder<? extends SpiritRiteEmpowermentEffect<?>>> RITE_EMPOWERMENT_EFFECTS = new HashMap<>() {{

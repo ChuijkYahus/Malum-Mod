@@ -2,11 +2,12 @@ package com.sammy.malum.datagen.recipe;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.datagen.recipe.builder.SpiritFocusingRecipeBuilder;
 import com.sammy.malum.datagen.recipe.builder.SpiritInfusionRecipeBuilder;
 import com.sammy.malum.datagen.recipe.builder.SpiritRepairRecipeBuilder;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -45,17 +46,17 @@ public class MalumMetallicsRecipes implements IConditionBuilder {
 
         //Impetus
         Item impetus = bundle.getImpetus().get();
-        new SpiritInfusionRecipeBuilder(MalumItems.ALCHEMICAL_IMPETUS.get(), impetus, 1)
+        new SpiritInfusionRecipeBuilder(MalumContent.Progression.ALCHEMICAL_IMPETUS.get(), impetus, 1)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 6))
-                .addExtraItem(SizedIngredient.of(MalumItems.CTHONIC_GOLD.get(), 1))
+                .addExtraItem(SizedIngredient.of(MalumContent.Materials.CTHONIC_GOLD.get(), 1))
                 .addExtraItem(SizedIngredient.of(ingotTag, 6))
                 .save(conditional);
 
         //Impetus Repair
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumItems.CTHONIC_GOLD_FRAGMENT.get(), 2), 1f)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumItemProperties.CTHONIC_GOLD_FRAGMENT.get(), 2), 1f)
                 .withValidItem(bundle.getFracturedImpetus().value())
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)

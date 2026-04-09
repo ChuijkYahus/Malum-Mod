@@ -2,9 +2,9 @@ package com.sammy.malum.datagen.item;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
-import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.data.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.content.item.MalumItemProperties.*;
 
 public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
@@ -48,35 +48,35 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));
 
         setTexturePath("alchemy/");
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ALCHEMICAL_IMPETUS, FRACTURED_ALCHEMICAL_IMPETUS);
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, ZEPHYR_IMPETUS, FRACTURED_ZEPHYR_IMPETUS);
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, IFRIT_IMPETUS, FRACTURED_IFRIT_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.ALCHEMICAL_IMPETUS, MalumContent.Artifice.FRACTURED_ALCHEMICAL_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.ZEPHYR_IMPETUS, MalumContent.Artifice.FRACTURED_ZEPHYR_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.IFRIT_IMPETUS, MalumContent.Artifice.FRACTURED_IFRIT_IMPETUS);
 
         setTexturePath("alchemy/metallics/");
         MalumMetallicsDatagen.MALUM.addItemModels(data);
 
         setTexturePath("");
 
-        MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, GEAS);
-        MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, UMBRAL_SPIRIT);
-        MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, UNWINDING_CHAOS, SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
-        MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, CRUDE_SCYTHE, SOUL_STAINED_STEEL_SCYTHE, RAVENOUS_SCYTHE, EDGE_OF_DELIVERANCE, WEIGHT_OF_WORLDS, SHAPED_SLAB);
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, SOUL_STAINED_STEEL_KNIFE, GLUTTONOUS_BLUDGEON, TUNING_FORK, LAMPLIGHTERS_TONGS, ARTIFICERS_CLAW, TOTEMIC_STAFF);
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MNEMONIC_HEX_STAFF, EROSION_SCEPTER);
-        MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, SPELLWEAVING_PICKAXE, SPELLWEAVING_AXE);
-        MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, CATALYST_LOBBER);
-        MalumItemModelSmithTypes.POUCH.act(data, SOULWOVEN_POUCH, RAVENOUS_POUCH);
+        MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, MalumContent.GEAS);
+        MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, MalumContent.Spirits.UMBRAL_SPIRIT);
+        MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, MalumContent.Gear.UNWINDING_CHAOS, MalumContent.Gear.SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
+        MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, MalumContent.Gear.CRUDE_SCYTHE, MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE, MalumContent.Gear.RAVENOUS_SCYTHE, MalumContent.Gear.EDGE_OF_DELIVERANCE, MalumContent.Gear.WEIGHT_OF_WORLDS, MalumContent.DungeonGear.SHAPED_SLAB);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Artifice.TUNING_FORK, MalumContent.Gear.LAMPLIGHTERS_TONGS, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.MNEMONIC_HEX_STAFF, MalumContent.Gear.EROSION_SCEPTER);
+        MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, MalumContent.Gear.SPELLWEAVING_PICKAXE, MalumContent.Gear.SPELLWEAVING_AXE);
+        MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, MalumContent.Gear.CATALYST_LOBBER);
+        MalumItemModelSmithTypes.POUCH.act(data, MalumContent.Gear.SOULWOVEN_POUCH, MalumContent.Gear.RAVENOUS_POUCH);
 
         MalumItemModelSmithTypes.SPIRIT_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SpiritShardItem).collect(Collectors.toList()));
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof DiggerItem).collect(Collectors.toList()));
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SwordItem).collect(Collectors.toList()));
 
         MalumItemModelSmithTypes.SKIN_APPLICABLE_ARMOR_ITEM.act(data,
-                SOUL_HUNTER_CLOAK, SOUL_HUNTER_ROBE, SOUL_HUNTER_LEGGINGS, SOUL_HUNTER_BOOTS,
-                SOUL_STAINED_STEEL_HELMET, SOUL_STAINED_STEEL_CHESTPLATE, SOUL_STAINED_STEEL_LEGGINGS, SOUL_STAINED_STEEL_BOOTS,
-                MALIGNANT_STRONGHOLD_HELMET, MALIGNANT_STRONGHOLD_CHESTPLATE, MALIGNANT_STRONGHOLD_LEGGINGS, MALIGNANT_STRONGHOLD_BOOTS);
+                MalumContent.Gear.SOUL_HUNTER_CLOAK, MalumContent.Gear.SOUL_HUNTER_ROBE, MalumContent.Gear.SOUL_HUNTER_LEGGINGS, MalumContent.Gear.SOUL_HUNTER_BOOTS,
+                MalumContent.Gear.SOUL_STAINED_STEEL_HELMET, MalumContent.Gear.SOUL_STAINED_STEEL_CHESTPLATE, MalumContent.Gear.SOUL_STAINED_STEEL_LEGGINGS, MalumContent.Gear.SOUL_STAINED_STEEL_BOOTS,
+                MalumContent.Gear.MALIGNANT_STRONGHOLD_HELMET, MalumContent.Gear.MALIGNANT_STRONGHOLD_CHESTPLATE, MalumContent.Gear.MALIGNANT_STRONGHOLD_LEGGINGS, MalumContent.Gear.MALIGNANT_STRONGHOLD_BOOTS);
 
-        MalumItemModelSmithTypes.LARGE_GENERATED_ITEM.act(data, IRON_CROWN);
+        MalumItemModelSmithTypes.LARGE_GENERATED_ITEM.act(data, MalumContent.DungeonGear.IRON_CROWN);
 
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items);
     }

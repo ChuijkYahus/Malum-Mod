@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

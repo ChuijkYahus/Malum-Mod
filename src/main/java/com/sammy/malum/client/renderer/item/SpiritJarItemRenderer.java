@@ -3,8 +3,8 @@ package com.sammy.malum.client.renderer.item;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
-import com.sammy.malum.registry.common.block.MalumBlocks;
-import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.MalumDataComponents;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.*;
@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
 
-    private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ZERO, MalumBlocks.SPIRIT_JAR.get().defaultBlockState());
+    private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ZERO, MalumContent.Progression.SPIRIT_JAR.get().defaultBlockState());
 
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 
@@ -34,7 +34,7 @@ public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
             poseStack.popPose();
             poseStack.pushPose();
 
-            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(MalumBlocks.SPIRIT_JAR.get().defaultBlockState());
+            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(MalumContent.Progression.SPIRIT_JAR.get().defaultBlockState());
             model = model.applyTransform(ctx, poseStack, isLeftHand(ctx));
             poseStack.translate(-.5, -.5, -.5);
 

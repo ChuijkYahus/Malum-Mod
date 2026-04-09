@@ -1,18 +1,11 @@
 package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data.map.SoulstoneOreConversionMap;
-import com.sammy.malum.common.item.metallics.MetallicsItemRegistryBundle;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
-import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.*;
-import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.NotCondition;
-import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneBlockTagsSystem;
@@ -20,9 +13,8 @@ import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneBlockTagsS
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-import static com.sammy.malum.registry.common.MalumDataMaps.SOULSTONE_ORE_CONVERSION;
 import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
-import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.BLOCKS;
 import static net.minecraft.tags.BlockTags.*;
 
 public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
@@ -47,9 +39,9 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
         tag(EBONY_PLANTABLE_ON).addTags(BASE_STONE_OVERWORLD);
 
         tag(BLIGHT_REPLACEABLE).addTags(MOSS_REPLACEABLE, SAND).add(net.minecraft.world.level.block.Blocks.CLAY, net.minecraft.world.level.block.Blocks.GRAVEL);
-        tag(BLIGHT_REMOVABLE).addTags(FLOWERS, REPLACEABLE).remove(BLIGHTED_PLANTS).remove(MalumBlocks.CLINGING_BLIGHT.get());
+        tag(BLIGHT_REMOVABLE).addTags(FLOWERS, REPLACEABLE).remove(BLIGHTED_PLANTS).remove(MalumContent.BlockSets.CLINGING_BLIGHT.get());
 
-        tag(UNCHAINED_RITE_CATALYST).add(MalumBlocks.BLIGHTED_EARTH.get());
+        tag(UNCHAINED_RITE_CATALYST).add(MalumContent.BlockSets.BLIGHTED_EARTH.get());
         tag(IS_RITE_IMMUNE).addTags(TAINTED_ROCK, TWISTED_ROCK, WEEPING_WELL);
 
         tag(GREATER_AERIAL_WHITELIST);

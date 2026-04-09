@@ -9,7 +9,7 @@
 //import com.sammy.malum.client.screen.codex.pages.text.TextPage;
 //import com.sammy.malum.client.screen.codex.screens.progression.ArcanaProgressionScreen;
 //
-//import static com.sammy.malum.registry.common.item.MalumItems.*;
+//import static com.sammy.malum.registry.common.content.item.MalumItems.*;
 //
 //public class MiscellaneousKnowledgeEntries {
 //

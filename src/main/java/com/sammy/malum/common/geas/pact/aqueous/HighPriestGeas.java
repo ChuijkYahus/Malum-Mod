@@ -1,7 +1,6 @@
 package com.sammy.malum.common.geas.pact.aqueous;
 
 import com.google.common.collect.*;
-import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
@@ -10,14 +9,12 @@ import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColo
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import team.lodestar.lodestone.handlers.*;
 
 import java.util.function.*;
 

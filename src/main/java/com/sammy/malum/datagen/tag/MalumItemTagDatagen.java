@@ -12,6 +12,7 @@ import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
 import com.sammy.malum.common.item.metallics.MetalNodeItem;
 import com.sammy.malum.datagen.recipe.crafting.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -28,8 +29,8 @@ import java.util.HashSet;
 import java.util.concurrent.*;
 
 import static com.sammy.malum.registry.common.MalumTags.Items.*;
-import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.BLOCKS;
+import static com.sammy.malum.registry.common.content.item.MalumItemProperties.*;
 import static net.minecraft.world.item.Items.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
@@ -53,17 +54,17 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         addTagsFromBlockProperties(blocks);
 
 
-        tag(ItemTags.BOOKSHELF_BOOKS).add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
+        tag(ItemTags.BOOKSHELF_BOOKS).add(MalumContent.ENCYCLOPEDIA_ARCANA.get(), MalumContent.ENCYCLOPEDIA_ESOTERICA.get());
 
-        tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
+        tag(Tags.Items.GEMS).add(MalumContent.Materials.REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(ItemTags.LOGS).addTag(RUNEWOOD_LOGS).addTag(SOULWOOD_LOGS);
-        tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
+        tag(Tags.Items.SLIME_BALLS).add(MalumContent.Materials.RUNIC_SAPBALL.get(), MalumContent.Materials.CURSED_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
 
-        tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
-        tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_NUGGET.get());
-        tag(Tags.Items.INGOTS).add(HALLOWED_GOLD_INGOT.get(), SOUL_STAINED_STEEL_INGOT.get(), MALIGNANT_PEWTER_INGOT.get());
-        tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.get(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
+        tag(Tags.Items.RAW_MATERIALS).add(MalumContent.Materials.RAW_SOULSTONE.get(), MalumContent.Materials.RAW_BRILLIANCE.get(), MalumContent.Materials.CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+        tag(Tags.Items.NUGGETS).add(MalumContent.Materials.HALLOWED_GOLD_NUGGET.get(), MalumContent.Materials.SOUL_STAINED_STEEL_NUGGET.get(), MalumContent.Materials.MALIGNANT_PEWTER_NUGGET.get());
+        tag(Tags.Items.INGOTS).add(MalumContent.Materials.HALLOWED_GOLD_INGOT.get(), MalumContent.Materials.SOUL_STAINED_STEEL_INGOT.get(), MalumContent.Materials.MALIGNANT_PEWTER_INGOT.get());
+        tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.get(), BLAZING_QUARTZ.get(), MalumContent.Materials.RAW_BRILLIANCE.get());
         tag(Tags.Items.NUGGETS).addOptional(MalumMod.malumPath("copper_nugget"));
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
@@ -77,46 +78,46 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
-                .add(SHAPED_SLAB.get(), BROKEN_BLADE.get())
-                .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
-                .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
-                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+                .add(MalumContent.SHAPED_SLAB.get(), MalumContent.BROKEN_BLADE.get())
+                .add(MalumContent.Gear.TYRVING.get(), MalumContent.Gear.WEIGHT_OF_WORLDS.get(), MalumContent.Gear.SUNDERING_ANCHOR.get())
+                .add(MalumContent.Gear.SOUL_STAINED_STEEL_AXE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_PICKAXE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_SHOVEL.get(), MalumContent.Gear.SOUL_STAINED_STEEL_SWORD.get(), MalumContent.Gear.SOUL_STAINED_STEEL_HOE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE.get())
+                .add(MalumContent.Gear.SPELLWEAVING_PICKAXE.get(), MalumContent.Gear.SPELLWEAVING_AXE.get());
 
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
-                .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
-                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get(), SUNDERING_ANCHOR.get())
-                .remove(EDGE_OF_DELIVERANCE.get());
+                .add(MalumContent.Gear.SOUL_STAINED_STEEL_SWORD.get(), MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE.get())
+                .add(MalumContent.Gear.GLUTTONOUS_BLUDGEON.get(), MalumContent.Gear.TYRVING.get(), MalumContent.Gear.SUNDERING_ANCHOR.get())
+                .remove(MalumContent.Gear.EDGE_OF_DELIVERANCE.get());
 
         tag(SCYTHES)
-                .add(CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get());
+                .add(MalumContent.Gear.CRUDE_SCYTHE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE.get(), MalumContent.Gear.RAVENOUS_SCYTHE.get(), MalumContent.Gear.EDGE_OF_DELIVERANCE.get());
         tag(SCYTHES_COMMON).addTag(SCYTHES);
 
         tag(STAVES)
-                .add(MNEMONIC_HEX_STAFF.get(), UNWINDING_CHAOS.get(), EROSION_SCEPTER.get());
+                .add(MalumContent.Gear.MNEMONIC_HEX_STAFF.get(), MalumContent.Gear.UNWINDING_CHAOS.get(), MalumContent.Gear.EROSION_SCEPTER.get());
         tag(STAVES_COMMON).addTag(STAVES);
 
         tag(Tags.Items.MELEE_WEAPON_TOOLS).add(
-                CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
-                SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
-                GLUTTONOUS_BLUDGEON.get(), TYRVING.get(),
-                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(),
-                SUNDERING_ANCHOR.get());
-        tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
-        tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
-        tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());
-        tag(ItemTags.AXES).add(SOUL_STAINED_STEEL_AXE.get(), SPELLWEAVING_AXE.get(), WEIGHT_OF_WORLDS.get());
-        tag(ItemTags.SHOVELS).add(SOUL_STAINED_STEEL_SHOVEL.get());
-        tag(ItemTags.HOES).add(SOUL_STAINED_STEEL_HOE.get());
-        tag(KNIVES_COMMON).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
-        tag(KNIVES).add(SOUL_STAINED_STEEL_KNIFE.get(), SUNDERING_ANCHOR.get());
+                MalumContent.Gear.CRUDE_SCYTHE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE.get(), MalumContent.Gear.RAVENOUS_SCYTHE.get(), MalumContent.Gear.EDGE_OF_DELIVERANCE.get(),
+                MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_SWORD.get(), MalumContent.Gear.SOUL_STAINED_STEEL_AXE.get(),
+                MalumContent.Gear.GLUTTONOUS_BLUDGEON.get(), MalumContent.Gear.TYRVING.get(),
+                MalumContent.Gear.MNEMONIC_HEX_STAFF.get(), MalumContent.Gear.EROSION_SCEPTER.get(), MalumContent.Gear.UNWINDING_CHAOS.get(),
+                MalumContent.Gear.SUNDERING_ANCHOR.get());
+        tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MalumContent.Gear.MNEMONIC_HEX_STAFF.get(), MalumContent.Gear.EROSION_SCEPTER.get(), MalumContent.Gear.UNWINDING_CHAOS.get(), MalumContent.Gear.SUNDERING_ANCHOR.get());
+        tag(ItemTags.SWORDS).add(MalumContent.Gear.SOUL_STAINED_STEEL_SWORD.get(), MalumContent.Gear.TYRVING.get());
+        tag(ItemTags.PICKAXES).add(MalumContent.Gear.SOUL_STAINED_STEEL_PICKAXE.get(), MalumContent.Gear.SPELLWEAVING_PICKAXE.get());
+        tag(ItemTags.AXES).add(MalumContent.Gear.SOUL_STAINED_STEEL_AXE.get(), MalumContent.Gear.SPELLWEAVING_AXE.get(), MalumContent.Gear.WEIGHT_OF_WORLDS.get());
+        tag(ItemTags.SHOVELS).add(MalumContent.Gear.SOUL_STAINED_STEEL_SHOVEL.get());
+        tag(ItemTags.HOES).add(MalumContent.Gear.SOUL_STAINED_STEEL_HOE.get());
+        tag(KNIVES_COMMON).add(MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE.get(), MalumContent.Gear.SUNDERING_ANCHOR.get());
+        tag(KNIVES).add(MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE.get(), MalumContent.Gear.SUNDERING_ANCHOR.get());
 
-        tag(ItemTags.HEAD_ARMOR).add(SOUL_HUNTER_CLOAK.get(), SOUL_STAINED_STEEL_HELMET.get(), MALIGNANT_STRONGHOLD_HELMET.get());
-        tag(ItemTags.CHEST_ARMOR).add(SOUL_HUNTER_ROBE.get(), SOUL_STAINED_STEEL_CHESTPLATE.get(), MALIGNANT_STRONGHOLD_CHESTPLATE.get());
-        tag(ItemTags.LEG_ARMOR).add(SOUL_HUNTER_LEGGINGS.get(), SOUL_STAINED_STEEL_LEGGINGS.get(), MALIGNANT_STRONGHOLD_LEGGINGS.get());
-        tag(ItemTags.FOOT_ARMOR).add(SOUL_HUNTER_BOOTS.get(), SOUL_STAINED_STEEL_BOOTS.get(), MALIGNANT_STRONGHOLD_BOOTS.get());
+        tag(ItemTags.HEAD_ARMOR).add(MalumContent.Gear.SOUL_HUNTER_CLOAK.get(), MalumContent.Gear.SOUL_STAINED_STEEL_HELMET.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR).add(MalumContent.Gear.SOUL_HUNTER_ROBE.get(), MalumContent.Gear.SOUL_STAINED_STEEL_CHESTPLATE.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR).add(MalumContent.Gear.SOUL_HUNTER_LEGGINGS.get(), MalumContent.Gear.SOUL_STAINED_STEEL_LEGGINGS.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR).add(MalumContent.Gear.SOUL_HUNTER_BOOTS.get(), MalumContent.Gear.SOUL_STAINED_STEEL_BOOTS.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_BOOTS.get());
 
-        tag(MELEE_ENCHANTABLE).addTags(SCYTHE_ENCHANTABLE, STAFF_ENCHANTABLE).add(GLUTTONOUS_BLUDGEON.get());
+        tag(MELEE_ENCHANTABLE).addTags(SCYTHE_ENCHANTABLE, STAFF_ENCHANTABLE).add(MalumContent.Gear.GLUTTONOUS_BLUDGEON.get());
         tag(ItemTags.FIRE_ASPECT_ENCHANTABLE).addTags(SCYTHES);
 
         tag(HAUNTED_ENCHANTABLE).addTag(MAGIC_CAPABLE_WEAPON);
@@ -127,7 +128,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(REBOUND_ENCHANTABLE).addTag(SCYTHE_ENCHANTABLE);
         tag(ASCENSION_ENCHANTABLE).addTag(SCYTHE_ENCHANTABLE);
 
-        tag(SPELLWEAVING_ENCHANTABLE).add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+        tag(SPELLWEAVING_ENCHANTABLE).add(MalumContent.Gear.SPELLWEAVING_PICKAXE.get(), MalumContent.Gear.SPELLWEAVING_AXE.get());
         tag(WEAVERS_PROPAGATION_ENCHANTABLE).addTag(SPELLWEAVING_ENCHANTABLE);
         tag(WEAVERS_HASTE_ENCHANTABLE).addTag(SPELLWEAVING_ENCHANTABLE);
 
@@ -137,40 +138,40 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
 
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTags(SCYTHES, STAVES)
-                .add(GLUTTONOUS_BLUDGEON.get())
-                .add(CATALYST_LOBBER.get(), SUNDERING_ANCHOR.get());
+                .add(MalumContent.Gear.GLUTTONOUS_BLUDGEON.get())
+                .add(MalumContent.Gear.CATALYST_LOBBER.get(), MalumContent.Gear.SUNDERING_ANCHOR.get());
 
 
         tag(ASPECTED_SPIRITS).add(
-                SACRED_SPIRIT.get(), WICKED_SPIRIT.get(), ARCANE_SPIRIT.get(), ELDRITCH_SPIRIT.get(),
-                AERIAL_SPIRIT.get(), AQUEOUS_SPIRIT.get(), EARTHEN_SPIRIT.get(), INFERNAL_SPIRIT.get());
-        tag(SPIRITS).addTag(ASPECTED_SPIRITS).add(UMBRAL_SPIRIT.get());
+                MalumContent.Materials.SACRED_SPIRIT.get(), MalumContent.Materials.WICKED_SPIRIT.get(), MalumContent.Materials.ARCANE_SPIRIT.get(), MalumContent.Materials.ELDRITCH_SPIRIT.get(),
+                MalumContent.Materials.AERIAL_SPIRIT.get(), MalumContent.Materials.AQUEOUS_SPIRIT.get(), MalumContent.Materials.EARTHEN_SPIRIT.get(), MalumContent.Materials.INFERNAL_SPIRIT.get());
+        tag(SPIRITS).addTag(ASPECTED_SPIRITS).add(MalumContent.Materials.UMBRAL_SPIRIT.get());
         tag(MOB_DROPS).add(
-                ROTTING_ESSENCE.get(), GRIM_TALC.get(), EERIE_WEAVE.get(), WARP_FLUX.get(),
+                MalumContent.Materials.ROTTING_ESSENCE.get(), MalumContent.Materials.GRIM_TALC.get(), MalumContent.Materials.EERIE_WEAVE.get(), MalumContent.Materials.WARP_FLUX.get(),
                 ROTTEN_FLESH, SPIDER_EYE, BONE, ARROW, GUNPOWDER, STRING, SLIME_BALL,
                 MAGMA_CREAM, BLAZE_ROD, BREEZE_ROD,
                 LEATHER, RABBIT_HIDE, FEATHER, INK_SAC);
         tag(MATERIALS).add(
-                ROTTING_ESSENCE.get(), GRIM_TALC.get(), EERIE_WEAVE.get(), WARP_FLUX.get(),
-                HEX_ASH.get(), LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
-                SOULWOVEN_SILK.get(), ETHER.get(), IRIDESCENT_ETHER.get(),
-                SOUL_STAINED_STEEL_INGOT.get(), SOUL_STAINED_STEEL_NUGGET.get(), SOUL_STAINED_STEEL_PLATING.get(),
-                HALLOWED_GOLD_INGOT.get(), HALLOWED_GOLD_NUGGET.get(),
-                MALIGNANT_PEWTER_INGOT.get(), MALIGNANT_PEWTER_NUGGET.get(), MALIGNANT_PEWTER_PLATING.get(),
-                NULL_SLATE.get(), VOID_SALTS.get(), MNEMONIC_FRAGMENT.get(), AURIC_EMBERS.get(), MALIGNANT_LEAD.get(),
-                ANOMALOUS_DESIGN.get(), COMPLETE_DESIGN.get(), FUSED_CONSCIOUSNESS.get());
+                MalumContent.Materials.ROTTING_ESSENCE.get(), MalumContent.Materials.GRIM_TALC.get(), MalumContent.Materials.EERIE_WEAVE.get(), MalumContent.Materials.WARP_FLUX.get(),
+                MalumContent.Materials.HEX_ASH.get(), MalumContent.Materials.LIVING_FLESH.get(), MalumContent.Materials.ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
+                MalumContent.Materials.SOULWOVEN_SILK.get(), ETHER.get(), IRIDESCENT_ETHER.get(),
+                MalumContent.Materials.SOUL_STAINED_STEEL_INGOT.get(), MalumContent.Materials.SOUL_STAINED_STEEL_NUGGET.get(), MalumContent.Materials.SOUL_STAINED_STEEL_PLATING.get(),
+                MalumContent.Materials.HALLOWED_GOLD_INGOT.get(), MalumContent.Materials.HALLOWED_GOLD_NUGGET.get(),
+                MalumContent.Materials.MALIGNANT_PEWTER_INGOT.get(), MalumContent.Materials.MALIGNANT_PEWTER_NUGGET.get(), MalumContent.Materials.MALIGNANT_PEWTER_PLATING.get(),
+                MalumContent.Materials.NULL_SLATE.get(), MalumContent.Materials.VOID_SALTS.get(), MalumContent.Materials.MNEMONIC_FRAGMENT.get(), MalumContent.Materials.AURIC_EMBERS.get(), MalumContent.Materials.MALIGNANT_LEAD.get(),
+                MalumContent.Materials.ANOMALOUS_DESIGN.get(), MalumContent.Materials.COMPLETE_DESIGN.get(), MalumContent.Materials.FUSED_CONSCIOUSNESS.get());
         tag(MINERALS).add(
-                RAW_SOULSTONE.get(), CRUSHED_SOULSTONE.get(), REFINED_SOULSTONE.get(),
-                RAW_BRILLIANCE.get(), CRUSHED_BRILLIANCE.get(), REFINED_BRILLIANCE.get(),
+                MalumContent.Materials.RAW_SOULSTONE.get(), MalumContent.Materials.CRUSHED_SOULSTONE.get(), MalumContent.Materials.REFINED_SOULSTONE.get(),
+                MalumContent.Materials.RAW_BRILLIANCE.get(), MalumContent.Materials.CRUSHED_BRILLIANCE.get(), MalumContent.Materials.REFINED_BRILLIANCE.get(),
                 BLAZING_QUARTZ.get(),
-                NATURAL_QUARTZ.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+                NATURAL_QUARTZ.get(), MalumContent.Materials.CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(AUGMENTS, AugmentItem.class);
         tag(CORE_AUGMENTS, CoreAugmentItem.class);
         tag(METAL_NODES, MetalNodeItem.class);
 
         tag(IMPETUS, ImpetusItem.class);
-        tag(METAL_IMPETUS, ImpetusItem.class).remove(ALCHEMICAL_IMPETUS.get(), ZEPHYR_IMPETUS.get());
+        tag(METAL_IMPETUS, ImpetusItem.class).remove(MalumContent.Progression.ALCHEMICAL_IMPETUS.get(), MalumContent.Progression.ZEPHYR_IMPETUS.get());
 
         tag(FRACTURED_IMPETUS, FracturedImpetusItem.class);
         tag(FRACTURED_METAL_IMPETUS, FracturedMetalImpetusItem.class).addTag(FRACTURED_IMPETUS);
@@ -181,13 +182,13 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(RUNES_VOID, MadnessRuneCurioItem.class);
         tag(RUNES_WOODEN, TotemicRuneCurioItem.class);
 
-        tag(IS_TOTEMIC_TOOL).add(TOTEMIC_STAFF.get());
-        tag(IS_REDSTONE_TOOL).add(ARTIFICERS_CLAW.get()).addOptional(ResourceLocation.parse("create:wrench"));
-        tag(IS_ARTIFICE_TOOL).add(TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
+        tag(IS_TOTEMIC_TOOL).add(MalumContent.Progression.TOTEMIC_STAFF.get());
+        tag(IS_REDSTONE_TOOL).add(MalumContent.Progression.ARTIFICERS_CLAW.get()).addOptional(ResourceLocation.parse("create:wrench"));
+        tag(IS_ARTIFICE_TOOL).add(MalumContent.Progression.TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
         tag(COUNTS_AS_EMPTY_HAND).addOptional(ResourceLocation.parse("mowziesmobs:earthrend_gauntlet"));
 
-        tag(SAPBALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
-        tag(GROSS_FOODS).add(ROTTEN_FLESH, ROTTING_ESSENCE.get(), CONCENTRATED_GLUTTONY.get());
+        tag(SAPBALLS).add(MalumContent.Materials.RUNIC_SAPBALL.get(), MalumContent.Materials.CURSED_SAPBALL.get());
+        tag(GROSS_FOODS).add(ROTTEN_FLESH, MalumContent.Materials.ROTTING_ESSENCE.get(), MalumContent.Gear.CONCENTRATED_GLUTTONY.get());
 
         tag(PROSPECTORS_TREASURE)
                 .addTags(Tags.Items.ORES, Tags.Items.STORAGE_BLOCKS, Tags.Items.INGOTS, Tags.Items.NUGGETS, Tags.Items.GEMS, Tags.Items.RAW_MATERIALS, ItemTags.COALS, METAL_NODES)
@@ -198,11 +199,11 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(SOULWOVEN_POUCH_AUTOCOLLECT)
                 .addTags(SPIRITS);
 
-        tag(ARCANE_ELEGY_COMPONENTS).addTag(Tags.Items.MUSIC_DISCS).remove(ARCANE_ELEGY.get(), AESTHETICA.get());
+        tag(ARCANE_ELEGY_COMPONENTS).addTag(Tags.Items.MUSIC_DISCS).remove(MalumContent.ARCANE_ELEGY.get(), MalumContent.AESTHETICA.get());
 
         tag(VOID_SOULSTONE_CONVERSION)
                 .addTags(Tags.Items.RAW_MATERIALS)
-                .remove(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+                .remove(MalumContent.Materials.RAW_SOULSTONE.get(), MalumContent.Materials.RAW_BRILLIANCE.get(), MalumContent.Materials.CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
 
         tag(HIDDEN_ALWAYS).add(THE_DEVICE.get(), THE_VESSEL.get());
 
@@ -211,47 +212,47 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 // The Well
                 .add(PRIMORDIAL_SOUP.get())
                 // Encyclopedia
-                .add(ENCYCLOPEDIA_ESOTERICA.get())
+                .add(MalumContent.ENCYCLOPEDIA_ESOTERICA.get())
                 // Equipment
-                .add(CATALYST_LOBBER.get())
+                .add(MalumContent.Gear.CATALYST_LOBBER.get())
                 // Decor
                 .add(NULL_SPIRITED_GLASS.get(), NULL_VARNISHED_TERRACOTTA.get())
                 // Materials
-                .add(BLOCK_OF_NULL_SLATE.get(), NULL_SLATE.get(),
-                        BLOCK_OF_VOID_SALTS.get(), VOID_SALTS.get(),
-                        BLOCK_OF_MNEMONIC_FRAGMENT.get(), MNEMONIC_FRAGMENT.get(),
-                        BLOCK_OF_AURIC_EMBERS.get(), AURIC_EMBERS.get(),
-                        BLOCK_OF_MALIGNANT_LEAD.get(), MALIGNANT_LEAD.get());
+                .add(BLOCK_OF_NULL_SLATE.get(), MalumContent.Materials.NULL_SLATE.get(),
+                        BLOCK_OF_VOID_SALTS.get(), MalumContent.Materials.VOID_SALTS.get(),
+                        BLOCK_OF_MNEMONIC_FRAGMENT.get(), MalumContent.Materials.MNEMONIC_FRAGMENT.get(),
+                        BLOCK_OF_AURIC_EMBERS.get(), MalumContent.Materials.AURIC_EMBERS.get(),
+                        BLOCK_OF_MALIGNANT_LEAD.get(), MalumContent.Materials.MALIGNANT_LEAD.get());
 
         tag(HIDDEN_UNTIL_BLACK_CRYSTAL)
                 // Umbral Spirit
-                .add(UMBRAL_SPIRIT.get())
+                .add(MalumContent.Materials.UMBRAL_SPIRIT.get())
                 // Anomalous Design
-                .add(ANOMALOUS_DESIGN.get(), COMPLETE_DESIGN.get(), FUSED_CONSCIOUSNESS.get())
+                .add(MalumContent.Materials.ANOMALOUS_DESIGN.get(), MalumContent.Materials.COMPLETE_DESIGN.get(), MalumContent.Materials.FUSED_CONSCIOUSNESS.get())
                 // Malignant Pewter
-                .add(MALIGNANT_PEWTER_INGOT.get(), MALIGNANT_PEWTER_PLATING.get(),
-                        MALIGNANT_PEWTER_NUGGET.get(), BLOCK_OF_MALIGNANT_PEWTER.get())
+                .add(MalumContent.Materials.MALIGNANT_PEWTER_INGOT.get(), MalumContent.Materials.MALIGNANT_PEWTER_PLATING.get(),
+                        MalumContent.Materials.MALIGNANT_PEWTER_NUGGET.get(), BLOCK_OF_MALIGNANT_PEWTER.get())
                 // Equipment
-                .add(MALIGNANT_STRONGHOLD_HELMET.get(), MALIGNANT_STRONGHOLD_CHESTPLATE.get(),
-                        MALIGNANT_STRONGHOLD_LEGGINGS.get(), MALIGNANT_STRONGHOLD_BOOTS.get(),
-                        WEIGHT_OF_WORLDS.get(), EDGE_OF_DELIVERANCE.get(),
-                        MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
-                        UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get())
+                .add(MalumContent.Gear.MALIGNANT_STRONGHOLD_HELMET.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_CHESTPLATE.get(),
+                        MalumContent.Gear.MALIGNANT_STRONGHOLD_LEGGINGS.get(), MalumContent.Gear.MALIGNANT_STRONGHOLD_BOOTS.get(),
+                        MalumContent.Gear.WEIGHT_OF_WORLDS.get(), MalumContent.Gear.EDGE_OF_DELIVERANCE.get(),
+                        MalumContent.Gear.MNEMONIC_HEX_STAFF.get(), MalumContent.Gear.EROSION_SCEPTER.get(),
+                        MalumContent.Gear.UNWINDING_CHAOS.get(), MalumContent.Gear.SUNDERING_ANCHOR.get())
                 // Runes
-                .add(RUNE_OF_BOLSTERING.get(), RUNE_OF_RADIAL_EMPOWERMENT.get(),
-                        RUNE_OF_SPELL_MASTERY.get(), RUNE_OF_HERESY.get(),
-                        RUNE_OF_UNNATURAL_STAMINA.get(), RUNE_OF_TWINNED_DURATION.get(),
-                        RUNE_OF_INDOMITABILITY.get(), RUNE_OF_IGNEOUS_SOLACE.get())
+                .add(MalumContent.Gear.RUNE_OF_BOLSTERING.get(), MalumContent.Gear.RUNE_OF_RADIAL_EMPOWERMENT.get(),
+                        MalumContent.Gear.RUNE_OF_SPELL_MASTERY.get(), MalumContent.Gear.RUNE_OF_HERESY.get(),
+                        MalumContent.Gear.RUNE_OF_UNNATURAL_STAMINA.get(), MalumContent.Gear.RUNE_OF_TWINNED_DURATION.get(),
+                        MalumContent.Gear.RUNE_OF_INDOMITABILITY.get(), MalumContent.Gear.RUNE_OF_IGNEOUS_SOLACE.get())
                 // Trinkets
-                .add(RING_OF_THE_ENDLESS_WELL.get(), RING_OF_GROWING_FLESH.get(), RING_OF_ECHOING_ARCANA.get(),
-                        RING_OF_GRUESOME_CONCENTRATION.get(), NECKLACE_OF_THE_HIDDEN_BLADE.get(),
-                        NECKLACE_OF_THE_WATCHER.get(), BELT_OF_THE_LIMITLESS.get())
+                .add(MalumContent.Gear.RING_OF_THE_ENDLESS_WELL.get(), MalumContent.Gear.RING_OF_GROWING_FLESH.get(), MalumContent.Gear.RING_OF_ECHOING_ARCANA.get(),
+                        MalumContent.Gear.RING_OF_GRUESOME_CONCENTRATION.get(), MalumContent.Gear.NECKLACE_OF_THE_HIDDEN_BLADE.get(),
+                        MalumContent.Gear.NECKLACE_OF_THE_WATCHER.get(), MalumContent.Gear.BELT_OF_THE_LIMITLESS.get())
                 // Augments
-                .add(STELLAR_MECHANISM.get())
+                .add(MalumContent.Progression.STELLAR_MECHANISM.get())
                 // Aesthetica
-                .add(AESTHETICA.get());
+                .add(MalumContent.AESTHETICA.get());
 
-        tag(HIDDEN_AS_RESULT_ONLY).add(WEIGHT_OF_WORLDS.get(), EDGE_OF_DELIVERANCE.get(), SUNDERING_ANCHOR.get());
+        tag(HIDDEN_AS_RESULT_ONLY).add(MalumContent.Gear.WEIGHT_OF_WORLDS.get(), MalumContent.Gear.EDGE_OF_DELIVERANCE.get(), MalumContent.Gear.SUNDERING_ANCHOR.get());
 
         for (DeferredHolder<net.minecraft.world.item.Item, ? extends net.minecraft.world.item.Item> i : items) {
             if (i.get() instanceof MalumCurioItem) {

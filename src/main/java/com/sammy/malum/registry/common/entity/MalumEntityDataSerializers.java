@@ -1,24 +1,11 @@
-package com.sammy.malum.registry.common;
+package com.sammy.malum.registry.common.entity;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.core.systems.geas.GeasEffectType;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
-import com.sammy.malum.registry.common.item.MalumItems;
-import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
-import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.core.GlobalPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-
-import java.util.Optional;
 
 public class MalumEntityDataSerializers {
 

@@ -1,7 +1,6 @@
 package com.sammy.malum.common.data.component.pouch;
 
-import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.world.item.*;
 import org.apache.commons.lang3.math.*;
 

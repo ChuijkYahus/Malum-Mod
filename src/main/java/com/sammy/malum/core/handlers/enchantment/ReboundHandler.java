@@ -3,8 +3,9 @@ package com.sammy.malum.core.handlers.enchantment;
 import com.sammy.malum.common.entity.scythe.ScytheBoomerang;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import com.sammy.malum.registry.common.enchantment.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.Stats;
@@ -23,7 +24,7 @@ public class ReboundHandler {
         int slot = hand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
         if (player instanceof ServerPlayer serverPlayer) {
             boolean isEnhanced = MalumScytheItem.isEnhanced(player);
-            boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, MalumItems.RING_OF_THE_HOWLING_MAELSTROM.get());
+            boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, MalumContent.Gear.RING_OF_THE_HOWLING_MAELSTROM.get());
             float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
             float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
             float velocity = (isEnhanced ? 3f : 1.75f);
@@ -46,7 +47,7 @@ public class ReboundHandler {
             level.addFreshEntity(entity);
             float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 1.25f);
             SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_THROW.get(), 0.5f, pitch);
-            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItems.SOUL_OF_A_SCYTHE);
+            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItemProperties.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);
         player.awardStat(Stats.ITEM_USED.get(scythe.getItem()));

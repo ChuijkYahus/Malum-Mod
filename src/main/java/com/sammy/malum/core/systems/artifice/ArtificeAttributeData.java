@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.augment.ImpurityStabilizer;
 import com.sammy.malum.common.item.augment.core.CausticCatalystItem;
 import com.sammy.malum.common.item.augment.core.ResonanceTuner;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
-import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.content.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;

@@ -1,4 +1,4 @@
-package com.sammy.malum.registry.common.block.properties;
+package com.sammy.malum.registry.common.content.block.properties;
 
 import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.common.block.ether.EtherCandleBlock;

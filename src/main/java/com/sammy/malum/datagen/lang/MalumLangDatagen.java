@@ -13,7 +13,7 @@ import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.MalumBlocks;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
@@ -42,9 +42,9 @@ import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUND_EVENT
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
-import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntityTypes.ENTITY_TYPES;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.content.item.MalumItemProperties.*;
 
 public class MalumLangDatagen extends LanguageProvider {
     public static MalumLangDatagen lang;
@@ -72,11 +72,11 @@ public class MalumLangDatagen extends LanguageProvider {
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
         var categories = ((CategorizedCreativeTab)MalumCreativeTabs.CONTENT.get()).getCategories().values();
 
-        add(DataHelper.take(blocks, MalumBlocks.ODD_SCRIPTURES_I).get(), "Odd Scriptures I");
+        add(DataHelper.take(blocks, MalumContent.DungeonBlockSets.ODD_SCRIPTURES_I).get(), "Odd Scriptures I");
 
 
-        add(DataHelper.take(blocks, MalumBlocks.PRIMORDIAL_SOUP).get(), "The Weeping Well");
-        add(DataHelper.take(blocks, MalumBlocks.VOID_CONDUIT).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Progression.PRIMORDIAL_SOUP).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Progression.VOID_CONDUIT).get(), "The Weeping Well");
 
         add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
         add("malum.spirit.description.stored_spirit", "Contains: ");

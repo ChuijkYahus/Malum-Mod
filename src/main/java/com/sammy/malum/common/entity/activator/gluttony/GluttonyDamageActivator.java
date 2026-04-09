@@ -19,7 +19,6 @@ import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEf
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class GluttonyDamageActivator extends FloatingEntity {
 

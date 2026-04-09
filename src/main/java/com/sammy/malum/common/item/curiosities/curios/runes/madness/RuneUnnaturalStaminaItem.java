@@ -3,8 +3,8 @@ package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 import com.google.common.collect.Multimap;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.helpers.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +35,6 @@ public class RuneUnnaturalStaminaItem extends MadnessRuneCurioItem {
     }
 
     public static boolean forceSprint(LivingEntity livingEntity) {
-        return CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RUNE_OF_UNNATURAL_STAMINA.get());
+        return CurioHelper.hasCurioEquipped(livingEntity, MalumContent.Gear.RUNE_OF_UNNATURAL_STAMINA.get());
     }
 }

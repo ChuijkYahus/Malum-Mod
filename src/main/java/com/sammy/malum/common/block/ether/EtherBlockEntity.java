@@ -2,32 +2,26 @@ package com.sammy.malum.common.block.ether;
 
 import com.sammy.malum.common.item.ether.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.content.item.MalumDataComponents;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.MutableDouble;
 import team.lodestar.lodestone.handlers.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
 import team.lodestar.lodestone.systems.particle.data.*;
 import team.lodestar.lodestone.systems.particle.data.color.*;
 
-import javax.annotation.*;
 import java.awt.*;
 
 public class EtherBlockEntity extends LodestoneBlockEntity {

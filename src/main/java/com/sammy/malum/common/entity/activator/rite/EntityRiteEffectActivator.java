@@ -4,7 +4,7 @@ import com.sammy.malum.common.entity.FloatingEntity;
 import com.sammy.malum.common.entity.FloatingItemDestinationData;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
-import com.sammy.malum.registry.common.MalumEntityDataSerializers;
+import com.sammy.malum.registry.common.entity.MalumEntityDataSerializers;
 import com.sammy.malum.registry.common.entity.MalumEntityTypes;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;

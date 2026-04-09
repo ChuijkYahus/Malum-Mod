@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.totem;
 import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.block.*;
 
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;

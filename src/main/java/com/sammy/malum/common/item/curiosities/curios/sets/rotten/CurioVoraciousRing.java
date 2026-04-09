@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,7 +32,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
 
     public static void modifyEating(LivingEntityUseItemEvent.Start event) {
         if (event.getItem().is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(event.getEntity(), MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
+            if (CurioHelper.hasCurioEquipped(event.getEntity(), MalumContent.Gear.RING_OF_DESPERATE_VORACITY.get())) {
                 event.setDuration((int) (event.getDuration() * 0.5f));
             }
         }
@@ -43,7 +43,7 @@ public class CurioVoraciousRing extends MalumCurioItem {
             return;
         }
         if (food.is(GROSS_FOODS)) {
-            if (CurioHelper.hasCurioEquipped(livingEntity, MalumItems.RING_OF_DESPERATE_VORACITY.get())) {
+            if (CurioHelper.hasCurioEquipped(livingEntity, MalumContent.Gear.RING_OF_DESPERATE_VORACITY.get())) {
                 if (livingEntity instanceof Player player) {
                     player.getFoodData().eat(1, 1f);
                 }

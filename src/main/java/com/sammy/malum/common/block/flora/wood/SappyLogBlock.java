@@ -5,7 +5,6 @@ import com.sammy.malum.visual_effects.networked.sap.SapCollectionParticleEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -26,13 +25,13 @@ import java.util.*;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class SapFilledLogBlock extends RotatedPillarBlock {
+public class SappyLogBlock extends RotatedPillarBlock {
 
     public final Supplier<Block> drained;
     public final Supplier<Item> sap;
     public final List<? extends ColorParticleData> sapColor;
 
-    public SapFilledLogBlock(Properties properties, Supplier<Block> drained, Supplier<Item> sap, Color... sapColor) {
+    public SappyLogBlock(Properties properties, Supplier<Block> drained, Supplier<Item> sap, Color... sapColor) {
         super(properties);
         this.drained = drained;
         this.sap = sap;

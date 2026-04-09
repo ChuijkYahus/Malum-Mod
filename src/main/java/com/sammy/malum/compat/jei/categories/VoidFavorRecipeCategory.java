@@ -2,7 +2,7 @@ package com.sammy.malum.compat.jei.categories;
 
 import com.sammy.malum.common.recipe.VoidFavorRecipe;
 import com.sammy.malum.compat.jei.JEIHandler;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -29,7 +29,7 @@ public class VoidFavorRecipeCategory implements IRecipeCategory<VoidFavorRecipe>
 
     public VoidFavorRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(malumPath("textures/gui/weeping_well_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItems.VOID_DEPOT.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItemProperties.VOID_DEPOT.get()));
     }
 
     @Override
@@ -71,6 +71,6 @@ public class VoidFavorRecipeCategory implements IRecipeCategory<VoidFavorRecipe>
         builder.addSlot(RecipeIngredientRole.OUTPUT, 63, 124)
             .addItemStack(recipe.result);
         builder.addInvisibleIngredients(RecipeIngredientRole.CATALYST)
-            .addItemStack(new ItemStack(MalumItems.VOID_DEPOT.get()));
+            .addItemStack(new ItemStack(MalumItemProperties.VOID_DEPOT.get()));
     }
 }

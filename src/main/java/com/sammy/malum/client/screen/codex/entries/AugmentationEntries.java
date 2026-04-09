@@ -8,7 +8,7 @@
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.GILDED;
-//import static com.sammy.malum.registry.common.item.MalumItems.*;
+//import static com.sammy.malum.registry.common.content.item.MalumItems.*;
 //
 //public class AugmentationEntries {
 //

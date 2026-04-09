@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.repair_pylon;
 
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -27,7 +27,7 @@ public class RepairPylonComponentBlock extends MultiblockComponentBlock {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return MalumItems.REPAIR_PYLON.get().getDefaultInstance();
+        return MalumItemProperties.REPAIR_PYLON.get().getDefaultInstance();
     }
 
     @Override

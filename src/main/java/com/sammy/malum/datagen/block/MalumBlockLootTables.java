@@ -2,7 +2,9 @@ package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.storage.jar.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
@@ -28,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.*;
 import static team.lodestar.lodestone.helpers.DataHelper.*;
 
 public class MalumBlockLootTables extends LootTableProvider {
@@ -93,26 +95,26 @@ public class MalumBlockLootTables extends LootTableProvider {
             takeAll(blocks, AZURE_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
             takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
 
-            add(take(blocks, STRANGE_CRYSTAL).get(), createSingleItemTableWithSilkTouchOrShears(STRANGE_CRYSTAL.get(), MalumItems.STRANGE_CRYSTAL.get()));
-            add(take(blocks, LARGE_STRANGE_CRYSTAL).get(), createTallBlockDrop(LARGE_STRANGE_CRYSTAL.get()));
-            add(take(blocks, STRANGEROOT).get(), createSingleItemTableWithSilkTouchOrShears(STRANGEROOT.get(), MalumItems.STRANGEROOT.get()));
+            add(take(blocks, MalumContent.BlockSets.STRANGE_CRYSTAL).get(), createSingleItemTableWithSilkTouchOrShears(MalumContent.BlockSets.STRANGE_CRYSTAL.get(), MalumItemProperties.STRANGE_CRYSTAL.get()));
+            add(take(blocks, MalumContent.BlockSets.LARGE_STRANGE_CRYSTAL).get(), createTallBlockDrop(MalumContent.BlockSets.LARGE_STRANGE_CRYSTAL.get()));
+            add(take(blocks, MalumContent.BlockSets.STRANGEROOT).get(), createSingleItemTableWithSilkTouchOrShears(MalumContent.BlockSets.STRANGEROOT.get(), MalumItemProperties.STRANGEROOT.get()));
 
-            add(take(blocks, BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), MalumItems.SOULWOOD_LOG.get()));
-            add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4));
-            add(take(blocks, BLIGHTED_GROWTH).get(), createBlightedPlantDrop(BLIGHTED_GROWTH.get(), 1));
-            add(take(blocks, BLIGHTPEARL).get(), createBlightedPlantDrop(BLIGHTPEARL.get(), 1));
-            add(take(blocks, BLIGHTROOT).get(), createBlightedPlantDrop(BLIGHTROOT.get(), 1));
+            add(take(blocks, BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), MalumItemProperties.SOULWOOD_LOG.get()));
+            add(take(blocks, MalumContent.BlockSets.BLIGHTED_EARTH).get(), createBlightedDrop(MalumContent.BlockSets.BLIGHTED_EARTH.get(), 4));
+            add(take(blocks, MalumContent.BlockSets.BLIGHTED_GUNK).get(), createBlightedPlantDrop(MalumContent.BlockSets.BLIGHTED_GUNK.get(), 1));
+            add(take(blocks, MalumContent.BlockSets.BLIGHTPEARL).get(), createBlightedPlantDrop(MalumContent.BlockSets.BLIGHTPEARL.get(), 1));
+            add(take(blocks, MalumContent.BlockSets.BLIGHTROOT).get(), createBlightedPlantDrop(MalumContent.BlockSets.BLIGHTROOT.get(), 1));
 
-            add(take(blocks, BRILLIANT_STONE).get(), createOreDrop(BRILLIANT_STONE.get(), MalumItems.RAW_BRILLIANCE.get()));
-            add(take(blocks, BRILLIANT_DEEPSLATE).get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), MalumItems.RAW_BRILLIANCE.get()));
-            add(take(blocks, SOULSTONE_ORE).get(), createOreDrop(SOULSTONE_ORE.get(), MalumItems.RAW_SOULSTONE.get()));
-            add(take(blocks, DEEPSLATE_SOULSTONE_ORE).get(), createOreDrop(DEEPSLATE_SOULSTONE_ORE.get(), MalumItems.RAW_SOULSTONE.get()));
-            add(take(blocks, BLAZING_QUARTZ_ORE).get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), MalumItems.BLAZING_QUARTZ.get()));
-            add(take(blocks, NATURAL_QUARTZ_ORE).get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), MalumItems.NATURAL_QUARTZ.get()));
-            add(take(blocks, DEEPSLATE_QUARTZ_ORE).get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), MalumItems.NATURAL_QUARTZ.get()));
-            add(take(blocks, CTHONIC_GOLD_ORE).get(), createCthonicGoldOreDrop(CTHONIC_GOLD_ORE.get()));
+            add(take(blocks, MalumContent.Materials.BRILLIANT_STONE).get(), createOreDrop(MalumContent.Materials.BRILLIANT_STONE.get(), MalumContent.Materials.RAW_BRILLIANCE.get()));
+            add(take(blocks, MalumContent.Materials.BRILLIANT_DEEPSLATE).get(), createOreDrop(MalumContent.Materials.BRILLIANT_DEEPSLATE.get(), MalumContent.Materials.RAW_BRILLIANCE.get()));
+            add(take(blocks, MalumContent.Materials.SOULSTONE_ORE).get(), createOreDrop(MalumContent.Materials.SOULSTONE_ORE.get(), MalumContent.Materials.RAW_SOULSTONE.get()));
+            add(take(blocks, MalumContent.Materials.DEEPSLATE_SOULSTONE_ORE).get(), createOreDrop(MalumContent.Materials.DEEPSLATE_SOULSTONE_ORE.get(), MalumContent.Materials.RAW_SOULSTONE.get()));
+            add(take(blocks, MalumContent.Materials.BLAZING_QUARTZ_ORE).get(), createOreDrop(MalumContent.Materials.BLAZING_QUARTZ_ORE.get(), MalumItemProperties.BLAZING_QUARTZ.get()));
+            add(take(blocks, MalumContent.Materials.NATURAL_QUARTZ_ORE).get(), createOreDrop(MalumContent.Materials.NATURAL_QUARTZ_ORE.get(), MalumItemProperties.NATURAL_QUARTZ.get()));
+            add(take(blocks, MalumContent.Materials.DEEPSLATE_QUARTZ_ORE).get(), createOreDrop(MalumContent.Materials.DEEPSLATE_QUARTZ_ORE.get(), MalumItemProperties.NATURAL_QUARTZ.get()));
+            add(take(blocks, MalumContent.Materials.CTHONIC_GOLD_ORE).get(), createCthonicGoldOreDrop(MalumContent.Materials.CTHONIC_GOLD_ORE.get()));
 
-            add(take(blocks, SOULWOVEN_BANNER).get(), createBannerDrop(SOULWOVEN_BANNER.get()));
+            add(take(blocks, MalumContent.BlockSets.SOULWOVEN_BANNER).get(), createBannerDrop(MalumContent.BlockSets.SOULWOVEN_BANNER.get()));
 
             takeAll(blocks, b -> b.get() instanceof FlowerPotBlock).forEach(b -> add(b.get(), createPotFlowerItemTable(((FlowerPotBlock)b.get()).getPotted())));
             takeAll(blocks, b -> b.get() instanceof SaplingBlock).forEach(b -> add(b.get(), createSingleItemTable(b.get().asItem())));
@@ -137,19 +139,19 @@ public class MalumBlockLootTables extends LootTableProvider {
 
         protected LootTable.Builder createCthonicGoldOreDrop(Block block) {
             return createSilkTouchDispatchTable(block,
-                    applyExplosionDecay(block, LootItem.lootTableItem(MalumItems.CTHONIC_GOLD_FRAGMENT.get())
+                    applyExplosionDecay(block, LootItem.lootTableItem(MalumItemProperties.CTHONIC_GOLD_FRAGMENT.get())
                             .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 4.0F)))));
         }
 
         protected LootTable.Builder createBlightedDrop(Block block, int gunkAmount) {
             return createSilkTouchDispatchTable(block,
-                    applyExplosionCondition(MalumItems.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItems.BLIGHTED_GUNK.get())
+                    applyExplosionCondition(MalumItemProperties.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItemProperties.BLIGHTED_GUNK.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(gunkAmount)))));
         }
 
         protected LootTable.Builder createBlightedPlantDrop(Block block, int gunkAmount) {
             return createSilkTouchOrShearsDispatchTable(block,
-                    applyExplosionCondition(MalumItems.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItems.BLIGHTED_GUNK.get())
+                    applyExplosionCondition(MalumItemProperties.BLIGHTED_GUNK.get(), LootItem.lootTableItem(MalumItemProperties.BLIGHTED_GUNK.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(gunkAmount)))));
         }
 

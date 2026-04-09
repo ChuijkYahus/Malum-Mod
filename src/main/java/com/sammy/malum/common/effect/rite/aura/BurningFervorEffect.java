@@ -2,7 +2,6 @@ package com.sammy.malum.common.effect.rite.aura;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.resources.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

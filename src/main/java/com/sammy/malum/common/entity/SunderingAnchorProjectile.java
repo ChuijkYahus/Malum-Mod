@@ -4,8 +4,8 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
@@ -83,7 +83,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return MalumItems.SUNDERING_ANCHOR.get();
+        return MalumContent.Gear.SUNDERING_ANCHOR.get();
     }
 
     @Override

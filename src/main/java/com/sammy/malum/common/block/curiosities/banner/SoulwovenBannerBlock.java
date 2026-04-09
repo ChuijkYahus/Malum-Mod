@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.banner;
 
-import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.content.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;

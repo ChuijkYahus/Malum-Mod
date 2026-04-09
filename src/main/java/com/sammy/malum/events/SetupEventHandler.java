@@ -3,7 +3,7 @@ package com.sammy.malum.events;
 import com.sammy.malum.common.item.banner.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.MalumDataMaps;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.block.*;
 import com.sammy.malum.registry.common.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;

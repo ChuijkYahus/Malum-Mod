@@ -1,17 +1,10 @@
 package com.sammy.malum.core.systems.rite.effect;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.*;
-import com.mojang.serialization.*;
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.rite.*;
-import io.netty.buffer.*;
 import net.minecraft.core.*;
-import net.minecraft.nbt.*;
-import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.ServerLevel;
 

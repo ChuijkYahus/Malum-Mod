@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.ether;
 
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.registry.common.item.MalumDataComponents;
+import com.sammy.malum.registry.common.content.item.MalumDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;

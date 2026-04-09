@@ -6,7 +6,7 @@ import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.common.entity.FloatingItemEntity;
 import com.sammy.malum.common.payloads.VoidRejectionPayload;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
@@ -114,7 +114,7 @@ public class WeepingWellRejectionHandler {
             }
             if (!progression.hasBeenRejected) {
                 SoulHarvestHandler.spawnSpirits(player)
-                        .setCustomItems(MalumItems.UMBRAL_SPIRIT.get())
+                        .setCustomItems(MalumContent.Materials.UMBRAL_SPIRIT.get())
                         .setPreferredCollector(player)
                         .spawnSpirits(level);
             }

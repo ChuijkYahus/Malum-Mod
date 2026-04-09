@@ -3,10 +3,9 @@ package com.sammy.malum.common.item.curiosities.curios.sets.esoteric;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.event.entity.living.LivingEvent.*;
 import team.lodestar.lodestone.helpers.*;
@@ -27,7 +26,7 @@ public class CurioConcealingRing extends MalumCurioItem {
     public static void preventDetection(LivingVisibilityEvent event) {
         if (event.getLookingEntity() instanceof LivingEntity watcher) {
             LivingEntity target = event.getEntity();
-            if (CurioHelper.hasCurioEquipped(target, MalumItems.RING_OF_ESOTERIC_SHADOW.get())) {
+            if (CurioHelper.hasCurioEquipped(target, MalumContent.Gear.RING_OF_ESOTERIC_SHADOW.get())) {
                 float weight = EntitySpiritDropData.getSpiritData(watcher).map(data -> data.countSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT)).orElse(0);
                 if (weight > 0) {
                     float delta = 1 - Math.min(weight / 4, 1);

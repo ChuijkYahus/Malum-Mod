@@ -19,7 +19,7 @@
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 //import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
-//import static com.sammy.malum.registry.common.item.MalumItems.*;
+//import static com.sammy.malum.registry.common.content.item.MalumItems.*;
 //import static net.minecraft.world.item.Items.ENCHANTED_BOOK;
 //
 //public class VoidCodexEntries {

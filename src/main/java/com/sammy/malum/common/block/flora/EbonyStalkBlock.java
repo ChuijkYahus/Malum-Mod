@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.flora;
 
 import com.mojang.serialization.MapCodec;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.block.MalumBlocks;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -102,11 +102,11 @@ public class EbonyStalkBlock extends Block {
         var defaultState = defaultBlockState();
         var soilDecision = blockstate.canSustainPlant(level, below, Direction.UP, defaultState);
         if (soilDecision.isDefault() ? blockstate.is(MalumTags.Blocks.EBONY_PLANTABLE_ON) : soilDecision.isTrue()) {
-            var sapling = MalumBlocks.EBONY_SAPLING.get();
+            var sapling = MalumContent.Materials.EBONY_SAPLING.get();
             if (blockstate.is(sapling)) {
                 return defaultState.setValue(AGE, 0);
             }
-            var ebony = MalumBlocks.EBONY_STALK.get();
+            var ebony = MalumContent.Materials.EBONY_STALK.get();
             if (blockstate.is(ebony)) {
                 int i = blockstate.getValue(AGE) > 0 ? 1 : 0;
                 return defaultState.setValue(AGE, i);
@@ -163,7 +163,7 @@ public class EbonyStalkBlock extends Block {
             level.scheduleTick(pos, this, 1);
         }
 
-        if (direction == Direction.UP && neighborState.is(MalumBlocks.EBONY_STALK.get()) && neighborState.getValue(AGE) > state.getValue(AGE)) {
+        if (direction == Direction.UP && neighborState.is(MalumContent.Materials.EBONY_STALK.get()) && neighborState.getValue(AGE) > state.getValue(AGE)) {
             level.setBlock(pos, state.cycle(AGE), 2);
         }
 
@@ -216,7 +216,7 @@ public class EbonyStalkBlock extends Block {
         var belowBelowPos = pos.below(2);
         var belowBelowState = level.getBlockState(belowBelowPos);
         var bambooleaves = BambooLeaves.NONE;
-        var ebony = MalumBlocks.EBONY_STALK.get();
+        var ebony = MalumContent.Materials.EBONY_STALK.get();
         if (age >= 1) {
             if (!belowState.is(ebony) || belowState.getValue(LEAVES) == BambooLeaves.NONE) {
                 bambooleaves = BambooLeaves.SMALL;
@@ -239,7 +239,7 @@ public class EbonyStalkBlock extends Block {
     protected int getHeightAboveUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
 
-        while (i < 16 && level.getBlockState(pos.above(i + 1)).is(MalumBlocks.EBONY_STALK.get())) {
+        while (i < 16 && level.getBlockState(pos.above(i + 1)).is(MalumContent.Materials.EBONY_STALK.get())) {
             i++;
         }
 
@@ -249,7 +249,7 @@ public class EbonyStalkBlock extends Block {
     protected int getHeightBelowUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
 
-        while (i < 16 && level.getBlockState(pos.below(i + 1)).is(MalumBlocks.EBONY_STALK.get())) {
+        while (i < 16 && level.getBlockState(pos.below(i + 1)).is(MalumContent.Materials.EBONY_STALK.get())) {
             i++;
         }
 

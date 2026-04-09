@@ -11,8 +11,6 @@ import team.lodestar.lodestone.registry.common.*;
 import java.util.*;
 import java.util.function.*;
 
-import static team.lodestar.lodestone.registry.common.LodestoneEnchantmentComponents.valueEffect;
-
 public class ModEnchantmentComponents {
     public static final DeferredRegister<DataComponentType<?>> ENCHANTMENT_COMPONENTS = DeferredRegister.create(BuiltInRegistries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, MalumMod.MALUM);
 

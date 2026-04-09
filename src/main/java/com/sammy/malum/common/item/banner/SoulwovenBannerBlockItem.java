@@ -1,14 +1,13 @@
 package com.sammy.malum.common.item.banner;
 
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.*;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
 
@@ -36,7 +35,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumItemProperties.SOULWOVEN_BANNER.get().getDefaultInstance();
         if (event.getParentEntries().contains(source)) {
             var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
             patterns.remove(SoulwovenBannerPatternDataComponent.DEFAULT);
@@ -59,7 +58,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
-        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumItemProperties.SOULWOVEN_BANNER.get().getDefaultInstance();
         ItemStack stack = pattern.getDefaultStack();
         if (!event.getParentEntries().contains(stack)) {
             if (before) {

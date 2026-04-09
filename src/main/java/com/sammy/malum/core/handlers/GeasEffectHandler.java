@@ -5,7 +5,7 @@ import com.sammy.malum.common.data.attachment.soul_data.GeasSoulData;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;

@@ -2,8 +2,8 @@ package com.sammy.malum.common.block.flora;
 
 import com.mojang.serialization.MapCodec;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.block.MalumBlocks;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -75,8 +75,8 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, currentPos)) {
             return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
         } else {
-            if (facing == Direction.UP && facingState.is(MalumBlocks.EBONY_STALK)) {
-                level.setBlock(currentPos, MalumBlocks.EBONY_STALK.get().defaultBlockState(), 2);
+            if (facing == Direction.UP && facingState.is(MalumContent.Materials.EBONY_STALK)) {
+                level.setBlock(currentPos, MalumContent.Materials.EBONY_STALK.get().defaultBlockState(), 2);
             }
 
             return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
@@ -85,7 +85,7 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(MalumItems.EBONY_STALK.get());
+        return new ItemStack(MalumItemProperties.EBONY_STALK.get());
     }
 
     @Override
@@ -112,6 +112,6 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
     }
 
     protected void growEbony(Level level, BlockPos state) {
-        level.setBlock(state.above(), MalumBlocks.EBONY_STALK.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
+        level.setBlock(state.above(), MalumContent.Materials.EBONY_STALK.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
     }
 }

@@ -1,4 +1,4 @@
-package com.sammy.malum.registry.common.item;
+package com.sammy.malum.registry.common.content.item;
 
 import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;

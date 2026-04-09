@@ -1,9 +1,13 @@
-package com.sammy.malum.common.item.metallics;
+package com.sammy.malum.registry.common.util;
 
-import com.sammy.malum.registry.common.block.MalumBlocks;
-import com.sammy.malum.registry.common.block.properties.MalumOreBlockProperties;
-import com.sammy.malum.registry.common.block.properties.MalumStorageBlockProperties;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
+import com.sammy.malum.common.item.metallics.MetalImpetusItem;
+import com.sammy.malum.common.item.metallics.MetalNodeItem;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.block.MalumBlocks;
+import com.sammy.malum.registry.common.content.block.properties.MalumOreBlockProperties;
+import com.sammy.malum.registry.common.content.block.properties.MalumStorageBlockProperties;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -17,7 +21,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
@@ -32,17 +35,15 @@ import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 public class MetallicsItemRegistryBundle {
 
     public static List<MetallicsItemRegistryBundle> getMalumMetallics() {
-        return List.of(MalumItems.IRON_METALLICS,
-                MalumItems.COPPER_METALLICS,
-                MalumItems.GOLD_METALLICS,
-                MalumItems.ZINC_METALLICS,
-                MalumItems.LEAD_METALLICS,
-                MalumItems.SILVER_METALLICS,
-                MalumItems.ALUMINIUM_METALLICS,
-                MalumItems.NICKEL_METALLICS);
+        return List.of(MalumContent.Progression.IRON_METALLICS,
+                MalumContent.Progression.COPPER_METALLICS,
+                MalumContent.Progression.GOLD_METALLICS,
+                MalumContent.Progression.ZINC_METALLICS,
+                MalumContent.Progression.LEAD_METALLICS,
+                MalumContent.Progression.SILVER_METALLICS,
+                MalumContent.Progression.ALUMINIUM_METALLICS,
+                MalumContent.Progression.NICKEL_METALLICS);
     }
-
-
 
     protected final String id;
 
@@ -90,12 +91,12 @@ public class MetallicsItemRegistryBundle {
         var derealizedBlockName = "block_of_" + derealized;
         var harmonizedBlockName = "block_of_" + harmonized;
 
-        impetus = MalumItems.register(impetusName, MalumItems::IMPETUS_PROPERTIES, MetalImpetusItem::new);
-        fracturedImpetus = MalumItems.register(fracturedImpetusName, MalumItems::IMPETUS_PROPERTIES, FracturedMetalImpetusItem::new);
-        node = MalumItems.register(nodeName, MalumItems::IMPETUS_PROPERTIES, MetalNodeItem::new);
+        impetus = MalumItemProperties.register(impetusName, MalumItemProperties::IMPETUS_PROPERTIES, MetalImpetusItem::new);
+        fracturedImpetus = MalumItemProperties.register(fracturedImpetusName, MalumItemProperties::IMPETUS_PROPERTIES, FracturedMetalImpetusItem::new);
+        node = MalumItemProperties.register(nodeName, MalumItemProperties::IMPETUS_PROPERTIES, MetalNodeItem::new);
 
-        derealizedMetal = MalumItems.register(derealized, MalumItems::DEFAULT_PROPERTIES, Item::new);
-        harmonizedMetal = MalumItems.register(harmonized, MalumItems::DEFAULT_PROPERTIES, Item::new);
+        derealizedMetal = MalumItemProperties.register(derealized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
+        harmonizedMetal = MalumItemProperties.register(harmonized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
 
         oreSound = new MalumBlockSoundType(oreName);
         deepslateOreSound = new MalumBlockSoundType(deepslateOreName);

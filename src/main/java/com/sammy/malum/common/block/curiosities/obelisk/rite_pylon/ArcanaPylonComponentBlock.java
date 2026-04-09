@@ -1,14 +1,10 @@
 package com.sammy.malum.common.block.curiosities.obelisk.rite_pylon;
 
 import com.sammy.malum.common.block.curiosities.obelisk.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
-
-import java.util.function.*;
 
 public class ArcanaPylonComponentBlock extends ObeliskComponentBlock {
     private static final VoxelShape SHAPE = makeShape();

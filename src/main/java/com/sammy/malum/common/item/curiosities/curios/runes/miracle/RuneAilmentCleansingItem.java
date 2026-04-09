@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.sammy.malum.core.helpers.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -27,7 +27,7 @@ public class RuneAilmentCleansingItem extends MiracleRuneCurioItem {
 
     public static void scaleDuration(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
-        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, MalumItems.RUNE_OF_AILMENT_CLEANSING.get())) {
+        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, MalumContent.Gear.RUNE_OF_AILMENT_CLEANSING.get())) {
             MobEffectInstance effect = event.getEffectInstance();
             MobEffect type = effect.getEffect().value();
             if (type.getCategory().equals(MobEffectCategory.HARMFUL)) {

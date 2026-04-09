@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.pouch;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;

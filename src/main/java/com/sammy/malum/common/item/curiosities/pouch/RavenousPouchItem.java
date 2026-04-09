@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.pouch;
 
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.*;
 
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;

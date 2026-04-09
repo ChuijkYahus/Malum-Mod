@@ -17,8 +17,8 @@ import net.minecraft.world.phys.*;
 
 import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 
-public class SoulwoodGrowthBlock extends MalumSaplingBlock {
-    public SoulwoodGrowthBlock(TreeGrower treeGrower, Properties properties) {
+public class SoulwoodSaplingBlock extends MalumSaplingBlock {
+    public SoulwoodSaplingBlock(TreeGrower treeGrower, Properties properties) {
         super(treeGrower, properties);
     }
 

@@ -2,6 +2,7 @@ package com.sammy.malum.common.worldevent;
 
 import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
@@ -9,10 +10,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-
-import static com.sammy.malum.registry.common.block.MalumBlocks.*;
 
 public class SuspiciousDeviceTriggerWorldEvent extends ActiveBlightWorldEvent {
     public SuspiciousDeviceTriggerWorldEvent() {
@@ -30,7 +28,7 @@ public class SuspiciousDeviceTriggerWorldEvent extends ActiveBlightWorldEvent {
         if (level.getBlockEntity(position) instanceof SpiritCrucibleCoreBlockEntity crucible) {
             crucible.destroyMultiblock(null, level, position);
             level.destroyBlock(position, false);
-            level.updateNeighborsAt(position, SPIRIT_CRUCIBLE.get());
+            level.updateNeighborsAt(position, MalumContent.Progression.SPIRIT_CRUCIBLE.get());
         }
         level.explode(null, null, null,
                 center.x+Easing.SINE_IN_OUT.asWeighedRandom(random, -2f, 2f),

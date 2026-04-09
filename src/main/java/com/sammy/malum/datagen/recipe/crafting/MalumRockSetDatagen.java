@@ -2,7 +2,7 @@ package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.Item;
@@ -23,63 +23,63 @@ public class MalumRockSetDatagen {
     static {
         registerSet(new MalumDatagenRockSet(
                 "tainted_rock",
-                MalumItems.TAINTED_ROCK.get(), MalumItems.POLISHED_TAINTED_ROCK.get(), MalumItems.TAINTED_ROCK_BRICKS.get(), MalumItems.TAINTED_ROCK_TILES.get(), MalumItems.TAINTED_ROCK_MOSAIC.get(),
+                MalumItemProperties.TAINTED_ROCK.get(), MalumItemProperties.POLISHED_TAINTED_ROCK.get(), MalumItemProperties.TAINTED_ROCK_BRICKS.get(), MalumItemProperties.TAINTED_ROCK_TILES.get(), MalumItemProperties.TAINTED_ROCK_MOSAIC.get(),
 
-                MalumItems.TAINTED_ROCK_SLAB.get(), MalumItems.POLISHED_TAINTED_ROCK_SLAB.get(), MalumItems.TAINTED_ROCK_BRICKS_SLAB.get(), MalumItems.TAINTED_ROCK_TILES_SLAB.get(), MalumItems.TAINTED_ROCK_MOSAIC_SLAB.get(),
+                MalumItemProperties.TAINTED_ROCK_SLAB.get(), MalumItemProperties.POLISHED_TAINTED_ROCK_SLAB.get(), MalumItemProperties.TAINTED_ROCK_BRICKS_SLAB.get(), MalumItemProperties.TAINTED_ROCK_TILES_SLAB.get(), MalumItemProperties.TAINTED_ROCK_MOSAIC_SLAB.get(),
 
-                MalumItems.TAINTED_ROCK_STAIRS.get(), MalumItems.POLISHED_TAINTED_ROCK_STAIRS.get(), MalumItems.TAINTED_ROCK_BRICKS_STAIRS.get(), MalumItems.TAINTED_ROCK_TILES_STAIRS.get(), MalumItems.TAINTED_ROCK_MOSAIC_STAIRS.get(),
+                MalumItemProperties.TAINTED_ROCK_STAIRS.get(), MalumItemProperties.POLISHED_TAINTED_ROCK_STAIRS.get(), MalumItemProperties.TAINTED_ROCK_BRICKS_STAIRS.get(), MalumItemProperties.TAINTED_ROCK_TILES_STAIRS.get(), MalumItemProperties.TAINTED_ROCK_MOSAIC_STAIRS.get(),
 
-                MalumItems.TAINTED_ROCK_WALL.get(), MalumItems.POLISHED_TAINTED_ROCK_WALL.get(), MalumItems.TAINTED_ROCK_BRICKS_WALL.get(), MalumItems.TAINTED_ROCK_TILES_WALL.get(), MalumItems.TAINTED_ROCK_MOSAIC_WALL.get(),
+                MalumItemProperties.TAINTED_ROCK_WALL.get(), MalumItemProperties.POLISHED_TAINTED_ROCK_WALL.get(), MalumItemProperties.TAINTED_ROCK_BRICKS_WALL.get(), MalumItemProperties.TAINTED_ROCK_TILES_WALL.get(), MalumItemProperties.TAINTED_ROCK_MOSAIC_WALL.get(),
 
-                MalumItems.TAINTED_ROCK_COLUMN.get(), MalumItems.TAINTED_ROCK_ALTAR.get(),
+                MalumItemProperties.TAINTED_ROCK_COLUMN.get(), MalumItemProperties.TAINTED_ROCK_ALTAR.get(),
 
-                MalumItems.CUT_TAINTED_ROCK.get(), MalumItems.CHISELED_TAINTED_ROCK.get(),
+                MalumItemProperties.CUT_TAINTED_ROCK.get(), MalumItemProperties.CHISELED_TAINTED_ROCK.get(),
 
-                MalumItems.TAINTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TAINTED_ROCK_BUTTON.get(),
+                MalumItemProperties.TAINTED_ROCK_PRESSURE_PLATE.get(), MalumItemProperties.TAINTED_ROCK_BUTTON.get(),
 
-                MalumItems.TAINTED_ROCK_ITEM_STAND.get(), MalumItems.TAINTED_ROCK_ITEM_PEDESTAL.get(),
+                MalumItemProperties.TAINTED_ROCK_ITEM_STAND.get(), MalumItemProperties.TAINTED_ROCK_ITEM_PEDESTAL.get(),
 
                 MalumTags.Items.TAINTED_ROCK, MalumTags.Items.TAINTED_ROCK_BLOCKS, MalumTags.Items.TAINTED_ROCK_STAIRS, MalumTags.Items.TAINTED_ROCK_SLABS, MalumTags.Items.TAINTED_ROCK_WALLS
         ));
 
         registerSet(new MalumDatagenRockSet(
                 "twisted_rock",
-                MalumItems.TWISTED_ROCK.get(), MalumItems.POLISHED_TWISTED_ROCK.get(), MalumItems.TWISTED_ROCK_BRICKS.get(), MalumItems.TWISTED_ROCK_TILES.get(), MalumItems.TWISTED_ROCK_MOSAIC.get(),
+                MalumItemProperties.TWISTED_ROCK.get(), MalumItemProperties.POLISHED_TWISTED_ROCK.get(), MalumItemProperties.TWISTED_ROCK_BRICKS.get(), MalumItemProperties.TWISTED_ROCK_TILES.get(), MalumItemProperties.TWISTED_ROCK_MOSAIC.get(),
 
-                MalumItems.TWISTED_ROCK_SLAB.get(), MalumItems.POLISHED_TWISTED_ROCK_SLAB.get(), MalumItems.TWISTED_ROCK_BRICKS_SLAB.get(), MalumItems.TWISTED_ROCK_TILES_SLAB.get(), MalumItems.TWISTED_ROCK_MOSAIC_SLAB.get(),
+                MalumItemProperties.TWISTED_ROCK_SLAB.get(), MalumItemProperties.POLISHED_TWISTED_ROCK_SLAB.get(), MalumItemProperties.TWISTED_ROCK_BRICKS_SLAB.get(), MalumItemProperties.TWISTED_ROCK_TILES_SLAB.get(), MalumItemProperties.TWISTED_ROCK_MOSAIC_SLAB.get(),
 
-                MalumItems.TWISTED_ROCK_STAIRS.get(), MalumItems.POLISHED_TWISTED_ROCK_STAIRS.get(), MalumItems.TWISTED_ROCK_BRICKS_STAIRS.get(), MalumItems.TWISTED_ROCK_TILES_STAIRS.get(), MalumItems.TWISTED_ROCK_MOSAIC_STAIRS.get(),
+                MalumItemProperties.TWISTED_ROCK_STAIRS.get(), MalumItemProperties.POLISHED_TWISTED_ROCK_STAIRS.get(), MalumItemProperties.TWISTED_ROCK_BRICKS_STAIRS.get(), MalumItemProperties.TWISTED_ROCK_TILES_STAIRS.get(), MalumItemProperties.TWISTED_ROCK_MOSAIC_STAIRS.get(),
 
-                MalumItems.TWISTED_ROCK_WALL.get(), MalumItems.POLISHED_TWISTED_ROCK_WALL.get(), MalumItems.TWISTED_ROCK_BRICKS_WALL.get(), MalumItems.TWISTED_ROCK_TILES_WALL.get(), MalumItems.TWISTED_ROCK_MOSAIC_WALL.get(),
+                MalumItemProperties.TWISTED_ROCK_WALL.get(), MalumItemProperties.POLISHED_TWISTED_ROCK_WALL.get(), MalumItemProperties.TWISTED_ROCK_BRICKS_WALL.get(), MalumItemProperties.TWISTED_ROCK_TILES_WALL.get(), MalumItemProperties.TWISTED_ROCK_MOSAIC_WALL.get(),
 
-                MalumItems.TWISTED_ROCK_COLUMN.get(), MalumItems.TWISTED_ROCK_ALTAR.get(),
+                MalumItemProperties.TWISTED_ROCK_COLUMN.get(), MalumItemProperties.TWISTED_ROCK_ALTAR.get(),
 
-                MalumItems.CUT_TWISTED_ROCK.get(), MalumItems.CHISELED_TWISTED_ROCK.get(),
+                MalumItemProperties.CUT_TWISTED_ROCK.get(), MalumItemProperties.CHISELED_TWISTED_ROCK.get(),
 
-                MalumItems.TWISTED_ROCK_PRESSURE_PLATE.get(), MalumItems.TWISTED_ROCK_BUTTON.get(),
+                MalumItemProperties.TWISTED_ROCK_PRESSURE_PLATE.get(), MalumItemProperties.TWISTED_ROCK_BUTTON.get(),
 
-                MalumItems.TWISTED_ROCK_ITEM_STAND.get(), MalumItems.TWISTED_ROCK_ITEM_PEDESTAL.get(),
+                MalumItemProperties.TWISTED_ROCK_ITEM_STAND.get(), MalumItemProperties.TWISTED_ROCK_ITEM_PEDESTAL.get(),
 
                 MalumTags.Items.TWISTED_ROCK, MalumTags.Items.TWISTED_ROCK_BLOCKS, MalumTags.Items.TWISTED_ROCK_STAIRS, MalumTags.Items.TWISTED_ROCK_SLABS, MalumTags.Items.TWISTED_ROCK_WALLS
         ));
 
         registerSet(new MalumDatagenRockSet(
                 "dross_stone",
-                MalumItems.DROSS_STONE.get(), MalumItems.POLISHED_DROSS_STONE.get(), MalumItems.DROSS_STONE_BRICKS.get(), MalumItems.DROSS_STONE_TILES.get(), MalumItems.DROSS_STONE_MOSAIC.get(),
+                MalumItemProperties.DROSS_STONE.get(), MalumItemProperties.POLISHED_DROSS_STONE.get(), MalumItemProperties.DROSS_STONE_BRICKS.get(), MalumItemProperties.DROSS_STONE_TILES.get(), MalumItemProperties.DROSS_STONE_MOSAIC.get(),
 
-                MalumItems.DROSS_STONE_SLAB.get(), MalumItems.POLISHED_DROSS_STONE_SLAB.get(), MalumItems.DROSS_STONE_BRICKS_SLAB.get(), MalumItems.DROSS_STONE_TILES_SLAB.get(), MalumItems.DROSS_STONE_MOSAIC_SLAB.get(),
+                MalumItemProperties.DROSS_STONE_SLAB.get(), MalumItemProperties.POLISHED_DROSS_STONE_SLAB.get(), MalumItemProperties.DROSS_STONE_BRICKS_SLAB.get(), MalumItemProperties.DROSS_STONE_TILES_SLAB.get(), MalumItemProperties.DROSS_STONE_MOSAIC_SLAB.get(),
 
-                MalumItems.DROSS_STONE_STAIRS.get(), MalumItems.POLISHED_DROSS_STONE_STAIRS.get(), MalumItems.DROSS_STONE_BRICKS_STAIRS.get(), MalumItems.DROSS_STONE_TILES_STAIRS.get(), MalumItems.DROSS_STONE_MOSAIC_STAIRS.get(),
+                MalumItemProperties.DROSS_STONE_STAIRS.get(), MalumItemProperties.POLISHED_DROSS_STONE_STAIRS.get(), MalumItemProperties.DROSS_STONE_BRICKS_STAIRS.get(), MalumItemProperties.DROSS_STONE_TILES_STAIRS.get(), MalumItemProperties.DROSS_STONE_MOSAIC_STAIRS.get(),
 
-                MalumItems.DROSS_STONE_WALL.get(), MalumItems.POLISHED_DROSS_STONE_WALL.get(), MalumItems.DROSS_STONE_BRICKS_WALL.get(), MalumItems.DROSS_STONE_TILES_WALL.get(), MalumItems.DROSS_STONE_MOSAIC_WALL.get(),
+                MalumItemProperties.DROSS_STONE_WALL.get(), MalumItemProperties.POLISHED_DROSS_STONE_WALL.get(), MalumItemProperties.DROSS_STONE_BRICKS_WALL.get(), MalumItemProperties.DROSS_STONE_TILES_WALL.get(), MalumItemProperties.DROSS_STONE_MOSAIC_WALL.get(),
 
-                MalumItems.DROSS_STONE_COLUMN.get(), MalumItems.DROSS_STONE_ALTAR.get(),
+                MalumItemProperties.DROSS_STONE_COLUMN.get(), MalumItemProperties.DROSS_STONE_ALTAR.get(),
 
-                MalumItems.CUT_DROSS_STONE.get(), MalumItems.CHISELED_DROSS_STONE.get(),
+                MalumItemProperties.CUT_DROSS_STONE.get(), MalumItemProperties.CHISELED_DROSS_STONE.get(),
 
-                MalumItems.DROSS_STONE_PRESSURE_PLATE.get(), MalumItems.DROSS_STONE_BUTTON.get(),
+                MalumItemProperties.DROSS_STONE_PRESSURE_PLATE.get(), MalumItemProperties.DROSS_STONE_BUTTON.get(),
 
-                MalumItems.DROSS_STONE_ITEM_STAND.get(), MalumItems.DROSS_STONE_ITEM_PEDESTAL.get(),
+                MalumItemProperties.DROSS_STONE_ITEM_STAND.get(), MalumItemProperties.DROSS_STONE_ITEM_PEDESTAL.get(),
 
                 MalumTags.Items.DROSS_STONE, MalumTags.Items.DROSS_STONE_BLOCKS, MalumTags.Items.DROSS_STONE_STAIRS, MalumTags.Items.DROSS_STONE_SLABS, MalumTags.Items.DROSS_STONE_WALLS
         ));

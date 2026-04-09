@@ -3,7 +3,8 @@ package com.sammy.malum.common.data.component;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.*;
 import io.netty.buffer.*;
 import net.minecraft.*;
 import net.minecraft.nbt.*;
@@ -60,7 +61,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     }
 
     public ItemStack getDefaultStack() {
-        ItemStack stack = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        ItemStack stack = MalumContent.BlockSets.SOULWOVEN_BANNER.getItem().getDefaultInstance();
         stack.set(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, this);
         return stack;
     }

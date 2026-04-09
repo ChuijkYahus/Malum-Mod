@@ -1,4 +1,4 @@
-package com.sammy.malum.registry.common.block;
+package com.sammy.malum.registry.common.content.block;
 
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.level.block.state.properties.*;

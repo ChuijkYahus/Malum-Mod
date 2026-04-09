@@ -1,9 +1,8 @@
 package com.sammy.malum.common.entity.thrown;
 
-import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -79,7 +78,7 @@ public class ThrownConcentratedGluttony extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return MalumItems.SPLASH_OF_GLUTTONY.get();
+        return MalumContent.Gear.SPLASH_OF_GLUTTONY.get();
     }
 
     @Override

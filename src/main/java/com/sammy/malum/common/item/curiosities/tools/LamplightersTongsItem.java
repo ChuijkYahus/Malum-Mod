@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.tools;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
@@ -41,7 +41,7 @@ public class LamplightersTongsItem extends Item {
         if (spiritShard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return super.useOn(context);
         }
-        var state = MalumBlocks.SPIRIT_MOTE.get().getStateForPlacement(context);
+        var state = MalumContent.Progression.SPIRIT_MOTE.get().getStateForPlacement(context);
         if (state == null || !canPlace(context, state)) {
             return super.useOn(context);
         }

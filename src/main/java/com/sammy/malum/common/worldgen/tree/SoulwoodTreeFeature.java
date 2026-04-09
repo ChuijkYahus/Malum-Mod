@@ -5,7 +5,8 @@ import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.common.worldgen.blight.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.block.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -32,7 +33,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static BlockState makeClingingBlight(BlightType blightType, Direction direction) {
-        return MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(CreepingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
+        return MalumContent.BlockSets.CLINGING_BLIGHT.get().defaultBlockState().setValue(CreepingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
     }
 
     //TODO: all of this should be a FeatureConfiguration

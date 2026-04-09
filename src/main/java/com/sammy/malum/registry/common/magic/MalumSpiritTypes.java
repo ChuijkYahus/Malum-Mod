@@ -4,7 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -64,13 +64,13 @@ public class MalumSpiritTypes {
                 .setItemColor(Color.WHITE).build();
     }
 
-    public static final SpiritHolder<SpiritArcanaType> SACRED_SPIRIT = SPIRIT_TYPES.register("sacred", () -> new SpiritArcanaType(SACRED_COLORS(), MalumItems.SACRED_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> WICKED_SPIRIT = SPIRIT_TYPES.register("wicked", () -> new SpiritArcanaType(WICKED_COLORS(), MalumItems.WICKED_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> ARCANE_SPIRIT = SPIRIT_TYPES.register("arcane", () -> new SpiritArcanaType(ARCANE_COLORS(), MalumItems.ARCANE_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> ELDRITCH_SPIRIT = SPIRIT_TYPES.register("eldritch", () -> new SpiritArcanaType(ELDRITCH_COLORS(), MalumItems.ELDRITCH_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> AERIAL_SPIRIT = SPIRIT_TYPES.register("aerial", () -> new SpiritArcanaType(AERIAL_COLORS(), MalumItems.AERIAL_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> AQUEOUS_SPIRIT = SPIRIT_TYPES.register("aqueous", () -> new SpiritArcanaType(AQUEOUS_COLORS(), MalumItems.AQUEOUS_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> EARTHEN_SPIRIT = SPIRIT_TYPES.register("earthen", () -> new SpiritArcanaType(EARTHEN_COLORS(), MalumItems.EARTHEN_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> INFERNAL_SPIRIT = SPIRIT_TYPES.register("infernal", () -> new SpiritArcanaType(INFERNAL_COLORS(), MalumItems.INFERNAL_SPIRIT));
-    public static final SpiritHolder<SpiritArcanaType> UMBRAL_SPIRIT = SPIRIT_TYPES.register("umbral", () -> new UmbralSpiritArcanaType(UMBRAL_COLORS(), MalumItems.UMBRAL_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> SACRED_SPIRIT = SPIRIT_TYPES.register("sacred", () -> new SpiritArcanaType(SACRED_COLORS(), MalumContent.Spirits.SACRED_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> WICKED_SPIRIT = SPIRIT_TYPES.register("wicked", () -> new SpiritArcanaType(WICKED_COLORS(), MalumContent.Spirits.WICKED_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> ARCANE_SPIRIT = SPIRIT_TYPES.register("arcane", () -> new SpiritArcanaType(ARCANE_COLORS(), MalumContent.Spirits.ARCANE_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> ELDRITCH_SPIRIT = SPIRIT_TYPES.register("eldritch", () -> new SpiritArcanaType(ELDRITCH_COLORS(), MalumContent.Spirits.ELDRITCH_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> AERIAL_SPIRIT = SPIRIT_TYPES.register("aerial", () -> new SpiritArcanaType(AERIAL_COLORS(), MalumContent.Spirits.AERIAL_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> AQUEOUS_SPIRIT = SPIRIT_TYPES.register("aqueous", () -> new SpiritArcanaType(AQUEOUS_COLORS(), MalumContent.Spirits.AQUEOUS_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> EARTHEN_SPIRIT = SPIRIT_TYPES.register("earthen", () -> new SpiritArcanaType(EARTHEN_COLORS(), MalumContent.Spirits.EARTHEN_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> INFERNAL_SPIRIT = SPIRIT_TYPES.register("infernal", () -> new SpiritArcanaType(INFERNAL_COLORS(), MalumContent.Spirits.INFERNAL_SPIRIT));
+    public static final SpiritHolder<SpiritArcanaType> UMBRAL_SPIRIT = SPIRIT_TYPES.register("umbral", () -> new UmbralSpiritArcanaType(UMBRAL_COLORS(), MalumContent.Spirits.UMBRAL_SPIRIT));
 }

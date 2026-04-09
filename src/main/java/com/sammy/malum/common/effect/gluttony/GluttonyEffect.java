@@ -6,9 +6,8 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
-import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.MobEffect;
@@ -93,7 +92,7 @@ public class GluttonyEffect extends MobEffect {
                 }
             }
         }
-        if (CurioHelper.hasCurioEquipped(attacker, MalumItems.RING_OF_SWARMING_ROT.get())) {
+        if (CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.RING_OF_SWARMING_ROT.get())) {
             float multiplier = 1 + random.nextFloat();
             amount = Mth.ceil(amount * multiplier);
         }

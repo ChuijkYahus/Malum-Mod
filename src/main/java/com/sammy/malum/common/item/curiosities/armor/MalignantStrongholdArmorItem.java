@@ -10,7 +10,7 @@ import team.lodestar.lodestone.registry.common.*;
 
 import java.util.List;
 
-import static com.sammy.malum.registry.common.item.MalumArmorTiers.MALIGNANT_ALLOY;
+import static com.sammy.malum.registry.common.content.item.MalumArmorTiers.MALIGNANT_ALLOY;
 
 public class MalignantStrongholdArmorItem extends MalumArmorItem {
 

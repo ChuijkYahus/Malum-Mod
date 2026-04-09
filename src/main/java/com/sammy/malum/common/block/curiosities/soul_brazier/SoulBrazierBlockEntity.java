@@ -5,8 +5,9 @@ import com.sammy.malum.common.recipe.SoulBindingRecipe;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
@@ -23,7 +24,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -239,9 +239,9 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
             return false;
         }
         var item = stack.getItem();
-        if (item.equals(MalumItems.ETHER.get())) {
+        if (item.equals(MalumItemProperties.ETHER.get())) {
             beginSoulbinding(level, BrazierState.BINDING);
-        } else if (item.equals(MalumItems.PARACAUSAL_FLAME.get())) {
+        } else if (item.equals(MalumContent.Materials.PARACAUSAL_FLAME.get())) {
             beginSoulbinding(level, BrazierState.UNBINDING);
         }
         if (isIdle()) {

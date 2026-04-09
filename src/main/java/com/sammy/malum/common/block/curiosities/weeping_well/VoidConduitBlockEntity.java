@@ -1,8 +1,9 @@
 package com.sammy.malum.common.block.curiosities.weeping_well;
 
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.content.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
@@ -17,11 +18,9 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
-import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneInWorldRecipe;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import java.util.*;
@@ -114,7 +113,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public void processItem(ServerLevel serverLevel) {
         var particleEffectType = MalumParticleEffectTypes.WEEPING_WELL_REACTS;
         var stack = eatenItems.getLast();
-        if (stack.is(MalumItems.BLIGHTED_GUNK)) {
+        if (stack.is(MalumContent.Blight.BLIGHTED_GUNK.item())) {
             eatGunk(stack);
         } else {
             spitOutItem(stack);
@@ -123,7 +122,7 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
         eatenItems.removeLast();
 
         particleEffectType.createEffect(worldPosition.getCenter()).spawn(serverLevel);
-        BlockStateHelper.updateAndNotifyState(level, worldPosition);
+        setDirty();
     }
 
     public void eatGunk(ItemStack stack) {

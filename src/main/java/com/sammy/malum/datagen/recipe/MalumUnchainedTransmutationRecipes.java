@@ -3,19 +3,24 @@ package com.sammy.malum.datagen.recipe;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 
 import java.util.*;
+import java.util.function.Supplier;
 
-import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.*;
 
 public class MalumUnchainedTransmutationRecipes {
 
-    private static final List<Pair<DeferredHolder<Block, Block>, DeferredHolder<Block, Block>>> SOULWOOD_TRANSMUTATIONS = List.of(
-            new Pair<>(RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE),
+    private static final List<Pair<BlockBlockItemHolder<Block, BlockItem>, BlockBlockItemHolder<Block, BlockItem>>> SOULWOOD_TRANSMUTATIONS = List.of(
+            new Pair<>(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE),
             new Pair<>(RUNEWOOD_SAPLING, SOULWOOD_SAPLING),
             new Pair<>(RUNEWOOD_LEAVES, SOULWOOD_LEAVES),
             new Pair<>(STRIPPED_RUNEWOOD_LOG, STRIPPED_SOULWOOD_LOG),
@@ -66,19 +71,19 @@ public class MalumUnchainedTransmutationRecipes {
         for (var transmutation : SOULWOOD_TRANSMUTATIONS) {
             var input = transmutation.getFirst();
             var output = transmutation.getSecond();
-            var id = output.getId().withPath(p -> "soulwood/" + p).withSuffix("_soulwood_transmutation");
+            var id = output.getBlockHolder().getId().withPath(p -> "soulwood/" + p).withSuffix("_soulwood_transmutation");
             new UnchainedTransmutationRecipeBuilder(input.get(), output.get())
                     .group("soulwood")
                     .save(recipeOutput, id);
         }
 
-        createUnchainedRecipeTree(recipeOutput, "dirt", Blocks.DIRT, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "dirt", Blocks.DIRT, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, MalumContent.BlockSets.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "stone", Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "stone", Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, MalumContent.BlockSets.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "basalt", Blocks.BASALT, Blocks.MAGMA_BLOCK, Blocks.NETHERRACK, Blocks.SOUL_SAND, BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "basalt", Blocks.BASALT, Blocks.MAGMA_BLOCK, Blocks.NETHERRACK, Blocks.SOUL_SAND, MalumContent.BlockSets.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "mud", Blocks.MUD, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "mud", Blocks.MUD, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, MalumContent.BlockSets.BLIGHTED_EARTH.get());
 
         createUnchainedRecipeTree(recipeOutput, "packed_mud", Blocks.PACKED_MUD, Blocks.DRIPSTONE_BLOCK, Blocks.GRANITE, Blocks.GRAVEL);
 

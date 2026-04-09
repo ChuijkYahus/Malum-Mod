@@ -1,4 +1,4 @@
-package com.sammy.malum.registry.common.block;
+package com.sammy.malum.registry.common.content.block;
 
 import com.sammy.malum.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -19,7 +19,7 @@ public class MalumWoodTypes {
             MalumBlockSoundEvents.SOULWOOD, MalumBlockSoundEvents.SOULWOOD_HANGING_SIGN,
             MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_CLOSE.get(), MalumBlockSoundEvents.SOULWOOD_FENCE_GATE_OPEN.get()));
 
-    @EventBusSubscriber(modid= MalumMod.MALUM, bus= EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MalumMod.MALUM, value = Dist.CLIENT)
     public static class ClientOnly {
         @SubscribeEvent
         public static void addWoodTypes(FMLClientSetupEvent event) {

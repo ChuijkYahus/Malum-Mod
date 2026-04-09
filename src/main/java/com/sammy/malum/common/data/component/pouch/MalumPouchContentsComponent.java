@@ -1,17 +1,11 @@
 package com.sammy.malum.common.data.component.pouch;
 
 import com.google.common.collect.*;
-import com.mojang.serialization.*;
-import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
 
-import net.minecraft.network.*;
-import net.minecraft.network.codec.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import org.apache.commons.lang3.math.*;
 

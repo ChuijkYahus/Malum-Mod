@@ -5,13 +5,14 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
-import static com.sammy.malum.registry.common.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.content.block.MalumBlocks.*;
 
 public class MalumBlockColors {
 
@@ -27,7 +28,7 @@ public class MalumBlockColors {
                 }
             }
             return -1;
-        }, ETHER.get(), IRIDESCENT_ETHER.get());
+        }, MalumContent.BlockSets.ETHER.get(), MalumContent.BlockSets.IRIDESCENT_ETHER.get());
 
         var colorProperty = MalumLeavesBlock.COLOR;
         event.register((s, l, p, c) -> {
@@ -74,6 +75,6 @@ public class MalumBlockColors {
             int green = color.getGreen();
             int blue = color.getBlue();
             return red << 16 | green << 8 | blue;
-        }, SPIRIT_MOTE.get());
+        }, MalumContent.Progression.SPIRIT_MOTE.get());
     }
 }

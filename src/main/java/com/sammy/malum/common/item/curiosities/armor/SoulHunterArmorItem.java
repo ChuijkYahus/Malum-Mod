@@ -11,7 +11,7 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
 import java.util.List;
 
-import static com.sammy.malum.registry.common.item.MalumArmorTiers.SOUL_HUNTER;
+import static com.sammy.malum.registry.common.content.item.MalumArmorTiers.SOUL_HUNTER;
 
 public class SoulHunterArmorItem extends MalumArmorItem {
     public SoulHunterArmorItem(ArmorItem.Type slot, Properties builder) {

@@ -1,7 +1,6 @@
 package com.sammy.malum.common.worldgen.ore;
 
 import com.sammy.malum.common.worldgen.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;

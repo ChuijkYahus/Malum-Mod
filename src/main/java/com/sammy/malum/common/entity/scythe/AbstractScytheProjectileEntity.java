@@ -1,7 +1,7 @@
 package com.sammy.malum.common.entity.scythe;
 
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
@@ -136,7 +136,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
 
     @Override
     protected Item getDefaultItem() {
-        return MalumItems.CRUDE_SCYTHE.get();
+        return MalumContent.Gear.CRUDE_SCYTHE.get();
     }
 
     @Override

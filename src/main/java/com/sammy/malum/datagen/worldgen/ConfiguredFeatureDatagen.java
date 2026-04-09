@@ -4,7 +4,8 @@ import com.sammy.malum.common.worldgen.ore.*;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.LayeredOreFeatureDecorator;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.OreLayer;
 import com.sammy.malum.common.worldgen.tree.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.content.block.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import com.sammy.malum.registry.common.worldgen.MalumFeatures.ConfiguredFeatures;
 import net.minecraft.core.registries.Registries;
@@ -32,15 +33,15 @@ public class ConfiguredFeatureDatagen {
 
     public static final List<OreLayer> SOULSTONE_ORE_LAYERS = List.of(
             new OreLayer(List.of(
-                    target(REPLACE_STONE, simple(MalumBlocks.SOULSTONE_ORE.get())),
-                    target(REPLACE_DEEPSLATE, simple(MalumBlocks.DEEPSLATE_SOULSTONE_ORE.get()))
+                    target(REPLACE_STONE, simple(MalumContent.Materials.SOULSTONE_ORE.get())),
+                    target(REPLACE_DEEPSLATE, simple(MalumContent.Materials.DEEPSLATE_SOULSTONE_ORE.get()))
             ), 32, 16, 0f, true),
             new OreLayer(target(REPLACE_STONES, simple(Blocks.TUFF)),
                     40, 24, 0.1f, false)
     );
 
     public static final List<OreLayer> CTHONIC_GOLD_ORE_LAYERS = List.of(
-            new OreLayer(target(REPLACE_STONES, simple(MalumBlocks.CTHONIC_GOLD_ORE.get())
+            new OreLayer(target(REPLACE_STONES, simple(MalumContent.Materials.CTHONIC_GOLD_ORE.get())
             ), 4, 16, 0f, true),
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(Blocks.GOLD_ORE)),
@@ -48,16 +49,16 @@ public class ConfiguredFeatureDatagen {
             ), 12, 24, 0.1f, false)
     );
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
-            OreConfiguration.target(REPLACE_STONE, MalumBlocks.BRILLIANT_STONE.get().defaultBlockState()),
-            OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
+            OreConfiguration.target(REPLACE_STONE, MalumContent.Materials.BRILLIANT_STONE.get().defaultBlockState()),
+            OreConfiguration.target(REPLACE_DEEPSLATE, MalumContent.Materials.BRILLIANT_DEEPSLATE.get().defaultBlockState()));
 
     public static final List<OreConfiguration.TargetBlockState> NATURAL_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(REPLACE_STONE, MalumBlocks.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
-            OreConfiguration.target(REPLACE_DEEPSLATE, MalumBlocks.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
+            OreConfiguration.target(REPLACE_STONE, MalumContent.Materials.NATURAL_QUARTZ_ORE.get().defaultBlockState()),
+            OreConfiguration.target(REPLACE_DEEPSLATE, MalumContent.Materials.DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
 
 
     public static final List<OreConfiguration.TargetBlockState> BLAZING_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), MalumBlocks.BLAZING_QUARTZ_ORE.get().defaultBlockState()));
+            OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), MalumContent.Materials.BLAZING_QUARTZ_ORE.get().defaultBlockState()));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         context.register(ConfiguredFeatures.SOULSTONE_ORE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(),
@@ -65,7 +66,7 @@ public class ConfiguredFeatureDatagen {
         ));
         context.register(ConfiguredFeatures.CTHONIC_GOLD_ORE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(),
                 new LayeredOreConfiguration(CTHONIC_GOLD_ORE_LAYERS, Optional.of(
-                        new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(MalumBlocks.CTHONIC_GOLD_CLUSTER.get())), 3, 6))
+                        new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(MalumContent.Materials.CTHONIC_GOLD_FRAGMENT.get())), 3, 6))
                 )
         ));
 
@@ -97,10 +98,10 @@ public class ConfiguredFeatureDatagen {
         context.register(ConfiguredFeatures.QUARTZ_GEODE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
                 new GeodeBlockSettings(
                         simple(Blocks.AIR),
-                        simple(MalumBlocks.NATURAL_QUARTZ_ORE.get()),
-                        simple(MalumBlocks.NATURAL_QUARTZ_ORE.get()),
+                        simple(MalumContent.Materials.NATURAL_QUARTZ_ORE.get()),
+                        simple(MalumContent.Materials.NATURAL_QUARTZ_ORE.get()),
                         simple(Blocks.TUFF), simple(Blocks.SMOOTH_BASALT),
-                        List.of(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
+                        List.of(MalumContent.Materials.NATURAL_QUARTZ.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
                 new GeodeLayerSettings(1D, 1.2D, 2.2D, 2.8D),
                 new GeodeCrackSettings(1f, 4.0D, 3),
                 0.85D,
@@ -119,11 +120,11 @@ public class ConfiguredFeatureDatagen {
         context.register(ConfiguredFeatures.DEEPSLATE_QUARTZ_GEODE, new ConfiguredFeature<>(Feature.GEODE, new GeodeConfiguration(
                 new GeodeBlockSettings(
                         simple(Blocks.AIR),
-                        simple(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get()),
-                        simple(MalumBlocks.DEEPSLATE_QUARTZ_ORE.get()),
+                        simple(MalumContent.Materials.DEEPSLATE_QUARTZ_ORE.get()),
+                        simple(MalumContent.Materials.DEEPSLATE_QUARTZ_ORE.get()),
                         simple(Blocks.CALCITE),
                         simple(Blocks.SMOOTH_BASALT),
-                        List.of(MalumBlocks.NATURAL_QUARTZ_CLUSTER.get().defaultBlockState()),
+                        List.of(MalumContent.Materials.NATURAL_QUARTZ.get().defaultBlockState()),
                         BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
                 new GeodeLayerSettings(1D, 1.4D, 2.6D, 4.2D),
                 new GeodeCrackSettings(1f, 4.0D, 3),

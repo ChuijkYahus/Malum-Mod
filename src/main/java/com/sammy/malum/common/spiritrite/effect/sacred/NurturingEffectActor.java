@@ -1,6 +1,5 @@
 package com.sammy.malum.common.spiritrite.effect.sacred;
 
-import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
@@ -9,7 +8,6 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.allay.*;
 import net.minecraft.world.level.block.*;
 
-import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SACRED_SPIRIT;
 import static net.minecraft.world.entity.ai.goal.EatBlockGoal.IS_TALL_GRASS;
 
 public interface NurturingEffectActor<T extends Mob> {

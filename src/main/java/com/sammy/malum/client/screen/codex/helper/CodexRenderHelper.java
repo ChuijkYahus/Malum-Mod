@@ -2,24 +2,19 @@ package com.sammy.malum.client.screen.codex.helper;
 
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
-import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 import org.joml.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.awt.*;
-import java.lang.Math;
 import java.util.concurrent.atomic.*;
 import java.util.function.*;
 
