@@ -2,17 +2,12 @@ package com.sammy.malum.common.item.curiosities.curios.runes.miracle;
 
 import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
-import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
-
-import java.util.function.Consumer;
 
 public class RuneReinforcementItem extends MiracleRuneCurioItem {
 

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.flora.wood;
 
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
@@ -57,13 +57,13 @@ public class MalumHangingLeavesBlock extends Block implements SimpleWaterloggedB
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (stack.getItem().equals(MalumItems.INFERNAL_SPIRIT.get())) {
-            level.setBlockAndUpdate(pos, state.setValue(COLOR, (state.getValue(COLOR) + 1) % 5));
-            player.swing(handIn);
-            player.playSound(SoundEvents.BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);
-            return ItemInteractionResult.SUCCESS;
+        if (stack.is(MalumContent.Spirits.INFERNAL_SPIRIT)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        return super.useItemOn(stack, state, level, pos, player, handIn, hit);
+        level.setBlockAndUpdate(pos, state.setValue(COLOR, (state.getValue(COLOR) + 1) % 5));
+        player.swing(handIn);
+        player.playSound(SoundEvents.BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override

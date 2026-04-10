@@ -2,21 +2,15 @@ package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
-import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.*;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.util.*;
 import java.util.function.Consumer;
-
-import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
-import static com.sammy.malum.registry.common.item.MalumItems.ARCANE_CHARCOAL;
-import static com.sammy.malum.registry.common.item.MalumItems.BLOCK_OF_ARCANE_CHARCOAL;
 
 public class CraftingPage extends BookPage {
 

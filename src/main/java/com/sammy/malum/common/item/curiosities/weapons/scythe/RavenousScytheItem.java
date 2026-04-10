@@ -38,8 +38,8 @@ public class RavenousScytheItem extends MagicScytheItem {
         super.outgoingDamageEvent(event, attacker, target, stack);
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
-                if (source.is(MalumTags.DamageTypeTags.IS_SCYTHE_MELEE)) {
+            if (source.is(MalumTags.DamageTypes.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+                if (source.is(MalumTags.DamageTypes.IS_SCYTHE_MELEE)) {
                     if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
                         return;
                     }

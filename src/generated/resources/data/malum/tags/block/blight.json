@@ -3,9 +3,9 @@
     "malum:columnar_blight",
     "malum:blighted_earth",
     "malum:blight",
+    "malum:clinging_blight",
     "malum:blighted_growth",
     "malum:blightpearl",
-    "malum:blightroot",
-    "malum:clinging_blight"
+    "malum:blightroot"
   ]
 }

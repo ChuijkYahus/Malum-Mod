@@ -9,7 +9,6 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
@@ -19,7 +18,7 @@ import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 public class TotemBaseRenderer implements BlockEntityRenderer<TotemBaseBlockEntity> {
 
-    public static final HeldItemTracker STAFF_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_TOTEMIC_TOOL));
+    public static final HeldItemTracker STAFF_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.Items.IS_TOTEMIC_TOOL));
 
     public TotemBaseRenderer(BlockEntityRendererProvider.Context context) {
     }

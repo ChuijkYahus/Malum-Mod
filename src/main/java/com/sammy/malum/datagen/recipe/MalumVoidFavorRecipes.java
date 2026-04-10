@@ -3,52 +3,60 @@ package com.sammy.malum.datagen.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Materials;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
+
+import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
+import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
+import static net.minecraft.world.item.Items.*;
 
 
 public class MalumVoidFavorRecipes {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
-        new VoidFavorRecipeBuilder(Ingredient.of(MalumItems.ENCYCLOPEDIA_ARCANA.get()), MalumItems.ENCYCLOPEDIA_ESOTERICA.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(ENCYCLOPEDIA_ARCANA), ENCYCLOPEDIA_ESOTERICA, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Ingredient.of(MalumTags.ItemTags.VOID_SOULSTONE_CONVERSION), MalumItems.RAW_SOULSTONE.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(MalumTags.Items.VOID_SOULSTONE_CONVERSION), RAW_SOULSTONE, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON), MalumItems.ANOMALOUS_DESIGN.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON), ANOMALOUS_DESIGN, 1)
                 .save(recipeOutput);
-        new VoidFavorRecipeBuilder(Ingredient.of(MalumItems.COMPLETE_DESIGN.get()), MalumItems.FUSED_CONSCIOUSNESS.get(), 1)
-                .save(recipeOutput);
-
-        new VoidFavorRecipeBuilder(MalumItems.REFINED_SOULSTONE.get(), MalumItems.NULL_SLATE.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(COMPLETE_DESIGN), FUSED_CONSCIOUSNESS, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(MalumItems.HEX_ASH.get(), MalumItems.VOID_SALTS.get(), 1)
+        new VoidFavorRecipeBuilder(REFINED_SOULSTONE, NULL_SLATE, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(MalumItems.REFINED_BRILLIANCE.get(), MalumItems.MNEMONIC_FRAGMENT.get(), 1)
+        new VoidFavorRecipeBuilder(HEX_ASH, VOID_SALTS, 1)
                 .save(recipeOutput);
-        new VoidFavorRecipeBuilder(MalumItems.RAW_BRILLIANCE.get(), MalumItems.MNEMONIC_FRAGMENT.get(), 2)
+
+        new VoidFavorRecipeBuilder(REFINED_BRILLIANCE, MNEMONIC_FRAGMENT, 1)
+                .save(recipeOutput);
+        new VoidFavorRecipeBuilder(RAW_BRILLIANCE, MNEMONIC_FRAGMENT, 2)
                 .save(recipeOutput, MalumMod.malumPath("mnemonic_fragment_from_cluster"));
 
-        new VoidFavorRecipeBuilder(Items.BLAZE_POWDER, MalumItems.AURIC_EMBERS.get(), 1)
+        new VoidFavorRecipeBuilder(BLAZE_POWDER, AURIC_EMBERS, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(MalumItems.CTHONIC_GOLD.get(), MalumItems.MALIGNANT_LEAD.get(), 1)
+        new VoidFavorRecipeBuilder(CTHONIC_GOLD, MALIGNANT_LEAD, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Ingredient.of(MalumItems.THE_DEVICE.get()), MalumItems.THE_VESSEL.get(), 1)
+        new VoidFavorRecipeBuilder(Ingredient.of(THE_DEVICE), THE_VESSEL, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(Items.BLACK_WOOL, MalumItems.TOPHAT.get(), 1)
+        new VoidFavorRecipeBuilder(BLACK_WOOL, TOPHAT, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(MalumItems.ARCANE_ELEGY.get(), MalumItems.AESTHETICA.get(), 1)
+        new VoidFavorRecipeBuilder(ARCANE_ELEGY, AESTHETICA, 1)
                 .save(recipeOutput);
     }
 }

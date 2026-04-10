@@ -50,9 +50,10 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
 
         addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
         addPages("arcane_wonders",
-                "Having carved open a few samples of raw Soulstone, a clear pattern emerges. Both Runewood and Soulstone are two instances of magic influence spanning the world that appear to have been sprung into existence through the same principle.",
-                "The existence of Runewood, regardless if it is either a maxim of nature or a forgotten piece of human wisdom, is clearly founded upon the biology of Oak. In opposition to such a tightly carved ancestry, each different batch of Soulstone I've thus far gathered has had a completely different metal basis.",
-                "When cut or crushed, differing amounts of copper, iron and gold bits can be spotted inside the inner strata of Soulstone which suggests that Soulstone is the product of " + italic("any") + " metal deposit being imbued with disorderly arcana.");
+                "After having carved open a few samples of raw Soulstone, I've been able to notice signs of a pattern. Both Runewood and Soulstone appear to be two instances of magic influence spanning the world, brought into existence through the same exact principle.",
+                "The existence of Runewood is closely intertwined with Oak. That is to say, the biology, formation and reality of Runewood cannot take precedence before Oak specifically. Soulstone on the other hand, in opposition to such a tightly carved ancestry appears to be able to take shape through" + italic("any") +  "metal base.",
+                "When cut or crushed, differing amounts of copper, iron and gold bits can be spotted inside the inner layers of Soulstone strata. Some samples show signs of exclusively iron, whereas others indicate a mixed balance- though apart from internal makeup, I've not been able to identify any other differing influences the various metals might enable.",
+                "For all of recorded history, humanity's usage of thaumaturgy has been nothing short of commonplace. And yet, no known archive documents either of these clearly arcana-driven features of the overworld. Are they a maxim of nature, or a forgotten piece of human wisdom?");
 
         addSimpleEntryHeader("soulstone", "Soulstone", "Out of phase");
         addPages("soulstone",

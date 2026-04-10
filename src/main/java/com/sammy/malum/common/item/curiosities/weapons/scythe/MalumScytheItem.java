@@ -4,8 +4,8 @@ import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
-import com.sammy.malum.registry.common.item.*;
 
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
@@ -122,15 +122,15 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     }
 
     public static boolean canSweep(LivingEntity attacker) {
-        return !isEnhanced(attacker) && !CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE.get());
+        return !isEnhanced(attacker) && !CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.NECKLACE_OF_THE_HIDDEN_BLADE.get());
     }
 
     public static boolean isEnhanced(LivingEntity attacker) {
-        return CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_NARROW_EDGE.get());
+        return CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.NECKLACE_OF_THE_NARROW_EDGE.get());
     }
 
     public static DamageSource replaceDamageSource(Player player, DamageSource source) {
-        if (player.getMainHandItem().is(MalumTags.ItemTags.SCYTHES)) {
+        if (player.getMainHandItem().is(MalumTags.Items.SCYTHES)) {
             return DamageTypeHelper.create(player.level(), MalumDamageTypes.SCYTHE_MELEE, player);
         }
         return source;

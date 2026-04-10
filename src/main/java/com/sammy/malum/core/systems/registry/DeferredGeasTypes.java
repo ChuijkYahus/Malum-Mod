@@ -1,7 +1,6 @@
 package com.sammy.malum.core.systems.registry;
 
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;

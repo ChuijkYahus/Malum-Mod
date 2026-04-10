@@ -7,7 +7,6 @@ import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class SpiritRiteTypeBuilder {
 

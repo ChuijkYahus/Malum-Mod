@@ -10,12 +10,10 @@ import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
@@ -40,7 +38,7 @@ public class ReaperGeas extends GeasEffect {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
             var heldItem = attacker.getMainHandItem();
-            if (source.is(DamageTypes.PLAYER_ATTACK) || source.is(MalumDamageTypes.TYRVING)) {
+            if (source.is(net.minecraft.world.damagesource.DamageTypes.PLAYER_ATTACK) || source.is(MalumDamageTypes.TYRVING)) {
                 if (!heldItem.isEmpty()) {
                     event.setNewDamage(event.getNewDamage() * 0.1f);
                     if (heldItem.isDamageableItem()) {
@@ -49,7 +47,7 @@ public class ReaperGeas extends GeasEffect {
                 }
                 return;
             }
-            if (source.is(MalumTags.DamageTypeTags.TRIGGERS_SCYTHE_COMBO)) {
+            if (source.is(MalumTags.DamageTypes.TRIGGERS_SCYTHE_COMBO)) {
                 MalumScytheItem.ScytheDamage damage = MalumScytheItem.getScytheDamage(source, attacker);
                 float physicalDamage = damage.physicalDamage();
                 float magicDamage = damage.magicDamage();

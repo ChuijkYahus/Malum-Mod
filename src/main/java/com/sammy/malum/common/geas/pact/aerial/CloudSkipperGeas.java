@@ -9,7 +9,6 @@ import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.tags.*;
-import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;

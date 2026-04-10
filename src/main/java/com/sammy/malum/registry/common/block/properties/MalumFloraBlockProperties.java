@@ -2,20 +2,10 @@ package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
-import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.neoforge.common.Tags;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHTED_PLANTS;
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.HEAT_SOURCES;
-import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
-import static net.minecraft.tags.BlockTags.REPLACEABLE_BY_TREES;
 import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;
 
 public class MalumFloraBlockProperties {
@@ -29,7 +19,7 @@ public class MalumFloraBlockProperties {
                 .dynamicShape()
                 .randomTicks()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
-                .addTag(MalumTags.BlockTags.EBONY_PLANTABLE_ON)
+                .addTag(MalumTags.Blocks.EBONY_PLANTABLE_ON)
                 .sound(MalumBlockSoundEvents.EBONY_SAPLING);
     }
 
@@ -41,7 +31,7 @@ public class MalumFloraBlockProperties {
                 .setCutoutRenderType()
                 .dynamicShape()
                 .randomTicks()
-                .addTag(MalumTags.BlockTags.EBONY_PLANTABLE_ON)
+                .addTag(MalumTags.Blocks.EBONY_PLANTABLE_ON)
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .sound(MalumBlockSoundEvents.EBONY);
     }

@@ -1,21 +1,23 @@
 package com.sammy.malum.common.item.banner;
 
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.*;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
+import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
 
 import java.util.*;
 
 import static net.minecraft.world.item.CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
 
 public class SoulwovenBannerBlockItem extends BlockItem {
-    public SoulwovenBannerBlockItem(Properties properties) {
-        super(MalumBlocks.SOULWOVEN_BANNER.get(), properties.component(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
+    public SoulwovenBannerBlockItem(Block block, LodestoneItemProperties properties) {
+        super(block, properties.component(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, SoulwovenBannerPatternDataComponent.DEFAULT));
     }
 
     @Override
@@ -33,7 +35,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
         if (event.getParentEntries().contains(source)) {
             var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
             patterns.remove(SoulwovenBannerPatternDataComponent.DEFAULT);
@@ -56,7 +58,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
-        var source = MalumItems.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
         ItemStack stack = pattern.getDefaultStack();
         if (!event.getParentEntries().contains(stack)) {
             if (before) {

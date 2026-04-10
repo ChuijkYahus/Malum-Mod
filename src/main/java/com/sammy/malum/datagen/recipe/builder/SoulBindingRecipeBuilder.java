@@ -12,6 +12,7 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.*;
 import team.lodestar.lodestone.recipe.builder.*;
 
@@ -37,7 +38,7 @@ public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBind
         this(new SizedIngredient(input, inputCount), geas);
     }
 
-    public SoulBindingRecipeBuilder(Item input, int inputCount, Holder<GeasEffectType> geas) {
+    public SoulBindingRecipeBuilder(ItemLike input, int inputCount, Holder<GeasEffectType> geas) {
         this(SizedIngredient.of(input, inputCount), geas);
     }
 
@@ -46,7 +47,7 @@ public class SoulBindingRecipeBuilder implements LodestoneRecipeBuilder<SoulBind
         return this;
     }
 
-    public SoulBindingRecipeBuilder addExtraItem(Item input, int amount) {
+    public SoulBindingRecipeBuilder addExtraItem(ItemLike input, int amount) {
         extraIngredients.add(SizedIngredient.of(input, amount));
         return this;
     }

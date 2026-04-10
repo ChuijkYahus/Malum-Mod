@@ -41,7 +41,7 @@ public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> impl
     protected final String langKey;
     protected static final Color COLOR = new Color(170, 15, 1);
 
-    public static final HeldItemTracker CLAW_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_REDSTONE_TOOL));
+    public static final HeldItemTracker CLAW_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.Items.IS_REDSTONE_TOOL));
 
     public SpiritDiodeRenderer(BlockEntityRendererProvider.Context context, ResourceLocation tokenTexture, String langKey) {
         this.output = RenderTypeToken.createToken(tokenTexture);

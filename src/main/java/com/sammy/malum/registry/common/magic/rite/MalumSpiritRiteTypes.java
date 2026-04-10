@@ -9,8 +9,6 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-import java.util.List;
-
 import static com.sammy.malum.core.systems.rite.SpiritRiteTypeBuilder.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 

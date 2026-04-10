@@ -3,7 +3,7 @@ package com.sammy.malum.common.worldgen.tree;
 import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -124,7 +124,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         makeLeafBlob(config, filler, mutable.set(pos).move(Direction.UP, trunkHeight-1));
 
         for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
-            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumBlocks.SAPPY_RUNEWOOD_LOG.get().defaultBlockState())).build());
+            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumContent.BlockSets.RUNEWOOD_SET.getSappyLog().getDefaultState())).build());
         }
 
         filler.fill(level);

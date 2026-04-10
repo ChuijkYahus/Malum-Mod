@@ -31,7 +31,7 @@ public class MalignantConversionHandler {
             return;
         }
         var source = event.getSource();
-        if (source.is(MalumTags.DamageTypeTags.BYPASSES_MALIGNANT_AEGIS)) {
+        if (source.is(MalumTags.DamageTypes.BYPASSES_MALIGNANT_AEGIS)) {
             return;
         }
         if (!(event.getOriginalAmount() >= 2f)) {

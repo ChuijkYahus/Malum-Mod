@@ -7,6 +7,7 @@ import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.resources.*;
@@ -18,7 +19,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.*;
 import org.apache.logging.log4j.*;
 
-import static com.sammy.malum.registry.common.MalumEntityDataSerializers.ENTITY_DATA_SERIALIZERS;
+import static com.sammy.malum.registry.common.entity.MalumEntityDataSerializers.ENTITY_DATA_SERIALIZERS;
 import static com.sammy.malum.registry.common.MalumParticles.*;
 import static com.sammy.malum.registry.common.MalumAttachmentTypes.ATTACHMENT_TYPES;
 import static com.sammy.malum.registry.common.MalumAttributes.*;
@@ -27,15 +28,11 @@ import static com.sammy.malum.registry.common.MalumMobEffects.*;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.*;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteEffectTypes.*;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.*;
-import static com.sammy.malum.registry.common.sound.MalumSoundEvents.*;
 import static com.sammy.malum.registry.common.enchantment.ModEnchantmentComponents.ENCHANTMENT_COMPONENTS;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumWorldEventTypes.WORLD_EVENT_TYPES;
 import static com.sammy.malum.registry.common.block.MalumBlockEntities.*;
-import static com.sammy.malum.registry.common.block.MalumBlocks.*;
-import static com.sammy.malum.registry.common.entity.MalumEntityTypes.*;
 import static com.sammy.malum.registry.common.item.MalumDataComponents.*;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
 import static com.sammy.malum.registry.common.MalumCreativeTabs.*;
 import static com.sammy.malum.registry.common.recipe.MalumRecipeSerializers.*;
 import static com.sammy.malum.registry.common.recipe.MalumRecipeTypes.*;
@@ -64,12 +61,11 @@ public class MalumMod {
 
 
         //Blocks
-        BLOCKS.register(modEventBus);
-        BLOCK_ENTITY_TYPES.register(modEventBus);
-        CONTAINERS.register(modEventBus);
 
         //Items
-        ITEMS.register(modEventBus);
+        MalumContent.register(modEventBus);
+        BLOCK_ENTITY_TYPES.register(modEventBus);
+        CONTAINERS.register(modEventBus);
         COMPONENTS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
         ENCHANTMENT_COMPONENTS.register(modEventBus);

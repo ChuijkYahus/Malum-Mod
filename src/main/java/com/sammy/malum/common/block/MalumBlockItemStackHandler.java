@@ -12,13 +12,10 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
-import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import java.util.Collection;
 import java.util.function.*;
@@ -62,7 +59,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-        if (stack.is(MalumTags.ItemTags.SPIRITS)) {
+        if (stack.is(MalumTags.Items.SPIRITS)) {
             for (int i = 0; i < getSlots(); i++) {
                 if (i != slot) {
                     ItemStack stackInSlot = getStackInSlot(i);

@@ -1,9 +1,7 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.*;
-import com.sammy.malum.core.helpers.ComponentHelper;
 import com.sammy.malum.registry.common.MalumAttributes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

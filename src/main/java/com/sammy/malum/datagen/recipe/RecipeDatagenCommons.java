@@ -29,43 +29,43 @@ import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 
 public class RecipeDatagenCommons {
 
-    protected static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Item result, float experience) {
+    public static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, ItemLike result, float experience) {
         smeltAndBlast(recipeOutput, recipeName, ingredient, category, condition, result, 1, experience);
     }
 
-    protected static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Item result, int resultCount, float experience) {
+    public static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, ItemLike result, int resultCount, float experience) {
         smelting(recipeOutput, recipeName, ingredient, category, condition, result, resultCount, experience, 200);
         blasting(recipeOutput, recipeName, ingredient, category, condition, result, resultCount, experience, 100);
     }
 
-    protected static void smelting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Item result, int resultCount, float experience, int time) {
+    public static void smelting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, ItemLike result, int resultCount, float experience, int time) {
         SimpleCookingRecipeBuilder.smelting(ingredient, category, new ItemStack(result, resultCount), experience, time)
                 .unlockedBy(condition.getFirst(), condition.getSecond())
                 .save(recipeOutput, recipeName.withSuffix("_smelting"));
     }
 
-    protected static void blasting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Item result, int resultCount, float experience, int time) {
+    public static void blasting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, ItemLike result, int resultCount, float experience, int time) {
         SimpleCookingRecipeBuilder.blasting(ingredient, category, new ItemStack(result, resultCount), experience, time)
                 .unlockedBy(condition.getFirst(), condition.getSecond())
                 .save(recipeOutput, recipeName.withSuffix("_blasting"));
     }
 
-    protected static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, float experience, int time) {
+    public static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, float experience, int time) {
         smeltAndBlast(recipeOutput, recipeName, ingredient, category, condition, result, 1, experience);
     }
 
-    protected static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience) {
+    public static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience) {
         smelting(recipeOutput, recipeName, ingredient, category, condition, result, resultCount, experience, 200);
         blasting(recipeOutput, recipeName, ingredient, category, condition, result, resultCount, experience, 100);
     }
 
-    protected static void smelting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience, int time) {
+    public static void smelting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience, int time) {
         IngredientBasedCookingRecipeBuilder.smelting(ingredient, category, result, resultCount, experience, time)
                 .unlockedBy(condition.getFirst(), condition.getSecond())
                 .save(recipeOutput, recipeName.withSuffix("_smelting"));
     }
 
-    protected static void blasting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience, int time) {
+    public static void blasting(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, Ingredient result, int resultCount, float experience, int time) {
         IngredientBasedCookingRecipeBuilder.blasting(ingredient, category, result, resultCount, experience, time)
                 .unlockedBy(condition.getFirst(), condition.getSecond())
                 .save(recipeOutput, recipeName.withSuffix("_blasting"));
@@ -92,29 +92,27 @@ public class RecipeDatagenCommons {
                 .createCriterion(new InventoryChangeTrigger.TriggerInstance(Optional.empty(), InventoryChangeTrigger.TriggerInstance.Slots.ANY, List.of(predicates)));
     }
 
-    protected static void ingotNuggetExchange(RecipeOutput consumer, Supplier<? extends Item> nuggetForm, Supplier<? extends Item> ingotForm) {
+    public static void ingotNuggetExchange(RecipeOutput consumer, ItemLike nuggetForm, ItemLike ingotForm) {
         compacting(consumer, nuggetForm, ingotForm, "nugget");
     }
 
-    protected static void blockIngotExchange(RecipeOutput consumer, Supplier<? extends Item> itemForm, Supplier<? extends Item> blockForm) {
+    public static void blockIngotExchange(RecipeOutput consumer, ItemLike itemForm, ItemLike blockForm) {
         compacting(consumer, itemForm, blockForm, "block");
     }
 
-    protected static void compacting(RecipeOutput consumer, Supplier<? extends Item> smallForm, Supplier<? extends Item> bigForm, String type) {
-        var small = smallForm.get();
-        var big = bigForm.get();
-        String blockName = BuiltInRegistries.ITEM.getKey(big).getPath();
-        String itemName = BuiltInRegistries.ITEM.getKey(small).getPath();
-        shaped(RecipeCategory.MISC, big)
-                .define('#', small)
+    public static void compacting(RecipeOutput consumer, ItemLike smallForm, ItemLike bigForm, String type) {
+        String blockName = BuiltInRegistries.ITEM.getKey(bigForm.asItem()).getPath();
+        String itemName = BuiltInRegistries.ITEM.getKey(smallForm.asItem()).getPath();
+        shaped(RecipeCategory.MISC, bigForm)
+                .define('#', smallForm)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + itemName, has(small))
+                .unlockedBy("has_" + itemName, has(smallForm))
                 .save(consumer, malumPath(blockName));
-        shapeless(RecipeCategory.MISC, small, 9)
-                .requires(big)
-                .unlockedBy("has_" + itemName, has(small))
+        shapeless(RecipeCategory.MISC, smallForm, 9)
+                .requires(bigForm)
+                .unlockedBy("has_" + itemName, has(smallForm))
                 .save(consumer, malumPath(itemName + "_from_" + type));
     }
 }

@@ -1,9 +1,5 @@
 package com.sammy.malum.registry.common;
 
-import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
-import net.minecraft.resources.*;
-
 import static com.sammy.malum.MalumMod.malumPath;
 
 public class MalumRegistryAliases {
@@ -89,19 +85,19 @@ public class MalumRegistryAliases {
     public static void addBlockAndItemAlias(String from, String to) {
         var fromId = malumPath(from);
         var toId = malumPath(to);
-        MalumBlocks.BLOCKS.addAlias(fromId, toId);
-        MalumItems.ITEMS.addAlias(fromId, toId);
+        MalumContent.BLOCKS.addAlias(fromId, toId);
+        MalumContent.ITEMS.addAlias(fromId, toId);
     }
 
     public static void addItemAlias(String from, String to) {
         var fromId = malumPath(from);
         var toId = malumPath(to);
-        MalumItems.ITEMS.addAlias(fromId, toId);
+        MalumContent.ITEMS.addAlias(fromId, toId);
     }
 
     public static void addBlockAlias(String from, String to) {
         var fromId = malumPath(from);
         var toId = malumPath(to);
-        MalumBlocks.BLOCKS.addAlias(fromId, toId);
+        MalumContent.BLOCKS.addAlias(fromId, toId);
     }
 }

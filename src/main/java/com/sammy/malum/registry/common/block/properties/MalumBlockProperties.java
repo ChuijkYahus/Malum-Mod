@@ -12,9 +12,7 @@ import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.Tags;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
-import java.awt.*;
-
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.*;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.COPPER_BLOCK;
 
@@ -161,11 +159,6 @@ public class MalumBlockProperties {
                 .needsPickaxe();
     }
 
-    public static final Color RUNEWOOD_LEAVES_YELLOW = new Color(251, 193, 76);
-    public static final Color RUNEWOOD_LEAVES_ORANGE = new Color(217, 110, 23);
-    public static final Color AZURE_RUNEWOOD_LEAVES_CYAN = new Color(176, 234, 255);
-    public static final Color AZURE_RUNEWOOD_LEAVES_BLUE = new Color(64, 95, 157);
-
     public static LodestoneBlockProperties RUNEWOOD() {
         return new LodestoneBlockProperties()
                 .strength(1.75F, 4.0F)
@@ -181,22 +174,6 @@ public class MalumBlockProperties {
 
     public static LodestoneBlockProperties RUNEWOOD_PLANKS() {
         return RUNEWOOD().addTag(PLANKS);
-    }
-
-    public static LodestoneBlockProperties RUNEWOOD_SLABS() {
-        return RUNEWOOD().addTags(SLABS, WOODEN_SLABS);
-    }
-
-    public static LodestoneBlockProperties RUNEWOOD_STAIRS() {
-        return RUNEWOOD().addTags(STAIRS, WOODEN_STAIRS);
-    }
-
-    public static LodestoneBlockProperties RUNEWOOD_DOOR() {
-        return RUNEWOOD().addTags(DOORS, WOODEN_DOORS).setCutoutRenderType().noOcclusion();
-    }
-
-    public static LodestoneBlockProperties RUNEWOOD_TRAPDOOR() {
-        return RUNEWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).setCutoutRenderType().noOcclusion();
     }
 
     public static LodestoneBlockProperties RUNEWOOD_SAPLING() {
@@ -250,26 +227,6 @@ public class MalumBlockProperties {
     }
     public static LodestoneBlockProperties SOULWOOD_LOGS() {
         return SOULWOOD().addTags(LOGS, SOULWOOD_LOGS);
-    }
-
-    public static LodestoneBlockProperties SOULWOOD_PLANKS() {
-        return SOULWOOD().addTag(PLANKS);
-    }
-
-    public static LodestoneBlockProperties SOULWOOD_SLABS() {
-        return SOULWOOD().addTags(SLABS, WOODEN_SLABS);
-    }
-
-    public static LodestoneBlockProperties SOULWOOD_STAIRS() {
-        return SOULWOOD().addTags(STAIRS, WOODEN_STAIRS);
-    }
-
-    public static LodestoneBlockProperties SOULWOOD_DOOR() {
-        return SOULWOOD().addTags(DOORS, WOODEN_DOORS).setCutoutRenderType().noOcclusion();
-    }
-
-    public static LodestoneBlockProperties SOULWOOD_TRAPDOOR() {
-        return SOULWOOD().addTags(TRAPDOORS, WOODEN_TRAPDOORS).setCutoutRenderType().noOcclusion();
     }
 
     public static LodestoneBlockProperties SOULWOOD_LEAVES() {
@@ -442,7 +399,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties ETHER() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .sound(MalumBlockSoundEvents.ETHER)
                 .noCollission()
                 .instabreak()
@@ -465,61 +422,31 @@ public class MalumBlockProperties {
         return RUNEWOOD()
                 .addTag(WALL_POST_OVERRIDE)
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .noCollission()
                 .instabreak()
                 .setCutoutRenderType()
                 .lightLevel((b) -> 14);
     }
-    public static LodestoneBlockProperties TAINTED_ETHER_BRAZIER() {
-        return TAINTED_ROCK()
+    public static LodestoneBlockProperties ETHER_BRAZIER() {
+        return new LodestoneBlockProperties()
+                .strength(1.5F, 9.0F)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
+                .mapColor(MapColor.COLOR_YELLOW)
                 .addTag(WALL_POST_OVERRIDE)
-                .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
+                .addTag(FD_TRAY_HEAT_SOURCES)
                 .setCutoutRenderType()
                 .noOcclusion()
                 .lightLevel((b) -> 14);
     }
-    public static LodestoneBlockProperties TWISTED_ETHER_BRAZIER() {
-        return TWISTED_ROCK()
-                .addTag(WALL_POST_OVERRIDE)
+    public static LodestoneBlockProperties ETHER_CRESSET() {
+        return new LodestoneBlockProperties()
+                .strength(1.5F, 9.0F)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
                 .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
-                .setCutoutRenderType()
-                .noOcclusion()
-                .lightLevel((b) -> 14);
-    }
-    public static LodestoneBlockProperties DROSS_ETHER_BRAZIER() {
-        return DROSS_STONE()
-                .addTag(WALL_POST_OVERRIDE)
-                .mapColor(MapColor.COLOR_YELLOW)
-                .addTag(TRAY_HEAT_SOURCES)
-                .setCutoutRenderType()
-                .noOcclusion()
-                .lightLevel((b) -> 14);
-    }
-    public static LodestoneBlockProperties TAINTED_ETHER_CRESSET() {
-        return TAINTED_ROCK()
                 .sound(SoundType.LANTERN)
-                .mapColor(MapColor.COLOR_YELLOW)
-                .setCutoutRenderType()
-                .noOcclusion()
-                .noCollission()
-                .lightLevel((b) -> 14);
-    }
-    public static LodestoneBlockProperties TWISTED_ETHER_CRESSET() {
-        return TWISTED_ROCK()
-                .sound(SoundType.LANTERN)
-                .mapColor(MapColor.COLOR_YELLOW)
-                .setCutoutRenderType()
-                .noOcclusion()
-                .noCollission()
-                .lightLevel((b) -> 14);
-    }
-    public static LodestoneBlockProperties DROSS_ETHER_CRESSET() {
-        return DROSS_STONE()
-                .sound(SoundType.LANTERN)
-                .mapColor(MapColor.COLOR_YELLOW)
                 .setCutoutRenderType()
                 .noOcclusion()
                 .noCollission()

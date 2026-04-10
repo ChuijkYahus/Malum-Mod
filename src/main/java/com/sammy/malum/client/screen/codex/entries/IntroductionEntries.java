@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.entries;
 
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
@@ -12,7 +11,10 @@ import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static net.minecraft.world.item.Items.*;
 
 public class IntroductionEntries {
@@ -55,7 +57,7 @@ public class IntroductionEntries {
                 .addPage(new TextPage("spirit_crystals.3"))
         );
 
-        screen.addEntry("runewood", -1, 3, b -> b
+        screen.addEntry("runewood", 0, 2, b -> b
                 .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
                 .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
                 .addPage(PageSelectionPage.create(s -> s
@@ -69,20 +71,20 @@ public class IntroductionEntries {
                 )
                 .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_LOG), item(ARCANE_CHARCOAL)))
+                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_SET.getLog()), item(ARCANE_CHARCOAL)))
                                 .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
                         )
                 )
-                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP)))
+                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP_BOTTLE)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(STRIPPED_SAPPY_RUNEWOOD_LOG).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(SAPPY_RUNEWOOD_LOG), item(STRIPPED_SAPPY_RUNEWOOD_LOG)))
-                                .add(item(RUNIC_SAP).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(STRIPPED_SAPPY_RUNEWOOD_LOG), item(RUNIC_SAP)))
-                                .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP))))
+                                .add(item(RUNEWOOD_SET.getStrippedSappyLog()).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(RUNEWOOD_SET.getSappyLog()), item(RUNEWOOD_SET.getStrippedSappyLog())))
+                                .add(item(RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(RUNEWOOD_SET.getStrippedSappyLog()), item(RUNIC_SAP_BOTTLE)))
+                                .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP_BOTTLE))))
                         )
                 )
         );
 
-        screen.addEntry("arcane_wonders", 0, 2, b -> b
+        screen.addEntry("arcane_wonders", -1, 3, b -> b
                 .configureWidget(w -> w
                         .setIcon(EntryCommons.OVERWORLD)
                         .setDesign(SMALL, RUNEWOOD, DARK)
@@ -90,6 +92,7 @@ public class IntroductionEntries {
                 .addPage(new HeadlineTextGizmoPage("arcane_wonders", EntryCommons.OVERWORLD))
                 .addPage(new TextPage("arcane_wonders.2"))
                 .addPage(new TextPage("arcane_wonders.3"))
+                .addPage(new TextPage("arcane_wonders.4"))
         );
 
         screen.addEntry("soulstone", 0, 4, b -> b

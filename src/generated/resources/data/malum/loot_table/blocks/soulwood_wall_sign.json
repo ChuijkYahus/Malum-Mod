@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:soulwood_sign"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

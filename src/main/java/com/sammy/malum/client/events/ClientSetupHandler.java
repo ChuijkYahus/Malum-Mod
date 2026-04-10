@@ -2,15 +2,19 @@ package com.sammy.malum.client.events;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.renderer.*;
+import com.sammy.malum.client.renderer.curio.TokenOfGratitudeRenderer;
+import com.sammy.malum.client.renderer.curio.TopHatCurioRenderer;
 import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
 import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.core.handlers.client.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.MalumContainers;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -19,9 +23,29 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderSystem;
 import team.lodestar.lodestone.systems.rendering.renderpass.RenderPassHandler;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @EventBusSubscriber(value = Dist.CLIENT)
 public class ClientSetupHandler {
+
+
+    @SubscribeEvent
+    public static void registerExtras(FMLClientSetupEvent event) {
+        CuriosRendererRegistry.register(MalumContent.TOKEN_OF_GRATITUDE.get(), TokenOfGratitudeRenderer::new);
+        CuriosRendererRegistry.register(MalumContent.Vanity.TOPHAT.get(), TopHatCurioRenderer::new);
+
+        MalumHiddenTags.registerHiddenTags();
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void addItemProperties(FMLClientSetupEvent event) {
+        MalumItemColors.addItemProperties(event);
+    }
+
+    @SubscribeEvent
+    public static void setItemColors(RegisterColorHandlersEvent.Item event) {
+        MalumItemColors.setItemColors(event);
+    }
 
     @SubscribeEvent
     public static void setBlockColors(RegisterColorHandlersEvent.Block event) {

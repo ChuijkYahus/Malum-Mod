@@ -3,8 +3,8 @@ package com.sammy.malum.core.handlers.enchantment;
 import com.sammy.malum.common.item.curiosities.curios.sets.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.server.level.*;
@@ -85,7 +85,7 @@ public class AscensionHandler {
     }
 
     protected static void dealAscensionDamage(ServerLevel level, Player player, boolean isUppercut) {
-        boolean hasFunnyRing = CurioHelper.hasCurioEquipped(player, MalumItems.RING_OF_THE_RISING_EDGE.get());
+        boolean hasFunnyRing = CurioHelper.hasCurioEquipped(player, MalumContent.Gear.RING_OF_THE_RISING_EDGE.get());
         var random = level.getRandom();
         float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
         float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);

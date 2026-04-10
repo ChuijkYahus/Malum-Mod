@@ -53,16 +53,13 @@ public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<Runew
     }
 
     public static Holder<SoundEvent> getRuneSound(ItemLike output) {
-        if (output instanceof MiracleRuneCurioItem) {
-            return MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_STONE;
-        }
-        if (output instanceof TotemicRuneCurioItem) {
-            return MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN;
-        }
-        if (output instanceof MadnessRuneCurioItem) {
-            return MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_VOID;
-        }
-        throw new IllegalArgumentException("Ehehehe :33333");
+        Item item = output.asItem();
+        return switch (item) {
+            case MiracleRuneCurioItem miracle -> MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_STONE;
+            case TotemicRuneCurioItem totemic -> MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_WOODEN;
+            case MadnessRuneCurioItem madness -> MalumSoundEvents.RUNIC_WORKBENCH_SHAPES_RUNE_VOID;
+            default -> throw new IllegalArgumentException("Ehehehe :33333");
+        };
     }
 
     @Override

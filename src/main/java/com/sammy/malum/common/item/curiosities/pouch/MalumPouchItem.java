@@ -1,10 +1,7 @@
 package com.sammy.malum.common.item.curiosities.pouch;
 
 import com.sammy.malum.common.data.component.pouch.*;
-import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
 import net.minecraft.*;
-import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -19,12 +16,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.neoforge.event.entity.player.*;
-import net.neoforged.neoforge.registries.*;
 import org.apache.commons.lang3.math.*;
 import team.lodestar.lodestone.helpers.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 public abstract class MalumPouchItem extends Item {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "malum:block/ether_cresset_bottom"
+    },
+    "half=upper": {
+      "model": "malum:block/ether_cresset_top"
+    }
+  }
+}

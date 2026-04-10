@@ -39,8 +39,6 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 
-import java.util.UUID;
-
 public class AltarCultist extends CultistMonster implements ICherubFriend {
 
     private static final EntityDataAccessor<Integer> HEAD_TILT = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);

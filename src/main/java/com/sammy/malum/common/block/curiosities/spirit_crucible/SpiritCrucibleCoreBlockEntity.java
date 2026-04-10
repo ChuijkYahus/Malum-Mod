@@ -1,11 +1,6 @@
 package com.sammy.malum.common.block.curiosities.spirit_crucible;
 
 import com.sammy.malum.common.block.*;
-import com.sammy.malum.common.data.map.ImpetusDataMap;
-import com.sammy.malum.common.item.augment.MendingDiffuserItem;
-import com.sammy.malum.common.item.augment.ShieldingApparatusItem;
-import com.sammy.malum.common.item.augment.WarpingEngineItem;
-import com.sammy.malum.common.item.augment.core.*;
 import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.artifice.*;
 import com.sammy.malum.common.block.storage.*;
@@ -14,29 +9,22 @@ import com.sammy.malum.common.payloads.CodecUtil;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.recipe.*;
-import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
-import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackMultiHandler;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
@@ -51,7 +39,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
     public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0f, 2.5f, 0f);
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
 
     public MalumBlockItemStackHandler inventory;
     public MalumBlockItemStackHandler spiritInventory;
@@ -146,7 +134,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
         if (!(level instanceof ServerLevel serverLevel)) {
             return ItemInteractionResult.CONSUME;
         }
-        if (pStack.is(MalumTags.ItemTags.IS_ARTIFICE_TOOL)) {
+        if (pStack.is(MalumTags.Items.IS_ARTIFICE_TOOL)) {
             attributes.applyTuningForkBuff(serverLevel, worldPosition);
             return ItemInteractionResult.SUCCESS;
         }

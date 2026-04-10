@@ -47,7 +47,7 @@ public class SoulDataHandler {
         var target = event.getEntity();
         var source = event.getSource();
         var data = target.getData(MalumAttachmentTypes.LIVING_SOUL_INFO);
-        if (source.is(MalumTags.DamageTypeTags.SOUL_SHATTER_DAMAGE)) {
+        if (source.is(MalumTags.DamageTypes.SOUL_SHATTER_DAMAGE)) {
             data.setExposed();
             return;
         }
@@ -62,7 +62,7 @@ public class SoulDataHandler {
         }
         if (source.getEntity() instanceof LivingEntity attacker) {
             ItemStack stack = getSoulHunterWeapon(source, attacker);
-            if (stack.is(MalumTags.ItemTags.SOUL_SHATTER_CAPABLE_WEAPON) || TetraCompat.hasSoulStrikeModifier(stack)) {
+            if (stack.is(MalumTags.Items.SOUL_SHATTER_CAPABLE_WEAPON) || TetraCompat.hasSoulStrikeModifier(stack)) {
                 data.setExposed();
             }
         }

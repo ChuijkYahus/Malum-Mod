@@ -1,12 +1,9 @@
 package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.registry.common.sound.*;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
-
-import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 
 public class MalumOreBlockProperties {
 

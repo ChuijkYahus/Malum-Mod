@@ -24,7 +24,7 @@ public class RuneCullingItem extends MiracleRuneCurioItem implements ItemEventHa
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (event.getSource().is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+        if (event.getSource().is(MalumTags.DamageTypes.IS_SCYTHE)) {
             if (target.getHealth() < target.getMaxHealth() * 0.5f) {
                 event.setNewDamage(event.getNewDamage() * 1.4f);
             }

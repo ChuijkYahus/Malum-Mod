@@ -2,7 +2,6 @@ package com.sammy.malum.common.block.curiosities.mana_mote;
 
 import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;

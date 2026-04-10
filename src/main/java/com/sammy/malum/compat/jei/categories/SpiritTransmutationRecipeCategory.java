@@ -3,7 +3,7 @@ package com.sammy.malum.compat.jei.categories;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.compat.jei.JEIHandler;
 import com.sammy.malum.compat.jei.recipes.SpiritTransmutationWrapper;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.MalumContent;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -31,7 +31,7 @@ public class SpiritTransmutationRecipeCategory implements IRecipeCategory<Spirit
 
     public SpiritTransmutationRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(MalumMod.malumPath("textures/gui/spirit_transmutation_jei.png"), 0, 0, 142, 83);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItems.ARCANE_SPIRIT.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Spirits.ARCANE_SPIRIT.get()));
     }
 
     @Override

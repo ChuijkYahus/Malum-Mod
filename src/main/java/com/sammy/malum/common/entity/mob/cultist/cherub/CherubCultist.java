@@ -29,8 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 
-import java.util.UUID;
-
 public class CherubCultist extends CultistMonster {
 
     public static final byte CAST_ANIMATION = 11;

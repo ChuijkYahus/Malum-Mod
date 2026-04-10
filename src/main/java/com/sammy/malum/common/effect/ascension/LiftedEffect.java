@@ -1,13 +1,9 @@
 package com.sammy.malum.common.effect.ascension;
 
-import com.sammy.malum.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 

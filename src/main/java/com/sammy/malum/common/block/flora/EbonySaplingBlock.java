@@ -2,17 +2,13 @@ package com.sammy.malum.common.block.flora;
 
 import com.mojang.serialization.MapCodec;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.block.MalumBlocks;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -70,7 +66,7 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         }
-        return belowState.is(MalumTags.BlockTags.EBONY_PLANTABLE_ON);
+        return belowState.is(MalumTags.Blocks.EBONY_PLANTABLE_ON);
     }
 
     @Override
@@ -78,8 +74,9 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
-            if (facing == Direction.UP && facingState.is(MalumBlocks.EBONY)) {
-                level.setBlock(currentPos, MalumBlocks.EBONY.get().defaultBlockState(), 2);
+            var stalk = MalumContent.Materials.EBONY_STALK;
+            if (facing == Direction.UP && stalk.is(facingState)) {
+                level.setBlock(currentPos, stalk.get().defaultBlockState(), 2);
             }
 
             return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
@@ -88,7 +85,7 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(MalumItems.EBONY_STALK.get());
+        return MalumContent.Materials.EBONY_STALK.getDefaultInstance();
     }
 
     @Override
@@ -115,6 +112,6 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
     }
 
     protected void growEbony(Level level, BlockPos state) {
-        level.setBlock(state.above(), MalumBlocks.EBONY.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
+        level.setBlock(state.above(), MalumContent.Materials.EBONY_STALK.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
     }
 }

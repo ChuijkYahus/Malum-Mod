@@ -1,12 +1,12 @@
 {
   "values": [
     "malum:runewood_trapdoor",
-    "malum:runewood_boards_trapdoor",
-    "malum:bolted_runewood_trapdoor",
-    "malum:bolted_runewood_boards_trapdoor",
+    "malum:runewood_heavy_trapdoor",
+    "malum:runewood_bolted_trapdoor",
+    "malum:runewood_bolted_boards_trapdoor",
     "malum:soulwood_trapdoor",
-    "malum:soulwood_boards_trapdoor",
-    "malum:bolted_soulwood_trapdoor",
-    "malum:bolted_soulwood_boards_trapdoor"
+    "malum:soulwood_heavy_trapdoor",
+    "malum:soulwood_bolted_trapdoor",
+    "malum:soulwood_bolted_boards_trapdoor"
   ]
 }

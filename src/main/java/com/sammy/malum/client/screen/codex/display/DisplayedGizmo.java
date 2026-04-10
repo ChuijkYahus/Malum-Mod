@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,12 +63,8 @@ public abstract class DisplayedGizmo {
         return new DisplayedItem(geas.value().createDefaultStack());
     }
 
-    public static DisplayedItem item(Supplier<? extends Item> item) {
-        return new DisplayedItem(item.get().getDefaultInstance());
-    }
-
-    public static DisplayedItem item(Item item) {
-        return new DisplayedItem(item.getDefaultInstance());
+    public static DisplayedItem item(ItemLike item) {
+        return new DisplayedItem(item.asItem().getDefaultInstance());
     }
 
     public static DisplayedItem item(ItemStack stack) {

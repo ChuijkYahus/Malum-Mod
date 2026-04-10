@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.curiosities.curios.runes.madness;
 
 import com.sammy.malum.core.helpers.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,7 +25,7 @@ public class RuneTwinnedDurationItem extends MadnessRuneCurioItem {
 
     public static void scaleDuration(MobEffectEvent.Added event) {
         LivingEntity entity = event.getEntity();
-        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, MalumItems.RUNE_OF_TWINNED_DURATION.get())) {
+        if (event.getOldEffectInstance() == null && CurioHelper.hasCurioEquipped(entity, MalumContent.Gear.RUNE_OF_TWINNED_DURATION.get())) {
             MobEffectInstance effect = event.getEffectInstance();
             var type = effect.getEffect().value();
             if (type.isBeneficial()) {

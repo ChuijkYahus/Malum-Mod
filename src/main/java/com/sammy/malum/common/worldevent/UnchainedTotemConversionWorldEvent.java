@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
@@ -13,11 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-
-import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_BASE;
-import static com.sammy.malum.registry.common.block.MalumBlocks.SOULWOOD_TOTEM_POLE;
 
 public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public int transformedTotemParts;
@@ -30,7 +26,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void createBlight(ServerLevel level, int intensity) {
         super.createBlight(level, intensity);
         if (transformedTotemParts == 0) {
-            placeBlock(level, position, SOULWOOD_TOTEM_BASE.get().defaultBlockState());
+            placeBlock(level, position, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE.get().defaultBlockState());
             transformedTotemParts++;
             return;
         }
@@ -46,7 +42,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     public void replaceTotemPole(ServerLevel level, BlockPos pos, BlockState state) {
         var direction = state.getValue(TotemPoleBlock.HORIZONTAL_FACING);
         var spirit = state.getValue(TotemPoleBlock.SPIRIT_TYPE);
-        var newState = SOULWOOD_TOTEM_POLE.get().defaultBlockState()
+        var newState = MalumContent.Totemancy.SOULWOOD_TOTEM_POLE.get().defaultBlockState()
                 .setValue(TotemPoleBlock.HORIZONTAL_FACING, direction)
                 .setValue(TotemPoleBlock.SPIRIT_TYPE, spirit);
         placeBlock(level, pos, newState);
@@ -70,7 +66,10 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
             if (direction.equals(totemDirection)) {
                 return;
             }
-            var state = MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite()).setValue(CreepingBlightBlock.BLIGHT_TYPE, CreepingBlightBlock.BlightType.SOULWOOD_SPIKE);
+            var defaultState = MalumContent.Blight.CLINGING_BLIGHT.get().defaultBlockState();
+            var state = defaultState
+                    .setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite())
+                    .setValue(CreepingBlightBlock.BLIGHT_TYPE, CreepingBlightBlock.BlightType.SOULWOOD_SPIKE);
             placeBlock(level, pos.relative(direction), state);
         }
     }

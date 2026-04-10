@@ -3,28 +3,21 @@ package com.sammy.malum.compat.irons_spellbooks;
 import com.google.common.collect.*;
 import com.sammy.malum.*;
 import com.sammy.malum.common.effect.*;
-import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.enchantment.*;
 import io.redspace.ironsspellbooks.api.events.*;
 import io.redspace.ironsspellbooks.api.magic.*;
 import io.redspace.ironsspellbooks.api.registry.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.neoforged.fml.*;
 import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.event.entity.living.*;
-
-import static com.sammy.malum.registry.common.enchantment.EnchantmentKeys.*;
 
 public class IronsSpellsCompat {
 

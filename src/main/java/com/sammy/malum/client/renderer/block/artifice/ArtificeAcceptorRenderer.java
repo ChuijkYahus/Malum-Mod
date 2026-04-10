@@ -17,7 +17,6 @@ import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
-import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
 
 import java.awt.*;
 import java.util.WeakHashMap;
@@ -27,7 +26,7 @@ public abstract class ArtificeAcceptorRenderer<T extends LodestoneBlockEntity> i
 
     public static final WeakHashMap<IArtificeAcceptor, Color> DEBUG_COLORS = new WeakHashMap<>();
 
-    public static final HeldItemTracker FORK_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.ItemTags.IS_ARTIFICE_TOOL));
+    public static final HeldItemTracker FORK_TRACKER = new HeldItemTracker(p -> p.is(MalumTags.Items.IS_ARTIFICE_TOOL));
 
     @SuppressWarnings({"rawtypes", "unchecked", "DataFlowIssue"})
     public static void renderModifiers(IArtificeAcceptor target, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {

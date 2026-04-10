@@ -9,7 +9,6 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.*;
 
 public class DesperateNeedEffect extends MobEffect {
     public DesperateNeedEffect() {
@@ -36,7 +35,7 @@ public class DesperateNeedEffect extends MobEffect {
         if (!(source.getEntity() instanceof LivingEntity attacker)) {
             return;
         }
-        if (!source.is(MalumTags.DamageTypeTags.IS_SCYTHE)) {
+        if (!source.is(MalumTags.DamageTypes.IS_SCYTHE)) {
             return;
         }
         if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {

@@ -1,7 +1,8 @@
 package com.sammy.malum.common.block.blight;
 
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
-import com.sammy.malum.registry.common.block.MalumBlocks;
+
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +21,7 @@ public class BlightedSoulwoodBlock extends Block {
             if (!simulate) {
                 context.getLevel().playSound(null, context.getClickedPos(), MalumBlockSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
             }
-            return MalumBlocks.SOULWOOD_LOG.get().defaultBlockState();
+            return MalumContent.BlockSets.SOULWOOD_SET.getLog().getDefaultState();
         }
         return null;
     }

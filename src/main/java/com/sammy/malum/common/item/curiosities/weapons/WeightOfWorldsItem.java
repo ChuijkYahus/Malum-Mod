@@ -76,7 +76,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                         .verticalSlashRotation()
                         .horizontalOffset(0.4f)
                         .forwardOffset(0.8f);
-                if (source.is(MalumTags.DamageTypeTags.IS_INVERTED_HEART)) {
+                if (source.is(MalumTags.DamageTypes.IS_INVERTED_HEART)) {
                     effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
                 }
                 effectBuilder.spawn(level);

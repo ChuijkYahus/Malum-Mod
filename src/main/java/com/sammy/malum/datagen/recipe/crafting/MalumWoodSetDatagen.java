@@ -1,10 +1,9 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
-import com.sammy.malum.datagen.tag.*;
-import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.MalumContent;
 
+import com.sammy.malum.registry.common.util.WoodBlockSet;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -13,239 +12,156 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.conditions.*;
 
+import static com.sammy.malum.registry.common.MalumTags.Items.*;
 import static net.minecraft.data.recipes.RecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
 
 public class MalumWoodSetDatagen implements IConditionBuilder {
 
-    private static final MalumDatagenWoodSet RUNEWOOD = new MalumDatagenWoodSet(
-            "runewood",
-            MalumItems.RUNEWOOD_LOG.get(), MalumItems.RUNEWOOD.get(),
-            MalumItems.STRIPPED_RUNEWOOD_LOG.get(), MalumItems.STRIPPED_RUNEWOOD.get(),
-            MalumItems.STRIPPED_SAPPY_RUNEWOOD_LOG.get(), MalumItems.SAPPY_RUNEWOOD_LOG.get(),
-            MalumItems.RUNEWOOD_BOARDS.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS.get(),
-            MalumItems.RUNEWOOD_BOARDS_SLAB.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS_SLAB.get(),
-            MalumItems.RUNEWOOD_BOARDS_STAIRS.get(), MalumItems.VERTICAL_RUNEWOOD_BOARDS_STAIRS.get(),
-            MalumItems.RUNEWOOD_PLANKS.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS.get(), MalumItems.RUNEWOOD_TILES.get(),
-            MalumItems.RUSTIC_RUNEWOOD_PLANKS.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS.get(), MalumItems.RUSTIC_RUNEWOOD_TILES.get(),
-            MalumItems.RUNEWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.RUNEWOOD_TILES_SLAB.get(),
-            MalumItems.RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB.get(), MalumItems.RUSTIC_RUNEWOOD_TILES_SLAB.get(),
-            MalumItems.RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.RUNEWOOD_TILES_STAIRS.get(),
-            MalumItems.RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS.get(), MalumItems.RUSTIC_RUNEWOOD_TILES_STAIRS.get(),
-            MalumItems.RUNEWOOD_PANEL.get(), MalumItems.CUT_RUNEWOOD_PLANKS.get(), MalumItems.RUNEWOOD_BEAM.get(),
-            MalumItems.RUNEWOOD_BUTTON.get(), MalumItems.RUNEWOOD_PRESSURE_PLATE.get(),
-            MalumItems.RUNEWOOD_DOOR.get(), MalumItems.BOLTED_RUNEWOOD_DOOR.get(),
-            MalumItems.RUNEWOOD_BOARDS_DOOR.get(), MalumItems.BOLTED_RUNEWOOD_BOARDS_DOOR.get(),
-            MalumItems.RUNEWOOD_TRAPDOOR.get(), MalumItems.BOLTED_RUNEWOOD_TRAPDOOR.get(),
-            MalumItems.RUNEWOOD_BOARDS_TRAPDOOR.get(), MalumItems.BOLTED_RUNEWOOD_BOARDS_TRAPDOOR.get(),
-            MalumItems.RUNEWOOD_FENCE.get(), MalumItems.RUNEWOOD_FENCE_GATE.get(),
-            MalumItems.RUNEWOOD_BOARDS_WALL.get(),
-            MalumItems.RUNEWOOD_SIGN.get(), MalumItems.RUNEWOOD_SIGN.get(),
-            MalumItems.RUNEWOOD_ITEM_STAND.get(), MalumItems.RUNEWOOD_ITEM_PEDESTAL.get(),
-            MalumItems.GILDED_RUNEWOOD_ITEM_STAND.get(), MalumItems.GILDED_RUNEWOOD_ITEM_PEDESTAL.get(),
-            MalumTags.ItemTags.RUNEWOOD_LOGS, MalumTags.ItemTags.RUNEWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.RUNEWOOD_PLANKS, MalumTags.ItemTags.RUNEWOOD_BOARDS, MalumTags.ItemTags.RUNEWOOD_STAIRS, MalumTags.ItemTags.RUNEWOOD_SLABS,
-            MalumItems.RUNEWOOD_BOAT.get(), MalumItems.RUNEWOOD_CHEST_BOAT.get(),
-            MalumItems.HALLOWED_GOLD_NUGGET.get()
-    );
-
-    private static final MalumDatagenWoodSet SOULWOOD = new MalumDatagenWoodSet(
-            "soulwood",
-            MalumItems.SOULWOOD_LOG.get(), MalumItems.SOULWOOD.get(),
-            MalumItems.STRIPPED_SOULWOOD_LOG.get(), MalumItems.STRIPPED_SOULWOOD.get(),
-            MalumItems.STRIPPED_SAPPY_SOULWOOD_LOG.get(), MalumItems.SAPPY_SOULWOOD_LOG.get(),
-            MalumItems.SOULWOOD_BOARDS.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS.get(),
-            MalumItems.SOULWOOD_BOARDS_SLAB.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS_SLAB.get(),
-            MalumItems.SOULWOOD_BOARDS_STAIRS.get(), MalumItems.VERTICAL_SOULWOOD_BOARDS_STAIRS.get(),
-            MalumItems.SOULWOOD_PLANKS.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS.get(), MalumItems.SOULWOOD_TILES.get(),
-            MalumItems.RUSTIC_SOULWOOD_PLANKS.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS.get(), MalumItems.RUSTIC_SOULWOOD_TILES.get(),
-            MalumItems.SOULWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS_SLAB.get(), MalumItems.SOULWOOD_TILES_SLAB.get(),
-            MalumItems.RUSTIC_SOULWOOD_PLANKS_SLAB.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB.get(), MalumItems.RUSTIC_SOULWOOD_TILES_SLAB.get(),
-            MalumItems.SOULWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.SOULWOOD_TILES_STAIRS.get(),
-            MalumItems.RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS.get(), MalumItems.RUSTIC_SOULWOOD_TILES_STAIRS.get(),
-            MalumItems.SOULWOOD_PANEL.get(), MalumItems.CUT_SOULWOOD_PLANKS.get(), MalumItems.SOULWOOD_BEAM.get(),
-            MalumItems.SOULWOOD_BUTTON.get(), MalumItems.SOULWOOD_PRESSURE_PLATE.get(),
-            MalumItems.SOULWOOD_DOOR.get(), MalumItems.BOLTED_SOULWOOD_DOOR.get(),
-            MalumItems.SOULWOOD_BOARDS_DOOR.get(), MalumItems.BOLTED_SOULWOOD_BOARDS_DOOR.get(),
-            MalumItems.SOULWOOD_TRAPDOOR.get(), MalumItems.BOLTED_SOULWOOD_TRAPDOOR.get(),
-            MalumItems.SOULWOOD_BOARDS_TRAPDOOR.get(), MalumItems.BOLTED_SOULWOOD_BOARDS_TRAPDOOR.get(),
-            MalumItems.SOULWOOD_FENCE.get(), MalumItems.SOULWOOD_FENCE_GATE.get(),
-            MalumItems.SOULWOOD_BOARDS_WALL.get(),
-            MalumItems.SOULWOOD_SIGN.get(), MalumItems.SOULWOOD_SIGN.get(),
-            MalumItems.SOULWOOD_ITEM_STAND.get(), MalumItems.SOULWOOD_ITEM_PEDESTAL.get(),
-            MalumItems.ORNATE_SOULWOOD_ITEM_STAND.get(), MalumItems.ORNATE_SOULWOOD_ITEM_PEDESTAL.get(),
-            MalumTags.ItemTags.SOULWOOD_LOGS, MalumTags.ItemTags.SOULWOOD_BOARD_INGREDIENT, MalumTags.ItemTags.SOULWOOD_PLANKS, MalumTags.ItemTags.SOULWOOD_BOARDS, MalumTags.ItemTags.SOULWOOD_STAIRS, MalumTags.ItemTags.SOULWOOD_SLABS,
-            MalumItems.SOULWOOD_BOAT.get(), MalumItems.SOULWOOD_CHEST_BOAT.get(),
-            MalumItems.SOUL_STAINED_STEEL_NUGGET.get()
-    );
-
-    public static void addTags(MalumItemTagDatagen provider) {
-        addTags(provider, RUNEWOOD);
-        addTags(provider, SOULWOOD);
-    }
-
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        buildRecipes(recipeOutput, RUNEWOOD);
-        buildRecipes(recipeOutput, SOULWOOD);
+        buildRecipes(recipeOutput, MalumContent.BlockSets.RUNEWOOD_SET, MalumContent.BlockSets.RUNEWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET, 
+                RUNEWOOD_LOGS, RUNEWOOD_PLANKS, RUNEWOOD_BOARDS, RUNEWOOD_SLABS, RUNEWOOD_BOARD_INGREDIENT);
+        buildRecipes(recipeOutput, MalumContent.BlockSets.SOULWOOD_SET, MalumContent.BlockSets.SOULWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET,
+                SOULWOOD_LOGS, SOULWOOD_PLANKS, SOULWOOD_BOARDS, SOULWOOD_SLABS, SOULWOOD_BOARD_INGREDIENT);
     }
 
-    protected static void addTags(MalumItemTagDatagen provider, MalumDatagenWoodSet woodSet) {
-        provider.tag(woodSet.logTag).add(
-                        woodSet.log, woodSet.strippedLog, woodSet.wood,
-                        woodSet.strippedWood, woodSet.sapFilledLog, woodSet.strippedSapFilledLog);
+    protected static void buildRecipes(
+            RecipeOutput recipeOutput,
+            WoodBlockSet set,
+            ItemLike boat,
+            ItemLike metalNugget,
+            TagKey<Item> logTag,
+            TagKey<Item> planksTag,
+            TagKey<Item> boardsTag,
+            TagKey<Item> slabTag,
+            TagKey<Item> boardIngredientTag
+    ) {
+        shapelessPlanks(recipeOutput, set.getPlanks(), logTag);
 
-        provider.tag(woodSet.boardIngredientTag).add(woodSet.log, woodSet.wood);
+        rusticExchange(recipeOutput, set.getRusticPlanks(), set.getPlanks());
+        rusticExchange(recipeOutput, set.getVerticalRusticPlanks(), set.getVerticalPlanks());
+        rusticExchange(recipeOutput, set.getRusticTiles(), set.getTiles());
 
-        provider.tag(woodSet.planksTag).add(
-                woodSet.planks, woodSet.verticalPlanks,
-                woodSet.rusticPlanks, woodSet.verticalRusticPlanks,
-                woodSet.tiles, woodSet.rusticTiles
-        );
+        shapedBoards(recipeOutput, set.getBoards(), boardIngredientTag);
 
-        provider.tag(woodSet.boardsTag).add(
-                woodSet.boards, woodSet.verticalBoards
-        );
+        shapedSlab(recipeOutput, set.getBoardsSlab(), set.getBoards());
+        shapedStairs(recipeOutput, set.getBoardsStairs(), set.getBoards());
+        shapedSlab(recipeOutput, set.getVerticalBoardsSlab(), set.getVerticalBoards());
+        shapedStairs(recipeOutput, set.getVerticalBoardsStairs(), set.getVerticalBoards());
 
-        provider.tag(woodSet.stairsTag).add(
-                woodSet.boardsStairs, woodSet.verticalBoardsStairs,
-                woodSet.planksStairs, woodSet.verticalPlanksStairs,
-                woodSet.rusticPlanksStairs, woodSet.verticalRusticPlanksStairs,
-                woodSet.tilesStairs, woodSet.rusticTilesStairs
-        );
+        planksExchange(recipeOutput, set.getBoards(), set.getVerticalBoards());
+        planksExchange(recipeOutput, set.getVerticalBoards(), set.getBoards());
 
-        provider.tag(woodSet.slabTag).add(
-                woodSet.boardsSlab, woodSet.verticalBoardsSlab,
-                woodSet.planksSlab, woodSet.verticalPlanksSlab,
-                woodSet.rusticPlanksSlab, woodSet.verticalRusticPlanksSlab,
-                woodSet.tilesSlab, woodSet.rusticTilesSlab
-        );
-    }
+        shapedSlab(recipeOutput, set.getPlanksSlab(), set.getPlanks());
+        shapedStairs(recipeOutput, set.getPlanksStairs(), set.getPlanks());
+        shapedSlab(recipeOutput, set.getVerticalPlanksSlab(), set.getVerticalPlanks());
+        shapedStairs(recipeOutput, set.getVerticalPlanksStairs(), set.getVerticalPlanks());
+        shapedSlab(recipeOutput, set.getTilesSlab(), set.getTiles());
+        shapedStairs(recipeOutput, set.getTilesStairs(), set.getTiles());
 
-    protected static void buildRecipes(RecipeOutput recipeOutput, MalumDatagenWoodSet woodSet) {
-        shapelessPlanks(recipeOutput, woodSet.planks, woodSet.logTag);
+        shapedSlab(recipeOutput, set.getRusticPlanksSlab(), set.getRusticPlanks());
+        shapedStairs(recipeOutput, set.getRusticPlanksStairs(), set.getRusticPlanks());
+        shapedSlab(recipeOutput, set.getVerticalRusticPlanksSlab(), set.getVerticalRusticPlanks());
+        shapedStairs(recipeOutput, set.getVerticalRusticPlanksStairs(), set.getVerticalRusticPlanks());
+        shapedSlab(recipeOutput, set.getRusticTilesSlab(), set.getRusticTiles());
+        shapedStairs(recipeOutput, set.getRusticTilesStairs(), set.getRusticTiles());
 
-        rusticExchange(recipeOutput, woodSet.rusticPlanks, woodSet.planks);
-        rusticExchange(recipeOutput, woodSet.verticalRusticPlanks, woodSet.verticalPlanks);
-        rusticExchange(recipeOutput, woodSet.rusticTiles, woodSet.tiles);
+        shapelessWood(recipeOutput, set.getWood(), set.getLog());
+        shapelessWood(recipeOutput, set.getStrippedWood(), set.getStrippedLog());
 
-        shapedBoards(recipeOutput, woodSet.boards, woodSet.boardIngredientTag);
+        shapelessButton(recipeOutput, set.getButton(), planksTag);
+        shapedPressurePlate(recipeOutput, set.getPressurePlate(), planksTag);
 
-        shapedSlab(recipeOutput, woodSet.boardsSlab, woodSet.boards);
-        shapedStairs(recipeOutput, woodSet.boardsStairs, woodSet.boards);
-        shapedSlab(recipeOutput, woodSet.verticalBoardsSlab, woodSet.verticalBoards);
-        shapedStairs(recipeOutput, woodSet.verticalBoardsStairs, woodSet.verticalBoards);
+        shapedDoor(recipeOutput, set.getDoor(), planksTag);
+        shapedDoor(recipeOutput, set.getHeavyDoor(), boardsTag);
+        shapedTrapdoor(recipeOutput, set.getTrapdoor(), planksTag);
+        shapedTrapdoor(recipeOutput, set.getHeavyTrapdoor(), boardsTag);
 
-        planksExchange(recipeOutput, woodSet.boards, woodSet.verticalBoards);
-        planksExchange(recipeOutput, woodSet.verticalBoards, woodSet.boards);
+        bolting(recipeOutput, set.getBoltedDoor(), set.getDoor());
+        bolting(recipeOutput, set.getHeavyBoltedDoor(), set.getHeavyDoor());
+        bolting(recipeOutput, set.getBoltedTrapdoor(), set.getTrapdoor());
+        bolting(recipeOutput, set.getHeavyBoltedTrapdoor(), set.getHeavyTrapdoor());
 
-        shapedSlab(recipeOutput, woodSet.planksSlab, woodSet.planks);
-        shapedStairs(recipeOutput, woodSet.planksStairs, woodSet.planks);
-        shapedSlab(recipeOutput, woodSet.verticalPlanksSlab, woodSet.verticalPlanks);
-        shapedStairs(recipeOutput, woodSet.verticalPlanksStairs, woodSet.verticalPlanks);
-        shapedSlab(recipeOutput, woodSet.tilesSlab, woodSet.tiles);
-        shapedStairs(recipeOutput, woodSet.tilesStairs, woodSet.tiles);
+        shapedFence(recipeOutput, set.getFence(), planksTag);
+        shapedFenceGate(recipeOutput, set.getFenceGate(), planksTag);
 
-        shapedSlab(recipeOutput, woodSet.rusticPlanksSlab, woodSet.rusticPlanks);
-        shapedStairs(recipeOutput, woodSet.rusticPlanksStairs, woodSet.rusticPlanks);
-        shapedSlab(recipeOutput, woodSet.verticalRusticPlanksSlab, woodSet.verticalRusticPlanks);
-        shapedStairs(recipeOutput, woodSet.verticalRusticPlanksStairs, woodSet.verticalRusticPlanks);
-        shapedSlab(recipeOutput, woodSet.rusticTilesSlab, woodSet.rusticTiles);
-        shapedStairs(recipeOutput, woodSet.rusticTilesStairs, woodSet.rusticTiles);
+        shapedSign(recipeOutput, set.getSign(), planksTag);
 
-        shapelessWood(recipeOutput, woodSet.wood, woodSet.log);
-        shapelessWood(recipeOutput, woodSet.strippedWood, woodSet.strippedLog);
+        planksExchange(recipeOutput, set.getPlanks(), set.getVerticalPlanks());
+        planksExchange(recipeOutput, set.getVerticalPlanks(), set.getTiles());
+        planksExchange(recipeOutput, set.getTiles(), set.getPlanks());
 
-        shapelessButton(recipeOutput, woodSet.button, woodSet.planksTag);
-        shapedPressurePlate(recipeOutput, woodSet.pressurePlate, woodSet.planksTag);
+        planksExchange(recipeOutput, set.getRusticPlanks(), set.getVerticalRusticPlanks());
+        planksExchange(recipeOutput, set.getVerticalRusticPlanks(), set.getRusticTiles());
+        planksExchange(recipeOutput, set.getRusticTiles(), set.getRusticPlanks());
 
-        shapedDoor(recipeOutput, woodSet.door, woodSet.planksTag);
-        shapedDoor(recipeOutput, woodSet.boardsDoor, woodSet.boardsTag);
-        shapedTrapdoor(recipeOutput, woodSet.trapdoor, woodSet.planksTag);
-        shapedTrapdoor(recipeOutput, woodSet.boardsTrapdoor, woodSet.boardsTag);
+        shapedBoat(recipeOutput, boat, planksTag);
 
-        bolting(recipeOutput, woodSet.boltedDoor, woodSet.door);
-        bolting(recipeOutput, woodSet.boltedBoardsDoor, woodSet.boardsDoor);
-        bolting(recipeOutput, woodSet.boltedTrapdoor, woodSet.trapdoor);
-        bolting(recipeOutput, woodSet.boltedBoardsTrapdoor, woodSet.boardsTrapdoor);
+        shapedPanel(recipeOutput, set.getPanel(), planksTag);
 
-        shapedFence(recipeOutput, woodSet.fence, woodSet.planksTag);
-        shapedFenceGate(recipeOutput, woodSet.fenceGate, woodSet.planksTag);
+        var condition = RecipeDatagenCommons.has(planksTag);
 
-        shapedSign(recipeOutput, woodSet.sign, woodSet.planksTag);
-
-        planksExchange(recipeOutput, woodSet.planks, woodSet.verticalPlanks);
-        planksExchange(recipeOutput, woodSet.verticalPlanks, woodSet.tiles);
-        planksExchange(recipeOutput, woodSet.tiles, woodSet.planks);
-
-        planksExchange(recipeOutput, woodSet.rusticPlanks, woodSet.verticalRusticPlanks);
-        planksExchange(recipeOutput, woodSet.verticalRusticPlanks, woodSet.rusticTiles);
-        planksExchange(recipeOutput, woodSet.rusticTiles, woodSet.rusticPlanks);
-
-        shapedBoat(recipeOutput, woodSet.boat, woodSet.planksTag);
-
-        shapedPanel(recipeOutput, woodSet.panel, woodSet.planksTag);
-
-        var condition = RecipeDatagenCommons.has(woodSet.planksTag);
-
-        shaped(RecipeCategory.MISC, woodSet.boardWall, 6)
-                .define('X', woodSet.boardsTag)
-                .define('Y', Items.STICK)
+        shaped(RecipeCategory.MISC, set.getBoardsWall(), 6)
+                .define('X', boardsTag)
+                .define('Y', net.minecraft.world.item.Items.STICK)
                 .pattern("XYX")
                 .pattern("XYX")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
 
-        shaped(RecipeCategory.MISC, woodSet.cutPlanks, 2)
-                .define('X', woodSet.panel)
-                .define('Y', woodSet.planksTag)
+        shaped(RecipeCategory.MISC, set.getCutPlanks(), 2)
+                .define('X', set.getPanel())
+                .define('Y', planksTag)
                 .pattern("X").pattern("Y")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
-        shaped(RecipeCategory.MISC, woodSet.beam, 3)
-                .define('#', woodSet.planksTag)
+
+        shaped(RecipeCategory.MISC, set.getBeam(), 3)
+                .define('#', planksTag)
                 .pattern("#")
                 .pattern("#")
                 .pattern("#")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
 
-        shaped(RecipeCategory.MISC, woodSet.itemStand, 2)
-                .define('X', woodSet.planksTag)
-                .define('Y', woodSet.slabTag)
+        shaped(RecipeCategory.MISC, set.getItemStand(), 2)
+                .define('X', planksTag)
+                .define('Y', slabTag)
                 .pattern("YYY")
                 .pattern("XXX")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
-        shaped(RecipeCategory.MISC, woodSet.itemPedestal)
-                .define('X', woodSet.planksTag)
-                .define('Y', woodSet.slabTag)
+
+        shaped(RecipeCategory.MISC, set.getItemPedestal())
+                .define('X', planksTag)
+                .define('Y', slabTag)
                 .pattern("YYY")
                 .pattern(" X ")
                 .pattern("YYY")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
 
-        shaped(RecipeCategory.MISC, woodSet.decoratedItemStand)
-                .define('X', woodSet.itemStand)
-                .define('Y', woodSet.metalNugget)
+        shaped(RecipeCategory.MISC, set.getDecoratedItemStand())
+                .define('X', set.getItemStand())
+                .define('Y', metalNugget)
                 .pattern("YXY")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
 
-        shaped(RecipeCategory.MISC, woodSet.decoratedItemPedestal)
-                .define('X', woodSet.itemPedestal)
-                .define('Y', woodSet.metalNugget)
+        shaped(RecipeCategory.MISC, set.getDecoratedItemPedestal())
+                .define('X', set.getItemPedestal())
+                .define('Y', metalNugget)
                 .pattern("YXY")
                 .unlockedBy("has_input", condition)
                 .save(recipeOutput);
-
     }
 
     private static void bolting(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
         final ResourceLocation recipeID = getDefaultRecipeId(output).withSuffix("_bolting");
         shapeless(RecipeCategory.MISC, output)
                 .requires(input)
-                .requires(Items.IRON_NUGGET)
+                .requires(net.minecraft.world.item.Items.IRON_NUGGET)
                 .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput, recipeID);
     }
@@ -400,49 +316,4 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("###")
                 .unlockedBy("has_input", RecipeDatagenCommons.has(input)).save(recipeOutput);
     }
-
-    public record MalumDatagenWoodSet(
-            String prefix,
-
-            Item log, Item wood,
-            Item strippedLog, Item strippedWood,
-
-            Item sapFilledLog, Item strippedSapFilledLog,
-
-            Item boards, Item verticalBoards,
-            Item boardsSlab, Item verticalBoardsSlab,
-            Item boardsStairs, Item verticalBoardsStairs,
-
-            Item planks, Item verticalPlanks, Item tiles,
-            Item rusticPlanks, Item verticalRusticPlanks, Item rusticTiles,
-            Item planksSlab, Item verticalPlanksSlab, Item tilesSlab,
-            Item rusticPlanksSlab, Item verticalRusticPlanksSlab, Item rusticTilesSlab,
-            Item planksStairs, Item verticalPlanksStairs, Item tilesStairs,
-            Item rusticPlanksStairs, Item verticalRusticPlanksStairs, Item rusticTilesStairs,
-
-            Item panel, Item cutPlanks, Item beam,
-
-            Item button, Item pressurePlate,
-
-            Item door, Item boltedDoor,
-            Item boardsDoor, Item boltedBoardsDoor,
-
-            Item trapdoor, Item boltedTrapdoor,
-            Item boardsTrapdoor, Item boltedBoardsTrapdoor,
-
-            Item fence, Item fenceGate,
-
-            Item boardWall,
-
-            Item sign, Item hangingSign,
-
-            Item itemStand, Item itemPedestal,
-            Item decoratedItemStand, Item decoratedItemPedestal,
-
-            TagKey<Item> logTag, TagKey<Item> boardIngredientTag, TagKey<Item> planksTag, TagKey<Item> boardsTag, TagKey<Item> stairsTag, TagKey<Item> slabTag,
-
-            Item boat, Item chestBoat,
-
-            Item metalNugget
-    ) { }
 }

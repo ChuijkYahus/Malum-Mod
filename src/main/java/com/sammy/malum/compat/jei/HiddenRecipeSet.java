@@ -44,7 +44,7 @@ public class HiddenRecipeSet<T> {
 					IFocus<ItemStack> asIngredient = focusFactory.createFocus(RecipeIngredientRole.INPUT, VanillaTypes.ITEM_STACK, stack);
 					IFocus<ItemStack> asResult = focusFactory.createFocus(RecipeIngredientRole.OUTPUT, VanillaTypes.ITEM_STACK, stack);
 					IFocus<ItemStack> asCatalyst = focusFactory.createFocus(RecipeIngredientRole.CATALYST, VanillaTypes.ITEM_STACK, stack);
-					if (stack.is(MalumTags.ItemTags.HIDDEN_AS_RESULT_ONLY)) {
+					if (stack.is(MalumTags.Items.HIDDEN_AS_RESULT_ONLY)) {
 						return Stream.of(asResult);
 					}
 					return Stream.of(asIngredient, asResult, asCatalyst);

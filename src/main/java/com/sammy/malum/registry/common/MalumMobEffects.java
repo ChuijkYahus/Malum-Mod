@@ -8,7 +8,6 @@ import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.geas.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.effect.rite.*;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.alchemy.PotionBrewing;
@@ -72,10 +71,10 @@ public class MalumMobEffects {
     @SubscribeEvent
     public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
-        builder.addMix(Potions.WATER, MalumItems.ROTTING_ESSENCE.get(), Potions.MUNDANE);
-        builder.addMix(Potions.AWKWARD, MalumItems.ROTTING_ESSENCE.get(), Potions.POISON);
+        builder.addMix(Potions.WATER, MalumContent.Materials.ROTTING_ESSENCE.get(), Potions.MUNDANE);
+        builder.addMix(Potions.AWKWARD, MalumContent.Materials.ROTTING_ESSENCE.get(), Potions.POISON);
 
-        builder.addMix(Potions.WATER, MalumItems.EERIE_WEAVE.get(), Potions.MUNDANE);
-        builder.addMix(Potions.AWKWARD, MalumItems.EERIE_WEAVE.get(), Potions.INVISIBILITY);
+        builder.addMix(Potions.WATER, MalumContent.Materials.EERIE_WEAVE.get(), Potions.MUNDANE);
+        builder.addMix(Potions.AWKWARD, MalumContent.Materials.EERIE_WEAVE.get(), Potions.INVISIBILITY);
     }
 }

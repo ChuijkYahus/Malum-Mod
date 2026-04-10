@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.blight.CreepingBlightBlock.*;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.common.worldgen.blight.*;
-import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
@@ -24,6 +24,7 @@ import java.util.function.*;
 import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.*;
 import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
 import static com.sammy.malum.common.worldgen.tree.RunewoodTreeFeature.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.SOULWOOD_SET;
 
 public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -32,7 +33,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static BlockState makeClingingBlight(BlightType blightType, Direction direction) {
-        return MalumBlocks.CLINGING_BLIGHT.get().defaultBlockState().setValue(CreepingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
+        return MalumContent.Blight.CLINGING_BLIGHT.get().defaultBlockState().setValue(CreepingBlightBlock.BLIGHT_TYPE, blightType).setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
     }
 
     //TODO: all of this should be a FeatureConfiguration
@@ -79,14 +80,14 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         var level = context.level();
         var pos = context.origin();
-        if (level.isEmptyBlock(pos.below()) || !MalumBlocks.SOULWOOD_SAPLING.get().defaultBlockState().canSurvive(level, pos)) {
+        if (level.isEmptyBlock(pos.below()) || !MalumContent.BlockSets.SOULWOOD_SAPLING.get().defaultBlockState().canSurvive(level, pos)) {
             return false;
         }
         var rand = context.random();
         var mutable = pos.mutable();
 
-        var soulwoodLog = MalumBlocks.SOULWOOD_LOG.get();
-        var blightedSoulwoodLog = MalumBlocks.BLIGHTED_SOULWOOD.get();
+        var soulwoodLog = SOULWOOD_SET.getLog().get();
+        var blightedSoulwoodLog = MalumContent.BLIGHTED_SOULWOOD.get();
 
         var builder = LodestoneWorldgenBuilder.create();
         var treeLayer = builder.createLayer();
@@ -208,8 +209,8 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
 
         for (LodestoneWorldgenBuilderEntry entry : getRandomEntries(treeLayer.getOrderedEntries(), getSapBlockCount(rand), rand)) {
             entry.changeState(s -> {
-                if (s.getBlock().equals(MalumBlocks.SOULWOOD_LOG.get())) {
-                    return MalumBlocks.SAPPY_SOULWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
+                if (SOULWOOD_SET.getLog().is(s)) {
+                    return SOULWOOD_SET.getSappyLog().get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, s.getValue(RotatedPillarBlock.AXIS));
                 }
                 return s;
             });
@@ -279,7 +280,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 BlockPos leavesPos = pos.offset(x, 0, z);
 
-                leaves.add(leavesPos, MalumBlocks.SOULWOOD_LEAVES.get().defaultBlockState().setValue(MalumLeavesBlock.COLOR, offsetColor));
+                leaves.add(leavesPos, MalumContent.BlockSets.SOULWOOD_LEAVES.get().defaultBlockState().setValue(MalumLeavesBlock.COLOR, offsetColor));
             }
         }
     }
@@ -308,7 +309,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                             continue;
                         }
                         leaves.add(mutable, createLeaves(hanging, color))
-                                .addPlacementCondition((l, e) -> l.getBlockState(e.position().above()).is(MalumBlocks.SOULWOOD_LEAVES.get()));
+                                .addPlacementCondition((l, e) -> l.getBlockState(e.position().above()).is(MalumContent.BlockSets.SOULWOOD_LEAVES.get()));
                     }
                 }
             }
@@ -316,7 +317,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     public static BlockState createLeaves(boolean hanging, int color) {
-        var leaves = hanging ? MalumBlocks.HANGING_SOULWOOD_LEAVES.get() : MalumBlocks.SOULWOOD_LEAVES.get();
+        var leaves = hanging ? MalumContent.BlockSets.HANGING_SOULWOOD_LEAVES.get() : MalumContent.BlockSets.SOULWOOD_LEAVES.get();
         return leaves.defaultBlockState().setValue(MalumLeavesBlock.COLOR, Mth.clamp(color, 0, 4));
     }
 }

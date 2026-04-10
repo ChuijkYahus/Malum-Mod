@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.*;
@@ -22,34 +23,29 @@ import team.lodestar.lodestone.modules.toolkit.block.LodestoneLogBlock;
 
 import java.util.function.Supplier;
 
-public class MalumLogBlock extends LodestoneLogBlock {
+public class MalumLogBlock extends RotatedPillarBlock {
 
-    public MalumLogBlock(Properties properties, Supplier<Block> stripped) {
-        super(properties, stripped);
+    public MalumLogBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (stack.getItem() instanceof SpiritShardItem shard) {
-            if (hit.getDirection().equals(Direction.UP) || hit.getDirection().equals(Direction.DOWN)) {
-                return ItemInteractionResult.FAIL;
-            }
-            if (state.getValue(AXIS).isHorizontal()) {
-                return ItemInteractionResult.FAIL;
+            if (hit.getDirection().equals(Direction.UP) || hit.getDirection().equals(Direction.DOWN) || state.getValue(AXIS).isHorizontal()) {
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
             if (level instanceof ServerLevel serverLevel) {
-                if (createTotemPole(serverLevel, pos, hit.getDirection(), shard)) {
-                    if (!player.isCreative()) {
-                        stack.shrink(1);
-                    }
-                    return ItemInteractionResult.SUCCESS;
+                if (!createTotemPole(serverLevel, pos, hit.getDirection(), shard)) {
+                    return super.useItemOn(stack, state, level, pos, player, handIn, hit);
+                }
+                if (!player.isCreative()) {
+                    stack.shrink(1);
                 }
             }
-            else {
-                return ItemInteractionResult.SUCCESS;
-            }
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.useItemOn(stack, state, level, pos, player, handIn, hit);
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @SuppressWarnings("deprecation")
@@ -58,11 +54,11 @@ public class MalumLogBlock extends LodestoneLogBlock {
             return false;
         }
 
-        TotemPoleMap conversion = builtInRegistryHolder().getData(MalumDataMaps.TOTEM_POLE_CONVERSION);
+        var conversion = builtInRegistryHolder().getData(MalumDataMaps.TOTEM_POLE_CONVERSION);
         if (conversion == null) {
             return false;
         }
-        Block converted = conversion.totemPoleVariant().value();
+        var converted = conversion.totemPoleVariant().value();
         if (converted instanceof TotemPoleBlock<?> totemPoleBlock) {
             level.setBlockAndUpdate(pos, TotemPoleBlock.createTotemPoleState(totemPoleBlock, direction, spirit));
             if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {

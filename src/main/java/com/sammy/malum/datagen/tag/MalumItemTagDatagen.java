@@ -11,7 +11,11 @@ import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
 import com.sammy.malum.common.item.metallics.MetalNodeItem;
-import com.sammy.malum.datagen.recipe.crafting.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.DungeonGear;
+import com.sammy.malum.registry.common.MalumContent.Gear;
+import com.sammy.malum.registry.common.MalumContent.Materials;
+import com.sammy.malum.registry.common.MalumContent.Spirits;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -27,9 +31,19 @@ import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneItemTagsSy
 import java.util.HashSet;
 import java.util.concurrent.*;
 
-import static com.sammy.malum.registry.common.MalumTags.ItemTags.*;
-import static com.sammy.malum.registry.common.block.MalumBlocks.BLOCKS;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
+import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
+import static com.sammy.malum.registry.common.MalumContent.Blight.BLIGHTED_GUNK;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.DungeonGear.*;
+import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.Gear.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
+import static com.sammy.malum.registry.common.MalumContent.Spirits.*;
+import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
+import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
+import static com.sammy.malum.registry.common.MalumTags.Items.*;
+import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static net.minecraft.world.item.Items.*;
 import static team.lodestar.lodestone.registry.common.tag.LodestoneItemTags.*;
 
@@ -49,7 +63,6 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
     protected void addTags(HolderLookup.Provider pProvider) {
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = ITEMS.getEntries();
-        MalumWoodSetDatagen.addTags(this);
         addTagsFromBlockProperties(blocks);
 
 
@@ -58,22 +71,22 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(ItemTags.LOGS).addTag(RUNEWOOD_LOGS).addTag(SOULWOOD_LOGS);
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
-        tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.get());
+        tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.asItem());
 
-        tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+        tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
         tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_NUGGET.get());
         tag(Tags.Items.INGOTS).add(HALLOWED_GOLD_INGOT.get(), SOUL_STAINED_STEEL_INGOT.get(), MALIGNANT_PEWTER_INGOT.get());
-        tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.get(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
+        tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.asItem(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
         tag(Tags.Items.NUGGETS).addOptional(MalumMod.malumPath("copper_nugget"));
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
         tag(ItemTags.DYEABLE).add(
-                ETHER.get(), ETHER_CANDLE.get(), IRIDESCENT_ETHER.get(),
-                ETHER_TORCH.get(), IRIDESCENT_ETHER_CANDLE.get(), IRIDESCENT_ETHER_TORCH.get(),
-                TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
-                TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
-                TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
-                TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
+                ETHER.asItem(), ETHER_CANDLE.asItem(), IRIDESCENT_ETHER.asItem(),
+                ETHER_TORCH.asItem(), IRIDESCENT_ETHER_CANDLE.asItem(), IRIDESCENT_ETHER_TORCH.asItem());
+//                TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
+//                TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
+//                TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
+//                TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
@@ -152,8 +165,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 LEATHER, RABBIT_HIDE, FEATHER, INK_SAC);
         tag(MATERIALS).add(
                 ROTTING_ESSENCE.get(), GRIM_TALC.get(), EERIE_WEAVE.get(), WARP_FLUX.get(),
-                HEX_ASH.get(), LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.get(),
-                SOULWOVEN_SILK.get(), ETHER.get(), IRIDESCENT_ETHER.get(),
+                HEX_ASH.get(), LIVING_FLESH.get(), ALCHEMICAL_CALX.get(), BLIGHTED_GUNK.asItem(),
+                SOULWOVEN_SILK.get(), ETHER.asItem(), IRIDESCENT_ETHER.asItem(),
                 SOUL_STAINED_STEEL_INGOT.get(), SOUL_STAINED_STEEL_NUGGET.get(), SOUL_STAINED_STEEL_PLATING.get(),
                 HALLOWED_GOLD_INGOT.get(), HALLOWED_GOLD_NUGGET.get(),
                 MALIGNANT_PEWTER_INGOT.get(), MALIGNANT_PEWTER_NUGGET.get(), MALIGNANT_PEWTER_PLATING.get(),
@@ -162,8 +175,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(MINERALS).add(
                 RAW_SOULSTONE.get(), CRUSHED_SOULSTONE.get(), REFINED_SOULSTONE.get(),
                 RAW_BRILLIANCE.get(), CRUSHED_BRILLIANCE.get(), REFINED_BRILLIANCE.get(),
-                BLAZING_QUARTZ.get(),
-                NATURAL_QUARTZ.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+                BLAZING_QUARTZ.asItem(),
+                NATURAL_QUARTZ.asItem(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
 
         tag(AUGMENTS, AugmentItem.class);
         tag(CORE_AUGMENTS, CoreAugmentItem.class);
@@ -187,7 +200,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(COUNTS_AS_EMPTY_HAND).addOptional(ResourceLocation.parse("mowziesmobs:earthrend_gauntlet"));
 
         tag(SAPBALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
-        tag(GROSS_FOODS).add(ROTTEN_FLESH, ROTTING_ESSENCE.get(), CONCENTRATED_GLUTTONY.get());
+        tag(GROSS_FOODS).add(ROTTEN_FLESH, ROTTING_ESSENCE.get());
 
         tag(PROSPECTORS_TREASURE)
                 .addTags(Tags.Items.ORES, Tags.Items.STORAGE_BLOCKS, Tags.Items.INGOTS, Tags.Items.NUGGETS, Tags.Items.GEMS, Tags.Items.RAW_MATERIALS, ItemTags.COALS, METAL_NODES)
@@ -202,26 +215,24 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(VOID_SOULSTONE_CONVERSION)
                 .addTags(Tags.Items.RAW_MATERIALS)
-                .remove(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.get());
+                .remove(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
 
-        tag(HIDDEN_ALWAYS).add(THE_DEVICE.get(), THE_VESSEL.get());
+        tag(HIDDEN_ALWAYS).add(THE_DEVICE.asItem(), THE_VESSEL.asItem());
 
         tag(HIDDEN_UNTIL_VOID)
                 .addTag(HIDDEN_UNTIL_BLACK_CRYSTAL)
-                // The Well
-                .add(PRIMORDIAL_SOUP.get())
                 // Encyclopedia
                 .add(ENCYCLOPEDIA_ESOTERICA.get())
                 // Equipment
                 .add(CATALYST_LOBBER.get())
                 // Decor
-                .add(NULL_SPIRITED_GLASS.get(), NULL_VARNISHED_TERRACOTTA.get())
+                .add(NULL_SPIRITED_GLASS.getItem(), NULL_VARNISHED_TERRACOTTA.getItem())
                 // Materials
-                .add(BLOCK_OF_NULL_SLATE.get(), NULL_SLATE.get(),
-                        BLOCK_OF_VOID_SALTS.get(), VOID_SALTS.get(),
-                        BLOCK_OF_MNEMONIC_FRAGMENT.get(), MNEMONIC_FRAGMENT.get(),
-                        BLOCK_OF_AURIC_EMBERS.get(), AURIC_EMBERS.get(),
-                        BLOCK_OF_MALIGNANT_LEAD.get(), MALIGNANT_LEAD.get());
+                .add(BLOCK_OF_NULL_SLATE.asItem(), NULL_SLATE.get(),
+                        BLOCK_OF_VOID_SALTS.asItem(), VOID_SALTS.get(),
+                        BLOCK_OF_MNEMONIC_FRAGMENT.asItem(), MNEMONIC_FRAGMENT.get(),
+                        BLOCK_OF_AURIC_EMBERS.asItem(), AURIC_EMBERS.get(),
+                        BLOCK_OF_MALIGNANT_LEAD.asItem(), MALIGNANT_LEAD.get());
 
         tag(HIDDEN_UNTIL_BLACK_CRYSTAL)
                 // Umbral Spirit
@@ -230,7 +241,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 .add(ANOMALOUS_DESIGN.get(), COMPLETE_DESIGN.get(), FUSED_CONSCIOUSNESS.get())
                 // Malignant Pewter
                 .add(MALIGNANT_PEWTER_INGOT.get(), MALIGNANT_PEWTER_PLATING.get(),
-                        MALIGNANT_PEWTER_NUGGET.get(), BLOCK_OF_MALIGNANT_PEWTER.get())
+                        MALIGNANT_PEWTER_NUGGET.get(), BLOCK_OF_MALIGNANT_PEWTER.asItem())
                 // Equipment
                 .add(MALIGNANT_STRONGHOLD_HELMET.get(), MALIGNANT_STRONGHOLD_CHESTPLATE.get(),
                         MALIGNANT_STRONGHOLD_LEGGINGS.get(), MALIGNANT_STRONGHOLD_BOOTS.get(),

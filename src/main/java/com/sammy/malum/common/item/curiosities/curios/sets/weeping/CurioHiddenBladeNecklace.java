@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -59,7 +59,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
             if (!source.is(MalumDamageTypes.SCYTHE_MELEE)) {
                 return;
             }
-            if (CurioHelper.hasCurioEquipped(attacker, MalumItems.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
+            if (CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.NECKLACE_OF_THE_HIDDEN_BLADE.get())) {
                 var data = attacker.getData(MalumAttachmentTypes.CURIO_DATA);
                 var random = level.getRandom();
                 if (data.hiddenBladeNecklaceCooldown != 0) {

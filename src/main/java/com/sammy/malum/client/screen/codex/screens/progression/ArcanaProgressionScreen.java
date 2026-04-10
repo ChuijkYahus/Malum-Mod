@@ -3,21 +3,14 @@ package com.sammy.malum.client.screen.codex.screens.progression;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.entries.*;
 import com.sammy.malum.client.screen.codex.objects.progression.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
-import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.*;
 import net.minecraft.resources.*;
 
-import java.awt.*;
-
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
-import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.SOULWOOD;
-import static com.sammy.malum.registry.common.item.MalumItems.*;
 
 public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 

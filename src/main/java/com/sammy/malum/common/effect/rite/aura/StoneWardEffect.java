@@ -3,7 +3,6 @@ package com.sammy.malum.common.effect.rite.aura;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.world.effect.*;
-import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.ColorHelper;
 

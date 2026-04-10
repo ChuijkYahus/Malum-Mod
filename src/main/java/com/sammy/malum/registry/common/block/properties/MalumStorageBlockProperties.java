@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.HEAT_SOURCES;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.FD_HEAT_SOURCES;
 import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 import static net.neoforged.neoforge.common.Tags.Blocks.STORAGE_BLOCKS;
 
@@ -60,7 +60,7 @@ public class MalumStorageBlockProperties {
     public static LodestoneBlockProperties BLAZING_QUARTZ_BLOCK() {
         return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ, DyeColor.ORANGE)
                 .addTag(BEACON_BASE_BLOCKS)
-                .addTags(HEAT_SOURCES)
+                .addTags(FD_HEAT_SOURCES)
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()
                 .strength(5.0F, 6.0F);

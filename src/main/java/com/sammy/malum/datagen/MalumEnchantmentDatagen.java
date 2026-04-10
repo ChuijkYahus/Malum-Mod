@@ -22,7 +22,7 @@ public class MalumEnchantmentDatagen {
         HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
 
         register(context, EnchantmentKeys.ANIMATED, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.ANIMATED_ENCHANTABLE), 2, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.ANIMATED_ENCHANTABLE), 2, 2,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 3, EquipmentSlotGroup.MAINHAND))
 
@@ -37,7 +37,7 @@ public class MalumEnchantmentDatagen {
                 .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(EnchantmentKeys.HAUNTED)))
         );
         register(context, EnchantmentKeys.HAUNTED, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.HAUNTED_ENCHANTABLE), 2, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.HAUNTED_ENCHANTABLE), 2, 2,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 3, EquipmentSlotGroup.MAINHAND))
 
@@ -54,7 +54,7 @@ public class MalumEnchantmentDatagen {
 
 
         register(context, EnchantmentKeys.REBOUND, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.REBOUND_ENCHANTABLE), 1, 3,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.REBOUND_ENCHANTABLE), 1, 3,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(30, 10), 8, EquipmentSlotGroup.MAINHAND))
 
@@ -62,7 +62,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.ASCENSION, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.ASCENSION_ENCHANTABLE), 1, 3,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.ASCENSION_ENCHANTABLE), 1, 3,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(30, 10), 8, EquipmentSlotGroup.MAINHAND))
 
@@ -70,7 +70,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.WEAVERS_PROPAGATION, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.WEAVERS_PROPAGATION_ENCHANTABLE), 1, 4,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.WEAVERS_PROPAGATION_ENCHANTABLE), 1, 4,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
                 .withEffect(ModEnchantmentComponents.LOCUS_COUNT.get(),
@@ -78,7 +78,7 @@ public class MalumEnchantmentDatagen {
                 .exclusiveWith(HolderSet.direct(enchantments.getOrThrow(EnchantmentKeys.WEAVERS_HASTE)))
         );
         register(context, EnchantmentKeys.WEAVERS_HASTE, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.WEAVERS_HASTE_ENCHANTABLE), 1, 4,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.WEAVERS_HASTE_ENCHANTABLE), 1, 4,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
                 .withEffect(ModEnchantmentComponents.LOCUS_SPEED.get(),
@@ -87,7 +87,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.REPLENISHING, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.REPLENISHING_ENCHANTABLE), 1, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.REPLENISHING_ENCHANTABLE), 1, 2,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
 
@@ -95,7 +95,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.CAPACITOR, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.CAPACITOR_ENCHANTABLE), 1, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.CAPACITOR_ENCHANTABLE), 1, 2,
                         Enchantment.dynamicCost(10, 10),
                         Enchantment.dynamicCost(20, 10), 8, EquipmentSlotGroup.MAINHAND))
 
@@ -112,7 +112,7 @@ public class MalumEnchantmentDatagen {
         );
 
         register(context, EnchantmentKeys.SPIRIT_PLUNDER, enchantment(
-                Enchantment.definition(items.getOrThrow(MalumTags.ItemTags.SPIRIT_PLUNDER_ENCHANTABLE), 1, 2,
+                Enchantment.definition(items.getOrThrow(MalumTags.Items.SPIRIT_PLUNDER_ENCHANTABLE), 1, 2,
                         Enchantment.dynamicCost(20, 10),
                         Enchantment.dynamicCost(30, 10), 5, EquipmentSlotGroup.MAINHAND))
 

@@ -1,7 +1,6 @@
 package com.sammy.malum.client.extensions;
 
 import com.sammy.malum.client.scarf.*;
-import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.item.*;
@@ -9,7 +8,6 @@ import net.minecraft.client.model.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.model.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 

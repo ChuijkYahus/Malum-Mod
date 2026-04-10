@@ -11,7 +11,6 @@ import com.sammy.malum.common.entity.nitrate.EthericNitrate;
 import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
-import com.sammy.malum.common.entity.thrown.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -70,9 +69,6 @@ public class MalumEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<HiddenBladeDelayedImpact>> HIDDEN_BLADE_DELAYED_IMPACT =
             register("hidden_blade_delayed_impact", HiddenBladeDelayedImpact::new, 8F, 8F, 10);
-
-    public static final DeferredHolder<EntityType<?>, EntityType<ThrownConcentratedGluttony>> THROWN_GLUTTONY =
-            register("thrown_gluttony", ThrownConcentratedGluttony::new, 0.25f, 0.25f, 10);
 
     public static final DeferredHolder<EntityType<?>, EntityType<HexBolt>> HEX_BOLT =
             register("hex_bolt", HexBolt::new, 1.5F, 1.5F, 10);

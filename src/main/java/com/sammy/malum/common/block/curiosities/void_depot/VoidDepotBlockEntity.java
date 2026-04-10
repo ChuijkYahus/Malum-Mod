@@ -2,7 +2,6 @@ package com.sammy.malum.common.block.curiosities.void_depot;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
@@ -127,38 +126,6 @@ public class VoidDepotBlockEntity extends LodestoneBlockEntity {
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack stack, InteractionHand hand) {
         if (!goals.isEmpty()) {
-            if (player.getItemInHand(hand).getItem().equals(MalumItems.VOID_DEPOT.get())) {
-                List<VoidDepotGoal> newGoals = new ArrayList<>();
-                for (VoidDepotGoal goal : goals) {
-                    if (goal instanceof ItemGoal itemGoal) {
-                        final int amount = Math.max(itemGoal.amount / 2, 1);
-                        newGoals.add(new ItemGoal(itemGoal.index, itemGoal.item, amount, Math.min(itemGoal.deliveredAmount, amount)));
-                    }
-                    if (goal instanceof ExperienceGoal experienceGoal) {
-                        final int amount = Math.max(experienceGoal.amount / 2, 1);
-                        newGoals.add(new ExperienceGoal(experienceGoal.index, amount, Math.min(experienceGoal.deliveredAmount, amount)));
-                    }
-                }
-                this.goals.clear();
-                this.goals.addAll(newGoals);
-                BlockStateHelper.updateState(level, getBlockPos());
-                return ItemInteractionResult.SUCCESS;
-            }
-            if (player.getItemInHand(hand).getItem().equals(MalumItems.VOID_CONDUIT.get())) {
-                List<VoidDepotGoal> newGoals = new ArrayList<>();
-                for (VoidDepotGoal goal : goals) {
-                    if (goal instanceof ItemGoal itemGoal) {
-                        newGoals.add(new ItemGoal(itemGoal.index, itemGoal.item, itemGoal.amount * 2, itemGoal.deliveredAmount));
-                    }
-                    if (goal instanceof ExperienceGoal experienceGoal) {
-                        newGoals.add(new ExperienceGoal(experienceGoal.index, experienceGoal.amount * 2, experienceGoal.deliveredAmount));
-                    }
-                }
-                this.goals.clear();
-                this.goals.addAll(newGoals);
-                BlockStateHelper.updateState(level, getBlockPos());
-                return ItemInteractionResult.SUCCESS;
-            }
             if (oncePerPlayer && playersWhoCompleted.contains(player.getUUID())) {
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }

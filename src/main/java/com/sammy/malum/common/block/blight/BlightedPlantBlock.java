@@ -11,7 +11,7 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
 
-import static com.sammy.malum.registry.common.MalumTags.BlockTags.BLIGHT_PLACEABLE_ON;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.BLIGHT_PLACEABLE_ON;
 
 public class BlightedPlantBlock extends BushBlock implements BonemealableBlock, IShearable {
     public static final MapCodec<BlightedPlantBlock> CODEC = simpleCodec(BlightedPlantBlock::new);

@@ -4,7 +4,6 @@ import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 

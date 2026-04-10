@@ -4,6 +4,8 @@ import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.level.block.state.properties.*;
 
 public class MalumBlockSetTypes {
+
+
     public static final BlockSetType RUNEWOOD = BlockSetType.register(
             new BlockSetType(
                     "runewood",

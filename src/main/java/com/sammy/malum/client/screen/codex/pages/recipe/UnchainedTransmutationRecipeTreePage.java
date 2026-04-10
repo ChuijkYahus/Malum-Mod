@@ -6,8 +6,8 @@ import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.common.recipe.UnchainedTransmutationRecipe;
 import com.sammy.malum.registry.client.MalumScreenParticles;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import com.sammy.malum.registry.common.item.MalumItems;
 import com.sammy.malum.registry.common.recipe.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -48,7 +48,7 @@ public class UnchainedTransmutationRecipeTreePage extends BookPage {
             while (true) {
                 recipe = search.findRecipe(input);
                 if (recipe == null) {
-                    itemTree.add(Ingredient.of(MalumItems.BLIGHTED_EARTH.get()));
+                    itemTree.add(Ingredient.of(MalumContent.Blight.BLIGHTED_EARTH.get()));
                     break;
                 }
                 itemTree.add(recipe.getInput());

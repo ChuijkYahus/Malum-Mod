@@ -7,7 +7,6 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;

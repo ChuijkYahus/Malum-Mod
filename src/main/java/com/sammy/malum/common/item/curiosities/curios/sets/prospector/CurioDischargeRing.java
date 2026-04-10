@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.MalumItems;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import team.lodestar.lodestone.helpers.CurioHelper;
@@ -21,7 +21,7 @@ public class CurioDischargeRing extends MalumCurioItem {
     }
 
     public static float increaseExplosionRadius(LivingEntity source, float original) {
-        if (source != null && CurioHelper.hasCurioEquipped(source, MalumItems.RING_OF_HEAVY_DISCHARGE.get())) {
+        if (source != null && CurioHelper.hasCurioEquipped(source, MalumContent.Gear.RING_OF_HEAVY_DISCHARGE.get())) {
             return original + 1;
         }
         return original;

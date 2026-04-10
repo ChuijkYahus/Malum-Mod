@@ -62,13 +62,13 @@ public class SpiritInfusionRecipe extends LodestoneInWorldRecipe<SpiritBasedReci
                     throw new IllegalArgumentException("Data component type " + component.type() + " is not registered, somehow.");
                 }
                 Holder<DataComponentType<?>> holder = BuiltInRegistries.DATA_COMPONENT_TYPE.getHolder(key).orElseThrow();
-                if (holder.is(MalumTags.DataComponentTags.SPIRIT_INFUSION_BLACKLIST)) {
+                if (holder.is(MalumTags.DataComponents.SPIRIT_INFUSION_BLACKLIST)) {
                     continue;
                 }
                 toCopy.add(component.type());
             }
             for (DataComponentType<?> dataComponentType : toCopy) {
-                if (dataComponentType.equals(DataComponents.ENCHANTMENTS)) {
+                if (dataComponentType.equals(net.minecraft.core.component.DataComponents.ENCHANTMENTS)) {
                     var lookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
                     ItemEnchantments inputEnchantments = input.getAllEnchantments(lookup);
                     for (Object2IntMap.Entry<Holder<Enchantment>> entry : inputEnchantments.entrySet()) {

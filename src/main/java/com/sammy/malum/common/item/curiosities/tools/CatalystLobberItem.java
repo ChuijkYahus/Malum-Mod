@@ -2,6 +2,7 @@ package com.sammy.malum.common.item.curiosities.tools;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.entity.nitrate.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.sounds.*;
@@ -32,7 +33,7 @@ public class CatalystLobberItem extends Item {
 
     @Override
     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-        return repairCandidate.getItem().equals(MalumItems.MALIGNANT_LEAD.get()) || super.isValidRepairItem(stack, repairCandidate);
+        return repairCandidate.getItem().equals(MalumContent.Materials.MALIGNANT_LEAD.get()) || super.isValidRepairItem(stack, repairCandidate);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class CatalystLobberItem extends Item {
                     var ammo = ItemStack.EMPTY;
                     for (int i = 0; i < playerIn.getInventory().getContainerSize(); i++) {
                         ItemStack maybeAmmo = playerIn.getInventory().getItem(i);
-                        if (maybeAmmo.getItem().equals(MalumItems.AURIC_EMBERS.get())) {
+                        if (maybeAmmo.getItem().equals(MalumContent.Materials.AURIC_EMBERS.get())) {
                             ammo = maybeAmmo;
                             break;
                         }

@@ -3,7 +3,6 @@ package com.sammy.malum.common.spiritrite.effect.wicked;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEntityEffect;
 import com.sammy.malum.registry.common.MalumDamageTypes;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,7 +11,6 @@ import team.lodestar.lodestone.helpers.DamageTypeHelper;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;

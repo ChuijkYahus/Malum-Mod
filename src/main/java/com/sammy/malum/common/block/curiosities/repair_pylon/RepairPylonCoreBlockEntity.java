@@ -5,6 +5,7 @@ import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
@@ -19,7 +20,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -44,8 +44,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     private static final int VERTICAL_RANGE = 4;
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(
-            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumBlocks.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
-            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumBlocks.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
+            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
+            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
 
     public static final StringRepresentable.EnumCodec<RepairPylonState> CODEC = StringRepresentable.fromEnum(RepairPylonState::values);
 

@@ -37,18 +37,18 @@ public class MalumGeasTagDatagen extends IntrinsicHolderTagsProvider<GeasEffectT
             geas.getRegistryName();
             var id = holder.getId();
             if (id.getPath().startsWith("oath")) {
-                tag(MalumTags.GeasTags.IS_OATH).add(geas);
+                tag(MalumTags.GeasTypes.IS_OATH).add(geas);
                 continue;
             }
             if (id.getPath().startsWith("bond")) {
-                tag(MalumTags.GeasTags.IS_BOND).add(geas);
+                tag(MalumTags.GeasTypes.IS_BOND).add(geas);
                 continue;
             }
             if (id.getPath().startsWith("authority")) {
-                tag(MalumTags.GeasTags.IS_AUTHORITY).add(geas);
+                tag(MalumTags.GeasTypes.IS_AUTHORITY).add(geas);
             }
         }
 
-        tag(MalumTags.GeasTags.HIDDEN_UNTIL_BLACK_CRYSTAL).addTags(MalumTags.GeasTags.IS_OATH, MalumTags.GeasTags.IS_AUTHORITY);
+        tag(MalumTags.GeasTypes.HIDDEN_UNTIL_BLACK_CRYSTAL).addTags(MalumTags.GeasTypes.IS_OATH, MalumTags.GeasTypes.IS_AUTHORITY);
     }
 }

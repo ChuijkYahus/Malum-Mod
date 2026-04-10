@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.item;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -24,7 +25,7 @@ public class MalumArmorTiers {
         defense.put(ArmorItem.Type.CHESTPLATE, 4);
         defense.put(ArmorItem.Type.HELMET, 2);
         defense.put(ArmorItem.Type.BODY, 2);
-    }), 16, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(MalumItems.SOULWOVEN_SILK.get()));
+    }), 16, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(MalumContent.Materials.SOULWOVEN_SILK.get()));
 
     public static final Holder<ArmorMaterial> SOUL_STAINED_STEEL = register("soul_stained_steel", Util.make(new EnumMap<>(ArmorItem.Type.class), defense -> {
         defense.put(ArmorItem.Type.BOOTS, 2);
@@ -32,7 +33,7 @@ public class MalumArmorTiers {
         defense.put(ArmorItem.Type.CHESTPLATE, 7);
         defense.put(ArmorItem.Type.HELMET, 3);
         defense.put(ArmorItem.Type.BODY, 4);
-    }), 24, SoundEvents.ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> Ingredient.of(MalumItems.SOUL_STAINED_STEEL_PLATING.get()));
+    }), 24, SoundEvents.ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> Ingredient.of(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING.get()));
 
     public static final Holder<ArmorMaterial> MALIGNANT_ALLOY = register("malignant_alloy", Util.make(new EnumMap<>(ArmorItem.Type.class), defense -> {
         defense.put(ArmorItem.Type.BOOTS, 3);
@@ -40,11 +41,10 @@ public class MalumArmorTiers {
         defense.put(ArmorItem.Type.CHESTPLATE, 8);
         defense.put(ArmorItem.Type.HELMET, 3);
         defense.put(ArmorItem.Type.BODY, 4);
-    }), 32, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.1f, () -> Ingredient.of(MalumItems.MALIGNANT_PEWTER_PLATING.get()));
+    }), 32, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.1f, () -> Ingredient.of(MalumContent.Materials.MALIGNANT_PEWTER_PLATING.get()));
 
     private static Holder<ArmorMaterial> register(
-            String name, EnumMap<ArmorItem.Type, Integer> defense, int enchantmentValue,
-            Holder<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient
+            String name, EnumMap<ArmorItem.Type, Integer> defense, int enchantmentValue, Holder<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient
     ) {
         List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace(name)));
         EnumMap<ArmorItem.Type, Integer> enummap = new EnumMap<>(ArmorItem.Type.class);

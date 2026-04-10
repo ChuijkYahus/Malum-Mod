@@ -1,0 +1,252 @@
+{
+  "values": {
+    "#c:ores/aluminium": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/aluminium"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_aluminium_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_aluminium_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/copper": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/copper"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_copper_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_copper_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/gold": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/gold"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_gold_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_gold_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/iron": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/iron"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_iron_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_iron_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/lead": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/lead"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_lead_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_lead_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/nickel": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/nickel"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_nickel_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_nickel_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/silver": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/silver"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_silver_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_silver_ore"
+          }
+        }
+      ]
+    },
+    "#c:ores/zinc": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:tag_empty",
+            "tag": "c:ores/zinc"
+          }
+        }
+      ],
+      "possibleConversions": [
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/stone"
+          },
+          "result": {
+            "Name": "malum:derealized_zinc_ore"
+          }
+        },
+        {
+          "condition": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "c:ores_in_ground/deepslate"
+          },
+          "result": {
+            "Name": "malum:deepslate_derealized_zinc_ore"
+          }
+        }
+      ]
+    }
+  }
+}

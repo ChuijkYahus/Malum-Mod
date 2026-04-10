@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
@@ -71,7 +72,7 @@ public class GeasEffectType {
     }
 
     public ItemStack createStack(boolean isCreative) {
-        ItemStack geas = new ItemStack(MalumItems.GEAS.get());
+        ItemStack geas = new ItemStack(MalumContent.GEAS.get());
         geas.set(MalumDataComponents.GEAS_EFFECT, new GeasDataComponent(this, isCreative));
         return geas;
     }

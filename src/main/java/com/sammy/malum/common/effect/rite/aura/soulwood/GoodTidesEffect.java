@@ -7,8 +7,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.FishingHook;
-import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import team.lodestar.lodestone.helpers.ColorHelper;
 
 public class GoodTidesEffect extends MobEffect {

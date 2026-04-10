@@ -25,8 +25,11 @@ Arcane Rock
 - The Spirit Crucible, Spirit Catalyzer and Repair Pylon now have new place/break/hit/step sounds
 - Stonecutting recipes are now much more organized, similar to how Create does it
 
+Runewood & Soulwood
+- Updated the looks of Item Pedestals
+ 
 Storage Blocks
-- Updated the textures for ALL Storage Blocks
+- Added many new storage blocks, and updated the visuals for ALL Storage Blocks
 
 Ether
 - Updated the model for Ether Braziers

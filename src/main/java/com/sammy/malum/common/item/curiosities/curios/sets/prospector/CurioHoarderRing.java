@@ -2,13 +2,11 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.item.MalumItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import team.lodestar.lodestone.helpers.CurioHelper;
 
 import java.util.function.Consumer;
 

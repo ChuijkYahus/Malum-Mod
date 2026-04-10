@@ -1,9 +1,9 @@
 {
   "values": [
     "malum:soulwood_sapling",
+    "malum:clinging_blight",
     "malum:blighted_growth",
     "malum:blightpearl",
-    "malum:blightroot",
-    "malum:clinging_blight"
+    "malum:blightroot"
   ]
 }
