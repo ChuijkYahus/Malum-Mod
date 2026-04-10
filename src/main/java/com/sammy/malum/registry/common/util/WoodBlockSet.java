@@ -1,165 +1,464 @@
 package com.sammy.malum.registry.common.util;
 
-import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
-import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
-import com.sammy.malum.common.block.flora.wood.MalumLogBlock;
-import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
+import com.sammy.malum.common.block.flora.wood.*;
+import com.sammy.malum.common.block.storage.pedestal.DecoratedItemPedestalBlock;
 import com.sammy.malum.common.block.storage.pedestal.WoodItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
-import com.sammy.malum.registry.common.content.block.MalumBlockEntities;
-import com.sammy.malum.registry.common.content.block.MalumBlockSetTypes;
-import com.sammy.malum.registry.common.content.block.MalumWoodTypes;
-import com.sammy.malum.registry.common.content.block.properties.MalumBlockProperties;
-import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.block.MalumWoodTypes;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
-import team.lodestar.lodestone.modules.toolkit.block.LodestoneLogBlock;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
+import team.lodestar.lodestone.modules.toolkit.block.LodestoneStairBlock;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 
-import static com.sammy.malum.registry.common.MalumTags.Blocks.STRIPPED_LOGS;
-import static com.sammy.malum.registry.common.MalumTags.Blocks.STRIPPED_WOODS;
-import static com.sammy.malum.registry.common.content.block.MalumBlocks.registerBlock;
-import static net.minecraft.tags.BlockTags.*;
-import static net.neoforged.neoforge.common.Tags.Blocks.FENCE_GATES_WOODEN;
+import java.util.function.Supplier;
+
+import static com.sammy.malum.registry.common.MalumContent.registerBlock;
+import static com.sammy.malum.registry.common.MalumContent.registerBlockNoItem;
 
 public class WoodBlockSet {
 
-    private final String baseName;
+    private final String id;
 
-    private String name(String suffix) {
-        return baseName + "_" + suffix;
+    private String name(String name) {
+        if (!name.contains("%s")) {
+            return id + "_" + name;
+        }
+        return name.replace("%s", id);
     }
 
-    public final BlockBlockItemHolder<Block, BlockItem> sapling;
-    public final BlockBlockItemHolder<Block, BlockItem> leaves;
-    public final BlockBlockItemHolder<Block, BlockItem> hangingLeaves;
+    protected final BlockBlockItemHolder<Block, BlockItem> strippedLog;
+    protected final BlockBlockItemHolder<Block, BlockItem> strippedWood;
+    protected final BlockBlockItemHolder<Block, BlockItem> strippedSappyLog;
 
-    public final BlockBlockItemHolder<Block, BlockItem> strippedLog;
-    public final BlockBlockItemHolder<Block, BlockItem> log;
+    protected final BlockBlockItemHolder<Block, BlockItem> log;
+    protected final BlockBlockItemHolder<Block, BlockItem> wood;
+    protected final BlockBlockItemHolder<Block, BlockItem> sappyLog;
 
-    public final BlockBlockItemHolder<Block, BlockItem> strippedWood;
-    public final BlockBlockItemHolder<Block, BlockItem> wood;
+    protected final BlockBlockItemHolder<Block, BlockItem> boards;
+    protected final BlockBlockItemHolder<Block, BlockItem> boardsSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> boardsStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> planks;
-    public final BlockBlockItemHolder<Block, BlockItem> planksSlab;
-    public final BlockBlockItemHolder<Block, BlockItem> planksStairs;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalBoards;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalBoardsSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalBoardsStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> boards;
-    public final BlockBlockItemHolder<Block, BlockItem> boardsSlab;
-    public final BlockBlockItemHolder<Block, BlockItem> boardsStairs;
+    protected final BlockBlockItemHolder<Block, BlockItem> planks;
+    protected final BlockBlockItemHolder<Block, BlockItem> planksSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> planksStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> verticalBoards;
-    public final BlockBlockItemHolder<Block, BlockItem> verticalBoardsSlab;
-    public final BlockBlockItemHolder<Block, BlockItem> verticalBoardsStairs;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticPlanks;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticPlanksSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticPlanksStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> tiles;
-    public final BlockBlockItemHolder<Block, BlockItem> tilesSlab;
-    public final BlockBlockItemHolder<Block, BlockItem> tilesStairs;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalPlanks;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalPlanksSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalPlanksStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> door;
-    public final BlockBlockItemHolder<Block, BlockItem> trapdoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalRusticPlanks;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalRusticPlanksSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> verticalRusticPlanksStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> button;
-    public final BlockBlockItemHolder<Block, BlockItem> pressurePlate;
+    protected final BlockBlockItemHolder<Block, BlockItem> tiles;
+    protected final BlockBlockItemHolder<Block, BlockItem> tilesSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> tilesStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> fence;
-    public final BlockBlockItemHolder<Block, BlockItem> fenceGate;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticTiles;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticTilesSlab;
+    protected final BlockBlockItemHolder<Block, BlockItem> rusticTilesStairs;
 
-    public final BlockBlockItemHolder<Block, BlockItem> itemStand;
-    public final BlockBlockItemHolder<Block, BlockItem> itemPedestal;
+    protected final BlockBlockItemHolder<Block, BlockItem> panel;
+    protected final BlockBlockItemHolder<Block, BlockItem> cutPlanks;
+    protected final BlockBlockItemHolder<Block, BlockItem> beam;
 
-    public WoodBlockSet(String baseName) {
-        this.baseName = baseName;
+    protected final BlockBlockItemHolder<Block, BlockItem> door;
+    protected final BlockBlockItemHolder<Block, BlockItem> heavyDoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> trapdoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> heavyTrapdoor;
 
-        sapling = registerBlock(name("sapling"),
-                () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumBlockProperties.RUNEWOOD_SAPLING()));
+    protected final BlockBlockItemHolder<Block, BlockItem> boltedDoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> heavyBoltedDoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> boltedTrapdoor;
+    protected final BlockBlockItemHolder<Block, BlockItem> heavyBoltedTrapdoor;
 
-        leaves = registerBlock(name("leaves"),
-                () -> new MalumLeavesBlock(MalumBlockProperties.RUNEWOOD_LEAVES(),
-                        MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE,
-                        MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
+    protected final BlockBlockItemHolder<Block, BlockItem> button;
+    protected final BlockBlockItemHolder<Block, BlockItem> pressurePlate;
 
-        hangingLeaves = registerBlock(name("hanging_leaves"),
-                () -> new MalumHangingLeavesBlock(
-                        MalumBlockProperties.HANGING_RUNEWOOD_LEAVES().setCutoutRenderType().noOcclusion().noCollission(),
-                        MalumBlockProperties.RUNEWOOD_LEAVES_ORANGE,
-                        MalumBlockProperties.RUNEWOOD_LEAVES_YELLOW));
+    protected final BlockBlockItemHolder<Block, BlockItem> boardsWall;
+    protected final BlockBlockItemHolder<Block, BlockItem> fence;
+    protected final BlockBlockItemHolder<Block, BlockItem> fenceGate;
 
-        strippedLog = registerBlock(name("stripped_log"),
-                () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_LOGS)));
+    protected final BlockBlockItemHolder<Block, BlockItem> itemStand;
+    protected final BlockBlockItemHolder<Block, BlockItem> decoratedItemPedestal;
+    protected final BlockBlockItemHolder<Block, BlockItem> itemPedestal;
+    protected final BlockBlockItemHolder<Block, BlockItem> decoratedItemStand;
 
-        log = registerBlock(name("log"),
-                () -> new MalumLogBlock(MalumBlockProperties.RUNEWOOD(), strippedLog));
+    protected final BlockBlockItemHolder<Block, BlockItem> sign;
+    protected final DeferredBlock<Block> wallSign;
 
-        strippedWood = registerBlock(name("stripped_wood"),
-                () -> new RotatedPillarBlock(MalumBlockProperties.RUNEWOOD_LOGS().addTags(STRIPPED_WOODS)));
+    public WoodBlockSet(String id, String decoratedPrefix, Supplier<BlockSetType> blockSetType, LodestoneBlockProperties logProperties, LodestoneBlockProperties woodProperties) {
+        this.id = id;
 
-        wood = registerBlock(name("wood"),
-                () -> new LodestoneLogBlock(MalumBlockProperties.RUNEWOOD(), strippedWood));
+        var bottledSap = MalumContent.Materials.RUNIC_SAP_BOTTLE;
+        var doorProperties = LodestoneBlockProperties.copy(woodProperties).setCutoutRenderType();
+        var itemHolderProperties = LodestoneBlockProperties.copy(woodProperties).noOcclusion();
 
-        planks = registerBlock(name("planks"),
-                () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
 
-        planksSlab = registerBlock(name("planks_slab"),
-                () -> new SlabBlock(MalumBlockProperties.RUNEWOOD_SLABS()));
+        strippedLog = registerBlock(name("stripped_%s_log"), () -> new RotatedPillarBlock(logProperties));
+        strippedWood = registerBlock(name("stripped_%s"), () -> new RotatedPillarBlock(logProperties));
+        strippedSappyLog = registerBlock(name("stripped_sappy_%s_log"), () -> new SappyLogBlock(logProperties, bottledSap, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
 
-        planksStairs = registerBlock(name("planks_stairs"),
-                () -> new StairBlock(planks.get().defaultBlockState(), MalumBlockProperties.RUNEWOOD_STAIRS()));
+        log = registerBlock(name("log"), () -> new MalumLogBlock(woodProperties));
+        wood = registerBlock(id, () -> new RotatedPillarBlock(woodProperties));
+        sappyLog = registerBlock(name("sappy_%s_log"), () -> new RotatedPillarBlock(woodProperties));
 
-        boards = registerBlock(name("boards"),
-                () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
+        boards = registerBlock(name("boards"), () -> new Block(woodProperties));
+        boardsSlab = registerBlock(name("boards_slab"), () -> new SlabBlock(woodProperties));
+        boardsStairs = registerBlock(name("boards_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        boardsSlab = registerBlock(name("boards_slab"),
-                () -> new SlabBlock(MalumBlockProperties.RUNEWOOD_SLABS()));
+        verticalBoards = registerBlock(name("vertical_%s_boards"), () -> new Block(woodProperties));
+        verticalBoardsSlab = registerBlock(name("vertical_%s_boards_slab"), () -> new SlabBlock(woodProperties));
+        verticalBoardsStairs = registerBlock(name("vertical_%s_boards_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        boardsStairs = registerBlock(name("boards_stairs"),
-                () -> new StairBlock(boards.get().defaultBlockState(), MalumBlockProperties.RUNEWOOD_STAIRS()));
+        planks = registerBlock(name("planks"), () -> new Block(woodProperties));
+        planksSlab = registerBlock(name("planks_slab"), () -> new SlabBlock(woodProperties));
+        planksStairs = registerBlock(name("planks_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        verticalBoards = registerBlock(name("vertical_boards"),
-                () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
+        rusticPlanks = registerBlock(name("rustic_%s_planks"), () -> new Block(woodProperties));
+        rusticPlanksSlab = registerBlock(name("rustic_%s_planks_slab"), () -> new SlabBlock(woodProperties));
+        rusticPlanksStairs = registerBlock(name("rustic_%s_planks_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        verticalBoardsSlab = registerBlock(name("vertical_boards_slab"),
-                () -> new SlabBlock(MalumBlockProperties.RUNEWOOD_SLABS()));
+        verticalPlanks = registerBlock(name("vertical_%s_planks"), () -> new Block(woodProperties));
+        verticalPlanksSlab = registerBlock(name("vertical_%s_planks_slab"), () -> new SlabBlock(woodProperties));
+        verticalPlanksStairs = registerBlock(name("vertical_%s_planks_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        verticalBoardsStairs = registerBlock(name("vertical_boards_stairs"),
-                () -> new StairBlock(verticalBoards.get().defaultBlockState(), MalumBlockProperties.RUNEWOOD_STAIRS()));
+        verticalRusticPlanks = registerBlock(name("vertical_rustic_%s_planks"), () -> new Block(woodProperties));
+        verticalRusticPlanksSlab = registerBlock(name("vertical_rustic_%s_planks_slab"), () -> new SlabBlock(woodProperties));
+        verticalRusticPlanksStairs = registerBlock(name("vertical_rustic_%s_planks_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        tiles = registerBlock(name("tiles"),
-                () -> new Block(MalumBlockProperties.RUNEWOOD_PLANKS()));
+        tiles = registerBlock(name("tiles"), () -> new Block(woodProperties));
+        tilesSlab = registerBlock(name("tiles_slab"), () -> new SlabBlock(woodProperties));
+        tilesStairs = registerBlock(name("tiles_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        tilesSlab = registerBlock(name("tiles_slab"),
-                () -> new SlabBlock(MalumBlockProperties.RUNEWOOD_SLABS()));
+        rusticTiles = registerBlock(name("rustic_%s_tiles"), () -> new Block(woodProperties));
+        rusticTilesSlab = registerBlock(name("rustic_%s_tiles_slab"), () -> new SlabBlock(woodProperties));
+        rusticTilesStairs = registerBlock(name("rustic_%s_tiles_stairs"), () -> new LodestoneStairBlock(woodProperties));
 
-        tilesStairs = registerBlock(name("tiles_stairs"),
-                () -> new StairBlock(tiles.get().defaultBlockState(), MalumBlockProperties.RUNEWOOD_STAIRS()));
+        panel = registerBlock(name("panel"), () -> new Block(woodProperties));
+        cutPlanks = registerBlock(name("cut_%s_planks"), () -> new Block(woodProperties));
+        beam = registerBlock(name("beam"), () -> new RotatedPillarBlock(woodProperties));
 
-        door = registerBlock(name("door"),
-                () -> new DoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_DOOR()));
+        door = registerBlock(name("door"), () -> new DoorBlock(blockSetType.get(), doorProperties));
+        heavyDoor = registerBlock(name("heavy_door"), () -> new DoorBlock(blockSetType.get(), doorProperties));
+        trapdoor = registerBlock(name("trapdoor"), () -> new TrapDoorBlock(blockSetType.get(), doorProperties));
+        heavyTrapdoor = registerBlock(name("heavy_trapdoor"), () -> new TrapDoorBlock(blockSetType.get(), doorProperties));
 
-        trapdoor = registerBlock(name("trapdoor"),
-                () -> new TrapDoorBlock(MalumBlockSetTypes.RUNEWOOD, MalumBlockProperties.RUNEWOOD_TRAPDOOR()));
+        boltedDoor = registerBlock(name("bolted_%s_door"), () -> new DoorBlock(blockSetType.get(), doorProperties));
+        heavyBoltedDoor = registerBlock(name("heavy_bolted_%s_door"), () -> new DoorBlock(blockSetType.get(), doorProperties));
+        boltedTrapdoor = registerBlock(name("bolted_trapdoor"), () -> new TrapDoorBlock(blockSetType.get(), doorProperties));
+        heavyBoltedTrapdoor = registerBlock(name("bolted_boards_trapdoor"), () -> new TrapDoorBlock(blockSetType.get(), doorProperties));
 
-        button = registerBlock(name("button"),
-                () -> new ButtonBlock(MalumBlockSetTypes.RUNEWOOD, 20,
-                        MalumBlockProperties.RUNEWOOD().noCollission().addTags(BUTTONS, WOODEN_BUTTONS)));
+        button = registerBlock(name("planks_button"), () -> new ButtonBlock(blockSetType.get(), 20, woodProperties.noCollission()));
+        pressurePlate = registerBlock(name("planks_pressure_plate"), () -> new PressurePlateBlock(blockSetType.get(), woodProperties.noCollission()));
 
-        pressurePlate = registerBlock(name("pressure_plate"),
-                () -> new PressurePlateBlock(MalumBlockSetTypes.RUNEWOOD,
-                        MalumBlockProperties.RUNEWOOD().noCollission().addTags(PRESSURE_PLATES, WOODEN_PRESSURE_PLATES)));
+        boardsWall = registerBlock(name("boards_wall"), () -> new WallBlock(woodProperties));
+        fence = registerBlock(name("planks_fence"), () -> new FenceBlock(woodProperties));
+        fenceGate = registerBlock(name("planks_fence_gate"), () -> new FenceGateBlock(MalumWoodTypes.RUNEWOOD, woodProperties));
 
-        fence = registerBlock(name("fence"),
-                () -> new FenceBlock(MalumBlockProperties.RUNEWOOD().addTags(FENCES, WOODEN_FENCES)));
+        itemStand = registerBlock(name("item_stand"), () -> new ItemStandBlock<>(itemHolderProperties).setBlockEntity(MalumBlockEntities.ITEM_STAND));
+        decoratedItemPedestal = registerBlock(name(decoratedPrefix + "_%s_item_pedestal"), () -> new DecoratedItemPedestalBlock<>(itemHolderProperties).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
+        itemPedestal = registerBlock(name("item_pedestal"), () -> new WoodItemPedestalBlock<>(itemHolderProperties).setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
+        decoratedItemStand = registerBlock(name(decoratedPrefix + "_%s_item_stand"), () -> new ItemStandBlock<>(itemHolderProperties).setBlockEntity(MalumBlockEntities.ITEM_STAND));
 
-        fenceGate = registerBlock(name("fence_gate"),
-                () -> new FenceGateBlock(MalumWoodTypes.RUNEWOOD,
-                        MalumBlockProperties.RUNEWOOD().addTags(FENCE_GATES, FENCE_GATES_WOODEN)));
+        sign = registerBlock(name("sign"), () -> new StandingSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()));
+        wallSign = registerBlockNoItem(name("wall_sign"), () -> new WallSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()));
+    }
 
-        itemStand = registerBlock(name("item_stand"),
-                () -> new ItemStandBlock<>(MalumBlockProperties.RUNEWOOD().noOcclusion())
-                        .setBlockEntity(MalumBlockEntities.ITEM_STAND));
+    public void addToCreativeTab(CreativeTabCategoryBuilder builder) {
+        builder.addItems(
+                log,
+                strippedLog,
+                wood,
+                strippedWood,
+                sappyLog,
+                strippedSappyLog
+        ).nextLine()
+                .addItems(
+                        boards,
+                        verticalBoards,
+                        planks,
+                        verticalPlanks,
+                        tiles,
+                        rusticPlanks,
+                        verticalRusticPlanks,
+                        rusticTiles
+                ).nextLine()
+                .addItems(
+                        boardsSlab,
+                        verticalBoardsSlab,
+                        planksSlab,
+                        verticalPlanksSlab,
+                        tilesSlab,
+                        rusticPlanksSlab,
+                        verticalRusticPlanksSlab,
+                        rusticTilesSlab
+                ).nextLine()
+                .addItems(
+                        boardsStairs,
+                        verticalBoardsStairs,
+                        planksStairs,
+                        verticalPlanksStairs,
+                        tilesStairs,
+                        rusticPlanksStairs,
+                        verticalRusticPlanksStairs,
+                        rusticTilesStairs
+                ).nextLine()
+                .addItems(
+                        panel,
+                        cutPlanks,
+                        beam,
+                        decoratedItemPedestal,
+                        itemPedestal,
+                        decoratedItemStand,
+                        itemStand
+                ).nextLine()
+                .addItems(
+                        door,
+                        boltedDoor,
+                        trapdoor,
+                        boltedTrapdoor,
+                        heavyDoor,
+                        heavyBoltedDoor,
+                        heavyTrapdoor,
+                        heavyBoltedTrapdoor
+                ).nextLine()
+                .addItems(
+                        pressurePlate,
+                        button,
+                        boardsWall,
+                        fence,
+                        fenceGate,
+                        sign
+                );
+    }
 
-        itemPedestal = registerBlock(name("item_pedestal"),
-                () -> new WoodItemPedestalBlock<>(MalumBlockProperties.RUNEWOOD().noOcclusion())
-                        .setBlockEntity(MalumBlockEntities.ITEM_PEDESTAL));
+    public void bindSigns(BlockEntityTypeAddBlocksEvent event) {
+        event.modify(BlockEntityType.SIGN, sign.get(), wallSign.get());
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getStrippedLog() {
+        return strippedLog;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getStrippedWood() {
+        return strippedWood;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getStrippedSappyLog() {
+        return strippedSappyLog;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getLog() {
+        return log;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getWood() {
+        return wood;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getSappyLog() {
+        return sappyLog;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoards() {
+        return boards;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoardsSlab() {
+        return boardsSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoardsStairs() {
+        return boardsStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalBoards() {
+        return verticalBoards;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalBoardsSlab() {
+        return verticalBoardsSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalBoardsStairs() {
+        return verticalBoardsStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getPlanks() {
+        return planks;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getPlanksSlab() {
+        return planksSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getPlanksStairs() {
+        return planksStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticPlanks() {
+        return rusticPlanks;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticPlanksSlab() {
+        return rusticPlanksSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticPlanksStairs() {
+        return rusticPlanksStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalPlanks() {
+        return verticalPlanks;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalPlanksSlab() {
+        return verticalPlanksSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalPlanksStairs() {
+        return verticalPlanksStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalRusticPlanks() {
+        return verticalRusticPlanks;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalRusticPlanksSlab() {
+        return verticalRusticPlanksSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getVerticalRusticPlanksStairs() {
+        return verticalRusticPlanksStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getTiles() {
+        return tiles;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getTilesSlab() {
+        return tilesSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getTilesStairs() {
+        return tilesStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticTiles() {
+        return rusticTiles;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticTilesSlab() {
+        return rusticTilesSlab;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getRusticTilesStairs() {
+        return rusticTilesStairs;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getPanel() {
+        return panel;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getCutPlanks() {
+        return cutPlanks;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBeam() {
+        return beam;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getDoor() {
+        return door;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getHeavyDoor() {
+        return heavyDoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getTrapdoor() {
+        return trapdoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getHeavyTrapdoor() {
+        return heavyTrapdoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoltedDoor() {
+        return boltedDoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getHeavyBoltedDoor() {
+        return heavyBoltedDoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoltedTrapdoor() {
+        return boltedTrapdoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getHeavyBoltedTrapdoor() {
+        return heavyBoltedTrapdoor;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getButton() {
+        return button;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getPressurePlate() {
+        return pressurePlate;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getBoardsWall() {
+        return boardsWall;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getFence() {
+        return fence;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getFenceGate() {
+        return fenceGate;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getItemStand() {
+        return itemStand;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getDecoratedItemPedestal() {
+        return decoratedItemPedestal;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getItemPedestal() {
+        return itemPedestal;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getDecoratedItemStand() {
+        return decoratedItemStand;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getSign() {
+        return sign;
+    }
+
+    public DeferredBlock<Block> getWallSign() {
+        return wallSign;
     }
 }

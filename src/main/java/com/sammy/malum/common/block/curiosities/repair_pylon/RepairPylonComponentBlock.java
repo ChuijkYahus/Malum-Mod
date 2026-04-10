@@ -1,16 +1,11 @@
 package com.sammy.malum.common.block.curiosities.repair_pylon;
 
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.core.*;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.*;
 
 public class RepairPylonComponentBlock extends MultiblockComponentBlock {
@@ -23,11 +18,6 @@ public class RepairPylonComponentBlock extends MultiblockComponentBlock {
     public RepairPylonComponentBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(TOP, false));
-    }
-
-    @Override
-    public @NotNull ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
-        return MalumItemProperties.REPAIR_PYLON.get().getDefaultInstance();
     }
 
     @Override

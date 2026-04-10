@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.dungeon.curiosities;
 
 import com.sammy.malum.common.block.curiosities.spirit_altar.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 

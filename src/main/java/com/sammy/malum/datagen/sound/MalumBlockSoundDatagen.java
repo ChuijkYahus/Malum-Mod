@@ -1,6 +1,6 @@
 package com.sammy.malum.datagen.sound;
 
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.sound.*;
 
@@ -16,15 +16,15 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
     public void registerSounds() {
 
         //Derealized Ores
-        addMetallicsSounds(MalumContent.Progression.IRON_METALLICS, 1);
-        addMetallicsSounds(MalumContent.Progression.COPPER_METALLICS, 1.4f);
-        addMetallicsSounds(MalumContent.Progression.GOLD_METALLICS, 0.8f);
-        addMetallicsSounds(MalumContent.Progression.ZINC_METALLICS, 1.2f);
+        addMetallicsSounds(MalumContent.Artifice.IRON_METALLICS, 1);
+        addMetallicsSounds(MalumContent.Artifice.COPPER_METALLICS, 1.4f);
+        addMetallicsSounds(MalumContent.Artifice.GOLD_METALLICS, 0.8f);
+        addMetallicsSounds(MalumContent.Artifice.ZINC_METALLICS, 1.2f);
 
-        addMetallicsSounds(MalumContent.Progression.LEAD_METALLICS, 0.7f);
-        addMetallicsSounds(MalumContent.Progression.SILVER_METALLICS, 1.45f);
-        addMetallicsSounds(MalumContent.Progression.ALUMINIUM_METALLICS, 1.6f);
-        addMetallicsSounds(MalumContent.Progression.NICKEL_METALLICS, 1.25f);
+        addMetallicsSounds(MalumContent.Artifice.LEAD_METALLICS, 0.7f);
+        addMetallicsSounds(MalumContent.Artifice.SILVER_METALLICS, 1.45f);
+        addMetallicsSounds(MalumContent.Artifice.ALUMINIUM_METALLICS, 1.6f);
+        addMetallicsSounds(MalumContent.Artifice.NICKEL_METALLICS, 1.25f);
 
         //Soulstone
         add(MalumBlockSoundEvents.SOULSTONE_ORE, "block/ore/soulstone", b -> b

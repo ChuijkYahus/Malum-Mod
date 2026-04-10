@@ -1,6 +1,6 @@
 package com.sammy.malum.compat.create;
 
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
@@ -27,7 +27,7 @@ public class CreateCompat {
     public static class AbsentOnly {
 
         public static void init() {
-            MalumItemProperties.register("copper_nugget", ()->new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), Item::new);
+            MalumContent.register("copper_nugget", ()->new LodestoneItemProperties(CreativeModeTabs.INGREDIENTS), Item::new);
         }
     }
 }

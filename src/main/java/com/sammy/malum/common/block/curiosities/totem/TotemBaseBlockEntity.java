@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.totem;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;

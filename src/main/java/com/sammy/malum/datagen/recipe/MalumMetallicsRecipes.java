@@ -2,12 +2,10 @@ package com.sammy.malum.datagen.recipe;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.registry.common.content.MalumContent;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.datagen.recipe.builder.SpiritFocusingRecipeBuilder;
 import com.sammy.malum.datagen.recipe.builder.SpiritInfusionRecipeBuilder;
 import com.sammy.malum.datagen.recipe.builder.SpiritRepairRecipeBuilder;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -20,6 +18,8 @@ import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
+import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
@@ -30,11 +30,11 @@ public class MalumMetallicsRecipes implements IConditionBuilder {
 
     public static void buildMetallicsRecipes(RecipeOutput output, MetallicsItemRegistryBundle bundle) {
         var id = bundle.getId();
-        var node = bundle.getNode().get();
+        var node = bundle.getNode();
         Pair<String, Criterion<?>> hasNode = Pair.of("has_node", RecipeDatagenCommons.has(node));
-        var derealizedMetal = bundle.getDerealizedMetal().get();
+        var derealizedMetal = bundle.getDerealizedMetal();
         Pair<String, Criterion<?>> hasDerealizedMetal = Pair.of("has_derealized_metal", RecipeDatagenCommons.has(derealizedMetal));
-        var harmonizedMetal = bundle.getHarmonizedMetal().get();
+        var harmonizedMetal = bundle.getHarmonizedMetal();
         Pair<String, Criterion<?>> hasHarmonizedMetal = Pair.of("has_harmonized_metal", RecipeDatagenCommons.has(harmonizedMetal));
 
         TagKey<Item> nuggetTag = bundle.getNuggetTag();
@@ -46,17 +46,17 @@ public class MalumMetallicsRecipes implements IConditionBuilder {
 
         //Impetus
         Item impetus = bundle.getImpetus().get();
-        new SpiritInfusionRecipeBuilder(MalumContent.Progression.ALCHEMICAL_IMPETUS.get(), impetus, 1)
+        new SpiritInfusionRecipeBuilder(ALCHEMICAL_IMPETUS, impetus, 1)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(SizedIngredient.of(Tags.Items.GUNPOWDERS, 6))
-                .addExtraItem(SizedIngredient.of(MalumContent.Materials.CTHONIC_GOLD.get(), 1))
+                .addExtraItem(SizedIngredient.of(CTHONIC_GOLD, 1))
                 .addExtraItem(SizedIngredient.of(ingotTag, 6))
                 .save(conditional);
 
         //Impetus Repair
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumItemProperties.CTHONIC_GOLD_FRAGMENT.get(), 2), 1f)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(CTHONIC_GOLD_FRAGMENT, 2), 1f)
                 .withValidItem(bundle.getFracturedImpetus().value())
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)
@@ -82,8 +82,8 @@ public class MalumMetallicsRecipes implements IConditionBuilder {
                 Ingredient.of(harmonizedMetal), RecipeCategory.MISC, hasHarmonizedMetal, node, 3, 2f);
 
         //Metal Blocks
-        RecipeDatagenCommons.blockIngotExchange(output, bundle.getDerealizedMetal(), bundle.getDerealizedStorageBlockItem());
-        RecipeDatagenCommons.blockIngotExchange(output, bundle.getHarmonizedMetal(), bundle.getHarmonizedStorageBlockItem());
+        RecipeDatagenCommons.blockIngotExchange(output, bundle.getDerealizedMetal(), bundle.getDerealizedStorageBlock());
+        RecipeDatagenCommons.blockIngotExchange(output, bundle.getHarmonizedMetal(), bundle.getHarmonizedStorageBlock());
 
     }
 }

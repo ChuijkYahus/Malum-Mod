@@ -5,7 +5,7 @@ import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;

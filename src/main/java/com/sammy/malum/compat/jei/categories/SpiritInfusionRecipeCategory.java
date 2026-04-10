@@ -3,7 +3,7 @@ package com.sammy.malum.compat.jei.categories;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.compat.jei.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -32,7 +32,7 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
 
     public SpiritInfusionRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(malumPath("textures/gui/spirit_infusion_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItemProperties.SPIRIT_ALTAR.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Progression.SPIRIT_ALTAR.get()));
     }
 
     @Override

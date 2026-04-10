@@ -5,14 +5,12 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-
-import static com.sammy.malum.registry.common.content.block.MalumBlocks.*;
 
 public class MalumBlockColors {
 
@@ -41,7 +39,7 @@ public class MalumBlockColors {
             int green = (int) Mth.lerp(value, leaves.getMinColor().getGreen(), leaves.getMaxColor().getGreen());
             int blue = (int) Mth.lerp(value, leaves.getMinColor().getBlue(), leaves.getMaxColor().getBlue());
             return red << 16 | green << 8 | blue;
-        }, RUNEWOOD_LEAVES.get(), HANGING_RUNEWOOD_LEAVES.get(), AZURE_RUNEWOOD_LEAVES.get(), HANGING_AZURE_RUNEWOOD_LEAVES.get());
+        }, MalumContent.BlockSets.RUNEWOOD_LEAVES.get(), MalumContent.BlockSets.HANGING_RUNEWOOD_LEAVES.get(), MalumContent.BlockSets.AZURE_RUNEWOOD_LEAVES.get(), MalumContent.BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES.get());
 
         event.register((s, l, p, c) -> {
             boolean isPersistent = s.getOptionalValue(MalumLeavesBlock.PERSISTENT).orElse(false);
@@ -66,7 +64,7 @@ public class MalumBlockColors {
             int green = (int) Mth.lerp(value, leaves.getMinColor().getGreen(), leaves.getMaxColor().getGreen());
             int blue = (int) Mth.lerp(value, leaves.getMinColor().getBlue(), leaves.getMaxColor().getBlue());
             return red << 16 | green << 8 | blue;
-        }, SOULWOOD_LEAVES.get(), HANGING_SOULWOOD_LEAVES.get());
+        }, MalumContent.BlockSets.SOULWOOD_LEAVES.get(), MalumContent.BlockSets.HANGING_SOULWOOD_LEAVES.get());
 
         event.register((s, l, p, c) -> {
             var spiritType = SpiritHolder.getSpiritType(s.getValue(ManaMoteBlock.SPIRIT_TYPE));

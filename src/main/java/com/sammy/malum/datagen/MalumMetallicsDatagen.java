@@ -7,6 +7,7 @@ import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import com.sammy.malum.datagen.recipe.MalumMetallicsRecipes;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -67,17 +68,15 @@ public class MalumMetallicsDatagen {
                     )
             ));
             var oreTag = metallic.getOreTag();
-            var condition = new NotCondition(new TagEmptyCondition(oreTag.toString()));
+            var condition = new NotCondition(new TagEmptyCondition(oreTag.location()));
             builder.add(oreTag, map, false, condition);
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void addTags(Function<TagKey<Block>, IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block>> tag) {
         for (MetallicsItemRegistryBundle metallic : metallics) {
-            tag.apply(SOULSTONE_BUD_PLANTABLE_ON)
-                    .addTags(metallic.getOreTag())
-                    .add(metallic.getOre().get(), metallic.getDeepslateOre().get());
+            tag.apply(SOULSTONE_BUD_PLANTABLE_ON).add(metallic.getOre().get(), metallic.getDeepslateOre().get());
+            tag.apply(SOULSTONE_BUD_PLANTABLE_ON).addOptionalTag(metallic.getOreTag());
         }
     }
 

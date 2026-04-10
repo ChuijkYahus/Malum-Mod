@@ -2,15 +2,15 @@ package com.sammy.malum.registry.client;
 
 import com.sammy.malum.client.extensions.*;
 import com.sammy.malum.common.block.curiosities.mana_mote.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.neoforged.neoforge.client.extensions.common.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
 public class MalumClientExtensions {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new SpiritJarClientItemExtensions(),
-                MalumItemProperties.SPIRIT_JAR);
+                MalumContent.Progression.SPIRIT_JAR.asItem());
 
         event.registerItem(new GeasClientItemExtension(),
                 MalumContent.GEAS);

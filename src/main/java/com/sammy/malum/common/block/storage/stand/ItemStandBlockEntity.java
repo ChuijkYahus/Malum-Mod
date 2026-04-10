@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.storage.stand;
 
 import com.sammy.malum.common.block.storage.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;

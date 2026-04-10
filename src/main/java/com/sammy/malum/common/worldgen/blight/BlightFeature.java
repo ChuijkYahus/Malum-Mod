@@ -4,8 +4,7 @@ import com.google.common.collect.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
@@ -105,7 +104,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
         for (BlockPos blockPos : blightedArea) {
             BlockState state = level.getBlockState(blockPos);
             if (state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE)) {
-                blightLayer.add(blockPos, MalumContent.BlockSets.BLIGHTED_EARTH.get());
+                blightLayer.add(blockPos, MalumContent.Blight.BLIGHTED_EARTH.get());
             }
         }
 
@@ -138,7 +137,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                     if (height > 0) {
                         for (int i = 0; i < height; i++) {
                             mutable.move(Direction.UP);
-                            var columnarBlight = MalumContent.BlockSets.COLUMNAR_BLIGHT.get().defaultBlockState()
+                            var columnarBlight = MalumContent.Blight.COLUMNAR_BLIGHT.get().defaultBlockState()
                                     .setValue(ColumnarBlightBlock.BOTTOM, i > 0)
                                     .setValue(ColumnarBlightBlock.TOP, i < height-1);
                             blightLayer.add(mutable.immutable(), columnarBlight);
@@ -166,12 +165,12 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 Block block;
                 if (radius > 3 && !hasSoulwood && random.nextFloat() < 0.1f) {
-                    block = MalumBlocks.SOULWOOD_SAPLING.get();
+                    block = MalumContent.BlockSets.SOULWOOD_SAPLING.get();
                     hasSoulwood = true;
                 } else if (random.nextFloat() < 0.4f) {
-                    block = random.nextFloat() < 0.2f ? MalumContent.BlockSets.BLIGHTPEARL.get() : MalumContent.BlockSets.BLIGHTROOT.get();
+                    block = random.nextFloat() < 0.2f ? MalumContent.Blight.BLIGHTPEARL.get() : MalumContent.Blight.BLIGHTROOT.get();
                 } else {
-                    block = MalumContent.BlockSets.BLIGHTED_GUNK.get();
+                    block = MalumContent.Blight.BLIGHTED_GUNK.get();
                 }
                 floraLayer.add(above, block);
                 floraCount--;
@@ -193,7 +192,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 var above = blockPos.above();
                 boolean isWaterLogged = level.getBlockState(above).getFluidState().is(Fluids.WATER);
-                var covering = MalumContent.BlockSets.BLIGHT.get().defaultBlockState()
+                var covering = MalumContent.Blight.BLIGHT.get().defaultBlockState()
                         .setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)
                         .setValue(BlockStateProperties.WATERLOGGED, isWaterLogged);
                 coveringLayer.add(above, covering);

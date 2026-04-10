@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.esoteric;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;

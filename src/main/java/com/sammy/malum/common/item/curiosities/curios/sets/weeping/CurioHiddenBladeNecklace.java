@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;

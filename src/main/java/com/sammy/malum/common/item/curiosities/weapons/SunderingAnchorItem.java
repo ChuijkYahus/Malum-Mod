@@ -9,7 +9,6 @@ import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
@@ -101,7 +100,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
             SoundHelper.playSound(player, MalumGearSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.5f, 2f));
-            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItemProperties.SOUL_OF_THE_ANCHOR);
+            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumContent.SOUL_OF_THE_ANCHOR);
             applyCooldown(stack, player);
         }
         return InteractionResultHolder.success(stack);

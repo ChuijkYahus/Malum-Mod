@@ -1,24 +1,17 @@
 package com.sammy.malum.common.block.soulstone;
 
 import com.mojang.serialization.MapCodec;
-import com.sammy.malum.common.data.map.SoulstoneOreConversionMap;
 import com.sammy.malum.common.data.map.SoulstoneOreConversionMap.SoulstoneOreConversion;
-import com.sammy.malum.datagen.MalumDataMapDatagen;
 import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.MalumTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneDirectionalBlock;
 
-import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("NullableProblems")

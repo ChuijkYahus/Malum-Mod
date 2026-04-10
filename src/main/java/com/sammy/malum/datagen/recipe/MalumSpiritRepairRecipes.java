@@ -3,8 +3,9 @@ package com.sammy.malum.datagen.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Artifice;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -12,23 +13,25 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.crafting.*;
 
+import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
+import static net.minecraft.world.item.Items.*;
 
 public class MalumSpiritRepairRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
-        var has = MalumRecipes.has(MalumItemProperties.REPAIR_PYLON.get());
+        var has = MalumRecipes.has(REPAIR_PYLON.get());
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(ItemTags.PLANKS, 4), 0.5f)
                 .withRegex(SpiritRepairRegexData.simple("wooden_.+"))
                 .addSpirit(SACRED_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
-                .withValidItem(Items.BOW)
-                .withValidItem(Items.CROSSBOW)
+                .withValidItem(BOW)
+                .withValidItem(CROSSBOW)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("wooden_restoration"));
 
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(Items.FLINT, 2), 0.5f)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(FLINT, 2), 0.5f)
                 .withRegex(SpiritRepairRegexData.simple("flint_.+"))
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_pylon", has)
@@ -74,21 +77,21 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("netherite_restoration"));
 
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(Items.PRISMARINE_CRYSTALS, 8), 0.5f)
-                .withValidItem(Items.TRIDENT)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(PRISMARINE_CRYSTALS, 8), 0.5f)
+                .withValidItem(TRIDENT)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("trident_restoration"));
 
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(Items.WIND_CHARGE, 8), 0.5f)
-                .withValidItem(Items.MACE)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(WIND_CHARGE, 8), 0.5f)
+                .withValidItem(MACE)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("mace_restoration"));
 
-        new SpiritRepairRecipeBuilder(SizedIngredient.of(Items.OBSIDIAN, 2), 0.75f)
+        new SpiritRepairRecipeBuilder(SizedIngredient.of(OBSIDIAN, 2), 0.75f)
                 .withValidItem(MalumContent.Gear.TYRVING.get())
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ARCANE_SPIRIT, 8)
@@ -193,21 +196,21 @@ public class MalumSpiritRepairRecipes implements IConditionBuilder {
                 .save(recipeOutput, MalumMod.malumPath("sundering_anchor_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumContent.Materials.ALCHEMICAL_CALX.get(), 2), 1f)
-                .withValidItem(MalumContent.Progression.FRACTURED_ALCHEMICAL_IMPETUS.get())
+                .withValidItem(FRACTURED_ALCHEMICAL_IMPETUS.get())
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("alchemical_impetus_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumContent.Materials.WIND_NUCLEUS.get(), 4), 1f)
-                .withValidItem(MalumContent.Progression.FRACTURED_ZEPHYR_IMPETUS.get())
+                .withValidItem(FRACTURED_ZEPHYR_IMPETUS.get())
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .unlockedBy("has_pylon", has)
                 .save(recipeOutput, MalumMod.malumPath("zephyr_impetus_restoration"));
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(MalumContent.Materials.PYRE_NUCLEUS.get(), 4), 1f)
-                .withValidItem(MalumContent.Progression.FRACTURED_IFRIT_IMPETUS.get())
+                .withValidItem(FRACTURED_IFRIT_IMPETUS.get())
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .unlockedBy("has_pylon", has)

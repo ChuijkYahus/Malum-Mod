@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.totem.unweaver;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.entity.activator.rite.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

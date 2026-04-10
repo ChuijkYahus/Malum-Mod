@@ -7,7 +7,7 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
@@ -39,8 +39,8 @@ public class SpiritRiteRecipePage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        var result = riteType.isCorrupted() ? MalumItemProperties.SOULWOOD_TOTEM_BASE.get() : MalumItemProperties.RUNEWOOD_TOTEM_BASE.get();
-        CodexItemHelper.renderItem(screen, guiGraphics, result.getDefaultInstance(), left + 63, top + 147, mouseX, mouseY);
+        var totemBase = riteType.isCorrupted() ? MalumContent.Totemancy.SOULWOOD_TOTEM_BASE : MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE;
+        CodexItemHelper.renderItem(screen, guiGraphics, totemBase.getDefaultInstance(), left + 63, top + 147, mouseX, mouseY);
 
         var spirits = riteType.getSpirits();
         var minecraft = Minecraft.getInstance();

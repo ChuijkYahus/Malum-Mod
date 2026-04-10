@@ -4,7 +4,7 @@
       "chance": 0.3
     },
     "malum:azure_runewood_sapling": {
-      "chance": 0.3
+      "chance": 0.4
     },
     "malum:blighted_gunk": {
       "chance": 0.1
@@ -22,13 +22,13 @@
       "chance": 0.3
     },
     "malum:runewood_sapling": {
-      "chance": 0.3
+      "chance": 0.4
     },
     "malum:soulwood_leaves": {
       "chance": 0.3
     },
     "malum:soulwood_sapling": {
-      "chance": 0.3
+      "chance": 0.4
     }
   }
 }

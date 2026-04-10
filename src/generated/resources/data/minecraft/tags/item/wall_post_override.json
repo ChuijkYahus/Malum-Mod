@@ -1,15 +1,9 @@
 {
   "values": [
     "malum:ether_torch",
-    "malum:ether_torch",
     "malum:iridescent_ether_torch",
-    "malum:iridescent_ether_torch",
-    "malum:tainted_ether_brazier",
-    "malum:twisted_ether_brazier",
-    "malum:dross_ether_brazier",
-    "malum:tainted_iridescent_ether_brazier",
-    "malum:twisted_iridescent_ether_brazier",
-    "malum:dross_iridescent_ether_brazier",
+    "malum:ether_brazier",
+    "malum:iridescent_ether_brazier",
     "malum:veiled_effigy",
     "malum:corrupt_effigy",
     "malum:cracked_effigy"

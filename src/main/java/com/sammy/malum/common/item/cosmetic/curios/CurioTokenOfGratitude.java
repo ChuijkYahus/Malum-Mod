@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.cosmetic.curios;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -80,7 +80,7 @@ public class CurioTokenOfGratitude extends MalumCurioItem implements ItemEventHa
         if (event.getEntity() instanceof Player playerEntity) {
             if (!playerEntity.level().isClientSide) {
                 if (GRADITUDE_CERTIFIED.stream().anyMatch(u -> u.equals(playerEntity.getUUID()))) {
-                    final Item token = MalumItemProperties.TOKEN_OF_GRATITUDE.get();
+                    final Item token = MalumContent.TOKEN_OF_GRATITUDE.get();
                     if (CurioHelper.hasCurioEquipped(playerEntity, token)) {
                         return;
                     }

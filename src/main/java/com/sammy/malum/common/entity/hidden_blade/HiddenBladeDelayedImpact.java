@@ -1,7 +1,7 @@
 package com.sammy.malum.common.entity.hidden_blade;
 
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.nbt.*;

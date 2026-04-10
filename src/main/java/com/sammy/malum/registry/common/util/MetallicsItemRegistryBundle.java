@@ -3,11 +3,10 @@ package com.sammy.malum.registry.common.util;
 import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
 import com.sammy.malum.common.item.metallics.MetalImpetusItem;
 import com.sammy.malum.common.item.metallics.MetalNodeItem;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.MalumBlocks;
-import com.sammy.malum.registry.common.content.block.properties.MalumOreBlockProperties;
-import com.sammy.malum.registry.common.content.block.properties.MalumStorageBlockProperties;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.block.properties.MalumOreBlockProperties;
+import com.sammy.malum.registry.common.block.properties.MalumStorageBlockProperties;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -35,14 +34,14 @@ import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 public class MetallicsItemRegistryBundle {
 
     public static List<MetallicsItemRegistryBundle> getMalumMetallics() {
-        return List.of(MalumContent.Progression.IRON_METALLICS,
-                MalumContent.Progression.COPPER_METALLICS,
-                MalumContent.Progression.GOLD_METALLICS,
-                MalumContent.Progression.ZINC_METALLICS,
-                MalumContent.Progression.LEAD_METALLICS,
-                MalumContent.Progression.SILVER_METALLICS,
-                MalumContent.Progression.ALUMINIUM_METALLICS,
-                MalumContent.Progression.NICKEL_METALLICS);
+        return List.of(MalumContent.Artifice.IRON_METALLICS,
+                MalumContent.Artifice.COPPER_METALLICS,
+                MalumContent.Artifice.GOLD_METALLICS,
+                MalumContent.Artifice.ZINC_METALLICS,
+                MalumContent.Artifice.LEAD_METALLICS,
+                MalumContent.Artifice.SILVER_METALLICS,
+                MalumContent.Artifice.ALUMINIUM_METALLICS,
+                MalumContent.Artifice.NICKEL_METALLICS);
     }
 
     protected final String id;
@@ -91,12 +90,12 @@ public class MetallicsItemRegistryBundle {
         var derealizedBlockName = "block_of_" + derealized;
         var harmonizedBlockName = "block_of_" + harmonized;
 
-        impetus = MalumItemProperties.register(impetusName, MalumItemProperties::IMPETUS_PROPERTIES, MetalImpetusItem::new);
-        fracturedImpetus = MalumItemProperties.register(fracturedImpetusName, MalumItemProperties::IMPETUS_PROPERTIES, FracturedMetalImpetusItem::new);
-        node = MalumItemProperties.register(nodeName, MalumItemProperties::IMPETUS_PROPERTIES, MetalNodeItem::new);
+        impetus = MalumContent.register(impetusName, MalumItemProperties::IMPETUS_PROPERTIES, MetalImpetusItem::new);
+        fracturedImpetus = MalumContent.register(fracturedImpetusName, MalumItemProperties::IMPETUS_PROPERTIES, FracturedMetalImpetusItem::new);
+        node = MalumContent.register(nodeName, MalumItemProperties::IMPETUS_PROPERTIES, MetalNodeItem::new);
 
-        derealizedMetal = MalumItemProperties.register(derealized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
-        harmonizedMetal = MalumItemProperties.register(harmonized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
+        derealizedMetal = MalumContent.register(derealized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
+        harmonizedMetal = MalumContent.register(harmonized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
 
         oreSound = new MalumBlockSoundType(oreName);
         deepslateOreSound = new MalumBlockSoundType(deepslateOreName);
@@ -134,7 +133,7 @@ public class MetallicsItemRegistryBundle {
     }
 
     public BlockBlockItemHolder<Block, BlockItem> registerBlock(String name, Supplier<Block> block) {
-        return MalumBlocks.registerBlock(name, block);
+        return MalumContent.registerBlock(name, block);
     }
 
     protected TagKey<Block> createOreTag(boolean isDeepslate) {

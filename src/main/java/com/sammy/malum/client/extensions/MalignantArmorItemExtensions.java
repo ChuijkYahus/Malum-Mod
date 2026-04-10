@@ -3,7 +3,7 @@ package com.sammy.malum.client.extensions;
 import com.sammy.malum.client.scarf.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.client.*;
-import com.sammy.malum.registry.common.content.item.*;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.client.model.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;

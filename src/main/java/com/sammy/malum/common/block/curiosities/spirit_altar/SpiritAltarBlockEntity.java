@@ -7,7 +7,7 @@ import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
-import com.sammy.malum.registry.common.content.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
 import com.sammy.malum.visual_effects.networked.altar.SpiritAltarEatItemParticleEffect;

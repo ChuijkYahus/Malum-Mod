@@ -7,7 +7,7 @@ import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.common.entity.mob.cultist.ICherubFriend;
 import com.sammy.malum.common.entity.mob.cultist.evangelist.goal.EvangelistHeavyStanceAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.evangelist.goal.EvangelistMeleeAttackGoal;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
@@ -174,7 +174,7 @@ public class EvangelistCultist extends CultistMonster implements IAltarBlessingR
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        setItemSlot(EquipmentSlot.MAINHAND, MalumContent.SHAPED_SLAB.get().getDefaultInstance());
+        setItemSlot(EquipmentSlot.MAINHAND, MalumContent.DungeonGear.SHAPED_SLAB.get().getDefaultInstance());
         enchantSpawnedWeapon(level, random, difficulty);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

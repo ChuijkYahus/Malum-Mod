@@ -1,0 +1,10 @@
+{
+  "values": {
+    "malum:arcane_charcoal": {
+      "burn_time": 32000
+    },
+    "malum:block_of_arcane_charcoal": {
+      "burn_time": 288000
+    }
+  }
+}

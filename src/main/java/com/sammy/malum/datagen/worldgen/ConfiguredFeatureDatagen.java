@@ -4,8 +4,7 @@ import com.sammy.malum.common.worldgen.ore.*;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.LayeredOreFeatureDecorator;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.OreLayer;
 import com.sammy.malum.common.worldgen.tree.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.worldgen.*;
 import com.sammy.malum.registry.common.worldgen.MalumFeatures.ConfiguredFeatures;
 import net.minecraft.core.registries.Registries;
@@ -79,18 +78,18 @@ public class ConfiguredFeatureDatagen {
         context.register(ConfiguredFeatures.BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
         
         context.register(ConfiguredFeatures.RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
-                MalumBlocks.RUNEWOOD_SAPLING.get(),
-                MalumBlocks.RUNEWOOD_LOG.get(),
-                MalumBlocks.SAPPY_RUNEWOOD_LOG.get(),
-                MalumBlocks.RUNEWOOD_LEAVES.get(),
-                MalumBlocks.HANGING_RUNEWOOD_LEAVES.get()
+                MalumContent.BlockSets.RUNEWOOD_SAPLING.get(),
+                MalumContent.BlockSets.RUNEWOOD_SET.getLog().get(),
+                MalumContent.BlockSets.RUNEWOOD_SET.getSappyLog().get(),
+                MalumContent.BlockSets.RUNEWOOD_LEAVES.get(),
+                MalumContent.BlockSets.HANGING_RUNEWOOD_LEAVES.get()
         )));
         context.register(ConfiguredFeatures.AZURE_RUNEWOOD_TREE, addTreeConfig(MalumFeatures.RUNEWOOD_TREE.get(), new RunewoodTreeConfiguration(
-                MalumBlocks.RUNEWOOD_SAPLING.get(),
-                MalumBlocks.RUNEWOOD_LOG.get(),
-                MalumBlocks.SAPPY_RUNEWOOD_LOG.get(),
-                MalumBlocks.AZURE_RUNEWOOD_LEAVES.get(),
-                MalumBlocks.HANGING_AZURE_RUNEWOOD_LEAVES.get()
+                MalumContent.BlockSets.RUNEWOOD_SAPLING.get(),
+                MalumContent.BlockSets.RUNEWOOD_SET.getLog().get(),
+                MalumContent.BlockSets.RUNEWOOD_SET.getSappyLog().get(),
+                MalumContent.BlockSets.AZURE_RUNEWOOD_LEAVES.get(),
+                MalumContent.BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES.get()
         )));
 
         context.register(ConfiguredFeatures.SOULWOOD_TREE, addTreeConfig(MalumFeatures.SOULWOOD_TREE.get(), NoneFeatureConfiguration.INSTANCE));

@@ -48,8 +48,6 @@ public class EntityRenderers {
         register(MalumEntityTypes.SPIRIT_COLLECTION_ACTIVATOR.get(), SpiritCollectionActivatorRenderer::new);
         register(MalumEntityTypes.HIDDEN_BLADE_DELAYED_IMPACT.get(), NoopRenderer::new);
 
-        register(MalumEntityTypes.THROWN_GLUTTONY.get(), ThrownConcentratedGluttonyRenderer::new);
-
         register(MalumEntityTypes.HEX_BOLT.get(), HexBoltRenderer::new);
         register(MalumEntityTypes.DRAINING_BOLT.get(), DrainingBoltRenderer::new);
         register(MalumEntityTypes.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltRenderer::new);

@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.curiosities.redstone.*;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;

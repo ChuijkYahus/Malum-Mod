@@ -4,7 +4,7 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.common.data.component.ArtificeAugmentDataComponent;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.content.item.MalumDataComponents;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;

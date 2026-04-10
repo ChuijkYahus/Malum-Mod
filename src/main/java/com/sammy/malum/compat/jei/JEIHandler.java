@@ -6,7 +6,7 @@ import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.compat.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.compat.jei.categories.*;
 import com.sammy.malum.compat.jei.recipes.SpiritTransmutationWrapper;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -98,12 +98,12 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.SPIRIT_CRUCIBLE.get()), FOCUSING);
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.REPAIR_PYLON.get()), SPIRIT_REPAIR);
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.RUNIC_WORKBENCH.get()), RUNEWORKING);
-        registry.addRecipeCatalyst(new ItemStack(MalumItemProperties.VOID_DEPOT.get()), VOID_FAVOR);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Progression.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Artifice.SPIRIT_CRUCIBLE.get()), FOCUSING);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Artifice.REPAIR_PYLON.get()), SPIRIT_REPAIR);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Totemancy.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Progression.RUNIC_WORKBENCH.get()), RUNEWORKING);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.WeepingWell.VOID_DEPOT.get()), VOID_FAVOR);
     }
 
 

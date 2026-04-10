@@ -3,8 +3,7 @@ package com.sammy.malum.core.handlers.enchantment;
 import com.sammy.malum.common.entity.scythe.ScytheBoomerang;
 import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.server.level.*;
@@ -47,7 +46,7 @@ public class ReboundHandler {
             level.addFreshEntity(entity);
             float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 1.25f);
             SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_THROW.get(), 0.5f, pitch);
-            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumItemProperties.SOUL_OF_A_SCYTHE);
+            TemporarilyDisabledItem.disable(serverPlayer, slot, MalumContent.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);
         player.awardStat(Stats.ITEM_USED.get(scythe.getItem()));

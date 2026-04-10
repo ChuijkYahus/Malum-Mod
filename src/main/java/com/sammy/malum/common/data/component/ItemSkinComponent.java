@@ -3,7 +3,7 @@ package com.sammy.malum.common.data.component;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.content.item.*;
+import com.sammy.malum.registry.common.item.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;

@@ -1,8 +1,8 @@
 package com.sammy.malum.compat.farmersdelight;
 
 import com.sammy.malum.common.item.curiosities.MagicKnifeItem;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemTiers;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.item.MalumItemTiers;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.Item;

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.ether;
 
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.content.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import com.sammy.malum.visual_effects.SparkParticleEffects;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import net.minecraft.core.BlockPos;

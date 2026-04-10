@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.*;
 import com.sammy.malum.client.screen.codex.helper.CodexRenderHelper;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
-import com.sammy.malum.registry.common.content.item.MalumDataComponents;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;

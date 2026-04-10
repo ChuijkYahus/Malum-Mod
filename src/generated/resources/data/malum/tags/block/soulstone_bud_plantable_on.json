@@ -1,0 +1,52 @@
+{
+  "values": [
+    "malum:derealized_iron_ore",
+    "malum:deepslate_derealized_iron_ore",
+    {
+      "id": "#c:ores/iron",
+      "required": false
+    },
+    "malum:derealized_copper_ore",
+    "malum:deepslate_derealized_copper_ore",
+    {
+      "id": "#c:ores/copper",
+      "required": false
+    },
+    "malum:derealized_gold_ore",
+    "malum:deepslate_derealized_gold_ore",
+    {
+      "id": "#c:ores/gold",
+      "required": false
+    },
+    "malum:derealized_zinc_ore",
+    "malum:deepslate_derealized_zinc_ore",
+    {
+      "id": "#c:ores/zinc",
+      "required": false
+    },
+    "malum:derealized_lead_ore",
+    "malum:deepslate_derealized_lead_ore",
+    {
+      "id": "#c:ores/lead",
+      "required": false
+    },
+    "malum:derealized_silver_ore",
+    "malum:deepslate_derealized_silver_ore",
+    {
+      "id": "#c:ores/silver",
+      "required": false
+    },
+    "malum:derealized_aluminium_ore",
+    "malum:deepslate_derealized_aluminium_ore",
+    {
+      "id": "#c:ores/aluminium",
+      "required": false
+    },
+    "malum:derealized_nickel_ore",
+    "malum:deepslate_derealized_nickel_ore",
+    {
+      "id": "#c:ores/nickel",
+      "required": false
+    }
+  ]
+}

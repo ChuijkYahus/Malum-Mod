@@ -10,7 +10,7 @@ import net.minecraft.world.item.component.*;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.content.item.MalumArmorTiers.SOUL_STAINED_STEEL;
+import static com.sammy.malum.registry.common.item.MalumArmorTiers.SOUL_STAINED_STEEL;
 
 public class SoulStainedSteelArmorItem extends MalumArmorItem {
     public SoulStainedSteelArmorItem(ArmorItem.Type slot, Properties builder) {

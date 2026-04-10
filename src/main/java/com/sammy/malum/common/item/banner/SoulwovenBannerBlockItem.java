@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.banner;
 
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
-import com.sammy.malum.registry.common.content.item.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
@@ -35,7 +35,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        var source = MalumItemProperties.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
         if (event.getParentEntries().contains(source)) {
             var patterns = new ArrayList<>(SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS);
             patterns.remove(SoulwovenBannerPatternDataComponent.DEFAULT);
@@ -58,7 +58,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
-        var source = MalumItemProperties.SOULWOVEN_BANNER.get().getDefaultInstance();
+        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
         ItemStack stack = pattern.getDefaultStack();
         if (!event.getParentEntries().contains(stack)) {
             if (before) {

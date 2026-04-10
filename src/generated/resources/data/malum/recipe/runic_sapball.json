@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "malum:runic_sap"
+      "item": "malum:runic_sap_bottle"
     },
     {
-      "item": "malum:runic_sap"
+      "item": "malum:runic_sap_bottle"
     }
   ],
   "result": {

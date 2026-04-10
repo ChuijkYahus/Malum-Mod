@@ -3,68 +3,81 @@ package com.sammy.malum.datagen.recipe;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Blight;
+import com.sammy.malum.registry.common.MalumContent.BlockSets;
+import com.sammy.malum.registry.common.MalumContent.Totemancy;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 
 import java.util.*;
-import java.util.function.Supplier;
 
-import static com.sammy.malum.registry.common.content.block.MalumBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.RUNEWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.SOULWOOD_SET;
 
 public class MalumUnchainedTransmutationRecipes {
 
     private static final List<Pair<BlockBlockItemHolder<Block, BlockItem>, BlockBlockItemHolder<Block, BlockItem>>> SOULWOOD_TRANSMUTATIONS = List.of(
-            new Pair<>(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE),
-            new Pair<>(RUNEWOOD_SAPLING, SOULWOOD_SAPLING),
-            new Pair<>(RUNEWOOD_LEAVES, SOULWOOD_LEAVES),
-            new Pair<>(STRIPPED_RUNEWOOD_LOG, STRIPPED_SOULWOOD_LOG),
-            new Pair<>(RUNEWOOD_LOG, SOULWOOD_LOG),
-            new Pair<>(STRIPPED_RUNEWOOD, STRIPPED_SOULWOOD),
-            new Pair<>(RUNEWOOD, SOULWOOD),
-            new Pair<>(STRIPPED_SAPPY_RUNEWOOD_LOG, STRIPPED_SAPPY_SOULWOOD_LOG),
-            new Pair<>(SAPPY_RUNEWOOD_LOG, SAPPY_SOULWOOD_LOG),
-            new Pair<>(RUNEWOOD_BOARDS, SOULWOOD_BOARDS),
-            new Pair<>(RUNEWOOD_BOARDS_SLAB, SOULWOOD_BOARDS_SLAB),
-            new Pair<>(RUNEWOOD_BOARDS_STAIRS, SOULWOOD_BOARDS_STAIRS),
-            new Pair<>(VERTICAL_RUNEWOOD_BOARDS, VERTICAL_SOULWOOD_BOARDS),
-            new Pair<>(VERTICAL_RUNEWOOD_BOARDS_SLAB, VERTICAL_SOULWOOD_BOARDS_SLAB),
-            new Pair<>(VERTICAL_RUNEWOOD_BOARDS_STAIRS, VERTICAL_SOULWOOD_BOARDS_STAIRS),
-            new Pair<>(RUNEWOOD_PLANKS, SOULWOOD_PLANKS),
-            new Pair<>(RUNEWOOD_PLANKS_SLAB, SOULWOOD_PLANKS_SLAB),
-            new Pair<>(RUNEWOOD_PLANKS_STAIRS, SOULWOOD_PLANKS_STAIRS),
-            new Pair<>(RUSTIC_RUNEWOOD_PLANKS, RUSTIC_SOULWOOD_PLANKS),
-            new Pair<>(RUSTIC_RUNEWOOD_PLANKS_SLAB, RUSTIC_SOULWOOD_PLANKS_SLAB),
-            new Pair<>(RUSTIC_RUNEWOOD_PLANKS_STAIRS, RUSTIC_SOULWOOD_PLANKS_STAIRS),
-            new Pair<>(VERTICAL_RUNEWOOD_PLANKS, VERTICAL_SOULWOOD_PLANKS),
-            new Pair<>(VERTICAL_RUNEWOOD_PLANKS_SLAB, VERTICAL_SOULWOOD_PLANKS_SLAB),
-            new Pair<>(VERTICAL_RUNEWOOD_PLANKS_STAIRS, VERTICAL_SOULWOOD_PLANKS_STAIRS),
-            new Pair<>(VERTICAL_RUSTIC_RUNEWOOD_PLANKS, VERTICAL_RUSTIC_SOULWOOD_PLANKS),
-            new Pair<>(VERTICAL_RUSTIC_RUNEWOOD_PLANKS_SLAB, VERTICAL_RUSTIC_SOULWOOD_PLANKS_SLAB),
-            new Pair<>(VERTICAL_RUSTIC_RUNEWOOD_PLANKS_STAIRS, VERTICAL_RUSTIC_SOULWOOD_PLANKS_STAIRS),
-            new Pair<>(RUNEWOOD_TILES, SOULWOOD_TILES),
-            new Pair<>(RUNEWOOD_TILES_SLAB, SOULWOOD_TILES_SLAB),
-            new Pair<>(RUNEWOOD_TILES_STAIRS, SOULWOOD_TILES_STAIRS),
-            new Pair<>(RUNEWOOD_PANEL, SOULWOOD_PANEL),
-            new Pair<>(CUT_RUNEWOOD_PLANKS, CUT_SOULWOOD_PLANKS),
-            new Pair<>(RUNEWOOD_BEAM, SOULWOOD_BEAM),
-            new Pair<>(RUNEWOOD_DOOR, SOULWOOD_DOOR),
-            new Pair<>(SOULWOOD_DOOR, BOLTED_SOULWOOD_DOOR),
-            new Pair<>(RUNEWOOD_TRAPDOOR, SOULWOOD_TRAPDOOR),
-            new Pair<>(BOLTED_RUNEWOOD_TRAPDOOR, BOLTED_SOULWOOD_TRAPDOOR),
-            new Pair<>(RUNEWOOD_BUTTON, SOULWOOD_BUTTON),
-            new Pair<>(RUNEWOOD_PRESSURE_PLATE, SOULWOOD_PRESSURE_PLATE),
-            new Pair<>(RUNEWOOD_FENCE, SOULWOOD_FENCE),
-            new Pair<>(RUNEWOOD_FENCE_GATE, SOULWOOD_FENCE_GATE),
-            new Pair<>(RUNEWOOD_BOARDS_WALL, SOULWOOD_BOARDS_WALL),
-            new Pair<>(RUNEWOOD_ITEM_STAND, SOULWOOD_ITEM_STAND),
-            new Pair<>(RUNEWOOD_ITEM_PEDESTAL, SOULWOOD_ITEM_PEDESTAL),
-            new Pair<>(RUNEWOOD_SIGN, SOULWOOD_SIGN) // Wall sign already handled by this. Is it??? Wire? Huh ? How
+            new Pair<>(Totemancy.RUNEWOOD_TOTEM_BASE, Totemancy.SOULWOOD_TOTEM_BASE),
+            new Pair<>(BlockSets.RUNEWOOD_SAPLING, BlockSets.SOULWOOD_SAPLING),
+            new Pair<>(BlockSets.RUNEWOOD_LEAVES, BlockSets.SOULWOOD_LEAVES),
+            new Pair<>(RUNEWOOD_SET.getStrippedLog(), SOULWOOD_SET.getStrippedLog()),
+            new Pair<>(RUNEWOOD_SET.getLog(), SOULWOOD_SET.getLog()),
+            new Pair<>(RUNEWOOD_SET.getStrippedWood(), SOULWOOD_SET.getStrippedWood()),
+            new Pair<>(RUNEWOOD_SET.getWood(), SOULWOOD_SET.getWood()),
+            new Pair<>(RUNEWOOD_SET.getStrippedSappyLog(), SOULWOOD_SET.getStrippedSappyLog()),
+            new Pair<>(RUNEWOOD_SET.getSappyLog(), SOULWOOD_SET.getSappyLog()),
+
+            new Pair<>(RUNEWOOD_SET.getBoards(), SOULWOOD_SET.getBoards()),
+            new Pair<>(RUNEWOOD_SET.getBoardsSlab(), SOULWOOD_SET.getBoardsSlab()),
+            new Pair<>(RUNEWOOD_SET.getBoardsStairs(), SOULWOOD_SET.getBoardsStairs()),
+            new Pair<>(RUNEWOOD_SET.getVerticalBoards(), SOULWOOD_SET.getVerticalBoards()),
+            new Pair<>(RUNEWOOD_SET.getVerticalBoardsSlab(), SOULWOOD_SET.getVerticalBoardsSlab()),
+            new Pair<>(RUNEWOOD_SET.getVerticalBoardsStairs(), SOULWOOD_SET.getVerticalBoardsStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getPlanks(), SOULWOOD_SET.getPlanks()),
+            new Pair<>(RUNEWOOD_SET.getPlanksSlab(), SOULWOOD_SET.getPlanksSlab()),
+            new Pair<>(RUNEWOOD_SET.getPlanksStairs(), SOULWOOD_SET.getPlanksStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getRusticPlanks(), SOULWOOD_SET.getRusticPlanks()),
+            new Pair<>(RUNEWOOD_SET.getRusticPlanksSlab(), SOULWOOD_SET.getRusticPlanksSlab()),
+            new Pair<>(RUNEWOOD_SET.getRusticPlanksStairs(), SOULWOOD_SET.getRusticPlanksStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getVerticalPlanks(), SOULWOOD_SET.getVerticalPlanks()),
+            new Pair<>(RUNEWOOD_SET.getVerticalPlanksSlab(), SOULWOOD_SET.getVerticalPlanksSlab()),
+            new Pair<>(RUNEWOOD_SET.getVerticalPlanksStairs(), SOULWOOD_SET.getVerticalPlanksStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getVerticalRusticPlanks(), SOULWOOD_SET.getVerticalRusticPlanks()),
+            new Pair<>(RUNEWOOD_SET.getVerticalRusticPlanksSlab(), SOULWOOD_SET.getVerticalRusticPlanksSlab()),
+            new Pair<>(RUNEWOOD_SET.getVerticalRusticPlanksStairs(), SOULWOOD_SET.getVerticalRusticPlanksStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getTiles(), SOULWOOD_SET.getTiles()),
+            new Pair<>(RUNEWOOD_SET.getTilesSlab(), SOULWOOD_SET.getTilesSlab()),
+            new Pair<>(RUNEWOOD_SET.getTilesStairs(), SOULWOOD_SET.getTilesStairs()),
+
+            new Pair<>(RUNEWOOD_SET.getPanel(), SOULWOOD_SET.getPanel()),
+            new Pair<>(RUNEWOOD_SET.getCutPlanks(), SOULWOOD_SET.getCutPlanks()),
+            new Pair<>(RUNEWOOD_SET.getBeam(), SOULWOOD_SET.getBeam()),
+
+            new Pair<>(RUNEWOOD_SET.getDoor(), SOULWOOD_SET.getDoor()),
+            new Pair<>(SOULWOOD_SET.getDoor(), SOULWOOD_SET.getBoltedDoor()),
+
+            new Pair<>(RUNEWOOD_SET.getTrapdoor(), SOULWOOD_SET.getTrapdoor()),
+            new Pair<>(RUNEWOOD_SET.getBoltedTrapdoor(), SOULWOOD_SET.getBoltedTrapdoor()),
+
+            new Pair<>(RUNEWOOD_SET.getButton(), SOULWOOD_SET.getButton()),
+            new Pair<>(RUNEWOOD_SET.getPressurePlate(), SOULWOOD_SET.getPressurePlate()),
+
+            new Pair<>(RUNEWOOD_SET.getFence(), SOULWOOD_SET.getFence()),
+            new Pair<>(RUNEWOOD_SET.getFenceGate(), SOULWOOD_SET.getFenceGate()),
+            new Pair<>(RUNEWOOD_SET.getBoardsWall(), SOULWOOD_SET.getBoardsWall()),
+
+            new Pair<>(RUNEWOOD_SET.getItemStand(), SOULWOOD_SET.getItemStand()),
+            new Pair<>(RUNEWOOD_SET.getItemPedestal(), SOULWOOD_SET.getItemPedestal()),
+
+            new Pair<>(RUNEWOOD_SET.getSign(), SOULWOOD_SET.getSign()) // Wall sign already handled by this. Is it??? Wire? Huh ? How
     );
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
@@ -77,13 +90,13 @@ public class MalumUnchainedTransmutationRecipes {
                     .save(recipeOutput, id);
         }
 
-        createUnchainedRecipeTree(recipeOutput, "dirt", Blocks.DIRT, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, MalumContent.BlockSets.BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "dirt", Blocks.DIRT, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, Blight.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "stone", Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, MalumContent.BlockSets.BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "stone", Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blight.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "basalt", Blocks.BASALT, Blocks.MAGMA_BLOCK, Blocks.NETHERRACK, Blocks.SOUL_SAND, MalumContent.BlockSets.BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "basalt", Blocks.BASALT, Blocks.MAGMA_BLOCK, Blocks.NETHERRACK, Blocks.SOUL_SAND, Blight.BLIGHTED_EARTH.get());
 
-        createUnchainedRecipeTree(recipeOutput, "mud", Blocks.MUD, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, MalumContent.BlockSets.BLIGHTED_EARTH.get());
+        createUnchainedRecipeTree(recipeOutput, "mud", Blocks.MUD, Blocks.CLAY, Blocks.PRISMARINE, Blocks.ICE, Blight.BLIGHTED_EARTH.get());
 
         createUnchainedRecipeTree(recipeOutput, "packed_mud", Blocks.PACKED_MUD, Blocks.DRIPSTONE_BLOCK, Blocks.GRANITE, Blocks.GRAVEL);
 

@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.recipe.RuneworkingRecipe.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import net.minecraft.core.*;

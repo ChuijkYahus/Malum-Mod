@@ -5,9 +5,8 @@ import com.sammy.malum.common.recipe.SoulBindingRecipe;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.systems.recipe.SpiritBasedRecipeInput;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
@@ -239,7 +238,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
             return false;
         }
         var item = stack.getItem();
-        if (item.equals(MalumItemProperties.ETHER.get())) {
+        if (MalumContent.BlockSets.ETHER.is(item)) {
             beginSoulbinding(level, BrazierState.BINDING);
         } else if (item.equals(MalumContent.Materials.PARACAUSAL_FLAME.get())) {
             beginSoulbinding(level, BrazierState.UNBINDING);

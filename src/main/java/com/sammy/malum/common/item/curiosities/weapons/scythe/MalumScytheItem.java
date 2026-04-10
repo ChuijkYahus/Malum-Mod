@@ -4,7 +4,7 @@ import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
 
 import com.sammy.malum.registry.common.sound.*;

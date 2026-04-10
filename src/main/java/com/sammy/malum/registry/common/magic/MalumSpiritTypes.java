@@ -4,7 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 
 import net.minecraft.core.*;
 import net.minecraft.resources.*;

@@ -4,7 +4,7 @@ import com.sammy.malum.common.entity.mob.cultist.CultistMonster;
 import com.sammy.malum.common.entity.mob.cultist.IAltarBlessingRecipient;
 import com.sammy.malum.common.entity.mob.cultist.CultistMeleeAttackGoal;
 import com.sammy.malum.common.entity.mob.cultist.ICherubFriend;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.DifficultyInstance;
@@ -74,7 +74,7 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        setItemSlot(EquipmentSlot.MAINHAND, MalumContent.BROKEN_BLADE.get().getDefaultInstance());
+        setItemSlot(EquipmentSlot.MAINHAND, MalumContent.DungeonGear.BROKEN_BLADE.get().getDefaultInstance());
         enchantSpawnedWeapon(level, random, difficulty);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

@@ -6,7 +6,7 @@ import com.sammy.malum.common.item.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;

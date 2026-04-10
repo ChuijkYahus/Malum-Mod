@@ -4,7 +4,7 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;

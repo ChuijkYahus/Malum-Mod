@@ -1,10 +1,8 @@
 package com.sammy.malum.datagen.recipe;
 
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.MalumContent.Artifice;
-import com.sammy.malum.registry.common.content.MalumContent.Materials;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent.Artifice;
+import com.sammy.malum.registry.common.MalumContent.Materials;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;

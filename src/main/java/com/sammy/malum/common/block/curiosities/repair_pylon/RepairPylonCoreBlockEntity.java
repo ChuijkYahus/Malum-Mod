@@ -5,8 +5,8 @@ import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.*;
@@ -44,8 +44,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     private static final int VERTICAL_RANGE = 4;
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(
-            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Progression.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
-            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumContent.Progression.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
+            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
+            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
 
     public static final StringRepresentable.EnumCodec<RepairPylonState> CODEC = StringRepresentable.fromEnum(RepairPylonState::values);
 

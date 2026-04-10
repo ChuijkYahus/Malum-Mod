@@ -1,8 +1,8 @@
 package com.sammy.malum.datagen.recipe.infusion;
 
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.content.*;
-import com.sammy.malum.registry.common.content.block.MalumBlocks;
+import com.sammy.malum.registry.common.MalumContent;
+
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.Tags;
@@ -17,8 +17,8 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(WICKED_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
-                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK, 16)
-                .addExtraItem(MalumBlocks.SOULWOOD_PLANKS, 8)
+                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK_SET.getRock(), 16)
+                .addExtraItem(MalumContent.BlockSets.SOULWOOD_SET.getPlanks(), 8)
                 .addExtraItem(MalumContent.Materials.PARACAUSAL_FLAME, 1)
                 .carryOverComponentData()
                 .save(recipeOutput);
@@ -28,7 +28,7 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
-                .addExtraItem(MalumContent.Progression.IRON_METALLICS.getNode().get(), 4)
+                .addExtraItem(MalumContent.Artifice.IRON_METALLICS.getNode().get(), 4)
                 .addExtraItem(MalumContent.Materials.CTHONIC_GOLD, 2)
                 .carryOverComponentData()
                 .save(recipeOutput);
@@ -37,7 +37,7 @@ public class GearSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
-                .addExtraItem(MalumContent.Progression.IRON_METALLICS.getNode(), 4)
+                .addExtraItem(MalumContent.Artifice.IRON_METALLICS.getNode(), 4)
                 .addExtraItem(MalumContent.Materials.CTHONIC_GOLD, 2)
                 .carryOverComponentData()
                 .save(recipeOutput);
@@ -58,10 +58,10 @@ public class GearSpiritInfusionRecipes {
                 .carryOverComponentData()
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(MalumContent.Progression.TOTEMIC_STAFF, 1, MalumContent.Gear.MNEMONIC_HEX_STAFF, 1)
+        new SpiritInfusionRecipeBuilder(MalumContent.Totemancy.TOTEMIC_STAFF, 1, MalumContent.Gear.MNEMONIC_HEX_STAFF, 1)
                 .addExtraItem(MalumContent.Materials.MNEMONIC_FRAGMENT, 8)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_INGOT, 4)
-                .addExtraItem(MalumBlocks.SOULWOOD_PLANKS, 2)
+                .addExtraItem(MalumContent.BlockSets.SOULWOOD_SET.getPlanks(), 2)
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
@@ -116,7 +116,7 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Items.IRON_HELMET, 1, MalumContent.Gear.SOUL_STAINED_STEEL_HELMET, 1)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 4)
-                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK, 8)
+                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK_SET.getRock(), 8)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
@@ -126,7 +126,7 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Items.IRON_CHESTPLATE, 1, MalumContent.Gear.SOUL_STAINED_STEEL_CHESTPLATE, 1)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 4)
-                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK, 8)
+                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK_SET.getRock(), 8)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
@@ -136,7 +136,7 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Items.IRON_LEGGINGS, 1, MalumContent.Gear.SOUL_STAINED_STEEL_LEGGINGS, 1)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 4)
-                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK, 8)
+                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK_SET.getRock(), 8)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
@@ -146,7 +146,7 @@ public class GearSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Items.IRON_BOOTS, 1, MalumContent.Gear.SOUL_STAINED_STEEL_BOOTS, 1)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 4)
-                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK, 8)
+                .addExtraItem(MalumContent.BlockSets.TWISTED_ROCK_SET.getRock(), 8)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)

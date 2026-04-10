@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.curios.sets.prospector;
 
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

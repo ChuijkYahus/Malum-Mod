@@ -4,7 +4,8 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Vanity;
 import net.minecraft.data.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
@@ -15,7 +16,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-import static com.sammy.malum.registry.common.content.item.MalumItemProperties.*;
+import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 
 public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
@@ -25,13 +26,13 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
     @Override
     protected void registerModels() {
-        Set<Supplier<? extends Item>> items = new HashSet<>(ITEMS.getEntries());
+        Set<Supplier<? extends Item>> items = new HashSet<>(MalumContent.ITEMS.getEntries());
 
         items.removeIf(i -> i.get() instanceof BlockItem);
 
         ItemModelSystemData data = new ItemModelSystemData(this, items::remove);;
 
-        MalumItemModelSmithTypes.SOUL_OF_AN_ITEM.act(data, SOUL_OF_A_SCYTHE, SOUL_OF_THE_ANCHOR);
+        MalumItemModelSmithTypes.SOUL_OF_AN_ITEM.act(data, MalumContent.SOUL_OF_A_SCYTHE, MalumContent.SOUL_OF_THE_ANCHOR);
         setTexturePath("cosmetic/weaves/pride/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data,
                 ACE_PRIDEWEAVE, AGENDER_PRIDEWEAVE, ARO_PRIDEWEAVE, AROACE_PRIDEWEAVE, BI_PRIDEWEAVE,

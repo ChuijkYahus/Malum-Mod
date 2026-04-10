@@ -1,17 +1,8 @@
 {
   "values": [
-    "malum:soulwood_log",
-    "malum:stripped_soulwood_log",
-    "malum:soulwood",
-    "malum:stripped_soulwood",
-    "malum:stripped_sappy_soulwood_log",
-    "malum:sappy_soulwood_log",
     "malum:blighted_soulwood",
     "malum:stripped_soulwood_log",
-    "malum:soulwood_log",
     "malum:stripped_soulwood",
-    "malum:soulwood",
-    "malum:stripped_sappy_soulwood_log",
-    "malum:sappy_soulwood_log"
+    "malum:stripped_sappy_soulwood_log"
   ]
 }

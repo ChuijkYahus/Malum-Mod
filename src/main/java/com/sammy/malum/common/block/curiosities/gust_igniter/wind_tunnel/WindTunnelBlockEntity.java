@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel;
 
 import com.sammy.malum.common.block.curiosities.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.redstone.*;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.*;

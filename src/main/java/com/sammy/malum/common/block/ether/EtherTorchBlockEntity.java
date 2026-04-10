@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.ether;
 
-import com.sammy.malum.registry.common.content.block.MalumBlockEntities;
+import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;

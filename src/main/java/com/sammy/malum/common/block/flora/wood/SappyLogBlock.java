@@ -27,13 +27,11 @@ import java.util.function.Supplier;
 
 public class SappyLogBlock extends RotatedPillarBlock {
 
-    public final Supplier<Block> drained;
     public final Supplier<Item> sap;
     public final List<? extends ColorParticleData> sapColor;
 
-    public SappyLogBlock(Properties properties, Supplier<Block> drained, Supplier<Item> sap, Color... sapColor) {
+    public SappyLogBlock(Properties properties, Supplier<Item> sap, Color... sapColor) {
         super(properties);
-        this.drained = drained;
         this.sap = sap;
         this.sapColor = Arrays.stream(sapColor).map(c -> ColorParticleData.create(c).build()).toList();
     }
@@ -53,11 +51,8 @@ public class SappyLogBlock extends RotatedPillarBlock {
                 .customData(new SapCollectionParticleEffect.SapCollectionEffectData(hit.getDirection(), player.getUUID()))
                 .color(sapColor)
                 .spawn(serverLevel);
-        BlockStateHelper.setBlockStateWithExistingProperties(level, pos, drained.get().defaultBlockState(), 3);
+//        BlockStateHelper.setBlockStateWithExistingProperties(level, pos, drained.get().defaultBlockState(), 3);
 
-        collectSap(level, pos, player);
         return ItemInteractionResult.SUCCESS;
-    }
-    public void collectSap(Level level, BlockPos pos, Player player) {
     }
 }

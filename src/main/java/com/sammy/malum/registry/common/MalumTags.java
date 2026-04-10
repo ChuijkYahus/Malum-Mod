@@ -144,9 +144,6 @@ public class MalumTags {
 
     public static class Blocks {
 
-        public static final TagKey<Block> STRIPPED_LOGS = commonTag("stripped_logs");
-        public static final TagKey<Block> STRIPPED_WOODS = commonTag("stripped_woods");
-
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
         public static final TagKey<Block> GREATER_AERIAL_WHITELIST = tag("greater_aerial_whitelist");
@@ -168,16 +165,8 @@ public class MalumTags {
         public static final TagKey<Block> SOULWOOD_LOGS = tag("soulwood_logs");
 
         public static final TagKey<Block> TAINTED_ROCK = tag("tainted_rock");
-        public static final TagKey<Block> TAINTED_ROCK_BLOCKS = tag("tainted_rock_blocks");
-        public static final TagKey<Block> TAINTED_ROCK_SLABS = tag("tainted_rock_slabs");
-        public static final TagKey<Block> TAINTED_ROCK_STAIRS = tag("tainted_rock_stairs");
-        public static final TagKey<Block> TAINTED_ROCK_WALLS = tag("tainted_rock_walls");
 
         public static final TagKey<Block> TWISTED_ROCK = tag("twisted_rock");
-        public static final TagKey<Block> TWISTED_ROCK_BLOCKS = tag("twisted_rock_blocks");
-        public static final TagKey<Block> TWISTED_ROCK_SLABS = tag("twisted_rock_slabs");
-        public static final TagKey<Block> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
-        public static final TagKey<Block> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
 
         public static final TagKey<Block> DROSS_STONE = tag("dross_stone");
         public static final TagKey<Block> DROSS_STONE_BLOCKS = tag("dross_stone_blocks");

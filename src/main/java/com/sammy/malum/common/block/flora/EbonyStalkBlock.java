@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.flora;
 
 import com.mojang.serialization.MapCodec;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

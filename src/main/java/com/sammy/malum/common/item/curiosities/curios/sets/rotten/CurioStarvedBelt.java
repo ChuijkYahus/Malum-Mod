@@ -6,7 +6,9 @@ import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
+import com.sammy.malum.registry.common.MalumParticleEffectTypes;
 import com.sammy.malum.registry.common.sound.*;
+import com.sammy.malum.visual_effects.networked.gluttony.AbsorbGluttonyParticleEffect;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -40,8 +42,15 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
             var random = serverLevel.random;
             SoundHelper.playSound(collector, MalumGearSoundEvents.HUNGRY_BELT_FEEDS.get(), 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.5f, 2f));
             SoundHelper.playSound(collector, SoundEvents.GENERIC_EAT, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f));
-            ConcentratedGluttonyItem.createGluttonyVFX(serverLevel, collector, 0.5f);
+            createGluttonyVFX(serverLevel, collector, 0.5f);
         }
+    }
+
+    public static void createGluttonyVFX(ServerLevel serverLevel, LivingEntity target, float potency) {
+        var position = target.position().add(0, target.getBbHeight() / 2f, 0);
+        MalumParticleEffectTypes.GLUTTONY_ABSORB.createEffect(position)
+                .customData(new AbsorbGluttonyParticleEffect.AbsorbGluttonyEffectData(potency))
+                .spawn(serverLevel);
     }
 
 }

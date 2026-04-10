@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
@@ -27,7 +28,7 @@
 				"east": {"uv": [8, 5, 14, 13], "texture": "#pedestal"},
 				"south": {"uv": [8, 5, 14, 13], "texture": "#pedestal"},
 				"west": {"uv": [8, 5, 14, 13], "texture": "#pedestal"},
-				"up": {"uv": [0, 0, 6, 6], "texture": "#pedestal"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#pedestal"},
 				"down": {"uv": [0, 0, 0, 0], "texture": "#pedestal"}
 			}
 		},

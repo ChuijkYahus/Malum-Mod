@@ -361,7 +361,7 @@ public class MalumBlockStateSmithTypes {
 
 
     public static BlockStateSmith<EtherTorchBlock> ETHER_TORCH_BLOCK = new BlockStateSmith<>(EtherTorchBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_torch"), MalumBlockStateSmithTypes::makeEtherTorch);
-    public static BlockStateSmith<EtherWallTorchBlock> ETHER_WALL_TORCH_BLOCK = new BlockStateSmith<>(EtherWallTorchBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_torch"), MalumBlockStateSmithTypes::makeEtherWallTorch);
+    public static BlockStateSmith<EtherWallTorchBlock> ETHER_WALL_TORCH_BLOCK = new BlockStateSmith<>(EtherWallTorchBlock.class, MalumItemModelSmithTypes.NO_DATAGEN, MalumBlockStateSmithTypes::makeEtherWallTorch);
     public static BlockStateSmith<EtherCandleBlock> ETHER_CANDLE_BLOCK = new BlockStateSmith<>(EtherCandleBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_candle"), MalumBlockStateSmithTypes::makeEtherCandles);
     public static BlockStateSmith<EtherBrazierBlock> ETHER_BRAZIER_BLOCK = new BlockStateSmith<>(EtherBrazierBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_brazier"), MalumBlockStateSmithTypes::makeEtherBrazier);
     public static BlockStateSmith<EtherCressetBlock> ETHER_CRESSET_BLOCK = new BlockStateSmith<>(EtherCressetBlock.class, MalumItemModelSmithTypes.ETHER_CONTAINING_ITEM.apply("ether_cresset"), MalumBlockStateSmithTypes::makeEtherCresset);
@@ -396,13 +396,8 @@ public class MalumBlockStateSmithTypes {
     }
 
     public static void makeEtherBrazier(EtherBrazierBlock block, LodestoneBlockStateSystem provider) {
-        var name = provider.getBlockName(block);
-        var textureName = name.replaceFirst("_iridescent", "");
-        var brazier = provider.getBlockTexture(textureName);
-        var brazierTemplate = malumPath("block/templates/template_ether_brazier");
-        var hangingTemplate = malumPath("block/templates/template_ether_brazier_hanging");
-        var model = provider.models().withExistingParent(name, brazierTemplate).texture("brazier", brazier);
-        var hanging = provider.models().withExistingParent(name + "_hanging", hangingTemplate).texture("brazier", brazier);
+        var model = provider.models().getExistingFile(malumPath("block/ether_brazier"));
+        var hanging = provider.models().getExistingFile(malumPath("block/ether_brazier_hanging"));
 
         provider.getVariantBuilder(block)
                 .partialState().with(EtherBrazierBlock.HANGING, false).modelForState().modelFile(model).addModel()
@@ -411,12 +406,10 @@ public class MalumBlockStateSmithTypes {
     }
 
     public static void makeEtherCresset(EtherCressetBlock block, LodestoneBlockStateSystem provider) {
-        var name = provider.getBlockName(block);
-        var textureName = name.replaceFirst("_iridescent", "");
-        var parent = malumPath("block/templates/template_ether_cresset");
-        var top = provider.getBlockTexture(textureName + "_top");
-        var bottom = provider.getBlockTexture(textureName + "_bottom");
-        var model = provider.models().withExistingParent(name, parent).texture("top", top).texture("bottom", bottom);
-        provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(model).build());
+        var bottom = provider.models().getExistingFile(malumPath("block/ether_cresset_bottom"));
+        var top = provider.models().getExistingFile(malumPath("block/ether_cresset_top"));
+        provider.getVariantBuilder(block)
+                .partialState().with(EtherCressetBlock.HALF, DoubleBlockHalf.UPPER).modelForState().modelFile(top).addModel()
+                .partialState().with(EtherCressetBlock.HALF, DoubleBlockHalf.LOWER).modelForState().modelFile(bottom).addModel();
     }
 }

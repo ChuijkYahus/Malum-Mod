@@ -9,7 +9,7 @@ import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;

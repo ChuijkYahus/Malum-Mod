@@ -3,7 +3,7 @@ package com.sammy.malum.common.worldgen.blight;
 import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -43,7 +43,7 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
         for (BlockPos blockPos : scarredArea) {
             BlockState state = level.getBlockState(blockPos);
             if (state.is(MalumTags.Blocks.BLIGHT_REPLACEABLE) || state.is(MalumTags.Blocks.BLIGHT)) {
-                scarstoneLayer.add(blockPos, MalumContent.BlockSets.SCARSTONE.get()).setImportant();
+                scarstoneLayer.add(blockPos, MalumContent.Blight.SCARSTONE.get()).setImportant();
             }
         }
 
@@ -61,12 +61,12 @@ public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 Block block;
                 if (random.nextFloat() < 0.7f) {
-                    block = random.nextFloat() < 0.4f ? MalumContent.BlockSets.LARGE_STRANGE_CRYSTAL.get() : MalumContent.BlockSets.STRANGE_CRYSTAL.get();
+                    block = random.nextFloat() < 0.4f ? MalumContent.Blight.LARGE_STRANGE_CRYSTAL.get() : MalumContent.Blight.STRANGE_CRYSTAL.get();
                 } else {
-                    block = MalumContent.BlockSets.STRANGEROOT.get();
+                    block = MalumContent.Blight.STRANGEROOT.get();
                 }
                 var entry = floraLayer.add(above, block).setImportant();
-                if (block.equals(MalumContent.BlockSets.LARGE_STRANGE_CRYSTAL.get())) {
+                if (block.equals(MalumContent.Blight.LARGE_STRANGE_CRYSTAL.get())) {
                     entry.addAdditionalPlacement((l, e) -> e.place(l, e.position().above(), e.blockState().setValue(LargeStrangeCrystalBlock.HALF, DoubleBlockHalf.UPPER)));
                 }
                 floraCount--;

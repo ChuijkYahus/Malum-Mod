@@ -4,7 +4,7 @@ import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlockEntity;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
@@ -66,7 +66,7 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
             if (direction.equals(totemDirection)) {
                 return;
             }
-            var defaultState = MalumContent.BlockSets.CLINGING_BLIGHT.get().defaultBlockState();
+            var defaultState = MalumContent.Blight.CLINGING_BLIGHT.get().defaultBlockState();
             var state = defaultState
                     .setValue(BlockStateProperties.HORIZONTAL_FACING, direction.getOpposite())
                     .setValue(CreepingBlightBlock.BLIGHT_TYPE, CreepingBlightBlock.BlightType.SOULWOOD_SPIKE);

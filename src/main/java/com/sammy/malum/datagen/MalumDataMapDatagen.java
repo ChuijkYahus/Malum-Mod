@@ -1,9 +1,8 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.common.data.map.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent.BlockSets;
+import com.sammy.malum.registry.common.MalumContent.Totemancy;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DataMapProvider;
@@ -12,6 +11,7 @@ import net.neoforged.neoforge.registries.datamaps.builtin.*;
 import java.util.concurrent.CompletableFuture;
 
 import static com.sammy.malum.registry.common.MalumDataMaps.*;
+import static com.sammy.malum.registry.common.MalumContent.*;
 
 public class MalumDataMapDatagen extends DataMapProvider {
 
@@ -24,27 +24,31 @@ public class MalumDataMapDatagen extends DataMapProvider {
         MalumMetallicsDatagen.MALUM.fillDataMap(builder(SOULSTONE_ORE_CONVERSION));
 
         builder(TOTEM_POLE_CONVERSION)
-                .add(MalumBlocks.RUNEWOOD_LOG, new TotemPoleConversionMap(MalumContent.Progression.RUNEWOOD_TOTEM_POLE), false)
-                .add(MalumBlocks.RUNEWOOD, new TotemPoleConversionMap(MalumContent.Progression.RUNEWOOD_TOTEM_POLE), false)
-                .add(MalumBlocks.SOULWOOD_LOG, new TotemPoleConversionMap(MalumContent.Progression.SOULWOOD_TOTEM_POLE), false)
-                .add(MalumBlocks.SOULWOOD, new TotemPoleConversionMap(MalumContent.Progression.SOULWOOD_TOTEM_POLE), false)
-                .add(MalumContent.Progression.RUNEWOOD_TOTEM_POLE, new TotemPoleConversionMap(MalumContent.Progression.SOULWOOD_TOTEM_POLE), false);
+                .add(BlockSets.RUNEWOOD_SET.getLog().block(), new TotemPoleConversionMap(Totemancy.RUNEWOOD_TOTEM_POLE), false)
+                .add(BlockSets.RUNEWOOD_SET.getWood().block(), new TotemPoleConversionMap(Totemancy.RUNEWOOD_TOTEM_POLE), false)
+                .add(BlockSets.SOULWOOD_SET.getLog().block(), new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false)
+                .add(BlockSets.SOULWOOD_SET.getWood().block(), new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false)
+                .add(Totemancy.RUNEWOOD_TOTEM_POLE, new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false);
 
         builder(NeoForgeDataMaps.COMPOSTABLES)
-                .add(MalumItemProperties.RUNEWOOD_SAPLING, new Compostable(0.3f), false)
-                .add(MalumItemProperties.RUNEWOOD_LEAVES, new Compostable(0.3f), false)
-                .add(MalumItemProperties.HANGING_RUNEWOOD_LEAVES, new Compostable(0.2f), false)
-                .add(MalumItemProperties.AZURE_RUNEWOOD_SAPLING, new Compostable(0.3f), false)
-                .add(MalumItemProperties.AZURE_RUNEWOOD_LEAVES, new Compostable(0.3f), false)
-                .add(MalumItemProperties.HANGING_AZURE_RUNEWOOD_LEAVES, new Compostable(0.2f), false)
-                .add(MalumItemProperties.SOULWOOD_SAPLING, new Compostable(0.3f), false)
-                .add(MalumItemProperties.SOULWOOD_LEAVES, new Compostable(0.3f), false)
-                .add(MalumItemProperties.HANGING_SOULWOOD_LEAVES, new Compostable(0.2f), false)
-                .add(MalumItemProperties.BLIGHTED_GUNK, new Compostable(0.1f), false);
+                .add(BlockSets.RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(BlockSets.RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(BlockSets.HANGING_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
+
+                .add(BlockSets.AZURE_RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(BlockSets.AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
+
+                .add(BlockSets.SOULWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(BlockSets.SOULWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(BlockSets.HANGING_SOULWOOD_LEAVES.item(), new Compostable(0.2f), false)
+
+                .add(Blight.BLIGHTED_GUNK.item(), new Compostable(0.1f), false);
 
 
         builder(NeoForgeDataMaps.FURNACE_FUELS)
-                .add(MalumContent.Materials.ARCANE_CHARCOAL, new FurnaceFuel(32000), false)
-                .add(MalumContent.Materials.BLOCK_OF_ARCANE_CHARCOAL.item(), new FurnaceFuel(288000), false);
+                .add(Materials.ARCANE_CHARCOAL, new FurnaceFuel(32000), false)
+                .add(CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL.item(), new FurnaceFuel(288000), false);
+
     }
 }

@@ -4,7 +4,6 @@ import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
-import com.sammy.malum.registry.common.content.MalumContent;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
@@ -12,6 +11,10 @@ import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static net.minecraft.world.item.Items.*;
 
 public class IntroductionEntries {
@@ -32,11 +35,11 @@ public class IntroductionEntries {
 
         screen.addEntry("introduction", 0, 0, b -> b
                 .configureWidget(w -> w
-                        .setIcon(item(MalumContent.ENCYCLOPEDIA_ARCANA))
+                        .setIcon(item(ENCYCLOPEDIA_ARCANA))
                         .setDesign(GILDED, RUNEWOOD, PAPER)
                         .setOrigin()
                 )
-                .addPage(new HeadlineTextGizmoPage("introduction", item(MalumContent.ENCYCLOPEDIA_ARCANA)))
+                .addPage(new HeadlineTextGizmoPage("introduction", item(ENCYCLOPEDIA_ARCANA)))
                 .addPage(new TextPage("introduction.2"))
                 .addPage(new TextPage("introduction.3"))
                 .addPage(new TextPage("introduction.4"))
@@ -66,17 +69,17 @@ public class IntroductionEntries {
                                         new HeadlineTextPage("runewood.azure"))
                         )
                 )
-                .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(MalumContent.Materials.ARCANE_CHARCOAL)))
+                .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(MalumContent.Materials.ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_LOG), item(MalumContent.Materials.ARCANE_CHARCOAL)))
-                                .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(MalumContent.Materials.ARCANE_CHARCOAL)))
+                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_SET.getLog()), item(ARCANE_CHARCOAL)))
+                                .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
                         )
                 )
-                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(MalumContent.Materials.RUNIC_SAP_BOTTLE)))
+                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP_BOTTLE)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(STRIPPED_SAPPY_RUNEWOOD_LOG).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(SAPPY_RUNEWOOD_LOG), item(STRIPPED_SAPPY_RUNEWOOD_LOG)))
-                                .add(item(MalumContent.Materials.RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(STRIPPED_SAPPY_RUNEWOOD_LOG), item(MalumContent.Materials.RUNIC_SAP_BOTTLE)))
-                                .add(item(MalumContent.Materials.RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(MalumContent.Materials.RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(MalumContent.Materials.RUNIC_SAP_BOTTLE))))
+                                .add(item(RUNEWOOD_SET.getStrippedSappyLog()).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(RUNEWOOD_SET.getSappyLog()), item(RUNEWOOD_SET.getStrippedSappyLog())))
+                                .add(item(RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(RUNEWOOD_SET.getStrippedSappyLog()), item(RUNIC_SAP_BOTTLE)))
+                                .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP_BOTTLE))))
                         )
                 )
         );
@@ -93,13 +96,13 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("soulstone", 0, 4, b -> b
-                .configureWidget(w -> w.setIcon(item(MalumContent.Materials.REFINED_SOULSTONE)))
-                .addPage(new HeadlineTextGizmoPage("soulstone", item(MalumContent.Materials.REFINED_SOULSTONE)))
+                .configureWidget(w -> w.setIcon(item(REFINED_SOULSTONE)))
+                .addPage(new HeadlineTextGizmoPage("soulstone", item(REFINED_SOULSTONE)))
                 .addPage(new TextPage("soulstone.2"))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(MalumContent.Materials.REFINED_SOULSTONE), new SmeltingPage(item(MalumContent.Materials.RAW_SOULSTONE), item(MalumContent.Materials.REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_SOULSTONE), item(MalumContent.Materials.REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(MalumContent.Materials.RAW_SOULSTONE)))
+                                .add(item(REFINED_SOULSTONE), new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE)))
+                                .add(item(BLOCK_OF_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_SOULSTONE), item(REFINED_SOULSTONE)))
+                                .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
                         )
                 )
 //                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))

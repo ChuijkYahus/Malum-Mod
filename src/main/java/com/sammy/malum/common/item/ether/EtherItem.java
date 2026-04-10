@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.ether;
 
 import com.sammy.malum.common.block.ether.*;
-import com.sammy.malum.registry.common.content.item.MalumDataComponents;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -27,8 +27,16 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
 
     public final boolean isIridescent;
 
-    public EtherItem(Block blockIn, Properties properties, boolean isIridescent) {
-        super(blockIn, properties);
+    public static EtherItem ether(Block block, Properties properties) {
+        return new EtherItem(block, properties, false);
+    }
+
+    public static EtherItem iridescent(Block block, Properties properties) {
+        return new EtherItem(block, properties, true);
+    }
+
+    public EtherItem(Block block, Properties properties, boolean isIridescent) {
+        super(block, properties);
         this.isIridescent = isIridescent;
     }
 

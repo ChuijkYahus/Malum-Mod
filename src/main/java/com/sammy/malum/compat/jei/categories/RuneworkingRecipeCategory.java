@@ -3,7 +3,7 @@ package com.sammy.malum.compat.jei.categories;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.recipe.RuneworkingRecipe;
 import com.sammy.malum.compat.jei.JEIHandler;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -32,7 +32,7 @@ public class RuneworkingRecipeCategory implements IRecipeCategory<RuneworkingRec
 
     public RuneworkingRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(MalumMod.malumPath("textures/gui/runeworking_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumItemProperties.RUNIC_WORKBENCH.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Progression.RUNIC_WORKBENCH.get()));
     }
 
     @Override

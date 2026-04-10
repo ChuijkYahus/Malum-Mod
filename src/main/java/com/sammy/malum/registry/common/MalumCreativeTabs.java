@@ -4,8 +4,6 @@ import com.sammy.malum.MalumMod;
 
 import com.sammy.malum.common.category.*;
 import com.sammy.malum.core.systems.geas.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -25,10 +23,17 @@ public class MalumCreativeTabs {
                     .icon(() -> MalumContent.Progression.SPIRIT_ALTAR.getItem().getDefaultInstance()).build()
     );
 
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ARTIFICE = CREATIVE_MODE_TABS.register("malum_artifice",
+            () -> CategorizedCreativeTab.builder(MalumArtificeTab::new)
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_artifice"))
+                    .withTabsBefore(CONTENT.getId())
+                    .icon(() -> MalumContent.Artifice.SPIRIT_CRUCIBLE.getItem().getDefaultInstance()).build()
+    );
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GEAS = CREATIVE_MODE_TABS.register("malum_geas",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.geas"))
-                    .withTabsBefore(CONTENT.getId())
+                    .withTabsBefore(ARTIFICE.getId())
                     .displayItems((p, o) -> {
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geasType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
                             final GeasEffectType geasEffectType = geasType.get();

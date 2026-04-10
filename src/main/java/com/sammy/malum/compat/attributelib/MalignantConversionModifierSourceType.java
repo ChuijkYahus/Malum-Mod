@@ -5,7 +5,7 @@ package com.sammy.malum.compat.attributelib;
 //import com.sammy.malum.core.handlers.*;
 //import com.sammy.malum.core.listeners.*;
 //import com.sammy.malum.registry.common.*;
-//import com.sammy.malum.registry.common.content.item.*;
+//import com.sammy.malum.registry.common.item.*;
 //import dev.shadowsoffire.attributeslib.client.*;
 //import net.minecraft.world.entity.*;
 //import net.minecraft.world.entity.ai.attributes.*;

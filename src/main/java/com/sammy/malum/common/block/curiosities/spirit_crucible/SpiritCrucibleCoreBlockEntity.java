@@ -9,8 +9,8 @@ import com.sammy.malum.common.payloads.CodecUtil;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.block.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
@@ -39,7 +39,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
     public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0f, 2.5f, 0f);
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Progression.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
 
     public MalumBlockItemStackHandler inventory;
     public MalumBlockItemStackHandler spiritInventory;

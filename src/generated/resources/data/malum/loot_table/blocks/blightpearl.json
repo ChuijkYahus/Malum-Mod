@@ -46,14 +46,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "functions": [
-                {
-                  "add": false,
-                  "count": 1.0,
-                  "function": "minecraft:set_count"
-                }
-              ],
-              "name": "malum:blighted_gunk"
+              "name": "malum:blightpearl"
             }
           ]
         }

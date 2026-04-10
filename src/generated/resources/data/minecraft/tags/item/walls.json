@@ -1,23 +1,11 @@
 {
   "values": [
-    "malum:tainted_rock_wall",
-    "malum:polished_tainted_rock_wall",
-    "malum:tainted_rock_bricks_wall",
-    "malum:tainted_rock_tiles_wall",
-    "malum:tainted_rock_mosaic_wall",
-    "malum:twisted_rock_wall",
-    "malum:polished_twisted_rock_wall",
-    "malum:twisted_rock_bricks_wall",
-    "malum:twisted_rock_tiles_wall",
-    "malum:twisted_rock_mosaic_wall",
     "malum:dross_stone_wall",
     "malum:polished_dross_stone_wall",
     "malum:dross_stone_bricks_wall",
     "malum:dross_stone_tiles_wall",
     "malum:dross_stone_mosaic_wall",
     "malum:dark_dross_tiles_wall",
-    "malum:gray_dross_tiles_wall",
-    "malum:runewood_boards_wall",
-    "malum:soulwood_boards_wall"
+    "malum:gray_dross_tiles_wall"
   ]
 }

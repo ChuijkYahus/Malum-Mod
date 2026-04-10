@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.spirit;
 
 import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.content.item.MalumDataComponents;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;

@@ -2,8 +2,7 @@ package com.sammy.malum.common.block.flora;
 
 import com.mojang.serialization.MapCodec;
 import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.content.MalumContent;
-import com.sammy.malum.registry.common.content.item.MalumItemProperties;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -73,10 +72,11 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
     @Override
     protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if (!state.canSurvive(level, currentPos)) {
-            return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+            return Blocks.AIR.defaultBlockState();
         } else {
-            if (facing == Direction.UP && facingState.is(MalumContent.Materials.EBONY_STALK)) {
-                level.setBlock(currentPos, MalumContent.Materials.EBONY_STALK.get().defaultBlockState(), 2);
+            var stalk = MalumContent.Materials.EBONY_STALK;
+            if (facing == Direction.UP && stalk.is(facingState)) {
+                level.setBlock(currentPos, stalk.get().defaultBlockState(), 2);
             }
 
             return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
@@ -85,7 +85,7 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(MalumItemProperties.EBONY_STALK.get());
+        return MalumContent.Materials.EBONY_STALK.getDefaultInstance();
     }
 
     @Override

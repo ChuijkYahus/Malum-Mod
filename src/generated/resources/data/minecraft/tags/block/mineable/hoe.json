@@ -1,15 +1,15 @@
 {
   "values": [
     "malum:runewood_leaves",
-    "malum:azure_runewood_leaves",
     "malum:hanging_runewood_leaves",
+    "malum:azure_runewood_leaves",
     "malum:hanging_azure_runewood_leaves",
+    "malum:wild_witchhazel",
+    "malum:witchhazel",
     "malum:soulwood_leaves",
     "malum:hanging_soulwood_leaves",
     "malum:block_of_hex_ash",
     "malum:block_of_void_salts",
-    "malum:wild_witchhazel",
-    "malum:witchhazel",
     "malum:columnar_blight",
     "malum:blighted_earth"
   ]
