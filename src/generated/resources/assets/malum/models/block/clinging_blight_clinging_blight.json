@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/blight/template_clinging_blight",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bracing": "malum:block/blight/clinging_blight_bracing",
     "large_end": "malum:block/blight/clinging_blight_large_end",

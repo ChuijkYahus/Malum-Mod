@@ -25,7 +25,7 @@ public class MalumStorageBlockProperties {
     public static LodestoneBlockProperties MANA_MOTE_BLOCK() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_LIGHT_BLUE)
-                .setRenderType(() -> RenderType::cutout)
+                .setCutout()
                 .noOcclusion()
                 .needsPickaxe()
                 .requiresCorrectToolForDrops()

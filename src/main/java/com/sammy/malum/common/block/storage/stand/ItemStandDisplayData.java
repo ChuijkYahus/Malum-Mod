@@ -17,9 +17,9 @@ public class ItemStandDisplayData extends ItemHolderItemDisplayData {
     public Vec3 getDisplayCenter(LodestoneBlockEntity parent, float partialTicks) {
         var pos = parent.getBlockPos();
         var direction = parent.getBlockState().getValue(ItemStandBlock.FACING);
-        float xOffset = direction.getStepX() * 0.25f;
-        float yOffset = direction.getStepY() * 0.25f;
-        float zOffset = direction.getStepZ() * 0.25f;
+        float xOffset = direction.getStepX() * 0.05f;
+        float yOffset = direction.getStepY() * 0.05f;
+        float zOffset = direction.getStepZ() * 0.05f;
         return new Vec3(pos.getX() + 0.5f - xOffset, pos.getY() + 0.5f - yOffset, pos.getZ() + 0.5f - zOffset);
     }
 }

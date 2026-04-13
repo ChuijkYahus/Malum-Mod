@@ -11,11 +11,11 @@ import java.util.stream.*;
 public class DecoratedItemPedestalBlock<T extends ItemPedestalBlockEntity> extends ItemPedestalBlock<T>{
 
     public static final VoxelShape SHAPE = Stream.of(
-            Block.box(4, 0, 4, 12, 3, 12),
-            Block.box(5, 3, 5, 11, 10, 11),
-            Block.box(4, 11, 4, 12, 14, 12),
-            Block.box(7, 9, 3, 9, 14, 13),
-            Block.box(3, 9, 7, 13, 14, 9)
+            Block.box(4, 0, 4, 12, 4, 12),
+            Block.box(5, 4, 5, 11, 11, 11),
+            Block.box(4, 12, 4, 12, 15, 12),
+            Block.box(7, 10, 3, 9, 15, 13),
+            Block.box(3, 10, 7, 13, 15, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public DecoratedItemPedestalBlock(Properties properties) {

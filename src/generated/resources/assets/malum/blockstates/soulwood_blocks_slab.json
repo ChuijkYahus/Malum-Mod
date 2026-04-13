@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/soulwood_blocks_slab"
+    },
+    "type=double": {
+      "model": "malum:block/soulwood_blocks"
+    },
+    "type=top": {
+      "model": "malum:block/soulwood_blocks_slab_top"
+    }
+  }
+}

@@ -3,18 +3,18 @@
   "category": "misc",
   "key": {
     "X": {
-      "item": "malum:twisted_rock"
+      "tag": "malum:twisted_rock_twisted_rock_blocks"
     },
     "Y": {
-      "item": "malum:twisted_rock_slab"
+      "tag": "malum:twisted_rock_twisted_rock_slabs"
     }
   },
   "pattern": [
-    "YYY",
-    "XXX"
+    "YY",
+    "XX"
   ],
   "result": {
-    "count": 2,
+    "count": 1,
     "id": "malum:twisted_rock_item_stand"
   }
 }

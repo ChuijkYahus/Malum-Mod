@@ -94,7 +94,7 @@
 //                .addPage(new HeadlineTextPage("soulwoven_silk", "soulwoven_silk.1"))
 //                .addPage(SpiritInfusionPage.fromOutput(SOULWOVEN_SILK.get()))
 //                .addPage(new TextPage("soulwoven_silk.soulwoven_banner.1"))
-//                .addPage(new CraftingPage(new ItemStack(SOULWOVEN_BANNER.get(), 2), EMPTY, RUNEWOOD_PLANKS.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get()))
+//                .addPage(new CraftingPage(new ItemStack(SOULWOVEN_BANNER.get(), 2), EMPTY, RUNEWOOD_SET.planks.block.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get(), EMPTY, EMPTY, SOULWOVEN_SILK.get()))
 //                .addPage(new CyclingPage(
 //                        CraftingPage.bannerPage(ROTTING_ESSENCE.get(), SoulwovenBannerPatternDataComponent.HUNGER),
 //                        CraftingPage.bannerPage(GRIM_TALC.get(), SoulwovenBannerPatternDataComponent.HORNS),

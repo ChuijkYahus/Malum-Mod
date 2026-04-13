@@ -6,7 +6,7 @@
       "tag": "c:rods/wooden"
     },
     "Y": {
-      "tag": "malum:runewood_planks"
+      "item": "malum:runewood_planks"
     }
   },
   "pattern": [

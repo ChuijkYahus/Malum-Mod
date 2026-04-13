@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/blight/template_soulwood_roots",
+  "render_type": "minecraft:cutout",
   "textures": {
     "large_end": "malum:block/blight/soulwood_roots_large_end",
     "large_start": "malum:block/blight/soulwood_roots_large_start",

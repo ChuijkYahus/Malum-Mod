@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "malum:block/soulwood/carved_soulwood_tiles2"
+  }
+}

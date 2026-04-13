@@ -14,8 +14,8 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class TotemicSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.getLog(), 4, RUNEWOOD_TOTEM_BASE, 4)
-                .addExtraItem(RUNEWOOD_SET.getPlanks(), 6)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.log, 4, RUNEWOOD_TOTEM_BASE, 4)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 6)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
@@ -24,8 +24,8 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(SOULWOOD_SET.getPlanks(), 4, SOULWOOD_TOTEM_BASE, 4)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 6)
+        new SpiritInfusionRecipeBuilder(SOULWOOD_SET.planks.block, 4, SOULWOOD_TOTEM_BASE, 4)
+                .addExtraItem(SOULWOOD_SET.planks.block, 6)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
@@ -36,8 +36,8 @@ public class TotemicSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, WAVEFORM_RUNEWOOD_TOTEM_BASE, 4)
                 .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 8)
-                .addExtraItem(SizedIngredient.of(MalumTags.Items.RUNEWOOD_PLANKS, 6))
-                .addExtraItem(RUNEWOOD_SET.getPlanks(), 4)
+                .addExtraItem(SizedIngredient.of(RUNEWOOD_SET.planks.block, 6))
+                .addExtraItem(RUNEWOOD_SET.planks.block, 4)
                 .addExtraItem(ETHER, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
@@ -49,8 +49,8 @@ public class TotemicSpiritInfusionRecipes {
 
         new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, WAVEFORM_SOULWOOD_TOTEM_BASE, 4)
                 .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 8)
-                .addExtraItem(SizedIngredient.of(MalumTags.Items.SOULWOOD_PLANKS, 6))
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 4)
+                .addExtraItem(SizedIngredient.of(SOULWOOD_SET.planks.block, 6))
+                .addExtraItem(SOULWOOD_SET.planks.block, 4)
                 .addExtraItem(ETHER, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 2)
@@ -63,18 +63,18 @@ public class TotemicSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(RUNEWOOD_OBELISK, 1, ARCANA_PYLON, 1)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 8)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 4)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 2)
+                .addExtraItem(SOULWOOD_SET.planks.block, 2)
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.getPlanks(), 4, RITE_ANCHOR, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_ANCHOR, 4)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 8)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 4)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 2)
-                .addExtraItem(MalumTags.Items.TAINTED_ROCK_BLOCKS, 2)
+                .addExtraItem(SOULWOOD_SET.planks.block, 2)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 2)
                 .addSpirit(AERIAL_SPIRIT, 4)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)
@@ -82,28 +82,28 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.getPlanks(), 4, RITE_UNWEAVER, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_UNWEAVER, 4)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 2)
-                .addExtraItem(MalumTags.Items.TWISTED_ROCK_BLOCKS, 2)
+                .addExtraItem(SOULWOOD_SET.planks.block, 2)
+                .addExtraItem(TWISTED_ROCK_SET.rock.block, 2)
                 .addSpirit(WICKED_SPIRIT, 8)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.getPlanks(), 4, RITE_SPREADER, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_SPREADER, 4)
                 .addExtraItem(MalumContent.Materials.CONVOLUTED_LENS, 2)
                 .addExtraItem(net.minecraft.world.item.Items.COPPER_INGOT, 4)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 2)
-                .addExtraItem(MalumTags.Items.TAINTED_ROCK_BLOCKS, 2)
+                .addExtraItem(SOULWOOD_SET.planks.block, 2)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 2)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.getPlanks(), 4, RITE_CHANNEL, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_CHANNEL, 4)
                 .addExtraItem(MalumContent.Materials.HALLOWED_GOLD_INLAY, 2)
                 .addExtraItem(net.minecraft.world.item.Items.COPPER_INGOT, 4)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 2)
-                .addExtraItem(MalumTags.Items.TAINTED_ROCK_BLOCKS, 2)
+                .addExtraItem(SOULWOOD_SET.planks.block, 2)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 2)
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(EARTHEN_SPIRIT, 4)

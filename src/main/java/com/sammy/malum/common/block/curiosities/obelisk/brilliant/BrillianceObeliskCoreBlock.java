@@ -7,8 +7,9 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BrillianceObeliskCoreBlock extends ObeliskCoreBlock<BrilliantObeliskBlockEntity> {
+
     public BrillianceObeliskCoreBlock(Properties properties) {
-        super(properties, MalumBlockEntities.BRILLIANT_OBELISK);
+        super(properties);
     }
 
     @Override

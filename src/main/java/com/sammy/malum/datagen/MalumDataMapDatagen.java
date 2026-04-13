@@ -1,15 +1,22 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.common.data.map.*;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.MalumContent.Totemancy;
+import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.data.BlockBundle;
+import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;
+import com.sammy.malum.registry.common.util.data.ItemlessBlockBundle;
+import com.sammy.malum.registry.common.util.data.ItemlessBlockBundleWithWall;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.*;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.RUNEWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
 import static com.sammy.malum.registry.common.MalumDataMaps.*;
 import static com.sammy.malum.registry.common.MalumContent.*;
 
@@ -21,34 +28,58 @@ public class MalumDataMapDatagen extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        MalumMetallicsDatagen.MALUM.fillDataMap(builder(SOULSTONE_ORE_CONVERSION));
+        MalumMetallicsDatagen.MALUM.addSoulstoneConversions(builder(SOULSTONE_ORE_CONVERSION));
+
+        fillCarving(RUNEWOOD_SET);
+        fillCarving(SOULWOOD_SET);
 
         builder(TOTEM_POLE_CONVERSION)
-                .add(BlockSets.RUNEWOOD_SET.getLog().block(), new TotemPoleConversionMap(Totemancy.RUNEWOOD_TOTEM_POLE), false)
-                .add(BlockSets.RUNEWOOD_SET.getWood().block(), new TotemPoleConversionMap(Totemancy.RUNEWOOD_TOTEM_POLE), false)
-                .add(BlockSets.SOULWOOD_SET.getLog().block(), new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false)
-                .add(BlockSets.SOULWOOD_SET.getWood().block(), new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false)
-                .add(Totemancy.RUNEWOOD_TOTEM_POLE, new TotemPoleConversionMap(Totemancy.SOULWOOD_TOTEM_POLE), false);
+                .add(RUNEWOOD_SET.log.block(), new TotemPoleConversionMap(RUNEWOOD_TOTEM_POLE), false)
+                .add(RUNEWOOD_SET.wood.block(), new TotemPoleConversionMap(RUNEWOOD_TOTEM_POLE), false)
+                .add(SOULWOOD_SET.log.block(), new TotemPoleConversionMap(SOULWOOD_TOTEM_POLE), false)
+                .add(SOULWOOD_SET.wood.block(), new TotemPoleConversionMap(SOULWOOD_TOTEM_POLE), false)
+                .add(RUNEWOOD_TOTEM_POLE, new TotemPoleConversionMap(SOULWOOD_TOTEM_POLE), false);
 
         builder(NeoForgeDataMaps.COMPOSTABLES)
-                .add(BlockSets.RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
-                .add(BlockSets.RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
-                .add(BlockSets.HANGING_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
+                .add(RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(HANGING_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
 
-                .add(BlockSets.AZURE_RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
-                .add(BlockSets.AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
-                .add(BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
+                .add(AZURE_RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(HANGING_AZURE_RUNEWOOD_LEAVES.item(), new Compostable(0.2f), false)
 
-                .add(BlockSets.SOULWOOD_SAPLING.item(), new Compostable(0.4f), false)
-                .add(BlockSets.SOULWOOD_LEAVES.item(), new Compostable(0.3f), false)
-                .add(BlockSets.HANGING_SOULWOOD_LEAVES.item(), new Compostable(0.2f), false)
+                .add(SOULWOOD_SAPLING.item(), new Compostable(0.4f), false)
+                .add(SOULWOOD_LEAVES.item(), new Compostable(0.3f), false)
+                .add(HANGING_SOULWOOD_LEAVES.item(), new Compostable(0.2f), false)
 
                 .add(Blight.BLIGHTED_GUNK.item(), new Compostable(0.1f), false);
 
 
         builder(NeoForgeDataMaps.FURNACE_FUELS)
                 .add(Materials.ARCANE_CHARCOAL, new FurnaceFuel(32000), false)
-                .add(CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL.item(), new FurnaceFuel(288000), false);
+                .add(CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL.item(), new FurnaceFuel(288000), false)
+                .add(Materials.PYRE_NUCLEUS, new FurnaceFuel(32000), false)
+                .add(CompactBlocks.BLOCK_OF_PYRE_NUCLEI.item(), new FurnaceFuel(288000), false);
 
+    }
+
+    public void fillCarving(WoodBlockSet set) {
+        fillCarving(
+                new BlockBundle[]{set.boards, set.verticalBoards, set.blocks, set.planks, set.verticalPlanks, set.tiles},
+                new ItemlessBlockBundle[]{set.carvedBoards, set.carvedVerticalBoards, set.carvedBlocks, set.carvedPlanks, set.carvedVerticalPlanks, set.carvedTiles});
+    }
+    public void fillCarving(BlockBundle[] inputs, ItemlessBlockBundle[] outputs) {
+        Builder<BlockCarvingMap, Block> builder = builder(BLOCK_CARVING);
+        for (int i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            var output = outputs[i];
+            builder.add(input.block.getBlockHolder(), new BlockCarvingMap(output.block), true);
+            builder.add(input.stairs.getBlockHolder(), new BlockCarvingMap(output.stairs), true);
+            builder.add(input.slab.getBlockHolder(), new BlockCarvingMap(output.slab), true);
+            if (input instanceof BlockBundleWithWall withWall && output instanceof ItemlessBlockBundleWithWall withItemlessWall) {
+                builder.add(withWall.wall.getBlockHolder(), new BlockCarvingMap(withItemlessWall.wall), true);
+            }
+        }
     }
 }

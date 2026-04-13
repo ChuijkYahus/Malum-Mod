@@ -228,7 +228,7 @@ dependencies {
     //Runtime Mods
 //    localRuntime(("curse.maven:jeed-532286:5693385"))
 //    localRuntime(("curse.maven:spark-361579:5759671"))
-//    localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
+    localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
 //    localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
 //    localRuntime(("curse.maven:clutter-no-more-1339454:7357263"))
 

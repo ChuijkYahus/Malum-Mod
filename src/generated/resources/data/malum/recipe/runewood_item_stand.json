@@ -6,15 +6,15 @@
       "tag": "malum:runewood_planks"
     },
     "Y": {
-      "tag": "malum:runewood_slabs"
+      "tag": "malum:runewood_plank_slabs"
     }
   },
   "pattern": [
-    "YYY",
-    "XXX"
+    "YY",
+    "XX"
   ],
   "result": {
-    "count": 2,
+    "count": 1,
     "id": "malum:runewood_item_stand"
   }
 }

@@ -11,11 +11,6 @@ import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.impetus.*;
 import com.sammy.malum.common.item.metallics.FracturedMetalImpetusItem;
 import com.sammy.malum.common.item.metallics.MetalNodeItem;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.DungeonGear;
-import com.sammy.malum.registry.common.MalumContent.Gear;
-import com.sammy.malum.registry.common.MalumContent.Materials;
-import com.sammy.malum.registry.common.MalumContent.Spirits;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -70,7 +65,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(ItemTags.LOGS).addTag(RUNEWOOD_LOGS).addTag(SOULWOOD_LOGS);
-        tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
+        tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), AZOIC_SAPBALL.get());
         tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.asItem());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
@@ -81,12 +76,12 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
         tag(ItemTags.DYEABLE).add(
-                ETHER.asItem(), ETHER_CANDLE.asItem(), IRIDESCENT_ETHER.asItem(),
-                ETHER_TORCH.asItem(), IRIDESCENT_ETHER_CANDLE.asItem(), IRIDESCENT_ETHER_TORCH.asItem());
-//                TAINTED_ETHER_BRAZIER.get(), TWISTED_ETHER_BRAZIER.get(), DROSS_ETHER_BRAZIER.get(),
-//                TAINTED_IRIDESCENT_ETHER_BRAZIER.get(), TWISTED_IRIDESCENT_ETHER_BRAZIER.get(), DROSS_IRIDESCENT_ETHER_BRAZIER.get(),
-//                TAINTED_ETHER_CRESSET.get(), TWISTED_ETHER_CRESSET.get(), DROSS_ETHER_CRESSET.get(),
-//                TAINTED_IRIDESCENT_ETHER_CRESSET.get(), TWISTED_IRIDESCENT_ETHER_CRESSET.get(), DROSS_IRIDESCENT_ETHER_CRESSET.get());
+                ETHER.asItem(), IRIDESCENT_ETHER.asItem(),
+                ETHER_CANDLE.asItem(),IRIDESCENT_ETHER_CANDLE.asItem(),
+                ETHER_TORCH.asItem(), IRIDESCENT_ETHER_TORCH.asItem(),
+                ETHER_BRAZIER.asItem(), IRIDESCENT_ETHER_BRAZIER.asItem(),
+                ETHER_CRESSET.asItem(), IRIDESCENT_ETHER_CRESSET.asItem()
+        );
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
@@ -199,7 +194,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(IS_ARTIFICE_TOOL).add(TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
         tag(COUNTS_AS_EMPTY_HAND).addOptional(ResourceLocation.parse("mowziesmobs:earthrend_gauntlet"));
 
-        tag(SAPBALLS).add(RUNIC_SAPBALL.get(), CURSED_SAPBALL.get());
+        tag(SAPBALLS).add(RUNIC_SAPBALL.get(), AZOIC_SAPBALL.get());
         tag(GROSS_FOODS).add(ROTTEN_FLESH, ROTTING_ESSENCE.get());
 
         tag(PROSPECTORS_TREASURE)

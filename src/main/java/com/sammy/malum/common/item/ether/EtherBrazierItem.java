@@ -14,6 +14,15 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 import java.awt.*;
 
 public class EtherBrazierItem extends EtherItem {
+
+    public static EtherBrazierItem ether(Block block, Properties properties) {
+        return new EtherBrazierItem(block, properties, false);
+    }
+
+    public static EtherBrazierItem iridescent(Block block, Properties properties) {
+        return new EtherBrazierItem(block, properties, true);
+    }
+
     public EtherBrazierItem(Block blockIn, Properties builder, boolean iridescent) {
         super(blockIn, builder, iridescent);
     }

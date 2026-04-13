@@ -380,8 +380,8 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         .bake();
                 createCategory(SOULWOOD_CATEGORY)
                         .addItems(
-                                Materials.CURSED_SAP_BOTTLE,
-                                Materials.CURSED_SAPBALL,
+                                Materials.AZOIC_SAP_BOTTLE,
+                                Materials.AZOIC_SAPBALL,
                                 BlockSets.SOULWOOD_SAPLING,
                                 BlockSets.SOULWOOD_LEAVES,
                                 BlockSets.HANGING_SOULWOOD_LEAVES
@@ -394,7 +394,7 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         .bake();
                 createCategory(BLIGHT_CATEGORY)
                         .addItems(
-                                BLIGHTED_SOULWOOD,
+                                BlockSets.BLIGHTED_SOULWOOD,
                                 Blight.COLUMNAR_BLIGHT,
                                 Blight.BLIGHTED_EARTH,
                                 Blight.BLIGHT,

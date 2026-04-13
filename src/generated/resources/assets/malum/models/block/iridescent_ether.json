@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/air",
+  "render_type": "minecraft:cutout",
   "textures": {
     "particle": "malum:item/ether/ether"
   }

@@ -101,7 +101,7 @@ public class MalumBlockLootTables extends LootTableProvider {
             add(take(blocks, LARGE_STRANGE_CRYSTAL).get(), createTallBlockDrop(LARGE_STRANGE_CRYSTAL.get()));
             add(take(blocks, STRANGEROOT).get(), createSingleItemTableWithSilkTouchOrShears(STRANGEROOT.get(), STRANGEROOT.get()));
 
-            add(take(blocks, MalumContent.BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(MalumContent.BLIGHTED_SOULWOOD.get(), SOULWOOD_SET.getLog()));
+            add(take(blocks, MalumContent.BlockSets.BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(MalumContent.BlockSets.BLIGHTED_SOULWOOD.get(), SOULWOOD_SET.log));
             add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4));
             add(take(blocks, BLIGHTED_GUNK).get(), createBlightedPlantDrop(BLIGHTED_GUNK.get(), 1));
             add(take(blocks, BLIGHTPEARL).get(), createBlightedPlantDrop(BLIGHTPEARL.get(), 1));

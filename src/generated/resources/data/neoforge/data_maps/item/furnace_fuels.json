@@ -5,6 +5,12 @@
     },
     "malum:block_of_arcane_charcoal": {
       "burn_time": 288000
+    },
+    "malum:block_of_pyre_nuclei": {
+      "burn_time": 288000
+    },
+    "malum:pyre_nucleus": {
+      "burn_time": 32000
     }
   }
 }

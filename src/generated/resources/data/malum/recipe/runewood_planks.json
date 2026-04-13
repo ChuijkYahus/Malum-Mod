@@ -4,7 +4,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "malum:runewood_logs"
+      "tag": "malum:runewood_all_logs"
     }
   ],
   "result": {

@@ -15,6 +15,8 @@ import com.sammy.malum.common.block.decor.ColumnBlock;
 import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
+import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -46,6 +48,32 @@ public class MalumBlockStateSmithTypes {
         var bottomTexture = provider.getBlockTexture(affixedTextureName + "_bottom");
         var model = provider.models().cubeBottomTop(name, sideTexture, bottomTexture, topTexture);
         provider.directionalBlock(block, model);
+    });
+
+    public static BlockStateSmith<MalumLeavesBlock> STAGED_LEAVES = new BlockStateSmith<>(MalumLeavesBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelParentAffix("3"), (block, provider) -> {
+        var name = provider.getBlockName(block);
+
+        provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+            int value = s.getValue(block.getColorProperty());
+            String indexed = name + value;
+            ResourceLocation texture = provider.getBlockTexture(indexed);
+            var model = provider.models().leaves(indexed, texture);
+            return ConfiguredModel.builder().modelFile(model).build();
+
+        }, MalumLeavesBlock.WATERLOGGED, MalumLeavesBlock.DISTANCE, MalumLeavesBlock.PERSISTENT);
+    });
+
+    public static BlockStateSmith<MalumHangingLeavesBlock> STAGED_HANGING_LEAVES = new BlockStateSmith<>(MalumHangingLeavesBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM.addTextureNameAffix("3"), (block, provider) -> {
+        var name = provider.getBlockName(block);
+
+        provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+            int value = s.getValue(block.getColorProperty());
+            String indexed = name + value;
+            ResourceLocation texture = provider.getBlockTexture(indexed);
+            var model = provider.models().withExistingParent(indexed, malumPath("block/templates/template_hanging_leaves")).texture("hanging_leaves", texture).texture("particle", texture);
+            return ConfiguredModel.builder().modelFile(model).build();
+
+        }, MalumLeavesBlock.WATERLOGGED);
     });
 
     public static BlockStateSmith<BlightedCoverageBlock> COVERING_BLOCK = new BlockStateSmith<>(BlightedCoverageBlock.class, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, (block, provider) -> {
@@ -104,7 +132,7 @@ public class MalumBlockStateSmithTypes {
                 var model = provider.models().getExistingFile(path);
                 builder.modelFile(model);
                 if (i != 3) {
-                    builder.nextModel();
+                    builder = builder.nextModel();
                 }
             }
             return builder.build();

@@ -4,7 +4,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "malum:soulwood_logs"
+      "tag": "malum:soulwood_all_logs"
     }
   ],
   "result": {

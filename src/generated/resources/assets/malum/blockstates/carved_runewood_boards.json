@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/carved_runewood_boards0"
+      },
+      {
+        "model": "malum:block/carved_runewood_boards1"
+      },
+      {
+        "model": "malum:block/carved_runewood_boards2"
+      }
+    ]
+  }
+}

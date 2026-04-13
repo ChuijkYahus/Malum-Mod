@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#malum:runewood_board_ingredient"
+            "items": "#malum:runewood_logs"
           }
         ]
       },

@@ -1,30 +1,29 @@
 package com.sammy.malum.common.worldgen.tree;
 
-import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.StagedLeavesBlock;
 import com.sammy.malum.common.worldgen.WorldgenHelper;
-import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.*;
-import team.lodestar.lodestone.helpers.block.*;
+import net.minecraft.world.phys.Vec2;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import org.joml.Vector3f;
 import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
-import static team.lodestar.lodestone.systems.worldgen.LodestoneBlockFiller.*;
+import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 
 public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
-
-    public static final LodestoneLayerToken LOGS = new LodestoneLayerToken();
-    public static final LodestoneLayerToken LEAVES = new LodestoneLayerToken();
-    public static final LodestoneLayerToken HANGING_LEAVES = new LodestoneLayerToken();
 
     public RunewoodTreeFeature() {
         super(RunewoodTreeConfiguration.CODEC);
@@ -59,42 +58,47 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         var level = context.level();
         var pos = context.origin();
         var config = context.config();
-        if (level.isEmptyBlock(pos.below()) || !config.sapling.defaultBlockState().canSurvive(level, pos)) {
+        if (level.isEmptyBlock(pos.below()) || !config.sapling().defaultBlockState().canSurvive(level, pos)) {
             return false;
         }
         var rand = context.random();
-        var log = config.log;
-        var logState = log.defaultBlockState();
-        var filler = new LodestoneBlockFiller().addLayers(LOGS, LEAVES, HANGING_LEAVES);
-        int sapBlockCount = getSapBlockCount(rand);
+        var log = config.log();
+        var runewoodLog = log.defaultBlockState();
+        var sappyLog = RUNEWOOD_SET.sappyLog.get();
+        var leavesBlock = config.leaves();
+
+
+        var builder = LodestoneWorldgenBuilder.create();
+        var treeLayer = builder.createLayer();
+        var leavesLayer = builder.createLayer();
+
         int trunkHeight = getTrunkHeight(rand);
+        int sapBlockCount = getSapBlockCount(rand);
+
         var mutable = new BlockPos.MutableBlockPos().set(pos);
 
         for (int i = 0; i <= trunkHeight; i++) { //Main Trunk
             if (!canPlace(level, mutable)) {
                 return false;
             }
-            filler.getLayer(LOGS).put(mutable.immutable(), create(logState));
+            treeLayer.add(mutable, runewoodLog);
             mutable.move(Direction.UP);
         }
         for (int i = 0; i < 4; i++) { //Side Trunk Stumps
-            Direction direction = Direction.from2DDataValue(i);
+            var direction = Direction.from2DDataValue(i);
             int sideTrunkHeight = getSideTrunkHeight(rand);
-            if (sideTrunkHeight == 0) {
-                continue;
-            }
-            mutable.set(pos).move(direction);
-            addDownwardsTrunkConnections(logState, level, filler, mutable);
             for (int j = 0; j < sideTrunkHeight; j++) {
                 if (!canPlace(level, mutable)) {
                     return false;
                 }
-                filler.getLayer(LOGS).put(mutable.immutable(), create(logState));
+                treeLayer.add(mutable, runewoodLog);
                 mutable.move(Direction.UP);
             }
+            mutable.set(pos).move(direction);
+            addDownwardsTrunkConnections(level, mutable, p -> treeLayer.add(p, runewoodLog));
         }
 
-        List<BlockPos> sapBlockPositions = WorldgenHelper.shuffle(filler.getLayer(LOGS).keySet(), rand);
+        addSap(treeLayer, sappyLog, rand, sapBlockCount);
 
         for (int i = 0; i < 4; i++) { //Branches
             Direction direction = Direction.from2DDataValue(i);
@@ -110,71 +114,151 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
                 if (!canPlace(level, mutable)) {
                     return false;
                 }
-                filler.getLayer(LOGS).put(mutable.immutable(), create(logState.setValue(RotatedPillarBlock.AXIS, direction.getAxis())));
+                treeLayer.add(mutable, runewoodLog.setValue(RotatedPillarBlock.AXIS, direction.getAxis()));
             }
             for (int j = 0; j < branchHeight; j++) {
                 if (!canPlace(level, mutable)) {
                     return false;
                 }
-                filler.getLayer(LOGS).put(mutable.immutable(), create(logState));
+                treeLayer.add(mutable, runewoodLog);
                 mutable.move(Direction.UP);
             }
-            makeLeafBlob(config, filler, mutable.move(Direction.DOWN, branchHeight));
-        }
-        makeLeafBlob(config, filler, mutable.set(pos).move(Direction.UP, trunkHeight-1));
 
-        for (BlockPos blockPos : sapBlockPositions.subList(0, sapBlockCount)) {
-            filler.getLayer(LOGS).replace(blockPos, e -> create(BlockStateHelper.getBlockStateWithExistingProperties(e.getState(), MalumContent.BlockSets.RUNEWOOD_SET.getSappyLog().getDefaultState())).build());
+            makeLeafBlob(leavesLayer, leavesBlock, mutable.move(Direction.DOWN, branchHeight-1), new int[]{1, 2, 2, 2, 1});
         }
+        makeLeafBlob(leavesLayer, leavesBlock, mutable.set(pos).move(Direction.UP, trunkHeight-1), new int[]{1, 2, 3, 2, 1});
+        applyLeavesColor(leavesLayer, rand);
 
-        filler.fill(level);
-        updateLeaves(level, filler.getLayer(LOGS).keySet());
+        makeHangingLeaves(leavesLayer, config.hangingLeaves(), level);
+        builder.place(level);
+        updateLeaves(level, treeLayer.getAffectedArea());
         return true;
     }
 
-    public void addDownwardsTrunkConnections(BlockState logState, WorldGenLevel level, LodestoneBlockFiller filler, BlockPos pos) {
+    public static void addSap(LodestoneWorldgenBuilderLayer layer, Block sappyLog, RandomSource randomSource, int sapBlockCount) {
+        var sapBlocks = layer.getRandomEntries(randomSource, sapBlockCount);
+        for (LodestoneWorldgenBuilderEntry entry : sapBlocks) {
+            var state = entry.blockState();
+            if (!state.is(BlockTags.LOGS)) {
+                continue;
+            }
+            var axis = state.getValue(RotatedPillarBlock.AXIS);
+            entry.changeState(sappyLog.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
+        }
+    }
+
+    public static void applyLeavesColor(LodestoneWorldgenBuilderLayer leaves, RandomSource randomSource) {
+        HashMap<Vec2, Integer> map = leaves.getEntries().stream()
+                .collect(Collectors.toMap(
+                        e -> new Vec2(e.position().getX(), e.position().getZ()),
+                        e -> e.position().getY(),
+                        (a, b) -> b,
+                        HashMap::new
+                ));
+
+        HashMap<Vec2, Integer> gradientOffsets = new HashMap<>();
+        float centerX = (float) map.keySet().stream().mapToDouble(v -> v.x).average().orElse(0);
+        float centerZ = (float) map.keySet().stream().mapToDouble(v -> v.y).average().orElse(0);
+        Vec2 center = new Vec2(centerX, centerZ);
+
+        float offset = randomSource.nextFloat();
+        Collection<LodestoneWorldgenBuilderEntry> entries = leaves.getEntries();
+        for (LodestoneWorldgenBuilderEntry entry : entries) {
+            var state = entry.blockState();
+            if (!(state.getBlock() instanceof StagedLeavesBlock stagedLeavesBlock)) {
+                continue;
+            }
+
+            BlockPos position = entry.position();
+            int x = position.getX();
+            int y = position.getY();
+            int z = position.getZ();
+            int scale = stagedLeavesBlock.getColorProperty().getPossibleValues().size();
+
+            Vec2 key = new Vec2(x, z);
+            if (!gradientOffsets.containsKey(key)) {
+                float dx = key.x - center.x;
+                float dz = key.y - center.y;
+                float norm = (float) Math.sqrt(dx * dx + dz * dz);
+                float difference = offset + norm % 1;
+                gradientOffsets.put(key, Mth.floor(Mth.abs(scale * difference)));
+            }
+            int gradient = gradientOffsets.get(key);
+            int stage = (y+gradient) % scale;
+
+            IntegerProperty property = stagedLeavesBlock.getColorProperty();
+
+            entry.changeState(state.setValue(property, stage));
+        }
+    }
+
+    public static BlockPos addDownwardsTrunkConnections(WorldGenLevel level, BlockPos pos, Consumer<BlockPos> consumer) {
         var mutable = pos.mutable();
         while (true) {
             mutable.move(Direction.DOWN);
             if (!canPlace(level, mutable)) {
-                break;
+                return mutable.above();
             }
-            filler.getLayer(LOGS).put(mutable.immutable(), create(logState));
+            consumer.accept(mutable.immutable());
         }
     }
 
-    public void makeLeafBlob(RunewoodTreeConfiguration config, LodestoneBlockFiller filler, BlockPos pos) {
-        int[] leafSizes = new int[]{1, 2, 2, 2, 1};
-        int[] leafColors = new int[]{0, 1, 2, 3, 4};
+    public static void makeLeafBlob(LodestoneWorldgenBuilderLayer layer, Block leavesBlock, BlockPos pos, int[] leafSizes) {
         var mutable = pos.mutable();
-        var leavesState = config.leaves.defaultBlockState();
-        var hangingLeavesState = config.hangingLeaves.defaultBlockState();
-        for (int i = 0; i < 5; i++) {
+        for (int size : leafSizes) {
+            makeLeafSlice(layer, leavesBlock, mutable, size);
             mutable.move(Direction.UP);
-            BlockStateEntry leavesEntry = create(leavesState.setValue(MalumLeavesBlock.COLOR, leafColors[i])).build();
-            makeLeafSlice(filler.getLayer(LEAVES), mutable, leafSizes[i], leavesEntry);
-        }
-        mutable.set(pos).move(Direction.DOWN);
-        for (int i = 0; i < 2; i++) {
-            mutable.move(Direction.UP);
-            BlockStateEntry hangingLeavesEntry = create(hangingLeavesState.setValue(MalumHangingLeavesBlock.COLOR, leafColors[i]))
-                    .setDiscardPredicate((l, p, s) -> !filler.getLayer(LEAVES).containsKey(p.above()))
-                    .build();
-            makeLeafSlice(filler.getLayer(HANGING_LEAVES), mutable, leafSizes[i], hangingLeavesEntry);
         }
     }
 
-    public void makeLeafSlice(LodestoneBlockFiller.LodestoneBlockFillerLayer layer, BlockPos pos, int leavesSize, BlockStateEntry entry) {
-        makeLeafSlice(layer, pos, leavesSize, ()->entry);
-    }
-    public void makeLeafSlice(LodestoneBlockFiller.LodestoneBlockFillerLayer layer, BlockPos pos, int leavesSize, Supplier<BlockStateEntry> entry) {
+    public static void makeLeafSlice(LodestoneWorldgenBuilderLayer leaves, Block leavesBlock, BlockPos pos, int leavesSize) {
         for (int x = -leavesSize; x <= leavesSize; x++) {
             for (int z = -leavesSize; z <= leavesSize; z++) {
                 if (Math.abs(x) == leavesSize && Math.abs(z) == leavesSize) {
                     continue;
                 }
-                layer.put(pos.offset(x, 0, z), entry.get());
+                BlockPos leavesPos = pos.offset(x, 0, z);
+
+                leaves.add(leavesPos, leavesBlock.defaultBlockState());
             }
+        }
+    }
+
+
+    public static void makeHangingLeaves(LodestoneWorldgenBuilderLayer leaves, Block hangingLeaves, WorldGenLevel level) {
+
+        if (!(hangingLeaves instanceof StagedLeavesBlock stagedHangingLeaves)) {
+            return;
+        }
+        HashMap<BlockPos, BlockState> toAdd = new HashMap<>();
+        for (LodestoneWorldgenBuilderEntry entry : leaves.getEntries()) {
+            BlockPos position = entry.position();
+            BlockPos below = position.below();
+            if (level.getRandom().nextFloat() < 0.35f) {
+                continue;
+            }
+            if (!canPlace(level, below)) {
+                continue;
+            }
+            BlockState state = entry.blockState();
+            if (!(state.getBlock() instanceof StagedLeavesBlock leavesBlock)) {
+                continue;
+            }
+            if (leaves.containsKey(below)) {
+                continue;
+            }
+            if (!level.isEmptyBlock(below)) {
+                continue;
+            }
+
+            var color = stagedHangingLeaves.getColorProperty();
+
+            var leafColor = state.getValue(leavesBlock.getColorProperty());
+            int appropriatedLeafColor = leafColor % color.getPossibleValues().size();
+            toAdd.put(below, hangingLeaves.defaultBlockState().setValue(color, appropriatedLeafColor));
+        }
+        for (Map.Entry<BlockPos, BlockState> entry : toAdd.entrySet()) {
+            leaves.add(entry.getKey(), entry.getValue());
         }
     }
 

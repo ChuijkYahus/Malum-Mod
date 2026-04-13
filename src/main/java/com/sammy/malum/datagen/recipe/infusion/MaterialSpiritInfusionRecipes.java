@@ -83,12 +83,12 @@ public class MaterialSpiritInfusionRecipes {
                 .addSpirit(INFERNAL_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, TAINTED_ROCK_SET.getRock(), 16)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, TAINTED_ROCK_SET.rock.block, 16)
                 .addSpirit(SACRED_SPIRIT, 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, TWISTED_ROCK_SET.getRock(), 16)
+        new SpiritInfusionRecipeBuilder(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS), 16, TWISTED_ROCK_SET.rock.block, 16)
                 .addSpirit(WICKED_SPIRIT, 1)
                 .addSpirit(ARCANE_SPIRIT, 1)
                 .save(recipeOutput);

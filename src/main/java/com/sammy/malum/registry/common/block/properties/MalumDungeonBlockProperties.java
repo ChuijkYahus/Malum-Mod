@@ -13,14 +13,14 @@ public class MalumDungeonBlockProperties {
     public static LodestoneBlockProperties MEDITATING_EFFIGY() {
         return MalumBlockProperties.CHISELED_DROSS_STONE()
                 .addTag(WALL_POST_OVERRIDE)
-                .setCutoutRenderType()
+                .setCutout()
                 .noOcclusion()
                 .strength(3.5F, -1.0F);
     }
 
     public static LodestoneBlockProperties OMINOUS_CRAFT() {
         return MalumBlockProperties.CHISELED_DROSS_STONE()
-                .setCutoutRenderType()
+                .setCutout()
                 .noOcclusion()
                 .strength(3.5F, -1.0F);
     }
@@ -56,7 +56,7 @@ public class MalumDungeonBlockProperties {
         return FLESH()
                 .sound(MalumBlockSoundEvents.WRITHING_FLESH)
                 .addTag(REPLACEABLE_BY_TREES)
-                .setCutoutRenderType()
+                .setCutout()
                 .strength(0.5F, -1.0F)
                 .noCollission()
                 .noOcclusion();

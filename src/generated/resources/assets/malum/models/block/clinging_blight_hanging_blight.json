@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/blight/template_hanging_blight",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bracing": "malum:block/blight/hanging_blight_bracing",
     "large_end": "malum:block/blight/hanging_blight_large_end",

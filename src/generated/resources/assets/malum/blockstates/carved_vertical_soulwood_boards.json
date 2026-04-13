@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/carved_vertical_soulwood_boards0"
+      },
+      {
+        "model": "malum:block/carved_vertical_soulwood_boards1"
+      },
+      {
+        "model": "malum:block/carved_vertical_soulwood_boards2"
+      }
+    ]
+  }
+}

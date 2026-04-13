@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 public record SoulstoneOreConversionMap(List<SoulstoneOreConversion> possibleConversions) {
+
     public static final Codec<SoulstoneOreConversionMap> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             SoulstoneOreConversion.LIST_CODEC.fieldOf("possibleConversions").forGetter(SoulstoneOreConversionMap::possibleConversions)
     ).apply(instance, SoulstoneOreConversionMap::new));
 
-    public static final Codec<List<SoulstoneOreConversionMap>> LIST_CODEC = CODEC.listOf();
 
     public record SoulstoneOreConversion(Optional<RuleTest> condition, BlockState result) {
         public static final Codec<SoulstoneOreConversion> CODEC = RecordCodecBuilder.create(instance -> instance.group(

@@ -1,190 +1,89 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
+import com.mojang.datafixers.util.Pair;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.registry.common.MalumContent;
 
 import com.sammy.malum.registry.common.util.WoodBlockSet;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.conditions.*;
 
-import static com.sammy.malum.registry.common.MalumTags.Items.*;
-import static net.minecraft.data.recipes.RecipeBuilder.*;
+import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
 
 public class MalumWoodSetDatagen implements IConditionBuilder {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        buildRecipes(recipeOutput, MalumContent.BlockSets.RUNEWOOD_SET, MalumContent.BlockSets.RUNEWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET, 
-                RUNEWOOD_LOGS, RUNEWOOD_PLANKS, RUNEWOOD_BOARDS, RUNEWOOD_SLABS, RUNEWOOD_BOARD_INGREDIENT);
-        buildRecipes(recipeOutput, MalumContent.BlockSets.SOULWOOD_SET, MalumContent.BlockSets.SOULWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET,
-                SOULWOOD_LOGS, SOULWOOD_PLANKS, SOULWOOD_BOARDS, SOULWOOD_SLABS, SOULWOOD_BOARD_INGREDIENT);
+        buildRecipes(recipeOutput, MalumContent.BlockSets.RUNEWOOD_SET, MalumContent.BlockSets.RUNEWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
+        buildRecipes(recipeOutput, MalumContent.BlockSets.SOULWOOD_SET, MalumContent.BlockSets.SOULWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
     }
 
     protected static void buildRecipes(
             RecipeOutput recipeOutput,
             WoodBlockSet set,
             ItemLike boat,
-            ItemLike metalNugget,
-            TagKey<Item> logTag,
-            TagKey<Item> planksTag,
-            TagKey<Item> boardsTag,
-            TagKey<Item> slabTag,
-            TagKey<Item> boardIngredientTag
+            ItemLike metalNugget
     ) {
-        shapelessPlanks(recipeOutput, set.getPlanks(), logTag);
+        var allLogsTag = ItemTags.create(set.allLogsTag.location());
+        var logsTag = ItemTags.create(set.logsTag.location());
 
-        rusticExchange(recipeOutput, set.getRusticPlanks(), set.getPlanks());
-        rusticExchange(recipeOutput, set.getVerticalRusticPlanks(), set.getVerticalPlanks());
-        rusticExchange(recipeOutput, set.getRusticTiles(), set.getTiles());
+        var boardsTag = ItemTags.create(set.boardsTag.location());
+        var planksTag = ItemTags.create(set.planksTag.location());
+        var plankSlabTag = ItemTags.create(set.plankSlabsTag.location());
 
-        shapedBoards(recipeOutput, set.getBoards(), boardIngredientTag);
 
-        shapedSlab(recipeOutput, set.getBoardsSlab(), set.getBoards());
-        shapedStairs(recipeOutput, set.getBoardsStairs(), set.getBoards());
-        shapedSlab(recipeOutput, set.getVerticalBoardsSlab(), set.getVerticalBoards());
-        shapedStairs(recipeOutput, set.getVerticalBoardsStairs(), set.getVerticalBoards());
 
-        planksExchange(recipeOutput, set.getBoards(), set.getVerticalBoards());
-        planksExchange(recipeOutput, set.getVerticalBoards(), set.getBoards());
+        shapelessPlanks(recipeOutput, set.planks.block, allLogsTag);
+        shapedBoards(recipeOutput, set.boards.block, logsTag);
 
-        shapedSlab(recipeOutput, set.getPlanksSlab(), set.getPlanks());
-        shapedStairs(recipeOutput, set.getPlanksStairs(), set.getPlanks());
-        shapedSlab(recipeOutput, set.getVerticalPlanksSlab(), set.getVerticalPlanks());
-        shapedStairs(recipeOutput, set.getVerticalPlanksStairs(), set.getVerticalPlanks());
-        shapedSlab(recipeOutput, set.getTilesSlab(), set.getTiles());
-        shapedStairs(recipeOutput, set.getTilesStairs(), set.getTiles());
+        exchange(recipeOutput, set.boards, set.verticalBoards, set.blocks);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.boards);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.verticalBoards);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.blocks);
 
-        shapedSlab(recipeOutput, set.getRusticPlanksSlab(), set.getRusticPlanks());
-        shapedStairs(recipeOutput, set.getRusticPlanksStairs(), set.getRusticPlanks());
-        shapedSlab(recipeOutput, set.getVerticalRusticPlanksSlab(), set.getVerticalRusticPlanks());
-        shapedStairs(recipeOutput, set.getVerticalRusticPlanksStairs(), set.getVerticalRusticPlanks());
-        shapedSlab(recipeOutput, set.getRusticTilesSlab(), set.getRusticTiles());
-        shapedStairs(recipeOutput, set.getRusticTilesStairs(), set.getRusticTiles());
+        exchange(recipeOutput, set.planks, set.verticalPlanks, set.tiles);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.planks);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.verticalPlanks);
+        RecipeDatagenCommons.blockBundle(recipeOutput, set.tiles);
 
-        shapelessWood(recipeOutput, set.getWood(), set.getLog());
-        shapelessWood(recipeOutput, set.getStrippedWood(), set.getStrippedLog());
+        shapelessWood(recipeOutput, set.wood, set.log);
+        shapelessWood(recipeOutput, set.strippedWood, set.strippedLog);
 
-        shapelessButton(recipeOutput, set.getButton(), planksTag);
-        shapedPressurePlate(recipeOutput, set.getPressurePlate(), planksTag);
+        shapelessButton(recipeOutput, set.button, planksTag);
+        shapedPressurePlate(recipeOutput, set.pressurePlate, planksTag);
 
-        shapedDoor(recipeOutput, set.getDoor(), planksTag);
-        shapedDoor(recipeOutput, set.getHeavyDoor(), boardsTag);
-        shapedTrapdoor(recipeOutput, set.getTrapdoor(), planksTag);
-        shapedTrapdoor(recipeOutput, set.getHeavyTrapdoor(), boardsTag);
+        shapedDoor(recipeOutput, set.heavyDoor, boardsTag);
+        shapedTrapdoor(recipeOutput, set.heavyTrapdoor, boardsTag);
 
-        bolting(recipeOutput, set.getBoltedDoor(), set.getDoor());
-        bolting(recipeOutput, set.getHeavyBoltedDoor(), set.getHeavyDoor());
-        bolting(recipeOutput, set.getBoltedTrapdoor(), set.getTrapdoor());
-        bolting(recipeOutput, set.getHeavyBoltedTrapdoor(), set.getHeavyTrapdoor());
+        shapedDoor(recipeOutput, set.door, planksTag);
+        shapedTrapdoor(recipeOutput, set.trapdoor   , planksTag);
 
-        shapedFence(recipeOutput, set.getFence(), planksTag);
-        shapedFenceGate(recipeOutput, set.getFenceGate(), planksTag);
+        shapedFence(recipeOutput, set.fence, planksTag);
+        shapedFenceGate(recipeOutput, set.fenceGate, planksTag);
 
-        shapedSign(recipeOutput, set.getSign(), planksTag);
-
-        planksExchange(recipeOutput, set.getPlanks(), set.getVerticalPlanks());
-        planksExchange(recipeOutput, set.getVerticalPlanks(), set.getTiles());
-        planksExchange(recipeOutput, set.getTiles(), set.getPlanks());
-
-        planksExchange(recipeOutput, set.getRusticPlanks(), set.getVerticalRusticPlanks());
-        planksExchange(recipeOutput, set.getVerticalRusticPlanks(), set.getRusticTiles());
-        planksExchange(recipeOutput, set.getRusticTiles(), set.getRusticPlanks());
+        shapedSign(recipeOutput, set.sign, planksTag);
 
         shapedBoat(recipeOutput, boat, planksTag);
 
-        shapedPanel(recipeOutput, set.getPanel(), planksTag);
+        RecipeDatagenCommons.stepsOrAltar(recipeOutput, plankSlabTag, set.steps);
+        RecipeDatagenCommons.beamOrColumn(recipeOutput, plankSlabTag, set.beam);
 
-        var condition = RecipeDatagenCommons.has(planksTag);
+        RecipeDatagenCommons.pedestalRecipe(recipeOutput, planksTag, plankSlabTag, set.itemPedestal);
+        RecipeDatagenCommons.standRecipe(recipeOutput, planksTag, plankSlabTag, set.itemStand);
 
-        shaped(RecipeCategory.MISC, set.getBoardsWall(), 6)
-                .define('X', boardsTag)
-                .define('Y', net.minecraft.world.item.Items.STICK)
-                .pattern("XYX")
-                .pattern("XYX")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
+        decoratedHolderRecipe(recipeOutput, set.itemPedestal, metalNugget, set.decoratedItemPedestal);
+        decoratedHolderRecipe(recipeOutput, set.itemStand, metalNugget, set.decoratedItemStand);
 
-        shaped(RecipeCategory.MISC, set.getCutPlanks(), 2)
-                .define('X', set.getPanel())
-                .define('Y', planksTag)
-                .pattern("X").pattern("Y")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
+        RecipeDatagenCommons.smelting(recipeOutput, MalumMod.malumPath(set.name("arcane_charcoal_from_%s")),
+                Ingredient.of(logsTag), RecipeCategory.MISC, Pair.of("has_log", has(logsTag)), MalumContent.Materials.ARCANE_CHARCOAL, 1, 0.25f);
 
-        shaped(RecipeCategory.MISC, set.getBeam(), 3)
-                .define('#', planksTag)
-                .pattern("#")
-                .pattern("#")
-                .pattern("#")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
-
-        shaped(RecipeCategory.MISC, set.getItemStand(), 2)
-                .define('X', planksTag)
-                .define('Y', slabTag)
-                .pattern("YYY")
-                .pattern("XXX")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
-
-        shaped(RecipeCategory.MISC, set.getItemPedestal())
-                .define('X', planksTag)
-                .define('Y', slabTag)
-                .pattern("YYY")
-                .pattern(" X ")
-                .pattern("YYY")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
-
-        shaped(RecipeCategory.MISC, set.getDecoratedItemStand())
-                .define('X', set.getItemStand())
-                .define('Y', metalNugget)
-                .pattern("YXY")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
-
-        shaped(RecipeCategory.MISC, set.getDecoratedItemPedestal())
-                .define('X', set.getItemPedestal())
-                .define('Y', metalNugget)
-                .pattern("YXY")
-                .unlockedBy("has_input", condition)
-                .save(recipeOutput);
-    }
-
-    private static void bolting(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
-        final ResourceLocation recipeID = getDefaultRecipeId(output).withSuffix("_bolting");
-        shapeless(RecipeCategory.MISC, output)
-                .requires(input)
-                .requires(net.minecraft.world.item.Items.IRON_NUGGET)
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput, recipeID);
-    }
-
-    private static void planksExchange(RecipeOutput recipeOutput, ItemLike input, ItemLike planks) {
-        final ResourceLocation recipeID = getDefaultRecipeId(planks).withSuffix("_from_" + getDefaultRecipeId(input).getPath());
-        shaped(RecipeCategory.MISC, planks, 4)
-                .define('#', input)
-                .pattern(" # ")
-                .pattern("# #")
-                .pattern(" # ")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput, recipeID);
-    }
-
-    private static void rusticExchange(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
-        final ResourceLocation recipeID = getDefaultRecipeId(output).withSuffix("_from_" + getDefaultRecipeId(input).getPath());
-        shaped(RecipeCategory.MISC, output, 5)
-                .define('#', input)
-                .pattern(" # ")
-                .pattern("###")
-                .pattern(" # ")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input)).save(recipeOutput, recipeID);
     }
 
     private static void shapelessPlanks(RecipeOutput recipeOutput, ItemLike planks, TagKey<Item> input) {
@@ -205,16 +104,6 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .save(recipeOutput);
     }
 
-    private static void shapedPanel(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
-        shaped(RecipeCategory.MISC, output, 9)
-                .define('#', input)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput);
-    }
-
     private static void shapelessWood(RecipeOutput recipeOutput, ItemLike stripped, ItemLike input) {
         shaped(RecipeCategory.MISC, stripped, 3)
                 .define('#', input)
@@ -222,13 +111,6 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .pattern("##")
                 .group("bark")
                 .unlockedBy("has_log", RecipeDatagenCommons.has(input))
-                .save(recipeOutput);
-    }
-
-    private static void shapelessButton(RecipeOutput recipeOutput, ItemLike button, TagKey<Item> input) {
-        shapeless(RecipeCategory.MISC, button)
-                .requires(input)
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }
 
@@ -258,32 +140,6 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
                 .define('W', input)
                 .pattern("#W#")
                 .pattern("#W#")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput);
-    }
-
-    private static void shapedPressurePlate(RecipeOutput recipeOutput, ItemLike pressurePlate, TagKey<Item> input) {
-        shaped(RecipeCategory.MISC, pressurePlate)
-                .define('#', input)
-                .pattern("##")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput);
-    }
-
-    private static void shapedSlab(RecipeOutput recipeOutput, ItemLike slab, ItemLike input) {
-        shaped(RecipeCategory.MISC, slab, 6)
-                .define('#', input)
-                .pattern("###")
-                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
-                .save(recipeOutput);
-    }
-
-    private static void shapedStairs(RecipeOutput recipeOutput, ItemLike stairs, ItemLike input) {
-        shaped(RecipeCategory.MISC, stairs, 4)
-                .define('#', input)
-                .pattern("#  ")
-                .pattern("## ")
-                .pattern("###")
                 .unlockedBy("has_input", RecipeDatagenCommons.has(input))
                 .save(recipeOutput);
     }

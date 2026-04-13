@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:block/runewood/hanging_runewood_leaves"
+    "layer0": "malum:block/runewood/leaves/hanging_runewood_leaves3"
   }
 }

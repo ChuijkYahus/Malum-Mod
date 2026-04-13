@@ -1,9 +1,9 @@
 {
   "values": [
-    "malum:ether_torch",
     "malum:wall_ether_torch",
-    "malum:iridescent_ether_torch",
+    "malum:ether_torch",
     "malum:iridescent_wall_ether_torch",
+    "malum:iridescent_ether_torch",
     "malum:ether_brazier",
     "malum:iridescent_ether_brazier",
     "malum:veiled_effigy",

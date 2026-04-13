@@ -3,18 +3,18 @@
   "category": "misc",
   "key": {
     "X": {
-      "item": "malum:tainted_rock"
+      "tag": "malum:tainted_rock_tainted_rock_blocks"
     },
     "Y": {
-      "item": "malum:tainted_rock_slab"
+      "tag": "malum:tainted_rock_tainted_rock_slabs"
     }
   },
   "pattern": [
-    "YYY",
-    "XXX"
+    "YY",
+    "XX"
   ],
   "result": {
-    "count": 2,
+    "count": 1,
     "id": "malum:tainted_rock_item_stand"
   }
 }

@@ -11,7 +11,7 @@ public class ArcanaPylonCoreBlock extends ObeliskCoreBlock<ArcanaPylonBlockEntit
     private static final VoxelShape SHAPE = makeShape();
 
     public ArcanaPylonCoreBlock(Properties properties) {
-        super(properties, MalumBlockEntities.ARCANA_PYLON);
+        super(properties);
     }
 
     @Override

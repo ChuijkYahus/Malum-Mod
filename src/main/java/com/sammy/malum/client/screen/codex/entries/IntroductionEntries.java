@@ -71,14 +71,14 @@ public class IntroductionEntries {
                 )
                 .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_SET.getLog()), item(ARCANE_CHARCOAL)))
+                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_SET.log), item(ARCANE_CHARCOAL)))
                                 .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
                         )
                 )
                 .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP_BOTTLE)))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(RUNEWOOD_SET.getStrippedSappyLog()).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(RUNEWOOD_SET.getSappyLog()), item(RUNEWOOD_SET.getStrippedSappyLog())))
-                                .add(item(RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(RUNEWOOD_SET.getStrippedSappyLog()), item(RUNIC_SAP_BOTTLE)))
+                                .add(item(RUNEWOOD_SET.strippedSappyLog).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(RUNEWOOD_SET.sappyLog), item(RUNEWOOD_SET.strippedSappyLog)))
+                                .add(item(RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(RUNEWOOD_SET.strippedSappyLog), item(RUNIC_SAP_BOTTLE)))
                                 .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP_BOTTLE))))
                         )
                 )
@@ -179,11 +179,11 @@ public class IntroductionEntries {
 //        screen.addEntry("spirit_infusion", 0, 5, b -> b
 //                .configureWidget(w -> w.setIcon(SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))
 //                .addPage(new HeadlineTextPage("spirit_infusion"))
-//                .addPage(new CraftingPage(SPIRIT_ALTAR.get(), AIR, REFINED_SOULSTONE.get(), AIR, GOLD_INGOT, RUNEWOOD_PLANKS.get(), GOLD_INGOT, RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get()))
+//                .addPage(new CraftingPage(SPIRIT_ALTAR.get(), AIR, REFINED_SOULSTONE.get(), AIR, GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get()))
 //                .addPage(new TextPage("spirit_infusion.2"))
 //                .addPage(new TextPage("spirit_infusion.3"))
-//                .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
-//                .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS_SLAB.get()))
+//                .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
+//                .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
 //                .addReference(new EntryReference(HEX_ASH.get(),
 //                        BookEntry.create("spirit_infusion.hex_ash")
 //                                .addPage(new HeadlineTextPage("spirit_infusion.hex_ash"))

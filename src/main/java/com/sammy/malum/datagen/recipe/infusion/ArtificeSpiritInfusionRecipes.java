@@ -22,34 +22,34 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(ETHER, 1)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
         new SpiritInfusionRecipeBuilder(COPPER_BLOCK, 1, WAVEBANKER, 2)
                 .addSpirit(AQUEOUS_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(ETHER, 1)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
         new SpiritInfusionRecipeBuilder(COPPER_BLOCK, 1, WAVEMAKER, 2)
                 .addSpirit(EARTHEN_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(ETHER, 1)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
         new SpiritInfusionRecipeBuilder(COPPER_BLOCK, 1, WAVEBREAKER, 2)
                 .addSpirit(INFERNAL_SPIRIT, 4)
                 .addSpirit(ARCANE_SPIRIT, 2)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(ETHER, 1)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_COPPER), 2, ARTIFICERS_CLAW, 1)
                 .addSpirit(EARTHEN_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
-                .addExtraItem(RUNEWOOD_SET.getPlanks(), 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .addExtraItem(REDSTONE_BLOCK, 1)
                 .save(recipeOutput);
 
@@ -57,22 +57,22 @@ public class ArtificeSpiritInfusionRecipes {
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(WIND_CHARGE, 2)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(COPPER_BLOCK, 1, WIND_TUNNEL, 4)
                 .addSpirit(AERIAL_SPIRIT, 8)
                 .addExtraItem(REDSTONE, 4)
                 .addExtraItem(WIND_NUCLEUS, 2)
-                .addExtraItem(MalumTags.Items.RUNEWOOD_PLANKS, 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(FURNACE, 1, SPIRIT_CRUCIBLE, 1)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
                 .addExtraItem(HEX_ASH, 2)
-                .addExtraItem(TAINTED_ROCK_SET.getRock(), 8)
-                .addExtraItem(TWISTED_ROCK_SET.getRock(), 8)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 8)
+                .addExtraItem(TWISTED_ROCK_SET.rock.block, 8)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ALCHEMICAL_CALX, 4, ALCHEMICAL_IMPETUS, 1)
@@ -85,7 +85,7 @@ public class ArtificeSpiritInfusionRecipes {
         new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 2, TUNING_FORK, 1)
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .addSpirit(AQUEOUS_SPIRIT, 8)
-                .addExtraItem(RUNEWOOD_SET.getPlanks(), 2)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
                 .addExtraItem(REFINED_SOULSTONE, 2)
                 .save(recipeOutput);
 
@@ -171,21 +171,21 @@ public class ArtificeSpiritInfusionRecipes {
                 .addExtraItem(REFINED_SOULSTONE, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(TWISTED_ROCK_SET.getItemPedestal(), 1, SPIRIT_CATALYZER, 1)
+        new SpiritInfusionRecipeBuilder(TWISTED_ROCK_SET.itemPedestal, 1, SPIRIT_CATALYZER, 1)
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .addSpirit(AERIAL_SPIRIT, 8)
-                .addExtraItem(TAINTED_ROCK_SET.getRock(), 4)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 4)
                 .addExtraItem(ETHER, 1)
-                .addExtraItem(TWISTED_ROCK_SET.getRock(), 4)
+                .addExtraItem(TWISTED_ROCK_SET.rock.block, 4)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(TAINTED_ROCK_SET.getItemPedestal(), 1, REPAIR_PYLON, 1)
+        new SpiritInfusionRecipeBuilder(TAINTED_ROCK_SET.itemPedestal, 1, REPAIR_PYLON, 1)
                 .addSpirit(SACRED_SPIRIT, 16)
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
                 .addSpirit(INFERNAL_SPIRIT, 16)
-                .addExtraItem(TAINTED_ROCK_SET.getRock(), 8)
-                .addExtraItem(TWISTED_ROCK_SET.getRock(), 8)
+                .addExtraItem(TAINTED_ROCK_SET.rock.block, 8)
+                .addExtraItem(TWISTED_ROCK_SET.rock.block, 8)
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(ALCHEMICAL_CALX, 4, STELLAR_MECHANISM, 1)
