@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/blight/template_soulwood_spike",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bracing": "malum:block/blight/soulwood_spike_bracing",
     "large_end": "malum:block/blight/soulwood_spike_large_end",

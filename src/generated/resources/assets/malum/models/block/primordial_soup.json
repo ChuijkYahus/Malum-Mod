@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/powder_snow",
+  "render_type": "minecraft:cutout",
   "textures": {
     "texture": "malum:block/weeping_well/primordial_soup"
   }

@@ -2,11 +2,8 @@ package com.sammy.malum.datagen.recipe;
 
 import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.MalumContent.Vanity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.*;
@@ -26,6 +23,7 @@ import static com.sammy.malum.registry.common.MalumContent.BlockSets.THE_DEVICE;
 import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
+import static net.minecraft.data.recipes.SimpleCookingRecipeBuilder.smelting;
 import static net.minecraft.world.item.Items.*;
 
 public class MalumVanillaRecipes implements IConditionBuilder {
@@ -55,7 +53,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumContent.Progression.SPIRIT_ALTAR)
                 .define('Z', Tags.Items.INGOTS_GOLD)
                 .define('Y', REFINED_SOULSTONE)
-                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
+                .define('X', RUNEWOOD_SET.planks.block)
                 .pattern(" Y ")
                 .pattern("ZXZ")
                 .pattern("XXX")
@@ -64,7 +62,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumContent.Progression.WEAVERS_WORKBENCH)
                 .define('Z', HALLOWED_GOLD_INGOT)
                 .define('Y', HEX_ASH)
-                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
+                .define('X', RUNEWOOD_SET.planks.block)
                 .pattern("XYX")
                 .pattern("XZX")
                 .unlockedBy("has_hex_ash", RecipeDatagenCommons.has(HEX_ASH))
@@ -72,8 +70,8 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumContent.Progression.SOUL_BRAZIER)
                 .define('Z', CTHONIC_GOLD)
                 .define('Y', HALLOWED_GOLD_INLAY)
-                .define('X', MalumTags.Items.RUNEWOOD_PLANKS)
-                .define('W', TAINTED_ROCK_SET.getRock())
+                .define('X', RUNEWOOD_SET.planks.block)
+                .define('W', TAINTED_ROCK_SET.rock.block)
                 .pattern("YZY")
                 .pattern("XXX")
                 .pattern("WXW")
@@ -95,7 +93,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Totemancy.TOTEMIC_STAFF)
                 .define('X', Tags.Items.RODS_WOODEN)
-                .define('Y', MalumTags.Items.RUNEWOOD_PLANKS)
+                .define('Y', RUNEWOOD_SET.planks.block)
                 .pattern("  Y")
                 .pattern(" X ")
                 .pattern("X  ")
@@ -130,12 +128,9 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         etherCresset(output, ETHER_CRESSET, IRON_INGOT, ETHER);
         etherCresset(output, IRIDESCENT_ETHER_CRESSET, IRON_INGOT, IRIDESCENT_ETHER);
 
-        //SAP & ARCANE CHARCOAL
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.Items.RUNEWOOD_LOGS), RecipeCategory.MISC, ARCANE_CHARCOAL, 0.25f, 200).unlockedBy("has_runewood_planks", RecipeDatagenCommons.has(MalumTags.Items.RUNEWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_runewood"));
-        shapeless(RecipeCategory.MISC, RUNIC_SAPBALL).requires(RUNIC_SAP_BOTTLE).requires(RUNIC_SAP_BOTTLE).unlockedBy("has_runic_sap", RecipeDatagenCommons.has(RUNIC_SAP_BOTTLE)).save(output);
+        shapeless(RecipeCategory.MISC, RUNIC_SAPBALL).requires(RUNIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_runic_sap", RecipeDatagenCommons.has(RUNIC_SAP_BOTTLE)).save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MalumTags.Items.SOULWOOD_LOGS), RecipeCategory.MISC, ARCANE_CHARCOAL, 0.25f, 200).unlockedBy("has_soulwood_planks", RecipeDatagenCommons.has(MalumTags.Items.SOULWOOD_LOGS)).save(output, malumPath("arcane_charcoal_from_soulwood"));
-        shapeless(RecipeCategory.MISC, CURSED_SAPBALL).requires(CURSED_SAP_BOTTLE).unlockedBy("has_cursed_sap", RecipeDatagenCommons.has(CURSED_SAP_BOTTLE)).save(output);
+        shapeless(RecipeCategory.MISC, AZOIC_SAPBALL).requires(AZOIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_azoic_sap", RecipeDatagenCommons.has(AZOIC_SAP_BOTTLE)).save(output);
 
         //BLIGHT
         shapeless(RecipeCategory.MISC, BLIGHT).requires(BLIGHTED_GUNK).unlockedBy("has_blight", hasBlight).save(output);
@@ -152,7 +147,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .unlockedBy("has_blight", hasBlight).save(output);
 
         //BANNERS
-        shaped(RecipeCategory.BUILDING_BLOCKS, SOULWOVEN_BANNER).define('X', MalumTags.Items.RUNEWOOD_PLANKS).define('Y', SOULWOVEN_SILK).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(SOULWOVEN_SILK)).save(output);
+        shaped(RecipeCategory.BUILDING_BLOCKS, SOULWOVEN_BANNER).define('X', RUNEWOOD_SET.planks.block).define('Y', SOULWOVEN_SILK).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(SOULWOVEN_SILK)).save(output);
         bannerRecipe(output, ROTTING_ESSENCE, SoulwovenBannerPatternDataComponent.HUNGER);
         bannerRecipe(output, GRIM_TALC, SoulwovenBannerPatternDataComponent.HORNS);
         bannerRecipe(output, EERIE_WEAVE, SoulwovenBannerPatternDataComponent.HEFT);
@@ -279,7 +274,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, TORCH, 6).define('#', BLAZING_QUARTZ).define('&', STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ)).save(output, malumPath("torch_from_blazing_quartz"));
 
         //THE DEVICE
-        shaped(RecipeCategory.MISC, THE_DEVICE).define('X', TWISTED_ROCK_SET.getRock()).define('Y', TAINTED_ROCK_SET.getRock()).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", RecipeDatagenCommons.has(BEDROCK)).save(output);
+        shaped(RecipeCategory.MISC, THE_DEVICE).define('X', TWISTED_ROCK_SET.rock.block).define('Y', TAINTED_ROCK_SET.rock.block).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", RecipeDatagenCommons.has(BEDROCK)).save(output);
 
 
         //WEAVES

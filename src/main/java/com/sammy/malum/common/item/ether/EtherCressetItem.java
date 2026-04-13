@@ -15,6 +15,15 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 import java.awt.*;
 
 public class EtherCressetItem extends EtherItem {
+
+    public static EtherCressetItem ether(Block block, Properties properties) {
+        return new EtherCressetItem(block, properties, false);
+    }
+
+    public static EtherCressetItem iridescent(Block block, Properties properties) {
+        return new EtherCressetItem(block, properties, true);
+    }
+
     public EtherCressetItem(Block blockIn, Properties builder, boolean iridescent) {
         super(blockIn, builder, iridescent);
     }

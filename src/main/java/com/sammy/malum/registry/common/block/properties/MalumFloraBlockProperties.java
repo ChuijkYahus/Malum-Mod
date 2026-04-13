@@ -15,7 +15,7 @@ public class MalumFloraBlockProperties {
                 .strength(1F, 6.0F)
                 .needsPickaxe()
                 .noOcclusion()
-                .setCutoutRenderType()
+                .setCutout()
                 .dynamicShape()
                 .randomTicks()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -28,7 +28,7 @@ public class MalumFloraBlockProperties {
                 .strength(2F, 6.0F)
                 .needsPickaxe()
                 .noOcclusion()
-                .setCutoutRenderType()
+                .setCutout()
                 .dynamicShape()
                 .randomTicks()
                 .addTag(MalumTags.Blocks.EBONY_PLANTABLE_ON)
@@ -51,7 +51,7 @@ public class MalumFloraBlockProperties {
                 .needsHoe()
                 .noOcclusion()
                 .noCollission()
-                .setCutoutRenderType()
+                .setCutout()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .sound(MalumBlockSoundEvents.WILD_WITCHHAZEL);
     }

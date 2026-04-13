@@ -1,0 +1,70 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": [
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab0"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab1"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab2"
+      }
+    ],
+    "type=bottom,waterlogged=true": [
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab0"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab1"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab2"
+      }
+    ],
+    "type=double,waterlogged=false": [
+      {
+        "model": "minecraft:carved_soulwood_blocks0"
+      },
+      {
+        "model": "minecraft:carved_soulwood_blocks1"
+      },
+      {
+        "model": "minecraft:carved_soulwood_blocks2"
+      }
+    ],
+    "type=double,waterlogged=true": [
+      {
+        "model": "minecraft:carved_soulwood_blocks0"
+      },
+      {
+        "model": "minecraft:carved_soulwood_blocks1"
+      },
+      {
+        "model": "minecraft:carved_soulwood_blocks2"
+      }
+    ],
+    "type=top,waterlogged=false": [
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab0_top"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab1_top"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab2_top"
+      }
+    ],
+    "type=top,waterlogged=true": [
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab0_top"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab1_top"
+      },
+      {
+        "model": "malum:block/carved_soulwood_blocks_slab2_top"
+      }
+    ]
+  }
+}

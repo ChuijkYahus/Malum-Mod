@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "X": {
-      "tag": "malum:runewood_planks"
+      "item": "malum:runewood_planks"
     },
     "Y": {
       "item": "malum:hex_ash"

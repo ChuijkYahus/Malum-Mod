@@ -1,11 +1,10 @@
 {
-	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "malum:block/ether/ether_cresset",
-		"particle": "malum:block/ether/ether_cresset"
+		"cresset": "malum:block/ether/ether_cresset",
+		"particle": "#cresset"
 	},
 	"elements": [
 		{
@@ -13,12 +12,12 @@
 			"to": [13, 3, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, -2, 0]},
 			"faces": {
-				"north": {"uv": [5, 14.5, 10, 16], "texture": "#0"},
-				"east": {"uv": [10, 14.5, 5, 16], "texture": "#0"},
-				"south": {"uv": [5, 14.5, 10, 16], "texture": "#0"},
-				"west": {"uv": [10, 14.5, 5, 16], "texture": "#0"},
-				"up": {"uv": [5, 9.5, 10, 14.5], "texture": "#0"},
-				"down": {"uv": [5, 11, 0, 16], "rotation": 90, "texture": "#0"}
+				"north": {"uv": [5, 14.5, 10, 16], "texture": "#cresset"},
+				"east": {"uv": [10, 14.5, 5, 16], "texture": "#cresset"},
+				"south": {"uv": [5, 14.5, 10, 16], "texture": "#cresset"},
+				"west": {"uv": [10, 14.5, 5, 16], "texture": "#cresset"},
+				"up": {"uv": [5, 9.5, 10, 14.5], "texture": "#cresset"},
+				"down": {"uv": [5, 11, 0, 16], "rotation": 90, "texture": "#cresset"}
 			}
 		},
 		{
@@ -26,10 +25,10 @@
 			"to": [10, 16, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4, 8]},
 			"faces": {
-				"north": {"uv": [9, 1.5, 11, 8], "texture": "#0"},
-				"east": {"uv": [7, 1.5, 9, 8], "texture": "#0"},
-				"south": {"uv": [9, 1.5, 11, 8], "texture": "#0"},
-				"west": {"uv": [7, 1.5, 9, 8], "texture": "#0"}
+				"north": {"uv": [9, 1.5, 11, 8], "texture": "#cresset"},
+				"east": {"uv": [7, 1.5, 9, 8], "texture": "#cresset"},
+				"south": {"uv": [9, 1.5, 11, 8], "texture": "#cresset"},
+				"west": {"uv": [7, 1.5, 9, 8], "texture": "#cresset"}
 			}
 		}
 	]

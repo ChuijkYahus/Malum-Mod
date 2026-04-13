@@ -7,7 +7,6 @@ import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import com.sammy.malum.datagen.recipe.MalumMetallicsRecipes;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -55,7 +54,7 @@ public class MalumMetallicsDatagen {
         }
     }
 
-    public void fillDataMap(DataMapProvider.Builder<SoulstoneOreConversionMap, Block> builder) {
+    public void addSoulstoneConversions(DataMapProvider.Builder<SoulstoneOreConversionMap, Block> builder) {
         for (MetallicsItemRegistryBundle metallic : metallics) {
             var map = new SoulstoneOreConversionMap(List.of(
                     new SoulstoneOreConversionMap.SoulstoneOreConversion(

@@ -25,6 +25,14 @@ import java.util.Map;
 public class EtherTorchItem extends EtherItem {
     protected final Block wallBlock;
 
+    public static EtherTorchItem ether(Block block, Block wallBlock, Properties properties) {
+        return new EtherTorchItem(block, wallBlock, properties, false);
+    }
+
+    public static EtherTorchItem iridescent(Block block, Block wallBlock, Properties properties) {
+        return new EtherTorchItem(block, wallBlock, properties, true);
+    }
+
     public EtherTorchItem(Block floorBlock, Block wallBlockIn, Properties builder, boolean iridescent) {
         super(floorBlock, builder, iridescent);
         this.wallBlock = wallBlockIn;

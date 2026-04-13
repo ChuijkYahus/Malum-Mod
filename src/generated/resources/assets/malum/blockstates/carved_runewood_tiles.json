@@ -1,0 +1,39 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/carved_runewood_tiles0"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles1"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles2"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles3"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles4"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles5"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles6"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles7"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles8"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles9"
+      },
+      {
+        "model": "malum:block/carved_runewood_tiles10"
+      }
+    ]
+  }
+}

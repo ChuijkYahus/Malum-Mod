@@ -7,6 +7,9 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
 import com.sammy.malum.registry.common.util.RockBlockSet;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.data.BlockBundle;
+import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;
+import com.sammy.malum.registry.common.util.data.ItemlessBlockBundle;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
@@ -96,24 +99,25 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("runewood/");
         generateWoodSet(data, BlockSets.RUNEWOOD_SET);
 
-        BlockStateSmithTypes.LEAVES_BLOCK.act(data, BlockSets.RUNEWOOD_LEAVES, BlockSets.AZURE_RUNEWOOD_LEAVES);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel,
-                BlockSets.HANGING_RUNEWOOD_LEAVES, BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
-
-        BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING);
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING);
+        BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING, BlockSets.AZURE_RUNEWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, RUNEWOOD_TOTEM_POLE);
+
+        setTexturePath("runewood/leaves/");
+        MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.RUNEWOOD_LEAVES, BlockSets.AZURE_RUNEWOOD_LEAVES);
+        MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_RUNEWOOD_LEAVES, BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
 
         setTexturePath("soulwood/");
         generateWoodSet(data, BlockSets.SOULWOOD_SET);
 
-        BlockStateSmithTypes.LEAVES_BLOCK.act(data, BlockSets.SOULWOOD_LEAVES);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_TEXTURE_ITEM, this::simpleBlock, this::hangingLeavesModel,
-                BlockSets.HANGING_SOULWOOD_LEAVES);
-
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_SOULWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.SOULWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, SOULWOOD_TOTEM_POLE);
+
+        setTexturePath("soulwood/leaves/");
+        MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.SOULWOOD_LEAVES);
+        MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_SOULWOOD_LEAVES);
+
 
         setTexturePath("ores/");
         BlockStateSmithTypes.FULL_BLOCK.act(data, BRILLIANT_STONE, BRILLIANT_DEEPSLATE, NATURAL_QUARTZ_ORE, DEEPSLATE_QUARTZ_ORE, CTHONIC_GOLD_ORE, BLAZING_QUARTZ_ORE);
@@ -158,7 +162,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.CREEPING_BLIGHT.act(data, Blight.CLINGING_BLIGHT);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_BLIGHTPEARL, BlockSets.POTTED_BLIGHTROOT);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, Blight.BLIGHTPEARL, Blight.BLIGHTROOT);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedSoulwoodModel, MalumContent.BLIGHTED_SOULWOOD);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedSoulwoodModel, MalumContent.BlockSets.BLIGHTED_SOULWOOD);
 
         setTexturePath("blight/scarstone/");
         MalumBlockStateSmithTypes.LARGE_STRANGE_CRYSTAL.act(data, Blight.LARGE_STRANGE_CRYSTAL);
@@ -236,13 +240,13 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, MalumContent.Artifice.REPAIR_PYLON_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
-                MalumContent.WeepingWell.VOID_CONDUIT, MalumContent.WeepingWell.VOID_DEPOT);
+                WeepingWell.VOID_CONDUIT, WeepingWell.VOID_DEPOT);
 
-        MalumBlockStateSmithTypes.WEEPING_WELL_LAYERED_BLOCK.act(data, MalumContent.WeepingWell.WEEPING_WELL_CENTER, MalumContent.WeepingWell.WEEPING_WELL_SIDE, MalumContent.WeepingWell.WEEPING_WELL_SIDE_MIRROR, MalumContent.WeepingWell.WEEPING_WELL_CORNER);
-        MalumBlockStateSmithTypes.WEEPING_WELL_BLOCK.act(data, MalumContent.WeepingWell.WEEPING_WELL_FLAGSTONE);
-        MalumBlockStateSmithTypes.WEEPING_WELL_DIRECTIONAL_BLOCK.act(data, MalumContent.WeepingWell.WEEPING_WELL_COLUMN_BASE, MalumContent.WeepingWell.WEEPING_WELL_COLUMN, MalumContent.WeepingWell.WEEPING_WELL_COLUMN_CAP);
+        MalumBlockStateSmithTypes.WEEPING_WELL_LAYERED_BLOCK.act(data, WeepingWell.WEEPING_WELL_CENTER, WeepingWell.WEEPING_WELL_SIDE, WeepingWell.WEEPING_WELL_SIDE_MIRROR, WeepingWell.WEEPING_WELL_CORNER);
+        MalumBlockStateSmithTypes.WEEPING_WELL_BLOCK.act(data, WeepingWell.WEEPING_WELL_FLAGSTONE);
+        MalumBlockStateSmithTypes.WEEPING_WELL_DIRECTIONAL_BLOCK.act(data, WeepingWell.WEEPING_WELL_COLUMN_BASE, WeepingWell.WEEPING_WELL_COLUMN, WeepingWell.WEEPING_WELL_COLUMN_CAP);
 
-        MalumBlockStateSmithTypes.PRIMORDIAL_SOUP.act(data, MalumContent.WeepingWell.PRIMORDIAL_SOUP);
+        MalumBlockStateSmithTypes.PRIMORDIAL_SOUP.act(data, WeepingWell.PRIMORDIAL_SOUP);
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, BlockSets.THE_DEVICE, BlockSets.THE_VESSEL);
 
@@ -250,106 +254,82 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
     }
 
     public void generateRockSet(BlockStateSystemData data, RockBlockSet set) {
-        BlockStateSmithTypes.FULL_BLOCK.act(data,
-                set.getRock(),
-                set.getPolishedRock(),
-                set.getBricks(),
-                set.getTiles(),
-                set.getMosaic(),
-                set.getChiseled()
-        );
+        var blocks = new BlockBundle[] {
+                set.rock, set.polishedRock, set.bricks,
+                set.tiles//, set.grid, set.mosaic
+        };
+        for (BlockBundle bundle : blocks) {
+            BlockStateSmithTypes.FULL_BLOCK.act(data, bundle.block);
+            BlockStateSmithTypes.STAIRS_BLOCK.act(data, bundle.stairs);
+            BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
+            if (bundle instanceof BlockBundleWithWall wall) {
+                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+            }
+        }
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data,
-                set.getRockSlab(),
-                set.getPolishedRockSlab(),
-                set.getBricksSlab(),
-                set.getTilesSlab(),
-                set.getMosaicSlab()
-        );
+        MalumBlockStateSmithTypes.COLUMN.act(data, set.column);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, set.altar);
 
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
-                set.getRockStairs(),
-                set.getPolishedRockStairs(),
-                set.getBricksStairs(),
-                set.getTilesStairs(),
-                set.getMosaicStairs()
-        );
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, set.button);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, set.pressurePlate);
 
-        BlockStateSmithTypes.WALL_BLOCK.act(data,
-                set.getRockWall(),
-                set.getPolishedRockWall(),
-                set.getBricksWall(),
-                set.getTilesWall(),
-                set.getMosaicWall()
-        );
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, set.itemPedestal);
 
-        MalumBlockStateSmithTypes.COLUMN.act(data, set.getColumn());
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data,
-                this::simpleBlock,
-                models()::cubeBottomTop,
-                set.getAltar()
-        );
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data,
-                this::simpleBlock,
-                this::cutRockBlockModel,
-                set.getCut()
-        );
-
-        BlockStateSmithTypes.BUTTON_BLOCK.act(data, set.getButton());
-        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, set.getPressurePlate());
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data,
-                this::simpleBlock,
-                this::rockItemPedestalModel,
-                set.getItemPedestal()
-        );
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data,
-                this::directionalBlock,
-                this::itemStandModel,
-                set.getItemStand()
-        );
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, set.itemStand);
     }
 
     public void generateWoodSet(BlockStateSystemData data, WoodBlockSet set) {
-        BlockStateSmithTypes.FULL_BLOCK.act(data,
-                set.getBoards(), set.getVerticalBoards(),
-                set.getPlanks(), set.getVerticalPlanks(), set.getTiles(),
-                set.getRusticPlanks(), set.getVerticalRusticPlanks(), set.getRusticTiles(),
-                set.getPanel()
-        );
+        var blockSets = new BlockBundle[] {
+                set.boards, set.verticalBoards, set.blocks,
+                set.planks, set.verticalPlanks, set.tiles
+        };
+        for (BlockBundle bundle : blockSets) {
+            BlockStateSmithTypes.FULL_BLOCK.act(data, bundle.block);
+            BlockStateSmithTypes.STAIRS_BLOCK.act(data, bundle.stairs);
+            BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
+            if (bundle instanceof BlockBundleWithWall wall) {
+                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+            }
+        }
+        var carvedSets = new ItemlessBlockBundle[] {
+                set.carvedBoards, set.carvedVerticalBoards, set.carvedBlocks,
+                set.carvedPlanks, set.carvedVerticalPlanks, set.carvedTiles
+        };
+        for (ItemlessBlockBundle carved : carvedSets) {
+            VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, carved.block);
+            VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, carved.stairs);
+            VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, carved.slab);
+//            if (carved instanceof BlockBundleWithWall wall) {
+//                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+//            }
+        }
 
-        BlockStateSmithTypes.SLAB_BLOCK.act(data,
-                set.getBoardsSlab(), set.getVerticalBoardsSlab(),
-                set.getPlanksSlab(), set.getVerticalPlanksSlab(), set.getTilesSlab(),
-                set.getRusticPlanksSlab(), set.getVerticalRusticPlanksSlab(), set.getRusticTilesSlab()
-        );
-
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
-                set.getBoardsStairs(), set.getVerticalBoardsStairs(),
-                set.getPlanksStairs(), set.getVerticalPlanksStairs(), set.getTilesStairs(),
-                set.getRusticPlanksStairs(), set.getVerticalRusticPlanksStairs(), set.getRusticTilesStairs()
-        );
 
         BlockStateSmithTypes.LOG_BLOCK.act(data,
-                set.getBeam(),
-                set.getLog(),
-                set.getStrippedLog(),
-                set.getSappyLog(),
-                set.getStrippedSappyLog()
+                set.log,
+                set.strippedLog,
+                set.sappyLog,
+                set.strippedSappyLog
         );
 
         BlockStateSmithTypes.WOOD_BLOCK.act(data,
-                set.getWood(),
-                set.getStrippedWood()
+                set.wood,
+                set.strippedWood
         );
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutWoodBlockModel, set.getCutPlanks());
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::woodenItemPedestalModel, set.getItemPedestal());
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::decoratedItemPedestalModel, set.getDecoratedItemPedestal());
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, set.getItemStand());
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::decoratedItemStandModel, set.getDecoratedItemStand());
+
+        BlockStateSmithTypes.FENCE_BLOCK.act(data, set.fence);
+        BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, set.fenceGate);
+        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, set.sign);
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, set.button);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, set.pressurePlate);
+
+//        MalumBlockStateSmithTypes.COLUMN.act(data, set.beam);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, set.steps);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::woodenItemPedestalModel, set.itemPedestal);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::decoratedItemPedestalModel, set.decoratedItemPedestal);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, set.itemStand);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::decoratedItemStandModel, set.decoratedItemStand);
     }
 
     public ModelFile cubeModelAirTexture(Block block) {
@@ -365,13 +345,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         ResourceLocation bottom = getBlockTexture(substring);
         ResourceLocation side = getBlockTexture(name);
         return models().cubeBottomTop(name, side, bottom, top);
-    }
-
-    public ModelFile cutWoodBlockModel(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation top = getBlockTexture(name.replace("cut_", ""));
-        ResourceLocation side = getBlockTexture(name);
-        return models().cubeBottomTop(name, side, top, top);
     }
 
     public ModelFile rockItemPedestalModel(Block block) {
@@ -421,12 +394,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         String name = getBlockName(block);
         ResourceLocation texture = getBlockTexture(name);
         return models().withExistingParent(name, malumPath("block/templates/template_totem_base")).texture("totem_base", texture);
-    }
-
-    public ModelFile hangingLeavesModel(Block block) {
-        String name = getBlockName(block);
-        ResourceLocation texture = getBlockTexture(name);
-        return models().withExistingParent(name, malumPath("block/templates/template_hanging_leaves")).texture("hanging_leaves", texture).texture("particle", texture);
     }
 
     public ModelFile blightedSoulwoodModel(Block block) {

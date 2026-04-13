@@ -11,6 +11,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -140,6 +141,7 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
                 b -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
         );
         SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
+        playSound(sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {
             var state = level.getBlockState(pos);
             if (state.isEmpty()) {
@@ -179,7 +181,9 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
                 itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0, 1, 0));
                 level.addFreshEntity(itemEntity);
             }
-            ExperienceOrb.award(level, position, carriedExperience);
+            if (carriedExperience > 0) {
+                ExperienceOrb.award(level, position, carriedExperience);
+            }
         });
     }
 

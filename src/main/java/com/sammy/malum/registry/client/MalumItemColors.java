@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.flora.wood.IGradientedLeavesBlock;
+import com.sammy.malum.common.block.flora.wood.StagedLeavesBlock;
 import com.sammy.malum.common.data.component.ItemSkinComponent;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.curiosities.pouch.RavenousPouchItem;
@@ -63,11 +63,6 @@ public class MalumItemColors {
         event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpiritHolder().getItemColor()),
                 MalumContent.Spirits.SACRED_SPIRIT.get(), MalumContent.Spirits.WICKED_SPIRIT.get(), MalumContent.Spirits.ARCANE_SPIRIT.get(), MalumContent.Spirits.ELDRITCH_SPIRIT.get(),
                 MalumContent.Spirits.AQUEOUS_SPIRIT.get(), MalumContent.Spirits.AERIAL_SPIRIT.get(), MalumContent.Spirits.EARTHEN_SPIRIT.get(), MalumContent.Spirits.INFERNAL_SPIRIT.get());
-
-        event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMaxColor()),
-                MalumContent.BlockSets.RUNEWOOD_LEAVES, MalumContent.BlockSets.HANGING_RUNEWOOD_LEAVES, MalumContent.BlockSets.AZURE_RUNEWOOD_LEAVES, MalumContent.BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
-        event.register((stack, tintIndex) -> ColorHelper.getColor(((IGradientedLeavesBlock) ((BlockItem) stack.getItem()).getBlock()).getMinColor()),
-                MalumContent.BlockSets.SOULWOOD_LEAVES, MalumContent.BlockSets.HANGING_SOULWOOD_LEAVES);
 
         event.register((s, c) -> switch (c) {
                     case 2 -> EtherItem.getSecondaryColor(s);

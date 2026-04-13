@@ -16,9 +16,8 @@ import java.util.function.Supplier;
 public class ObeliskCoreBlock<T extends ObeliskCoreBlockEntity> extends WaterLoggedEntityBlock<T> {
     private static final VoxelShape SHAPE = makeShape();
 
-    public ObeliskCoreBlock(Properties properties, Supplier<LodestoneBlockEntityType<T>> type) {
+    public ObeliskCoreBlock(Properties properties) {
         super(properties);
-        setBlockEntity(type);
     }
 
     @Override

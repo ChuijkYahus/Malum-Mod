@@ -36,7 +36,7 @@ public class MalumCreativeTabs {
                     .withTabsBefore(ARTIFICE.getId())
                     .displayItems((p, o) -> {
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geasType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
-                            final GeasEffectType geasEffectType = geasType.get();
+                            var geasEffectType = geasType.get();
                             if (geasEffectType.equals(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get())) {
                                 continue;
                             }

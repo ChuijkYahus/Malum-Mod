@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "key": {
-    "X": {
+  "ingredients": [
+    {
+      "item": "malum:hallowed_gold_nugget"
+    },
+    {
       "item": "malum:soulwood_item_pedestal"
     },
-    "Y": {
+    {
       "item": "malum:hallowed_gold_nugget"
     }
-  },
-  "pattern": [
-    "YXY"
   ],
   "result": {
     "count": 1,

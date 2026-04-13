@@ -90,12 +90,12 @@ public class MetallicsItemRegistryBundle {
         var derealizedBlockName = "block_of_" + derealized;
         var harmonizedBlockName = "block_of_" + harmonized;
 
-        impetus = MalumContent.register(impetusName, MalumItemProperties::IMPETUS_PROPERTIES, MetalImpetusItem::new);
-        fracturedImpetus = MalumContent.register(fracturedImpetusName, MalumItemProperties::IMPETUS_PROPERTIES, FracturedMetalImpetusItem::new);
-        node = MalumContent.register(nodeName, MalumItemProperties::IMPETUS_PROPERTIES, MetalNodeItem::new);
+        impetus = MalumContent.register(impetusName, MalumItemProperties::IMPETUS, MetalImpetusItem::new);
+        fracturedImpetus = MalumContent.register(fracturedImpetusName, MalumItemProperties::IMPETUS, FracturedMetalImpetusItem::new);
+        node = MalumContent.register(nodeName, MalumItemProperties::IMPETUS, MetalNodeItem::new);
 
-        derealizedMetal = MalumContent.register(derealized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
-        harmonizedMetal = MalumContent.register(harmonized, MalumItemProperties::DEFAULT_PROPERTIES, Item::new);
+        derealizedMetal = MalumContent.register(derealized, MalumItemProperties::DEFAULT, Item::new);
+        harmonizedMetal = MalumContent.register(harmonized, MalumItemProperties::DEFAULT, Item::new);
 
         oreSound = new MalumBlockSoundType(oreName);
         deepslateOreSound = new MalumBlockSoundType(deepslateOreName);

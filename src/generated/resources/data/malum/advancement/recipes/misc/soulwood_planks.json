@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#malum:soulwood_logs"
+            "items": "#malum:soulwood_all_logs"
           }
         ]
       },

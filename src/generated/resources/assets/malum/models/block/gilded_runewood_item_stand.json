@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/template_item_stand_decorated",
+  "render_type": "minecraft:cutout",
   "textures": {
     "stand": "malum:block/runewood/runewood_item_stand_gilded"
   }

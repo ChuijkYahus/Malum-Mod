@@ -65,6 +65,13 @@ public class MalumTags {
         public static final TagKey<Item> RUNES_WOODEN = tag("runes/wooden");
         public static final TagKey<Item> RUNES_VOID = tag("runes/void");
 
+        public static final TagKey<Item> NECKLACE_CURIO = modTag("curios:necklace");
+        public static final TagKey<Item> RING_CURIO = modTag("curios:ring");
+        public static final TagKey<Item> BELT_CURIO = modTag("curios:belt");
+        public static final TagKey<Item> BROOCH_CURIO = modTag("curios:brooch");
+        public static final TagKey<Item> RUNE_CURIO = modTag("curios:rune");
+        public static final TagKey<Item> CHARM_CURIO = modTag("curios:charm");
+
         public static final TagKey<Item> IS_TOTEMIC_TOOL = tag("totemic_tool");
         public static final TagKey<Item> IS_REDSTONE_TOOL = tag("redstone_tool");
         public static final TagKey<Item> IS_ARTIFICE_TOOL = tag("artifice_tool");
@@ -88,44 +95,12 @@ public class MalumTags {
         public static final TagKey<Item> HIDDEN_UNTIL_BLACK_CRYSTAL = tag("hidden_items/black_crystal");
         public static final TagKey<Item> HIDDEN_AS_RESULT_ONLY = tag("hidden_items/result_only");
 
-        public static final TagKey<Item> NECKLACE_CURIO = modTag("curios:necklace");
-        public static final TagKey<Item> RING_CURIO = modTag("curios:ring");
-        public static final TagKey<Item> BELT_CURIO = modTag("curios:belt");
-        public static final TagKey<Item> BROOCH_CURIO = modTag("curios:brooch");
-        public static final TagKey<Item> RUNE_CURIO = modTag("curios:rune");
-        public static final TagKey<Item> CHARM_CURIO = modTag("curios:charm");
 
-        public static final TagKey<Item> RUNEWOOD_BOARD_INGREDIENT = tag("runewood_board_ingredient");
         public static final TagKey<Item> RUNEWOOD_LOGS = tag("runewood_logs");
-        public static final TagKey<Item> RUNEWOOD_PLANKS = tag("runewood_planks");
-        public static final TagKey<Item> RUNEWOOD_BOARDS = tag("runewood_boards");
-        public static final TagKey<Item> RUNEWOOD_SLABS = tag("runewood_slabs");
-        public static final TagKey<Item> RUNEWOOD_STAIRS = tag("runewood_stairs");
-
-        public static final TagKey<Item> SOULWOOD_BOARD_INGREDIENT = tag("soulwood_board_ingredient");
         public static final TagKey<Item> SOULWOOD_LOGS = tag("soulwood_logs");
-        public static final TagKey<Item> SOULWOOD_PLANKS = tag("soulwood_planks");
-        public static final TagKey<Item> SOULWOOD_BOARDS = tag("soulwood_boards");
-        public static final TagKey<Item> SOULWOOD_SLABS = tag("soulwood_slabs");
-        public static final TagKey<Item> SOULWOOD_STAIRS = tag("soulwood_stairs");
 
         public static final TagKey<Item> TAINTED_ROCK = tag("tainted_rock");
-        public static final TagKey<Item> TAINTED_ROCK_BLOCKS = tag("tainted_rock_blocks");
-        public static final TagKey<Item> TAINTED_ROCK_SLABS = tag("tainted_rock_slabs");
-        public static final TagKey<Item> TAINTED_ROCK_STAIRS = tag("tainted_rock_stairs");
-        public static final TagKey<Item> TAINTED_ROCK_WALLS = tag("tainted_rock_walls");
-
         public static final TagKey<Item> TWISTED_ROCK = tag("twisted_rock");
-        public static final TagKey<Item> TWISTED_ROCK_BLOCKS = tag("twisted_rock_blocks");
-        public static final TagKey<Item> TWISTED_ROCK_SLABS = tag("twisted_rock_slabs");
-        public static final TagKey<Item> TWISTED_ROCK_STAIRS = tag("twisted_rock_stairs");
-        public static final TagKey<Item> TWISTED_ROCK_WALLS = tag("twisted_rock_walls");
-
-        public static final TagKey<Item> DROSS_STONE = tag("dross_stone");
-        public static final TagKey<Item> DROSS_STONE_BLOCKS = tag("dross_stone_blocks");
-        public static final TagKey<Item> DROSS_STONE_SLABS = tag("dross_stone_slabs");
-        public static final TagKey<Item> DROSS_STONE_STAIRS = tag("dross_stone_stairs");
-        public static final TagKey<Item> DROSS_STONE_WALLS = tag("dross_stone_walls");
 
 
 
@@ -161,11 +136,7 @@ public class MalumTags {
         public static final TagKey<Block> BLIGHT = tag("blight");
         public static final TagKey<Block> BLIGHTED_PLANTS = tag("blighted_plants");
 
-        public static final TagKey<Block> RUNEWOOD_LOGS = tag("runewood_logs");
-        public static final TagKey<Block> SOULWOOD_LOGS = tag("soulwood_logs");
-
         public static final TagKey<Block> TAINTED_ROCK = tag("tainted_rock");
-
         public static final TagKey<Block> TWISTED_ROCK = tag("twisted_rock");
 
         public static final TagKey<Block> DROSS_STONE = tag("dross_stone");

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:block/soulwood/hanging_soulwood_leaves"
+    "layer0": "malum:block/soulwood/leaves/hanging_soulwood_leaves3"
   }
 }

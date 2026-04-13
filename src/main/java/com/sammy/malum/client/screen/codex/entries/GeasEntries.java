@@ -29,8 +29,8 @@
 //                .addPage(new HeadlineTextPage("geas_magic", "geas_magic.1"))
 //                .addPage(new CraftingPage(SOUL_BRAZIER.get(),
 //                        HALLOWED_GOLD_INLAY.get(), CTHONIC_GOLD.get(), HALLOWED_GOLD_INLAY.get(),
-//                        RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(), RUNEWOOD_PLANKS.get(),
-//                        TAINTED_ROCK.get(), RUNEWOOD_PLANKS.get(), TAINTED_ROCK.get()))
+//                        RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get(),
+//                        TAINTED_ROCK.get(), RUNEWOOD_SET.planks.block.get(), TAINTED_ROCK.get()))
 //                .addPage(new TextPage("geas_magic.2"))
 //                .addPage(new TextPage("geas_magic.3"))
 //                .addPage(new TextPage("geas_magic.4"))

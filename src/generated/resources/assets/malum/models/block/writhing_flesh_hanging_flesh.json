@@ -1,5 +1,6 @@
 {
   "parent": "malum:block/templates/flesh/template_hanging_flesh",
+  "render_type": "minecraft:cutout",
   "textures": {
     "large_end": "malum:block/dungeon/flesh/hanging_flesh_large_end",
     "large_start": "malum:block/dungeon/flesh/hanging_flesh_large_start",

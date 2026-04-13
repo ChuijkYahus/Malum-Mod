@@ -3,7 +3,7 @@
   "extraInputs": [
     {
       "count": 4,
-      "tag": "malum:runewood_planks"
+      "item": "malum:runewood_planks"
     },
     {
       "count": 4,

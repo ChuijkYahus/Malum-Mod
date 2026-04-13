@@ -136,7 +136,7 @@ public class CurioSpiritInfusionRecipes {
                 .save(recipeOutput);
 
         new SpiritInfusionRecipeBuilder(MalumContent.Gear.ORNATE_NECKLACE, 1, MalumContent.Gear.NECKLACE_OF_MYSTIC_POTENCY, 1)
-                .addExtraItem(RUNEWOOD_SET.getPlanks(), 8)
+                .addExtraItem(RUNEWOOD_SET.planks.block, 8)
                 .addExtraItem(WARP_FLUX, 4)
                 .addSpirit(SACRED_SPIRIT, 32)
                 .addSpirit(AQUEOUS_SPIRIT, 16)
@@ -167,8 +167,8 @@ public class CurioSpiritInfusionRecipes {
                 .addSpirit(WICKED_SPIRIT, 32)
                 .addSpirit(ARCANE_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
-                .addExtraItem(TWISTED_ROCK_SET.getRock(), 16)
-                .addExtraItem(SOULWOOD_SET.getPlanks(), 8)
+                .addExtraItem(TWISTED_ROCK_SET.rock.block, 16)
+                .addExtraItem(SOULWOOD_SET.planks.block, 8)
                 .addExtraItem(SOUL_STAINED_STEEL_PLATING, 6)
                 .save(recipeOutput);
 

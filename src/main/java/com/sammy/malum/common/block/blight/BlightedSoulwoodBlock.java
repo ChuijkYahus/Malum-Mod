@@ -21,7 +21,7 @@ public class BlightedSoulwoodBlock extends Block {
             if (!simulate) {
                 context.getLevel().playSound(null, context.getClickedPos(), MalumBlockSoundEvents.MAJOR_BLIGHT_MOTIF.get(), SoundSource.BLOCKS, 1, 1);
             }
-            return MalumContent.BlockSets.SOULWOOD_SET.getLog().getDefaultState();
+            return MalumContent.BlockSets.SOULWOOD_SET.log.getDefaultState();
         }
         return null;
     }

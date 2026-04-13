@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "malum:twisted_rock_twisted_rock_blocks"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:twisted_rock_tiles_stairs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "malum:block/runewood/runewood_steps_bottom",
+    "side": "malum:block/runewood/ctm/runewood_steps_side",
+    "top": "malum:block/runewood/ctm/runewood_steps_top"
+  },
+  "connections": [
+    {
+      "type": "match_block",
+      "block": "malum:runewood_steps"
+    }
+  ],
+  "loader": "fusion:model",
+  "type": "fusion:connecting"
+}

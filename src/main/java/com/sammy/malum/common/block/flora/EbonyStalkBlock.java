@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -31,7 +32,7 @@ import javax.annotation.Nullable;
 
 
 @SuppressWarnings("NullableProblems")
-public class EbonyStalkBlock extends Block {
+public class EbonyStalkBlock extends Block implements BonemealableBlock {
 
     public static final MapCodec<EbonyStalkBlock> CODEC = simpleCodec(EbonyStalkBlock::new);
 
@@ -170,37 +171,37 @@ public class EbonyStalkBlock extends Block {
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
-//    @Override
-//    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-//        int i = getHeightAboveUpToMax(level, pos);
-//        int j = getHeightBelowUpToMax(level, pos);
-//        return i + j + 1 < 16 && level.getBlockState(pos.above(i)).getValue(STAGE) != 1;
-//    }
-//
-//    @Override
-//    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
-//        return true;
-//    }
-//
-//    @Override
-//    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-//        int i = getHeightAboveUpToMax(level, pos);
-//        int j = getHeightBelowUpToMax(level, pos);
-//        int k = i + j + 1;
-//        int l = 1 + random.nextInt(2);
-//
-//        for (int i1 = 0; i1 < l; i1++) {
-//            BlockPos blockpos = pos.above(i);
-//            BlockState blockstate = level.getBlockState(blockpos);
-//            if (k >= 16 || blockstate.getValue(STAGE) == 1 || !level.isEmptyBlock(blockpos.above())) {
-//                return;
-//            }
-//
-//            growEbony(blockstate, level, blockpos, random, k);
-//            i++;
-//            k++;
-//        }
-//    }
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        int i = getHeightAboveUpToMax(level, pos);
+        int j = getHeightBelowUpToMax(level, pos);
+        return i + j + 1 < 16 && level.getBlockState(pos.above(i)).getValue(STAGE) != 1;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+        int i = getHeightAboveUpToMax(level, pos);
+        int j = getHeightBelowUpToMax(level, pos);
+        int k = i + j + 1;
+        int l = 1 + random.nextInt(2);
+
+        for (int i1 = 0; i1 < l; i1++) {
+            var blockpos = pos.above(i);
+            var blockstate = level.getBlockState(blockpos);
+            if (k >= 16 || blockstate.getValue(STAGE) == 1 || !level.isEmptyBlock(blockpos.above())) {
+                return;
+            }
+
+            growEbony(blockstate, level, blockpos, random, k);
+            i++;
+            k++;
+        }
+    }
 
     /**
      * Get the hardness of this Block relative to the ability of the given player

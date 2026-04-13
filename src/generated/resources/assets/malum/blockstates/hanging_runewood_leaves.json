@@ -1,7 +1,25 @@
 {
   "variants": {
-    "": {
-      "model": "malum:block/hanging_runewood_leaves"
+    "color=0": {
+      "model": "malum:block/hanging_runewood_leaves0"
+    },
+    "color=1": {
+      "model": "malum:block/hanging_runewood_leaves1"
+    },
+    "color=2": {
+      "model": "malum:block/hanging_runewood_leaves2"
+    },
+    "color=3": {
+      "model": "malum:block/hanging_runewood_leaves3"
+    },
+    "color=4": {
+      "model": "malum:block/hanging_runewood_leaves4"
+    },
+    "color=5": {
+      "model": "malum:block/hanging_runewood_leaves5"
+    },
+    "color=6": {
+      "model": "malum:block/hanging_runewood_leaves6"
     }
   }
 }

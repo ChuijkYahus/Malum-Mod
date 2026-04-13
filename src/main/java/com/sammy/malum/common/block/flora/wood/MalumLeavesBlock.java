@@ -16,51 +16,39 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-import java.awt.*;
-
 import static com.sammy.malum.MalumMod.RANDOM;
 
-public class MalumLeavesBlock extends LeavesBlock implements IGradientedLeavesBlock {
+@SuppressWarnings("NullableProblems")
+public abstract class MalumLeavesBlock extends LeavesBlock implements StagedLeavesBlock {
 
-    public static final IntegerProperty COLOR = IntegerProperty.create("color", 0, 4);
-    public final Color maxColor;
-    public final Color minColor;
-
-    public MalumLeavesBlock(Properties properties, Color maxColor, Color minColor) {
+    public MalumLeavesBlock(Properties properties) {
         super(properties);
-        this.maxColor = maxColor;
-        this.minColor = minColor;
-        registerDefaultState(defaultBlockState().setValue(COLOR, 0));
+        registerDefaultState(defaultBlockState().setValue(getColorProperty(), 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DISTANCE, PERSISTENT, COLOR, WATERLOGGED);
+        builder.add(DISTANCE, PERSISTENT, getColorProperty(), WATERLOGGED);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(COLOR, 0);
+        BlockState state = super.getStateForPlacement(context);
+        if (state == null) {
+            return null;
+        }
+        return state.setValue(getColorProperty(), 0);
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hitResult) {
         if (stack.getItem().equals(MalumContent.Spirits.INFERNAL_SPIRIT.get())) {
-            level.setBlockAndUpdate(pos, state.setValue(COLOR, (state.getValue(COLOR) + 1) % 5));
+            IntegerProperty color = getColorProperty();
+            level.setBlockAndUpdate(pos, state.cycle(color));
             player.swing(handIn);
             player.playSound(SoundEvents.BLAZE_SHOOT, 1F, 1.5f + RANDOM.nextFloat() * 0.5f);
             return ItemInteractionResult.SUCCESS;
         }
         return super.useItemOn(stack, state, level, pos, player, handIn, hitResult);
-    }
-
-    @Override
-    public Color getMaxColor() {
-        return maxColor;
-    }
-
-    @Override
-    public Color getMinColor() {
-        return minColor;
     }
 }

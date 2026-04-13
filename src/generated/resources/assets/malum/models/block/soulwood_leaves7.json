@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/leaves",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "malum:block/soulwood/leaves/soulwood_leaves7"
+  }
+}

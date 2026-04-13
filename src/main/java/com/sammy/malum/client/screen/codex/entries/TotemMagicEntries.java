@@ -58,7 +58,7 @@
 //                .addPage(new TextPage("managing_totems.2"))
 //                .addPage(new TextPage("managing_totems.3"))
 //                .addPage(new CraftingPage(TOTEMIC_STAFF.get(),
-//                        EMPTY, EMPTY, RUNEWOOD_PLANKS.get(),
+//                        EMPTY, EMPTY, RUNEWOOD_SET.planks.block.get(),
 //                        EMPTY, STICK, EMPTY,
 //                        STICK, EMPTY, EMPTY
 //                ))

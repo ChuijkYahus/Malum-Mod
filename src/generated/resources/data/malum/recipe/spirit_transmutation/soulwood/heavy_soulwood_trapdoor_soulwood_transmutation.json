@@ -1,0 +1,11 @@
+{
+  "type": "malum:unchained_transmutation",
+  "group": "soulwood",
+  "input": {
+    "item": "malum:heavy_runewood_trapdoor"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:heavy_soulwood_trapdoor"
+  }
+}
