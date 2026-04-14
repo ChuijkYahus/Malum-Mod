@@ -1,14 +1,12 @@
 package com.sammy.malum.visual_effects.networked.crucible;
 
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.*;
-
-import java.util.function.*;
 
 public class SpiritCrucibleCraftParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 

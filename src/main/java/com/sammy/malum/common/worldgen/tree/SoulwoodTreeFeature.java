@@ -236,6 +236,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     public static void makeOverhang(LodestoneWorldgenBuilderLayer leaves, WorldGenLevel level, Vec2 center) {
+        RandomSource random = level.getRandom();
         HashMap<BlockPos, BlockState> toAdd = new HashMap<>();
         for (LodestoneWorldgenBuilderEntry entry : leaves.getEntries()) {
             BlockPos position = entry.position();
@@ -251,7 +252,8 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             var mutable = below.mutable();
             float xDifference = center.x - position.getX();
             float zDifference = center.y - position.getZ();
-            int hang = Math.round(Mth.sqrt(xDifference * xDifference + zDifference * zDifference) * 0.75f);
+            float rate = 1f + random.nextFloat() * 0.5f;
+            int hang = Math.round(Mth.sqrt(xDifference * xDifference + zDifference * zDifference) * rate) - 4;
             for (int i = 0; i <= hang; i++) {
                 if (!level.isEmptyBlock(mutable)) {
                     continue;

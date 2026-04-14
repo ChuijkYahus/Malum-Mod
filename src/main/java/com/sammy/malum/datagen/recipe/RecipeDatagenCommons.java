@@ -45,7 +45,6 @@ public class RecipeDatagenCommons {
     public static void blockBundleStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag) {
         assert !(bundle instanceof BlockBundleWithWall);
         blockBundleStonecutting(recipeOutput, bundle, blockTag, slabTag, stairTag, null);
-
     }
 
     public static void blockBundleStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag, TagKey<Item> wallTag) {

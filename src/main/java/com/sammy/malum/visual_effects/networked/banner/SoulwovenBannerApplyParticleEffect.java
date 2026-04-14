@@ -1,7 +1,6 @@
 package com.sammy.malum.visual_effects.networked.banner;
 
-import com.sammy.malum.common.block.curiosities.banner.*;
-import com.sammy.malum.common.block.curiosities.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;

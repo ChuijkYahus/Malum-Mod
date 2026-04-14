@@ -1,11 +1,11 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.common.item.augment.core.CoreAugmentItem;
 import com.sammy.malum.core.systems.artifice.ArtificeInfluenceData;
 import com.sammy.malum.core.systems.artifice.ArtificeModifierSourceInstance;
 import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -18,7 +18,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.*;

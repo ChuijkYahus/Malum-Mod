@@ -1,11 +1,10 @@
 package com.sammy.malum.visual_effects.networked.brazier;
 
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import io.netty.buffer.*;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;

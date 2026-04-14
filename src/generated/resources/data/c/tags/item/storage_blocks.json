@@ -1,6 +1,5 @@
 {
   "values": [
-    "malum:witchhazel",
     "malum:block_of_raw_soulstone",
     "malum:block_of_soulstone",
     "malum:block_of_raw_brilliance",
@@ -28,6 +27,7 @@
     "malum:block_of_soul_stained_steel",
     "malum:block_of_hallowed_gold",
     "malum:block_of_malignant_pewter",
+    "malum:witchhazel",
     "malum:block_of_derealized_iron",
     "malum:block_of_harmonized_iron",
     "malum:block_of_derealized_copper",

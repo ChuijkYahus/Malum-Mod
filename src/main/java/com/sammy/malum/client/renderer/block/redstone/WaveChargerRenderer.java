@@ -1,7 +1,7 @@
 package com.sammy.malum.client.renderer.block.redstone;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.curiosities.redstone.wavecharger.WaveChargerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlockEntity;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 
 

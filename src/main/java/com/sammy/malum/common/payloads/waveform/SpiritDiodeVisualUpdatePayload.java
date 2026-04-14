@@ -1,8 +1,7 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;

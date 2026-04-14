@@ -1,14 +1,11 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.mojang.serialization.*;
-import com.sammy.malum.common.block.curiosities.redstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.handling.*;
 import team.lodestar.lodestone.systems.network.*;
 

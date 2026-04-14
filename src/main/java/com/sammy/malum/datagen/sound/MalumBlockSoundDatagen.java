@@ -27,6 +27,12 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         addMetallicsSounds(MalumContent.Artifice.NICKEL_METALLICS, 1.25f);
 
         //Soulstone
+        add(MalumBlockSoundEvents.SOULSTONE_BUD, "block/ore/soulstone");
+        add(MalumBlockSoundEvents.MATURE_SOULSTONE_BUD, "block/ore/soulstone", b -> b.modifySounds(se -> se.pitch(1.25f)));
+
+        add(MalumBlockSoundEvents.SOULSTONE_BUD_GROWS, s -> s.with(allSounds("block/ore/soulstone/bud/grow", se -> se.volume(0.75f))));
+        add(MalumBlockSoundEvents.SOULSTONE_BUD_FULLY_MATURES, s -> s.with(allSounds("block/ore/soulstone/bud/siphon", se -> se.volume(0.75f))));
+
         add(MalumBlockSoundEvents.SOULSTONE_ORE, "block/ore/soulstone", b -> b
                 .addStepHitFallSounds(allSounds("minecraft:block/basalt/step", se -> se.pitch(1.2f))));
         add(MalumBlockSoundEvents.DEEPSLATE_SOULSTONE_ORE, "block/ore/soulstone/deepslate", b -> b

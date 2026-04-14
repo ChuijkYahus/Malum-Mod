@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.obelisk.runewood;
 
 import com.sammy.malum.common.block.curiosities.obelisk.*;
-import com.sammy.malum.common.block.curiosities.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;

@@ -1,0 +1,6 @@
+{
+  "type": "malum:runic_sanctuary",
+  "biomes": "#malum:has_azure_sanctuary",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

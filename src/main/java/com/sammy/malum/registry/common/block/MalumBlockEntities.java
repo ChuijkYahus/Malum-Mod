@@ -9,35 +9,34 @@ import com.sammy.malum.client.renderer.block.redstone.WaveChargerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
-import com.sammy.malum.common.block.curiosities.banner.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.decor.banner.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
-import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlockEntity;
-import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlockEntity;
-import com.sammy.malum.common.block.curiosities.redstone.wavecharger.WaveChargerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavecharger.WaveChargerBlockEntity;
-import com.sammy.malum.common.block.curiosities.redstone.wavebreaker.WaveBreakerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavebreaker.WaveBreakerBlockEntity;
-import com.sammy.malum.common.block.curiosities.repair_pylon.*;
-import com.sammy.malum.common.block.curiosities.ritual_plinth.*;
-import com.sammy.malum.common.block.curiosities.runic_workbench.*;
-import com.sammy.malum.common.block.curiosities.soul_brazier.*;
-import com.sammy.malum.common.block.curiosities.spirit_altar.*;
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
+import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.*;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.*;
+import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
 import com.sammy.malum.common.block.curiosities.totem.channel.*;
 import com.sammy.malum.common.block.curiosities.totem.spreader.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
 import com.sammy.malum.common.block.curiosities.totem.waveform.*;
-import com.sammy.malum.common.block.curiosities.void_depot.*;
+import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
@@ -117,8 +116,6 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> create(OminousAltarBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_ALTAR).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<OminousObeliskBlockEntity>> OMINOUS_OBELISK = BLOCK_ENTITY_TYPES.register("ominous_obelisk", () -> create(OminousObeliskBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_OBELISK).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<RitualPlinthBlockEntity>> RITUAL_PLINTH = BLOCK_ENTITY_TYPES.register("ritual_plinth", () -> create(RitualPlinthBlockEntity::new, MalumContent.Progression.RITUAL_PLINTH).build());
-
     public static final Supplier<LodestoneBlockEntityType<SoulwovenBannerBlockEntity>> SOULWOVEN_BANNER = BLOCK_ENTITY_TYPES.register("soulwoven_banner", () -> create(SoulwovenBannerBlockEntity::new, getBlocks(SoulwovenBannerBlock.class)).build());
     public static final Supplier<LodestoneBlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> create(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build());
 
@@ -193,8 +190,6 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(WIND_TUNNEL.get(), WindTunnelRenderer::new);
 
             event.registerBlockEntityRenderer(OMINOUS_ALTAR.get(), SpiritAltarRenderer::new);
-
-            event.registerBlockEntityRenderer(RITUAL_PLINTH.get(), RitualPlinthRenderer::new);
 
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
             event.registerBlockEntityRenderer(MANA_MOTE.get(), MoteOfManaRenderer::new);

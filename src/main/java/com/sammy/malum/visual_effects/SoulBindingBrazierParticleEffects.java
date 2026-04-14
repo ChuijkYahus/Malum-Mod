@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.SpiritBasedParticleBuilder;
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -16,7 +16,6 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 
 import team.lodestar.lodestone.helpers.VecHelper;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;

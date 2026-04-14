@@ -1,61 +1,43 @@
 package com.sammy.malum.datagen.worldgen;
 
+import com.sammy.malum.common.worldgen.springs.EnchantedSpringsStructure;
 import com.sammy.malum.common.worldgen.well.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.worldgen.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.worldgen.*;
-import net.minecraft.world.entity.*;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.heightproviders.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.placement.*;
-import net.minecraft.world.level.levelgen.structure.pools.*;
-import net.minecraft.world.level.levelgen.structure.structures.*;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class StructureDatagen {
 
     public static void structureBootstrap(BootstrapContext<Structure> context) {
-        context.register(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_KEY,
-                new WeepingWellStructure(
-                        structure(context.lookup(Registries.BIOME).getOrThrow(MalumTags.Biomes.HAS_WEEPING_WELL), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE)
-                )
-        );
+        structure(context, MalumStructureTypes.StructureKeys.WEEPING_WELL, WeepingWellStructure::new, MalumTags.Biomes.HAS_WEEPING_WELL, GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE);
+        structure(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, EnchantedSpringsStructure::new, MalumTags.Biomes.HAS_RUNIC_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
+        structure(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, EnchantedSpringsStructure::new, MalumTags.Biomes.HAS_AZURE_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
     }
 
     public static void structureSetBootstrap(BootstrapContext<StructureSet> context) {
-        context.register(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_SET_KEY, new StructureSet(
-                List.of(StructureSet.entry(context.lookup(Registries.STRUCTURE).getOrThrow(MalumStructures.StructureKeys.WEEPING_WELL_STRUCTURE_KEY))),
-                new RandomSpreadStructurePlacement(24, 18, RandomSpreadType.TRIANGULAR, 546451665)));
+        set(context, MalumStructureTypes.StructureKeys.WEEPING_WELL, 24, 18, 546451666);
+        set(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, 32, 24, 546451665);
+        set(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, 32, 24, 546451665);
     }
 
-    private static Structure.StructureSettings structure(HolderSet<Biome> tag, TerrainAdjustment adj) {
-        return new Structure.StructureSettings(tag, Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, adj);
+    private static void structure(BootstrapContext<Structure> context, MalumStructureTypes.StructureKeys.StructureKey key, Function<Structure.StructureSettings, Structure> structure, TagKey<Biome> tag, GenerationStep.Decoration decoration, TerrainAdjustment adj) {
+        var holder = context.lookup(Registries.BIOME).getOrThrow(tag);
+        context.register(key.structure(), structure.apply(new Structure.StructureSettings(holder, Map.of(), decoration, adj)));
+
+    }
+    private static void set(BootstrapContext<StructureSet> context, MalumStructureTypes.StructureKeys.StructureKey key, int spacing, int separation, int salt) {
+        context.register(key.structureSet(), new StructureSet(
+                List.of(StructureSet.entry(context.lookup(Registries.STRUCTURE).getOrThrow(key.structure()))),
+                new RandomSpreadStructurePlacement(spacing, separation, RandomSpreadType.TRIANGULAR, salt)));
     }
 
-    private static Structure.StructureSettings structure(HolderSet<Biome> tag, Map<MobCategory, StructureSpawnOverride> spawnOverrides, TerrainAdjustment adj) {
-        return new Structure.StructureSettings(tag, spawnOverrides, GenerationStep.Decoration.SURFACE_STRUCTURES, adj);
-    }
-
-    private static Structure.StructureSettings structure(HolderSet<Biome> tag, GenerationStep.Decoration decoration, TerrainAdjustment adj) {
-        return new Structure.StructureSettings(tag, Map.of(), decoration, adj);
-    }
-
-    private static JigsawStructure createJigsaw(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, Heightmap.Types projectStartToHeightmap) {
-        return new JigsawStructure(settings, startPool, maxDepth, startHeight, false, projectStartToHeightmap);
-    }
-
-    private static JigsawStructure createJigsawWithExpansion(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, Heightmap.Types projectStartToHeightmap) {
-        return new JigsawStructure(settings, startPool, maxDepth, startHeight, true, projectStartToHeightmap);
-    }
-
-
-    @FunctionalInterface
-    public interface StructureFactory {
-        Structure generate(BootstrapContext<Structure> structureFactoryBootstapContext);
-    }
 }

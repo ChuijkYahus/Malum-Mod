@@ -3,6 +3,6 @@
     "#c:is_snowy"
   ],
   "values": [
-    "#minecraft:is_forest"
+    "#c:is_forest"
   ]
 }

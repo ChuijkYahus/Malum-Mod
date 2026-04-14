@@ -1,8 +1,8 @@
 package com.sammy.malum.client.renderer.block.redstone;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlock;
-import com.sammy.malum.common.block.curiosities.redstone.SpiritDiodeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlockEntity;
 import com.sammy.malum.core.systems.item.HeldItemTracker;
 import com.sammy.malum.registry.client.MalumRenderTypeTokens;
 import com.sammy.malum.registry.common.*;

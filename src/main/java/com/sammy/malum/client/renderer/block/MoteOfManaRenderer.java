@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.block;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.*;
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -15,8 +15,6 @@ import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.util.*;
-
-import static com.sammy.malum.registry.client.MalumRenderTypeTokens.MOTE_OF_MANA;
 
 
 public class MoteOfManaRenderer implements BlockEntityRenderer<ManaMoteBlockEntity> {

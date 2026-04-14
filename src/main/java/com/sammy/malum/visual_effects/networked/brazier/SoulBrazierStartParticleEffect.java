@@ -1,11 +1,10 @@
 package com.sammy.malum.visual_effects.networked.brazier;
 
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlockEntity;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import io.netty.buffer.*;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -13,10 +12,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 public class SoulBrazierStartParticleEffect extends MalumNetworkedParticleEffectType<SoulBrazierStateEffectData> {
 

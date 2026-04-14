@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.altar;
 
-import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
+import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
@@ -9,9 +9,6 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
-
-import java.util.function.Supplier;
 
 public class SpiritAltarCraftParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 

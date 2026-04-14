@@ -6,13 +6,21 @@ import net.minecraft.core.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.levelgen.synth.ImprovedNoise;
 
 import java.util.*;
 
 public class WorldgenHelper {
 
     public static <T> List<T> shuffle(Collection<T> collection, RandomSource random) {
-        return collection.stream().sorted((a, b) -> random.nextIntBetweenInclusive(-1, 0)).toList();
+        List<T> list = new ArrayList<>(collection);
+        for (int i = list.size() - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+            T temp = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, temp);
+        }
+        return list;
     }
 
     public static void updateLeaves(LevelAccessor pLevel, Collection<BlockPos> logPositions) {
@@ -57,5 +65,52 @@ public class WorldgenHelper {
                 }
             }
         }
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, float noiseFrequency, boolean blur) {
+        return getNoise(noiseSampler, blockX, blockZ, 0, noiseFrequency, blur);
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, int offset, float noiseFrequency, boolean blur) {
+        if (blur) {
+            return getBlurredNoise(noiseSampler, blockX, blockZ, offset, noiseFrequency);
+        }
+        return noiseSampler.noise((blockX + offset) * noiseFrequency, 0, (blockZ + offset) * noiseFrequency) + 1;
+    }
+
+    public static double getBlurredNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, float noiseFrequency) {
+        return getBlurredNoise(noiseSampler, blockX, blockZ, 0, 1, noiseFrequency);
+    }
+
+    public static double getBlurredNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, int offset, float noiseFrequency) {
+        return getBlurredNoise(noiseSampler, blockX, blockZ, offset, 1, noiseFrequency);
+    }
+
+    public static double getBlurredNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, int offset, int blurRadius, float noiseFrequency) {
+        double noise = 0;
+        int count = 0;
+        for (int x = -blurRadius; x <= blurRadius; x++) {
+            for (int z = -blurRadius; z <= blurRadius; z++) {
+                noise += getNoise(noiseSampler, blockX, blockZ, offset, noiseFrequency);
+                count++;
+            }
+        }
+        return noise / count;
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, BlockPos pos, float noiseFrequency) {
+        return getNoise(noiseSampler, pos.getX(), pos.getZ(), 0, noiseFrequency);
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, BlockPos pos, int offset, float noiseFrequency) {
+        return getNoise(noiseSampler, pos.getX(), pos.getZ(), offset, noiseFrequency);
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, float noiseFrequency) {
+        return getNoise(noiseSampler, blockX, blockZ, 0, noiseFrequency);
+    }
+
+    public static double getNoise(ImprovedNoise noiseSampler, int blockX, int blockZ, int offset, float noiseFrequency) {
+        return (noiseSampler.noise((blockX + offset) * noiseFrequency, 0, (blockZ + offset) * noiseFrequency) + 1) * 0.5f;
     }
 }

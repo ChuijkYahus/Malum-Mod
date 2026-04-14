@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.block;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.renderer.entity.*;
-import com.sammy.malum.common.block.curiosities.repair_pylon.*;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
@@ -13,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import org.joml.*;
-import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.*;

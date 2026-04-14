@@ -126,11 +126,12 @@ public class MalumBlockLootTables extends LootTableProvider {
             takeAll(blocks, b -> b.get() instanceof GrassBlock).forEach(b -> add(b.get(), createSingleItemTableWithSilkTouch(b.get(), Items.DIRT)));
             takeAll(blocks, b -> b.get() instanceof SlabBlock).forEach(b -> add(b.get(), createSlabItemTable(b.get())));
             takeAll(blocks, b -> b.get() instanceof DoorBlock).forEach(b -> add(b.get(), createDoorTable(b.get())));
+            takeAll(blocks, b -> b.get() instanceof AbstractCauldronBlock).forEach(b -> add(b.get(), createSingleItemTable(Items.CAULDRON)));
 
             takeAll(blocks, b -> b.get() instanceof EtherBlock).forEach(b -> add(b.get(), createEtherDrop(b.get())));
             takeAll(blocks, b -> b.get() instanceof SpiritJarBlock).forEach(b -> add(b.get(), createJarDrop(b.get())));
 
-            takeAll(blocks, b -> true).forEach(b -> add(b.get(), createSingleItemTable(b.get().asItem())));
+            blocks.forEach(b -> add(b.get(), createSingleItemTable(b.get().asItem())));
         }
 
         protected LootTable.Builder createTallBlockDrop(Block block) {

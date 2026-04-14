@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.common.block.curiosities.void_depot.*;
+import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;

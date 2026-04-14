@@ -1,9 +1,8 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.client.extensions.*;
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.neoforged.neoforge.client.extensions.common.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 

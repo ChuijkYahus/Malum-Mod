@@ -1,9 +1,8 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.mojang.blaze3d.systems.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.payloads.waveform.*;
 import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.*;
@@ -13,12 +12,8 @@ import net.minecraft.network.chat.contents.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.neoforge.network.*;
-import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 

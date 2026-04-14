@@ -1,26 +1,13 @@
 package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
-import com.sammy.malum.client.renderer.entity.FloatingItemRenderer;
-import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity;
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import net.minecraft.client.Minecraft;
+import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Vector3f;
 import team.lodestar.lodestone.modules.toolkit.client.ItemStackDisplayDataRenderer;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
-
-import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
 public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlockEntity> {
     public SpiritAltarRenderer(BlockEntityRendererProvider.Context context) {

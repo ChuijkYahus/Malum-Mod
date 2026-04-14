@@ -215,7 +215,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 RITE_CHANNEL);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
-                MalumContent.Progression.SPIRIT_ALTAR, MalumContent.Progression.SOUL_BRAZIER, MalumContent.Progression.RITUAL_PLINTH,
+                MalumContent.Progression.SPIRIT_ALTAR, MalumContent.Progression.SOUL_BRAZIER,
                 DungeonBlockSets.OMINOUS_ALTAR);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel,

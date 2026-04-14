@@ -4,10 +4,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.*;
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
 import com.sammy.malum.common.entity.activator.rite.*;
-import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
@@ -18,8 +15,6 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
-
-import java.util.*;
 
 public class BlockRiteEffectWaveActivatorRenderer extends AbstractEffectActivatorEntityRenderer<BlockRiteEffectWaveActivator> {
 

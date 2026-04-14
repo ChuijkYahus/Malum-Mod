@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.augment.core;
 
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.common.block.the_device.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
