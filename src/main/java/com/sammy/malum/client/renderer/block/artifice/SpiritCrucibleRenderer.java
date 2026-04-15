@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.block.artifice;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.renderer.entity.*;
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.*;
@@ -22,7 +22,6 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
 

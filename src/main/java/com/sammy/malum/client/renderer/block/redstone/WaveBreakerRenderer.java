@@ -1,9 +1,8 @@
 package com.sammy.malum.client.renderer.block.redstone;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.curiosities.redstone.wavebreaker.WaveBreakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlockEntity;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.util.Mth;
 
 
 public class WaveBreakerRenderer extends SpiritDiodeRenderer<WaveBreakerBlockEntity> {

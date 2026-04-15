@@ -98,6 +98,6 @@ public class WeepingWellStructure extends Structure {
 
     @Override
     public StructureType<?> type() {
-        return MalumStructures.StructureTypes.WEEPING_WELL.get();
+        return MalumStructureTypes.StructureTypes.WEEPING_WELL.get();
     }
 }

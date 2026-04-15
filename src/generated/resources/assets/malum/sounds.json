@@ -8264,6 +8264,111 @@
     ],
     "subtitle": "malum.subtitle.malignant_disintegrates"
   },
+  "mature_soulstone_bud_break": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/break1",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break2",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break3",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break4",
+        "pitch": 1.25
+      }
+    ],
+    "subtitle": "malum.subtitle.mature_soulstone_bud_break"
+  },
+  "mature_soulstone_bud_fall": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/hit1",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit2",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit3",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit4",
+        "pitch": 1.25
+      }
+    ],
+    "subtitle": "malum.subtitle.mature_soulstone_bud_fall"
+  },
+  "mature_soulstone_bud_hit": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/hit1",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit2",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit3",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit4",
+        "pitch": 1.25
+      }
+    ],
+    "subtitle": "malum.subtitle.mature_soulstone_bud_hit"
+  },
+  "mature_soulstone_bud_place": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/break1",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break2",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break3",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/break4",
+        "pitch": 1.25
+      }
+    ],
+    "subtitle": "malum.subtitle.mature_soulstone_bud_place"
+  },
+  "mature_soulstone_bud_step": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/hit1",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit2",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit3",
+        "pitch": 1.25
+      },
+      {
+        "name": "malum:block/ore/soulstone/hit4",
+        "pitch": 1.25
+      }
+    ],
+    "subtitle": "malum.subtitle.mature_soulstone_bud_step"
+  },
   "metallic_trinket_equipped": {
     "sounds": [
       "malum:equip_sounds/metallic/equip_metallic1",
@@ -9387,6 +9492,93 @@
       "malum:block/ore/soulstone/break4"
     ],
     "subtitle": "malum.subtitle.soulstone_break"
+  },
+  "soulstone_bud_break": {
+    "sounds": [
+      "malum:block/ore/soulstone/break1",
+      "malum:block/ore/soulstone/break2",
+      "malum:block/ore/soulstone/break3",
+      "malum:block/ore/soulstone/break4"
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_break"
+  },
+  "soulstone_bud_fall": {
+    "sounds": [
+      "malum:block/ore/soulstone/hit1",
+      "malum:block/ore/soulstone/hit2",
+      "malum:block/ore/soulstone/hit3",
+      "malum:block/ore/soulstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_fall"
+  },
+  "soulstone_bud_fully_matures": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/bud/siphon1",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/siphon2",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/siphon3",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/siphon4",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_fully_matures"
+  },
+  "soulstone_bud_grows": {
+    "sounds": [
+      {
+        "name": "malum:block/ore/soulstone/bud/grow1",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/grow2",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/grow3",
+        "volume": 0.75
+      },
+      {
+        "name": "malum:block/ore/soulstone/bud/grow4",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_grows"
+  },
+  "soulstone_bud_hit": {
+    "sounds": [
+      "malum:block/ore/soulstone/hit1",
+      "malum:block/ore/soulstone/hit2",
+      "malum:block/ore/soulstone/hit3",
+      "malum:block/ore/soulstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_hit"
+  },
+  "soulstone_bud_place": {
+    "sounds": [
+      "malum:block/ore/soulstone/break1",
+      "malum:block/ore/soulstone/break2",
+      "malum:block/ore/soulstone/break3",
+      "malum:block/ore/soulstone/break4"
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_place"
+  },
+  "soulstone_bud_step": {
+    "sounds": [
+      "malum:block/ore/soulstone/hit1",
+      "malum:block/ore/soulstone/hit2",
+      "malum:block/ore/soulstone/hit3",
+      "malum:block/ore/soulstone/hit4"
+    ],
+    "subtitle": "malum.subtitle.soulstone_bud_step"
   },
   "soulstone_fall": {
     "sounds": [

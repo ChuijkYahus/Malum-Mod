@@ -2,7 +2,7 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
-import com.sammy.malum.common.block.curiosities.void_depot.*;
+import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.*;

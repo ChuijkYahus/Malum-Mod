@@ -37,8 +37,8 @@ import static com.sammy.malum.registry.common.MalumCreativeTabs.*;
 import static com.sammy.malum.registry.common.recipe.MalumRecipeSerializers.*;
 import static com.sammy.malum.registry.common.recipe.MalumRecipeTypes.*;
 import static com.sammy.malum.registry.common.worldgen.MalumFeatures.*;
-import static com.sammy.malum.registry.common.worldgen.MalumStructures.StructurePieceTypes.STRUCTURE_PIECE_TYPES;
-import static com.sammy.malum.registry.common.worldgen.MalumStructures.StructureTypes.STRUCTURE_TYPES;
+import static com.sammy.malum.registry.common.worldgen.MalumStructureTypes.StructurePieceTypes.STRUCTURE_PIECE_TYPES;
+import static com.sammy.malum.registry.common.worldgen.MalumStructureTypes.StructureTypes.STRUCTURE_TYPES;
 
 @SuppressWarnings("unused")
 @Mod(MalumMod.MALUM)

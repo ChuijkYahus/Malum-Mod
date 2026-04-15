@@ -1,21 +1,14 @@
 package com.sammy.malum.common.block.dungeon;
 
-import com.sammy.malum.common.block.decor.ColumnBlock;
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.common.worldgen.blight.BlightFeature;
+import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 
 public class ColumnarFleshBlock extends ColumnBlock implements BonemealableBlock {
 

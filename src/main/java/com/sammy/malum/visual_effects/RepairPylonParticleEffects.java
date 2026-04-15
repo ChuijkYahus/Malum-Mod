@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects;
 
-import com.sammy.malum.common.block.curiosities.repair_pylon.*;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;
@@ -11,7 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.systems.particle.builder.*;

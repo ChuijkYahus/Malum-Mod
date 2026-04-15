@@ -1,6 +1,6 @@
 package com.sammy.malum.common.worldevent;
 
-import com.sammy.malum.common.block.curiosities.spirit_crucible.*;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;

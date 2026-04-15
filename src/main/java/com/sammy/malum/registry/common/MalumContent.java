@@ -6,10 +6,11 @@ import com.sammy.malum.common.block.blight.scarstone.LargeStrangeCrystalBlock;
 import com.sammy.malum.common.block.blight.scarstone.ScarstoneBlock;
 import com.sammy.malum.common.block.blight.scarstone.StrangeCrystalBlock;
 import com.sammy.malum.common.block.blight.scarstone.StrangeRootBlock;
-import com.sammy.malum.common.block.curiosities.banner.SoulwovenBannerBlock;
-import com.sammy.malum.common.block.curiosities.gust_igniter.GustIgniterBlock;
-import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.WindTunnelBlock;
-import com.sammy.malum.common.block.curiosities.mana_mote.ManaMoteBlock;
+import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.GustIgniterBlock;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.WindTunnelBlock;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.ManaMoteBlock;
+import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.ObeliskComponentBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.BrillianceObeliskCoreBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.BrilliantObeliskBlockEntity;
@@ -18,23 +19,22 @@ import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.ArcanaPylonCo
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.ArcanaPylonCoreBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.RunewoodObeliskBlockEntity;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.RunewoodObeliskCoreBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavebanker.WaveBankerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavebreaker.WaveBreakerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavecharger.WaveChargerBlock;
-import com.sammy.malum.common.block.curiosities.redstone.wavemaker.WaveMakerBlock;
-import com.sammy.malum.common.block.curiosities.repair_pylon.RepairPylonComponentBlock;
-import com.sammy.malum.common.block.curiosities.repair_pylon.RepairPylonCoreBlock;
-import com.sammy.malum.common.block.curiosities.repair_pylon.RepairPylonCoreBlockEntity;
-import com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlock;
-import com.sammy.malum.common.block.curiosities.runic_workbench.RunicWorkbenchBlock;
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
-import com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlock;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.SpiritCatalyzerComponentBlock;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.SpiritCatalyzerCoreBlock;
-import com.sammy.malum.common.block.curiosities.spirit_catalyzer.SpiritCatalyzerCoreBlockEntity;
-import com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleComponentBlock;
-import com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlock;
-import com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonComponentBlock;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonCoreBlock;
+import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonCoreBlockEntity;
+import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.RunicWorkbenchBlock;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlock;
+import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlock;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerComponentBlock;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerCoreBlock;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerCoreBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleComponentBlock;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleCoreBlock;
+import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleCoreBlockEntity;
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.anchor.RiteAnchorBlock;
@@ -42,16 +42,16 @@ import com.sammy.malum.common.block.curiosities.totem.channel.RiteChannelBlock;
 import com.sammy.malum.common.block.curiosities.totem.spreader.RiteSpreaderBlock;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.RiteUnweaverBlock;
 import com.sammy.malum.common.block.curiosities.totem.waveform.WaveformTotemBaseBlock;
-import com.sammy.malum.common.block.curiosities.void_depot.VoidDepotBlock;
+import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.VoidDepotBlock;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.PrimordialSoupBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellDirectionalBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellLayeredBlock;
-import com.sammy.malum.common.block.decor.ColumnBlock;
-import com.sammy.malum.common.block.decor.SpiritedGlassBlock;
-import com.sammy.malum.common.block.decor.VarnishedTerracottaBlock;
+import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
+import com.sammy.malum.common.block.curiosities.decor.SpiritedGlassBlock;
+import com.sammy.malum.common.block.curiosities.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.dungeon.*;
 import com.sammy.malum.common.block.dungeon.curiosities.OminousAltarBlock;
 import com.sammy.malum.common.block.dungeon.curiosities.OminousObeliskCoreBlock;
@@ -65,8 +65,6 @@ import com.sammy.malum.common.block.flora.wood.runewood.RunewoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
-import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
-import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
@@ -346,9 +344,11 @@ public class MalumContent {
 
         public static final DeferredItem<Item> RUNIC_SAP_BOTTLE = register("runic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.RUNIC_SAP)));
         public static final DeferredItem<Item> RUNIC_SAPBALL = register("runic_sapball", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredBlock<Block> RUNIC_SAP_CAULDRON = registerBlockNoItem("runic_sap_cauldron", SapFilledCauldronBlock::new);
 
         public static final DeferredItem<Item> AZOIC_SAP_BOTTLE = register("azoic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.AZOIC_SAP)));
         public static final DeferredItem<Item> AZOIC_SAPBALL = register("azoic_sapball", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredBlock<Block> AZOIC_SAP_CAULDRON = registerBlockNoItem("azoic_sap_cauldron", SapFilledCauldronBlock::new);
 
         public static final DeferredItem<Item> NULL_SLATE = register("null_slate", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> VOID_SALTS = register("void_salts", MalumItemProperties::DEFAULT, Item::new);
@@ -434,12 +434,10 @@ public class MalumContent {
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
 
         public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_SAPLING = registerBlock("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, RUNEWOOD_SAPLING()));
-        public static final DeferredBlock<Block> POTTED_RUNEWOOD_SAPLING = registerBlockNoItem("potted_runewood_sapling", () -> flowerPot(RUNEWOOD_SAPLING));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_LEAVES = registerBlock("runewood_leaves", () -> new RunewoodLeavesBlock(RUNEWOOD_LEAVES()));
         public static final BlockBlockItemHolder<Block, BlockItem> HANGING_RUNEWOOD_LEAVES = registerBlock("hanging_runewood_leaves", () -> new HangingRunewoodLeavesBlock(HANGING_RUNEWOOD_LEAVES()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> AZURE_RUNEWOOD_SAPLING = registerBlock("azure_runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.AZURE_RUNEWOOD, RUNEWOOD_SAPLING()));
-        public static final DeferredBlock<Block> POTTED_AZURE_RUNEWOOD_SAPLING = registerBlockNoItem("potted_azure_runewood_sapling", () -> flowerPot(AZURE_RUNEWOOD_SAPLING));
         public static final BlockBlockItemHolder<Block, BlockItem> AZURE_RUNEWOOD_LEAVES = registerBlock("azure_runewood_leaves", () -> new RunewoodLeavesBlock(RUNEWOOD_LEAVES()));
         public static final BlockBlockItemHolder<Block, BlockItem> HANGING_AZURE_RUNEWOOD_LEAVES = registerBlock("hanging_azure_runewood_leaves", () -> new HangingRunewoodLeavesBlock(HANGING_RUNEWOOD_LEAVES()));
 
@@ -447,10 +445,9 @@ public class MalumContent {
         public static final DeferredItem<Item> RUNEWOOD_BOAT = register("runewood_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
         public static final DeferredItem<Item> RUNEWOOD_CHEST_BOAT = register("runewood_chest_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_SAPLING = registerBlock("soulwood_sapling", () -> new SoulwoodSaplingBlock(MalumTreeGrowers.SOULWOOD, SOULWOOD_SAPLING()));
-        public static final DeferredBlock<Block> POTTED_SOULWOOD_SAPLING = registerBlockNoItem("potted_soulwood_sapling", () -> flowerPot(SOULWOOD_SAPLING));
-        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_LEAVES = registerBlock("soulwood_leaves", () -> new SoulwoodLeavesBlock(SOULWOOD_LEAVES()));
 
+        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_SAPLING = registerBlock("soulwood_sapling", () -> new SoulwoodSaplingBlock(MalumTreeGrowers.SOULWOOD, SOULWOOD_SAPLING()));
+        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_LEAVES = registerBlock("soulwood_leaves", () -> new SoulwoodLeavesBlock(SOULWOOD_LEAVES()));
         public static final BlockBlockItemHolder<Block, BlockItem> HANGING_SOULWOOD_LEAVES = registerBlock("hanging_soulwood_leaves", () -> new HangingSoulwoodLeavesBlock(HANGING_SOULWOOD_LEAVES()));
 
         public static final WoodBlockSet SOULWOOD_SET = new WoodBlockSet("soulwood", "ornate", () -> MalumBlockSetTypes.SOULWOOD, MalumBlockProperties::SOULWOOD);
@@ -458,6 +455,9 @@ public class MalumContent {
         public static final DeferredItem<Item> SOULWOOD_BOAT = register("soulwood_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.SOULWOOD_BOAT_TYPE.getValue(), p));
         public static final DeferredItem<Item> SOULWOOD_CHEST_BOAT = register("soulwood_chest_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.SOULWOOD_BOAT_TYPE.getValue(), p));
 
+        public static final DeferredBlock<Block> POTTED_RUNEWOOD_SAPLING = registerBlockNoItem("potted_runewood_sapling", () -> flowerPot(RUNEWOOD_SAPLING));
+        public static final DeferredBlock<Block> POTTED_AZURE_RUNEWOOD_SAPLING = registerBlockNoItem("potted_azure_runewood_sapling", () -> flowerPot(AZURE_RUNEWOOD_SAPLING));
+        public static final DeferredBlock<Block> POTTED_SOULWOOD_SAPLING = registerBlockNoItem("potted_soulwood_sapling", () -> flowerPot(SOULWOOD_SAPLING));
         public static final DeferredBlock<Block> POTTED_BLIGHTROOT = registerBlockNoItem("potted_blightroot", () -> flowerPot(Blight.BLIGHTROOT));
         public static final DeferredBlock<Block> POTTED_BLIGHTPEARL = registerBlockNoItem("potted_blightpearl", () -> flowerPot(Blight.BLIGHTPEARL));
         public static final DeferredBlock<Block> POTTED_STRANGEROOT = registerBlockNoItem("potted_strangeroot", () -> flowerPot(Blight.STRANGEROOT));
@@ -587,8 +587,6 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(RUNEWOOD().setCutout().noOcclusion()));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD().setCutout().noOcclusion()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> RITUAL_PLINTH = registerBlock("ritual_plinth", () -> new RitualPlinthBlock<>(SOULWOOD().setCutout().noOcclusion()));
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));

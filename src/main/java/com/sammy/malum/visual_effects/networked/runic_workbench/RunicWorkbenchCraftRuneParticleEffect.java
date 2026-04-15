@@ -1,7 +1,6 @@
 package com.sammy.malum.visual_effects.networked.runic_workbench;
 
-import com.sammy.malum.common.block.curiosities.runic_workbench.*;
-import com.sammy.malum.common.block.curiosities.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;

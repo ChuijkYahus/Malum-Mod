@@ -1,7 +1,6 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.redstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

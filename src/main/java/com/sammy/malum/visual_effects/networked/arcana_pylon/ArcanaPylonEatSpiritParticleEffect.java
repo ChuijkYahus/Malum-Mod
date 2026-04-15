@@ -1,10 +1,8 @@
 package com.sammy.malum.visual_effects.networked.arcana_pylon;
 
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
-import com.sammy.malum.common.block.curiosities.runic_workbench.*;
 import com.sammy.malum.visual_effects.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;

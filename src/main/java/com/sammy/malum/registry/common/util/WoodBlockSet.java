@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.common.util;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.decor.ColumnBlock;
+import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
 import com.sammy.malum.common.block.flora.wood.*;
 import com.sammy.malum.common.block.storage.pedestal.DecoratedItemPedestalBlock;
 import com.sammy.malum.common.block.storage.pedestal.WoodItemPedestalBlock;
@@ -90,15 +90,13 @@ public class WoodBlockSet {
         plankStairsTag = createTag("plank_stairs");
         plankSlabsTag = createTag("plank_slabs");
 
-        var bottledSap = MalumContent.Materials.RUNIC_SAP_BOTTLE;
         var doorProperties = properties.get().setCutout();
         var itemHolderProperties = properties.get().noOcclusion();
         var decoratedItemHolderProperties = properties.get().setCutout().noOcclusion();
 
-
         strippedLog = registerBlock(name("stripped_%s_log"), () -> new RotatedPillarBlock(properties.get().addTags(strippedLogsTag)));
         strippedWood = registerBlock(name("stripped_%s"), () -> new RotatedPillarBlock(properties.get().addTags(strippedLogsTag)));
-        strippedSappyLog = registerBlock(name("stripped_sappy_%s_log"), () -> new StrippedSappyLogBlock(properties.get().addTags(strippedLogsTag), bottledSap, MalumSpiritTypes.INFERNAL_COLORS().primaryColor()));
+        strippedSappyLog = registerBlock(name("stripped_sappy_%s_log"), () -> new RotatedPillarBlock(properties.get().addTags(strippedLogsTag)));
 
         log = registerBlock(name("%s_log"), () -> new MalumLogBlock(properties.get().addTags(logsTag)));
         wood = registerBlock(id, () -> new RotatedPillarBlock(properties.get().addTags(logsTag)));

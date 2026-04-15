@@ -1,6 +1,6 @@
 package com.sammy.malum.registry.client;
 
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.registry.common.MalumContent;

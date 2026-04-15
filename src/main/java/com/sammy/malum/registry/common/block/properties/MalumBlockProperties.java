@@ -1,11 +1,8 @@
 package com.sammy.malum.registry.common.block.properties;
 
-import com.sammy.malum.common.block.curiosities.soul_brazier.SoulBrazierBlock;
+import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlock;
 import com.sammy.malum.common.block.ether.EtherCandleBlock;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
 import com.sammy.malum.registry.common.sound.*;
-import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;

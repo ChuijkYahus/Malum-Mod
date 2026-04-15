@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.phys.Vec2;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.joml.Vector3f;
 import team.lodestar.lodestone.systems.worldgen.*;
 
@@ -148,20 +150,14 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
     }
 
     public static void applyLeavesColor(LodestoneWorldgenBuilderLayer leaves, RandomSource randomSource) {
-        HashMap<Vec2, Integer> map = leaves.getEntries().stream()
+        HashMap<Vector2i, Integer> max = leaves.getEntries().stream()
                 .collect(Collectors.toMap(
-                        e -> new Vec2(e.position().getX(), e.position().getZ()),
+                        e -> new Vector2i(e.position().getX(), e.position().getZ()),
                         e -> e.position().getY(),
-                        (a, b) -> b,
+                        Integer::max,
                         HashMap::new
                 ));
-
-        HashMap<Vec2, Integer> gradientOffsets = new HashMap<>();
-        float centerX = (float) map.keySet().stream().mapToDouble(v -> v.x).average().orElse(0);
-        float centerZ = (float) map.keySet().stream().mapToDouble(v -> v.y).average().orElse(0);
-        Vec2 center = new Vec2(centerX, centerZ);
-
-        float offset = randomSource.nextFloat();
+        var offset = randomSource.nextFloat();
         Collection<LodestoneWorldgenBuilderEntry> entries = leaves.getEntries();
         for (LodestoneWorldgenBuilderEntry entry : entries) {
             var state = entry.blockState();
@@ -175,16 +171,8 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
             int z = position.getZ();
             int scale = stagedLeavesBlock.getColorProperty().getPossibleValues().size();
 
-            Vec2 key = new Vec2(x, z);
-            if (!gradientOffsets.containsKey(key)) {
-                float dx = key.x - center.x;
-                float dz = key.y - center.y;
-                float norm = (float) Math.sqrt(dx * dx + dz * dz);
-                float difference = offset + norm % 1;
-                gradientOffsets.put(key, Mth.floor(Mth.abs(scale * difference)));
-            }
-            int gradient = gradientOffsets.get(key);
-            int stage = (y+gradient) % scale;
+            Vector2i key = new Vector2i(x, z);
+            int stage = Mth.abs(max.get(key) - y - Math.round(offset * scale)) % scale;
 
             IntegerProperty property = stagedLeavesBlock.getColorProperty();
 

@@ -12,6 +12,11 @@ public class MalumBlockSoundEvents {
     }
 
     //Soulstone
+    public static final MalumBlockSoundType SOULSTONE_BUD = new MalumBlockSoundType("soulstone_bud");
+    public static final MalumBlockSoundType MATURE_SOULSTONE_BUD = new MalumBlockSoundType("mature_soulstone_bud");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_BUD_GROWS = MalumSoundEvents.registerVariable("soulstone_bud_grows");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_BUD_FULLY_MATURES = MalumSoundEvents.registerVariable("soulstone_bud_fully_matures");
+
     public static final MalumBlockSoundType SOULSTONE_ORE = new MalumBlockSoundType("soulstone");
     public static final MalumBlockSoundType DEEPSLATE_SOULSTONE_ORE = new MalumBlockSoundType("deepslate_soulstone");
     public static final MalumBlockSoundType BLOCK_OF_SOULSTONE = new MalumBlockSoundType("block_of_soulstone");
@@ -112,13 +117,13 @@ public class MalumBlockSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_CONFIGURATION_DRAG = MalumSoundEvents.registerVariable("spirit_diode_ticks");
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIRIT_DIODE_CONFIGURATION_CLICK = MalumSoundEvents.registerVariable("spirit_diode_ticks_ferociously");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_CHARGE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavecharger_charges"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_RELEASE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavecharger_releases"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_STORE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebanker_stores"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_RELEASE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebanker_releases"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_STORE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebreaker_stores"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_RELEASE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavebreaker_releases"), 8f));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEMAKER_PULSE = MalumSoundEvents.register(SoundEvent.createFixedRangeEvent(MalumMod.malumPath("wavemaker_pulses"), 4f));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_CHARGE = MalumSoundEvents.registerFixed("wavecharger_charges", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVECHARGER_RELEASE = MalumSoundEvents.registerFixed("wavecharger_releases", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_STORE = MalumSoundEvents.registerFixed("wavebanker_stores", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBANKER_RELEASE = MalumSoundEvents.registerFixed("wavebanker_releases", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_STORE = MalumSoundEvents.registerFixed("wavebreaker_stores", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEBREAKER_RELEASE = MalumSoundEvents.registerFixed("wavebreaker_releases", 8f);
+    public static final DeferredHolder<SoundEvent, SoundEvent> WAVEMAKER_PULSE = MalumSoundEvents.registerFixed("wavemaker_pulses", 4f);
 
     //Decoration
     public static final MalumBlockSoundType VARNISHED_TERRACOTTA = new MalumBlockSoundType("varnished_terracotta");

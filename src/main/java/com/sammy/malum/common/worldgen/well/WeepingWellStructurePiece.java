@@ -23,12 +23,12 @@ public class WeepingWellStructurePiece extends StructurePiece {
     private final BlockPos startPos;
 
     protected WeepingWellStructurePiece(BlockPos startPos, BoundingBox boundingBox) {
-        super(MalumStructures.StructurePieceTypes.WEEPING_WELL.get(), 0, boundingBox);
+        super(MalumStructureTypes.StructurePieceTypes.WEEPING_WELL.get(), 0, boundingBox);
         this.startPos = startPos;
     }
 
     public WeepingWellStructurePiece(CompoundTag tag) {
-        super(MalumStructures.StructurePieceTypes.WEEPING_WELL.get(), tag);
+        super(MalumStructureTypes.StructurePieceTypes.WEEPING_WELL.get(), tag);
         this.startPos = NbtUtils.readBlockPos(tag, "startPos").orElseThrow();
     }
 

@@ -1,7 +1,7 @@
 package com.sammy.malum.core.systems.spirit;
 
 import com.google.common.collect.ImmutableSet;
-import com.sammy.malum.common.block.curiosities.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;

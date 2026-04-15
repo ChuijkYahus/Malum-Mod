@@ -2,11 +2,7 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
-import com.sammy.malum.common.block.curiosities.banner.*;
-import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;

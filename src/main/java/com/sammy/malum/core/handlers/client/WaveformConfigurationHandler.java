@@ -1,8 +1,8 @@
 package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.redstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.registry.common.*;
 
 import net.minecraft.client.*;

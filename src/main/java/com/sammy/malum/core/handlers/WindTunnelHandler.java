@@ -1,14 +1,12 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
-import net.minecraft.core.particles.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.level.*;
