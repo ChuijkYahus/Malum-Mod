@@ -30,6 +30,7 @@ import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
+import static team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes.*;
 
 public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
@@ -121,11 +122,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("ores/");
         BlockStateSmithTypes.FULL_BLOCK.act(data, BRILLIANT_STONE, BRILLIANT_DEEPSLATE, NATURAL_QUARTZ_ORE, DEEPSLATE_QUARTZ_ORE, CTHONIC_GOLD_ORE, BLAZING_QUARTZ_ORE);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::directionalBlock, fromFunction(models()::cross), NATURAL_QUARTZ, CTHONIC_GOLD_FRAGMENT);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM, this::directionalBlock, fromFunction(models()::cross), NATURAL_QUARTZ, CTHONIC_GOLD_FRAGMENT);
 
         setTexturePath("ores/soulstone/");
         BlockStateSmithTypes.FULL_BLOCK.act(data, SOULSTONE_ORE, DEEPSLATE_SOULSTONE_ORE);
 
+        MalumBlockStateSmithTypes.SOULSTONE_BUD.act(data, NO_DATAGEN, ARCHAIC_SOULSTONE_BUD);
         MalumBlockStateSmithTypes.SOULSTONE_BUD.act(data, SOULSTONE_BUD);
 
         setTexturePath("storage_blocks/");
@@ -148,12 +150,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumMetallicsDatagen.MALUM.addBlockStates(data);
 
         setTexturePath("flora/");
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.NO_DATAGEN, EBONY_SAPLING);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, NO_DATAGEN, EBONY_SAPLING);
         MalumBlockStateSmithTypes.EBONY.act(data, EBONY_STALK);
 
 
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, WILD_WITCHHAZEL);
-        BlockStateSmithTypes.CROSS_CROP_MODEL_BLOCK.act(data, ItemModelSmithTypes.GENERATED_ITEM, WITCHHAZEL);
+        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, GENERATED_ITEM, WILD_WITCHHAZEL);
+        BlockStateSmithTypes.CROSS_CROP_MODEL_BLOCK.act(data, GENERATED_ITEM, WITCHHAZEL);
 
 
         setTexturePath("blight/");
@@ -164,12 +166,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.CREEPING_BLIGHT.act(data, Blight.CLINGING_BLIGHT);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_BLIGHTPEARL, BlockSets.POTTED_BLIGHTROOT);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, Blight.BLIGHTPEARL, Blight.BLIGHTROOT);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedSoulwoodModel, MalumContent.BlockSets.BLIGHTED_SOULWOOD);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::blightedSoulwoodModel, MalumContent.BlockSets.BLIGHTED_SOULWOOD);
 
         setTexturePath("blight/scarstone/");
         MalumBlockStateSmithTypes.LARGE_STRANGE_CRYSTAL.act(data, Blight.LARGE_STRANGE_CRYSTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM, this::simpleBlock, models()::crossModel, Blight.STRANGE_CRYSTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, Blight.SCARSTONE);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM, this::simpleBlock, models()::crossModel, Blight.STRANGE_CRYSTAL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, Blight.SCARSTONE);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, Blight.STRANGEROOT);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_STRANGEROOT);
 
@@ -183,7 +185,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 DungeonBlockSets.ODD_SCRIPTURES_I, DungeonBlockSets.ODD_SCRIPTURES_II, DungeonBlockSets.ODD_SCRIPTURES_III, DungeonBlockSets.ODD_SCRIPTURES_IV, DungeonBlockSets.ODD_SCRIPTURES_V, DungeonBlockSets.ODD_SCRIPTURES_VI, DungeonBlockSets.ODD_SCRIPTURES_VII, DungeonBlockSets.ODD_SCRIPTURES_VIII, DungeonBlockSets.ODD_SCRIPTURES_IX);
 
         setTexturePath("dungeon/effigy/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, DungeonBlockSets.VEILED_EFFIGY, DungeonBlockSets.CORRUPT_EFFIGY, DungeonBlockSets.CRACKED_EFFIGY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, DungeonBlockSets.VEILED_EFFIGY, DungeonBlockSets.CORRUPT_EFFIGY, DungeonBlockSets.CRACKED_EFFIGY);
 
         setTexturePath("waveform_artifice/");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
@@ -191,7 +193,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("ether/");
         itemModelProvider.setTexturePath("ether/");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.GENERATED_ITEM,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM,
                 this::simpleBlock, this::etherModel, BlockSets.ETHER);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, MalumItemModelSmithTypes.GENERATED_OVERLAY_ITEM,
                 this::simpleBlock, this::etherModel, BlockSets.IRIDESCENT_ETHER);
@@ -209,39 +211,39 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         itemModelProvider.setTexturePath("");
         setTexturePath("");
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop,
                 RITE_ANCHOR, RITE_UNWEAVER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop,
                 RITE_SPREADER);
         MalumBlockStateSmithTypes.RITE_CHANNEL.act(data,
                 RITE_CHANNEL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
                 MalumContent.Progression.SPIRIT_ALTAR, MalumContent.Progression.SOUL_BRAZIER,
                 DungeonBlockSets.OMINOUS_ALTAR);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel,
                 MalumContent.Progression.SPIRIT_JAR);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel,
                 MalumContent.Progression.WEAVERS_WORKBENCH, MalumContent.Progression.RUNIC_WORKBENCH);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
                 MalumContent.Progression.RUNEWOOD_OBELISK, MalumContent.Progression.RUNEWOOD_OBELISK_COMPONENT,
                 MalumContent.Progression.BRILLIANT_OBELISK, MalumContent.Progression.BRILLIANT_OBELISK_COMPONENT,
                 MalumContent.Progression.ARCANA_PYLON, MalumContent.Progression.ARCANA_PYLON_COMPONENT,
                 MalumContent.Artifice.SPIRIT_CRUCIBLE, MalumContent.Artifice.SPIRIT_CRUCIBLE_COMPONENT, MalumContent.Artifice.REPAIR_PYLON,
                 DungeonBlockSets.OMINOUS_OBELISK, DungeonBlockSets.OMINOUS_OBELISK_COMPONENT);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
                 RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE, WAVEFORM_RUNEWOOD_TOTEM_BASE, WAVEFORM_SOULWOOD_TOTEM_BASE);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::horizontalBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::horizontalBlock, models()::predefinedModel,
                 MalumContent.Artifice.SPIRIT_CATALYZER, MalumContent.Artifice.SPIRIT_CATALYZER_COMPONENT);
 
         MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, MalumContent.Artifice.REPAIR_PYLON_COMPONENT);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
                 WeepingWell.VOID_CONDUIT, WeepingWell.VOID_DEPOT);
 
         MalumBlockStateSmithTypes.WEEPING_WELL_LAYERED_BLOCK.act(data, WeepingWell.WEEPING_WELL_CENTER, WeepingWell.WEEPING_WELL_SIDE, WeepingWell.WEEPING_WELL_SIDE_MIRROR, WeepingWell.WEEPING_WELL_CORNER);
@@ -252,7 +254,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, BlockSets.THE_DEVICE, BlockSets.THE_VESSEL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, ItemModelSmithTypes.NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, MalumContent.Progression.SPIRIT_MOTE);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, MalumContent.Progression.SPIRIT_MOTE);
     }
 
     public void generateRockSet(BlockStateSystemData data, RockBlockSet set) {

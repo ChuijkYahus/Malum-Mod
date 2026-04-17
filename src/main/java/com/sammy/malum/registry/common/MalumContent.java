@@ -66,6 +66,7 @@ import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlo
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
+import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
@@ -310,6 +311,7 @@ public class MalumContent {
         public static final DeferredItem<Item> RAW_SOULSTONE = register("raw_soulstone", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> REFINED_SOULSTONE = register("refined_soulstone", MalumItemProperties::DEFAULT, Item::new);
 
+        public static final DeferredBlock<ArchaicSoulstoneBudBlock> ARCHAIC_SOULSTONE_BUD = registerBlockNoItem("archaic_soulstone_bud", () -> new ArchaicSoulstoneBudBlock(MalumOreBlockProperties.ARCHAIC_SOULSTONE_BUD()));
         public static final BlockBlockItemHolder<SoulstoneBudBlock, BlockItem> SOULSTONE_BUD = registerBlock("soulstone_bud", () -> new SoulstoneBudBlock(MalumOreBlockProperties.SOULSTONE_BUD()));
         public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, Item::new);
 

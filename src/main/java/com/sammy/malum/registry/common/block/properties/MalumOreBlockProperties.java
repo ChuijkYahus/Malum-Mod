@@ -1,6 +1,8 @@
 package com.sammy.malum.registry.common.block.properties;
 
+import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.sound.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
@@ -18,18 +20,37 @@ public class MalumOreBlockProperties {
     public static LodestoneBlockProperties SOULSTONE_BUD() {
         return new LodestoneBlockProperties()
                 .needsPickaxe()
+                .needsIron()
                 .requiresCorrectToolForDrops()
                 .noOcclusion()
                 .randomTicks()
+                .dynamicShape()
                 .mapColor(MapColor.TERRACOTTA_PURPLE)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
                 .strength(4F, 3.0F)
+                .sound(MalumBlockSoundEvents.SOULSTONE_BUD);
+    }
+
+    public static LodestoneBlockProperties ARCHAIC_SOULSTONE_BUD() {
+        return new LodestoneBlockProperties()
+                .needsPickaxe()
+                .needsIron()
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
+                .randomTicks()
+                .dynamicShape()
+                .mapColor(MapColor.TERRACOTTA_PURPLE)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .strength(6F, 3.0F)
                 .sound(MalumBlockSoundEvents.SOULSTONE_BUD);
     }
 
     public static LodestoneBlockProperties SOULSTONE_ORE(boolean isDeepslate) {
         return ORE_PROPERTIES(isDeepslate)
+                .needsStone()
                 .mapColor(MapColor.TERRACOTTA_PURPLE)
                 .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
+                .addTag(MalumTags.Blocks.SOULSTONE_BUD_PLANTABLE_ON)
                 .strength(isDeepslate ? 7.0f : 5.0F, 3.0F)
                 .sound(isDeepslate ? MalumBlockSoundEvents.DEEPSLATE_SOULSTONE_ORE : MalumBlockSoundEvents.SOULSTONE_ORE);
     }

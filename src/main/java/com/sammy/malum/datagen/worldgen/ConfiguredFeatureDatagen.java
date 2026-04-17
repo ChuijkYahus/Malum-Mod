@@ -74,10 +74,6 @@ public class ConfiguredFeatureDatagen {
                 )
         ));
 
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_SURFACE, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 16, 0, 2));
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_CAVES, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 24, 1, 3));
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_DEEPSLATE_CAVES, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 32, 2, 4));
-
         context.register(ConfiguredFeatures.BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
         context.register(ConfiguredFeatures.NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
         context.register(ConfiguredFeatures.BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
@@ -143,12 +139,6 @@ public class ConfiguredFeatureDatagen {
                 0.1D,
                 1)
         ));
-    }
-
-    public static ConfiguredFeature<?, ?> addDistributedOreConfig(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> distributedFeature, int height, int minDistributions, int maxDistributions) {
-        var lookup = context.lookup(Registries.CONFIGURED_FEATURE);
-        var help = lookup.getOrThrow(distributedFeature);
-        return new ConfiguredFeature<>(MalumFeatures.DISTRIBUTED_ORE.get(), new DistributedOreFeatureConfiguration(help, height, minDistributions, maxDistributions));
     }
 
     private static <T extends FeatureConfiguration, K extends Feature<T>> ConfiguredFeature<?, ?> addTreeConfig(K feature, T config) {

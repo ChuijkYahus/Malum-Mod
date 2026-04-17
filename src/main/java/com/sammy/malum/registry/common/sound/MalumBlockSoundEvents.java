@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common.sound;
 
-import com.sammy.malum.*;
 import com.sammy.malum.common.sound.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.registries.*;
@@ -13,7 +12,8 @@ public class MalumBlockSoundEvents {
 
     //Soulstone
     public static final MalumBlockSoundType SOULSTONE_BUD = new MalumBlockSoundType("soulstone_bud");
-    public static final MalumBlockSoundType MATURE_SOULSTONE_BUD = new MalumBlockSoundType("mature_soulstone_bud");
+    public static final MalumBlockSoundType ARCHAIC_SOULSTONE_BUD = new MalumBlockSoundType("archaic_soulstone_bud");
+    public static final MalumBlockSoundType REALIZED_SOULSTONE_BUD = new MalumBlockSoundType("realized_soulstone_bud");
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_BUD_GROWS = MalumSoundEvents.registerVariable("soulstone_bud_grows");
     public static final DeferredHolder<SoundEvent, SoundEvent> SOULSTONE_BUD_FULLY_MATURES = MalumSoundEvents.registerVariable("soulstone_bud_fully_matures");
 

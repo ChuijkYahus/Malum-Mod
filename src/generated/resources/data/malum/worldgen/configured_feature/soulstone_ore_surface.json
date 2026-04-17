@@ -1,9 +1,0 @@
-{
-  "type": "malum:distributed_ore",
-  "config": {
-    "feature": "malum:soulstone_ore",
-    "height": 16,
-    "maxDistributions": 2,
-    "minDistributions": 0
-  }
-}

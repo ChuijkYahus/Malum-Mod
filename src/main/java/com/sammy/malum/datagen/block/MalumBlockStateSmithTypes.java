@@ -17,6 +17,7 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
 import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
+import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
@@ -51,18 +52,13 @@ public class MalumBlockStateSmithTypes {
         provider.directionalBlock(block, model);
     });
 
-    public static BlockStateSmith<SoulstoneBudBlock> SOULSTONE_BUD = new BlockStateSmith<>(SoulstoneBudBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+    public static BlockStateSmith<ArchaicSoulstoneBudBlock> SOULSTONE_BUD = new BlockStateSmith<>(ArchaicSoulstoneBudBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
         String path = "block/soulstone/" + name;
-        var small = provider.models().getExistingFile(malumPath(path + "_small"));
-        var medium = provider.models().getExistingFile(malumPath(path + "_medium"));
-        var large = provider.models().getExistingFile(malumPath(path + "_large"));
-        var realized = provider.models().getExistingFile(malumPath(path + "_realized"));
-        var models = new ModelFile[] {small, medium, large, realized};
         provider.getVariantBuilder(block).forAllStates(s -> {
             var direction = s.getValue(SoulstoneBudBlock.FACING);
-            int stage = s.getValue(SoulstoneBudBlock.STAGE);
-            var model = models[stage];
+            int stage = s.getValue(block.getStage());
+            var model = provider.models().getExistingFile(malumPath(path + stage));
             return ConfiguredModel.builder().modelFile(model)
                     .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
                     .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)

@@ -47,6 +47,8 @@
     {
       "id": "#c:ores/nickel",
       "required": false
-    }
+    },
+    "malum:deepslate_soulstone_ore",
+    "malum:soulstone_ore"
   ]
 }
