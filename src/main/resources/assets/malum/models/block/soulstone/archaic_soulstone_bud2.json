@@ -1,7 +1,6 @@
 {
 	"parent": "malum:block/soulstone/soulstone_bud2",
 	"render_type": "minecraft:cutout",
-	"texture_size": [32, 32],
 	"textures": {
 		"bud": "malum:block/ores/soulstone/soulstone_bud_archaic",
 		"particle": "malum:block/ores/soulstone/soulstone_ore"
