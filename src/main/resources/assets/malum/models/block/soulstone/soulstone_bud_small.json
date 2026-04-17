@@ -1,4 +1,6 @@
 {
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
@@ -17,6 +19,24 @@
 				"south": {"uv": [13, 9, 16, 12], "texture": "#bud"},
 				"west": {"uv": [13, 9, 16, 12], "texture": "#bud"},
 				"up": {"uv": [9, 0, 12, 3], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
 			}
 		},
 		{
@@ -53,24 +73,6 @@
 			"faces": {
 				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 270, "texture": "#bud"},
 				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 270, "texture": "#bud"}
-			}
-		},
-		{
-			"from": [8, 6, 5],
-			"to": [8, 11, 11],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
-			"faces": {
-				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
-				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
-			}
-		},
-		{
-			"from": [8, 6, 5],
-			"to": [8, 11, 11],
-			"rotation": {"x": 0, "y": 135, "z": 0, "origin": [8, 8, 8]},
-			"faces": {
-				"east": {"uv": [12, 0, 15, 3], "texture": "#bud"},
-				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
 			}
 		}
 	]
