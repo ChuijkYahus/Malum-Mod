@@ -1,8 +1,7 @@
 {
-  "parent": "malum:block/templates/template_hanging_leaves",
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "hanging_leaves": "malum:block/runewood/leaves/hanging_azure_runewood_leaves2",
-    "particle": "malum:block/runewood/leaves/hanging_azure_runewood_leaves2"
+    "cross": "malum:block/runewood/leaves/hanging_azure_runewood_leaves2"
   }
 }

@@ -1,15 +1,6 @@
 {
   "values": {
     "#c:ores/aluminium": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/aluminium"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -32,15 +23,6 @@
       ]
     },
     "#c:ores/copper": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/copper"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -63,15 +45,6 @@
       ]
     },
     "#c:ores/gold": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/gold"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -94,15 +67,6 @@
       ]
     },
     "#c:ores/iron": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/iron"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -125,15 +89,6 @@
       ]
     },
     "#c:ores/lead": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/lead"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -156,15 +111,6 @@
       ]
     },
     "#c:ores/nickel": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/nickel"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -187,15 +133,6 @@
       ]
     },
     "#c:ores/silver": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/silver"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {
@@ -218,15 +155,6 @@
       ]
     },
     "#c:ores/zinc": {
-      "neoforge:conditions": [
-        {
-          "type": "neoforge:not",
-          "value": {
-            "type": "neoforge:tag_empty",
-            "tag": "c:ores/zinc"
-          }
-        }
-      ],
       "possibleConversions": [
         {
           "condition": {

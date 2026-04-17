@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_brilliance": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_soulstone"
+            "items": "malum:raw_brilliance"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:soulstone_crushed_smelting"
+        "recipe": "malum:raw_brilliance_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_brilliance"
     ]
   ],
   "rewards": {
     "recipes": [
-      "malum:soulstone_crushed_smelting"
+      "malum:raw_brilliance_blasting"
     ]
   }
 }

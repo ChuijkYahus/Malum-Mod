@@ -299,12 +299,12 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         ).bake();
                 createCategory(ORES_CATEGORY)
                         .addItems(
-                                CompactBlocks.BLOCK_OF_SOULSTONE, CompactBlocks.BLOCK_OF_RAW_SOULSTONE, Materials.DEEPSLATE_SOULSTONE_ORE, Materials.SOULSTONE_ORE,
-                                Materials.RAW_SOULSTONE, Materials.CRUSHED_SOULSTONE, Materials.REFINED_SOULSTONE
+                                CompactBlocks.BLOCK_OF_RAW_SOULSTONE, CompactBlocks.BLOCK_OF_REFINED_SOULSTONE, Materials.DEEPSLATE_SOULSTONE_ORE, Materials.SOULSTONE_ORE,
+                                Materials.RAW_SOULSTONE, Materials.REFINED_SOULSTONE, Materials.SOULSTONE_BUD, Materials.REALIZED_SOULSTONE_BUD
                         ).nextLine()
                         .addItems(
-                                CompactBlocks.BLOCK_OF_BRILLIANCE, CompactBlocks.BLOCK_OF_RAW_BRILLIANCE, Materials.BRILLIANT_DEEPSLATE, Materials.BRILLIANT_STONE,
-                                Materials.RAW_BRILLIANCE, Materials.CRUSHED_BRILLIANCE, Materials.REFINED_BRILLIANCE
+                                CompactBlocks.BLOCK_OF_RAW_BRILLIANCE, CompactBlocks.BLOCK_OF_BRILLIANCE, Materials.BRILLIANT_DEEPSLATE, Materials.BRILLIANT_STONE,
+                                Materials.RAW_BRILLIANCE, Materials.REFINED_BRILLIANCE
                         ).nextLine()
                         .addItems(
                                 CompactBlocks.BLOCK_OF_BLAZING_QUARTZ, Materials.BLAZING_QUARTZ_ORE,

@@ -17,6 +17,7 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
 import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
+import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -50,6 +51,25 @@ public class MalumBlockStateSmithTypes {
         provider.directionalBlock(block, model);
     });
 
+    public static BlockStateSmith<SoulstoneBudBlock> SOULSTONE_BUD = new BlockStateSmith<>(SoulstoneBudBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        String name = provider.getBlockName(block);
+        String path = "block/soulstone/" + name;
+        var small = provider.models().getExistingFile(malumPath(path + "_small"));
+        var medium = provider.models().getExistingFile(malumPath(path + "_medium"));
+        var large = provider.models().getExistingFile(malumPath(path + "_large"));
+        var realized = provider.models().getExistingFile(malumPath(path + "_realized"));
+        var models = new ModelFile[] {small, medium, large, realized};
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            var direction = s.getValue(SoulstoneBudBlock.FACING);
+            int stage = s.getValue(SoulstoneBudBlock.STAGE);
+            var model = models[stage];
+            return ConfiguredModel.builder().modelFile(model)
+                    .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                    .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
+                    .build();
+        });
+    });
+
     public static BlockStateSmith<MalumLeavesBlock> STAGED_LEAVES = new BlockStateSmith<>(MalumLeavesBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelParentAffix("3"), (block, provider) -> {
         var name = provider.getBlockName(block);
 
@@ -70,7 +90,7 @@ public class MalumBlockStateSmithTypes {
             int value = s.getValue(block.getColorProperty());
             String indexed = name + value;
             ResourceLocation texture = provider.getBlockTexture(indexed);
-            var model = provider.models().withExistingParent(indexed, malumPath("block/templates/template_hanging_leaves")).texture("hanging_leaves", texture).texture("particle", texture);
+            var model = provider.models().cross(indexed, texture);
             return ConfiguredModel.builder().modelFile(model).build();
 
         }, MalumLeavesBlock.WATERLOGGED);

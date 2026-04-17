@@ -39,14 +39,12 @@ public class MalumDataMapDatagen extends DataMapProvider {
                 .add(SOULWOOD_SET.wood.block(), new TotemPoleConversionMap(SOULWOOD_TOTEM_POLE), false)
                 .add(RUNEWOOD_TOTEM_POLE, new TotemPoleConversionMap(SOULWOOD_TOTEM_POLE), false);
 
-
         fillCarving(RUNEWOOD_SET);
         fillCarving(SOULWOOD_SET);
 
         builder(FLUID_TAPPING)
                 .add(RUNEWOOD_SET.strippedSappyLog.block(), new FluidTappingMap(RUNIC_SAP_CAULDRON, RUNEWOOD_SET.strippedLog.block(), RUNIC_SAP_BOTTLE, 15312230, 0.02f), false)
                 .add(SOULWOOD_SET.strippedSappyLog.block(), new FluidTappingMap(AZOIC_SAP_CAULDRON, SOULWOOD_SET.strippedLog.block(), RUNIC_SAP_BOTTLE, 12002653, 0.025f), false);
-
 
         builder(NeoForgeDataMaps.COMPOSTABLES)
                 .add(RUNEWOOD_SAPLING.item(), new Compostable(0.4f), false)

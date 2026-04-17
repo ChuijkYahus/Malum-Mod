@@ -63,7 +63,7 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
         shapedTrapdoor(recipeOutput, set.heavyTrapdoor, boardsTag);
 
         shapedDoor(recipeOutput, set.door, planksTag);
-        shapedTrapdoor(recipeOutput, set.trapdoor   , planksTag);
+        shapedTrapdoor(recipeOutput, set.trapdoor, planksTag);
 
         shapedFence(recipeOutput, set.fence, planksTag);
         shapedFenceGate(recipeOutput, set.fenceGate, planksTag);

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:item/crushed_soulstone"
+    "layer0": "malum:item/realized_soulstone_bud"
   }
 }

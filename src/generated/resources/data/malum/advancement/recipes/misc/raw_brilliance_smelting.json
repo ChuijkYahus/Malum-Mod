@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:brilliance_crushed_smelting"
+        "recipe": "malum:raw_brilliance_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:brilliance_crushed_smelting"
+      "malum:raw_brilliance_smelting"
     ]
   }
 }

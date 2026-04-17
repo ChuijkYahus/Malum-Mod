@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:block_of_soulstone"
+          "name": "malum:block_of_refined_soulstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/block_of_soulstone"
+  "random_sequence": "malum:blocks/block_of_refined_soulstone"
 }

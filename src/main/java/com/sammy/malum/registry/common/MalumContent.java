@@ -66,6 +66,7 @@ import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlo
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
+import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
@@ -256,7 +257,7 @@ public class MalumContent {
 
         }
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_RAW_SOULSTONE = registerBlock("block_of_raw_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(true)));
-        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_SOULSTONE = registerBlock("block_of_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_REFINED_SOULSTONE = registerBlock("block_of_refined_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_RAW_BRILLIANCE = registerBlock("block_of_raw_brilliance", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BRILLIANCE_BLOCK(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_BRILLIANCE = registerBlock("block_of_brilliance", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BRILLIANCE_BLOCK(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_NATURAL_QUARTZ = registerBlock("block_of_natural_quartz", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.NATURAL_QUARTZ_BLOCK()));
@@ -307,11 +308,13 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> BLAZING_QUARTZ_ORE = registerBlock("blazing_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(4, 7), MalumOreBlockProperties.BLAZING_QUARTZ_ORE().setCutout().lightLevel((b) -> 6)));
 
         public static final DeferredItem<Item> RAW_SOULSTONE = register("raw_soulstone", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> CRUSHED_SOULSTONE = register("crushed_soulstone", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> REFINED_SOULSTONE = register("refined_soulstone", MalumItemProperties::DEFAULT, Item::new);
 
+        public static final BlockBlockItemHolder<SoulstoneBudBlock, BlockItem> SOULSTONE_BUD = registerBlock("soulstone_bud", () -> new SoulstoneBudBlock(MalumOreBlockProperties.SOULSTONE_BUD()));
+        public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, Item::new);
+
+
         public static final DeferredItem<Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> CRUSHED_BRILLIANCE = register("crushed_brilliance", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> REFINED_BRILLIANCE = register("refined_brilliance", MalumItemProperties::DEFAULT, (p) -> new BrillianceChunkItem(p.food((new FoodProperties.Builder()).fast().alwaysEdible().build())));
 
         public static final BlockBlockItemHolder<Block, BlockItem> NATURAL_QUARTZ = registerItemNameBlock("natural_quartz_cluster", "natural_quartz", () -> new AmethystClusterBlock(6, 3, NATURAL_QUARTZ_CLUSTER().setCutout()));

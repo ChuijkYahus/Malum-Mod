@@ -1,11 +1,10 @@
 {
-	"render_type": "minecraft:cutout",
 	"parent": "block/block",
+	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "malum:block/ores/soulstone/soulstone_bud",
-		"1": "malum:block/ores/soulstone/soulstone_bud_roots",
-		"particle": "malum:block/ores/soulstone/soulstone_bud"
+		"bud": "malum:block/ores/soulstone/soulstone_bud",
+		"particle": "malum:block/ores/soulstone/soulstone_ore"
 	},
 	"elements": [
 		{
@@ -13,11 +12,29 @@
 			"to": [13, 10, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [7, 5, 12, 10], "texture": "#0"},
-				"east": {"uv": [7, 5, 12, 10], "texture": "#0"},
-				"south": {"uv": [7, 5, 12, 10], "texture": "#0"},
-				"west": {"uv": [7, 5, 12, 10], "texture": "#0"},
-				"up": {"uv": [7, 0, 12, 5], "texture": "#0"}
+				"north": {"uv": [12, 11, 7, 16], "texture": "#bud"},
+				"east": {"uv": [7, 11, 12, 16], "texture": "#bud"},
+				"south": {"uv": [12, 11, 7, 16], "texture": "#bud"},
+				"west": {"uv": [7, 11, 12, 16], "texture": "#bud"},
+				"up": {"uv": [0, 0, 5, 5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [3, 10, 8],
+			"to": [13, 20, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [5, 5, 0, 10], "texture": "#bud"},
+				"south": {"uv": [5, 5, 0, 10], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [3, 10, 8],
+			"to": [13, 20, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [5, 5, 0, 10], "texture": "#bud"},
+				"south": {"uv": [5, 5, 0, 10], "texture": "#bud"}
 			}
 		},
 		{
@@ -25,8 +42,8 @@
 			"to": [4.45423, -0.68809, 13],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [5.45423, 3.31191, 8]},
 			"faces": {
-				"up": {"uv": [7, 10, 12, 14.5], "rotation": 90, "texture": "#0"},
-				"down": {"uv": [7, 10, 12, 14.5], "rotation": 90, "texture": "#0"}
+				"up": {"uv": [0, 10, 5, 14.5], "rotation": 90, "texture": "#bud"},
+				"down": {"uv": [5, 10, 0, 14.5], "rotation": 90, "texture": "#bud"}
 			}
 		},
 		{
@@ -34,8 +51,8 @@
 			"to": [13, -0.68717, 4.45461],
 			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3.31283, 5.45461]},
 			"faces": {
-				"up": {"uv": [7, 10, 12, 14.5], "rotation": 180, "texture": "#0"},
-				"down": {"uv": [7, 10, 12, 14.5], "texture": "#0"}
+				"up": {"uv": [0, 10, 5, 14.5], "rotation": 180, "texture": "#bud"},
+				"down": {"uv": [5, 10, 0, 14.5], "texture": "#bud"}
 			}
 		},
 		{
@@ -43,8 +60,8 @@
 			"to": [13, -0.68717, 20.54539],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3.31283, 10.54539]},
 			"faces": {
-				"up": {"uv": [7, 10, 12, 14.5], "texture": "#0"},
-				"down": {"uv": [7, 10, 12, 14.5], "rotation": 180, "texture": "#0"}
+				"up": {"uv": [0, 10, 5, 14.5], "texture": "#bud"},
+				"down": {"uv": [5, 10, 0, 14.5], "rotation": 180, "texture": "#bud"}
 			}
 		},
 		{
@@ -52,44 +69,8 @@
 			"to": [20.54539, -0.68717, 13],
 			"rotation": {"angle": 22.5, "axis": "z", "origin": [10.54539, 3.31283, 8]},
 			"faces": {
-				"up": {"uv": [7, 10, 12, 14.5], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [7, 10, 12, 14.5], "rotation": 270, "texture": "#0"}
-			}
-		},
-		{
-			"from": [-0.025, -12, 0],
-			"to": [-0.025, 2, 16],
-			"rotation": {"angle": 0, "axis": "z", "origin": [8, 0, 8]},
-			"faces": {
-				"east": {"uv": [0, 8, 8, 15], "texture": "#1"},
-				"west": {"uv": [0, 8, 8, 15], "texture": "#1"}
-			}
-		},
-		{
-			"from": [0, -12, -0.025],
-			"to": [16, 2, -0.025],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
-			"faces": {
-				"north": {"uv": [0, 8, 8, 15], "texture": "#1"},
-				"south": {"uv": [0, 8, 8, 15], "texture": "#1"}
-			}
-		},
-		{
-			"from": [16.025, -12, 0],
-			"to": [16.025, 2, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
-			"faces": {
-				"east": {"uv": [0, 8, 8, 15], "texture": "#1"},
-				"west": {"uv": [0, 8, 8, 15], "texture": "#1"}
-			}
-		},
-		{
-			"from": [0, -12, 16.025],
-			"to": [16, 2, 16.025],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
-			"faces": {
-				"north": {"uv": [0, 8, 8, 15], "texture": "#1"},
-				"south": {"uv": [0, 8, 8, 15], "texture": "#1"}
+				"up": {"uv": [0, 10, 5, 14.5], "rotation": 270, "texture": "#bud"},
+				"down": {"uv": [5, 10, 0, 14.5], "rotation": 270, "texture": "#bud"}
 			}
 		}
 	]

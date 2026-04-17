@@ -215,11 +215,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 REFINED_SOULSTONE, 2, 0.25f
         );
 
-        smeltAndBlast(output, malumPath("brilliance_raw"), Ingredient.of(RAW_BRILLIANCE), RecipeCategory.MISC,
-                Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE)),
-                REFINED_BRILLIANCE, 2, 1f
-        );
-        smeltAndBlast(output, malumPath("brilliance_crushed"), Ingredient.of(CRUSHED_BRILLIANCE), RecipeCategory.MISC,
+        smeltAndBlast(output, malumPath("raw_brilliance"), Ingredient.of(RAW_BRILLIANCE), RecipeCategory.MISC,
                 Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE)),
                 REFINED_BRILLIANCE, 2, 1f
         );
@@ -227,14 +223,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 Pair.of("has_soulstone", hasSoulstone),
                 REFINED_SOULSTONE, 2, 0.25f
         );
-        smeltAndBlast(output, malumPath("soulstone_crushed"), Ingredient.of(CRUSHED_SOULSTONE), RecipeCategory.MISC,
-                Pair.of("has_soulstone", hasSoulstone),
-                REFINED_SOULSTONE, 2, 0.25f
-        );
 
         //FULL BLOCKS
         RecipeDatagenCommons.blockIngotExchange(output, RAW_SOULSTONE, BLOCK_OF_RAW_SOULSTONE);
-        RecipeDatagenCommons.blockIngotExchange(output, REFINED_SOULSTONE, BLOCK_OF_SOULSTONE);
+        RecipeDatagenCommons.blockIngotExchange(output, REFINED_SOULSTONE, BLOCK_OF_REFINED_SOULSTONE);
         RecipeDatagenCommons.blockIngotExchange(output, RAW_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
         RecipeDatagenCommons.blockIngotExchange(output, REFINED_BRILLIANCE, BLOCK_OF_BRILLIANCE);
         RecipeDatagenCommons.blockIngotExchange(output, BLAZING_QUARTZ, BLOCK_OF_BLAZING_QUARTZ);

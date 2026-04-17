@@ -1,10 +1,10 @@
 {
-	"render_type": "minecraft:cutout",
 	"parent": "block/block",
+	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "malum:block/ores/soulstone/soulstone_bud",
-		"particle": "malum:block/ores/soulstone/soulstone_bud"
+		"bud": "malum:block/ores/soulstone/soulstone_bud",
+		"particle": "malum:block/ores/soulstone/soulstone_ore"
 	},
 	"elements": [
 		{
@@ -12,11 +12,11 @@
 			"to": [11, 6, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [0, 3, 3, 6], "texture": "#0"},
-				"east": {"uv": [0, 3, 3, 6], "texture": "#0"},
-				"south": {"uv": [0, 3, 3, 6], "texture": "#0"},
-				"west": {"uv": [0, 3, 3, 6], "texture": "#0"},
-				"up": {"uv": [0, 0, 3, 3], "texture": "#0"}
+				"north": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"east": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"south": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"west": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"up": {"uv": [9, 0, 12, 3], "texture": "#bud"}
 			}
 		},
 		{
@@ -24,8 +24,8 @@
 			"to": [6.45423, -0.68809, 11],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [7.45423, 3.31191, 8]},
 			"faces": {
-				"up": {"uv": [0, 6, 3, 9], "rotation": 90, "texture": "#0"},
-				"down": {"uv": [0, 6, 3, 9], "rotation": 90, "texture": "#0"}
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 90, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 90, "texture": "#bud"}
 			}
 		},
 		{
@@ -33,8 +33,8 @@
 			"to": [11, -0.68717, 6.45461],
 			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3.31283, 7.45461]},
 			"faces": {
-				"up": {"uv": [0, 6, 3, 9], "rotation": 180, "texture": "#0"},
-				"down": {"uv": [0, 6, 3, 9], "texture": "#0"}
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 180, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "texture": "#bud"}
 			}
 		},
 		{
@@ -42,8 +42,8 @@
 			"to": [11, -0.68717, 15.54539],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3.31283, 8.54539]},
 			"faces": {
-				"up": {"uv": [0, 6, 3, 9], "texture": "#0"},
-				"down": {"uv": [0, 6, 3, 9], "rotation": 180, "texture": "#0"}
+				"up": {"uv": [9, 5.5, 12, 8.5], "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 180, "texture": "#bud"}
 			}
 		},
 		{
@@ -51,8 +51,26 @@
 			"to": [15.54539, -0.68717, 11],
 			"rotation": {"angle": 22.5, "axis": "z", "origin": [8.54539, 3.31283, 8]},
 			"faces": {
-				"up": {"uv": [0, 6, 3, 9], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [0, 6, 3, 9], "rotation": 270, "texture": "#0"}
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 270, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 270, "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"x": 0, "y": 135, "z": 0, "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [12, 0, 15, 3], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
 			}
 		}
 	]

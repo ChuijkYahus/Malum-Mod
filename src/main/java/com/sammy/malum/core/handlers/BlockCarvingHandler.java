@@ -9,6 +9,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -55,6 +57,7 @@ public class BlockCarvingHandler {
         BlockState resultState = BlockStateHelper.getBlockStateWithExistingProperties(state, variant.value().defaultBlockState());
         level.setBlock(pos, resultState, 11);
         level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, resultState));
+        level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1f, 1f);
         if (player != null) {
             itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(event.getHand()));
         }

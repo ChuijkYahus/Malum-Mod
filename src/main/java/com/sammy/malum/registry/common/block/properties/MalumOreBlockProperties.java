@@ -15,6 +15,17 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops();
     }
 
+    public static LodestoneBlockProperties SOULSTONE_BUD() {
+        return new LodestoneBlockProperties()
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
+                .randomTicks()
+                .mapColor(MapColor.TERRACOTTA_PURPLE)
+                .strength(4F, 3.0F)
+                .sound(MalumBlockSoundEvents.SOULSTONE_BUD);
+    }
+
     public static LodestoneBlockProperties SOULSTONE_ORE(boolean isDeepslate) {
         return ORE_PROPERTIES(isDeepslate)
                 .mapColor(MapColor.TERRACOTTA_PURPLE)

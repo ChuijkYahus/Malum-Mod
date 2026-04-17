@@ -101,7 +101,7 @@ public class IntroductionEntries {
                 .addPage(new TextPage("soulstone.2"))
                 .addPage(PageSelectionPage.create(s -> s
                                 .add(item(REFINED_SOULSTONE), new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_SOULSTONE), item(REFINED_SOULSTONE)))
+                                .add(item(BLOCK_OF_REFINED_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_REFINED_SOULSTONE), item(REFINED_SOULSTONE)))
                                 .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
                         )
                 )

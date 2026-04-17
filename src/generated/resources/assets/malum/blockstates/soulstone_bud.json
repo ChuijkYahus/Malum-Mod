@@ -1,0 +1,108 @@
+{
+  "variants": {
+    "facing=down,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small",
+      "x": 180
+    },
+    "facing=down,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium",
+      "x": 180
+    },
+    "facing=down,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large",
+      "x": 180
+    },
+    "facing=down,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized",
+      "x": 180
+    },
+    "facing=east,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small",
+      "x": 90
+    },
+    "facing=north,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium",
+      "x": 90
+    },
+    "facing=north,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large",
+      "x": 90
+    },
+    "facing=north,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized",
+      "x": 90
+    },
+    "facing=south,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small"
+    },
+    "facing=up,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium"
+    },
+    "facing=up,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large"
+    },
+    "facing=up,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized"
+    },
+    "facing=west,stage=0": {
+      "model": "malum:block/soulstone/soulstone_bud_small",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,stage=1": {
+      "model": "malum:block/soulstone/soulstone_bud_medium",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,stage=2": {
+      "model": "malum:block/soulstone/soulstone_bud_large",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,stage=3": {
+      "model": "malum:block/soulstone/soulstone_bud_realized",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -126,12 +126,14 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("ores/soulstone/");
         BlockStateSmithTypes.FULL_BLOCK.act(data, SOULSTONE_ORE, DEEPSLATE_SOULSTONE_ORE);
 
+        MalumBlockStateSmithTypes.SOULSTONE_BUD.act(data, SOULSTONE_BUD);
+
         setTexturePath("storage_blocks/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD, BLOCK_OF_AURIC_EMBERS);
 
-        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_REFINED_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_NATURAL_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
 
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
