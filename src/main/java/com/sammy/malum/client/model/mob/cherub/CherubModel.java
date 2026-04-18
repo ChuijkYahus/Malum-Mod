@@ -90,8 +90,8 @@ public class CherubModel extends CultistHumanoidModel<CherubCultist> {
 		head.yRot = headYRot;
 		head.xRot = headXRot;
 
-		animate(cherub.idleAnimationState, wawa.IDLE, ageInTicks);
-		animate(cherub.castAnimationState, wawa.CAST, ageInTicks);
+		animate(cherub.idleAnimationState, CherubAnimations.IDLE, ageInTicks);
+		animate(cherub.castAnimationState, CherubAnimations.CAST, ageInTicks);
 
 	}
 }
