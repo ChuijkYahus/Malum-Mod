@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects;
+package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.*;

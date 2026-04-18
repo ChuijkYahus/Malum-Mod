@@ -71,6 +71,16 @@ public class MalumOreBlockProperties {
                 .sound(isDeepslate ? MalumBlockSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE : MalumBlockSoundEvents.NATURAL_QUARTZ_ORE);
     }
 
+    public static LodestoneBlockProperties NATURAL_QUARTZ_CLUSTER() {
+        return new LodestoneBlockProperties()
+                .addTag(Tags.Blocks.CLUSTERS)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(1.5F)
+                .sound(MalumBlockSoundEvents.NATURAL_QUARTZ_CLUSTER);
+    }
+
     public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.TERRACOTTA_ORANGE)
@@ -90,5 +100,15 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops()
                 .strength(10f, 9999f)
                 .sound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE);
+    }
+
+    public static LodestoneBlockProperties CTHONIC_GOLD_CLUSTER() {
+        return new LodestoneBlockProperties()
+                .addTag(Tags.Blocks.CLUSTERS)
+                .mapColor(MapColor.COLOR_YELLOW)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(4f, 9999f)
+                .sound(MalumBlockSoundEvents.CTHONIC_GOLD_CLUSTER);
     }
 }

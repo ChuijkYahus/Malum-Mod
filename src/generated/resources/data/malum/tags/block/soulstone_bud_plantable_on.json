@@ -48,6 +48,7 @@
       "id": "#c:ores/nickel",
       "required": false
     },
+    "#minecraft:base_stone_overworld",
     "malum:deepslate_soulstone_ore",
     "malum:soulstone_ore"
   ]

@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.spirit_diode;
 
-import com.sammy.malum.visual_effects.SpiritDiodeParticleEffects;
+import com.sammy.malum.visual_effects.block.SpiritDiodeParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.util.RandomSource;
@@ -9,9 +9,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
-
-import java.util.function.Supplier;
 
 public class SpiritDiodeOpenParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 

@@ -1,7 +1,6 @@
 package com.sammy.malum.visual_effects.networked.avarice;
 
 import com.sammy.malum.visual_effects.AvariceParticleEffects;
-import com.sammy.malum.visual_effects.TotemParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.util.RandomSource;

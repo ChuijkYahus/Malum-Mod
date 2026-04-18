@@ -13,6 +13,7 @@ import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.magic.rite.*;
 import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.SpiritAltarParticleEffects;
 import com.sammy.malum.visual_effects.networked.arcana_pylon.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;

@@ -1,15 +1,12 @@
 package com.sammy.malum.visual_effects.networked.totem;
 
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.TotemParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
-
-import java.util.function.*;
 
 public class BlockTotemParticleEffect extends MalumNetworkedParticleEffectType<NetworkedParticleEffectExtraData> {
 

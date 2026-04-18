@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects;
+package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.client.SpiritBasedParticleBuilder;
 import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
@@ -6,6 +6,8 @@ import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumParticles;
+import com.sammy.malum.visual_effects.SparkParticleEffects;
+import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;

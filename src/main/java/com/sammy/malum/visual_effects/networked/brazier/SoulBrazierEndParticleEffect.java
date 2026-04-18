@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects.networked.brazier;
 
 import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
-import com.sammy.malum.visual_effects.SoulBindingBrazierParticleEffects;
+import com.sammy.malum.visual_effects.block.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import io.netty.buffer.*;

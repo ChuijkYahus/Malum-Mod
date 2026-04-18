@@ -3,7 +3,7 @@ package com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.artifice.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
-import com.sammy.malum.visual_effects.SpiritCrucibleParticleEffects;
+import com.sammy.malum.visual_effects.block.SpiritCrucibleParticleEffects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.ItemStack;

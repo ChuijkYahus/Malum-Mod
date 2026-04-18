@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects;
+package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
@@ -11,8 +11,6 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.particle.ParticleEffectSpawner;
-import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
-import team.lodestar.lodestone.systems.particle.builder.AbstractParticleBuilder;
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;

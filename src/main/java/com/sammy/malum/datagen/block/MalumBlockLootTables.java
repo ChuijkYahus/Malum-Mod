@@ -196,7 +196,7 @@ public class MalumBlockLootTables extends LootTableProvider {
                             LootPool.lootPool()
                                     .setRolls(ConstantValue.exactly(1.0F))
                                     .add(LootItem.lootTableItem(bud.asItem())
-                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 4.0F)))
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
                                     )
                     )
             );

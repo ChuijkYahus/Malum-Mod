@@ -1,9 +1,10 @@
-package com.sammy.malum.visual_effects;
+package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
+import com.sammy.malum.visual_effects.SpiritLightSpecs;
 import com.sammy.malum.visual_effects.networked.*;
 import com.sammy.malum.visual_effects.networked.runic_workbench.*;
 import net.minecraft.util.*;

@@ -9,7 +9,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.registry.common.sound.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.RepairPylonParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.repair_pylon.*;
 import net.minecraft.core.*;

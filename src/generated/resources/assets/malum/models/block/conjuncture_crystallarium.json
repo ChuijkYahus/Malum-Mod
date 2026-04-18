@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "malum:block/conjuncture_crystallarium_bottom",
+    "front": "malum:block/conjuncture_crystallarium_front",
+    "side": "malum:block/conjuncture_crystallarium_side",
+    "top": "malum:block/conjuncture_crystallarium_top"
+  }
+}

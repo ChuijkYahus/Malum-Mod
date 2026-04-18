@@ -11,6 +11,7 @@ import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 import java.util.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.Progression.*;
 
 public class MalumCreativeTab extends CategorizedCreativeTab {
 
@@ -69,13 +70,16 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         .addItems(
                                 ENCYCLOPEDIA_ARCANA,
                                 ENCYCLOPEDIA_ESOTERICA,
-                                Progression.SPIRIT_ALTAR,
-                                Progression.RUNIC_WORKBENCH,
-                                Progression.SOUL_BRAZIER,
-                                Progression.SPIRIT_JAR,
-                                Progression.RUNEWOOD_OBELISK,
-                                Progression.BRILLIANT_OBELISK,
-                                Progression.ARCANA_PYLON
+                                SPIRIT_ALTAR,
+                                RUNIC_WORKBENCH,
+                                CONJUNCTURE_CRYSTALLARIUM,
+                                SOUL_BRAZIER
+                        ).nextLine()
+                        .addItems(
+                                SPIRIT_JAR,
+                                RUNEWOOD_OBELISK,
+                                BRILLIANT_OBELISK,
+                                ARCANA_PYLON
                         ).nextLine()
                         .addItems(
                                 Totemancy.RUNEWOOD_TOTEM_BASE,

@@ -10,6 +10,7 @@ import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
+@SuppressWarnings("NullableProblems")
 public class RunicWorkbenchBlock<T extends RunicWorkbenchBlockEntity> extends LodestoneEntityBlock<T> {
 
     public static final VoxelShape SHAPE = makeShape();
@@ -26,7 +27,7 @@ public class RunicWorkbenchBlock<T extends RunicWorkbenchBlockEntity> extends Lo
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override

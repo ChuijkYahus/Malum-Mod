@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.decor.mana_mote;
 
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.SpiritMoteParticleEffects;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
