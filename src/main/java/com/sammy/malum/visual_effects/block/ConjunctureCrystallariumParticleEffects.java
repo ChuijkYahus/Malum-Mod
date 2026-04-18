@@ -51,20 +51,17 @@ public class ConjunctureCrystallariumParticleEffects {
     public static void passiveCrystallariumParticles(ConjunctureCrystallariumBlockEntity crystallarium) {
         if (crystallarium.getBlockPos().getX() % 2 == 0) {
 
-            float time = (crystallarium.getLevel().getGameTime() / 40f) % 16;
-            int divisions = 1 + (int) time;
-            float size = 2 + time * 2;
-            for (int i = 0; i < 3; i++) {
-                var profile = SphericalDistributionProfile.centeredOn(crystallarium.getBlockPos().relative(Direction.NORTH, i * 16), size)
-                        .weighedDistance(Easing.BOUNCE_IN_OUT)
-                        .weighedAngle(Easing.QUINTIC_IN, divisions);
-                var chain = new ParticleSpawnContextChain(profile);
-                var ctx = new ParticleSpawnContext().lifetime(40);
-                if (i == 1) {
-                    profile.outline();
-                }
-                ParticleHandler.spawn(SPEC2, chain.apply(ctx), 10);
-            }
+            int divisions = 8;
+            float size = 20;
+            var profile = SphericalDistributionProfile.centeredOn(crystallarium.getBlockPos(), size)
+                    .weighedDistance(Easing.BOUNCE_IN_OUT)
+                    .weighedAngle(Easing.QUINTIC_IN, divisions);
+            var chain = new ParticleSpawnContextChain(profile);
+            var ctx = new ParticleSpawnContext().lifetime(40);
+            profile.outline();
+
+            ParticleHandler.spawn(SPEC2, chain.apply(ctx), 10);
+
 
             return;
         }
