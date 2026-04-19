@@ -11,6 +11,7 @@ import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 import java.util.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.Progression.*;
 
 public class MalumCreativeTab extends CategorizedCreativeTab {
 
@@ -69,13 +70,16 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         .addItems(
                                 ENCYCLOPEDIA_ARCANA,
                                 ENCYCLOPEDIA_ESOTERICA,
-                                Progression.SPIRIT_ALTAR,
-                                Progression.RUNIC_WORKBENCH,
-                                Progression.SOUL_BRAZIER,
-                                Progression.SPIRIT_JAR,
-                                Progression.RUNEWOOD_OBELISK,
-                                Progression.BRILLIANT_OBELISK,
-                                Progression.ARCANA_PYLON
+                                SPIRIT_ALTAR,
+                                RUNIC_WORKBENCH,
+                                CONJUNCTURE_CRYSTALLARIUM,
+                                SOUL_BRAZIER
+                        ).nextLine()
+                        .addItems(
+                                SPIRIT_JAR,
+                                RUNEWOOD_OBELISK,
+                                BRILLIANT_OBELISK,
+                                ARCANA_PYLON
                         ).nextLine()
                         .addItems(
                                 Totemancy.RUNEWOOD_TOTEM_BASE,
@@ -299,12 +303,12 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         ).bake();
                 createCategory(ORES_CATEGORY)
                         .addItems(
-                                CompactBlocks.BLOCK_OF_SOULSTONE, CompactBlocks.BLOCK_OF_RAW_SOULSTONE, Materials.DEEPSLATE_SOULSTONE_ORE, Materials.SOULSTONE_ORE,
-                                Materials.RAW_SOULSTONE, Materials.CRUSHED_SOULSTONE, Materials.REFINED_SOULSTONE
+                                CompactBlocks.BLOCK_OF_RAW_SOULSTONE, CompactBlocks.BLOCK_OF_REFINED_SOULSTONE, Materials.DEEPSLATE_SOULSTONE_ORE, Materials.SOULSTONE_ORE,
+                                Materials.RAW_SOULSTONE, Materials.REFINED_SOULSTONE, Materials.SOULSTONE_BUD, Materials.REALIZED_SOULSTONE_BUD
                         ).nextLine()
                         .addItems(
-                                CompactBlocks.BLOCK_OF_BRILLIANCE, CompactBlocks.BLOCK_OF_RAW_BRILLIANCE, Materials.BRILLIANT_DEEPSLATE, Materials.BRILLIANT_STONE,
-                                Materials.RAW_BRILLIANCE, Materials.CRUSHED_BRILLIANCE, Materials.REFINED_BRILLIANCE
+                                CompactBlocks.BLOCK_OF_RAW_BRILLIANCE, CompactBlocks.BLOCK_OF_BRILLIANCE, Materials.BRILLIANT_DEEPSLATE, Materials.BRILLIANT_STONE,
+                                Materials.RAW_BRILLIANCE, Materials.REFINED_BRILLIANCE
                         ).nextLine()
                         .addItems(
                                 CompactBlocks.BLOCK_OF_BLAZING_QUARTZ, Materials.BLAZING_QUARTZ_ORE,

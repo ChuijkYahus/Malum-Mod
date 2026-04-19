@@ -168,8 +168,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 NULL_SLATE.get(), VOID_SALTS.get(), MNEMONIC_FRAGMENT.get(), AURIC_EMBERS.get(), MALIGNANT_LEAD.get(),
                 ANOMALOUS_DESIGN.get(), COMPLETE_DESIGN.get(), FUSED_CONSCIOUSNESS.get());
         tag(MINERALS).add(
-                RAW_SOULSTONE.get(), CRUSHED_SOULSTONE.get(), REFINED_SOULSTONE.get(),
-                RAW_BRILLIANCE.get(), CRUSHED_BRILLIANCE.get(), REFINED_BRILLIANCE.get(),
+                RAW_SOULSTONE.get(), REFINED_SOULSTONE.get(),
+                RAW_BRILLIANCE.get(), REFINED_BRILLIANCE.get(),
                 BLAZING_QUARTZ.asItem(),
                 NATURAL_QUARTZ.asItem(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
 

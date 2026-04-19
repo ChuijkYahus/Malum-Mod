@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects.networked.crucible;
 
 import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.SpiritCrucibleParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;

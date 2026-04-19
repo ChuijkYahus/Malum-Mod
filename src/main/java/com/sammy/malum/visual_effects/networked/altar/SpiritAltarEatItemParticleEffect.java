@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.common.block.storage.*;
-import com.sammy.malum.visual_effects.SpiritAltarParticleEffects;
+import com.sammy.malum.visual_effects.block.SpiritAltarParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import io.netty.buffer.ByteBuf;

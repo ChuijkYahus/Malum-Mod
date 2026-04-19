@@ -12,7 +12,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
 import com.sammy.malum.registry.common.recipe.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.SpiritCrucibleParticleEffects;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;

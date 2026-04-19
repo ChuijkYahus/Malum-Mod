@@ -5,7 +5,7 @@ import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.SpiritAltarParticleEffects;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;

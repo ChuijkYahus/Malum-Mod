@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.networked.repair_pylon;
 
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.storage.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.RepairPylonParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;

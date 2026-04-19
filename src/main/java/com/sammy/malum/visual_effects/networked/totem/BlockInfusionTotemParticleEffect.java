@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.totem;
 
-import com.sammy.malum.visual_effects.TotemParticleEffects;
+import com.sammy.malum.visual_effects.block.TotemParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.util.RandomSource;

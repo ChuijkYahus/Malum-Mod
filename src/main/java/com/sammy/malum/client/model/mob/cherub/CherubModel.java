@@ -3,14 +3,12 @@ package com.sammy.malum.client.model.mob.cherub;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.CultistHumanoidModel;
 import com.sammy.malum.client.model.mob.MalumAnimationUtils;
-import com.sammy.malum.client.model.mob.cardinal.CardinalAnimations;
 import com.sammy.malum.common.entity.mob.cultist.cherub.CherubCultist;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class CherubModel extends CultistHumanoidModel<CherubCultist> {

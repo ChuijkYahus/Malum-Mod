@@ -57,12 +57,12 @@ public class EtherBrazierBlock<T extends EtherBrazierBlockEntity> extends EtherB
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        Direction direction = getBlockConnected(state).getOpposite();
+        Direction direction = getBlockConnected(state);
         return Block.canSupportCenter(level, pos.relative(direction), direction.getOpposite());
     }
 
     protected static Direction getBlockConnected(BlockState state) {
-        return state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
+        return state.getValue(HANGING) ? Direction.UP : Direction.DOWN;
     }
 
     @Override

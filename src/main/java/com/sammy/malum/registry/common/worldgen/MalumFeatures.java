@@ -19,21 +19,16 @@ public class MalumFeatures {
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);
 
     public static final DeferredHolder<Feature<?>, LayeredOreFeature> LAYERED_ORE = FEATURE_TYPES.register("layered_ore", LayeredOreFeature::new);
-    public static final DeferredHolder<Feature<?>, DistributedOreFeature> DISTRIBUTED_ORE = FEATURE_TYPES.register("distributed_ore", DistributedOreFeature::new);
 
     public static class ConfiguredFeatures {
 
         public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE = registerKey("soulstone_ore");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_SURFACE = registerKey("soulstone_ore_surface");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_CAVES = registerKey("soulstone_ore_caves");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> SOULSTONE_ORE_DEEPSLATE_CAVES = registerKey("soulstone_ore_deepslate_caves");
 
         public static final ResourceKey<ConfiguredFeature<?, ?>> BRILLIANT_ORE = registerKey("brilliant_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> CTHONIC_GOLD_ORE = registerKey("cthonic_gold_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> NATURAL_QUARTZ_ORE = registerKey("natural_quartz_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> BLAZING_QUARTZ_ORE = registerKey("blazing_quartz_ore");
-
-
+        
         public static final ResourceKey<ConfiguredFeature<?, ?>> QUARTZ_GEODE = registerKey("quartz_geode");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_QUARTZ_GEODE = registerKey("deepslate_quartz_geode");
 

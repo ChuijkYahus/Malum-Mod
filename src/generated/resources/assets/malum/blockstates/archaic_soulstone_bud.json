@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "facing=down,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0",
+      "x": 180
+    },
+    "facing=down,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1",
+      "x": 180
+    },
+    "facing=down,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2",
+      "x": 180
+    },
+    "facing=east,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0",
+      "x": 90
+    },
+    "facing=north,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1",
+      "x": 90
+    },
+    "facing=north,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2",
+      "x": 90
+    },
+    "facing=south,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0"
+    },
+    "facing=up,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1"
+    },
+    "facing=up,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2"
+    },
+    "facing=west,stage=0": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud0",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,stage=1": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud1",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,stage=2": {
+      "model": "malum:block/soulstone/archaic_soulstone_bud2",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

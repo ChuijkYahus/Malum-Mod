@@ -12,7 +12,7 @@ public class SoulBrazierBlock<T extends SoulBrazierBlockEntity> extends Lodeston
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public SoulBrazierBlock(Properties properties) {
-        super(properties);
+        super(properties.lightLevel(b -> b.getValue(SoulBrazierBlock.LIT) ? 8 : 0));
         this.registerDefaultState(stateDefinition.any().setValue(LIT, false));
     }
 

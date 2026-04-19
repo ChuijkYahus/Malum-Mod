@@ -9,6 +9,7 @@ import com.sammy.malum.client.renderer.block.redstone.WaveChargerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
+import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumBlockEntity;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
@@ -75,8 +76,9 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<SpiritJarBlockEntity>> SPIRIT_JAR = BLOCK_ENTITY_TYPES.register("spirit_jar", () -> create(SpiritJarBlockEntity::new, MalumContent.Progression.SPIRIT_JAR).setTickerType(Type.CLIENT).build());
 
     public static final Supplier<LodestoneBlockEntityType<RunicWorkbenchBlockEntity>> RUNIC_WORKBENCH = BLOCK_ENTITY_TYPES.register("runic_workbench", () -> create(RunicWorkbenchBlockEntity::new, MalumContent.Progression.RUNIC_WORKBENCH).setTickerType(Type.SERVER).build());
-    public static final Supplier<LodestoneBlockEntityType<WeaversWorkbenchBlockEntity>> WEAVERS_WORKBENCH = BLOCK_ENTITY_TYPES.register("weavers_workbench", () -> create(WeaversWorkbenchBlockEntity::new, MalumContent.Progression.WEAVERS_WORKBENCH).build());
+    public static final Supplier<LodestoneBlockEntityType<ConjunctureCrystallariumBlockEntity>> CONJUNCTURE_CRYSTALLARIUM = BLOCK_ENTITY_TYPES.register("conjuncture_crystallarium", () -> create(ConjunctureCrystallariumBlockEntity::new, MalumContent.Progression.CONJUNCTURE_CRYSTALLARIUM).setTickerType(Type.BOTH).build());
 
+    public static final Supplier<LodestoneBlockEntityType<WeaversWorkbenchBlockEntity>> WEAVERS_WORKBENCH = BLOCK_ENTITY_TYPES.register("weavers_workbench", () -> create(WeaversWorkbenchBlockEntity::new, MalumContent.Progression.WEAVERS_WORKBENCH).build());
     public static final Supplier<LodestoneBlockEntityType<SoulBrazierBlockEntity>> SOUL_BRAZIER = BLOCK_ENTITY_TYPES.register("soulbinding_brazier", () -> create(SoulBrazierBlockEntity::new, MalumContent.Progression.SOUL_BRAZIER).setTickerType(Type.BOTH).build());
 
     public static final Supplier<LodestoneBlockEntityType<RunewoodObeliskBlockEntity>> RUNEWOOD_OBELISK = BLOCK_ENTITY_TYPES.register("runewood_obelisk", () -> create(RunewoodObeliskBlockEntity::new, MalumContent.Progression.RUNEWOOD_OBELISK).build());

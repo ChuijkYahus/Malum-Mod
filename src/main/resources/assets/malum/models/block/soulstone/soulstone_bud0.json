@@ -1,0 +1,77 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"bud": "malum:block/ores/soulstone/soulstone_bud",
+		"particle": "malum:block/ores/soulstone/soulstone_ore"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 6, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"east": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"south": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"west": {"uv": [13, 9, 16, 12], "texture": "#bud"},
+				"up": {"uv": [9, 0, 12, 3], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [8, 6, 5],
+			"to": [8, 11, 11],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [9, 3, 12, 5.5], "texture": "#bud"},
+				"west": {"uv": [9, 3, 12, 5.5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [0.45423, -0.68809, 5],
+			"to": [6.45423, -0.68809, 11],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [7.45423, 3.31191, 8]},
+			"faces": {
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 90, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 90, "texture": "#bud"}
+			}
+		},
+		{
+			"from": [5, -0.68717, 0.45461],
+			"to": [11, -0.68717, 6.45461],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3.31283, 7.45461]},
+			"faces": {
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 180, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "texture": "#bud"}
+			}
+		},
+		{
+			"from": [5, -0.68717, 9.54539],
+			"to": [11, -0.68717, 15.54539],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3.31283, 8.54539]},
+			"faces": {
+				"up": {"uv": [9, 5.5, 12, 8.5], "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 180, "texture": "#bud"}
+			}
+		},
+		{
+			"from": [9.54539, -0.68717, 5],
+			"to": [15.54539, -0.68717, 11],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [8.54539, 3.31283, 8]},
+			"faces": {
+				"up": {"uv": [9, 5.5, 12, 8.5], "rotation": 270, "texture": "#bud"},
+				"down": {"uv": [12, 5.5, 9, 8.5], "rotation": 270, "texture": "#bud"}
+			}
+		}
+	]
+}

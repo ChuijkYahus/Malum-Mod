@@ -1,6 +1,8 @@
 package com.sammy.malum.registry.common.block.properties;
 
+import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.sound.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
@@ -15,10 +17,40 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops();
     }
 
+    public static LodestoneBlockProperties SOULSTONE_BUD() {
+        return new LodestoneBlockProperties()
+                .needsPickaxe()
+                .needsIron()
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
+                .randomTicks()
+                .dynamicShape()
+                .mapColor(MapColor.TERRACOTTA_PURPLE)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .strength(4F, 3.0F)
+                .sound(MalumBlockSoundEvents.SOULSTONE_BUD);
+    }
+
+    public static LodestoneBlockProperties ARCHAIC_SOULSTONE_BUD() {
+        return new LodestoneBlockProperties()
+                .needsPickaxe()
+                .needsIron()
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
+                .randomTicks()
+                .dynamicShape()
+                .mapColor(MapColor.TERRACOTTA_PURPLE)
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .strength(6F, 3.0F)
+                .sound(MalumBlockSoundEvents.SOULSTONE_BUD);
+    }
+
     public static LodestoneBlockProperties SOULSTONE_ORE(boolean isDeepslate) {
         return ORE_PROPERTIES(isDeepslate)
+                .needsStone()
                 .mapColor(MapColor.TERRACOTTA_PURPLE)
                 .addTag(Tags.Blocks.ORE_RATES_SINGULAR)
+                .addTag(MalumTags.Blocks.SOULSTONE_BUD_PLANTABLE_ON)
                 .strength(isDeepslate ? 7.0f : 5.0F, 3.0F)
                 .sound(isDeepslate ? MalumBlockSoundEvents.DEEPSLATE_SOULSTONE_ORE : MalumBlockSoundEvents.SOULSTONE_ORE);
     }
@@ -37,6 +69,16 @@ public class MalumOreBlockProperties {
                 .addTags(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Blocks.ORES_QUARTZ)
                 .strength(isDeepslate ? 6f : 4f, 3f)
                 .sound(isDeepslate ? MalumBlockSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE : MalumBlockSoundEvents.NATURAL_QUARTZ_ORE);
+    }
+
+    public static LodestoneBlockProperties NATURAL_QUARTZ_CLUSTER() {
+        return new LodestoneBlockProperties()
+                .addTag(Tags.Blocks.CLUSTERS)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(1.5F)
+                .sound(MalumBlockSoundEvents.NATURAL_QUARTZ_CLUSTER);
     }
 
     public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
@@ -58,5 +100,15 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops()
                 .strength(10f, 9999f)
                 .sound(MalumBlockSoundEvents.CTHONIC_GOLD_ORE);
+    }
+
+    public static LodestoneBlockProperties CTHONIC_GOLD_CLUSTER() {
+        return new LodestoneBlockProperties()
+                .addTag(Tags.Blocks.CLUSTERS)
+                .mapColor(MapColor.COLOR_YELLOW)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(4f, 9999f)
+                .sound(MalumBlockSoundEvents.CTHONIC_GOLD_CLUSTER);
     }
 }

@@ -8,6 +8,7 @@ import com.sammy.malum.common.block.storage.pedestal.WoodItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.MalumWoodTypes;
+import com.sammy.malum.registry.common.item.MalumItemProperties;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.util.data.BlockBundle;
 import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;
@@ -16,6 +17,7 @@ import com.sammy.malum.registry.common.util.data.ItemlessBlockBundleWithWall;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -29,6 +31,7 @@ import java.util.function.Supplier;
 
 import static com.sammy.malum.registry.common.MalumContent.registerBlock;
 import static com.sammy.malum.registry.common.MalumContent.registerBlockNoItem;
+import static com.sammy.malum.registry.common.item.MalumItemProperties.DEFAULT;
 import static team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties.copy;
 
 public class WoodBlockSet {
@@ -137,8 +140,8 @@ public class WoodBlockSet {
         itemPedestal = registerBlock(name("%s_item_pedestal"), () -> new WoodItemPedestalBlock<>(itemHolderProperties));
         decoratedItemStand = registerBlock(name(decoratedPrefix + "_%s_item_stand"), () -> new ItemStandBlock<>(decoratedItemHolderProperties));
 
-        sign = registerBlock(name("%s_sign"), () -> new StandingSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()));
         wallSign = registerBlockNoItem(name("%s_wall_sign"), () -> new WallSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()));
+        sign = registerBlock(name("%s_sign"), () -> new StandingSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()), (b, p) -> new SignItem(p, b, wallSign.get()));
     }
 
     protected TagKey<Block> createTag(String tag) {
@@ -152,7 +155,9 @@ public class WoodBlockSet {
                         sappyLog,
                         strippedLog,
                         strippedWood,
-                        strippedSappyLog
+                        strippedSappyLog,
+
+                        steps, beam
                 ).nextLine()
                 .addItems(
                         boards.block,
@@ -160,7 +165,9 @@ public class WoodBlockSet {
                         blocks.block,
                         planks.block,
                         verticalPlanks.block,
-                        tiles.block
+                        tiles.block,
+
+                        itemPedestal, itemStand
                 ).nextLine()
                 .addItems(
                         boards.stairs,
@@ -168,7 +175,9 @@ public class WoodBlockSet {
                         blocks.stairs,
                         planks.stairs,
                         verticalPlanks.stairs,
-                        tiles.stairs
+                        tiles.stairs,
+
+                        decoratedItemPedestal, decoratedItemStand
                 ).nextLine()
                 .addItems(
                         boards.slab,
@@ -187,21 +196,14 @@ public class WoodBlockSet {
                         sign
                 ).nextLine()
                 .addItems(
-                        decoratedItemPedestal,
-                        itemPedestal,
-                        decoratedItemStand,
-                        itemStand
-                ).nextLine()
-                .addItems(
                         door,
                         trapdoor,
                         heavyDoor,
-                        heavyTrapdoor
-                ).nextLine()
-                .addItems(
+                        heavyTrapdoor,
                         pressurePlate,
                         button
-                );
+                )
+                .bake();
     }
 
     public void bindSigns(BlockEntityTypeAddBlocksEvent event) {

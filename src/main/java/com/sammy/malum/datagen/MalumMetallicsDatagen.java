@@ -67,8 +67,7 @@ public class MalumMetallicsDatagen {
                     )
             ));
             var oreTag = metallic.getOreTag();
-            var condition = new NotCondition(new TagEmptyCondition(oreTag.location()));
-            builder.add(oreTag, map, false, condition);
+            builder.add(oreTag, map, false);
         }
     }
 

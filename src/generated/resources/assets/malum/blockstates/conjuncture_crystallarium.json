@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/conjuncture_crystallarium",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/conjuncture_crystallarium"
+    },
+    "facing=south": {
+      "model": "malum:block/conjuncture_crystallarium",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/conjuncture_crystallarium",
+      "y": 270
+    }
+  }
+}

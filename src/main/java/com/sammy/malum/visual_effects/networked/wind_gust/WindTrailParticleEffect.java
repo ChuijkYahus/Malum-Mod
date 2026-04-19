@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.networked.wind_gust;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.WindTunnelParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;

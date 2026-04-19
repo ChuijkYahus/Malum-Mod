@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "malum:block/storage_blocks/block_of_soulstone_bottom",
-    "side": "malum:block/storage_blocks/block_of_soulstone_side",
-    "top": "malum:block/storage_blocks/block_of_soulstone_top"
-  }
-}

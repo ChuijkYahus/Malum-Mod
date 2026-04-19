@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.common.block.ether.*;
+import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
@@ -73,6 +74,7 @@ public class MalumBlockLootTables extends LootTableProvider {
 
     public static class BlocksLoot extends BlockLootSubProvider {
 
+        protected Set<Block> generatedValues = new HashSet<>();
         protected BlocksLoot(HolderLookup.Provider provider) {
             super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
         }
@@ -84,54 +86,84 @@ public class MalumBlockLootTables extends LootTableProvider {
 
         @Override
         protected void generate() {
-            Set<DeferredHolder<Block, ? extends Block>> blocks = new HashSet<>(BLOCKS.getEntries());
+            add(RUNEWOOD_LEAVES.get(), createLeavesDrops(RUNEWOOD_LEAVES.get(), RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
+            add(HANGING_RUNEWOOD_LEAVES.get(), createLeavesDrops(HANGING_RUNEWOOD_LEAVES.get(), RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
 
-            takeAll(blocks, b -> {
-                if (b.get().properties() instanceof LodestoneBlockProperties properties) {
-                    return properties.getDatagenData().noLootDatagen;
+            add(AZURE_RUNEWOOD_LEAVES.get(), createLeavesDrops(AZURE_RUNEWOOD_LEAVES.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
+            add(HANGING_AZURE_RUNEWOOD_LEAVES.get(), createLeavesDrops(HANGING_AZURE_RUNEWOOD_LEAVES.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
+
+            add(SOULWOOD_LEAVES.get(), createLeavesDrops(SOULWOOD_LEAVES.get(), SOULWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
+            add(HANGING_SOULWOOD_LEAVES.get(), createLeavesDrops(HANGING_SOULWOOD_LEAVES.get(), SOULWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE));
+
+            add(STRANGE_CRYSTAL.get(), createSingleItemTableWithSilkTouchOrShears(STRANGE_CRYSTAL.get(), STRANGE_CRYSTAL.get()));
+            add(LARGE_STRANGE_CRYSTAL.get(), createTallBlockDrop(LARGE_STRANGE_CRYSTAL.get()));
+            add(STRANGEROOT.get(), createSingleItemTableWithSilkTouchOrShears(STRANGEROOT.get(), STRANGEROOT.get()));
+
+            add(BLIGHTED_SOULWOOD.get(), createSingleItemTableWithSilkTouch(BLIGHTED_SOULWOOD.get(), SOULWOOD_SET.log));
+            add(BLIGHTED_EARTH.get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4));
+            add(BLIGHTED_GUNK.get(), createBlightedPlantDrop(BLIGHTED_GUNK.get(), 1));
+            add(BLIGHTPEARL.get(), createBlightedPlantDrop(BLIGHTPEARL.get(), 1));
+            add(BLIGHTROOT.get(), createBlightedPlantDrop(BLIGHTROOT.get(), 1));
+
+            add(SOULSTONE_ORE.get(), createOreDrop(SOULSTONE_ORE.get(), RAW_SOULSTONE.get()));
+            add(DEEPSLATE_SOULSTONE_ORE.get(), createOreDrop(DEEPSLATE_SOULSTONE_ORE.get(), RAW_SOULSTONE.get()));
+
+            add(ARCHAIC_SOULSTONE_BUD.get(), createArchaicSoulstoneBudDrop(ARCHAIC_SOULSTONE_BUD.get(), SOULSTONE_BUD));
+            add(SOULSTONE_BUD.get(), createSoulstoneBudDrop(SOULSTONE_BUD.get(), REALIZED_SOULSTONE_BUD));
+
+            add(BRILLIANT_STONE.get(), createOreDrop(BRILLIANT_STONE.get(), RAW_BRILLIANCE.get()));
+            add(BRILLIANT_DEEPSLATE.get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), RAW_BRILLIANCE.get()));
+
+            add(NATURAL_QUARTZ_ORE.get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
+            add(DEEPSLATE_QUARTZ_ORE.get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
+
+            add(CTHONIC_GOLD_ORE.get(), createCthonicGoldOreDrop(CTHONIC_GOLD_ORE.get()));
+
+            add(BLAZING_QUARTZ_ORE.get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), BLAZING_QUARTZ.get()));
+
+            add(SOULWOVEN_BANNER.get(), createBannerDrop(SOULWOVEN_BANNER.get()));
+
+
+            add(EtherBlock.class, this::createEtherDrop);
+            add(SpiritJarBlock.class, this::createJarDrop);
+
+            add(FlowerPotBlock.class, block -> createPotFlowerItemTable(((FlowerPotBlock) block).getPotted()));
+            add(SaplingBlock.class, block -> createSingleItemTable(block.asItem()));
+            add(DoublePlantBlock.class, block -> createSingleItemTableWithSilkTouchOrShears(block, block.asItem()));
+            add(BushBlock.class, block -> createSingleItemTableWithSilkTouchOrShears(block, block.asItem()));
+            add(GrassBlock.class, block -> createSingleItemTableWithSilkTouch(block, Items.DIRT));
+            add(SlabBlock.class, this::createSlabItemTable);
+            add(DoorBlock.class, this::createDoorTable);
+            add(AbstractCauldronBlock.class, block -> createSingleItemTable(Items.CAULDRON));
+
+            addRemaining();
+        }
+
+        protected void addRemaining() {
+            for (Block knownBlock : getKnownBlocks()) {
+                if (generatedValues.contains(knownBlock)) {
+                    continue;
                 }
-                return true;
-            });
-
-            takeAll(blocks, RUNEWOOD_LEAVES, HANGING_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
-            takeAll(blocks, AZURE_RUNEWOOD_LEAVES, HANGING_AZURE_RUNEWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), AZURE_RUNEWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
-            takeAll(blocks, SOULWOOD_LEAVES, HANGING_SOULWOOD_LEAVES).forEach((b) -> add(b.get(), createLeavesDrops(b.get(), SOULWOOD_SAPLING.get(), MAGIC_SAPLING_DROP_CHANCE)));
-
-            add(take(blocks, STRANGE_CRYSTAL).get(), createSingleItemTableWithSilkTouchOrShears(STRANGE_CRYSTAL.get(), STRANGE_CRYSTAL.get()));
-            add(take(blocks, LARGE_STRANGE_CRYSTAL).get(), createTallBlockDrop(LARGE_STRANGE_CRYSTAL.get()));
-            add(take(blocks, STRANGEROOT).get(), createSingleItemTableWithSilkTouchOrShears(STRANGEROOT.get(), STRANGEROOT.get()));
-
-            add(take(blocks, MalumContent.BlockSets.BLIGHTED_SOULWOOD).get(), createSingleItemTableWithSilkTouch(MalumContent.BlockSets.BLIGHTED_SOULWOOD.get(), SOULWOOD_SET.log));
-            add(take(blocks, BLIGHTED_EARTH).get(), createBlightedDrop(BLIGHTED_EARTH.get(), 4));
-            add(take(blocks, BLIGHTED_GUNK).get(), createBlightedPlantDrop(BLIGHTED_GUNK.get(), 1));
-            add(take(blocks, BLIGHTPEARL).get(), createBlightedPlantDrop(BLIGHTPEARL.get(), 1));
-            add(take(blocks, BLIGHTROOT).get(), createBlightedPlantDrop(BLIGHTROOT.get(), 1));
-
-            add(take(blocks, BRILLIANT_STONE).get(), createOreDrop(BRILLIANT_STONE.get(), RAW_BRILLIANCE.get()));
-            add(take(blocks, BRILLIANT_DEEPSLATE).get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), RAW_BRILLIANCE.get()));
-            add(take(blocks, SOULSTONE_ORE).get(), createOreDrop(SOULSTONE_ORE.get(), RAW_SOULSTONE.get()));
-            add(take(blocks, DEEPSLATE_SOULSTONE_ORE).get(), createOreDrop(DEEPSLATE_SOULSTONE_ORE.get(), RAW_SOULSTONE.get()));
-            add(take(blocks, BLAZING_QUARTZ_ORE).get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), BLAZING_QUARTZ.get()));
-            add(take(blocks, NATURAL_QUARTZ_ORE).get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
-            add(take(blocks, DEEPSLATE_QUARTZ_ORE).get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
-            add(take(blocks, CTHONIC_GOLD_ORE).get(), createCthonicGoldOreDrop(CTHONIC_GOLD_ORE.get()));
-
-            add(take(blocks, SOULWOVEN_BANNER).get(), createBannerDrop(SOULWOVEN_BANNER.get()));
-
-            takeAll(blocks, b -> b.get() instanceof FlowerPotBlock).forEach(b -> add(b.get(), createPotFlowerItemTable(((FlowerPotBlock)b.get()).getPotted())));
-            takeAll(blocks, b -> b.get() instanceof SaplingBlock).forEach(b -> add(b.get(), createSingleItemTable(b.get().asItem())));
-            takeAll(blocks, b -> b.get() instanceof DoublePlantBlock).forEach(b -> add(b.get(), createSingleItemTableWithSilkTouchOrShears(b.get(), b.get().asItem())));
-            takeAll(blocks, b -> b.get() instanceof BushBlock).forEach(b -> add(b.get(), createSingleItemTableWithSilkTouchOrShears(b.get(), b.get().asItem())));
-
-            takeAll(blocks, b -> b.get() instanceof GrassBlock).forEach(b -> add(b.get(), createSingleItemTableWithSilkTouch(b.get(), Items.DIRT)));
-            takeAll(blocks, b -> b.get() instanceof SlabBlock).forEach(b -> add(b.get(), createSlabItemTable(b.get())));
-            takeAll(blocks, b -> b.get() instanceof DoorBlock).forEach(b -> add(b.get(), createDoorTable(b.get())));
-            takeAll(blocks, b -> b.get() instanceof AbstractCauldronBlock).forEach(b -> add(b.get(), createSingleItemTable(Items.CAULDRON)));
-
-            takeAll(blocks, b -> b.get() instanceof EtherBlock).forEach(b -> add(b.get(), createEtherDrop(b.get())));
-            takeAll(blocks, b -> b.get() instanceof SpiritJarBlock).forEach(b -> add(b.get(), createJarDrop(b.get())));
-
-            blocks.forEach(b -> add(b.get(), createSingleItemTable(b.get().asItem())));
+                if (knownBlock.properties instanceof LodestoneBlockProperties blockProperties && blockProperties.getDatagenData().noLootDatagen) {
+                    continue;
+                }
+                add(knownBlock, createSingleItemTable(knownBlock));
+            }
+        }
+        protected void add(Class<? extends Block> blockClass, Function<Block, LootTable.Builder> builder) {
+            for (Block knownBlock : getKnownBlocks()) {
+                if (blockClass.isInstance(knownBlock)) {
+                    if (knownBlock.properties instanceof LodestoneBlockProperties blockProperties && blockProperties.getDatagenData().noLootDatagen) {
+                        continue;
+                    }
+                    add(knownBlock, builder.apply(knownBlock));
+                }
+            }
+        }
+        @Override
+        protected void add(Block block, LootTable.Builder builder) {
+            super.add(block, builder);
+            generatedValues.add(block);
         }
 
         protected LootTable.Builder createTallBlockDrop(Block block) {
@@ -156,6 +188,34 @@ public class MalumBlockLootTables extends LootTableProvider {
             return createSilkTouchOrShearsDispatchTable(block,
                     applyExplosionCondition(BLIGHTED_GUNK.get(), LootItem.lootTableItem(BLIGHTED_GUNK.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(gunkAmount)))));
+        }
+
+        protected LootTable.Builder createArchaicSoulstoneBudDrop(Block block, ItemLike bud) {
+            return LootTable.lootTable().withPool(
+                    applyExplosionCondition(block,
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1.0F))
+                                    .add(LootItem.lootTableItem(bud.asItem())
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                    )
+                    )
+            );
+        }
+
+        protected LootTable.Builder createSoulstoneBudDrop(Block block, ItemLike realizedBud) {
+            return LootTable.lootTable().withPool(
+                    applyExplosionCondition(block,
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1.0F))
+                                    .add(LootItem.lootTableItem(realizedBud)
+                                            .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                            .hasProperty(SoulstoneBudBlock.STAGE, 3))
+                                            )
+                                            .otherwise(LootItem.lootTableItem(block))
+                                    )
+                    )
+            );
         }
 
         protected LootTable.Builder createEtherDrop(Block block) {

@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
+import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
 
 import java.util.UUID;
@@ -37,16 +38,21 @@ public class SapParticleEffects {
         var left = new Vec3(-Math.cos(yaw), 0, Math.sin(yaw));
         var up = left.cross(new Vec3(normal.getX(), normal.getY(), normal.getZ()));
         Consumer<LodestoneWorldParticle> tracking = p -> {
-            var length = p.getParticleSpeed().length();
             var targetPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
             var toEntity = targetPos.subtract(p.getParticlePosition()).normalize();
-            p.setParticleSpeed(toEntity.scale((length + 0.05f) * 0.95f));
+            if (toEntity.length() < 0.2f) {
+                return;
+            }
+            Vec3 addedVelocity = toEntity.scale((0.05f * toEntity.length()));
+            p.setParticleSpeed(p.getParticleSpeed().add(addedVelocity).scale(0.95f));
         };
         var targetPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
-        float offsetScale = 0.75f;
+        float offsetScale = 0.5f;
         for (int i = 0; i < 12; i++) {
-            float leftOffset = (random.nextFloat() - 0.5f) * offsetScale;
-            float upOffset = (random.nextFloat() - 0.5f) * offsetScale;
+            float angle = i / 12f * 6.28f;
+
+            float leftOffset = Mth.sin(angle) * offsetScale;
+            float upOffset = Mth.cos(angle) * offsetScale;
 
             var particlePosition = spawnPos.add(left.scale(leftOffset)).add(up.scale(upOffset));
             var particleMotion = targetPos.subtract(particlePosition).normalize();
@@ -54,12 +60,16 @@ public class SapParticleEffects {
             var actualMotion = targetPosition.subtract(particlePosition).normalize().scale(0.01f);
             var lightSpecs = spiritLightSpecs(level, particlePosition, colorData.getColor());
             lightSpecs.getBuilder()
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .addTickActor(tracking)
                     .setMotion(actualMotion)
-                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1f, 2f)));
+                    .setLifeDelay(i/2)
+                    .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 1.5f, 2f)));
             lightSpecs.getBloomBuilder()
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                     .addTickActor(tracking)
                     .setMotion(actualMotion)
+                    .setLifeDelay(i/2)
                     .modifyScaleData(d -> d.multiplyValue(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.6f, 1.5f)));
             lightSpecs.spawnParticles();
         }

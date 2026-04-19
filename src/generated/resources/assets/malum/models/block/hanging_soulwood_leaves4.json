@@ -1,8 +1,7 @@
 {
-  "parent": "malum:block/templates/template_hanging_leaves",
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "hanging_leaves": "malum:block/soulwood/leaves/hanging_soulwood_leaves4",
-    "particle": "malum:block/soulwood/leaves/hanging_soulwood_leaves4"
+    "cross": "malum:block/soulwood/leaves/hanging_soulwood_leaves4"
   }
 }

@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects.networked.arcana_pylon;
 
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
-import com.sammy.malum.visual_effects.*;
+import com.sammy.malum.visual_effects.block.ArcanaPylonParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;

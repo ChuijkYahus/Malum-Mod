@@ -1,23 +1,21 @@
 package com.sammy.malum.datagen.worldgen;
 
+import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.worldgen.ore.*;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.LayeredOreFeatureDecorator;
 import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.OreLayer;
 import com.sammy.malum.common.worldgen.tree.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.MalumContent.Materials;
 import com.sammy.malum.registry.common.worldgen.*;
 import com.sammy.malum.registry.common.worldgen.MalumFeatures.ConfiguredFeatures;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.*;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.*;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 
 import java.util.*;
@@ -35,16 +33,22 @@ public class ConfiguredFeatureDatagen {
     private static final RuleTest REPLACE_STONE = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     private static final RuleTest REPLACE_DEEPSLATE = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-    public static final List<OreLayer> SOULSTONE_ORE_LAYERS = List.of(
+    public static final List<OreLayer> SOULSTONE_LAYERS = List.of(
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(SOULSTONE_ORE.get())),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_SOULSTONE_ORE.get()))
             ), 32, 16, 0f, true),
-            new OreLayer(target(REPLACE_STONES, simple(TUFF)),
-                    40, 24, 0.1f, false)
+            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 40, 24, 0.2f, false)
     );
 
-    public static final List<OreLayer> CTHONIC_GOLD_ORE_LAYERS = List.of(
+    public static final LayeredOreFeatureDecorator SOULSTONE_DECOR =
+            new LayeredOreFeatureDecorator(target(REPLACE_AIR,
+                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                            .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState())
+                            .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState().setValue(ArchaicSoulstoneBudBlock.STAGE, 1))
+                            .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState().setValue(ArchaicSoulstoneBudBlock.STAGE, 2)).build())), 6, 12);
+
+    public static final List<OreLayer> CTHONIC_GOLD_LAYERS = List.of(
             new OreLayer(target(REPLACE_STONES, simple(CTHONIC_GOLD_ORE.get())
             ), 4, 16, 0f, true),
             new OreLayer(List.of(
@@ -52,6 +56,10 @@ public class ConfiguredFeatureDatagen {
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_GOLD_ORE))
             ), 12, 24, 0.1f, false)
     );
+
+    public static final LayeredOreFeatureDecorator CTHONIC_GOLD_DECOR =
+            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 3, 6);
+
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
             OreConfiguration.target(REPLACE_STONE, BRILLIANT_STONE.get().defaultBlockState()),
             OreConfiguration.target(REPLACE_DEEPSLATE, BRILLIANT_DEEPSLATE.get().defaultBlockState()));
@@ -65,18 +73,9 @@ public class ConfiguredFeatureDatagen {
             OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), BLAZING_QUARTZ_ORE.get().defaultBlockState()));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        context.register(ConfiguredFeatures.SOULSTONE_ORE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(),
-                new LayeredOreConfiguration(SOULSTONE_ORE_LAYERS, Optional.empty())
-        ));
-        context.register(ConfiguredFeatures.CTHONIC_GOLD_ORE, new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(),
-                new LayeredOreConfiguration(CTHONIC_GOLD_ORE_LAYERS, Optional.of(
-                        new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 3, 6))
-                )
-        ));
+        context.register(ConfiguredFeatures.SOULSTONE_ORE, addLayeredOreConfig(SOULSTONE_LAYERS, SOULSTONE_DECOR));
 
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_SURFACE, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 16, 0, 2));
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_CAVES, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 24, 1, 3));
-        context.register(ConfiguredFeatures.SOULSTONE_ORE_DEEPSLATE_CAVES, addDistributedOreConfig(context, ConfiguredFeatures.SOULSTONE_ORE, 32, 2, 4));
+        context.register(ConfiguredFeatures.CTHONIC_GOLD_ORE, addLayeredOreConfig(CTHONIC_GOLD_LAYERS, CTHONIC_GOLD_DECOR));
 
         context.register(ConfiguredFeatures.BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
         context.register(ConfiguredFeatures.NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
@@ -145,14 +144,15 @@ public class ConfiguredFeatureDatagen {
         ));
     }
 
-    public static ConfiguredFeature<?, ?> addDistributedOreConfig(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> distributedFeature, int height, int minDistributions, int maxDistributions) {
-        var lookup = context.lookup(Registries.CONFIGURED_FEATURE);
-        var help = lookup.getOrThrow(distributedFeature);
-        return new ConfiguredFeature<>(MalumFeatures.DISTRIBUTED_ORE.get(), new DistributedOreFeatureConfiguration(help, height, minDistributions, maxDistributions));
-    }
-
     private static <T extends FeatureConfiguration, K extends Feature<T>> ConfiguredFeature<?, ?> addTreeConfig(K feature, T config) {
         return new ConfiguredFeature<>(feature, config);
+    }
+
+    private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers) {
+        return addLayeredOreConfig(layers, null);
+    }
+    private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers, LayeredOreFeatureDecorator decorator) {
+        return new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(), new LayeredOreConfiguration(layers, Optional.ofNullable(decorator)));
     }
 
     private static ConfiguredFeature<?, ?> addOreConfig(List<OreConfiguration.TargetBlockState> targetList, int veinSize) {

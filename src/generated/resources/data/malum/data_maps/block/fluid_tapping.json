@@ -3,14 +3,14 @@
     "malum:stripped_sappy_runewood_log": {
       "bottledFluid": "malum:runic_sap_bottle",
       "chance": 0.02,
-      "color": 16767631,
+      "color": 15312230,
       "filledCauldron": "malum:runic_sap_cauldron",
       "leftoverBlock": "malum:stripped_runewood_log"
     },
     "malum:stripped_sappy_soulwood_log": {
       "bottledFluid": "malum:runic_sap_bottle",
       "chance": 0.025,
-      "color": 16473950,
+      "color": 12002653,
       "filledCauldron": "malum:azoic_sap_cauldron",
       "leftoverBlock": "malum:stripped_soulwood_log"
     }

@@ -1,6 +1,53 @@
 {
   "type": "malum:layered_ore",
   "config": {
+    "decorator": {
+      "decorators": [
+        {
+          "state_provider": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "malum:archaic_soulstone_bud",
+                  "Properties": {
+                    "facing": "north",
+                    "stage": "0"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "malum:archaic_soulstone_bud",
+                  "Properties": {
+                    "facing": "north",
+                    "stage": "1"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "malum:archaic_soulstone_bud",
+                  "Properties": {
+                    "facing": "north",
+                    "stage": "2"
+                  }
+                },
+                "weight": 1
+              }
+            ]
+          },
+          "target": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "minecraft:air"
+          }
+        }
+      ],
+      "max_decorations": 12,
+      "min_decorations": 6
+    },
     "ore_layers": [
       {
         "discard_chance_on_air_exposure": 0.0,
@@ -35,7 +82,7 @@
         "width": 32
       },
       {
-        "discard_chance_on_air_exposure": 0.1,
+        "discard_chance_on_air_exposure": 0.2,
         "height": 24,
         "targets": [
           {

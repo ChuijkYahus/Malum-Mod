@@ -1,0 +1,8 @@
+{
+	"parent": "malum:block/soulstone/soulstone_bud1",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"bud": "malum:block/ores/soulstone/soulstone_bud_archaic",
+		"particle": "malum:block/ores/soulstone/soulstone_ore"
+	}
+}
