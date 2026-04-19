@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "malum:block/arcane_rock/dross/ctm/dross_stone_altar_bottom",
+    "bottom": "malum:block/arcane_rock/dross/dross_stone_altar_bottom",
     "side": "malum:block/arcane_rock/dross/ctm/dross_stone_altar_side",
     "top": "malum:block/arcane_rock/dross/ctm/dross_stone_altar_top"
   },

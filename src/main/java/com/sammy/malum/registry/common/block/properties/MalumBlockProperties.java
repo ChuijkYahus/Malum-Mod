@@ -1,5 +1,6 @@
 package com.sammy.malum.registry.common.block.properties;
 
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -34,6 +35,7 @@ public class MalumBlockProperties {
     public static LodestoneBlockProperties COPPER_ARTIFICE() {
         return new LodestoneBlockProperties()
                 .addTag(CREATE_WRENCH_PICKUP)
+                .addTag(SOULSTONE_BUD_PLANTABLE_ON)
                 .mapColor(COPPER_BLOCK.defaultMapColor())
                 .strength(4.0F, 32.0F)
                 .sound(MalumBlockSoundEvents.SPIRIT_DIODE)

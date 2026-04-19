@@ -1,6 +1,15 @@
 {
   "values": [
     "malum:deepslate_soulstone_ore",
-    "malum:soulstone_ore"
+    "malum:soulstone_ore",
+    "malum:waveform_runewood_totem_base",
+    "malum:waveform_soulwood_totem_base",
+    "malum:wavecharger",
+    "malum:wavebanker",
+    "malum:wavemaker",
+    "malum:wavebreaker",
+    "malum:gust_igniter",
+    "malum:wind_tunnel",
+    "malum:conjuncture_crystallarium"
   ]
 }
