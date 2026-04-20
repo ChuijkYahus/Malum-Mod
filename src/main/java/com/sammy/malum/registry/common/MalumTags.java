@@ -119,15 +119,15 @@ public class MalumTags {
 
     public static class Blocks {
 
+        public static final TagKey<Block> NATURAL_SOULSTONE_BUD_SURFACE = tag("natural_soulstone_bud_surface");
+        public static final TagKey<Block> PREFERRED_SOULSTONE_BUD_SURFACE = tag("preferred_soulstone_bud_surface");
+        public static final TagKey<Block> PREFERRED_WITCHHAZEL_SURFACE = tag("preferred_witchhazel_surface");
+        public static final TagKey<Block> PREFERRED_EBONY_SURFACE = tag("preferred_ebony_surface");
+
+
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
         public static final TagKey<Block> GREATER_AERIAL_WHITELIST = tag("greater_aerial_whitelist");
-
-        public static final TagKey<Block> SOULSTONE_BUD_PLANTABLE_ON = tag("soulstone_bud_plantable_on");
-
-        public static final TagKey<Block> WILD_WITCHHAZEL_PLACEABLE_ON = tag("wild_witchhazel_placeable_on");
-
-        public static final TagKey<Block> EBONY_PLANTABLE_ON = tag("ebony_plantable_on");
 
         public static final TagKey<Block> BLIGHT_PLACEABLE_ON = tag("blight_placeable_on");
         public static final TagKey<Block> BLIGHT_REPLACEABLE = tag("blight_replaceable");

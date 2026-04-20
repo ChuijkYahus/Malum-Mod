@@ -1,5 +1,6 @@
 package com.sammy.malum.common.worldgen.ore;
 
+import com.google.common.collect.*;
 import com.sammy.malum.common.worldgen.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
@@ -9,9 +10,13 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.chunk.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.synth.*;
+import team.lodestar.lodestone.modules.core.easing.*;
 
 import java.util.*;
 import java.util.function.Function;
+
+import static java.lang.Math.*;
 
 public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
 
@@ -19,11 +24,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         super(LayeredOreConfiguration.CODEC);
     }
 
-    public record BlockKey(LevelChunkSection section, BlockPos absolute, int x, int y, int z) {
-
-    }
-    public record LayerFeedback(HashMap<BlockKey, BlockState> placedBlocks, HashSet<Integer> blockHashes) {
-
+    public record LayerFeedback(HashMap<BlockPos, BlockState> placedBlocks, HashSet<Integer> blockHashes) {
         public LayerFeedback() {
             this(new HashMap<>(), new HashSet<>());
         }
@@ -39,18 +40,21 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         var layers = config.oreLayers();
         var decoratorOptional = config.decorator();
 
+        var worldgenrandom = new WorldgenRandom(new LegacyRandomSource(worldgenlevel.getSeed()));
+        var normalnoise = NormalNoise.create(worldgenrandom, -4, 1.0);
+
         var blockMap = new HashMap<LayeredOreConfiguration.OreLayer, LayerFeedback>();
-        float angle = randomsource.nextFloat() * (float) Math.PI;
-        double sin = Math.sin(angle);
-        double cos = Math.cos(angle);
-        double sinOrCos = randomsource.nextBoolean() ? sin : cos;
+
+        float angle = randomsource.nextFloat() * 6.28f;
+        float xScale = 1 + Mth.sin(angle) * 0.5f;
+        float yScale = 1 + randomsource.nextFloat() * 0.5f;
+        float zScale = 1 + Mth.cos(angle) * 0.5f;
         for (LayeredOreConfiguration.OreLayer layer : layers) {
             float horizontal = layer.width();
             float vertical = layer.height();
-            float width = horizontal / 4f;
-            float height = vertical / 4f;
-            int wRand = Mth.ceil((width + 1f) / 2f);
-            int yRand = Mth.ceil((height + 1f) / 2f);
+            int xWidth = Mth.ceil(xScale * horizontal / 4f);
+            int height = Mth.ceil(yScale * vertical / 4f);
+            int zWidth = Mth.ceil(zScale * horizontal / 4f);
 
             int minX = ((blockpos.getX() >> 4) - 1) * 16;
             int maxX = ((blockpos.getX() >> 4) + 1) * 16;
@@ -58,17 +62,14 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             int minZ = ((blockpos.getZ() >> 4) - 1) * 16;
             int maxZ = ((blockpos.getZ() >> 4) + 1) * 16;
 
-            int xOffset = Mth.ceil(sin * width);
-            int xStart = blockpos.getX() - xOffset - wRand;
-            int xEnd = blockpos.getX() + xOffset + wRand;
+            int xStart = blockpos.getX() - xWidth;
+            int xEnd = blockpos.getX() + xWidth;
 
-            int yOffset = Mth.ceil(sinOrCos * height);
-            int yStart = blockpos.getY() - yOffset - yRand;
-            int yEnd = blockpos.getY() + yOffset + yRand;
+            int yStart = blockpos.getY() - height;
+            int yEnd = blockpos.getY() + height;
 
-            int zOffset = Mth.ceil(cos * width);
-            int zStart = blockpos.getZ() - zOffset - wRand;
-            int zEnd = blockpos.getZ() + zOffset + wRand;
+            int zStart = blockpos.getZ() - zWidth;
+            int zEnd = blockpos.getZ() + zWidth;
 
             xStart = Mth.clamp(xStart, minX, maxX);
             xEnd = Mth.clamp(xEnd, minX, maxX);
@@ -76,73 +77,91 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             zEnd = Mth.clamp(zEnd, minZ, maxZ);
 
             int xCenter = (xStart + xEnd) / 2;
+            int yCenter = (yStart + yEnd) / 2;
             int zCenter = (zStart + zEnd) / 2;
 
-
             var feedback = blockMap.computeIfAbsent(layer, (l) -> new LayerFeedback());
+            var mutable = new BlockPos.MutableBlockPos();
             for (int x = xStart; x <= xEnd; x++) {
                 for (int z = zStart; z <= zEnd; z++) {
-                    int worldHeight = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
-                    for (int y = yStart; y < yEnd; y++) {
-                        if (y <= worldHeight) {
-                            float xDelta = xCenter - x;
-                            float zDelta = zCenter - z;
-                            float delta = Mth.sqrt(xDelta * xDelta + zDelta * zDelta);
+                    int worldHeight = worldgenlevel.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z);
+                    for (int y = yStart; y <= yEnd; y++) {
+                        if (y > worldHeight) {
+                            continue;
+                        }
+
+                        double xDist = ((double) x + 0.5 - xCenter);
+                        double yDist = ((double) y + 0.5 - yCenter);
+                        double zDist = ((double) z + 0.5 - zCenter);
+                        float theta = (float) Math.atan2(xDist, zDist);
+                        float noise = (float) ((normalnoise.getValue(x + theta, y, z + theta) + 1) / 2);
+                        double threshold = Easing.SINE_IN_OUT.lerp(noise, 0.25f, 0.5f);
+
+                        if (abs(xDist) > xWidth * threshold || abs(yDist) > height * threshold || abs(zDist) > zWidth * threshold) {
+                            continue;
+                        }
+
+                        mutable.set(x, y, z);
+
+                        int hash = mutable.hashCode();
+                        var blockHashes = feedback.blockHashes;
+                        if (blockHashes.contains(hash)) {
+                            continue;
+                        }
+                        blockHashes.add(hash);
+                        var state = worldgenlevel.getBlockState(mutable);
+
+                        for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : layer.targetStates()) {
+                            if (!placementRules.target().test(state, randomsource)) {
+                                continue;
+                            }
+
+                            if (!shouldSkipAirCheck(randomsource, layer.discardChanceOnAirExposure()) && isAdjacentToAir(worldgenlevel::getBlockState, mutable)) {
+                                continue;
+                            }
+
+                            var oreState = placementRules.state().getState(randomsource, mutable);
+                            feedback.placedBlocks().put(mutable.immutable(), oreState);
+                            break;
                         }
                     }
                 }
             }
             if (layer.discardFeatureIfEmpty()) {
-                if (!blockMap.containsKey(layer) || blockMap.get(layer).placedBlocks.isEmpty()) {
+                if (!blockMap.containsKey(layer) || blockMap.get(layer).placedBlocks().isEmpty()) {
                     return false;
                 }
             }
         }
+
         for (int i = layers.size() - 1; i >= 0; i--) {
             var layer = layers.get(i);
-            blockMap.get(layer).placedBlocks.forEach((key, state) -> key.section.setBlockState(key.x, key.y, key.z, state, false));
+            var map = blockMap.get(layer);
+            map.placedBlocks.forEach((pos, state) -> worldgenlevel.setBlock(pos, state, 3));
         }
 
         if (decoratorOptional.isPresent()) {
-            try (BulkSectionAccess bulksectionaccess = new BulkSectionAccess(worldgenlevel)) {
-                var decorator = decoratorOptional.get();
-                var positions = blockMap.values().stream().map(feedback -> feedback.placedBlocks).flatMap(m -> m.keySet().stream()).toList();
-                var shuffled = WorldgenHelper.shuffle(positions, randomsource);
-                var mutable = new BlockPos.MutableBlockPos();
+            var decorator = decoratorOptional.get();
+            var positions = blockMap.values().stream().map(feedback -> feedback.placedBlocks).flatMap(m -> m.keySet().stream()).toList();
+            var shuffled = WorldgenHelper.shuffle(positions, randomsource);
+            var mutable = new BlockPos.MutableBlockPos();
 
-                int min = decorator.minDecorations();
-                int max = decorator.maxDecorations();
-                if (max < min) {
-                    max = min;
-                }
-                int toPlace = randomsource.nextInt(min, max);
-                int placed = 0;
-                for (BlockKey position : shuffled) {
-                    for (Direction direction : Direction.values()) {
-                        mutable.set(position.absolute).move(direction);
-                        if (worldgenlevel.ensureCanWrite(mutable)) {
-                            var offsetSection = bulksectionaccess.getSection(mutable);
-                            if (offsetSection != null) {
-                                int clusterX = SectionPos.sectionRelative(mutable.getX());
-                                int clusterY = SectionPos.sectionRelative(mutable.getY());
-                                int clusterZ = SectionPos.sectionRelative(mutable.getZ());
-                                var state = worldgenlevel.getBlockState(mutable);
-                                for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : decorator.decorators()) {
-                                    if (placementRules.target().test(state, randomsource)) {
-                                        var decoratorState = placementRules.state().getState(randomsource, mutable);
-                                        if (decoratorState.hasProperty(BlockStateProperties.FACING)) {
-                                            decoratorState = decoratorState.setValue(BlockStateProperties.FACING, direction);
-                                        }
-                                        offsetSection.setBlockState(clusterX, clusterY, clusterZ, decoratorState, false);
-                                        placed++;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        if (placed >= toPlace) {
-                            return true;
-                        }
+            int min = decorator.minDecorations();
+            int max = decorator.maxDecorations();
+            if (max < min) {
+                max = min;
+            }
+            int toPlace = randomsource.nextInt(min, max);
+            int placed = 0;
+            for (BlockPos attached : shuffled) {
+                for (Direction direction : Direction.values()) {
+                    mutable.set(attached).move(direction);
+                    if (tryPlaceDecorator(worldgenlevel,decorator, mutable, direction, randomsource)) {
+                        placed++;
+                        break;
+                    }
+                    if (placed >= toPlace) {
+                        return true;
                     }
                 }
             }
@@ -150,94 +169,22 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         return true;
     }
 
-    protected void doPlace(
-            LayerFeedback feedback,
-            WorldGenLevel level,
-            RandomSource random,
-            LayeredOreConfiguration.OreLayer layer,
-            int xPos, int yPos, int zPos,
-            int xStart, int xEnd,
-            int yStart, int yEnd,
-            int zStart, int zEnd
-    ) {
-        var mutable = new BlockPos.MutableBlockPos();
-        int widthValue = layer.width();
-        try (BulkSectionAccess bulksectionaccess = new BulkSectionAccess(level)) {
-            for (int i = 0; i < widthValue; i++) {
-                float delta = i / (float)widthValue;
-                double rand = random.nextDouble() * (double)widthValue / 16.0;
-                double distanceOrSomething = ((double)(Mth.sin((float) Math.PI * delta) + 1.0F) * rand + 1.0);
-                if ((distanceOrSomething > 0.0)) {
-                    int negativeX = Math.max(Mth.floor(xPos - distanceOrSomething), xStart);
-                    int negativeY = Math.max(Mth.floor(yPos - distanceOrSomething), yStart);
-                    int negativeZ = Math.max(Mth.floor(zPos - distanceOrSomething), zStart);
-                    int positiveX = Math.min(Mth.ceil(xPos + distanceOrSomething), xEnd);
-                    int positiveY = Math.min(Mth.ceil(yPos + distanceOrSomething), yEnd);
-                    int positiveZ = Math.min(Mth.ceil(zPos + distanceOrSomething), zEnd);
-                    float xCenter = (xStart + xEnd) / 2f;
-                    float yCenter = (yStart + yEnd) / 2f;
-                    float zCenter = (zStart + zEnd) / 2f;
-
-                    for (int xSomething = negativeX; xSomething <= positiveX; xSomething++) {
-                        double xDist = ((double)xSomething + 0.5 - xCenter) / distanceOrSomething;
-                        if (xDist * xDist > 1) {
-                            continue;
-                        }
-                        for (int ySomething = negativeY; ySomething <= positiveY; ySomething++) {
-                            double yDist = ((double)ySomething + 0.5 - yCenter) / distanceOrSomething;
-                            if (xDist * xDist + yDist * yDist > 1) {
-                                continue;
-                            }
-                            for (int zSomething = negativeZ; zSomething <= positiveZ; zSomething++) {
-                                double zDist = ((double) zSomething + 0.5 - zCenter) / distanceOrSomething;
-                                if (xDist * xDist + yDist * yDist + zDist + zDist * zDist > 1) {
-                                    continue;
-                                }
-
-                                mutable.set(xSomething, ySomething, zSomething);
-                                var hash = mutable.hashCode();
-                                if (feedback.blockHashes.contains(hash)) {
-                                    continue;
-                                }
-
-                                var section = bulksectionaccess.getSection(mutable);
-                                if (section == null) {
-                                    continue;
-                                }
-                                feedback.blockHashes.add(hash);
-                                int rX = SectionPos.sectionRelative(xSomething);
-                                int rY = SectionPos.sectionRelative(ySomething);
-                                int rZ = SectionPos.sectionRelative(zSomething);
-                                BlockState blockstate = section.getBlockState(rX, rY, rZ);
-
-                                for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : layer.targetStates()) {
-                                    if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, random, layer, placementRules, mutable)) {
-                                        var oreState = placementRules.state().getState(random, mutable);
-                                        var key = new BlockKey(section, mutable.immutable(), rX, rY, rZ);
-                                        feedback.placedBlocks().put(key, oreState);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
+    public boolean tryPlaceDecorator(WorldGenLevel worldgenlevel, LayeredOreConfiguration.LayeredOreFeatureDecorator decorator, BlockPos pos, Direction direction, RandomSource randomSource) {
+        var state = worldgenlevel.getBlockState(pos);
+        for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : decorator.decorators()) {
+            if (placementRules.target().test(state, randomSource)) {
+                var decoratorState = placementRules.state().getState(randomSource, pos);
+                if (decoratorState.hasProperty(BlockStateProperties.FACING)) {
+                    decoratorState = decoratorState.setValue(BlockStateProperties.FACING, direction);
                 }
+                if (!decoratorState.canSurvive(worldgenlevel, pos)) {
+                    break;
+                }
+                worldgenlevel.setBlock(pos, decoratorState, 3);
+                return true;
             }
         }
-    }
-
-    public static boolean canPlaceOre(
-            BlockState state,
-            Function<BlockPos, BlockState> adjacentStateAccessor,
-            RandomSource random,
-            LayeredOreConfiguration.OreLayer layer,
-            LayeredOreConfiguration.LayeredTargetBlockState targetState,
-            BlockPos.MutableBlockPos mutablePos
-    ) {
-        if (!targetState.target().test(state, random)) {
-            return false;
-        }
-        return shouldSkipAirCheck(random, layer.discardChanceOnAirExposure()) || !isAdjacentToAir(adjacentStateAccessor, mutablePos);
+        return false;
     }
 
     protected static boolean shouldSkipAirCheck(RandomSource random, float chance) {

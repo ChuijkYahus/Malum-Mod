@@ -67,10 +67,15 @@ public class ArchaicSoulstoneBudBlock extends LodestoneDirectionalBlock {
         return CODEC;
     }
 
+
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var attachedPos = getAttachedPos(state, pos);
-        return Block.canSupportCenter(level, attachedPos, state.getValue(FACING));
+        if (!Block.canSupportCenter(level, attachedPos, state.getValue(FACING))) {
+            return false;
+        }
+        var attachedState = level.getBlockState(attachedPos);
+        return attachedState.is(MalumTags.Blocks.NATURAL_SOULSTONE_BUD_SURFACE);
     }
 
     @Override

@@ -62,11 +62,15 @@ public class SoulstoneBudBlock extends ArchaicSoulstoneBudBlock {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        BlockState attachedState = getAttachedState(level, state, pos);
+        var attachedPos = getAttachedPos(state, pos);
+        if (!Block.canSupportCenter(level, attachedPos, state.getValue(FACING))) {
+            return false;
+        }
+        var attachedState = level.getBlockState(attachedPos);
         if (attachedState.getBlock() instanceof MovingPistonBlock) {
             return true;
         }
-        return attachedState.is(MalumTags.Blocks.SOULSTONE_BUD_PLANTABLE_ON);
+        return attachedState.is(MalumTags.Blocks.PREFERRED_SOULSTONE_BUD_SURFACE);
     }
 
     @Override
@@ -74,7 +78,7 @@ public class SoulstoneBudBlock extends ArchaicSoulstoneBudBlock {
         var direction = context.getClickedFace();
         var pos = context.getClickedPos().relative(direction.getOpposite());
         var attachedState = context.getLevel().getBlockState(pos);
-        if (attachedState.is(MalumTags.Blocks.SOULSTONE_BUD_PLANTABLE_ON)) {
+        if (attachedState.is(MalumTags.Blocks.PREFERRED_SOULSTONE_BUD_SURFACE)) {
             return defaultBlockState().setValue(FACING, direction);
         }
         return null;

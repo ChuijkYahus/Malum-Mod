@@ -11,8 +11,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.NotCondition;
-import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSystemData;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static com.sammy.malum.registry.common.MalumTags.Blocks.SOULSTONE_BUD_PLANTABLE_ON;
+import static com.sammy.malum.registry.common.MalumTags.Blocks.PREFERRED_SOULSTONE_BUD_SURFACE;
 
 public class MalumMetallicsDatagen {
 
@@ -73,8 +71,8 @@ public class MalumMetallicsDatagen {
 
     public void addTags(Function<TagKey<Block>, IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block>> tag) {
         for (MetallicsItemRegistryBundle metallic : metallics) {
-            tag.apply(SOULSTONE_BUD_PLANTABLE_ON).add(metallic.getOre().get(), metallic.getDeepslateOre().get());
-            tag.apply(SOULSTONE_BUD_PLANTABLE_ON).addOptionalTag(metallic.getOreTag());
+            tag.apply(PREFERRED_SOULSTONE_BUD_SURFACE).add(metallic.getOre().get(), metallic.getDeepslateOre().get());
+            tag.apply(PREFERRED_SOULSTONE_BUD_SURFACE).addOptionalTag(metallic.getOreTag());
         }
     }
 

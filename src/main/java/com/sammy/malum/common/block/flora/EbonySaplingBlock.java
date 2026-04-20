@@ -66,7 +66,7 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!soilDecision.isDefault()) {
             return soilDecision.isTrue();
         }
-        return belowState.is(MalumTags.Blocks.EBONY_PLANTABLE_ON);
+        return belowState.is(MalumTags.Blocks.PREFERRED_EBONY_SURFACE);
     }
 
     @Override

@@ -43,7 +43,6 @@ public class MalumFeatures {
 
     public static class PlacedFeatures {
 
-        public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_SURFACE = registerKey("ore_soulstone_surface");
         public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_CAVES = registerKey("ore_soulstone_caves");
         public static final ResourceKey<PlacedFeature> ORE_SOULSTONE_DEEPSLATE_CAVES = registerKey("ore_soulstone_deepslate");
 

@@ -44,7 +44,6 @@ neoForge {
     runs {
         register("client") {
             client()
-            jvmArgument("-XX:ActiveProcessorCount=2") // My poor laptop :(
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty("neoforge.enabledGameTestNamespaces", project.property("mod_id").toString())
         }
@@ -242,18 +241,12 @@ dependencies {
 //    localRuntime(("curse.maven:attributefix-280510:5824104"))
 
     // Imgui
-    compileOnly("io.github.spair:imgui-java-app:${property("imgui_version")}")
-    compileOnly("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
-    compileOnly("io.github.spair:imgui-java-binding:${property("imgui_version")}")
-    compileOnly("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
-    compileOnly("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
-    compileOnly("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-app:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-binding:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
-    localRuntime("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+    jarJar(implementation("io.github.spair:imgui-java-app:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}"))
+    jarJar(implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}"))
     additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
     additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
     additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
