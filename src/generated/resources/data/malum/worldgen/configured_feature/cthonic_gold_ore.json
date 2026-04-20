@@ -21,13 +21,13 @@
         }
       ],
       "max_decorations": 6,
-      "min_decorations": 3
+      "min_decorations": 4
     },
     "ore_layers": [
       {
         "discard_chance_on_air_exposure": 0.0,
         "discard_feature_if_empty": true,
-        "height": 16,
+        "height": 8,
         "targets": [
           {
             "state_provider": {
@@ -45,8 +45,8 @@
         "width": 4
       },
       {
-        "discard_chance_on_air_exposure": 0.1,
-        "height": 24,
+        "discard_chance_on_air_exposure": 0.15,
+        "height": 16,
         "targets": [
           {
             "state_provider": {
@@ -73,7 +73,7 @@
             }
           }
         ],
-        "width": 12
+        "width": 8
       }
     ]
   }

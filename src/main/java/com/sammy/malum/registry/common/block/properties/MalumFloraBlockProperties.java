@@ -19,7 +19,7 @@ public class MalumFloraBlockProperties {
                 .dynamicShape()
                 .randomTicks()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
-                .addTag(MalumTags.Blocks.EBONY_PLANTABLE_ON)
+                .addTag(MalumTags.Blocks.PREFERRED_EBONY_SURFACE)
                 .sound(MalumBlockSoundEvents.EBONY_SAPLING);
     }
 
@@ -31,7 +31,7 @@ public class MalumFloraBlockProperties {
                 .setCutout()
                 .dynamicShape()
                 .randomTicks()
-                .addTag(MalumTags.Blocks.EBONY_PLANTABLE_ON)
+                .addTag(MalumTags.Blocks.PREFERRED_EBONY_SURFACE)
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .sound(MalumBlockSoundEvents.EBONY);
     }

@@ -102,7 +102,7 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         var blockstate = level.getBlockState(below);
         var defaultState = defaultBlockState();
         var soilDecision = blockstate.canSustainPlant(level, below, Direction.UP, defaultState);
-        if (soilDecision.isDefault() ? blockstate.is(MalumTags.Blocks.EBONY_PLANTABLE_ON) : soilDecision.isTrue()) {
+        if (soilDecision.isDefault() ? blockstate.is(MalumTags.Blocks.PREFERRED_EBONY_SURFACE) : soilDecision.isTrue()) {
             var sapling = MalumContent.Materials.EBONY_SAPLING.get();
             if (blockstate.is(sapling)) {
                 return defaultState.setValue(AGE, 0);
@@ -155,7 +155,7 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         var belowState = level.getBlockState(belowPos);
         var soilDecision = belowState.canSustainPlant(level, belowPos, Direction.UP, state);
         if (!soilDecision.isDefault()) return soilDecision.isTrue();
-        return belowState.is(MalumTags.Blocks.EBONY_PLANTABLE_ON);
+        return belowState.is(MalumTags.Blocks.PREFERRED_EBONY_SURFACE);
     }
 
     @Override

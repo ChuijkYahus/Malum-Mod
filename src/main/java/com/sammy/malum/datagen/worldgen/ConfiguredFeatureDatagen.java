@@ -37,8 +37,8 @@ public class ConfiguredFeatureDatagen {
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(SOULSTONE_ORE.get())),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_SOULSTONE_ORE.get()))
-            ), 32, 16, 0f, true),
-            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 40, 24, 0.2f, false)
+            ), 20, 12, 0f, true),
+            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 24, 16, 0.2f, false)
     );
 
     public static final LayeredOreFeatureDecorator SOULSTONE_DECOR =
@@ -46,19 +46,19 @@ public class ConfiguredFeatureDatagen {
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                             .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState())
                             .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState().setValue(ArchaicSoulstoneBudBlock.STAGE, 1))
-                            .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState().setValue(ArchaicSoulstoneBudBlock.STAGE, 2)).build())), 6, 12);
+                            .add(ARCHAIC_SOULSTONE_BUD.get().defaultBlockState().setValue(ArchaicSoulstoneBudBlock.STAGE, 2)).build())), 4, 8);
 
     public static final List<OreLayer> CTHONIC_GOLD_LAYERS = List.of(
             new OreLayer(target(REPLACE_STONES, simple(CTHONIC_GOLD_ORE.get())
-            ), 4, 16, 0f, true),
+            ), 4, 8, 0f, true),
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(GOLD_ORE)),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_GOLD_ORE))
-            ), 12, 24, 0.1f, false)
+            ), 8, 16, 0.15f, false)
     );
 
     public static final LayeredOreFeatureDecorator CTHONIC_GOLD_DECOR =
-            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 3, 6);
+            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 4, 6);
 
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
             OreConfiguration.target(REPLACE_STONE, BRILLIANT_STONE.get().defaultBlockState()),

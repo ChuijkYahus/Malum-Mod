@@ -45,14 +45,14 @@
           }
         }
       ],
-      "max_decorations": 12,
-      "min_decorations": 6
+      "max_decorations": 8,
+      "min_decorations": 4
     },
     "ore_layers": [
       {
         "discard_chance_on_air_exposure": 0.0,
         "discard_feature_if_empty": true,
-        "height": 16,
+        "height": 12,
         "targets": [
           {
             "state_provider": {
@@ -79,11 +79,11 @@
             }
           }
         ],
-        "width": 32
+        "width": 20
       },
       {
         "discard_chance_on_air_exposure": 0.2,
-        "height": 24,
+        "height": 16,
         "targets": [
           {
             "state_provider": {
@@ -98,7 +98,7 @@
             }
           }
         ],
-        "width": 40
+        "width": 24
       }
     ]
   }
