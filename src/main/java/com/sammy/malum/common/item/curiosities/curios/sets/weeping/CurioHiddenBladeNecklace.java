@@ -28,7 +28,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
     public static final int COOLDOWN_DURATION = 200;
 
     public CurioHiddenBladeNecklace(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

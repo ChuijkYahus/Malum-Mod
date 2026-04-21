@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class CurioOrnateRing extends MalumCurioItem {
     public CurioOrnateRing(Properties builder) {
-        super(builder, MalumTrinketType.ORNATE);
+        super(builder, MalumTrinketFamily.ORNATE);
     }
 
     @Override

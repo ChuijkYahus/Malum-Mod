@@ -3,7 +3,6 @@ package com.sammy.malum.common.item.curiosities.curios.sets.rotten;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.curios.*;
-import com.sammy.malum.common.item.food.*;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.events.*;
 import com.sammy.malum.registry.common.MalumParticleEffectTypes;
@@ -22,7 +21,7 @@ import java.util.function.*;
 public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventResponder {
 
     public CurioStarvedBelt(Properties builder) {
-        super(builder, MalumTrinketType.ROTTEN);
+        super(builder, MalumTrinketFamily.ROTTEN);
     }
 
     @Override

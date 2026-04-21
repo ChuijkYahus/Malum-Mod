@@ -16,7 +16,7 @@ import java.util.function.*;
 
 public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem, IMalumEventResponder {
     public CurioEchoingArcanaRing(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

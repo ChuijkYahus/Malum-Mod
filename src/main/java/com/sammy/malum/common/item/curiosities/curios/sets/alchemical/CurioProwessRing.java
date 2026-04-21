@@ -7,14 +7,13 @@ import com.sammy.malum.core.systems.events.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.Consumer;
 
 public class CurioProwessRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioProwessRing(Properties builder) {
-        super(builder, MalumTrinketType.ALCHEMICAL);
+        super(builder, MalumTrinketFamily.ALCHEMICAL);
     }
 
     @Override

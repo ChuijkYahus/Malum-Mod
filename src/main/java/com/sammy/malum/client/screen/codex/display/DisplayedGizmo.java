@@ -127,6 +127,7 @@ public abstract class DisplayedGizmo {
         @Override
         public void render(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
             renderer.renderIcon(guiGraphics.pose(), x, y);
+            super.render(screen, guiGraphics, x, y, mouseX, mouseY);
         }
 
         @Override

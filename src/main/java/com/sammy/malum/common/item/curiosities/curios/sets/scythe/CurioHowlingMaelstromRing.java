@@ -8,7 +8,6 @@ import com.sammy.malum.registry.common.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
@@ -17,7 +16,7 @@ import java.util.function.*;
 
 public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioHowlingMaelstromRing(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.METALLIC);
     }
 
     @Override

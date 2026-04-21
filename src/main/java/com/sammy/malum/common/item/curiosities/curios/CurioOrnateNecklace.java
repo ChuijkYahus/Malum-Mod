@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class CurioOrnateNecklace extends MalumCurioItem {
     public CurioOrnateNecklace(Properties builder) {
-        super(builder, MalumTrinketType.ORNATE);
+        super(builder, MalumTrinketFamily.ORNATE);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class CurioTokenOfGratitude extends MalumCurioItem implements ItemEventHa
     }
 
     public CurioTokenOfGratitude(Properties builder) {
-        super(builder, MalumTrinketType.GILDED);
+        super(builder, MalumTrinketFamily.GILDED);
     }
 
     @Override

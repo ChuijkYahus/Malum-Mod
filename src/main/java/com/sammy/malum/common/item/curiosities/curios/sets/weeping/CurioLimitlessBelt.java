@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 public class CurioLimitlessBelt extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
 
     public CurioLimitlessBelt(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

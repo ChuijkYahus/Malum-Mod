@@ -102,6 +102,7 @@ import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.totemic.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.alchemical.*;
+import com.sammy.malum.common.item.curiosities.curios.sets.elemental.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.esoteric.CurioArcaneSpoilRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.esoteric.CurioConcealingRing;
 import com.sammy.malum.common.item.curiosities.curios.sets.prospector.CurioDischargeRing;
@@ -715,9 +716,12 @@ public class MalumContent {
 
         public static final DeferredItem<Item> NECKLACE_OF_MYSTIC_POTENCY = register("necklace_of_mystic_potency", MalumItemProperties::GEAR, CurioMysticNecklace::new);
         public static final DeferredItem<Item> NECKLACE_OF_THE_NARROW_EDGE = register("necklace_of_the_narrow_edge", MalumItemProperties::GEAR, CurioNarrowEdgeNecklace::new);
+        public static final DeferredItem<Item> NECKLACE_OF_THE_WINDWEAVER = register("necklace_of_the_windweaver", MalumItemProperties::GEAR, CurioWindweaverNecklace::new);
 
         public static final DeferredItem<Item> BELT_OF_THE_STARVED = register("belt_of_the_starved", MalumItemProperties::GEAR, CurioStarvedBelt::new);
         public static final DeferredItem<Item> BELT_OF_THE_PROSPECTOR = register("belt_of_the_prospector", MalumItemProperties::GEAR, CurioProspectorBelt::new);
+        public static final DeferredItem<Item> BELT_OF_THE_TIDEBOUND = register("belt_of_the_tidebound", MalumItemProperties::GEAR, CurioTideboundBelt::new);
+        public static final DeferredItem<Item> BELT_OF_OPULENT_INOCULATION = register("belt_of_opulent_inoculation", MalumItemProperties::GEAR, CurioInoculationBelt::new);
         public static final DeferredItem<Item> BELT_OF_THE_MAGEBANE = register("belt_of_the_magebane", MalumItemProperties::GEAR, CurioMagebaneBelt::new);
 
         public static final DeferredItem<Item> RING_OF_THE_ENDLESS_WELL = register("ring_of_the_endless_well", MalumItemProperties::GEAR, CurioEndlessRing::new);

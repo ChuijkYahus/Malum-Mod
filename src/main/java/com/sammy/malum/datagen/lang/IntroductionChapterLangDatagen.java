@@ -3,6 +3,8 @@ package com.sammy.malum.datagen.lang;
 public class IntroductionChapterLangDatagen extends CodexLangDatagen {
 
     public static void generateEntries() {
+
+
         addSimpleEntryHeader("introduction", "Introduction", "On the nature of souls");
         addPages("introduction",
                 "\"Within our world, every living being has a soul. That soul is consciousness, what animates the body, and the meeting point between matter and magic. These represent our existence; as the body is presented to the physical world, so the soul is to the arcane.\"",
@@ -11,6 +13,7 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
                 "So far, what I have described is basic. But I have found a way to separate, and then condense, the impulse of a soul into a physical form I call a spirit crystal. This forms the basis of my research.",
                 "The natures of the soul I condense influence the crystal's properties. Each soul is slightly different, and that can result in changes to the crystals formed. I believe these spirit crystals to be just the breakthrough I need.");
 
+        addTitleAndSnippet("icon.soul_shard", "Spirit Crystals", "The foundation of sorcery");
         addSimpleEntryHeader("spirit_crystals", "Spirit Crystals", "Matter and magic");
         addPages("spirit_crystals",
                 "The soul is a notoriously fickle thing. Even confirming its existence is difficult, requiring the highest thaumaturgies to get a reading. That is what sets spirit arcana apart from other magic. We don't need grand assemblies and esoteric artifice to see a soul. Simply destroying it is proof enough.",
@@ -48,6 +51,7 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addTitleAndSnippet("runewood.runic_sap.bottling", "Harvesting Runic Sap", "Sap can be collected and stored within a bottle.");
         addTitleAndSnippet("runewood.runic_sap.mixing", "Mixing Runic Sapballs", "Mixing Runic Sap together with dough thickens it's composition and yields Sapballs");
 
+        addTitleAndSnippet("icon.overworld", "Arcane Wonders", "Where we all gather");
         addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
         addPages("arcane_wonders",
                 "After having carved open a few samples of raw Soulstone, I've been able to notice signs of a pattern. Both Runewood and Soulstone appear to be two instances of magic influence spanning the world, brought into existence through the same exact principle.",

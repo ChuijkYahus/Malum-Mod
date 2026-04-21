@@ -8,7 +8,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
@@ -17,27 +16,34 @@ import java.util.function.*;
 
 public abstract class AbstractMalumCurioItem extends Item implements ICurioItem {
 
-    public enum MalumTrinketType {
+    public enum MalumTrinketFamily {
         CLOTH(MalumSoundEvents.CLOTH_TRINKET_EQUIP),
+
         ORNATE(MalumSoundEvents.ORNATE_TRINKET_EQUIP),
         GILDED(MalumSoundEvents.GILDED_TRINKET_EQUIP),
-        ALCHEMICAL(MalumSoundEvents.ALCHEMICAL_TRINKET_EQUIP),
-        ROTTEN(MalumSoundEvents.ROTTEN_TRINKET_EQUIP),
         METALLIC(MalumSoundEvents.METALLIC_TRINKET_EQUIP),
+
+        AVARICE(MalumSoundEvents.METALLIC_TRINKET_EQUIP),
+        ROTTEN(MalumSoundEvents.ROTTEN_TRINKET_EQUIP),
+        ALCHEMICAL(MalumSoundEvents.ALCHEMICAL_TRINKET_EQUIP),
+        ELEMENTAL(MalumSoundEvents.ALCHEMICAL_TRINKET_EQUIP),
+
+
         VOID(MalumSoundEvents.VOID_TRINKET_EQUIP),
+
         RUNE(MalumSoundEvents.RUNE_EQUIP),
         TOTEMIC_RUNE(MalumSoundEvents.TOTEMIC_RUNE_EQUIP),
         VOID_RUNE(MalumSoundEvents.VOID_RUNE_EQUIP);
         final Supplier<SoundEvent> sound;
 
-        MalumTrinketType(Supplier<SoundEvent> sound) {
+        MalumTrinketFamily(Supplier<SoundEvent> sound) {
             this.sound = sound;
         }
     }
 
-    public final MalumTrinketType type;
+    public final MalumTrinketFamily type;
 
-    public AbstractMalumCurioItem(Properties properties, MalumTrinketType type) {
+    public AbstractMalumCurioItem(Properties properties, MalumTrinketFamily type) {
         super(properties);
         this.type = type;
     }

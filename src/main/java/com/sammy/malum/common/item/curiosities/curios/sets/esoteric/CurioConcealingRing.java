@@ -15,7 +15,7 @@ import java.util.function.*;
 public class CurioConcealingRing extends MalumCurioItem {
 
     public CurioConcealingRing(Properties builder) {
-        super(builder, MalumTrinketType.ORNATE);
+        super(builder, MalumTrinketFamily.ORNATE);
     }
 
     @Override

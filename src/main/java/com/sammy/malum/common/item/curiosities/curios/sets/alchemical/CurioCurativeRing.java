@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public class CurioCurativeRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioCurativeRing(Properties builder) {
-        super(builder, MalumTrinketType.ALCHEMICAL);
+        super(builder, MalumTrinketFamily.ALCHEMICAL);
     }
 
     @Override

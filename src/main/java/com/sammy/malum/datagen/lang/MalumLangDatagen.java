@@ -204,22 +204,18 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_SELF_CARE, "Eat, lest your body consume itself");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_HIGH_PRIEST, "Become what they believe, so long as they believe");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY, "Become the ocean's avatar");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID, "A warped echo");
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_WINDSWEPT, "Run as the wind");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CONTINUING_SHOT, "Step. Form. Ready. Raise. Begin. Draw. Release.");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER, "Dance along the edge of danger");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_SKYBREAKER, "Move and be moved");
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS, "To be full is to be anchored");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_LONE_DRUID, "Shed your second skin");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_ASCETIC, "Forswear indulgence, and be healed by rot");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROFANE_GLUTTON, "Consume.");
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_COMBUSTION, "To ignite and watch");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PROSPECTOR, "Engulf yourself with greed");
-        addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_BLASTWEAVER, "Draw power from recklessness");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_WYRD_RECONSTRUCTION, "Witness oblivion and forge yourself anew");
 
 

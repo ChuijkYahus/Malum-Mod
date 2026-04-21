@@ -6,7 +6,6 @@ public class CurioEffectLangDatagen {
 
     public static void addTranslations() {
 
-
         addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
         addCurioEffect("crits", "Critical Strikes");
         addCurioEffect("low_health_speed", "Speed at Low Health");
@@ -38,6 +37,14 @@ public class CurioEffectLangDatagen {
         addCurioEffect("enchanted_explosions", "Explosions Are Enchanted With %s");
         addCurioEffect("avarice_healing", "Avarice Recovers Health And Hunger");
         addCurioEffect("bigger_explosions", "Enhances Explosion Blast Radius");
+
+        addCurioEffect("windweaver_ascension", "Wind Gusts Bestow Ascension");
+        addCurioEffect("windweaver_gliding", "Ascension Enables Air-Strafe Movement");
+        addCurioEffect("tidebound_resilience", "Reduces Damage Taken While Soaked");
+        addCurioEffect("tidebound_agility", "Passively Recovers Health While Submerged");
+        addCurioEffect("tidebound_conduit", "Listed Effects Become Empowered Through Conduit Influence");
+        addCurioEffect("inoculation_effect_duration", "Improves Potion Effect Durations");
+        addCurioEffect("inoculation_effect_buff", "Potion Effects Provide Additional Benefits");
 
         addCurioEffect("no_sweep", "Disables Scythe Sweeping");
         addCurioEffect("enhanced_maneuvers", "Augments Rebound and Ascension");

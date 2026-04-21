@@ -166,15 +166,6 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(WICKED_SPIRIT, 16)
                 .addSpirit(ELDRITCH_SPIRIT, 16)
                 .save(recipeOutput);
-        new SoulBindingRecipeBuilder(WIND_NUCLEUS, 16, MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER)
-                .addExtraItem(EERIE_WEAVE, 8)
-                .addExtraItem(WIND_CHARGE, 8)
-                .addExtraItem(FEATHER, 8)
-                .addSpirit(AERIAL_SPIRIT, 32)
-                .addSpirit(ARCANE_SPIRIT, 32)
-                .addSpirit(SACRED_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 16)
-                .save(recipeOutput);
 
 
         new SoulBindingRecipeBuilder(Ingredient.of(ItemTags.SAPLINGS), 12, MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS)

@@ -13,7 +13,7 @@ import java.util.function.*;
 
 public class CurioManaweavingRing extends MalumCurioItem implements IMalumEventResponder {
     public CurioManaweavingRing(Properties builder) {
-        super(builder, MalumTrinketType.ALCHEMICAL);
+        super(builder, MalumTrinketFamily.ALCHEMICAL);
     }
 
     @Override

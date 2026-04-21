@@ -9,7 +9,7 @@ import java.util.function.*;
 
 public class CurioGruesomeConcentrationRing extends MalumCurioItem implements IVoidItem {
     public CurioGruesomeConcentrationRing(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

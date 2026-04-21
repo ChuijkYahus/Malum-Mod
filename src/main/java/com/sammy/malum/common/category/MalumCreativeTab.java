@@ -180,11 +180,14 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         ).nextLine()
                         .addItems(
                                 Gear.NECKLACE_OF_MYSTIC_POTENCY,
-                                Gear.NECKLACE_OF_THE_NARROW_EDGE
+                                Gear.NECKLACE_OF_THE_NARROW_EDGE,
+                                Gear.NECKLACE_OF_THE_WINDWEAVER
                         )
                         .addItems(
                                 Gear.BELT_OF_THE_STARVED,
                                 Gear.BELT_OF_THE_PROSPECTOR,
+                                Gear.BELT_OF_THE_TIDEBOUND,
+                                Gear.BELT_OF_OPULENT_INOCULATION,
                                 Gear.BELT_OF_THE_MAGEBANE
                         ).nextLine()
                         .addItems(
