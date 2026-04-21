@@ -63,7 +63,7 @@ public class MalumLangDatagen extends LanguageProvider {
         EffectKeywordLangDatagen.addTranslations();
         CurioEffectLangDatagen.addTranslations();
         GeasEffectLangDatagen.addTranslations();
-        
+
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(MalumContent.ITEMS.getEntries());
         var sounds = new HashSet<>(SOUND_EVENTS.getEntries());
@@ -184,6 +184,7 @@ public class MalumLangDatagen extends LanguageProvider {
         add(GeasItem.SWORN, "When Sworn: ");
         add(GeasItem.CREATIVE, "Creative Item for Debug Purposes.");
         add(GeasItem.CREATIVE_HELP, "Use To Swear/Forswear Geas Effect.");
+
 
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_DEFIANCE, "Rage, rage, against the dying of your might");
         addGeasDescription(MalumGeasEffectTypes.PACT_OF_THE_PARASITE, "Why work for what others have");
